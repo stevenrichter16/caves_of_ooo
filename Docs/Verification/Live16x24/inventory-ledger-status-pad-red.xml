@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 04:59:44Z" end-time="2026-10-25 04:59:46Z" duration="1.7769266">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31262" result="Failed" site="Child" start-time="2026-10-25 04:59:44Z" end-time="2026-10-25 04:59:46Z" duration="1.776927" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38481" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31262" result="Failed" site="Child" start-time="2026-10-25 04:59:44Z" end-time="2026-10-25 04:59:46Z" duration="1.570421" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38482" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31262" result="Failed" site="Child" start-time="2026-10-25 04:59:44Z" end-time="2026-10-25 04:59:46Z" duration="1.488984" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38483" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31262" result="Failed" site="Child" start-time="2026-10-25 04:59:44Z" end-time="2026-10-25 04:59:46Z" duration="1.411489" total="18" passed="13" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="37356" name="InventoryLedgerGamepadCommandTests" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.507981" total="11" passed="6" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="37368" name="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.276947" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37363" name="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(0)" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(0)" methodname="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="970492710" result="Failed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.133716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Every panel must offer the real Character status command before testing its new request seam.
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce (System.Int32 panel) [0x0011d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGamepadCommandTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37364" name="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(1)" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(1)" methodname="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="1594165585" result="Failed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.035130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Every panel must offer the real Character status command before testing its new request seam.
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce (System.Int32 panel) [0x0011d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGamepadCommandTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37365" name="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(2)" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(2)" methodname="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="944692880" result="Failed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.035134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Every panel must offer the real Character status command before testing its new request seam.
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce (System.Int32 panel) [0x0011d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGamepadCommandTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37366" name="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(3)" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(3)" methodname="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="1397294289" result="Failed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.035174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Every panel must offer the real Character status command before testing its new request seam.
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce (System.Int32 panel) [0x0011d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGamepadCommandTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37367" name="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(4)" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce(4)" methodname="CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="2054419405" result="Failed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.034607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Every panel must offer the real Character status command before testing its new request seam.
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.CommandsExposeCharacterStatusForEveryPanelAndTransferTheRequestOnce (System.Int32 panel) [0x0011d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGamepadCommandTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="37361" name="NativeAStillConfirmsTheSelectedNinthActionExactlyOnce" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.NativeAStillConfirmsTheSelectedNinthActionExactlyOnce" methodname="NativeAStillConfirmsTheSelectedNinthActionExactlyOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="1660179118" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.050508" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37358" name="NativeBClosesOnlyCommandsAndLeavesTheSameInventorySelection" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.NativeBClosesOnlyCommandsAndLeavesTheSameInventorySelection" methodname="NativeBClosesOnlyCommandsAndLeavesTheSameInventorySelection" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="987682451" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.033800" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37362" name="PhysicalKeyboardIStillClosesTheBaseInventoryWithAGamepadConnected" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.PhysicalKeyboardIStillClosesTheBaseInventoryWithAGamepadConnected" methodname="PhysicalKeyboardIStillClosesTheBaseInventoryWithAGamepadConnected" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="401234953" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.033207" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37360" name="PhysicalKeyboardIStillExecutesTheNinthActionExactlyOnce" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.PhysicalKeyboardIStillExecutesTheNinthActionExactlyOnce" methodname="PhysicalKeyboardIStillExecutesTheNinthActionExactlyOnce" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="1661763371" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.035179" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37359" name="WestCannotBecomeTheNinthLetterActionInsideAnExistingItemPopup" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.WestCannotBecomeTheNinthLetterActionInsideAnExistingItemPopup" methodname="WestCannotBecomeTheNinthLetterActionInsideAnExistingItemPopup" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="2070178587" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.035309" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37357" name="WestOpensCraftingCommandsAndDpadAChooseTheActuallyOfferedBrewMode" fullname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.WestOpensCraftingCommandsAndDpadAChooseTheActuallyOfferedBrewMode" methodname="WestOpensCraftingCommandsAndDpadAChooseTheActuallyOfferedBrewMode" classname="CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests" runstate="Runnable" seed="660597830" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.034293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="37369" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:46Z" duration="0.307804" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="37378" name="AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" methodname="AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="794177670" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.049530" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37373" name="LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" methodname="LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1275452875" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.040014" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37374" name="PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" methodname="PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="2120966533" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:45Z" duration="0.032834" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37377" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 04:59:45Z" end-time="2026-10-25 04:59:46Z" duration="0.070274" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37375" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(False)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(False)" methodname="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1790884133" result="Passed" start-time="2026-10-25 04:59:46Z" end-time="2026-10-25 04:59:46Z" duration="0.034996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37376" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(True)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(True)" methodname="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="653097577" result="Passed" start-time="2026-10-25 04:59:46Z" end-time="2026-10-25 04:59:46Z" duration="0.032715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37372" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 04:59:46Z" end-time="2026-10-25 04:59:46Z" duration="0.095138" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37370" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1280,800)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1280,800)" methodname="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1957630313" result="Passed" start-time="2026-10-25 04:59:46Z" end-time="2026-10-25 04:59:46Z" duration="0.036344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37371" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1920,1080)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1920,1080)" methodname="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="37563746" result="Passed" start-time="2026-10-25 04:59:46Z" end-time="2026-10-25 04:59:46Z" duration="0.042372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

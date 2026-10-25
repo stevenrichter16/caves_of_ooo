@@ -81,7 +81,14 @@ namespace CavesOfOoo.Tests
                 Invoke(rig.Input, "OpenInventory");
                 Assert.True(rig.Inventory.IsOpen);
                 var inventoryTiles = Capture(rig.Main);
-                Assert.Greater(inventoryTiles.Count, 0, "A real painted inventory must remain underneath.");
+                Assert.Zero(inventoryTiles.Count, "Inventory has one retained painter, with no duplicate legacy tiles.");
+                var inventoryCanvases = rig.Inventory.GetComponentsInChildren<Canvas>(false);
+                Assert.AreEqual(1, inventoryCanvases.Length);
+                var inventoryCanvas = inventoryCanvases[0];
+                Assert.True(inventoryCanvas.isActiveAndEnabled);
+                Assert.AreEqual(RenderMode.ScreenSpaceCamera, inventoryCanvas.renderMode);
+                Assert.AreSame(rig.MainCamera, inventoryCanvas.worldCamera);
+                var inventoryLabels = CaptureInventoryLabels(rig.Inventory);
                 Vector3 position = rig.MainCamera.transform.position;
                 float size = rig.MainCamera.orthographicSize;
                 var document = ExamineDocumentBuilder.BuildInventory(item, player);
@@ -100,6 +107,8 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(size, rig.MainCamera.orthographicSize);
                 Assert.Greater(rig.Reader.BgTilemap.layoutGrid.cellSize.x, 1f);
                 AssertTilesUnchanged(rig.Main, inventoryTiles);
+                Assert.True(inventoryCanvas.isActiveAndEnabled);
+                CollectionAssert.AreEqual(inventoryLabels, CaptureInventoryLabels(rig.Inventory));
                 AssertOpaqueCoverage(rig.Reader);
                 rig.Reader.Close();
                 Invoke(rig.Input, "CloseAnnouncement");
@@ -107,8 +116,19 @@ namespace CavesOfOoo.Tests
                 Assert.True(rig.Inventory.IsOpen);
                 Assert.Zero(rig.Reader.BgTilemap.GetUsedTilesCount());
                 AssertTilesUnchanged(rig.Main, inventoryTiles);
+                Assert.True(inventoryCanvas.isActiveAndEnabled);
+                CollectionAssert.AreEqual(inventoryLabels, CaptureInventoryLabels(rig.Inventory));
                 Assert.True(player.GetPart<InventoryPart>().Contains(item));
             }
+        }
+
+        static List<string> CaptureInventoryLabels(InventoryUI ui)
+        {
+            var result = new List<string>();
+            foreach (var label in ui.GetComponentsInChildren<SkillScreenText>(false))
+                if (label.isActiveAndEnabled && !string.IsNullOrWhiteSpace(label.Content)) result.Add(label.Content);
+            Assert.Greater(result.Count, 0, "A live inventory view must contain actual text, not only a blank Canvas.");
+            return result;
         }
 
         static void AssertOpaqueCoverage(AnnouncementUI ui)

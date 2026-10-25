@@ -112,11 +112,23 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void LongFailureTextIsClippedToItsOwnDetailRow()
         {
-            Tiles();Call("LogCommandFailure","FeedbackFixture",InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,new string('X',120)));Call("Render");for(int x=1;x<80;x++)Assert.AreSame(CP437TilesetGenerator.GetUiTile('X'),UI.Tilemap.GetTile(new Vector3Int(x,0,0)));Assert.AreNotSame(CP437TilesetGenerator.GetUiTile('X'),UI.Tilemap.GetTile(new Vector3Int(0,1,0)));
+            Tiles();string failure=new string('X',400);Call("LogCommandFailure","FeedbackFixture",InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,failure));Call("Render");Canvas.ForceUpdateCanvases();
+            Assert.AreEqual(failure,Status,"Only the presentation may shorten a failure; preserve the command's full reason.");
+            var label=LedgerLabels().Single(t=>t.Content.StartsWith("XXX",StringComparison.Ordinal));
+            Assert.Less(label.Content.Length,failure.Length);StringAssert.EndsWith("...",label.Content);Assert.AreEqual(new string('X',label.Content.Length-3)+"...",label.Content);StringAssert.DoesNotContain("\n",label.Content);
+            AssertRetainedLabelFits(label);AssertActionLegendRemainsReadable(label);Assert.Zero(UI.Tilemap.GetUsedTilesCount());
         }
         [Test] public void FailureSurvivesRepeatedRedrawAndSuccessfulRetryRemovesItsGlyphs()
         {
-            var box=Sack().GetPart<ContainerPart>();var item=Carry("Dagger",1);OpenAction(item,"put_container",out int action);Tiles();Call("ExecuteItemAction",action);for(int i=0;i<3;i++)AssertStatusTiles("Container is full.");Assert.IsTrue(box.RemoveItem(box.Contents[0]));Call("ExecuteItemAction",action);Assert.IsTrue(string.IsNullOrEmpty(Status));Assert.AreNotSame(CP437TilesetGenerator.GetUiTile('C'),UI.Tilemap.GetTile(new Vector3Int(1,0,0)));
+            var box=Sack().GetPart<ContainerPart>();var item=Carry("Dagger",1);var popup=OpenAction(item,"put_container",out int action);Tiles();Call("ExecuteItemAction",action);
+            for(int i=0;i<3;i++)
+            {
+                var status=AssertStatusView("Container is full.");AssertActionLegendRemainsReadable(status);
+                Assert.AreSame(popup,Get("_itemActionPopup"));Assert.AreEqual(action,Field(popup,"CursorIndex"));Assert.IsTrue(Inventory.Contains(item));Assert.AreEqual(1,item.GetPart<StackerPart>().StackCount);
+            }
+            Assert.IsTrue(box.RemoveItem(box.Contents[0]));Call("ExecuteItemAction",action);Call("Render");Canvas.ForceUpdateCanvases();
+            Assert.IsTrue(string.IsNullOrEmpty(Status));Assert.IsNull(Get("_itemActionPopup"));Assert.IsFalse(LedgerLabels().Any(t=>t.Content.Contains("Container is full.")),"Pooled active text must not retain the resolved failure.");
+            Assert.AreEqual(1,box.Contents.Count(e=>e==item));Assert.IsFalse(Inventory.Contains(item));Assert.Zero(UI.Tilemap.GetUsedTilesCount());
         }
     }
 }

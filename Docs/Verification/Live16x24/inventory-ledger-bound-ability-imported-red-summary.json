@@ -1,0 +1,47 @@
+{
+  "start-time": "2026-10-25 05:57:33Z",
+  "end-time": "2026-10-25 05:57:35Z",
+  "total": "16",
+  "passed": "7",
+  "failed": "9",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(\"LongBlades_EnGarde\")",
+      "message": "  The bound skill must explain its real effect, not only its name or readiness.\n  Expected: String containing \"Raise your held long blade for 2 of your turns\"\n  But was:  \"SLOT 1 En Garde Cooldown: 7 turns remaining. No inline description is available for this ability.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(\"LongBlades_Lunge\")",
+      "message": "  The bound skill must explain its real effect, not only its name or readiness.\n  Expected: String containing \"Active ability: strike the first creature up to 2 cells along the chosen line with a normal long-blade attack, without moving\"\n  But was:  \"SLOT 2 Lunge Cooldown: 7 turns remaining. No inline description is available for this ability.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl(False)",
+      "message": "  The selected ability pane must offer its complete fact sheet.\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl(True)",
+      "message": "  The selected ability pane must offer its complete fact sheet.\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility(True)",
+      "message": "  An owned selected ability needs the same discoverable details command as items.\n  Expected: greater than or equal to 0\n  But was:  -1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(\"empty-slot\")",
+      "message": "  Live selected-owner control.\n  Expected: not null and not <empty>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(\"removed-ability\")",
+      "message": "  Live selected-owner control.\n  Expected: not null and not <empty>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(0)",
+      "message": "  Closing the picker restores the current bound slot's facts, not the prior candidate's prose.\n  Expected: \"Kindle\n\nA hot bolt whose whole purpose is ignition. 1d4 Fire at range 5, cooldown 6, and enough direct heat (600J) to light dry tinder in one hit. Also taught by the Kindle grimoire.\n\nRange: 5 cells.\nTargeting: one of eight directions; shape and interception as described above.\nCooldown: 6 turns after successful use.\n\nLearning: Requires Pyromancy.\nPurchase: 1 SP. Available: 0.\nRequired tree: Pyromancy.\n\nReady: off cooldown.\nShortcut: 1\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(9)",
+      "message": "  Closing the picker restores the current bound slot's facts, not the prior candidate's prose.\n  Expected: \"Kindle\n\nA hot bolt whose whole purpose is ignition. 1d4 Fire at range 5, cooldown 6, and enough direct heat (600J) to light dry tinder in one hit. Also taught by the Kindle grimoire.\n\nRange: 5 cells.\nTargeting: one of eight directions; shape and interception as described above.\nCooldown: 6 turns after successful use.\n\nLearning: Requires Pyromancy.\nPurchase: 1 SP. Available: 0.\nRequired tree: Pyromancy.\n\nReady: off cooldown.\nShortcut: 1\"\n  But was:  null\n"
+    }
+  ]
+}

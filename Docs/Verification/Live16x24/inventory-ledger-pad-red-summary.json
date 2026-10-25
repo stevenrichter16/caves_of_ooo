@@ -1,0 +1,23 @@
+{
+  "start-time": "2026-10-25 04:47:16Z",
+  "end-time": "2026-10-25 04:47:17Z",
+  "total": "6",
+  "passed": "3",
+  "failed": "3",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.NativeBClosesOnlyCommandsAndLeavesTheSameInventorySelection",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.WestCannotBecomeTheNinthLetterActionInsideAnExistingItemPopup",
+      "message": "  The synthesized I must not dispatch ordinal action 9.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerGamepadCommandTests.WestOpensCraftingCommandsAndDpadAChooseTheActuallyOfferedBrewMode",
+      "message": "  X must open the Commands view instead of closing the crafting screen.\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

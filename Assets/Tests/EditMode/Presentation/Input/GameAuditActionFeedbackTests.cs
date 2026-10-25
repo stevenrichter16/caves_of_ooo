@@ -40,8 +40,48 @@ namespace CavesOfOoo.Tests
         }
         protected void Tiles()
         { var grid=new GameObject("Feedback test grid");grid.transform.SetParent(UI.transform);grid.AddComponent<Grid>();var tiles=new GameObject("Feedback tiles");tiles.transform.SetParent(grid.transform);UI.Tilemap=tiles.AddComponent<Tilemap>(); }
-        protected void AssertStatusTiles(string text)
-        { Call("Render");for(int i=0;i<text.Length;i++)if(text[i]==' ')Assert.IsNull(UI.Tilemap.GetTile(new Vector3Int(i+1,0,0)));else Assert.AreSame(CP437TilesetGenerator.GetUiTile(text[i]),UI.Tilemap.GetTile(new Vector3Int(i+1,0,0)),"status glyph "+i); }
+        protected SkillScreenText[] LedgerLabels()
+            => UI.GetComponentsInChildren<SkillScreenText>(true).Where(t=>t.isActiveAndEnabled&&!string.IsNullOrWhiteSpace(t.Content)).ToArray();
+        protected Rect LedgerBounds(RectTransform transform)
+        {
+            var content=(RectTransform)Get("_ledgerContent");
+            var bounds=RectTransformUtility.CalculateRelativeRectTransformBounds(content,transform);
+            return new Rect(bounds.min.x-content.rect.xMin,content.rect.yMax-bounds.max.y,bounds.size.x,bounds.size.y);
+        }
+        protected bool CoveredByLaterPanel(SkillScreenText label)
+        {
+            var bounds=LedgerBounds(label.rectTransform);
+            return UI.GetComponentsInChildren<UnityEngine.UI.Image>(true).Any(image=>image.isActiveAndEnabled
+                &&image.transform.parent==label.transform.parent&&image.transform.GetSiblingIndex()>label.transform.GetSiblingIndex()
+                &&image.color.a>.5f&&LedgerBounds(image.rectTransform).Overlaps(bounds));
+        }
+        protected void AssertRetainedLabelFits(SkillScreenText label)
+        {
+            var lines=label.Content.Split('\n');
+            Assert.Greater(label.GlyphHeight,0);
+            Assert.LessOrEqual(lines.Max(line=>line.Length)*label.GlyphHeight*.5f,label.rectTransform.rect.width+.1f,"Visible text must fit its own glyph mesh.");
+            Assert.LessOrEqual(lines.Length*label.GlyphHeight+(lines.Length-1)*4,label.rectTransform.rect.height+.1f);
+            var bounds=LedgerBounds(label.rectTransform);var content=(RectTransform)Get("_ledgerContent");
+            Assert.GreaterOrEqual(bounds.xMin,-.1f);Assert.GreaterOrEqual(bounds.yMin,-.1f);
+            Assert.LessOrEqual(bounds.xMax,content.rect.width+.1f);Assert.LessOrEqual(bounds.yMax,content.rect.height+.1f);
+            Assert.IsFalse(CoveredByLaterPanel(label),"An active label beneath the modal scrim is not readable command feedback.");
+        }
+        protected SkillScreenText AssertStatusView(string text)
+        {
+            Call("Render");Canvas.ForceUpdateCanvases();Assert.Zero(UI.Tilemap.GetUsedTilesCount());
+            var matches=LedgerLabels().Where(t=>t.Content==text).ToArray();Assert.AreEqual(1,matches.Length,"Show the exact failure once in the retained view.");
+            var label=matches[0];AssertRetainedLabelFits(label);
+            Color failureColor=(Color)typeof(InventoryUI).GetField("LRed",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null);
+            Assert.AreEqual(failureColor,label.color);return label;
+        }
+        protected SkillScreenText AssertActionLegendRemainsReadable(SkillScreenText status)
+        {
+            var legends=LedgerLabels().Where(t=>(t.Content.Contains("Enter:")||t.Content.Contains("A:"))&&!CoveredByLaterPanel(t)).ToArray();
+            Assert.IsNotEmpty(legends,"The current keyboard/controller confirmation legend must survive the failure.");
+            var legend=legends.OrderByDescending(t=>LedgerBounds(t.rectTransform).yMin).First();
+            AssertRetainedLabelFits(legend);Assert.IsFalse(LedgerBounds(status.rectTransform).Overlaps(LedgerBounds(legend.rectTransform)),"Failure feedback must not replace or cover the action legend.");
+            return legend;
+        }
     }
     public class GameAuditActionFeedbackTests : ActionFeedbackFixture
     {
@@ -105,7 +145,16 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void FailureIsDrawnInTheSharedDetailRowWithoutReplacingActionLegend()
         {
-            Sack();var dagger=Carry("Dagger",1);OpenAction(dagger,"put_container",out int action);Tiles();Call("ExecuteItemAction",action);AssertStatusTiles("Container is full.");Assert.IsNotNull(UI.Tilemap.GetTile(new Vector3Int(1,1,0)));
+            var box=Sack().GetPart<ContainerPart>();var dagger=Carry("Dagger",1);var popup=OpenAction(dagger,"put_container",out int action);Tiles();
+            var inventoryBefore=Inventory.Objects.ToArray();var contentsBefore=box.Contents.ToArray();Call("ExecuteItemAction",action);
+            var status=AssertStatusView("Container is full.");var legend=AssertActionLegendRemainsReadable(status);StringAssert.Contains("select",legend.Content);
+            Assert.AreSame(popup,Get("_itemActionPopup"));Assert.AreEqual(action,Field(popup,"CursorIndex"));
+            var hits=((IList)Get("_ledgerHits")).Cast<object>().ToArray();
+            var retry=hits.Single(h=>Field(h,"Kind").ToString()=="PopupRow"&&(int)Field(h,"Index")==action);
+            var cancel=hits.Single(h=>Field(h,"Kind").ToString()=="Cancel");
+            Assert.IsFalse(((Rect)Field(retry,"Bounds")).Overlaps(LedgerBounds(status.rectTransform)));
+            Assert.IsTrue(LedgerLabels().Any(t=>t.Content.Contains("Back")&&LedgerBounds(t.rectTransform).Overlaps((Rect)Field(cancel,"Bounds"))&&!CoveredByLaterPanel(t)),"The retained retry menu still exposes a readable Back action.");
+            CollectionAssert.AreEqual(inventoryBefore,Inventory.Objects);CollectionAssert.AreEqual(contentsBefore,box.Contents);Assert.AreSame(Player,dagger.GetPart<PhysicsPart>().InInventory);
         }
         [TestCase("panel")] [TestCase("popup")] [TestCase("close")] public void DeliberateContextExitClearsOldFailure(string transition)
         {

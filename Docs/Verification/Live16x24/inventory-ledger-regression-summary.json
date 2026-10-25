@@ -1,0 +1,39 @@
+{
+  "start-time": "2026-10-25 04:53:50Z",
+  "end-time": "2026-10-25 04:54:23Z",
+  "total": "413",
+  "passed": "406",
+  "failed": "7",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRejectsProviderRemovalOrReplacementDuringItsSingleSnapshot(False)",
+      "message": "  Generic inspection creates one structured snapshot; it does not rerun a legacy description provider.\n  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerInventoryTests.OrdinaryExamineRejectsProviderRemovalOrReplacementDuringItsSingleSnapshot(True)",
+      "message": "  Generic inspection creates one structured snapshot; it does not rerun a legacy description provider.\n  Expected: 1\n  But was:  3\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.FailureSurvivesRepeatedRedrawAndSuccessfulRetryRemovesItsGlyphs",
+      "message": "  status glyph 0\n  Expected: same as <UI_43 (UnityEngine.Tilemaps.Tile)>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.LongFailureTextIsClippedToItsOwnDetailRow",
+      "message": "  Expected: same as <UI_58 (UnityEngine.Tilemaps.Tile)>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.FailureIsDrawnInTheSharedDetailRowWithoutReplacingActionLegend",
+      "message": "  status glyph 0\n  Expected: same as <UI_43 (UnityEngine.Tilemaps.Tile)>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditCraftingFlowAdversarialTests.RenderedSelectionTileMatchesHitMapBeforeAndAfterScroll(False)",
+      "message": "  Expected: same as <UI_3E (UnityEngine.Tilemaps.Tile)>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditCraftingFlowAdversarialTests.RenderedSelectionTileMatchesHitMapBeforeAndAfterScroll(True)",
+      "message": "  Expected: same as <UI_3E (UnityEngine.Tilemaps.Tile)>\n  But was:  null\n"
+    }
+  ]
+}

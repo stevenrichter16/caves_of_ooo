@@ -1,0 +1,74 @@
+{
+  "label": "inventory-ledger-profile",
+  "start": "2026-10-25T06:05:41.606015Z",
+  "end": "2026-10-25T06:06:17.514076Z",
+  "elapsedSeconds": 35.908062,
+  "frames": 43185,
+  "zone": "Overworld.11.9.0",
+  "player": [
+    23,
+    17
+  ],
+  "hp": 32,
+  "rendersSinceStart": 0,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 43186,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 2774.9849488260083,
+      "max": 50500,
+      "p99": 6583
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 43186,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 828465.046218682,
+      "max": 688910500,
+      "p99": 1215208
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 43186,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 20.99951373130181,
+      "max": 21,
+      "p99": 21
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 43186,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 20.99951373130181,
+      "max": 21,
+      "p99": 21
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 43186,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 867.9799008938082,
+      "max": 868,
+      "p99": 868
+    }
+  ],
+  "bounds": "Editor idle inventory after open settles, with tool overhead; no user actions during sample. Not a baseline speedup or physical Deck measurement. Samples may wrap as reported; render-count change and recorder validity are explicit.",
+  "panel": "Abilities; empty Slot5 selected",
+  "editorTimingCaveat": "Uncapped editor sample, includes tool execution/frame outlier. No FPS target, hardware speedup or real Deck claim."
+}

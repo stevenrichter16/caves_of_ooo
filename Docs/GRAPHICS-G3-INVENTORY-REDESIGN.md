@@ -1,7 +1,7 @@
 # G3 — Inventory redesign and polish
 
-2026-10-25 UTC. **Planned; one generated concept reviewed; no inventory
-implementation, RED result or gameplay acceptance is claimed.** The user explicitly
+2026-10-25 UTC. **Implemented and accepted in native tests and actual Editor
+Play. Packaged delivery and physical Steam Deck acceptance remain open.** The user explicitly
 requested redesigning and polishing inventory as part of graphics completion.
 This takes priority over the planned Nella ground material pass. The separate
 wide-popup backing correction remains a prerequisite integration check.
@@ -433,9 +433,244 @@ instead of implementing the chosen cohesive direction.
 - ⚪ **Deferred:** Nella material hierarchy remains planned. Resume it after
   this newly requested graphics slice and its verified integration.
 
-Current files changed by this planning pass: **this document only**. Root
+Historical planning checkpoint: **this document only** was changed at that time. Root
 owns Unity, imagegen, native tests and implementation assignment. Initial
 source review used the actual inventory baseline and existing interfaces;
 independent controls/transaction audit confirmed the preservation contracts
 above. Native execution, GPU color, visual polish and performance remain
 separate gates.
+
+
+## Implementation continuation — 2026-10-25
+
+The retained inventory is implemented locally; ordinary Play and final push
+are still pending at this checkpoint. It uses the real inventory and existing
+transactions rather than a decorative mockup. Existing source item art remains
+unchanged. The imagegen study above supplied layout direction only.
+
+### Implemented presentation
+
+- One opaque, camera-bound full-screen Canvas, centered on a1280×800 logical
+  layout, with pooled native-font labels and rectangular primitives. Legacy
+  inventory tiles are cleared on entry and are no longer repainted underneath.
+- Dynamic named anatomy/equipment column, categorized pack with separated
+  quantity/weight/worn columns, selected-owner details and borrowed native
+  world thumbnail. Unknown native art uses the real object's glyph/color.
+- All five existing modes use the same presentation: Equipment, Inventory,
+  Tinkering, Abilities, Crafting. Craft/build previews retain existing state
+  and transactions. No BitLocker access is granted to normal characters.
+- The same semantic rectangles paint and select rows/buttons. Selection and
+  scrolling preserve exact owners. Existing action, equipment, body-part,
+  modification and grimoire choices remain modal.
+- Native controller X opens context Commands; physical keyboard I retains
+  its established close/letter behavior. Synthetic I no longer chooses the
+  ninth alphabet action inside a nested popup. Character status is exposed
+  through Commands as well as F2; the status reader now includes full actual
+  stats before effects and haul information.
+- The explicit F1 reader suspends this view, while the separate queued Examine
+  reader continues through the existing camera path. Neither invents item
+  identity or substitutes new art.
+
+### Verified REDs and review findings
+
+Native Unity EditMode evidence is under `Verification/Live16x24/`:
+
+| Evidence stem | Result | Meaning |
+| --- | --- | --- |
+| `inventory-ledger-red` |0/11 passed | Actual old view lacks the planned retained shell. |
+| `inventory-ledger-pad-red` |3/6 passed | X closes base inventory and leaks to alphabet action9. Physical keyboard and A controls provide counters. |
+| `inventory-ledger-first-green-status-red` |17/18 passed | Full status is missing omitted actual statistics. |
+| `inventory-ledger-foundation-green` |41/41 passed | First retained-view, input, popup/camera ownership integration. |
+| `inventory-ledger-regression` |406/413 passed | Two real repeated-provider failures and five old CP437 paint pins. Pins were updated to actual retained paint/hit invariants, not removed. |
+| `inventory-ledger-status-pad-red` |13/18 passed | Missing Character status command in all five panels; seven pointer/crafting/hotbar counter-checks already pass. |
+| `inventory-ledger-feedback-red` |71/73 passed | Migrated paint checks expose error text under the popup dimmer. |
+
+These suites overlap. Do not sum them as distinct coverage or call the latest
+implementation fully green until its final native run. A synthetic native
+controller is not a physical Deck. CPU rectangles are not GPU legibility.
+
+🟡 **Repeated inspection providers — fixed and native recheck passed.**
+A modal rejection repainted the new lower detail pane, rerunning descriptions
+that could remove or replace their own provider. The pane now caches its
+validated owner snapshot and refreshes only with selection/Rebuild. Modal or
+queued-announcement repaint cannot request another description. Explicit F1
+and ordinary Examine retain their respective validated read paths.
+
+🟡 **Dimmed command refusal — fixed and native recheck passed.**
+A retained failure line was painted before the modal's dimmer, reducing its
+contrast80%. The failure now paints afterward in its own footer row. Tests
+assert actual painter order and full ink bounds, persistence on redraw, and
+removal after successful retry. Long text has explicit ellipsis.
+
+🟡 **Candidate grimoire detail and displacement slot labels — fixed.**
+Preserve information the old view exposed before a commitment. Candidate
+mechanics must be readable before assigning; replacement confirmation must
+identify the real displaced body slots, including unusual anatomy. Dedicated
+RED cases precede these corrections.
+
+The ordinary Play checklist remains the five modes, both reader routes and
+return, actual pointer selections, equipment change/cancel, crafting preview,
+safe action and throw cancellation,1280×800 and wide shape, and a quiet-view
+render-cost sample. Final receipts and limitations will be appended here.
+
+
+Native follow-up: `inventory-ledger-displacement-red` completed133 cases,
+130passed with only the three new body-slot label cases failing.
+`inventory-ledger-candidate-red` completed8/8 expected failures, then
+`inventory-ledger-first-review-green` passed18/18 including candidate ownership
+and restored eight-slot consequences. `inventory-ledger-regression-green`
+completed480/480 cases with0skipped (05:15:15–05:16:05UTC). The MCP job wrapper
+reported its15s initialization watchdog before the native run actually began;
+the saved full Unity XML, matching exact27-fixture selection and nonzero480
+case count, is the authoritative result. Do not report that wrapper warning
+as480 failed tests or omit the wrapper discrepancy. A subsequent nine-slot full-reader RED failed against the item-only reader;
+the neutral multi-owner disclosure correction passed the67-case focused run.
+
+
+### Live mouse discovery — 05:32UTC
+
+Ordinary keyboard F1, queued Examine, throw/cancel and sword unequip run
+correctly in the real earned north checkpoint. Actual framebuffer captures
+are `inventory-ledger-{pack,details,examine,throw,unequipped}-live.png`.
+The independent native-size pack review finds no significant overlap or
+hierarchy defect. **Mouse acceptance failed**: the visible Tinkering click
+produced no tab change. Read-only diagnostics show legacy Input.mousePosition
+frozen at1790,270, while the native InputSystem Mouse correctly tracks555,705.
+The Canvas and camera are both1280×800; this is not repaired by scaling hit
+rectangles. A narrow new-backend mouse boundary and regression through the
+actual dispatcher follow RED first. Root stopped its isolated Play and restored
+scene/preferences/view/save-root at05:32:44UTC. No normal save was changed.
+The final overflow correction already passed67/67 focused native cases before
+this separate live discovery; physical Deck remains untested.
+
+
+Mouse regression: `inventory-ledger-mouse-red` ran16 native cases with
+12passed/4expectedfailures. Both target sizes, actual crafting-pick press and
+wheel failed; the off-canvas counter and previous11cases passed. The bounded
+fix captures one enabled InputSystem mouse for position/button/wheel, retaining
+legacy fallback when unavailable. It does not change hit rectangles or migrate
+other screens. A new backend check is useful precisely because earlier CPU
+geometry tests could pass while ordinary OS pointer input failed.
+
+
+The first mouse correction passed185/185 native cases,0skipped. Independent
+review then found the same backend mismatch at Open's parked-pointer seed.
+A stationary cursor over a real pack row could be mistaken for new movement
+when opening Equipment with keyboard/controller. A focused pre-fix case and
+consistent initial pointer source are required before final mouse acceptance.
+
+
+Stationary-open RED:17cases,16pass/1expectedfailure (Equipment0 became
+Inventory1 without pointer motion). Open now seeds its pointer from the same
+enabled native device/fallback as the handler. The test's actual movement
+positive counter still must pass; no general mouse warp or scene input patch
+is introduced.
+
+
+Final mouse/parked-pointer GREEN:186/186 native cases,0skipped,
+05:40:58–05:41:23UTC, across the affected inventory, decision-reader, controller,
+crafting and action-feedback fixtures. Independent source re-review accepts
+the consistent Open/handler backend; ordinary mouse replay remains required.
+
+
+### Ordinary Play replay and final skill-description correction — 05:58UTC
+
+The corrected native pointer boundary now works through actual OS mouse input.
+The earned after-north checkpoint opens all five modes; no artificial inventory,
+skills, progress or tinkering access is granted. Keyboard F1/Examine/throw cancel,
+mouse equipment remove/re-equip, grimoire candidate facts without binding, Forge
+missing-input preview and Brew ingredient selection/commit are exercised.
+Brew consumes the two carried Stoneburr/FrostLichen reagents and increases the
+existing frozen-and-stoneskin coating stack from1 to2. F2 exposes full current
+statistics/effects and returns to the same equipment selection. The real Game
+view changes from1280×800 to1920×1080 while the inventory remains open, with
+solid backing and separated columns. Root stops and restores scene/preferences/
+view/save override at05:54:40UTC. See `inventory-ledger-live-review.json` for
+capture dimensions, actions, inventory before/after and limitations. The PNG
+headers are authoritative; some scripted `Screen.width/height` observations
+report the editor host instead of the actual Game framebuffer.
+
+🟡 **Bound combat skill description — found in live replay, correction in progress.**
+The new Abilities pane consulted grimoire prose only; En Garde and Lunge showed
+an empty description despite `AbilityDetailsBuilder.BuildForAbility` already
+owning authoritative skill facts elsewhere. F1 also returned null for a bound
+slot. Reuse that builder for selected owned skills and the full reader, preserve
+the existing grimoire candidate path, show the actual device hint, and expose
+Full details in controller Commands only for an occupied slot. Do not duplicate
+combat balance or change bindings/costs/cooldowns to make the screen look useful.
+
+An initial job ran only8 old-assembly candidate cases before the new test import;
+`inventory-ledger-bound-ability-red` is **not valid RED evidence**. After explicit
+import/reload, `inventory-ledger-bound-ability-imported-red` ran16cases at
+05:57:33–05:57:35UTC:7pass/9expectedfailures. These cover real En Garde/Lunge,
+occupied/empty Commands, removed/empty slots and truthful keyboard/controller
+hints, plus intentional migration of the old candidate-close null pin to the
+current bound owner. Production changes begin only after that actual RED.
+
+Physical Deck ergonomics and a packaged run remain unverified. These native
+input tests and editor captures cannot establish hardware performance. No new
+sprite sheet or atlas is warranted by this UI-only slice; accepted owner art is
+reused and the existing retained-view pools avoid painting tiles every frame.
+
+
+Bound-ability GREEN:233/233 native cases,0skipped,06:00:38–06:01:04UTC;
+this overlaps earlier runs and must not be added to480 as a unique test count.
+Actual ordinary Play now displays En Garde's inactive0%/guarded30% and full rules,
+opens its full two-page reader, returns and changes to Lunge with its distinct
+range2 description, then Conjure Rain and an empty slot without stale prose or
+binding. Captures `inventory-ledger-bound-skill-final-live`,
+`inventory-ledger-bound-skill-reader-live`, `inventory-ledger-lunge-final-live`,
+`inventory-ledger-rain-final-live`, `inventory-ledger-empty-slot-final-live`.
+The Rain frame identifies one bounded final polish defect: existing U+2022
+separators render as question marks in the bitmap UI. Extend the already-existing
+`SkillScreenText.Wrap` Unicode-to-ASCII normalization with a single-character
+hyphen replacement after a focused RED; this preserves widths and actual words.
+The old Rain capture is evidence of this defect, not acceptance of that glyph.
+
+
+Quiet-view profile (`inventory-ledger-profile.json`): actual isolated Editor
+Play, Abilities with empty Slot5 selected,35.9seconds/43,185uncapped editorframes,
+**zero additional inventory Render calls**. Recorder counters are valid and do
+not wrap. Draw calls/batches p99 both21; ZoneRenderer.LateUpdate p99 0.0066ms.
+The main-thread p99 is1.215ms but the sample includes a688.9ms maximum and tool
+execution; do not turn this into an FPS target, baseline speedup or Deck result.
+The narrow useful acceptance is that the retained idle view does not repaint
+its content each frame. Owned cleanup restored normal scene/preferences/view
+and null save override at06:06:32UTC. Normal user save and backups still match
+the protected pre-audit hashes; no normal save input was sent.
+
+
+Separator RED1 fails on the actual unsupported bullet. The one-character
+normalization passes in the49-case shared UI run, but that run exposes a stale
+unrelated assertion: `SkillBrowserModelTests.OpenAndBrowse_DoNotTeachOrSpend`
+still pins13disciplines before Throwing shipped in303028a7a. Current authored
+content has14; the runtime browser is unchanged. Correct that pin to14 and
+explicitly require ThrowingSkill, keeping all no-purchase/no-learning assertions.
+This is a documented test-premise correction, not masking a changed runtime
+failure. Re-run the49-case suite after this corrected pin.
+
+
+Final shared UI GREEN:49/49,0skipped,06:13:40–06:13:53UTC after the
+one-character normalization and verified stale Throwing count pin correction.
+This includes both skill-browser fixtures, bound ability/candidate/readout
+coverage and the actual-prose separator regression. No further runtime changes
+are planned for this inventory slice; final corrected Rain capture and remote
+preservation close this pass. Nella world work remains a separate next change.
+
+
+### Final scoped acceptance — 06:16UTC
+
+`inventory-ledger-rain-glyph-fixed-live.png` confirms supported separators in
+actual Play. Escape returns Normal world at the same23,17/32HP/tick2260, captured
+in `inventory-ledger-world-return-live.png`. No binding, cast or normal save was
+changed. Cleanup at06:16:08UTC restores scene/preferences/view and clears owned
+save isolation. All four normal-save/backup files match the protected hashes.
+Independent source reviews of the main view, mouse handling, ability authority,
+text normalizer and corrected test premise have no remaining significant issue.
+Actual screenshots were reviewed at native1280×800 and1920×1080 and shared with
+the user. The defined inventory redesign is accepted within these Editor bounds.
+
+Remaining: physical Deck input/feel, a package built from these new sources, and
+world graphics completion. The existing current Mac/Linux packages are preserved
+and predate this UI. No current build, source, editable art, save or useful active
+cache was deleted; storage review found no worthwhile safely stale target.

@@ -1,0 +1,110 @@
+{
+  "reviewer": "/root/biome_reference_selection",
+  "reviewed_at_utc": "2026-10-25T06:08:14.186692+00:00",
+  "scope": "Bound ability inline facts, full reader, occupied-slot commands and input hints in the retained inventory ledger.",
+  "result": "No actionable P1/P2 source defect found within the reviewed bound-ability changes. The separately observed Rain bullet-glyph defect is queued for narrow text-normalization TDD.",
+  "inspected_files": [
+    {
+      "path": "Assets/Scripts/Presentation/UI/InventoryUI.Clarity.cs",
+      "sha256": "5449fc836f5f94e6fb191e124900351448a8d3d98debb4759cb87f9a3f9ff1a5"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/UI/InventoryUI.LedgerModes.cs",
+      "sha256": "df430126131cc16ad385a8a4bd6dd13436ac84688c281307cc49cb317ecc886f"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/UI/InventoryUI.LedgerPopups.cs",
+      "sha256": "fee103e1b5903591283fb2257b0b72565acb08b1b051beedee05de6d5b761fdb"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs",
+      "sha256": "29079cce7014ba52a8a5579130e0ffe4038e9213b5b2072b3f755dd2da6783a9"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs",
+      "sha256": "7fe3be13017077d9c2c116b5f2501ef011ed3a3269d2197b512bc8555422207f"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/AbilityDetailsBuilder.cs",
+      "sha256": "12d3c9294b77724bebb31a04bf221fcb4ed36900a1c8fbcc5eaa08b2ecb5b83b"
+    }
+  ],
+  "review_checks": [
+    "Current selected slot is resolved through its current owned ActivatedAbilitiesPart each time. Empty and removed abilities return no stale prose.",
+    "Existing displacement, grimoire candidate and item/equipment modal branches retain priority. Ability facts remain neutral prose with no invented item subject or portrait.",
+    "Inline non-grimoire facts and the complete F1 reader reuse AbilityDetailsBuilder; its skill declarations and eligibility inspection do not learn, activate or pay for an ability.",
+    "Full details command exists only for an occupied ability slot and uses the existing one-shot reader request. It does not cast or rebind.",
+    "Inline non-grimoire body uses 18-pixel glyphs, 13 fitted lines and explicit truncation; complete text remains available in the reader.",
+    "Existing grimoire signature ink ends above the new full-details hint. The hint ends before Assign/Clear buttons. Keyboard F1 and connected-controller LT+RT labels use existing input mappings.",
+    "Only the selected non-grimoire ability builds its authoritative preview during an explicit repaint; no new idle repaint loop or new stale-result cache was introduced.",
+    "Eight bound-ability cases cover real registered En Garde/Lunge, an actual held LongSword, current cooldown, neutral reader facts, no paid action/binding/cooldown mutation, empty/removal counters, occupied/empty Commands and keyboard/pad hints."
+  ],
+  "native_evidence": {
+    "executed_by": "root only; this reviewer did not run Unity",
+    "valid_red": {
+      "start-time": "2026-10-25 05:57:33Z",
+      "end-time": "2026-10-25 05:57:35Z",
+      "total": "16",
+      "passed": "7",
+      "failed": "9",
+      "skipped": "0",
+      "result": "Failed(Child)",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(\"LongBlades_EnGarde\")",
+          "message": "  The bound skill must explain its real effect, not only its name or readiness.\n  Expected: String containing \"Raise your held long blade for 2 of your turns\"\n  But was:  \"SLOT 1 En Garde Cooldown: 7 turns remaining. No inline description is available for this ability.\"\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(\"LongBlades_Lunge\")",
+          "message": "  The bound skill must explain its real effect, not only its name or readiness.\n  Expected: String containing \"Active ability: strike the first creature up to 2 cells along the chosen line with a normal long-blade attack, without moving\"\n  But was:  \"SLOT 2 Lunge Cooldown: 7 turns remaining. No inline description is available for this ability.\"\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl(False)",
+          "message": "  The selected ability pane must offer its complete fact sheet.\n  Expected: 1\n  But was:  0\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl(True)",
+          "message": "  The selected ability pane must offer its complete fact sheet.\n  Expected: 1\n  But was:  0\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility(True)",
+          "message": "  An owned selected ability needs the same discoverable details command as items.\n  Expected: greater than or equal to 0\n  But was:  -1\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(\"empty-slot\")",
+          "message": "  Live selected-owner control.\n  Expected: not null and not <empty>\n  But was:  null\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(\"removed-ability\")",
+          "message": "  Live selected-owner control.\n  Expected: not null and not <empty>\n  But was:  null\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(0)",
+          "message": "  Closing the picker restores the current bound slot's facts, not the prior candidate's prose.\n  Expected: \"Kindle\n\nA hot bolt whose whole purpose is ignition. 1d4 Fire at range 5, cooldown 6, and enough direct heat (600J) to light dry tinder in one hit. Also taught by the Kindle grimoire.\n\nRange: 5 cells.\nTargeting: one of eight directions; shape and interception as described above.\nCooldown: 6 turns after successful use.\n\nLearning: Requires Pyromancy.\nPurchase: 1 SP. Available: 0.\nRequired tree: Pyromancy.\n\nReady: off cooldown.\nShortcut: 1\"\n  But was:  null\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(9)",
+          "message": "  Closing the picker restores the current bound slot's facts, not the prior candidate's prose.\n  Expected: \"Kindle\n\nA hot bolt whose whole purpose is ignition. 1d4 Fire at range 5, cooldown 6, and enough direct heat (600J) to light dry tinder in one hit. Also taught by the Kindle grimoire.\n\nRange: 5 cells.\nTargeting: one of eight directions; shape and interception as described above.\nCooldown: 6 turns after successful use.\n\nLearning: Requires Pyromancy.\nPurchase: 1 SP. Available: 0.\nRequired tree: Pyromancy.\n\nReady: off cooldown.\nShortcut: 1\"\n  But was:  null\n"
+        }
+      ]
+    },
+    "green": {
+      "start-time": "2026-10-25 06:00:38Z",
+      "end-time": "2026-10-25 06:01:04Z",
+      "total": "233",
+      "passed": "233",
+      "failed": "0",
+      "skipped": "0",
+      "result": "Passed",
+      "failures": []
+    },
+    "counting_note": "The 233-case GREEN includes the focused fixtures; do not add overlapping suite counts. The earlier stale-assembly eight-case attempt was not valid RED for the new bound-ability fixture."
+  },
+  "limits": [
+    "Source/fixture review does not establish GPU composition, font appearance, ordinary-play feel or physical Steam Deck acceptance.",
+    "Actual En Garde/F1/Rain screenshots and idle profile are root-owned separate evidence, not claimed as independently replayed here.",
+    "No performance speedup or release/package/device acceptance is claimed.",
+    "Rain U+2022 separators are outside this completed three-file ability-facts fix; the new one-case normalizer regression must receive native RED before production changes."
+  ],
+  "mutations_by_this_review": "Only this /tmp JSON receipt and the separately authorized one-case test/meta import; no production edits, Unity access or git operations."
+}

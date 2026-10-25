@@ -4072,6 +4072,10 @@ namespace CavesOfOoo.Rendering
 
             if (!InventoryUI.IsOpen)
                 CloseInventory();
+            else if (InventoryUI.ConsumeStatusRequest())
+                OpenPlayerStatusReader();
+            else if (InventoryUI.ConsumeDetailsRequest())
+                OpenInventoryDetailsReader();
         }
 
         private void CloseInventory()

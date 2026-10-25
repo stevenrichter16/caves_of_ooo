@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 05:57:33Z" end-time="2026-10-25 05:57:35Z" duration="1.835708">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31291" result="Failed" site="Child" start-time="2026-10-25 05:57:33Z" end-time="2026-10-25 05:57:35Z" duration="1.835708" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38523" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31291" result="Failed" site="Child" start-time="2026-10-25 05:57:34Z" end-time="2026-10-25 05:57:35Z" duration="1.628232" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38524" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31291" result="Failed" site="Child" start-time="2026-10-25 05:57:34Z" end-time="2026-10-25 05:57:35Z" duration="1.546580" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38525" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31291" result="Failed" site="Child" start-time="2026-10-25 05:57:34Z" end-time="2026-10-25 05:57:35Z" duration="1.469320" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="37356" name="InventoryLedgerBoundAbilityDetailsTests" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-25 05:57:34Z" end-time="2026-10-25 05:57:35Z" duration="0.460968" total="8" passed="1" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="37359" name="BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:57:34Z" end-time="2026-10-25 05:57:35Z" duration="0.193718" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37357" name="BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(&quot;LongBlades_EnGarde&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(&quot;LongBlades_EnGarde&quot;)" methodname="BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="1981639254" result="Failed" start-time="2026-10-25 05:57:34Z" end-time="2026-10-25 05:57:35Z" duration="0.156109" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The bound skill must explain its real effect, not only its name or readiness.
+  Expected: String containing "Raise your held long blade for 2 of your turns"
+  But was:  "SLOT 1 En Garde Cooldown: 7 turns remaining. No inline description is available for this ability."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding (System.String skillClass) [0x00129] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37358" name="BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(&quot;LongBlades_Lunge&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding(&quot;LongBlades_Lunge&quot;)" methodname="BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="2123549905" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.033231" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The bound skill must explain its real effect, not only its name or readiness.
+  Expected: String containing "Active ability: strike the first creature up to 2 cells along the chosen line with a normal long-blade attack, without moving"
+  But was:  "SLOT 2 Lunge Cooldown: 7 turns remaining. No inline description is available for this ability."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundCombatSkillShowsAuthoritativeInlineAndFullFactsWithoutCastingOrRebinding (System.String skillClass) [0x00129] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37368" name="BoundSkillAdvertisesItsActualFullDetailsControl" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.109401" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37366" name="BoundSkillAdvertisesItsActualFullDetailsControl(False)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl(False)" methodname="BoundSkillAdvertisesItsActualFullDetailsControl" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="488625462" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.043084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected ability pane must offer its complete fact sheet.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl (System.Boolean gamepad) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37367" name="BoundSkillAdvertisesItsActualFullDetailsControl(True)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl(True)" methodname="BoundSkillAdvertisesItsActualFullDetailsControl" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="1369222219" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.034748" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected ability pane must offer its complete fact sheet.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.BoundSkillAdvertisesItsActualFullDetailsControl (System.Boolean gamepad) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37365" name="CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.071216" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37363" name="CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility(False)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility(False)" methodname="CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="1147625718" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.035631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37364" name="CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility(True)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility(True)" methodname="CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="1158941317" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.033539" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An owned selected ability needs the same discoverable details command as items.
+  Expected: greater than or equal to 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.CommandsOfferFreeFullDetailsOnlyForACurrentlyBoundAbility (System.Boolean occupied) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37362" name="EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.084109" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37360" name="EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(&quot;empty-slot&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(&quot;empty-slot&quot;)" methodname="EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="1359206431" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.034590" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Live selected-owner control.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription (System.String change) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37361" name="EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(&quot;removed-ability&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription(&quot;removed-ability&quot;)" methodname="EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription" classname="CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests" runstate="Runnable" seed="900668975" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.032280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Live selected-owner control.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerBoundAbilityDetailsTests.EmptyOrRemovedBoundSkillDoesNotKeepThePriorDescription (System.String change) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerBoundAbilityDetailsTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="37382" name="InventoryLedgerGrimoireDetailsTests" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.400987" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="37385" name="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.068306" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37383" name="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(0)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(0)" methodname="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1909974798" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.035052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Closing the picker restores the current bound slot's facts, not the prior candidate's prose.
+  Expected: "Kindle
+
+A hot bolt whose whole purpose is ignition. 1d4 Fire at range 5, cooldown 6, and enough direct heat (600J) to light dry tinder in one hit. Also taught by the Kindle grimoire.
+
+Range: 5 cells.
+Targeting: one of eight directions; shape and interception as described above.
+Cooldown: 6 turns after successful use.
+
+Learning: Requires Pyromancy.
+Purchase: 1 SP. Available: 0.
+Required tree: Pyromancy.
+
+Ready: off cooldown.
+Shortcut: 1"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings (System.Int32 targetSlot) [0x002c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37384" name="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(9)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(9)" methodname="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1436704671" result="Failed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.032547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Closing the picker restores the current bound slot's facts, not the prior candidate's prose.
+  Expected: "Kindle
+
+A hot bolt whose whole purpose is ignition. 1d4 Fire at range 5, cooldown 6, and enough direct heat (600J) to light dry tinder in one hit. Also taught by the Kindle grimoire.
+
+Range: 5 cells.
+Targeting: one of eight directions; shape and interception as described above.
+Cooldown: 6 turns after successful use.
+
+Learning: Requires Pyromancy.
+Purchase: 1 SP. Available: 0.
+Required tree: Pyromancy.
+
+Ready: off cooldown.
+Shortcut: 1"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings (System.Int32 targetSlot) [0x002c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37393" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.152819" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37389" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;removed&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="111195829" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.032174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37390" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;foreign-player&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;foreign-player&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1683602846" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.031116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37391" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;closed&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;closed&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1952898819" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.031176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37392" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;search&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;search&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="695232530" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.040846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37388" name="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.177637" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37386" name="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(False)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(False)" methodname="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="2134336967" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.070830" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37387" name="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(True)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(True)" methodname="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="614846984" result="Passed" start-time="2026-10-25 05:57:35Z" end-time="2026-10-25 05:57:35Z" duration="0.089070" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

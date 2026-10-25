@@ -14,9 +14,18 @@ namespace CavesOfOoo.Rendering
         private void OpenPlayerStatusReader()
         {
             if (_inputState != InputState.InventoryOpen || InventoryUI?.PlayerEntity != PlayerEntity || InventoryUI.IsSearching) return;
-            string text = InventoryDecisionDetails.Status(PlayerEntity);
+            var actor = PlayerEntity;
+            var zone = CurrentZone;
+            var inventory = InventoryUI;
+            var stats = InventoryScreenData.Build(actor).PlayerStats;
+            var text = new System.Text.StringBuilder("Current statistics\n");
+            foreach (var stat in stats)
+                text.Append('\n').Append(stat.Name ?? stat.Label).Append(": ").Append(stat.Value);
+            text.Append("\n\n").Append(InventoryDecisionDetails.Status(actor));
             string haul = InventoryDecisionDetails.Haul(PlayerEntity, CurrentZone);
-            OpenDecisionReader(text + (string.IsNullOrEmpty(haul) ? "" : "\n\n" + haul));
+            if (_inputState != InputState.InventoryOpen || PlayerEntity != actor || CurrentZone != zone
+                || InventoryUI != inventory || inventory.PlayerEntity != actor || inventory.CurrentZone != zone) return;
+            OpenDecisionReader(text.ToString() + (string.IsNullOrEmpty(haul) ? "" : "\n\n" + haul));
         }
         private void OpenInventoryDetailsReader()
         {

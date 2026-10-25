@@ -134,8 +134,31 @@ namespace CavesOfOoo.Tests
         {
             if(scroll){ManyBlades(31);Set("_craftCursorIndex",Row(Leather));Call("ClampCraftCursor");}else Set("_craftCursorIndex",Row(Oak));
             var grid=new GameObject("Flow tile test grid");grid.transform.SetParent(UI.transform);grid.AddComponent<Grid>();var tiles=new GameObject("Flow tile test");tiles.transform.SetParent(grid.transform);UI.Tilemap=tiles.AddComponent<Tilemap>();
-            Call("Render");int y=scroll?40:9;Assert.AreEqual((int)Get("_craftCursorIndex"),Hit(13,y));Assert.AreSame(CP437TilesetGenerator.GetUiTile('>'),UI.Tilemap.GetTile(new Vector3Int(1,44-y,0)));
-            Assert.AreNotSame(CP437TilesetGenerator.GetUiTile('>'),UI.Tilemap.GetTile(new Vector3Int(1,44-(y-1),0)));
+            var selected=scroll?Leather:Oak;var order=Inventory.Objects.ToArray();var counts=order.Select(e=>e.GetPart<StackerPart>().StackCount).ToArray();
+            Call("Render");Canvas.ForceUpdateCanvases();
+            Assert.Zero(UI.Tilemap.GetUsedTilesCount(),"The retained inventory owns paint; the old CP437 selection glyph must stay absent.");
+            var canvas=UI.GetComponentInChildren<Canvas>();Assert.NotNull(canvas);Assert.IsTrue(canvas.isActiveAndEnabled);
+            var content=(RectTransform)Get("_ledgerContent");
+            Rect LogicalBounds(RectTransform transform)
+            {
+                var bounds=RectTransformUtility.CalculateRelativeRectTransformBounds(content,transform);
+                return new Rect(bounds.min.x-content.rect.xMin,content.rect.yMax-bounds.max.y,bounds.size.x,bounds.size.y);
+            }
+            object SelectedHit()=>((IList)Get("_ledgerHits")).Cast<object>().Single(h=>Field(h,"Kind").ToString()=="CraftRow"&&(int)Field(h,"Index")==Row(selected));
+            var hit=SelectedHit();var rect=(Rect)Field(hit,"Bounds");
+            int hitIndex=(int)Call("LedgerHitAt",rect.center);Assert.GreaterOrEqual(hitIndex,0);
+            var resolved=((IList)Get("_ledgerHits"))[hitIndex];Assert.AreEqual("CraftRow",Field(resolved,"Kind").ToString());Assert.AreEqual(Row(selected),Field(resolved,"Index"));
+            Assert.AreEqual(Row(selected),Get("_craftCursorIndex"));
+            Assert.IsTrue(UI.GetComponentsInChildren<SkillScreenText>().Any(t=>t.Content.Contains(selected.GetDisplayName())&&LogicalBounds(t.rectTransform).Overlaps(rect)),"The visible row name must identify the same actual input as its hit.");
+            Color selectedColor=(Color)typeof(InventoryUI).GetField("LSelected",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null);
+            var backgrounds=UI.GetComponentsInChildren<UnityEngine.UI.Image>().Where(i=>i.isActiveAndEnabled&&i.color==selectedColor).ToArray();
+            Assert.IsTrue(backgrounds.Any(i=>LogicalBounds(i.rectTransform).Contains(rect.center)),"The selected row must have its retained selection paint.");
+            var other=((IList)Get("_ledgerHits")).Cast<object>().First(h=>Field(h,"Kind").ToString()=="CraftRow"&&(int)Field(h,"Index")!=Row(selected));
+            var otherRect=(Rect)Field(other,"Bounds");Assert.IsFalse(backgrounds.Any(i=>LogicalBounds(i.rectTransform).Contains(otherRect.center)),"An adjacent selectable row must not inherit the selected paint.");
+            Assert.IsTrue(order.All(e=>!CraftingMarkPart.IsMarked(e)),"Painting and hit lookup alone never pick a component.");
+            Call("ActivateLedgerHit",resolved);Assert.IsTrue(CraftingMarkPart.IsMarked(selected));Assert.IsTrue(order.Where(e=>e!=selected).All(e=>!CraftingMarkPart.IsMarked(e)));
+            Call("ActivateLedgerHit",SelectedHit());Assert.IsFalse(CraftingMarkPart.IsMarked(selected));
+            CollectionAssert.AreEqual(order,Inventory.Objects);CollectionAssert.AreEqual(counts,order.Select(e=>e.GetPart<StackerPart>().StackCount));Assert.IsNull(Get("_equipPopup"));
         }
     }
 }

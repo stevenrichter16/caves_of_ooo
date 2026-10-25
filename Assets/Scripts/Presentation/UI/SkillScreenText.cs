@@ -38,7 +38,7 @@ namespace CavesOfOoo.Rendering
         public static List<string> Wrap(string text,int width)
         {
             var lines=new List<string>(); width=Mathf.Max(1,width);
-            text=(text??"").Replace("\r","").Replace('—','-').Replace('–','-').Replace('’','\'').Replace('“','"').Replace('”','"').Replace("≥",">=").Replace('−','-').Replace("°"," degrees").Replace("→","->");
+            text=(text??"").Replace("\r","").Replace('—','-').Replace('–','-').Replace('’','\'').Replace('“','"').Replace('”','"').Replace("≥",">=").Replace('−','-').Replace("°"," degrees").Replace("→","->").Replace('•','-');
             foreach(var paragraph in text.Split('\n'))
             {
                 string remaining=paragraph;

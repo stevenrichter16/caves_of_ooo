@@ -13,8 +13,8 @@ namespace CavesOfOoo.Rendering
         private Entity _searchReturnItem;
         public bool IsSearching => _inventorySearchActive;
         public string SearchQuery => _inventoryQuery;
-        public void HideForDecisionReader() { if (Tilemap != null) Tilemap.ClearAllTiles(); }
-        public void RestoreAfterDecisionReader() { if (_isOpen) { Rebuild(); ClampCursor(); Render(); } }
+        public void HideForDecisionReader() { SetLedgerVisible(false); }
+        public void RestoreAfterDecisionReader() { if (_isOpen) { SetLedgerVisible(true); Rebuild(); ClampCursor(); Render(); } }
         public string SelectedDecisionDetails() => BuildSelectedDecisionDetails(out _);
 
         /// <summary>Preserves the selected decision prose while borrowing current examine
@@ -43,6 +43,50 @@ namespace CavesOfOoo.Rendering
         {
             subject = null;
             if (!_isOpen || _inventorySearchActive) return null;
+            if (_displaceConfirm != null)
+            {
+                var pending = _displaceConfirm;
+                var candidate = pending.ItemToEquip;
+                var body = PlayerEntity?.GetPart<Body>();
+                var render = candidate?.GetPart<RenderPart>();
+                if (!InventoryDecisionDetails.Owned(PlayerEntity, candidate)
+                    || body?.ParentEntity != PlayerEntity || render?.ParentEntity != candidate || !render.Visible
+                    || candidate.GetPart<EquippablePart>()?.ParentEntity != candidate
+                    || pending.Displacements == null || pending.Displacements.Count == 0) return null;
+                // This is a multi-owner preview, not the candidate item's portrait.
+                // Revalidate the exact captured consequences without executing equip.
+                var current = InventorySystem.PreviewDisplacements(PlayerEntity, candidate, pending.TargetPart);
+                if (current.Count != pending.Displacements.Count) return null;
+                foreach (var displacement in current)
+                {
+                    var part = displacement.BodyPart; var item = displacement.Item;
+                    var itemRender = item?.GetPart<RenderPart>();
+                    if (part == null || part.ParentBody != body || part._Equipped != item
+                        || !InventoryDecisionDetails.Owned(PlayerEntity, item)
+                        || itemRender?.ParentEntity != item || !itemRender.Visible
+                        || !pending.Displacements.Any(saved => ReferenceEquals(saved.Item, item)
+                            && ReferenceEquals(saved.BodyPart, part))) return null;
+                }
+                return "Equip " + candidate.GetDisplayName() + "?\n\nWill unequip:\n"
+                    + string.Join("\n", current.Select(displacement => displacement.BodyPart.GetDisplayName()
+                        + ": " + displacement.Item.GetDisplayName()))
+                    + "\n\nChoose Replace to confirm, or Keep current to cancel.";
+            }
+            if (_grimoirePicker != null)
+            {
+                int index = _grimoirePicker.CursorIndex;
+                if (index < 0 || index >= _grimoirePicker.Grimoires.Count) return null;
+                var candidate = _grimoirePicker.Grimoires[index];
+                var abilities = GetAbilitiesPart();
+                // Picker entries are snapshots. Only describe the same learned power
+                // still owned by this character; ability prose has no item portrait.
+                if (candidate == null || abilities == null
+                    || !ReferenceEquals(abilities.GetAbility(candidate.ID), candidate)
+                    || !abilities.AbilityList.Contains(candidate)
+                    || !GrimoireTooltipData.TryGet(candidate.SourcePowerClass, out var tooltip)) return null;
+                return tooltip.DisplayName + "\n\n" + tooltip.Flavor + "\n\n" + tooltip.Mechanics
+                    + "\n" + tooltip.Signature + "\n\nCooldown remaining: " + candidate.CooldownRemaining;
+            }
             if (_itemActionPopup != null)
             {
                 var item = _itemActionPopup.Item;
@@ -70,6 +114,11 @@ namespace CavesOfOoo.Rendering
             {
                 subject = _equipPopup.Items[_equipPopup.CursorItemIndex];
                 return DetailsForItem(subject);
+            }
+            if (_panel == PANEL_ABILITIES)
+            {
+                var ability = GetAbilitiesPart()?.GetAbilityBySlot(_abilitiesCursorSlot);
+                return ability == null ? null : AbilityDetailsBuilder.BuildForAbility(PlayerEntity, ability.ID);
             }
             if (_panel == PANEL_CRAFTING)
             {

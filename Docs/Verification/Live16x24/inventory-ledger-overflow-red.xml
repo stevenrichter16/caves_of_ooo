@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="1.2659244">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31277" result="Failed" site="Child" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="1.265924" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38503" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31277" result="Failed" site="Child" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="1.168506" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38504" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31277" result="Failed" site="Child" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="1.089576" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38505" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31277" result="Failed" site="Child" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="1.012083" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="37381" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="0.720129" total="11" passed="10" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="37396" name="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:47Z" duration="0.240925" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37394" name="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(8)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(8)" methodname="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1446947355" result="Passed" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:47Z" duration="0.178958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="37395" name="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(9)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(9)" methodname="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1337734649" result="Failed" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:47Z" duration="0.059504" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A multi-owner consequence list has no single item portrait.
+  Expected: null
+  But was:  <CavesOfOoo.Core.AnnouncementDocument>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerInteractionTests.ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation (System.Int32 handCount) [0x00320] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerInteractionTests.cs:249
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="37390" name="AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" methodname="AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="316411208" result="Passed" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:47Z" duration="0.036554" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37393" name="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="0.098638" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37391" name="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(0)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(0)" methodname="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="2087265320" result="Passed" start-time="2026-10-25 05:17:47Z" end-time="2026-10-25 05:17:48Z" duration="0.043047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37392" name="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(1)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(1)" methodname="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="576477101" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.036298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="37385" name="LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" methodname="LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="69705635" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.044001" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37386" name="PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" methodname="PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1893167748" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.046775" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37389" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.162356" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37387" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(False)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(False)" methodname="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1990472121" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.111215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37388" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(True)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(True)" methodname="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="100550015" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.034005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37384" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.087141" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37382" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1280,800)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1280,800)" methodname="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1380397089" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.036302" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37383" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1920,1080)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1920,1080)" methodname="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="911757000" result="Passed" start-time="2026-10-25 05:17:48Z" end-time="2026-10-25 05:17:48Z" duration="0.034229" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

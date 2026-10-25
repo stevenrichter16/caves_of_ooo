@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 06:09:17Z" end-time="2026-10-25 06:09:18Z" duration="0.8041225">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31292" result="Failed" site="Child" start-time="2026-10-25 06:09:17Z" end-time="2026-10-25 06:09:18Z" duration="0.804123" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38525" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31292" result="Failed" site="Child" start-time="2026-10-25 06:09:17Z" end-time="2026-10-25 06:09:18Z" duration="0.551320" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38526" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31292" result="Failed" site="Child" start-time="2026-10-25 06:09:18Z" end-time="2026-10-25 06:09:18Z" duration="0.439400" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38527" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31292" result="Failed" site="Child" start-time="2026-10-25 06:09:18Z" end-time="2026-10-25 06:09:18Z" duration="0.318122" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="37488" name="SkillScreenTextNormalizationTests" fullname="CavesOfOoo.Tests.SkillScreenTextNormalizationTests" classname="CavesOfOoo.Tests.SkillScreenTextNormalizationTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-10-25 06:09:18Z" end-time="2026-10-25 06:09:18Z" duration="0.019182" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="37489" name="ConjureRainSeparatorsRemainReadableWithoutChangingAsciiOrWrapping" fullname="CavesOfOoo.Tests.SkillScreenTextNormalizationTests.ConjureRainSeparatorsRemainReadableWithoutChangingAsciiOrWrapping" methodname="ConjureRainSeparatorsRemainReadableWithoutChangingAsciiOrWrapping" classname="CavesOfOoo.Tests.SkillScreenTextNormalizationTests" runstate="Runnable" seed="444395298" result="Failed" start-time="2026-10-25 06:09:18Z" end-time="2026-10-25 06:09:18Z" duration="0.013981" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Rain's mechanics and signature need plain separators instead of CP437 fallback question marks.
+  String lengths are both 74. Strings differ at index 13.
+  Expected: "...- Radius 3 - CD 5\nSoaks soil for 40 ticks - darkens wet earth"
+  But was:  "...• Radius 3 • CD 5\nSoaks soil for 40 ticks • darkens wet earth"
+  --------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SkillScreenTextNormalizationTests.ConjureRainSeparatorsRemainReadableWithoutChangingAsciiOrWrapping () [0x0007f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/SkillScreenTextNormalizationTests.cs:25
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

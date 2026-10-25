@@ -20,7 +20,9 @@ namespace CavesOfOoo.Tests
         [Test] public void OpenAndBrowse_DoNotTeachOrSpend()
         {
             var b=new SkillBrowserModel(); b.Open(actor);
-            Assert.AreEqual(13,b.Disciplines.Count);
+            Assert.AreEqual(14,b.Disciplines.Count);
+            Assert.True(b.Disciplines.Exists(d => d.Class == "ThrowingSkill"),
+                "The shipped throwing discipline must remain visible when browsing.");
             b.SelectClass("Acrobatics_Vault");
             StringAssert.Contains("Agility 18 / 15",b.Requirements);
             Assert.AreEqual(10,actor.GetStatValue("SP"));

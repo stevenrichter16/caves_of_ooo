@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Failed(Child)" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 05:09:04Z" end-time="2026-10-25 05:09:05Z" duration="1.3052667">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31276" result="Failed" site="Child" start-time="2026-10-25 05:09:04Z" end-time="2026-10-25 05:09:05Z" duration="1.305267" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38501" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31276" result="Failed" site="Child" start-time="2026-10-25 05:09:04Z" end-time="2026-10-25 05:09:05Z" duration="1.203708" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38502" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31276" result="Failed" site="Child" start-time="2026-10-25 05:09:04Z" end-time="2026-10-25 05:09:05Z" duration="1.119405" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38503" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31276" result="Failed" site="Child" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.777188" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="37369" name="InventoryLedgerGrimoireDetailsTests" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.411354" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="37372" name="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.166102" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37370" name="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(0)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(0)" methodname="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1236642065" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.126542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  F1 must explain the highlighted candidate before binding it.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings (System.Int32 targetSlot) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37371" name="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(9)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings(9)" methodname="CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1207957371" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.035476" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  F1 must explain the highlighted candidate before binding it.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsDescribeEachActualPowerBeforeAssignmentWithoutChangingBindings (System.Int32 targetSlot) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37380" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.147994" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37376" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;removed&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="186256091" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.032527" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Positive owner control.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner (System.String invalidation) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37377" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;foreign-player&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;foreign-player&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1303067339" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.031666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Positive owner control.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner (System.String invalidation) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37378" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;closed&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;closed&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1037096114" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.031934" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Positive owner control.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner (System.String invalidation) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37379" name="CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;search&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner(&quot;search&quot;)" methodname="CandidateDetailsRefuseAnInvalidOrObscuredOwner" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="778183518" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.031704" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Positive owner control.
+  Expected: not null and not <empty>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsRefuseAnInvalidOrObscuredOwner (System.String invalidation) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37375" name="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.095337" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37373" name="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(False)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(False)" methodname="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="34536225" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.051277" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The candidate picker must advertise its actual details control.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim (System.Boolean gamepad) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37374" name="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(True)" fullname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim(True)" methodname="CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim" classname="CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests" runstate="Runnable" seed="1286261228" result="Failed" start-time="2026-10-25 05:09:05Z" end-time="2026-10-25 05:09:05Z" duration="0.041899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The candidate picker must advertise its actual details control.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerGrimoireDetailsTests.CandidateDetailsShortcutIsPaintedInsideTheModalAboveItsScrim (System.Boolean gamepad) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerGrimoireDetailsTests.cs:84
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

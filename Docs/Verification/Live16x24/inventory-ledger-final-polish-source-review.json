@@ -1,0 +1,170 @@
+{
+  "reviewer": "/root/biome_reference_selection",
+  "reviewed_at_utc": "2026-10-25T06:14:19.230375+00:00",
+  "scope": "One-character retained CP437 text normalization, its actual Conjure Rain regression, and stale shipped discipline-count test correction.",
+  "result": "No actionable P1/P2 source issue found in the reviewed changes.",
+  "inspected_files": [
+    {
+      "path": "Assets/Scripts/Presentation/UI/SkillScreenText.cs",
+      "sha256": "d0b078644a342d843e23964c63cd839950f95138bea0627a1aa3c3ed4777da5a"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SkillBrowserModelTests.cs",
+      "sha256": "8e6b00093ea0a46211d066ec5ebc500bf31b73d733d42089705bfe67b2f31dd3"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/UI/SkillScreenTextNormalizationTests.cs",
+      "sha256": "cb884d5003928100d9b71b3e372e94224cc1ad3f119cbc592811de56471ede47"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SkillBrowserModel.cs",
+      "sha256": "919022de4f5c6b5179c8b10dec2a99949b9c4a50c0d0e5c4d1176744511d7387"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Skills/SkillRegistry.cs",
+      "sha256": "f85809a622265c8b3c7762475c86818a77ed4381ac1906630a537b7e48965f21"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Magic/GrimoireTooltipData.cs",
+      "sha256": "922987286a998b80f167afc0d5d905db1406da3c837ae6b30c2a2c32b2c57254"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/CP437TilesetGenerator.cs",
+      "sha256": "e5b97d85918e8767487489ea3766d113dd2195825be326eaa25354b18e365de5"
+    }
+  ],
+  "findings": [],
+  "checks": [
+    "Wrap now maps only U+2022 to ASCII hyphen through its existing normalization chain. The replacement has the same character length, so it does not expand text or alter pre-existing word-boundary logic.",
+    "The actual ConjureRain Mechanics and Signature contain the unsupported separator. GetUiTile falls back to question mark for characters outside its atlas; the ASCII hyphen has the existing UI font form.",
+    "The single new test uses actual authored metadata and fails on the user-visible plain-separator contract before inspecting narrow wrapping. Its ASCII-wide and ASCII-narrow controls precede the intended RED assertion.",
+    "The positive wide and narrow expected strings retain every word, number and fact, and the narrow check pins the same four wrap lines with printable ASCII. This does not test rasterized GPU glyphs.",
+    "The corrected browser assertion matches 14 parsed authored skill roots in the current Resources tree; each is non-hidden. Explicit ThrowingSkill inclusion makes the new content expectation meaningful instead of only relaxing a number.",
+    "SkillRegistry loads all skill TextAssets; SkillBrowserModel constructs visible disciplines from those registered roots. Neither runtime file changed for the pin correction.",
+    "Throwing.json was already added by commit 303028a7a687202308962ec9de50b1db4ebdcf58. The failed 13-root assertion is stale content coverage, not a separator-induced browser behavior change.",
+    "Existing no-learning/no-SP-spend assertions remain intact. No gameplay, hierarchy, input, atlas art or font size change was introduced."
+  ],
+  "authored_root_count": 14,
+  "authored_roots": [
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Acrobatics.json",
+      "class": "AcrobaticsSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Axe.json",
+      "class": "AxeSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Corrosion.json",
+      "class": "CorrosionSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Cryomancy.json",
+      "class": "CryomancySkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Cudgel.json",
+      "class": "CudgelSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Galvanism.json",
+      "class": "GalvanismSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Hydromancy.json",
+      "class": "HydromancySkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/LongBlades.json",
+      "class": "LongBladesSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Persuasion.json",
+      "class": "PersuasionSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Pyromancy.json",
+      "class": "PyromancySkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Rites.json",
+      "class": "RitesSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/ShortBlades.json",
+      "class": "ShortBladesSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Spellcraft.json",
+      "class": "SpellcraftSkill",
+      "hidden": false
+    },
+    {
+      "source": "Assets/Resources/Content/Data/Skills/Throwing.json",
+      "class": "ThrowingSkill",
+      "hidden": false
+    }
+  ],
+  "native_evidence": {
+    "execution_owner": "root; this reviewer made no Unity or test-execution calls",
+    "separator_red": {
+      "start-time": "2026-10-25 06:09:17Z",
+      "end-time": "2026-10-25 06:09:18Z",
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "skipped": "0",
+      "result": "Failed(Child)",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.SkillScreenTextNormalizationTests.ConjureRainSeparatorsRemainReadableWithoutChangingAsciiOrWrapping",
+          "message": "  Rain's mechanics and signature need plain separators instead of CP437 fallback question marks.\n  String lengths are both 74. Strings differ at index 13.\n  Expected: \"...- Radius 3 - CD 5\\nSoaks soil for 40 ticks - darkens wet earth\"\n  But was:  \"...\u2022 Radius 3 \u2022 CD 5\\nSoaks soil for 40 ticks \u2022 darkens wet earth\"\n  --------------^\n"
+        }
+      ]
+    },
+    "first_shared_check": {
+      "start-time": "2026-10-25 06:10:52Z",
+      "end-time": "2026-10-25 06:11:04Z",
+      "total": "49",
+      "passed": "48",
+      "failed": "1",
+      "skipped": "0",
+      "result": "Failed(Child)",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.SkillBrowserModelTests.OpenAndBrowse_DoNotTeachOrSpend",
+          "message": "  Expected: 13\n  But was:  14\n"
+        }
+      ]
+    },
+    "final_shared_check": {
+      "start-time": "2026-10-25 06:13:40Z",
+      "end-time": "2026-10-25 06:13:53Z",
+      "total": "49",
+      "passed": "49",
+      "failed": "0",
+      "skipped": "0",
+      "result": "Passed",
+      "failures": []
+    }
+  },
+  "limits": [
+    "The added test verifies text and wrap semantics; final ordinary-play Rain capture remains the GPU appearance gate.",
+    "This bounded review is not a general Unicode/font audit or a new browser-content feature.",
+    "No physical Steam Deck, package, full-suite or performance improvement is claimed.",
+    "The stale count correction is documented separately from production behavior; no browser runtime patch was made."
+  ],
+  "mutations": "Only this /tmp JSON receipt; no Assets, Unity, staging or git changes."
+}

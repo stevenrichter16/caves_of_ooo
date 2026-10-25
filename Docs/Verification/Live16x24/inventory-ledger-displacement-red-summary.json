@@ -1,0 +1,23 @@
+{
+  "start-time": "2026-10-25 05:07:29Z",
+  "end-time": "2026-10-25 05:07:47Z",
+  "total": "133",
+  "passed": "130",
+  "failed": "3",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(0)",
+      "message": "  The confirmation must pair the identical weapon name with its actual displaced hand, not just show the name.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(1)",
+      "message": "  The confirmation must pair the identical weapon name with its actual displaced hand, not just show the name.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.EightActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation",
+      "message": "  A hidden-count summary cannot replace a real consequence: slot blade 1 in left hand\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

@@ -159,7 +159,18 @@ namespace CavesOfOoo.Tests
                 r.Open(screen); // correctly main-bound here, isolating the second failure
                 Assert.That(r.Main.GetTile(r.WorldPos), Is.Null,
                     "precondition: this row is empty immediately after UI.Render");
-                Assert.That(r.Main.GetUsedTilesCount(), Is.GreaterThan(0));
+                if (screen == "Inventory")
+                {
+                    Assert.That(r.Main.GetUsedTilesCount(), Is.Zero, "The retained inventory replaces the legacy tile painter.");
+                    var canvases = r.Inventory.GetComponentsInChildren<Canvas>(false);
+                    Assert.That(canvases.Length, Is.EqualTo(1));
+                    Assert.That(canvases[0].isActiveAndEnabled, Is.True);
+                    bool hasText = false;
+                    foreach (var label in r.Inventory.GetComponentsInChildren<SkillScreenText>(false))
+                        if (label.isActiveAndEnabled && !string.IsNullOrWhiteSpace(label.Content)) hasText = true;
+                    Assert.That(hasText, Is.True, "The replacement view must actually paint its inventory text.");
+                }
+                else Assert.That(r.Main.GetUsedTilesCount(), Is.GreaterThan(0));
                 r.PauseFrame();
                 Assert.That(r.Main.GetTile(r.WorldPos), Is.Null,
                     "releasing a sprite claim must not resurrect stale world paint after UI.Render");

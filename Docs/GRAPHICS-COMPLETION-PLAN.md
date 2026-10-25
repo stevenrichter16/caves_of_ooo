@@ -1164,3 +1164,43 @@ inventory state/commands, actual anatomy, native owner portraits, current facts,
 all five modes and truthful device hints. Prove popup layering/pointer geometry
 first with native RED/GREEN and actual GPU captures. Nella's ground plan/concept
 are preserved, pending implementation after this user-prioritized screen.
+
+
+## Latest continuation — retained inventory ledger, 2026-10-25 06:10UTC
+
+The user's requested [inventory redesign](GRAPHICS-G3-INVENTORY-REDESIGN.md)
+is implemented over the actual five existing modes and transactions. It follows
+the approved baseline→imagegen concept→extracted layout→native retained UI
+pipeline, reuses accepted owner portraits and preserves real anatomy/ownership.
+New hierarchy separates equipment/status, carried items with quantity/weight,
+selected facts and explicit actions. Native controller Commands expose otherwise
+keyboard-only choices; F1/full details and F2/status return to the same owner.
+A real mouse failure discovered in Play is corrected at the InputSystem boundary,
+including stationary pointer on Open. Bound combat skills now use the existing
+authoritative ability descriptions rather than an empty grimoire-only fallback.
+The shared bitmap text normalizer also converts authored bullet separators to
+plain single-width hyphens; final shared UI validation passed49/49,0skipped.
+
+Native broad regression passed480/480; final ability/mouse/transaction affected
+run passed233/233,0skipped. These overlap; do not sum them as unique coverage.
+Actual isolated Play covers all five modes, item facts/Examine/throw cancel,
+mouse equipment removal/re-equip, real finite brewing, grimoire selection/details
+without binding, full status, En Garde/Lunge/Rain/empty-slot facts and actual
+1280×800→1920×1080 resize. See `inventory-ledger-live-review.json` and actual PNGs.
+Idle sample35.9seconds has zero additional inventory Render calls, with valid
+21draw/batch p99 counters. This is bounded Editor evidence, not a speedup,
+physical Deck acceptance or a packaged release. Current packages predate this.
+
+Next world slice remains Nella's working soil, using the preserved plan/concept
+and existing frames18–20. The current normal-save/scene state is protected and
+root owns testing; the plan's older pending-permission paragraph is obsolete.
+The earned after-North checkpoint is untouched. Do not replace its finite
+progress with artificial grants. Continue Nella's8dram access/harvest/replant/
+Rain, glade/eastforge/kitchen, seed65 counter and remaining regional coverage.
+
+Final inventory acceptance: actual corrected Rain and return-to-world captures
+complete the scoped Editor pass; cleanup06:16:08UTC restores all borrowed state.
+Normal save/backups match. Native49/49 shared UI final check also corrected an
+old13-discipline test pin to the shipped14 including Throwing; browser runtime
+unchanged. Current packages and physical Deck acceptance remain open. Resume
+Nella world graphics from the protected after-North checkpoint next.

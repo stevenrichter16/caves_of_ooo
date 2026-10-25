@@ -13,10 +13,9 @@ using UnityEngine.Tilemaps;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Renders the inventory UI on a tilemap with three tabs:
-    /// Equipment, Inventory, and Tinkering.
-    /// Equipment/Inventory preserve the paperdoll + list layout.
-    /// Tinkering uses a Qud-inspired build/mod split with recipe list + bit locker panel.
+    /// Owns inventory state and commands across Equipment, Inventory, Tinkering,
+    /// Abilities and Crafting. A retained camera-bound ledger paints the view;
+    /// the original transactions and input controller retain gameplay authority.
     /// </summary>
     public partial class InventoryUI : MonoBehaviour
     {
@@ -64,7 +63,7 @@ namespace CavesOfOoo.Rendering
         private const int POPUP_MAX_VISIBLE = 25;
 
         private bool _isOpen;
-        private int _panel; // 0 = equipment, 1 = inventory, 2 = tinkering
+        private int _panel; // Equipment, Inventory, Tinkering, Abilities, Crafting
         private InventoryScreenData.ScreenState _state;
 
         // Inventory list state (right panel)
@@ -256,14 +255,13 @@ namespace CavesOfOoo.Rendering
             _inventoryQuery = ""; _inventorySearchActive = false; _searchReturnItem = null;
             ClearActionStatus();
             _isOpen = true;
-            // The world is still on the shared tilemap during the frame
-            // this screen opens: ZoneRenderer.Paused is set by the
-            // caller AFTER Open(), so whatever the two components'
-            // execution order, one of them can still paint terrain
-            // after our clear. Measured live — 1626 stale world tiles
-            // survived the opening frame and vanished on the next
-            // render. Redrawing once on the following tick costs one
-            // frame's work and makes the open deterministic.
+            _ledgerCommandsOpen = false; _ledgerDetailsRequested = false; _ledgerStatusRequested = false;
+            var mouse = UnityEngine.InputSystem.Mouse.current;
+            _ledgerLastPointer = mouse != null && mouse.enabled
+                ? mouse.position.ReadValue() : (Vector2)Input.mousePosition;
+            SetLedgerVisible(true);
+            if (Tilemap != null) { Tilemap.ClearAllTiles(); PerformanceDiagnostics.RecordTilemapClear(); }
+            // One follow-up redraw binds the settled camera/layout after opening.
             _needsPostOpenRedraw = true;
             _lastPointerGrid = MouseToGrid();
             PerformanceDiagnostics.BeginInventorySession();
@@ -289,6 +287,8 @@ namespace CavesOfOoo.Rendering
         {
             ClearActionStatus();
             _isOpen = false;
+            _ledgerCommandsOpen = false; _ledgerDetailsRequested = false; _ledgerStatusRequested = false;
+            SetLedgerVisible(false);
             PerformanceDiagnostics.EndInventorySession();
             _equipPopup = null;
             _displaceConfirm = null;
@@ -352,8 +352,11 @@ namespace CavesOfOoo.Rendering
 
             if (_inventorySearchActive) { HandleInventorySearchInput(); return true; }
 
-            // Update selection to follow mouse hover
-            UpdateMouseHover();
+            // Retained geometry exclusively owns pointer input in every mode/modal.
+            if (HandleLedgerPointer()) return true;
+            if (HandleLedgerCommandsInput()) return true;
+            if (NativeGamepadInput.GetKeyDown(KeyCode.I) && !LedgerHasPopup)
+            { OpenLedgerCommands(); return true; }
 
             // Popups intercept all input when active
             if (_displaceConfirm != null)
@@ -383,7 +386,7 @@ namespace CavesOfOoo.Rendering
             }
 
             if (InputHelper.GetKeyDown(KeyCode.Escape) && !string.IsNullOrEmpty(_inventoryQuery)) { SetInventoryQuery(""); return true; }
-            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.I))
+            if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyboardKeyDown(KeyCode.I))
             {
                 Close();
                 return true;
@@ -954,7 +957,7 @@ namespace CavesOfOoo.Rendering
             int itemCount = _equipPopup.Items.Count;
             for (int i = 0; i < 26 && i < itemCount; i++)
             {
-                if (InputHelper.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyboardKeyDown(KeyCode.A + i))
                 {
                     EquipFromPopup(i);
                     return;
@@ -1299,7 +1302,7 @@ namespace CavesOfOoo.Rendering
             // Hotkeys a-z
             for (int i = 0; i < 26 && i < _itemActionPopup.Actions.Count; i++)
             {
-                if (InputHelper.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyboardKeyDown(KeyCode.A + i))
                 {
                     ExecuteItemAction(i);
                     return;
@@ -1778,7 +1781,7 @@ namespace CavesOfOoo.Rendering
             // Hotkeys a-z
             for (int i = 0; i < 26 && i < _itemActionPopup.BodyParts.Count; i++)
             {
-                if (InputHelper.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyboardKeyDown(KeyCode.A + i))
                 {
                     EquipToBodyPart(i);
                     return;
@@ -2159,7 +2162,7 @@ namespace CavesOfOoo.Rendering
             int maxHotkeys = Mathf.Min(26, _modTargetPopup.TotalRows);
             for (int i = 0; i < maxHotkeys; i++)
             {
-                if (!InputHelper.GetKeyDown(KeyCode.A + i))
+                if (!InputHelper.GetKeyboardKeyDown(KeyCode.A + i))
                     continue;
 
                 ApplySelectedModToPopupTarget(i);
@@ -2255,49 +2258,10 @@ namespace CavesOfOoo.Rendering
 
         private void MoveEquipCursor(int dx, int dy)
         {
-            if (_equipSlots == null || _equipSlots.Count <= 1) return;
-
-            var current = _equipSlots[_equipCursorIndex];
-            int cx = current.GridX;
-            int cy = current.GridY;
-
-            int bestIdx = -1;
-            float bestDist = float.MaxValue;
-
-            for (int i = 0; i < _equipSlots.Count; i++)
-            {
-                if (i == _equipCursorIndex) continue;
-                var s = _equipSlots[i];
-                int sx = s.GridX;
-                int sy = s.GridY;
-
-                if (dx < 0 && sx >= cx) continue;
-                if (dx > 0 && sx <= cx) continue;
-                if (dy < 0 && sy >= cy) continue;
-                if (dy > 0 && sy <= cy) continue;
-
-                float primaryDist, crossDist;
-                if (dx != 0)
-                {
-                    primaryDist = Mathf.Abs(sx - cx);
-                    crossDist = Mathf.Abs(sy - cy);
-                }
-                else
-                {
-                    primaryDist = Mathf.Abs(sy - cy);
-                    crossDist = Mathf.Abs(sx - cx);
-                }
-
-                float dist = primaryDist + crossDist * 2f;
-                if (dist < bestDist)
-                {
-                    bestDist = dist;
-                    bestIdx = i;
-                }
-            }
-
-            if (bestIdx >= 0)
-                _equipCursorIndex = bestIdx;
+            // The visible equipment ledger is a vertical list of actual body parts.
+            // Horizontal movement changes modes; it no longer navigates hidden doll boxes.
+            if (_equipSlots == null || _equipSlots.Count == 0 || dy == 0) return;
+            _equipCursorIndex = Mathf.Clamp(_equipCursorIndex + dy, 0, _equipSlots.Count - 1);
         }
 
         private void ClampCursor()
@@ -2322,110 +2286,12 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
+            if (!_isOpen) return;
             using (PerformanceMarkers.Ui.InventoryRender.Auto())
             {
                 PerformanceDiagnostics.RecordInventoryRender();
                 RefreshActionStatusContext();
-                if (Tilemap == null)
-                    return;
-
-                Tilemap.ClearAllTiles();
-                PerformanceDiagnostics.RecordTilemapClear();
-
-                // Tab bar
-                DrawText(1, 0, "Equipment", _panel == PANEL_EQUIPMENT ? QudColorParser.White : QudColorParser.DarkGray);
-                DrawText(13, 0, "Inventory", _panel == PANEL_INVENTORY ? QudColorParser.White : QudColorParser.DarkGray);
-                DrawText(25, 0, "Tinkering", _panel == PANEL_TINKERING ? QudColorParser.White : QudColorParser.DarkGray);
-                DrawText(37, 0, "Abilities", _panel == PANEL_ABILITIES ? QudColorParser.White : QudColorParser.DarkGray);
-                DrawText(49, 0, "Crafting", _panel == PANEL_CRAFTING ? QudColorParser.White : QudColorParser.DarkGray);
-
-                // Weight, drams, and ink on right side of header.
-                // Ink is the rental currency (Docs/WEAPON-RENTAL-SYSTEM.md);
-                // shown alongside drams so the player can plan rentals
-                // without first failing one to discover their balance.
-                string info = "Wt:" + _state.CarriedWeight + "/" + _state.MaxCarryWeight
-                            + " $" + _state.Drams
-                            + " i" + _state.Ink;
-                DrawText(W - info.Length - 1, 0, info, QudColorParser.Gray);
-
-                // Horizontal separators
-                DrawHLine(0, 1, W, QudColorParser.DarkGray);
-                DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
-                DrawText(45, CONTENT_END, " F1 details | F2 current effects ", QudColorParser.Gray);
-
-
-                if (_panel == PANEL_CRAFTING)
-                {
-                    RenderCraftingPanel();
-                }
-                else if (_panel == PANEL_TINKERING)
-                {
-                    RenderTinkeringPanel();
-                }
-                else if (_panel == PANEL_ABILITIES)
-                {
-                    RenderAbilitiesPanel();
-                    if (_grimoirePicker != null)
-                        RenderGrimoirePicker();
-                }
-                else
-                {
-                    // Vertical divider — starts BELOW the tab bar and
-                    // its rule, and stops above the action bar. Running
-                    // it from y=0 to y=H drew a '|' straight through the
-                    // word "Tinkering" in the tab bar and through the
-                    // footer.
-                    for (int y = 2; y < CONTENT_END; y++)
-                        DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
-
-                    // Top-left character stats strip (Qud-style quick reference).
-                    RenderPlayerStatsPanel();
-
-                    // Left panel: paperdoll
-                    RenderPaperdoll();
-
-                    // Right panel: inventory list
-                    RenderInventoryList();
-
-                    // Popup overlays
-                    if (_equipPopup != null)
-                        RenderEquipPopup();
-                    if (_itemActionPopup != null)
-                        RenderItemActionPopup();
-                    if (_displaceConfirm != null)
-                        RenderDisplaceConfirm();
-                }
-
-                if (_modTargetPopup != null)
-                    RenderModTargetPopup();
-
-                // Action bar
-                string actions;
-                if (_displaceConfirm != null)
-                    actions = " [Y]es  [N]o  [Esc]cancel";
-                else if (_equipPopup != null || _itemActionPopup != null || _modTargetPopup != null)
-                    actions = " [Enter]select  [a-z]quick select  [Esc]cancel";
-                else if (_grimoirePicker != null)
-                    actions = " [Enter]select [a-z]quick [X]clear [Esc]cancel";
-                else if (_panel == PANEL_EQUIPMENT)
-                    actions = " [Enter]equip [e]unequip [>]inventory [Esc]close";
-                else if (_panel == PANEL_TINKERING)
-                    actions = _tinkeringMode == TinkeringMode.Mod
-                        ? " [Enter]apply [B]/[M]mode [<]inventory [Tab]cycle [Esc]close"
-                        : " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
-                else if (_panel == PANEL_ABILITIES)
-                    actions = " [Enter]assign [X]clear [<]tinkering [Tab]cycle [Esc]close";
-                else if (_panel == PANEL_CRAFTING)
-                    actions = _craftingMode == CraftingMode.Forge
-                        ? " [Space]pick [Enter]craft [C]clear [F]/[B]mode [Tab]cycle [Esc]close"
-                        : " [Space]pick [Enter]brew [C]clear [F]/[B]mode [Tab]cycle [Esc]close";
-                else
-                    actions = " [/]find [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
-
-                DrawKeyLegend(0, H - 2, actions);
-
-                // Detail line
-                RenderDetailLine();
+                RenderLedger();
             }
         }
 
@@ -3798,7 +3664,7 @@ namespace CavesOfOoo.Rendering
             // a..z quick-select
             for (int i = 0; i < 26 && i < picker.Grimoires.Count; i++)
             {
-                if (InputHelper.GetKeyDown(KeyCode.A + i))
+                if (InputHelper.GetKeyboardKeyDown(KeyCode.A + i))
                 {
                     ConfirmGrimoirePickerSelection(i);
                     return;

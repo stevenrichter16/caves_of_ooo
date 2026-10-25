@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 04:42:59Z" end-time="2026-10-25 04:43:05Z" duration="5.9953388">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31243" result="Failed" site="Child" start-time="2026-10-25 04:42:59Z" end-time="2026-10-25 04:43:05Z" duration="5.995339" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38457" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31243" result="Failed" site="Child" start-time="2026-10-25 04:43:00Z" end-time="2026-10-25 04:43:05Z" duration="5.782107" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38458" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31243" result="Failed" site="Child" start-time="2026-10-25 04:43:00Z" end-time="2026-10-25 04:43:05Z" duration="5.701876" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38459" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31243" result="Failed" site="Child" start-time="2026-10-25 04:43:00Z" end-time="2026-10-25 04:43:05Z" duration="5.621894" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="37356" name="InventoryLedgerViewTests" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-25 04:43:00Z" end-time="2026-10-25 04:43:05Z" duration="5.306196" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="37367" name="ActualBodyHandsAndEquippedOwnersRemainSeparateInTheEquipmentRail" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.ActualBodyHandsAndEquippedOwnersRemainSeparateInTheEquipmentRail" methodname="ActualBodyHandsAndEquippedOwnersRemainSeparateInTheEquipmentRail" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="596974139" result="Failed" start-time="2026-10-25 04:43:00Z" end-time="2026-10-25 04:43:02Z" duration="2.249937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.ActualBodyHandsAndEquippedOwnersRemainSeparateInTheEquipmentRail () [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="37369" name="DecisionReaderSuspendsTheViewThenReturnsToTheExactSelectedOwner" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.DecisionReaderSuspendsTheViewThenReturnsToTheExactSelectedOwner" methodname="DecisionReaderSuspendsTheViewThenReturnsToTheExactSelectedOwner" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1828375977" result="Failed" start-time="2026-10-25 04:43:02Z" end-time="2026-10-25 04:43:03Z" duration="0.200361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.DecisionReaderSuspendsTheViewThenReturnsToTheExactSelectedOwner () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:189
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37359" name="OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 04:43:03Z" end-time="2026-10-25 04:43:03Z" duration="0.502552" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37357" name="OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld(False)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld(False)" methodname="OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1919518066" result="Failed" start-time="2026-10-25 04:43:03Z" end-time="2026-10-25 04:43:03Z" duration="0.286617" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld (System.Boolean flat) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37358" name="OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld(True)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld(True)" methodname="OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="369326426" result="Failed" start-time="2026-10-25 04:43:03Z" end-time="2026-10-25 04:43:03Z" duration="0.167178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.OpenAndCloseOwnExactlyOneCameraBoundViewAndReturnTheSameWorld (System.Boolean flat) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37362" name="PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 04:43:03Z" end-time="2026-10-25 04:43:04Z" duration="1.390623" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37360" name="PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem(1)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem(1)" methodname="PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="114449238" result="Failed" start-time="2026-10-25 04:43:03Z" end-time="2026-10-25 04:43:04Z" duration="0.920673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem (System.Int32 count) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37361" name="PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem(5)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem(5)" methodname="PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1606448864" result="Failed" start-time="2026-10-25 04:43:04Z" end-time="2026-10-25 04:43:04Z" duration="0.252555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem (System.Int32 count) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="37370" name="QueuedExamineKeepsTheSameInventoryBelowTheHigherDepthPopupCamera" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.QueuedExamineKeepsTheSameInventoryBelowTheHigherDepthPopupCamera" methodname="QueuedExamineKeepsTheSameInventoryBelowTheHigherDepthPopupCamera" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1720313636" result="Failed" start-time="2026-10-25 04:43:04Z" end-time="2026-10-25 04:43:05Z" duration="0.162413" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.QueuedExamineKeepsTheSameInventoryBelowTheHigherDepthPopupCamera () [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:212
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37366" name="SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-25 04:43:05Z" end-time="2026-10-25 04:43:05Z" duration="0.628740" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37363" name="SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting(2)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting(2)" methodname="SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1917137509" result="Failed" start-time="2026-10-25 04:43:05Z" end-time="2026-10-25 04:43:05Z" duration="0.210401" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting (System.Int32 panel) [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37364" name="SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting(3)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting(3)" methodname="SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1711662505" result="Failed" start-time="2026-10-25 04:43:05Z" end-time="2026-10-25 04:43:05Z" duration="0.167710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting (System.Int32 panel) [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37365" name="SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting(4)" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting(4)" methodname="SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="1484955341" result="Failed" start-time="2026-10-25 04:43:05Z" end-time="2026-10-25 04:43:05Z" duration="0.231941" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.SecondaryModesHaveTheirOwnRetainedContentWithoutLegacyTilePainting (System.Int32 panel) [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="37368" name="SelectedDetailsShowTheFullActualNameAndRefreshItsExistingCombatFacts" fullname="CavesOfOoo.Tests.InventoryLedgerViewTests.SelectedDetailsShowTheFullActualNameAndRefreshItsExistingCombatFacts" methodname="SelectedDetailsShowTheFullActualNameAndRefreshItsExistingCombatFacts" classname="CavesOfOoo.Tests.InventoryLedgerViewTests" runstate="Runnable" seed="776796556" result="Failed" start-time="2026-10-25 04:43:05Z" end-time="2026-10-25 04:43:05Z" duration="0.164640" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  An open inventory must own one visible retained ledger Canvas.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryLedgerViewTests.RequireView (CavesOfOoo.Tests.InventoryLedgerViewTests+Rig r) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:233
+at CavesOfOoo.Tests.InventoryLedgerViewTests.SelectedDetailsShowTheFullActualNameAndRefreshItsExistingCombatFacts () [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/InventoryLedgerViewTests.cs:165
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

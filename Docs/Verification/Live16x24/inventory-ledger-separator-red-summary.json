@@ -1,0 +1,15 @@
+{
+  "start-time": "2026-10-25 06:09:17Z",
+  "end-time": "2026-10-25 06:09:18Z",
+  "total": "1",
+  "passed": "0",
+  "failed": "1",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SkillScreenTextNormalizationTests.ConjureRainSeparatorsRemainReadableWithoutChangingAsciiOrWrapping",
+      "message": "  Rain's mechanics and signature need plain separators instead of CP437 fallback question marks.\n  String lengths are both 74. Strings differ at index 13.\n  Expected: \"...- Radius 3 - CD 5\\nSoaks soil for 40 ticks - darkens wet earth\"\n  But was:  \"...\u2022 Radius 3 \u2022 CD 5\\nSoaks soil for 40 ticks \u2022 darkens wet earth\"\n  --------------^\n"
+    }
+  ]
+}
