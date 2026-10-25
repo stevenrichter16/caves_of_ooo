@@ -1281,3 +1281,26 @@ write capacity. Next: preserve these exact files on main, remove only the two
 audited stale platform PlayerDataCache directories while Unity is closed, verify
 normal save/isolation restoration, replay the menu and correct ForgeCommandsTests
 namespace, then resume Nella whole-scene composition. No cleanup yet in this slice.
+
+
+## Latest continuation — inventory replay accepted, 2026-10-25 08:43 UTC
+
+[Inventory polish](GRAPHICS-G3-INVENTORY-POLISH.md) now has actual1280×800 menu
+captures, exact earned stoneburr→tonic deltas, readable green completion and
+correct meal guidance. Independent visual/readout review accepts this bounded
+menu replay;245distinct native cases pass across233+12disjoint runs. This is
+not latest-package, physical Deck or complete-opening art acceptance.
+
+Earned checkpoint: `/tmp/coo-fresh-opening-after-inventory-polish/`. Normal save
+and backup hashes and pre-audit LastGameID are restored; Play/isolation cleared.
+A low-impact Editor custom-resolution cleanup index error remains separately
+queued for native RED/GREEN. Continue with the documented Nella composition
+cycle in [Nella plan](GRAPHICS-G3-NELLA-COMPOSITION.md), using a cold pre-Nella
+checkpoint, actual capture→imagegen→deterministic real-owner layout→two-seed
+ordinary Play comparison. Preserve approved sprite pixels and gameplay budgets.
+
+Storage remains constrained. The first verified closed-Editor platform-cache
+cleanup recovered9,453,568bytes despite261,492,736reportedallocatedbytes.
+Push this evidence first, then revalidate/delete only the stale-clone manifest's
+191rawlogs/fourgeneratedcachedirectories. Preserve every compressed evidence
+counterpart, source, dependencies, saves, active main caches and current builds.

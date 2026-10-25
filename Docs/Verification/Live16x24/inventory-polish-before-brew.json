@@ -1,0 +1,185 @@
+{
+  "inventoryView": {
+    "open": true,
+    "panel": 4,
+    "cursor": 1,
+    "status": "",
+    "success": false
+  },
+  "controls": {
+    "state": "InventoryOpen",
+    "releaseKey": "None"
+  },
+  "weapons": [
+    {
+      "id": "2703",
+      "name": "frost-quenched long sword",
+      "hp": 8,
+      "max": 8,
+      "onHit": "Frozen,40,,0,2",
+      "tempers": 1
+    }
+  ],
+  "at": "2026-10-25T08:37:36.2581050Z",
+  "zone": "Overworld.12.11.0",
+  "flat": true,
+  "player": [
+    28,
+    18
+  ],
+  "hp": 42,
+  "tick": 5830,
+  "drams": 40,
+  "knowledge": null,
+  "equipment": [
+    {
+      "slot": "Hand",
+      "id": "2703",
+      "b": "LongSword"
+    },
+    {
+      "slot": "Hand",
+      "id": "2704",
+      "b": "Buckler"
+    }
+  ],
+  "inventory": [
+    {
+      "id": "2700",
+      "b": "WateringGrimoire",
+      "n": "watering grimoire",
+      "count": 1
+    },
+    {
+      "id": "2701",
+      "b": "CandyCarrotSeed",
+      "n": "gladroot seed (x4)",
+      "count": 4
+    },
+    {
+      "id": "2702",
+      "b": "EmberwheatSeed",
+      "n": "emberwheat seed (x2)",
+      "count": 2
+    },
+    {
+      "id": "2706",
+      "b": "DriedMeat",
+      "n": "dried meat",
+      "count": 1
+    },
+    {
+      "id": "4731",
+      "b": "DitchkeepersFootwork",
+      "n": "Ditchkeepers' Footwork",
+      "count": 1
+    },
+    {
+      "id": "4730",
+      "b": "ShatteredRimeGrimoire",
+      "n": "Rite of the Shattered Rime",
+      "count": 1
+    },
+    {
+      "id": "6970",
+      "b": "StoneburrSeed",
+      "n": "stoneburr seed",
+      "count": 1
+    },
+    {
+      "id": "6974",
+      "b": "BrewedTonic",
+      "n": "frozen & stoneskin coating",
+      "count": 1
+    },
+    {
+      "id": "9191",
+      "b": "PitchpodResin",
+      "n": "pitchpod resin (x4)",
+      "count": 4
+    },
+    {
+      "id": "13722",
+      "b": "ClaspbeanSeed",
+      "n": "claspbean seed",
+      "count": 1
+    },
+    {
+      "id": "13721",
+      "b": "ClaspbeanPulp",
+      "n": "claspbean pulp",
+      "count": 1
+    },
+    {
+      "id": "13723",
+      "b": "FieldMeal",
+      "n": "wrapped field meal",
+      "count": 1
+    }
+  ],
+  "objects": [
+    {
+      "id": "13659",
+      "blueprint": "Magpie",
+      "name": "magpie",
+      "x": 26,
+      "y": 15,
+      "hp": 6,
+      "crop": null,
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "13683",
+      "blueprint": "SpreadWaysideCook",
+      "name": "Orven Kett, wayside cook",
+      "x": 27,
+      "y": 17,
+      "hp": 20,
+      "crop": null,
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "2699",
+      "blueprint": "Player",
+      "name": "you",
+      "x": 28,
+      "y": 18,
+      "hp": 42,
+      "crop": null,
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "13701",
+      "blueprint": "ConnectedBatchPan",
+      "name": "clay batch pan",
+      "x": 29,
+      "y": 17,
+      "hp": 0,
+      "crop": null,
+      "repair": {
+        "recipe": "clay-batch-pan",
+        "repaired": true,
+        "by": "2699",
+        "cause": "84d4e577fd4b4b7eb2e7892a59e594a1",
+        "zone": "Overworld.12.11.0"
+      },
+      "claim": null,
+      "batch": {
+        "state": "Idle",
+        "output": null,
+        "start": 0,
+        "due": 0,
+        "worker": "13683",
+        "pickup": "13703",
+        "inputs": [],
+        "counts": []
+      }
+    }
+  ]
+}

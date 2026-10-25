@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 08:31:43Z" end-time="2026-10-25 08:31:44Z" duration="0.8677931">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31347" result="Passed" start-time="2026-10-25 08:31:43Z" end-time="2026-10-25 08:31:44Z" duration="0.867793" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="38595" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31347" result="Passed" start-time="2026-10-25 08:31:43Z" end-time="2026-10-25 08:31:44Z" duration="0.757773" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12731" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="38596" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31347" result="Passed" start-time="2026-10-25 08:31:43Z" end-time="2026-10-25 08:31:44Z" duration="0.653569" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="38597" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31347" result="Passed" start-time="2026-10-25 08:31:43Z" end-time="2026-10-25 08:31:44Z" duration="0.443617" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="38609" name="Gameplay" fullname="CavesOfOoo.Tests.Gameplay" runstate="Runnable" testcasecount="77" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.080755" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="38610" name="Weaponcraft" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft" runstate="Runnable" testcasecount="37" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.080030" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="38509" name="ForgeCommandsTests" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.079151" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="38511" name="Forge_AwayFromForge_MakesOneWeaponFromThePack" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Forge_AwayFromForge_MakesOneWeaponFromThePack" methodname="Forge_AwayFromForge_MakesOneWeaponFromThePack" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="2103224994" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.021528" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38515" name="Forge_BatchRequest_SinglesMakeExactlyOne" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Forge_BatchRequest_SinglesMakeExactlyOne" methodname="Forge_BatchRequest_SinglesMakeExactlyOne" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="290117933" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.006488" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38514" name="Forge_MissingComponent_RejectedBeforeAnyConsume" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Forge_MissingComponent_RejectedBeforeAnyConsume" methodname="Forge_MissingComponent_RejectedBeforeAnyConsume" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="1081097245" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.004445" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38510" name="Forge_NearForge_ProducesWeaponAndConsumesComponents" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Forge_NearForge_ProducesWeaponAndConsumesComponents" methodname="Forge_NearForge_ProducesWeaponAndConsumesComponents" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="466529165" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.003610" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38513" name="Forge_NullZone_ForgesFromThePackWithoutCrashing" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Forge_NullZone_ForgesFromThePackWithoutCrashing" methodname="Forge_NullZone_ForgesFromThePackWithoutCrashing" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="1090895744" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.003348" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38512" name="ForgeBatch_AwayFromForge_StillRejected_AndNothingConsumed" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.ForgeBatch_AwayFromForge_StillRejected_AndNothingConsumed" methodname="ForgeBatch_AwayFromForge_StillRejected_AndNothingConsumed" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="623142628" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.004592" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38517" name="Quench_AwayFromForge_RejectedAndNothingConsumed" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Quench_AwayFromForge_RejectedAndNothingConsumed" methodname="Quench_AwayFromForge_RejectedAndNothingConsumed" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="1569457931" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.003811" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38516" name="Quench_NearForge_TempersWeaponAndConsumesCoating" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Quench_NearForge_TempersWeaponAndConsumesCoating" methodname="Quench_NearForge_TempersWeaponAndConsumesCoating" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="1645040014" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.005842" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38519" name="Quench_NullWeaponOrCoating_Rejected" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Quench_NullWeaponOrCoating_Rejected" methodname="Quench_NullWeaponOrCoating_Rejected" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="1939913350" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.004234" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38518" name="Quench_ThrowableFlask_TempersWeapon" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Quench_ThrowableFlask_TempersWeapon" methodname="Quench_ThrowableFlask_TempersWeapon" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="1993143284" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.003947" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38521" name="Reforge_AwayFromForge_RejectedAndNothingConsumed" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Reforge_AwayFromForge_RejectedAndNothingConsumed" methodname="Reforge_AwayFromForge_RejectedAndNothingConsumed" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="539259450" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.005090" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="38520" name="Reforge_NearForge_SwapsComponentAndReturnsDisplaced" fullname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests.Reforge_NearForge_SwapsComponentAndReturnsDisplaced" methodname="Reforge_NearForge_SwapsComponentAndReturnsDisplaced" classname="CavesOfOoo.Tests.Gameplay.Weaponcraft.ForgeCommandsTests" runstate="Runnable" seed="1711399505" result="Passed" start-time="2026-10-25 08:31:44Z" end-time="2026-10-25 08:31:44Z" duration="0.004984" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

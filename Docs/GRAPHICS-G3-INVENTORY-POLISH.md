@@ -1,6 +1,6 @@
 # G3 inventory follow-up polish
 
-Status: implemented and independently reviewed; native regression 233/233 passed on 2026-10-25. Final ordinary Play recapture is pending storage recovery. Root owns Unity and actual gameplay verification. This follows `Docs/GRAPHICS-G3-INVENTORY-REDESIGN.md`; the accepted ledger, artwork, transaction behavior and input release fix are preserved.
+Status: implemented, independently reviewed, and accepted within the bounded ordinary Unity menu replay on 2026-10-25. Two native runs cover245 distinct passing cases (233+12), zero skipped. Root owns Unity and actual gameplay verification. This follows `Docs/GRAPHICS-G3-INVENTORY-REDESIGN.md`; the accepted ledger, artwork, transaction behavior and input release fix are preserved.
 
 ## 1. Select an actual item on Inventory entry
 
@@ -63,8 +63,8 @@ transaction, heal, throwing or recipe rule changes are authorized by this slice.
 
 ## Self-review and limits
 
-Native GREEN and independent source reviews are complete. Actual menu replay
-remains pending after disk exhaustion interrupted screenshot creation. Current
+Native GREEN, independent source reviews and actual menu replay are complete.
+The storage interruption and recovery are recorded below. Current
 packages predate this work; no physical Deck or whole-world graphics acceptance.
 
 - 🟡 Fixed: initial category header left Inventory with no selected item.
@@ -127,3 +127,51 @@ was found. Test XML, result summaries, parsed blueprint comparison and route
 evidence accompany this commit. Changes affect six production files, five
 existing test files, this living record and the graphics continuation records;
 there is no new art or new gameplay transaction rule in this follow-up.
+
+
+### Recovered ordinary gameplay acceptance — 2026-10-25 08:43 UTC
+
+Root resumed SampleScene with normal Continue from the earned kitchen save,
+without injecting items, time, locations or a presentation override. Five actual
+1280×800 PNG/JSON pairs named `inventory-polish-*` record this replay:
+
+- `initial`: physical I then Tab selects the actual frost-quenched sword row;
+  its native portrait and current facts are already visible.
+- `meal-reader`: physical search and F1 show the corrected self-use/share prose
+  and authoritative “cannot be thrown” handling without a competing promise.
+  This saved meal still groups as Miscellaneous; new Food grouping is native
+  tested, not a migration claim.
+- `before-brew` / `brew-complete`: physical B, Space, Return consumes exactly
+  stoneburr6970 count1 and creates stoneskin tonic13724 count1. The green
+  “Brewed 1 item.” appears after completion. Remaining items, sword/coating,
+  HP42,40drams and tick5830 are unchanged.
+- `return`: clicking Inventory restores the meal search/selection, clears the
+  completed status and does not brew again. F5 saves the earned result.
+
+Correctly qualified ForgeCommandsTests passed12/12 at08:31UTC. Its full test
+names have no overlap with the earlier233, giving245 distinct native passes,
+zero failed/skipped across those two runs. The independent gameplay review
+checks actual PNGs/readouts and precise inventory deltas. Physical Deck,
+latest packaged UI, long-batch feel and complete opening artwork remain open.
+
+The post-polish checkpoint is `/tmp/coo-fresh-opening-after-inventory-polish/`.
+At08:43:10, Play/isolation/pending/view-borrowed flags were cleared, the save
+root returned to null, and SampleScene was restored. Normal save and backup
+hashes remain unchanged. After the earlier ENOSPC restart, LastGameID still
+pointed at the isolated audit; root restored the exact pre-audit preference
+from the04:13 preservation record before the new session. Final restoration
+verifies that same original preference. No save file was rewritten for this.
+
+An Editor-only cleanup defect logged “Invalid index 0 7 1” while removing the
+owned custom Game view size. The selected view and isolation were restored,
+but the extra audit resolution may remain. This is separately queued for a
+native test-first fix; do not describe this console as error-free. Metal and
+UnityMCP log-import warnings are also preserved in the console notes.
+
+Source and route work was verified on origin/main at f69e5f6a2 before deleting
+the two closed-Editor PlayerDataCache platform directories. Their reported
+allocation was261,492,736bytes; measured free-space gain was only9,453,568bytes.
+Do not equate logical/allocation totals with APFS space recovered. A separately
+audited exact stale-clone manifest identifies191 redundant raw logs (identical
+compressed versions already tracked remotely) and four unused generated-cache
+directories. Those candidates are not deleted until this new evidence is pushed.
