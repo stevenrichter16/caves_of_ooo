@@ -1,6 +1,7 @@
 # Second-seed opening composition and lifecycle
 
-Status: ordinary earned-save route acceptance in progress, 2026-10-25.
+Status: partial ordinary route accepted; editor/storage recovery completed.
+Save-return and growth completion require replay from the preserved source.
 
 ## Goal, authority and sweep
 
@@ -88,16 +89,57 @@ darkness as a lighting defect. No new pixels are needed to fix popup coverage.
 
 At about13:32UTC tiny temporary-file writes failed with ENOSPC. Unity stopped,
 but its CodeDom restoration helper also failed to create a temporary file.
-Owned save isolation/preferences/view restoration remains PENDING; do not start
-another Play or native test session until restoration is verified.
-Normal source checkpoint, isolated save files and all current packages remain.
-No deletion occurred before remote preservation.
+At that point editor restoration was unverified. The 13:39 UTC recovery below
+supersedes this blocker. The original earned checkpoint and current packages
+remain. The disposable replay root did not survive the emergency Play stop.
 
 Since a local Git commit could not be written, this evidence-only checkpoint is
 preserved using GitHub's Git data API after verifying main exactly equals local
-HEAD8758d67dc. The update must be non-forced and verified by blob IDs. This is an
-emergency preservation deviation from normal local fetch/rebase/push; reconcile
-the local checkout once storage is recovered. No unrelated files are included.
+HEAD8758d67dc. Non-forced commit `3cec8c90618af1bb0586ed81e385b6bbddaed35f`
+preserves 32 files, all verified by remote blob IDs. This emergency preservation
+deviates from normal local fetch/rebase/push. After recovery, fetch and a guarded
+mixed fast-forward reconciled the branch/index while retaining every worktree
+file. The owned plan was loaded from that verified commit. No unrelated files
+were included.
+
+## Recovery, independent findings and handoff — 13:39–13:45 UTC
+
+- Removed exactly the superseded October 11 fullscreen-skills game archive,
+  after verifying remote preservation, its stored hash, regular-file identity,
+  absence of open handles and absence of source/save entries. The current
+  October 25 archive was hash-checked first. Availability increased by
+  **128,090,112 bytes (122.16 MiB)**. The old checksum and build audit folders
+  remain; those audit folders contain save backups and must not be removed.
+- Unity restoration now confirms Play stopped, isolation false, normal save
+  root, original LastGameID, normal scene and no forced presentation setting.
+  Normal save/backup files, current archive and unrelated notice PNGs all match
+  preflight hashes. The original earned cellar checkpoint is unchanged.
+- Correction to the emergency checkpoint record: `NativeSaveIsolation.OnPlayState`
+  automatically calls `Complete` on stop, which deletes its disposable root.
+  The latest replay was not copied before the emergency stop. Do not claim a
+  retained after-Nella checkpoint or reuse the now-absent root. Re-run the
+  unfinished continuity check from the preserved original cellar source.
+- Actual planted owner **MarlrootCrop9225** at (20,6) had stage 0, units 0 and
+  moisture 0 after planting. Rain gave it and neighboring Pitchpod9219 one
+  growth unit and 39 moisture. This verifies initial growth only, not maturity.
+- Independent review's confirmed issue is green seams through the world Examine
+  backing. Wide uniform fields and subordinate worksite hierarchy remain scene
+  composition concerns. Glade darkness has insufficient evidence for a lighting
+  defect because fog/memory differs between captures.
+
+Storage inspection found no further clearly obsolete large project cache.
+Old global Bee entries were considered but left untouched: age alone does not
+prove they are unnecessary. About 221.5 MiB remained after restoration, too little
+for a safe package and vulnerable to ordinary editor/tool activity. Do not launch
+another long replay or build at this headroom. Continue bounded source review
+and preserve its plan; recover adequate headroom before native testing. Never
+trade source, saves, current packages or useful active caches for test space.
+
+Self-review: **🟡** world-popup backing defect remains open and specifically queued;
+**🟡** missing replay checkpoint and unverified reload/return are explicitly
+recorded; **⚪** no gameplay, source art or generated layout changed in this pass.
+The protected save/current build checks passed. Actual evidence is under
+`Verification/Live16x24/seed65-composition-*`.
 
 ## Scope and next action
 
@@ -105,7 +147,8 @@ Can verify the named ordinary actions and actual1280×800 appearance. Cannot
 verify post-F6 recovery, save-return/growth completion, full north still use,
 whole-opening quality, new packages or physical Deck behavior. This pass changes
 no production code and makes no new native test claim; prior equipment147/147
-does not certify the new playtest. Recover space safely only after this remote
-checkpoint verifies, restore the owned Unity isolation, verify protected hashes,
-then finish the saved lifecycle and address the confirmed popup backing defect.
+does not certify the new playtest. Next: a focused world-popup backing coverage
+RED/GREEN fix after sufficient storage is available, then re-run the incomplete
+seed65 lifecycle. Obtain an unobscured close northern yard view before the next
+playable-greybox/composition cycle. Keep the full opening and regional gates open.
 

@@ -1520,3 +1520,30 @@ Warden cellar checkpoint, not another isolated item packet. Full opening,
 regional art, new package and physical Deck gates remain open. Read-only storage
 inspection found no worthwhile stale data; no deletion. Current packages still
 predate recent art/UI/input changes. Preserve them and useful active caches.
+
+
+## Continuation — second-seed evidence and storage recovery, 2026-10-25 13:45 UTC
+
+[Second-seed composition](GRAPHICS-G3-SEED65-COMPOSITION.md) records ordinary
+cellar→glade→north→Nella travel, one mendleaf harvest, actual contested retreat,
+Nella payment, mature harvest versus a young-crop counter-check, replanting and
+initial watering/growth. Captures and exact owner receipts are real1280×800
+Unity gameplay. Full north still use, crop maturity and save-return remain open.
+
+ENOSPC interrupted the post-F6 capture. Evidence was verified on main via a
+non-forced Git data API checkpoint (`3cec8c906`) before removing exactly the
+superseded Oct11 fullscreen-skills archive; observed recovery122.16MiB. No source,
+normal save/backup, current build/archive or active cache was removed. Original
+save pointers, scene/view/preferences and all protected hashes are restored.
+The isolated replay root was automatically discarded on emergency Play stop;
+its original earned cellar checkpoint survives, so unfinished continuity must
+be replayed rather than inferred. Current storage is still too low for a build
+or long replay. No further clearly unnecessary large project cache was found.
+
+Independent visual review confirms green world seams in the Examine backing.
+Next narrow fix: world popup backing coverage with native RED/GREEN, then actual
+Examine and action-menu captures after restoring sufficient disk headroom.
+Next scene target remains the weakly grouped northern worksite and broad field
+fragments; capture the unobscured yard before selecting a bounded layout change.
+Do not replace approved sprites or add unrelated asset packets. Full opening,
+regional graphics, updated package and physical Deck gates remain pending.
