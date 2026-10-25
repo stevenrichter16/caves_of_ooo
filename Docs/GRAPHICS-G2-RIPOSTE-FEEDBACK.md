@@ -222,3 +222,6 @@ route evidence and defer its forge continuation. A separately labeled ordinary
 new game may supply a future deliberate route; it must not be represented as the
 same character's recovery. Keep Riposte ordinary full-parry/counter acceptance,
 complete forge/crop loops, full six-zone journey and packaged/device gates open.
+
+
+Continuation correction: NativeSaveIsolation.Finish deletes its disposable audit root after restoring user settings. The injured east-run F5 checkpoint was not separately exported before cleanup; its screenshots/events remain, but that disposable5HP save cannot be resumed. The separately exported full-health earned checkpoint is preserved and the sword pass explicitly replays that branch. No user save was removed or overwritten.

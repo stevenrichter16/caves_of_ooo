@@ -1,0 +1,227 @@
+{
+  "at": "2026-10-25T00:28:39.936089+00:00",
+  "branch": "Unmodified exported earned healthy checkpoint replay; not recovery of lost blade from failed east forge route.",
+  "ordinaryInputs": [
+    "Continue earned save; I Left F1 baseline equipped reader",
+    "Unequip, drop, Right; F5 at1050",
+    "After runtime import Continue saved ground state",
+    "L Left Return X ground Examine",
+    "Escape Escape Left G pickup and automatic left-hand equip",
+    "I Left F1 equipped reader",
+    "Escape Escape F5 F6; I Left F1 reload reader",
+    "Escape Escape Shift+period descend to11.10.1",
+    "Shift+comma ascend to11.10.0; I Left F1 revisit reader",
+    "Escape Escape F5; copy owned save before cleanup"
+  ],
+  "captures": [
+    {
+      "label": "baseline-reader",
+      "at": "2026-10-25T00:06:12.5164280Z",
+      "zone": "Overworld.11.10.0",
+      "player": [
+        28,
+        19
+      ],
+      "hp": 42,
+      "tick": 1040,
+      "equipment": [],
+      "nearItems": [],
+      "image": "Docs/Verification/Live16x24/long-sword-baseline-reader.png"
+    },
+    {
+      "label": "baseline-world",
+      "at": "2026-10-25T00:07:59.0540710Z",
+      "zone": "Overworld.11.10.0",
+      "player": [
+        29,
+        19
+      ],
+      "hp": 42,
+      "tick": 1050,
+      "equipment": [],
+      "nearItems": [
+        {
+          "id": "2699",
+          "blueprint": "LongSword",
+          "name": "long sword",
+          "x": 28,
+          "y": 19,
+          "visible": true
+        }
+      ],
+      "image": "Docs/Verification/Live16x24/long-sword-baseline-world.png"
+    },
+    {
+      "label": "native-world",
+      "at": "2026-10-25T00:18:55.7889460Z",
+      "zone": "Overworld.11.10.0",
+      "player": [
+        29,
+        19
+      ],
+      "hp": 42,
+      "tick": 1050,
+      "equipment": [],
+      "nearItems": [
+        {
+          "id": "2699",
+          "blueprint": "LongSword",
+          "name": "long sword",
+          "x": 28,
+          "y": 19,
+          "visible": true
+        }
+      ],
+      "image": "Docs/Verification/Live16x24/long-sword-native-world.png"
+    },
+    {
+      "label": "native-ground-reader",
+      "at": "2026-10-25T00:19:33.5651080Z",
+      "zone": "Overworld.11.10.0",
+      "player": [
+        29,
+        19
+      ],
+      "hp": 42,
+      "tick": 1050,
+      "equipment": [],
+      "nearItems": [
+        {
+          "id": "2699",
+          "blueprint": "LongSword",
+          "name": "long sword",
+          "x": 28,
+          "y": 19,
+          "visible": true
+        }
+      ],
+      "image": "Docs/Verification/Live16x24/long-sword-native-ground-reader.png"
+    },
+    {
+      "label": "native-equipped-reader",
+      "at": "2026-10-25T00:22:41.0390430Z",
+      "zone": "Overworld.11.10.0",
+      "player": [
+        28,
+        19
+      ],
+      "hp": 42,
+      "tick": 1070,
+      "equipment": [
+        {
+          "slot": "Hand",
+          "id": "2699",
+          "blueprint": "LongSword",
+          "name": "long sword"
+        },
+        {
+          "slot": "Hand",
+          "id": "2700",
+          "blueprint": "Buckler",
+          "name": "buckler"
+        }
+      ],
+      "nearItems": [],
+      "image": "Docs/Verification/Live16x24/long-sword-native-equipped-reader.png"
+    },
+    {
+      "label": "native-reloaded-reader",
+      "at": "2026-10-25T00:23:46.8831490Z",
+      "zone": "Overworld.11.10.0",
+      "player": [
+        28,
+        19
+      ],
+      "hp": 42,
+      "tick": 1070,
+      "equipment": [
+        {
+          "slot": "Hand",
+          "id": "2699",
+          "blueprint": "LongSword",
+          "name": "long sword"
+        },
+        {
+          "slot": "Hand",
+          "id": "2700",
+          "blueprint": "Buckler",
+          "name": "buckler"
+        }
+      ],
+      "nearItems": [],
+      "image": "Docs/Verification/Live16x24/long-sword-native-reloaded-reader.png"
+    },
+    {
+      "label": "native-cellar",
+      "at": "2026-10-25T00:24:07.5983710Z",
+      "zone": "Overworld.11.10.1",
+      "player": [
+        40,
+        12
+      ],
+      "hp": 42,
+      "tick": 1080,
+      "equipment": [
+        {
+          "slot": "Hand",
+          "id": "2699",
+          "blueprint": "LongSword",
+          "name": "long sword"
+        },
+        {
+          "slot": "Hand",
+          "id": "2700",
+          "blueprint": "Buckler",
+          "name": "buckler"
+        }
+      ],
+      "nearItems": [],
+      "image": "Docs/Verification/Live16x24/long-sword-native-cellar.png"
+    },
+    {
+      "label": "native-revisit-reader",
+      "at": "2026-10-25T00:24:29.1505010Z",
+      "zone": "Overworld.11.10.0",
+      "player": [
+        28,
+        19
+      ],
+      "hp": 42,
+      "tick": 1090,
+      "equipment": [
+        {
+          "slot": "Hand",
+          "id": "2699",
+          "blueprint": "LongSword",
+          "name": "long sword"
+        },
+        {
+          "slot": "Hand",
+          "id": "2700",
+          "blueprint": "Buckler",
+          "name": "buckler"
+        }
+      ],
+      "nearItems": [],
+      "image": "Docs/Verification/Live16x24/long-sword-native-revisit-reader.png"
+    }
+  ],
+  "accepted": [
+    "ExactLongSword world and matching ground/equipped Examine",
+    "Same2699 equipped afterF5/F6",
+    "Same2699 after cellar roundtrip; no near phantom ground item"
+  ],
+  "notAccepted": [
+    "Ordinary temper/forge loop",
+    "Fullparry/Riposte pixels",
+    "Post-fix status damage pixels after travel",
+    "Full crop/six-site journey",
+    "New package or physical Deck"
+  ],
+  "nativeTests": {
+    "RED": "2 intended failures",
+    "focusedGREEN": "37pass",
+    "regression": "391distinct pass,0skip, focused37included"
+  },
+  "noSimulationEdits": true
+}

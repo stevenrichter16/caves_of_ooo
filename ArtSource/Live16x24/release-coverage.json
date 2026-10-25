@@ -22,7 +22,8 @@
     "Docs/GRAPHICS-G2-INCIDENTAL-ACTORS.md",
     "Docs/GRAPHICS-G3-KITCHEN-SERVICE.md",
     "Docs/GRAPHICS-G2-RIPOSTE-FEEDBACK.md",
-    "Docs/GRAPHICS-G2-STATUS-ZONE-FEEDBACK.md"
+    "Docs/GRAPHICS-G2-STATUS-ZONE-FEEDBACK.md",
+    "Docs/GRAPHICS-G3-LONG-SWORD.md"
   ],
   "status_terms": {
     "native_integrated_verified": "Imported authored art and native runtime verification are recorded, within the referenced owner/state contracts.",
@@ -580,6 +581,23 @@
         "Docs/Verification/Live16x24/cindercaller-final-test-summary.json"
       ],
       "limits": "One static body inside existing six local graph admissions. Current full-frame world/reader, ordinary movement and bounded save/reload accepted. No new animation, global bestiary art, full release, current package or physical Deck proof."
+    },
+    "long_sword": {
+      "native_integration": "native_integrated_verified",
+      "ordinary_play": "ordinary_bounded_accepted",
+      "owners": [
+        "LongSword"
+      ],
+      "contract": "Exact portable owned blade, one neutral cached16x24 world/reader frame; existing regional/custody/fog gates unchanged. No held overlay or temper glow.",
+      "manifest_refs": [
+        "ArtSource/Live16x24/long-sword/manifest.json"
+      ],
+      "evidence_refs": [
+        "Docs/GRAPHICS-G3-LONG-SWORD.md",
+        "Docs/Verification/Live16x24/long-sword-play-summary.json",
+        "Docs/Verification/Live16x24/long-sword-regression.xml"
+      ],
+      "limits": "391 distinct native passes incl37focused; ordinary ground/equipped/readers/save/reload/cellarroundtrip accepted. Real temper transactions tested natively only. Full ordinary forge/combat/crop/journey/package/Deck remain pending."
     }
   },
   "rough_or_unclassified_coverage": {
@@ -673,14 +691,14 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "riposte_native_verified_guard_hurt_ordinary_partial",
-    "capture": "Docs/Verification/Live16x24/G2Action-20261024-234223-659/frame-01.png",
-    "receipt": "Docs/GRAPHICS-G2-RIPOSTE-FEEDBACK.md",
-    "route": "Ordinary earned Riposte, north harvest/brew and east forge approach. Guard/Hurt captured; full parry/Riposte and temper remain unobserved. Native Riposte206/status274 share37 cases:443 distinct passes. Status context source fixed; post-fix ordinary pixels pending."
+    "kind": "exact_long_sword_ordinary_bounded",
+    "capture": "Docs/Verification/Live16x24/long-sword-native-equipped-reader.png",
+    "receipt": "Docs/Verification/Live16x24/long-sword-play-summary.json",
+    "route": "Healthy earned branch replay, ground owner2699 to equip, F5/F6 and cellar roundtrip. Failed5HP east branch was not exported and cannot be resumed; preserve its evidence. Complete connected forge/crop/combat gates next."
   },
   "current_environment_blocker": {
     "status": "recovered_editor_ready_signature_patch_followup",
-    "detail": "Unity operational. Riposte206 and travel-status274 native sweeps pass (443 distinct); no new package. Source/saves/current delivered archive preserved. LongSword baseline replay started separately.",
+    "detail": "Unity operational; stopped/restored after exactLongSword bounded Play. Native391pass; no new package. Exported healthy replay checkpoint before cleanup; current archive/source/saves preserved. Storage inspection every10minutes, no safe stale candidates in this pass.",
     "refs": [
       "Docs/Verification/Live16x24/recovery-cleanup-20261024.json",
       "Docs/Verification/Live16x24/recovery-native-layer-read.json",
@@ -709,7 +727,8 @@
       "Docs/Verification/Live16x24/incidental-actors-storage-audit.md",
       "Docs/Verification/Live16x24/kitchen-service-states-cleanup.json",
       "Docs/Verification/Live16x24/cindercaller-native-cleanup.json",
-      "Docs/Verification/Live16x24/cindercaller-console.json"
+      "Docs/Verification/Live16x24/cindercaller-console.json",
+      "Docs/Verification/Live16x24/long-sword-cleanup.json"
     ]
   }
 }

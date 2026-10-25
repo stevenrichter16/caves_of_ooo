@@ -24,6 +24,7 @@ namespace CavesOfOoo.Rendering
         public const string KeeperResourcePath = "Sprites/Live16x24/seed-keeper-3";
         public const string PlotProductsResourcePath = "Sprites/Live16x24/plot-products";
         public const string WorksProductsResourcePath = "Sprites/Live16x24/north-works-products";
+        public const string LongSwordResourcePath = "Sprites/Live16x24/long-sword";
         private const int Width = 16, Height = 24, FrameCount = 10;
         private readonly Tile[] _tiles;
         private readonly Sprite[] _sprites;
@@ -49,6 +50,8 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _plotProductSprites;
         private readonly Tile[] _worksProductTiles;
         private readonly Sprite[] _worksProductSprites;
+        private readonly Tile[] _longSwordTiles;
+        private readonly Sprite[] _longSwordSprites;
         private bool _disposed;
 
         public FlatPixelOpeningArtCatalog() : this(Resources.Load<Texture2D>(ResourcePath),
@@ -57,7 +60,7 @@ namespace CavesOfOoo.Rendering
             Resources.Load<Texture2D>(CellarResourcePath), Resources.Load<Texture2D>(VegetationResourcePath),
             Resources.Load<Texture2D>(WorksResourcePath), Resources.Load<Texture2D>(PlotResourcePath),
             Resources.Load<Texture2D>(KeeperResourcePath), Resources.Load<Texture2D>(PlotProductsResourcePath),
-            Resources.Load<Texture2D>(WorksProductsResourcePath)) { }
+            Resources.Load<Texture2D>(WorksProductsResourcePath), Resources.Load<Texture2D>(LongSwordResourcePath)) { }
 
         /// <summary>Creates frames once without changing or taking ownership of
         /// the supplied texture. Null or a non-160x24 atlas leaves art unavailable.</summary>
@@ -115,6 +118,11 @@ namespace CavesOfOoo.Rendering
         /// <summary>The twelfth optional borrowed group adds exact forage and
         /// works outputs. Existing injections never load omitted resource groups.</summary>
         public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas, Texture2D worksProductsAtlas)
+            : this(atlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas, worksProductsAtlas, null) { }
+
+        /// <summary>Exact LongSword art borrows one optional native frame. Earlier
+        /// injections omit it without loading resources; custody remains caller-owned.</summary>
+        public FlatPixelOpeningArtCatalog(Texture2D atlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas, Texture2D worksProductsAtlas, Texture2D longSwordAtlas)
         {
             _tiles = BuildFrames(atlas, FrameCount, "base", out _sprites);
             _castTiles = BuildFrames(castAtlas, 4, "cast", out _castSprites);
@@ -128,6 +136,7 @@ namespace CavesOfOoo.Rendering
             _keeperTiles = BuildFrames(keeperAtlas, 1, "keeper", out _keeperSprites);
             _plotProductTiles = BuildFrames(plotProductsAtlas, 8, "plot-products", out _plotProductSprites);
             _worksProductTiles = BuildFrames(worksProductsAtlas, 7, "works-products", out _worksProductSprites);
+            _longSwordTiles = BuildFrames(longSwordAtlas, 1, "long-sword", out _longSwordSprites);
         }
 
         private static Tile[] BuildFrames(Texture2D atlas, int count, string group, out Sprite[] sprites)
@@ -192,6 +201,11 @@ namespace CavesOfOoo.Rendering
                 tile = _itemTiles == null ? null : _itemTiles[frame];
                 return tile != null;
             }
+            if (LongSwordOwner(owner, render))
+            {
+                tile = _longSwordTiles == null ? null : _longSwordTiles[0];
+                return tile != null;
+            }
             frame = CellarFrameOf(owner, render.VisualID);
             if (frame >= 0)
             {
@@ -223,6 +237,14 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             return TryResolvePlot(owner, render, out tile);
+        }
+
+        private static bool LongSwordOwner(Entity owner, RenderPart render)
+        {
+            // A real quench changes specs, name and condition, not base geometry.
+            // Distinct inherited/assembled blades never alias this exact identity.
+            return owner.BlueprintName == "LongSword" && PortableNativeProduct(owner, render)
+                && Owned<MeleeWeaponPart>(owner) != null && Owned<EquippablePart>(owner)?.Slot == "Hand";
         }
 
         private static bool PortableNativeProduct(Entity owner, RenderPart render)
@@ -649,6 +671,8 @@ namespace CavesOfOoo.Rendering
             if (_plotProductSprites != null) foreach (var sprite in _plotProductSprites) DestroyOwned(sprite);
             if (_worksProductTiles != null) foreach (var tile in _worksProductTiles) DestroyOwned(tile);
             if (_worksProductSprites != null) foreach (var sprite in _worksProductSprites) DestroyOwned(sprite);
+            if (_longSwordTiles != null) foreach (var tile in _longSwordTiles) DestroyOwned(tile);
+            if (_longSwordSprites != null) foreach (var sprite in _longSwordSprites) DestroyOwned(sprite);
         }
 
         private static void DestroyOwned(Object value)

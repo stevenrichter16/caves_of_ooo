@@ -1,0 +1,19 @@
+{
+  "start-time": "2026-10-25 00:10:04Z",
+  "end-time": "2026-10-25 00:10:05Z",
+  "total": "2",
+  "passed": "0",
+  "failed": "2",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelLongSwordTests.AuthorizedEquippedLongSwordReaderStopsUsingCanonicalGlyphBeforeResourceIsAsserted",
+      "message": "  The authorized equipped blade reader still borrows canonical glyph art; prove this before loading the new asset.\n  Expected: not same as <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>\n  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelLongSwordTests.CurrentLooseLongSwordUsesNativeArtBeforeResourceIsAsserted",
+      "message": "  A real current LongSword still renders its slash fallback; this must fail before the asset assertion.\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

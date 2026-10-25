@@ -1,0 +1,71 @@
+{
+  "label": "long-sword-profile",
+  "start": "2026-10-25T00:18:54.587633Z",
+  "end": "2026-10-25T00:24:30.192237Z",
+  "elapsedSeconds": 335.604604,
+  "frames": 287904,
+  "zone": "Overworld.11.10.0",
+  "player": [
+    28,
+    19
+  ],
+  "hp": 42,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 19116.199058532715,
+      "max": 25605375,
+      "p99": 103875
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1100843.5049285889,
+      "max": 840451917,
+      "p99": 2114625
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 25.369071960449219,
+      "max": 37,
+      "p99": 36
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 25.145355224609375,
+      "max": 36,
+      "p99": 35
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 5873.81046295166,
+      "max": 8802,
+      "p99": 8800
+    }
+  ],
+  "bounds": "Editor sword world/Look/readers and actual input plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

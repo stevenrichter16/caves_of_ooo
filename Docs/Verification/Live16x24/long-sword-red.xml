@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 00:10:04Z" end-time="2026-10-25 00:10:05Z" duration="0.6753764">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31108" result="Failed" site="Child" start-time="2026-10-25 00:10:04Z" end-time="2026-10-25 00:10:05Z" duration="0.675376" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38289" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31108" result="Failed" site="Child" start-time="2026-10-25 00:10:05Z" end-time="2026-10-25 00:10:05Z" duration="0.495148" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38290" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31108" result="Failed" site="Child" start-time="2026-10-25 00:10:05Z" end-time="2026-10-25 00:10:05Z" duration="0.438777" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38291" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31108" result="Failed" site="Child" start-time="2026-10-25 00:10:05Z" end-time="2026-10-25 00:10:05Z" duration="0.384267" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28546" name="FlatPixelLongSwordTests" fullname="CavesOfOoo.Tests.FlatPixelLongSwordTests" classname="CavesOfOoo.Tests.FlatPixelLongSwordTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 00:10:05Z" end-time="2026-10-25 00:10:05Z" duration="0.080309" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28548" name="AuthorizedEquippedLongSwordReaderStopsUsingCanonicalGlyphBeforeResourceIsAsserted" fullname="CavesOfOoo.Tests.FlatPixelLongSwordTests.AuthorizedEquippedLongSwordReaderStopsUsingCanonicalGlyphBeforeResourceIsAsserted" methodname="AuthorizedEquippedLongSwordReaderStopsUsingCanonicalGlyphBeforeResourceIsAsserted" classname="CavesOfOoo.Tests.FlatPixelLongSwordTests" runstate="Runnable" seed="1379319588" result="Failed" start-time="2026-10-25 00:10:05Z" end-time="2026-10-25 00:10:05Z" duration="0.034650" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The authorized equipped blade reader still borrows canonical glyph art; prove this before loading the new asset.
+  Expected: not same as <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLongSwordTests.AuthorizedEquippedLongSwordReaderStopsUsingCanonicalGlyphBeforeResourceIsAsserted () [0x000be] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLongSwordTests.cs:54
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28547" name="CurrentLooseLongSwordUsesNativeArtBeforeResourceIsAsserted" fullname="CavesOfOoo.Tests.FlatPixelLongSwordTests.CurrentLooseLongSwordUsesNativeArtBeforeResourceIsAsserted" methodname="CurrentLooseLongSwordUsesNativeArtBeforeResourceIsAsserted" classname="CavesOfOoo.Tests.FlatPixelLongSwordTests" runstate="Runnable" seed="1344222259" result="Failed" start-time="2026-10-25 00:10:05Z" end-time="2026-10-25 00:10:05Z" duration="0.010699" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A real current LongSword still renders its slash fallback; this must fail before the asset assertion.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelLongSwordTests.CurrentLooseLongSwordUsesNativeArtBeforeResourceIsAsserted () [0x00065] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelLongSwordTests.cs:28
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

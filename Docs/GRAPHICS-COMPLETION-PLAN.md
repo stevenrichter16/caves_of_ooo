@@ -882,3 +882,12 @@ Use reachable ordinary recovery/services; no grants, forced counters or erased
 failed approach. A separately labeled fresh game is possible if recovery is
 not safely attainable. Complete forge/crop loops, six-site continuity, ordinary
 counter acceptance and packaged/device validation remain open.
+
+
+## Latest continuation — LongSword integrated, 2026-10-25 00:25UTC
+
+See `Docs/GRAPHICS-G3-LONG-SWORD.md` and `Docs/Verification/Live16x24/long-sword-play-summary.json`. ExactLongSword now has native16×24 world/Examine art from actual baseline→imagegen concept→editable Blender cells→runtime import. Initial2behavioralRED failed as intended;37focused and391distinct affected native regressions passed, no skips. Ordinary pickup/equip, matching ground/equipped readers, F5/F6 and cellar descent/ascent accepted for the same2699owner. Old Player/items/3D and user saves preserved. This does not complete forge/crop/combat/six-zone/package/Deck gates.
+
+Correction to earlier instructions: the injured5HP east-route disposable save was not exported before NativeSaveIsolation cleanup and cannot be resumed. Preserve its failed-route images/events. The sword pass separately replayed the unmodified earned healthy branch and exported its final checkpoint to `/tmp/coo-long-sword-verified-checkpoint` before cleanup. It is42HP, level2, RP1, glade28,19 with2699equipped and no brewed8995; confirm live state on continuation. No forged result or recovered severed weapon is implied.
+
+Root stopped Play and restored ordinary SampleScene/settings/save root at00:25:02UTC. Follow the connected ordinary material→forge route next; verify remaining combat/status feedback when naturally encountered. Do not author disconnected packets to avoid outstanding gameplay gates. Existing current build unchanged. Graphics/storage heartbeat remainsACTIVE every10minutes, checking safe candidates only after successful remote preservation; no useful cache purge. Bounded inspection removed0bytes and preserved source, saves and current archive.
