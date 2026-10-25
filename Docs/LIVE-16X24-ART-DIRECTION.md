@@ -1727,3 +1727,24 @@ actual gameplay. Audit exact icon path; use the actual frame→imagegen→native
 editable icon→real integration/test/play loop. Do not reopen accepted Nella,
 kitchen or cellar art without a named defect. Whole opening and regional art
 remain the priority; ongoing heartbeat continues.
+
+
+## Continuation — Warden skill identity,2026-10-25 11:59UTC
+
+[Warden hotbar](GRAPHICS-G3-WARDEN-HOTBAR.md) replaces three identical generic
+diamonds with native guard/thrust/blade-and-step pictograms. Actual-cellar capture
+→imagegen→editable pixel rows→native RED→implementation→105passing native tests
+→ordinary New Game keyboard/cast/cooldown/aim/cancel/F5 and independent visual
+review are complete. World art/layout and combat rules are unchanged. Actual
+captures:`Docs/Verification/Live16x24/warden-hotbar-ready.png` and
+`warden-hotbar-follow-through-aim.png`. Normal save/backup/current archive hashes
+unchanged; audit prefs/view restored and Unity stopped cleanly. Packages still
+predate inventory/Nella/cellar/Warden work; physical Deck and full opening open.
+
+A separate click check found the hotbar still reading legacy mouse input while
+inventory already uses the native device. Clicks failed; do not claim mouse
+acceptance or rescale icon geometry from editor Screen readback. Next narrowly
+fix/prove that input boundary with native RED and real clicks, then return to the
+whole-scene opening gaps. No accepted art needs reopening. Storage about303MiB at
+11:59UTC; preserve useful caches/current packages, no heavy build or speculative
+cleanup. Heartbeat remains active for ongoing world/regional completion.

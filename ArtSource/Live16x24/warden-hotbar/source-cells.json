@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "status": "authored_source_pending_native_integration",
+  "width": 16,
+  "height": 16,
+  "rowOrder": "top_to_bottom",
+  "palette": {
+    ".": "00000000",
+    "s": "5e6f76ff",
+    "W": "f1fdffff",
+    "C": "a6eefaff",
+    "Y": "ffe15bff"
+  },
+  "frames": [
+    {
+      "id": "EnGarde",
+      "sourcePowerClass": "LongBlades_EnGarde",
+      "meaning": "An upright guarded blade and open brace, not a shield or guaranteed parry.",
+      "rows": [
+        "................",
+        "................",
+        "........C.......",
+        ".....Y..Ws......",
+        "....Y...Ws......",
+        "...Y....Ws......",
+        "...s....Ws......",
+        "...s....Ws......",
+        "...Y....Ws......",
+        "....Y...Ws......",
+        "......sYYYYs....",
+        "........s.......",
+        "........s.......",
+        "........s.......",
+        "........Y.......",
+        "................"
+      ]
+    },
+    {
+      "id": "Lunge",
+      "sourcePowerClass": "LongBlades_Lunge",
+      "meaning": "A horizontal sword reaching farther from a planted hilt, not a movement dash.",
+      "rows": [
+        "................",
+        "................",
+        "................",
+        "................",
+        ".YYY............",
+        ".....s..........",
+        ".....Y..........",
+        ".....sWWWWWWWWC.",
+        ".Yssssssssssss..",
+        ".....Y..........",
+        ".....s..........",
+        "..ss............",
+        "................",
+        "................",
+        "................",
+        "................"
+      ]
+    },
+    {
+      "id": "FollowThrough",
+      "sourcePowerClass": "LongBlades_FollowThrough",
+      "meaning": "Blade plus small boot: a conditional step after a killing strike.",
+      "rows": [
+        "................",
+        "................",
+        ".............C..",
+        "............W...",
+        "...........Ws...",
+        "..........Ws....",
+        ".........Ws.....",
+        "........Ws......",
+        "....s..Ws.......",
+        ".....YWs........",
+        "......Y.........",
+        "....s..s...YY...",
+        "...s.......YY...",
+        "..s........YYYY.",
+        "..Y........ssss.",
+        "................"
+      ]
+    }
+  ],
+  "runtime": "Append to existing HudSkillIconAtlas Pixels after native RED; preserve all seven prior strings and palette."
+}

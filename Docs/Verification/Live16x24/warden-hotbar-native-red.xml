@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="7" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 11:47:58Z" end-time="2026-10-25 11:48:00Z" duration="1.7408256">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31438" result="Failed" site="Child" start-time="2026-10-25 11:47:58Z" end-time="2026-10-25 11:48:00Z" duration="1.740826" total="18" passed="7" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38711" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31438" result="Failed" site="Child" start-time="2026-10-25 11:47:58Z" end-time="2026-10-25 11:48:00Z" duration="1.556459" total="18" passed="7" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38712" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31438" result="Failed" site="Child" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:48:00Z" duration="1.316942" total="18" passed="7" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38713" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31438" result="Failed" site="Child" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:48:00Z" duration="0.880390" total="18" passed="7" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="35821" name="WardenHotbarIconTests" fullname="CavesOfOoo.Tests.WardenHotbarIconTests" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:48:00Z" duration="0.591744" total="18" passed="7" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="35835" name="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.096387" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35833" name="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(8.0f)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(8.0f)" methodname="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="445147993" result="Failed" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.068591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LongBlades_EnGarde
+  Expected: not same as <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+  But was:  <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands (System.Single aspect) [0x00076] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35834" name="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(10.0f)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(10.0f)" methodname="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="716063514" result="Failed" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.025284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  LongBlades_EnGarde
+  Expected: not same as <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+  But was:  <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands (System.Single aspect) [0x00076] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35839" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.080381" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35836" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(0)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(0)" methodname="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1748670003" result="Failed" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.026906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+  But was:  <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity (System.Int32 slot) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:164
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35837" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(1)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(1)" methodname="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1099677804" result="Failed" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.026210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+  But was:  <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity (System.Int32 slot) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:164
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35838" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(2)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(2)" methodname="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="313177970" result="Failed" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.025699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not same as <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+  But was:  <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity (System.Int32 slot) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:164
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="35841" name="ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot" methodname="ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="346948118" result="Failed" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:47:59Z" duration="0.026023" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not same as <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+  But was:  <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot () [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:218
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="35825" name="FactoryWardenAbilityUsesItsExactAppendedIcon" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:48:00Z" duration="0.078113" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="35822" name="FactoryWardenAbilityUsesItsExactAppendedIcon(0)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(0)" methodname="FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1533734310" result="Failed" start-time="2026-10-25 11:47:59Z" end-time="2026-10-25 11:48:00Z" duration="0.024823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real Warden ability must stop using the generic diamond.
+  Expected: 7
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon (System.Int32 slot) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:113
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35823" name="FactoryWardenAbilityUsesItsExactAppendedIcon(1)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(1)" methodname="FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="257901127" result="Failed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.024149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real Warden ability must stop using the generic diamond.
+  Expected: 8
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon (System.Int32 slot) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:113
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="35824" name="FactoryWardenAbilityUsesItsExactAppendedIcon(2)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(2)" methodname="FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="907532307" result="Failed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.025734" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real Warden ability must stop using the generic diamond.
+  Expected: 9
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon (System.Int32 slot) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:113
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35832" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.225838" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35826" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(null)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(null)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="412615098" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.027434" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35827" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1219197383" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.025708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35828" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;Unrelated_Lunge&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;Unrelated_Lunge&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="788781999" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.025566" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35829" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;longblades_lunge&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;longblades_lunge&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1794799249" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.042100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35830" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;LongBlades_LungeExtra&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;LongBlades_LungeExtra&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="898196428" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.077125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35831" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;CommandLunge&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;CommandLunge&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="925893936" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.025371" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="35842" name="OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact" methodname="OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="2085124495" result="Passed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.026290" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35843" name="OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks" methodname="OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1433471391" result="Failed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.029058" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not same as <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+  But was:  <HudSkill_Fallback (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks () [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:246
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="35840" name="QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard" methodname="QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="70620888" result="Failed" start-time="2026-10-25 11:48:00Z" end-time="2026-10-25 11:48:00Z" duration="0.025956" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WardenHotbarIconTests.QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard () [0x00118] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WardenHotbarIconTests.cs:207
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

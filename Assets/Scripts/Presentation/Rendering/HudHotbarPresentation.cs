@@ -4,7 +4,7 @@ using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Rendering
 {
-    public enum SkillHudIcon { Fallback, EmberSpit, FlamingHands, JetBlast, GroundSurge, RimeGrip, Calm }
+    public enum SkillHudIcon { Fallback, EmberSpit, FlamingHands, JetBlast, GroundSurge, RimeGrip, Calm, EnGarde, Lunge, FollowThrough }
 
     /// <summary>Bounded display rules only. Never executes or predicts an ability.</summary>
     public static class HudHotbarPresentation
@@ -19,6 +19,9 @@ namespace CavesOfOoo.Rendering
                 case "Galvanism_GroundSurge": return SkillHudIcon.GroundSurge;
                 case "Cryomancy_RimeGrip": return SkillHudIcon.RimeGrip;
                 case "Spellcraft_Calm": return SkillHudIcon.Calm;
+                case "LongBlades_EnGarde": return SkillHudIcon.EnGarde;
+                case "LongBlades_Lunge": return SkillHudIcon.Lunge;
+                case "LongBlades_FollowThrough": return SkillHudIcon.FollowThrough;
                 default: return SkillHudIcon.Fallback;
             }
         }

@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Seven original static16px pictograms (six actual starter powers plus fallback).</summary>
+    /// <summary>Cached original16px HUD pictograms; native world cells remain16x24.</summary>
     public static class HudSkillIconAtlas
     {
         static Texture2D atlas;
@@ -16,7 +16,58 @@ namespace CavesOfOoo.Rendering
             ".............................c.............cc.........bbbbcc.......bbbcCCCCc....bbbccCWWWWWcc.....bbbcCCCCCCcc......bbbcWWWWCCc...bbbcCCCCCCcc..bbbccCWWWWWcc......bbbcCCCCc..........bbbbcc...............cc................c..................................",
             "........YY.............YY.............YY.............YY.............YYYYYY.............YY.............YY.............YY.............YY.............YY.............YYYYYYYYYYYY...ssssYYssssssss.....YY.............YY...........................................",
             ".......C............C..C..C..........C.C.C........C...CCC...C......C...C...C........CCCCCCC..........CCWCC.......CCCCWWWWCCCC........CCWCC..........CCCCCCC........C...C...C......C...CCC...C........C.C.C..........C..C..C............C........................",
-            ".....................vvvvvv........vvVVVVVVvv.....vVV......VVv...vV..pppppp..Vv..vV.pPPPPPPp.Vv..vVpPPPPPPPPpVv..vVpPssPPssPpVv..vVpPPPPPPPPpVv..vV.pPPssPPp.Vv...vV.pPPPPp.Vv.....vV.pppp.Vv.......vvVVVVvv..........vvvv......................................"
+            ".....................vvvvvv........vvVVVVVVvv.....vVV......VVv...vV..pppppp..Vv..vV.pPPPPPPp.Vv..vVpPPPPPPPPpVv..vVpPssPPssPpVv..vVpPPPPPPPPpVv..vV.pPPssPPp.Vv...vV.pPPPPp.Vv.....vV.pppp.Vv.......vvVVVVvv..........vvvv......................................",
+            // EnGarde
+            "................" +
+            "................" +
+            "........C......." +
+            ".....Y..Ws......" +
+            "....Y...Ws......" +
+            "...Y....Ws......" +
+            "...s....Ws......" +
+            "...s....Ws......" +
+            "...Y....Ws......" +
+            "....Y...Ws......" +
+            "......sYYYYs...." +
+            "........s......." +
+            "........s......." +
+            "........s......." +
+            "........Y......." +
+            "................",
+            // Lunge
+            "................" +
+            "................" +
+            "................" +
+            "................" +
+            ".YYY............" +
+            ".....s.........." +
+            ".....Y.........." +
+            ".....sWWWWWWWWC." +
+            ".Yssssssssssss.." +
+            ".....Y.........." +
+            ".....s.........." +
+            "..ss............" +
+            "................" +
+            "................" +
+            "................" +
+            "................",
+            // FollowThrough
+            "................" +
+            "................" +
+            ".............C.." +
+            "............W..." +
+            "...........Ws..." +
+            "..........Ws...." +
+            ".........Ws....." +
+            "........Ws......" +
+            "....s..Ws......." +
+            ".....YWs........" +
+            "......Y........." +
+            "....s..s...YY..." +
+            "...s.......YY..." +
+            "..s........YYYY." +
+            "..Y........ssss." +
+            "................",
         };
         public static Tile GetTile(SkillHudIcon icon)
         {
