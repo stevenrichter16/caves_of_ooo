@@ -1396,3 +1396,12 @@ other activity consumes space between checks. No large safe remaining project
 cache/build target was found. Main active caches, source, editable assets,
 saves/backups, dependencies and current packages remain protected. Exact receipt:
 [small-cache cleanup](Verification/Live16x24/nella-composition-small-cache-cleanup.json).
+
+
+Cellar continuation10:54UTC: four editable native floor candidates and a34-case
+uncompiled test draft are preserved outside Assets. No new floor runtime or Play
+acceptance. Independent source review passed; actual lighting/repetition awaits
+integration. The clean owned Unity Editor is normally closed. Exact older
+player-build intermediates (477.7MiB allocation) are audited separately from
+useful editor/import/JIT caches; preserve/push this owned work before any guarded
+reclamation. See[the cellar plan](GRAPHICS-G3-CELLAR-FLOOR.md).

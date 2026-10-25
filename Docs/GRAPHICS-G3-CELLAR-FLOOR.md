@@ -1,6 +1,6 @@
 # Cellar floor: quiet material beneath the working store
 
-Status: source/design preparation,2026-10-25. Not implemented or accepted. The
+Status: native source and test draft prepared,2026-10-25. Not integrated or accepted. The
 preceding Nella slice is accepted and preserved on main at`d313eac64`.
 
 ## Why this follows Nella
@@ -152,3 +152,39 @@ and user saves are preserved. Roughly300–340MiB available remains a practical
 build/import risk; do not wipe active Library or delete current packages. The next
 step is the exact RED fixture plus editable native source once write headroom is
 adequate, then the complete integration/ordinary-play cycle above.
+
+
+## Continuation — native source and exact storage candidates,10:54UTC
+
+The selected concept's sparse marks are now authored as editable integer-cell
+source in`ArtSource/Live16x24/cellar-floor/source-cells.json`. Four16×24 frames
+use three exact flat colors and0/10/9/7 marked pixels respectively. The new
+`Tools/Live16x24/export_cellar_floor.py` reads only these cells and writes a64×24
+opaque atlas, an8× source contact and manifest inside ArtSource. It does not
+read/resize a generated screenshot or import anything into Unity. Two exports
+were byte-identical; independent PNG CRC/dimensions/palette/alpha verification
+passed. Native atlas SHA256:
+`bad3d80ec59655e46dad6a0df992a8a98a1c87fe6b8623e6a3478a45b4b8da0c`.
+
+Independent source-art review found no significant issue:97.4–100% base pixels,
+short irregular seams, no enclosing border or repeated T grid. Room-level
+distribution and readability under game lighting remain unverified.
+
+`Tools/Live16x24/drafts/FlatPixelCellarFloorTests.cs.txt` contains15methods/34cases
+for the proposed optional catalog and submitted Tilemap. It stays outside Assets:
+**uncompiled, unrun, not RED evidence**. Its independent review corrected one
+premise: Player movement requests a full FOV redraw intentionally; only coating
+changes assert incremental repaint. The next runtime gate is to promote/import
+that draft and record a genuine native failing run before implementation.
+
+The owned Editor was verified idle/clean/out of Play and closed normally with
+Cmd+Q. MCP refused a programmatic Exit pattern; its safety guard was retained.
+A bounded audit identified477.7MiB allocated player-only intermediates from the
+completed02:08Mac/02:18Linux builds, separate from active editor/import/JIT
+caches. Exact3552-file candidate manifest is preserved as
+`Verification/Live16x24/cellar-floor-stale-player-cache-manifest.json.gz`. It
+includes11directories,28player graph metadata files plus2AOT hash files.
+**No candidate deletion yet.** Push this source/evidence first, recheck all
+identities/no handles/current-package hashes, then reclaim only those stale
+intermediates and measure actual free-space gain. Preserve Editor graphs,
+ScriptAssemblies, import/shader caches, JIT, dependencies, sources and saves.

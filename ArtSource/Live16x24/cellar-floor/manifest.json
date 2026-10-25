@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "status": "native_source_candidate_not_integrated_or_gameplay_accepted",
+  "source": "source-cells.json",
+  "generator": "Tools/Live16x24/export_cellar_floor.py",
+  "artifact": "cellar-floor.png",
+  "width": 64,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 4,
+  "pixelsPerUnit": 16,
+  "tilePivotNormalized": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "opaque255",
+  "palette": {
+    "0": "182C29",
+    "1": "142521",
+    "2": "263A35"
+  },
+  "frames": [
+    {
+      "id": "quiet",
+      "markedPixels": 0,
+      "basePixels": 384
+    },
+    {
+      "id": "broken-seam",
+      "markedPixels": 10,
+      "basePixels": 374
+    },
+    {
+      "id": "offset-wear",
+      "markedPixels": 9,
+      "basePixels": 375
+    },
+    {
+      "id": "short-return",
+      "markedPixels": 7,
+      "basePixels": 377
+    }
+  ],
+  "sha256": "bad3d80ec59655e46dad6a0df992a8a98a1c87fe6b8623e6a3478a45b4b8da0c",
+  "sourceContactSha256": "2ae594232fc137045caf1799437936161eff0ee2b032a41a45b179cb6168d56e",
+  "resource": "Sprites/Live16x24/cellar-floor",
+  "limits": "Not imported. No material variant routing, runtime authority, Unity tests or actual Play acceptance yet."
+}
