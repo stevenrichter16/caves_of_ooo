@@ -1340,3 +1340,41 @@ harvest/reader capture. Then continue opening composition and uncovered identiti
 using the required actual-greybox/capture/imagegen/extraction/native-art loop.
 Fresh-character whole journey, all owner/state kits, exact ordinary Riposte and
 periodic Player-Hurt receipts, Frozen proc and regional coverage remain open.
+
+
+## Latest continuation — prepared beds readable after harvest, 2026-10-25 02:55UTC
+
+[Prepared-bed readout](GRAPHICS-G3-PREPARED-BED-READOUT.md) now exposes neutral
+“prepared planting bed” through the shared current-ground service. Exact current
+cell/zone and the same visible owned physical soil are required; a current
+visible crop suppresses it. Original row names/prose, planting rights and growth
+remain unchanged. Existing live hazard text/order remains intact; stale/inactive
+queries are deliberately suppressed and tested.
+
+Native RED25 had23 expected cue failures before production. GREEN72 plus the
+expanded28-case fixture gives **75 distinct passes,0fail/skip**,28new cases.
+Independent review found no significant defect and supplied three additional
+hazard-authority counters. The real earned seed64 replay harvested7199, collected
+2resin+seed7202, compared the exact empty soil5524/row5525 at tick1570, then planted
+7203 through inventory. Actual C-menu/Examine show the new cue; the replanted
+crop loses it and reports dry growth. F6 restores the empty checkpoint and actual
+Look/FOCUS shows the cue. Nine accepted1280×800 captures plus one rejected Pause
+attempt are retained; this is gameplay evidence, not concepts. Cleanup at02:54UTC
+restores noPlay/noisolation/null save override; console0errors/2existing warnings.
+
+The exported empty checkpoint remains at `/tmp/coo-prepared-bed-empty-checkpoint/`
+(character33db4c719b3b4a5baba1d70a23632cd1). Current Mac/Linux packages use9ffd7c973
+and **predate this follow-up**; do not claim the cue has already been packaged.
+No approved art changed and no new performance or physical Deck result is claimed.
+
+**Next:** fresh-New-Game whole-scene acceptance. Use normal chooser and owned
+isolation with no copied checkpoint or forced art. A meaningful finite route is
+glade→cellar→north works→Nella→glade→east forge→kitchen, then save/stop/Continue;
+pay Nella's actual8drams rather than replaying the already-proven introduction
+journey. Inspect real current positions, threats and finite materials. Do not
+force progress through danger or pretend a historical coordinate is current.
+Prior actual images suggest two composition checks: repeated bright north hedge
+bands and Nella's working beds competing with decorative brown fragments.
+Reassess fresh captures before changing accepted art; use the required imagegen/
+part extraction/native production loop for any warranted art change. Ordinary
+Riposte/periodic Player-Hurt/Frozen proc remain opportunistic gaps, not RNG hunts.

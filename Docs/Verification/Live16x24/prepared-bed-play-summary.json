@@ -1,0 +1,141 @@
+{
+  "kind": "ordinary_keyboard_play_and_readonly_capture",
+  "seed": 64,
+  "zone": "Overworld.11.8.0",
+  "sourceCheckpoint": "/tmp/coo-live16x24-plot-uses-20261024/33db4c719b3b4a5baba1d70a23632cd1",
+  "emptyCheckpoint": "/tmp/coo-prepared-bed-empty-checkpoint/33db4c719b3b4a5baba1d70a23632cd1",
+  "beforeAfterMatchedFields": [
+    "zone",
+    "flat",
+    "player",
+    "hp",
+    "tick",
+    "drams",
+    "equipment",
+    "inventory",
+    "objects"
+  ],
+  "soilId": "5524",
+  "rowId": "5525",
+  "harvestedCropId": "7199",
+  "savedSeedId": "7202",
+  "replacementCropId": "7203",
+  "harvestResinDelta": 2,
+  "resinBefore": 1,
+  "resinAfter": 3,
+  "nativeDistinctGreenCases": 75,
+  "nativeNewCases": 28,
+  "captures": [
+    {
+      "label": "before-ripe",
+      "png": "Docs/Verification/Live16x24/prepared-bed-before-ripe.png",
+      "sha256": "3a94bd257c44d365e55bdefafad3ba22a37c24bdc8ce784e3ded3b7ad85bde4d",
+      "bytes": 49330,
+      "tick": 1550,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "before-menu",
+      "png": "Docs/Verification/Live16x24/prepared-bed-before-menu.png",
+      "sha256": "d4fedaa300fe7d21bfb5884c740ff2cf6fcf481b07c3c44142ac72f0615d6d74",
+      "bytes": 47085,
+      "tick": 1570,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "before-reader",
+      "png": "Docs/Verification/Live16x24/prepared-bed-before-reader.png",
+      "sha256": "0a88b18679b0ef0eb25a9c7e737c33ab5aaea00d22b6ecf196676146288517ac",
+      "bytes": 45116,
+      "tick": 1570,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "after-menu",
+      "png": "Docs/Verification/Live16x24/prepared-bed-after-menu.png",
+      "sha256": "037e67f95787bb0fc2b0832d367fa903cfdcb8d9670a536e0ec687c251f8bb0b",
+      "bytes": 47108,
+      "tick": 1570,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "after-reader",
+      "png": "Docs/Verification/Live16x24/prepared-bed-after-reader.png",
+      "sha256": "2b81eabd828559bcb8515d14e19c7e975015ff6219b0621f44f1bfaf82a7bfe4",
+      "bytes": 43593,
+      "tick": 1570,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "unexpected-pause",
+      "png": "Docs/Verification/Live16x24/prepared-bed-unexpected-pause.png",
+      "sha256": "e8cb5005ec07eae4706fd000467bf322ae35b72c8f920a7147ff4a558e181368",
+      "bytes": 45351,
+      "tick": 1570,
+      "flat": true,
+      "hp": 40,
+      "accepted": false
+    },
+    {
+      "label": "replanted-menu",
+      "png": "Docs/Verification/Live16x24/prepared-bed-replanted-menu.png",
+      "sha256": "da342f59cd966b3ccffda0c46da9e6d9106f5612ec5018d5093d1027eb802ec8",
+      "bytes": 47346,
+      "tick": 1580,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "replanted-reader",
+      "png": "Docs/Verification/Live16x24/prepared-bed-replanted-reader.png",
+      "sha256": "91394938a9cf008a71e2a2cc564d8f74a303eff7817ed12c91b58a4a6a58b0a9",
+      "bytes": 52003,
+      "tick": 1580,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "replanted-focus",
+      "png": "Docs/Verification/Live16x24/prepared-bed-replanted-focus.png",
+      "sha256": "6cca03b60629510252b5e5133e0d77cd09bab8880ee01884c37ad6403898da76",
+      "bytes": 49180,
+      "tick": 1580,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    },
+    {
+      "label": "restored-focus",
+      "png": "Docs/Verification/Live16x24/prepared-bed-restored-focus.png",
+      "sha256": "0c692c6b56025296a62ef3e1e98bdbcfbd01d6cc91c7cf5d4255fa2e552d5b13",
+      "bytes": 46365,
+      "tick": 1570,
+      "flat": true,
+      "hp": 40,
+      "accepted": true
+    }
+  ],
+  "imperfections": [
+    "Extra Escape opened Pause; unexpected-pause image is retained as rejected Focus evidence. Final restored-focus shows the actual cue.",
+    "Inventory tab mouse attempt opened an empty equipment chooser; cancelled without mutation. Keyboard Tab and row navigation completed planting.",
+    "Fast synthesized typeText entered only c; accepted that filter and navigated visibly to seed."
+  ],
+  "limits": [
+    "No new art or imagegen production in this measured text correction.",
+    "Current Linux and Mac packages predate this change.",
+    "No physical Steam Deck control or performance acceptance.",
+    "No all-world or complete fresh-character journey acceptance."
+  ]
+}

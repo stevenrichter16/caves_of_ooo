@@ -1,0 +1,259 @@
+{
+  "beds": [
+    {
+      "x": 17,
+      "y": 6,
+      "visible": true,
+      "explored": true,
+      "tileStateAbsent": true,
+      "ground": null,
+      "description": "You see a marlroot.",
+      "owners": [
+        {
+          "id": "5523",
+          "b": "Grass",
+          "name": "grass",
+          "cultivated": true,
+          "crop": false,
+          "renderVisible": true
+        },
+        {
+          "id": "2714",
+          "b": "MarlrootCrop",
+          "name": "marlroot",
+          "cultivated": false,
+          "crop": true,
+          "renderVisible": true
+        }
+      ]
+    },
+    {
+      "x": 18,
+      "y": 6,
+      "visible": true,
+      "explored": true,
+      "tileStateAbsent": true,
+      "ground": null,
+      "description": "You see the cut emberwheat row.",
+      "owners": [
+        {
+          "id": "5524",
+          "b": "Grass",
+          "name": "grass",
+          "cultivated": true,
+          "crop": false,
+          "renderVisible": true
+        },
+        {
+          "id": "5525",
+          "b": "CropRow",
+          "name": "cut emberwheat row",
+          "cultivated": false,
+          "crop": false,
+          "renderVisible": true
+        }
+      ]
+    }
+  ],
+  "at": "2026-10-25T02:38:46.9432770Z",
+  "zone": "Overworld.11.8.0",
+  "flat": true,
+  "player": [
+    18,
+    7
+  ],
+  "hp": 40,
+  "tick": 1570,
+  "drams": 36,
+  "knowledge": null,
+  "equipment": [],
+  "inventory": [
+    {
+      "id": "2701",
+      "b": "Dagger",
+      "n": "dagger",
+      "count": 1
+    },
+    {
+      "id": "2702",
+      "b": "HealingTonic",
+      "n": "healing tonic (x2)",
+      "count": 2
+    },
+    {
+      "id": "2703",
+      "b": "DriedMeat",
+      "n": "dried meat (x2)",
+      "count": 2
+    },
+    {
+      "id": "2704",
+      "b": "WateringGrimoire",
+      "n": "watering grimoire",
+      "count": 1
+    },
+    {
+      "id": "2705",
+      "b": "CandyCarrotSeed",
+      "n": "gladroot seed (x4)",
+      "count": 4
+    },
+    {
+      "id": "2706",
+      "b": "EmberwheatSeed",
+      "n": "emberwheat seed (x2)",
+      "count": 2
+    },
+    {
+      "id": "7197",
+      "b": "PitchpodResin",
+      "n": "pitchpod resin (x3)",
+      "count": 3
+    },
+    {
+      "id": "2710",
+      "b": "CandyCarrot",
+      "n": "gladroot",
+      "count": 1
+    },
+    {
+      "id": "2712",
+      "b": "MarlrootClod",
+      "n": "marlroot clod",
+      "count": 1
+    },
+    {
+      "id": "2715",
+      "b": "FireClay",
+      "n": "fire clay",
+      "count": 1
+    },
+    {
+      "id": "2716",
+      "b": "BrewedTonic",
+      "n": "burning coating",
+      "count": 1
+    },
+    {
+      "id": "7202",
+      "b": "PitchpodSeed",
+      "n": "pitchpod seed",
+      "count": 1
+    }
+  ],
+  "objects": [
+    {
+      "id": "2714",
+      "blueprint": "MarlrootCrop",
+      "name": "marlroot",
+      "x": 17,
+      "y": 6,
+      "hp": 0,
+      "crop": {
+        "stage": 0,
+        "units": 0,
+        "moisture": 0,
+        "lastTick": 1570
+      },
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "7189",
+      "blueprint": "EmberwheatCrop",
+      "name": "emberwheat crop",
+      "x": 17,
+      "y": 10,
+      "hp": 0,
+      "crop": {
+        "stage": 1,
+        "units": 5,
+        "moisture": 0,
+        "lastTick": 1570
+      },
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "2700",
+      "blueprint": "Player",
+      "name": "you",
+      "x": 18,
+      "y": 7,
+      "hp": 40,
+      "crop": null,
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "7190",
+      "blueprint": "EmberwheatCrop",
+      "name": "emberwheat crop",
+      "x": 18,
+      "y": 10,
+      "hp": 0,
+      "crop": {
+        "stage": 1,
+        "units": 5,
+        "moisture": 0,
+        "lastTick": 1570
+      },
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "7176",
+      "blueprint": "SpreadSeedKeeper",
+      "name": "Nella Tern, seedkeeper",
+      "x": 19,
+      "y": 9,
+      "hp": 20,
+      "crop": null,
+      "repair": null,
+      "claim": {
+        "state": "Granted",
+        "first": [
+          17,
+          6
+        ],
+        "second": [
+          18,
+          6
+        ],
+        "tray": [
+          21,
+          7
+        ]
+      },
+      "batch": null
+    },
+    {
+      "id": "7153",
+      "blueprint": "StairsDown",
+      "name": "stairs leading down",
+      "x": 58,
+      "y": 6,
+      "hp": 0,
+      "crop": null,
+      "repair": null,
+      "claim": null,
+      "batch": null
+    },
+    {
+      "id": "7164",
+      "blueprint": "MarlbackScrabbler",
+      "name": "marlback scrabbler",
+      "x": 74,
+      "y": 4,
+      "hp": 15,
+      "crop": null,
+      "repair": null,
+      "claim": null,
+      "batch": null
+    }
+  ]
+}

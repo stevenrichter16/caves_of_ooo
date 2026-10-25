@@ -1,0 +1,103 @@
+{
+  "start-time": "2026-10-25 02:33:50Z",
+  "end-time": "2026-10-25 02:33:53Z",
+  "total": "25",
+  "passed": "2",
+  "failed": "23",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.ActualAuthorizedPitchpodHarvestAndPickupExposeTheExistingBedAcrossReaders",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"hidden-cell\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"unexplored-cell\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"replaced-cell\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"foreign-cell\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"replaced-zone\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"inactive-zone\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"removed-soil\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"foreign-marker\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"foreign-physics\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"foreign-render\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"hidden-render\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.APreviouslyReadableBedLosesTheCueWhenItsAuthorityIsLost(\"carried-soil\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.ForeignOrMovedCropReferencesCannotSuppressTheCurrentBed(\"foreign-crop-part\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.ForeignOrMovedCropReferencesCannotSuppressTheCurrentBed(\"foreign-render\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.ForeignOrMovedCropReferencesCannotSuppressTheCurrentBed(\"stale-anchor\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.OnlyADisclosedCurrentCropSuppressesTheNeutralBedCue(False)",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.OnlyADisclosedCurrentCropSuppressesTheNeutralBedCue(True)",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.PhysicallyUnusablePreparedGroundDoesNotAdvertiseTheBed(\"barren\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.PhysicallyUnusablePreparedGroundDoesNotAdvertiseTheBed(\"pool\")",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.PreparedCueAppendsWithoutReplacingOrReorderingExistingHazardText",
+      "message": "  Expected string length 118 but was 95. Strings differ at index 95.\n  Expected: \"...turns), charged, smoke cloud (2 turns), prepared planting bed\"\n  But was:  \"...turns), charged, smoke cloud (2 turns)\"\n  ----------------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.RepeatedQueriesDoNotAdvanceGrowthGrantRightsRepairBindingsOrDirtyTheWorld",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PreparedBedReadoutTests.VisibilityAndCultivationMustBelongToTheSameLowerOwner",
+      "message": "  Expected: \"prepared planting bed\"\n  But was:  null\n"
+    }
+  ]
+}

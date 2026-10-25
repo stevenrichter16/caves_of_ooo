@@ -21,8 +21,9 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Full detail line for look mode / FOCUS panel:
         /// "On the ground: water (5 turns), embers (3 turns), charged".
-        /// Null when there is nothing to say (sparse store: absent means
-        /// clean) or the cell is fogged.
+        /// Null when there is nothing to say or the cell is fogged.
+        /// Prepared soil is an entity condition, independent of the sparse
+        /// tile-state store used by coatings and hazards.
         /// </summary>
         public static string GroundLine(Zone zone, Cell cell)
         {
@@ -79,7 +80,13 @@ namespace CavesOfOoo.Core
 
         private static List<string> Collect(Zone zone, Cell cell, bool withCounts)
         {
-            if (zone == null || cell == null || !cell.Explored || !cell.IsVisible)
+            if (zone == null || cell == null || !cell.Explored || !cell.IsVisible
+                || cell.ParentZone != zone || zone.GetCell(cell.X, cell.Y) != cell)
+                return null;
+
+            var manager = WorldLocationContext.For(zone);
+            if (manager != null && (manager.ActiveZone != zone
+                || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current) || current != zone))
                 return null;
 
             // Coordinates come from the cell itself, read only after the
@@ -87,8 +94,9 @@ namespace CavesOfOoo.Core
             // never legitimately differ from them (adversarial review S1),
             // so the signature no longer offers a way to desync.
             var state = zone.TileState.Get(cell.X, cell.Y);
+            bool preparedBed = HasDisclosedPreparedBed(zone, cell);
             if (state == null)
-                return null;
+                return preparedBed ? new List<string> { "prepared planting bed" } : null;
 
             var parts = new List<string>();
             bool gritted = LiquidSlipSystem.HasGrit(zone, cell.X, cell.Y);
@@ -113,7 +121,37 @@ namespace CavesOfOoo.Core
                 parts.Add(TileStateCatalog.DisplayName(state.Cloud) + " cloud"
                     + FormatTurns(state.CloudTurns, withCounts)
                     + (state.Cloud == "veil-mist" && state.CloudTurns > 0 ? " (blocks sight)" : ""));
+            if (preparedBed) parts.Add("prepared planting bed");
             return parts;
+        }
+
+        private static bool HasDisclosedPreparedBed(Zone zone, Cell cell)
+        {
+            if (!CultivatedSoilPart.IsCultivated(zone, cell)) return false;
+
+            bool disclosedSoil = false;
+            foreach (var owner in cell.Objects)
+            {
+                var render = owner?.GetPart<RenderPart>();
+                if (render == null || render.ParentEntity != owner || !render.Visible) continue;
+
+                var crop = owner.GetPart<CropPart>();
+                // A visible live crop already supplies its own growth readout.
+                // Hidden or foreign parts must not disclose an unseen occupant.
+                if (crop != null && crop.ParentEntity == owner && CropTime.IsCurrentOwner(crop, zone)
+                    && zone.GetEntityCell(owner) == cell) return false;
+
+                var soil = owner.GetPart<CultivatedSoilPart>();
+                var physics = owner.GetPart<PhysicsPart>();
+                // Cultivation and visibility must belong to the SAME eligible
+                // terrain owner; a visible decorative row cannot vouch for it.
+                if (soil != null && soil.ParentEntity == owner && owner.SpatialZone == zone
+                    && zone.GetEntityCell(owner) == cell && owner.HasTag("Terrain") && owner.HasTag("Plantable")
+                    && !owner.HasTag("Solid") && !owner.HasTag("Creature") && !owner.HasTag("Item")
+                    && physics != null && physics.ParentEntity == owner && !physics.Solid && !physics.Takeable
+                    && physics.InInventory == null && physics.Equipped == null) disclosedSoil = true;
+            }
+            return disclosedSoil;
         }
 
         /// <summary>"ice (4 turns, slippery)" / "ice (slippery)" / "oil".
