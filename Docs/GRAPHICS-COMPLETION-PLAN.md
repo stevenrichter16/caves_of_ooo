@@ -1384,3 +1384,15 @@ and ordinary-return gates are recorded. No floor runtime/art import or new
 gameplay acceptance is claimed yet. Existing Nella and inventory remain frozen.
 Storage is still constrained; use the guarded stale-cache process, preserve
 current packages and avoid heavy builds. Whole-opening/Deck/regional gates stay open.
+
+
+Storage follow-up10:42UTC: after verifying `801f96d04` and all122 owned files
+on origin/main, removed only the inactive clone's generated ScriptAssemblies
+(164DLL/PDB files) and Search (11indexes/database files), with no open handles.
+Observed additional available-space gain41,766,912bytes (39.8MiB), versus
+81,870,848allocatedbytes. Combined observed gain for this Nella heartbeat is
+200,695,808bytes (191.4MiB). Current free space remains about308MiB because
+other activity consumes space between checks. No large safe remaining project
+cache/build target was found. Main active caches, source, editable assets,
+saves/backups, dependencies and current packages remain protected. Exact receipt:
+[small-cache cleanup](Verification/Live16x24/nella-composition-small-cache-cleanup.json).
