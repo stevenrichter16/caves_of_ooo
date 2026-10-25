@@ -1220,3 +1220,47 @@ at01:24:42UTC. Direct console0errors,2existing Metal warnings. Current build
 and save backups remain intact. Repeated random counter hunting must not delay
 the six-site continuity/scene gate; record ordinary feedback if it occurs
 naturally. No full G2/G3, packaged, device or regional release is claimed.
+
+
+## Next executable slice — six-site service and return, 2026-10-25 01:30UTC
+
+The moving-body correction is on remote main at43b43c6a6; its82 exact owned
+files were byte-verified remotely. Post-push storage inspection found4.96GiB
+free and no worthwhile safe stale candidate;0bytes removed. Current archive,
+editable source, user saves and all checkpoint branches remain protected.
+The active graphics/storage heartbeat is every10minutes, not mandatory deletion.
+
+Next use the accepted **frost-tempered/crop** checkpoint, not the separate
+untempered tween replay. Start at kitchen25,14,42HP,tick2990 and verify actual
+2699blade,2clay4716,4pulp and dry13515. One continuous service-and-return route
+has more release value than another disconnected item packet or RNG hunt:
+
+1. Water the existing13515, repair the actual pan using carried clay, then ask
+   Orven **“ask Orven to vouch for the repair.”** The real CookIntroductionPart
+   requires this player's recorded repair; do not synthesize knowledge.
+2. Walk kitchen12.11→east12.10→glade11.10. Revisit the forge, descend/return from
+   cellar11.10.1, then continue north works11.9→Nella11.8. Capture real approach,
+   interactions and return state, retaining finite depletion and owner identity.
+3. Inspect public/tied beds, read Nella's terms, and choose **“relay Orven's
+   introduction”** if rights are Unknown. Legitimate grant avoids8drams. Inspect
+   and harvest one authorized reserve product, replant if supplied, and verify
+   the ground cord persists. Do not manufacture theft or grant state in code.
+4. Return through the same route to kitchen. Verify crop13515's actual growth,
+   repair, introduction and custody. Save, stop gameplay, Continue and compare
+   the same owners. Export the real checkpoint before isolation cleanup.
+5. Fix only measured blockers in that flow. The existing ripe Claspbean Examine
+   reader has visibly cramped prose leading; inspect actual glyph bounds,
+   pagination and footer clearance at1280×800 before a small typography fix.
+   Source places body rows one cell apart with1.6× glyphs, but the screenshot
+   does **not** prove duplicate text or actual vertical overdraw. Keep the
+   approved ledger style. Runtime corrections still require RED→GREEN.
+
+Accept only a continuous six-site receipt, readable readers, correct return to
+world, truthful permission/state cues and preserved finite custody. Record
+encountered fallback identities rather than pretending every incidental item
+is complete. This checkpoint-based pass does not prove fresh-New-Game continuity,
+packaged activation or physical Deck. The retained **October11 current package
+still predates this graphics work**; update packaging after the connected
+acceptance, and keep hardware proof separate. Ordinary Riposte, Player periodic
+hurt, Frozen proc and pulp application remain named unobserved opportunities,
+not reasons for unbounded random encounter hunting.
