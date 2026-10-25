@@ -2410,9 +2410,10 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
 
-            if (Input.GetMouseButtonDown(0) &&
+            ReadHotbarPointer(out Vector2 hotbarPointer, out bool hotbarPressed);
+            if (hotbarPressed &&
                 ZoneRenderer != null &&
-                ZoneRenderer.TryGetHotbarSlotAtScreenPosition(Input.mousePosition, out int clickedSlot))
+                ZoneRenderer.TryGetHotbarSlotAtScreenPosition(hotbarPointer, out int clickedSlot))
             {
                 _selectedHotbarSlot = clickedSlot;
                 SyncHotbarState();
@@ -2421,6 +2422,23 @@ namespace CavesOfOoo.Rendering
             }
 
             return false;
+        }
+
+        private static void ReadHotbarPointer(out Vector2 position, out bool pressed)
+        {
+            // Match inventory's pointer policy: never mix a native button edge
+            // with a stale legacy position (or the reverse).
+            var mouse = UnityEngine.InputSystem.Mouse.current;
+            if (mouse != null && mouse.enabled)
+            {
+                position = mouse.position.ReadValue();
+                pressed = mouse.leftButton.wasPressedThisFrame;
+            }
+            else
+            {
+                position = Input.mousePosition;
+                pressed = Input.GetMouseButtonDown(0);
+            }
         }
 
         private bool TryHandleSidebarLogScrollCommand(bool older)

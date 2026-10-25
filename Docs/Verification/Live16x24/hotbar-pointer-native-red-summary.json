@@ -1,0 +1,51 @@
+{
+  "start-time": "2026-10-25 12:08:36Z",
+  "end-time": "2026-10-25 12:08:36Z",
+  "total": "11",
+  "passed": "1",
+  "failed": "10",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(False)",
+      "message": "  One coherent pointer backend must supply position and left-press together.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(True)",
+      "message": "  One coherent pointer backend must supply position and left-press together.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn",
+      "message": "  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge",
+      "message": "  One coherent pointer backend must supply position and left-press together.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan",
+      "message": "  Expected string length 17 but was 6. Strings differ at index 0.\n  Expected: \"AwaitingDirection\"\n  But was:  \"Normal\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(False)",
+      "message": "  Expected string length 17 but was 6. Strings differ at index 0.\n  Expected: \"AwaitingDirection\"\n  But was:  \"Normal\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(True)",
+      "message": "  Expected string length 17 but was 6. Strings differ at index 0.\n  Expected: \"AwaitingDirection\"\n  But was:  \"Normal\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1280,800)",
+      "message": "  Expected string length 17 but was 6. Strings differ at index 0.\n  Expected: \"AwaitingDirection\"\n  But was:  \"Normal\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1920,1080)",
+      "message": "  Expected string length 17 but was 6. Strings differ at index 0.\n  Expected: \"AwaitingDirection\"\n  But was:  \"Normal\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.HotbarPointerInputTests.OutsideHotbarPressDoesNotBorrowTheNearestCard",
+      "message": "  Expected string length 17 but was 6. Strings differ at index 0.\n  Expected: \"AwaitingDirection\"\n  But was:  \"Normal\"\n  -----------^\n"
+    }
+  ]
+}

@@ -657,7 +657,7 @@
     },
     "warden_hotbar": {
       "native_integration": "native_integrated_verified",
-      "ordinary_play": "keyboard_and_visual_bounded_accepted_mouse_pending",
+      "ordinary_play": "keyboard_mouse_and_visual_bounded_accepted",
       "owners": [
         "LongBlades_EnGarde",
         "LongBlades_Lunge",
@@ -670,9 +670,11 @@
       "evidence_refs": [
         "Docs/GRAPHICS-G3-WARDEN-HOTBAR.md",
         "Docs/Verification/Live16x24/warden-hotbar-native-green.xml",
-        "Docs/Verification/Live16x24/warden-hotbar-gameplay-review.md"
+        "Docs/Verification/Live16x24/warden-hotbar-gameplay-review.md",
+        "Docs/GRAPHICS-G3-HOTBAR-POINTER.md",
+        "Docs/Verification/Live16x24/hotbar-pointer-gameplay-review.md"
       ],
-      "limits": "105native passes incl18new; ordinary keyboard/cast/aim/cancel accepted. Mouse click failed through pre-existing legacy path, next corrective slice. No package/Deck/all-ability/whole-opening acceptance."
+      "limits": "105native icon passes incl18new; additional107native pointer sweep incl11new. Ordinary keyboard and OS mouse/cast/aim/cancel/refusal accepted. No package/Deck/all-ability/whole-opening acceptance."
     }
   },
   "rough_or_unclassified_coverage": {
@@ -779,11 +781,11 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "warden_hotbar_bounded_keyboard_visual_accepted",
-    "capture": "Docs/Verification/Live16x24/warden-hotbar-ready.png",
-    "counter_capture": "Docs/Verification/Live16x24/warden-hotbar-follow-through-aim.png",
-    "receipt": "Docs/GRAPHICS-G3-WARDEN-HOTBAR.md",
-    "route": "Normal New Game Warden; En Garde cast/CD11, Lunge/Follow Through aiming/cancel, bracket cycle/F5.105native passes. Mouse failed; separate existing input boundary under investigation."
+    "kind": "hotbar_native_mouse_bounded_ordinary_accepted",
+    "capture": "Docs/Verification/Live16x24/hotbar-pointer-follow-through-click.png",
+    "counter_capture": "Docs/Verification/Live16x24/hotbar-pointer-cooldown-blocked.png",
+    "receipt": "Docs/GRAPHICS-G3-HOTBAR-POINTER.md",
+    "route": "Normal New Game Warden, actual OS mouse Lunge/FollowThroughaim/EnGardecast/cooldownrefusal.107native passes. Other pointer routes, packages, physicalDeck and world-complete remain open."
   },
   "current_environment_blocker": {
     "detail": "Editor/native tests/ordinary Play working after341.2MiB stale player-cache recovery. About303MiB free at11:59UTC; no further stale set confirmed. Preserve useful caches, source, saves/backups, current packages; avoid fresh large build.",
@@ -845,7 +847,10 @@
       "Docs/Verification/Live16x24/cellar-floor-final-restored.json",
       "Docs/Verification/Live16x24/cellar-floor-preservation.json",
       "Docs/Verification/Live16x24/warden-hotbar-final-restored.json",
-      "Docs/Verification/Live16x24/warden-hotbar-preservation.json"
+      "Docs/Verification/Live16x24/warden-hotbar-preservation.json",
+      "Docs/Verification/Live16x24/hotbar-pointer-final-restored.json",
+      "Docs/Verification/Live16x24/hotbar-pointer-preservation.json",
+      "Docs/Verification/Live16x24/hotbar-pointer-stale-hub-installer-audit.json"
     ]
   },
   "packaged_delivery": {
@@ -861,9 +866,9 @@
     ]
   },
   "next_scoped_work": {
-    "id": "hotbar_native_pointer",
-    "status": "pre_existing_legacy_path_discrepancy_observed",
-    "baseline": "Docs/Verification/Live16x24/warden-hotbar-mouse-observation.json",
-    "next": "Native RED against real mouse device; apply inventory-proven native/fallback-legacy policy to hotbar. Verify ordinary clicks, then continue whole-scene incidental owner census. No icon geometry/combat changes."
+    "id": "opening_incidental_item_identity",
+    "status": "ordinary_owner_discovery_next",
+    "baseline": "Docs/GRAPHICS-G3-FRESH-OPENING-ACCEPTANCE.md",
+    "next": "Ordinary Look/Examine north LeatherArmor6954 at16,17 and kitchen P glyph; capture true owner/state before selecting a coherent native missing-item art slice. Preserve accepted art; no identity inferred from glyph."
   }
 }

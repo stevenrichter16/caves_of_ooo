@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="107" result="Passed" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 12:10:20Z" end-time="2026-10-25 12:10:26Z" duration="6.3868551">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31449" result="Passed" start-time="2026-10-25 12:10:20Z" end-time="2026-10-25 12:10:26Z" duration="6.386855" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="38726" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31449" result="Passed" start-time="2026-10-25 12:10:20Z" end-time="2026-10-25 12:10:26Z" duration="6.173579" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="38727" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31449" result="Passed" start-time="2026-10-25 12:10:20Z" end-time="2026-10-25 12:10:26Z" duration="6.090464" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="38728" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31449" result="Passed" start-time="2026-10-25 12:10:21Z" end-time="2026-10-25 12:10:26Z" duration="5.926752" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="13893" name="GameAuditHotbarSelectionAdversarialTests" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.562385" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="13916" name="BootstrapWithoutInputCanCaptureAndApply" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.BootstrapWithoutInputCanCaptureAndApply" methodname="BootstrapWithoutInputCanCaptureAndApply" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="63929246" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.066995" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13914" name="ChangedAbilityInSameSlotKeepsSlotIdentity" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.ChangedAbilityInSameSlotKeepsSlotIdentity" methodname="ChangedAbilityInSameSlotKeepsSlotIdentity" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="221008889" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.024113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13909" name="CooldownDoesNotPreferReadySibling" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.CooldownDoesNotPreferReadySibling" methodname="CooldownDoesNotPreferReadySibling" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="946980330" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.015134" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13912" name="DifferentActorBindingsAreValidatedAfterReplacement" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.DifferentActorBindingsAreValidatedAfterReplacement" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.105305" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13910" name="DifferentActorBindingsAreValidatedAfterReplacement(0,9)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.DifferentActorBindingsAreValidatedAfterReplacement(0,9)" methodname="DifferentActorBindingsAreValidatedAfterReplacement" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1920114580" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.038689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13911" name="DifferentActorBindingsAreValidatedAfterReplacement(9,0)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.DifferentActorBindingsAreValidatedAfterReplacement(9,0)" methodname="DifferentActorBindingsAreValidatedAfterReplacement" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="749431934" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.063738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="13915" name="ExistingWhollyUnboundMigrationRemainsCompatible" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.ExistingWhollyUnboundMigrationRemainsCompatible" methodname="ExistingWhollyUnboundMigrationRemainsCompatible" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1559133989" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.017912" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13928" name="InitialCheckpointUsesValidatedPreUpdateSelection" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InitialCheckpointUsesValidatedPreUpdateSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.040461" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13926" name="InitialCheckpointUsesValidatedPreUpdateSelection(False,5)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InitialCheckpointUsesValidatedPreUpdateSelection(False,5)" methodname="InitialCheckpointUsesValidatedPreUpdateSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="267432758" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.019108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13927" name="InitialCheckpointUsesValidatedPreUpdateSelection(True,-1)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InitialCheckpointUsesValidatedPreUpdateSelection(True,-1)" methodname="InitialCheckpointUsesValidatedPreUpdateSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="781961677" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.017744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="13904" name="InvalidSelectionFallsBackWithoutRebinding" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InvalidSelectionFallsBackWithoutRebinding" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.076473" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13898" name="InvalidSelectionFallsBackWithoutRebinding(-1)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InvalidSelectionFallsBackWithoutRebinding(-1)" methodname="InvalidSelectionFallsBackWithoutRebinding" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="151633890" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.012899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13899" name="InvalidSelectionFallsBackWithoutRebinding(-2)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InvalidSelectionFallsBackWithoutRebinding(-2)" methodname="InvalidSelectionFallsBackWithoutRebinding" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="840369410" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.012429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13900" name="InvalidSelectionFallsBackWithoutRebinding(3)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InvalidSelectionFallsBackWithoutRebinding(3)" methodname="InvalidSelectionFallsBackWithoutRebinding" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1818863096" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.012312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13901" name="InvalidSelectionFallsBackWithoutRebinding(10)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InvalidSelectionFallsBackWithoutRebinding(10)" methodname="InvalidSelectionFallsBackWithoutRebinding" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="256440528" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.012015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13902" name="InvalidSelectionFallsBackWithoutRebinding(int.MinValue)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InvalidSelectionFallsBackWithoutRebinding(int.MinValue)" methodname="InvalidSelectionFallsBackWithoutRebinding" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="946081021" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.012002" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13903" name="InvalidSelectionFallsBackWithoutRebinding(int.MaxValue)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.InvalidSelectionFallsBackWithoutRebinding(int.MaxValue)" methodname="InvalidSelectionFallsBackWithoutRebinding" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1073572400" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="13908" name="NoAvailableAbilityClearsInputAndRenderer" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.NoAvailableAbilityClearsInputAndRenderer" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.026498" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13905" name="NoAvailableAbilityClearsInputAndRenderer(&quot;null&quot;)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.NoAvailableAbilityClearsInputAndRenderer(&quot;null&quot;)" methodname="NoAvailableAbilityClearsInputAndRenderer" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1915569080" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.008455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13906" name="NoAvailableAbilityClearsInputAndRenderer(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.NoAvailableAbilityClearsInputAndRenderer(&quot;missing&quot;)" methodname="NoAvailableAbilityClearsInputAndRenderer" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="2032630334" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.008015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13907" name="NoAvailableAbilityClearsInputAndRenderer(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.NoAvailableAbilityClearsInputAndRenderer(&quot;empty&quot;)" methodname="NoAvailableAbilityClearsInputAndRenderer" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="106023067" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.007673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="13897" name="OccupiedSelectionSurvivesAmongSeveralChoices" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.OccupiedSelectionSurvivesAmongSeveralChoices" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.036735" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13894" name="OccupiedSelectionSurvivesAmongSeveralChoices(0)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.OccupiedSelectionSurvivesAmongSeveralChoices(0)" methodname="OccupiedSelectionSurvivesAmongSeveralChoices" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="740008624" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13895" name="OccupiedSelectionSurvivesAmongSeveralChoices(5)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.OccupiedSelectionSurvivesAmongSeveralChoices(5)" methodname="OccupiedSelectionSurvivesAmongSeveralChoices" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="760726758" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13896" name="OccupiedSelectionSurvivesAmongSeveralChoices(9)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.OccupiedSelectionSurvivesAmongSeveralChoices(9)" methodname="OccupiedSelectionSurvivesAmongSeveralChoices" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1135123203" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="13913" name="RemovedSelectionFallsBackAtCaptureBeforeUpdate" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RemovedSelectionFallsBackAtCaptureBeforeUpdate" methodname="RemovedSelectionFallsBackAtCaptureBeforeUpdate" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1755304294" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011951" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13924" name="RemovingUnselectedAbilityPreservesLaterSelection" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RemovingUnselectedAbilityPreservesLaterSelection" methodname="RemovingUnselectedAbilityPreservesLaterSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="852470647" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13918" name="RendererIsOptionalForRestoreAndLoad" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RendererIsOptionalForRestoreAndLoad" methodname="RendererIsOptionalForRestoreAndLoad" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1765889567" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.014660" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13929" name="RepeatedCurrentCaptureLoadCaptureRetainsSelectedSlotAndAliases" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RepeatedCurrentCaptureLoadCaptureRetainsSelectedSlotAndAliases" methodname="RepeatedCurrentCaptureLoadCaptureRetainsSelectedSlotAndAliases" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1601689367" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.021886" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13919" name="RepeatedRestoreAndCaptureAreIdempotent" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RepeatedRestoreAndCaptureAreIdempotent" methodname="RepeatedRestoreAndCaptureAreIdempotent" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="474020565" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011855" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13920" name="RestorePreservesPendingTargetAndDoesNotDispatchActivation" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.RestorePreservesPendingTargetAndDoesNotDispatchActivation" methodname="RestorePreservesPendingTargetAndDoesNotDispatchActivation" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1059424827" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.012006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13917" name="SparseCaptureKeepsLaterOccupiedSelection" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.SparseCaptureKeepsLaterOccupiedSelection" methodname="SparseCaptureKeepsLaterOccupiedSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="105195081" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011605" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13923" name="UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.033469" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13921" name="UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy(9,5)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy(9,5)" methodname="UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="774855202" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.015264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13922" name="UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy(5,9)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy(5,9)" methodname="UnbindingSelectedOrSiblingSlotUsesCurrentOccupancy" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1669877296" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.014631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="13925" name="UnboundOverflowDoesNotReplaceSelectedSlot" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests.UnboundOverflowDoesNotReplaceSelectedSlot" methodname="UnboundOverflowDoesNotReplaceSelectedSlot" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionAdversarialTests" runstate="Runnable" seed="1138483698" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.015273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="13930" name="GameAuditHotbarSelectionTests" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:24Z" duration="0.180339" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="13940" name="ApplyLoadOfEmptyHotbarClearsOldSelectionImmediately" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.ApplyLoadOfEmptyHotbarClearsOldSelectionImmediately" methodname="ApplyLoadOfEmptyHotbarClearsOldSelectionImmediately" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="1513982436" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.015199" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13941" name="ApplyLoadRestoresZeroFromDifferentOldSelection" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.ApplyLoadRestoresZeroFromDifferentOldSelection" methodname="ApplyLoadRestoresZeroFromDifferentOldSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="750642096" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.018801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13939" name="ApplyLoadValidatesAgainstReplacementActorBeforeSynchronizingRenderer" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.ApplyLoadValidatesAgainstReplacementActorBeforeSynchronizingRenderer" methodname="ApplyLoadValidatesAgainstReplacementActorBeforeSynchronizingRenderer" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="481546077" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.014695" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13934" name="BootstrapCaptureUsesActualOccupiedSelection" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.BootstrapCaptureUsesActualOccupiedSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.037694" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13931" name="BootstrapCaptureUsesActualOccupiedSelection(0)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.BootstrapCaptureUsesActualOccupiedSelection(0)" methodname="BootstrapCaptureUsesActualOccupiedSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="1810733549" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13932" name="BootstrapCaptureUsesActualOccupiedSelection(5)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.BootstrapCaptureUsesActualOccupiedSelection(5)" methodname="BootstrapCaptureUsesActualOccupiedSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="195023612" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011668" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13933" name="BootstrapCaptureUsesActualOccupiedSelection(9)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.BootstrapCaptureUsesActualOccupiedSelection(9)" methodname="BootstrapCaptureUsesActualOccupiedSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="1587598444" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011791" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="13935" name="CaptureBeforeFirstUpdateFallsBackToFirstOccupiedSlot" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.CaptureBeforeFirstUpdateFallsBackToFirstOccupiedSlot" methodname="CaptureBeforeFirstUpdateFallsBackToFirstOccupiedSlot" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="423432853" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011946" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13943" name="CurrentFormatRoundTripsNonzeroSelection" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.CurrentFormatRoundTripsNonzeroSelection" methodname="CurrentFormatRoundTripsNonzeroSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="218899900" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.015023" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13944" name="ExplicitRestoreSelectsWithoutTargetingOrSpendingActionCost" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.ExplicitRestoreSelectsWithoutTargetingOrSpendingActionCost" methodname="ExplicitRestoreSelectsWithoutTargetingOrSpendingActionCost" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="276207588" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.011976" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13942" name="LoadedCooldownAbilityRemainsSelectedWithoutChangingItsClock" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.LoadedCooldownAbilityRemainsSelectedWithoutChangingItsClock" methodname="LoadedCooldownAbilityRemainsSelectedWithoutChangingItsClock" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="165739883" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:23Z" duration="0.014119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13938" name="MissingInputOrEmptyAbilitiesCaptureNoSelection" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.MissingInputOrEmptyAbilitiesCaptureNoSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:24Z" duration="0.025829" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13936" name="MissingInputOrEmptyAbilitiesCaptureNoSelection(False)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.MissingInputOrEmptyAbilitiesCaptureNoSelection(False)" methodname="MissingInputOrEmptyAbilitiesCaptureNoSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="149210276" result="Passed" start-time="2026-10-25 12:10:23Z" end-time="2026-10-25 12:10:24Z" duration="0.011488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="13937" name="MissingInputOrEmptyAbilitiesCaptureNoSelection(True)" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.MissingInputOrEmptyAbilitiesCaptureNoSelection(True)" methodname="MissingInputOrEmptyAbilitiesCaptureNoSelection" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="1293498445" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.011071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="13945" name="UnoccupiedSavedSlotFallsBackToFirstOccupiedLoadedSlot" fullname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests.UnoccupiedSavedSlotFallsBackToFirstOccupiedLoadedSlot" methodname="UnoccupiedSavedSlotFallsBackToFirstOccupiedLoadedSlot" classname="CavesOfOoo.Tests.GameAuditHotbarSelectionTests" runstate="Runnable" seed="705899548" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.011443" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="26267" name="HotbarPointerInputTests" fullname="CavesOfOoo.Tests.HotbarPointerInputTests" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.277570" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="26281" name="AbsentOrDisabledNativePointerUsesTheActualLegacyPair" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.059754" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26279" name="AbsentOrDisabledNativePointerUsesTheActualLegacyPair(False)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(False)" methodname="AbsentOrDisabledNativePointerUsesTheActualLegacyPair" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="944506957" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.042751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26280" name="AbsentOrDisabledNativePointerUsesTheActualLegacyPair(True)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(True)" methodname="AbsentOrDisabledNativePointerUsesTheActualLegacyPair" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1479860350" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.016467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="26277" name="CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn" methodname="CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1227292710" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.018337" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26278" name="EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge" methodname="EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1009743622" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.015293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26275" name="HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan" methodname="HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="964647042" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.016113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26273" name="HoverAndRightButtonDoNotActivateThePaintedCard" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.046599" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26271" name="HoverAndRightButtonDoNotActivateThePaintedCard(False)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(False)" methodname="HoverAndRightButtonDoNotActivateThePaintedCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1293657497" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.015639" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26272" name="HoverAndRightButtonDoNotActivateThePaintedCard(True)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(True)" methodname="HoverAndRightButtonDoNotActivateThePaintedCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="35013392" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.029379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="26276" name="MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility" methodname="MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="638872345" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.021619" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26270" name="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.080658" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26268" name="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1280,800)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1280,800)" methodname="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="2077220516" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.060220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26269" name="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1920,1080)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1920,1080)" methodname="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="321577888" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.016889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="26274" name="OutsideHotbarPressDoesNotBorrowTheNearestCard" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.OutsideHotbarPressDoesNotBorrowTheNearestCard" methodname="OutsideHotbarPressDoesNotBorrowTheNearestCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1135837110" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.016561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="30155" name="HotbarRendererTests" fullname="CavesOfOoo.Tests.HotbarRendererTests" classname="CavesOfOoo.Tests.HotbarRendererTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.233967" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="30157" name="GameplayLayout_ReservesBottomHotbarStrip_AndPopupUsesMapRect" fullname="CavesOfOoo.Tests.HotbarRendererTests.GameplayLayout_ReservesBottomHotbarStrip_AndPopupUsesMapRect" methodname="GameplayLayout_ReservesBottomHotbarStrip_AndPopupUsesMapRect" classname="CavesOfOoo.Tests.HotbarRendererTests" runstate="Runnable" seed="837390206" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.009518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30156" name="ZoneRenderer_RendersHotbarInBottomStrip_AndRejectsWorldHitsThere" fullname="CavesOfOoo.Tests.HotbarRendererTests.ZoneRenderer_RendersHotbarInBottomStrip_AndRejectsWorldHitsThere" methodname="ZoneRenderer_RendersHotbarInBottomStrip_AndRejectsWorldHitsThere" classname="CavesOfOoo.Tests.HotbarRendererTests" runstate="Runnable" seed="1555948627" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.221514" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="30158" name="HotbarStateBuilderTests" fullname="CavesOfOoo.Tests.HotbarStateBuilderTests" classname="CavesOfOoo.Tests.HotbarStateBuilderTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.005874" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="30162" name="Build_ProducesEmptyState_WhenNoSlotsAreBound" fullname="CavesOfOoo.Tests.HotbarStateBuilderTests.Build_ProducesEmptyState_WhenNoSlotsAreBound" methodname="Build_ProducesEmptyState_WhenNoSlotsAreBound" classname="CavesOfOoo.Tests.HotbarStateBuilderTests" runstate="Runnable" seed="1851504512" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.000465" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30161" name="Build_UsesActivatedAbilitySlots_AndTooltipDisplayData" fullname="CavesOfOoo.Tests.HotbarStateBuilderTests.Build_UsesActivatedAbilitySlots_AndTooltipDisplayData" methodname="Build_UsesActivatedAbilitySlots_AndTooltipDisplayData" classname="CavesOfOoo.Tests.HotbarStateBuilderTests" runstate="Runnable" seed="678590008" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.000238" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30160" name="OldSavedVaultMetadataDisplaysCurrentCursorRange" fullname="CavesOfOoo.Tests.HotbarStateBuilderTests.OldSavedVaultMetadataDisplaysCurrentCursorRange" methodname="OldSavedVaultMetadataDisplaysCurrentCursorRange" classname="CavesOfOoo.Tests.HotbarStateBuilderTests" runstate="Runnable" seed="445405858" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.000091" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="30159" name="UnboundVaultChangesHintAndCancelRestoresIt" fullname="CavesOfOoo.Tests.HotbarStateBuilderTests.UnboundVaultChangesHintAndCancelRestoresIt" methodname="UnboundVaultChangesHintAndCancelRestoresIt" classname="CavesOfOoo.Tests.HotbarStateBuilderTests" runstate="Runnable" seed="1508208312" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.000060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="37587" name="InventoryLedgerInteractionTests" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:25Z" duration="1.367359" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="37617" name="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.176238" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37615" name="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(8)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(8)" methodname="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="609246690" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.120383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="37616" name="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(9)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation(9)" methodname="ActualDisplacementsExposeEveryItemAndBodyPartBeforeConfirmation" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1011741542" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.054906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="37611" name="AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" methodname="AllTenActualHotbarOwnersArePaintedAndClearingTheLastLeavesTheOtherNineAlone" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="480197838" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.039904" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37614" name="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.098826" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37612" name="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(0)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(0)" methodname="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="111193246" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.053092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37613" name="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(1)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName(1)" methodname="DisplacementPreviewIdentifiesTheExactHandWhenBothWeaponsHaveTheSameName" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="780253104" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.040915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="37594" name="EmptyPackStaysNeutralUntilARealItemArrives" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.EmptyPackStaysNeutralUntilARealItemArrives" methodname="EmptyPackStaysNeutralUntilARealItemArrives" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1273325883" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.041826" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37591" name="InventoryEntrySelectsAndPaintsARealCarriedItem" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.InventoryEntrySelectsAndPaintsARealCarriedItem" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:25Z" duration="0.116054" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37588" name="InventoryEntrySelectsAndPaintsARealCarriedItem(&quot;PaintedTab&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.InventoryEntrySelectsAndPaintsARealCarriedItem(&quot;PaintedTab&quot;)" methodname="InventoryEntrySelectsAndPaintsARealCarriedItem" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="2004993533" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.038256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37589" name="InventoryEntrySelectsAndPaintsARealCarriedItem(&quot;KeyboardTab&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.InventoryEntrySelectsAndPaintsARealCarriedItem(&quot;KeyboardTab&quot;)" methodname="InventoryEntrySelectsAndPaintsARealCarriedItem" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="913202181" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:24Z" duration="0.038809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37590" name="InventoryEntrySelectsAndPaintsARealCarriedItem(&quot;GamepadY&quot;)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.InventoryEntrySelectsAndPaintsARealCarriedItem(&quot;GamepadY&quot;)" methodname="InventoryEntrySelectsAndPaintsARealCarriedItem" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="342060657" result="Passed" start-time="2026-10-25 12:10:24Z" end-time="2026-10-25 12:10:25Z" duration="0.036355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="37606" name="LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" methodname="LastRealCraftRowStaysPaintedAndClickableAfterNavigationPastTheVisibleWindow" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1135359458" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.041053" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37603" name="NativeMouseHeldPressDoesNotRepeatTheActualCraftPick" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.NativeMouseHeldPressDoesNotRepeatTheActualCraftPick" methodname="NativeMouseHeldPressDoesNotRepeatTheActualCraftPick" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="606356629" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.035992" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37605" name="NativeMouseOutsideCanvasDoesNotActivateOrScrollTheCurrentCraftSelection" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.NativeMouseOutsideCanvasDoesNotActivateOrScrollTheCurrentCraftSelection" methodname="NativeMouseOutsideCanvasDoesNotActivateOrScrollTheCurrentCraftSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1371189624" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.035789" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37602" name="NativeMouseParkedBeforeOpeningCannotOverrideEquipmentUntilItActuallyMoves" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.NativeMouseParkedBeforeOpeningCannotOverrideEquipmentUntilItActuallyMoves" methodname="NativeMouseParkedBeforeOpeningCannotOverrideEquipmentUntilItActuallyMoves" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1937303895" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.054492" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37601" name="NativeMousePressUsesTheActualPaintedTinkeringTab" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.NativeMousePressUsesTheActualPaintedTinkeringTab" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.139938" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37599" name="NativeMousePressUsesTheActualPaintedTinkeringTab(1280,800)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.NativeMousePressUsesTheActualPaintedTinkeringTab(1280,800)" methodname="NativeMousePressUsesTheActualPaintedTinkeringTab" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1790462957" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.098454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37600" name="NativeMousePressUsesTheActualPaintedTinkeringTab(1920,1080)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.NativeMousePressUsesTheActualPaintedTinkeringTab(1920,1080)" methodname="NativeMousePressUsesTheActualPaintedTinkeringTab" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1662319620" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.037083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="37604" name="NativeMouseWheelMovesSelectionOnceWithoutPickingOrRepeatingOnAStationaryFrame" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.NativeMouseWheelMovesSelectionOnceWithoutPickingOrRepeatingOnAStationaryFrame" methodname="NativeMouseWheelMovesSelectionOnceWithoutPickingOrRepeatingOnAStationaryFrame" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1760242785" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.038188" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37607" name="PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" methodname="PaintedCraftSectionHeadersAndEmptyNotesNeverOwnItemActions" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="487200967" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.036866" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37592" name="RebuildPreservesExactSelectedOwnerWhenEarlierRowsDisappear" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RebuildPreservesExactSelectedOwnerWhenEarlierRowsDisappear" methodname="RebuildPreservesExactSelectedOwnerWhenEarlierRowsDisappear" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="267022804" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.044574" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="37593" name="RebuildRetiresRemovedSelectionAndChoosesCurrentRemainingOwner" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RebuildRetiresRemovedSelectionAndChoosesCurrentRemainingOwner" methodname="RebuildRetiresRemovedSelectionAndChoosesCurrentRemainingOwner" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1456348567" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.039558" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37610" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.092560" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37608" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(False)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(False)" methodname="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1255674743" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.037500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37609" name="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(True)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection(True)" methodname="RepaintingCachedCraftingDoesNotNormalizeNewMarksOrRecomputeItsSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1700857068" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.042356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="37598" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.200965" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37596" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1280,800)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1280,800)" methodname="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="1624120833" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.101853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37597" name="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1920,1080)" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(1920,1080)" methodname="ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="864032860" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.094915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="37595" name="SearchSuppressesDetailsAndRestoresCurrentMatchingSelection" fullname="CavesOfOoo.Tests.InventoryLedgerInteractionTests.SearchSuppressesDetailsAndRestoresCurrentMatchingSelection" methodname="SearchSuppressesDetailsAndRestoresCurrentMatchingSelection" classname="CavesOfOoo.Tests.InventoryLedgerInteractionTests" runstate="Runnable" seed="752882841" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.130578" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="31500" name="QudControllerHotbarHintTests" fullname="CavesOfOoo.Tests.QudControllerHotbarHintTests" classname="CavesOfOoo.Tests.QudControllerHotbarHintTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.037521" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="31506" name="DeviceChangeRepaintsSameSnapshotHeaderOnlyAndEqualFrameDoesNoWork" fullname="CavesOfOoo.Tests.QudControllerHotbarHintTests.DeviceChangeRepaintsSameSnapshotHeaderOnlyAndEqualFrameDoesNoWork" methodname="DeviceChangeRepaintsSameSnapshotHeaderOnlyAndEqualFrameDoesNoWork" classname="CavesOfOoo.Tests.QudControllerHotbarHintTests" runstate="Runnable" seed="281165702" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.007387" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31505" name="RealHotbarShowsControlsForDeviceAndPendingAbility" fullname="CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility" classname="CavesOfOoo.Tests.QudControllerHotbarHintTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.023461" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31501" name="RealHotbarShowsControlsForDeviceAndPendingAbility(False,False)" fullname="CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility(False,False)" methodname="RealHotbarShowsControlsForDeviceAndPendingAbility" classname="CavesOfOoo.Tests.QudControllerHotbarHintTests" runstate="Runnable" seed="662692094" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.003700" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31502" name="RealHotbarShowsControlsForDeviceAndPendingAbility(False,True)" fullname="CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility(False,True)" methodname="RealHotbarShowsControlsForDeviceAndPendingAbility" classname="CavesOfOoo.Tests.QudControllerHotbarHintTests" runstate="Runnable" seed="2086186302" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.003108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31503" name="RealHotbarShowsControlsForDeviceAndPendingAbility(True,False)" fullname="CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility(True,False)" methodname="RealHotbarShowsControlsForDeviceAndPendingAbility" classname="CavesOfOoo.Tests.QudControllerHotbarHintTests" runstate="Runnable" seed="1544621408" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.004765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31504" name="RealHotbarShowsControlsForDeviceAndPendingAbility(True,True)" fullname="CavesOfOoo.Tests.QudControllerHotbarHintTests.RealHotbarShowsControlsForDeviceAndPendingAbility(True,True)" methodname="RealHotbarShowsControlsForDeviceAndPendingAbility" classname="CavesOfOoo.Tests.QudControllerHotbarHintTests" runstate="Runnable" seed="1613873898" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:25Z" duration="0.004431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="35836" name="WardenHotbarIconTests" fullname="CavesOfOoo.Tests.WardenHotbarIconTests" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:26Z" duration="1.033185" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="35850" name="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:26Z" duration="0.180085" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35848" name="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(8.0f)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(8.0f)" methodname="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="787443259" result="Passed" start-time="2026-10-25 12:10:25Z" end-time="2026-10-25 12:10:26Z" duration="0.079125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35849" name="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(10.0f)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(10.0f)" methodname="ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="809422535" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.098939" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35854" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.207866" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35851" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(0)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(0)" methodname="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="2031235931" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.072825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35852" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(1)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(1)" methodname="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="760601355" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.063808" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35853" name="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(2)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(2)" methodname="CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1088160591" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.066173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="35856" name="ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot" methodname="ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="852259178" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.065177" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="35840" name="FactoryWardenAbilityUsesItsExactAppendedIcon" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.190917" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35837" name="FactoryWardenAbilityUsesItsExactAppendedIcon(0)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(0)" methodname="FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="503709123" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.065809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35838" name="FactoryWardenAbilityUsesItsExactAppendedIcon(1)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(1)" methodname="FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1928760500" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.061881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35839" name="FactoryWardenAbilityUsesItsExactAppendedIcon(2)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(2)" methodname="FactoryWardenAbilityUsesItsExactAppendedIcon" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="846689922" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.057100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="35847" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.300894" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="35841" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(null)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(null)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="75754297" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.062571" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35842" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1483866318" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.037524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35843" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;Unrelated_Lunge&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;Unrelated_Lunge&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1262092657" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.045429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35844" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;longblades_lunge&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;longblades_lunge&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="126687214" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.090600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35845" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;LongBlades_LungeExtra&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;LongBlades_LungeExtra&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="940279222" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.029075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="35846" name="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;CommandLunge&quot;)" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(&quot;CommandLunge&quot;)" methodname="MatchingDisplayNameCannotGrantAnIconToAnUnknownSource" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="1401536727" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.028728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="35857" name="OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact" methodname="OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="2112065512" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.027059" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35858" name="OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks" methodname="OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="2407741" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.028363" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="35855" name="QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard" fullname="CavesOfOoo.Tests.WardenHotbarIconTests.QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard" methodname="QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard" classname="CavesOfOoo.Tests.WardenHotbarIconTests" runstate="Runnable" seed="2100471331" result="Passed" start-time="2026-10-25 12:10:26Z" end-time="2026-10-25 12:10:26Z" duration="0.027893" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

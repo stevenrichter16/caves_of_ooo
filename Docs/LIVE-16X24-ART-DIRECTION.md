@@ -1748,3 +1748,22 @@ fix/prove that input boundary with native RED and real clicks, then return to th
 whole-scene opening gaps. No accepted art needs reopening. Storage about303MiB at
 11:59UTC; preserve useful caches/current packages, no heavy build or speculative
 cleanup. Heartbeat remains active for ongoing world/regional completion.
+
+
+## Continuation — hotbar mouse corrected,2026-10-25 12:15UTC
+
+[Hotbar pointer correction](GRAPHICS-G3-HOTBAR-POINTER.md) closes the actual click
+failure found during Warden icon acceptance. One authoritative native pointer
+pair with matching legacy fallback now feeds unchanged painted-card hit testing.
+Native RED11/10fail→GREEN107/107, plus actual OS clicks for Lunge/Follow Through
+AIM, En Garde cast and cooldown refusal independently reviewed. Same approved
+icons/layout/world art. Editor stopped cleanly; normal save/backup/current archive
+hashes unchanged. Earned mouse checkpoint:`/tmp/coo-hotbar-pointer-earned`.
+
+Next: return to world completeness with ordinary owner discovery of the known
+north incidental LeatherArmor6954 at16,17 and unidentified kitchen P glyph.
+Use real current Look/Examine and capture before choosing the native item art
+slice; do not infer identity from a glyph. Full opening/regions and current
+package/physical Deck gates remain open. Two obsolete Unity Hub3.20.1installer
+caches are audited for guarded deletion only after this work is verified on main;
+current Hub/editor/dependencies/caches and packages remain protected.

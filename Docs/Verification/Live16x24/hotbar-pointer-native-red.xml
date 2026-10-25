@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="1" failed="10" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.8990595">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31449" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.899060" total="11" passed="1" failed="10" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38726" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31449" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.810452" total="11" passed="1" failed="10" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38727" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31449" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.635073" total="11" passed="1" failed="10" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38728" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31449" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.547134" total="11" passed="1" failed="10" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26267" name="HotbarPointerInputTests" fullname="CavesOfOoo.Tests.HotbarPointerInputTests" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.246969" total="11" passed="1" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="26281" name="AbsentOrDisabledNativePointerUsesTheActualLegacyPair" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.086839" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26279" name="AbsentOrDisabledNativePointerUsesTheActualLegacyPair(False)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(False)" methodname="AbsentOrDisabledNativePointerUsesTheActualLegacyPair" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1402103361" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.067420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  One coherent pointer backend must supply position and left-press together.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests.AssertPair (UnityEngine.Vector2 expectedPosition, System.Boolean expectedPressed) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:146
+at CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair (System.Boolean disabled) [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26280" name="AbsentOrDisabledNativePointerUsesTheActualLegacyPair(True)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(True)" methodname="AbsentOrDisabledNativePointerUsesTheActualLegacyPair" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1225257812" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.016966" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  One coherent pointer backend must supply position and left-press together.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests.AssertPair (UnityEngine.Vector2 expectedPosition, System.Boolean expectedPressed) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:146
+at CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair (System.Boolean disabled) [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26277" name="CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn" methodname="CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="761026385" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.017927" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests+Rig.AssertNormal (System.Int32 selected) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:254
+at CavesOfOoo.Tests.HotbarPointerInputTests.CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:100
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="26278" name="EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge" methodname="EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1715908577" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.015036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  One coherent pointer backend must supply position and left-press together.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests.AssertPair (UnityEngine.Vector2 expectedPosition, System.Boolean expectedPressed) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:146
+at CavesOfOoo.Tests.HotbarPointerInputTests.EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:113
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="26275" name="HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan" methodname="HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1562554647" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.016118" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 17 but was 6. Strings differ at index 0.
+  Expected: "AwaitingDirection"
+  But was:  "Normal"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests+Rig.AssertTargeting (System.Int32 slot) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:258
+at CavesOfOoo.Tests.HotbarPointerInputTests.HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan () [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:72
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26273" name="HoverAndRightButtonDoNotActivateThePaintedCard" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.035425" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26271" name="HoverAndRightButtonDoNotActivateThePaintedCard(False)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(False)" methodname="HoverAndRightButtonDoNotActivateThePaintedCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="284350739" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.016827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 17 but was 6. Strings differ at index 0.
+  Expected: "AwaitingDirection"
+  But was:  "Normal"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests+Rig.AssertTargeting (System.Int32 slot) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:258
+at CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard (System.Boolean right) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26272" name="HoverAndRightButtonDoNotActivateThePaintedCard(True)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(True)" methodname="HoverAndRightButtonDoNotActivateThePaintedCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="258636257" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.017030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 17 but was 6. Strings differ at index 0.
+  Expected: "AwaitingDirection"
+  But was:  "Normal"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests+Rig.AssertTargeting (System.Int32 slot) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:258
+at CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard (System.Boolean right) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26276" name="MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility" methodname="MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1242926316" result="Passed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.018892" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26270" name="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.036490" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26268" name="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1280,800)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1280,800)" methodname="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="441911937" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.016692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 17 but was 6. Strings differ at index 0.
+  Expected: "AwaitingDirection"
+  But was:  "Normal"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests+Rig.AssertTargeting (System.Int32 slot) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:258
+at CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility (System.Int32 width, System.Int32 height) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26269" name="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1920,1080)" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1920,1080)" methodname="NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1217567656" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.016357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 17 but was 6. Strings differ at index 0.
+  Expected: "AwaitingDirection"
+  But was:  "Normal"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests+Rig.AssertTargeting (System.Int32 slot) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:258
+at CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility (System.Int32 width, System.Int32 height) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26274" name="OutsideHotbarPressDoesNotBorrowTheNearestCard" fullname="CavesOfOoo.Tests.HotbarPointerInputTests.OutsideHotbarPressDoesNotBorrowTheNearestCard" methodname="OutsideHotbarPressDoesNotBorrowTheNearestCard" classname="CavesOfOoo.Tests.HotbarPointerInputTests" runstate="Runnable" seed="1877660963" result="Failed" start-time="2026-10-25 12:08:36Z" end-time="2026-10-25 12:08:36Z" duration="0.016860" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 17 but was 6. Strings differ at index 0.
+  Expected: "AwaitingDirection"
+  But was:  "Normal"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.HotbarPointerInputTests+Rig.AssertTargeting (System.Int32 slot) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:258
+at CavesOfOoo.Tests.HotbarPointerInputTests.OutsideHotbarPressDoesNotBorrowTheNearestCard () [0x000af] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/HotbarPointerInputTests.cs:62
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
