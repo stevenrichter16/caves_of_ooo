@@ -1,0 +1,45 @@
+{
+  "kind": "concept_and_existing_native_frame_mapping_not_gameplay_acceptance",
+  "inputs": [
+    {
+      "path": "Docs/Verification/Live16x24/prepared-bed-restored-focus.png",
+      "sha256": "0c692c6b56025296a62ef3e1e98bdbcfbd01d6cc91c7cf5d4255fa2e552d5b13"
+    },
+    {
+      "path": "ArtSource/Live16x24/Ground/opening-ground-context.png",
+      "sha256": "acd4e884807e766bb518bafa2717eaef375fb782e23830ef76cde1baa32152dd"
+    },
+    {
+      "path": "Assets/Resources/Sprites/Live16x24/opening-ground.png",
+      "sha256": "b35f9d6a4b7051eb6971a00195a069f58d08a7d89e3060533745ee899a66dede"
+    }
+  ],
+  "tool": "built-in image_gen",
+  "output": "concept.png",
+  "accepted_design": "Real prepared narrow furrows differ from old irregular field earth; reuse native frames18/19/20 before creating any art.",
+  "rejected": [
+    "Generated pixels are softened and irregular",
+    "Old earth appears too prominent and bumpy",
+    "UI and foreground drift; never import entire concept"
+  ],
+  "states": [
+    {
+      "owner": "canonical CropRow or RipeCropRow",
+      "frame": 18
+    },
+    {
+      "owner": "canonical cultivated supported Grass or field",
+      "frame": 19
+    },
+    {
+      "owner": "same cultivated ground plus one current owned visible moist crop",
+      "frame": 20
+    }
+  ],
+  "invariants": [
+    "No public crop gains cultivated-soil semantics",
+    "No owners/coordinates/permissions/harvest yields changed",
+    "Nella water and roads retain existing presentation",
+    "No new gameplay acceptance yet"
+  ]
+}

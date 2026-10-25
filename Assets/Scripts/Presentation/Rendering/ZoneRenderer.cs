@@ -1696,6 +1696,18 @@ namespace CavesOfOoo.Rendering
             Vector3 cellSize = _popupOverlayGrid.cellSize;
             if (Mathf.Abs(cellSize.x - cellWidth) > 0.0001f || Mathf.Abs(cellSize.y - 1f) > 0.0001f)
                 _popupOverlayGrid.cellSize = new Vector3(cellWidth, 1f, 0f);
+
+            // Solid backing sprites are one unit wide. Cell spacing alone leaves
+            // transparent seams in wide windows; fit only the backing quads to
+            // the grid, including cached fills during resize. Glyphs stay native.
+            if (_popupOverlayBgTilemap != null)
+            {
+                Matrix4x4 backing = Matrix4x4.Scale(new Vector3(cellWidth, 1f, 1f));
+                if (_popupOverlayBgTilemap.orientation != Tilemap.Orientation.Custom)
+                    _popupOverlayBgTilemap.orientation = Tilemap.Orientation.Custom;
+                if (_popupOverlayBgTilemap.orientationMatrix != backing)
+                    _popupOverlayBgTilemap.orientationMatrix = backing;
+            }
         }
 
         private void UpdateHotbarGridLayout()

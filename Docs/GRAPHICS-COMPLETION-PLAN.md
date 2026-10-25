@@ -1142,3 +1142,25 @@ no healing tonics remain. Next: Nella's legitimate8dram access, crop/watering,
 east forge and kitchen, with a seed65 ordinary visual counter-pass. Reassess
 Nella's actual working-row hierarchy before changing art. Remaining feedback,
 regional kits and physical Deck gates remain open. Preserve all prior checkpoints.
+
+
+## Latest continuation — wide popup backing, 2026-10-25 04:31UTC
+
+[Wide popup correction](GRAPHICS-G1-WIDE-POPUP-BACKING.md) fixes actual vertical
+background gaps observed in inventory Examine at wide window sizes. Only the
+shared background quads scale with their existing grid; glyphs, portraits and
+input geometry retain their owners. Native RED5:2pass/3expectedfail; GREEN93/93,
+0fail/skip. Actual ordinary keyboard before/after and resize-to1280×800 captures
+show solid backing; Escape returns the same inventory selection. No new build
+or physical Deck/performance acceptance. User's latest existing save was backed
+up exactly after they had already stopped their normal Play session.
+
+The user now explicitly adds inventory redesign/polish to graphics completion.
+[Inventory plan](GRAPHICS-G3-INVENTORY-REDESIGN.md) and
+`ArtSource/Live16x24/concepts/inventory-ledger/` capture the actual baseline,
+imagegen exploration, extracted layout and rejected fabricated controls/art.
+Preferred next slice: retained camera-bound full-screen ledger over existing
+inventory state/commands, actual anatomy, native owner portraits, current facts,
+all five modes and truthful device hints. Prove popup layering/pointer geometry
+first with native RED/GREEN and actual GPU captures. Nella's ground plan/concept
+are preserved, pending implementation after this user-prioritized screen.
