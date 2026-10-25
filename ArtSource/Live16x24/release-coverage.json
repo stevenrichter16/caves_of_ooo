@@ -2,12 +2,12 @@
   "schema_version": 1,
   "kind": "planning_status_ledger_not_runtime_manifest",
   "reviewed_on": "2026-10-25",
-  "release_status": "normal_flat_delivery_editor_accepted_art_and_packaged_release_incomplete",
+  "release_status": "normal_flat_delivery_editor_and_mac_smoke_accepted_linux_current_built_full_art_and_deck_open",
   "bounds": [
     "Updated bounded synthesis of code, native tests and named ordinary Unity Play receipts; not a complete object census or packaged/hardware acceptance.",
     "Zone integration status applies only to listed primary packets; it does not certify complete art for every owner in that zone.",
     "Authored frames, imported resources, native tests and ordinary Play acceptance are separate gates; frame counts are not coverage percentages.",
-    "Native tests and manifests do not prove all gameplay uses, arbitrary seeds, physical controller input, Steam Deck performance or packaged activation.",
+    "Native tests and manifests alone do not prove all gameplay uses, arbitrary seeds, physical controller input, Steam Deck performance or packaged activation; the separate Mac smoke receipt accepts only its named actions.",
     "Historical detached two-seed census includes hidden and held owners; it is authoring evidence, not player-visible coverage. Its saved admission flags are historical."
   ],
   "authority_refs": [
@@ -27,7 +27,8 @@
     "Docs/GRAPHICS-G3-FORGE-CROP-JOURNEY.md",
     "Docs/GRAPHICS-G2-TWEEN-READOUT.md",
     "Docs/GRAPHICS-G3-SIXSITE-JOURNEY.md",
-    "Docs/GRAPHICS-G3-READER-LEGIBILITY.md"
+    "Docs/GRAPHICS-G3-READER-LEGIBILITY.md",
+    "Docs/GRAPHICS-G1-PACKAGED-DELIVERY.md"
   ],
   "status_terms": {
     "native_integrated_verified": "Imported authored art and native runtime verification are recorded, within the referenced owner/state contracts.",
@@ -653,12 +654,13 @@
     },
     {
       "id": "normal_launch",
-      "status": "implemented_bounded_editor_play_accepted_packaged_pending",
-      "detail": "Ordinary New Game, C Continue, F5/F6 and reversible Graphics control passed without forced art mode. Fresh settings defaultFlat16x24. Packaged activation and physical input remain pending.",
+      "status": "editor_and_mac_packaged_smoke_accepted_linux_hardware_pending",
+      "detail": "Ordinary editor New Game/Continue/F5/F6 and reversible Graphics control accepted. Standalone Mac normal boot with no presentation preference, earned-checkpoint Continue, movement and Examine visibly flat. Current Linux package built/verified; Linux execution and physical input remain pending.",
       "refs": [
         "Docs/GRAPHICS-G1-LAUNCH.md",
         "Docs/Verification/Live16x24/g1-normal-start.json",
-        "Docs/Verification/Live16x24/g1-ordinary-continue.json"
+        "Docs/Verification/Live16x24/g1-ordinary-continue.json",
+        "Docs/GRAPHICS-G1-PACKAGED-DELIVERY.md"
       ]
     },
     {
@@ -671,10 +673,11 @@
     },
     {
       "id": "target_platform",
-      "status": "open",
-      "detail": "Native tests, editor captures and bounded selector/editor timing are not physical Deck or mouse/controller acceptance. A current packaged native build and hardware performance/readability gate remain outstanding.",
+      "status": "current_linux_package_built_verified_physical_deck_open",
+      "detail": "Source9ffd7c973 built successfully for Mac and Linux. Mac/Metal standalone ordinary Continue/movement/Examine observed; Linux x86_64 Mono/Vulkan archive fully hash/size/mode checked. This does not accept physical Deck performance, control comfort or all-world readability.",
       "refs": [
-        "Docs/LIVE-16X24-ART-DIRECTION.md"
+        "Docs/LIVE-16X24-ART-DIRECTION.md",
+        "Docs/GRAPHICS-G1-PACKAGED-DELIVERY.md"
       ]
     },
     {
@@ -688,9 +691,9 @@
     }
   ],
   "next_acceptance_order": [
-    "packaged_native_launch_and_device_gate",
     "G3_prepared_bed_cue_after_harvest",
     "fresh_New_Game_six_site_whole_scene_acceptance",
+    "physical_Deck_package_input_and_performance_gate",
     "G2_remaining_feedback_when_naturally_encountered",
     "G3_remaining_crop_forge_lifecycle",
     "remaining_regional_kits"
@@ -714,14 +717,14 @@
     "decision_authority": "User delegates choices beyond individual prompts; continue across sessions and prioritize delivered graphical coherence over unrelated feature growth."
   },
   "latest_observation": {
-    "kind": "six_site_service_return_and_reader_leading",
-    "capture": "Docs/Verification/Live16x24/sixsite-reader-after.png",
-    "receipt": "Docs/Verification/Live16x24/sixsite-play-summary.json",
-    "route": "Actual6site journey and earned introduction/grant/harvest/replant/ripe return. Reader RED38(7intendedfail)\u2192GREEN108pass, measured paragraph gaps1\u21924\u20135pixels; no font shrink. Continue10sampledfields equal at7160. Current package stillOctober11; nextdeliverypriority."
+    "kind": "standalone_mac_flat_smoke_and_current_linux_package",
+    "capture": "Docs/Verification/Live16x24/packaged-flat-mac-reader.jpg",
+    "receipt": "Docs/Verification/Live16x24/packaged-flat-mac-play-summary.json",
+    "route": "Real standalone Mac Continue/examine/move accepted from earned checkpoint. Same runtime9ffd7c973 builds for Linux with0errors4warnings;181 archive files hash/size/mode verified. PhysicalDeck and all-worldart remain open."
   },
   "current_environment_blocker": {
     "status": "recovered_editor_ready_signature_patch_followup",
-    "detail": "Unity operational; stopped/restored at02:02:13UTC after108native passes and actual reader/Continue checks. Final six-site character checkpoint exported/hash-verified. No current packaged/device acceptance; current archive and useful caches preserved. Ten-minute conditional preservation/storage schedule remains active.",
+    "detail": "Unity operational; Mac/Metal standalone played and Linuxcurrentpackage built. User saves/preferences hash/logical-mapping restored; editor returnedOSX/outofPlay/noisolation. Useful caches and previous archive preserved;10minute conditional storage schedule active. PhysicalDeck and completeart acceptance remain open.",
     "refs": [
       "Docs/Verification/Live16x24/recovery-cleanup-20261024.json",
       "Docs/Verification/Live16x24/recovery-native-layer-read.json",
@@ -755,7 +758,21 @@
       "Docs/Verification/Live16x24/forge-kitchen-cleanup.json",
       "Docs/Verification/Live16x24/tween-readout-cleanup.json",
       "Docs/Verification/Live16x24/sixsite-reader-cleanup.json",
-      "Docs/Verification/Live16x24/sixsite-reader-console.json"
+      "Docs/Verification/Live16x24/sixsite-reader-console.json",
+      "Docs/Verification/Live16x24/packaged-flat-mac-restoration.json",
+      "Docs/Verification/Live16x24/packaged-flat-editor-restored.json"
+    ]
+  },
+  "packaged_delivery": {
+    "source_commit": "9ffd7c973a82d1b0fa351300f2b981d703694885",
+    "linux_archive": "Builds/SteamDeck/2026-10-25-flat16x24-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "sha256": "76806cdcaf37c49883820f160fa2076963760b9d27fa5d27c4f243127c586bd6",
+    "mac_smoke": "ordinary_continue_move_examine_accepted",
+    "linux_execution": "unverified",
+    "physical_deck": "unverified",
+    "refs": [
+      "Docs/Verification/Live16x24/packaged-flat-mac-play-summary.json",
+      "Docs/Verification/Live16x24/packaged-flat-linux-archive.json"
     ]
   }
 }

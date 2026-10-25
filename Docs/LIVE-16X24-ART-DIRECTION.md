@@ -1301,3 +1301,42 @@ and add current/disclosed bed context through the shared readout with native
 RED/counters. Fresh-New-Game whole-journey, incidental native art, ordinary
 Riposte/Player periodic Hurt/Frozen proc and full regional coverage remain open.
 Do not turn these named gaps into endless RNG hunting or disconnected art.
+
+
+## Latest continuation — real packaged flat delivery, 2026-10-25 02:22UTC
+
+[Packaged delivery](GRAPHICS-G1-PACKAGED-DELIVERY.md) closes the stale-build gap
+for runtime source `9ffd7c973`. The normal production scene built for both Mac
+and Linux with **0 errors / 4 warnings each**. Actual standalone Mac/Metal
+Continue, crop Examine and movement use the flat grid without a forced art
+preference. Four unchanged window captures are JPEG1280×856, including56pixels
+of macOS chrome; the game viewport is1280×800. These are packaged gameplay,
+not concepts or editor-only captures. Shutdown disposal warnings are recorded.
+
+The new Linux archive is
+`Builds/SteamDeck/2026-10-25-flat16x24-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,
+128610942bytes, SHA256
+`76806cdcaf37c49883820f160fa2076963760b9d27fa5d27c4f243127c586bd6`.
+All181 archived regular-file sizes/hashes/modes and paths passed streaming
+verification. Current audio credits/licenses and a corrected README are included.
+The October11 archive remains preserved. Linux/Vulkan execution and physical
+Deck behavior/performance are **not** accepted by a Mac build or archive check.
+
+Original770 user-save files (93965260bytes), names/hashes and both preference
+domains are restored and verified. Temporary accepted checkpoints remain outside
+the repository. Root returned the editor to StandaloneOSX, out of Play, no test
+run/isolation, and restored reviewed build-generated serialization. No code or
+approved artwork changed in this packaging pass. Native108-case reader evidence
+belongs to the prior change, not a new test run. No new performance claim.
+
+**Next:** the actual harvested reserve-bed ambiguity remains the smallest
+measured presentation correction. Add neutral “prepared planting bed” context
+through `CellStatusReadout` only for a current disclosed canonical cultivated
+soil owner, suppress it for an actual current disclosed crop, and retain hazard
+wording. Do not create TileState, reveal hidden owners, query/reconcile claims,
+rename the historical row or promise planting permission. Follow native RED→GREEN
+with stale/foreign/hidden/live-crop/hazard/read-only counters and an ordinary
+harvest/reader capture. Then continue opening composition and uncovered identities
+using the required actual-greybox/capture/imagegen/extraction/native-art loop.
+Fresh-character whole journey, all owner/state kits, exact ordinary Riposte and
+periodic Player-Hurt receipts, Frozen proc and regional coverage remain open.

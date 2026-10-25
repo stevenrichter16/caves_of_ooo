@@ -1,0 +1,99 @@
+{
+  "captured_on_utc": "2026-10-25",
+  "runtime_source_commit": "9ffd7c973a82d1b0fa351300f2b981d703694885",
+  "build_report": "Docs/Verification/Live16x24/packaged-flat-mac-build.json",
+  "build_target": "StandaloneOSX",
+  "binary_architectures": [
+    "x86_64",
+    "arm64"
+  ],
+  "graphics_api_observed": "Metal",
+  "device_observed": "Apple M5",
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "development_build": false,
+  "presentation_preference_existed_before_launch": false,
+  "audit_forced_presentation": false,
+  "launch_notes": [
+    "First launch showed new-character picker because macOS player uses bundle-id save path, unlike editor. Quit normally; copied only the existing earned six-site checkpoint to that player path.",
+    "Second launch showed Continue prompt; ordinary C continued that character. Real keyboard C/Down/examine/Escape and Right moved player from25,14 to26,14. No gameplay script, teleport, grant or forced presentation used.",
+    "Screenshots are original CUA JPEG bytes. Extensions corrected from initial .png labels without transcoding. The top56pixels are native macOS window chrome.",
+    "Player log reaches normal bootstrap and renderer. No fatal exception observed. Shutdown contains prematurely-finalized-thread and ComputeBuffer-disposal warnings; not claimed warning-free."
+  ],
+  "checkpoint_sha256": "c9add40b3996a82f5d7d9d196e78ba19c7c7a29e1a25ceec33f0e7dfd701db56",
+  "screenshots": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-mac-continued.jpg",
+      "sha256": "65979cffd6e285e274642a2919d2a5691eed5a4d996af898361f8bfbfcd32463",
+      "bytes": 183629,
+      "encoding": "JPEG",
+      "window_size": [
+        1280,
+        856
+      ],
+      "game_viewport_size": [
+        1280,
+        800
+      ],
+      "native_window_capture_unmodified": true
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-mac-moved.jpg",
+      "sha256": "65ffbd74dd26842c4018351be1c8f89f97cc9d9fcbbe802468bb47995a026568",
+      "bytes": 178055,
+      "encoding": "JPEG",
+      "window_size": [
+        1280,
+        856
+      ],
+      "game_viewport_size": [
+        1280,
+        800
+      ],
+      "native_window_capture_unmodified": true
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-mac-reader.jpg",
+      "sha256": "24fe38d76d16065a5be66ec0d0dcb3752a8ab2220b19d6c08d82e37b36d0aab9",
+      "bytes": 270643,
+      "encoding": "JPEG",
+      "window_size": [
+        1280,
+        856
+      ],
+      "game_viewport_size": [
+        1280,
+        800
+      ],
+      "native_window_capture_unmodified": true
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-mac-start.jpg",
+      "sha256": "d623be380dfbc60dc95dc35172103b130f047a41470832f693ba1b881401bcb0",
+      "bytes": 216140,
+      "encoding": "JPEG",
+      "window_size": [
+        1280,
+        856
+      ],
+      "game_viewport_size": [
+        1280,
+        800
+      ],
+      "native_window_capture_unmodified": true
+    }
+  ],
+  "restoration": "Docs/Verification/Live16x24/packaged-flat-mac-restoration.json",
+  "limits": [
+    "Mac smoke test, not Linux/Vulkan execution or physical Steam Deck proof.",
+    "No packaged full six-site replay, all-world art acceptance, fresh New Game journey or new performance benchmark."
+  ],
+  "build_generated_settings": [
+    "URP shader-prefilter/runtime-reference serialization",
+    "InputSystem_Actions preloaded asset and Standalone batching defaults",
+    "UnityConnect enabled serialization was restored to committed disabled setting"
+  ],
+  "independent_review": [
+    "Actual Mach-O binary is universal, overriding tool architecture readback assumption.",
+    "Build 0errors4warnings; screenshot extension/mime and outdated README labels corrected."
+  ]
+}

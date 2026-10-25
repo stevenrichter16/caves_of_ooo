@@ -1,13 +1,25 @@
 # Caves of Ooo — Steam Deck current build
 
-This native Linux build adds licensed ambient music, environmental recordings and
-short sounds for movement and committed actions. Outdoor ambience now follows
-daylight and shelter, with sparse calls from nearby visible wildlife and local
-water, fire, wood and stone details. Melee uses distinct blade, blunt and natural
-swings and multiple contact sounds. It also includes Qud-style
-built-in controller controls, the Vulkan world-view fix, reduced drawing and
-interface work, faster save capture, and background save compression. It preserves
-the 3D scene and existing save format.
+This native Linux build includes the flat **16×24 pixel presentation** as the
+normal default for new graphics preferences. The opening glade and its connected
+cellar, north works, Nella's plot, east shelter and Orven's kitchen have native
+sprite kits. The same flat grid remains active during travel; objects without
+finished native artwork keep their actual glyph and color. This is a playable
+opening pass, not a claim that every biome or item has finished new artwork.
+
+The previous presentation and its assets remain available under
+**View → Graphics → World view**. A saved explicit presentation choice
+is respected; toggle it to **World view: 16x24** if this installation still shows the
+previous view. The build also includes the more readable examine reader and the
+connected repair/introduction/harvest/replant journey. Keyboard gameplay was
+checked in the editor and a standalone Mac build; physical Steam Deck operation
+and performance still need device verification.
+
+Licensed music, environmental recordings, built-in controller controls and the
+Vulkan world-view fix remain included. Outdoor ambience follows daylight and
+shelter, with sparse calls from nearby visible wildlife and local water, fire,
+wood and stone details. Melee uses distinct blade, blunt and natural swings and
+multiple contact sounds. Existing saves and the previous art are preserved.
 
 This update also completes companion pack transfers, deliberate equipment
 changes and safe step-aside orders. Adjacent recruits offer these choices through
@@ -30,9 +42,10 @@ unavailable in normal play.
    Set Start In to the `CavesOfOoo-current` folder; an old shortcut must be updated.
 4. Leave forced Proton compatibility off. Remove old graphics-forcing launch options;
    this build selects Vulkan itself.
-5. Open **View → Graphics → Handheld preset**, then press B twice to return to play.
-   The preset uses 75% world resolution, no shadows, and reduced detail/effects.
-   Interface text stays at the display's resolution. Your choices are saved.
+5. Open **View → Graphics** if you need to change the presentation or performance
+   settings, then press B twice to return to play. **Handheld preset** reduces
+   world resolution, shadows and detail/effects where applicable. Interface text
+   remains at display resolution, and your choices are saved.
 
 A shortcut pointing directly at the executable uses handheld defaults when Steam
 provides `SteamDeck=1` and graphics preferences have not been saved. The included
@@ -161,7 +174,7 @@ text is supplied in `AUDIO-CREDITS.txt`, with complete license texts in
 `Audio-Licenses`. The seven full compositions are independently licensed Scott
 Buckley works; no Caves of Qud music is included. Environmental and action recordings
 are CC0, with their authors and modifications retained in the credits. Separate
-place, atmosphere, utility and regional-music credit and provenance files are
+place, atmosphere, utility, defense and regional-music credit and provenance files are
 included alongside the combined `AUDIO-CREDITS.txt`. Quiet gaps are intentional:
 indoor spaces suppress outdoor wildlife, and empty workshops do not play
 imaginary workers.
@@ -182,6 +195,13 @@ See the [composer's usage instructions](https://www.scottbuckley.com.au/library/
 and [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).
 
 ## Verification limits
+
+This package is built from the source identified in `build-info.json`. Its Linux
+build and archive are checked locally. The actual standalone screenshots are
+from macOS/Metal, not Linux/Vulkan or Steam Deck. Current reader tests and the
+ordinary six-site journey do not certify all sprites, every service, all seeds,
+physical controls, or complete regional art. Older performance and audio
+measurements below remain historical and are not a fresh benchmark of this build.
 
 `build-info.json` identifies the source revision and the checks run for this package.
 The optimizations were tested and profiled in native Unity on a Mac, and this package
