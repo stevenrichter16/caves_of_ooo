@@ -36,6 +36,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly EntityFactory _factory;
         private readonly int _requestedCount;
 
+        /// <summary>Committed attempts from the last Execute, reset on each Execute.
+        /// A completed mishap consumes reagents but produces no inventory item.</summary>
+        public int CompletedCount { get; private set; }
+        /// <summary>Actual brew units made, including units merged into existing stacks.</summary>
+        public int BrewCount { get; private set; }
+        /// <summary>Actual inert-sludge units made by the last Execute.</summary>
+        public int SludgeCount { get; private set; }
+        /// <summary>Completed mishaps in the last Execute, never counted as brewed items.</summary>
+        public int MishapCount { get; private set; }
+
         public string Name => "BrewReagents";
 
         /// <param name="count">
@@ -128,6 +138,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            CompletedCount = BrewCount = SludgeCount = MishapCount = 0;
             // Preparation belongs to one completed player command, not every
             // independently committed batch unit. No service transaction changes.
             var liquidAudio=WorldAudioUtility.TakeActor(context.Actor,context.Zone,WorldAudioCue.BrewPrepare,()=>true);
@@ -147,6 +158,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     reason);
+            }
+
+            CompletedCount = madeCount;
+            foreach (var outcome in results)
+            {
+                if (outcome.Kind == BrewOutcomeKind.Brew) BrewCount++;
+                else if (outcome.Kind == BrewOutcomeKind.InertSludge) SludgeCount++;
+                else if (outcome.Kind == BrewOutcomeKind.Mishap) MishapCount++;
             }
 
             bool foodOnly=results.Count>0;

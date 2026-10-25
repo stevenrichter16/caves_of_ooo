@@ -319,6 +319,7 @@ namespace CavesOfOoo.Rendering
 
         private void SwitchCraftingMode(CraftingMode mode)
         {
+            ClearActionStatus();
             _craftingMode = mode;
             _craftCursorIndex = 0;
             _craftScrollOffset = 0;
@@ -331,6 +332,8 @@ namespace CavesOfOoo.Rendering
             if (_craftCursorIndex < 0 || _craftCursorIndex >= _craftRows.Count) return;
             CraftRow row = _craftRows[_craftCursorIndex];
             if (!row.IsSelectable || row.Item == null) return;
+
+            ClearActionStatus();
 
             // Use the same ownership validation and exclusive groups as station
             // selections; reagents deliberately remain multi-select.
@@ -391,6 +394,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            SetActionSuccess(CraftCompletion("Forged", command.ForgedWeapons.Count, count, "weapon"));
+
             // A picked quench tempers one unit from the first output recipient of the
             // anvil — same one-button behaviour the forge menu has.
             if (_pickedQuench != null && command.ForgedWeapons.Count > 0)
@@ -427,11 +432,24 @@ namespace CavesOfOoo.Rendering
             }
 
             int count = batch ? Mathf.Max(1, _craftBatchMax) : 1;
-            var result = InventorySystem.ExecuteCommand(
-                new BrewReagentsCommand(new List<Entity>(_pickedReagents), factory, count),
-                PlayerEntity, CurrentZone);
+            var command = new BrewReagentsCommand(new List<Entity>(_pickedReagents), factory, count);
+            var result = InventorySystem.ExecuteCommand(command, PlayerEntity, CurrentZone);
 
             if (!result.Success) ShowActionFailure(result.ErrorMessage);
+            else if (command.SludgeCount == 0 && command.MishapCount == 0)
+                SetActionSuccess(CraftCompletion("Brewed", command.BrewCount, count, "item"));
+            else
+                SetActionSuccess("Completed " + command.CompletedCount + " of " + count
+                    + " mixes: " + command.BrewCount + " brews, " + command.SludgeCount
+                    + " sludge, " + command.MishapCount + " mishaps.");
+
+        }
+
+        private static string CraftCompletion(string verb, int made, int requested, string noun)
+        {
+            if (made < requested)
+                return verb + " " + made + " of " + requested + " requested " + noun + "s.";
+            return verb + " " + made + " " + noun + (made == 1 ? "." : "s.");
         }
 
         // ════════════════════════════════════════════════════════

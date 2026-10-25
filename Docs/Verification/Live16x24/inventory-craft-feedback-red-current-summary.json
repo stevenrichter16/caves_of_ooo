@@ -1,0 +1,79 @@
+{
+  "start-time": "2026-10-25 08:11:46Z",
+  "end-time": "2026-10-25 08:11:55Z",
+  "total": "80",
+  "passed": "63",
+  "failed": "17",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess(False)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 17 but was 0. Strings differ at index 0.\n  Expected: \"Forged 2 weapons.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess(True)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 32 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 of 2 requested weapons.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ForgeThenQuenchFailureReportsTheCommittedPartialOutcome(False)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries(False)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries(True)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 14 but was 0. Strings differ at index 0.\n  Expected: \"Brewed 1 item.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(False)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 15 but was 0. Strings differ at index 0.\n  Expected: \"Brewed 2 items.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(True)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 30 but was 0. Strings differ at index 0.\n  Expected: \"Brewed 1 of 2 requested items.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw(False)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw(True)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 14 but was 0. Strings differ at index 0.\n  Expected: \"Brewed 1 item.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents(True)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 14 but was 0. Strings differ at index 0.\n  Expected: \"Brewed 1 item.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(\"mode\")",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(\"pick\")",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(\"panel\")",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(\"close\")",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.IncompleteForgeShowsReasonAndCompletedKitClearsIt",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.MergedBrewBatchReportsNewUnitsInsteadOfTheWholeResidentStack",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 15 but was 0. Strings differ at index 0.\n  Expected: \"Brewed 2 items.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackTests.OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid(False)",
+      "message": "  A completed craft must report actual committed output, not the next recipe preview.\n  Expected string length 16 but was 0. Strings differ at index 0.\n  Expected: \"Forged 1 weapon.\"\n  But was:  <string.Empty>\n  -----------^\n"
+    }
+  ]
+}

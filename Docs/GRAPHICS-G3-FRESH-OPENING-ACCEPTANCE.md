@@ -1,6 +1,6 @@
 # G3 — Fresh-character opening acceptance
 
-2026-10-25 UTC. **Glade/cellar/north ordinary route accepted in the bounds below; remaining sites pending.**
+2026-10-25 UTC. **Fresh-origin six-site service route accepted in the bounds below; whole-scene artwork, seed65 and packaged/device gates remain open.**
 
 The six-site route previously accepted an earned checkpoint. This pass starts
 through the actual New Game/build chooser with no copied save or forced flat
@@ -154,3 +154,63 @@ the remaining lichen rather than the mixed coating that can protect enemies.
 Gather actual raw grain/pulp and preserve clay for pan repair. Next art cycle:
 compose Nella's existing work area beside a field approach, retaining current
 owners/rights/finite supplies and testing two cold seeds before acceptance.
+
+## Fresh-origin forge and kitchen continuation — 2026-10-25 08:02 UTC
+
+Source24491663; the earned Nella checkpoint continues the same actual New Game
+character. One remaining FrostLichen became pure Frozen coating9202 through
+the pack's Brew mode; mixed Frozen/Stoneskin6974 and Stoneburr were preserved.
+One dried meat restored7HP. Ordinary travel returned through north/glade; two
+ripe glade grains supplied the kitchen. East scrabbler approached; En Garde,
+Lunge and retreat left it alive. No artificial combat result is claimed.
+
+At east forge7,19, unequipped sword2703, selected pure coating and the existing
+blade through the real station menu and tempered it. Same sword2703 retained
+8/8HP, gained TemperCount1 and raw on-hit payload `Frozen,40,,0,2`, then was re-equipped left. Actual Frozen duration/proc was not exercised; the reader describes thawing separately.
+Actual reader `fresh-forge-tempered-reader.png` shows the properties. The
+pack Crafting page does not select an existing blade; station menu is required
+for this route. No observed Frozen combat proc is claimed.
+
+Ordinary south travel reached kitchen12,11. Harvested/picked up2claspbean pulp
+and1seed at25,15. Repaired pan13701 at29,17 with2earned FireClay; repair30XP
+triggered actual level-up to2 and42/42HP. Paid2drams and2raw grain+1pulp for
+one field meal (batch5660→due5780). Actual waits reached5800: pan changed
+covered working→open ready. At28,18, C+n/O/Return collected one meal; reopening
+board29,19 correctly reported empty. Remaining40drams,1pulp,1seed,4resin,
+original mixed coating and same sword persisted. Ordinary F5 saved at5830.
+
+Stopped and cleaned the first owned isolation07:59:20UTC, then launched normal
+SampleScene with a copy of that earned save, no forced presentation, and chose
+C/Continue. At5830 exact inventory12rows, equipped2IDs, weapon temper and four
+captured world objects match by identity, including pan repair provenance.
+The order of world rows changes during reconstruction; canonical comparison
+sorts by ID. Actual collected/continued PNGs are byte-identical. This compares
+the observed subset, not every serialized field. Root restored borrowed editor
+state08:02:04UTC. Normal user save and backup hashes match.
+
+### What this accepts and what remains
+
+- Script-observable: earned supplies, actual costs, one meal, same sword/repair
+  identity, restart persistence, continuous flat projection on the six-site route.
+- Visual: native1280×800 inventory/meal portrait, blade reader, level-up, and
+  covered/open pan. Actual PNGs remain unmodified. A separate tiny ready parcel
+  is not independently accepted from these captures.
+- Cannot verify: physical Deck controls/performance, latest packages, all object
+  states, seed65 or reference-quality whole scenes. Sparse field composition
+  and generic ability icons remain visible work; no new-art count is claimed.
+- 🟡 Observed UI defects: initial pack header focus, missing craft acknowledgment,
+  FieldMeal's unsupported throw promise and Miscellaneous category. Addressed
+  under `GRAPHICS-G3-INVENTORY-POLISH.md`, not concealed by route acceptance.
+- 🧪 During parallel tests-only authoring, Unity reported a temporarily absent
+  helper. Production code was unchanged during this Play; final test compilation
+  and behavioral RED/GREEN are recorded separately.
+
+Evidence: `fresh-forge-*.json/.png` under Verification/Live16x24; source and
+post-reload cleanup plus exported checkpoint receipt included. Independent
+review is `fresh-forge-independent-review.md`. Checkpoint:
+`/tmp/coo-fresh-opening-after-kitchen/20cb263ebed24a8380168954e23981ca/`;
+Quick.sav.gz SHA256 b02cd6e5f4fef0bc1f21bd6f23c03caaf233356798ece569c10be84213f8ce78.
+
+Next: finish bounded inventory readout polish, then Nella's real working-field
+composition through greybox/capture/imagegen/native-art/reintegration. Preserve
+accepted actors and mechanics. Seed65 and packaged/hardware gates stay open.

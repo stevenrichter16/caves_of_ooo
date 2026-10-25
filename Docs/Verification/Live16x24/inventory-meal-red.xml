@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="41" result="Failed(Child)" total="41" passed="39" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="1.7678996">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31336" result="Failed" site="Child" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="1.767900" total="41" passed="39" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38581" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31336" result="Failed" site="Child" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="1.661221" total="41" passed="39" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38582" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31336" result="Failed" site="Child" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="1.583233" total="41" passed="39" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38583" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31336" result="Failed" site="Child" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="1.378098" total="41" passed="39" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="11819" name="ItemUtility35GuidanceTests" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="1.194392" total="41" passed="39" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="11861" name="FieldMealGuidancePreservesSharingAndSelfUseWithoutPromisingUnsupportedThrowing" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.FieldMealGuidancePreservesSharingAndSelfUseWithoutPromisingUnsupportedThrowing" methodname="FieldMealGuidancePreservesSharingAndSelfUseWithoutPromisingUnsupportedThrowing" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="2115098721" result="Failed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.092070" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not String containing "throw"
+  But was:  "tactical use: share with an injured or bleeding adjacent companion: heal 3d4 hp and stop one ordinary bleed. this meal grants no prepared-meal bonus. spend one item and your own action; only a living willing party member within reach can receive it. self-use and existing throwing remain available."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.DoesNotContain (System.String expected, System.String actual, System.String message, System.Object[] args) [0x0000c] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.DoesNotContain (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.ItemUtility35GuidanceTests.FieldMealGuidancePreservesSharingAndSelfUseWithoutPromisingUnsupportedThrowing () [0x0012d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:104
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="11862" name="FieldMealIsExplicitlyFoodWithoutAddingACompetingGenericEatPart" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.FieldMealIsExplicitlyFoodWithoutAddingACompetingGenericEatPart" methodname="FieldMealIsExplicitlyFoodWithoutAddingACompetingGenericEatPart" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="437536259" result="Failed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.036247" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The authored meal must declare its display category without changing its eating mechanism.
+  Expected string length 4 but was 0. Strings differ at index 0.
+  Expected: "Food"
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ItemUtility35GuidanceTests.FieldMealIsExplicitlyFoodWithoutAddingACompetingGenericEatPart () [0x00183] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/ItemUtility35GuidanceTests.cs:133
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="11859" name="HealingGuidanceRequiresTheCurrentHealingPayload" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.HealingGuidanceRequiresTheCurrentHealingPayload" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.142488" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="11857" name="HealingGuidanceRequiresTheCurrentHealingPayload(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.HealingGuidanceRequiresTheCurrentHealingPayload(&quot;HealingTonic&quot;)" methodname="HealingGuidanceRequiresTheCurrentHealingPayload" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1370579811" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.115644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11858" name="HealingGuidanceRequiresTheCurrentHealingPayload(&quot;KnitmossPad&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.HealingGuidanceRequiresTheCurrentHealingPayload(&quot;KnitmossPad&quot;)" methodname="HealingGuidanceRequiresTheCurrentHealingPayload" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="898960943" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.025501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="11855" name="OrdinaryItemInspectionExplainsItsNewTacticalUse" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="0.863825" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="11820" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;HealingTonic&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1744338298" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.023451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11821" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Antidote&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Antidote&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1397898090" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.021781" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11822" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;BurnSalve&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;BurnSalve&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1956507373" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.021354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11823" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Panacea&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Panacea&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="548343369" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:13Z" duration="0.021984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11824" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnotflaxBandage&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnotflaxBandage&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1427696517" result="Passed" start-time="2026-10-25 08:04:13Z" end-time="2026-10-25 08:04:14Z" duration="0.021829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11825" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SoddenFieldDressing&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SoddenFieldDressing&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1907473599" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.028356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11826" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SumpsievePad&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SumpsievePad&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1296718403" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11827" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ClaspbeanPulp&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ClaspbeanPulp&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="2103130102" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11828" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;MargincressRibbon&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;MargincressRibbon&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1703394186" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.024014" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11829" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;AbsentmintLeaf&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;AbsentmintLeaf&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1024781630" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11830" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnitmossPad&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;KnitmossPad&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1259335152" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11831" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SootrootPulp&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SootrootPulp&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="545370480" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11832" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;CookedMeat&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;CookedMeat&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="119660701" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021606" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11833" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ToastedEmberwheat&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;ToastedEmberwheat&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1452791452" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.020977" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11834" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedMushroom&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedMushroom&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="377476331" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11835" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedHearthbulb&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedHearthbulb&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="78842858" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.020984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11836" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedStarapple&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;RoastedStarapple&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1487143619" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021080" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11837" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FieldMeal&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FieldMeal&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1861243228" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11838" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FireMoss&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FireMoss&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="816291439" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.020765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11839" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FrostLichen&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;FrostLichen&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="151495886" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.020528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11840" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlacierSalt&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlacierSalt&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="575188060" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.020461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11841" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;EmberFruit&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;EmberFruit&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1147002644" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11842" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlimmerBrine&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlimmerBrine&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="990225060" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.041600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11843" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SparkRoot&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SparkRoot&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="2031995265" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.102071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11844" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PrismreedPith&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PrismreedPith&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="116394440" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11845" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampOil&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampOil&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1150603653" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11846" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SlipsedgeGel&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;SlipsedgeGel&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="276496856" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021417" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11847" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PitchpodResin&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;PitchpodResin&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="189951987" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021502" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11848" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Honeycomb&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Honeycomb&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="67662980" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11849" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Torch&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;Torch&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1792458051" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11850" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampveinFan&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;LampveinFan&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1518248176" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021091" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11851" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GroundwireScreen&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GroundwireScreen&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1488063136" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11852" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GripfrondWrap&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GripfrondWrap&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="516143078" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11853" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;IronshodBoots&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;IronshodBoots&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="866254302" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11854" name="OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlowQuartz&quot;)" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.OrdinaryItemInspectionExplainsItsNewTacticalUse(&quot;GlowQuartz&quot;)" methodname="OrdinaryItemInspectionExplainsItsNewTacticalUse" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1965426109" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021688" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="11860" name="TacticalGuidancePreservesActualWeaponArmorAndTonicDetails" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.TacticalGuidancePreservesActualWeaponArmorAndTonicDetails" methodname="TacticalGuidancePreservesActualWeaponArmorAndTonicDetails" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="295620284" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.021278" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="11856" name="UnrelatedItemDoesNotAdvertiseAnInventedUtility" fullname="CavesOfOoo.Tests.ItemUtility35GuidanceTests.UnrelatedItemDoesNotAdvertiseAnInventedUtility" methodname="UnrelatedItemDoesNotAdvertiseAnInventedUtility" classname="CavesOfOoo.Tests.ItemUtility35GuidanceTests" runstate="Runnable" seed="1669688075" result="Passed" start-time="2026-10-25 08:04:14Z" end-time="2026-10-25 08:04:14Z" duration="0.022743" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

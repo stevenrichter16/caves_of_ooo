@@ -57,7 +57,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)] [TestCase(true)] public void MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries(bool brew)
         {
             Entity reagent=null;if(brew){reagent=Carry("GlimmerBrine",1);BrewMode();Pick(reagent);AlchemyStillPart.Factory=null;}else{Pick(Steel);Pick(Oak);Pick(Leather);ForgePart.Factory=null;}
-            Call("ExecuteCraft",false);Assert.IsNotEmpty(Status);if(brew)Assert.IsTrue(Inventory.Contains(reagent));else Assert.AreEqual(2,Steel.GetPart<StackerPart>().StackCount);ForgePart.Factory=AlchemyStillPart.Factory=Factory;Call("ExecuteCraft",false);Assert.IsTrue(string.IsNullOrEmpty(Status));if(brew)Assert.IsFalse(Inventory.Contains(reagent));else Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);
+            Call("ExecuteCraft",false);Assert.IsNotEmpty(Status);if(brew)Assert.IsTrue(Inventory.Contains(reagent));else Assert.AreEqual(2,Steel.GetPart<StackerPart>().StackCount);ForgePart.Factory=AlchemyStillPart.Factory=Factory;Call("ExecuteCraft",false);AssertCraftSuccessView(brew?"Brewed 1 item.":"Forged 1 weapon.");if(brew)Assert.IsFalse(Inventory.Contains(reagent));else Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);
         }
         [Test] public void MissingTinkerFactoryDoesNotSpendBitsAndRestoredFactoryRetries()
         {
@@ -70,15 +70,16 @@ namespace CavesOfOoo.Tests
         [TestCase(false)] [TestCase(true)] public void CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess(bool exhaust)
         {
             Pick(Steel);Pick(Oak);Pick(Leather);Assert.AreEqual(2,Get("_craftBatchMax"));if(exhaust)Assert.IsTrue(Inventory.TryConsumeOne(Steel));Call("ExecuteCraft",true);
-            int units=Inventory.Objects.Where(e=>e.HasPart<WeaponAssemblyPart>()).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);Assert.AreEqual(exhaust?1:2,units);Assert.IsTrue(string.IsNullOrEmpty(Status));Assert.AreEqual(exhaust,Inventory.Contains(Oak));Assert.AreEqual(exhaust,Inventory.Contains(Leather));if(exhaust){Assert.AreEqual(1,Oak.GetPart<StackerPart>().StackCount);Assert.AreEqual(1,Leather.GetPart<StackerPart>().StackCount);}
+            int units=Inventory.Objects.Where(e=>e.HasPart<WeaponAssemblyPart>()).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);Assert.AreEqual(exhaust?1:2,units);AssertCraftSuccessView(exhaust?"Forged 1 of 2 requested weapons.":"Forged 2 weapons.");Assert.AreEqual(exhaust,Inventory.Contains(Oak));Assert.AreEqual(exhaust,Inventory.Contains(Leather));if(exhaust){Assert.AreEqual(1,Oak.GetPart<StackerPart>().StackCount);Assert.AreEqual(1,Leather.GetPart<StackerPart>().StackCount);}
         }
         [TestCase(false)] [TestCase(true)] public void ForgeThenQuenchFailureReportsTheCommittedPartialOutcome(bool dropQuench)
         {
+            Tiles();
             var quench=Brew(Player,false,false);Call("Rebuild");Pick(Steel);Pick(Oak);Pick(Leather);Pick(quench);var previous=MessageLog.OnMessage;bool armed=true,dropped=false,owned=false;int callbacks=0,outputAtCallback=0;
             MessageLog.OnMessage=message=>{previous?.Invoke(message);if(!armed||!message.Contains(" forges "))return;armed=false;callbacks++;owned=Inventory.Contains(quench);outputAtCallback=Inventory.Objects.Count(e=>e.HasPart<WeaponAssemblyPart>());if(dropQuench)dropped=InventorySystem.Drop(Player,quench,Zone);};
             try{Call("ExecuteCraft",false);}finally{MessageLog.OnMessage=previous;}
             Assert.AreEqual(1,callbacks);Assert.IsTrue(owned);Assert.AreEqual(1,outputAtCallback);Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);Assert.AreEqual(1,Oak.GetPart<StackerPart>().StackCount);Assert.AreEqual(1,Leather.GetPart<StackerPart>().StackCount);var weapon=Inventory.Objects.Single(e=>e.HasPart<WeaponAssemblyPart>());
-            if(dropQuench){Assert.IsTrue(dropped);Assert.IsNull(weapon.GetPart<WeaponTemperPart>());Assert.AreSame(Zone.GetEntityCell(Player),Zone.GetEntityCell(quench));Assert.AreEqual(1,quench.GetPart<StackerPart>().StackCount);StringAssert.Contains("Forged",Status);StringAssert.Contains("quench failed",Status);}else{Assert.IsNotNull(weapon.GetPart<WeaponTemperPart>());Assert.IsFalse(Inventory.Contains(quench));Assert.IsTrue(string.IsNullOrEmpty(Status));}
+            if(dropQuench){Assert.IsTrue(dropped);Assert.IsNull(weapon.GetPart<WeaponTemperPart>());Assert.AreSame(Zone.GetEntityCell(Player),Zone.GetEntityCell(quench));Assert.AreEqual(1,quench.GetPart<StackerPart>().StackCount);StringAssert.Contains("Forged",Status);StringAssert.Contains("quench failed",Status);AssertActionLegendRemainsReadable(AssertStatusView(Status));}else{Assert.IsNotNull(weapon.GetPart<WeaponTemperPart>());Assert.IsFalse(Inventory.Contains(quench));AssertCraftSuccessView("Forged 1 weapon.");}
         }
         [TestCase(false)] [TestCase(true)] public void CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu(bool removed)
         {
@@ -108,7 +109,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(Zone.AddEntity(Item("AlchemyStill"),9,10));var reagent=Carry("GlimmerBrine",2);BrewMode();Pick(reagent);Assert.AreEqual(2,Get("_craftBatchMax"));var previous=MessageLog.OnMessage;bool armed=true,dropped=false;int callbacks=0;
             MessageLog.OnMessage=message=>{previous?.Invoke(message);if(!armed||!message.StartsWith("You brew ",StringComparison.Ordinal))return;armed=false;callbacks++;if(removeRemaining)dropped=InventorySystem.Drop(Player,reagent,Zone);};
             try{Call("ExecuteCraft",true);}finally{MessageLog.OnMessage=previous;}
-            Assert.AreEqual(1,callbacks);Assert.AreEqual(removeRemaining,dropped);Assert.AreEqual(removeRemaining?1:2,Inventory.Objects.Where(e=>e.HasPart<BrewItemPart>()).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1));Assert.IsTrue(string.IsNullOrEmpty(Status));if(removeRemaining){Assert.AreSame(Zone.GetEntityCell(Player),Zone.GetEntityCell(reagent));Assert.AreEqual(1,reagent.GetPart<StackerPart>().StackCount);}else Assert.IsFalse(Inventory.Contains(reagent));
+            Assert.AreEqual(1,callbacks);Assert.AreEqual(removeRemaining,dropped);Assert.AreEqual(removeRemaining?1:2,Inventory.Objects.Where(e=>e.HasPart<BrewItemPart>()).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1));AssertCraftSuccessView(removeRemaining?"Brewed 1 of 2 requested items.":"Brewed 2 items.");if(removeRemaining){Assert.AreSame(Zone.GetEntityCell(Player),Zone.GetEntityCell(reagent));Assert.AreEqual(1,reagent.GetPart<StackerPart>().StackCount);}else Assert.IsFalse(Inventory.Contains(reagent));
         }
         [Test] public void LongFailureTextIsClippedToItsOwnDetailRow()
         {

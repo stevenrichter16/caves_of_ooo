@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="7" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 08:14:43Z" end-time="2026-10-25 08:14:44Z" duration="0.4552352">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31347" result="Failed" site="Child" start-time="2026-10-25 08:14:43Z" end-time="2026-10-25 08:14:44Z" duration="0.455235" total="11" passed="7" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38595" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31347" result="Failed" site="Child" start-time="2026-10-25 08:14:43Z" end-time="2026-10-25 08:14:44Z" duration="0.424610" total="11" passed="7" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38596" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31347" result="Failed" site="Child" start-time="2026-10-25 08:14:43Z" end-time="2026-10-25 08:14:44Z" duration="0.418149" total="11" passed="7" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38597" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31347" result="Failed" site="Child" start-time="2026-10-25 08:14:43Z" end-time="2026-10-25 08:14:44Z" duration="0.412118" total="11" passed="7" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="3806" name="BrewReagentsBatchCommandTests" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.094919" total="11" passed="7" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="3812" name="Batch_AtStill_MakesRequestedCount_ConsumesStacks" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.Batch_AtStill_MakesRequestedCount_ConsumesStacks" methodname="Batch_AtStill_MakesRequestedCount_ConsumesStacks" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="403882418" result="Passed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.042115" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3816" name="Batch_MultipleMishaps_DamageAppliesPerIteration_NeverLethal" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.Batch_MultipleMishaps_DamageAppliesPerIteration_NeverLethal" methodname="Batch_MultipleMishaps_DamageAppliesPerIteration_NeverLethal" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="265559498" result="Passed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.007273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3817" name="Batch_NoMishaps_DealsNoDamage" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.Batch_NoMishaps_DealsNoDamage" methodname="Batch_NoMishaps_DealsNoDamage" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="1606243414" result="Passed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.003224" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3813" name="Batch_PartialDueToStackLimit_StillReturnsSuccess_ReportsShortfall" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.Batch_PartialDueToStackLimit_StillReturnsSuccess_ReportsShortfall" methodname="Batch_PartialDueToStackLimit_StillReturnsSuccess_ReportsShortfall" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="2042888893" result="Passed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.003240" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3815" name="Batch_RequestedCountZero_RejectedAtValidation_NothingConsumed" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.Batch_RequestedCountZero_RejectedAtValidation_NothingConsumed" methodname="Batch_RequestedCountZero_RejectedAtValidation_NothingConsumed" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="85881183" result="Passed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.002956" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="3814" name="Batch_StillGatingAppliesToWholeBatch_NotJustFirstUnit" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.Batch_StillGatingAppliesToWholeBatch_NotJustFirstUnit" methodname="Batch_StillGatingAppliesToWholeBatch_NotJustFirstUnit" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="909978870" result="Passed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.002967" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="3810" name="LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.011157" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3807" name="LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(Brew)" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(Brew)" methodname="LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="1659283263" result="Failed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.004138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The completed command must expose its actual last-execution CompletedCount receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.ReceiptCount (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.String name) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:168
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.AssertReceipt (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.Int32 completed, System.Int32 brewed, System.Int32 sludge, System.Int32 mishaps) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:175
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch (CavesOfOoo.Core.BrewOutcomeKind outcome) [0x001d5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:210
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3808" name="LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(InertSludge)" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(InertSludge)" methodname="LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="86853054" result="Failed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.002880" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The completed command must expose its actual last-execution CompletedCount receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.ReceiptCount (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.String name) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:168
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.AssertReceipt (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.Int32 completed, System.Int32 brewed, System.Int32 sludge, System.Int32 mishaps) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:175
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch (CavesOfOoo.Core.BrewOutcomeKind outcome) [0x001d5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:210
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3809" name="LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(Mishap)" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(Mishap)" methodname="LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="391825142" result="Failed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.002863" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The completed command must expose its actual last-execution CompletedCount receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.ReceiptCount (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.String name) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:168
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.AssertReceipt (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.Int32 completed, System.Int32 brewed, System.Int32 sludge, System.Int32 mishaps) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:175
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch (CavesOfOoo.Core.BrewOutcomeKind outcome) [0x001d5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:210
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="3811" name="ReusedCommandClearsItsLastExecutionReceiptWhenNoStockRemains" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.ReusedCommandClearsItsLastExecutionReceiptWhenNoStockRemains" methodname="ReusedCommandClearsItsLastExecutionReceiptWhenNoStockRemains" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="1276941292" result="Failed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.003106" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The completed command must expose its actual last-execution CompletedCount receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.ReceiptCount (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.String name) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:168
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.AssertReceipt (CavesOfOoo.Core.Inventory.Commands.BrewReagentsCommand command, System.Int32 completed, System.Int32 brewed, System.Int32 sludge, System.Int32 mishaps) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:175
+at CavesOfOoo.Tests.BrewReagentsBatchCommandTests.ReusedCommandClearsItsLastExecutionReceiptWhenNoStockRemains () [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Alchemy/BrewReagentsBatchCommandTests.cs:223
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="3818" name="TwoArgConstructor_DefaultsToCountOne_BehavesLikeSingleBrew" fullname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests.TwoArgConstructor_DefaultsToCountOne_BehavesLikeSingleBrew" methodname="TwoArgConstructor_DefaultsToCountOne_BehavesLikeSingleBrew" classname="CavesOfOoo.Tests.BrewReagentsBatchCommandTests" runstate="Runnable" seed="1115566706" result="Passed" start-time="2026-10-25 08:14:44Z" end-time="2026-10-25 08:14:44Z" duration="0.002793" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

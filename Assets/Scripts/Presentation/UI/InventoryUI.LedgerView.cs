@@ -184,7 +184,7 @@ namespace CavesOfOoo.Rendering
             // A refused action leaves its modal open for retry. Keep the reason
             // above that modal's dimmer, in its own non-overlapping footer row.
             if (!string.IsNullOrWhiteSpace(_actionStatus))
-                LLabel(new Rect(24, 712, 1232, 24), SkillScreenText.Fit(_actionStatus, 123, 1), LRed, 20);
+                LLabel(new Rect(24, 712, 1232, 24), SkillScreenText.Fit(_actionStatus, 123, 1), _actionStatusSuccess ? LGreen : LRed, 20);
             EndLedgerPools();
         }
 

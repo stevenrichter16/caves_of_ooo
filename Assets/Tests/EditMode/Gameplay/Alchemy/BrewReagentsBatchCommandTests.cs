@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Core.Inventory.Commands;
@@ -159,6 +160,80 @@ namespace CavesOfOoo.Tests
             }
 
             return false;
+        }
+
+        private static int ReceiptCount(BrewReagentsCommand command, string name)
+        {
+            var property = typeof(BrewReagentsCommand).GetProperty(name, BindingFlags.Instance | BindingFlags.Public);
+            Assert.NotNull(property, "The completed command must expose its actual last-execution " + name + " receipt.");
+            Assert.AreEqual(typeof(int), property.PropertyType);
+            return (int)property.GetValue(command);
+        }
+
+        private static void AssertReceipt(BrewReagentsCommand command, int completed, int brewed, int sludge, int mishaps)
+        {
+            Assert.AreEqual(completed, ReceiptCount(command, "CompletedCount"));
+            Assert.AreEqual(brewed, ReceiptCount(command, "BrewCount"));
+            Assert.AreEqual(sludge, ReceiptCount(command, "SludgeCount"));
+            Assert.AreEqual(mishaps, ReceiptCount(command, "MishapCount"));
+        }
+
+        [TestCase(BrewOutcomeKind.Brew)]
+        [TestCase(BrewOutcomeKind.InertSludge)]
+        [TestCase(BrewOutcomeKind.Mishap)]
+        public void LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(BrewOutcomeKind outcome)
+        {
+            var factory = CreateFactory();
+            var crafter = CreateCrafter();
+            var reagents = new List<Entity>();
+            reagents.Add(GiveStacked(crafter, factory, outcome == BrewOutcomeKind.Mishap ? "BlastPowder" : "FireMoss", 2));
+            if (outcome == BrewOutcomeKind.Brew) reagents.Add(GiveStacked(crafter, factory, "LampOil", 2));
+            var zone = MakeZone(crafter, factory, stillDx: 1, stillDy: 0);
+            var command = new BrewReagentsCommand(reagents, factory, count: 3);
+
+            var result = InventorySystem.ExecuteCommand(command, crafter, zone);
+
+            Assert.True(result.Success, "Two genuine committed attempts remain a partial success: " + result.ErrorMessage);
+            var pack = crafter.GetPart<InventoryPart>();
+            foreach (var reagent in reagents) Assert.False(pack.Contains(reagent), "Both available reagent units were consumed.");
+            int brewedUnits = 0, sludgeUnits = 0;
+            foreach (var item in pack.Objects)
+            {
+                if (item.BlueprintName == "BrewedTonic") brewedUnits += StackOf(item);
+                else if (item.BlueprintName == "InertSludge") sludgeUnits += StackOf(item);
+                else Assert.Fail("Unexpected output owner: " + item.BlueprintName);
+            }
+            Assert.AreEqual(outcome == BrewOutcomeKind.Brew ? 2 : 0, brewedUnits);
+            Assert.AreEqual(outcome == BrewOutcomeKind.InertSludge ? 2 : 0, sludgeUnits);
+            Assert.AreEqual(outcome == BrewOutcomeKind.Mishap ? 16 : 20, crafter.GetStat("Hitpoints").Value,
+                "A mishap is a completed attempt with damage and no item; ordinary outputs must not damage the actor.");
+            AssertReceipt(command, 2, brewedUnits, sludgeUnits, outcome == BrewOutcomeKind.Mishap ? 2 : 0);
+        }
+
+        [Test]
+        public void ReusedCommandClearsItsLastExecutionReceiptWhenNoStockRemains()
+        {
+            var factory = CreateFactory();
+            var crafter = CreateCrafter();
+            var moss = GiveStacked(crafter, factory, "FireMoss", 1);
+            var oil = GiveStacked(crafter, factory, "LampOil", 1);
+            var zone = MakeZone(crafter, factory);
+            var command = new BrewReagentsCommand(new[] { moss, oil }, factory);
+            Assert.True(InventorySystem.ExecuteCommand(command, crafter, zone).Success);
+            AssertReceipt(command, 1, 1, 0, 0);
+            var pack = crafter.GetPart<InventoryPart>();
+            Assert.AreEqual(1, pack.Objects.Count); Entity output = pack.Objects[0];
+            Assert.AreEqual("BrewedTonic", output.BlueprintName); Assert.AreEqual(1, StackOf(output));
+            Assert.False(pack.Contains(moss)); Assert.False(pack.Contains(oil));
+
+            var repeated = InventorySystem.ExecuteCommand(command, crafter, zone);
+
+            Assert.False(repeated.Success);
+            Assert.AreEqual(InventoryCommandErrorCode.ExecutionFailed, repeated.ErrorCode,
+                "This must reach Execute and fail for exhausted stock, not stop at a different validation gate.");
+            AssertReceipt(command, 0, 0, 0, 0);
+            Assert.AreEqual(1, pack.Objects.Count); Assert.AreSame(output, pack.Objects[0]);
+            Assert.AreEqual(1, StackOf(output)); Assert.AreEqual(20, crafter.GetStat("Hitpoints").Value);
         }
 
         // ════════════════ Batch through the command surface ════════════════

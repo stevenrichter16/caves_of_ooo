@@ -108,6 +108,7 @@ namespace CavesOfOoo.Rendering
 
         // Action outcomes belong to the current menu/selection, not the message log.
         private string _actionStatus = string.Empty;
+        private bool _actionStatusSuccess;
         private object _actionStatusContext;
         private int _actionStatusPanel, _actionStatusMode;
 
@@ -134,10 +135,11 @@ namespace CavesOfOoo.Rendering
         }
 
         private void ClearActionStatus()
-        { _actionStatus = string.Empty; _actionStatusContext = null; }
+        { _actionStatus = string.Empty; _actionStatusContext = null; _actionStatusSuccess = false; }
 
         private void SetActionFailure(string reason)
         {
+            _actionStatusSuccess = false;
             _actionStatus = string.IsNullOrWhiteSpace(reason) ? "That action could not be completed." : reason;
             _actionStatusContext = CurrentActionContext();
             _actionStatusPanel = _panel;
@@ -146,6 +148,15 @@ namespace CavesOfOoo.Rendering
 
         private void ShowActionFailure(string reason)
         { SetActionFailure(reason); MessageLog.Add(_actionStatus); }
+
+        private void SetActionSuccess(string message)
+        {
+            _actionStatus = message;
+            _actionStatusSuccess = true;
+            _actionStatusContext = CurrentActionContext();
+            _actionStatusPanel = _panel;
+            _actionStatusMode = CurrentActionMode();
+        }
 
         private void RefreshActionStatusContext()
         {
@@ -1839,11 +1850,18 @@ namespace CavesOfOoo.Rendering
 
         private void Rebuild()
         {
+            Entity selectedItem = _cursorIndex >= 0 && _cursorIndex < _rows.Count
+                ? _rows[_cursorIndex].Item?.Item : null;
             _state = InventoryScreenData.Build(PlayerEntity);
 
             // Always rebuild both panels
             _rows.Clear();
             BuildItemRows();
+            // Row positions can change after spending, dropping or filtering items.
+            // Preserve the exact carried owner, never an adjacent lookalike.
+            _cursorIndex = selectedItem == null ? 0
+                : _rows.FindIndex(row => ReferenceEquals(row.Item?.Item, selectedItem));
+            ClampCursor();
             BuildTinkeringRows();
             BuildCraftingRows();
 
@@ -2285,17 +2303,20 @@ namespace CavesOfOoo.Rendering
             if (_rows.Count == 0)
             {
                 _cursorIndex = 0;
+                _scrollOffset = 0;
                 return;
             }
 
-            if (_cursorIndex >= _rows.Count)
-                _cursorIndex = _rows.Count - 1;
+            if (_cursorIndex < 0 || _cursorIndex >= _rows.Count
+                || _rows[_cursorIndex].IsHeader || _rows[_cursorIndex].Item == null)
+                _cursorIndex = _rows.FindIndex(row => !row.IsHeader && row.Item != null);
 
-            while (_cursorIndex > 0 && _rows[_cursorIndex].IsHeader)
-                _cursorIndex--;
-
+            if (_cursorIndex < 0) { _cursorIndex = _scrollOffset = 0; return; }
+            _scrollOffset = Mathf.Max(0, _scrollOffset);
             if (_scrollOffset > _cursorIndex)
                 _scrollOffset = _cursorIndex;
+            else if (_cursorIndex >= _scrollOffset + VISIBLE_ROWS)
+                _scrollOffset = _cursorIndex - VISIBLE_ROWS + 1;
         }
 
         // ===== Rendering =====

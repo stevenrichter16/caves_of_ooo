@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="80" result="Failed(Child)" total="80" passed="63" failed="17" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 08:11:46Z" end-time="2026-10-25 08:11:55Z" duration="8.2902378">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31343" result="Failed" site="Child" start-time="2026-10-25 08:11:46Z" end-time="2026-10-25 08:11:55Z" duration="8.290238" total="80" passed="63" failed="17" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38590" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31343" result="Failed" site="Child" start-time="2026-10-25 08:11:47Z" end-time="2026-10-25 08:11:55Z" duration="8.079668" total="80" passed="63" failed="17" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38591" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31343" result="Failed" site="Child" start-time="2026-10-25 08:11:47Z" end-time="2026-10-25 08:11:55Z" duration="8.015799" total="80" passed="63" failed="17" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38592" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31343" result="Failed" site="Child" start-time="2026-10-25 08:11:47Z" end-time="2026-10-25 08:11:55Z" duration="7.954337" total="80" passed="63" failed="17" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25823" name="GameAuditActionFeedbackAdversarialTests" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-10-25 08:11:47Z" end-time="2026-10-25 08:11:51Z" duration="3.782953" total="39" passed="32" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25852" name="CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 08:11:47Z" end-time="2026-10-25 08:11:48Z" duration="0.439290" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25850" name="CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess(False)" methodname="CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="834558751" result="Failed" start-time="2026-10-25 08:11:47Z" end-time="2026-10-25 08:11:48Z" duration="0.337920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 17 but was 0. Strings differ at index 0.
+  Expected: "Forged 2 weapons."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess (System.Boolean exhaust) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25851" name="CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess(True)" methodname="CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1360623502" result="Failed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.098177" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 32 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 of 2 requested weapons."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CachedBatchRequestReportsNoFalseFailureForPaidPartialSuccess (System.Boolean exhaust) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25840" name="CraftCursorMovementRetainsFailureButModeChangeClearsIt" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CraftCursorMovementRetainsFailureButModeChangeClearsIt" methodname="CraftCursorMovementRetainsFailureButModeChangeClearsIt" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="594428141" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.093472" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25858" name="CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.184302" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25856" name="CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu(False)" methodname="CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1246817853" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.085475" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25857" name="CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu(True)" methodname="CraftingMarkFailureUsesTheSameVisibleOutcomeAsItemMenu" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="405184428" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.079554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] ToggleCraftMark command failed. Code=ValidationFailed, Validation=NotOwned, Message=You can only set aside items you are carrying.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25841" name="DifferentTinkerRecipeClearsThePreviousRecipeFailure" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.DifferentTinkerRecipeClearsThePreviousRecipeFailure" methodname="DifferentTinkerRecipeClearsThePreviousRecipeFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="615741605" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.079707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25849" name="EmptyBrewAndEmptyTinkerMenusHaveVisibleRefusals" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.EmptyBrewAndEmptyTinkerMenusHaveVisibleRefusals" methodname="EmptyBrewAndEmptyTinkerMenusHaveVisibleRefusals" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1241719342" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.079735" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25829" name="EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.192946" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25827" name="EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon(False)" methodname="EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="456646119" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.094354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+              <test-case id="25828" name="EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon(True)" methodname="EquippedPutRefusalKeepsBodyAndRetryTransfersTheExactWeapon" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1994341930" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.079433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is locked.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25843" name="ExamineHandoffStillQueuesAnnouncementAndClearsFailure" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ExamineHandoffStillQueuesAnnouncementAndClearsFailure" methodname="ExamineHandoffStillQueuesAnnouncementAndClearsFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="2125011985" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.081495" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is locked.
+]]></output>
+            </test-case>
+            <test-case id="25859" name="ExplicitClearPicksClearsPreviousFailureAsANewAction" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ExplicitClearPicksClearsPreviousFailureAsANewAction" methodname="ExplicitClearPicksClearsPreviousFailureAsANewAction" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1150553216" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:48Z" duration="0.076523" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25874" name="FailureSurvivesRepeatedRedrawAndSuccessfulRetryRemovesItsGlyphs" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.FailureSurvivesRepeatedRedrawAndSuccessfulRetryRemovesItsGlyphs" methodname="FailureSurvivesRepeatedRedrawAndSuccessfulRetryRemovesItsGlyphs" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="578059765" result="Passed" start-time="2026-10-25 08:11:48Z" end-time="2026-10-25 08:11:49Z" duration="0.093974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25855" name="ForgeThenQuenchFailureReportsTheCommittedPartialOutcome" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ForgeThenQuenchFailureReportsTheCommittedPartialOutcome" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.184373" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25853" name="ForgeThenQuenchFailureReportsTheCommittedPartialOutcome(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ForgeThenQuenchFailureReportsTheCommittedPartialOutcome(False)" methodname="ForgeThenQuenchFailureReportsTheCommittedPartialOutcome" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1856816181" result="Failed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.082134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ForgeThenQuenchFailureReportsTheCommittedPartialOutcome (System.Boolean dropQuench) [0x0025c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:82
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25854" name="ForgeThenQuenchFailureReportsTheCommittedPartialOutcome(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ForgeThenQuenchFailureReportsTheCommittedPartialOutcome(True)" methodname="ForgeThenQuenchFailureReportsTheCommittedPartialOutcome" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="570433368" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.082022" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25873" name="LongFailureTextIsClippedToItsOwnDetailRow" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.LongFailureTextIsClippedToItsOwnDetailRow" methodname="LongFailureTextIsClippedToItsOwnDetailRow" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="156898407" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.076390" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] FeedbackFixture command failed. Code=ExecutionFailed, Validation=None, Message=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25837" name="MissingCommandReasonHasSafeVisibleFallback" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCommandReasonHasSafeVisibleFallback" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.327293" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25833" name="MissingCommandReasonHasSafeVisibleFallback(null)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCommandReasonHasSafeVisibleFallback(null)" methodname="MissingCommandReasonHasSafeVisibleFallback" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="146754861" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.075058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] FeedbackFixture command failed. Code=ExecutionFailed, Validation=None, Message=
+]]></output>
+              </test-case>
+              <test-case id="25834" name="MissingCommandReasonHasSafeVisibleFallback(&quot;&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCommandReasonHasSafeVisibleFallback(&quot;&quot;)" methodname="MissingCommandReasonHasSafeVisibleFallback" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="113834850" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.077213" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] FeedbackFixture command failed. Code=ExecutionFailed, Validation=None, Message=
+]]></output>
+              </test-case>
+              <test-case id="25835" name="MissingCommandReasonHasSafeVisibleFallback(&quot;   &quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCommandReasonHasSafeVisibleFallback(&quot;   &quot;)" methodname="MissingCommandReasonHasSafeVisibleFallback" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="2047910182" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.078059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] FeedbackFixture command failed. Code=ExecutionFailed, Validation=None, Message=   
+]]></output>
+              </test-case>
+              <test-case id="25836" name="MissingCommandReasonHasSafeVisibleFallback(&quot;Specific refusal.&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCommandReasonHasSafeVisibleFallback(&quot;Specific refusal.&quot;)" methodname="MissingCommandReasonHasSafeVisibleFallback" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="483196099" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.077128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] FeedbackFixture command failed. Code=ExecutionFailed, Validation=None, Message=Specific refusal.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25847" name="MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.198315" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25845" name="MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries(False)" methodname="MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="813403974" result="Failed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.078531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries (System.Boolean brew) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:60
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25846" name="MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries(True)" methodname="MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="477699024" result="Failed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:49Z" duration="0.100861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 14 but was 0. Strings differ at index 0.
+  Expected: "Brewed 1 item."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingCraftFactoryRefusesVisiblyAndRestoredFactoryRetries (System.Boolean brew) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:60
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25848" name="MissingTinkerFactoryDoesNotSpendBitsAndRestoredFactoryRetries" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.MissingTinkerFactoryDoesNotSpendBitsAndRestoredFactoryRetries" methodname="MissingTinkerFactoryDoesNotSpendBitsAndRestoredFactoryRetries" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="972263505" result="Passed" start-time="2026-10-25 08:11:49Z" end-time="2026-10-25 08:11:50Z" duration="0.160954" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25869" name="ModMenuShowsMissingTargetRatherThanSilentlyReturning" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ModMenuShowsMissingTargetRatherThanSilentlyReturning" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.177404" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25867" name="ModMenuShowsMissingTargetRatherThanSilentlyReturning(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ModMenuShowsMissingTargetRatherThanSilentlyReturning(False)" methodname="ModMenuShowsMissingTargetRatherThanSilentlyReturning" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="127566642" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.083545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25868" name="ModMenuShowsMissingTargetRatherThanSilentlyReturning(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ModMenuShowsMissingTargetRatherThanSilentlyReturning(True)" methodname="ModMenuShowsMissingTargetRatherThanSilentlyReturning" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1676324663" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.075839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25832" name="NewRefusalReplacesThePreviousReason" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.NewRefusalReplacesThePreviousReason" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.177686" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25830" name="NewRefusalReplacesThePreviousReason(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.NewRefusalReplacesThePreviousReason(False)" methodname="NewRefusalReplacesThePreviousReason" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1483626693" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.078612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is locked.
+]]></output>
+              </test-case>
+              <test-case id="25831" name="NewRefusalReplacesThePreviousReason(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.NewRefusalReplacesThePreviousReason(True)" methodname="NewRefusalReplacesThePreviousReason" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="729621071" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.081376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is locked.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25838" name="NullCommandResultAlsoProducesSafeVisibleFallback" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.NullCommandResultAlsoProducesSafeVisibleFallback" methodname="NullCommandResultAlsoProducesSafeVisibleFallback" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="17157980" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.076759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] FeedbackFixture command failed. Code=, Validation=None, Message=
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25872" name="PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.177597" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25870" name="PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(False)" methodname="PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1536533859" result="Failed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.080669" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 15 but was 0. Strings differ at index 0.
+  Expected: "Brewed 2 items."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure (System.Boolean removeRemaining) [0x00166] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:112
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25871" name="PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(True)" methodname="PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="648723344" result="Failed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.078389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 30 but was 0. Strings differ at index 0.
+  Expected: "Brewed 1 of 2 requested items."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure (System.Boolean removeRemaining) [0x00166] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:112
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25839" name="PopupCursorMovementRetainsTheFailureUntilAnotherAction" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PopupCursorMovementRetainsTheFailureUntilAnotherAction" methodname="PopupCursorMovementRetainsTheFailureUntilAnotherAction" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1774049673" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.079177" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25863" name="RemovedModificationTargetCanRetryAfterOwnershipReturns" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.RemovedModificationTargetCanRetryAfterOwnershipReturns" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.172423" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25861" name="RemovedModificationTargetCanRetryAfterOwnershipReturns(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.RemovedModificationTargetCanRetryAfterOwnershipReturns(False)" methodname="RemovedModificationTargetCanRetryAfterOwnershipReturns" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="804200124" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.077658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25862" name="RemovedModificationTargetCanRetryAfterOwnershipReturns(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.RemovedModificationTargetCanRetryAfterOwnershipReturns(True)" methodname="RemovedModificationTargetCanRetryAfterOwnershipReturns" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1768059941" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.076150" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] ApplyModification command failed. Code=ValidationFailed, Validation=NotOwned, Message=Actor does not own the target item.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25826" name="RepeatedFullSackRefusalNeverChangesItemsOrSelection" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.RepeatedFullSackRefusalNeverChangesItemsOrSelection" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:51Z" duration="0.178131" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25824" name="RepeatedFullSackRefusalNeverChangesItemsOrSelection(1)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.RepeatedFullSackRefusalNeverChangesItemsOrSelection(1)" methodname="RepeatedFullSackRefusalNeverChangesItemsOrSelection" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1772154655" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:50Z" duration="0.080704" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+              <test-case id="25825" name="RepeatedFullSackRefusalNeverChangesItemsOrSelection(4)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.RepeatedFullSackRefusalNeverChangesItemsOrSelection(4)" methodname="RepeatedFullSackRefusalNeverChangesItemsOrSelection" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="891648776" result="Passed" start-time="2026-10-25 08:11:50Z" end-time="2026-10-25 08:11:51Z" duration="0.080309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25860" name="SuccessfulCraftingPickReplacesOldFailure" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.SuccessfulCraftingPickReplacesOldFailure" methodname="SuccessfulCraftingPickReplacesOldFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="853404391" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.078474" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25842" name="SuccessfulDifferentActionFromRetainedPopupClearsFailure" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.SuccessfulDifferentActionFromRetainedPopupClearsFailure" methodname="SuccessfulDifferentActionFromRetainedPopupClearsFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="343862716" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.076464" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+            </test-case>
+            <test-case id="25844" name="ThrowHandoffStillClosesInventoryWithExactPendingItem" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.ThrowHandoffStillClosesInventoryWithExactPendingItem" methodname="ThrowHandoffStillClosesInventoryWithExactPendingItem" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="916569531" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.079107" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25866" name="TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.172241" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25864" name="TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop(False)" methodname="TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="1783937349" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.077500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25865" name="TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop(True)" methodname="TinkerCapacityRefusalRefundsBitsAndRetriesAfterRealDrop" classname="CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests" runstate="Runnable" seed="389681819" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.076185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] CraftFromRecipe command failed. Code=ExecutionFailed, Validation=None, Message=Cannot add crafted item to inventory.
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="25886" name="GameAuditActionFeedbackTests" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:55Z" duration="3.665911" total="41" passed="31" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="25889" name="ActualSackRefusalPreservesPopupWhileSuccessClosesIt" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSackRefusalPreservesPopupWhileSuccessClosesIt" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.157041" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25887" name="ActualSackRefusalPreservesPopupWhileSuccessClosesIt(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSackRefusalPreservesPopupWhileSuccessClosesIt(False)" methodname="ActualSackRefusalPreservesPopupWhileSuccessClosesIt" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="213538562" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.077158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25888" name="ActualSackRefusalPreservesPopupWhileSuccessClosesIt(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSackRefusalPreservesPopupWhileSuccessClosesIt(True)" methodname="ActualSackRefusalPreservesPopupWhileSuccessClosesIt" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1997114764" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.077836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25901" name="ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.293887" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25899" name="ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes(False)" methodname="ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="877794694" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.111382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PerformAction[PlantSeed] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'PlantSeed' failed.
+]]></output>
+              </test-case>
+              <test-case id="25900" name="ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes(True)" methodname="ActualSeedCommandFailureAndSuccessHaveTruthfulPopupOutcomes" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="317537102" result="Passed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:51Z" duration="0.165221" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25911" name="ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:52Z" duration="0.173814" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25909" name="ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw(False)" methodname="ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1502955391" result="Failed" start-time="2026-10-25 08:11:51Z" end-time="2026-10-25 08:11:52Z" duration="0.077533" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw (System.Boolean brew) [0x0017c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25910" name="ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw(True)" methodname="ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1019020387" result="Failed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.077950" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 14 but was 0. Strings differ at index 0.
+  Expected: "Brewed 1 item."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw (System.Boolean brew) [0x0017c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:164
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25908" name="BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.176217" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25906" name="BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents(False)" methodname="BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1417674745" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.077916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25907" name="BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents(True)" methodname="BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1907106364" result="Failed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.080337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 14 but was 0. Strings differ at index 0.
+  Expected: "Brewed 1 item."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents (System.Boolean valid) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:148
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25917" name="CompletedCraftStatusRetiresWhenTheUserChangesItsContext" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.326000" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25913" name="CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;mode&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;mode&quot;)" methodname="CompletedCraftStatusRetiresWhenTheUserChangesItsContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="206391205" result="Failed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.077368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext (System.String transition) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:194
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25914" name="CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;pick&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;pick&quot;)" methodname="CompletedCraftStatusRetiresWhenTheUserChangesItsContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1873917177" result="Failed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.078442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext (System.String transition) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:194
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25915" name="CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;panel&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;panel&quot;)" methodname="CompletedCraftStatusRetiresWhenTheUserChangesItsContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1174884401" result="Failed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.075802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext (System.String transition) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:194
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25916" name="CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;close&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext(&quot;close&quot;)" methodname="CompletedCraftStatusRetiresWhenTheUserChangesItsContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1399574797" result="Failed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.076675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.CompletedCraftStatusRetiresWhenTheUserChangesItsContext (System.String transition) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:194
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25924" name="DeliberateContextExitClearsOldFailure" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DeliberateContextExitClearsOldFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.251630" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25921" name="DeliberateContextExitClearsOldFailure(&quot;panel&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DeliberateContextExitClearsOldFailure(&quot;panel&quot;)" methodname="DeliberateContextExitClearsOldFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="622451780" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.077922" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+              <test-case id="25922" name="DeliberateContextExitClearsOldFailure(&quot;popup&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DeliberateContextExitClearsOldFailure(&quot;popup&quot;)" methodname="DeliberateContextExitClearsOldFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="2080816767" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.076185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+              <test-case id="25923" name="DeliberateContextExitClearsOldFailure(&quot;close&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DeliberateContextExitClearsOldFailure(&quot;close&quot;)" methodname="DeliberateContextExitClearsOldFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="910051621" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.079467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25938" name="DisplacementRefusalKeepsConfirmationAndOriginForRetry" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DisplacementRefusalKeepsConfirmationAndOriginForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:53Z" duration="0.332305" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25934" name="DisplacementRefusalKeepsConfirmationAndOriginForRetry(False,False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DisplacementRefusalKeepsConfirmationAndOriginForRetry(False,False)" methodname="DisplacementRefusalKeepsConfirmationAndOriginForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1795702003" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:52Z" duration="0.077780" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25935" name="DisplacementRefusalKeepsConfirmationAndOriginForRetry(False,True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DisplacementRefusalKeepsConfirmationAndOriginForRetry(False,True)" methodname="DisplacementRefusalKeepsConfirmationAndOriginForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="686616743" result="Passed" start-time="2026-10-25 08:11:52Z" end-time="2026-10-25 08:11:53Z" duration="0.076360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Equip command failed. Code=ExecutionFailed, Validation=None, Message=Equip was cancelled.
+]]></output>
+              </test-case>
+              <test-case id="25936" name="DisplacementRefusalKeepsConfirmationAndOriginForRetry(True,False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DisplacementRefusalKeepsConfirmationAndOriginForRetry(True,False)" methodname="DisplacementRefusalKeepsConfirmationAndOriginForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1754163445" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.083023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25937" name="DisplacementRefusalKeepsConfirmationAndOriginForRetry(True,True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.DisplacementRefusalKeepsConfirmationAndOriginForRetry(True,True)" methodname="DisplacementRefusalKeepsConfirmationAndOriginForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="578025777" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.076906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Equip command failed. Code=ExecutionFailed, Validation=None, Message=Equip was cancelled.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25927" name="EquipSlotRefusalRetainsSelectionForDirectRetry" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.EquipSlotRefusalRetainsSelectionForDirectRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.173240" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25925" name="EquipSlotRefusalRetainsSelectionForDirectRetry(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.EquipSlotRefusalRetainsSelectionForDirectRetry(False)" methodname="EquipSlotRefusalRetainsSelectionForDirectRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="802367347" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.076793" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25926" name="EquipSlotRefusalRetainsSelectionForDirectRetry(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.EquipSlotRefusalRetainsSelectionForDirectRetry(True)" methodname="EquipSlotRefusalRetainsSelectionForDirectRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="738569280" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.078153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Equip command failed. Code=ExecutionFailed, Validation=None, Message=Equip was cancelled.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25920" name="FailureIsDrawnInTheSharedDetailRowWithoutReplacingActionLegend" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.FailureIsDrawnInTheSharedDetailRowWithoutReplacingActionLegend" methodname="FailureIsDrawnInTheSharedDetailRowWithoutReplacingActionLegend" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1216326060" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.078832" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+            </test-case>
+            <test-case id="25892" name="FullButCompletelyMergeableSackRemainsAValidAction" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.FullButCompletelyMergeableSackRemainsAValidAction" methodname="FullButCompletelyMergeableSackRemainsAValidAction" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="10206408" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.079220" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25902" name="IncompleteForgeShowsReasonAndCompletedKitClearsIt" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.IncompleteForgeShowsReasonAndCompletedKitClearsIt" methodname="IncompleteForgeShowsReasonAndCompletedKitClearsIt" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="995337406" result="Failed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.079480" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.IncompleteForgeShowsReasonAndCompletedKitClearsIt () [0x00099] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:138
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25891" name="LockedContainerShowsSpecificReasonAndCanRetryAfterUnlock" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.LockedContainerShowsSpecificReasonAndCanRetryAfterUnlock" methodname="LockedContainerShowsSpecificReasonAndCanRetryAfterUnlock" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1087436741" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.103242" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is locked.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25930" name="ManualBodyPickerRefusalPreservesExactTargetForRetry" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ManualBodyPickerRefusalPreservesExactTargetForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.261765" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25928" name="ManualBodyPickerRefusalPreservesExactTargetForRetry(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ManualBodyPickerRefusalPreservesExactTargetForRetry(False)" methodname="ManualBodyPickerRefusalPreservesExactTargetForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1232022335" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.163980" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25929" name="ManualBodyPickerRefusalPreservesExactTargetForRetry(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ManualBodyPickerRefusalPreservesExactTargetForRetry(True)" methodname="ManualBodyPickerRefusalPreservesExactTargetForRetry" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1810179237" result="Passed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:53Z" duration="0.078422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Equip command failed. Code=ExecutionFailed, Validation=None, Message=Equip was cancelled.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25912" name="MergedBrewBatchReportsNewUnitsInsteadOfTheWholeResidentStack" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.MergedBrewBatchReportsNewUnitsInsteadOfTheWholeResidentStack" methodname="MergedBrewBatchReportsNewUnitsInsteadOfTheWholeResidentStack" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="2093689343" result="Failed" start-time="2026-10-25 08:11:53Z" end-time="2026-10-25 08:11:54Z" duration="0.076757" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 15 but was 0. Strings differ at index 0.
+  Expected: "Brewed 2 items."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.MergedBrewBatchReportsNewUnitsInsteadOfTheWholeResidentStack () [0x00111] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:186
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-case id="25919" name="ModificationFailureRetainsTargetAndRetryAppliesOnce" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ModificationFailureRetainsTargetAndRetryAppliesOnce" methodname="ModificationFailureRetainsTargetAndRetryAppliesOnce" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="2052090272" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.078022" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] ApplyModification command failed. Code=ExecutionFailed, Validation=None, Message=Not enough bits.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25905" name="OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.174357" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25903" name="OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid(False)" methodname="OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1844664940" result="Failed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.077190" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A completed craft must report actual committed output, not the next recipe preview.
+  Expected string length 16 but was 0. Strings differ at index 0.
+  Expected: "Forged 1 weapon."
+  But was:  <string.Empty>
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.ActionFeedbackFixture.AssertCraftSuccessView (System.String text) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:79
+at CavesOfOoo.Tests.GameAuditActionFeedbackTests.OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid (System.Boolean batch) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackTests.cs:143
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25904" name="OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid(True)" methodname="OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="413629683" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.078080" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25939" name="ReopeningInventoryStartsWithoutPreviousFailure" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.ReopeningInventoryStartsWithoutPreviousFailure" methodname="ReopeningInventoryStartsWithoutPreviousFailure" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="563473063" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.079929" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+            </test-case>
+            <test-case id="25890" name="SameFailedPopupRetriesAfterOneContainerSlotIsFreed" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.SameFailedPopupRetriesAfterOneContainerSlotIsFreed" methodname="SameFailedPopupRetriesAfterOneContainerSlotIsFreed" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="58193640" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.076991" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PutInContainer command failed. Code=ExecutionFailed, Validation=None, Message=Container is full.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25898" name="StaleActionKeepsItsContextAndCannotConsumeAnotherItem" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.StaleActionKeepsItsContextAndCannotConsumeAnotherItem" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.408506" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25893" name="StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;Dagger&quot;,&quot;equip_auto&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;Dagger&quot;,&quot;equip_auto&quot;)" methodname="StaleActionKeepsItsContextAndCannotConsumeAnotherItem" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="2121974497" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.079513" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Equip command failed. Code=ValidationFailed, Validation=NotOwned, Message=Actor does not own this item.
+]]></output>
+              </test-case>
+              <test-case id="25894" name="StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;Dagger&quot;,&quot;drop&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;Dagger&quot;,&quot;drop&quot;)" methodname="StaleActionKeepsItsContextAndCannotConsumeAnotherItem" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="182312153" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.077765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Drop command failed. Code=ValidationFailed, Validation=NotOwned, Message=Actor does not own this item.
+]]></output>
+              </test-case>
+              <test-case id="25895" name="StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;Dagger&quot;,&quot;disassemble&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;Dagger&quot;,&quot;disassemble&quot;)" methodname="StaleActionKeepsItsContextAndCannotConsumeAnotherItem" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="104041380" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.077618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Disassemble command failed. Code=ValidationFailed, Validation=NotOwned, Message=Actor does not own this item.
+]]></output>
+              </test-case>
+              <test-case id="25896" name="StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;SteelBladeComponent&quot;,&quot;toggle_craftmark&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;SteelBladeComponent&quot;,&quot;toggle_craftmark&quot;)" methodname="StaleActionKeepsItsContextAndCannotConsumeAnotherItem" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1081345452" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.077287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] ToggleCraftMark command failed. Code=ValidationFailed, Validation=NotOwned, Message=You can only set aside items you are carrying.
+]]></output>
+              </test-case>
+              <test-case id="25897" name="StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;CandyCarrotSeed&quot;,&quot;PlantSeed&quot;)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.StaleActionKeepsItsContextAndCannotConsumeAnotherItem(&quot;CandyCarrotSeed&quot;,&quot;PlantSeed&quot;)" methodname="StaleActionKeepsItsContextAndCannotConsumeAnotherItem" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1828130606" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.077459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] PerformAction[PlantSeed] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'PlantSeed' failed.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="25918" name="TinkerMissingBitsShowsReasonThenRetryClearsIt" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.TinkerMissingBitsShowsReasonThenRetryClearsIt" methodname="TinkerMissingBitsShowsReasonThenRetryClearsIt" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1163750812" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:54Z" duration="0.076033" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25933" name="UnequipSlotRefusalRetainsEquipmentAndRetryContext" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.UnequipSlotRefusalRetainsEquipmentAndRetryContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:55Z" duration="0.169485" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25931" name="UnequipSlotRefusalRetainsEquipmentAndRetryContext(False)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.UnequipSlotRefusalRetainsEquipmentAndRetryContext(False)" methodname="UnequipSlotRefusalRetainsEquipmentAndRetryContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1583738519" result="Passed" start-time="2026-10-25 08:11:54Z" end-time="2026-10-25 08:11:55Z" duration="0.075069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+]]></output>
+              </test-case>
+              <test-case id="25932" name="UnequipSlotRefusalRetainsEquipmentAndRetryContext(True)" fullname="CavesOfOoo.Tests.GameAuditActionFeedbackTests.UnequipSlotRefusalRetainsEquipmentAndRetryContext(True)" methodname="UnequipSlotRefusalRetainsEquipmentAndRetryContext" classname="CavesOfOoo.Tests.GameAuditActionFeedbackTests" runstate="Runnable" seed="1794184316" result="Passed" start-time="2026-10-25 08:11:55Z" end-time="2026-10-25 08:11:55Z" duration="0.075774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[Inventory/Refactor] Unequip command failed. Code=ExecutionFailed, Validation=None, Message=Unequip was cancelled.
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

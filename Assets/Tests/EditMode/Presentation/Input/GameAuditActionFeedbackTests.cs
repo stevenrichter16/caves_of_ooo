@@ -74,6 +74,19 @@ namespace CavesOfOoo.Tests
             Color failureColor=(Color)typeof(InventoryUI).GetField("LRed",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null);
             Assert.AreEqual(failureColor,label.color);return label;
         }
+        protected SkillScreenText AssertCraftSuccessView(string text)
+        {
+            Assert.AreEqual(text,Status,"A completed craft must report actual committed output, not the next recipe preview.");
+            Call("Render");Canvas.ForceUpdateCanvases();
+            var matches=LedgerLabels().Where(t=>t.Content==text).ToArray();
+            Assert.AreEqual(1,matches.Length,"Show the completion exactly once in the retained view.");
+            var label=matches[0];AssertRetainedLabelFits(label);
+            Color positive=(Color)typeof(InventoryUI).GetField("LGreen",BindingFlags.Static|BindingFlags.NonPublic).GetValue(null);
+            Assert.AreEqual(positive,label.color,"A completed craft must not use refusal red.");
+            AssertActionLegendRemainsReadable(label);
+            if(UI.Tilemap!=null)Assert.Zero(UI.Tilemap.GetUsedTilesCount());
+            return label;
+        }
         protected SkillScreenText AssertActionLegendRemainsReadable(SkillScreenText status)
         {
             var legends=LedgerLabels().Where(t=>(t.Content.Contains("Enter:")||t.Content.Contains("A:"))&&!CoveredByLaterPanel(t)).ToArray();
@@ -122,17 +135,73 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void IncompleteForgeShowsReasonAndCompletedKitClearsIt()
         {
-            Call("ExecuteCraft",false);Assert.IsNotEmpty(Status);Assert.IsFalse(Inventory.Objects.Any(e=>e.HasPart<WeaponAssemblyPart>()));Pick(Steel);Pick(Oak);Pick(Leather);Call("ExecuteCraft",false);Assert.IsTrue(string.IsNullOrEmpty(Status));Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);
+            Call("ExecuteCraft",false);Assert.IsNotEmpty(Status);Assert.IsFalse(Inventory.Objects.Any(e=>e.HasPart<WeaponAssemblyPart>()));Pick(Steel);Pick(Oak);Pick(Leather);Call("ExecuteCraft",false);AssertCraftSuccessView("Forged 1 weapon.");Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);
         }
         [TestCase(false)] [TestCase(true)] public void OffStationBatchRefusesVisiblyWhileSingleForgeRemainsValid(bool batch)
         {
             Pick(Steel);Pick(Oak);Pick(Leather);Assert.IsTrue(Zone.RemoveEntity(Station));Call("Rebuild");Call("ExecuteCraft",batch);
-            if(batch){Assert.IsNotEmpty(Status);Assert.AreEqual(2,Steel.GetPart<StackerPart>().StackCount);}else{Assert.IsTrue(string.IsNullOrEmpty(Status));Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);}
+            if(batch){Assert.IsNotEmpty(Status);Assert.AreEqual(2,Steel.GetPart<StackerPart>().StackCount);}else{AssertCraftSuccessView("Forged 1 weapon.");Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);}
         }
         [TestCase(false)] [TestCase(true)] public void BrewPreviewGateShowsFailureWithoutConsumingInvalidReagents(bool valid)
         {
             var reagent=Carry(valid?"GlimmerBrine":"FireMoss",1);BrewMode();Pick(reagent);Call("ExecuteCraft",false);
-            if(valid){Assert.IsTrue(string.IsNullOrEmpty(Status));Assert.IsFalse(Inventory.Contains(reagent));}else{Assert.IsNotEmpty(Status);Assert.IsTrue(Inventory.Contains(reagent));Assert.AreEqual(1,reagent.GetPart<StackerPart>().StackCount);}
+            if(valid){AssertCraftSuccessView("Brewed 1 item.");Assert.IsFalse(Inventory.Contains(reagent));}else{Assert.IsNotEmpty(Status);Assert.IsTrue(Inventory.Contains(reagent));Assert.AreEqual(1,reagent.GetPart<StackerPart>().StackCount);}
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void ActualSingleCraftKeepsReadableCompletionWithoutRepeatingOnRedraw(bool brew)
+        {
+            Tiles();Entity reagent=null;
+            if(brew){reagent=Carry("GlimmerBrine",2);BrewMode();Pick(reagent);}
+            else{Pick(Steel);Pick(Oak);Pick(Leather);}
+            int tick=TurnManager.Active?.TickCount??0;
+            Call("ExecuteCraft",false);
+            var output=Inventory.Objects.Where(e=>brew?e.HasPart<BrewItemPart>():e.HasPart<WeaponAssemblyPart>()).ToArray();
+            Assert.AreEqual(1,output.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1));
+            if(brew)Assert.AreEqual(1,reagent.GetPart<StackerPart>().StackCount);
+            else{Assert.AreEqual(1,Steel.GetPart<StackerPart>().StackCount);Assert.AreEqual(1,Oak.GetPart<StackerPart>().StackCount);Assert.AreEqual(1,Leather.GetPart<StackerPart>().StackCount);}
+            string expected=brew?"Brewed 1 item.":"Forged 1 weapon.";
+            AssertCraftSuccessView(expected);
+            var owners=Inventory.Objects.ToArray();var quantities=owners.Select(e=>e.GetPart<StackerPart>()?.StackCount??1).ToArray();
+            int messages=MessageLog.GetAllEntries().Count,hp=Player.GetStatValue("Hitpoints");
+            for(int i=0;i<3;i++)AssertCraftSuccessView(expected);
+            CollectionAssert.AreEqual(owners,Inventory.Objects);
+            CollectionAssert.AreEqual(quantities,owners.Select(e=>e.GetPart<StackerPart>()?.StackCount??1).ToArray());
+            Assert.AreEqual(messages,MessageLog.GetAllEntries().Count,"Painting completion must not republish or repeat the command.");
+            Assert.AreEqual(hp,Player.GetStatValue("Hitpoints"));Assert.AreEqual(tick,TurnManager.Active?.TickCount??0);
+            Assert.True(UI.IsOpen);Assert.False(UI.ConsumePendingEverydayTurn());Assert.IsNull(UI.ConsumePendingThrowRequest());
+        }
+
+        [Test]
+        public void MergedBrewBatchReportsNewUnitsInsteadOfTheWholeResidentStack()
+        {
+            Tiles();Assert.True(Zone.AddEntity(Item("AlchemyStill"),9,10));
+            var resident=Brew(Player,false,false);Assert.AreSame(resident,Brew(Player,false,false));
+            Assert.AreEqual(2,resident.GetPart<StackerPart>().StackCount);
+            var reagent=Carry("GlimmerBrine",2);BrewMode();Pick(reagent);Assert.AreEqual(2,Get("_craftBatchMax"));
+            Call("ExecuteCraft",true);
+            Assert.False(Inventory.Contains(reagent));
+            Assert.AreSame(resident,Inventory.Objects.Single(e=>e.HasPart<BrewItemPart>()));
+            Assert.AreEqual(4,resident.GetPart<StackerPart>().StackCount);
+            AssertCraftSuccessView("Brewed 2 items.");
+            Assert.True(UI.IsOpen);Assert.False(UI.ConsumePendingEverydayTurn());
+        }
+
+        [TestCase("mode")] [TestCase("pick")] [TestCase("panel")] [TestCase("close")]
+        public void CompletedCraftStatusRetiresWhenTheUserChangesItsContext(string transition)
+        {
+            Tiles();Pick(Steel);Pick(Oak);Pick(Leather);Call("ExecuteCraft",false);
+            const string completion="Forged 1 weapon.";AssertCraftSuccessView(completion);
+            var owners=Inventory.Objects.ToArray();var quantities=owners.Select(e=>e.GetPart<StackerPart>()?.StackCount??1).ToArray();
+            if(transition=="mode")Call("SwitchCraftingMode",Enum.Parse(Get("_craftingMode").GetType(),"Brew"));
+            else if(transition=="pick")Pick(Iron);
+            else if(transition=="panel"){Set("_panel",1);Call("Render");}
+            else UI.Close();
+            Assert.IsTrue(string.IsNullOrEmpty(Status));
+            Assert.False(LedgerLabels().Any(label=>label.Content==completion),"The old completion must leave the active retained view.");
+            CollectionAssert.AreEqual(owners,Inventory.Objects);
+            CollectionAssert.AreEqual(quantities,owners.Select(e=>e.GetPart<StackerPart>()?.StackCount??1).ToArray());
+            Assert.False(UI.ConsumePendingEverydayTurn());
         }
         [Test] public void TinkerMissingBitsShowsReasonThenRetryClearsIt()
         {

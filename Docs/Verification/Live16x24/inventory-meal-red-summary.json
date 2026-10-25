@@ -1,0 +1,19 @@
+{
+  "start-time": "2026-10-25 08:04:13Z",
+  "end-time": "2026-10-25 08:04:14Z",
+  "total": "41",
+  "passed": "39",
+  "failed": "2",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.ItemUtility35GuidanceTests.FieldMealGuidancePreservesSharingAndSelfUseWithoutPromisingUnsupportedThrowing",
+      "message": "  Expected: not String containing \"throw\"\n  But was:  \"tactical use: share with an injured or bleeding adjacent companion: heal 3d4 hp and stop one ordinary bleed. this meal grants no prepared-meal bonus. spend one item and your own action; only a living willing party member within reach can receive it. self-use and existing throwing remain available.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ItemUtility35GuidanceTests.FieldMealIsExplicitlyFoodWithoutAddingACompetingGenericEatPart",
+      "message": "  The authored meal must declare its display category without changing its eating mechanism.\n  Expected string length 4 but was 0. Strings differ at index 0.\n  Expected: \"Food\"\n  But was:  <string.Empty>\n  -----------^\n"
+    }
+  ]
+}

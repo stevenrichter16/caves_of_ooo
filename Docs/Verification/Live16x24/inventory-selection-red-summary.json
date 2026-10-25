@@ -1,0 +1,35 @@
+{
+  "start-time": "2026-10-25 08:03:23Z",
+  "end-time": "2026-10-25 08:03:25Z",
+  "total": "24",
+  "passed": "18",
+  "failed": "6",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.EmptyPackStaysNeutralUntilARealItemArrives",
+      "message": "  Inventory focus must select an actual carried item, not a category header.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.InventoryEntrySelectsAndPaintsARealCarriedItem(\"PaintedTab\")",
+      "message": "  Inventory focus must select an actual carried item, not a category header.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.InventoryEntrySelectsAndPaintsARealCarriedItem(\"KeyboardTab\")",
+      "message": "  Inventory focus must select an actual carried item, not a category header.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.InventoryEntrySelectsAndPaintsARealCarriedItem(\"GamepadY\")",
+      "message": "  Inventory focus must select an actual carried item, not a category header.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.RebuildPreservesExactSelectedOwnerWhenEarlierRowsDisappear",
+      "message": "  Expected: same as <Entity(matching dagger)>\n  But was:  <Entity(matching dagger)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InventoryLedgerInteractionTests.RebuildRetiresRemovedSelectionAndChoosesCurrentRemainingOwner",
+      "message": "  Expected: in range (0,1)\n  But was:  2\n"
+    }
+  ]
+}

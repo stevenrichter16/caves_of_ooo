@@ -22,6 +22,149 @@ namespace CavesOfOoo.Tests
     {
         const BindingFlags Members = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
+        [TestCase("PaintedTab")] [TestCase("KeyboardTab")] [TestCase("GamepadY")]
+        public void InventoryEntrySelectsAndPaintsARealCarriedItem(string entry)
+        {
+            using (var input = new NativeNavigationScope())
+            using (var r = new Rig())
+            {
+                r.Carry("HealingTonic"); r.Carry("DriedMeat");
+                var before = r.Pack.Objects.ToArray();
+                int tick = TurnManager.Active?.TickCount ?? 0;
+                r.Open(); Assert.AreEqual(0, Get(r.UI, "_panel"), "Opening still starts with Equipment focus.");
+                var first = r.Rows("_rows").Cast<object>().Select(row => Get(row, "Item"))
+                    .OfType<InventoryScreenData.ItemDisplay>().First().Item;
+                if (entry == "PaintedTab") r.Tab(1);
+                else
+                {
+                    if (entry == "KeyboardTab") input.Keys(Key.Tab); else input.Button(GamepadButton.North);
+                    Assert.True(InputHelper.GetKeyDown(KeyCode.Tab));
+                    r.UI.HandleInput(); Canvas.ForceUpdateCanvases();
+                }
+                AssertSelectedItemIsPainted(r, first);
+                CollectionAssert.AreEqual(before, r.Pack.Objects);
+                Assert.That(before.All(item => item.GetPart<StackerPart>().StackCount == 1), Is.True);
+                Assert.AreEqual(tick, TurnManager.Active?.TickCount ?? 0);
+                Assert.IsNull(Get(r.UI, "_itemActionPopup")); Assert.False(r.UI.ConsumePendingEverydayTurn());
+                Assert.IsNull(r.UI.ConsumePendingThrowRequest());
+            }
+        }
+
+        [Test]
+        public void RebuildPreservesExactSelectedOwnerWhenEarlierRowsDisappear()
+        {
+            using (var input = new NativeNavigationScope())
+            using (var r = new Rig())
+            {
+                for (int i = 0; i < 3; i++) r.Carry("Dagger", "matching dagger");
+                r.Open(); r.Tab(1);
+                var ordered = r.Rows("_rows").Cast<object>().Select(row => Get(row, "Item"))
+                    .OfType<InventoryScreenData.ItemDisplay>().Select(display => display.Item).ToArray();
+                Assert.AreEqual(3, ordered.Length);
+                Entity selected = ordered[1]; int oldRow = r.InventoryRow(selected);
+                Call(r.UI, "SelectLedgerHit", r.FindHit("Item", oldRow)); Call(r.UI, "Render");
+                AssertSelectedItemIsPainted(r, selected);
+                r.Tab(4); Assert.True(r.Pack.RemoveObject(ordered[0]));
+                Call(r.UI, "Rebuild"); Call(r.UI, "Render");
+                Assert.Less(r.InventoryRow(selected), oldRow, "Actual row index changed while exact owner survived.");
+                r.Tab(1); AssertSelectedItemIsPainted(r, selected);
+                var snapshot = Get(r.UI, "_ledgerSelectionDocument");
+                for (int i = 0; i < 3; i++) Call(r.UI, "Render");
+                Assert.AreSame(snapshot, Get(r.UI, "_ledgerSelectionDocument"), "An incidental repaint must reuse its inspection snapshot.");
+                AssertSelectedItemIsPainted(r, selected);
+                Assert.True(r.Pack.Contains(ordered[2])); Assert.False(r.Pack.Contains(ordered[0]));
+                Assert.False(r.UI.ConsumePendingEverydayTurn()); Assert.IsNull(Get(r.UI, "_itemActionPopup"));
+            }
+        }
+
+        [Test]
+        public void RebuildRetiresRemovedSelectionAndChoosesCurrentRemainingOwner()
+        {
+            using (var input = new NativeNavigationScope())
+            using (var r = new Rig())
+            {
+                r.Carry("Dagger", "remaining dagger"); r.Carry("Dagger", "departing dagger");
+                r.Open(); r.Tab(1);
+                var ordered = r.Rows("_rows").Cast<object>().Select(row => Get(row, "Item"))
+                    .OfType<InventoryScreenData.ItemDisplay>().Select(display => display.Item).ToArray();
+                Entity remaining = ordered[0], departing = ordered[1];
+                Call(r.UI, "SelectLedgerHit", r.FindHit("Item", r.InventoryRow(departing))); Call(r.UI, "Render");
+                AssertSelectedItemIsPainted(r, departing);
+                Assert.True(r.Pack.RemoveObject(departing));
+                Call(r.UI, "Rebuild"); Call(r.UI, "Render");
+                AssertSelectedItemIsPainted(r, remaining);
+                Assert.That(r.Labels().Any(label => r.BoundsOf(label).yMin >= 478
+                    && label.Content == departing.GetDisplayName()), Is.False, "Removed-owner title cannot survive in the detail panel.");
+                Assert.AreEqual(1, r.Pack.Objects.Count); Assert.False(r.UI.ConsumePendingEverydayTurn());
+                Assert.IsNull(Get(r.UI, "_itemActionPopup"));
+            }
+        }
+
+        [Test]
+        public void EmptyPackStaysNeutralUntilARealItemArrives()
+        {
+            using (var input = new NativeNavigationScope())
+            using (var r = new Rig())
+            {
+                r.Open(); r.Tab(1);
+                Assert.Zero(r.Rows("_rows").Count); Assert.IsNull(Get(r.UI, "_ledgerSelectionDocument"));
+                Assert.That(r.Labels().Any(label => label.Content == "Your pack is empty."), Is.True);
+                Assert.False(r.Hits().Any(hit => Kind(hit) == "Item" || Kind(hit) == "Details"));
+                var tonic = r.Carry("HealingTonic"); Call(r.UI, "Rebuild"); Call(r.UI, "Render");
+                AssertSelectedItemIsPainted(r, tonic);
+                Assert.IsNull(Get(r.UI, "_itemActionPopup")); Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        [Test]
+        public void SearchSuppressesDetailsAndRestoresCurrentMatchingSelection()
+        {
+            using (var input = new NativeNavigationScope())
+            using (var r = new Rig())
+            {
+                var tonic = r.Carry("HealingTonic", "ledger tonic"); r.Carry("DriedMeat");
+                var before = r.Pack.Objects.ToArray(); r.Open(); r.Tab(1);
+                Call(r.UI, "SelectLedgerHit", r.FindHit("Item", r.InventoryRow(tonic))); Call(r.UI, "Render");
+                AssertSelectedItemIsPainted(r, tonic);
+                Call(r.UI, "BeginInventorySearch");
+                Assert.True((bool)Get(r.UI, "_inventorySearchActive")); Assert.IsNull(Get(r.UI, "_ledgerSelectionDocument"));
+                Call(r.UI, "SetInventoryQuery", "zzznomatchingitem");
+                Assert.Zero(r.Rows("_rows").Count); Assert.IsNull(Get(r.UI, "_ledgerSelectionDocument"));
+                Assert.False(r.Hits().Any(hit => Kind(hit) == "Item" || Kind(hit) == "Details"));
+                Call(r.UI, "SetInventoryQuery", "ledger tonic");
+                Assert.GreaterOrEqual(r.InventoryRow(tonic), 0);
+                Assert.IsNull(Get(r.UI, "_ledgerSelectionDocument"), "A matching row alone must not expose details while typing a search.");
+                input.Keys(Key.Enter); r.UI.HandleInput();
+                Assert.False((bool)Get(r.UI, "_inventorySearchActive")); AssertSelectedItemIsPainted(r, tonic);
+                Call(r.UI, "SetInventoryQuery", ""); AssertSelectedItemIsPainted(r, tonic);
+                CollectionAssert.AreEqual(before, r.Pack.Objects);
+                Assert.IsNull(Get(r.UI, "_itemActionPopup")); Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        static void AssertSelectedItemIsPainted(Rig r, Entity expected)
+        {
+            Assert.AreEqual(1, Get(r.UI, "_panel"));
+            int row = (int)Get(r.UI, "_cursorIndex"); var rows = r.Rows("_rows");
+            Assert.That(row, Is.InRange(0, rows.Count - 1));
+            Assert.False((bool)Get(rows[row], "IsHeader"), "Inventory focus must select an actual carried item, not a category header.");
+            var display = Get(rows[row], "Item") as InventoryScreenData.ItemDisplay;
+            Assert.NotNull(display); Assert.AreSame(expected, display.Item);
+            Assert.AreSame(expected, Get(r.UI, "_ledgerSelectionOwner"));
+            var document = Get(r.UI, "_ledgerSelectionDocument") as AnnouncementDocument;
+            Assert.NotNull(document, "Inspect the already-painted snapshot; do not build another description in the test.");
+            Assert.AreSame(expected, document.GetType().GetProperty("Subject", Members).GetValue(document));
+            Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
+            Assert.That(r.Labels().Any(label => r.BoundsOf(label).yMin >= 478
+                && label.Content == expected.GetDisplayName()), Is.True, "The lower panel must identify the selected owner.");
+            Rect hit = Bounds(r.FindHit("Item", row));
+            Color gold = new Color(.97f, .77f, .33f);
+            Assert.That(r.UI.GetComponentsInChildren<UnityEngine.UI.Image>(true).Any(image => image.isActiveAndEnabled
+                && image.color == gold && image.rectTransform.anchoredPosition == new Vector2(hit.x, -hit.y)
+                && image.rectTransform.sizeDelta == new Vector2(3, hit.height)), Is.True,
+                "The actual selected row must have its painted gold stripe, inside the visible list window.");
+        }
+
         [TestCase(1280, 800)] [TestCase(1920, 1080)]
         public void ScreenPointUsesThePaintedTabAndExactOwnedItemAtBothViewportShapes(int width, int height)
         {
@@ -444,6 +587,78 @@ namespace CavesOfOoo.Tests
         static string Kind(object hit) => Get(hit, "Kind").ToString();
         static int Index(object hit) => (int)Get(hit, "Index");
         static Rect Bounds(object hit) => (Rect)Get(hit, "Bounds");
+
+        sealed class NativeNavigationScope : IDisposable
+        {
+            const BindingFlags Statics = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+            readonly InputTestFixture input = new InputTestFixture();
+            readonly List<(FieldInfo field, object value)> fields = new List<(FieldInfo, object)>();
+            readonly List<(Array target, Array copy)> arrays = new List<(Array, Array)>();
+            readonly List<(HashSet<KeyCode> target, KeyCode[] copy)> sets = new List<(HashSet<KeyCode>, KeyCode[])>();
+            readonly List<MessageLog.Entry> messages = MessageLog.GetAllEntries();
+            readonly List<string> announcements = MessageLog.GetPendingAnnouncementsSnapshot();
+            readonly int flash = MessageLog.FlashStamp, serial = MessageLog.NextSerialValue;
+            readonly long revision = MessageLog.Revision, generation = MessageLog.HistoryGeneration;
+            readonly Action<string> onMessage = MessageLog.OnMessage;
+            readonly Func<int> tickProvider = MessageLog.TickProvider;
+            readonly object origins = typeof(MessageLog).GetField("AnnouncementOrigins", Statics).GetValue(null);
+            readonly Array oldOrigins;
+            readonly Keyboard keyboard;
+            readonly Gamepad pad;
+            readonly Mouse mouse;
+            bool ready;
+
+            public NativeNavigationScope()
+            {
+                oldOrigins = (Array)origins.GetType().GetMethod("ToArray").Invoke(origins, null);
+                foreach (var field in typeof(NativeGamepadInput).GetFields(Statics))
+                {
+                    if (field.IsLiteral) continue;
+                    object value = field.GetValue(null);
+                    if (!field.IsInitOnly) fields.Add((field, value));
+                    if (value is Array array) arrays.Add((array, (Array)array.Clone()));
+                    if (value is HashSet<KeyCode> set) sets.Add((set, set.ToArray()));
+                }
+                try
+                {
+                    // Ambient queued readers deliberately suppress backdrop inspection.
+                    // Isolate them here; restore their exact provenance after Rig disposal.
+                    MessageLog.OnMessage = null; MessageLog.Clear();
+                    input.Setup(); ready = true;
+                    keyboard = InputSystem.AddDevice<Keyboard>(); keyboard.MakeCurrent();
+                    pad = InputSystem.AddDevice<Gamepad>(); pad.MakeCurrent();
+                    mouse = InputSystem.AddDevice<Mouse>(); mouse.MakeCurrent();
+                    State(new KeyboardState(), new GamepadState());
+                    NativeGamepadInput.SetContext(GamepadInputContext.Menu);
+                    State(new KeyboardState(), new GamepadState());
+                }
+                catch { Dispose(); throw; }
+            }
+            void State(KeyboardState keys, GamepadState buttons)
+            {
+                InputSystem.QueueStateEvent(keyboard, keys); InputSystem.QueueStateEvent(pad, buttons);
+                InputSystem.QueueStateEvent(mouse, new MouseState { position = new Vector2(-1280, -800) });
+                InputSystem.Update(); InputHelper.GetKey(KeyCode.None);
+            }
+            public void Keys(params Key[] keys) => State(new KeyboardState(keys), new GamepadState());
+            public void Button(GamepadButton button) => State(new KeyboardState(), new GamepadState().WithButton(button));
+            public void Dispose()
+            {
+                try { if (ready) { ready = false; input.TearDown(); } }
+                finally
+                {
+                    foreach (var entry in fields) entry.field.SetValue(null, entry.value);
+                    foreach (var entry in arrays) Array.Copy(entry.copy, entry.target, entry.copy.Length);
+                    foreach (var entry in sets) { entry.target.Clear(); entry.target.UnionWith(entry.copy); }
+                    MessageLog.Restore(messages, announcements, flash, serial);
+                    origins.GetType().GetMethod("Clear").Invoke(origins, null);
+                    foreach (object origin in oldOrigins) origins.GetType().GetMethod("Enqueue").Invoke(origins, new[] { origin });
+                    typeof(MessageLog).GetProperty("Revision", Statics).SetValue(null, revision);
+                    typeof(MessageLog).GetProperty("HistoryGeneration", Statics).SetValue(null, generation);
+                    MessageLog.OnMessage = onMessage; MessageLog.TickProvider = tickProvider;
+                }
+            }
+        }
 
         sealed class NativeMouseScope : IDisposable
         {

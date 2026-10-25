@@ -1,0 +1,27 @@
+{
+  "start-time": "2026-10-25 08:14:43Z",
+  "end-time": "2026-10-25 08:14:44Z",
+  "total": "11",
+  "passed": "7",
+  "failed": "4",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(Brew)",
+      "message": "  The completed command must expose its actual last-execution CompletedCount receipt.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(InertSludge)",
+      "message": "  The completed command must expose its actual last-execution CompletedCount receipt.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BrewReagentsBatchCommandTests.LastExecutionReceiptCountsActualOutcomeUnitsInsteadOfRequestedBatch(Mishap)",
+      "message": "  The completed command must expose its actual last-execution CompletedCount receipt.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BrewReagentsBatchCommandTests.ReusedCommandClearsItsLastExecutionReceiptWhenNoStockRemains",
+      "message": "  The completed command must expose its actual last-execution CompletedCount receipt.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

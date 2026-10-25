@@ -69,7 +69,7 @@ namespace CavesOfOoo.Core
                     return Hint("Spend one quartz to leave a cracked ground light for thirty world turns, freeing a hand. It cannot be picked back up and does not lure enemies. This competes with equipment infusion.");
                 default: return null;
             }
-            return Hint(use + " Spend one item and your own action; only a living willing party member within reach can receive it. Self-use and existing throwing remain available.");
+            return Hint(use + " Spend one item and your own action; only a living willing party member within reach can receive it. Self-use remains available.");
         }
         static string Hint(string use) => "Tactical use: " + use
             + (use.Contains("action") ? "" : " Choose its inventory action while in reach; success costs one action.");

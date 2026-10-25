@@ -1250,3 +1250,34 @@ the remaining lichen rather than the mixed coating that can protect enemies.
 Gather actual raw grain/pulp and preserve clay for pan repair. Next art cycle:
 compose Nella's existing work area beside a field approach, retaining current
 owners/rights/finite supplies and testing two cold seeds before acceptance.
+
+
+## Latest continuation — fresh-origin forge/kitchen, 2026-10-25 08:02 UTC
+
+The fresh New Game character now completed the six-site service route: finite
+cellar clay/north reagent/Nella rights and crops/glade grain/east forge/kitchen.
+Actual inputs tempered same sword2703 with pure Frozen9202, repaired pan13701,
+paid2drams+grain/pulp, waited and collected one meal. F5→stop→ordinary Continue
+retained exact captured identities,42HP/40drams at5830. Actual captures and
+bounded acceptance are in [fresh route](GRAPHICS-G3-FRESH-OPENING-ACCEPTANCE.md).
+Whole-scene art, seed65, latest packaging and physical Deck remain open.
+
+Inventory follow-up fixes observed during the route are tracked in
+[polish](GRAPHICS-G3-INVENTORY-POLISH.md): header focus, craft acknowledgment,
+and truthful meal guidance/category. Then Nella scene composition is next,
+using real greybox→capture→imagegen→native assets→ordinary play. Earned kitchen
+checkpoint is `/tmp/coo-fresh-opening-after-kitchen/`; user save hashes intact.
+No stale cache target justified deletion;0bytes removed.
+
+
+## Latest continuation — inventory polish, storage recovery
+
+Inventory selection, truthful craft-completion counts and meal guidance/category
+are implemented and independently reviewed; native Unity233/233passed,0skip.
+[Polish record](GRAPHICS-G3-INVENTORY-POLISH.md) preserves RED/GREEN and limits.
+Final ordinary menu recapture was interrupted by ENOSPC. Root stopped Play and
+terminated only the owned Editor after its cleanup snippet timed out, recovering
+write capacity. Next: preserve these exact files on main, remove only the two
+audited stale platform PlayerDataCache directories while Unity is closed, verify
+normal save/isolation restoration, replay the menu and correct ForgeCommandsTests
+namespace, then resume Nella whole-scene composition. No cleanup yet in this slice.

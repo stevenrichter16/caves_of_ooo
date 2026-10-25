@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-25T08:06:45.357945+00:00",
+  "source_commit": "24491663db1d9d21f1e93f8e381ba97c4d4b110a",
+  "provenance": "Fresh New Game seed64 character, earned checkpoint continuation; actual keyboard and mouse input, no grants/teleport/time override",
+  "readouts_equal_after_ordinary_continue": [
+    "zone",
+    "flat",
+    "player",
+    "hp",
+    "tick",
+    "drams",
+    "inventory",
+    "equipment",
+    "weapons",
+    "visible objects by ID"
+  ],
+  "endpoint": {
+    "zone": "Overworld.12.11.0",
+    "player": [
+      28,
+      18
+    ],
+    "tick": 5830,
+    "hp": 42,
+    "drams": 40
+  },
+  "normal_save_preservation": {
+    "source": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/Saves/eac9a734ed804db5b3c222015048356e",
+    "backup": "/tmp/coo-user-save-before-popup-audit/eac9a734ed804db5b3c222015048356e",
+    "rootSentSaveInput": false,
+    "reason": "User stopped Play before root input; latest saved files preserved byte-for-byte",
+    "files": [
+      {
+        "name": "Quick.sav.gz",
+        "bytes": 555134,
+        "sha256": "373b670c3f4cd09bec7aada1d968f090fcb67cb6e224eaf58663414b14f7f3f8"
+      },
+      {
+        "name": "Quick.sav.gz.bak",
+        "bytes": 554757,
+        "sha256": "720e0560d8be9c595515832c8139540b3d8772b3e170c823895c2fee77fdf771"
+      },
+      {
+        "name": "Quick.json.bak",
+        "bytes": 409,
+        "sha256": "195b38dfc4c71cfe4fef43757fa97c37ddc661034e7ae1374be5c1c3ebcd84cd"
+      },
+      {
+        "name": "Quick.json",
+        "bytes": 409,
+        "sha256": "8efa929fda8271883f64903cec22b84c8abf62b8f2d9a858a96491c7064d8d5d"
+      }
+    ]
+  },
+  "normal_and_backup_hashes_match": true,
+  "whitespace_only_importers_restored": 23,
+  "removed_bytes": 0,
+  "bounds": "Existing sprite states and earned finite-use lifecycle only. Entire save not exhaustively compared. No Frozen combat proc, full scene art, seed65, new package, physical Deck or performance acceptance. During test editing separate temporary missing-helper compiler errors appeared; production runtime unchanged. Complete tests recompiled afterward."
+}
