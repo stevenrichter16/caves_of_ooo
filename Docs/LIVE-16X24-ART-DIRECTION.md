@@ -1190,3 +1190,33 @@ Actual Riposte, post-travel Player periodic hurt, Frozen proc and pulp applicati
 remain unobserved. Rain tooltip/historical growth-doc wording is a separate
 followup. Continue the active10minute graphics/storage schedule; push exact
 owned work before safe stale-cache inspection, preserving useful active caches.
+
+
+## Latest continuation — moving-body readout guard, 2026-10-25 01:25UTC
+
+[Named readout correction](GRAPHICS-G2-TWEEN-READOUT.md) now supplements logical
+cell occupancy with the actual disclosed native Walk body. This prevents a
+neighbor's receipt painting across a departing actor without changing damage,
+recipient, motion, fog or accepted pixels. Seven intended RED failures preceded
+production. Wider native run:285passed,0failed,1 calibrated allocation-counter
+skip across286 cases, including the focused61; counts are not additive.
+Independent geometry/authority/lifecycle review found no actionable P1/P2.
+
+Ordinary replay used the unmodified prepared checkpoint, normal SampleScene,
+Continue and real controls.24 EOF frames show En garde, melee, Hurt/death and
+Walk A/B with42HP maintained. The Scrabbler died on the first15-point strike,
+so the former departing-player/periodic-lethal overlap did not recur. Native
+geometry proves the correction; exact live reproduction, ordinary Riposte and
+post-travel Player periodic Hurt remain unobserved. Evidence and hashes are in
+`tween-readout-play-summary.json`. Profiling's ring wrapped; retained tail
+includes idle/capture/tool overhead and is not a performance or Deck gate.
+
+The distinct untempered replay branch was exported before cleanup to
+`/tmp/coo-tween-replay-checkpoint`. The accepted frost-tempered/crop checkpoint
+remains `/tmp/coo-forge-kitchen-final-checkpoint`, kitchen25,14,42HP,tick2990;
+confirm its real state on resume and copy only the actual character folder.
+Root stopped Play and restored SampleScene/view/preferences/null save override
+at01:24:42UTC. Direct console0errors,2existing Metal warnings. Current build
+and save backups remain intact. Repeated random counter hunting must not delay
+the six-site continuity/scene gate; record ordinary feedback if it occurs
+naturally. No full G2/G3, packaged, device or regional release is claimed.

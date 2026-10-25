@@ -8,11 +8,44 @@ namespace CavesOfOoo.Rendering
     {
         private const float MinimumFlatPoseExposure = .06f;
         private const float FlatRecoveryDuration = .04f;
+        private const float ReadoutBoundsEpsilon = .0001f;
         private bool _flatPixelMode;
         private FlatPixelActorMotionCatalog _flatMotionCatalog;
         private Material _flatMaterial;
         private readonly HashSet<int> _flatRepaintCells = new HashSet<int>();
         private readonly List<Entity> _flatResumeOwners = new List<Entity>();
+
+        /// <summary>Read-only supplement to logical readout occupancy. An exact
+        /// current native walking body can still cover a departed cell. Check
+        /// actual visible bounds, including partial overlap, without admitting
+        /// hidden actors, discovering new views, or changing their ownership.
+        /// Edge contact alone does not occupy another cell.</summary>
+        public bool HasDisclosedMovingBodyAt(Zone zone, int x, int y, Entity except)
+        {
+            if (this == null || !_initialized || !_flatPixelMode || !_presentationVisible || !enabled
+                || !ReferenceEquals(zone, _zone) || _worldTilemap == null
+                || !FlatPixelFallbackCatalog.IsCurrentGraph(_zone)) return false;
+            var cell = _zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != _zone || !cell.Explored || !cell.IsVisible) return false;
+
+            int tileY = Zone.Height - 1 - y;
+            Vector3 lower = _worldTilemap.CellToWorld(new Vector3Int(x, tileY, 0));
+            Vector3 upper = _worldTilemap.CellToWorld(new Vector3Int(x + 1, tileY + 1, 0));
+            float minX = Mathf.Min(lower.x, upper.x), maxX = Mathf.Max(lower.x, upper.x);
+            float minY = Mathf.Min(lower.y, upper.y), maxY = Mathf.Max(lower.y, upper.y);
+            foreach (var pair in _views)
+            {
+                var view = pair.Value;
+                if (!view.Flat || !view.IsMoving || ReferenceEquals(view.Entity, except)
+                    || !ValidFlatView(view) || view.Body == null || !view.Body.enabled
+                    || !view.Body.gameObject.activeInHierarchy || view.Body.sprite == null
+                    || !(view.Body.color.a > 0f)) continue;
+                Bounds body = view.Body.bounds;
+                if (body.max.x > minX + ReadoutBoundsEpsilon && body.min.x < maxX - ReadoutBoundsEpsilon
+                    && body.max.y > minY + ReadoutBoundsEpsilon && body.min.y < maxY - ReadoutBoundsEpsilon) return true;
+            }
+            return false;
+        }
 
         public void SetFlatPixelMode(bool active)
         {

@@ -273,6 +273,245 @@ namespace CavesOfOoo.Tests
                 }
             }
         }
+
+        [TestCase(1, 0, 0f)]
+        [TestCase(1, 0, .05f)]
+        [TestCase(1, 1, .05f)]
+        [TestCase(0, -1, .05f)]
+        public void LethalReadoutDoesNotPaintOverOrBeyondADepartingNativeBody(int dx, int dy, float elapsed)
+        {
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, dx, dy));
+                if (elapsed > 0) f.Tick(elapsed);
+                Assert.AreEqual((8 + dx, 9 + dy), f.Zone.GetEntityPosition(f.Actor));
+                Assert.True(OverlapsReadoutCell(f, 8, 9), "The real native body must still overlap the departing cell.");
+                var victim = DamageReadoutOwner(f, 1);
+                int version = f.Zone.EntityVersion;
+
+                f.ReadoutFrame();
+
+                Assert.Zero(f.Readouts.ActiveNumberCount,
+                    "All higher same-column lanes cross the disclosed moving body; omit the whole lethal receipt.");
+                Assert.Zero(f.GlyphPositions('1').Count);
+                Assert.AreEqual(20, f.Actor.GetStatValue("Hitpoints"));
+                Assert.Zero(victim.GetStatValue("Hitpoints"));
+                Assert.Null(f.Zone.GetEntityCell(victim));
+                Assert.AreEqual(version, f.Zone.EntityVersion, "Presentation cannot move an actor or change world ownership.");
+                Assert.False(f.Fx.HasBlockingFx);
+            }
+        }
+
+        [TestCase(.099f)]
+        [TestCase(.1f)]
+        public void ANewLethalReadoutRemainsVisibleWhenTheNativeBodyNoLongerOverlaps(float elapsed)
+        {
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                f.Tick(elapsed);
+                Assert.False(OverlapsReadoutCell(f, 8, 9),
+                    "Pixel-snapped bounds touching the cell edge must not count as overlap, even just before Walk ends.");
+                DamageReadoutOwner(f, 1);
+                f.ReadoutFrame();
+                CollectionAssert.AreEqual(new[] { new Vector2Int(8, 9) }, f.GlyphPositions('1'));
+                Assert.AreEqual(1, f.Readouts.ActiveNumberCount);
+            }
+        }
+
+        [TestCase("current-cell-hidden")]
+        [TestCase("render-hidden")]
+        [TestCase("foreign-render")]
+        [TestCase("foreign-physics")]
+        [TestCase("removed")]
+        [TestCase("component-disabled")]
+        [TestCase("presentation-hidden")]
+        [TestCase("other-zone")]
+        public void UnavailableNativeBodiesCannotSuppressAnOtherwiseTruthfulReadout(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                Assert.True(OverlapsReadoutCell(f, 8, 9));
+                if (fault == "current-cell-hidden") f.Zone.GetCell(9, 9).IsVisible = false;
+                if (fault == "render-hidden") f.Actor.GetPart<RenderPart>().Visible = false;
+                if (fault == "foreign-render") f.Actor.GetPart<RenderPart>().ParentEntity = new Entity();
+                if (fault == "foreign-physics") f.Actor.GetPart<PhysicsPart>().ParentEntity = new Entity();
+                if (fault == "removed") f.Zone.RemoveEntity(f.Actor);
+                if (fault == "component-disabled") f.Actors.enabled = false;
+                if (fault == "presentation-hidden") f.Actors.SetPresentationVisible(false);
+                if (fault == "other-zone") f.Actors.SetZone(new Zone("foreign-tween-readout"));
+                DamageReadoutOwner(f, 1);
+
+                // Deliberately no actor reconciliation: the provider must reject
+                // stale visible views itself, not depend on an earlier cleanup.
+                f.ReadoutFrame();
+
+                CollectionAssert.AreEqual(new[] { new Vector2Int(8, 9) }, f.GlyphPositions('1'));
+                Assert.AreEqual(1, f.Readouts.ActiveNumberCount);
+            }
+        }
+
+        [Test] public void MissingNativeMotionKeepsTheLogicalCellReadoutBehavior()
+        {
+            using (var f = new Fixture(false))
+            {
+                f.ClearReadouts();
+                Assert.Zero(f.Actors.ActiveViewCount);
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                DamageReadoutOwner(f, 1);
+                f.ReadoutFrame();
+                CollectionAssert.AreEqual(new[] { new Vector2Int(8, 9) }, f.GlyphPositions('1'));
+            }
+        }
+
+        [Test] public void ForeignMovementHookCannotCreateAVisualReadoutObstruction()
+        {
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                f.Tick(.1f);
+                EntityVisualHooks.EmitMoved(f.Actor, new Zone("foreign-motion"), 9, 9, 8, 9);
+                Assert.False(OverlapsReadoutCell(f, 8, 9));
+                DamageReadoutOwner(f, 1);
+                f.ReadoutFrame();
+                CollectionAssert.AreEqual(new[] { new Vector2Int(8, 9) }, f.GlyphPositions('1'));
+            }
+        }
+
+        [Test] public void DifferentMovingActorWithEqualIdStillObstructsTheReadout()
+        {
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                var victim = DamageReadoutOwner(f, 1, f.Actor.ID);
+                Assert.AreNotSame(f.Actor, victim);
+                Assert.AreEqual(f.Actor.ID, victim.ID);
+                f.ReadoutFrame();
+                Assert.Zero(f.Readouts.ActiveNumberCount);
+                Assert.Zero(f.GlyphPositions('1').Count);
+            }
+        }
+
+        [Test] public void MovingRecipientsOwnBodyIsExcludedOnlyFromTheAttributionCorridor()
+        {
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 0, 1));
+                Assert.True(OverlapsReadoutCell(f, 8, 9));
+                AsciiFxBus.EmitEventText(f.Zone, f.Actor, "Guard", "&C");
+                f.ReadoutFrame();
+
+                CollectionAssert.AreEqual(new[] { new Vector2Int(6, 7) }, f.GlyphPositions('G'),
+                    "The row must not paint over its own body, but the next lane may cross that exact recipient in its corridor.");
+                Assert.AreEqual(1, f.Readouts.ActiveEventTextCount);
+                Assert.AreEqual(20, f.Actor.GetStatValue("Hitpoints"));
+            }
+        }
+
+        [Test] public void RetiredTweenObstructedReceiptDoesNotReplayAfterTheActorLeaves()
+        {
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                DamageReadoutOwner(f, 1);
+                f.ReadoutFrame();
+                Assert.Zero(f.Readouts.ActiveNumberCount);
+                f.Tick(.1f);
+                f.ReadoutFrame();
+                Assert.Zero(f.GlyphPositions('1').Count, "Completing movement must not resurrect a retired outcome.");
+
+                DamageReadoutOwner(f, 1, "new-readout-owner");
+                f.ReadoutFrame();
+                CollectionAssert.AreEqual(new[] { new Vector2Int(8, 9) }, f.GlyphPositions('1'),
+                    "A genuinely new receipt remains allowed once the visual obstruction has left.");
+            }
+        }
+
+        [TestCase("queried-cell-hidden")]
+        [TestCase("foreign-zone-argument")]
+        [TestCase("body-disabled")]
+        [TestCase("not-top")]
+        public void MovingBodyQueryRejectsUndisclosedOrSuppressedPresentation(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                f.Tick(.05f);
+                Assert.True(f.Actors.HasDisclosedMovingBodyAt(f.Zone, 8, 9, null),
+                    "The same real partial-overlap setup must obstruct before its authority is revoked.");
+                var requestedZone = f.Zone;
+                if (fault == "queried-cell-hidden") f.Zone.GetCell(8, 9).IsVisible = false;
+                if (fault == "foreign-zone-argument") requestedZone = new Zone(f.Zone.ZoneID);
+                if (fault == "body-disabled") f.Body.enabled = false;
+                if (fault == "not-top")
+                {
+                    var replacement = Actor("top-replacement", "Villager");
+                    replacement.GetPart<RenderPart>().RenderLayer = 99;
+                    Assert.True(f.Zone.AddEntity(replacement, 9, 9));
+                }
+                Assert.False(f.Actors.HasDisclosedMovingBodyAt(requestedZone, 8, 9, null));
+            }
+        }
+
+        [Test] public void WarmMovingBodyReadoutQueriesAllocateNothingWhenTheRuntimeCounterWorks()
+        {
+            long calibrationBefore = GC.GetAllocatedBytesForCurrentThread();
+            var calibration = new byte[4096];
+            long calibrationAfter = GC.GetAllocatedBytesForCurrentThread();
+            GC.KeepAlive(calibration);
+            if (calibrationAfter <= calibrationBefore)
+                Assert.Ignore("This runtime allocation counter does not observe a known allocation; zero cannot prove the query allocates nothing.");
+
+            using (var f = new Fixture())
+            {
+                f.ClearReadouts();
+                Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0));
+                f.Tick(.05f);
+                Assert.True(f.Actors.HasDisclosedMovingBodyAt(f.Zone, 8, 9, null));
+                var recipient = Actor("visible-warm-recipient", "MarlbackScrabbler");
+                Assert.True(f.Zone.AddEntity(recipient, 12, 10));
+                CombatSystem.ApplyDamage(recipient, 1, null, f.Zone);
+                f.ReadoutFrame();
+                CollectionAssert.AreEqual(new[] { new Vector2Int(12, 9) }, f.GlyphPositions('1'));
+                var readouts = f.Readouts;
+                int version = f.Zone.EntityVersion;
+                for (int i = 0; i < 20; i++) readouts.Update(0, 0);
+                long before = GC.GetAllocatedBytesForCurrentThread();
+                for (int i = 0; i < 100; i++) readouts.Update(0, 0);
+                long allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+                Assert.Zero(allocated, "Measure the warmed actual renderer/query, not reflection or test collections.");
+                CollectionAssert.AreEqual(new[] { new Vector2Int(12, 9) }, f.GlyphPositions('1'));
+                Assert.AreEqual(version, f.Zone.EntityVersion);
+                Assert.AreEqual(19, recipient.GetStatValue("Hitpoints"));
+            }
+        }
+
+        static Entity DamageReadoutOwner(Fixture f, int hp, string id = "tween-readout-victim")
+        {
+            var victim = Actor(id, "MarlbackScrabbler");
+            victim.GetStat("Hitpoints").BaseValue = hp;
+            Assert.True(f.Zone.AddEntity(victim, 8, 10));
+            CombatSystem.ApplyDamage(victim, hp, null, f.Zone);
+            return victim;
+        }
+
+        static bool OverlapsReadoutCell(Fixture f, int x, int y)
+        {
+            var lo = f.FxTiles.CellToWorld(new Vector3Int(x, Zone.Height - 1 - y, 0));
+            var hi = f.FxTiles.CellToWorld(new Vector3Int(x + 1, Zone.Height - y, 0));
+            Bounds body = f.Body.bounds;
+            return body.max.x > lo.x + .0001f && body.min.x < hi.x - .0001f
+                && body.max.y > lo.y + .0001f && body.min.y < hi.y - .0001f;
+        }
+
         sealed class VetoAttack:Part { public override bool HandleEvent(GameEvent e)=>e.ID!="BeforeMeleeAttack"; }
         static Entity Actor(string id,string blueprint)
         {
@@ -303,6 +542,9 @@ namespace CavesOfOoo.Tests
             public Transform View=>ActorRoot.transform.Find("Visual_Player");
             public SpriteRenderer Body=>View.Find("Body").GetComponent<SpriteRenderer>();
             public SpriteRenderer Shadow=>View.Find("Shadow").GetComponent<SpriteRenderer>();
+            public Tilemap FxTiles=>(Tilemap)Field("_fxTilemap").GetValue(Renderer);
+            public AsciiFxRenderer Readouts=>(AsciiFxRenderer)Field("_asciiFxRenderer").GetValue(Renderer);
+            public WorldFxCoordinator Fx=>(WorldFxCoordinator)Field("_worldFxCoordinator").GetValue(Renderer);
             public Fixture(bool motion=true)
             {
                 var moved=EntityVisualHooks.MovedCallback;var attack=EntityVisualHooks.AttackCallback;var damage=EntityVisualHooks.DamageCallback;
@@ -333,6 +575,16 @@ namespace CavesOfOoo.Tests
                 catch{Dispose();throw;}
             }
             public void Frame()=>Call(Renderer,"LateUpdate");
+            public void ReadoutFrame()=>Fx.Update(0);
+            public void ClearReadouts()=>Fx.CancelAll();
+            public List<Vector2Int> GlyphPositions(char glyph)
+            {
+                var positions=new List<Vector2Int>();
+                var gameplay=CP437TilesetGenerator.GetTile(glyph);var ui=CP437TilesetGenerator.GetUiTile(glyph);
+                for(int y=0;y<CavesOfOoo.Core.Zone.Height;y++)for(int x=0;x<CavesOfOoo.Core.Zone.Width;x++)
+                {var tile=FxTiles.GetTile(new Vector3Int(x,CavesOfOoo.Core.Zone.Height-1-y,0));if(tile==gameplay||tile==ui)positions.Add(new Vector2Int(x,y));}
+                return positions;
+            }
             public void Tick(float dt)=>Call(Actors,"AdvancePresentation",dt);
             public void Pose(int index){Assert.NotNull(Body.sprite);Assert.AreSame(Motion,Body.sprite.texture);Assert.AreEqual(new Rect(index*16,0,16,24),Body.sprite.rect);}
             public void Idle(){Assert.NotNull(Body.sprite);Assert.AreNotSame(Motion,Body.sprite.texture);Assert.AreEqual(new Rect(0,0,16,24),Body.sprite.rect);}

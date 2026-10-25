@@ -54,6 +54,12 @@ namespace CavesOfOoo.Rendering
         /// Explicit particles and floating readouts retain their normal size.</summary>
         public bool CompactAuras { get; set; }
 
+        /// <summary>Optional read-only native presentation occupancy. Logical
+        /// owners and disclosure remain authoritative; this only supplements
+        /// their cells while a visible body is moving between them. The exact
+        /// except owner is allowed through an attribution corridor, never a row.</summary>
+        public Func<Zone, int, int, Entity, bool> MovingBodyOverlapsCell { get; set; }
+
         public AsciiFxRenderer(Tilemap tilemap)
         {
             _tilemap = tilemap;
@@ -440,10 +446,11 @@ namespace CavesOfOoo.Rendering
             var cell = _currentZone.GetCell(x, y);
             if (cell == null || !cell.Explored || !cell.IsVisible) return false;
             var owner = cell.GetTopVisibleObject();
-            return owner != null && !ReferenceEquals(owner, except)
+            if (owner != null && !ReferenceEquals(owner, except)
                 && (owner.HasTag("Creature") || owner.HasTag("Player"))
                 && ReferenceEquals(_currentZone.GetEntityCell(owner), cell)
-                && AsciiFxBus.CanShowEventText(_currentZone, owner);
+                && AsciiFxBus.CanShowEventText(_currentZone, owner)) return true;
+            return MovingBodyOverlapsCell?.Invoke(_currentZone, x, y, except) == true;
         }
 
         private bool EventTextCovers(int x, int y)

@@ -1,0 +1,39 @@
+{
+  "start-time": "2026-10-25 01:10:58Z",
+  "end-time": "2026-10-25 01:11:03Z",
+  "total": "56",
+  "passed": "49",
+  "failed": "7",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.DifferentMovingActorWithEqualIdStillObstructsTheReadout",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.LethalReadoutDoesNotPaintOverOrBeyondADepartingNativeBody(1,0,0.0f)",
+      "message": "  All higher same-column lanes cross the disclosed moving body; omit the whole lethal receipt.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.LethalReadoutDoesNotPaintOverOrBeyondADepartingNativeBody(1,0,0.05f)",
+      "message": "  All higher same-column lanes cross the disclosed moving body; omit the whole lethal receipt.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.LethalReadoutDoesNotPaintOverOrBeyondADepartingNativeBody(1,1,0.05f)",
+      "message": "  All higher same-column lanes cross the disclosed moving body; omit the whole lethal receipt.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.LethalReadoutDoesNotPaintOverOrBeyondADepartingNativeBody(0,-1,0.05f)",
+      "message": "  All higher same-column lanes cross the disclosed moving body; omit the whole lethal receipt.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.MovingRecipientsOwnBodyIsExcludedOnlyFromTheAttributionCorridor",
+      "message": "  The row must not paint over its own body, but the next lane may cross that exact recipient in its corridor.\n  Expected is <UnityEngine.Vector2Int[1]>, actual is <System.Collections.Generic.List`1[UnityEngine.Vector2Int]> with 1 elements\n  Values differ at index [0]\n  Expected: (6, 7)\n  But was:  (6, 9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelActorMotionTests.RetiredTweenObstructedReceiptDoesNotReplayAfterTheActorLeaves",
+      "message": "  Expected: 0\n  But was:  1\n"
+    }
+  ]
+}

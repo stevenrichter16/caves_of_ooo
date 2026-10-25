@@ -1,0 +1,426 @@
+{
+  "kind": "ordinary_post_fix_sanity_not_exact_overlap_reproduction",
+  "source_head": "a5cd732c881f33adcb3f6bf7ad86cc87593e6c81",
+  "runtime_patch": "three presentation files listed in GRAPHICS-G2-TWEEN-READOUT.md",
+  "start": "unmodified /tmp/coo-forge-prepared-checkpoint; normal SampleScene Continue via C, seed64",
+  "inputs": [
+    "20Right",
+    "7Down",
+    "20Right to east0,19",
+    "arm readonly EOF/events/profile",
+    "3Right",
+    "Return En garde",
+    "Down melee",
+    "3Right",
+    "F5"
+  ],
+  "result": {
+    "player": [
+      6,
+      19
+    ],
+    "hp": 42,
+    "tick": 2080,
+    "level": 2,
+    "xp": 95,
+    "equipped_blade": "2699 LongSword, untempered in this replay branch",
+    "carried_coating": "8998 BrewedTonic frozen coating",
+    "capture_frames": 24,
+    "export_errors": [],
+    "events": 2,
+    "reactive_counter_events": 0,
+    "periodic_events": 0
+  },
+  "observed": [
+    "normal flat presentation after ordinary cross-zone Continue/travel",
+    "readable En garde",
+    "ordinary attack, enemy Hurt/death, Walk A/B",
+    "clean stop, settings and save root restored; zero direct console errors"
+  ],
+  "not_observed": [
+    "exact original moving-player plus lethal-periodic NPC overlap",
+    "ordinary Riposte",
+    "ordinary post-travel Player periodic Hurt",
+    "newly visible numeric hit receipt in replay",
+    "packaged or physical Steam Deck behavior"
+  ],
+  "test_summary": {
+    "red": {
+      "total": 56,
+      "passed": 49,
+      "failed": 7,
+      "skipped": 0
+    },
+    "focused": {
+      "total": 61,
+      "passed": 60,
+      "failed": 0,
+      "skipped": 1
+    },
+    "wider_including_focused": {
+      "total": 286,
+      "passed": 285,
+      "failed": 0,
+      "skipped": 1
+    },
+    "skip": "Known4096-byte allocation calibration read zero; no measured zero-allocation claim"
+  },
+  "profile_bounds": "197.7 seconds,131072-sample ring wrapped. Retained tail includes idle/tool/EOF overhead; no isolated overlap hot-path, controlled baseline, speedup, capture-free or physical Deck claim. Raw file retains max/p99 and units.",
+  "files": [
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/events-20261025-011948-958-69b06c3fb1ad4dd8adefeeb34e1b7b1d.json",
+      "bytes": 662,
+      "sha256": "0d3a5182fdb0fc0d002da36a2e438f923c4114cb6218d365e00d6e2a41450b49"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-00.json",
+      "bytes": 1481,
+      "sha256": "59731f15c28f961477c380d1847a438f648787d6e4987ab1d2b70a5bdb43a209"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-00.png",
+      "bytes": 49738,
+      "sha256": "88f7c0c0e677125d8ba0fbc723d1adaeec05490acbdaf4d99ff96daf0f0c5a5d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-01.json",
+      "bytes": 1479,
+      "sha256": "35a9042fae12f90cf4ed1ed59160af4107c63e7e096cb38d032faf2381667449"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-01.png",
+      "bytes": 50826,
+      "sha256": "60dc9db30d006e632d7e41c808bbb3fc70ddd9827df188c3bdc3c2b762200f74"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-02.json",
+      "bytes": 1493,
+      "sha256": "ac25e73534372e47754d2597cf4ba24ca550984997b9b55c765db700c6a581f8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-02.png",
+      "bytes": 50855,
+      "sha256": "602d744d0ff414fd24c9836cc11e536a6fee8d0f5d785b8aadb8c459713fbe4b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-03.json",
+      "bytes": 1468,
+      "sha256": "91d39d0632372010a9e911f9a3d56cee7e10b3c6371a556ef6bac60e574ddb4a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-03.png",
+      "bytes": 50795,
+      "sha256": "3405cce8d6497efc1df42baeaebde25f0761a62d62cd59471aa7de20293d96b1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-04.json",
+      "bytes": 1475,
+      "sha256": "0926fb3f193551adff49644d0fe78ae8b2537128965471e8ed71d23581ca6575"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-04.png",
+      "bytes": 50509,
+      "sha256": "d15184c9887307627e46f66f109dc4c982ea3d6b4b752a8ef387cd6bbaa38ae1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-05.json",
+      "bytes": 1500,
+      "sha256": "87106018661e08d7c15ec9d595f474616530d10c70ea091f7d4146655c381111"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-05.png",
+      "bytes": 50498,
+      "sha256": "3289f25235f7bbfcc5a81bdd845133423786cbafb8fa1e0ce7dfdc85d27762e5"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-06.json",
+      "bytes": 1470,
+      "sha256": "e8df21e88174edee67c25a39ae65efd7435efdd5128eb3daae9a27ba2104789e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-06.png",
+      "bytes": 50476,
+      "sha256": "32df40e2eae5516b61851f35b94679b0d4fa271ba74fc40b1bbd11760209da03"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-07.json",
+      "bytes": 1479,
+      "sha256": "26c2e14c23d520ed94bfa3418fadbf5df01514951b5f31e1b9abab09c48a937c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-07.png",
+      "bytes": 49710,
+      "sha256": "259e25f1ca6ae0d63d380af2f8aacf89e0954d73e248e7dd828172c025d49f48"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-08.json",
+      "bytes": 1499,
+      "sha256": "7ed2ac25dc7e5c767a5da3aeb4d6eff50d6b115b553604c12b59e0993dc3efbd"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-08.png",
+      "bytes": 49697,
+      "sha256": "d5639411eae390fe323218eed41a12d4b76f2dde2e7b925537bb7cfe9c572c72"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-09.json",
+      "bytes": 1472,
+      "sha256": "6fd44e437997e87b63cc5cedbb42102624b2e1e3f41d14da1793d4529f8c95a8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-09.png",
+      "bytes": 49662,
+      "sha256": "f3afdc0360b5c56a11008b2f1c6de97cb625277479fc6c7fcacfc46407c0b9b6"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-10.json",
+      "bytes": 1707,
+      "sha256": "bdd5d335a413e9c96f66debeb6624407fb51d1aaa7cd8f281b33ace6c0e979ec"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-10.png",
+      "bytes": 56100,
+      "sha256": "9971b1b6818bcf2ab99ec797062a5f06bf74537c0bc64161e69e603c9ef3c967"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-11.json",
+      "bytes": 1719,
+      "sha256": "9a893b3af433d8f9eae8edd611cc5db3c5f98db2a91d61d04126ae19c1a86d65"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-11.png",
+      "bytes": 56110,
+      "sha256": "531a921c0a609188a7258e1b6dec894c6115ce109f840891e635a231396e7baa"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-12.json",
+      "bytes": 1715,
+      "sha256": "88cc57be48e68e7a490ded6277b0ea35c11958a157d8eb2c33558126e6423ae9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-12.png",
+      "bytes": 56129,
+      "sha256": "7f6b720e7b90fb59baa7b8546bd8b69b396835ddf6006d3ebef365e233abbed2"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-13.json",
+      "bytes": 1719,
+      "sha256": "e772626e6373558b465495af83c26e013197578e017dc5cbd86a6a7b4bef8564"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-13.png",
+      "bytes": 56406,
+      "sha256": "3c81901732b41a6ea15852a96ffc836613deca315c971045b586068dc42b1f22"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-14.json",
+      "bytes": 1491,
+      "sha256": "ae87cfcf4a2cf70dc1a1556075ce80d37646af84a481b3ee98cb2a279a7871e7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-14.png",
+      "bytes": 50619,
+      "sha256": "506a86940f8395f4afdcb859fb41898210ef12a2f308912966e5654e46bd36b5"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-15.json",
+      "bytes": 1487,
+      "sha256": "5ea4e67737fc8c81918d4809ecbab7be599bd3d7e506edd54497bba3ed29fa54"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-15.png",
+      "bytes": 54527,
+      "sha256": "4526e54e90a80b1152596355c5e93e1e606be894ee80512bf4459370d28b883c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-16.json",
+      "bytes": 1502,
+      "sha256": "f632af7c983f814361fd2c82bcf4b0073c84caa6d530dbdfffe0b6dddc01f5f7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-16.png",
+      "bytes": 54851,
+      "sha256": "44a72dbc4625ea41ee220115fb289f0f0324612328f7f7bd16964af61910a860"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-17.json",
+      "bytes": 907,
+      "sha256": "d5faad4388cd07136ccf1ad22625adf746359f68534e6b64b471661e94b42030"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-17.png",
+      "bytes": 53453,
+      "sha256": "ba4d3c3cbc7a56d67aa242e028dcbc0537cf1b0eeb75b2a5ea31adccca5f33ef"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-18.json",
+      "bytes": 904,
+      "sha256": "0dc5d29852bc3cf393c3172ca2e36b7b56118b553ad53df087665adaa6cfc1dd"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-18.png",
+      "bytes": 52453,
+      "sha256": "959e15fdb367138801501d9a81ae83e89daaa3222b385b1f12a44b18fb0fc73c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-19.json",
+      "bytes": 911,
+      "sha256": "962a924f45521bd261b156043c777389a1fc23617e0da778da69371542ccf2ad"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-19.png",
+      "bytes": 52470,
+      "sha256": "11ffd3b591a094add1ead840f20e9b4e7b7bfda9d57bc94f629db59b217412a9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-20.json",
+      "bytes": 898,
+      "sha256": "84519dba439e0a9560a5ca929946be3bde448cb0f0be6300150b316a78254a9d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-20.png",
+      "bytes": 52432,
+      "sha256": "510a9118ed2bd0d95fa79f3eefa2b17290c4366e92b4e676a5434d98c985cf1e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-21.json",
+      "bytes": 899,
+      "sha256": "42296f44811a300520852847e0cb3d35bc88b5dce8f631fd3db73976bad0abf0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-21.png",
+      "bytes": 53132,
+      "sha256": "3a9156a58d71211e145f181c54784d1b230c0ff092cb5dbfe73d697a8b28535a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-22.json",
+      "bytes": 914,
+      "sha256": "07ab988c835d954b01ee920c47cd8bbdd839216c34104ad908beffb2766b12d8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-22.png",
+      "bytes": 53138,
+      "sha256": "8f878d0e15dd87beb67cbae03d18ec7273d47fac67d3c70e71cb61a6e47f35c9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-23.json",
+      "bytes": 898,
+      "sha256": "9ea1c796543f26a9aa3eace792d14f703116e672d63ff18e563442b9e65a5cc9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/frame-23.png",
+      "bytes": 53109,
+      "sha256": "8a6023b2783dfbfb25d689ca2f489eeb44674707a0962b606f6e1313325493f9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-011948-031/index.json",
+      "bytes": 38880,
+      "sha256": "f69b6c514e5f8aacac3e91bb00edda43e7728ca14d09b3d070ef7f2da884efa8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-capture-arm.json",
+      "bytes": 235,
+      "sha256": "6666e012377e9f2fa923c961d9287f79bb41bee22f1fbc0effc0ff21bc2b1175"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-capture-finish.json",
+      "bytes": 196,
+      "sha256": "cf053f8af831edc8809349684172028805bec4daf5013bc6a5241f774b27c43b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-checkpoint.json",
+      "bytes": 1291,
+      "sha256": "8dad55fcb87c1f24ce35a730d0fc2892b78b08a35f72fd1b0ea43e83c204c74c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-cleanup.json",
+      "bytes": 203,
+      "sha256": "6ba1457501dd97fff364b82fa516800a8e0599048e4d360887ee763794c6c80f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-console.json",
+      "bytes": 108,
+      "sha256": "a40a0912dcf0ea0727d0cd4cfaf77924cf4ceba7485d6be580720361b1907aca"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-end-play.json",
+      "bytes": 2004,
+      "sha256": "4843ad1bb21da1a0b03b0d6bd2acac2ac8a0a0262c60fa717b8a92ac3472c529"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-end-play.png",
+      "bytes": 45961,
+      "sha256": "35b2ebde98347abbe1186dfcb31f1c4f6c3a9e64f99dbc89c92a5972e35f21f4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-events-arm.json",
+      "bytes": 210,
+      "sha256": "b30bd94c0dd2f89e91cae2bec12e4c21d7214f583cd3cf7cbcfabd179244d8d0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-events-finish.json",
+      "bytes": 208,
+      "sha256": "0e634205b029a8beacb594949130afe841a56a65da6f0a0c3180513a11a1d8a8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-green-job.json",
+      "bytes": 294,
+      "sha256": "70755778db6eecc23f3eaf7f56c0362aed4220e4e7434de42f2521cc292e40c8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-green-summary.json",
+      "bytes": 200,
+      "sha256": "c6890b3345bf8d3ba0e0721da8706d9f6ee338b05b0785bf74b2ec0a541a66c1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-green.xml",
+      "bytes": 53053,
+      "sha256": "3a0015b7abbf126f0edc19aa342b9460aa18e73b814c4f123a916d9c8887187d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-independent-review.md",
+      "bytes": 1214,
+      "sha256": "304a265c555836826b93db0d841d86eb6cc1e67e05cacedc23f270fd91850195"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-launch.json",
+      "bytes": 268,
+      "sha256": "59e20728fa2a319fbcfc4bbc71a745e4adf9780b65a916cbb5d0f643dc96029c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-profile.json",
+      "bytes": 1618,
+      "sha256": "a12b95c5de6965040c13503f3581278a7054d2746656d98566e6237a1600e587"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-red-job.json",
+      "bytes": 294,
+      "sha256": "e50324481926201b9f4bf8c9b050996439bf52f65b497922c504aeec5b22cf7b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-red-summary.json",
+      "bytes": 2184,
+      "sha256": "87f24d7aa562dcf86c17cb9418bd91d67db8c7d36ce290199bc2e87400ee62f7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-red.xml",
+      "bytes": 52589,
+      "sha256": "c5ffb5d878b3f660c76238809e6e79bc3c921224f2ba52af1444b1c54c4f05ee"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-regression-job.json",
+      "bytes": 294,
+      "sha256": "5e310aa3d8dfe2b5694e3a604daa070d40c0131ee1460e5a9d9bdcce81089cd4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-regression-summary.json",
+      "bytes": 202,
+      "sha256": "c65cb7ab88b4e302427c23226ab959ddf3fc1649ad6ad7211d6d5095568a3ecc"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/tween-readout-regression.xml",
+      "bytes": 243423,
+      "sha256": "89d4305b1d072fa1280f4f71323232bc973d0702de37bf20ca124c11d4933ee4"
+    }
+  ]
+}

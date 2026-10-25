@@ -420,6 +420,7 @@ namespace CavesOfOoo.Rendering
                 GameplayRenderLayers.SetLayerRecursive(entityVisualObj, GameplayRenderLayers.WorldLayer);
                 _entityVisualRenderer = entityVisualObj.AddComponent<AnimatedEntityRenderer>();
                 _entityVisualRenderer.Init(ResolveEntityVisualTint, _tilemap);
+                _asciiFxRenderer.MovingBodyOverlapsCell = _entityVisualRenderer.HasDisclosedMovingBodyAt;
                 _entityVisualRenderer.SetSourceEntityPredicate(IsSourceSceneBody);
                 _envSpriteRenderer.SetEntityVisualPredicate(_entityVisualRenderer.CanRender);
                 _envSpriteRenderer.SetFlatActorObserver(_entityVisualRenderer.ObserveFlatCell);
