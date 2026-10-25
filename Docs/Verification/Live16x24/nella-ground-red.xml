@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Failed(Child)" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:56Z" duration="2.5139957">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31322" result="Failed" site="Child" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:56Z" duration="2.513996" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38564" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31322" result="Failed" site="Child" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:56Z" duration="2.433972" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38565" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31322" result="Failed" site="Child" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:56Z" duration="2.361463" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38566" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31322" result="Failed" site="Child" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:56Z" duration="2.168409" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28681" name="FlatPixelNellaGroundCatalogTests" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:56Z" duration="1.963909" total="30" passed="4" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28685" name="ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:54Z" duration="0.178165" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28683" name="ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt(&quot;CropRow&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt(&quot;CropRow&quot;)" methodname="ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="806855338" result="Failed" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:54Z" duration="0.112314" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt (System.String blueprint) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28684" name="ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt(&quot;RipeCropRow&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt(&quot;RipeCropRow&quot;)" methodname="ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="582442320" result="Failed" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:54Z" duration="0.062733" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.ActualLowerFieldUsesOldFieldFrameThenPreparationOutranksIt (System.String blueprint) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28691" name="CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:55Z" duration="0.235772" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28689" name="CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers(&quot;Player&quot;)" methodname="CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="700761180" result="Failed" start-time="2026-10-25 06:39:54Z" end-time="2026-10-25 06:39:55Z" duration="0.169457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers (System.String coverName) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28690" name="CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers(&quot;PitchpodResin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers(&quot;PitchpodResin&quot;)" methodname="CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="884610732" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.042679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.CoveredPreparedGroundKeepsItsOwnerIndependentArtAndMarkerRemovalRecovers (System.String coverName) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28682" name="DefaultWorldRouteUsesExistingResourceButOldInjectedConstructorStaysResourceFree" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.DefaultWorldRouteUsesExistingResourceButOldInjectedConstructorStaysResourceFree" methodname="DefaultWorldRouteUsesExistingResourceButOldInjectedConstructorStaysResourceFree" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="390131018" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.070493" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.Expect (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D atlas, System.Int32 frame) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:268
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.DefaultWorldRouteUsesExistingResourceButOldInjectedConstructorStaysResourceFree () [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:40
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28719" name="ExistingOpeningGrassRoadAndWaterKeepTheirOriginalFrames" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.ExistingOpeningGrassRoadAndWaterKeepTheirOriginalFrames" methodname="ExistingOpeningGrassRoadAndWaterKeepTheirOriginalFrames" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="69847792" result="Passed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.048392" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28712" name="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.184480" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28708" name="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;foreign-part&quot;)" methodname="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="2075050277" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.041506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround (System.String fault) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28709" name="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;foreign-render&quot;)" methodname="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="489124363" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.041282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround (System.String fault) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28710" name="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;hidden-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;hidden-render&quot;)" methodname="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="613479095" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.040974" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround (System.String fault) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28711" name="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;stale-anchor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround(&quot;stale-anchor&quot;)" methodname="InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1097557859" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.040762" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidOrHiddenCropCannotSupplyWetnessToOtherwiseValidPreparedGround (System.String fault) [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28697" name="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.255364" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28692" name="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;foreign-marker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;foreign-marker&quot;)" methodname="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="888878041" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.040142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt (System.String fault) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28693" name="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;foreign-render&quot;)" methodname="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1230101099" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.040073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt (System.String fault) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28694" name="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;foreign-physics&quot;)" methodname="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1456181370" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.065155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt (System.String fault) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28695" name="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;carried&quot;)" methodname="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1484793865" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.050889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt (System.String fault) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28696" name="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;reskin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt(&quot;reskin&quot;)" methodname="InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1900849864" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.038861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.InvalidPreparedOwnerCannotBorrowNativeSoilAndExactRecoveryRestoresIt (System.String fault) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28716" name="LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:56Z" duration="0.413097" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28713" name="LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation(&quot;water&quot;)" methodname="LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="222996352" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.174794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as < (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.Expect (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D atlas, System.Int32 frame) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:268
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectSubmitted (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:359
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation (System.String coating) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28714" name="LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation(&quot;oil&quot;)" methodname="LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1100091059" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:55Z" duration="0.078246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as < (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.Expect (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D atlas, System.Int32 frame) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:268
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectSubmitted (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:359
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation (System.String coating) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28715" name="LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation(&quot;water-and-ice&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation(&quot;water-and-ice&quot;)" methodname="LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1511050914" result="Failed" start-time="2026-10-25 06:39:55Z" end-time="2026-10-25 06:39:56Z" duration="0.140037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as < (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.Expect (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D atlas, System.Int32 frame) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:268
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectSubmitted (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:359
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation (System.String coating) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28707" name="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.273200" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28701" name="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;hidden&quot;)" methodname="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1336559829" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.045716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority (System.String fault) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28702" name="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;unexplored&quot;)" methodname="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="410419953" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.042154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority (System.String fault) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28703" name="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;replaced-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;replaced-cell&quot;)" methodname="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="895628485" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.041275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority (System.String fault) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28704" name="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;replaced-graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;replaced-graph&quot;)" methodname="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1602712748" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.040934" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority (System.String fault) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28705" name="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;wrong-biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;wrong-biome&quot;)" methodname="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1323205236" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.041532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority (System.String fault) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28706" name="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority(&quot;poi&quot;)" methodname="NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1416981524" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.041217" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NativePreparedGroundRequiresCurrentDisclosedExactPlotAuthority (System.String fault) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28717" name="NellaRoadDoesNotBorrowOpeningPathArtAndQueriesDoNotMutateState" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NellaRoadDoesNotBorrowOpeningPathArtAndQueriesDoNotMutateState" methodname="NellaRoadDoesNotBorrowOpeningPathArtAndQueriesDoNotMutateState" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="941749760" result="Passed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.041410" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28700" name="OtherNativeAdmittedSitesDoNotAcquireNellasSoil" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.OtherNativeAdmittedSitesDoNotAcquireNellasSoil" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.102380" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28698" name="OtherNativeAdmittedSitesDoNotAcquireNellasSoil(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.OtherNativeAdmittedSitesDoNotAcquireNellasSoil(&quot;Overworld.11.9.0&quot;)" methodname="OtherNativeAdmittedSitesDoNotAcquireNellasSoil" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="167163161" result="Passed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.042922" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28699" name="OtherNativeAdmittedSitesDoNotAcquireNellasSoil(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.OtherNativeAdmittedSitesDoNotAcquireNellasSoil(&quot;Overworld.12.11.0&quot;)" methodname="OtherNativeAdmittedSitesDoNotAcquireNellasSoil" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="2140184313" result="Passed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.039554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28718" name="RealHarvestPlantWaterAndDryRepaintPreparedGroundWithoutManualDirty" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.RealHarvestPlantWaterAndDryRepaintPreparedGroundWithoutManualDirty" methodname="RealHarvestPlantWaterAndDryRepaintPreparedGroundWithoutManualDirty" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="965179970" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.055091" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as < (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.Expect (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D atlas, System.Int32 frame) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:268
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectSubmitted (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:359
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.RealHarvestPlantWaterAndDryRepaintPreparedGroundWithoutManualDirty () [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:228
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28688" name="UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.101172" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28686" name="UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow(0)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow(0)" methodname="UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="1403343232" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.040950" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow (System.Int32 moisture) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28687" name="UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow(3)" fullname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow(3)" methodname="UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow" classname="CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests" runstate="Runnable" seed="299104475" result="Failed" start-time="2026-10-25 06:39:56Z" end-time="2026-10-25 06:39:56Z" duration="0.040182" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Direct ground companion.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests+Fixture.ExpectBoth (System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:340
+at CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow (System.Int32 moisture) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelNellaGroundCatalogTests.cs:77
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -6,13 +6,14 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Optional visible opening ground. Borrows its atlas and strict
+    /// <summary>Optional visible opening ground and exact Nella soil. Borrows its atlas and strict
     /// cell selector; owns only cached sprites/tiles. Lower terrain is selected
     /// independently of a covering actor. No gameplay or crop time is advanced.</summary>
     public sealed class FlatPixelOpeningGroundCatalog : IDisposable
     {
         public const string ResourcePath = "Sprites/Live16x24/opening-ground";
         private const int Width = 16, Height = 24, Frames = 21;
+        private const string NellaZoneID = "Overworld.11.8.0";
         private readonly FlatPixelFallbackCatalog _selector;
         private readonly Texture2D _atlas;
         private readonly Tile[] _tiles;
@@ -49,14 +50,21 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        // Share only the exact material scope with world routing. The selector
+        // below still proves the current graph/cell and visible owner authority.
+        internal static bool IsSupportedZone(Zone zone)
+            => ReferenceGladePlan.IsActive(zone)
+                || zone?.ZoneID == NellaZoneID && FlatPixelGreyboxCatalog.IsAdmitted(zone);
+
         /// <summary>Returns opaque native ground with an untinted white draw
-        /// color only for the current visible opening cell. Remembered cells,
+        /// color for visible opening cells or exact admitted Nella soil. Remembered cells,
         /// unsupported higher-priority ground and mixed coatings retain the
         /// caller's existing color/hazard presentation.</summary>
         public bool TryResolve(Zone zone, int x, int y, out Tile tile, out Color tint)
         {
             tile = null; tint = Color.white;
-            if (_disposed || _atlas == null || _tiles == null || !ReferenceGladePlan.IsActive(zone)) return false;
+            if (_disposed || _atlas == null || _tiles == null || !IsSupportedZone(zone)) return false;
+            bool opening = ReferenceGladePlan.IsActive(zone);
             var cell = zone.GetCell(x, y);
             // Visibility is checked before the selector or any live state read.
             if (!CurrentCell(zone, cell) || !cell.Explored || !cell.IsVisible
@@ -72,7 +80,9 @@ namespace CavesOfOoo.Rendering
                     if (coating.Turns <= 0) continue;
                     // Match the existing hazard renderer's sole-entry rule.
                     // Rejected live coatings never fall through to dry ground.
-                    if (coatings.Count != 1 || coating.Id != "water") return false;
+                    // Nella borrows soil only; its live coatings retain the
+                    // existing generic ground and hazard presentation.
+                    if (!opening || coatings.Count != 1 || coating.Id != "water") return false;
                     int mask = 0;
                     if (DisclosedDry(zone, x, y - 1)) mask |= 1;
                     if (DisclosedDry(zone, x + 1, y)) mask |= 2;
@@ -102,7 +112,7 @@ namespace CavesOfOoo.Rendering
                 var soil = owner.GetPart<CultivatedSoilPart>();
                 if (soil != null && !ReferenceEquals(soil.ParentEntity, owner)) continue;
                 if (usableBed && soil != null && owner.HasTag("Plantable")
-                    && (oldField || IsOpeningGrass(owner, render))) prepared = true;
+                    && (oldField || IsSupportedGrass(owner, render, opening))) prepared = true;
                 if (oldField) field = true;
                 else if (owner.BlueprintName == "RoadStone" && PlainVisual(render)) road = true;
             }
@@ -114,7 +124,7 @@ namespace CavesOfOoo.Rendering
             else if (crops > 0 || usableBed) return false;
             else if (field) tile = _tiles[18];
             else if (fieldColor) return false;
-            else if (road) tile = _tiles[16 + ((x + y) & 1)];
+            else if (opening && road) tile = _tiles[16 + ((x + y) & 1)];
             return tile != null;
         }
 
@@ -163,7 +173,7 @@ namespace CavesOfOoo.Rendering
             var render = owner?.GetPart<RenderPart>();
             return owner != null && ReferenceEquals(owner.SpatialZone, zone)
                 && ReferenceEquals(zone.GetEntityCell(owner), cell) && cell.Objects.Contains(owner)
-                && CropTime.IsCurrentOwner(crop, zone)
+                && crop != null && ReferenceEquals(crop.ParentEntity, owner) && CropTime.IsCurrentOwner(crop, zone)
                 && render != null && ReferenceEquals(render.ParentEntity, owner) && render.Visible
                 && crop.GrowthStage >= 0 && crop.GrowthStage <= (crop.HarvestAtMaturity ? 2 : 1);
         }
@@ -195,8 +205,9 @@ namespace CavesOfOoo.Rendering
                 || owner.BlueprintName == "RipeCropRow" && field != null;
         }
 
-        private static bool IsOpeningGrass(Entity owner, RenderPart render)
-            => owner.BlueprintName == "Grass" && render.VisualID == "reference-glade-ground"
+        private static bool IsSupportedGrass(Entity owner, RenderPart render, bool opening)
+            => owner.BlueprintName == "Grass"
+                && (opening ? render.VisualID == "reference-glade-ground" : string.IsNullOrEmpty(render.VisualID))
                 && string.IsNullOrEmpty(render.VisualVariant) && render.GlyphVariants == "...,.'`";
 
         public void Dispose()

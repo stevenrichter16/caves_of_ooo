@@ -1,0 +1,110 @@
+{
+  "at_utc": "2026-10-25T07:03:38.594964+00:00",
+  "scope": "Exact Nella native old-field/prepared dry/prepared wet materials; seed64 ordinary Unity Editor Play only",
+  "native_tests": {
+    "total": 272,
+    "passed": 272,
+    "failed": 0,
+    "skipped": 0,
+    "new_cases": 31
+  },
+  "actions": [
+    "Continue earned after-North checkpoint; ordinary border walk to Nella",
+    "Talk and pay8drams;50 to42drams; Granted claim",
+    "Harvest Pitchpod9187 at18,6; pick up2resin and1seed",
+    "Attempt plant here on unprepared18,7 correctly refuses without consumption; choose adjacent prepared18,6 and consume saved seed into Pitchpod9193",
+    "Conjure Rain via actual hotbar4; both reserve crops moisture39 and native wet frame20",
+    "40 ordinary wait inputs: moisture0, native dry frame19, growing stage1",
+    "F5; walk south to11,9; F6 latest autosave; return north to18,7; same paid claim, crop9193 and2resin remain",
+    "F5 earned checkpoint; export protected copy; stop and restore owned save/scene/view/preferences"
+  ],
+  "captures": [
+    {
+      "image": "nella-ground-arrival.png",
+      "receipt": "nella-ground-arrival.json",
+      "zone": "Overworld.11.8.0",
+      "player": [
+        18,
+        9
+      ],
+      "tick": 2640,
+      "hp": 32
+    },
+    {
+      "image": "nella-ground-paid-beds.png",
+      "receipt": "nella-ground-paid-beds.json",
+      "zone": "Overworld.11.8.0",
+      "player": [
+        18,
+        7
+      ],
+      "tick": 2670,
+      "hp": 32
+    },
+    {
+      "image": "nella-ground-empty-dry.png",
+      "receipt": "nella-ground-empty-dry.json",
+      "zone": "Overworld.11.8.0",
+      "player": [
+        18,
+        7
+      ],
+      "tick": 2710,
+      "hp": 32
+    },
+    {
+      "image": "nella-ground-rain-replant.png",
+      "receipt": "nella-ground-rain-replant.json",
+      "zone": "Overworld.11.8.0",
+      "player": [
+        18,
+        7
+      ],
+      "tick": 2760,
+      "hp": 32
+    },
+    {
+      "image": "nella-ground-wet-focused.png",
+      "receipt": "nella-ground-wet-focused.json",
+      "zone": "Overworld.11.8.0",
+      "player": [
+        18,
+        7
+      ],
+      "tick": 2760,
+      "hp": 32
+    },
+    {
+      "image": "nella-ground-dried-after-wait.png",
+      "receipt": "nella-ground-dried-after-wait.json",
+      "zone": "Overworld.11.8.0",
+      "player": [
+        18,
+        7
+      ],
+      "tick": 3160,
+      "hp": 32
+    },
+    {
+      "image": "nella-ground-save-return.png",
+      "receipt": "nella-ground-save-return.json",
+      "zone": "Overworld.11.8.0",
+      "player": [
+        18,
+        7
+      ],
+      "tick": 3510,
+      "hp": 32
+    }
+  ],
+  "capture_correction": "Original first four painted arrays query(x,-y), a diagnostic mistake. Preserved raw; wet-focused onward queries actual(x,Zone.Height-1-y) and confirms real tile names/source rectangles. Images/owner receipts unaffected.",
+  "profile_bounds": "279.36seconds uncapped Editor;241299frames.131072sample circular buffers wrapped: statistics cover only retained tail, largely idle/tool time.40draw/batch p99; renderer-marker p99~0.143ms; no before/after attribution, whole-run performance claim, standalone or Deck acceptance.",
+  "normal_user_save_and_backup_hashes_match": true,
+  "limits": [
+    "Dry furrow distinction is deliberately subtle at1x; no full-scene acceptance",
+    "Broad fragmented field layout/service grouping still needs scene-level improvement",
+    "Seed65 visual counter, eastforge/kitchen fresh-origin continuation and physical Deck remain open",
+    "Current Mac/Linux builds predate inventory and this change",
+    "Observed100ms held b action key also moved playerSW after inventoryclosed; separate input-release audit requested"
+  ]
+}

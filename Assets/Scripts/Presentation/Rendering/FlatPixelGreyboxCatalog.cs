@@ -595,7 +595,8 @@ namespace CavesOfOoo.Rendering
                 {
                     Entity plant = cell.Objects[i]; var crop = plant.GetPart<CropPart>();
                     var render = plant.GetPart<RenderPart>();
-                    if (CropTime.IsCurrentOwner(crop, zone) && CurrentOwnerCell(zone, cell, plant)
+                    if (crop != null && crop.ParentEntity == plant
+                        && CropTime.IsCurrentOwner(crop, zone) && CurrentOwnerCell(zone, cell, plant)
                         && render != null && render.ParentEntity == plant && render.Visible
                         && crop.GrowthStage >= 0 && crop.GrowthStage <= (crop.HarvestAtMaturity ? 2 : 1))
                         return crop.MoistureTicks > 0 ? FlatPixelGreyboxGround.WetSoil : FlatPixelGreyboxGround.DrySoil;
@@ -753,7 +754,7 @@ namespace CavesOfOoo.Rendering
             var ground = local ? GroundOf(zone, cell, owner, fallback.Remembered) : fallback.GroundKind;
             var groundColor = local ? GroundColor(ground) : fallback.GroundColor;
             var groundTile = local ? _tiles[(int)FlatPixelGreyboxKind.Ground] : fallback.GroundTile;
-            if (local && !fallback.Remembered && ReferenceGladePlan.IsActive(zone))
+            if (local && !fallback.Remembered && FlatPixelOpeningGroundCatalog.IsSupportedZone(zone))
             {
                 if (_groundArt == null && _loadOptionalResources)
                     _groundArt = new FlatPixelOpeningGroundCatalog(_glyphFallback);

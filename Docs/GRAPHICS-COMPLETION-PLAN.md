@@ -1204,3 +1204,30 @@ Normal save/backups match. Native49/49 shared UI final check also corrected an
 old13-discipline test pin to the shipped14 including Throwing; browser runtime
 unchanged. Current packages and physical Deck acceptance remain open. Resume
 Nella world graphics from the protected after-North checkpoint next.
+
+
+## Latest continuation — Nella soil and earned crop loop, 2026-10-25 07:01 UTC
+
+[Nella working soil](GRAPHICS-G3-NELLA-GROUND.md) now reuses accepted native
+old-field/dry/wet frames18–20 in exact admitted11,8. Both rendering routes use
+current owned crops; a shared-part ownership counter was RED before correction.
+Native GREEN272/272, zero skipped. Independent source and actual-image reviews
+accept the bounded material change, leaving the larger repeated field layout
+and loosely composed service area open.
+
+Actual seed64 earned-route Play paid8drams, harvested/picked up2resin+1seed,
+replanted the seed at18,6, cast Rain and waited normally to observe wet20→dry19.
+F5→south border→F6 latest save→north return retains crop9193, paid rights,42drams,
+32HP and the two resin. Actual screenshots/receipts are `nella-ground-*` in
+Verification/Live16x24. Earlier null painted readouts were helper-coordinate
+errors, preserved and corrected in later receipts. No approved sprite pixels
+or gameplay system changed. Profiler tail is explicitly bounded/wrapped, not a
+speedup or physical Deck claim. Current builds predate inventory and this pass.
+
+New earned checkpoint `/tmp/coo-fresh-opening-after-nella/` contains character
+20cb263ebed24a8380168954e23981ca at tick3510,18,7 Nella, with the real coating and
+finite route supplies intact. Normal save hashes and owned Editor restoration
+are verified. No stale cache target justified deletion; zero bytes removed.
+Next: resolve confirmed held-action input fallthrough if source audit reproduces
+it, continue fresh-origin east forge/kitchen, then next scene-composition cycle
+and seed65 visual counter. Soil acceptance is not complete six-zone/world art.
