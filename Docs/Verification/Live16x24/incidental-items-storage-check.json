@@ -1,0 +1,92 @@
+{
+  "at": "2026-10-25T12:34:34.657929+00:00",
+  "head": "ec65d74eef09bb24dd1c123263e7234263387a7d",
+  "remote_main": "ec65d74eef09bb24dd1c123263e7234263387a7d",
+  "remote_verified_read_only_at": "2026-10-25T12:34:10.587601+00:00",
+  "available_bytes": 619778048,
+  "scope": "Bounded read-only project cache/build inspection. Editor remains owned by root; no Unity commands, git mutations or deletions. This receipt is the only file written.",
+  "confirmed_safe_worthwhile_candidates": [],
+  "removed_bytes": 0,
+  "decision": "skip_no_new_confirmed_worthwhile_stale_target",
+  "observations": [
+    "Previously deleted 11 player-only cache roots and 30 graph/AOT files remain absent.",
+    "Bee/artifacts retains current 200b0aE editor graph and shared compiler/linker helpers. BurstCache contains JIT only; BuildPlayerData contains Editor only. These useful caches were preserved.",
+    "Older build directories retain diagnostic/audit data and checksum receipts, not superseded runnable outputs; no such evidence was deleted.",
+    "Two obsolete Hub installer ZIPs were already removed in the preceding guarded pass and were not revisited.",
+    "All source, editable art, save/checkpoint data, dependencies and current builds were left untouched."
+  ],
+  "protected_build_metadata": [
+    {
+      "path": "Builds/SteamDeck/2026-10-25-flat16x24-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "exists": true,
+      "bytes": 128610942,
+      "mtime_ns": 1792894849782546883
+    },
+    {
+      "path": "Builds/SteamDeck/2026-10-11-fullscreen-skills-current/CavesOfOoo-SteamDeck-fullscreen-skills-current.tar.gz",
+      "exists": true,
+      "bytes": 128049954,
+      "mtime_ns": 1791778368840119695
+    },
+    {
+      "path": "Builds/Verification/2026-10-25-flat16x24-current/CavesOfOoo.app/Contents/MacOS/caves-of-ooo",
+      "exists": true,
+      "bytes": 116090,
+      "mtime_ns": 1792894130995150025
+    }
+  ],
+  "hashes_recomputed": false,
+  "hash_note": "This is a metadata/presence inspection; prior protected hashes are not claimed freshly reverified.",
+  "older_build_direct_contents": {
+    "Builds/SteamDeck/2026-10-10-4c3b0c1d7": [
+      "CavesOfOoo-SteamDeck-4c3b0c1d7.tar.gz.sha256",
+      "audit"
+    ],
+    "Builds/SteamDeck/2026-10-10-performance-audio-current": [
+      "CavesOfOoo-SteamDeck-performance-audio-current.tar.gz.sha256",
+      "audit"
+    ],
+    "Builds/SteamDeck/2026-10-11-place-audio-current": [
+      "CavesOfOoo-SteamDeck-place-audio-current.tar.gz.sha256",
+      "audit"
+    ],
+    "Builds/SteamDeck/BlackWorldDiagnosis": [
+      "LinuxAudit",
+      "SteamDeckDiagnosticCompiler",
+      "SteamDeckDiagnosticCompiler.meta",
+      "controller-choice-plan.txt",
+      "diagnostic-settings.patch",
+      "input-regression-classes.json",
+      "mac-player.log",
+      "manifest-before.json",
+      "packages-lock-before.json",
+      "sysroot-registry.json",
+      "toolchain-registry.json"
+    ],
+    "Builds/SteamDeck/2026-10-11-audio-polish20-current": [
+      "CavesOfOoo-SteamDeck-audio-polish20-current.tar.gz.sha256",
+      "audit"
+    ],
+    "Builds/SteamDeck/2026-10-11-vault-spread-current": [
+      "CavesOfOoo-SteamDeck-vault-spread-current.tar.gz.sha256",
+      "caves-of-ooo_BurstDebugInformation_DoNotShip"
+    ],
+    "Builds/SteamDeck/2026-10-10-system-depth-ii-current": [
+      "CavesOfOoo-SteamDeck-system-depth-ii-current.tar.gz.sha256",
+      "audit"
+    ],
+    "Builds/SteamDeck/2026-10-10-vulkan-controller": [
+      ".DS_Store",
+      "CavesOfOoo-SteamDeck-5657211c5.tar.gz.sha256",
+      "audit"
+    ],
+    "Builds/SteamDeck/2026-10-10-qud-controls": [
+      "CavesOfOoo-SteamDeck-QudControls-44d8484c8.tar.gz.sha256",
+      "audit"
+    ],
+    "Builds/SteamDeck/2026-10-10-performance": [
+      "CavesOfOoo-SteamDeck-97ad6347c.tar.gz.sha256",
+      "audit"
+    ]
+  }
+}

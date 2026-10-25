@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="29" result="Failed(Child)" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:51Z" duration="2.3922394">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31478" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:51Z" duration="2.392239" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38766" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31478" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:51Z" duration="2.320941" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38767" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31478" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:51Z" duration="2.256925" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38768" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31478" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:51Z" duration="2.071134" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28714" name="FlatPixelIncidentalEquipmentTests" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:51Z" duration="1.788409" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28720" name="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:49Z" duration="0.209374" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28718" name="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;LeatherArmor&quot;)" methodname="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1796656460" result="Failed" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:49Z" duration="0.158499" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An authorized equipped item still shows glyph art.
+  Expected: not same as <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion (System.String blueprint) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28719" name="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;Hatchet&quot;)" methodname="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="180996540" result="Failed" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:49Z" duration="0.047865" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An authorized equipped item still shows glyph art.
+  Expected: not same as <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion (System.String blueprint) [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28736" name="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:49Z" duration="0.086282" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28734" name="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;LeatherArmor&quot;)" methodname="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="345941801" result="Failed" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:49Z" duration="0.041341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28735" name="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;Hatchet&quot;)" methodname="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1044673428" result="Failed" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:49Z" duration="0.040383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28728" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:50Z" duration="0.158241" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28724" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Armor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Armor&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="2029079814" result="Failed" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:49Z" duration="0.039488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration (System.String blueprint, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28725" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Equippable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Equippable&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="97879632" result="Failed" start-time="2026-10-25 12:39:49Z" end-time="2026-10-25 12:39:50Z" duration="0.038659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration (System.String blueprint, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28726" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;MeleeWeapon&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;MeleeWeapon&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1933278109" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.038651" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration (System.String blueprint, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28727" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;Equippable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;Equippable&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="2082794086" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.038746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration (System.String blueprint, System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:124
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28729" name="ExplicitOverridesInvalidPortableStateAndNonSingleCellGeometryRetainFallback" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExplicitOverridesInvalidPortableStateAndNonSingleCellGeometryRetainFallback" methodname="ExplicitOverridesInvalidPortableStateAndNonSingleCellGeometryRetainFallback" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1768717121" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.039055" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExplicitOverridesInvalidPortableStateAndNonSingleCellGeometryRetainFallback () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:134
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28748" name="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.082304" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28746" name="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;LeatherArmor&quot;)" methodname="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1229577321" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.039479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:252
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28747" name="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;Hatchet&quot;)" methodname="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="970195283" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.038752" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:252
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28723" name="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.080215" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28721" name="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;LeatherArmor&quot;)" methodname="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1306491161" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.039003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28722" name="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;Hatchet&quot;)" methodname="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1543808385" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.038690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28745" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.554872" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28740" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;carried&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="810252854" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.105541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:234
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28741" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;equipped&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="363428958" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.104017" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:234
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28742" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-render&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1603443665" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.097582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:234
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28743" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-physics&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="619435802" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.131283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:234
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28744" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;empty-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;empty-stack&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="897043714" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.111861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:234
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28751" name="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.082128" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28749" name="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(False)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(False)" methodname="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="105944095" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.039365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement (System.Boolean malformed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:277
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28750" name="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(True)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(True)" methodname="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1861091646" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.038632" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement (System.Boolean malformed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:277
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28733" name="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:51Z" duration="0.081377" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28731" name="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;LeatherArmor&quot;)" methodname="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1321728577" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:50Z" duration="0.039595" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:180
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28732" name="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;Hatchet&quot;)" methodname="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1335381476" result="Failed" start-time="2026-10-25 12:39:50Z" end-time="2026-10-25 12:39:51Z" duration="0.039234" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:180
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28752" name="OldInjectedCatalogDoesNotOptIntoResourcesAndUnknownOwnersDoNotCreateTheCompanion" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.OldInjectedCatalogDoesNotOptIntoResourcesAndUnknownOwnersDoNotCreateTheCompanion" methodname="OldInjectedCatalogDoesNotOptIntoResourcesAndUnknownOwnersDoNotCreateTheCompanion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1945752847" result="Failed" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.038601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.OldInjectedCatalogDoesNotOptIntoResourcesAndUnknownOwnersDoNotCreateTheCompanion () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:293
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28717" name="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.094923" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28715" name="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;LeatherArmor&quot;)" methodname="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="4969417" result="Failed" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.046676" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The actual equipment still paints its canonical glyph.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion (System.String blueprint) [0x0007e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28716" name="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;Hatchet&quot;)" methodname="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="418638139" result="Failed" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.044219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The actual equipment still paints its canonical glyph.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion (System.String blueprint) [0x0007e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28739" name="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.079981" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28737" name="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;LeatherArmor&quot;)" methodname="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1862318583" result="Failed" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.039310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:210
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28738" name="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;Hatchet&quot;)" methodname="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1431086129" result="Failed" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.038266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:210
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28730" name="SimilarNamesAndSharedGlyphsCannotAliasDifferentEquipment" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.SimilarNamesAndSharedGlyphsCannotAliasDifferentEquipment" methodname="SimilarNamesAndSharedGlyphsCannotAliasDifferentEquipment" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1927964439" result="Failed" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.051737" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.SimilarNamesAndSharedGlyphsCannotAliasDifferentEquipment () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:167
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28753" name="WorldDisposesOnlyItsCachedObjectsAndAnIndependentPeerKeepsBorrowedArt" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.WorldDisposesOnlyItsCachedObjectsAndAnIndependentPeerKeepsBorrowedArt" methodname="WorldDisposesOnlyItsCachedObjectsAndAnIndependentPeerKeepsBorrowedArt" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="26077266" result="Failed" start-time="2026-10-25 12:39:51Z" end-time="2026-10-25 12:39:51Z" duration="0.143151" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional exact-equipment companion is absent.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:318
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.Create () [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:325
+at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.WorldDisposesOnlyItsCachedObjectsAndAnIndependentPeerKeepsBorrowedArt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:307
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

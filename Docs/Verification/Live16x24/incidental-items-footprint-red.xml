@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="33" result="Failed(Child)" total="33" passed="31" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 12:53:04Z" end-time="2026-10-25 12:53:07Z" duration="2.4653232">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31482" result="Failed" site="Child" start-time="2026-10-25 12:53:04Z" end-time="2026-10-25 12:53:07Z" duration="2.465323" total="33" passed="31" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38772" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31482" result="Failed" site="Child" start-time="2026-10-25 12:53:05Z" end-time="2026-10-25 12:53:07Z" duration="2.080637" total="33" passed="31" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38773" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31482" result="Failed" site="Child" start-time="2026-10-25 12:53:05Z" end-time="2026-10-25 12:53:07Z" duration="2.014589" total="33" passed="31" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38774" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31482" result="Failed" site="Child" start-time="2026-10-25 12:53:05Z" end-time="2026-10-25 12:53:07Z" duration="1.867753" total="33" passed="31" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28714" name="FlatPixelIncidentalEquipmentTests" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="33" result="Failed" site="Child" start-time="2026-10-25 12:53:05Z" end-time="2026-10-25 12:53:07Z" duration="1.550306" total="33" passed="31" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28720" name="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:05Z" end-time="2026-10-25 12:53:06Z" duration="0.183357" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28718" name="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;LeatherArmor&quot;)" methodname="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="879329959" result="Passed" start-time="2026-10-25 12:53:05Z" end-time="2026-10-25 12:53:05Z" duration="0.137813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28719" name="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion(&quot;Hatchet&quot;)" methodname="ActualEquippedReaderUsesExactNativeItemBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="73936634" result="Passed" start-time="2026-10-25 12:53:05Z" end-time="2026-10-25 12:53:06Z" duration="0.042399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28736" name="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.088399" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28734" name="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;LeatherArmor&quot;)" methodname="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1067912705" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.045573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28735" name="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin(&quot;Hatchet&quot;)" methodname="CoveredEquipmentKeepsItsExactReaderWithoutReplacingTopCoin" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="66198191" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.038676" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28728" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.153349" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28724" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Armor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Armor&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1045138181" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.038267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28725" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Equippable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;LeatherArmor&quot;,&quot;Equippable&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1098657518" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.037682" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28726" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;MeleeWeapon&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;MeleeWeapon&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1721510575" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.037860" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28727" name="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;Equippable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration(&quot;Hatchet&quot;,&quot;Equippable&quot;)" methodname="ExactIdentityRequiresItsOwnFunctionalPartAndRepairsAfterValidRestoration" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1876178365" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.037203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28729" name="ExplicitOverridesInvalidPortableStateAndNonSingleCellGeometryRetainFallback" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ExplicitOverridesInvalidPortableStateAndNonSingleCellGeometryRetainFallback" methodname="ExplicitOverridesInvalidPortableStateAndNonSingleCellGeometryRetainFallback" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1683217923" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.036009" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28748" name="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.097973" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28746" name="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;LeatherArmor&quot;)" methodname="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1382008443" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.039568" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28747" name="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(&quot;Hatchet&quot;)" methodname="FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1890218960" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.054849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28723" name="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.132533" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28721" name="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;LeatherArmor&quot;)" methodname="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1022575490" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.087850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28722" name="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity(&quot;Hatchet&quot;)" methodname="InjectedSemanticFrameIsCachedAndSharesExactWorldAndReaderIdentity" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1679789387" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.038148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28745" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.191871" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28740" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;carried&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1329943054" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.038297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28741" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;equipped&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1891576204" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.037398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28742" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-render&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1650204217" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.037064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28743" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;foreign-physics&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="332984995" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.037419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28744" name="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;empty-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem(&quot;empty-stack&quot;)" methodname="LostWorldAuthorityExposesTheLowerOwnerInsteadOfAStaleNativeItem" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1169275942" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.037032" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28757" name="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.074745" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28755" name="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(False)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(False)" methodname="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="665432268" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.035507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28756" name="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(True)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement(True)" methodname="MissingOrMalformedResourceIsIndependentAndNeverLoadsAnInjectedReplacement" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="675193613" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.033721" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28733" name="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.072746" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28731" name="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;LeatherArmor&quot;)" methodname="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="372042015" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.035614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28732" name="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates(&quot;Hatchet&quot;)" methodname="MutableConditionCombatValuesAndNamesDoNotInventAlternateEquipmentStates" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="525833527" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.034299" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28758" name="OldInjectedCatalogDoesNotOptIntoResourcesAndUnknownOwnersDoNotCreateTheCompanion" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.OldInjectedCatalogDoesNotOptIntoResourcesAndUnknownOwnersDoNotCreateTheCompanion" methodname="OldInjectedCatalogDoesNotOptIntoResourcesAndUnknownOwnersDoNotCreateTheCompanion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="2041762714" result="Passed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.040759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28751" name="RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:07Z" duration="0.155289" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28749" name="RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired(&quot;LeatherArmor&quot;)" methodname="RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1352118050" result="Failed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:06Z" duration="0.073254" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A stale body's exact reader must not restore native art that current world ownership refuses.
+  Expected: not same as < (UnityEngine.Texture2D)>
+  But was:  < (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired (System.String blueprint) [0x00151] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:303
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28750" name="RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired(&quot;Hatchet&quot;)" methodname="RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1766820410" result="Failed" start-time="2026-10-25 12:53:06Z" end-time="2026-10-25 12:53:07Z" duration="0.078113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A stale body's exact reader must not restore native art that current world ownership refuses.
+  Expected: not same as < (UnityEngine.Texture2D)>
+  But was:  < (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RawFootprintMutationCannotRestoreNativePortraitBeforeSpatialRegistrationIsRepaired (System.String blueprint) [0x00151] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalEquipmentTests.cs:303
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28717" name="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.082784" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28715" name="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;LeatherArmor&quot;)" methodname="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1115710005" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.038693" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28716" name="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion(&quot;Hatchet&quot;)" methodname="RealCurrentEquipmentUsesNativeWorldAndMatchingSubjectBeforeResourceAssertion" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1612920631" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.039952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28739" name="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.082965" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28737" name="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;LeatherArmor&quot;)" methodname="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1245269687" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.042486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28738" name="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom(&quot;Hatchet&quot;)" methodname="RealPickupBodyEquipAndDropRevokeOldReadersWithoutAWorldPhantom" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1948915277" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.037372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28730" name="SimilarNamesAndSharedGlyphsCannotAliasDifferentEquipment" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.SimilarNamesAndSharedGlyphsCannotAliasDifferentEquipment" methodname="SimilarNamesAndSharedGlyphsCannotAliasDifferentEquipment" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="353773115" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.035960" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28754" name="ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.081065" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="28752" name="ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped(&quot;LeatherArmor&quot;)" methodname="ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="1336884925" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.039525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="28753" name="ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped(&quot;Hatchet&quot;)" methodname="ValidSingleCellFootprintRemainsNativeWhenUnplacedRegisteredCarriedAndEquipped" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="886910953" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.037958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="28759" name="WorldDisposesOnlyItsCachedObjectsAndAnIndependentPeerKeepsBorrowedArt" fullname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests.WorldDisposesOnlyItsCachedObjectsAndAnIndependentPeerKeepsBorrowedArt" methodname="WorldDisposesOnlyItsCachedObjectsAndAnIndependentPeerKeepsBorrowedArt" classname="CavesOfOoo.Tests.FlatPixelIncidentalEquipmentTests" runstate="Runnable" seed="815938859" result="Passed" start-time="2026-10-25 12:53:07Z" end-time="2026-10-25 12:53:07Z" duration="0.035286" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

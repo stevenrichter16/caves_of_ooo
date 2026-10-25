@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "status": "native_source_integrated_bounded_gameplay_verification",
+  "width": 16,
+  "height": 24,
+  "rowOrder": "top_to_bottom",
+  "palette": {
+    ".": "00000000",
+    "i": "342E25FF",
+    "b": "5F4830FF",
+    "l": "80603BFF",
+    "h": "9B7848FF",
+    "d": "3C5148FF",
+    "s": "526657FF",
+    "e": "7D8E71FF",
+    "a": "B5A47EFF"
+  },
+  "paletteRoles": {
+    ".": "transparent",
+    "i": "ink and panel edges; accepted long-sword ink",
+    "b": "leather shadow and handle; accepted long-sword leather",
+    "l": "flat leather face",
+    "h": "restrained leather shoulder and edge accents",
+    "d": "steel dark; accepted long-sword palette",
+    "s": "steel face; accepted long-sword palette",
+    "e": "steel edge; accepted long-sword palette",
+    "a": "small fasteners and cutting-edge accents; accepted long-sword linen"
+  },
+  "frames": [
+    {
+      "id": "LeatherArmor",
+      "artifact": "leather-armor.png",
+      "description": "Empty thick-leather vest with transparent neck and arm cutouts, joined panels and used straps. Neutral equipment identity; no damaged or repaired-state claim.",
+      "rows": [
+        "................",
+        "................",
+        "................",
+        "....ib....bi....",
+        "...ihb....bhi...",
+        "..ihlb....blhi..",
+        "..ibll....llbi..",
+        "...iblb..blbi...",
+        "....ibllllbi....",
+        "...ibllbbllbi...",
+        "...illlbbllli...",
+        "...iblbaablbi...",
+        "...illlbbllli...",
+        "...ibllbbllbi...",
+        "...illlbbllli...",
+        "...iblbaablbi...",
+        "...ibllbbllbi...",
+        "...ihllbbllhi...",
+        "...ibllbbllbi...",
+        "...ibbbbbbbbi...",
+        "....iiiiiiii....",
+        "................",
+        "................",
+        "................"
+      ]
+    },
+    {
+      "id": "Hatchet",
+      "artifact": "hatchet.png",
+      "description": "Compact single-edge wedge hatchet, with a short diagonal wooden haft and thick blunt poll. Shorter than the accepted long sword; no second blade, ornament, motion or damage-state cue.",
+      "rows": [
+        "................",
+        "................",
+        "................",
+        "................",
+        "................",
+        "........idsei...",
+        ".......idsssea..",
+        ".......idsssea..",
+        "........idsssa..",
+        "........ibdsea..",
+        ".......ilbi.ea..",
+        "......ilbi......",
+        "......ilbi......",
+        ".....ilbi.......",
+        ".....ilbi.......",
+        "....ilbi........",
+        "....ilbi........",
+        "...ilbi.........",
+        "...ibbi.........",
+        "...ibi..........",
+        "....i...........",
+        "................",
+        "................",
+        "................"
+      ]
+    }
+  ],
+  "styleAnchor": "Assets/Resources/Sprites/Live16x24/long-sword.png",
+  "baselines": [
+    "Docs/Verification/Live16x24/incidental-items-kitchen-hatchet-before.png",
+    "Docs/Verification/Live16x24/incidental-items-kitchen-hatchet-reader-before.png",
+    "Docs/Verification/Live16x24/incidental-items-north-armor-reader-before.png"
+  ],
+  "design": "Original hand-authored integer cells. Concept contributes only silhouette ideas; no concept pixels are read, resized or copied by the exporter."
+}

@@ -1787,3 +1787,30 @@ Unity is out of Play with normal preferences restored. New packages remain
 pending because current disk headroom is still inadequate for a safe build.
 Continue the documented opening incidental-item identity pass next; this is
 not opening or regional completion, and the graphics heartbeat remains active.
+
+
+## Continuation — native opening equipment accepted, 2026-10-25 13:03 UTC
+
+[Hatchet and leather armor](GRAPHICS-G3-INCIDENTAL-EQUIPMENT.md) now retain native
+16×24 identity in actual ground, exact Examine, carried and equipped views.
+Two earned seed64 branches verify pickup/equip/unequip/drop and F5/F6 continuity
+without grants or teleport. Actual inventory captures:
+`Docs/Verification/Live16x24/incidental-items-hatchet-inventory.png` and
+`incidental-items-armor-equipped.png`. Native RED29→GREEN143, independent review's
+raw-footprint RED2→final147/147; no skips. Editable rows, extraction/concept,
+resource metadata and independent reviews accompany the implementation. Neutral
+art does not assert condition/stats; no mechanics, geometry or loot changes.
+
+61.592 seconds stationary active Play caused no environment redraw or equipment
+resource growth; this is not FPS or Deck benchmarking. Normal save/backups and
+current archive hashes are unchanged. Cleanup exposed a changed LastGameID
+following native-runner activity; restored the verified original pointer with
+Unity stopped, preserved the extra save and all evidence. Future native runs
+must keep save isolation through delayed Play resumption. Corrected restoration
+receipt: `incidental-items-final-restored-corrected.json`.
+
+Next is whole-scene seed65 north approach and Nella lifecycle using the earned
+Warden cellar checkpoint, not another isolated item packet. Full opening,
+regional art, new package and physical Deck gates remain open. Read-only storage
+inspection found no worthwhile stale data; no deletion. Current packages still
+predate recent art/UI/input changes. Preserve them and useful active caches.
