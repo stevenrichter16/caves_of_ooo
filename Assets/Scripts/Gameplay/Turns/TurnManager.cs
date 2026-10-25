@@ -567,6 +567,24 @@ namespace CavesOfOoo.Core
             if (actor == null)
                 return null;
 
+            // The Player's AI brain can retain its launch zone after travel.
+            // Turn-start bodily effects need the exact current physical owner,
+            // including an already-loaded Player with that stale brain. Do not
+            // substitute global ActiveZone or change dormant NPC brain policy.
+            if (actor.HasTag("Player"))
+            {
+                var zone = actor.SpatialZone;
+                var cell = zone?.GetEntityCell(actor);
+                if (cell == null || cell.ParentZone != zone
+                    || !ReferenceEquals(zone.GetCell(cell.X, cell.Y), cell)
+                    || !cell.Objects.Contains(actor)) return null;
+                var manager = WorldLocationContext.For(zone);
+                if (manager != null && (zone.ZoneID == null || manager.CachedZones == null
+                    || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                    || !ReferenceEquals(current, zone))) return null;
+                return zone;
+            }
+
             var brain = actor.GetPart<BrainPart>();
             if (brain != null && brain.CurrentZone != null)
                 return brain.CurrentZone;

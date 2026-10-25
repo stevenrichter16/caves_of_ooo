@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="4" failed="7" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 23:59:06Z" end-time="2026-10-24 23:59:07Z" duration="0.9427274">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31106" result="Failed" site="Child" start-time="2026-10-24 23:59:06Z" end-time="2026-10-24 23:59:07Z" duration="0.942727" total="11" passed="4" failed="7" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38286" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31106" result="Failed" site="Child" start-time="2026-10-24 23:59:06Z" end-time="2026-10-24 23:59:07Z" duration="0.837258" total="11" passed="4" failed="7" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38287" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31106" result="Failed" site="Child" start-time="2026-10-24 23:59:06Z" end-time="2026-10-24 23:59:07Z" duration="0.619641" total="11" passed="4" failed="7" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38288" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31106" result="Failed" site="Child" start-time="2026-10-24 23:59:06Z" end-time="2026-10-24 23:59:07Z" duration="0.520928" total="11" passed="4" failed="7" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="16538" name="PlayerTurnZoneContextTests" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.220538" total="11" passed="4" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="16547" name="CurrentPhysicalPlayerZoneWinsOverAnUnrelatedActiveZone" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.CurrentPhysicalPlayerZoneWinsOverAnUnrelatedActiveZone" methodname="CurrentPhysicalPlayerZoneWinsOverAnUnrelatedActiveZone" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="1926194376" result="Passed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.056806" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16543" name="DetachedPlayerDoesNotInventAZoneFromItsStaleBrain" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.DetachedPlayerDoesNotInventAZoneFromItsStaleBrain" methodname="DetachedPlayerDoesNotInventAZoneFromItsStaleBrain" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="2077489970" result="Failed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.014750" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.10.0) [1 entities]>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PlayerTurnZoneContextTests.DetachedPlayerDoesNotInventAZoneFromItsStaleBrain () [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Turns/PlayerTurnZoneContextTests.cs:51
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="16548" name="LethalPoisonAfterTransitionRemovesAndDropsOnlyInDestination" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.LethalPoisonAfterTransitionRemovesAndDropsOnlyInDestination" methodname="LethalPoisonAfterTransitionRemovesAndDropsOnlyInDestination" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="208338067" result="Failed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.019342" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PlayerTurnZoneContextTests.LethalPoisonAfterTransitionRemovesAndDropsOnlyInDestination () [0x00113] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Turns/PlayerTurnZoneContextTests.cs:86
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Zone] Transitioned to Overworld.11.9.0
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16551" name="NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.030344" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16549" name="NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone(True)" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone(True)" methodname="NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="685278421" result="Passed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.015026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16550" name="NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone(False)" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone(False)" methodname="NonPlayerContextKeepsExistingBrainPolicyRatherThanUsingPlayerOrActiveZone" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="2079576679" result="Passed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.013089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16541" name="OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.029868" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16539" name="OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts(False)" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts(False)" methodname="OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="687560437" result="Failed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.014161" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Zone(Overworld.11.9.0) [1 entities]>
+  But was:  <Zone(Overworld.11.10.0) [1 entities]>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PlayerTurnZoneContextTests.OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts (System.Boolean hidden) [0x00101] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Turns/PlayerTurnZoneContextTests.cs:30
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[Zone] Transitioned to Overworld.11.9.0
+]]></output>
+              </test-case>
+              <test-case id="16540" name="OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts(True)" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts(True)" methodname="OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="587138775" result="Failed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.013956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Zone(Overworld.11.9.0) [1 entities]>
+  But was:  <Zone(Overworld.11.10.0) [1 entities]>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PlayerTurnZoneContextTests.OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts (System.Boolean hidden) [0x00101] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Turns/PlayerTurnZoneContextTests.cs:30
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[Zone] Transitioned to Overworld.11.9.0
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="16542" name="PlacedPlayerWithoutBrainUsesItsPhysicalZone" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.PlacedPlayerWithoutBrainUsesItsPhysicalZone" methodname="PlacedPlayerWithoutBrainUsesItsPhysicalZone" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="869320519" result="Failed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.013200" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Zone(Overworld.11.10.0) [2 entities]>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PlayerTurnZoneContextTests.PlacedPlayerWithoutBrainUsesItsPhysicalZone () [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Turns/PlayerTurnZoneContextTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16546" name="ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.036746" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16544" name="ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext(&quot;cell&quot;)" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext(&quot;cell&quot;)" methodname="ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="456402480" result="Failed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.014028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.10.0) [1 entities]>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PlayerTurnZoneContextTests.ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext (System.String replacement) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Turns/PlayerTurnZoneContextTests.cs:63
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[Zone] Transitioned to Overworld.11.9.0
+]]></output>
+              </test-case>
+              <test-case id="16545" name="ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext(&quot;graph&quot;)" methodname="ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="1184003196" result="Failed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.013529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.10.0) [1 entities]>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PlayerTurnZoneContextTests.ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext (System.String replacement) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Turns/PlayerTurnZoneContextTests.cs:63
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[Zone] Transitioned to Overworld.11.9.0
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="16552" name="UnpoisonedCurrentPlayerKeepsNormalContextWithoutManufacturingDamage" fullname="CavesOfOoo.Tests.PlayerTurnZoneContextTests.UnpoisonedCurrentPlayerKeepsNormalContextWithoutManufacturingDamage" methodname="UnpoisonedCurrentPlayerKeepsNormalContextWithoutManufacturingDamage" classname="CavesOfOoo.Tests.PlayerTurnZoneContextTests" runstate="Runnable" seed="1002531378" result="Passed" start-time="2026-10-24 23:59:07Z" end-time="2026-10-24 23:59:07Z" duration="0.012321" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

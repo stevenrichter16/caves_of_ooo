@@ -1,0 +1,110 @@
+{
+  "sequence": 19,
+  "frame": 1052611,
+  "at": "2026-10-24T23:53:22.9573060Z",
+  "unscaledTime": 1434.53528,
+  "deltaTime": 0.001272123,
+  "zone": "Overworld.12.10.0",
+  "tick": 2200,
+  "player": [
+    9,
+    18
+  ],
+  "hp": 1,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "2695",
+      "blueprint": "Player",
+      "hp": 1,
+      "sprite": "Live16x24 Player hurt",
+      "atlas": "opening-motion",
+      "rect": [
+        48.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.0609309971,
+      "pending": false,
+      "pendingState": "Attack",
+      "dying": false,
+      "cell": [
+        9,
+        18
+      ],
+      "world": [
+        9.5,
+        9.0
+      ],
+      "screen": [
+        152.000031,
+        304.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "11285",
+      "blueprint": "MarlbackScrabbler",
+      "hp": 4,
+      "sprite": "Live16x24 MarlbackScrabbler attack",
+      "atlas": "opening-motion",
+      "rect": [
+        160.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Attack",
+      "stateTime": 0.0009309981,
+      "pending": false,
+      "pendingState": "Attack",
+      "dying": false,
+      "cell": [
+        8,
+        18
+      ],
+      "world": [
+        8.5,
+        9.0
+      ],
+      "screen": [
+        136.0,
+        304.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "11285",
+      "text": "11",
+      "number": 11,
+      "numeric": true,
+      "x": 8,
+      "y": 17,
+      "width": 2,
+      "lane": 0,
+      "remaining": 0.539069,
+      "originOnly": false
+    },
+    {
+      "owner": "2695",
+      "text": "12",
+      "number": 12,
+      "numeric": true,
+      "x": 9,
+      "y": 15,
+      "width": 2,
+      "lane": 1,
+      "remaining": 0.539069,
+      "originOnly": false
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

@@ -1094,3 +1094,61 @@ About1.71GiB is free; no worthwhile confirmed stale cache/build candidate remain
 so **0bytes were deleted**. The active Editor's useful caches are retained. The
 current delivered archive still predates this art. Continue the next bounded
 action-feedback slice; no whole-release or packaged acceptance is implied.
+
+
+## Latest continuation — Riposte and travel status feedback, 2026-10-25 UTC
+
+## Delivered source and native verification
+
+- Riposte now explicitly opts into the existing facing/Attack event before its
+  actual single-strike resolution. Local exception containment protects combat;
+  reserved/spent reentry gates and ordinary multihand/default-direct callers
+  remain unchanged. No art replacement. Native `riposte-feedback-final.xml`
+  passed206/206 at23:28:24–40UTC, including20 focused cases; no skips/failures.
+- Player owner-turn status context now uses its canonical physical/current
+  managed zone rather than stale Brain.CurrentZone. NPC context policy remains
+  untouched. `status-zone-red.xml`:11 total,7 intended failures/4 passing controls.
+  Focused GREEN11/11; `status-zone-regression.xml` passed274/274 at00:04:08–18UTC,
+  no skips/failures. Source review found no remaining P1/P2.
+- Exact XML full-name comparison:206 and274 are separate selected sweeps with
+  **37 overlapping FlatPixelActorMotionTests**, hence **443 distinct cases**.
+  Status focused11 is already included in274. Do not report480/491 unique tests
+  or imply this was the entire project suite.
+
+## Ordinary evidence and limits
+
+The Warden earned/used a skill point through ordinary play and learned Riposte.
+The19-frame north capture `G2Action-20261024-234223-659` establishes actual Player
+Hurt pixels at01/07/11, Guarded/En garde words at01, ordinary Attack at15 and
+recovery to Idle. Independent source+PNG review was completed. Guarded is not a
+full parry. No captured attack has reactive counter provenance; **ordinary
+Riposte remains unobserved**, despite its native event/renderer tests passing.
+
+That capture exposed old-zone periodic damage while fighting in11.9.0. The
+status fix above is natively proven; a separate ordinary post-fix poison/Hurt/
+numeric replay is **still pending**. Do not reuse pre-fix pictures as acceptance.
+
+The forge route harvested FrostLichen and root observed brewed output8995, but
+the24-frame east encounter `G2Action-20261024-235149-310` interrupted the approach.
+Root observed the blade-bearing hand severed, both tonics consumed and eventual
+world-map retreat at5HP. The limited captured window ends earlier at1HP; later
+events/session observations are separate evidence. No tempering, forged output,
+on-hit freezing, full parry or Riposte is accepted. Preserve the failed route.
+
+Cleanup `riposte-feedback-cleanup.json` records stopped SampleScene, isolation/
+artPending/viewBorrowed false and null save-root at23:56:08Z. This is that
+checkpoint, not proof of every subsequent editor state. No current build was
+replaced; packaged/device/performance gates remain unchanged.
+
+## Next bounded work
+
+Parent-selected next art slice is **LongSword**, after its exact identity/source
+audit; it is not already authored or accepted by this packet. Keep approved
+Player art unchanged and use the established concept→native→integration→actual
+reader/world pipeline. Before resuming the injured character, inspect actual
+save location, HP/effects, missing limbs, equipped/carried weapon and brewed8995
+custody. Do not assume the severed weapon is carried or world-map time is safe.
+Use reachable ordinary recovery/services; no grants, forced counters or erased
+failed approach. A separately labeled fresh game is possible if recovery is
+not safely attainable. Complete forge/crop loops, six-site continuity, ordinary
+counter acceptance and packaged/device validation remain open.

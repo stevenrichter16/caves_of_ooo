@@ -1,0 +1,110 @@
+{
+  "sequence": 15,
+  "frame": 990048,
+  "at": "2026-10-24T23:52:00.1298410Z",
+  "unscaledTime": 1351.70947,
+  "deltaTime": 0.00123575679,
+  "zone": "Overworld.12.10.0",
+  "tick": 2180,
+  "player": [
+    9,
+    18
+  ],
+  "hp": 6,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "2695",
+      "blueprint": "Player",
+      "hp": 6,
+      "sprite": "Live16x24 Player idle",
+      "atlas": "opening-base",
+      "rect": [
+        0.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.108313881,
+      "pending": false,
+      "pendingState": "Attack",
+      "dying": false,
+      "cell": [
+        9,
+        18
+      ],
+      "world": [
+        9.5,
+        9.0
+      ],
+      "screen": [
+        152.000031,
+        304.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "11285",
+      "blueprint": "MarlbackScrabbler",
+      "hp": 15,
+      "sprite": "Live16x24 MarlbackScrabbler attack",
+      "atlas": "opening-motion",
+      "rect": [
+        160.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Attack",
+      "stateTime": 0.108313881,
+      "pending": false,
+      "pendingState": "Hurt",
+      "dying": false,
+      "cell": [
+        8,
+        18
+      ],
+      "world": [
+        8.5,
+        9.0
+      ],
+      "screen": [
+        136.0,
+        304.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "2695",
+      "text": "En garde",
+      "number": 0,
+      "numeric": false,
+      "x": 6,
+      "y": 16,
+      "width": 8,
+      "lane": 0,
+      "remaining": 0.499580055,
+      "originOnly": false
+    },
+    {
+      "owner": "2695",
+      "text": "Guarded",
+      "number": 0,
+      "numeric": false,
+      "x": 6,
+      "y": 14,
+      "width": 7,
+      "lane": 1,
+      "remaining": 0.499580055,
+      "originOnly": false
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

@@ -223,11 +223,13 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Perform a single melee attack with one weapon.
+        /// Perform a single melee attack with one weapon. Selected counter callers
+        /// may opt into a facing/Attack cue before resolution. Ordinary melee keeps
+        /// this false because its outer action already emits the shared cue.
         /// </summary>
         public static MeleeStrikeResult PerformSingleAttack(Entity attacker, Entity defender,
             MeleeWeaponPart weapon, bool isPrimary, Zone zone, Random rng,
-            string attackSourceDesc = null, MeleeStrikeProvenance provenance = default)
+            string attackSourceDesc = null, MeleeStrikeProvenance provenance = default, bool emitAttackVisual = false)
         {
             if(attacker==null || defender==null || zone==null || rng==null)
                 return new MeleeStrikeResult(MeleeStrikeOutcome.Cancelled);
@@ -249,6 +251,20 @@ namespace CavesOfOoo.Core
             if(Diag.IsChannelEnabled("damage"))Diag.Record(category:"damage",kind:"StrikeStarted",actor:attacker,target:defender,
                 payload:new{provenance.ActionId,provenance.RootStrikeId,provenance.ParentStrikeId,provenance.StrikeId,
                     origin=provenance.Origin.ToString(),provenance.Depth,provenance.CounterDepth,provenance.SuppressFollowups});
+
+            // Selected counters can opt into the existing action cue. Ordinary
+            // melee already emits once before gathering hands, so its individual
+            // strikes keep the default false. Notify before resolution while the
+            // counter scope and both contact cells still exist, even on a miss.
+            if (emitAttackVisual)
+            {
+                try
+                {
+                    FaceToward(attacker, defender, zone);
+                    EntityVisualHooks.EmitAttack(attacker, defender, zone);
+                }
+                catch (Exception) { /* Optional visuals cannot abort a committed strike. */ }
+            }
 
             string damageDice = weapon?.BaseDamage ?? "1d2";
             int hitBonus = weapon?.HitBonus ?? 0;

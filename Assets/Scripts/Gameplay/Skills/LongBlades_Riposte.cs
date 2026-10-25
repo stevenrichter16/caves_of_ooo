@@ -36,7 +36,7 @@ namespace CavesOfOoo.Skills
                 {Record("RiposteCancelled",actor,opponent,parent,"changed_before_issue");return;}
                 budget.Spent=true;
                 var counter=parent.Child(MeleeStrikeOrigin.ReactiveCounter,true);
-                var result=CombatSystem.PerformSingleAttack(actor,opponent,weapon,true,zone,rng,"(Riposte)",counter);
+                var result=CombatSystem.PerformSingleAttack(actor,opponent,weapon,true,zone,rng,"(Riposte)",counter,emitAttackVisual:true);
                 if(result.Outcome!=MeleeStrikeOutcome.Cancelled)
                     AsciiFxBus.EmitEventText(zone,actor,"Riposte","&C");
                 if(Diag.IsChannelEnabled("damage"))Diag.Record(category:"damage",kind:"RiposteIssued",actor:actor,target:opponent,

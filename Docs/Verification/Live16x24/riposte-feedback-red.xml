@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-24 23:19:57Z" end-time="2026-10-24 23:19:59Z" duration="1.552352">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31078" result="Failed" site="Child" start-time="2026-10-24 23:19:57Z" end-time="2026-10-24 23:19:59Z" duration="1.552352" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38250" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31078" result="Failed" site="Child" start-time="2026-10-24 23:19:57Z" end-time="2026-10-24 23:19:59Z" duration="1.353237" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38251" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31078" result="Failed" site="Child" start-time="2026-10-24 23:19:57Z" end-time="2026-10-24 23:19:59Z" duration="1.156593" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38252" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31078" result="Failed" site="Child" start-time="2026-10-24 23:19:58Z" end-time="2026-10-24 23:19:59Z" duration="0.856431" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="6188" name="RiposteVisualFeedbackTests" fullname="CavesOfOoo.Tests.RiposteVisualFeedbackTests" classname="CavesOfOoo.Tests.RiposteVisualFeedbackTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-24 23:19:58Z" end-time="2026-10-24 23:19:59Z" duration="0.456241" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="6192" name="FailedCounterChanceKeepsOnlyTheOrdinarySwingAndDoesNotChangeCounterFacing" fullname="CavesOfOoo.Tests.RiposteVisualFeedbackTests.FailedCounterChanceKeepsOnlyTheOrdinarySwingAndDoesNotChangeCounterFacing" methodname="FailedCounterChanceKeepsOnlyTheOrdinarySwingAndDoesNotChangeCounterFacing" classname="CavesOfOoo.Tests.RiposteVisualFeedbackTests" runstate="Runnable" seed="2121392176" result="Passed" start-time="2026-10-24 23:19:58Z" end-time="2026-10-24 23:19:58Z" duration="0.075060" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6191" name="OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss" fullname="CavesOfOoo.Tests.RiposteVisualFeedbackTests.OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss" classname="CavesOfOoo.Tests.RiposteVisualFeedbackTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-24 23:19:58Z" end-time="2026-10-24 23:19:59Z" duration="0.178034" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6189" name="OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss(False)" fullname="CavesOfOoo.Tests.RiposteVisualFeedbackTests.OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss(False)" methodname="OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss" classname="CavesOfOoo.Tests.RiposteVisualFeedbackTests" runstate="Runnable" seed="491991690" result="Failed" start-time="2026-10-24 23:19:59Z" end-time="2026-10-24 23:19:59Z" duration="0.034145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary swing is present, but its real issued Riposte must also emit exactly one Attack cue.
+  Expected: 2
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RiposteVisualFeedbackTests.OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss (System.Boolean counterMisses) [0x00048] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/RiposteVisualFeedbackTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6190" name="OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss(True)" fullname="CavesOfOoo.Tests.RiposteVisualFeedbackTests.OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss(True)" methodname="OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss" classname="CavesOfOoo.Tests.RiposteVisualFeedbackTests" runstate="Runnable" seed="909891542" result="Failed" start-time="2026-10-24 23:19:59Z" end-time="2026-10-24 23:19:59Z" duration="0.022546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The ordinary swing is present, but its real issued Riposte must also emit exactly one Attack cue.
+  Expected: 2
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.RiposteVisualFeedbackTests.OrdinaryFullParryIssuesOneFacingCounterCueBeforeItsHitOrMiss (System.Boolean counterMisses) [0x00048] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Combat/RiposteVisualFeedbackTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

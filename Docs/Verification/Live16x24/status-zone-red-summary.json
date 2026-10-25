@@ -1,0 +1,39 @@
+{
+  "start-time": "2026-10-24 23:59:06Z",
+  "end-time": "2026-10-24 23:59:07Z",
+  "total": "11",
+  "passed": "4",
+  "failed": "7",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.PlayerTurnZoneContextTests.DetachedPlayerDoesNotInventAZoneFromItsStaleBrain",
+      "message": "  Expected: null\n  But was:  <Zone(Overworld.11.10.0) [1 entities]>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlayerTurnZoneContextTests.LethalPoisonAfterTransitionRemovesAndDropsOnlyInDestination",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlayerTurnZoneContextTests.OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts(False)",
+      "message": "  Expected: same as <Zone(Overworld.11.9.0) [1 entities]>\n  But was:  <Zone(Overworld.11.10.0) [1 entities]>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlayerTurnZoneContextTests.OrdinaryTransitionTicksPoisonInExactDestinationWithoutLeakingHiddenReadouts(True)",
+      "message": "  Expected: same as <Zone(Overworld.11.9.0) [1 entities]>\n  But was:  <Zone(Overworld.11.10.0) [1 entities]>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlayerTurnZoneContextTests.PlacedPlayerWithoutBrainUsesItsPhysicalZone",
+      "message": "  Expected: same as <Zone(Overworld.11.10.0) [2 entities]>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlayerTurnZoneContextTests.ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext(\"cell\")",
+      "message": "  Expected: null\n  But was:  <Zone(Overworld.11.10.0) [1 entities]>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlayerTurnZoneContextTests.ReplacedCanonicalOwnerGraphCannotSupplyAFormerWorldContext(\"graph\")",
+      "message": "  Expected: null\n  But was:  <Zone(Overworld.11.10.0) [1 entities]>\n"
+    }
+  ]
+}
