@@ -1473,3 +1473,23 @@ slice; do not infer identity from a glyph. Full opening/regions and current
 package/physical Deck gates remain open. Two obsolete Unity Hub3.20.1installer
 caches are audited for guarded deletion only after this work is verified on main;
 current Hub/editor/dependencies/caches and packages remain protected.
+
+
+## Preservation and storage closeout — 2026-10-25 12:21 UTC
+
+Pointer code, native tests, actual mouse screenshots and living records were
+verified on origin/main at `34fe9cc8b0758f3083e9abf5190712e430b8e41b`
+(270 owned files byte-compared). Only then, after fresh version/hash/inode/type
+and no-open-handle checks plus independent review, removed exactly the two
+obsolete Unity Hub 3.20.1 installer ZIPs listed in
+`Docs/Verification/Live16x24/hotbar-pointer-stale-hub-installer-cleanup.json`.
+Observed filesystem availability increased by **381.2 MiB** to 567.5 MiB;
+this is the measured delta, not an inference from file sizes. Earlier this
+heartbeat's stale player-cache removal recovered 341.2 MiB separately.
+
+All source/editable assets, saves/backups, current builds/archives, installed
+Hub/editor, newer pending Hub update state and useful active caches remain.
+Unity is out of Play with normal preferences restored. New packages remain
+pending because current disk headroom is still inadequate for a safe build.
+Continue the documented opening incidental-item identity pass next; this is
+not opening or regional completion, and the graphics heartbeat remains active.
