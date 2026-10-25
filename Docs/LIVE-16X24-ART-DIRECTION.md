@@ -1412,3 +1412,27 @@ no healing tonics remain. Next: Nella's legitimate8dram access, crop/watering,
 east forge and kitchen, with a seed65 ordinary visual counter-pass. Reassess
 Nella's actual working-row hierarchy before changing art. Remaining feedback,
 regional kits and physical Deck gates remain open. Preserve all prior checkpoints.
+
+
+### Post-push storage checkpoint — 2026-10-25 03:45UTC
+
+Prepared-bed work is on main at `37bbc54f4`; northern composition and actual
+play evidence are on main at `00a188cac`. The latter push verified all52owned
+files byte-for-byte and preserved the two unrelated AllotmentNotice PNG variants.
+A fresh remote identity check still matched `00a188cac`; both protected Linux
+archives were freshly rehashed unchanged. See
+`Docs/Verification/Live16x24/north-composition-postpush-storage-audit.json`.
+
+Free disk is1,479,159,808bytes (1.38GiB). No confirmed worthwhile stale cache or
+superseded disposable build was found in the bounded inspected paths. **Nothing
+was deleted;0bytes recovered.** Useful Library/Temp caches, current Mac/Linux
+builds, source, editable art, saves and continuation checkpoints remain intact.
+The pending Unity Hub ShipIt update has a live process and is preserved. The
+roughly2GiB decrease since03:17 is not explained by measured cache growth; do not
+attribute it without evidence or launch another build without checking headroom.
+This is a material packaging constraint, not a completed storage fix.
+
+The next graphics pass remains the earned fresh-origin Nella→glade→east forge→
+kitchen route plus seed65 visual counter-evidence. Root left Unity out of Play
+with normal preferences and save root restored; use the after-North checkpoint
+above. Frequent storage inspections continue; they do not require deletion.

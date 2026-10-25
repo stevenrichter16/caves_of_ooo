@@ -1,0 +1,55 @@
+{
+  "utc": "2026-10-25T03:44:55.748104+00:00",
+  "head": "00a188cac4f94608342532bbdacd939eba117ff9",
+  "remote_main": "00a188cac4f94608342532bbdacd939eba117ff9",
+  "remote_identity_freshly_verified": true,
+  "root_push_receipt": "/tmp/coo-north-push-result.json",
+  "root_owned_file_verification": {
+    "head": "00a188cac4f94608342532bbdacd939eba117ff9",
+    "remote": "00a188cac4f94608342532bbdacd939eba117ff9",
+    "verifiedOwnedFiles": 52,
+    "unrelatedVariantsPreserved": [
+      "Docs/Verification/AllotmentNotice/ControlledRender/notice-hidden-control.png",
+      "Docs/Verification/AllotmentNotice/ControlledRender/notice-visible.png"
+    ]
+  },
+  "root_owned_blob_verification_reperformed": false,
+  "available_bytes": 1479159808,
+  "df": "Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\n/dev/disk3s5   971298980 934790952   1444492   100% 6709444 14444920   32%   /System/Volumes/Data",
+  "measured_allocated_bytes": {
+    "Library/Bee": 514109440,
+    "Library/BurstCache": 330567680,
+    "Library/Search": 62492672,
+    "Temp": 61464576,
+    "Builds/SteamDeck/2026-10-25-flat16x24-current": 354308096,
+    "Builds/Verification/2026-10-25-flat16x24-current": 245649408
+  },
+  "protected_archives": [
+    {
+      "path": "Builds/SteamDeck/2026-10-25-flat16x24-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "bytes": 128610942,
+      "sha256": "76806cdcaf37c49883820f160fa2076963760b9d27fa5d27c4f243127c586bd6",
+      "verification": "Fresh complete streaming rehash; not reused evidence."
+    },
+    {
+      "path": "Builds/SteamDeck/2026-10-11-fullscreen-skills-current/CavesOfOoo-SteamDeck-fullscreen-skills-current.tar.gz",
+      "bytes": 128049954,
+      "sha256": "debc85bfacc1c018b24dc8c742b35956768c131571df0e0cb01221a9badf001b",
+      "verification": "Fresh complete streaming rehash; not reused evidence."
+    }
+  ],
+  "pending_update": {
+    "observation_source": "Root report; not independently rescanned by this audit.",
+    "name": "UnityHub ShipIt update.UQK9GUe",
+    "approximate_bytes": 566231040,
+    "reported_modified_utc": "2026-10-25T02:18:00Z",
+    "live_shipit_process_reported": true,
+    "decision": "Preserve pending update; not safe stale data."
+  },
+  "worthwhile_confirmed_safe_candidates": [],
+  "deleted_paths": [],
+  "deleted_bytes": 0,
+  "recovered_bytes": 0,
+  "decision": "No confirmed safe worthwhile deletion. Useful active Library caches, current builds, both protected archives, all source/editable assets/saves/checkpoints and pending Hub update preserved.",
+  "scope": "Only bounded known-path inspection, remote identity lookup and fresh archive rehashes. No deletion, staging, Unity calls, broad crawl or process-argument dumps. Earlier cause of free-space decline remains unproven."
+}
