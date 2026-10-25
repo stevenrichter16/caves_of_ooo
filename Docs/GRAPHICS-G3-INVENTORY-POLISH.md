@@ -175,3 +175,18 @@ Do not equate logical/allocation totals with APFS space recovered. A separately
 audited exact stale-clone manifest identifies191 redundant raw logs (identical
 compressed versions already tracked remotely) and four unused generated-cache
 directories. Those candidates are not deleted until this new evidence is pushed.
+
+
+### Verified stale-clone reclamation
+
+After all owned work and captures were verified on origin/main696a9ff35, the
+reviewed guard script rechecked current remote custody and191raw/decompressed
+hashes, exact current-HEAD gzip blobs, four cache fingerprints, and no process
+or open handle in the stale verification clone. It removed only those191raw
+logs and Library/Artifacts, Bee, BurstCache, ShaderCache under that inactive
+clone. All compressed originals, unmatched logs, source, editable art, package
+dependencies, saves, active main caches and current builds were preserved.
+Observed free space increased583,999,488bytes (about557MiB); the2.418GiB
+reported candidate allocation is not claimed as recovered physical space.
+Full exact paths, checks and before/after statvfs are in
+`inventory-polish-stale-clone-cleanup.json`.

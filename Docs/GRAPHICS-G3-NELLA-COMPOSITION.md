@@ -29,10 +29,10 @@ Implement a **bounded cold frontage plus row mask** in the existing plan/residen
 
 1. Derive the same left/right resident-anchor preference from the existing seed rank. Among the upper parcels, select the parcel nearest that anchor as the primary field. Work in that parcel's local coordinates, not absolute seed64 NPC coordinates.
 2. Derive a preferred frontage from that primary parcel: its lower edge at `p.Y + p.Height`, beside its existing vertical approach at `p.X + p.Width/2`. Try origins approximately four cells to either side of that approach, with the existing left/right seed preference choosing the first side. These are candidate anchors, not unconditional placements. Rank ordinary resident candidates by distance to the chosen frontage; retain the existing rotation order, `Fits`, prepared-ground validation, arrival exclusion, maximum trials, rollback and safe fallback. If exact trial geometry conflicts, choose the nearest valid frontage candidate through those same checks. Keep all current local service offsets. With rotation0 the two reserve beds sit three rows behind the keeper, the tray two rows behind on the right, the public crop pair on either side of the keeper's row, and the ordinary sign beside the open approach. No service is duplicated or newly granted. This is the concrete improvement to the loose working group: it belongs to an existing field edge and can be approached/read from the actual lane.
-3. Retain the primary field's longest central run groups. Shorten only its outer pairs and its approach-facing ends with two broad steps, one and two cells deep. Keep at least two neighboring original furrow groups at the original available depth. This should read as one irregular worked edge, not scattered individual stalks or a new diagonal ribbon.
+3. Retain the primary field's longest full-depth run groups, with no blanket shortening of its approach-facing ends. Derive a small grassy service bay from the same planned complete-stamp descriptor. Subtract only row cells needed for that clear working edge; keep at least two neighboring original furrow groups at their available depth. This should read as one substantial field associated with the keeper, not scattered individual stalks or a new diagonal ribbon.
 4. Select one distant parcel as a secondary remnant. Retain roughly half of its existing furrow-group span at the outer side, with a different stepped end and shorter depth. Other parcels retain only short, unequal remnants, or lose a redundant end group. Do not apply the same L-shaped mask to every rectangle.
 5. Keep the existing open lane between the primary field and the working group. The headland remains ordinary grass: no painted road, cultivated flag, fence, wall, storage prop or implied new interaction. Existing route and lawn vetoes win over every mask cell.
-6. Start with an aggregate visual target of retaining roughly55–70% of original row cells, with the largest share of retained mass in the primary field. This is a design tuning range, not a fake gameplay requirement or an excuse to remove useful gleanings. Reject a concept that mainly makes an already sparse map emptier or leaves four equally weighted mini-fields.
+6. Use retention-first hierarchy: preserve substantial full-depth runs in the primary field and take most reduction from distant remnants. There is no55–70% total retention target; do not make the already sparse scene emptier to satisfy a ratio. Reject a concept that mainly makes an already sparse map emptier or leaves four equally weighted mini-fields.
 
 The exact seed64 keeper origin is currently19,9, with reserve beds17/18,6 and public rows17/18,8 and17/18,10. These are reference observations, not placement constraints for every seed. Newly generated Nella and all her existing stamp owners may move together as this pass intends; their relative offsets and functionality remain unchanged. The new frontage must use a plan-owned pure descriptor shared by the exact scoped resident placement, not a renderer-derived location or a search for already created actors. Outside11,8/non-Legacy FieldStrips, the original anchor/candidate ordering stays identical.
 
@@ -76,3 +76,30 @@ Use the real pre-Nella checkpoint, not the latest already-generated plot:
 `nella-ground-dried-after-wait` at tick3160 shows real wet20→dry19 exhaustion: both reserve crops retain stage1 with zero moisture, and the surrounding old-field repetition remains obvious. `nella-ground-save-return.json` at tick3510 retains the exact cultivated grounds7515/7516, current crop9186/9193, Granted rights,42drams and32HP. Its actual world-pixel crop matches the dried-after-wait scene, and root independently accepted the returned screenshot. Current PNG SHA256 is `0978772cfdfc825f2d8db466238a3842c09fc656aabb0bc2bf844a6ef7363521`.
 
 An initial image-preview discrepancy showed this reviewer an empty-looking return view. Read-only pixel checks found225world colors and36,763 old-earth pixels matching the coherent dry view; the apparent blank preview is retracted and is **not** a runtime defect or added gate. The evidence supports the accepted small material/state improvement while leaving the named broader composition opportunity intact.
+
+
+## Concept and cold review — 2026-10-25
+
+Built-in imagegen used the actual `nella-ground-arrival.png` capture, with
+external observational referenceR01 (quiet ground/readable clusters) from the
+reference library. Output `ArtSource/Live16x24/concepts/nella-composition-v1.png`
+is a concept, not gameplay. Exact prompt is saved beside it. Root inspected
+the result: accept only a stronger primary field mass next to the worksite
+and unequal remote remnants. Reject changed UI/text, green gradients,
+over-bright/overgrown stubble and any implication of additional ripe crops.
+Accepted sprites will remain unchanged; this slice produces deterministic
+editable owner-layout rules, not a generated background texture.
+
+Independent cold review corrected a planning premise: seed64 Nella19,9 is
+already on the lower edge of parcel5,3,23,6 and near its approachx16. A new
+anchor20,9 alone is only a one-cell change. Remove the blanket55–70% thinning
+target. Preserve the principal field's full-depth bands, open a small coherent
+grassy service bay around the complete stamp, and reduce repetition mainly
+in remote remnants. Do not move the worksite into the reserved y11–13lane.
+
+No generation code or native layout tests have changed yet. Next: verify this
+retention-first mask against the exact actual plans and cold pre-Nella save,
+write native RED, then integrate and compare ordinary seed64/65 captures. If
+subtraction cannot produce a meaningful improvement, revise the plan openly
+before adding or relocating actual row owners. Keep the finite gleaning budget
+and all public access/ownership rules intact.

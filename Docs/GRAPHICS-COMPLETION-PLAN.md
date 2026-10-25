@@ -1304,3 +1304,35 @@ cleanup recovered9,453,568bytes despite261,492,736reportedallocatedbytes.
 Push this evidence first, then revalidate/delete only the stale-clone manifest's
 191rawlogs/fourgeneratedcachedirectories. Preserve every compressed evidence
 counterpart, source, dependencies, saves, active main caches and current builds.
+
+
+Storage continuation: after verified remote preservation at696a9ff35, exact
+stale-clone cleanup completed:191redundant rawlogs/fourunusedgeneratedcaches.
+Observed583,999,488bytes regained (about557MiB), not the2.418GiB allocation
+total. Source, compressed evidence, saves, dependencies, active main caches
+and current builds remain intact. See inventory-polish-stale-clone-cleanup.json.
+
+
+## Latest continuation — restored graphics workflow, 2026-10-25 09:04 UTC
+
+Inventory polish is accepted in bounded ordinary Play with actual screenshots
+and245distinct native passes. Audit-view cleanup is also fixed: short full-token
+labels and correct removal index pass22native cases and a direct create/remove
+smoke. The single proven orphan from this root audit was removed; user presets
+were not swept. Normal save files/backups and the exact pre-audit preference
+remain unchanged/restored. Unity is open in clean SampleScene, out of Play,
+without isolation or a presentation override.
+
+The next scene cycle is [Nella composition](GRAPHICS-G3-NELLA-COMPOSITION.md).
+The first imagegen concept is reference only; reject its changed UI, gradients
+and exaggerated growth. A cold review found Nella already near the proposed
+frontage, so retain a substantial primary field and clear service bay rather
+than uniformly thinning an already sparse scene. No new layout code is applied
+yet. Next: source-grounded RED for the bounded descriptor/mask, native integration,
+then ordinary cold64/65 before/after gameplay checks. Preserve the current
+approved sprite art, actual crop states, finite budgets and public approaches.
+
+Current packages still predate this inventory/Nella material work; no new build
+or physical Steam Deck acceptance is claimed. Storage has limited headroom
+after exact guarded stale-clone reclamation; avoid large builds/downloads and
+retain active caches. Full opening composition and regional coverage stay open.
