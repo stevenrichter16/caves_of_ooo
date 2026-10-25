@@ -891,3 +891,32 @@ See `Docs/GRAPHICS-G3-LONG-SWORD.md` and `Docs/Verification/Live16x24/long-sword
 Correction to earlier instructions: the injured5HP east-route disposable save was not exported before NativeSaveIsolation cleanup and cannot be resumed. Preserve its failed-route images/events. The sword pass separately replayed the unmodified earned healthy branch and exported its final checkpoint to `/tmp/coo-long-sword-verified-checkpoint` before cleanup. It is42HP, level2, RP1, glade28,19 with2699equipped and no brewed8995; confirm live state on continuation. No forged result or recovered severed weapon is implied.
 
 Root stopped Play and restored ordinary SampleScene/settings/save root at00:25:02UTC. Follow the connected ordinary material→forge route next; verify remaining combat/status feedback when naturally encountered. Do not author disconnected packets to avoid outstanding gameplay gates. Existing current build unchanged. Graphics/storage heartbeat remainsACTIVE every10minutes, checking safe candidates only after successful remote preservation; no useful cache purge. Bounded inspection removed0bytes and preserved source, saves and current archive.
+
+
+## Latest continuation — ordinary forge and crop loops, 2026-10-25 01:05UTC
+
+[Actual connected route](GRAPHICS-G3-FORGE-CROP-JOURNEY.md) now accepts north
+FrostLichen harvest→frozen coating brew→east forge quench of the same2699 blade,
+ordinary re-equip, matching native Examine and F5/F6. TemperCount1, Frozen40,
+HP8/8 persist; no actual Frozen hit or component-forged weapon is claimed.
+
+The same ordinary run reached Orven and completed Claspbean harvest→seed
+planting→Rain→same13511 seed/sprout/ripe stages→harvest/pickup/reload→second seed
+replant/reload. Native stages and reader are actually visible. Final kitchen
+25,14,42HP,tick2990 has4pulp, cultivated12611 and dry new13515stage0. Its exported
+checkpoint is `/tmp/coo-forge-kitchen-final-checkpoint`; do not copy its audit
+marker. Failed prior east-route evidence remains separate.
+
+Independent source/PNG review accepts these bounded loops. Existing accepted
+art is unchanged; no runtime changes or new native-test result in this packet.
+Actual screenshots and raw receipts are indexed in `forge-kitchen-play-summary`.
+Play/settings/save root restored at01:03:46UTC;0errors,2existing Metal warnings.
+No updated package or Deck acceptance. Full G2/G3/six-site/regional release is open.
+
+**Next named defect:** east EOF frame18's lethalNPC1 briefly overlays the departing
+Player tween, although logical damage ownership is correct. Fix presentation
+occupancy with RED→GREEN and an ordinary replay before further disconnected art.
+Actual Riposte, post-travel Player periodic hurt, Frozen proc and pulp application
+remain unobserved. Rain tooltip/historical growth-doc wording is a separate
+followup. Continue the active10minute graphics/storage schedule; push exact
+owned work before safe stale-cache inspection, preserving useful active caches.

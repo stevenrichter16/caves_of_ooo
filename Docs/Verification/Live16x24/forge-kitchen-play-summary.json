@@ -1,0 +1,636 @@
+{
+  "kind": "ordinary_keyboard_forge_and_crop_acceptance",
+  "sourceCommit": "f054270440fd505c00044a28e413a0b12656c69b",
+  "at": "2026-10-25T01:05:14.651938+00:00",
+  "checks": [
+    "Same13511 visible seed/sprout/ripe with coherent stage/moisture receipts",
+    "Harvest/reload removes crop but preserves cultivated12611 and4pulp+seed13514",
+    "Second ordinary planting consumes13514 and F5/F6 retains dry new13515stage0",
+    "Player42HP and25,14 throughout the sampled crop states"
+  ],
+  "combatFrames": {
+    "north": 17,
+    "east": 24
+  },
+  "runtimeChanges": false,
+  "newNativeTestsRun": 0,
+  "bounds": [
+    "Healthy earned checkpoint branch; not a recovery of the failed5HP east run",
+    "No grants, teleports, forced RNG, heals or test-only material creation",
+    "Native16x24 art already integrated before this acceptance run; no accepted pixels changed",
+    "Actual ordinary input and ScreenCapture; no concepts or contact sheets presented as gameplay",
+    "No new package, physical Deck, performance result, Frozen proc, pulp application, full Riposte or whole six-site release"
+  ],
+  "files": [
+    {
+      "path": "Docs/Verification/Live16x24/forge-kitchen-cleanup.json",
+      "bytes": 203,
+      "sha256": "82326b4254ed55c8e0691b2579848d3e589374613297a61af92a4ae5a93865ec"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-kitchen-console.json",
+      "bytes": 108,
+      "sha256": "d103f2a1dd9846637f2927c60c34ec834bb89784a7aed4a72114ae9cf5f6d9fb"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-kitchen-final-checkpoint.json",
+      "bytes": 1249,
+      "sha256": "db6b6b63a85ceddfa01ca3c501c78d298c6d7e102b3123774b8b21bb572693fb"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-kitchen-independent-review.md",
+      "bytes": 1948,
+      "sha256": "1e0138459cbc8500addbf3869fd5adf221f1ffcddb077e05749a90b10cefd43b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-coating-brewed.json",
+      "bytes": 2156,
+      "sha256": "3bb8c2edbcf77e538d0299031dd5c9cccc62b9d6a45a7ea14e4a173692503af2"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-coating-brewed.png",
+      "bytes": 72085,
+      "sha256": "bac10c7838da453efed7df182d169515b3769c3931e129b31f843d3a78536a43"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-east-capture-finish.json",
+      "bytes": 415,
+      "sha256": "2eb55d81b2c97338d65f3be9cd708e5bbbb51bcf25ab4a69b6ce80ddeb5bde11"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-east-events-finish.json",
+      "bytes": 409,
+      "sha256": "37d2e1246f2dbf9491ea3bc88cbf7e99c21cff83a1b3a6bd944fb51acbbd070d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-frost-harvested.json",
+      "bytes": 1854,
+      "sha256": "ca8b20b1f9665dd6f6b121c1182e2b2092154c67b4a31533245424f29c58027f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-frost-harvested.png",
+      "bytes": 47418,
+      "sha256": "8722d502bc03df67a7c2e2592f83318c430f998bcd4b39a99a6400477f107831"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-launch.json",
+      "bytes": 499,
+      "sha256": "0535134bb256b829dd49ce1da11783319178a0e2b91c51cd4c668a30d3b7c38e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-north-capture-finish.json",
+      "bytes": 415,
+      "sha256": "d011755f9b0c3fa9550e7520aee9d343b4854d752f31a42f79c586f9b6b7b36d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-north-events-finish.json",
+      "bytes": 410,
+      "sha256": "338530a305b00aabd11f5ea8e9b5fc43a2ab855d080e64715c96e4ed7833622d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-prepared-checkpoint.json",
+      "bytes": 973,
+      "sha256": "36084caa5fc74c8188f3917ade3d253513a9342f48d1fa05515858e8cbe05c3e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-reloaded-parts.json",
+      "bytes": 351,
+      "sha256": "89b232a124b42ceddb92799abd61f95ef3aa30b2cb0e82db505667d5f4a64297"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-reloaded.json",
+      "bytes": 1903,
+      "sha256": "a108a56e3a4bfe81511e40ed43b490672fc4cbfbefb3df48b226cdb40214bfc0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-reloaded.png",
+      "bytes": 46671,
+      "sha256": "ea70901496026deb78c277eb52322a77b0481fba8c5a15a7249512015079f5b5"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-tempered-checkpoint.json",
+      "bytes": 1188,
+      "sha256": "289cfbbf0d4059c5cb3435e52b8a5c864e0401b45bf866338f3dbd179e177245"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-tempered-reader.json",
+      "bytes": 1903,
+      "sha256": "5613513105bf918df84d5559c2d7cca64fe20830249f229c2ac22f69cccd02c8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-tempered-reader.png",
+      "bytes": 33449,
+      "sha256": "99f13b9787066f4d21b6a680926e6ee793f4d79ed131fc6829b76489d16d6775"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-tempered.json",
+      "bytes": 1899,
+      "sha256": "3e1ab9dc6797e4d860167229fe035d66d557c28d0d2d22ea685b723acc9e9f02"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-tempered.png",
+      "bytes": 46598,
+      "sha256": "9e3610eec18cb9990eaa9773c949b8f2be6b9cb2d890a644f4636211f5821818"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-underfoot-summary.json",
+      "bytes": 1740,
+      "sha256": "c49d231de447dcac9627ffa7c007c093efeea7170389651d394308a5cd332eed"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/forge-route-underfoot-summary.png",
+      "bytes": 46931,
+      "sha256": "0a5ff00dedd1917b58193bae1766e7991f5376895f0766149cafc45f222886f7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-grown-ripe.json",
+      "bytes": 1773,
+      "sha256": "db2a8675278af9480c5373b21b35af2f78f3c194361d39c9dca4e997bc1fe1db"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-grown-ripe.png",
+      "bytes": 43012,
+      "sha256": "aae0240a4059ecaac306fa76312fa299741f3e2defa6984f9d5b41951cbf58a4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-grown-sprout.json",
+      "bytes": 1774,
+      "sha256": "91209df1c8611be34626acb4fe57aa917938521e0804e236b6a2167e335dae9e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-grown-sprout.png",
+      "bytes": 42719,
+      "sha256": "b3fbaa442a8ee01c867dc788313ea58120182ff893bbe4fb6e447d4b147edf89"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-harvest-reloaded.json",
+      "bytes": 1568,
+      "sha256": "5cdde916a40eed69ded585f3f373bf78df9c22afe4c02f03b7570dc121180c3c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-harvest-reloaded.png",
+      "bytes": 45268,
+      "sha256": "c98c9b85161266177899434c9c568415f6d8c40a73f3ea3dd3bc86d800fa19cf"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-replanted-reloaded.json",
+      "bytes": 1773,
+      "sha256": "2d90bea6b9410a1832b980dd4cfc963805f21a3ccc7cdbc53f4c4dbdab76b04e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-replanted-reloaded.png",
+      "bytes": 44755,
+      "sha256": "b784e63941c33f5b44551f3aaa24cb1f0b97a83d3f1b5c3b0fd6a9197959d296"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-ripe-reader.json",
+      "bytes": 1773,
+      "sha256": "c8f17c51968f53b64811fbf3d9f0619350a2a6fa19c4e023db8637876181e784"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-ripe-reader.png",
+      "bytes": 47412,
+      "sha256": "9567ef13c10a47bfaa4800124667fd77b54be17db36690290be64c79b8859902"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-watered-seed.json",
+      "bytes": 1774,
+      "sha256": "24b8618a5154a4a0318c1dd6612cc362b20dd94b3fcf82cd6d6c1aa73d50b045"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/kitchen-crop-watered-seed.png",
+      "bytes": 42536,
+      "sha256": "e96b3dcda824adf1e7795128eb8241719790561975e4ea4b26b1d006e75301dd"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/events-20261025-003841-087-1e8286c8ba724ff69a9fffb3d3b193dd.json",
+      "bytes": 4393,
+      "sha256": "a7fdb8c9dc90d68d4a0b547585933b953383bb2f9a11558d9046f935b403a05f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-00.json",
+      "bytes": 897,
+      "sha256": "313c80f89de2fd2ea4d6591fbb648e0892435f3f413b75f9a1f9b12eb030148e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-00.png",
+      "bytes": 57039,
+      "sha256": "cf9771cbf0f98803de5568036e85a58d442dbfa30277810e95deb4c913913a2e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-01.json",
+      "bytes": 899,
+      "sha256": "e23cfa9ba1be7c44acffe4cab0637df43a2d19d28da91336fc30bea0dca1fc1f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-01.png",
+      "bytes": 56898,
+      "sha256": "d7d8d99257ef186bbcf4c05f5956116152e757a2c457ab4cb95994d75ef9e6f7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-02.json",
+      "bytes": 909,
+      "sha256": "4dfb323dc132f3b50c0044a78302f9ca940f52cab61dfb0f6ffb86bfa21a915e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-02.png",
+      "bytes": 56935,
+      "sha256": "dd6bf732058ca6d25f4623116eab0d7d14eed58eb52ca36c0b3480db8723f4ef"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-03.json",
+      "bytes": 895,
+      "sha256": "63ca3bd9f59f3586689a55507b966780e0d3bd03b214425aa981ea69697f8810"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-03.png",
+      "bytes": 56831,
+      "sha256": "df33eb783636d353d6e87ba670be6c11e0b882981c2a3d693ab3386b99e1bbca"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-04.json",
+      "bytes": 1122,
+      "sha256": "02c6c221e1c1160b8bf2515d1094ea4a71a07d5ce8723ae901b0846687714fab"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-04.png",
+      "bytes": 64874,
+      "sha256": "6f60d64dd8b2b2597cf38bf4e526c080c9826e0a1aed6088cf321534e2e7898f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-05.json",
+      "bytes": 1128,
+      "sha256": "40f3b9bdaabb0afeb3ed3d543468200e510045d231849652ff854aea1cfd7be8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-05.png",
+      "bytes": 66122,
+      "sha256": "05d44303ede5dd3d45f466eef015f6bb4e747584299646bc8394574ef9d46556"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-06.json",
+      "bytes": 899,
+      "sha256": "561abaee7e4c5ad2618a7678916eb9d8c2edae69999248e21aae171b6471a7b3"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-06.png",
+      "bytes": 58108,
+      "sha256": "be43bc8c0f3d4a7218f3f020dd16812fb3f2bf1126211700a1e0d2c7dade7b7c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-07.json",
+      "bytes": 904,
+      "sha256": "7b1093c80cc956f670f5826578598672a73f941e368b7a7954c1b7dbbc9c1371"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-07.png",
+      "bytes": 58095,
+      "sha256": "8b1813969a70b910f9619bc8c2ab2a751874f1519ddcc7446afdd49afa1f6f13"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-08.json",
+      "bytes": 905,
+      "sha256": "48edc488f5626b6f396b6eb2dc6a03d862f809dea063f4ced8518e429d641501"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-08.png",
+      "bytes": 58133,
+      "sha256": "cc6d3c44819de3f82c4ed8c9bd905e5dd9df7daf4ce6482f001ab0d3b6c974a4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-09.json",
+      "bytes": 904,
+      "sha256": "c928dc9b38250894b9fbdd3778a59e79dcab3d5c53ebc414d354bcd38c24eae0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-09.png",
+      "bytes": 56468,
+      "sha256": "083119bae2c357c8c128bf2ab4d7aeb068c74f93612b72b63773ad2f36d7a825"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-10.json",
+      "bytes": 906,
+      "sha256": "4c439cbdd8a803f220229f93930b8cb27d918164644b442495267c8819d376e1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-10.png",
+      "bytes": 56418,
+      "sha256": "253f30e63c7e6ddfa366e5899ad67acc720081a480b5132e760fea9c471bcd43"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-11.json",
+      "bytes": 903,
+      "sha256": "3ebe9ec3d02bf5a012fedbdf852d0c0d66a8411b8586a6d8614349e211a4766f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-11.png",
+      "bytes": 56520,
+      "sha256": "c928ae0228f168f1c268bb174d735442fde732deb98957a9d8cfb4d4f4ad1b0d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-12.json",
+      "bytes": 908,
+      "sha256": "b8534d4324bb9fba71ebb9f906837bbac33562f221f5cf9cd31ec3ea39cf9b74"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-12.png",
+      "bytes": 56476,
+      "sha256": "0a76755269f770e04d3608d4e87d53d1ca95c9d604ff0972fee12f5686517cc6"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-13.json",
+      "bytes": 905,
+      "sha256": "180c5a3a034eb2bcf06eb24d003dde0acd7505f99bee8f45472ce915bdda26ff"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-13.png",
+      "bytes": 56471,
+      "sha256": "47dca7a0dcf5a068c7e539fb04d76909b063ce378460ea73974d19321cbe4a01"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-14.json",
+      "bytes": 906,
+      "sha256": "2b46626235d649c78e70c618506631a7a04a003ee8d5f83533c07e25d41249a4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-14.png",
+      "bytes": 56433,
+      "sha256": "5ada2b7f55c917ac067e30b923a86c9e69e1acb00508259d97bd82ec48cc8e07"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-15.json",
+      "bytes": 905,
+      "sha256": "d3b3aef164235f472b71d374286bc49a571b79351dae8199df4639978fa80a97"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-15.png",
+      "bytes": 57338,
+      "sha256": "483bdc6ead11970acd8f8946960b7e40b236ab249a66abfc344a790fd999cf52"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-16.json",
+      "bytes": 908,
+      "sha256": "2f8ddd22c4a6d9b2a64a251feea9fd737b34a64c62448444b7a3047cca7853e3"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/frame-16.png",
+      "bytes": 57775,
+      "sha256": "f12d3a597abaf2516350e964f6f2866bf9beee2c6afcdd9b4a683d4830d7e08e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-003840-135/index.json",
+      "bytes": 18810,
+      "sha256": "50126e3ae5be2017652589f3696328a967413446e36d226c402d8f0a7284beae"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/events-20261025-004629-167-95f50d00fdfc45aa893be20b8625ea2b.json",
+      "bytes": 1062,
+      "sha256": "c8602c308d85b25c56975e1885180834dea1cf2ba988d94615637ace5205862b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-00.json",
+      "bytes": 1480,
+      "sha256": "cbd9283f5016c5a99cddab22317a3635a8eb6db0eba7c960cd84d2bf7238fdb1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-00.png",
+      "bytes": 50193,
+      "sha256": "ce960cdae78dceda3a7078ae6ff8d4871767d168823c1813827e4d8b6d39ac1a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-01.json",
+      "bytes": 1478,
+      "sha256": "80120a04e1bccbd1178f780251eb54c93ac1fb82219e50d0644768d893682ec3"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-01.png",
+      "bytes": 51003,
+      "sha256": "484dce1913abe982f366c4351f8a7d582e4a43624b990760cdb8c764a82e4bfc"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-02.json",
+      "bytes": 1497,
+      "sha256": "e1451a30893ce963b5f4359969aa50f71701d625e3d080d0ac630f8be8a7a860"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-02.png",
+      "bytes": 51136,
+      "sha256": "13e1dc8aae2f94fe08b152cf20023de78086246f22e15516c1d5843f67103cbe"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-03.json",
+      "bytes": 1468,
+      "sha256": "24e055fe990baf5404bb6e25da45846c4c0727dca91fd2f1f672956cf8a50de1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-03.png",
+      "bytes": 51142,
+      "sha256": "d5d5b200dadff52a29a3f0b5a79cd93e701afc08505566fd008a3d19098a1445"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-04.json",
+      "bytes": 1476,
+      "sha256": "eeb29f3977593992eb582f4903908275fabc36862e34cc696fbc7a2d4021ed89"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-04.png",
+      "bytes": 51042,
+      "sha256": "b0ef06c4ee3df9d331455de7edcd3e5faebc69d86268a457ef0d0a3ca0c4e9a9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-05.json",
+      "bytes": 1499,
+      "sha256": "c813dc7c9076dad27de9495af9a3ecacd89a5292130cce1c2f2a39a3c1d16ccb"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-05.png",
+      "bytes": 50981,
+      "sha256": "c442e19e340a1fa752cdebbd07cae0d2f8fbbe244f7e9249ae3cbd31b3bb1c05"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-06.json",
+      "bytes": 1467,
+      "sha256": "fe3e06530d50c74cc4bdbf3f507db2796dfe1b556bcf5a44fdca48dd22950884"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-06.png",
+      "bytes": 50962,
+      "sha256": "55ecc670f71df275d7228b2897d26bcd1b8c89326cec26b00d6a403151853045"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-07.json",
+      "bytes": 1476,
+      "sha256": "d99f6cd58ae47c3e697cd1426fd1677d99d0aded94b3e68fca60a4935dd54f55"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-07.png",
+      "bytes": 50242,
+      "sha256": "e88dd36015dff5ddc00f5858c1baa7a06319ca124d22d010cadd5defa2260cc8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-08.json",
+      "bytes": 1494,
+      "sha256": "4079084f9666a4ce5c6972edd53e3050b85b013a318a0b5a15cc3aa9fbd3cb7a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-08.png",
+      "bytes": 50149,
+      "sha256": "597d53550ef866ae809e69709a6e0cac5edb3c1fdee7e3e104eb5a4882d7103e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-09.json",
+      "bytes": 1471,
+      "sha256": "e620fe637ecbcddff08d55c12a55c3be2e3a06d99f02d63f4b083ca1e9e5159e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-09.png",
+      "bytes": 50160,
+      "sha256": "7503fb03d1ae9debe95b03f1dd2f73af647a2b3a42cbb7b421d0c28e3ffab17a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-10.json",
+      "bytes": 1705,
+      "sha256": "5978a599f044b585ea16422c1028981cc4abeabf52a9a25fdaf8eff9dddadfcd"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-10.png",
+      "bytes": 56771,
+      "sha256": "13b6754b0c82acd6b214398cc77ac6ecea5d4df3ee3782c110d75f325175c5fe"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-11.json",
+      "bytes": 1721,
+      "sha256": "252acef1ec5f54224b5bbd0b1a624058207da88f097bbbf44f2fa3f23bc8333b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-11.png",
+      "bytes": 56755,
+      "sha256": "002068c4413e022b5422e6c4937c3bd6e5e3220612bd166f8f5cf82fc80e0a82"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-12.json",
+      "bytes": 1715,
+      "sha256": "628f0633bc1da2c646845cc38a9c78a2c53888f3d0a708d4cd3e6e74bff171f7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-12.png",
+      "bytes": 56759,
+      "sha256": "08bb12ac146c62cc7be07bbd942ae813f461ff97b00e0a738b5e10dc42da471e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-13.json",
+      "bytes": 1713,
+      "sha256": "7b7f9cc938f1d98e79739fe0b06a6da0f87cf8c7f97fb25dc2762ac82dede6e0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-13.png",
+      "bytes": 58596,
+      "sha256": "7eb18170884d5d990cb7ca022e491962c7927e35a3c1921e1bf71e60bb1ba758"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-14.json",
+      "bytes": 1727,
+      "sha256": "1770334263d89cd7f800b39490d44a0b293813377851e51e152771e00e5cdcfa"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-14.png",
+      "bytes": 59221,
+      "sha256": "6e01c5b5423db36d5e93c1a1361678316c582c7a4528831fdc559d89824231d0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-15.json",
+      "bytes": 1727,
+      "sha256": "1dccd155f48b8aae84e7cf9db725671dc7df62318491114adb0ebe73f44f2297"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-15.png",
+      "bytes": 59229,
+      "sha256": "a78d6b32dd873e35b6782ae1fa18d2a7386b09636eef9c81e2cfb08238893115"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-16.json",
+      "bytes": 1721,
+      "sha256": "137c4d20405e10548115544f3eb18a4a37006f6bc18ef72aaf445ea88f46ffa0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-16.png",
+      "bytes": 59119,
+      "sha256": "b984974a14ac7cc777d34385ad8778d34565f9ecc3784885f63290f61aab9bb8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-17.json",
+      "bytes": 1491,
+      "sha256": "eb2258510ce8db1d0af7a7d8f841c37eca5a5d0824e2ae4d4ffc794f16c10383"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-17.png",
+      "bytes": 52948,
+      "sha256": "611a5d77ab9f8daea56894e8d67c48921c2b3c6f34251bf26d35b612d930064e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-18.json",
+      "bytes": 1695,
+      "sha256": "d0a3f83683afe1baf2563683b82e98fb3178b14c6e2e7bf4ec3c6233ef62b3f1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-18.png",
+      "bytes": 53537,
+      "sha256": "ab3307663d4c20d4dc2bc34e52f9f6770d424861f8a33c80c41ec3803d49dc17"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-19.json",
+      "bytes": 1730,
+      "sha256": "130d95118719fccaed9466ef92b297c08101d565a62f532f0c7f2e3f02e67c88"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-19.png",
+      "bytes": 53981,
+      "sha256": "19fe573e91dec3c1064d463372cddcc087807cce63ccbfe6885168b60b3d95f9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-20.json",
+      "bytes": 1710,
+      "sha256": "033759e6f70777fe3a3569eabaa80ac061e8cd6524666f287ff2c085e58921e9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-20.png",
+      "bytes": 53980,
+      "sha256": "d79a62ac57ba57acae59c91e92b63cc4f1e69f1b8ca48eb0fb8f19156fe7301f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-21.json",
+      "bytes": 1125,
+      "sha256": "15d38645620a7d1f0f909420587e711a7fda1902aed11421b6bc117ab6ef0ada"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-21.png",
+      "bytes": 53658,
+      "sha256": "d3f304fb3d1d93e9c2d56c7e2d18e2ca60fe083f61dc21f75a723110af838f3f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-22.json",
+      "bytes": 1125,
+      "sha256": "c5d2d0dd61fb7769d113ad9a30b21c7059a43a8e381bfd6bd5340c3971a57c2b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-22.png",
+      "bytes": 53825,
+      "sha256": "a3bb88241518ce4a01678191da585cf624ccc0403d978987c6e0ff7c287649d3"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-23.json",
+      "bytes": 1119,
+      "sha256": "7f3301ddb3f5ed79e26281577e727ed673fd61f7da80d9b78d9274345eaa0b8a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/frame-23.png",
+      "bytes": 54436,
+      "sha256": "968fd535458570146b121ceb0ccdefab4790cbc7b9ac7f0383edbdce2473c984"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/G2Action-20261025-004628-096/index.json",
+      "bytes": 44203,
+      "sha256": "1541266f8335b9405b713c281e1d35a0bdff9869a476c4c52a5bb2e18452d620"
+    }
+  ]
+}

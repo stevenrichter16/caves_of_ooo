@@ -1,0 +1,98 @@
+{
+  "sequence": 20,
+  "frame": 613149,
+  "at": "2026-10-25T00:47:13.9381170Z",
+  "unscaledTime": 864.377,
+  "deltaTime": 0.0011052083,
+  "zone": "Overworld.12.10.0",
+  "tick": 2060,
+  "player": [
+    4,
+    19
+  ],
+  "hp": 42,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "11286",
+      "blueprint": "MarlbackScrabbler",
+      "hp": 0,
+      "sprite": "Live16x24 MarlbackScrabbler hurt",
+      "atlas": "opening-motion",
+      "rect": [
+        176.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.100611918,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": true,
+      "cell": [
+        3,
+        20
+      ],
+      "world": [
+        3.5,
+        6.0
+      ],
+      "screen": [
+        56.0000153,
+        255.999985
+      ],
+      "flipX": true,
+      "alpha": 0.64067173
+    },
+    {
+      "id": "2695",
+      "blueprint": "Player",
+      "hp": 42,
+      "sprite": "Live16x24 Player idle",
+      "atlas": "opening-base",
+      "rect": [
+        0.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Idle",
+      "stateTime": 0.0,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        4,
+        19
+      ],
+      "world": [
+        4.5,
+        7.5
+      ],
+      "screen": [
+        72.00004,
+        280.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "11286",
+      "text": "1",
+      "number": 1,
+      "numeric": true,
+      "x": 3,
+      "y": 19,
+      "width": 1,
+      "lane": 0,
+      "remaining": 0.499388129,
+      "originOnly": true
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}
