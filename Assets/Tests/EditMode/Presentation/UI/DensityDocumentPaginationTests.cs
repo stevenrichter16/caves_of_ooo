@@ -47,6 +47,36 @@ namespace CavesOfOoo.Tests
             CollectionAssert.AreEqual(wrapped, all, "no line dropped, duplicated or reordered across pages");
         }
 
+        [TestCase(20, 1)]
+        [TestCase(21, 2)]
+        [TestCase(40, 2)]
+        [TestCase(41, 3)]
+        public void ReadableLeadingPagesKeepTwentyLinesAndPreserveEveryLine(int lineCount, int expectedPages)
+        {
+            string[] source = Enumerable.Range(0, lineCount).Select(i => "Line " + i).ToArray();
+            ui.Open(string.Join("\n", source));
+            Assert.AreEqual(expectedPages, ui.PageCount, "Readable full-size text must paginate within the protected panel.");
+            var all = new System.Collections.Generic.List<string>();
+            for (int page = 0; page < expectedPages; page++)
+            {
+                Assert.True(ui.GoToPage(page));
+                AssertVisible();
+                Assert.AreEqual(System.Math.Min(20, lineCount - page * 20), ui.VisibleLines.Count);
+                CollectionAssert.AreEqual(source.Skip(page * 20).Take(20).ToArray(), ui.VisibleLines);
+                all.AddRange(ui.VisibleLines);
+                StringAssert.Contains(page == expectedPages - 1 ? "close" : "next", ui.FooterText.ToLowerInvariant());
+            }
+            CollectionAssert.AreEqual(source, all, "No blank lines, dropped text or repeated text may compensate for the visual leading.");
+            int lastPage = ui.CurrentPage;
+            string[] lastLines = ui.VisibleLines.ToArray();
+            Assert.False(ui.GoToPage(-1));
+            Assert.False(ui.GoToPage(expectedPages));
+            Assert.AreEqual(lastPage, ui.CurrentPage);
+            CollectionAssert.AreEqual(lastLines, ui.VisibleLines);
+            Assert.True(ui.GoToPage(0));
+            Assert.AreEqual(source[0], ui.VisibleLines[0]);
+        }
+
         [Test] public void PageBoundsAndBackwardNavigation_PreserveCurrentMessage()
         {
             ui.Open(string.Join("\n", Enumerable.Range(0, 100).Select(i => "line " + i)));

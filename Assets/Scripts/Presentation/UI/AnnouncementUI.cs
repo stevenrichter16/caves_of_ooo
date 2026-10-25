@@ -22,7 +22,7 @@ namespace CavesOfOoo.Rendering
 
         private const int POPUP_W = 56;
         private const int MAX_TEXT_WIDTH = POPUP_W - 4; // 2 chars padding each side
-        public const int PageLineCapacity = 25;
+        public const int PageLineCapacity = 20;
         private const int PAGE_LINES = PageLineCapacity; // Leave space above the underlying inventory action rows.
         private static readonly Color PopupBgColor = new Color(.035f, .044f, .038f, 1f);
         private static readonly Color Bronze = new Color(.67f, .46f, .23f, 1f);
@@ -31,6 +31,7 @@ namespace CavesOfOoo.Rendering
         private static readonly Color Amber = new Color(.97f, .72f, .32f, 1f);
         private static readonly Color RuleColor = new Color(.41f, .45f, .29f, 1f);
         private const int BodyTop = 8;
+        private const float BodyLineAdvance = 1.25f;
         private readonly List<LedgerLine> _ledgerLines = new List<LedgerLine>();
         private readonly List<string> _titleLines = new List<string>();
         public AnnouncementDocument Document { get; private set; }
@@ -323,7 +324,8 @@ namespace CavesOfOoo.Rendering
 
         private void ComputePopupPosition()
         {
-            _popupH = BodyTop + System.Math.Max(1, VisibleLineCount) + 4;
+            int bodyRows = Mathf.CeilToInt((System.Math.Max(1, VisibleLineCount) - 1) * BodyLineAdvance) + 1;
+            _popupH = BodyTop + bodyRows + 4;
             _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
             _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
@@ -365,12 +367,14 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < VisibleLineCount; i++)
             {
                 var line = _ledgerLines[_pageIndex * PAGE_LINES + i];
-                if (line.Label == null) DrawText(2, BodyTop + i, line.Text, line.Color);
+                // Keep distinct logical cells; translate the entire row for readable leading.
+                float offsetY = -i * (BodyLineAdvance - 1f);
+                if (line.Label == null) DrawText(2, BodyTop + i, line.Text, line.Color, offsetY: offsetY);
                 else
                 {
-                    DrawText(2, BodyTop + i, line.Label, SeaGreen);
-                    DrawChar(16, BodyTop + i, CP437TilesetGenerator.BoxVertical, RuleColor);
-                    DrawText(17, BodyTop + i, line.Text, line.Color);
+                    DrawText(2, BodyTop + i, line.Label, SeaGreen, offsetY: offsetY);
+                    DrawChar(16, BodyTop + i, CP437TilesetGenerator.BoxVertical, RuleColor, offsetY);
+                    DrawText(17, BodyTop + i, line.Text, line.Color, offsetY: offsetY);
                 }
             }
             DrawRule(_popupH - 4);
@@ -496,7 +500,7 @@ namespace CavesOfOoo.Rendering
             _fgDrawn = false;
         }
 
-        private void DrawChar(int gx, int gy, char c, Color color)
+        private void DrawChar(int gx, int gy, char c, Color color, float offsetY = 0f)
         {
             if (Tilemap == null) return;
             int wx = _worldOriginX + gx;
@@ -507,10 +511,10 @@ namespace CavesOfOoo.Rendering
             Tilemap.SetTile(tilePos, tile);
             Tilemap.SetTileFlags(tilePos, TileFlags.None);
             Tilemap.SetColor(tilePos, color);
-            Tilemap.SetTransformMatrix(tilePos, Matrix4x4.identity);
+            Tilemap.SetTransformMatrix(tilePos, Matrix4x4.Translate(new Vector3(0, offsetY, 0)));
         }
 
-        private void DrawText(int gx, int gy, string text, Color color, float scale=1.6f, float advance=1f)
+        private void DrawText(int gx, int gy, string text, Color color, float scale=1.6f, float advance=1f, float offsetY=0f)
         {
             if (text == null || Tilemap == null) return;
             float cellWidth = Mathf.Abs(Tilemap.GetCellCenterLocal(Vector3Int.right).x - Tilemap.GetCellCenterLocal(Vector3Int.zero).x);
@@ -523,7 +527,7 @@ namespace CavesOfOoo.Rendering
                 Tilemap.SetTile(tilePos, HudPixelFont.GetTile(c));
                 Tilemap.SetTileFlags(tilePos, TileFlags.None);
                 Tilemap.SetColor(tilePos, color);
-                Tilemap.SetTransformMatrix(tilePos, Matrix4x4.TRS(new Vector3(i*(advance-1)*cellWidth,0,0),Quaternion.identity,new Vector3(scale,scale,1)));
+                Tilemap.SetTransformMatrix(tilePos, Matrix4x4.TRS(new Vector3(i*(advance-1)*cellWidth,offsetY,0),Quaternion.identity,new Vector3(scale,scale,1)));
             }
         }
     }

@@ -1,0 +1,39 @@
+{
+  "start-time": "2026-10-25 01:55:17Z",
+  "end-time": "2026-10-25 01:55:18Z",
+  "total": "38",
+  "passed": "31",
+  "failed": "7",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityDocumentPaginationTests.ReadableLeadingPagesKeepTwentyLinesAndPreserveEveryLine(21,2)",
+      "message": "  Readable full-size text must paginate within the protected panel.\n  Expected: 2\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityDocumentPaginationTests.ReadableLeadingPagesKeepTwentyLinesAndPreserveEveryLine(40,2)",
+      "message": "  Expected: 20\n  But was:  25\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityDocumentPaginationTests.ReadableLeadingPagesKeepTwentyLinesAndPreserveEveryLine(41,3)",
+      "message": "  Readable full-size text must paginate within the protected panel.\n  Expected: 3\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerTypographyTests.AdjacentBodyInkHasReadableLeadingWithoutShrinkingOrDroppingGlyphs(1280,800)",
+      "message": "  Adjacent body lines need at least a quarter-cell of clear ink; one-pixel leading is too tight.\n  Expected: greater than or equal to 0.25f\n  But was:  0.0666675568f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerTypographyTests.AdjacentBodyInkHasReadableLeadingWithoutShrinkingOrDroppingGlyphs(1920,1080)",
+      "message": "  Adjacent body lines need at least a quarter-cell of clear ink; one-pixel leading is too tight.\n  Expected: greater than or equal to 0.25f\n  But was:  0.0666675568f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerTypographyTests.FactLabelsValuesAndDividersShareTheSpacedBaseline(1280,800)",
+      "message": "  Facts need the same readable leading as ordinary prose.\n  Expected: greater than or equal to 0.25f\n  But was:  0.0666675568f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ExamineLedgerTypographyTests.FactLabelsValuesAndDividersShareTheSpacedBaseline(1920,1080)",
+      "message": "  Facts need the same readable leading as ordinary prose.\n  Expected: greater than or equal to 0.25f\n  But was:  0.0666675568f\n"
+    }
+  ]
+}

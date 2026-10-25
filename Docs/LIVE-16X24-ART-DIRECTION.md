@@ -1264,3 +1264,40 @@ still predates this graphics work**; update packaging after the connected
 acceptance, and keep hardware proof separate. Ordinary Riposte, Player periodic
 hurt, Frozen proc and pulp application remain named unobserved opportunities,
 not reasons for unbounded random encounter hunting.
+
+
+## Latest continuation — six-site journey and readable Examine, 2026-10-25 02:03UTC
+
+[Connected service journey](GRAPHICS-G3-SIXSITE-JOURNEY.md) now has an ordinary
+earned-checkpoint route through kitchen, east shelter, glade, cellar, north
+works and Nella, then back. Actual2clay repairs pan13489; Orven13471's
+introduction carries cause`ed272954d6e94cedbb3937df123dba5a`; Nella15712 grants
+reserve rights without8drams. Pitchpod15729 yields2resin+1seed; real planting
+and Rain create/water15735. On kitchen return13515 is ripe and the repair/
+knowledge persist. All26 sampled captures are flat16×24 and42HP, not concepts.
+
+[Reader leading](GRAPHICS-G3-READER-LEGIBILITY.md) preserves the font size and
+approved portrait while increasing body baseline advance to1.25 and reducing
+page capacity to20 within the same37-row maximum. Seven intended native RED
+failures precede production;108 distinct GREEN cases pass with0fail/skip.
+Independent source/image review finds no P1/P2; the actual same paragraph has
+4–5 clear pixel rows between lines instead of1. Ordinary two-page sword reader
+forward/back/close and return to world preserve tick7160.
+
+The final exact character checkpoint is `/tmp/coo-sixsite-final-checkpoint/`
+(character`70a87e9febf34b499e8aaf47a44601ed`). Its Quick333298bytes SHA256
+`c9add40b3996a82f5d7d9d196e78ba19c7c7a29e1a25ceec33f0e7dfd701db56` is
+recorded with all four files. Normal stop/C Continue matches all ten sampled
+gameplay fields. Do not copy audit markers or replace prior accepted branches.
+Root restored Play/settings/view/scene/null save override at02:02:13UTC;
+console0errors,2existing Metal warnings. No new performance measurement.
+
+**Next:** verify exact owned push, inspect storage, then prepare a current
+packaged flat build; October11 current archive still predates these graphics.
+Keep launch/package/hardware evidence separate. A bounded prepared-bed cue
+should follow: original decorative “cut emberwheat row” masks cultivated soil
+after reserve harvest; real seed planting works. Preserve historical row names
+and add current/disclosed bed context through the shared readout with native
+RED/counters. Fresh-New-Game whole-journey, incidental native art, ordinary
+Riposte/Player periodic Hurt/Frozen proc and full regional coverage remain open.
+Do not turn these named gaps into endless RNG hunting or disconnected art.

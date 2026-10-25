@@ -81,6 +81,109 @@ namespace CavesOfOoo.Tests
             Assert.Greater(firstBottom, secondTop, "The two title lines must not collide vertically.");
         }
 
+        [TestCase(1280, 800)]
+        [TestCase(1920, 1080)]
+        public void AdjacentBodyInkHasReadableLeadingWithoutShrinkingOrDroppingGlyphs(int width, int height)
+        {
+            ConfigureDisplay(width, height);
+            const string text = "HHggjjpp";
+            ui.OpenDocument(Document("Readability", text + "\n" + text));
+            CollectionAssert.AreEqual(new[] { text, text }, ui.VisibleLines,
+                "Visual leading must not insert blank document lines.");
+            int row = Field("_worldTopY") - 8;
+            Rect first = TextInk(row, 2, text);
+            Rect second = TextInk(row - 1, 2, text);
+            Assert.That(first.yMin - second.yMax, Is.GreaterThanOrEqualTo(.25f),
+                "Adjacent body lines need at least a quarter-cell of clear ink; one-pixel leading is too tight.");
+            Assert.That(ui.Tilemap.GetTransformMatrix(new Vector3Int(Field("_worldOriginX") + 2, row, 0)).m13,
+                Is.EqualTo(0f).Within(.0001f), "The first body line keeps its original baseline.");
+        }
+
+        [TestCase(1280, 800)]
+        [TestCase(1920, 1080)]
+        public void FactLabelsValuesAndDividersShareTheSpacedBaseline(int width, int height)
+        {
+            ConfigureDisplay(width, height);
+            ui.OpenDocument(new AnnouncementDocument("Facts", "EXAMINE", facts: new[]
+            {
+                new AnnouncementFact("H", "H"), new AnnouncementFact("H", "H")
+            }));
+            CollectionAssert.AreEqual(new[] { "H: H", "H: H" }, ui.VisibleLines);
+            int firstRow = Field("_worldTopY") - 8;
+            Rect first = TextInk(firstRow, 2, "H");
+            Rect second = TextInk(firstRow - 1, 2, "H");
+            Assert.That(first.yMin - second.yMax, Is.GreaterThanOrEqualTo(.25f),
+                "Facts need the same readable leading as ordinary prose.");
+            for (int i = 0; i < 2; i++)
+            {
+                int row = firstRow - i;
+                Rect label = TextInk(row, 2, "H"), value = TextInk(row, 17, "H");
+                Assert.That(value.yMin, Is.EqualTo(label.yMin).Within(.0001f));
+                Assert.That(value.yMax, Is.EqualTo(label.yMax).Within(.0001f));
+                var labelCell = new Vector3Int(Field("_worldOriginX") + 2, row, 0);
+                var dividerCell = new Vector3Int(Field("_worldOriginX") + 16, row, 0);
+                Assert.AreSame(CP437TilesetGenerator.GetUiTile(CP437TilesetGenerator.BoxVertical),
+                    ui.Tilemap.GetTile(dividerCell), "The real fact divider must still be present.");
+                float shift = ui.Tilemap.GetTransformMatrix(labelCell).m13;
+                Assert.That(ui.Tilemap.GetTransformMatrix(dividerCell).m13,
+                    Is.EqualTo(shift).Within(.0001f), "Fact dividers must move with their text, not stay on old rows.");
+                if (i == 0) Assert.That(shift, Is.EqualTo(0f).Within(.0001f));
+                else Assert.Less(shift, 0f, "The later fact really uses the added visual leading.");
+            }
+        }
+
+        [TestCase(1280, 800)]
+        [TestCase(1920, 1080)]
+        public void FullReadablePageKeepsLastInkAboveFooterAndWithinTheProtectedPanel(int width, int height)
+        {
+            ConfigureDisplay(width, height);
+            var lines = new string[20];
+            for (int i = 0; i < lines.Length; i++) lines[i] = "HHggjjpp";
+            ui.OpenDocument(Document("Panel", string.Join("\n", lines)));
+            Assert.AreEqual(1, ui.PageCount);
+            CollectionAssert.AreEqual(lines, ui.VisibleLines);
+            int top = Field("_worldTopY"), origin = Field("_worldOriginX"), panelHeight = Field("_popupH");
+            Assert.LessOrEqual(panelHeight, 37, "More leading must not cover the underlying inventory action rows.");
+            Rect last = TextInk(top - 8 - 19, 2, lines[19]);
+            var ruleCell = new Vector3Int(origin + 2, top - (panelHeight - 4), 0);
+            var ruleSprite = ui.Tilemap.GetSprite(ruleCell);
+            Assert.NotNull(ruleSprite, "The footer separator must still be painted.");
+            Rect rule = PaintedBounds(ruleCell, ruleSprite);
+            Assert.Greater(last.yMin, rule.yMax, "The translated last line must stay above the footer separator.");
+            float panelBottom = ui.Tilemap.CellToWorld(new Vector3Int(origin, top - panelHeight + 1, 0)).y;
+            float panelTop = ui.Tilemap.CellToWorld(new Vector3Int(origin, top + 1, 0)).y;
+            foreach (var cell in ui.Tilemap.cellBounds.allPositionsWithin)
+            {
+                if (!ui.Tilemap.HasTile(cell)) continue;
+                Assert.That(cell.y, Is.InRange(4, CenteredPopupLayout.GridHeight - 1));
+                Assert.True(ui.BgTilemap.HasTile(cell), "Each submitted foreground cell retains its opaque backdrop.");
+                Rect ink = PaintedBounds(cell, ui.Tilemap.GetSprite(cell));
+                Assert.GreaterOrEqual(ink.yMin + .0001f, panelBottom);
+                Assert.LessOrEqual(ink.yMax - .0001f, panelTop);
+            }
+        }
+
+        // Check the actual submitted glyph identities and transforms as well as
+        // their alpha bounds: shrinking or omitting text must not satisfy leading.
+        Rect TextInk(int row, int column, string text)
+        {
+            float left = float.PositiveInfinity, right = float.NegativeInfinity;
+            float bottom = float.PositiveInfinity, top = float.NegativeInfinity;
+            for (int i = 0; i < text.Length; i++)
+            {
+                var cell = new Vector3Int(Field("_worldOriginX") + column + i, row, 0);
+                var glyph = HudPixelFont.GetTile(text[i]);
+                Assert.AreSame(glyph, ui.Tilemap.GetTile(cell), "Every expected body glyph remains submitted at " + cell);
+                var transform = ui.Tilemap.GetTransformMatrix(cell);
+                Assert.That(transform.m00, Is.EqualTo(1.6f).Within(.0001f), "Preserve the approved body font width.");
+                Assert.That(transform.m11, Is.EqualTo(1.6f).Within(.0001f), "Preserve the approved body font height.");
+                Rect ink = PaintedBounds(cell, glyph.sprite);
+                left = Mathf.Min(left, ink.xMin); right = Mathf.Max(right, ink.xMax);
+                bottom = Mathf.Min(bottom, ink.yMin); top = Mathf.Max(top, ink.yMax);
+            }
+            return Rect.MinMaxRect(left, bottom, right, top);
+        }
+
         void ConfigureDisplay(int width, int height)
         {
             var layout = GameplayViewportLayout.Measure((float)width / height, 20f, 20f, 34, 6);
