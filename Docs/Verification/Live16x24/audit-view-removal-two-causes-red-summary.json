@@ -1,0 +1,19 @@
+{
+  "start-time": "2026-10-25 09:00:40Z",
+  "end-time": "2026-10-25 09:00:40Z",
+  "total": "8",
+  "passed": "6",
+  "failed": "2",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce(False)",
+      "message": "  Preset identity/order changed at custom index 1\n  Expected: same as <UnityEditor.GameViewSize>\n  But was:  <UnityEditor.GameViewSize>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce(True)",
+      "message": "  Only the owned audit preset may be removed.\n  Expected: 9\n  But was:  10\n"
+    }
+  ]
+}

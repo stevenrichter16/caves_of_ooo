@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Passed" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 09:02:58Z" end-time="2026-10-25 09:02:59Z" duration="1.1007318">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31351" result="Passed" start-time="2026-10-25 09:02:58Z" end-time="2026-10-25 09:02:59Z" duration="1.100732" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="38601" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31351" result="Passed" start-time="2026-10-25 09:02:58Z" end-time="2026-10-25 09:02:59Z" duration="0.924261" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12731" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="38602" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31351" result="Passed" start-time="2026-10-25 09:02:58Z" end-time="2026-10-25 09:02:59Z" duration="0.831343" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="38603" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31351" result="Passed" start-time="2026-10-25 09:02:58Z" end-time="2026-10-25 09:02:59Z" duration="0.742016" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="13946" name="GameAuditNativeSaveIsolationTests" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.113847" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="13958" name="CleanupRemovesEveryOwnedSessionButPreservesSiblingDirectory" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.CleanupRemovesEveryOwnedSessionButPreservesSiblingDirectory" methodname="CleanupRemovesEveryOwnedSessionButPreservesSiblingDirectory" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="737769250" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.023470" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13951" name="CompletionRestoresPreferencePresenceAndPreviousRoot" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.CompletionRestoresPreferencePresenceAndPreviousRoot" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.026429" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13947" name="CompletionRestoresPreferencePresenceAndPreviousRoot(False,False)" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.CompletionRestoresPreferencePresenceAndPreviousRoot(False,False)" methodname="CompletionRestoresPreferencePresenceAndPreviousRoot" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="1856301759" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.007467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+              <test-case id="13948" name="CompletionRestoresPreferencePresenceAndPreviousRoot(False,True)" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.CompletionRestoresPreferencePresenceAndPreviousRoot(False,True)" methodname="CompletionRestoresPreferencePresenceAndPreviousRoot" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="477013344" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.006079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+              <test-case id="13949" name="CompletionRestoresPreferencePresenceAndPreviousRoot(True,False)" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.CompletionRestoresPreferencePresenceAndPreviousRoot(True,False)" methodname="CompletionRestoresPreferencePresenceAndPreviousRoot" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="881891883" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005855" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+              <test-case id="13950" name="CompletionRestoresPreferencePresenceAndPreviousRoot(True,True)" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.CompletionRestoresPreferencePresenceAndPreviousRoot(True,True)" methodname="CompletionRestoresPreferencePresenceAndPreviousRoot" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="1935853571" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005862" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="13952" name="ConcurrentOwnerIsRefusedBeforeChangingFirstOwnersState" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.ConcurrentOwnerIsRefusedBeforeChangingFirstOwnersState" methodname="ConcurrentOwnerIsRefusedBeforeChangingFirstOwnersState" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="1182520645" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.006868" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="13962" name="DuplicateFinishDoesNotRestoreAnOlderPreferenceOverNewerWork" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.DuplicateFinishDoesNotRestoreAnOlderPreferenceOverNewerWork" methodname="DuplicateFinishDoesNotRestoreAnOlderPreferenceOverNewerWork" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="621518341" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="13961" name="ExternalQuitCannotExposeRealSaveRootToRemainingShutdownCallbacks" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.ExternalQuitCannotExposeRealSaveRootToRemainingShutdownCallbacks" methodname="ExternalQuitCannotExposeRealSaveRootToRemainingShutdownCallbacks" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="238906972" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=3
+]]></output>
+            </test-case>
+            <test-case id="13957" name="FailedLaunchBeforePlayCanCleanUpImmediately" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.FailedLaunchBeforePlayCanCleanUpImmediately" methodname="FailedLaunchBeforePlayCanCleanUpImmediately" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="318891584" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005939" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=4
+]]></output>
+            </test-case>
+            <test-case id="13959" name="InvalidMarkerCannotEscapeOwnedRootOrChangePreferences" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.InvalidMarkerCannotEscapeOwnedRootOrChangePreferences" methodname="InvalidMarkerCannotEscapeOwnedRootOrChangePreferences" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="172170899" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005317" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="13956" name="RestoreAfterStaticResetReusesRootAndOriginalPreferenceSnapshot" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.RestoreAfterStaticResetReusesRootAndOriginalPreferenceSnapshot" methodname="RestoreAfterStaticResetReusesRootAndOriginalPreferenceSnapshot" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="101385855" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.006543" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="13960" name="ThrowingManualStopStillRestoresIsolationAndReportsFailure" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.ThrowingManualStopStillRestoresIsolationAndReportsFailure" methodname="ThrowingManualStopStillRestoresIsolationAndReportsFailure" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="684853155" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.007965" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Manual stop failed: System.InvalidOperationException: stop probe
+  at CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests+<>c.<ThrowingManualStopStillRestoresIsolationAndReportsFailure>b__11_0 (System.Int32 _) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/GameAuditNativeSaveIsolationTests.cs:98 
+  at CavesOfOoo.Editor.NativeSaveIsolation.OnPlayState (UnityEditor.PlayModeStateChange state) [0x00018] in /Users/steven/caves-of-ooo/Assets/Editor/Scenarios/NativeSaveIsolation.cs:123 
+[NativeSaveIsolation] Cleanup complete, exit=4
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="13955" name="WrongTokenCannotRestoreStopOrDeleteAnotherRun" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.WrongTokenCannotRestoreStopOrDeleteAnotherRun" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.013109" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="13953" name="WrongTokenCannotRestoreStopOrDeleteAnotherRun(&quot;Restore&quot;)" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.WrongTokenCannotRestoreStopOrDeleteAnotherRun(&quot;Restore&quot;)" methodname="WrongTokenCannotRestoreStopOrDeleteAnotherRun" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="1591636282" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.006584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+              <test-case id="13954" name="WrongTokenCannotRestoreStopOrDeleteAnotherRun(&quot;Finish&quot;)" fullname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests.WrongTokenCannotRestoreStopOrDeleteAnotherRun(&quot;Finish&quot;)" methodname="WrongTokenCannotRestoreStopOrDeleteAnotherRun" classname="CavesOfOoo.Tests.GameAuditNativeSaveIsolationTests" runstate="Runnable" seed="2028421151" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="14119" name="LiveFlatPixelGreyboxRecoveryTests" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.064996" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="14120" name="FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" methodname="FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1126867004" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.007817" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14123" name="ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" methodname="ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="787612089" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.006276" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14122" name="ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" methodname="ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="687820644" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.006093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14121" name="ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" methodname="ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="282909745" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.005782" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="14129" name="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.018041" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="14127" name="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(True,False)" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(True,False)" methodname="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="870278012" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.009901" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+              <test-case id="14128" name="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(False,True)" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(False,True)" methodname="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="221838970" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.007715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="14126" name="RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.019910" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="14124" name="RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce(False)" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce(False)" methodname="RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1014689501" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.007736" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+              <test-case id="14125" name="RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce(True)" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce(True)" methodname="RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1122717983" result="Passed" start-time="2026-10-25 09:02:59Z" end-time="2026-10-25 09:02:59Z" duration="0.010741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -138,7 +138,7 @@ namespace CavesOfOoo.Editor
             if (chosen < 0)
             {
                 var size = Activator.CreateInstance(EditorType("UnityEditor.GameViewSize"), All, null,
-                    new object[] { Enum.Parse(EditorType("UnityEditor.GameViewSizeType"), "FixedResolution"), 1280, 800, "Live flat pixel audit " + SessionState.GetString(Prefix + "token", "") }, null);
+                    new object[] { Enum.Parse(EditorType("UnityEditor.GameViewSizeType"), "FixedResolution"), 1280, 800, "CoO " + SessionState.GetString(Prefix + "token", "") }, null);
                 type.GetMethod("AddCustomSize", All).Invoke(group, new[] { size });
                 SessionState.SetInt(Prefix + "added", custom); chosen = built + custom;
             }
@@ -158,10 +158,10 @@ namespace CavesOfOoo.Editor
                 {
                     var size = type.GetMethod("GetGameViewSize", All).Invoke(group, new object[] { built + added });
                     string label = (string)size.GetType().GetProperty("baseText", All).GetValue(size);
-                    if (label == "Live flat pixel audit " + SessionState.GetString(Prefix + "token", "")
+                    if (label == "CoO " + SessionState.GetString(Prefix + "token", "")
                         && (int)size.GetType().GetProperty("width", All).GetValue(size) == 1280
                         && (int)size.GetType().GetProperty("height", All).GetValue(size) == 800)
-                        type.GetMethod("RemoveCustomSize", All).Invoke(group, new object[] { added });
+                        type.GetMethod("RemoveCustomSize", All).Invoke(group, new object[] { built + added });
                 }
             }
             view.GetType().GetProperty("selectedSizeIndex", All).SetValue(view, SessionState.GetInt(Prefix + "view", 0));

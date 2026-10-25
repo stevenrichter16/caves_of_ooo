@@ -90,6 +90,157 @@ namespace CavesOfOoo.Tests
             AssertCompletedAndQueued();
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce(bool fullOwnershipToken)
+        {
+            using (var view = new ViewSizeScope(_launcher))
+            {
+                Assert.AreEqual(32, _token.Length, "Keep the actual native isolation token unchanged.");
+                object target = view.Arm(fullOwnershipToken ? _token : "view-test", false, false);
+                object[] before = view.Sizes();
+                Call(_launcher, "RestoreView");
+                view.AssertSizes(before.Where(size => !ReferenceEquals(size, target)).ToArray());
+                Assert.AreEqual(0, view.SelectedIndex);
+                Assert.IsFalse(SessionState.GetBool(Prefix + "viewSet", true));
+                Call(_launcher, "RestoreView");
+                view.AssertSizes(before.Where(size => !ReferenceEquals(size, target)).ToArray());
+            }
+        }
+
+        [TestCase(true, false)]
+        [TestCase(false, true)]
+        public void RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(bool foreignToken, bool wrongWidth)
+        {
+            using (var view = new ViewSizeScope(_launcher))
+            {
+                view.Arm(_token, foreignToken, wrongWidth);
+                object[] before = view.Sizes();
+                Call(_launcher, "RestoreView");
+                view.AssertSizes(before);
+                Assert.AreEqual(0, view.SelectedIndex);
+                Assert.IsFalse(SessionState.GetBool(Prefix + "viewSet", true));
+            }
+        }
+
+        // Exercise Unity's real combined-index API without risking any user preset
+        // even while RestoreView is still wrong. All possible wrong removals below
+        // land in test-owned padding; cleanup uses current indices and references.
+        private sealed class ViewSizeScope : IDisposable
+        {
+            private const BindingFlags All = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+            private readonly object _group;
+            private readonly Type _groupType, _viewType;
+            private readonly PropertyInfo _selected;
+            private readonly int _built, _oldView, _oldAdded;
+            private readonly bool _oldViewSet;
+            private readonly string _oldLauncherToken;
+            private readonly EditorWindow[] _borrowedViews;
+            private readonly int[] _borrowedSelections;
+            private readonly EditorWindow _oldFocus;
+            private readonly System.Collections.Generic.List<object> _owned = new System.Collections.Generic.List<object>();
+            private EditorWindow _view;
+
+            public ViewSizeScope(Type launcher)
+            {
+                _group = Call(launcher, "Group");
+                _groupType = _group.GetType();
+                _built = Count("GetBuiltinCount");
+                Assert.Greater(_built, 0, "This regression needs Unity's real nonempty built-in preset prefix.");
+                _viewType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.GameView", true);
+                _selected = _viewType.GetProperty("selectedSizeIndex", All);
+                Assert.NotNull(_selected);
+                _borrowedViews = UnityEngine.Resources.FindObjectsOfTypeAll(_viewType).Cast<EditorWindow>().ToArray();
+                _borrowedSelections = _borrowedViews.Select(window => (int)_selected.GetValue(window)).ToArray();
+                _oldFocus = EditorWindow.focusedWindow;
+                _oldViewSet = SessionState.GetBool(Prefix + "viewSet", false);
+                _oldView = SessionState.GetInt(Prefix + "view", 0);
+                _oldAdded = SessionState.GetInt(Prefix + "added", -1);
+                _oldLauncherToken = SessionState.GetString(Prefix + "token", "");
+            }
+
+            public object Arm(string token, bool foreignToken, bool wrongWidth)
+            {
+                _view = EditorWindow.GetWindow(_viewType);
+                // If there were C user customs and B built-ins, the buggy call
+                // removes custom (C+B)-B=C: the first of our B padding entries.
+                for (int i = 0; i < _built; i++) Add("owned regression padding " + token + " " + i, 901 + i);
+                int targetCustomIndex = Count("GetCustomCount");
+                // This is only the launcher's view receipt. NativeSaveIsolation's
+                // separate ownership token and the outer fixture token are untouched.
+                SessionState.SetString(Prefix + "token", token);
+                string labelToken = foreignToken ? (token[0] == '0' ? "1" : "0") + token.Substring(1) : token;
+                string requestedLabel = "CoO " + labelToken;
+                int requestedWidth = wrongWidth ? 1279 : 1280;
+                object target = Add(requestedLabel, requestedWidth);
+                Assert.LessOrEqual(requestedLabel.Length, 40, "Preserve the full token within Unity's preset label limit.");
+                Assert.AreEqual(requestedLabel, target.GetType().GetProperty("baseText", All).GetValue(target),
+                    "Unity must store the complete ownership label without truncation.");
+                Assert.AreEqual(requestedWidth, target.GetType().GetProperty("width", All).GetValue(target));
+                Assert.AreEqual(800, target.GetType().GetProperty("height", All).GetValue(target));
+                Assert.AreSame(target, At(targetCustomIndex), "The custom-relative receipt must identify this exact preset.");
+                Assert.AreEqual(token, SessionState.GetString(Prefix + "token", ""), "Keep the launcher view receipt exact.");
+                Add("owned regression sentinel " + token, 973);
+                SessionState.SetInt(Prefix + "view", 0);
+                SessionState.SetInt(Prefix + "added", targetCustomIndex);
+                SessionState.SetBool(Prefix + "viewSet", true);
+                _selected.SetValue(_view, _built + targetCustomIndex);
+                return target;
+            }
+
+            public int SelectedIndex => (int)_selected.GetValue(_view);
+            private int Count(string method) => (int)_groupType.GetMethod(method, All).Invoke(_group, null);
+            private object At(int customIndex) => _groupType.GetMethod("GetGameViewSize", All).Invoke(_group, new object[] { _built + customIndex });
+
+            public object[] Sizes()
+            {
+                var sizes = new object[Count("GetCustomCount")];
+                for (int i = 0; i < sizes.Length; i++) sizes[i] = At(i);
+                return sizes;
+            }
+
+            public void AssertSizes(object[] expected)
+            {
+                object[] actual = Sizes();
+                Assert.AreEqual(expected.Length, actual.Length, "Only the owned audit preset may be removed.");
+                for (int i = 0; i < expected.Length; i++)
+                    Assert.AreSame(expected[i], actual[i], "Preset identity/order changed at custom index " + i);
+            }
+
+            private object Add(string label, int width)
+            {
+                Type sizeType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.GameViewSize", true);
+                Type kindType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.GameViewSizeType", true);
+                object size = Activator.CreateInstance(sizeType, All, null,
+                    new object[] { Enum.Parse(kindType, "FixedResolution"), width, 800, label }, null);
+                _owned.Add(size);
+                _groupType.GetMethod("AddCustomSize", All).Invoke(_group, new[] { size });
+                return size;
+            }
+
+            public void Dispose()
+            {
+                try
+                {
+                    // Never use the production method under test to clean up.
+                    for (int i = Count("GetCustomCount") - 1; i >= 0; i--)
+                        if (_owned.Any(size => ReferenceEquals(size, At(i))))
+                            _groupType.GetMethod("RemoveCustomSize", All).Invoke(_group, new object[] { _built + i });
+                }
+                finally
+                {
+                    SessionState.SetBool(Prefix + "viewSet", _oldViewSet);
+                    SessionState.SetInt(Prefix + "view", _oldView);
+                    SessionState.SetInt(Prefix + "added", _oldAdded);
+                    SessionState.SetString(Prefix + "token", _oldLauncherToken);
+                    for (int i = 0; i < _borrowedViews.Length; i++)
+                        if (_borrowedViews[i]) _selected.SetValue(_borrowedViews[i], _borrowedSelections[i]);
+                    if (_view && !_borrowedViews.Contains(_view)) _view.Close();
+                    if (_oldFocus) _oldFocus.Focus();
+                }
+            }
+        }
+
         private void AssertCompletedAndQueued()
         {
             Assert.IsFalse(SessionState.GetBool(IsolationPrefix + "active", false));

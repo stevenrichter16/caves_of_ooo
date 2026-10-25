@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Failed(Child)" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 08:53:55Z" end-time="2026-10-25 08:53:56Z" duration="0.691499">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31350" result="Failed" site="Child" start-time="2026-10-25 08:53:55Z" end-time="2026-10-25 08:53:56Z" duration="0.691499" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38599" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31350" result="Failed" site="Child" start-time="2026-10-25 08:53:55Z" end-time="2026-10-25 08:53:56Z" duration="0.597179" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12731" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38600" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31350" result="Failed" site="Child" start-time="2026-10-25 08:53:55Z" end-time="2026-10-25 08:53:56Z" duration="0.510038" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38601" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31350" result="Failed" site="Child" start-time="2026-10-25 08:53:55Z" end-time="2026-10-25 08:53:56Z" duration="0.350912" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="14119" name="LiveFlatPixelGreyboxRecoveryTests" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.085197" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="14120" name="FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" methodname="FinishInEditMode_RestoresSaveOwnershipAndQueuesPresentationRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="469233576" result="Passed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.026206" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14123" name="ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" methodname="ReloadAfterIsolationFinished_RequeuesLostPresentationRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1812571317" result="Passed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.007185" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14122" name="ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" methodname="ReloadRecoveryDuringPlayOrTransition_PreservesAuditAndDoesNotQueueRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1506961604" result="Passed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.006841" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-case id="14121" name="ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" methodname="ReloadRecoveryInEditMode_CompletesPendingIsolationAndQueuesRestore" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="1592384431" result="Passed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.006923" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="14127" name="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.023957" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="14125" name="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(True,False)" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(True,False)" methodname="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="92929973" result="Passed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.013382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+              <test-case id="14126" name="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(False,True)" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch(False,True)" methodname="RestoreViewPreservesAPresetWhoseTokenOrDimensionsDoNotMatch" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="2086477399" result="Passed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.008965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="14124" name="RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce" fullname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce" methodname="RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce" classname="CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests" runstate="Runnable" seed="66862936" result="Failed" start-time="2026-10-25 08:53:56Z" end-time="2026-10-25 08:53:56Z" duration="0.008965" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Only the owned audit preset may be removed.
+  Expected: 9
+  But was:  10
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests+ViewSizeScope.AssertSizes (System.Object[] expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:188
+at CavesOfOoo.Tests.LiveFlatPixelGreyboxRecoveryTests.RestoreViewRemovesOnlyItsOwnedAuditSizeAndRestoresSelectionOnce () [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Save/LiveFlatPixelGreyboxRecoveryTests.cs:101
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[NativeSaveIsolation] Cleanup complete, exit=0
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
