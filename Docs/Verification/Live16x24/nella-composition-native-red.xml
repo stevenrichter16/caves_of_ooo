@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="12" failed="13" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:34Z" duration="5.5304293">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31376" result="Failed" site="Child" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:34Z" duration="5.530429" total="25" passed="12" failed="13" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38635" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31376" result="Failed" site="Child" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:34Z" duration="5.397552" total="25" passed="12" failed="13" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12731" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38636" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31376" result="Failed" site="Child" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:34Z" duration="5.192313" total="25" passed="12" failed="13" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38637" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31376" result="Failed" site="Child" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:34Z" duration="4.979371" total="25" passed="12" failed="13" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24118" name="SpreadNellaCompositionTests" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:34Z" duration="4.708887" total="25" passed="12" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24140" name="ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:31Z" duration="1.992507" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24138" name="ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage(64)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage(64)" methodname="ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1391666554" result="Failed" start-time="2026-10-25 09:26:29Z" end-time="2026-10-25 09:26:31Z" duration="1.026170" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage (System.Int32 seed) [0x0005b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:223
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24139" name="ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage(65)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage(65)" methodname="ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="205301466" result="Failed" start-time="2026-10-25 09:26:31Z" end-time="2026-10-25 09:26:31Z" duration="0.963691" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.ActualColdWorldCommitsTheCompleteBoundPlotAtItsSharedFieldFrontage (System.Int32 seed) [0x0005b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:223
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24146" name="AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 09:26:31Z" end-time="2026-10-25 09:26:32Z" duration="0.505440" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24144" name="AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner(False)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner(False)" methodname="AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="851605652" result="Passed" start-time="2026-10-25 09:26:31Z" end-time="2026-10-25 09:26:32Z" duration="0.054732" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24145" name="AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner(True)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner(True)" methodname="AuthorityRefusalBeforeOrAfterFirstPublicationRestoresEveryOriginalOwner" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1113140253" result="Passed" start-time="2026-10-25 09:26:32Z" end-time="2026-10-25 09:26:32Z" duration="0.448087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24151" name="CachedAcceptedPlotKeepsExactDepletedOwnersAndPermissionWithoutReplayingTheColdPlan" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.CachedAcceptedPlotKeepsExactDepletedOwnersAndPermissionWithoutReplayingTheColdPlan" methodname="CachedAcceptedPlotKeepsExactDepletedOwnersAndPermissionWithoutReplayingTheColdPlan" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="2073623170" result="Passed" start-time="2026-10-25 09:26:32Z" end-time="2026-10-25 09:26:34Z" duration="1.680070" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24150" name="EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.372064" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24147" name="EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce(0,3)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce(0,3)" methodname="EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1967573030" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.101140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24148" name="EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce(65,2)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce(65,2)" methodname="EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="174063769" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.177083" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24149" name="EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce(64,1)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce(64,1)" methodname="EachConditionRetainsItsExactFiniteGleaningBudgetAndHarvestsOnlyOnce" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="364856148" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.090293" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24137" name="LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.006285" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24135" name="LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage(64)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage(64)" methodname="LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="630931082" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.002511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage (System.Int32 seed) [0x000d2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:175
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24136" name="LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage(65)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage(65)" methodname="LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1749055087" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.000591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.LegacyOtherAddressesAndOtherFormationsKeepTheirWholePlanAndNoFrontage (System.Int32 seed) [0x000d2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:175
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24130" name="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.040510" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24124" name="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(0)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(0)" methodname="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1523263852" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.007201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24125" name="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(1)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(1)" methodname="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1783489752" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.006673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24126" name="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(2)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(2)" methodname="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1656392196" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.006207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24127" name="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(64)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(64)" methodname="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1047554909" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.006433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24128" name="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(65)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(65)" methodname="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1935763884" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.006309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24129" name="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(1729)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact(1729)" methodname="OnlyOriginalCropRowsMayDisappearAndEveryOtherPlanCellAndPortStayExact" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="2061076329" result="Passed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.006267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24143" name="PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.100053" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24141" name="PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource(False)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource(False)" methodname="PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="962117567" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.049839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource (System.Boolean block) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:244
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24142" name="PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource(True)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource(True)" methodname="PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1167176821" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.048453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.PreferredFrontageUsesNativeFitsAndAnOccupiedFrontageFallsBackWithoutMovingItsSource (System.Boolean block) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:244
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24123" name="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.004261" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24119" name="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(64)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(64)" methodname="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="292918603" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.001501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  OffsetLanes: at least two distant repeated strips need shorter unequal remnants.
+  Expected: greater than or equal to 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields (System.Int32 seed) [0x00241] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24120" name="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(65)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(65)" methodname="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1900000395" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.000305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  OffsetLanes: at least two distant repeated strips need shorter unequal remnants.
+  Expected: greater than or equal to 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields (System.Int32 seed) [0x00241] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24121" name="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(1729)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(1729)" methodname="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1917733552" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.000269" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  OffsetLanes: at least two distant repeated strips need shorter unequal remnants.
+  Expected: greater than or equal to 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields (System.Int32 seed) [0x00241] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24122" name="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(1)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields(1)" methodname="RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1604499673" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.000462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  OffsetLanes: at least two distant repeated strips need shorter unequal remnants.
+  Expected: greater than or equal to 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.RemoteRemnantsLoseRepeatedFullDepthAndSpanWithoutErasingTheFields (System.Int32 seed) [0x00241] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24134" name="SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.003261" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24131" name="SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows(64)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows(64)" methodname="SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="964714170" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.001139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows (System.Int32 seed) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:147
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24132" name="SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows(65)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows(65)" methodname="SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="868849927" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.000361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows (System.Int32 seed) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:147
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24133" name="SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows(1)" fullname="CavesOfOoo.Tests.SpreadNellaCompositionTests.SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows(1)" methodname="SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows" classname="CavesOfOoo.Tests.SpreadNellaCompositionTests" runstate="Runnable" seed="1005048939" result="Failed" start-time="2026-10-25 09:26:34Z" end-time="2026-10-25 09:26:34Z" duration="0.000482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The mask and complete resident stamp need one pure scoped frontage descriptor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadNellaCompositionTests.Front (CavesOfOoo.Core.SpreadCompositionPlan p, System.Boolean required) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:99
+at CavesOfOoo.Tests.SpreadNellaCompositionTests.SharedFrontageHasAPlanSafeCompleteStampAndPreservesDeepPrimaryFurrows (System.Int32 seed) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadNellaCompositionTests.cs:147
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

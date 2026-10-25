@@ -22,6 +22,7 @@ namespace CavesOfOoo.Core
         // Activated only after the original connectivity repair, so subtracting
         // northern hedge fragments cannot change existing lanes or other planned terrain cells.
         private readonly bool northernFragments;
+        private readonly NellaFrontage? nellaFrontage;
         public int ParcelCount => parcels.Length;
         public Parcel GetParcel(int index) => parcels[index];
         public readonly struct Parcel
@@ -31,6 +32,22 @@ namespace CavesOfOoo.Core
             public bool Contains(int x,int y)=>x>=X&&x<X+Width&&y>=Y&&y<Y+Height;
             public bool Boundary(int x,int y)=>Contains(x,y)&&(x==X||y==Y||x==X+Width-1||y==Y+Height-1);
         }
+        /// <summary>Cold-only shared field frontage. The resident builder still proves the
+        /// complete stamp against the actual world; this descriptor never moves live owners.</summary>
+        public readonly struct NellaFrontage
+        {
+            public readonly int PrimaryParcelIndex, X, Y, Rotation;
+            internal readonly int SecondaryParcelIndex;
+            internal NellaFrontage(int primary,int secondary,int x,int y)
+            {PrimaryParcelIndex=primary;SecondaryParcelIndex=secondary;X=x;Y=y;Rotation=0;}
+            public bool ContainsServiceBay(int x,int y)=>x>=X-2&&x<=X+2&&y>=Y-3&&y<=Y+1;
+        }
+        public bool TryGetNellaFrontage(out NellaFrontage frontage)
+        {frontage=nellaFrontage.GetValueOrDefault();return nellaFrontage.HasValue;}
+        // The ten connected plot owners and its two planting gaps, in native rotation zero.
+        private static readonly (int x,int y)[] NellaStampAndGaps={
+            (0,0),(-2,-1),(-1,-1),(-2,1),(-1,1),(2,0),
+            (-2,-3),(-1,-3),(2,-2),(1,-3),(0,-1),(0,1)};
         private static readonly HashSet<string> wilderness=BuildIndex();
         public static bool IsWildernessZone(string id)=>id!=null&&wilderness.Contains(id);
         private static HashSet<string> BuildIndex()
@@ -101,6 +118,83 @@ namespace CavesOfOoo.Core
             ConnectOpenPockets();
             northernFragments=topology!=SpreadExplorationTopology.Legacy
                 &&id=="Overworld.11.9.0"&&Landscape=="overgrown crofts";
+            // Find against the original repaired plan, then activate the field mask. Neither
+            // the connectivity repair nor unrelated addresses can observe the new mask.
+            if(topology!=SpreadExplorationTopology.Legacy&&id=="Overworld.11.8.0"&&Formation==Formation.FieldStrips)
+                nellaFrontage=FindNellaFrontage();
+        }
+        private NellaFrontage? FindNellaFrontage()
+        {
+            bool left=SpreadExplorationPlan.Rank(Seed,ZoneID,"resident-anchor")%2==0;
+            int anchorX=left?22:58,primary=-1,best=int.MaxValue;
+            for(int i=0;i<parcels.Length;i++)
+            {
+                var p=parcels[i];int distance=Math.Abs(p.X+p.Width/2-anchorX);
+                if(p.Y<12&&distance<best){primary=i;best=distance;}
+            }
+            if(primary<0)return null;
+            var main=parcels[primary];int secondary=-1;best=-1;
+            for(int i=0;i<parcels.Length;i++)
+            {
+                if(i==primary)continue;var p=parcels[i];
+                int distance=Math.Max(Math.Abs(p.X+p.Width/2-main.X-main.Width/2),Math.Abs(p.Y+p.Height/2-main.Y-main.Height/2));
+                if(distance>best){secondary=i;best=distance;}
+            }
+            int preferredX=main.X+main.Width/2+(left?4:-4),bottom=main.Y+main.Height;
+            // Match native y/x tie order. Rotation zero is intentional: a merely
+            // aesthetic rotation preference must not disagree with native Fits' first trial.
+            for(int distance=0;distance<Zone.Width;distance++)
+                for(int y=Math.Max(4,bottom-3);y<=Math.Min(20,bottom+3);y++)
+                    for(int x=main.X+2;x<main.X+main.Width-2;x++)
+                    {
+                        if(Math.Max(Math.Abs(x-preferredX),Math.Abs(y-bottom))!=distance)continue;
+                        var front=new NellaFrontage(primary,secondary,x,y);
+                        if(NellaStampIsPlanSafe(front)&&KeepsPrimaryFurrows(front))return front;
+                    }
+            return null;
+        }
+        private bool NellaStampIsPlanSafe(NellaFrontage front)
+        {
+            foreach(var offset in NellaStampAndGaps)
+            {
+                int x=front.X+offset.x,y=front.Y+offset.y;
+                if(!InBounds(x,y)||IsApproach(x,y)||IsLawn(x,y)||IsWater(x,y)
+                    ||Math.Max(Math.Abs(x-40),Math.Abs(y-12))<=6)return false;
+                string owner=ObjectAt(x,y);
+                if(owner!=null&&owner!="CropRow")return false;
+            }
+            return true;
+        }
+        private bool KeepsPrimaryFurrows(NellaFrontage front)
+        {
+            var p=parcels[front.PrimaryParcelIndex];bool previous=false;
+            for(int group=0;group*3<p.Width;group++)
+            {
+                bool any=false,whole=true;
+                for(int y=p.Y;y<p.Y+p.Height;y++)
+                    for(int x=p.X+group*3;x<Math.Min(p.X+p.Width,p.X+group*3+3);x++)
+                        if(ObjectAt(x,y)=="CropRow")
+                        {any=true;if(front.ContainsServiceBay(x,y))whole=false;}
+                bool retained=any&&whole;if(previous&&retained)return true;previous=retained;
+            }
+            return false;
+        }
+        private bool KeepNellaRow(int index,int x,int y)
+        {
+            if(!nellaFrontage.HasValue)return true;
+            var front=nellaFrontage.Value;
+            if(index==front.PrimaryParcelIndex)return !front.ContainsServiceBay(x,y);
+            var p=parcels[index];var main=parcels[front.PrimaryParcelIndex];
+            // Retain substantial remote working pieces, anchored away from the
+            // service frontage. Remove whole furrow-group widths rather than tiny tails.
+            int v=p.Y<12?y-p.Y:p.Y+p.Height-1-y;
+            bool secondary=index==front.SecondaryParcelIndex;
+            int group=(x-p.X)/3,clippedGroups=secondary?1:1+index%2;
+            // A partial last interior group must not shift the cut into its
+            // neighboring pair. The final mod-three gap is not a furrow group.
+            bool withinSpan=p.X<main.X?group<=(p.Width-3)/3-clippedGroups:group>=clippedGroups;
+            int depth=secondary?4:3;
+            return withinSpan&&v<=depth;
         }
         private Parcel[] CreateExplorationParcels(SpreadExplorationTopology topology)
         {
@@ -227,7 +321,13 @@ namespace CavesOfOoo.Core
                     return "Hedge";
                 }
                 if(Formation==Formation.FieldStrips)
-                    return !p.Boundary(x,y)&&(x-p.X)%3!=0&&Roll(x,y,61)<(Condition=="after harvest"?62:94)?"CropRow":null;
+                    // Only the principal field completes old random cut-row holes.
+                    // Existing cell exclusions and the small service bay still win;
+                    // the builder selects the same finite gleaning budget afterwards.
+                    return !p.Boundary(x,y)&&(x-p.X)%3!=0
+                        &&(nellaFrontage.HasValue&&i==nellaFrontage.Value.PrimaryParcelIndex
+                            ||Roll(x,y,61)<(Condition=="after harvest"?62:94))
+                        &&KeepNellaRow(i,x,y)?"CropRow":null;
                 if(Formation==Formation.FlowerMeadow)
                 {
                     double d=Math.Pow((x-p.X-p.Width*.5)/(p.Width*.48),2)+Math.Pow((y-p.Y-p.Height*.5)/(p.Height*.48),2);

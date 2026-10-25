@@ -1336,3 +1336,32 @@ Current packages still predate this inventory/Nella material work; no new build
 or physical Steam Deck acceptance is claimed. Storage has limited headroom
 after exact guarded stale-clone reclamation; avoid large builds/downloads and
 retain active caches. Full opening composition and regional coverage stay open.
+
+
+## Latest continuation — Nella field/frontage accepted, 2026-10-25 10:21 UTC
+
+[Nella composition](GRAPHICS-G3-NELLA-COMPOSITION.md) now has a coherent primary
+field around its complete existing service group and shorter substantial remote
+remnants. The first candidate passed tests but looked too empty and was rejected.
+The revised candidate passes158 native Unity cases, with real cold seed64 and
+fresh New Game seed65 screenshots independently reviewed. Seed64 ordinary paid
+rights→gather→replant→Rain→glean→save/load/travel return preserves sampled
+identities/state; seed65 verifies approach and payment only. Approved sprite
+pixels and finite yield budgets are unchanged. Full opening/region art, latest
+packages and physical Deck remain open.
+
+Unity is out of Play in clean SampleScene, with audit view/prefs/isolation restored
+and normal save/backup hashes unchanged. Earned checkpoints are
+`/tmp/coo-fresh-opening-after-nella-composition/` and
+`/tmp/coo-fresh65-after-nella-composition/`; the original pre-Nella64 checkpoint
+is intact. Current packages still predate inventory/Nella changes. Next: review
+the six whole scenes together, choose the most visible inconsistency and continue
+the playable capture/concept/native integration cycle. Do not reopen this accepted
+bounded layout solely to manufacture another iteration.
+
+Storage is again constrained (~235MiB available before preservation). First push
+these exact owned changes, then revalidate the four closed stale-clone database
+files listed in `/tmp/coo-nella-stale-db-manifest.json`. Preserve active main caches,
+all source/editable assets, saves/backups, dependencies and current builds. Record
+actual recovered space after deletion; no cleanup has been performed yet in this
+composition slice.

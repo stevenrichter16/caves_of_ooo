@@ -1,5 +1,7 @@
 # Nella composition — bounded cold review
 
+**Historical pre-implementation review.** Its provisional OffsetLanes premise below was corrected by actual cold seed64 owner comparison: BrokenEnclosures, primary(5,3,18,7), approach14. The living plan records that correction, rejection of the subtraction-only candidate and final two-seed acceptance. This report itself is not a final geometry pin.
+
 2026-10-25. Read-only review of GRAPHICS-G3-NELLA-COMPOSITION.md, original arrival/dried-after-wait PNGs and paired owner receipts, SpreadCompositionPlan, SpreadCompositionBuilder and SpreadExplorationResidents. No Unity, source edits, image generation or acceptance of an unbuilt layout.
 
 **Recommendation: proceed with the principal-field idea, but do not use55–70% aggregate retention as the success target.** The current scene is already mostly quiet green ground; uniformly deleting35–45% of its brown field can make it emptier while retaining the same four competing rectangles. Existing earth-colored pixels occupy only roughly8% of the visible world area in these captures. The useful change is stronger hierarchy and clearer working-owner separation.

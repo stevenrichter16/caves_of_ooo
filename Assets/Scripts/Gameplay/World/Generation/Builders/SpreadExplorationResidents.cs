@@ -67,6 +67,8 @@ namespace CavesOfOoo.Core
             if (specs.Any(s => !factory.Blueprints.ContainsKey(s.bp)) || !Current()) return Refuse("admission");
             var before = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
             var anchor = (x: SpreadExplorationPlan.Rank(plan.Seed, zone.ZoneID, "resident-anchor") % 2 == 0 ? 22 : 58, y: 12);
+            if (connected && plot && plan.TryGetNellaFrontage(out var frontage))
+                anchor = (frontage.X, frontage.Y);
             (int x, int y)[] positions = null; (int x, int y) origin = default; int rotation = 0, trials = 0;
             foreach (var at in from y in Enumerable.Range(4, Zone.Height - 8) from x in Enumerable.Range(4, Zone.Width - 8)
                 orderby Distance(anchor, (x, y)), y, x select (x, y))
