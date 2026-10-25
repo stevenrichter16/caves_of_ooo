@@ -4052,6 +4052,7 @@ namespace CavesOfOoo.Rendering
 
             if (InventoryUI.ConsumePendingEverydayTurn())
             {
+                _worldActionKeyToRelease = InventoryUI.ConsumeClosingActivationKey();
                 CloseInventory();
                 EndTurnAndProcess();
                 return;

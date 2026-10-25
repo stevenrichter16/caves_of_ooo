@@ -1231,3 +1231,22 @@ are verified. No stale cache target justified deletion; zero bytes removed.
 Next: resolve confirmed held-action input fallthrough if source audit reproduces
 it, continue fresh-origin east forge/kitchen, then next scene-composition cycle
 and seed65 visual counter. Soil acceptance is not complete six-zone/world art.
+
+
+## Latest continuation — inventory action release, 2026-10-25 07:26 UTC
+
+The [held inventory shortcut fix](GRAPHICS-G3-INVENTORY-ACTION-RELEASE.md)
+closes the actual planting→unwanted-movement defect found during Nella Play.
+Native RED reproduced it; GREEN124/124 (4new,120controls),0skip. Ordinary heldB
+300ms plants once at18,6 while Player stays18,7; freshB90ms moves17,8 normally.
+Exact earned seed9200 becomes crop9201, HP32/42drams/four resin intact. Actual
+PNG/JSON evidence is `inventory-action-release-*`; independent reviews pass.
+
+F5 checkpoint `/tmp/coo-fresh-opening-after-inventory-release/` preserves fresh
+origin at tick3800,17,8Nella. Scene/prefs/view/save-root restored07:26:22UTC,
+normal save hashes intact; no package or physicalDeck acceptance. Continue
+the existing fresh-origin eastforge/kitchen route, using a pure-frost brew from
+the remaining lichen rather than the mixed coating that can protect enemies.
+Gather actual raw grain/pulp and preserve clay for pan repair. Next art cycle:
+compose Nella's existing work area beside a field approach, retaining current
+owners/rights/finite supplies and testing two cold seeds before acceptance.

@@ -157,14 +157,25 @@ namespace CavesOfOoo.Rendering
         public bool IsOpen => _isOpen;
 
         private bool _pendingEverydayTurn;
+        private KeyCode _closingActivationKey = KeyCode.None;
 
-        /// <summary>Transfers a successful water/cooking action's turn to the input
+        /// <summary>Transfers a successful everyday action's turn to the input
         /// controller exactly once. Closing the menu preserves this pending turn.</summary>
         public bool ConsumePendingEverydayTurn()
         {
             bool pending = _pendingEverydayTurn;
             _pendingEverydayTurn = false;
             return pending;
+        }
+
+        /// <summary>Transfers the successful closing action's alphabetic shortcut
+        /// to the world release fence. Pointer and selected-row confirmations have
+        /// no letter to release. Closing preserves this receipt; opening resets it.</summary>
+        public KeyCode ConsumeClosingActivationKey()
+        {
+            KeyCode key = _closingActivationKey;
+            _closingActivationKey = KeyCode.None;
+            return key;
         }
 
         private struct DisplayRow
@@ -252,6 +263,7 @@ namespace CavesOfOoo.Rendering
         {
             if (PlayerEntity == null) return;
             _pendingEverydayTurn = false;
+            _closingActivationKey = KeyCode.None;
             _inventoryQuery = ""; _inventorySearchActive = false; _searchReturnItem = null;
             ClearActionStatus();
             _isOpen = true;
@@ -1304,7 +1316,7 @@ namespace CavesOfOoo.Rendering
             {
                 if (InputHelper.GetKeyboardKeyDown(KeyCode.A + i))
                 {
-                    ExecuteItemAction(i);
+                    ExecuteItemActionWithActivationKey(i, KeyCode.A + i);
                     return;
                 }
             }
@@ -1332,6 +1344,9 @@ namespace CavesOfOoo.Rendering
         }
 
         private void ExecuteItemAction(int index)
+            => ExecuteItemActionWithActivationKey(index, KeyCode.None);
+
+        private void ExecuteItemActionWithActivationKey(int index, KeyCode activationKey)
         {
             if (_itemActionPopup == null || index < 0 || index >= _itemActionPopup.Actions.Count) return;
             ClearActionStatus();
@@ -1485,6 +1500,7 @@ namespace CavesOfOoo.Rendering
                 || SecondExplorationActions.IsCommand(action.Command)))
             {
                 _pendingEverydayTurn = true;
+                _closingActivationKey = activationKey;
                 Close();
                 return;
             }

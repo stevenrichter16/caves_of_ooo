@@ -1,0 +1,89 @@
+{
+  "at": "2026-10-25T07:27:44.203883+00:00",
+  "source": "ordinary SampleScene isolated earned after-Nella checkpoint; actual CUA inputs",
+  "native_red": {
+    "total": 4,
+    "passed": 3,
+    "failed": 1
+  },
+  "native_green": {
+    "total": 124,
+    "passed": 124,
+    "failed": 0,
+    "skipped": 0,
+    "new": 4,
+    "controls": 120
+  },
+  "ordinary": [
+    {
+      "capture": "inventory-action-release-before-held",
+      "tick": 3780,
+      "position": [
+        18,
+        7
+      ],
+      "seed": "9200"
+    },
+    {
+      "input": "B held300ms",
+      "capture": "inventory-action-release-after-held",
+      "tick": 3790,
+      "position": [
+        18,
+        7
+      ],
+      "new_crop": "9201"
+    },
+    {
+      "input": "fresh B90ms after release",
+      "capture": "inventory-action-release-fresh-move",
+      "tick": 3800,
+      "position": [
+        17,
+        8
+      ]
+    }
+  ],
+  "checks": "Exactly one real seed consumed, one crop created, one ordinary action paid; held action does not move; subsequent fresh press moves normally. HP32,42drams,equipment unchanged.",
+  "independent_review": "projection_cold_review inspected actual JSON and PNGs and parsed124 distinct Passed cases; no significant finding. cleanup_build_audit source review attached.",
+  "honesty_bounds": "Endpoint captures occur after release; hold durations are actual CUA input parameters. Native queued held samples directly verify release fence. No physical Deck, new package, benchmark or whole-world graphics acceptance.",
+  "normal_save_preserved": {
+    "source": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/Saves/eac9a734ed804db5b3c222015048356e",
+    "backup": "/tmp/coo-user-save-before-popup-audit/eac9a734ed804db5b3c222015048356e",
+    "rootSentSaveInput": false,
+    "reason": "User stopped Play before root input; latest saved files preserved byte-for-byte",
+    "files": [
+      {
+        "name": "Quick.sav.gz",
+        "bytes": 555134,
+        "sha256": "373b670c3f4cd09bec7aada1d968f090fcb67cb6e224eaf58663414b14f7f3f8"
+      },
+      {
+        "name": "Quick.sav.gz.bak",
+        "bytes": 554757,
+        "sha256": "720e0560d8be9c595515832c8139540b3d8772b3e170c823895c2fee77fdf771"
+      },
+      {
+        "name": "Quick.json.bak",
+        "bytes": 409,
+        "sha256": "195b38dfc4c71cfe4fef43757fa97c37ddc661034e7ae1374be5c1c3ebcd84cd"
+      },
+      {
+        "name": "Quick.json",
+        "bytes": 409,
+        "sha256": "8efa929fda8271883f64903cec22b84c8abf62b8f2d9a858a96491c7064d8d5d"
+      }
+    ]
+  },
+  "cleanup": {
+    "at": "2026-10-25T07:26:22.227292Z",
+    "playing": false,
+    "isolation": false,
+    "artPending": false,
+    "viewBorrowed": false,
+    "saveRoot": null,
+    "scene": "Assets/Scenes/Main/SampleScene.unity"
+  },
+  "whitespace_only_importers_restored": 23,
+  "removed_bytes": 0
+}

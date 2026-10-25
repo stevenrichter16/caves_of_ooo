@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 07:15:43Z" end-time="2026-10-25 07:15:44Z" duration="0.9436662">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31327" result="Failed" site="Child" start-time="2026-10-25 07:15:43Z" end-time="2026-10-25 07:15:44Z" duration="0.943666" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38571" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31327" result="Failed" site="Child" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.833708" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79930" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38572" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31327" result="Failed" site="Child" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.754832" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38573" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31327" result="Failed" site="Child" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.678828" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26250" name="InventoryActionReleaseTests" fullname="CavesOfOoo.Tests.InventoryActionReleaseTests" classname="CavesOfOoo.Tests.InventoryActionReleaseTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.352841" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="26251" name="ActualPlantShortcutMustBeReleasedBeforeItCanMoveThePlayer" fullname="CavesOfOoo.Tests.InventoryActionReleaseTests.ActualPlantShortcutMustBeReleasedBeforeItCanMoveThePlayer" methodname="ActualPlantShortcutMustBeReleasedBeforeItCanMoveThePlayer" classname="CavesOfOoo.Tests.InventoryActionReleaseTests" runstate="Runnable" seed="2103207767" result="Failed" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.201004" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The held inventory shortcut must not become southwest movement on a later input update.
+  Expected: (4, 4)
+  But was:  (3, 5)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.InventoryActionReleaseTests.ActualPlantShortcutMustBeReleasedBeforeItCanMoveThePlayer () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/InventoryActionReleaseTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26254" name="RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut" fullname="CavesOfOoo.Tests.InventoryActionReleaseTests.RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut" classname="CavesOfOoo.Tests.InventoryActionReleaseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.107510" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26252" name="RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut(False)" fullname="CavesOfOoo.Tests.InventoryActionReleaseTests.RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut(False)" methodname="RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut" classname="CavesOfOoo.Tests.InventoryActionReleaseTests" runstate="Runnable" seed="117564575" result="Passed" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.049493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[PlantSeedAt|Overworld.11.10.0|5|4] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'PlantSeedAt|Overworld.11.10.0|5|4' was cancelled.
+]]></output>
+              </test-case>
+              <test-case id="26253" name="RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut(True)" fullname="CavesOfOoo.Tests.InventoryActionReleaseTests.RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut(True)" methodname="RefusedPlantKeepsItsMenuAndDoesNotLeaveAClosingShortcut" classname="CavesOfOoo.Tests.InventoryActionReleaseTests" runstate="Runnable" seed="1165992188" result="Passed" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.039334" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[PlantSeedAt|Overworld.11.10.0|5|4] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'PlantSeedAt|Overworld.11.10.0|5|4' was cancelled.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="26255" name="ReturnConfirmationDoesNotInventAnAlphabeticReleaseRequirement" fullname="CavesOfOoo.Tests.InventoryActionReleaseTests.ReturnConfirmationDoesNotInventAnAlphabeticReleaseRequirement" methodname="ReturnConfirmationDoesNotInventAnAlphabeticReleaseRequirement" classname="CavesOfOoo.Tests.InventoryActionReleaseTests" runstate="Runnable" seed="64270952" result="Passed" start-time="2026-10-25 07:15:44Z" end-time="2026-10-25 07:15:44Z" duration="0.038679" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
