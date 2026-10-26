@@ -1,7 +1,7 @@
 # Current opening scene review
 
 Status, 2026-10-26: river shrine art, Nella southern-approach placement
-and exact-speaker native dialogue portraits accepted in bounded ordinary Unity Play. Fresh six-zone review remains
+exact-speaker native dialogue portraits and Nella's conductive bog corner accepted in bounded ordinary Unity Play. Fresh six-zone review remains
 incomplete. Packaged runtime47d678995/delivery record39f68b6b3 predate these
 source changes. This pass continues the unchanged seed224401440
 checkpoint earned through the current package's opening/cellar route. It does
@@ -373,3 +373,20 @@ real conductor/wet/flammable semantics, then fresh East/Orven whole views and
 remaining six-zone acceptance. Keep the restored earned Nella fixture for an
 ordinary visit. Do not confuse the accepted service close view with whole-zone
 completion. Continue the existing graphics heartbeat; no arbitrary cutoff.
+
+## Nella corner accepted — 2026-10-26 15:55 UTC
+
+[Bounded design, native tests and actual acceptance](GRAPHICS-G3-NELLA-CORNER.md).
+Built-in imagegen on actual49 informed original editable17frame native art:
+disclosed cardinal copper joins and low neutral peat, reusing existing water
+ground beneath the actual sole-water coating. No irrigation or inventory
+mechanic was added.139 native focused/adjacent passes; independent source and
+actual visual review passed. Actual50–61 show1×/2×, both examine portraits,
+ordinary wet entry, identical F5/F6 reload and North border exit/return. Final
+finite census465visible cells has5native pipes/3native peat and0unmatched receipts.
+
+Owned isolation and normal preferences restored;776saves,374approved sources
+and2foreign PNGs unchanged. Storage inspection only. Existing packages47d678995
+still predate the recent source fixes. Next: East and Orven ordinary whole views,
+remaining scene defects/acceptance, then consolidated current builds. Preserve
+the earned corner fixture and continue the active graphics heartbeat.

@@ -179,12 +179,12 @@ namespace CavesOfOoo.Tests
         [Test] public void NorthDoesNotGrantTheMaterialToOtherGraphsOrDisableApprovedWaterSites()
         {
             world = new FlatPixelGreyboxCatalog();
-            foreach (string id in new[] { "Overworld.11.8.0", "Overworld.12.11.0", GleanersCellarBuilder.ZoneID, "Overworld.11.7.0" })
+            foreach (string id in new[] { "Overworld.12.11.0", GleanersCellarBuilder.ZoneID, "Overworld.11.7.0" })
             {
                 zone = Attach(id); Water(); Assert.False(ground.TryResolve(zone, X, Y, out _, out _));
                 Assert.AreNotSame(Resource(), Visible().GroundTile.sprite.texture);
             }
-            foreach (string id in new[] { ReferenceGladePlan.ZoneID, "Overworld.12.10.0", North })
+            foreach (string id in new[] { ReferenceGladePlan.ZoneID, "Overworld.11.8.0", "Overworld.12.10.0", North })
             { zone = Attach(id); Water(); Expect(15); Assert.AreSame(Resource(), Visible().GroundTile.sprite.texture); }
         }
 

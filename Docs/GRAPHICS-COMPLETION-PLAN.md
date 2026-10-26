@@ -1912,3 +1912,15 @@ repair. All normal gameplay state and approved assets remain preserved; storage
 inspection only. Read the package record and continue the fresh seed224401440
 six-zone scene review using the now-reachable ordinary zoom. The surface/cellar
 path is accepted, but not complete regional or device coverage.
+
+## Continuation — 2026-10-26 current-scene fixes
+
+Read GRAPHICS-G3-CURRENT-SCENE-REVIEW.md and GRAPHICS-G3-NELLA-CORNER.md.
+Current seed224401440 now has accepted neutral shrine art, reachable initial
+Nella service placement, exact-speaker native dialogue portraits, and connected
+copper/peat/water art in Nella's real corner. The latest corner has139native
+passes and actual1×/2×, examine, wet-entry, save/reload and zone-return evidence.
+These are source/editor acceptances; packages47d678995 still predate them.
+Next finish fresh East/Orven whole views and remaining bounded six-zone review,
+then consolidate delivery. Do not call individual accepted corners a complete
+opening release or replace the accepted keeper/crops without a named defect.

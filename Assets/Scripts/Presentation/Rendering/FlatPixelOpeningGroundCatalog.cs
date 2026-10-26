@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Optional visible opening ground, exact East/North water and Nella soil. Borrows its atlas and strict
+    /// <summary>Optional visible opening ground, exact East/North/Nella water and Nella soil. Borrows its atlas and strict
     /// cell selector; owns only cached sprites/tiles. Lower terrain is selected
     /// independently of a covering actor. No gameplay or crop time is advanced.</summary>
     public sealed class FlatPixelOpeningGroundCatalog : IDisposable
@@ -60,7 +60,7 @@ namespace CavesOfOoo.Rendering
                     && FlatPixelGreyboxCatalog.IsAdmitted(zone);
 
         /// <summary>Returns opaque native ground with an untinted white draw
-        /// color for visible opening cells, exact East/North water or Nella soil. Remembered cells,
+        /// color for visible opening cells, exact East/North/Nella water or Nella soil. Remembered cells,
         /// unsupported higher-priority ground and mixed coatings retain the
         /// caller's existing color/hazard presentation.</summary>
         public bool TryResolve(Zone zone, int x, int y, out Tile tile, out Color tint)
@@ -84,9 +84,10 @@ namespace CavesOfOoo.Rendering
                     if (coating.Turns <= 0) continue;
                     // Match the existing hazard renderer's sole-entry rule.
                     // Rejected live coatings never fall through to dry ground.
-                    // Nella borrows soil only; its live coatings retain the
-                    // existing generic ground and hazard presentation.
-                    if ((!opening && !connectedWaterOnly) || coatings.Count != 1 || coating.Id != "water") return false;
+                    // Nella borrows water as well as its existing soil. It must
+                    // not enter connectedWaterOnly: dry prepared soil remains native.
+                    if ((!opening && !connectedWaterOnly && zone.ZoneID != NellaZoneID)
+                        || coatings.Count != 1 || coating.Id != "water") return false;
                     int mask = 0;
                     if (DisclosedDry(zone, x, y - 1)) mask |= 1;
                     if (DisclosedDry(zone, x + 1, y)) mask |= 2;

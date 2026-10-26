@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "frameCount": 17,
+  "width": 272,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "resource": "Sprites/Live16x24/nella-corner",
+  "source": "editable.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_nella_corner.py",
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "binary0/255",
+  "nativeSHA256": "f25c11f1f5b91153d5455e283745f47adde7ed5206bf14cc2d966264bd6c9b68",
+  "preservedApprovedFiles": {
+    "Assets/Resources/Sprites/Live16x24/east-kitchen.png": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+    "Assets/Resources/Sprites/Live16x24/opening-ground.png": "b35f9d6a4b7051eb6971a00195a069f58d08a7d89e3060533745ee899a66dede",
+    "Tools/Live16x24/build_east_kitchen.py": "7b3d6f5967b5b7011eb8a2e6052360b2fc64337677f5b1f4c04509b50f86f8ab",
+    "ArtSource/Live16x24/east-kitchen/source-cells.json": "b3e6cdbdcb0a2e4240bf6307e01382900f92a5e0ac518b08168e7e5f1efe33df"
+  },
+  "contactPlacements": [
+    {
+      "frame": 0,
+      "topLeft": [
+        8,
+        12
+      ]
+    },
+    {
+      "frame": 1,
+      "topLeft": [
+        40,
+        12
+      ]
+    },
+    {
+      "frame": 2,
+      "topLeft": [
+        72,
+        12
+      ]
+    },
+    {
+      "frame": 3,
+      "topLeft": [
+        104,
+        12
+      ]
+    },
+    {
+      "frame": 4,
+      "topLeft": [
+        136,
+        12
+      ]
+    },
+    {
+      "frame": 5,
+      "topLeft": [
+        8,
+        50
+      ]
+    },
+    {
+      "frame": 6,
+      "topLeft": [
+        40,
+        50
+      ]
+    },
+    {
+      "frame": 7,
+      "topLeft": [
+        72,
+        50
+      ]
+    },
+    {
+      "frame": 8,
+      "topLeft": [
+        104,
+        50
+      ]
+    },
+    {
+      "frame": 9,
+      "topLeft": [
+        136,
+        50
+      ]
+    },
+    {
+      "frame": 10,
+      "topLeft": [
+        8,
+        88
+      ]
+    },
+    {
+      "frame": 11,
+      "topLeft": [
+        40,
+        88
+      ]
+    },
+    {
+      "frame": 12,
+      "topLeft": [
+        72,
+        88
+      ]
+    },
+    {
+      "frame": 13,
+      "topLeft": [
+        104,
+        88
+      ]
+    },
+    {
+      "frame": 14,
+      "topLeft": [
+        136,
+        88
+      ]
+    },
+    {
+      "frame": 15,
+      "topLeft": [
+        8,
+        126
+      ]
+    },
+    {
+      "frame": 16,
+      "topLeft": [
+        40,
+        126
+      ]
+    }
+  ],
+  "baseline": "Docs/Verification/Live16x24/current-scene-49-nella-corner-before-2x.png",
+  "concept": "ArtSource/Live16x24/nella-corner/concept.png",
+  "conceptPrompt": "ArtSource/Live16x24/nella-corner/concept-prompt.txt",
+  "mapping": "Frames0..15 exact CopperPipe cardinal occupied adjacency N1/E2/S4/W8. Frame16 exact PeatBog neutral low foreground; existing ground owns live water.",
+  "reusedSource": "Mask0 exact build_east_kitchen.frames()[15]; context water exact Ground/build_ground.make_frames()[11,12,7].",
+  "rejected": [
+    "gradients",
+    "soft alpha",
+    "glow",
+    "cast shadows",
+    "extra glyph remnants",
+    "flow",
+    "discharge",
+    "irrigation",
+    "active charge",
+    "fuel or stock quantities",
+    "new vegetation"
+  ],
+  "limits": "Source/contact geometry only. Root owns Unity import, exact disclosure/current-owner/topology gates, actual hazard semantics and gameplay acceptance."
+}

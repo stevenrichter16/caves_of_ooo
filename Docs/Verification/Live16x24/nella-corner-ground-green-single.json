@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "1a618a4bd0d14cd1b4ce35195c29915f",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793029372424,
+      "finished_unix_ms": 1793029383581,
+      "last_update_unix_ms": 1793029383581,
+      "progress": {
+        "completed": 50,
+        "total": 50,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793029383510,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.UnpreparedPublicCropRetainsGenericMoistureColorEvenOverAnOldRow(3)",
+        "last_finished_unix_ms": 1793029383552,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaGroundCatalogTests.NellaWaterRequiresCurrentDisclosedExactPlotAuthority(\"replaced-cell\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

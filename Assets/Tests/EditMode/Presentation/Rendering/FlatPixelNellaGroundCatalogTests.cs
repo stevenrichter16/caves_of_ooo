@@ -218,7 +218,6 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("water")]
         [TestCase("oil")]
         [TestCase("water-and-ice")]
         public void LiveCoatingsRefuseNativeNellaSoilAndKeepExistingHazardPresentation(string coating)
@@ -236,6 +235,159 @@ namespace CavesOfOoo.Tests
                 Assert.NotNull(f.Hazards.GetTile(f.At(X, Y)), "The hazard layer survives optional native ground refusal.");
                 if (coating != "oil") { Assert.AreEqual(FlatPixelGreyboxGround.Water, fallback.GroundKind); Assert.AreEqual(Water, fallback.GroundColor); }
                 else { Assert.AreEqual(FlatPixelGreyboxGround.DrySoil, fallback.GroundKind); Assert.AreEqual(Dry, fallback.GroundColor); }
+            }
+        }
+
+        [Test]
+        public void DefaultNellaWaterRouteUsesApprovedAtlasWhileInjectedMissingResourcesStayFallback()
+        {
+            using (var f = new Fixture())
+            using (var defaults = new FlatPixelGreyboxCatalog())
+            using (var missing = new FlatPixelGreyboxCatalog(null))
+            {
+                var peat = f.Place("PeatBog");
+                var pool = peat.GetPart<LiquidPoolPart>(); var source = peat.GetPart<TileStateSourcePart>();
+                Assert.AreEqual(70, pool.Volume); Assert.AreEqual("water", source.Coating); Assert.AreEqual(4, source.CoatingTurns);
+                source.Seed(f.Zone, X, Y); string state = f.Zone.TileState.ToSaveString(); int version = f.Zone.EntityVersion;
+                var resource = Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath);
+                Assert.NotNull(resource); Assert.True(FlatPixelGreyboxCatalog.IsAdmitted(f.Zone));
+                Assert.True(defaults.TryResolvePresentation(f.Zone, X, Y, out var native));
+                Expect(native.GroundTile, resource, 15); Assert.AreEqual(Color.white, native.GroundColor);
+                Assert.AreSame(peat, native.Owner); Assert.AreEqual(FlatPixelGreyboxGround.Water, native.GroundKind);
+                Assert.True(missing.TryResolvePresentation(f.Zone, X, Y, out var fallback));
+                Assert.AreNotSame(resource, fallback.GroundTile.sprite.texture); Assert.AreEqual(Water, fallback.GroundColor);
+                Assert.AreSame(peat, fallback.Owner); Assert.AreEqual(state, f.Zone.TileState.ToSaveString());
+                Assert.AreEqual(version, f.Zone.EntityVersion); Assert.AreEqual(70, pool.Volume); Assert.AreEqual(4, source.CoatingTurns);
+                Assert.True(f.Zone.TileState.RemoveCoating(X, Y, "water"));
+                Assert.False(f.Ground.TryResolve(f.Zone, X, Y, out _, out _), "A retained pool is not proof of a current surface coating.");
+                Assert.AreEqual(70, pool.Volume); Assert.AreSame(f.Zone.GetCell(X, Y), f.Zone.GetEntityCell(peat));
+            }
+        }
+
+        [TestCase(0)] [TestCase(3)]
+        public void RemovingSurfaceWaterRestoresNellasOriginalPreparedSoilWithoutChangingCrop(int moisture)
+        {
+            using (var f = new Fixture())
+            {
+                f.Soil(); var cropOwner = f.Place("PitchpodCrop"); var crop = cropOwner.GetPart<CropPart>(); crop.MoistureTicks = moisture;
+                int frame = moisture > 0 ? 20 : 19; f.ExpectBoth(frame); var before = f.Resolve();
+                f.Zone.TileState.WriteCoating(X, Y, "water", 4); f.ExpectBoth(15);
+                Assert.AreSame(before.Owner, f.Resolve().Owner); Assert.AreSame(before.ForegroundTile, f.Resolve().ForegroundTile);
+                Assert.True(f.Zone.TileState.RemoveCoating(X, Y, "water")); f.ExpectBoth(frame);
+                Assert.AreEqual(moisture, crop.MoistureTicks); Assert.AreSame(cropOwner, crop.ParentEntity);
+                Assert.AreSame(before.ForegroundTile, f.Resolve().ForegroundTile);
+            }
+        }
+
+        [TestCase("ice")] [TestCase("unknown")] [TestCase("water-and-ice")]
+        [TestCase("duplicate-water")] [TestCase("expired-extra")] [TestCase("expired-water")]
+        public void OnlyOneLiveWaterRecordCanBorrowNellasNativeBank(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("Grass"); f.Zone.TileState.WriteCoating(X, Y, "water", 4); f.ExpectBoth(15);
+                var coatings = f.Zone.TileState.Get(X, Y).Coatings;
+                if (fault == "duplicate-water") coatings.Add(new ZoneTileState.Layer { Id = "water", Turns = 3 });
+                else if (fault == "expired-extra") coatings.Add(new ZoneTileState.Layer { Id = "oil", Turns = 0 });
+                else if (fault == "expired-water") coatings[0].Turns = 0;
+                else if (fault == "water-and-ice") f.Zone.TileState.WriteCoating(X, Y, "ice", 3);
+                else
+                {
+                    Assert.True(f.Zone.TileState.RemoveCoating(X, Y, "water"));
+                    f.Zone.TileState.WriteCoating(X, Y, fault == "unknown" ? "unregistered-test-liquid" : fault, 3);
+                }
+                Assert.False(f.Ground.TryResolve(f.Zone, X, Y, out _, out _));
+                Assert.AreNotSame(f.Atlas, f.Resolve().GroundTile.sprite.texture);
+                f.Zone.TileState.Get(X, Y).Coatings.Clear(); f.Zone.TileState.WriteCoating(X, Y, "water", 4); f.ExpectBoth(15);
+            }
+        }
+
+        [TestCase("hidden")] [TestCase("unexplored")] [TestCase("ice")] [TestCase("expired-water")]
+        public void NellaWaterBanksUseOnlyDisclosedCoatingFreeNeighbors(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                f.Zone.TileState.WriteCoating(X, Y, "water", 4); f.ExpectBoth(15); var east = f.Zone.GetCell(X + 1, Y);
+                if (fault == "hidden") east.IsVisible = false;
+                else if (fault == "unexplored") east.Explored = false;
+                else
+                {
+                    f.Zone.TileState.WriteCoating(X + 1, Y, fault == "ice" ? "ice" : "water", 2);
+                    if (fault == "expired-water") f.Zone.TileState.Get(X + 1, Y).Coatings[0].Turns = 0;
+                }
+                f.ExpectBoth(13); east.IsVisible = east.Explored = true;
+                if (fault == "ice" || fault == "expired-water")
+                    Assert.True(f.Zone.TileState.RemoveCoating(X + 1, Y, fault == "ice" ? "ice" : "water"));
+                f.ExpectBoth(15);
+            }
+        }
+
+        [TestCase("hidden")] [TestCase("unexplored")] [TestCase("foreign-cell-parent")]
+        [TestCase("replaced-graph")] [TestCase("wrong-biome")] [TestCase("poi")]
+        public void NellaWaterRequiresCurrentDisclosedExactPlotAuthority(string fault)
+        {
+            using (var f = new Fixture())
+            {
+                f.Place("PeatBog"); f.Zone.TileState.WriteCoating(X, Y, "water", 4); f.ExpectBoth(15); var cell = f.Zone.GetCell(X, Y);
+                if (fault == "hidden") cell.IsVisible = false;
+                if (fault == "unexplored") cell.Explored = false;
+                if (fault == "foreign-cell-parent")
+                {
+                    var replacement = new Cell(X, Y, new Zone(Plot)) { IsVisible = true, Explored = true };
+                    replacement.Objects.AddRange(cell.Objects); f.Zone.Cells[X, Y] = replacement;
+                }
+                if (fault == "replaced-graph") f.Manager.CachedZones[Plot] = new Zone(Plot);
+                if (fault == "wrong-biome") f.Manager.WorldMap.Tiles[11, 8] = BiomeType.Sodden;
+                if (fault == "poi") f.Manager.WorldMap.SetPOI(11, 8, new PointOfInterest(POIType.Village, "counter"));
+                Assert.False(f.Ground.TryResolve(f.Zone, X, Y, out _, out _));
+                if (f.Catalog.TryResolvePresentation(f.Zone, X, Y, out var fallback)) Assert.AreNotSame(f.Atlas, fallback.GroundTile.sprite.texture);
+                f.Zone.Cells[X, Y] = cell; cell.IsVisible = cell.Explored = true;
+                f.Manager.CachedZones[Plot] = f.Zone; f.Manager.WorldMap.Tiles[11, 8] = BiomeType.Spread; f.Manager.WorldMap.SetPOI(11, 8, null);
+                f.ExpectBoth(15);
+            }
+        }
+
+        [Test]
+        public void CurrentWaterNeedsNoTerrainOwnerAndDoesNotAuthorizeACopiedStalePeatOwner()
+        {
+            using (var f = new Fixture())
+            {
+                f.Zone.TileState.WriteCoating(X, Y, "water", 4); f.ExpectBoth(15);
+                Assert.IsNull(f.Resolve().Owner); Assert.IsNull(f.Resolve().ForegroundTile);
+                var peat = f.Place("PeatBog"); var original = f.Zone.GetCell(X, Y);
+                Assert.AreSame(peat, f.Resolve().Owner); string state = f.Zone.TileState.ToSaveString();
+                var replacement = new Cell(X, Y, f.Zone) { IsVisible = true, Explored = true };
+                replacement.Objects.AddRange(original.Objects); f.Zone.Cells[X, Y] = replacement;
+                Assert.AreSame(original, f.Zone.GetEntityCell(peat), "Copied cell entries do not move their real owners.");
+                f.ExpectBoth(15); Assert.IsNull(f.Resolve().Owner); Assert.IsNull(f.Resolve().ForegroundTile);
+                Assert.AreEqual(state, f.Zone.TileState.ToSaveString(), "The current zone's coating is independent of a stale terrain entry.");
+                replacement.Objects.Clear(); f.ExpectBoth(15); Assert.IsNull(f.Resolve().Owner);
+                Assert.True(f.Zone.TileState.RemoveCoating(X, Y, "water"));
+                Assert.False(f.Ground.TryResolve(f.Zone, X, Y, out _, out _));
+                Assert.AreNotSame(f.Atlas, f.Resolve().GroundTile.sprite.texture);
+                f.Zone.Cells[X, Y] = original; f.Zone.TileState.WriteCoating(X, Y, "water", 4);
+                f.ExpectBoth(15); Assert.AreSame(peat, f.Resolve().Owner);
+            }
+        }
+
+        [Test]
+        public void NellaNeighborExpiryAndChargeRepaintTheWaterBankUnderAnUnmovedActor()
+        {
+            using (var f = new Fixture())
+            {
+                var actor = f.Place("Player"); f.Zone.TileState.WriteCoating(X, Y, "water", ZoneTileState.Permanent);
+                f.Zone.TileState.WriteCoating(X + 1, Y, "water", 1); f.StartPainting(); f.ExpectSubmitted(13);
+                long full = EnvironmentSpriteRenderer.Perf.FullPasses; var foreground = f.Resolve().ForegroundTile;
+                f.Zone.TileState.Tick(); Assert.True(f.Dirty.Contains(Y * Zone.Width + X + 1));
+                Assert.False(f.Dirty.Contains(Y * Zone.Width + X), "Only the expired neighbor is dirty; its bank must invalidate the unchanged center.");
+                f.Frame(); f.ExpectSubmitted(15); f.Quiet();
+                f.Zone.TileState.WriteCoating(X + 1, Y, "water", 2); f.Zone.TileState.AddCharge(X, Y, 4);
+                f.Frame(); f.ExpectSubmitted(13); f.Quiet();
+                Assert.NotNull(f.Hazards.GetTile(f.At(X, Y)), "Native water must retain the actual charged hazard layer.");
+                Assert.AreSame(actor, f.Resolve().Owner); Assert.AreSame(foreground, f.Resolve().ForegroundTile);
+                Assert.AreSame(f.Zone.GetCell(X, Y), f.Zone.GetEntityCell(actor)); Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
+                long resolved = EnvironmentSpriteRenderer.Perf.CellsResolved; f.Frame(); f.Quiet();
+                Assert.AreEqual(resolved, EnvironmentSpriteRenderer.Perf.CellsResolved);
             }
         }
 
