@@ -64,6 +64,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelCellarFloorCatalog _cellarFloorArt;
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
+        private FlatPixelOrchardCatalog _orchardArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -797,7 +798,9 @@ namespace CavesOfOoo.Rendering
             bool incidentalNative = incidental != null && incidental.TryResolve(owner, out art);
             var equipment = local ? IncidentalEquipmentArtFor(owner) : null;
             bool equipmentNative = equipment != null && equipment.TryResolve(owner, out art);
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            var orchard = local ? OrchardArtFor(owner) : null;
+            bool orchardNative = orchard != null && orchard.TryResolve(owner, out art);
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || orchardNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -837,6 +840,9 @@ namespace CavesOfOoo.Rendering
             var equipment = local ? IncidentalEquipmentArtFor(subject) : null;
             if (equipment != null && equipment.TryResolve(subject, out var equipmentTile))
             { sprite = equipmentTile.sprite; return sprite != null; }
+            var orchard = local ? OrchardArtFor(subject) : null;
+            if (orchard != null && orchard.TryResolve(subject, out var hiveTile))
+            { sprite = hiveTile.sprite; return sprite != null; }
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
             if (eastern != null && eastern.TryResolvePresentation(zone, subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
@@ -870,6 +876,14 @@ namespace CavesOfOoo.Rendering
             if (_workingCourtArt == null && _loadOptionalResources)
                 _workingCourtArt = new FlatPixelWorkingCourtCatalog();
             return _workingCourtArt;
+        }
+
+        private FlatPixelOrchardCatalog OrchardArtFor(Entity owner)
+        {
+            if (!FlatPixelOrchardCatalog.HasKnownRole(owner)) return null;
+            if (_orchardArt == null && _loadOptionalResources)
+                _orchardArt = new FlatPixelOrchardCatalog();
+            return _orchardArt;
         }
 
         private FlatPixelCellarFloorCatalog CellarFloorArtFor(Zone zone)
@@ -962,6 +976,8 @@ namespace CavesOfOoo.Rendering
             _incidentalActorArt = null;
             _incidentalEquipmentArt?.Dispose();
             _incidentalEquipmentArt = null;
+            _orchardArt?.Dispose();
+            _orchardArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

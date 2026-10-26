@@ -1,0 +1,43 @@
+{
+  "before": {
+    "at": "2026-10-26T07:14:48.213833Z",
+    "zone": "Overworld.12.11.0",
+    "player": [
+      23,
+      9
+    ],
+    "tick": 4290,
+    "stats": {
+      "batches": 38,
+      "drawCalls": 38,
+      "setPassCalls": 64,
+      "triangles": 8022,
+      "vertices": 16064,
+      "renderTextureCount": 35,
+      "renderTextureBytes": 101790360
+    },
+    "allocated": 477418706,
+    "scope": "Editor single observation; not a device frame-time benchmark"
+  },
+  "after": {
+    "at": "2026-10-26T07:24:26.279443Z",
+    "zone": "Overworld.12.11.0",
+    "player": [
+      23,
+      9
+    ],
+    "tick": 4290,
+    "stats": {
+      "batches": 38,
+      "drawCalls": 38,
+      "setPassCalls": 64,
+      "triangles": 8022,
+      "vertices": 16064,
+      "renderTextureCount": 35,
+      "renderTextureBytes": 101790360
+    },
+    "allocated": 529241089,
+    "scope": "Editor single observation; not a device frame-time benchmark"
+  },
+  "interpretation": "Both single Editor observations at player23,9/tick4290 show38drawCalls,38batches,64setPassCalls,8022triangles and16064vertices. This is no draw-call growth in the sampled view, not a frame-time or device performance benchmark. Editor allocated memory differs after test/domain activity and cannot be attributed to this art."
+}

@@ -2017,3 +2017,36 @@ avoid unrelated packets. Nella service survival needs a separately scoped audit.
 Normal saves (776 files), preferences, editor state and foreign work are protected;
 no storage deletion. Whole-opening art, regional kits and physical Deck gates
 remain open. Continue across sessions from this bounded next scene.
+
+
+## Continuation — kitchen/orchard identity accepted, 2026-10-26 07:35 UTC
+
+[Kitchen/orchard](GRAPHICS-G3-KITCHEN-ORCHARD.md) completes the actual capture →
+imagegen scene/parts → editable native pixels → integration → ordinary Play loop.
+Wild hives now have one neutral native 16×24 image in the six admitted graphs
+and matching examination art. Three quiet court textures replace the small
+pebble marks without moving the 15 floor owners or services. Original art and
+3D sources remain recoverable. RED: 41/42 failed as expected; GREEN: 260/260
+passed, with independent source, runtime and ordinary-scale visual review.
+
+Actual earned seed 200893250 replay shows matching court views, hive examination,
+harvest yielding two Honeycomb and removing the hive, F5/F6 and a western exit/
+return without respawn. The two previously earned FireClay repaired pan 13771;
+save/load retained that repair. The meal batch remains Idle. NPC positions differ
+between hive replays, so they are not identical whole-world comparisons. The
+sampled court view used 38 draw calls before and after; these are Editor samples,
+not physical Deck timings.
+
+All 776 normal save files, 65 protected art/source files and two foreign PNGs
+are unchanged; normal editor/view/save settings are restored. The 26 incidental
+importer whitespace rewrites were backed up and restored. About 429 GiB is free;
+no storage cleanup occurred. Dated Mac/Linux packages still use source dce87081d
+and predate both the underfoot fix and this artwork.
+
+Next: improve repeated scalloped hedge silhouettes using disclosed-neighbor
+end/corner/interior art, preserving exact owners, collision and approved props.
+The earned fixture `Verification/Live16x24/Fixtures/kitchen-orchard-earned-repaired`
+retains the actual harvest and pan repair for subsequent comparisons. Separately
+reproduce Nella's initial threat exposure in seed 200893250 before changing
+placement; mortality is intentional. Full opening/regional art and package/device
+acceptance remain open. Continue from this bounded next scene refinement.

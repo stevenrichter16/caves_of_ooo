@@ -11,7 +11,7 @@ namespace CavesOfOoo.Rendering
     /// advances state, queries neighbors or supplies art from a hidden cell.</summary>
     public sealed class FlatPixelWorkingCourtCatalog : IDisposable
     {
-        public const string ResourcePath = "Sprites/Live16x24/working-court";
+        public const string ResourcePath = "Sprites/Live16x24/working-court-v2";
         readonly Texture2D atlas;
         readonly Tile[] tiles;
         readonly Sprite[] sprites;

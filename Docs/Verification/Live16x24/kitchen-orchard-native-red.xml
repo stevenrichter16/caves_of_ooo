@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="42" result="Failed(Child)" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 07:17:53Z" end-time="2026-10-26 07:17:56Z" duration="2.7429623">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31710" result="Failed" site="Child" start-time="2026-10-26 07:17:53Z" end-time="2026-10-26 07:17:56Z" duration="2.742962" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39038" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31710" result="Failed" site="Child" start-time="2026-10-26 07:17:53Z" end-time="2026-10-26 07:17:56Z" duration="2.673650" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39039" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31710" result="Failed" site="Child" start-time="2026-10-26 07:17:53Z" end-time="2026-10-26 07:17:56Z" duration="2.613694" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39040" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31710" result="Failed" site="Child" start-time="2026-10-26 07:17:53Z" end-time="2026-10-26 07:17:56Z" duration="2.555314" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28962" name="FlatPixelKitchenOrchardTests" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-10-26 07:17:53Z" end-time="2026-10-26 07:17:55Z" duration="2.012018" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="29006" name="DefaultCourtUsesQuieterVersionWhileOriginalRemainsRecoverable" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.DefaultCourtUsesQuieterVersionWhileOriginalRemainsRecoverable" methodname="DefaultCourtUsesQuieterVersionWhileOriginalRemainsRecoverable" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="455776991" result="Failed" start-time="2026-10-26 07:17:53Z" end-time="2026-10-26 07:17:54Z" duration="0.239253" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Default rendering still uses the dense pebble atlas.
+  Expected: same as <working-court-v2 (UnityEngine.Texture2D)>
+  But was:  <working-court (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.DefaultCourtUsesQuieterVersionWhileOriginalRemainsRecoverable () [0x0007e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:244
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29005" name="DisposalDestroysCachedFramesButNotTheirBorrowedPixels" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.DisposalDestroysCachedFramesButNotTheirBorrowedPixels" methodname="DisposalDestroysCachedFramesButNotTheirBorrowedPixels" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="652366992" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.138285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.DisposalDestroysCachedFramesButNotTheirBorrowedPixels () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:233
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29007" name="ExplicitlyInjectedOldWorldDoesNotSilentlyLoadNewOrchardArt" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.ExplicitlyInjectedOldWorldDoesNotSilentlyLoadNewOrchardArt" methodname="ExplicitlyInjectedOldWorldDoesNotSilentlyLoadNewOrchardArt" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="101119435" result="Passed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.044807" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29000" name="FogRemovalStaleGraphAndOutsideOpeningKeepDisclosureAndAdmission" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.FogRemovalStaleGraphAndOutsideOpeningKeepDisclosureAndAdmission" methodname="FogRemovalStaleGraphAndOutsideOpeningKeepDisclosureAndAdmission" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="2140916109" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.036965" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.FogRemovalStaleGraphAndOutsideOpeningKeepDisclosureAndAdmission () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:179
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29004" name="MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.078601" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29002" name="MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph(False)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph(False)" methodname="MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1900401876" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.038838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph (System.Boolean malformed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:224
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29003" name="MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph(True)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph(True)" methodname="MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1975993493" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.036268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.MissingOrMalformedOptionalHiveArtPreservesTheCanonicalGlyph (System.Boolean malformed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:224
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28999" name="PresentationQueriesDoNotSpendHoneyRollYieldOrChangeOwners" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.PresentationQueriesDoNotSpendHoneyRollYieldOrChangeOwners" methodname="PresentationQueriesDoNotSpendHoneyRollYieldOrChangeOwners" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="260707064" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.044410" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.PresentationQueriesDoNotSpendHoneyRollYieldOrChangeOwners () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:161
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28969" name="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.249228" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28963" name="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.10.0&quot;)" methodname="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="690603083" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.044060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The existing hive still renders as its literal glyph 6.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader (System.String id) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28964" name="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.10.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.10.1&quot;)" methodname="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="2093721147" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.040316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The existing hive still renders as its literal glyph 6.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader (System.String id) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28965" name="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.9.0&quot;)" methodname="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1739835598" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.039321" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The existing hive still renders as its literal glyph 6.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader (System.String id) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28966" name="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.8.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.11.8.0&quot;)" methodname="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="633002821" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.041698" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The existing hive still renders as its literal glyph 6.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader (System.String id) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28967" name="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.12.10.0&quot;)" methodname="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="652054878" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.040119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The existing hive still renders as its literal glyph 6.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader (System.String id) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28968" name="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader(&quot;Overworld.12.11.0&quot;)" methodname="RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="296636284" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.040646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The existing hive still renders as its literal glyph 6.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.RealHiveUsesTheSameNativeIdentityInEachAdmittedGraphAndReader (System.String id) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29001" name="SuccessfulHarvestRemovesTheHiveInsteadOfInventingADepletedFrame" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.SuccessfulHarvestRemovesTheHiveInsteadOfInventingADepletedFrame" methodname="SuccessfulHarvestRemovesTheHiveInsteadOfInventingADepletedFrame" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1776676528" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.035784" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.SuccessfulHarvestRemovesTheHiveInsteadOfInventingADepletedFrame () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:198
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28998" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:55Z" duration="1.135724" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28970" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;spent&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1460173641" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.035861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28971" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;wrong-yield&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;wrong-yield&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="78600" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.034962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28972" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;zero-min&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;zero-min&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="313663671" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:54Z" duration="0.035597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28973" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;reversed-range&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;reversed-range&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1550638657" result="Failed" start-time="2026-10-26 07:17:54Z" end-time="2026-10-26 07:17:55Z" duration="0.036507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28974" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;excess-count&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;excess-count&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="514872397" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.034991" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28975" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;zero-chance&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;zero-chance&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1034737482" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.034300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28976" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;excess-chance&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;excess-chance&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="276702487" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.058526" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28977" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-harvest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-harvest&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="283195643" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.139881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28978" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;missing-harvest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;missing-harvest&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1408712491" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.037427" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28979" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-render&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="697987861" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.037350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28980" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;invisible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;invisible&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1179685924" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28981" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;visual-id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;visual-id&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1067616917" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28982" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;visual-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;visual-variant&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="870539886" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.036800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28983" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;glyph-variants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;glyph-variants&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1625524157" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.036562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28984" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;glyph&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1794421638" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28985" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-physics&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1710088689" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28986" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;missing-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;missing-physics&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1678427284" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.036310" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28987" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;solid&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1775649269" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.034793" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28988" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;takeable&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="2110530989" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035020" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28989" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;carried&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1099048782" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.034996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28990" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;equipped&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="526663209" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.034901" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28991" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;creature&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1478232266" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.034846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28992" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;item&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;item&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="568598749" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.036111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28993" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;player&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1014106623" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.036300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28994" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;footprint&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1169983086" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.038252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28995" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;zero-stack&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="2134964343" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035816" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28996" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;foreign-stack&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="1681194153" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28997" name="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;identity&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates(&quot;identity&quot;)" methodname="UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates" classname="CavesOfOoo.Tests.FlatPixelKitchenOrchardTests" runstate="Runnable" seed="987171477" result="Failed" start-time="2026-10-26 07:17:55Z" end-time="2026-10-26 07:17:55Z" duration="0.035639" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing wild hives have no native optional identity adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.Create (UnityEngine.Texture2D texture, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:84
+at CavesOfOoo.Tests.FlatPixelKitchenOrchardTests.UnspentExactHiveContractCannotBeBorrowedByOtherOwnersOrStates (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenOrchardTests.cs:125
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

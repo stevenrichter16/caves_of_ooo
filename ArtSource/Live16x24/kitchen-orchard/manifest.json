@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "source": "kitchen-orchard.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_kitchen_orchard.py",
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 4,
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "alpha": "Hive binary0/255;ground opaque255.",
+  "concepts": [
+    "ArtSource/Live16x24/concepts/kitchen-orchard/scene-v1.png",
+    "ArtSource/Live16x24/concepts/kitchen-orchard/parts-v1.png"
+  ],
+  "greyboxCaptures": [
+    "Docs/Verification/Live16x24/packaged-glade-east-18-kitchen-court.jpg",
+    "Docs/Verification/Live16x24/packaged-glade-east-22-continued-kitchen.jpg"
+  ],
+  "resources": {
+    "orchard-hive": {
+      "size": [
+        16,
+        24
+      ],
+      "resource": "Sprites/Live16x24/orchard-hive",
+      "sha256": "2b00bc3b7b04a8ccba3dcf867b8f09a7cd15d94a1cadce92b25ff2eec85a2067"
+    },
+    "working-court-v2": {
+      "size": [
+        48,
+        24
+      ],
+      "resource": "Sprites/Live16x24/working-court-v2",
+      "sha256": "45bfb3dbf99b5011115da28d24954de3b0b3ffe5c3c9bd6da656ddb834098a06"
+    }
+  },
+  "frames": [
+    {
+      "index": 0,
+      "id": "quiet-wax-hive",
+      "blueprint": "Beehive",
+      "resource": "orchard-hive",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "role": "identity",
+      "variant": null,
+      "state": "Neutral current-owner identity; harvest/removal clears hive.",
+      "footprint": [
+        1,
+        1
+      ],
+      "description": "Uneven rounded ochre wax dome, three broad coil joints and a dark low entrance. Neutral identity only; harvest removes the owner."
+    },
+    {
+      "index": 1,
+      "id": "one-broad-worn-slab",
+      "blueprint": "StoneFloor",
+      "resource": "working-court-v2",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "role": "court-floor",
+      "variant": 0,
+      "state": "Static coordinate variant; no state promise.",
+      "footprint": [
+        1,
+        1
+      ],
+      "description": "One broad irregular olive-grey slab with two quiet wear areas; no rim or false height."
+    },
+    {
+      "index": 2,
+      "id": "unequal-separated-pair",
+      "blueprint": "StoneFloor",
+      "resource": "working-court-v2",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "role": "court-floor",
+      "variant": 1,
+      "state": "Static coordinate variant; no state promise.",
+      "footprint": [
+        1,
+        1
+      ],
+      "description": "Small upper slab and wider lower slab separated by a broad continuous grass joint."
+    },
+    {
+      "index": 3,
+      "id": "offset-worn-pair",
+      "blueprint": "StoneFloor",
+      "resource": "working-court-v2",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "role": "court-floor",
+      "variant": 2,
+      "state": "Static coordinate variant; no state promise.",
+      "footprint": [
+        1,
+        1
+      ],
+      "description": "Long upper-left stepping slab and a smaller lower-right stone with unbroken grass margins."
+    }
+  ],
+  "limits": "Source-native art only. Runtime owner/role selection, malformed/removed owner exclusions, ordinary gameplay, profiling and physical Deck remain parent-owned."
+}
