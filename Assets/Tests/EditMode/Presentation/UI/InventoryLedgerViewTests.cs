@@ -63,11 +63,14 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase(1)] [TestCase(5)]
+        [TestCase(1)] [TestCase(5)] [TestCase(10000000)]
         public void PackQuantityAndWeightAreSeparateVisibleColumnsFromTheActualItem(int count)
         {
             using (var r = new Rig())
             {
+                // Stress numeric column capacity independently of the player's
+                // carry limit; this is a display fixture, not a gameplay grant.
+                if (count > 5) r.Pack.MaxWeight = -1;
                 var food = r.Carry("DriedMeat", count);
                 r.Open(); r.Select(food);
                 var canvas = RequireView(r);
@@ -93,6 +96,60 @@ namespace CavesOfOoo.Tests
                 AssertTextFits(name); AssertTextFits(quantityCell); AssertTextFits(weightCell);
                 Assert.AreEqual(count, food.GetPart<StackerPart>().StackCount);
                 Assert.True(r.Pack.Contains(food));
+            }
+        }
+
+        [TestCase("LongSword", "2d12+3", 0, 0, "2D12+3")]
+        [TestCase("LeatherArmor", null, 3, -1, "3 AV -1 DV")]
+        [TestCase("Buckler", null, 1, 1, "1 AV +1 DV")]
+        [TestCase("LeatherArmor", null, 0, 0, "0 AV 0 DV")]
+        [TestCase("LeatherArmor", null, -2, 12, "-2 AV +12 DV")]
+        [TestCase("DriedMeat", null, 0, 0, "-")]
+        public void PackRowsShowCurrentWeaponDamageOrArmorDefenseWithoutClipping(
+            string blueprint, string damage, int av, int dv, string expected)
+        {
+            using (var r = new Rig())
+            {
+                var item = r.Carry(blueprint);
+                if (damage != null) item.GetPart<MeleeWeaponPart>().BaseDamage = damage;
+                if (item.GetPart<ArmorPart>() is ArmorPart armor) { armor.AV = av; armor.DV = dv; }
+                r.Open(); r.Select(item);
+                var canvas = RequireView(r); var labels = VisibleLabels(r);
+                Assert.False(labels.Any(t => Normal(t.Content) == "WORN"));
+                var header = labels.Single(t => Normal(t.Content) == "DMG / DEF");
+                var quantity = labels.Single(t => Normal(t.Content) == "QTY");
+                var name = labels.First(t => Normal(t.Content) == Normal(item.GetDisplayName())
+                    && Bounds(canvas, t).yMin > 0 && Bounds(canvas, t).xMin < Bounds(canvas, quantity).xMin);
+                var metric = labels.Single(t => SameRow(canvas, name, t)
+                    && Bounds(canvas, t).xMin == Bounds(canvas, header).xMin);
+                Assert.AreEqual(expected, Normal(metric.Content));
+                AssertTextFits(header); AssertTextFits(metric);
+                var weight = labels.Single(t => SameRow(canvas, name, t) && Normal(t.Content).EndsWith(" LB"));
+                Assert.LessOrEqual(Bounds(canvas, weight).xMax, Bounds(canvas, metric).xMin);
+                Assert.False(labels.Any(t => SameRow(canvas, name, t) && t.Content == "[E]"));
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void EquippedMarkerIsLastAfterDamageAndAbsentForUnequippedItems(bool equipped)
+        {
+            using (var r = new Rig())
+            {
+                var sword = r.Carry("LongSword");
+                if (equipped) Assert.True(r.Pack.EquipToBodyPart(sword, r.Player.GetPart<Body>().GetParts().First(p => p.Type == "Hand")));
+                r.Open(); r.Select(sword);
+                var canvas = RequireView(r); var labels = VisibleLabels(r);
+                var header = labels.Single(t => Normal(t.Content) == "DMG / DEF");
+                var metric = labels.Single(t => Normal(t.Content) == "1D8" && Bounds(canvas, t).xMin == Bounds(canvas, header).xMin);
+                var markers = labels.Where(t => t.Content == "[E]" && Mathf.Abs(Bounds(canvas, t).center.y - Bounds(canvas, metric).center.y) < 2f).ToList();
+                Assert.AreEqual(equipped ? 1 : 0, markers.Count);
+                if (equipped)
+                {
+                    Assert.GreaterOrEqual(Bounds(canvas, markers[0]).xMin, Bounds(canvas, metric).xMax);
+                    AssertTextFits(markers[0]);
+                }
+                Assert.AreEqual(equipped, sword.GetPart<PhysicsPart>().Equipped == r.Player);
             }
         }
 

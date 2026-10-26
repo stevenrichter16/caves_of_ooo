@@ -674,3 +674,52 @@ Remaining: physical Deck input/feel, a package built from these new sources, and
 world graphics completion. The existing current Mac/Linux packages are preserved
 and predate this UI. No current build, source, editable art, save or useful active
 cache was deleted; storage review found no worthwhile safely stale target.
+
+
+## Item combat column — user request, 2026-10-26
+
+Plan: replace WORN with DMG / DEF, retain QTY/WT, and move [E] to a narrow
+rightmost cell. Weapon values come from current MeleeWeaponPart.BaseDamage;
+armor shows both AV and signed DV (including zero), not the actor's total.
+Other items use a dash. Verified Buckler is armor, and no ranged weapon part
+exists; do not invent damage for throw payloads. Changed item stats are read on
+retained view repaint, not per-frame description callbacks. No mechanics or art
+change, no new diagnostic action gate, no Qud parity claim.
+
+Verification plan: native RED/GREEN on real retained labels, current-part
+mutation, negative/zero defenses, non-equipment counter, equipped/unequipped
+markers, non-overlap and text width at1280x800; broader inventory tests,
+independent review, and actual isolated inventory screenshot.
+
+### Combat column implementation and review
+
+Eight new native cases failed before production edits (23 total,15pass/8fail).
+The minimal view change replaces the WORN heading with DMG / DEF and reads
+current weapon/armor parts; null weapon dice follows combat's1d2 fallback.
+No actor-total calculation, event dispatch, inventory mutation or new cache.
+Independent review found one numeric capacity regression in the first layout;
+restored original96px quantity and120px weight widths, using404px item names
+(Fit40),176px metrics and28px rightmost [E]. Selected details keep full names.
+
+First broader GREEN80/80. The added10-million-stack case initially failed the
+player carry-capacity gate, not rendering. Its fixture now disables only that
+capacity to exercise full numeric width; normal carried-item cases retain it.
+This is an explicit test precondition correction, not a gameplay change.
+Final independent source review reports no remaining significant issue.
+
+Self-review: 🟡 numeric truncation corrected before release; 🔵 AV and signed DV
+explicitly labeled to distinguish protection from dodge; 🧪 physical Deck
+input/feel and updated package remain outside Editor acceptance.
+
+
+Final column verification:81/81 native cases pass,0skip, in
+`Verification/Live16x24/inventory-combat-column-final-verified.xml`.
+Ordinary keyboard Continue → I → Tab in isolated earned seed64 save yields
+`inventory-combat-column-live.png`: actual1280x800 sword1d8, buckler1AV+1DV,
+food/coatings/books dash, equipped[E]rightmost. No granted items or modified
+gameplay stats. The selected detail panel and navigation remain available.
+Editor cleanup restores ordinary scene/view/save root; normal saves remain
+protected. Can verify native rendered labels, keyboard layout and simulated
+controller routing; cannot verify physical Deck feel or a rebuilt package.
+Files: InventoryUI.LedgerView.cs, InventoryLedgerViewTests.cs, this living doc
+and named inventory-combat-column evidence. No sprites or world content changed.

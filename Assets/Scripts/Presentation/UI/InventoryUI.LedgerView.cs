@@ -229,10 +229,10 @@ namespace CavesOfOoo.Rendering
             LFrame(new Rect(352, 132, 904, 330), _panel == PANEL_INVENTORY ? LGold : LBorder, LPanel);
             string heading = string.IsNullOrEmpty(_inventoryQuery) ? "ITEM" : "FIND: " + _inventoryQuery;
             if (_inventorySearchActive) heading += "_";
-            LLabel(new Rect(368, 145, 580, 20), SkillScreenText.Fit(heading, 64, 1), _inventorySearchActive ? LGold : LMuted, 18);
-            LLabel(new Rect(966, 145, 96, 20), "QTY", LMuted, 18);
-            LLabel(new Rect(1074, 145, 120, 20), "WT", LMuted, 18);
-            LLabel(new Rect(1206, 145, 40, 20), "WORN", LMuted, 18);
+            LLabel(new Rect(368, 145, 404, 20), SkillScreenText.Fit(heading, 40, 1), _inventorySearchActive ? LGold : LMuted, 18);
+            LLabel(new Rect(788, 145, 96, 20), "QTY", LMuted, 18);
+            LLabel(new Rect(896, 145, 120, 20), "WT", LMuted, 18);
+            LLabel(new Rect(1026, 145, 176, 20), "DMG / DEF", LMuted, 18);
             LBox(new Rect(368, 170, 872, 1), LBorder);
             if (_cursorIndex < _scrollOffset) _scrollOffset = _cursorIndex;
             else if (_cursorIndex >= _scrollOffset + LedgerListRows) _scrollOffset = _cursorIndex - LedgerListRows + 1;
@@ -244,22 +244,34 @@ namespace CavesOfOoo.Rendering
                 int index = _scrollOffset + line; var row = _rows[index]; float y = 177 + line * 22;
                 if (row.IsHeader)
                 {
-                    LLabel(new Rect(370, y + 2, 580, 20), SkillScreenText.Fit(row.Text, 64, 1).ToUpperInvariant(), LMuted, 18);
+                    LLabel(new Rect(370, y + 2, 404, 20), SkillScreenText.Fit(row.Text, 40, 1).ToUpperInvariant(), LMuted, 18);
                     continue;
                 }
                 if (row.Item == null) continue;
                 bool selected = _panel == PANEL_INVENTORY && _cursorIndex == index;
                 var rect = new Rect(360, y - 1, 888, 22);
                 if (selected) { LBox(rect, LSelected); LBox(new Rect(rect.x, rect.y, 3, rect.height), LGold); }
-                LLabel(new Rect(370, y, 580, 21), SkillScreenText.Fit(row.Item.Name, 58, 1), selected ? LGold : LInk, 20);
-                LLabel(new Rect(966, y, 96, 21), row.Item.StackCount.ToString(), LInk, 18);
-                LLabel(new Rect(1074, y, 120, 21), row.Item.Weight + " lb", LInk, 18);
-                if (row.Item.IsEquipped) LLabel(new Rect(1206, y + 1, 40, 20), "[E]", LGold, 18);
+                LLabel(new Rect(370, y, 404, 21), SkillScreenText.Fit(row.Item.Name, 40, 1), selected ? LGold : LInk, 20);
+                LLabel(new Rect(788, y, 96, 21), row.Item.StackCount.ToString(), LInk, 18);
+                LLabel(new Rect(896, y, 120, 21), row.Item.Weight + " lb", LInk, 18);
+                LLabel(new Rect(1026, y, 176, 21), SkillScreenText.Fit(LedgerCombatValue(row.Item.Item), 19, 1), LInk, 18);
+                if (row.Item.IsEquipped) LLabel(new Rect(1220, y, 28, 20), "[E]", LGold, 18);
                 LHit(rect, LedgerHitKind.Item, index);
             }
             if (_rows.Count > LedgerListRows)
                 LLabel(new Rect(370, 444, 850, 16), (_scrollOffset + 1) + "-" + Mathf.Min(_scrollOffset + LedgerListRows, _rows.Count)
                     + " / " + _rows.Count + " rows", LMuted, 14);
+        }
+
+        // Item contributions, not actor totals or predicted damage against a target.
+        static string LedgerCombatValue(Entity item)
+        {
+            var weapon = item.GetPart<MeleeWeaponPart>();
+            if (weapon != null) return weapon.BaseDamage ?? "1d2";
+            var armor = item.GetPart<ArmorPart>();
+            if (armor != null)
+                return armor.AV + " AV " + (armor.DV > 0 ? "+" : "") + armor.DV + " DV";
+            return "-";
         }
 
         void ClearLedgerSelection()
