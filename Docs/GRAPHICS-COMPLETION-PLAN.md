@@ -1822,3 +1822,37 @@ refresh dated packages, preserve all earlier outputs, then replay actual
 Mac Continue/corpse inventory/North crossing and save-return. Whole opening,
 cellar watered growth, secondary crops, regional kits, Linux execution and
 physical Deck remain open. Do not replace those gates with asset counts.
+
+
+## Continuation — current aftermath/North packages, 2026-10-26 12:02 UTC
+
+[Delivery](Verification/Live16x24/packaged-aftermath-north-report.md) freezes
+runtime source `e49047200f28708d4bfd77fb7007d2c7843ba2ab` in new dated Mac and
+Linux `2026-10-26-aftermath-north-e49047200-current` folders. Both builds
+succeeded with0errors/4warnings; all181Linux archive files independently match
+hashes/sizes/modes. ArchiveSHA256
+`089a9cc4d06b1d3c20bd2c9052bd606fbeae8d13b97ef25c632edb181ae0e400`.
+Earlier builds/archive preserved. Source and delivery are now aligned.
+
+Fourteen actual Mac captures verify two earned paths: NorthContinue/crossing/
+inventory/F5quitContinue/gardenexit/return, and magpiecorpse pickup/inventory/
+Examine/drop/F5quitContinue. Native body persists at51,13; player52,13HP35
+includes an ordinary enemystrike. Currentinventory DMG/DEF and far-right[E]
+are visible. Existing shutdownthread/ComputeBuffer notices remain recorded.
+No physicalDeck/Linuxexecution/performance/fullopening claim.
+
+Normal editorOSX/scene/preferences/save root restored;47,731tracked prebuild
+hashes,776normal saves,374approved art/source and two foreign screenshots
+verified.33generated files backed up/restored; both test Saves runs archived.
+No storagecleanup. Next: ordinary cellar watered-sootroot growth/revisit and
+owner-state review, then remaining secondary crops/regional kits. Preserve
+accepted artwork absent a named defect. Heartbeat remains active.
+
+The next earned checkpoint is now retained at
+`Docs/Verification/Live16x24/Fixtures/cellar-earned-dry-sootroot64`: unchanged
+seed64cellar tick590/HP30, expected player65,8 and drycrop4729at65,10.
+Read carried WateringGrimoire if needed; existing Rain radius3 and40moist
+units require topping up to reach560wet worldticks for stage0→ripe2.
+Capture actual young stage1 and save/reload before completion. Existing
+cellarframes3/4/5 andproducts6/7 already cover these states; this is a pending
+ordinary-play gate, not evidence of missing artwork or new acceptance.

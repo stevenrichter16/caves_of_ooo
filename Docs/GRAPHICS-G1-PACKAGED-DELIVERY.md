@@ -1,13 +1,13 @@
 # G1 — Packaged flat 16×24 delivery
 
-**Latest delivery: 2026-10-26 08:34 UTC**, source
-`8902d37316a24e3debd21e161b970f93ef1fd9d7`. The
-[current kitchen/hedge delivery](Verification/Live16x24/packaged-kitchen-hedge-report.md)
-includes underfoot actions, hive/court, connected hedges and current inventory.
-Both builds succeeded; ordinary Mac Continue, inventory/readers, underfoot
-harvest and quit/Continue were observed. All181 Linux archive files verified.
-Linux execution, physical Deck and complete opening/regional coverage remain open.
-Older sections below are historical and retain their original source/limits.
+**Latest delivery: 2026-10-26 12:02 UTC**, source
+`e49047200f28708d4bfd77fb7007d2c7843ba2ab`. The
+[current aftermath/North delivery](Verification/Live16x24/packaged-aftermath-north-report.md)
+includes native aftermath sprites and North water banks. Both builds succeeded;
+14actual Mac captures verify crossing/restart/return and corpse pickup/portrait/
+drop/restart. All181Linux archive files independently verified. Linux execution,
+physical Deck and whole-opening/regional acceptance remain open. Earlier
+sections below retain their historical source/limits.
 
 **Status, 2026-10-25 UTC:** current-source Linux and macOS packages built successfully. An ordinary macOS standalone launch, Continue, crop Examine and movement were observed. The Linux archive is verified and ready for transfer; Linux execution, physical Steam Deck acceptance and fresh performance measurements remain open.
 
