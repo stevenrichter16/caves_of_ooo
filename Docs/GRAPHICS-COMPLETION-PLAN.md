@@ -1,6 +1,6 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: meadow and East water changes are now in new dated Mac/Linux packages from source2a8e71044. Ordinary Mac water save/relaunch/return, newly generated meadow/forge access, inventory and a clean new game passed;17actual screenshots retained. [Delivery evidence](Verification/Live16x24/packaged-meadow-water-report.md) closes this package-parity slice. Wholeopening/six-zone scene review is next. Linuxexecution,physicalDeck and remaining regional coverage stay open.
+Current status, 2026-10-26: meadow and East water changes are now in new dated Mac/Linux packages from source2a8e71044. Ordinary Mac water save/relaunch/return, newly generated meadow/forge access, inventory and a clean new game passed;17actual screenshots retained. [Delivery evidence](Verification/Live16x24/packaged-meadow-water-report.md) closes this package-parity slice. Current-package Nella marlroot growth/harvest/quitContinue/preparation also passed in [25actual captures](Verification/Live16x24/packaged-nella-report.md), with no artwork changes needed. Wholeopening/six-zone owner/state review is next. Linuxexecution,physicalDeck and remaining regional coverage stay open.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art

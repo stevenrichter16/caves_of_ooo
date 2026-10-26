@@ -2201,3 +2201,29 @@ her loss on randomseed200893250 as a separate gameplay audit: mortality is
 intentional; existing evidence does not prove unavoidable initial acquisition.
 Preserve accepted art until a current matched view demonstrates a named defect.
 Wholeopening/regional art and physical-device acceptance remain open.
+
+
+## Continuation — Nella current-package crop loop, 2026-10-26 10:42 UTC
+
+[Actual replay](Verification/Live16x24/packaged-nella-report.md) extends the same
+2a8e71044Mac package acceptance without changing runtime or art. The unchanged
+seed65north-border checkpoint is now preserved inrepo with hashes. Ordinary
+Up/Up17 reaches garden20,7;young moist marlroot matures after two actual waits,
+Hharvests2clods+1seed,Tabpickup;F5quit/relaunchContinue preserves the depleted
+prepared bed. Nella remains20/20HP and her tied-row explanation accessible.
+Native seed/clod portraits agree between inventory and reader;prepareoneclod
+leaves3clods+1FireClay.25originalCUAimages and finaltick2290metadata retained.
+An extraEscape/Pause detour is explicitly recorded and not counted as waiting.
+
+Independent review accepts this bounded current frontage/product lifecycle.
+No new sprite/layout defect warrants remaking approved art. Pickupmenu glyphs
+are its text convention; futureiconpolish should reuse existingnativeassets.
+This is earned return state, not fresh generation/payment or a complete fresh
+six-service journey. Bothprefs,776normalsaves,374art/source files and2foreign
+PNGs verified;testSavesarchived,no source/ProjectSettings diff,no storagecleanup.
+
+Next review the six-zone owner/state coverage together and select a demonstrated
+scene-level gap. Cellar wateredgrowth,incidental loot/actor outcomes,additional
+cropfamilies,wholeopening/regional art and physicalDeck remainopen. Keeperloss
+onseed200893250requires separate reproduction before balance/protectionchanges;
+currentevidence proves mortality,not unavoidablefirst-activationdanger.
