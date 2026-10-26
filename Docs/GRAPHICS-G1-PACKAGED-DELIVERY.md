@@ -256,3 +256,20 @@ SHA-256:`80ebb5305d98d564369a9640d4c113d9979dc4d789d10e31cca12946b44c41e2`.
 Both builds report0errors/4warnings. Known shutdown notices remain documented.
 776 saves, both logical preference domains,24765 tracked source files and two
 foreign PNGs were restored/verified. Storage inspection only; no deletion.
+
+
+## 11. Meadow/water current delivery — 2026-10-26
+
+The [current report](Verification/Live16x24/packaged-meadow-water-report.md)
+freezes source2a8e71044 in dated Mac/Linux outputs. Both builds succeeded with
+0errors/4warnings.17actual Mac images establish earned water crossing and
+save/relaunch/return, inventory, fresh meadow generation/forge access and a
+clean new-game start/movement. Older delivery sections remain historical.
+
+Current archive:
+`Builds/SteamDeck/2026-10-26-meadow-water-2a8e71044-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+SHA256:`e0ddfc99a23e4446db3e2bfbb65f2efb3e7805c95994eb5322cd46fddb6b32b3`.
+All181files independently verified. Earlier outputs and normal saves remain
+intact;32generated build files restored,47580prebuild tracked hashes checked.
+No cache deletion. Fullopening/regional and physicalDeck/Linuxexecution gates
+remain open; next is current-package Nella state/frontage review.

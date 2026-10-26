@@ -1,0 +1,308 @@
+{
+  "at": "2026-10-26T10:29:48.303709+00:00",
+  "runtime_source_commit": "2a8e71044b36fb6ccdee72afe3473b2094d33abe",
+  "platform": "macOS/Metal",
+  "app": "Builds/Verification/2026-10-26-meadow-water-2a8e71044-current/CavesOfOoo.app",
+  "input": "ordinary keyboard via CUA",
+  "images": "Original CUA JPEG bytes, not cropped/resized/composited/generated.",
+  "test_save_roots": "New bundle Saves was absent before; unmodified earned fixtures copied for two runs,then third clean new game. All test saves archived and original absent state restored.",
+  "presentation_override": false,
+  "fixtures": [
+    "Docs/Verification/Live16x24/Fixtures/east-water-earned-bank",
+    "Docs/Verification/Live16x24/Fixtures/east-shelter-pre-generation64"
+  ],
+  "captures": [
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-01-start.jpg",
+      "bytes": 208358,
+      "sha256": "e16a16fa625a75a90764d557ceb29bf64d22697405ac11d53e326b834a7c5dae",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Normal launch with unmodified earned water checkpoint and only temporary LastGameID; no presentation override."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-02-bank.jpg",
+      "bytes": 185213,
+      "sha256": "4adc3213a25559f3a71dbba34ff19abcfce7e53cc49c2d5df946c6433baac6bd",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "C -> East50,20,HP30/42,50drams; native bank shown."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-03-soaked.jpg",
+      "bytes": 190786,
+      "sha256": "16afc609510ed44d4b3854b8a653a7828bfb41b7222be08a271b4dc8f83cc8bc",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Right ->51,20; Soaked100%,Drenched36; foreground visible above actual water."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-04-inventory.jpg",
+      "bytes": 178712,
+      "sha256": "01e433fd6b2b2a16ac6256eb76237e7f9933e189f7855e14557f791a62e54260",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "I ->Equipment,DMG/DEF and far-right[E]."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-05-item-reader.jpg",
+      "bytes": 175819,
+      "sha256": "9a345edfe4a7d9ec58d101039ca32e2fa91cb8d949c0801cf4c46aef6efb71ed",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Tab ->Inventory;F1 ->equipped long-sword reader."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-06-saved.jpg",
+      "bytes": 189819,
+      "sha256": "e7f35704736ac8e0112acac8fe59ecb7f2cd01d5d4dae60f56988d56a93210b2",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Escape twice;F5 at51,20;normal quit."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-07-continued-water.jpg",
+      "bytes": 190786,
+      "sha256": "16afc609510ed44d4b3854b8a653a7828bfb41b7222be08a271b4dc8f83cc8bc",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Relaunch exact app;C, no subsequent movement; native water and player render immediately."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-08-kitchen-border.jpg",
+      "bytes": 159734,
+      "sha256": "55b0f78a3aee46f7af9d13459a8881330cc1b9751869fddcc1058163c5a41a88",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Down5 ->kitchen51,0;HP30/42,50drams,Soaked95%."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-09-water-return.jpg",
+      "bytes": 184594,
+      "sha256": "d93e543f291c681cda67df5f5111160084a9e669183524812a940ff8a3691cbb",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Up5 ->East51,20;same native banks,HP30/42,50drams;normal quit."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-10-fresh-glade.jpg",
+      "bytes": 235231,
+      "sha256": "10dcd8c8edf37c242340ad844874f7e0260433b539c3ecd2cf7c158293ea7a86",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Separate unchanged seed64 pre-generation fixture;launch C ->glade79,16,HP40/40,50drams."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-11-fresh-meadow-entry.jpg",
+      "bytes": 164241,
+      "sha256": "73573c4e51d60e6b4c7581559ef8c3635bcbd1dc363d5d909dd0bcb5b8ed4c3d",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Right ->newly generated East0,16;separated flower groups and quiet gaps."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-12-meadow-forge.jpg",
+      "bytes": 164168,
+      "sha256": "1d3d0519a9a1034509b050b411b20f59ab609d8b5708c9754ad1f4cc893086fd",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Right7,Down2 ->7,18 adjacent forge;HP40/40,50drams."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-13-forge-actions.jpg",
+      "bytes": 203306,
+      "sha256": "70dd11bada91e363d724151760ffa9ad03abb37c084aed5677543834822c137c",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "C,Down opens actual forge crafting choices;no carried components,no crafted result claimed."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-14-forge-reader.jpg",
+      "bytes": 222429,
+      "sha256": "55d0c785602444f841ab52394cce4552f55401841c2b75f0f62f64105d6a7594",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "X examines matching native forge portrait/content;Escape twice,F5,normal quit."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-15-new-game-picker.jpg",
+      "bytes": 249383,
+      "sha256": "30610d6c68dda5c0fef2a390f966b08422be618819a505504de39975cf827a5f",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Separate clean bundle Saves state ->normal7-build picker;no modified presentation preference."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-16-new-game.jpg",
+      "bytes": 214663,
+      "sha256": "d9b2d8971cf40b5e7b1720d6742d29e496ddc091eae2de662922946d15382701",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Return ->new Duelist at40,12;flat world/player visible,HP40/40,AV2,DV11."
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-17-new-game-moved.jpg",
+      "bytes": 226003,
+      "sha256": "b529cf9ba6bac2d8a68d9f0720050fdb4f6113ee2748add80ef3dcc8a64241a0",
+      "pixels": [
+        1280,
+        856
+      ],
+      "game_viewport_pixels": [
+        1280,
+        800
+      ],
+      "macos_chrome_pixels": 56,
+      "action_and_observation": "Right ->41,12;world/FOV/log advance;F5,normal quit."
+    }
+  ],
+  "logs": [
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-meadow-player.log",
+      "sha256": "9caaf044f07bbc6e427b52fde7d54a7036605df25d6c99f8a095d3c0e0d66995",
+      "premature_thread_finalization_notices": 6,
+      "compute_buffer_disposal_notices": 1,
+      "exception_error_failed_fatal_lines": []
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-newgame-player.log",
+      "sha256": "2d4f07e15ba7add259d7bb5e3e1cef720df792e99e592ad74c9781e1befcf292",
+      "premature_thread_finalization_notices": 7,
+      "compute_buffer_disposal_notices": 1,
+      "exception_error_failed_fatal_lines": []
+    },
+    {
+      "file": "Docs/Verification/Live16x24/packaged-meadow-water-water-player.log",
+      "sha256": "23c5b204246c0c02658e01b72458e5549bf56912dfc9a925c5f70985924d162c",
+      "premature_thread_finalization_notices": 6,
+      "compute_buffer_disposal_notices": 1,
+      "exception_error_failed_fatal_lines": []
+    }
+  ],
+  "previous_current_archive_preserved": {
+    "path": "Builds/SteamDeck/2026-10-26-kitchen-hedge-8902d3731-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "sha256": "80ebb5305d98d564369a9640d4c113d9979dc4d789d10e31cca12946b44c41e2",
+    "unchanged": true
+  },
+  "limits": [
+    "These are three bounded standalone paths,not a new complete six-service journey.",
+    "Forge menu/reader access does not prove crafting completion.",
+    "No Linux or physical Steam Deck execution/input/performance claim.",
+    "Existing shutdown notices persist; this pass does not diagnose/fix their cause.",
+    "Build provenance metadata is not source-to-binary reproducibility."
+  ],
+  "free_bytes": 458442985472,
+  "storage_cleanup_performed": false
+}

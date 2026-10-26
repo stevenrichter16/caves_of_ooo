@@ -1,10 +1,12 @@
 # G3 East surface-water continuity
 
-Status, 2026-10-26: **actual before capture and imagegen/extraction complete;
-native RED confirmed36/36expected failures; minimal production candidate saved
-by root; GREEN and ordinary after acceptance pending**. This slice extends one existing material to one already
-admitted graph. It does not certify the complete East scene or opening. Current
-Mac/Linux packages remain at `8902d3731`, before the meadow and this water work.
+Status, 2026-10-26: **bounded implementation,229/229native GREEN, independent
+review and ordinary before/after/save-return accepted**. New Mac/Linux packages
+from2a8e71044include this change and the meadow work, with ordinary Mac replay
+accepted in the [delivery report](Verification/Live16x24/packaged-meadow-water-report.md).
+This extends one existing material to one admitted graph. Whole East/opening art,
+Linux execution and physical Deck remain open. Preparatory sections below retain
+their historical pending state; final results and delivery supersede those gates.
 
 ## Named defect and bounded design
 

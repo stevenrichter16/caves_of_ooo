@@ -1,6 +1,6 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: East water continuity has bounded ordinary Unity Play acceptance and229/229native passes, following the accepted meadow composition. Current Mac/Linux packages8902d3731precede both changes. Package parity is next, followed by wholeopening/six-zone and remaining regional review. Linuxexecution and physicalDeck remain unverified. Read the latest continuation and East water record for evidence.
+Current status, 2026-10-26: meadow and East water changes are now in new dated Mac/Linux packages from source2a8e71044. Ordinary Mac water save/relaunch/return, newly generated meadow/forge access, inventory and a clean new game passed;17actual screenshots retained. [Delivery evidence](Verification/Live16x24/packaged-meadow-water-report.md) closes this package-parity slice. Wholeopening/six-zone scene review is next. Linuxexecution,physicalDeck and remaining regional coverage stay open.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art

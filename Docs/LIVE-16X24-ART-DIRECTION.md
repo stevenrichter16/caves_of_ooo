@@ -2171,3 +2171,33 @@ and water. Next refresh dated Mac/Linux packages, preserve all existing outputs,
 and check ordinary Mac Continue/new-game/crossing/save-return. Then resume the
 complete six-zone review and separate Nella service-loss audit; wholeopening,
 remaining regional art,Linuxexecution and physicalDeck acceptance remain open.
+
+
+## Continuation — meadow/water packaged parity, 2026-10-26 10:30 UTC
+
+[Delivery report](Verification/Live16x24/packaged-meadow-water-report.md) records
+new dated Mac/Linux `-current` outputs from remotely verified2a8e71044. Both
+builds succeeded with0errors/4warnings. The128645547byte Linux archive SHA256
+is`e0ddfc99a23e4446db3e2bfbb65f2efb3e7805c95994eb5322cd46fddb6b32b3`;
+181files/hash/size/mode independently checked. Previous8902d3731archive is intact.
+
+17original Mac JPEGs show ordinary earned water Continue/crossing/F5/quit/relaunch/
+Continue/kitchen-border-return; current DMG/DEF/right[E] inventory and sword
+reader; separate seed64 fresh East generation and forge menu/reader; and a clean
+new Duelist start/move. No presentation forcing or gameplay grants. Independent
+image review accepts those bounded paths, not a new whole six-service journey.
+Existing shutdown thread and ComputeBuffer notices persist. Linuxexecution and
+physicalDeck performance remain unverified.
+
+Normal editor restored idle/OSX/cleanSampleScene with no isolation/view/save
+root override.32reviewed generated build files backed up/restored;47580prebuild
+tracked hashes match.776normal saves,374preexisting art/source files,two foreign
+PNGs and both logical preference domains verified. Three test Saves runs were
+moved to protection archives, not deleted. About427GiBfree; no storage cleanup.
+
+Next: current-package Nella frontage/crop-state acceptance from the verified
+seed65 north-border earned checkpoint, then whole six-zone scene review. Treat
+her loss on randomseed200893250 as a separate gameplay audit: mortality is
+intentional; existing evidence does not prove unavoidable initial acquisition.
+Preserve accepted art until a current matched view demonstrates a named defect.
+Wholeopening/regional art and physical-device acceptance remain open.
