@@ -1,19 +1,24 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: the new daa388643 Mac package now carries the earned
-kitchen checkpoint through East/glade/North/Nella. Pitchpod seed, sprout, ripe,
-harvest yield and replant art agree with actual state; full quit/Continue and a
-North border return preserve the same replacement crop.33 actual captures and
-31/31 independent saved-state checks support this bounded gate.
-[Collected revisit](GRAPHICS-G3-COLLECTED-REVISIT.md).
+Current status, 2026-10-26: En Garde now wraps into En / Garde. The source
+repair passed native RED then 93/93 GREEN, six actual ordinary Unity captures,
+and independent source/visual review. Normal saves/preferences, current builds
+and all 34 preexisting dirty tracked paths are preserved. See
+[hotbar repair](GRAPHICS-G3-HOTBAR-NAMES.md). Current Mac/Linux packages remain
+daa388643 and need this new source correction packaged next.
 
-Current Mac/Linux packages include the action-menu width/pointer corrections;
-prior14 Mac delivery captures and archive audit remain accepted. No code/art
-changed during this route. Next named visual defect: En Garde hotbar name fit,
-then the contested North still and East temper journey with the earned resin.
-The coldforge was inspected, not used. Full opening/regions, Linux execution,
-physical Steam Deck and measured performance remain open. Normal state and
-current builds preserved; storage remains inspection-only.
+The existing package's earned Pitchpod growth/harvest/replant, full restart
+and North border return remain accepted within the 33-capture/31 saved-state
+[route](GRAPHICS-G3-COLLECTED-REVISIT.md). Next: refresh/test packages, then the
+contested North still/East temper leg using its earned resin. Full opening,
+regions, Linux execution, physical Deck and sustained performance remain open.
+Storage remains inspection-only.
+
+Hourly report checkpoint: 2026-10-26 21:53 UTC. The active automation now requires
+itemized completed/in-progress/blocked work and coming-session goals once an
+hour. Intermediate ten-minute storage checks remain quiet/read-only. The
+[complete run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md) distinguishes
+new graphics/gameplay fixes from existing mechanics merely exercised.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art

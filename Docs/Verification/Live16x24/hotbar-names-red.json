@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "1cb4c9fd394d4af9921a0034d5f38b6a",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1793050744118,
+    "finished_unix_ms": 1793050760386,
+    "last_update_unix_ms": 1793050760386,
+    "progress": {
+      "completed": 21,
+      "total": 21,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1793050760083,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.WardenHotbarIconTests.ShortLabelClearsOldSecondRowAndRestoringEnGardeRebuildsBothRows",
+      "last_finished_unix_ms": 1793050760106,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"En Garde\",\"En\",\"Garde\")",
+          "message": "  Expected string length 2 but was 8. Strings differ at index 2.\n  Expected: \"En\"\n  But was:  \"En Garde\"\n  -------------^\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"  En\\t Garde\\r\\n\",\"En\",\"Garde\")",
+          "message": "  Expected string length 2 but was 8. Strings differ at index 2.\n  Expected: \"En\"\n  But was:  \"En Garde\"\n  -------------^\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGH\",\"ABCDEFG\",\"H\")",
+          "message": "  Expected string length 7 but was 8. Strings differ at index 7.\n  Expected: \"ABCDEFG\"\n  But was:  \"ABCDEFGH\"\n  ------------------^\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGHIJKLMN\",\"ABCDEFG\",\"HIJKLMN\")",
+          "message": "  Expected string length 7 but was 8. Strings differ at index 7.\n  Expected: \"ABCDEFG\"\n  But was:  \"ABCDEFGH\"\n  ------------------^\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGHIJKLMNO\",\"ABCDEFG\",\"HIJKLM>\")",
+          "message": "  Expected string length 7 but was 8. Strings differ at index 7.\n  Expected: \"ABCDEFG\"\n  But was:  \"ABCDEFGH\"\n  ------------------^\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenEnGardeOccupiesTwoCompleteNameRowsInsideItsCard(940)",
+          "message": "  slot 0, name row 1: En\n  Expected and actual are both <UnityEngine.Tilemaps.TileBase[8]>\n  Values differ at index [0]\n  Expected: null\n  But was:  <Text_45 (UnityEngine.Tilemaps.Tile)>\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenEnGardeOccupiesTwoCompleteNameRowsInsideItsCard(1280)",
+          "message": "  slot 0, name row 1: En\n  Expected and actual are both <UnityEngine.Tilemaps.TileBase[8]>\n  Values differ at index [0]\n  Expected: null\n  But was:  <Text_45 (UnityEngine.Tilemaps.Tile)>\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.WardenHotbarIconTests.ShortLabelClearsOldSecondRowAndRestoringEnGardeRebuildsBothRows",
+          "message": "  slot 0, name row 1: En\n  Expected and actual are both <UnityEngine.Tilemaps.TileBase[8]>\n  Values differ at index [0]\n  Expected: null\n  But was:  <Text_45 (UnityEngine.Tilemaps.Tile)>\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

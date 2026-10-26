@@ -40,7 +40,9 @@ namespace CavesOfOoo.Rendering
                 normalized.Append(c); space = false;
             }
             string text = normalized.ToString();
-            const int width = GameplayHotbarLayout.SlotWidth;
+            // Reserve name capacity so eight-letter labels such as En Garde
+            // wrap into readable words instead of spanning the card's edges.
+            const int width = GameplayHotbarLayout.SlotWidth - 1;
             if (text.Length <= width) { first = text; return; }
             int split = text.LastIndexOf(' ', width - 1, width);
             if (split < 1) split = width;

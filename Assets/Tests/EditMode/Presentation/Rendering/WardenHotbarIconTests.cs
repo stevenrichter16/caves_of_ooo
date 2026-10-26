@@ -156,6 +156,70 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [TestCase(940)] [TestCase(1280)]
+        public void FactoryWardenEnGardeOccupiesTwoCompleteNameRowsInsideItsCard(int hotbarPixelWidth)
+        {
+            // Geometry for the sidebar and full-width 1280x800 layouts. This is
+            // submitted-tile/bounds coverage, not a GPU or physical-screen capture.
+            camera.aspect = hotbarPixelWidth / 120f;
+            float cellWidth = GameplayHotbarLayout.ComputeCellWidth(camera.aspect);
+            root.GetComponent<Grid>().cellSize = new Vector3(cellWidth, 1, 0);
+            Assert.AreEqual("En Garde", Ability(0).DisplayName, "Use the real starting-build label.");
+            var snapshot = HotbarStateBuilder.Build(player, 0, null);
+            renderer.Render(snapshot, camera);
+
+            AssertNameRow(0, 1, 3, "En");
+            AssertNameRow(0, 0, 1, "Garde");
+            AssertNameRow(1, 1, 1, "Lunge");
+            AssertNameRow(1, 0, 0, "");
+            AssertNameRow(2, 1, 1, "Follow");
+            AssertNameRow(2, 0, 0, "Through");
+            foreach (var bounds in RowBounds(0, 0).Concat(RowBounds(0, 1)))
+            {
+                Assert.Greater(bounds.min.x, 0f);
+                Assert.Less(bounds.max.x, 8 * cellWidth);
+                Assert.Greater(bounds.min.y, 0f);
+                Assert.Less(bounds.max.y, 2f, "Name rows stay below the icon band.");
+            }
+            Assert.AreSame(HudSkillIconAtlas.GetTile(SkillHudIcon.EnGarde), fg.GetTile(IconPosition(0)));
+            Assert.AreEqual("En Garde", snapshot.Slots[0].DisplayName);
+            StringAssert.Contains("En Garde", snapshot.SummaryText);
+            Assert.AreEqual("READY", HudHotbarPresentation.StateLabel(snapshot.Slots[0]));
+            Assert.False(player.HasEffect<EnGardeEffect>(), "Wrapping must not execute the ability.");
+        }
+
+        [Test]
+        public void ShortLabelClearsOldSecondRowAndRestoringEnGardeRebuildsBothRows()
+        {
+            var ability = Ability(0);
+            string originalName = ability.DisplayName;
+            int hp = player.GetStatValue("Hitpoints");
+            renderer.Render(HotbarStateBuilder.Build(player, 0, null), camera);
+            AssertNameRow(0, 1, 3, "En");
+            AssertNameRow(0, 0, 1, "Garde");
+            var otherFirst = Row(2, 1); var otherSecond = Row(2, 0);
+            var icon = fg.GetTile(IconPosition(0));
+
+            // Change presentation only, keeping the same real ability and icon.
+            ability.DisplayName = "Lunge";
+            renderer.Render(HotbarStateBuilder.Build(player, 0, null), camera);
+            AssertNameRow(0, 1, 1, "Lunge");
+            AssertNameRow(0, 0, 0, "");
+            Assert.AreSame(icon, fg.GetTile(IconPosition(0)));
+            CollectionAssert.AreEqual(otherFirst, Row(2, 1));
+            CollectionAssert.AreEqual(otherSecond, Row(2, 0));
+
+            ability.DisplayName = originalName;
+            renderer.Render(HotbarStateBuilder.Build(player, 0, null), camera);
+            AssertNameRow(0, 1, 3, "En");
+            AssertNameRow(0, 0, 1, "Garde");
+            Assert.AreSame(icon, fg.GetTile(IconPosition(0)));
+            Assert.AreEqual(Sources[0], ability.SourcePowerClass);
+            Assert.Zero(ability.CooldownRemaining);
+            Assert.AreEqual(hp, player.GetStatValue("Hitpoints"));
+            Assert.False(player.HasEffect<EnGardeEffect>());
+        }
+
         [TestCase(0)] [TestCase(1)] [TestCase(2)]
         public void CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(int slot)
         {
@@ -253,6 +317,15 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(world, CP437TilesetGenerator.GetTile('@')); Assert.AreSame(text, HudPixelFont.GetTile('A'));
             renderer.Render(HotbarStateBuilder.Build(player, 0, null), camera);
             Assert.AreSame(rebuilt, fg.GetTile(IconPosition(0)));
+        }
+
+        void AssertNameRow(int slot, int y, int firstColumn, string label)
+        {
+            // Explicit expected columns come from the desired visible layout,
+            // rather than calling the wrapping/centering implementation again.
+            var expected = new TileBase[8];
+            for (int i = 0; i < label.Length; i++) expected[firstColumn + i] = HudPixelFont.GetTile(label[i]);
+            CollectionAssert.AreEqual(expected, Row(slot, y), $"slot {slot}, name row {y}: {label}");
         }
 
         ActivatedAbility Ability(int slot) => abilities.GetAbilityBySlot(slot);

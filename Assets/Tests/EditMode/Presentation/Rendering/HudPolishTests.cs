@@ -44,12 +44,25 @@ namespace CavesOfOoo.Tests
         [TestCase("Ground Surge", "Ground", "Surge")]
         [TestCase("Rime Grip", "Rime", "Grip")]
         [TestCase("Calm", "Calm", "")]
+        [TestCase("En Garde", "En", "Garde")]
+        [TestCase("  En\t Garde\r\n", "En", "Garde")]
+        [TestCase("Lunge", "Lunge", "")]
+        [TestCase("Follow Through", "Follow", "Through")]
+        [TestCase("Conjure Rain", "Conjure", "Rain")]
+        [TestCase("ABCDEFG", "ABCDEFG", "")]
+        [TestCase("ABCDEFGH", "ABCDEFG", "H")]
+        [TestCase("ABCDEFGHIJKLMN", "ABCDEFG", "HIJKLMN")]
+        [TestCase("ABCDEFGHIJKLMNO", "ABCDEFG", "HIJKLM>")]
+        [TestCase(null, "", "")]
+        [TestCase("", "", "")]
+        [TestCase(" \t\r\n", "", "")]
         public void CardsKeepRealWordsAcrossTwoRows(string name, string first, string second)
         {
             HudHotbarPresentation.NameLines(name, out string a, out string b);
             Assert.AreEqual(first, a); Assert.AreEqual(second, b);
-            Assert.LessOrEqual(a.Length, GameplayHotbarLayout.SlotWidth);
-            Assert.LessOrEqual(b.Length, GameplayHotbarLayout.SlotWidth);
+            // Reserve one cell of name capacity; word wrap gives En/Garde inset.
+            Assert.LessOrEqual(a.Length, 7);
+            Assert.LessOrEqual(b.Length, 7);
         }
 
         [Test]

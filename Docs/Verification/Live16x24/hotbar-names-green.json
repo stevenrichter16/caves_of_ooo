@@ -1,0 +1,878 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "992b5f3ed74040fd8d6da7c23928907a",
+    "status": "succeeded",
+    "mode": "EditMode",
+    "started_unix_ms": 1793050805165,
+    "finished_unix_ms": 1793050818739,
+    "last_update_unix_ms": 1793050818739,
+    "progress": {
+      "completed": 93,
+      "total": 93,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1793050818518,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.WardenHotbarIconTests.ShortLabelClearsOldSecondRowAndRestoringEnGardeRebuildsBothRows",
+      "last_finished_unix_ms": 1793050818541,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": {
+      "mode": "EditMode",
+      "summary": {
+        "total": 93,
+        "passed": 93,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 4.624157,
+        "resultState": "Passed"
+      },
+      "results": [
+        {
+          "name": "AbsentOrDisabledNativePointerUsesTheActualLegacyPair(False)",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(False)",
+          "state": "Passed",
+          "durationSeconds": 0.0803485,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "AbsentOrDisabledNativePointerUsesTheActualLegacyPair(True)",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.AbsentOrDisabledNativePointerUsesTheActualLegacyPair(True)",
+          "state": "Passed",
+          "durationSeconds": 0.016554,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.CooldownCardCanBeSelectedButCannotStartTargetingOrSpendATurn",
+          "state": "Passed",
+          "durationSeconds": 0.0183916,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.EnabledNativePointerSuppliesBothPositionAndOnlyTheLeftPressEdge",
+          "state": "Passed",
+          "durationSeconds": 0.0151151,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.HeldPressCannotReactivateAfterCancelButReleaseAndRepressCan",
+          "state": "Passed",
+          "durationSeconds": 0.0155157,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "HoverAndRightButtonDoNotActivateThePaintedCard(False)",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(False)",
+          "state": "Passed",
+          "durationSeconds": 0.0165148,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "HoverAndRightButtonDoNotActivateThePaintedCard(True)",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.HoverAndRightButtonDoNotActivateThePaintedCard(True)",
+          "state": "Passed",
+          "durationSeconds": 0.0165517,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.MouseOnAnotherCardCannotReplaceAnAlreadyPendingKeyboardAbility",
+          "state": "Passed",
+          "durationSeconds": 0.0159396,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1280,800)",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1280,800)",
+          "state": "Passed",
+          "durationSeconds": 0.0165228,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1920,1080)",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.NativeLeftPressOnPaintedLungeCardSelectsAndTargetsThatExactAbility(1920,1080)",
+          "state": "Passed",
+          "durationSeconds": 0.0158886,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "OutsideHotbarPressDoesNotBorrowTheNearestCard",
+          "fullName": "CavesOfOoo.Tests.HotbarPointerInputTests.OutsideHotbarPressDoesNotBorrowTheNearestCard",
+          "state": "Passed",
+          "durationSeconds": 0.0154275,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "GameplayLayout_ReservesBottomHotbarStrip_AndPopupUsesMapRect",
+          "fullName": "CavesOfOoo.Tests.HotbarRendererTests.GameplayLayout_ReservesBottomHotbarStrip_AndPopupUsesMapRect",
+          "state": "Passed",
+          "durationSeconds": 0.0049533,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ZoneRenderer_RendersHotbarInBottomStrip_AndRejectsWorldHitsThere",
+          "fullName": "CavesOfOoo.Tests.HotbarRendererTests.ZoneRenderer_RendersHotbarInBottomStrip_AndRejectsWorldHitsThere",
+          "state": "Passed",
+          "durationSeconds": 0.2553782,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "AllExistingVitalLinesRemainAvailableAfterPresentation",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.AllExistingVitalLinesRemainAvailableAfterPresentation",
+          "state": "Passed",
+          "durationSeconds": 0.0009347,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CachedRecentEntriesCannotBeEditedThroughTheirPublicCollectionView",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.CachedRecentEntriesCannotBeEditedThroughTheirPublicCollectionView",
+          "state": "Passed",
+          "durationSeconds": 0.0007639,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownLabelNeverWrapsIntoNames(-5,\"READY\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.CooldownLabelNeverWrapsIntoNames(-5,\"READY\")",
+          "state": "Passed",
+          "durationSeconds": 0.0005548,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownLabelNeverWrapsIntoNames(0,\"READY\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.CooldownLabelNeverWrapsIntoNames(0,\"READY\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000631,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownLabelNeverWrapsIntoNames(1,\"CD1\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.CooldownLabelNeverWrapsIntoNames(1,\"CD1\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000473,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownLabelNeverWrapsIntoNames(999,\"CD999\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.CooldownLabelNeverWrapsIntoNames(999,\"CD999\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000457,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownLabelNeverWrapsIntoNames(1000,\"CD999+\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.CooldownLabelNeverWrapsIntoNames(1000,\"CD999+\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000535,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownLabelNeverWrapsIntoNames(int.MaxValue,\"CD999+\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.CooldownLabelNeverWrapsIntoNames(int.MaxValue,\"CD999+\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000523,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "EqualTickDifferentSerialsAndParagraphsKeepChronologicalBodies",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.EqualTickDifferentSerialsAndParagraphsKeepChronologicalBodies",
+          "state": "Passed",
+          "durationSeconds": 0.0028987,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "InvalidSelectionDoesNotClaimAnotherSkill(-1)",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.InvalidSelectionDoesNotClaimAnotherSkill(-1)",
+          "state": "Passed",
+          "durationSeconds": 0.0008262,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "InvalidSelectionDoesNotClaimAnotherSkill(100)",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.InvalidSelectionDoesNotClaimAnotherSkill(100)",
+          "state": "Passed",
+          "durationSeconds": 0.000074,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ManyUnicodeMissesDoNotRecreateScopedAtlas",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.ManyUnicodeMissesDoNotRecreateScopedAtlas",
+          "state": "Passed",
+          "durationSeconds": 0.0004044,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MiddleEntryMutationRebuildsActualVisibleLogCache(False)",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.MiddleEntryMutationRebuildsActualVisibleLogCache(False)",
+          "state": "Passed",
+          "durationSeconds": 0.0063303,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MiddleEntryMutationRebuildsActualVisibleLogCache(True)",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.MiddleEntryMutationRebuildsActualVisibleLogCache(True)",
+          "state": "Passed",
+          "durationSeconds": 0.0049126,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "PendingDescriptionUsesRealInputTargeting(AdjacentCell,\"adjacent\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.PendingDescriptionUsesRealInputTargeting(AdjacentCell,\"adjacent\")",
+          "state": "Passed",
+          "durationSeconds": 0.0005718,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "PendingDescriptionUsesRealInputTargeting(DirectionLine,\"line 4\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.PendingDescriptionUsesRealInputTargeting(DirectionLine,\"line 4\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000804,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "PendingDescriptionUsesRealInputTargeting(SelfCentered,\"self\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.PendingDescriptionUsesRealInputTargeting(SelfCentered,\"self\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000625,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "RecentLimitAndClearAtSameCountInvalidateRevisionCache",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.RecentLimitAndClearAtSameCountInvalidateRevisionCache",
+          "state": "Passed",
+          "durationSeconds": 0.0003155,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "SevenRowBudgetDisclosesStatusOverflowAndKeepsEveryVital",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.SevenRowBudgetDisclosesStatusOverflowAndKeepsEveryVital",
+          "state": "Passed",
+          "durationSeconds": 0.0002999,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(null)",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(null)",
+          "state": "Passed",
+          "durationSeconds": 0.0004179,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000751,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"   \")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"   \")",
+          "state": "Passed",
+          "durationSeconds": 0.0000672,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"UninterruptiblyLongSingleName\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"UninterruptiblyLongSingleName\")",
+          "state": "Passed",
+          "durationSeconds": 0.0001105,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"One two three four five six\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"One two three four five six\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000518,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"A\\nB\\tC\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"A\\nB\\tC\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000517,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"A    B\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"A    B\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000463,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"☃ ☺ →\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishAdversarialTests.UntrustedNamesHaveBoundedTwoRowsAndExplicitOverflow(\"☃ ☺ →\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000505,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualPowerIdentitySelectsDistinctIcon(\"Pyromancy_EmberSpit\",EmberSpit)",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.ActualPowerIdentitySelectsDistinctIcon(\"Pyromancy_EmberSpit\",EmberSpit)",
+          "state": "Passed",
+          "durationSeconds": 0.0018961,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualPowerIdentitySelectsDistinctIcon(\"Pyromancy_FlamingHands\",FlamingHands)",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.ActualPowerIdentitySelectsDistinctIcon(\"Pyromancy_FlamingHands\",FlamingHands)",
+          "state": "Passed",
+          "durationSeconds": 0.0001553,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualPowerIdentitySelectsDistinctIcon(\"Hydromancy_JetBlast\",JetBlast)",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.ActualPowerIdentitySelectsDistinctIcon(\"Hydromancy_JetBlast\",JetBlast)",
+          "state": "Passed",
+          "durationSeconds": 0.0002091,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualPowerIdentitySelectsDistinctIcon(\"Galvanism_GroundSurge\",GroundSurge)",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.ActualPowerIdentitySelectsDistinctIcon(\"Galvanism_GroundSurge\",GroundSurge)",
+          "state": "Passed",
+          "durationSeconds": 0.0002312,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualPowerIdentitySelectsDistinctIcon(\"Cryomancy_RimeGrip\",RimeGrip)",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.ActualPowerIdentitySelectsDistinctIcon(\"Cryomancy_RimeGrip\",RimeGrip)",
+          "state": "Passed",
+          "durationSeconds": 0.0001409,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualPowerIdentitySelectsDistinctIcon(\"Spellcraft_Calm\",Calm)",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.ActualPowerIdentitySelectsDistinctIcon(\"Spellcraft_Calm\",Calm)",
+          "state": "Passed",
+          "durationSeconds": 0.0001363,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "AllSixIconsAreCachedDifferentPixelsAndUnknownIsBoundedFallback",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.AllSixIconsAreCachedDifferentPixelsAndUnknownIsBoundedFallback",
+          "state": "Passed",
+          "durationSeconds": 0.0050708,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Ember Spit\",\"Ember\",\"Spit\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Ember Spit\",\"Ember\",\"Spit\")",
+          "state": "Passed",
+          "durationSeconds": 0.0003086,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Flaming Hands\",\"Flaming\",\"Hands\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Flaming Hands\",\"Flaming\",\"Hands\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000743,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Jet Blast\",\"Jet\",\"Blast\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Jet Blast\",\"Jet\",\"Blast\")",
+          "state": "Passed",
+          "durationSeconds": 0.000072,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Ground Surge\",\"Ground\",\"Surge\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Ground Surge\",\"Ground\",\"Surge\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000668,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Rime Grip\",\"Rime\",\"Grip\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Rime Grip\",\"Rime\",\"Grip\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000621,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Calm\",\"Calm\",\"\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Calm\",\"Calm\",\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000611,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"En Garde\",\"En\",\"Garde\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"En Garde\",\"En\",\"Garde\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000637,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"  En\\t Garde\\r\\n\",\"En\",\"Garde\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"  En\\t Garde\\r\\n\",\"En\",\"Garde\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000648,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Lunge\",\"Lunge\",\"\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Lunge\",\"Lunge\",\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000612,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Follow Through\",\"Follow\",\"Through\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Follow Through\",\"Follow\",\"Through\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000574,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"Conjure Rain\",\"Conjure\",\"Rain\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"Conjure Rain\",\"Conjure\",\"Rain\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000589,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"ABCDEFG\",\"ABCDEFG\",\"\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"ABCDEFG\",\"ABCDEFG\",\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000681,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGH\",\"ABCDEFG\",\"H\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGH\",\"ABCDEFG\",\"H\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000583,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGHIJKLMN\",\"ABCDEFG\",\"HIJKLMN\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGHIJKLMN\",\"ABCDEFG\",\"HIJKLMN\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000589,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGHIJKLMNO\",\"ABCDEFG\",\"HIJKLM>\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"ABCDEFGHIJKLMNO\",\"ABCDEFG\",\"HIJKLM>\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000656,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(null,\"\",\"\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(null,\"\",\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000624,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\"\",\"\",\"\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\"\",\"\",\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000652,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CardsKeepRealWordsAcrossTwoRows(\" \\t\\r\\n\",\"\",\"\")",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.CardsKeepRealWordsAcrossTwoRows(\" \\t\\r\\n\",\"\",\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.0000609,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "EqualFrameDoesZeroHotbarWorkAndChangedPowerRepaintsOnlyItsCard",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.EqualFrameDoesZeroHotbarWorkAndChangedPowerRepaintsOnlyItsCard",
+          "state": "Passed",
+          "durationSeconds": 0.0019599,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "HeaderTracksActualMutableTargetRangeWithoutFiringAbility",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.HeaderTracksActualMutableTargetRangeWithoutFiringAbility",
+          "state": "Passed",
+          "durationSeconds": 0.0003542,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "HudFontIsScopedCachedAndHasReadableUnknownFallback",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.HudFontIsScopedCachedAndHasReadableUnknownFallback",
+          "state": "Passed",
+          "durationSeconds": 0.0068501,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "PendingSelectedCooldownAndEmptyAreDifferentTextStates",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.PendingSelectedCooldownAndEmptyAreDifferentTextStates",
+          "state": "Passed",
+          "durationSeconds": 0.0002945,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "RendererShowsAllTenCardsAndCooldownDoesNotReplaceNames",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.RendererShowsAllTenCardsAndCooldownDoesNotReplaceNames",
+          "state": "Passed",
+          "durationSeconds": 0.0028423,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "SameTickDifferentBodiesRemainOneChronologicalGroup",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.SameTickDifferentBodiesRemainOneChronologicalGroup",
+          "state": "Passed",
+          "durationSeconds": 0.0006069,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "SidebarMergesOnlySameTickDuplicatesAndNeverEditsRawHistory",
+          "fullName": "CavesOfOoo.Tests.HudPolishTests.SidebarMergesOnlySameTickDuplicatesAndNeverEditsRawHistory",
+          "state": "Passed",
+          "durationSeconds": 0.0021181,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(8.0f)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(8.0f)",
+          "state": "Passed",
+          "durationSeconds": 0.0551765,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(10.0f)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.ActualSubmittedThreeIconsAreDistinctAndFitTheExistingTextBands(10.0f)",
+          "state": "Passed",
+          "durationSeconds": 0.0240535,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(0)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(0)",
+          "state": "Passed",
+          "durationSeconds": 0.0236027,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(1)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(1)",
+          "state": "Passed",
+          "durationSeconds": 0.0225952,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(2)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.CooldownAndPendingChangeStateWithoutReplacingNamesOrIdentity(2)",
+          "state": "Passed",
+          "durationSeconds": 0.0231026,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.ExplicitClearAndAbilityRemovalEraseOldIconsAndRestoreUnchangedSnapshot",
+          "state": "Passed",
+          "durationSeconds": 0.0224694,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "FactoryWardenAbilityUsesItsExactAppendedIcon(0)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(0)",
+          "state": "Passed",
+          "durationSeconds": 0.0342017,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "FactoryWardenAbilityUsesItsExactAppendedIcon(1)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(1)",
+          "state": "Passed",
+          "durationSeconds": 0.0707897,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "FactoryWardenAbilityUsesItsExactAppendedIcon(2)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenAbilityUsesItsExactAppendedIcon(2)",
+          "state": "Passed",
+          "durationSeconds": 0.0207103,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "FactoryWardenEnGardeOccupiesTwoCompleteNameRowsInsideItsCard(940)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenEnGardeOccupiesTwoCompleteNameRowsInsideItsCard(940)",
+          "state": "Passed",
+          "durationSeconds": 0.0246062,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "FactoryWardenEnGardeOccupiesTwoCompleteNameRowsInsideItsCard(1280)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.FactoryWardenEnGardeOccupiesTwoCompleteNameRowsInsideItsCard(1280)",
+          "state": "Passed",
+          "durationSeconds": 0.0230045,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(null)",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(null)",
+          "state": "Passed",
+          "durationSeconds": 0.0231195,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"\")",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"\")",
+          "state": "Passed",
+          "durationSeconds": 0.022768,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"Unrelated_Lunge\")",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"Unrelated_Lunge\")",
+          "state": "Passed",
+          "durationSeconds": 0.0226244,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"longblades_lunge\")",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"longblades_lunge\")",
+          "state": "Passed",
+          "durationSeconds": 0.0223343,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"LongBlades_LungeExtra\")",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"LongBlades_LungeExtra\")",
+          "state": "Passed",
+          "durationSeconds": 0.0221094,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"CommandLunge\")",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.MatchingDisplayNameCannotGrantAnIconToAnUnknownSource(\"CommandLunge\")",
+          "state": "Passed",
+          "durationSeconds": 0.0232025,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.OriginalSevenDecodedPixelRegionsAndOrdinalsRemainByteExact",
+          "state": "Passed",
+          "durationSeconds": 0.0213005,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.OwnedAtlasResetRecreatesIdenticalNewIconsAndDoesNotDestroyWorldOrTextBanks",
+          "state": "Passed",
+          "durationSeconds": 0.02306,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.QuietFramesDoNoWorkAndExactSourceChangeRepaintsOnlyItsCard",
+          "state": "Passed",
+          "durationSeconds": 0.0230368,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        },
+        {
+          "name": "ShortLabelClearsOldSecondRowAndRestoringEnGardeRebuildsBothRows",
+          "fullName": "CavesOfOoo.Tests.WardenHotbarIconTests.ShortLabelClearsOldSecondRowAndRestoringEnGardeRebuildsBothRows",
+          "state": "Passed",
+          "durationSeconds": 0.0232563,
+          "message": null,
+          "stackTrace": null,
+          "output": ""
+        }
+      ]
+    }
+  },
+  "hint": null
+}
