@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "blueprint": "RiverShrine",
+  "part": "SanctuaryPart",
+  "stateCount": 1,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "footprint": [
+    1,
+    1
+  ],
+  "baselineRow": 22,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "pixelsPerUnit": 16,
+  "alpha": "binary0/255",
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "source": "editable.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_river_shrine.py",
+  "native": "native.png",
+  "contact": "contact.png",
+  "proposedResource": "Sprites/Live16x24/river-shrine",
+  "runtimeTransferOwner": "root",
+  "nativeSHA256": "9e58d04c11dab315230951d9ec20981663146ee45c07b5e2de097b78ff26d58e",
+  "concept": "ArtSource/Live16x24/river-shrine/concepts/shrine-scene-reference.png",
+  "conceptPrompt": "ArtSource/Live16x24/river-shrine/concepts/prompt.txt",
+  "greyboxCapture": "Docs/Verification/Live16x24/current-scene-11-shrine-before.png",
+  "parts": [
+    "worn-stone silhouette",
+    "one recessed panel",
+    "one fixed muted ochre carved token"
+  ],
+  "mapping": "Stable non-solid nonportable current RiverShrine owner with SanctuaryPart; donation changes actor only, not shrine art.",
+  "rejected": [
+    "water contents",
+    "glow",
+    "loose coins",
+    "inventory quantities",
+    "donation animation",
+    "soft alpha",
+    "simulated 3D lighting"
+  ],
+  "limits": "Native source only. Root owns runtime file/import, resolver tests, actual game integration and visual acceptance."
+}

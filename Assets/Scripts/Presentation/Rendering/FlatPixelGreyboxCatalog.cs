@@ -66,6 +66,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
         private FlatPixelAftermathCatalog _aftermathArt;
         private FlatPixelOrchardCatalog _orchardArt;
+        private FlatPixelRiverShrineCatalog _riverShrineArt;
         private FlatPixelHedgeCatalog _hedgeArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
@@ -804,10 +805,12 @@ namespace CavesOfOoo.Rendering
             bool aftermathNative = aftermath != null && aftermath.TryResolve(owner, out art);
             var orchard = local ? OrchardArtFor(owner) : null;
             bool orchardNative = orchard != null && orchard.TryResolve(owner, out art);
+            var riverShrine = local ? RiverShrineArtFor(owner) : null;
+            bool riverShrineNative = riverShrine != null && riverShrine.TryResolve(owner, out art);
             bool allowHedgeFallback = true;
             var hedges = local ? HedgeArtFor(owner, fallback.Remembered, out allowHedgeFallback) : null;
             bool hedgeNative = hedges != null && hedges.TryResolve(zone, x, y, out art);
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -857,6 +860,9 @@ namespace CavesOfOoo.Rendering
             var orchard = local ? OrchardArtFor(subject) : null;
             if (orchard != null && orchard.TryResolve(subject, out var hiveTile))
             { sprite = hiveTile.sprite; return sprite != null; }
+            var riverShrine = local ? RiverShrineArtFor(subject) : null;
+            if (riverShrine != null && riverShrine.TryResolve(subject, out var shrineTile))
+            { sprite = shrineTile.sprite; return sprite != null; }
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
             if (eastern != null && eastern.TryResolvePresentation(zone, subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
@@ -906,6 +912,14 @@ namespace CavesOfOoo.Rendering
             if (_orchardArt == null && _loadOptionalResources)
                 _orchardArt = new FlatPixelOrchardCatalog();
             return _orchardArt;
+        }
+
+        private FlatPixelRiverShrineCatalog RiverShrineArtFor(Entity owner)
+        {
+            if (!FlatPixelRiverShrineCatalog.HasKnownRole(owner)) return null;
+            if (_riverShrineArt == null && _loadOptionalResources)
+                _riverShrineArt = new FlatPixelRiverShrineCatalog();
+            return _riverShrineArt;
         }
 
         private FlatPixelHedgeCatalog HedgeArtFor(Entity owner, bool remembered, out bool allowNativeFallback)
@@ -1018,6 +1032,8 @@ namespace CavesOfOoo.Rendering
             _aftermathArt = null;
             _orchardArt?.Dispose();
             _orchardArt = null;
+            _riverShrineArt?.Dispose();
+            _riverShrineArt = null;
             _hedgeArt?.Dispose();
             _hedgeArt = null;
             _glyphFallback?.Dispose();

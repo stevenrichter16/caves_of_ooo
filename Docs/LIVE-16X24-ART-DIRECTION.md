@@ -2354,3 +2354,27 @@ repair. All normal gameplay state and approved assets remain preserved; storage
 inspection only. Read the package record and continue the fresh seed224401440
 six-zone scene review using the now-reachable ordinary zoom. The surface/cellar
 path is accepted, but not complete regional or device coverage.
+
+
+## Continuation — current-scene shrine and Nella blocker, 2026-10-26 14:00 UTC
+
+[Current scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md) followed the fresh
+seed224401440route atordinary1×/2×. It found RiverShrine6915at23,7 rendered
+as an underscore. Actual capture→imagegen→editable native Blender geometry→
+optional catalog integration now supplies a low stone/recess/token frame.
+31focused+184surrounding native tests pass. Actual1×/2×, Examine, paid donation,
+F5/move/F6 and North→Nella→North revisit verify one stable owned identity;
+actor blessing/currency change correctly. Approved art unchanged; no mechanics
+changed (SanctuaryPart stale comment corrected). Latest packages47d678995
+predate this source addition. No physicalDeck/Linuxexecution/fullopening claim.
+
+Next significant blocker: Nella spawned eight cells from a hostile scrabbler
+and died during the first20arrival moves before service access. Captures20/21
+preserve alive→dead, not a completed service claim. Investigate generation
+clearance while keeping mortality and roaming enemies. Then reuse existing
+art where possible for Nella's five bare CopperPipe glyphs and three PeatBog
+cells as one conductive pipe/bog corner. HollowStump and loose Cudgel remain listed
+fallbacks. Complete remaining fresh East/Orven views; don't call six-zone
+composition accepted yet. Earned shrine checkpoint is versioned under
+Fixtures/current-scene-earned-shrine224401440. Normal saves/preferences restored;
+no storage cleanup; heartbeat remains active.

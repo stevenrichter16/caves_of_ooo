@@ -1,6 +1,13 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: native world zoom now reaches visible1×–4× through PageUp/PageDown and LT+D-pad. The fix is delivered in current Mac/Linux packages47d678995;23/23 native zoom tests, actual Unity Look/inventory and standalone Mac zoom/surface/cellar/Continue checks are accepted within their recorded bounds. Default framing and approved art remain unchanged. Fresh six-zone composition, finite fallback census, Linux execution, physical Deck and remaining regional coverage stay open. [Zoom record](GRAPHICS-G3-PLAYABLE-ZOOM.md); [current packages](Verification/Live16x24/packaged-playable-zoom-report.md).
+Current status, 2026-10-26: ordinary zoom is delivered in packages47d678995.
+Fresh scene review has now replaced North's underscore river shrine with a
+native16×24stone and matching reader.31focused+184regression tests pass;
+actual donation/save/load/border revisit are accepted. Full scene acceptance
+remains open: on first arrival Nella dies to a nearby scrabbler before the
+player can reach her. Address this placement/access blocker, then the observed
+Nella conductive pipe/bog corner's pipe/bog fallback. [Current scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md).
+The current packages predate the shrine; no new device/build claim.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art
