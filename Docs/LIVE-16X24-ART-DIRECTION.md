@@ -1,6 +1,6 @@
 # Live 16×24 art direction and integration
 
-Current status, 2026-10-26: the earned current-package journey now reaches East/Orven and verifies actual repaired, Working, Ready and collected states across save/quit/Continue and a border return. The journey exposed clipped recipe cost and stale mouse coordinates; corrected source passes 115 native cases and actual keyboard/mouse replay. Current Mac/Linux packages99b86bb02 predate those menu fixes. See [completion plan](GRAPHICS-COMPLETION-PLAN.md), [journey](GRAPHICS-G3-EARNED-EAST-JOURNEY.md), and [menu correction](GRAPHICS-G3-ACTION-COST-READABILITY.md). Full opening/regions, Linux execution, physical Deck and performance remain open.
+Current status, 2026-10-26: current Mac/Linux packages daa388643 include the action-menu correction. The new Mac package now continues the earned kitchen checkpoint through East/glade/North/Nella and verifies Pitchpod seed/sprout/ripe/harvest/replant, full quit/Continue and a border return, with33 actual captures and31 saved-state checks. See [latest route](GRAPHICS-G3-COLLECTED-REVISIT.md). Approved art remains stable. Next named visual repair is En Garde hotbar label fit; the contested North still/East temper leg, full opening/regions, Linux execution, physical Deck and performance remain open.
 
 Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
@@ -2544,3 +2544,37 @@ kitchen55,17,HP42level2tick5670,40drams,meal carried/empty board. Complete
 North/Nella revisits and remaining forge/crop gates, then next named visual
 repair; preserve accepted art. Complete opening/regions/device/performance
 remain open. Heartbeat remains active; storage inspections are read-only.
+
+
+## Continuation — 2026-10-26 collected plot cycle accepted
+
+Read [collected revisit](GRAPHICS-G3-COLLECTED-REVISIT.md). Actual package
+daa388643 travelled kitchen → East → glade → North → Nella and inspected the
+cold forge. Pitchpod dry seed, moist sprout, ripe crop, cleared bed, two resin
+plus seed, and replanting are now verified in ordinary play. Full quit/Continue
+and a North border return preserve the replacement crop as a dry sprout with
+paused growth.33 original captures include intermediate and failed input;
+31/31 independent saved-state checks and nine original-image reviews pass.
+Player42HP/40drams/SP1 and uneaten meal are unchanged. No code/art change or
+native suite rerun was needed.
+
+Navigation incident: held north input broke kitchen roof55,14; adjacent roof
+is intact. Fast filter entry and a post-Rain command sequence dropped input;
+separately observed retries worked. No accidental skill purchase. Capture11 is
+mid-dialogue reveal, not complete prose acceptance. Shutdown notices are retained.
+
+Normal saves, full logical preferences, current builds and48,597 tracked objects
+compared exactly at restoration; zero tracked files needed restoration. Test
+saves are archived intact,417GiB is free, and no cleanup occurred. After this
+receipt, Unity was reopened externally from Hub at21:26:01 UTC. Its new play
+session, changed Editor preferences and32 whitespace-only import deltas are
+preserved, unowned and unstaged. Root did not stop or restore over that session.
+Coordinate ownership before native hotbar testing; standalone remains closed.
+
+Next unchanged fixture: `Verification/Live16x24/Fixtures/collected-revisit-returned242967504`.
+Nella62,6, tick9470, HP42, level2,40drams, SP1, two resin, uneaten meal and
+an equipped long sword. Next named visual repair: RED→GREEN seven-column name
+wrapping for En Garde, with actual Warden rendering and counterchecks before
+package delivery. North still remains guarded by the living patchbearer at62,6,
+20HP; brewing and tempering are unaccepted. Whole opening, regions, device and
+performance gates remain open. The heartbeat stays active.

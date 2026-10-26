@@ -1,0 +1,3501 @@
+{
+  "kind": "read_only_collected_revisit_binary_save_audit",
+  "recorded_utc": "2026-10-26T21:22:53.122469+00:00",
+  "method": "Read gzip format8 bytes, token references and exact scoped public-field schemas. No Unity, gameplay hooks, deserialization into runtime, save changes or commands. Only this /tmp JSON was written.",
+  "bounds": [
+    "Wet-until is a derived remaining-water deadline from saved LastGrowthWorldTick +10*MoistureTicks -GrowthWetTickRemainder, not a stored WetUntil field.",
+    "Raw snapshots establish endpoints, not every keypress or the cancelled dialog by themselves. SP and saved skill set are compared directly.",
+    "Other actors may restock and move. Nella wallet changes are disclosed separately; only player purse is claimed unchanged.",
+    "Inactive crop LastGrowthWorldTick can predate snapshot metadata; no unpaid dry growth is inferred.",
+    "This is a scoped state audit, not arbitrary whole-save equality or visual acceptance."
+  ],
+  "checks": {
+    "same_game_seed": true,
+    "exact_ticks": true,
+    "pitchpod_old9216_seed0_to_ripe2_same_owner": true,
+    "new_pitchpod_replaces_old_at_same_bed": true,
+    "new_pitchpod_wet": true,
+    "exact_two_resin": true,
+    "no_seed_after_replant": true,
+    "rights_exact_unchanged": true,
+    "rights_granted_player2706": true,
+    "player_purse40_unchanged": true,
+    "health_level_xp_SP_unchanged": true,
+    "skill_set_unchanged": true,
+    "equipped_slot_identity_unchanged": true,
+    "long_sword_exact_fields_unchanged": true,
+    "one_same_uneaten_meal": true,
+    "other_three_roof_owners_unchanged": true,
+    "roof55_14_wall13726_replaced_by_rubble13752": true,
+    "two_legacy_carrot_crops_removed_and_four_same_ground_products": true,
+    "two_wheat_owners_retained_stage1_units14_to17": true,
+    "marlroot_original_ripe_owner_retained": true,
+    "no_other_carried_item_change": true,
+    "returned_same_game_seed": true,
+    "returned_tick9470_nella62_6": true,
+    "returned_same_replanted_owner13760_dry_sprout16": true,
+    "returned_exact_prior_inventory_including_resin2_meal1": true,
+    "returned_equipped_items_and_slots_unchanged": true,
+    "returned_HP_SP_XP_level_speed_drams_skills_unchanged": true,
+    "returned_rights_and_keeper_identity_unchanged": true,
+    "returned_roof_rubble_persists": true,
+    "returned_public_wheat_matured_to_four_products": true,
+    "returned_same_four_carrots_uncollected": true
+  },
+  "all_checks_pass": true,
+  "snapshots": {
+    "baseline": {
+      "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-east-collected242967504",
+      "sha256": "f83f4e3296849649af916b20a679368d9cd7e64602049dc72fd14e98fc37c350",
+      "bytes": 302563,
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 2,
+        "ActiveZoneID": "Overworld.12.11.0",
+        "ActiveZoneDisplayLabel": "Overworld.12.11.0",
+        "Turn": 5670,
+        "SaveTimestampUtc": "2026-10-26T19:48:54.9118760Z",
+        "HPSummary": "42/42",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "game_id": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "seed": 242967504,
+      "active_zone": "Overworld.12.11.0",
+      "player": {
+        "id": "2706",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 55,
+            "y": 17
+          }
+        ],
+        "stats": {
+          "Hitpoints": {
+            "base": 42,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 42,
+            "value": 42
+          },
+          "Level": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 1,
+            "max": 50,
+            "value": 2
+          },
+          "Experience": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999999,
+            "value": 2
+          },
+          "SP": {
+            "base": 1,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999,
+            "value": 1
+          },
+          "Speed": {
+            "base": 100,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 25,
+            "max": 200,
+            "value": 100
+          }
+        },
+        "drams": 40,
+        "skills": [
+          "CavesOfOoo.Skills.Hydromancy_ConjureRain",
+          "CavesOfOoo.Skills.LongBladesSkill",
+          "CavesOfOoo.Skills.LongBlades_EnGarde",
+          "CavesOfOoo.Skills.LongBlades_Expertise",
+          "CavesOfOoo.Skills.LongBlades_FollowThrough",
+          "CavesOfOoo.Skills.LongBlades_Lacerate",
+          "CavesOfOoo.Skills.LongBlades_Lunge",
+          "CavesOfOoo.Skills.SkillsPart"
+        ],
+        "inventory": [
+          {
+            "id": "2707",
+            "blueprint": "WateringGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2708",
+            "blueprint": "CandyCarrotSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 4,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2709",
+            "blueprint": "EmberwheatSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2713",
+            "blueprint": "DriedMeat",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4750",
+            "blueprint": "DitchkeepersFootwork",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4749",
+            "blueprint": "ShatteredRimeGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4756",
+            "blueprint": "SootrootPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "11464",
+            "blueprint": "BogSap",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13748",
+            "blueprint": "ClaspbeanPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13750",
+            "blueprint": "ClaspbeanSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13751",
+            "blueprint": "FieldMeal",
+            "positions": [],
+            "properties": {
+              "KitchenBatch.Station": "13729",
+              "KitchenBatch.Customer": "2706"
+            },
+            "int_properties": {
+              "KitchenBatch.Ordinal": 1
+            },
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          }
+        ],
+        "equipped": [
+          {
+            "slot_key": "8",
+            "item_id": "2710"
+          },
+          {
+            "slot_key": "9",
+            "item_id": "2711"
+          }
+        ],
+        "equipped_items": [
+          {
+            "id": "2710",
+            "blueprint": "LongSword",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 8,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Melee Weapons",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            },
+            "weapon": {
+              "BaseDamage": "1d8",
+              "PenBonus": 2,
+              "HitBonus": 0,
+              "MaxStrengthBonus": -1,
+              "Stat": "Strength",
+              "Attributes": "Cutting LongBlades",
+              "OnHitEffectsRaw": "",
+              "EmitGasOnHitRaw": ""
+            }
+          },
+          {
+            "id": "2711",
+            "blueprint": "Buckler",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 5,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Armor",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          }
+        ]
+      },
+      "nella": {
+        "id": "9199",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 63,
+            "y": 8
+          }
+        ],
+        "hp": {
+          "base": 20,
+          "bonus": 0,
+          "penalty": 0,
+          "boost": 0,
+          "min": 0,
+          "max": 20,
+          "value": 20
+        },
+        "drams": 48,
+        "claim": {
+          "Configured": true,
+          "WorldSeed": 242967504,
+          "FirstX": 61,
+          "FirstY": 5,
+          "SecondX": 62,
+          "SecondY": 5,
+          "TrayX": 65,
+          "TrayY": 6,
+          "WorldKey": "4173402f0d5d4043b115d806b5cbbd8f",
+          "ZoneID": "Overworld.11.8.0",
+          "KeeperID": "9199",
+          "FirstSoilID": "7477",
+          "SecondSoilID": "7478",
+          "TrayID": "9217",
+          "FirstSoil": "7477",
+          "SecondSoil": "7478",
+          "Tray": "9217",
+          "Permissions": [
+            {
+              "Player": "2706",
+              "State": 1,
+              "BreachOrdinal": 0,
+              "LastBreach": null
+            }
+          ]
+        }
+      },
+      "garden": [
+        {
+          "id": "9215",
+          "blueprint": "MarlrootCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 5
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "reserve-crop",
+            "ConnectedSpread.Role": "reserve-crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 2,
+            "TicksInStage": 0,
+            "TicksPerStage": 26,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 2650,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&r",
+            "YieldBlueprint": "MarlrootClod",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "MarlrootSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        },
+        {
+          "id": "9210",
+          "blueprint": "CandyCarrotCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 7
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 0,
+            "TicksInStage": 0,
+            "TicksPerStage": 20,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 2650,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,t",
+            "StageColorsRaw": "&w,&g",
+            "YieldBlueprint": "CandyCarrot",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        },
+        {
+          "id": "9212",
+          "blueprint": "EmberwheatCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 9
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 0,
+            "TicksInStage": 0,
+            "TicksPerStage": 35,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 2650,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,i",
+            "StageColorsRaw": "&w,&y",
+            "YieldBlueprint": "Emberwheat",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        },
+        {
+          "id": "9216",
+          "blueprint": "PitchpodCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 5
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "reserve-crop",
+            "ConnectedSpread.Role": "reserve-crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 0,
+            "TicksInStage": 0,
+            "TicksPerStage": 24,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 2650,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&W",
+            "YieldBlueprint": "PitchpodResin",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "PitchpodSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        },
+        {
+          "id": "9211",
+          "blueprint": "CandyCarrotCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 7
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 0,
+            "TicksInStage": 0,
+            "TicksPerStage": 20,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 2650,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,t",
+            "StageColorsRaw": "&w,&g",
+            "YieldBlueprint": "CandyCarrot",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        },
+        {
+          "id": "9213",
+          "blueprint": "EmberwheatCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 9
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 0,
+            "TicksInStage": 0,
+            "TicksPerStage": 35,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 2650,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,i",
+            "StageColorsRaw": "&w,&y",
+            "YieldBlueprint": "Emberwheat",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        }
+      ],
+      "kitchen_roof_y14": [
+        {
+          "at": [
+            53,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12760",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13728",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            54,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12761",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13727",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            55,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12762",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13726",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            56,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12763",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13720",
+              "blueprint": "StoneWall"
+            }
+          ]
+        }
+      ],
+      "adjacent_unbroken_roof54_14_owner13727": {
+        "id": "13727",
+        "blueprint": "StoneWall",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 54,
+            "y": 14
+          }
+        ],
+        "properties": {
+          "SpreadResident.Role": "shelter",
+          "ConnectedSpread.Role": "shelter"
+        },
+        "int_properties": {},
+        "physics": {
+          "Solid": true,
+          "Weight": 0,
+          "Takeable": false,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": null,
+          "Equipped": null
+        }
+      }
+    },
+    "ripe": {
+      "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/collected-revisit-ripe242967504",
+      "sha256": "21449924f95c22a39b3a9891071320fd9994b6b5bbaf885317eac75416122248",
+      "bytes": 303478,
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 2,
+        "ActiveZoneID": "Overworld.11.8.0",
+        "ActiveZoneDisplayLabel": "Overworld.11.8.0",
+        "Turn": 8680,
+        "SaveTimestampUtc": "2026-10-26T21:14:29.6756560Z",
+        "HPSummary": "42/42",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "game_id": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "seed": 242967504,
+      "active_zone": "Overworld.11.8.0",
+      "player": {
+        "id": "2706",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 62,
+            "y": 6
+          }
+        ],
+        "stats": {
+          "Hitpoints": {
+            "base": 42,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 42,
+            "value": 42
+          },
+          "Level": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 1,
+            "max": 50,
+            "value": 2
+          },
+          "Experience": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999999,
+            "value": 2
+          },
+          "SP": {
+            "base": 1,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999,
+            "value": 1
+          },
+          "Speed": {
+            "base": 100,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 25,
+            "max": 200,
+            "value": 100
+          }
+        },
+        "drams": 40,
+        "skills": [
+          "CavesOfOoo.Skills.Hydromancy_ConjureRain",
+          "CavesOfOoo.Skills.LongBladesSkill",
+          "CavesOfOoo.Skills.LongBlades_EnGarde",
+          "CavesOfOoo.Skills.LongBlades_Expertise",
+          "CavesOfOoo.Skills.LongBlades_FollowThrough",
+          "CavesOfOoo.Skills.LongBlades_Lacerate",
+          "CavesOfOoo.Skills.LongBlades_Lunge",
+          "CavesOfOoo.Skills.SkillsPart"
+        ],
+        "inventory": [
+          {
+            "id": "2707",
+            "blueprint": "WateringGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2708",
+            "blueprint": "CandyCarrotSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 4,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2709",
+            "blueprint": "EmberwheatSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2713",
+            "blueprint": "DriedMeat",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4750",
+            "blueprint": "DitchkeepersFootwork",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4749",
+            "blueprint": "ShatteredRimeGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4756",
+            "blueprint": "SootrootPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "11464",
+            "blueprint": "BogSap",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13748",
+            "blueprint": "ClaspbeanPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13750",
+            "blueprint": "ClaspbeanSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13751",
+            "blueprint": "FieldMeal",
+            "positions": [],
+            "properties": {
+              "KitchenBatch.Station": "13729",
+              "KitchenBatch.Customer": "2706"
+            },
+            "int_properties": {
+              "KitchenBatch.Ordinal": 1
+            },
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          }
+        ],
+        "equipped": [
+          {
+            "slot_key": "8",
+            "item_id": "2710"
+          },
+          {
+            "slot_key": "9",
+            "item_id": "2711"
+          }
+        ],
+        "equipped_items": [
+          {
+            "id": "2710",
+            "blueprint": "LongSword",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 8,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Melee Weapons",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            },
+            "weapon": {
+              "BaseDamage": "1d8",
+              "PenBonus": 2,
+              "HitBonus": 0,
+              "MaxStrengthBonus": -1,
+              "Stat": "Strength",
+              "Attributes": "Cutting LongBlades",
+              "OnHitEffectsRaw": "",
+              "EmitGasOnHitRaw": ""
+            }
+          },
+          {
+            "id": "2711",
+            "blueprint": "Buckler",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 5,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Armor",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          }
+        ]
+      },
+      "nella": {
+        "id": "9199",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 63,
+            "y": 8
+          }
+        ],
+        "hp": {
+          "base": 20,
+          "bonus": 0,
+          "penalty": 0,
+          "boost": 0,
+          "min": 0,
+          "max": 20,
+          "value": 20
+        },
+        "drams": 100,
+        "claim": {
+          "Configured": true,
+          "WorldSeed": 242967504,
+          "FirstX": 61,
+          "FirstY": 5,
+          "SecondX": 62,
+          "SecondY": 5,
+          "TrayX": 65,
+          "TrayY": 6,
+          "WorldKey": "4173402f0d5d4043b115d806b5cbbd8f",
+          "ZoneID": "Overworld.11.8.0",
+          "KeeperID": "9199",
+          "FirstSoilID": "7477",
+          "SecondSoilID": "7478",
+          "TrayID": "9217",
+          "FirstSoil": "7477",
+          "SecondSoil": "7478",
+          "Tray": "9217",
+          "Permissions": [
+            {
+              "Player": "2706",
+              "State": 1,
+              "BreachOrdinal": 0,
+              "LastBreach": null
+            }
+          ]
+        }
+      },
+      "garden": [
+        {
+          "id": "9215",
+          "blueprint": "MarlrootCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 5
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "reserve-crop",
+            "ConnectedSpread.Role": "reserve-crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 2,
+            "TicksInStage": 0,
+            "TicksPerStage": 26,
+            "MoistureTicks": 15,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8680,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&r",
+            "YieldBlueprint": "MarlrootClod",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "MarlrootSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 8830
+        },
+        {
+          "id": "13753",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13754",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "9212",
+          "blueprint": "EmberwheatCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 9
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 1,
+            "TicksInStage": 14,
+            "TicksPerStage": 35,
+            "MoistureTicks": 15,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8680,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,i",
+            "StageColorsRaw": "&w,&y",
+            "YieldBlueprint": "Emberwheat",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 8830
+        },
+        {
+          "id": "9216",
+          "blueprint": "PitchpodCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 5
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "reserve-crop",
+            "ConnectedSpread.Role": "reserve-crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 2,
+            "TicksInStage": 0,
+            "TicksPerStage": 24,
+            "MoistureTicks": 15,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8680,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&W",
+            "YieldBlueprint": "PitchpodResin",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "PitchpodSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 8830
+        },
+        {
+          "id": "13755",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13756",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "9213",
+          "blueprint": "EmberwheatCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 9
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 1,
+            "TicksInStage": 14,
+            "TicksPerStage": 35,
+            "MoistureTicks": 15,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8680,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,i",
+            "StageColorsRaw": "&w,&y",
+            "YieldBlueprint": "Emberwheat",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 8830
+        }
+      ],
+      "kitchen_roof_y14": [
+        {
+          "at": [
+            53,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12760",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13728",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            54,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12761",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13727",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            55,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12762",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13752",
+              "blueprint": "Rubble"
+            }
+          ]
+        },
+        {
+          "at": [
+            56,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12763",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13720",
+              "blueprint": "StoneWall"
+            }
+          ]
+        }
+      ],
+      "adjacent_unbroken_roof54_14_owner13727": {
+        "id": "13727",
+        "blueprint": "StoneWall",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 54,
+            "y": 14
+          }
+        ],
+        "properties": {
+          "SpreadResident.Role": "shelter",
+          "ConnectedSpread.Role": "shelter"
+        },
+        "int_properties": {},
+        "physics": {
+          "Solid": true,
+          "Weight": 0,
+          "Takeable": false,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": null,
+          "Equipped": null
+        }
+      }
+    },
+    "replanted": {
+      "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/collected-revisit-replanted242967504",
+      "sha256": "bcb68b61844957b66032d69fd63cfe0e451a740de7ed44002904932bb0da6594",
+      "bytes": 303772,
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 2,
+        "ActiveZoneID": "Overworld.11.8.0",
+        "ActiveZoneDisplayLabel": "Overworld.11.8.0",
+        "Turn": 8710,
+        "SaveTimestampUtc": "2026-10-26T21:17:33.3979570Z",
+        "HPSummary": "42/42",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "game_id": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "seed": 242967504,
+      "active_zone": "Overworld.11.8.0",
+      "player": {
+        "id": "2706",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 62,
+            "y": 6
+          }
+        ],
+        "stats": {
+          "Hitpoints": {
+            "base": 42,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 42,
+            "value": 42
+          },
+          "Level": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 1,
+            "max": 50,
+            "value": 2
+          },
+          "Experience": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999999,
+            "value": 2
+          },
+          "SP": {
+            "base": 1,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999,
+            "value": 1
+          },
+          "Speed": {
+            "base": 100,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 25,
+            "max": 200,
+            "value": 100
+          }
+        },
+        "drams": 40,
+        "skills": [
+          "CavesOfOoo.Skills.Hydromancy_ConjureRain",
+          "CavesOfOoo.Skills.LongBladesSkill",
+          "CavesOfOoo.Skills.LongBlades_EnGarde",
+          "CavesOfOoo.Skills.LongBlades_Expertise",
+          "CavesOfOoo.Skills.LongBlades_FollowThrough",
+          "CavesOfOoo.Skills.LongBlades_Lacerate",
+          "CavesOfOoo.Skills.LongBlades_Lunge",
+          "CavesOfOoo.Skills.SkillsPart"
+        ],
+        "inventory": [
+          {
+            "id": "2707",
+            "blueprint": "WateringGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2708",
+            "blueprint": "CandyCarrotSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 4,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2709",
+            "blueprint": "EmberwheatSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2713",
+            "blueprint": "DriedMeat",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4750",
+            "blueprint": "DitchkeepersFootwork",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4749",
+            "blueprint": "ShatteredRimeGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4756",
+            "blueprint": "SootrootPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "11464",
+            "blueprint": "BogSap",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13748",
+            "blueprint": "ClaspbeanPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13750",
+            "blueprint": "ClaspbeanSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13751",
+            "blueprint": "FieldMeal",
+            "positions": [],
+            "properties": {
+              "KitchenBatch.Station": "13729",
+              "KitchenBatch.Customer": "2706"
+            },
+            "int_properties": {
+              "KitchenBatch.Ordinal": 1
+            },
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13757",
+            "blueprint": "PitchpodResin",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          }
+        ],
+        "equipped": [
+          {
+            "slot_key": "8",
+            "item_id": "2710"
+          },
+          {
+            "slot_key": "9",
+            "item_id": "2711"
+          }
+        ],
+        "equipped_items": [
+          {
+            "id": "2710",
+            "blueprint": "LongSword",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 8,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Melee Weapons",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            },
+            "weapon": {
+              "BaseDamage": "1d8",
+              "PenBonus": 2,
+              "HitBonus": 0,
+              "MaxStrengthBonus": -1,
+              "Stat": "Strength",
+              "Attributes": "Cutting LongBlades",
+              "OnHitEffectsRaw": "",
+              "EmitGasOnHitRaw": ""
+            }
+          },
+          {
+            "id": "2711",
+            "blueprint": "Buckler",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 5,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Armor",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          }
+        ]
+      },
+      "nella": {
+        "id": "9199",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 63,
+            "y": 8
+          }
+        ],
+        "hp": {
+          "base": 20,
+          "bonus": 0,
+          "penalty": 0,
+          "boost": 0,
+          "min": 0,
+          "max": 20,
+          "value": 20
+        },
+        "drams": 100,
+        "claim": {
+          "Configured": true,
+          "WorldSeed": 242967504,
+          "FirstX": 61,
+          "FirstY": 5,
+          "SecondX": 62,
+          "SecondY": 5,
+          "TrayX": 65,
+          "TrayY": 6,
+          "WorldKey": "4173402f0d5d4043b115d806b5cbbd8f",
+          "ZoneID": "Overworld.11.8.0",
+          "KeeperID": "9199",
+          "FirstSoilID": "7477",
+          "SecondSoilID": "7478",
+          "TrayID": "9217",
+          "FirstSoil": "7477",
+          "SecondSoil": "7478",
+          "Tray": "9217",
+          "Permissions": [
+            {
+              "Player": "2706",
+              "State": 1,
+              "BreachOrdinal": 0,
+              "LastBreach": null
+            }
+          ]
+        }
+      },
+      "garden": [
+        {
+          "id": "9215",
+          "blueprint": "MarlrootCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 5
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "reserve-crop",
+            "ConnectedSpread.Role": "reserve-crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 2,
+            "TicksInStage": 0,
+            "TicksPerStage": 26,
+            "MoistureTicks": 39,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8710,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&r",
+            "YieldBlueprint": "MarlrootClod",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "MarlrootSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 9100
+        },
+        {
+          "id": "13753",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13754",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "9212",
+          "blueprint": "EmberwheatCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 9
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 1,
+            "TicksInStage": 17,
+            "TicksPerStage": 35,
+            "MoistureTicks": 39,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8710,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,i",
+            "StageColorsRaw": "&w,&y",
+            "YieldBlueprint": "Emberwheat",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 9100
+        },
+        {
+          "id": "13760",
+          "blueprint": "PitchpodCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 5
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 0,
+            "TicksInStage": 1,
+            "TicksPerStage": 24,
+            "MoistureTicks": 39,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8710,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&W",
+            "YieldBlueprint": "PitchpodResin",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "PitchpodSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 9100
+        },
+        {
+          "id": "13755",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13756",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "9213",
+          "blueprint": "EmberwheatCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 9
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "crop",
+            "ConnectedSpread.Role": "crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 1,
+            "TicksInStage": 17,
+            "TicksPerStage": 35,
+            "MoistureTicks": 39,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 8710,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,i",
+            "StageColorsRaw": "&w,&y",
+            "YieldBlueprint": "Emberwheat",
+            "YieldCount": 2,
+            "HarvestAtMaturity": false,
+            "SeedYieldBlueprint": "",
+            "SeedYieldCount": 0,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 0,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": 9100
+        }
+      ],
+      "kitchen_roof_y14": [
+        {
+          "at": [
+            53,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12760",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13728",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            54,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12761",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13727",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            55,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12762",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13752",
+              "blueprint": "Rubble"
+            }
+          ]
+        },
+        {
+          "at": [
+            56,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12763",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13720",
+              "blueprint": "StoneWall"
+            }
+          ]
+        }
+      ],
+      "adjacent_unbroken_roof54_14_owner13727": {
+        "id": "13727",
+        "blueprint": "StoneWall",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 54,
+            "y": 14
+          }
+        ],
+        "properties": {
+          "SpreadResident.Role": "shelter",
+          "ConnectedSpread.Role": "shelter"
+        },
+        "int_properties": {},
+        "physics": {
+          "Solid": true,
+          "Weight": 0,
+          "Takeable": false,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": null,
+          "Equipped": null
+        }
+      }
+    },
+    "returned": {
+      "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/collected-revisit-returned242967504",
+      "sha256": "f7223f1482f3198af40f6810aa47418e5c78285771a72650601382b8651d1087",
+      "bytes": 303706,
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 2,
+        "ActiveZoneID": "Overworld.11.8.0",
+        "ActiveZoneDisplayLabel": "Overworld.11.8.0",
+        "Turn": 9470,
+        "SaveTimestampUtc": "2026-10-26T21:20:45.8686490Z",
+        "HPSummary": "42/42",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "game_id": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "seed": 242967504,
+      "active_zone": "Overworld.11.8.0",
+      "player": {
+        "id": "2706",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 62,
+            "y": 6
+          }
+        ],
+        "stats": {
+          "Hitpoints": {
+            "base": 42,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 42,
+            "value": 42
+          },
+          "Level": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 1,
+            "max": 50,
+            "value": 2
+          },
+          "Experience": {
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999999,
+            "value": 2
+          },
+          "SP": {
+            "base": 1,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 0,
+            "max": 999,
+            "value": 1
+          },
+          "Speed": {
+            "base": 100,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "min": 25,
+            "max": 200,
+            "value": 100
+          }
+        },
+        "drams": 40,
+        "skills": [
+          "CavesOfOoo.Skills.Hydromancy_ConjureRain",
+          "CavesOfOoo.Skills.LongBladesSkill",
+          "CavesOfOoo.Skills.LongBlades_EnGarde",
+          "CavesOfOoo.Skills.LongBlades_Expertise",
+          "CavesOfOoo.Skills.LongBlades_FollowThrough",
+          "CavesOfOoo.Skills.LongBlades_Lacerate",
+          "CavesOfOoo.Skills.LongBlades_Lunge",
+          "CavesOfOoo.Skills.SkillsPart"
+        ],
+        "inventory": [
+          {
+            "id": "2707",
+            "blueprint": "WateringGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2708",
+            "blueprint": "CandyCarrotSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 4,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2709",
+            "blueprint": "EmberwheatSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "2713",
+            "blueprint": "DriedMeat",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4750",
+            "blueprint": "DitchkeepersFootwork",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4749",
+            "blueprint": "ShatteredRimeGrimoire",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "4756",
+            "blueprint": "SootrootPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "11464",
+            "blueprint": "BogSap",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13748",
+            "blueprint": "ClaspbeanPulp",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13750",
+            "blueprint": "ClaspbeanSeed",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13751",
+            "blueprint": "FieldMeal",
+            "positions": [],
+            "properties": {
+              "KitchenBatch.Station": "13729",
+              "KitchenBatch.Customer": "2706"
+            },
+            "int_properties": {
+              "KitchenBatch.Ordinal": 1
+            },
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          },
+          {
+            "id": "13757",
+            "blueprint": "PitchpodResin",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "stack": {
+              "StackCount": 2,
+              "MaxStack": 99
+            }
+          }
+        ],
+        "equipped": [
+          {
+            "slot_key": "8",
+            "item_id": "2710"
+          },
+          {
+            "slot_key": "9",
+            "item_id": "2711"
+          }
+        ],
+        "equipped_items": [
+          {
+            "id": "2710",
+            "blueprint": "LongSword",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 8,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Melee Weapons",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            },
+            "weapon": {
+              "BaseDamage": "1d8",
+              "PenBonus": 2,
+              "HitBonus": 0,
+              "MaxStrengthBonus": -1,
+              "Stat": "Strength",
+              "Attributes": "Cutting LongBlades",
+              "OnHitEffectsRaw": "",
+              "EmitGasOnHitRaw": ""
+            }
+          },
+          {
+            "id": "2711",
+            "blueprint": "Buckler",
+            "positions": [],
+            "properties": {},
+            "int_properties": {},
+            "physics": {
+              "Solid": false,
+              "Weight": 5,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Armor",
+              "InInventory": null,
+              "Equipped": "2706"
+            },
+            "stack": {
+              "StackCount": 1,
+              "MaxStack": 99
+            }
+          }
+        ]
+      },
+      "nella": {
+        "id": "9199",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 63,
+            "y": 8
+          }
+        ],
+        "hp": {
+          "base": 20,
+          "bonus": 0,
+          "penalty": 0,
+          "boost": 0,
+          "min": 0,
+          "max": 20,
+          "value": 20
+        },
+        "drams": 100,
+        "claim": {
+          "Configured": true,
+          "WorldSeed": 242967504,
+          "FirstX": 61,
+          "FirstY": 5,
+          "SecondX": 62,
+          "SecondY": 5,
+          "TrayX": 65,
+          "TrayY": 6,
+          "WorldKey": "4173402f0d5d4043b115d806b5cbbd8f",
+          "ZoneID": "Overworld.11.8.0",
+          "KeeperID": "9199",
+          "FirstSoilID": "7477",
+          "SecondSoilID": "7478",
+          "TrayID": "9217",
+          "FirstSoil": "7477",
+          "SecondSoil": "7478",
+          "Tray": "9217",
+          "Permissions": [
+            {
+              "Player": "2706",
+              "State": 1,
+              "BreachOrdinal": 0,
+              "LastBreach": null
+            }
+          ]
+        }
+      },
+      "garden": [
+        {
+          "id": "9215",
+          "blueprint": "MarlrootCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 5
+            }
+          ],
+          "properties": {
+            "SpreadResident.Role": "reserve-crop",
+            "ConnectedSpread.Role": "reserve-crop"
+          },
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 2,
+            "TicksInStage": 0,
+            "TicksPerStage": 26,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 9470,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&r",
+            "YieldBlueprint": "MarlrootClod",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "MarlrootSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        },
+        {
+          "id": "13753",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13754",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13761",
+          "blueprint": "Emberwheat",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 9
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13762",
+          "blueprint": "Emberwheat",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 9
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13760",
+          "blueprint": "PitchpodCrop",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 5
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "crop": {
+            "GrowthStage": 1,
+            "TicksInStage": 16,
+            "TicksPerStage": 24,
+            "MoistureTicks": 0,
+            "GrowthTimingVersion": 1,
+            "LastGrowthWorldTick": 9470,
+            "GrowthWetTickRemainder": 0,
+            "StageGlyphsRaw": ".,;,T",
+            "StageColorsRaw": "&g,&g,&W",
+            "YieldBlueprint": "PitchpodResin",
+            "YieldCount": 2,
+            "HarvestAtMaturity": true,
+            "SeedYieldBlueprint": "PitchpodSeed",
+            "SeedYieldCount": 1,
+            "Composted": false
+          },
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": false,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "derived_wet_until_tick": null
+        },
+        {
+          "id": "13755",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13756",
+          "blueprint": "CandyCarrot",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 7
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13763",
+          "blueprint": "Emberwheat",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 9
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        },
+        {
+          "id": "13764",
+          "blueprint": "Emberwheat",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 9
+            }
+          ],
+          "properties": {},
+          "int_properties": {},
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "stack": {
+            "StackCount": 1,
+            "MaxStack": 99
+          }
+        }
+      ],
+      "kitchen_roof_y14": [
+        {
+          "at": [
+            53,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12760",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13728",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            54,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12761",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13727",
+              "blueprint": "StoneWall"
+            }
+          ]
+        },
+        {
+          "at": [
+            55,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12762",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13752",
+              "blueprint": "Rubble"
+            }
+          ]
+        },
+        {
+          "at": [
+            56,
+            14
+          ],
+          "owners": [
+            {
+              "id": "12763",
+              "blueprint": "Grass"
+            },
+            {
+              "id": "13720",
+              "blueprint": "StoneWall"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "summary": {
+    "crop": "Original Pitchpod9216 at62,5: dry seed0 \u2192 ripe2/moisture15 at8680. Replacement13760 at62,5: seed0/unit1/moisture39 at8710 \u2192 sprout1/unit16/moisture0 at9470.",
+    "remaining_water_deadlines": {
+      "ripe": 8830,
+      "replanted": 9100
+    },
+    "resin": {
+      "new_carried_units": 2,
+      "pitchpod_seed_carried_after_replant": 0
+    },
+    "unchanged_player": {
+      "hp": "42/42",
+      "level": 2,
+      "experience": 2,
+      "SP": 1,
+      "drams": 40,
+      "equipped_sword_id": "2710",
+      "carried_uneaten_meal_id": "13751"
+    },
+    "nella_purse": [
+      48,
+      100,
+      100
+    ],
+    "garden_drop": "Four individual CandyCarrot products13753\u201313756 remain on61,7/62,7; no pickup inferred. Emberwheat9212/9213 stays young; Marlroot9215 stays ripe.",
+    "roof_incident": "Kitchen55,14 StoneWall13726 becomes Rubble13752; adjacent53,54,56 roof cells and rubble remain unchanged through return.",
+    "reviewer_correction": "First draft used adjacent roof13727 incorrectly. Direct saved-cell inspection established13727 at54,14; the broken55,14 owner is13726. Corrected the assertion to actual cell tuples; no runtime defect inferred.",
+    "return": {
+      "tick": 9470,
+      "owner": "13760",
+      "at": [
+        62,
+        5
+      ],
+      "stage": 1,
+      "units": 16,
+      "moisture": 0,
+      "explanation": "Exactly40 total wet growth units accrued from the replant watering:24 to sprout +16 within sprout. The prior derived wet deadline9100 is before9470; remaining dry elapsed time adds no growth.",
+      "wheat_products": [
+        {
+          "id": "13761",
+          "at": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 9
+            }
+          ]
+        },
+        {
+          "id": "13762",
+          "at": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 61,
+              "y": 9
+            }
+          ]
+        },
+        {
+          "id": "13763",
+          "at": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 9
+            }
+          ]
+        },
+        {
+          "id": "13764",
+          "at": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 62,
+              "y": 9
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "review_type": "Independent read-only original-image visual review",
+  "verdict": "No material defect found in the reviewed PitchPod cycle, state portraits, inventory result or planting controls. Bounded visual acceptance only.",
+  "original_size": "1280x856 including 56px window chrome",
+  "reviewed": [
+    {
+      "path": "collected-revisit-12-pitchpod-dry.jpg",
+      "sha256": "6133dd86a4e4aa01b490858f5d6015829a2024207e00095fc418a351832ae6b0",
+      "observation": "PitchPod reader says seed, dry soil, growth paused; small seed cluster portrait matches stage."
+    },
+    {
+      "path": "collected-revisit-15-pitchpod-young-reader.jpg",
+      "sha256": "3675564d40c2cf00167a419663960c12a4e97725ddc3f04251141bb87ccf7e21",
+      "observation": "PitchPod reader says sprout, moist soil, growth continues; green sprout portrait matches stage."
+    },
+    {
+      "path": "collected-revisit-19-ripe-reader.jpg",
+      "sha256": "c0187c8190114e3f45d27a8733474ec6c929bafd51f6689e2a4dbe41e7d671a4",
+      "observation": "PitchPod reader explicitly says ripe and harvest by hand; ochre pod-bearing plant portrait differs clearly from seed and sprout."
+    },
+    {
+      "path": "collected-revisit-21-gather-empty-bed.jpg",
+      "sha256": "6cdf073a03570e6e996e2c9def995289b58370e80dcfb5f7cd48de50d8d75f7d",
+      "observation": "Ordinary scene is intact with no leftover modal. Log says You gather PitchPod: 3 packed. 0 left here. This frame alone does not identify exact harvested owner IDs."
+    },
+    {
+      "path": "collected-revisit-24-resin-filter.jpg",
+      "sha256": "714f29bdaad7a8c1bec43de3152c4240817e95f4977232a084da8d41cee02637",
+      "observation": "Successful pitchpod filter shows two resin and one seed. Selected resin has a native ochre portrait. Quantity, weight and DMG/DEF columns are readable; description overflow is explicitly marked with ellipsis and F1 Details remains visible."
+    },
+    {
+      "path": "collected-revisit-25-seed-plant-choices.jpg",
+      "sha256": "3e8b72872656b21120e1004bbf5d76f82f286e6adeef4cd369ccf3b25a4d43c2",
+      "observation": "Seed action modal clearly presents plant here and plant prepared bed (62,5), plus examine/Drop and backed footer. This is choice evidence, not successful planting by itself."
+    },
+    {
+      "path": "collected-revisit-27-replanted-seed-confirmed.jpg",
+      "sha256": "11308987f9fc82f52e250a4813624a9ebf924afabb701543711978b12e795d6a",
+      "observation": "PitchPod reader says seed, moist soil, growth continues with seed-cluster portrait. Conjure Rain CD4 and weight29 are visible."
+    },
+    {
+      "path": "collected-revisit-29-reloaded.jpg",
+      "sha256": "c83b1e3cd02996496592b164938bdcb5aa0dd266167bfbf9cecb96be26941fdc",
+      "observation": "Ordinary world frame is fully rendered with no stale reader/menu fragments; HP42/42, weight29, drams40 remain visible. A static screenshot cannot independently establish reload execution or exact owner preservation."
+    },
+    {
+      "path": "collected-revisit-32-returned-dry-sprout.jpg",
+      "sha256": "b03b35eefb522a445a8ccd6a85271bfe15fb4dbfdb2580647b024d4601ca4437",
+      "observation": "PitchPod reader says sprout, dry soil, growth paused with green sprout portrait, consistent with growth followed by moisture exhaustion; HP42/42, weight29, drams40 visible."
+    }
+  ],
+  "material_findings": [],
+  "negative_incidents_excluded_from_acceptance": [
+    "16/17 filenames prematurely say ripe; root identifies these as sprout captures.",
+    "23 failed pc filter.",
+    "26 unexpected skill menu."
+  ],
+  "limits": [
+    "Only these nine original images were visually inspected in this pass; no Unity/player control, source edit or test execution.",
+    "Images establish displayed identities, state text, portraits and legibility; exact IDs, action timing, moisture accounting and save/load/revisit execution require the root input journal and state receipts.",
+    "No claim of an additional ripe cycle after replanting: final accepted state is a dry paused sprout.",
+    "Previously identified En Garde hotbar text fit remains a separate scoped UI investigation; no new crop-art redesign is warranted by these images."
+  ]
+}

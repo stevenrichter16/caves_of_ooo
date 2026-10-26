@@ -1,22 +1,19 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: the actual Mac package journey now connects the
-earned Nella checkpoint through North, glade, East and Orven, including repair,
-paid cooking, full quit/Continue, collection and an empty-board return. Twenty-two
-actual screenshots and 21 save-audit checks support this bounded acceptance.
-[Journey record](GRAPHICS-G3-EARNED-EAST-JOURNEY.md).
+Current status, 2026-10-26: the new daa388643 Mac package now carries the earned
+kitchen checkpoint through East/glade/North/Nella. Pitchpod seed, sprout, ripe,
+harvest yield and replant art agree with actual state; full quit/Continue and a
+North border return preserve the same replacement crop.33 actual captures and
+31/31 independent saved-state checks support this bounded gate.
+[Collected revisit](GRAPHICS-G3-COLLECTED-REVISIT.md).
 
-The journey exposed a clipped two-dram recipe price. Adaptive popup width and
-coherent native mouse input now pass 115 native tests and six actual Editor
-captures, including a genuine mouse-paid commission. [Correction record](GRAPHICS-G3-ACTION-COST-READABILITY.md).
-Current Mac/Linux packages **daa388643 include this correction**. Fourteen
-actual Mac captures verify full price, keyboard priority, real mouse commission,
-short-menu clearing and full quit/Continue. The Linux archive passes independent
-member/hash/permission/license review. [Delivery record](Verification/Live16x24/packaged-action-menu-report.md).
-Next: North/Nella revisits and remaining forge/crop acceptance from the collected
-checkpoint using the new package; the En Garde hotbar label still clips.
-Approved art remains stable. Full six-zone opening, regional art, Linux execution,
-physical Deck and measured performance remain open. Storage remains inspection-only.
+Current Mac/Linux packages include the action-menu width/pointer corrections;
+prior14 Mac delivery captures and archive audit remain accepted. No code/art
+changed during this route. Next named visual defect: En Garde hotbar name fit,
+then the contested North still and East temper journey with the earned resin.
+The coldforge was inspected, not used. Full opening/regions, Linux execution,
+physical Steam Deck and measured performance remain open. Normal state and
+current builds preserved; storage remains inspection-only.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art
