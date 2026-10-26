@@ -70,7 +70,102 @@ namespace CavesOfOoo.Core
                 else if(h%100<19)Add("Bush",x,y,"green-grass");
                 else if(h%173==0)Add("Reeds",x,y,"pale-reeds");
             }
+            ClusterDressing();
             Placements=placements.AsReadOnly();
+        }
+
+        // Keep the original per-seed plant budget and owner creation order, but
+        // give the working field and ruin quiet approaches. This runs only while
+        // constructing a fresh plan; saved/live owners are never rearranged.
+        private void ClusterDressing()
+        {
+            var reeds = new List<int>();
+            var bushes = new List<int>();
+            var blocked = (bool[,])occupied.Clone();
+            for (int i = 0; i < placements.Count; i++)
+            {
+                var p = placements[i];
+                if (IsDiscoveryGround(p.X, p.Y) || IsSpawnClearing(p.X, p.Y)) continue;
+                bool reed = p.Blueprint == "Reeds" && p.X >= 52
+                    && p.VisualID == "reference-glade-pale-reeds";
+                bool bush = p.Blueprint == "Bush" && p.VisualID == "reference-glade-green-grass";
+                if (!reed && !bush) continue;
+                (reed ? reeds : bushes).Add(i);
+                blocked[p.X, p.Y] = false;
+            }
+            var reedCells = DressingCells(blocked, true, reeds.Count);
+            var bushCells = DressingCells(blocked, false, bushes.Count);
+            // Future fixed landmarks may leave too little room. Preserve the
+            // complete old layout rather than partially dropping real owners.
+            if (reedCells.Count != reeds.Count || bushCells.Count != bushes.Count) return;
+            MoveDressing(reeds, reedCells, "pale-reeds");
+            MoveDressing(bushes, bushCells, "green-grass");
+        }
+
+        private List<(int x, int y)> DressingCells(bool[,] blocked, bool reeds, int count)
+        {
+            var candidates = new List<(int x, int y, double score)>();
+            for (int y = 0; y < Zone.Height; y++)
+                for (int x = reeds ? 52 : 0; x < Zone.Width; x++)
+                {
+                    if (blocked[x,y] || IsApproach(x,y) || IsDiscoveryGround(x,y)
+                        || IsSpawnClearing(x,y) || IsQuietApron(x,y)
+                        || x == 46 && (y == 4 || y == 6)) continue;
+                    // Leave real ground pockets inside wild groups, shared by
+                    // both families so grass cannot fill the reeds' clearings.
+                    // The owner budget is redistributed, never reduced.
+                    if (Hash(x,y,43u) % 100 < 36) continue;
+                    double score = reeds
+                        ? Math.Min(DriftDistance(x,y,70,13,5.5,7),
+                            Math.Min(DriftDistance(x,y,60,22,9,3), DriftDistance(x,y,61,4,6,3.5)))
+                        : Math.Min(DriftDistance(x,y,10,4,8,3),
+                            Math.Min(DriftDistance(x,y,7,20,7,4),
+                            Math.Min(DriftDistance(x,y,22,7,5,3),
+                            Math.Min(DriftDistance(x,y,44,1,4,3),
+                            Math.Min(DriftDistance(x,y,35,22,4,2.2),
+                            Math.Min(DriftDistance(x,y,44,19,3.5,2.2),
+                            Math.Min(DriftDistance(x,y,63,12,4,2),
+                            Math.Min(DriftDistance(x,y,73,23,4,2), DriftDistance(x,y,74,3,3,2)))))))));
+                    // Broad uneven edges plus finer taper keep the underlying
+                    // affinity from reading as filled ellipses or planted beds.
+                    score += (Hash(x/3,y/2,41u) % 1000) / 1000.0 * .35;
+                    score += (Hash(x,y,reeds ? 31u : 37u) % 1000) / 1000.0 * .65;
+                    candidates.Add((x,y,score));
+                }
+            candidates.Sort((a,b) =>
+            {
+                int order = a.score.CompareTo(b.score);
+                if (order == 0) order = a.y.CompareTo(b.y);
+                return order == 0 ? a.x.CompareTo(b.x) : order;
+            });
+            var result = new List<(int x, int y)>();
+            for (int i = 0; i < count && i < candidates.Count; i++)
+            {
+                var c = candidates[i];
+                result.Add((c.x,c.y));
+                blocked[c.x,c.y] = true;
+            }
+            return result;
+        }
+
+        private void MoveDressing(List<int> indices, List<(int x, int y)> cells, string visual)
+        {
+            // Both destination sets were reserved together before publication.
+            for (int i = 0; i < indices.Count; i++)
+            {
+                var original = placements[indices[i]];
+                placements[indices[i]] = new Placement(original.Blueprint, cells[i].x, cells[i].y, visual);
+            }
+        }
+        private static bool IsSpawnClearing(int x,int y)
+            => Math.Max(Math.Abs(x-StartX),Math.Abs(y-StartY)) <= 2;
+        private static bool IsQuietApron(int x,int y)
+            => x >= 52 && x <= 60 && y >= 10 && y <= 15
+                || x >= 32 && x <= 39 && y >= 15 && y <= 18;
+        private static double DriftDistance(int x,int y,int cx,int cy,double rx,double ry)
+        {
+            double dx = (x-cx)/rx, dy = (y-cy)/ry;
+            return dx*dx+dy*dy;
         }
         private void AddDiscoveries()
         {

@@ -1913,3 +1913,47 @@ placements,finite stock,paths and access. A concept is generated; no new glade
 runtime changes or layout/art acceptance are claimed. Keep the approved16×24 sprites and complete the established capture→imagegen→
 extraction→native implementation→ordinary Play cycle. Linux execution,physical
 Deck,complete packaged journey,full opening art and regional kits remain open.
+
+
+## Continuation — glade vegetation hierarchy accepted, 2026-10-26
+
+[Opening glade composition](GRAPHICS-G3-GLADE-COMPOSITION.md) completes the actual
+capture → built-in imagegen → native owner arrangement → test/play/review loop.
+Wild reeds now form three uneven groups with genuine interior gaps; grass
+clusters leave quiet field and ruin approaches. Approved sprites, all fixed
+geometry and the per-seed blueprint/plant budget remain intact. Bush fuel
+positions intentionally move on fresh generation; saved graphs remain literal.
+No renderer layer or per-frame work was added, but this is not a measured
+performance improvement or a purely cosmetic balance claim.
+
+Original-plan RED:63 cases,42 expected failures. Initial167-pass candidate was
+rejected after ordinary walking exposed solid ellipse/kite shapes. Added shape
+RED91:28 expected failures. First fray candidate passed191/195; final shared
+ground pockets and uneven edges passed195/195,0 skipped. Literal original
+budget/fixed-footprint/ordered Blueprint/VisualID-slot pins were retained.
+Independent source and native-scale visual review found no remaining material
+issue within this bounded pass. Native checks do not prove every runtime ID or
+visual state. Actual two-seed walking and return receipts are separate evidence.
+
+Seed65 ordinary field read/eastern walk → cellar F5/F6 → return preserves all
+447 Bush/Reeds IDs, positions and VisualIDs. Seed64 basin read/eastern walk →
+east connector F5/F6 → return preserves all450. Both preserve40 HP/50 drams
+at those return checkpoints. Final seed64 eastern view is Dusk/tick730 after
+an unintended pond leg; it is not a matched-time comparison. All original
+captures, rejected candidates and exact owner receipts are retained.
+
+Next is the eastern tempering shelter. Current seed64 entry/contested approach
+captures confirm that its forge and broken wall float separately on broad green
+ground. Ordinary combat reduced the test character to12 HP near the forge; no
+service-use acceptance is claimed. Built-in concept proposes only a small quiet
+work footprint; generated texture/soft pixels are rejected. Existing owners,
+finite supply and threats stay authoritative. The exact earned pre-east
+checkpoint is preserved for comparison, as recorded in the next-scene plan.
+
+Root stopped its isolated Play and restored normal editor/save state. All four
+protected normal-save hashes and two foreign PNG variants are unchanged.26
+importer-only metadata whitespace rewrites were backed up and restored. About
+430GiB remains free; no deletion. Current dated Mac/Linux packages remain at
+c893ae58f and therefore predate this glade layout. Full packaged journey,
+physical Deck, whole-opening art and regional kits remain open. Continue the
+next scene using the same actual-capture and native-integration gates.
