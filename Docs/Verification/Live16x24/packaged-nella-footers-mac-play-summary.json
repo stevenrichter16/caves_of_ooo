@@ -1,0 +1,232 @@
+{
+  "at_utc": "2026-10-26T19:25:33.039925+00:00",
+  "runtime_source_commit": "99b86bb026dd19967f2fb7f1e6997b9a36df41f4",
+  "platform": "macOS / Metal",
+  "app": "Builds/Verification/2026-10-26-nella-footers-99b86bb02-current/CavesOfOoo.app",
+  "input": "Ordinary keyboard through native CUA; no runtime state injection",
+  "images": "17 original CUA JPEGs:1280x800 viewport plus56px native Mac window chrome. No crop, resize, compositing or imagegen.",
+  "fixture": "Docs/Verification/Live16x24/Fixtures/current-journey-corrected-nella242967504",
+  "fixture_copied_unchanged": true,
+  "presentation_override": false,
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-01-launch.jpg",
+      "bytes": 209296,
+      "sha256": "0168087d86e6026c189f812128ea2cd2d5cb9b2a65e5b23163a55ec6770ae270",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Ordinary launch, flat opening and Continue prompt; no presentation override."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-02-continue.jpg",
+      "bytes": 172445,
+      "sha256": "9f820bcde86259c34cb175d93dc4627fb4c462c4f2b6e4bdbb35f90c5f923172",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "C continues unchanged earned Nella checkpoint at63,9HP31,42drams,tick2270. Automatic1x."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-03-interaction.jpg",
+      "bytes": 197882,
+      "sha256": "b147cab70e584b3ace70727b168105e2f68c9e7f074611034712cad245999466",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "PageUp to3x, PageDown to2x; C/Up opens adjacent Nella interaction with HP20. Inputs reissued when fast chained keys did not advance prompt."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-04-conversation.jpg",
+      "bytes": 237762,
+      "sha256": "aa94e3477bf4c531be442473b2bfd19b375cefe798de80181e414b07ef59c11b",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "C chats. Complete native keeper portrait, text, choices and light-gray footer backed by existing panel."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-05-topic.jpg",
+      "bytes": 229049,
+      "sha256": "6be7bda30ba2a78514cd97da2faab2654305ceb7447389c91f5a9d82845b546a",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "A selects planting topic; shorter panel has clean perimeter and backed controls."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-06-return.jpg",
+      "bytes": 237762,
+      "sha256": "aa94e3477bf4c531be442473b2bfd19b375cefe798de80181e414b07ef59c11b",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "B returns to main topic; full panel restored cleanly."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-07-closed.jpg",
+      "bytes": 172905,
+      "sha256": "af8397a7d5023304477d2a6892c9c27f89e7d5bd0ca6cf1a2c84a52ed384c45a",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Escape closes dialogue, leaving no stale portrait, border or footer."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-08-equipment.jpg",
+      "bytes": 176261,
+      "sha256": "d39fcb48f9547572d814c021d66a8b81bc35fe9d4095203c035eeccb9290749f",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "I opens fullscreen equipment:1d8 sword,1AV+1DV buckler and far-right[E]."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-09-inventory.jpg",
+      "bytes": 202215,
+      "sha256": "60684e7713d7a034c8602665ab4f139670d8507667e312120eb0ed28aaf38242",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Tab opens Inventory with matching native sword portrait and detail text."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-10-pickup.jpg",
+      "bytes": 197548,
+      "sha256": "9878a2d71738d863ddaf94ec8f321bccedf0ce6ba21253fc0d0c458cf31a660e",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Filter/select/drop carried2clay and2pulp using actual pack actions, then Escape/G opens real two-stack pickup. Weight22; readable backed controls."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-11-reader.jpg",
+      "bytes": 242071,
+      "sha256": "462bf9e053c3479f9e37b72e5d2bdc390001c1bf877bb970ff03be8d1813cf8e",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "F1 opens clay decision reader, without leaving pickup text behind."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-12-reader-return.jpg",
+      "bytes": 197548,
+      "sha256": "9878a2d71738d863ddaf94ec8f321bccedf0ce6ba21253fc0d0c458cf31a660e",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Return resumes same two-stack pickup selection, full backing retained."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-13-shrink.jpg",
+      "bytes": 194626,
+      "sha256": "391e11593b5627ab6bc518edc805007750d47abf0d35efe9d3d41930be388e13",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Return takes clay; list shrinks to one pulp stack, old bottom row cleared. Weight24."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-14-pickup-closed.jpg",
+      "bytes": 176141,
+      "sha256": "41e88b06a690749dbad737b0311fb4eb3fdda49b9106043b50a2aa11e6666640",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Escape closes picker; remaining pulp is underfoot, no stale text/background."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-15-recovered-saved.jpg",
+      "bytes": 175312,
+      "sha256": "8725b34d2696da703d8062e9a660ed4449cc839f518f398b177e1c3b40d0387d",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "G recovers final pulp, F5 saves. Original26weight/HP31/42drams retained; tick2290. Earlier same-frame G/F5 did not recover pulp, so recovery verified and save repeated."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-16-restarted-continue.jpg",
+      "bytes": 177381,
+      "sha256": "c6c2227dc9cbac6497f320ee5ce4b1fb0a3d8e12572559fa2e2f2157db7fde40",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Quit/relaunch/C continues saved63,9HP31,26weight,42drams. Automatic1x zoom resets; not zoom-persistence proof."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-17-restarted-dialogue.jpg",
+      "bytes": 238659,
+      "sha256": "11f6976e737803c80933301cf80397baac85ee2ed3b0d49a18c0d672b0c6cbf3",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "PageUp to2x, C/Up/C reopens Nella conversation with native portrait, unchanged topics and backed footer after restart."
+    }
+  ],
+  "saved_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.11.8.0",
+    "ActiveZoneDisplayLabel": "Overworld.11.8.0",
+    "Turn": 2290,
+    "SaveTimestampUtc": "2026-10-26T19:20:22.9933500Z",
+    "HPSummary": "31/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "logs": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-player-first.log.gz",
+      "sha256": "e4d0a80569991058a6007a4ca07872681c5370b3ed8e11012e00157c0eb7068a",
+      "error_exception_fatal_lines": [],
+      "shutdown_notices": []
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-nella-footers-player-second.log.gz",
+      "sha256": "05f14922099566709b12ebbe9412c422101027e080ed8c092d3f7b2df9098f3a",
+      "error_exception_fatal_lines": [],
+      "shutdown_notices": [
+        "Thread 0x170e97000 may have been prematurely finalized",
+        "Thread 0x16fbb3000 may have been prematurely finalized",
+        "Thread 0x16fd57000 may have been prematurely finalized",
+        "Thread 0x16fc3f000 may have been prematurely finalized",
+        "Thread 0x16fde3000 may have been prematurely finalized",
+        "Thread 0x16fccb000 may have been prematurely finalized",
+        "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+      ]
+    }
+  ],
+  "independent_visual_review": {
+    "reviewer": "/root/inventory_stat_review",
+    "captures_reviewed": "04-17",
+    "material_findings": [],
+    "limits": "Mac screenshots establish bounded visual behavior, not physical Deck input, numerical formulas or zoom persistence."
+  },
+  "limits": [
+    "Already-generated fixture does not prove cold population; source replay gate is separate.",
+    "No Linux execution, physical Deck, frame-time benchmark or complete six-zone/regional acceptance.",
+    "Actual screenshot endpoints and save metadata, not full-frame video.",
+    "Existing shutdown thread/finalizer or ComputeBuffer notices are not fixed by delivery."
+  ]
+}

@@ -1,20 +1,15 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: consolidated packages5a3c74359 now include the latest accepted source and ordinary zoom.
-Fresh scene review has now replaced North's underscore river shrine with a
-native16×24stone and matching reader.31focused+184regression tests pass;
-actual donation/save/load/border revisit are accepted. Nella's initial access
-blocker is now corrected with a speed-aware southern-approach placement margin:
-104 distinct native checks and actual contact/trade/save/load/revisit pass.
-Native dialogue portraits now follow the exact speaker and share approved
-world art:99 focused/neighboring native checks and actual Nella/Warden
-conversation, short-topic, trade and reopen checks pass. Full scene acceptance
-remains open: Nella’s conductive pipe/peat corner is now accepted with139 native
-checks and actual wet entry/reload/revisit. Fresh East/Orven views exposed an
-initial cook mortality bug, now corrected with104 native checks and actual
-conversation/trade/reload/revisit. East’s wall/gate/peat art gaps are now accepted with249 native checks and actual
-inspection/open-close/crossing/save/revisit. Actual packaged Mac gate/restart/reader/crossing, inventory and fresh-start checks pass; Linux archive independently verified. [Delivery record](Verification/Live16x24/packaged-current-scene-report.md).
-Next: complete the fresh connected journey in these packages. Full opening/regional art, Linux execution, physical Deck and performance acceptance remain open.
+Current status, 2026-10-26: corrected Nella/popup packages99b86bb02 delivered.
+The fresh packaged journey exposed a missing Nella service and unreadable pickup
+controls. Nella's bounded cold-population repair and pickup footer passed139
+native checks plus ordinary earned-cellar replay; dialogue footer passed100
+focused/neighboring checks and real UI review. New Mac/Linux builds contain
+these fixes.17actual Mac captures verify conversation, inventory, pickup and
+save/quit/Continue;181Linux archive files independently verified. Previous
+builds, saves and sources are preserved. [Delivery record](Verification/Live16x24/packaged-nella-footers-report.md).
+Next: East/Orven/revisits from the earned Nella checkpoint. Full six-zone opening,
+remaining regional art, Linux execution, physical Deck and performance remain open.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art
@@ -1985,3 +1980,23 @@ per GRAPHICS-G3-NELLA-FOOTERS-DELIVERY.md, verify real packaged chat/save/Contin
 and restore all state. Then continue East/Orven/revisits. Existing5a3c74359
 packages predate Nella cold-population and both popup fixes; full opening and
 physical Deck acceptance remain open. Storage checks are inspection-only.
+
+
+## Continuation — 2026-10-26 corrected Nella packages delivered
+
+Runtime99b86bb026dd19967f2fb7f1e6997b9a36df41f4 is pushed and now built into
+new Mac/Linux `2026-10-26-nella-footers-99b86bb02-current` folders.17actual Mac
+captures verify Nella chat/topic/close, equipment damage/defense/[E], native
+portrait, real two-stack pickup/reader/shrink/close/recovery and save/quit/Continue.
+Archive181files independently verified; SHA125eeb9cb067d8d5a92fcbb2c215011302739763cfad190db2aef5b5c22adabe.
+See Verification/Live16x24/packaged-nella-footers-report.md for rejected initial
+snapshot, corrected process guard, source test gates and limits. All48,445tracked
+objects restored to baseline; normal saves/prefs, approvedart and old5a3builds
+preserved. Editor idle OSX, isolation/AutoRefresh restored. No storage cleanup.
+
+Next: continue ordinary East/Orven/revisits from earned fixture
+Verification/Live16x24/Fixtures/current-journey-packaged-nella242967504
+(player63,9,HP31,tick2290,42drams,seed242967504). This checkpoint is genuinely
+earned but its already-generated Nella is not a second fresh-population test.
+Full opening/region, Linux execution, physical Deck and frame-time gates remain
+open. Keep heartbeat active and approved art stable; fix named actual gaps.

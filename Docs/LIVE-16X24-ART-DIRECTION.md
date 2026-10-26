@@ -2450,3 +2450,23 @@ per GRAPHICS-G3-NELLA-FOOTERS-DELIVERY.md, verify real packaged chat/save/Contin
 and restore all state. Then continue East/Orven/revisits. Existing5a3c74359
 packages predate Nella cold-population and both popup fixes; full opening and
 physical Deck acceptance remain open. Storage checks are inspection-only.
+
+
+## Continuation — 2026-10-26 corrected Nella packages delivered
+
+Runtime99b86bb026dd19967f2fb7f1e6997b9a36df41f4 is pushed and now built into
+new Mac/Linux `2026-10-26-nella-footers-99b86bb02-current` folders.17actual Mac
+captures verify Nella chat/topic/close, equipment damage/defense/[E], native
+portrait, real two-stack pickup/reader/shrink/close/recovery and save/quit/Continue.
+Archive181files independently verified; SHA125eeb9cb067d8d5a92fcbb2c215011302739763cfad190db2aef5b5c22adabe.
+See Verification/Live16x24/packaged-nella-footers-report.md for rejected initial
+snapshot, corrected process guard, source test gates and limits. All48,445tracked
+objects restored to baseline; normal saves/prefs, approvedart and old5a3builds
+preserved. Editor idle OSX, isolation/AutoRefresh restored. No storage cleanup.
+
+Next: continue ordinary East/Orven/revisits from earned fixture
+Verification/Live16x24/Fixtures/current-journey-packaged-nella242967504
+(player63,9,HP31,tick2290,42drams,seed242967504). This checkpoint is genuinely
+earned but its already-generated Nella is not a second fresh-population test.
+Full opening/region, Linux execution, physical Deck and frame-time gates remain
+open. Keep heartbeat active and approved art stable; fix named actual gaps.
