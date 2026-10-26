@@ -2378,3 +2378,21 @@ fallbacks. Complete remaining fresh East/Orven views; don't call six-zone
 composition accepted yet. Earned shrine checkpoint is versioned under
 Fixtures/current-scene-earned-shrine224401440. Normal saves/preferences restored;
 no storage cleanup; heartbeat remains active.
+
+
+### 2026-10-26 — Nella initial service access accepted
+
+The next [scene-review continuation](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md)
+records a failed radius-only fix, followed by the accepted southern-approach
+margin. Cold connected11.8 placement now considers hostile sight, speed and a
+real footprint-avoiding route; preserves existing population/RNG/stock and later
+mortality. 15focused+89neighboring native cases pass. Ordinary replay reaches
+Nella at31,17 from20,24 in17steps, opens chat/trade, buys a seed, saves/reloads,
+and returns across the border with the same NPC and reduced stock. Capture34
+shows the actual native close view; the complete region remains unfinished.
+
+Use the new earned post-purchase fixture current-scene-earned-nella224401440
+for the next scoped view. Conversation28 exposes a legacy letter portrait;
+audit exact-subject reuse, then continue the conductive pipe/bog corner and
+fresh East/Orven views. Packages47d678995 predate these source changes. Normal
+saves/preferences/editor restored; no storage cleanup. Keep continuation active.

@@ -65,6 +65,13 @@ namespace CavesOfOoo.Core
                         ("ConnectedKitchenPickup", "pickup", 2, -2), ("ClaspbeanCrop", "kitchen-crop", -2, 2) }).ToArray();
             if (court) specs = specs.Concat(CourtStones.Select(p => ("StoneFloor", "court-floor", p.x, p.y))).ToArray();
             if (specs.Any(s => !factory.Blueprints.ContainsKey(s.bp)) || !Current()) return Refuse("admission");
+            // Give the required connected stop a geometric approach margin from
+            // its authored southern port. Read baked identity only: creating a
+            // trial trader here would allocate stock and consume its stream.
+            bool initialSafety = connected && plot && zone.ZoneID == "Overworld.11.8.0";
+            string residentFaction = null;
+            if (initialSafety) factory.GetBlueprint("SpreadSeedKeeper").Tags.TryGetValue("Faction", out residentFaction);
+            var initialCreatures = initialSafety ? original.Where(e => e.HasTag("Creature")).ToArray() : Array.Empty<Entity>();
             var before = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
             var anchor = (x: SpreadExplorationPlan.Rank(plan.Seed, zone.ZoneID, "resident-anchor") % 2 == 0 ? 22 : 58, y: 12);
             if (connected && plot && plan.TryGetNellaFrontage(out var frontage))
@@ -75,6 +82,10 @@ namespace CavesOfOoo.Core
             {
                 for (int turn = 0; turn < 2; turn++)
                 {
+                    int approachBudget = SouthernApproachBudget(zone, initialCreatures, at, residentFaction);
+                    // A necessary, cheap path lower bound keeps impossible near-threat
+                    // candidates from consuming the finite expensive Fits allowance.
+                    if (Math.Max(0, Math.Abs(at.x - plan.SouthX) + Math.Abs(at.y - (Zone.Height - 1)) - 1) > approachBudget) continue;
                     var candidate = specs.Select(s => At(at, (s.x, s.y), turn)).ToArray();
                     if (candidate.Any(p => Distance(p, Arrival) <= 6 || !before.Place(p.x, p.y))) continue;
                     if (connected && specs.Select((spec, i) => (spec, i)).Where(s => s.spec.role == "reserve-crop" || s.spec.role == "kitchen-crop")
@@ -82,7 +93,8 @@ namespace CavesOfOoo.Core
                     if (court && specs.Select((spec, i) => (spec, i)).Any(s => s.spec.role == "court-floor"
                         && !SteppingGround(zone, candidate[s.i]))) continue;
                     if (++trials > MaxTrials) return Refuse("admission");
-                    if (!Fits(zone, before, before, candidate, plot, at, turn, plan, court ? specs : null)) continue;
+                    if (!Fits(zone, before, before, candidate, plot, at, turn, plan, court ? specs : null, residentFaction)) continue;
+                    if (!HasSouthernApproach(before, candidate, at, plan, approachBudget)) continue;
                     positions = candidate; origin = at; rotation = turn; break;
                 }
                 if (positions != null) break;
@@ -212,9 +224,15 @@ namespace CavesOfOoo.Core
                 var packet = staged.ToArray(); var packetProof = SpreadGenerationReceipt.CaptureFinalState(zone, packet);
                 // The generic field snapshot pins the collection identity;
                 // this cold semantic contract also pins its initial members.
-                bool Final() => Current() && packetProof()
-                    && (!connected || !plot || staged[0].GetPart<LocalGatheringClaimPart>()?.Permissions?.Count == 0) && Fits(zone,
-                    new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>(packet)), before, positions, plot, origin, rotation, plan, court ? specs : null);
+                bool Final()
+                {
+                    if (!Current() || !packetProof()
+                        || connected && plot && staged[0].GetPart<LocalGatheringClaimPart>()?.Permissions?.Count != 0) return false;
+                    var geometry = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>(packet));
+                    string faction = initialSafety ? FactionManager.GetFaction(staged[0]) : null;
+                    return Fits(zone, geometry, before, positions, plot, origin, rotation, plan, court ? specs : null, faction)
+                        && HasSouthernApproach(geometry, positions, origin, plan, SouthernApproachBudget(zone, initialCreatures, origin, faction));
+                }
                 if (!Final()) return Refuse("final-proof");
                 owners = packet; final = Final; success = true; return true;
             }
@@ -334,7 +352,7 @@ namespace CavesOfOoo.Core
         static bool Plantable(Zone zone, (int x, int y) p) => zone.GetCell(p.x, p.y) is Cell cell && !BarrenGroundRules.IsBarren(cell) && cell.Objects.Any(e => e.HasTag("Terrain") && e.HasTag("Plantable"));
         static bool Fits(Zone zone, SpreadWildernessSituationBuilder.Geometry geometry, SpreadWildernessSituationBuilder.Geometry before,
             (int x, int y)[] positions, bool plot, (int x, int y) origin, int rotation, SpreadCompositionPlan plan,
-            (string bp, string role, int x, int y)[] courtSpecs = null)
+            (string bp, string role, int x, int y)[] courtSpecs = null, string residentFaction = null)
         {
             // Uniqueness includes the passable stones and services. Only the
             // guarded new stamp uses its real obstruction roles; legacy stays literal.
@@ -343,8 +361,11 @@ namespace CavesOfOoo.Core
             var obstructions = courtSpecs == null ? positions : positions.Where((p, i) => CourtBlocks(courtSpecs[i].role)).ToArray();
             if (!geometry.PreservesAgainst(before, obstructions)) return false;
             // Keep all existing creatures outside the opening footprint. This is deliberately
-            // conservative for a friendly site, not a promise that roaming threats stay away.
-            if (zone.GetReadOnlyEntities().Any(e => e.HasTag("Creature") && e.GetProperty(RoleKey) != "resident" && positions.Any(p => Distance(p, zone.GetEntityPosition(e)) <= 3))) return false;
+            // conservative for a friendly site. Connected Nella also avoids initial hostile
+            // acquisition; neither check promises that later roaming threats stay away.
+            if (zone.GetReadOnlyEntities().Any(e => e.HasTag("Creature") && e.GetProperty(RoleKey) != "resident"
+                && (positions.Any(p => Distance(p, zone.GetEntityPosition(e)) <= 3)
+                    || CanInitiallyAcquireResident(zone, e, origin, residentFaction)))) return false;
             if (plot)
             {
                 for (int i = 1; i <= 4; i++) if (!Plantable(zone, positions[i])) return false;
@@ -375,6 +396,47 @@ namespace CavesOfOoo.Core
                 if (new[] { (p.x - 1, p.y), (p.x + 1, p.y), (p.x, p.y - 1), (p.x, p.y + 1) }.Count(n => geometry.Walk(n.Item1, n.Item2, blocked) && reached[n.Item1, n.Item2]) < 2) return false;
             }
             return true;
+        }
+
+        static bool CanInitiallyAcquireResident(Zone zone, Entity creature, (int x, int y) origin, string residentFaction)
+            => IsInitiatingHostile(creature, residentFaction)
+                && Distance(origin, zone.GetEntityPosition(creature)) <= creature.GetPart<BrainPart>().SightRadius;
+
+        static bool IsInitiatingHostile(Entity creature, string residentFaction)
+        {
+            if (string.IsNullOrEmpty(residentFaction)) return false;
+            var brain = creature.GetPart<BrainPart>();
+            return brain?.ParentEntity == creature && !brain.Passive
+                && creature.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(creature)
+                && FactionManager.GetFactionFeeling(FactionManager.GetFaction(creature), residentFaction) <= FactionManager.HOSTILE_THRESHOLD;
+        }
+
+        static int SouthernApproachBudget(Zone zone, Entity[] creatures, (int x, int y) origin, string residentFaction)
+        {
+            int budget = int.MaxValue;
+            foreach (var creature in creatures)
+            {
+                if (!IsInitiatingHostile(creature, residentFaction)) continue;
+                long clearance = (long)Distance(origin, zone.GetEntityPosition(creature)) - creature.GetPart<BrainPart>().SightRadius - 1;
+                if (clearance < 0) return -1;
+                // Ordinary speed100 is the reference, not a promise for slower
+                // players, detours or later combat. Faster threats reduce the margin.
+                long steps = clearance * TurnManager.DefaultSpeed / Math.Max(TurnManager.DefaultSpeed, creature.GetStatValue("Speed", TurnManager.DefaultSpeed));
+                budget = (int)Math.Min(budget, steps);
+            }
+            return budget;
+        }
+
+        static bool HasSouthernApproach(SpreadWildernessSituationBuilder.Geometry geometry,
+            (int x, int y)[] positions, (int x, int y) origin, SpreadCompositionPlan plan, int budget)
+        {
+            if (budget == int.MaxValue) return true; // No initiating source threats: retain the accepted layout.
+            if (budget < 0) return false;
+            // As in Fits, conservatively avoid the entire stamp, including its
+            // passable crops. This changes no owner's physical collision.
+            var reached = geometry.Flood(new HashSet<(int x, int y)>(positions), (plan.SouthX, Zone.Height - 1), budget, null);
+            return reached[origin.x - 1, origin.y] || reached[origin.x + 1, origin.y]
+                || reached[origin.x, origin.y - 1] || reached[origin.x, origin.y + 1];
         }
     }
 }

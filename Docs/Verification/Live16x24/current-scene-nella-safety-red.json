@@ -1,0 +1,43 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "f4d74f06d4d44595bc4f4529b9a5de54",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793024126247,
+      "finished_unix_ms": 1793024136700,
+      "last_update_unix_ms": 1793024136700,
+      "progress": {
+        "completed": 9,
+        "total": 9,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793024135701,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.UnrelatedPopulationDoesNotRejectThePreferredBay(\"passive\")",
+        "last_finished_unix_ms": 1793024136664,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.ActualSightBoundaryChoosesAnotherSafeOriginWithoutMovingTheThreat(10,True)",
+            "message": "  Expected: not equal to (20, 9)\n  But was:  (20, 9)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.NativeColdGenerationKeepsTheCompleteServiceOutsideInitialHostileAcquisition(224401440)",
+            "message": "  MarlbackScrabbler begins within acquisition range of the newly placed keeper.\n  Expected: greater than 10\n  But was:  8\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.NoSafeCandidateRefusesWithoutRemovingTheOriginalEncounter",
+            "message": "  Expected: False\n  But was:  True\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

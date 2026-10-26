@@ -3,11 +3,13 @@
 Current status, 2026-10-26: ordinary zoom is delivered in packages47d678995.
 Fresh scene review has now replaced North's underscore river shrine with a
 native16×24stone and matching reader.31focused+184regression tests pass;
-actual donation/save/load/border revisit are accepted. Full scene acceptance
-remains open: on first arrival Nella dies to a nearby scrabbler before the
-player can reach her. Address this placement/access blocker, then the observed
-Nella conductive pipe/bog corner's pipe/bog fallback. [Current scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md).
-The current packages predate the shrine; no new device/build claim.
+actual donation/save/load/border revisit are accepted. Nella's initial access
+blocker is now corrected with a speed-aware southern-approach placement margin:
+104 distinct native checks and actual contact/trade/save/load/revisit pass.
+Full scene acceptance remains open. Audit her conversation's legacy letter
+portrait, then the observed conductive pipe/bog corner and fresh East/Orven
+views. [Current scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md).
+Current packages predate the shrine and placement fix; no new device/build claim.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art

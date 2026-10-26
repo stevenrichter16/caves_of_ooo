@@ -104,3 +104,21 @@ The next candidate identified by a source review is a Reedback visiting an exist
 ### Final native observation and publication receipt
 
 A repeat live audit exposed an observer mistake: a reserved cot truthfully refused sleep, but the driver recognized only hostile refusal and labelled the result incorrectly. No bed gameplay was changed. The corrected driver uses an actor/bed input marker and exact diagnostic outcomes, accepting a zero-time occupied/hostile refusal or an observed 60-tick sleep, with unchanged purse. The failed receipt is retained. Final run `b2a15be31b8644c097c0deb382855ba0` passes 16/16 with zero unexpected errors and actual 60-tick sleep. The live diagnostic stream contains all sixteen passing cases, the completed summary and the correlated bed outcome. [Acceptance receipt](Verification/SpreadFieldResidents/acceptance.json), [live diagnostics](Verification/SpreadFieldResidents/native-diagnostics.json), [final Play report](Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/report.json).
+
+
+## 2026-10-26 — Connected Nella southern approach margin
+
+The current graphics route exposed Nella dying before first contact. New
+connected11.8 stamps now require an initial speed-adjusted clearance from each
+living initiating hostile and a legal cardinal approach from the authored
+southern port within that margin. A cheap necessary lower bound precedes the
+existing256 expensive candidate limit; existing Geometry.Flood validates the
+real route and final proof repeats it. No trial trader construction/RNG, enemy
+removal, combat changes, permanent protection or rewriting loaded sites.
+No-hostile layouts and other resident sites preserve the old placement path.
+
+15focused+89neighboring native cases and actual ordinary contact/trade,
+save/load and border revisit pass. See [the full scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md)
+for the rejected first fix, corrected test-harness premise, raw receipts,
+actual screenshots and bounded acceptance. This is CoO-specific placement
+logic, not a Qud parity claim or a guarantee for arbitrary detours/slow builds.

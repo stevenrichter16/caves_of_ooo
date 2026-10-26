@@ -1,0 +1,55 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "4edf3f36202a48bd8789a4a9fcc06d61",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793025174470,
+      "finished_unix_ms": 1793025197953,
+      "last_update_unix_ms": 1793025197953,
+      "progress": {
+        "completed": 14,
+        "total": 14,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793025196935,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.UnrelatedPopulationDoesNotRejectThePreferredBay(\"passive\")",
+        "last_finished_unix_ms": 1793025197900,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.ExactNormalSpeedApproachBudgetDistinguishesOneStepShortFromEnough(-1)",
+            "message": "  Expected: not equal to (20, 9)\n  But was:  (20, 9)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.FasterViperNeedsMoreApproachClearanceWithoutChangingItsSpeed(130)",
+            "message": "  Expected: not equal to (20, 9)\n  But was:  (20, 9)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.InitialClearanceAloneIsInsufficientForTheSouthernApproach(10)",
+            "message": "  MarlbackScrabbler can consume the geometric approach margin before normal-speed contact.\n  Expected: greater than or equal to 2100\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.InitialClearanceAloneIsInsufficientForTheSouthernApproach(11)",
+            "message": "  Expected: not equal to (20, 9)\n  But was:  (20, 9)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.NativeColdGenerationKeepsTheCompleteServiceOutsideInitialHostileAcquisition(224401440)",
+            "message": "  MarlbackScrabbler can consume the geometric approach margin before normal-speed contact.\n  Expected: greater than or equal to 4400\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaInitialSafetyTests.NativeColdGenerationKeepsTheCompleteServiceOutsideInitialHostileAcquisition(200893250)",
+            "message": "  Viper can consume the geometric approach margin before normal-speed contact.\n  Expected: greater than or equal to 6370\n  But was:  5200\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}
