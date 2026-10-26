@@ -68,6 +68,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelOrchardCatalog _orchardArt;
         private FlatPixelRiverShrineCatalog _riverShrineArt;
         private FlatPixelNellaCornerCatalog _nellaCornerArt;
+        private FlatPixelEastFixtureCatalog _eastFixtureArt;
         private FlatPixelHedgeCatalog _hedgeArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
@@ -810,10 +811,12 @@ namespace CavesOfOoo.Rendering
             bool riverShrineNative = riverShrine != null && riverShrine.TryResolve(owner, out art);
             var nellaCorner = local && !fallback.Remembered ? NellaCornerArtFor(zone, owner) : null;
             bool nellaCornerNative = nellaCorner != null && nellaCorner.TryResolve(zone, x, y, out art);
+            var eastFixture = local && !fallback.Remembered ? EastFixtureArtFor(zone, owner) : null;
+            bool eastFixtureNative = eastFixture != null && eastFixture.TryResolve(zone, x, y, out art);
             bool allowHedgeFallback = true;
             var hedges = local ? HedgeArtFor(owner, fallback.Remembered, out allowHedgeFallback) : null;
             bool hedgeNative = hedges != null && hedges.TryResolve(zone, x, y, out art);
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -868,6 +871,8 @@ namespace CavesOfOoo.Rendering
             { sprite = shrineTile.sprite; return sprite != null; }
             var nellaCorner = local ? NellaCornerArtFor(zone, subject) : null;
             if (nellaCorner != null && nellaCorner.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+            var eastFixture = local ? EastFixtureArtFor(zone, subject) : null;
+            if (eastFixture != null && eastFixture.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
             if (eastern != null && eastern.TryResolvePresentation(zone, subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
@@ -936,6 +941,17 @@ namespace CavesOfOoo.Rendering
                 _nellaCornerArt = new FlatPixelNellaCornerCatalog(_glyphFallback);
             }
             return _nellaCornerArt;
+        }
+
+        private FlatPixelEastFixtureCatalog EastFixtureArtFor(Zone zone, Entity owner)
+        {
+            if (zone.ZoneID != "Overworld.12.10.0" || !FlatPixelEastFixtureCatalog.HasKnownRole(owner)) return null;
+            if (_eastFixtureArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _eastFixtureArt = new FlatPixelEastFixtureCatalog(_glyphFallback);
+            }
+            return _eastFixtureArt;
         }
 
         private FlatPixelHedgeCatalog HedgeArtFor(Entity owner, bool remembered, out bool allowNativeFallback)
@@ -1052,6 +1068,8 @@ namespace CavesOfOoo.Rendering
             _riverShrineArt = null;
             _nellaCornerArt?.Dispose();
             _nellaCornerArt = null;
+            _eastFixtureArt?.Dispose();
+            _eastFixtureArt = null;
             _hedgeArt?.Dispose();
             _hedgeArt = null;
             _glyphFallback?.Dispose();

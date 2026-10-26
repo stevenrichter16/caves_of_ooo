@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "b6d3815f069045989725211e545e6020",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793034950093,
+      "finished_unix_ms": 1793034972222,
+      "last_update_unix_ms": 1793034972222,
+      "progress": {
+        "completed": 217,
+        "total": 217,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793034972125,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelStateRenderCadenceTests.RetainedTorchCannotDirtyAnUnrelatedCurrentCell(\"carried\")",
+        "last_finished_unix_ms": 1793034972173,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelEastKitchenTests.OtherAddressesAndGladeOnlyGroundRemainUnchanged",
+            "message": "  Expected: False\n  But was:  True\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

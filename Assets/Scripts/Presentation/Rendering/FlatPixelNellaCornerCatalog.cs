@@ -104,6 +104,11 @@ namespace CavesOfOoo.Rendering
         static T Owned<T>(Entity owner) where T : Part
         { var part = owner.GetPart<T>(); return part?.ParentEntity == owner ? part : null; }
 
+        // Shared neutral peat identity; region admission and exact world/reader
+        // authority remain the responsibility of each companion adapter.
+        internal static bool IsEligiblePeat(Entity owner)
+            => owner?.BlueprintName == "PeatBog" && Eligible(owner);
+
         static bool Eligible(Entity owner)
         {
             if (!HasKnownRole(owner) || !owner.HasTag("Terrain") || owner.HasTag("Creature")

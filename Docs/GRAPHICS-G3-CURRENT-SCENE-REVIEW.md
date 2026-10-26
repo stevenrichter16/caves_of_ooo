@@ -1,7 +1,7 @@
 # Current opening scene review
 
 Status, 2026-10-26: river shrine art, Nella southern-approach placement
-exact-speaker native dialogue portraits and Nella's conductive bog corner accepted in bounded ordinary Unity Play. Fresh six-zone review remains
+exact-speaker native dialogue portraits, Nella's conductive bog corner, kitchen's initial staffed access and East's stone/gate/peat fixtures accepted in bounded ordinary Unity Play. Fresh six-zone review remains
 incomplete. Packaged runtime47d678995/delivery record39f68b6b3 predate these
 source changes. This pass continues the unchanged seed224401440
 checkpoint earned through the current package's opening/cellar route. It does
@@ -406,3 +406,6 @@ Next: East's15 plain Wall owners (11seen), FrontierPenGate and2peat owners reuse
 approved native art, then consolidated packages. The current47d678995 packages
 still predate these source passes. Source/art/save preservation verified;
 storage inspection only. Continue the existing graphics heartbeat.
+
+
+Latest continuation: East fixtures are accepted in actual84–97 with249 native checks. See [East/kitchen review](GRAPHICS-G3-EAST-KITCHEN-REVIEW.md). Save/reload and border return preserve exact owner/state. Consolidated current Mac/Linux package refresh is next; existing47d678995 outputs are preserved. Cudgel loot remains a named truthful glyph fallback; whole-world/Deck coverage remains open.

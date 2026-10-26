@@ -196,3 +196,87 @@ SpreadExplorationResidents.cs, two new native fixtures, prior source-policy
 reflection call, this design/review and real captures/receipts. No approved art
 changed for this prerequisite. Next: the three exact East fixture art defects,
 then consolidated current packages and remaining whole-scene acceptance.
+
+
+## East fixture reuse pass — bounded acceptance, 2026-10-26
+
+Actual65/67–68 and the exact owner snapshots are the playable baseline: faint
+plain-stone wall glyphs, a glyph gate within native hedges, and two glyph peat
+cells. Reuse the approved prior production outputs instead of redrawing stable
+art: opening-cellar8, opening-states1/2 and nella-corner16. Those sheets retain
+their original editable sources and earlier imagegen/production records. This
+pass changes the owner/state mapping only; no new image-generation target is
+needed for an already accepted identical material silhouette.
+
+Pre-implementation source checks: FrontierPenGate's DoorPart.IsClosed (including
+owned lock) controls blocking; its Physics.Solid isfalse in both states, it has
+no RepairablePart and no MaterialPart. Plain Wall is a live Stone structure.
+Peat must retain Nella's neutral material eligibility, independent of water
+volume, wetness, fire/freeze and charge overlays. Exact current admitted East
+and disclosed owner selection guard world art; examine may read its exact
+covered subject. Missing source atlas groups keep normal fallback independently.
+
+Plan: one small East companion, four cached tiles from borrowed approved
+textures, existing Greybox world/reader/disposal seams, shared peat predicate.
+No generation, collision, liquid, gameplay-stat or accepted pixel changes. Native
+32-case fixture first for RED, then focused/neighbor GREEN and ordinary in-game
+wall/gate/peat inspection with state interaction and persistence. Keep the
+existing danger and earned inventory. Future packaged/device work stays separate.
+
+
+### East verification and actual acceptance
+
+Native RED completed32/32 with the missing adapter/world art behavior. The
+implemented route passed32 focused checks. A217-case neighboring run found one
+stale test still expecting East pure water to fall back: the prior delivered
+water continuity already explicitly supports it. Corrected that test to assert
+dry=false, pure-water=true, water+oil=false and removed=false. No ground/runtime
+change was made for that obsolete expectation. The final combined249 native
+checks pass, zero failures/skips. Failure and final receipts are retained.
+Independent source review found no material issue.
+
+| Actual capture | Observation |
+| --- | --- |
+|84|Unmodified earned East0,16/tick2310/HP40 loaded through normal C Continue.|
+|85/86|Ruin Wall11399at8,16 now native stone; ordinary right bump from7,16 blocks and strikes it, structure40→39. Reader uses the same masonry and says Stone,39/40. 85 is3×,86 is2×.|
+|87/88|Two peat owners at10,5/11,5 have neutral clumps over their real water. Exact reader identifies Peat,40/40 and water's fire/electricity effects.|
+|89|Ordinary diagonal/left crossing reaches10,5; wet status is real.436 visible on-screen cells,0 unmatched existing paint receipts; one uncovered peat native, the other covered by Player. A dropped Cudgel remains truthful glyph fallback.|
+|90/91|Gate11467at54,19 is native closed rails, structure10/10. Exact reader agrees. The ordinary approach destroyed a tree and one hedge through repeated bump strikes; those real consequences are retained, not a fabricated intact approach.|
+|92/93|C + diagonal direction + ordinary open/close action toggles the same gate to open posts and back to closed rails. No movement was needed for repaint.|
+|94/95|Reopen, walk through gate to55,19, F5 then F6. Entire observed fixture/player snapshot is identical at tick3380/HP32; gate remains open, wall39, both peat volumes70.|
+|96/97|Six Down leave into kitchen55,0; six Up return to East55,19 at tick3500. Same fixture IDs and states remain.465 on-screen cells,0 unmatched receipts; gate native, remaining hedges14 and real grazer native.|
+
+The grazer remained inside in these screenshots: this does not demonstrate its
+feeding/release outcome. The changed west hedge also means this run cannot prove
+that the closed gate was the pen's sole exit. Door blocking/open traversal is
+covered natively and actual crossing of the opened cell was observed. Combat
+reduced playerHP40→32, and the existing skill En Garde was used normally. There
+were no grants, actor relocation, clock writes or suppressed threats.
+
+### Reuse-pass review, preservation and continuation
+
+- 🔵 Exact original accepted pixels remain unchanged. Four cached tiles borrow
+  existing textures; no new atlas and no per-frame object/resource creation.
+  Existing DoorPart/destruction dirty hooks drive repaint, with stationary and
+  quiet-frame native checks. No new measured device performance claim.
+- 🔵 Actual wall/peat/gate pictures and exact readers align. Script snapshots
+  verify identity/structure/volume/save/revisit separately from visual evidence.
+- 🟡 Fixed stale prior-water test assertion; narrowed authority and invalid-state
+  counterchecks pass. Independent source review found no material issue.
+- 🧪 Physical Steam Deck, Linux execution, new packaged runs, every possible
+  encounter/loot identity and regional artwork are unverified. The actual
+  dropped Cudgel is a specific remaining equipment-art gap, not new completion.
+- ⚪ Batch movement struck obstacles; future replay should use the earned gate
+  checkpoint and inspect short routes. The unmodified consequences are kept.
+
+Normal SampleScene, preferences and save override are restored. All776 normal
+save files,374 approved art/source files and2 unrelated screenshots remain
+byte-identical. About421GiBfree; no storage deletion. The unchanged earned gate
+checkpoint is at Fixtures/current-scene-earned-gate224401440 for package parity.
+
+Files: new FlatPixelEastFixtureCatalog and32-case fixture with metadata;
+Greybox world/reader/disposal wiring; shared Nella neutral peat predicate; one
+corrected historical EastKitchen ground test; current records/actual captures.
+Next: freeze this reviewed source on main and build consolidated dated Mac/Linux
+current packages including shrine, Nella access/portraits/corner, kitchen safety
+and East fixture art. Then complete bounded six-zone review and regional kits.

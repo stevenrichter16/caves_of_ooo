@@ -12,8 +12,8 @@ conversation, short-topic, trade and reopen checks pass. Full scene acceptance
 remains open: Nella’s conductive pipe/peat corner is now accepted with139 native
 checks and actual wet entry/reload/revisit. Fresh East/Orven views exposed an
 initial cook mortality bug, now corrected with104 native checks and actual
-conversation/trade/reload/revisit. Next are East’s remaining wall/gate/peat art
-gaps, then consolidated current packages. [Current scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md).
+conversation/trade/reload/revisit. East’s wall/gate/peat art gaps are now accepted with249 native checks and actual
+inspection/open-close/crossing/save/revisit. Next are consolidated current packages. [Current scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md).
 Current packages predate shrine, placement and dialogue fixes; no new device/build claim.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery

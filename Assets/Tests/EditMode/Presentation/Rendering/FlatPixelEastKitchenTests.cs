@@ -117,15 +117,28 @@ namespace CavesOfOoo.Tests
             legacy.CachedZones[id] = new Zone(id); Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
             Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(legacy.CachedZones[id]));
         }
-        [Test] public void OtherAddressesAndGladeOnlyGroundRemainUnchanged()
+        [Test] public void OtherAddressesStayUnsupportedAndEastBorrowsOnlyLivePureWater()
         {
             foreach (var id in new[] { "Overworld.13.10.0", "Overworld.12.12.0", "Overworld.12.10.1", "Overworld.012.11.0" })
                 Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(Attach(id)), id);
-            var zone = Attach(East); zone.TileState.WriteCoating(X, Y, "water", 5);
+            var zone = Attach(East);
             using (var selector = new FlatPixelFallbackCatalog())
             {
                 var ground = new Texture2D(336, 24);
-                try { using (var art = new FlatPixelOpeningGroundCatalog(ground, selector)) Assert.False(art.TryResolve(zone, X, Y, out _, out _)); }
+                try
+                {
+                    using (var art = new FlatPixelOpeningGroundCatalog(ground, selector))
+                    {
+                        Assert.False(art.TryResolve(zone, X, Y, out _, out _), "East does not borrow dry glade ground.");
+                        zone.TileState.WriteCoating(X, Y, "water", 5);
+                        Assert.True(art.TryResolve(zone, X, Y, out _, out _), "Existing East water continuity remains available.");
+                        zone.TileState.WriteCoating(X, Y, "oil", 5);
+                        Assert.False(art.TryResolve(zone, X, Y, out _, out _), "Mixed liquids retain their hazard presentation.");
+                        zone.TileState.RemoveCoating(X, Y, "oil");
+                        zone.TileState.RemoveCoating(X, Y, "water");
+                        Assert.False(art.TryResolve(zone, X, Y, out _, out _));
+                    }
+                }
                 finally { Object.DestroyImmediate(ground); }
             }
         }
