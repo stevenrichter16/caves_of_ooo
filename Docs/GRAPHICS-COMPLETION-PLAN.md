@@ -1679,3 +1679,29 @@ Continue/inventory/reader/movement/save-return. Existing dce87081d packages pred
 those changes. Preserve previous outputs. Full six-service/whole-opening art,
 regional kits, Linux execution and physical Deck remain open. Nella's service
 loss is still a separate scoped audit; do not declare mortality itself a bug.
+
+
+## Continuation — delivered kitchen/hedge packages, 2026-10-26 08:34 UTC
+
+[Current delivery](Verification/Live16x24/packaged-kitchen-hedge-report.md) freezes
+source8902d3731 in new dated Mac/Linux `-current` outputs, including underfoot
+Harvest, hive/court and connected hedges. Both builds0errors/4warnings; archive
+128645260bytes,181files independently hash/size/mode verified. Mac ordinary
+Continue/inventoryDMG-DEF/rightmost[E]/item+hedge+hive readers/underfoot harvest
+and quit/Continue are captured. Harvest yieldedone Honeycomb and remained absent
+after return. These12 actual1280×800-viewport screenshots are not concepts.
+
+Normal776savefiles and preference mappings preserved; editor idle inSampleScene,
+StandaloneOSX with no isolation/saveoverride. All24765 tracked source hashes and
+two unrelated PNGs unchanged after backing up/restoring32 build-generated files.
+About427.7GiB free; no cleanup/deletion. Known shutdown thread/ComputeBuffer
+notices persist. Linuxexecution,physicalDeck,fullsix-service journey and whole
+opening/regional art remain open. Current archive path/checksum are inG1/latest.
+
+Next selected scene defect: east meadow's repeated dense flower ellipses overpower
+the small forge. Capture current matched entry/upperapproach views, reinterpret
+withimagegen, then refine eligible dressing into unequal interiors/holes and a
+quiet destination margin while preserving budgets,workpad,owners and routes.
+After that, audit plain teal water rectangles outsideglade for shared bank
+presentation. Nella active/fallow hierarchy needs a current matched view before
+changing acceptedwork. Continue this scene-level cycle; no unrelatedassetpacket.

@@ -1,9 +1,13 @@
 # G1 — Packaged flat 16×24 delivery
 
-**Latest delivery: 2026-10-26**, source`c893ae58fea438d1d2bb6f803ace1e499df79acd`.
-See §9 for the fresh Mac/Linux packages, current inventory/reader smoke test and
-archive receipt. Sections1–8 below retain the October25 delivery history and
-its original source/limits; they are not claims about the new build.
+**Latest delivery: 2026-10-26 08:34 UTC**, source
+`8902d37316a24e3debd21e161b970f93ef1fd9d7`. The
+[current kitchen/hedge delivery](Verification/Live16x24/packaged-kitchen-hedge-report.md)
+includes underfoot actions, hive/court, connected hedges and current inventory.
+Both builds succeeded; ordinary Mac Continue, inventory/readers, underfoot
+harvest and quit/Continue were observed. All181 Linux archive files verified.
+Linux execution, physical Deck and complete opening/regional coverage remain open.
+Older sections below are historical and retain their original source/limits.
 
 **Status, 2026-10-25 UTC:** current-source Linux and macOS packages built successfully. An ordinary macOS standalone launch, Continue, crop Examine and movement were observed. The Linux archive is verified and ready for transfer; Linux execution, physical Steam Deck acceptance and fresh performance measurements remain open.
 
@@ -236,3 +240,19 @@ placements,stock and approaches. A design concept has now been generated,but
 no new glade runtime changes,artwork or layout are admitted yet. Accepted
 sprites remain stable while that proposal passes the existing actual
 capture→concept→owner/state→native implementation→ordinary Play loop.
+
+
+## 10. Kitchen/hedge current delivery — 2026-10-26
+
+Source8902d3731 is now packaged; see the [complete report](Verification/Live16x24/packaged-kitchen-hedge-report.md),
+[Mac play summary](Verification/Live16x24/packaged-kitchen-hedge-mac-play-summary.json)
+and [Linux archive receipt](Verification/Live16x24/packaged-kitchen-hedge-linux-archive.json).
+The previous dce87081d six-zone package remains preserved; this newer kitchen
+replay does not replace its journey history with a new full-journey claim.
+
+Current archive:
+`Builds/SteamDeck/2026-10-26-kitchen-hedge-8902d3731-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+SHA-256:`80ebb5305d98d564369a9640d4c113d9979dc4d789d10e31cca12946b44c41e2`.
+Both builds report0errors/4warnings. Known shutdown notices remain documented.
+776 saves, both logical preference domains,24765 tracked source files and two
+foreign PNGs were restored/verified. Storage inspection only; no deletion.
