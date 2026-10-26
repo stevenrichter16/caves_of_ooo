@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="10" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 06:34:41Z" end-time="2026-10-26 06:34:42Z" duration="0.8582393">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:34:41Z" end-time="2026-10-26 06:34:42Z" duration="0.858239" total="16" passed="10" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38987" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:34:41Z" end-time="2026-10-26 06:34:42Z" duration="0.612323" total="16" passed="10" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38988" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:34:41Z" end-time="2026-10-26 06:34:42Z" duration="0.541095" total="16" passed="10" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38989" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.473661" total="16" passed="10" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="19719" name="FoundingRestTests" fullname="CavesOfOoo.Tests.FoundingRestTests" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.075224" total="16" passed="10" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="19735" name="HostileSafetyUsesTheRealRestBoundary" fullname="CavesOfOoo.Tests.FoundingRestTests.HostileSafetyUsesTheRealRestBoundary" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.023376" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19733" name="HostileSafetyUsesTheRealRestBoundary(8,False)" fullname="CavesOfOoo.Tests.FoundingRestTests.HostileSafetyUsesTheRealRestBoundary(8,False)" methodname="HostileSafetyUsesTheRealRestBoundary" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1639486285" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.017798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="19734" name="HostileSafetyUsesTheRealRestBoundary(9,True)" fullname="CavesOfOoo.Tests.FoundingRestTests.HostileSafetyUsesTheRealRestBoundary(9,True)" methodname="HostileSafetyUsesTheRealRestBoundary" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1763802005" result="Failed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.002495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  clock charge
+  Expected: 70
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FoundingRestTests.AssertOutcome (System.Boolean success) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:57
+at CavesOfOoo.Tests.FoundingRestTests.HostileSafetyUsesTheRealRestBoundary (System.Int32 distance, System.Boolean success) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19727" name="MustLieOnTheActualPlume_NotMerelyWithinInteractionReach" fullname="CavesOfOoo.Tests.FoundingRestTests.MustLieOnTheActualPlume_NotMerelyWithinInteractionReach" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.002957" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19724" name="MustLieOnTheActualPlume_NotMerelyWithinInteractionReach(0,True)" fullname="CavesOfOoo.Tests.FoundingRestTests.MustLieOnTheActualPlume_NotMerelyWithinInteractionReach(0,True)" methodname="MustLieOnTheActualPlume_NotMerelyWithinInteractionReach" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1153298241" result="Failed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.001141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  clock charge
+  Expected: 70
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FoundingRestTests.AssertOutcome (System.Boolean success) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:57
+at CavesOfOoo.Tests.FoundingRestTests.MustLieOnTheActualPlume_NotMerelyWithinInteractionReach (System.Int32 distance, System.Boolean success) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:72
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19725" name="MustLieOnTheActualPlume_NotMerelyWithinInteractionReach(1,False)" fullname="CavesOfOoo.Tests.FoundingRestTests.MustLieOnTheActualPlume_NotMerelyWithinInteractionReach(1,False)" methodname="MustLieOnTheActualPlume_NotMerelyWithinInteractionReach" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="889679191" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="19726" name="MustLieOnTheActualPlume_NotMerelyWithinInteractionReach(20,False)" fullname="CavesOfOoo.Tests.FoundingRestTests.MustLieOnTheActualPlume_NotMerelyWithinInteractionReach(20,False)" methodname="MustLieOnTheActualPlume_NotMerelyWithinInteractionReach" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="439262848" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="19731" name="NonPlayerCannotTriggerGlobalMeeting" fullname="CavesOfOoo.Tests.FoundingRestTests.NonPlayerCannotTriggerGlobalMeeting" methodname="NonPlayerCannotTriggerGlobalMeeting" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1961440689" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000357" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="19730" name="RemovedOrForeignZonePlumeCannotRest" fullname="CavesOfOoo.Tests.FoundingRestTests.RemovedOrForeignZonePlumeCannotRest" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.001531" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="19728" name="RemovedOrForeignZonePlumeCannotRest(True)" fullname="CavesOfOoo.Tests.FoundingRestTests.RemovedOrForeignZonePlumeCannotRest(True)" methodname="RemovedOrForeignZonePlumeCannotRest" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1212921151" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="19729" name="RemovedOrForeignZonePlumeCannotRest(False)" fullname="CavesOfOoo.Tests.FoundingRestTests.RemovedOrForeignZonePlumeCannotRest(False)" methodname="RemovedOrForeignZonePlumeCannotRest" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="255236088" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000655" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="19736" name="RepeatSleepDoesNotRepeatTheFirstMeetingEvent" fullname="CavesOfOoo.Tests.FoundingRestTests.RepeatSleepDoesNotRepeatTheFirstMeetingEvent" methodname="RepeatSleepDoesNotRepeatTheFirstMeetingEvent" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="214194033" result="Failed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000697" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 130
+  But was:  10
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FoundingRestTests.RepeatSleepDoesNotRepeatTheFirstMeetingEvent () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:97
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="19723" name="TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed" fullname="CavesOfOoo.Tests.FoundingRestTests.TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.002428" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19720" name="TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed(50,True)" fullname="CavesOfOoo.Tests.FoundingRestTests.TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed(50,True)" methodname="TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1619767233" result="Failed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  clock charge
+  Expected: 70
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FoundingRestTests.AssertOutcome (System.Boolean success) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:57
+at CavesOfOoo.Tests.FoundingRestTests.TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed (System.Int32 rep, System.Boolean success) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19721" name="TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed(49,False)" fullname="CavesOfOoo.Tests.FoundingRestTests.TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed(49,False)" methodname="TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="640991628" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000563" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="19722" name="TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed(-150,False)" fullname="CavesOfOoo.Tests.FoundingRestTests.TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed(-150,False)" methodname="TrustedSleepHasRealRestCostAndMeeting_TrustCannotBeBypassed" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="62373165" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19739" name="UnderfootPickerRemainsReachableWithAndWithoutLoot" fullname="CavesOfOoo.Tests.FoundingRestTests.UnderfootPickerRemainsReachableWithAndWithoutLoot" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.009274" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19737" name="UnderfootPickerRemainsReachableWithAndWithoutLoot(True)" fullname="CavesOfOoo.Tests.FoundingRestTests.UnderfootPickerRemainsReachableWithAndWithoutLoot(True)" methodname="UnderfootPickerRemainsReachableWithAndWithoutLoot" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="733476341" result="Failed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.007216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  clock charge
+  Expected: 70
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FoundingRestTests.AssertOutcome (System.Boolean success) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:57
+at CavesOfOoo.Tests.FoundingRestTests.UnderfootPickerRemainsReachableWithAndWithoutLoot (System.Boolean loot) [0x0014b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:116
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=4 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="19738" name="UnderfootPickerRemainsReachableWithAndWithoutLoot(False)" fullname="CavesOfOoo.Tests.FoundingRestTests.UnderfootPickerRemainsReachableWithAndWithoutLoot(False)" methodname="UnderfootPickerRemainsReachableWithAndWithoutLoot" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="630907629" result="Failed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.001585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  clock charge
+  Expected: 70
+  But was:  10
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FoundingRestTests.AssertOutcome (System.Boolean success) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:57
+at CavesOfOoo.Tests.FoundingRestTests.UnderfootPickerRemainsReachableWithAndWithoutLoot (System.Boolean loot) [0x0014b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FoundingRestTests.cs:116
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="19732" name="UnrelatedInventoryCommandDoesNotSleep" fullname="CavesOfOoo.Tests.FoundingRestTests.UnrelatedInventoryCommandDoesNotSleep" methodname="UnrelatedInventoryCommandDoesNotSleep" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1888202610" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.001641" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="19740" name="UntaggedTerrainDoesNotAddUnderfootNavigation" fullname="CavesOfOoo.Tests.FoundingRestTests.UntaggedTerrainDoesNotAddUnderfootNavigation" methodname="UntaggedTerrainDoesNotAddUnderfootNavigation" classname="CavesOfOoo.Tests.FoundingRestTests" runstate="Runnable" seed="1620617137" result="Passed" start-time="2026-10-26 06:34:42Z" end-time="2026-10-26 06:34:42Z" duration="0.000857" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=NULL BgTilemap=NULL
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

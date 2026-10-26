@@ -1,0 +1,71 @@
+{
+  "start-time": "2026-10-26 06:27:21Z",
+  "end-time": "2026-10-26 06:27:24Z",
+  "total": "18",
+  "passed": "3",
+  "failed": "15",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.ABookkeepingOwnerDoesNotTurnTheLoneSourceIntoAPile",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion(False)",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion(True)",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(\"moved-actor\")",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(\"removed-source\")",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(\"dead-actor\")",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(\"same-id-replacement\")",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile(0)",
+      "message": "  Expected: equivalent to < \"PickTarget:17\", \"PickTarget:18\" >\n  But was:  < \"PickTarget:18\", \"PickTarget:16\", \"PickTarget:17\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent(0)",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.OnlyTheUnspentUnderfootSourceOffersHarvest(False)",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.OnlyTheUnspentUnderfootSourceOffersHarvest(True)",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.TerrainBeneathALoneSourceRemainsInEverythingHere",
+      "message": "  Expected is <System.String[2]>, actual is <System.String[3]>\n  Values differ at index [0]\n  String lengths are both 13. Strings differ at index 12.\n  Expected: \"PickTarget:33\"\n  But was:  \"PickTarget:32\"\n  -----------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection(0)",
+      "message": "  Expected: equivalent to < \"36\", \"37\" >\n  But was:  < \"35\", \"37\", \"36\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.UnderfootHarvestExecutesOnceOnTheExactSelectedOwnerAndPaysOneAction",
+      "message": "  Expected: same as <Entity(stoneburr seedheads)>\n  But was:  <Entity(you)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.UnderfootWorldActionTests.UnderfootTerrainRemainsSelectableWithoutAnActorOnlyPickerRow",
+      "message": "  Expected: same as <Entity(grass)>\n  But was:  <Entity(you)>\n"
+    }
+  ]
+}

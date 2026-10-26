@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="3" failed="15" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 06:27:21Z" end-time="2026-10-26 06:27:24Z" duration="3.0468719">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:27:21Z" end-time="2026-10-26 06:27:24Z" duration="3.046872" total="18" passed="3" failed="15" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38987" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:27:21Z" end-time="2026-10-26 06:27:24Z" duration="2.683862" total="18" passed="3" failed="15" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38988" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:27:21Z" end-time="2026-10-26 06:27:24Z" duration="2.519116" total="18" passed="3" failed="15" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38989" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31664" result="Failed" site="Child" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:24Z" duration="2.177894" total="18" passed="3" failed="15" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26897" name="UnderfootWorldActionTests" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:24Z" duration="1.966662" total="18" passed="3" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="26912" name="ABookkeepingOwnerDoesNotTurnTheLoneSourceIntoAPile" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.ABookkeepingOwnerDoesNotTurnTheLoneSourceIntoAPile" methodname="ABookkeepingOwnerDoesNotTurnTheLoneSourceIntoAPile" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1072870788" result="Failed" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:22Z" duration="0.231814" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.ABookkeepingOwnerDoesNotTurnTheLoneSourceIntoAPile () [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:212
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26903" name="ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:22Z" duration="0.199889" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26901" name="ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion(False)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion(False)" methodname="ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="171004635" result="Failed" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:22Z" duration="0.091452" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion (System.Boolean playerTagged) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:117
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26902" name="ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion(True)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion(True)" methodname="ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1196907055" result="Failed" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:22Z" duration="0.102812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.ActorIdentityRatherThanPlayerTagDeterminesUnderfootExclusion (System.Boolean playerTagged) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:117
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26921" name="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:23Z" duration="0.496883" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26917" name="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;moved-actor&quot;)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;moved-actor&quot;)" methodname="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1310828527" result="Failed" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:22Z" duration="0.112762" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority (System.String change) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:268
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26918" name="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;removed-source&quot;)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;removed-source&quot;)" methodname="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="628459142" result="Failed" start-time="2026-10-26 06:27:22Z" end-time="2026-10-26 06:27:23Z" duration="0.207109" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority (System.String change) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:268
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26919" name="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;dead-actor&quot;)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;dead-actor&quot;)" methodname="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1135678933" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.085978" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority (System.String change) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:268
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26920" name="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;same-id-replacement&quot;)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority(&quot;same-id-replacement&quot;)" methodname="AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1393354633" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.087327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.AnOpenUnderfootMenuDoesNotBypassExistingActionAuthority (System.String change) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:268
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26909" name="ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.185685" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26907" name="ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile(0)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile(0)" methodname="ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="885544184" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.092074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < "PickTarget:17", "PickTarget:18" >
+  But was:  < "PickTarget:18", "PickTarget:16", "PickTarget:17" >
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.UnderfootWorldActionTests.ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile (System.Int32 dx) [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26908" name="ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile(1)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile(1)" methodname="ASeparatePlayerTaggedOwnerIsNotHiddenFromThePile" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1863752977" result="Passed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.089724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26900" name="LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.181657" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26898" name="LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent(0)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent(0)" methodname="LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="775580147" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.088553" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent (System.Int32 dx) [0x0008a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:96
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26899" name="LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent(1)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent(1)" methodname="LoneHarvestSourceUsesItsOwnMenuUnderfootAndAdjacent" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="558974140" result="Passed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.090529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26915" name="OnlyTheUnspentUnderfootSourceOffersHarvest" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.OnlyTheUnspentUnderfootSourceOffersHarvest" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.176744" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26913" name="OnlyTheUnspentUnderfootSourceOffersHarvest(False)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.OnlyTheUnspentUnderfootSourceOffersHarvest(False)" methodname="OnlyTheUnspentUnderfootSourceOffersHarvest" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1909820799" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.087665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.OnlyTheUnspentUnderfootSourceOffersHarvest (System.Boolean spent) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:227
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26914" name="OnlyTheUnspentUnderfootSourceOffersHarvest(True)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.OnlyTheUnspentUnderfootSourceOffersHarvest(True)" methodname="OnlyTheUnspentUnderfootSourceOffersHarvest" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="896256233" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.085609" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.OnlyTheUnspentUnderfootSourceOffersHarvest (System.Boolean spent) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:227
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="26911" name="TerrainBeneathALoneSourceRemainsInEverythingHere" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.TerrainBeneathALoneSourceRemainsInEverythingHere" methodname="TerrainBeneathALoneSourceRemainsInEverythingHere" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1556551337" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:23Z" duration="0.092614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected is <System.String[2]>, actual is <System.String[3]>
+  Values differ at index [0]
+  String lengths are both 13. Strings differ at index 12.
+  Expected: "PickTarget:33"
+  But was:  "PickTarget:32"
+  -----------------------^
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEqual (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.UnderfootWorldActionTests.TerrainBeneathALoneSourceRemainsInEverythingHere () [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:193
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26906" name="TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:24Z" duration="0.179548" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26904" name="TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection(0)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection(0)" methodname="TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="723936043" result="Failed" start-time="2026-10-26 06:27:23Z" end-time="2026-10-26 06:27:24Z" duration="0.089030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < "36", "37" >
+  But was:  < "35", "37", "36" >
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.UnderfootWorldActionTests.TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection (System.Int32 dx) [0x00087] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:137
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="26905" name="TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection(1)" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection(1)" methodname="TwoActualHarvestOwnersRemainADeliberatePileAndPreserveSelection" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="803932660" result="Passed" start-time="2026-10-26 06:27:24Z" end-time="2026-10-26 06:27:24Z" duration="0.087285" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="26916" name="UnderfootHarvestExecutesOnceOnTheExactSelectedOwnerAndPaysOneAction" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.UnderfootHarvestExecutesOnceOnTheExactSelectedOwnerAndPaysOneAction" methodname="UnderfootHarvestExecutesOnceOnTheExactSelectedOwnerAndPaysOneAction" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="2100008436" result="Failed" start-time="2026-10-26 06:27:24Z" end-time="2026-10-26 06:27:24Z" duration="0.088526" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Entity(stoneburr seedheads)>
+  But was:  <Entity(you)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.UnderfootHarvestExecutesOnceOnTheExactSelectedOwnerAndPaysOneAction () [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:238
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+            </test-case>
+            <test-case id="26910" name="UnderfootTerrainRemainsSelectableWithoutAnActorOnlyPickerRow" fullname="CavesOfOoo.Tests.UnderfootWorldActionTests.UnderfootTerrainRemainsSelectableWithoutAnActorOnlyPickerRow" methodname="UnderfootTerrainRemainsSelectableWithoutAnActorOnlyPickerRow" classname="CavesOfOoo.Tests.UnderfootWorldActionTests" runstate="Runnable" seed="1244166928" result="Failed" start-time="2026-10-26 06:27:24Z" end-time="2026-10-26 06:27:24Z" duration="0.089700" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <Entity(grass)>
+  But was:  <Entity(you)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.UnderfootWorldActionTests.UnderfootTerrainRemainsSelectableWithoutAnActorOnlyPickerRow () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/UnderfootWorldActionTests.cs:177
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

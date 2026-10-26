@@ -2877,7 +2877,7 @@ namespace CavesOfOoo.Rendering
                 OpenWorldActionMenuFor(footprintOwner, CurrentZone.GetEntityCell(footprintOwner), includeBackRow: false);
                 return;
             }
-            Entity target = WorldInteractionSystem.ResolveTarget(cell);
+            Entity target = WorldInteractionSystem.ResolveTarget(cell, PlayerEntity);
             if (target == null)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
@@ -2891,7 +2891,7 @@ namespace CavesOfOoo.Rendering
             // take verb on any of them made the commonest case (a dead NPC's
             // drops) the most awkward. The per-object picker is still one
             // keystroke away for the things that are not simple loot.
-            if (WorldInteractionSystem.IsPileCell(cell))
+            if (WorldInteractionSystem.IsPileCell(cell, PlayerEntity))
             {
                 var pileRows = WorldInteractionSystem.BuildPileSummaryActions(cell, PlayerEntity);
                 if (pileRows.Count > 0)
@@ -2921,7 +2921,7 @@ namespace CavesOfOoo.Rendering
         {
             if (WorldActionMenuUI == null || cell == null) return;
 
-            Entity target = WorldInteractionSystem.ResolveTarget(cell);
+            Entity target = WorldInteractionSystem.ResolveTarget(cell, PlayerEntity);
             if (target == null)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
@@ -2929,7 +2929,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            var pickerRows = WorldInteractionSystem.BuildTargetPickerActions(cell);
+            var pickerRows = WorldInteractionSystem.BuildTargetPickerActions(cell, PlayerEntity);
             if (pickerRows.Count == 0)
             {
                 OpenWorldActionMenuFor(target, cell, includeBackRow: false);
@@ -2966,7 +2966,7 @@ namespace CavesOfOoo.Rendering
             // Terrain stacks are not loot piles, but their lower owners can
             // carry the hazard/service the player needs to inspect. Reuse the
             // actual picker rows so one selectable owner stays a direct menu.
-            if ((includeBackRow || WorldInteractionSystem.BuildTargetPickerActions(cell).Count > 1)
+            if ((includeBackRow || WorldInteractionSystem.BuildTargetPickerActions(cell, PlayerEntity).Count > 1)
                 && !actions.Exists(a => a.Command == WorldInteractionSystem.PickCellCommand))
             {
                 actions.Add(new InventoryAction(
@@ -3076,7 +3076,7 @@ namespace CavesOfOoo.Rendering
                 if (picked != null)
                 {
                     OpenWorldActionMenuFor(picked, cell,
-                        includeBackRow: WorldInteractionSystem.IsPileCell(cell));
+                        includeBackRow: WorldInteractionSystem.IsPileCell(cell, PlayerEntity));
                 }
                 else
                 {
@@ -3145,7 +3145,7 @@ namespace CavesOfOoo.Rendering
                 // the station may share its cell with loot).
                 if (target != null && cell != null)
                     OpenWorldActionMenuFor(target, cell,
-                        includeBackRow: WorldInteractionSystem.IsPileCell(cell));
+                        includeBackRow: WorldInteractionSystem.IsPileCell(cell, PlayerEntity));
                 else
                     _inputState = _worldActionMenuReturnState;
                 return;
@@ -3172,7 +3172,7 @@ namespace CavesOfOoo.Rendering
                     // directly, not via the cell picker (the station may
                     // share its cell with dropped loot).
                     OpenWorldActionMenuFor(target, cell,
-                        includeBackRow: WorldInteractionSystem.IsPileCell(cell));
+                        includeBackRow: WorldInteractionSystem.IsPileCell(cell, PlayerEntity));
                 }
                 else
                 {
@@ -4583,10 +4583,10 @@ namespace CavesOfOoo.Rendering
         private List<InventoryAction> GatherActionReaderRows(WorldActionReaderContext context)
         {
             if (context.Pile) return WorldInteractionSystem.BuildPileSummaryActions(context.Cell, PlayerEntity);
-            if (context.Picker) return WorldInteractionSystem.BuildTargetPickerActions(context.Cell);
+            if (context.Picker) return WorldInteractionSystem.BuildTargetPickerActions(context.Cell, PlayerEntity);
             var actions = WorldInteractionSystem.GatherActions(context.Owner, PlayerEntity);
             WorldInteractionSystem.AppendUnderfootActions(actions, context.Cell, PlayerEntity, context.Owner);
-            if ((context.Back || WorldInteractionSystem.BuildTargetPickerActions(context.Cell).Count > 1)
+            if ((context.Back || WorldInteractionSystem.BuildTargetPickerActions(context.Cell, PlayerEntity).Count > 1)
                 && !actions.Exists(a => a.Command == WorldInteractionSystem.PickCellCommand))
                 actions.Add(new InventoryAction("PickCell", "<< everything here", WorldInteractionSystem.PickCellCommand, '\0', 0));
             return actions;

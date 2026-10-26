@@ -48,6 +48,13 @@ namespace CavesOfOoo.Core
         /// retain the last-occupant preference of canonical cell stacks.
         /// </summary>
         public static Entity ResolveTarget(Cell cell)
+            => ResolveTarget(cell, null);
+
+        /// <summary>Resolve the world owner beneath the acting entity rather
+        /// than selecting that actor as its own interaction target. Only the
+        /// exact actor reference is excluded from the cell's physical occupants;
+        /// other creatures and Player-tagged owners keep their normal priority.</summary>
+        public static Entity ResolveTarget(Cell cell, Entity actor)
         {
             if (cell == null) return null;
             if (cell.Occupants.Count == 0) return null;
@@ -57,7 +64,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < cell.Occupants.Count; i++)
             {
                 var e = cell.Occupants[i];
-                if (!IsQueryable(e)) continue;
+                if (!IsQueryable(e) || ReferenceEquals(e, actor)) continue;
                 if (IsTerrain(e))
                 {
                     if (topTerrain == null || RenderLayer(e) >= RenderLayer(topTerrain)) topTerrain = e;
@@ -206,12 +213,17 @@ namespace CavesOfOoo.Core
         /// summary instead of a single-target Examine.
         /// </summary>
         public static bool IsPileCell(Cell cell)
+            => IsPileCell(cell, null);
+
+        /// <summary>The acting entity standing on a single world object does
+        /// not make that object a pile. Genuine non-terrain stacks still do.</summary>
+        public static bool IsPileCell(Cell cell, Entity actor)
         {
             if (cell == null) return false;
             int count = 0;
             foreach (var e in cell.Occupants)
             {
-                if (!IsQueryable(e)) continue;
+                if (!IsQueryable(e) || ReferenceEquals(e, actor)) continue;
                 if (!IsTerrain(e)) count++;
             }
             return count >= 2;
@@ -291,13 +303,18 @@ namespace CavesOfOoo.Core
         }
 
         public static List<InventoryAction> BuildTargetPickerActions(Cell cell)
+            => BuildTargetPickerActions(cell, null);
+
+        /// <summary>Keep every selectable world owner, including terrain, but
+        /// omit the acting entity when it physically occupies this cell.</summary>
+        public static List<InventoryAction> BuildTargetPickerActions(Cell cell, Entity actor)
         {
             var rows = new List<InventoryAction>();
             if (cell == null) return rows;
 
             var ordered = new List<Entity>();
             foreach (var entity in cell.Occupants)
-                if (IsQueryable(entity)) InsertByRenderLayer(ordered, entity);
+                if (IsQueryable(entity) && !ReferenceEquals(entity, actor)) InsertByRenderLayer(ordered, entity);
 
             for (int pass = 0; pass < 2; pass++)
             {

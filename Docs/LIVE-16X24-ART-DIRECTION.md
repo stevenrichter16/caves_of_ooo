@@ -1990,3 +1990,30 @@ interaction/state and earned supplies, then current-package parity and actual
 Mac journey replay. Choose the largest remaining scene-level defect from those
 views. Do not keep producing disconnected packets. Full opening/regional art,
 complete forge lifecycle and device acceptance remain open; continue this work.
+
+
+## Continuation — current packaged journey and underfoot fix, 2026-10-26
+
+[Current packaged journey](Verification/Live16x24/packaged-glade-east-journey-report.md)
+records fresh Mac seed200893250 visiting all six opening graphs with ordinary
+keyboard controls and no grants. North harvesting/brewing → East tempering a
+looted sword succeeded; kitchen dialogue and quit/Continue retained the earned
+game. Current dated Mac/Linux outputs now include glade/east composition at
+source dce87081d. Linux/device execution remains unverified. A viper killed Nella
+before reserve service, so this is a six-zone visit, **not six-service acceptance**.
+
+Actual play exposed underfoot Harvest being hidden by treating the player as
+another pile occupant. [Underfoot consistency](GRAPHICS-G3-UNDERFOOT-ACTIONS.md)
+now has RED15/18fail →176/176 native GREEN, baseline-confirmed fixture drift
+repair, independent review and actual earned editor Harvest/depletion captures.
+The frozen dce packages predate this small fix; do not describe them as containing
+it. Existing sprites, harvest authority and yields are unchanged.
+
+Next scene: kitchen court and adjoining orchard, using actual packaged18/22
+captures as playable baselines. Independent review prioritizes Beehive glyph6
+fallback and small indistinct service silhouettes/entrance. Preserve accepted
+art; use the imagegen/extraction/native/editable/integration/playtest loop and
+avoid unrelated packets. Nella service survival needs a separately scoped audit.
+Normal saves (776 files), preferences, editor state and foreign work are protected;
+no storage deletion. Whole-opening art, regional kits and physical Deck gates
+remain open. Continue across sessions from this bounded next scene.

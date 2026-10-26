@@ -32,6 +32,8 @@ namespace CavesOfOoo.Tests
             _player = new Entity { BlueprintName = "Player" };
             _player.SetTag("Player"); _player.SetTag("Creature");
             _player.AddPart(new RenderPart { RenderLayer = 10 });
+            // Rest requires a current physical actor, just like the real Player.
+            _player.AddPart(new PhysicsPart());
             _player.AddPart(new InventoryPart()); _player.AddPart(new ExaminablePart());
             _player.AddPart(new StatusEffectsPart());
             _player.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 5, Min = 0, Max = 40 };
@@ -85,6 +87,19 @@ namespace CavesOfOoo.Tests
         {
             Dispatch(command: "Examine"); AssertOutcome(false);
         }
+        [TestCase(false)] [TestCase(true)]
+        public void MissingOrForeignPhysicsCannotEstablishRestAuthority(bool foreignOwner)
+        {
+            var physics = _player.GetPart<PhysicsPart>();
+            if (foreignOwner) physics.ParentEntity = new Entity { ID = _player.ID };
+            else Assert.IsTrue(_player.RemovePart(physics));
+            int energy = _turns.GetEnergy(_player);
+
+            Dispatch();
+
+            AssertOutcome(false);
+            Assert.AreEqual(energy, _turns.GetEnergy(_player));
+        }
         [TestCase(8, false)] [TestCase(9, true)]
         public void HostileSafetyUsesTheRealRestBoundary(int distance, bool success)
         {
@@ -98,7 +113,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, NarrativeStatePart.Current.EventLog.Count(s => s == "RootedMet"));
         }
         [TestCase(true)] [TestCase(false)]
-        public void UnderfootPickerRemainsReachableWithAndWithoutLoot(bool loot)
+        public void UnderfootSleepRemainsReachableWithAndWithoutLoot(bool loot)
         {
             if (loot)
             {
@@ -107,10 +122,22 @@ namespace CavesOfOoo.Tests
             }
             var input = BuildInput(); Call(input, "InteractInDirection", 0, 0);
             var actions = Actions(input);
-            Assert.IsTrue(actions.Any(a => a.Command == WorldInteractionSystem.PickTargetCommandPrefix + _plume.ID));
-            if (loot) Assert.AreEqual(WorldInteractionSystem.ViewPileCommand, actions[0].Command);
-            var pick = actions.Single(a => a.Command == WorldInteractionSystem.PickTargetCommandPrefix + _plume.ID);
-            Call(input, "ExecuteWorldActionSelection", pick, _player, _zone.GetCell(10, 10), loot);
+            if (loot)
+            {
+                // One loose item is a direct item menu, while the marked
+                // terrain beneath it retains its explicit underfoot shortcut.
+                Assert.IsFalse(input.WorldActionMenuUI.SelectedCellIsPile);
+                var pick = actions.Single(a => a.Command == WorldInteractionSystem.PickTargetCommandPrefix + _plume.ID);
+                Call(input, "ExecuteWorldActionSelection", pick,
+                    input.WorldActionMenuUI.SelectedTarget, _zone.GetCell(10, 10), false);
+            }
+            else
+            {
+                // The actor no longer hides the sole usable terrain owner.
+                Assert.AreSame(_plume, input.WorldActionMenuUI.SelectedTarget);
+                Assert.IsFalse(input.WorldActionMenuUI.SelectedCellIsPile);
+                Assert.IsFalse(actions.Any(a => a.Command == WorldInteractionSystem.PickTargetCommandPrefix + _plume.ID));
+            }
             var sleep = Actions(input).Single(a => a.Command == Sleep);
             Call(input, "ExecuteWorldActionSelection", sleep, _plume, _zone.GetCell(10, 10), false);
             AssertOutcome(true); Assert.IsTrue(_turns.WaitingForInput);
