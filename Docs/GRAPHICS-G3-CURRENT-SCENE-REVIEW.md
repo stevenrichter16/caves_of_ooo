@@ -1,7 +1,7 @@
 # Current opening scene review
 
-Status, 2026-10-26: river shrine art and Nella southern-approach placement
-accepted in bounded ordinary Unity Play. Fresh six-zone review remains
+Status, 2026-10-26: river shrine art, Nella southern-approach placement
+and exact-speaker native dialogue portraits accepted in bounded ordinary Unity Play. Fresh six-zone review remains
 incomplete. Packaged runtime47d678995/delivery record39f68b6b3 predate these
 source changes. This pass continues the unchanged seed224401440
 checkpoint earned through the current package's opening/cellar route. It does
@@ -280,3 +280,96 @@ normal saves/preferences, clean SampleScene and borrowed GameView restored.
 remain unchanged. About421.7GiB free; storage inspection only, no cache/build
 reclamation. Only exact task-owned changes are staged and pushed. The existing
 continuation remains active.
+
+
+## Dialogue identity follow-through — planned after Nella acceptance
+
+Initial status before implementation: pending native RED. Actual capture28 shows a legacy `C`
+in the conversation gutter, although the approved keeper already renders in
+world/examine. This is a delivery wiring defect; reuse the accepted atlas rather
+than commission replacement artwork. The established multi-pass art loop for
+this owner remains valid. No new imagegen target or independent asset packet.
+
+Pre-implementation verification/corrections:
+
+| Assumption | Verified source / correction |
+| --- | --- |
+| Conversation already uses G1 art fallback | False: DialogueUI Render uses RenderString[0] and GetUiTile only. |
+| Reuse the examine document builder | Avoid: BuildWorld evaluates description providers. A subject-only AnnouncementDocument suffices. |
+| Three rows fit a 2× native portrait | False at1280×720: four overlay rows are needed; share existing integer aspect fitting. |
+| New portrait may choose the top cell occupant | False: reuse TryGetFlatExaminePortrait for the explicit speaker, with current-owner authority. |
+| Layout can move choices downward | Unnecessary: append short-node padding after choices and preserve existing hit-test rows. |
+
+Plan: explicitly bind WorldPresentation in bootstrap and input open, capture
+exact conversation/speaker/listener and visible cell on Open; resolve native
+art once and revalidate identity/current subject before repaint. Flat rejection
+must not expose an older model. Keep legacy glyph behavior, trade and dialogue
+semantics. Clear on Close/disable/destroy; dispose only owned draw material.
+Reserve columns1..8 and rows1..4 for a whole-pixel native portrait, row5 gap,
+rows6/7 faction/disposition. Only a successfully captured native portrait adds
+minimum-seven interior rows, padding after choices.
+
+Tests: native exact atlas identity and lower occupant, stale/hidden/moved/graph
+and session counter-cases, description callback avoidance, borrowed-resource
+lifetime; short/long nodes and 1280×800/720 fit. Regression includes travel
+paging and examine. Actual earned save replay: conversation, trade, return,
+close/reopen and second available native NPC. Root owns Unity; reviewers are
+read-only. All claims remain bounded to observed editor evidence, with current
+packages explicitly predating this slice.
+
+Native RED evidence before production: identity20/20 fail at the absent explicit
+WorldPresentation seam; layout7completed with5expected missing-native-layout
+failures and2unchanged legacy controls passing. Four added adversarial identity
+cases bring the focused final suite to31. Runtime uses one borrowed atlas and
+the existing color-correct FlatPixelPortraitDrawer; no camera or texture copies.
+
+### Accepted dialogue result and continuation
+
+Final native result: **31 focused identity/layout cases + 68 neighboring
+examine/paging cases = 99 passes**, zero observed failures/skips. The 24 identity
+cases include exact lower-occupant selection and repaint revocation; seven
+layout cases cover 1280×800 and 1280×720, actual camera/grid pointer conversion,
+short-node padding and long→short cleanup. Independent source review found no
+material issue. A future renderer-swap counter is optional; the explicit binding
+identity check already rejects that state.
+
+Actual ordinary keyboard replay from the unchanged earned Nella fixture:
+
+| Capture | Observed result |
+| --- | --- |
+| 35/36 | Nella9192 uses approved seed-keeper-3 art at 32×48, including a shorter topic; labels and choices remain clear. |
+| 37 | Normal topic→trade handoff; no lingering portrait. Receipt confirms inactive conversation/UI and null texture. |
+| 38 | Escape from trade, interact and chat again restores Nella's exact atlas and identity. |
+| 39–43 | Ordinary return through North to the opening. Warden patrol moves naturally; capture42 is a packed-road menu from the first missed approach, not a successful conversation. |
+| 44/45 | Warden2078 uses opening-base frame9, visibly distinct from Nella. Short reply keeps labels and choices clear. |
+| 46 | Close and reopen restores the warden's correct 32×48 portrait. Final Escape/F5 closes the image and preserves the earned isolated replay. |
+
+No actor placement, game state, inventory or gameplay action was injected.
+The screenshot loop is actual GameBootstrap gameplay; the previous approved
+artwork stays unchanged. Observer UV/atlas and 32×48 size are factual; its
+out-of-OnGUI absolute Y differs from screenshot coordinates, so visual placement
+acceptance comes from the actual PNGs. The first observational snippet had an
+unused wrong GameBootstrap namespace; it was corrected without changing runtime.
+
+🔵 Source, identity/lifecycle, layout and independent actual visual review pass.
+🟡 Fixed the contradictory letter-only conversation owner pane. The small glyph
+in the title remains textual metadata, as planned.
+🧪 Packaged runtime47d678995 predates shrine, Nella and dialogue changes; no
+physical Deck or updated-package rendering claim. Existing translucent dialogue
+fill and dim footer are separate broader UI polish, not regressions in this pass.
+
+Files: DialogueUI.Portrait.cs, DialogueUI.cs, bootstrap/input explicit binding,
+two native test fixtures and the current-scene35–46 evidence/receipts. No art
+source was recreated or replaced for this wiring fix.
+
+Owned test/play isolation was finished and archived; normal saves/preferences,
+SampleScene and borrowed GameView restored. All 776 normal save files, 374
+approved art/source files and two unrelated screenshots remain unchanged.
+About421.5GiB free; inspection only, no storage reclamation. Unity importer-only
+trailing whitespace was backed up and restored without changing metadata values.
+
+Next scoped work: finish the visible Nella CopperPipe/PeatBog corner using its
+real conductor/wet/flammable semantics, then fresh East/Orven whole views and
+remaining six-zone acceptance. Keep the restored earned Nella fixture for an
+ordinary visit. Do not confuse the accepted service close view with whole-zone
+completion. Continue the existing graphics heartbeat; no arbitrary cutoff.

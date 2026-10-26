@@ -12,7 +12,7 @@ namespace CavesOfOoo.Rendering
     /// Follows the same world-space popup pattern as PickupUI.
     /// Shows NPC speech text (word-wrapped) and numbered player choices.
     /// </summary>
-    public class DialogueUI : MonoBehaviour
+    public partial class DialogueUI : MonoBehaviour
     {
         public Tilemap Tilemap;
         public Tilemap BgTilemap;
@@ -95,6 +95,7 @@ namespace CavesOfOoo.Rendering
             _cursorIndex = 0;
             _conversationEnded = false;
             ClosingActivationKey = KeyCode.None;
+            CapturePortrait();
             RebuildText();
             Render();
         }
@@ -102,6 +103,7 @@ namespace CavesOfOoo.Rendering
         public void Close()
         {
             _isOpen = false;
+            ClearPortrait();
             // Clear foreground glyphs (borders, text, choices, action bar)
             // using the rectangle cached at the last Render — not the
             // current _popupW/_popupH, which may have shifted from a prior
@@ -417,7 +419,9 @@ namespace CavesOfOoo.Rendering
 
             // Layout: top border (with embedded title) + text lines + blank + choices + bottom border + action bar
             // = 1 + textLines + 1 + choiceCount + 1 + 1
-            _popupH = 1 + textLines + 1 + choiceCount + 1 + 1;
+            int interiorRows = textLines + 1 + choiceCount;
+            if (NativePortraitLayout) interiorRows = Mathf.Max(7, interiorRows);
+            _popupH = interiorRows + 3;
 
             _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(_popupW);
             _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
@@ -583,6 +587,16 @@ namespace CavesOfOoo.Rendering
                     y++;
                 }
 
+                // Short native portraits need room below the choices. Append
+                // padding here so the established choice and pointer rows stay put.
+                while (y < _popupH - 2)
+                {
+                    DrawChar(0, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                    DrawChar(_popupW - 1, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                    if (dividerX > 0) DrawChar(dividerX, y, CP437TilesetGenerator.BoxVertical, borderColor);
+                    y++;
+                }
+
                 DrawChar(0, y, CP437TilesetGenerator.BoxBottomLeft, borderColor);
                 for (int i = 1; i < _popupW - 1; i++)
                     DrawChar(i, y, CP437TilesetGenerator.BoxHorizontal, borderColor);
@@ -594,12 +608,12 @@ namespace CavesOfOoo.Rendering
                 if (UsePortraitPanel && dividerX > 0)
                 {
                     int panelInnerWidth = dividerX - 1;
-                    int interiorRows = textLines + 1 + choiceCount;
+                    int interiorRows = _popupH - 3;
                     int gap = interiorRows >= 5 ? 2 : 1;
 
                     int glyphRow = 1;
                     int glyphCol = 1 + (panelInnerWidth - 1) / 2;
-                    DrawChar(glyphCol, glyphRow, speakerGlyph, speakerGlyphColor);
+                    if (!NativePortraitLayout) DrawChar(glyphCol, glyphRow, speakerGlyph, speakerGlyphColor);
 
                     // The portrait panel was the last surface in the game
                     // printing a raw internal faction ID at the player —
@@ -620,7 +634,7 @@ namespace CavesOfOoo.Rendering
                     {
                         int maxFacLen = panelInnerWidth;
                         string f = faction.Length > maxFacLen ? faction.Substring(0, maxFacLen) : faction;
-                        int facRow = glyphRow + gap;
+                        int facRow = NativePortraitLayout ? 6 : glyphRow + gap;
                         int facCol = 1 + (panelInnerWidth - f.Length) / 2;
                         if (facRow <= interiorRows)
                             DrawText(facCol, facRow, f, QudColorParser.Gray);
@@ -631,7 +645,7 @@ namespace CavesOfOoo.Rendering
                     {
                         int maxDispoLen = panelInnerWidth;
                         string d = dispo.Length > maxDispoLen ? dispo.Substring(0, maxDispoLen) : dispo;
-                        int dispoRow = glyphRow + gap * 2;
+                        int dispoRow = NativePortraitLayout ? 7 : glyphRow + gap * 2;
                         int dispoCol = 1 + (panelInnerWidth - d.Length) / 2;
                         if (dispoRow <= interiorRows)
                             DrawText(dispoCol, dispoRow, d, dispoColor);

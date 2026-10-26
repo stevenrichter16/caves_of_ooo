@@ -637,6 +637,7 @@ namespace CavesOfOoo
                         dialogueUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
                     }
                     dialogueUI.PopupCamera = popupOverlayCamera;
+                    dialogueUI.WorldPresentation = ZoneRenderer;
                     inputHandler.DialogueUI = dialogueUI;
 
                     var tradeUI = GetComponent<TradeUI>();

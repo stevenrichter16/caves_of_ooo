@@ -2396,3 +2396,16 @@ for the next scoped view. Conversation28 exposes a legacy letter portrait;
 audit exact-subject reuse, then continue the conductive pipe/bog corner and
 fresh East/Orven views. Packages47d678995 predate these source changes. Normal
 saves/preferences/editor restored; no storage cleanup. Keep continuation active.
+
+### 2026-10-26 continuation: dialogue identity integrated
+
+Nella and the opening warden now use their exact approved native art in the
+conversation owner pane. Reuses the current world/examine resolver and
+color-correct flat drawer, with exact session/current-subject checks. No art
+replacement, description callbacks, model capture or texture copies.
+31 focused and68 adjacent native cases pass; actual35–46 screenshots show
+topic changes, trade cleanup, reopening and distinct NPC frames. Both32×48
+portraits fit with labels/choices. See the current-scene review for scope and
+failed/pre-fix evidence. Ordinary test saves/preferences/view are restored;
+storage remains inspection-only. Current packages47d678995 predate this work.
+Next: Nella's conductive pipe/bog corner, then fresh East/Orven whole views.

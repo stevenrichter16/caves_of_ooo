@@ -4322,6 +4322,7 @@ namespace CavesOfOoo.Rendering
             EnterCenteredPopupOverlayView();
             DialogueUI.PlayerEntity = PlayerEntity;
             DialogueUI.CurrentZone = CurrentZone;
+            DialogueUI.WorldPresentation = ZoneRenderer;
             DialogueUI.Open();
             _inputState = InputState.DialogueOpen;
         }
