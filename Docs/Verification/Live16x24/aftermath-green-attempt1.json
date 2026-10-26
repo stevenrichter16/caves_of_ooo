@@ -1,0 +1,2166 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "412d26a3be244eeaa230b4553206e836",
+      "status": "succeeded",
+      "mode": "EditMode",
+      "started_unix_ms": 1793013195803,
+      "finished_unix_ms": 1793013208122,
+      "last_update_unix_ms": 1793013208122,
+      "progress": {
+        "completed": 236,
+        "total": 236,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793013208075,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UntakeableItemKeepsTruthfulFallbackButNotItsPortableArt",
+        "last_finished_unix_ms": 1793013208076,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": {
+        "mode": "EditMode",
+        "summary": {
+          "total": 236,
+          "passed": 236,
+          "failed": 0,
+          "skipped": 0,
+          "durationSeconds": 9.2567994,
+          "resultState": "Passed"
+        },
+        "results": [
+          {
+            "name": "CorpsePart_CellResolvable_WhenDiedFires_EvenDuringFullHandleDeath",
+            "fullName": "CavesOfOoo.Tests.CorpsePartTests.CorpsePart_CellResolvable_WhenDiedFires_EvenDuringFullHandleDeath",
+            "state": "Passed",
+            "durationSeconds": 0.0273019,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CorpsePart_DoesNotSpawn_WhenCorpseChanceZero",
+            "fullName": "CavesOfOoo.Tests.CorpsePartTests.CorpsePart_DoesNotSpawn_WhenCorpseChanceZero",
+            "state": "Passed",
+            "durationSeconds": 0.0046134,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CorpsePart_SelfKiller_NoKillerPropertiesAssigned",
+            "fullName": "CavesOfOoo.Tests.CorpsePartTests.CorpsePart_SelfKiller_NoKillerPropertiesAssigned",
+            "state": "Passed",
+            "durationSeconds": 0.004316,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CorpsePart_SpawnedCorpseCarries_CreatureName_And_SourceBlueprint",
+            "fullName": "CavesOfOoo.Tests.CorpsePartTests.CorpsePart_SpawnedCorpseCarries_CreatureName_And_SourceBlueprint",
+            "state": "Passed",
+            "durationSeconds": 0.0059281,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CorpsePart_SpawnedCorpseCarries_KillerID_WhenKillerHasID",
+            "fullName": "CavesOfOoo.Tests.CorpsePartTests.CorpsePart_SpawnedCorpseCarries_KillerID_WhenKillerHasID",
+            "state": "Passed",
+            "durationSeconds": 0.0036074,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CorpsePart_SpawnsCorpseAtDeathCell_WhenChance100",
+            "fullName": "CavesOfOoo.Tests.CorpsePartTests.CorpsePart_SpawnsCorpseAtDeathCell_WhenChance100",
+            "state": "Passed",
+            "durationSeconds": 0.0046905,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CorpsePart_SuppressCorpseDropsTag_PreventsSpawn",
+            "fullName": "CavesOfOoo.Tests.CorpsePartTests.CorpsePart_SuppressCorpseDropsTag_PreventsSpawn",
+            "state": "Passed",
+            "durationSeconds": 0.0037155,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CapacityOverflowKeepsEveryProductOnTheSourceCell",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.CapacityOverflowKeepsEveryProductOnTheSourceCell",
+            "state": "Passed",
+            "durationSeconds": 0.0693312,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CarriedHarvestIsSingleUseAndSpentTargetStopsAdvertising",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.CarriedHarvestIsSingleUseAndSpentTargetStopsAdvertising",
+            "state": "Passed",
+            "durationSeconds": 0.0335801,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignCarriedSourceCannotYieldOrBeSpent",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ForeignCarriedSourceCannotYieldOrBeSpent",
+            "state": "Passed",
+            "durationSeconds": 0.0342487,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedYieldBoundsRefuseWithoutChangingSource(-1,1,100)",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(-1,1,100)",
+            "state": "Passed",
+            "durationSeconds": 0.0528975,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedYieldBoundsRefuseWithoutChangingSource(2,1,100)",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(2,1,100)",
+            "state": "Passed",
+            "durationSeconds": 0.0832669,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedYieldBoundsRefuseWithoutChangingSource(1,65,100)",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(1,65,100)",
+            "state": "Passed",
+            "durationSeconds": 0.1037495,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedYieldBoundsRefuseWithoutChangingSource(1,1,-1)",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(1,1,-1)",
+            "state": "Passed",
+            "durationSeconds": 0.0338871,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedYieldBoundsRefuseWithoutChangingSource(1,1,101)",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(1,1,101)",
+            "state": "Passed",
+            "durationSeconds": 0.033398,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingActorRefusesWithoutSpending",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MissingActorRefusesWithoutSpending",
+            "state": "Passed",
+            "durationSeconds": 0.0320973,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingYieldInfrastructureRefusesWithoutLosingTheSource(\"no-factory\")",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MissingYieldInfrastructureRefusesWithoutLosingTheSource(\"no-factory\")",
+            "state": "Passed",
+            "durationSeconds": 0.0335461,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingYieldInfrastructureRefusesWithoutLosingTheSource(\"unknown-yield\")",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MissingYieldInfrastructureRefusesWithoutLosingTheSource(\"unknown-yield\")",
+            "state": "Passed",
+            "durationSeconds": 0.0336089,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NoOverflowDestinationRefusesAtomically",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.NoOverflowDestinationRefusesAtomically",
+            "state": "Passed",
+            "durationSeconds": 0.0335429,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "OuterCommandRollbackRestoresSourceAndAllYield(False)",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.OuterCommandRollbackRestoresSourceAndAllYield(False)",
+            "state": "Passed",
+            "durationSeconds": 0.0362567,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "OuterCommandRollbackRestoresSourceAndAllYield(True)",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.OuterCommandRollbackRestoresSourceAndAllYield(True)",
+            "state": "Passed",
+            "durationSeconds": 0.0322586,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ProductInitializationCannotReenterTheSameHarvest",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ProductInitializationCannotReenterTheSameHarvest",
+            "state": "Passed",
+            "durationSeconds": 0.0339713,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ProductInitializationMovingSourceAwayRejectsTheOuterHarvest",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ProductInitializationMovingSourceAwayRejectsTheOuterHarvest",
+            "state": "Passed",
+            "durationSeconds": 0.0337672,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldHarvestRequiresALivingPresentActorWithinReach(\"distant\")",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"distant\")",
+            "state": "Passed",
+            "durationSeconds": 0.0323244,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldHarvestRequiresALivingPresentActorWithinReach(\"detached\")",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"detached\")",
+            "state": "Passed",
+            "durationSeconds": 0.0322031,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldHarvestRequiresALivingPresentActorWithinReach(\"foreign-zone\")",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"foreign-zone\")",
+            "state": "Passed",
+            "durationSeconds": 0.0333649,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldHarvestRequiresALivingPresentActorWithinReach(\"dead\")",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"dead\")",
+            "state": "Passed",
+            "durationSeconds": 0.0330293,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ZeroChanceStillSpendsExactlyOnce",
+            "fullName": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ZeroChanceStillSpendsExactlyOnce",
+            "state": "Passed",
+            "durationSeconds": 0.0329957,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_FullyMergedGlandCannotKeepAnOldPortrait",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_FullyMergedGlandCannotKeepAnOldPortrait",
+            "state": "Passed",
+            "durationSeconds": 0.0530874,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_OverweightPickupDoesNotLoseWorldArtwork",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_OverweightPickupDoesNotLoseWorldArtwork",
+            "state": "Passed",
+            "durationSeconds": 0.0568948,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_RawFootprintMutationNeedsCanonicalRepair(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_RawFootprintMutationNeedsCanonicalRepair(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0464806,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_RawFootprintMutationNeedsCanonicalRepair(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_RawFootprintMutationNeedsCanonicalRepair(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0401021,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_RawFootprintMutationNeedsCanonicalRepair(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_RawFootprintMutationNeedsCanonicalRepair(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0402314,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_ReplacedGraphRevokesWorldAndCarriedPresentation(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_ReplacedGraphRevokesWorldAndCarriedPresentation(0)",
+            "state": "Passed",
+            "durationSeconds": 0.043974,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_ReplacedGraphRevokesWorldAndCarriedPresentation(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_ReplacedGraphRevokesWorldAndCarriedPresentation(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0419853,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_ReplacedGraphRevokesWorldAndCarriedPresentation(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_ReplacedGraphRevokesWorldAndCarriedPresentation(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0464793,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_SameIdReplacementRevokesOldWorldReader(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_SameIdReplacementRevokesOldWorldReader(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0917758,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_SameIdReplacementRevokesOldWorldReader(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_SameIdReplacementRevokesOldWorldReader(1)",
+            "state": "Passed",
+            "durationSeconds": 0.1201282,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_SameIdReplacementRevokesOldWorldReader(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_SameIdReplacementRevokesOldWorldReader(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0409138,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_TransferToAnotherActorRevokesCarriedReader(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_TransferToAnotherActorRevokesCarriedReader(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0410735,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_TransferToAnotherActorRevokesCarriedReader(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_TransferToAnotherActorRevokesCarriedReader(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0403362,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_TransferToAnotherActorRevokesCarriedReader(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_TransferToAnotherActorRevokesCarriedReader(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0400239,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_UnavailableAtlasPreservesWorldAndReaderGlyphs(0,0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_UnavailableAtlasPreservesWorldAndReaderGlyphs(0,0)",
+            "state": "Passed",
+            "durationSeconds": 0.0417368,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_UnavailableAtlasPreservesWorldAndReaderGlyphs(16,24)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_UnavailableAtlasPreservesWorldAndReaderGlyphs(16,24)",
+            "state": "Passed",
+            "durationSeconds": 0.0413001,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_UnavailableAtlasPreservesWorldAndReaderGlyphs(48,23)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_UnavailableAtlasPreservesWorldAndReaderGlyphs(48,23)",
+            "state": "Passed",
+            "durationSeconds": 0.0396494,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_UnknownOrLivingIdentityDoesNotLoadAftermath(\"CreatureCorpse\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_UnknownOrLivingIdentityDoesNotLoadAftermath(\"CreatureCorpse\")",
+            "state": "Passed",
+            "durationSeconds": 0.0442346,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_UnknownOrLivingIdentityDoesNotLoadAftermath(\"Magpie\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_UnknownOrLivingIdentityDoesNotLoadAftermath(\"Magpie\")",
+            "state": "Passed",
+            "durationSeconds": 0.0399696,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "Adversarial_UnknownOrLivingIdentityDoesNotLoadAftermath(\"BogSap\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathAdversarialTests.Adversarial_UnknownOrLivingIdentityDoesNotLoadAftermath(\"BogSap\")",
+            "state": "Passed",
+            "durationSeconds": 0.0405204,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ActualViperHarvestRemovesTheBodyEvenWhenTheFiniteYieldRollFails(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ActualViperHarvestRemovesTheBodyEvenWhenTheFiniteYieldRollFails(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0432587,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ActualViperHarvestRemovesTheBodyEvenWhenTheFiniteYieldRollFails(100)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ActualViperHarvestRemovesTheBodyEvenWhenTheFiniteYieldRollFails(100)",
+            "state": "Passed",
+            "durationSeconds": 0.0398752,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CachedNeutralIdentityDoesNotRequireADeadSourceOrMutateSimulation(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.CachedNeutralIdentityDoesNotRequireADeadSourceOrMutateSimulation(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0408526,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CachedNeutralIdentityDoesNotRequireADeadSourceOrMutateSimulation(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.CachedNeutralIdentityDoesNotRequireADeadSourceOrMutateSimulation(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0405345,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CachedNeutralIdentityDoesNotRequireADeadSourceOrMutateSimulation(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.CachedNeutralIdentityDoesNotRequireADeadSourceOrMutateSimulation(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0415407,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DisposalReleasesOnlyCachedFramesAndLeavesBorrowedTextureAndPeerAlive",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.DisposalReleasesOnlyCachedFramesAndLeavesBorrowedTextureAndPeerAlive",
+            "state": "Passed",
+            "durationSeconds": 0.0370381,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactCorpseProvenanceAndOptionalHarvestStateAreRequired(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ExactCorpseProvenanceAndOptionalHarvestStateAreRequired(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0375198,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactCorpseProvenanceAndOptionalHarvestStateAreRequired(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ExactCorpseProvenanceAndOptionalHarvestStateAreRequired(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0363388,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExistingLivingAnimalsAndApprovedMarlbackCorpseKeepTheirCurrentArtwork",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ExistingLivingAnimalsAndApprovedMarlbackCorpseKeepTheirCurrentArtwork",
+            "state": "Passed",
+            "durationSeconds": 0.041488,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExplicitReskinsForeignPartsAndInvalidPortableShapesCannotBorrowNativeArt(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ExplicitReskinsForeignPartsAndInvalidPortableShapesCannotBorrowNativeArt(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0368523,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExplicitReskinsForeignPartsAndInvalidPortableShapesCannotBorrowNativeArt(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ExplicitReskinsForeignPartsAndInvalidPortableShapesCannotBorrowNativeArt(1)",
+            "state": "Passed",
+            "durationSeconds": 0.1050848,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExplicitReskinsForeignPartsAndInvalidPortableShapesCannotBorrowNativeArt(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ExplicitReskinsForeignPartsAndInvalidPortableShapesCannotBorrowNativeArt(2)",
+            "state": "Passed",
+            "durationSeconds": 0.1210692,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FogMovedCellReplacedGraphAndOutsideOpeningCannotDiscloseNativeArt(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.FogMovedCellReplacedGraphAndOutsideOpeningCannotDiscloseNativeArt(0)",
+            "state": "Passed",
+            "durationSeconds": 0.1269657,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FogMovedCellReplacedGraphAndOutsideOpeningCannotDiscloseNativeArt(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.FogMovedCellReplacedGraphAndOutsideOpeningCannotDiscloseNativeArt(1)",
+            "state": "Passed",
+            "durationSeconds": 0.1301175,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FogMovedCellReplacedGraphAndOutsideOpeningCannotDiscloseNativeArt(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.FogMovedCellReplacedGraphAndOutsideOpeningCannotDiscloseNativeArt(2)",
+            "state": "Passed",
+            "durationSeconds": 0.1607012,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrMalformedResourceKeepsGlyphFallback(False)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.MissingOrMalformedResourceKeepsGlyphFallback(False)",
+            "state": "Passed",
+            "durationSeconds": 0.1142233,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrMalformedResourceKeepsGlyphFallback(True)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.MissingOrMalformedResourceKeepsGlyphFallback(True)",
+            "state": "Passed",
+            "durationSeconds": 0.0407089,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PickupDropAndExactCarriedReaderRevokeStaleWorldDocuments(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.PickupDropAndExactCarriedReaderRevokeStaleWorldDocuments(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0429051,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PickupDropAndExactCarriedReaderRevokeStaleWorldDocuments(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.PickupDropAndExactCarriedReaderRevokeStaleWorldDocuments(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0422801,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PickupDropAndExactCarriedReaderRevokeStaleWorldDocuments(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.PickupDropAndExactCarriedReaderRevokeStaleWorldDocuments(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0395772,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PileTopAndCustodyRemainAuthoritativeForCorpseAndProduct",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.PileTopAndCustodyRemainAuthoritativeForCorpseAndProduct",
+            "state": "Passed",
+            "durationSeconds": 0.0409292,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealCorpseSpawnerProducesPersistentIdentityWithoutKeepingTheLivingEntity(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.RealCorpseSpawnerProducesPersistentIdentityWithoutKeepingTheLivingEntity(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0414647,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealCorpseSpawnerProducesPersistentIdentityWithoutKeepingTheLivingEntity(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.RealCorpseSpawnerProducesPersistentIdentityWithoutKeepingTheLivingEntity(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0405282,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealCudgelPileKeepsItsTopOwnerWhileTheExactCorpseReaderShowsTheBody",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.RealCudgelPileKeepsItsTopOwnerWhileTheExactCorpseReaderShowsTheBody",
+            "state": "Passed",
+            "durationSeconds": 0.0396157,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.10.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.10.0\")",
+            "state": "Passed",
+            "durationSeconds": 0.0436148,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.10.1\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.10.1\")",
+            "state": "Passed",
+            "durationSeconds": 0.0417221,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.9.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.9.0\")",
+            "state": "Passed",
+            "durationSeconds": 0.0401962,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.8.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.11.8.0\")",
+            "state": "Passed",
+            "durationSeconds": 0.040234,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.12.10.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.12.10.0\")",
+            "state": "Passed",
+            "durationSeconds": 0.0437493,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.12.11.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.ThreeRealIdentitiesUseNativeWorldAndMatchingSubjectInEachAdmittedGraph(\"Overworld.12.11.0\")",
+            "state": "Passed",
+            "durationSeconds": 0.0430427,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "VenomGlandRequiresItsActualOwnedPositiveToxicReagent",
+            "fullName": "CavesOfOoo.Tests.FlatPixelAftermathTests.VenomGlandRequiresItsActualOwnedPositiveToxicReagent",
+            "state": "Passed",
+            "durationSeconds": 0.0390299,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "AuthorizedFootprintCellUsesItsSelectedSubjectInsteadOfRequiringItsAnchor",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.AuthorizedFootprintCellUsesItsSelectedSubjectInsteadOfRequiringItsAnchor",
+            "state": "Passed",
+            "durationSeconds": 0.0049455,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"lost\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"lost\")",
+            "state": "Passed",
+            "durationSeconds": 0.0015094,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"transfer\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"transfer\")",
+            "state": "Passed",
+            "durationSeconds": 0.0011242,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"hidden\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"hidden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0012817,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"empty-stack\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedPortraitEndsWithItsActualOwnershipNotTheDocumentReference(\"empty-stack\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010692,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(\"detached\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(\"detached\")",
+            "state": "Passed",
+            "durationSeconds": 0.0014639,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(\"foreign-zone\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.CarriedSubjectCannotBorrowAFlatZoneFromAnAbsentViewer(\"foreign-zone\")",
+            "state": "Passed",
+            "durationSeconds": 0.0014844,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ClearingOrDisposingPortraitsCannotDestroySharedWorldFrames",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ClearingOrDisposingPortraitsCannotDestroySharedWorldFrames",
+            "state": "Passed",
+            "durationSeconds": 0.0025999,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactSubjectCatalogQueryReusesBorrowedFramesWithoutWorldPlacement",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ExactSubjectCatalogQueryReusesBorrowedFramesWithoutWorldPlacement",
+            "state": "Passed",
+            "durationSeconds": 0.0015159,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExplicitLowerOccupantPortraitDoesNotBecomeTheCellTopOwner",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ExplicitLowerOccupantPortraitDoesNotBecomeTheCellTopOwner",
+            "state": "Passed",
+            "durationSeconds": 0.0021205,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,False)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,False)",
+            "state": "Passed",
+            "durationSeconds": 0.0024298,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,True)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(False,True)",
+            "state": "Passed",
+            "durationSeconds": 0.0018415,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,False)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,False)",
+            "state": "Passed",
+            "durationSeconds": 0.001451,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,True)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.GenuineCarriedAndEquippedTorchWorksWhileInventoryOwnsTheCanvas(True,True)",
+            "state": "Passed",
+            "durationSeconds": 0.001103,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InactivePresentationPreservesTheExactLegacyModelRoute",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InactivePresentationPreservesTheExactLegacyModelRoute",
+            "state": "Passed",
+            "durationSeconds": 2.2107966,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(\"missing\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(\"missing\")",
+            "state": "Passed",
+            "durationSeconds": 0.0048615,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(\"foreign\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.InvalidStatePartUsesHonestFlatFallbackRatherThanAnotherNativeState(\"foreign\")",
+            "state": "Passed",
+            "durationSeconds": 0.0044964,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(False)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(False)",
+            "state": "Passed",
+            "durationSeconds": 0.0054713,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(True)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.ManagedGraphReplacementRevokesWorldAndInventoryPresentationAuthority(True)",
+            "state": "Passed",
+            "durationSeconds": 0.0046831,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(False)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(False)",
+            "state": "Passed",
+            "durationSeconds": 0.0045183,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(True)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.MissingOrMalformedStateAtlasUsesFlatFallbackAndKeepsOtherGroups(True)",
+            "state": "Passed",
+            "durationSeconds": 0.0039805,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PlainAnnouncementAndBareSubjectNeverGainPortraitAuthority",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PlainAnnouncementAndBareSubjectNeverGainPortraitAuthority",
+            "state": "Passed",
+            "durationSeconds": 0.001176,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(\"subject-hidden\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(\"subject-hidden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0034256,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(\"flat-mode-left\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(\"flat-mode-left\")",
+            "state": "Passed",
+            "durationSeconds": 0.0014624,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(\"presented-zone-left\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PopupBindingUsesNativePortraitAndInvalidatesCachedImagesWithoutRecapture(\"presented-zone-left\")",
+            "state": "Passed",
+            "durationSeconds": 0.0014659,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"moved\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"moved\")",
+            "state": "Passed",
+            "durationSeconds": 0.0023919,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"removed\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"removed\")",
+            "state": "Passed",
+            "durationSeconds": 0.0013836,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"hidden\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"hidden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0011741,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"fog\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"fog\")",
+            "state": "Passed",
+            "durationSeconds": 0.0011094,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"unexplored\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"unexplored\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010846,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"replaced-cell\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"replaced-cell\")",
+            "state": "Passed",
+            "durationSeconds": 0.0014205,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"foreign-render\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"foreign-render\")",
+            "state": "Passed",
+            "durationSeconds": 0.0013875,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"viewer-left\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.PreviouslyValidWorldPortraitCannotSurviveLossOfCapturedAuthority(\"viewer-left\")",
+            "state": "Passed",
+            "durationSeconds": 0.0012184,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RepairAndPoolRefreshUseActualPartsRatherThanAnOldCachedImage",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.RepairAndPoolRefreshUseActualPartsRatherThanAnOldCachedImage",
+            "state": "Passed",
+            "durationSeconds": 0.0016746,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SameAddressDifferentGraphCannotBorrowTheCurrentFlatPresentation",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameAddressDifferentGraphCannotBorrowTheCurrentFlatPresentation",
+            "state": "Passed",
+            "durationSeconds": 0.0014638,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"wet\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"wet\")",
+            "state": "Passed",
+            "durationSeconds": 0.0060778,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"frozen\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"frozen\")",
+            "state": "Passed",
+            "durationSeconds": 0.0019778,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"disabled\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"disabled\")",
+            "state": "Passed",
+            "durationSeconds": 0.0014093,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"empty\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SameDocumentRefreshReadsCurrentFlameWithoutChangingItsTextOrFuel(\"empty\")",
+            "state": "Passed",
+            "durationSeconds": 0.001218,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SwitchingFromLegacyToFlatReleasesPreviewButNotBorrowedAtlas",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.SwitchingFromLegacyToFlatReleasesPreviewButNotBorrowedAtlas",
+            "state": "Passed",
+            "durationSeconds": 1.412324,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(False,9)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(False,9)",
+            "state": "Passed",
+            "durationSeconds": 0.0168439,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(True,10)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelExaminePortraitTests.WorldTorchBorrowsTheExactCurrentStateFrameWithoutAnyPreview(True,10)",
+            "state": "Passed",
+            "durationSeconds": 0.0011839,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CoveredOwnerIsNotRepaintedOrQueriedThroughAnotherTopOwner",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.CoveredOwnerIsNotRepaintedOrQueriedThroughAnotherTopOwner",
+            "state": "Passed",
+            "durationSeconds": 0.1581492,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DefaultWorldAndCatalogBindAllNineActualImportedFrames",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.DefaultWorldAndCatalogBindAllNineActualImportedFrames",
+            "state": "Passed",
+            "durationSeconds": 0.0039405,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DisposalReleasesOnlyOwnGeneratedFrames",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.DisposalReleasesOnlyOwnGeneratedFrames",
+            "state": "Passed",
+            "durationSeconds": 0.0009738,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "EighthAtlasIsIndependentAndEarlierInjectorsNeverLoadIt",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.EighthAtlasIsIndependentAndEarlierInjectorsNeverLoadIt",
+            "state": "Passed",
+            "durationSeconds": 0.0005008,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0008378,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0004676,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0003695,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(3)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(3)",
+            "state": "Passed",
+            "durationSeconds": 0.0003196,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(4)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(4)",
+            "state": "Passed",
+            "durationSeconds": 0.0003162,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(5)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(5)",
+            "state": "Passed",
+            "durationSeconds": 0.0003525,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(6)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(6)",
+            "state": "Passed",
+            "durationSeconds": 0.0003428,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(7)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ExactOwnersUseCachedNativeFramesWithoutChangingGameplay(7)",
+            "state": "Passed",
+            "durationSeconds": 0.0003908,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignRendererCannotRedirectOrClearTheActualOwnersTracker",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignRendererCannotRedirectOrClearTheActualOwnersTracker",
+            "state": "Passed",
+            "durationSeconds": 0.0449942,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0008617,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0003413,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0003151,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(3)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(3)",
+            "state": "Passed",
+            "durationSeconds": 0.0003073,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(4)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(4)",
+            "state": "Passed",
+            "durationSeconds": 0.0003,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(5)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(5)",
+            "state": "Passed",
+            "durationSeconds": 0.0003484,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(6)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(6)",
+            "state": "Passed",
+            "durationSeconds": 0.000328,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(7)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ForeignVisualRenderPhysicsAndIdentityCannotBorrowTheseFrames(7)",
+            "state": "Passed",
+            "durationSeconds": 0.000384,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FunctionalPartsMustBelongToTheActualOwner(0,\"AlchemyStill\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(0,\"AlchemyStill\")",
+            "state": "Passed",
+            "durationSeconds": 0.0009082,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FunctionalPartsMustBelongToTheActualOwner(1,\"Container\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(1,\"Container\")",
+            "state": "Passed",
+            "durationSeconds": 0.0003851,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FunctionalPartsMustBelongToTheActualOwner(7,\"FieldMedicine\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,\"FieldMedicine\")",
+            "state": "Passed",
+            "durationSeconds": 0.0006129,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FunctionalPartsMustBelongToTheActualOwner(7,\"Inventory\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,\"Inventory\")",
+            "state": "Passed",
+            "durationSeconds": 0.0003751,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FunctionalPartsMustBelongToTheActualOwner(7,\"Body\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,\"Body\")",
+            "state": "Passed",
+            "durationSeconds": 0.000386,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FunctionalPartsMustBelongToTheActualOwner(7,\"Brain\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.FunctionalPartsMustBelongToTheActualOwner(7,\"Brain\")",
+            "state": "Passed",
+            "durationSeconds": 0.0003912,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0004884,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(3)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(3)",
+            "state": "Passed",
+            "durationSeconds": 0.0003174,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(4)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.HarvestArtworkRequiresUnspentExactFiniteYieldAndVegetation(4)",
+            "state": "Passed",
+            "durationSeconds": 0.0003043,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HealingSlotUsesActualSupplyNotHealthThresholdOrSeparateAntidote",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.HealingSlotUsesActualSupplyNotHealthThresholdOrSeparateAntidote",
+            "state": "Passed",
+            "durationSeconds": 0.0010492,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "HiddenChangesStayHiddenAndRevealCurrentSupply",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.HiddenChangesStayHiddenAndRevealCurrentSupply",
+            "state": "Passed",
+            "durationSeconds": 0.04418,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"zero-stack\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"zero-stack\")",
+            "state": "Passed",
+            "durationSeconds": 0.0011574,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"foreign-inventory\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"foreign-inventory\")",
+            "state": "Passed",
+            "durationSeconds": 0.0004242,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"equipped\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"equipped\")",
+            "state": "Passed",
+            "durationSeconds": 0.000386,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"foreign-physics\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"foreign-physics\")",
+            "state": "Passed",
+            "durationSeconds": 0.0003884,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"foreign-tonic\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"foreign-tonic\")",
+            "state": "Passed",
+            "durationSeconds": 0.0003814,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"no-healing\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"no-healing\")",
+            "state": "Passed",
+            "durationSeconds": 0.000391,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"on-ground\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvalidMedicineReferencesNeverPaintAFullHealingSlot(\"on-ground\")",
+            "state": "Passed",
+            "durationSeconds": 0.0006789,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(\"paused\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(\"paused\")",
+            "state": "Passed",
+            "durationSeconds": 0.0485093,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(\"mode\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(\"mode\")",
+            "state": "Passed",
+            "durationSeconds": 0.0522233,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(\"disabled\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.InvisibleWorldDoesNotPollSupplyAndResumesFromActualInventory(\"disabled\")",
+            "state": "Passed",
+            "durationSeconds": 0.0502303,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(143,24)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(143,24)",
+            "state": "Passed",
+            "durationSeconds": 0.0007067,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(144,23)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.MalformedWorksKeepsPriorGroupsAndBorrowedTextureSettings(144,23)",
+            "state": "Passed",
+            "durationSeconds": 0.0003134,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"medicine\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"medicine\")",
+            "state": "Passed",
+            "durationSeconds": 0.0434456,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"inventory\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"inventory\")",
+            "state": "Passed",
+            "durationSeconds": 0.0429124,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"render\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"render\")",
+            "state": "Passed",
+            "durationSeconds": 0.0433201,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"tonic\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.QuietInvalidOwnershipAndRecoveryRepaintSubmittedState(\"tonic\")",
+            "state": "Passed",
+            "durationSeconds": 0.0438926,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(2,\"StoneburrSeed\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(2,\"StoneburrSeed\")",
+            "state": "Passed",
+            "durationSeconds": 0.0342017,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(3,\"FrostLichen\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(3,\"FrostLichen\")",
+            "state": "Passed",
+            "durationSeconds": 0.0336062,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(4,\"MendleafSprig\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.RealHarvestRemovesTheSourceAndProducesOnlyItsAuthoredYield(4,\"MendleafSprig\")",
+            "state": "Passed",
+            "durationSeconds": 0.0422973,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RelocationWithRetainedOldCellReferencePaintsOnlyTheActualCurrentCell",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.RelocationWithRetainedOldCellReferencePaintsOnlyTheActualCurrentCell",
+            "state": "Passed",
+            "durationSeconds": 0.0958796,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RemovedOwnerDoesNotRetainAWatcherOrPaintOverSameIdReplacement",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.RemovedOwnerDoesNotRetainAWatcherOrPaintOverSameIdReplacement",
+            "state": "Passed",
+            "durationSeconds": 0.1193376,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ReplacedCellCannotKeepTheOldIndexedActorsArtwork",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ReplacedCellCannotKeepTheOldIndexedActorsArtwork",
+            "state": "Passed",
+            "durationSeconds": 0.0430334,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ReplacedManagedGraphStopsPollingAndRestoredGraphReobservesCurrentSupply",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.ReplacedManagedGraphStopsPollingAndRestoredGraphReobservesCurrentSupply",
+            "state": "Passed",
+            "durationSeconds": 0.0536206,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(5)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(5)",
+            "state": "Passed",
+            "durationSeconds": 0.0019264,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(6)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(6)",
+            "state": "Passed",
+            "durationSeconds": 0.0005016,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(7)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.StaticSpeciesRequireCreatureIdentityAndCannotBorrowCompactMotion(7)",
+            "state": "Passed",
+            "durationSeconds": 0.0004847,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StationaryNativeSelfTreatmentConsumesTheVisibleBottle",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.StationaryNativeSelfTreatmentConsumesTheVisibleBottle",
+            "state": "Passed",
+            "durationSeconds": 0.0476664,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StationaryTransferRefillAndLastUnitConsumptionRepaintOnlyOnStateChange",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.StationaryTransferRefillAndLastUnitConsumptionRepaintOnlyOnStateChange",
+            "state": "Passed",
+            "durationSeconds": 0.0431948,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WarmQuietWatcherAllocatesNothingAndDoesNotDiscoverUnpaintedActors",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WarmQuietWatcherAllocatesNothingAndDoesNotDiscoverUnpaintedActors",
+            "state": "Passed",
+            "durationSeconds": 0.0425714,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0016765,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(1)",
+            "state": "Passed",
+            "durationSeconds": 0.00116,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0009134,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(3)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(3)",
+            "state": "Passed",
+            "durationSeconds": 0.00077,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(4)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(4)",
+            "state": "Passed",
+            "durationSeconds": 0.0007556,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(5)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(5)",
+            "state": "Passed",
+            "durationSeconds": 0.0008172,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(6)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(6)",
+            "state": "Passed",
+            "durationSeconds": 0.000933,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(7)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelNorthWorksTests.WorldAndExactSubjectAgreeWhileFogDoesNotRevealLiveOwners(7)",
+            "state": "Passed",
+            "durationSeconds": 0.0009797,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CorpseDoesNotPretendAnotherSpeciesOrLiveCreatureIsMarlbackRemains",
+            "state": "Passed",
+            "durationSeconds": 0.0020887,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(0)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(0)",
+            "state": "Passed",
+            "durationSeconds": 0.0019265,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(1)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(1)",
+            "state": "Passed",
+            "durationSeconds": 0.0012652,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(2)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(2)",
+            "state": "Passed",
+            "durationSeconds": 0.0016578,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(3)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(3)",
+            "state": "Passed",
+            "durationSeconds": 0.0012731,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(4)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(4)",
+            "state": "Passed",
+            "durationSeconds": 0.0010105,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(5)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(5)",
+            "state": "Passed",
+            "durationSeconds": 0.0012531,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(6)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(6)",
+            "state": "Passed",
+            "durationSeconds": 0.0018469,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(7)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(7)",
+            "state": "Passed",
+            "durationSeconds": 0.0010687,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(8)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(8)",
+            "state": "Passed",
+            "durationSeconds": 0.0010135,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(9)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(9)",
+            "state": "Passed",
+            "durationSeconds": 0.0009973,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(10)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(10)",
+            "state": "Passed",
+            "durationSeconds": 0.0009812,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "CurrentLooseOwnerUsesOneCachedNativeFrame(11)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.CurrentLooseOwnerUsesOneCachedNativeFrame(11)",
+            "state": "Passed",
+            "durationSeconds": 0.0010878,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "DefaultCatalogBindsAllActualImportedItems",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.DefaultCatalogBindsAllActualImportedItems",
+            "state": "Passed",
+            "durationSeconds": 0.002435,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FoodAndSeedRequireTheirAuthoredTransformationTargets",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.FoodAndSeedRequireTheirAuthoredTransformationTargets",
+            "state": "Passed",
+            "durationSeconds": 0.0014122,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"inventory\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"inventory\")",
+            "state": "Passed",
+            "durationSeconds": 0.0013183,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"equipped\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"equipped\")",
+            "state": "Passed",
+            "durationSeconds": 0.0009692,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"hidden\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"hidden\")",
+            "state": "Passed",
+            "durationSeconds": 0.0009923,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"foreign-render\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"foreign-render\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010155,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"foreign-physics\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"foreign-physics\")",
+            "state": "Passed",
+            "durationSeconds": 0.0009175,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"zero-stack\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"zero-stack\")",
+            "state": "Passed",
+            "durationSeconds": 0.0009617,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"foreign-stack\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.InvalidGroundOwnershipLeavesNoNativeOrProceduralPhantom(\"foreign-stack\")",
+            "state": "Passed",
+            "durationSeconds": 0.000925,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "LaterEqualLayerSeedCoversShellUntilActuallyRemoved",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.LaterEqualLayerSeedCoversShellUntilActuallyRemoved",
+            "state": "Passed",
+            "durationSeconds": 0.0012188,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MalformedAtlasFallsBackAndDisposalNeverOwnsBorrowedTextures",
+            "state": "Passed",
+            "durationSeconds": 0.0010829,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingItemsPreservePriorArtAndEarlierOverloadDoesNotLoadImplicitly",
+            "state": "Passed",
+            "durationSeconds": 0.0016963,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,\"Food\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,\"Food\")",
+            "state": "Passed",
+            "durationSeconds": 0.0015873,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,\"Cookable\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(0,\"Cookable\")",
+            "state": "Passed",
+            "durationSeconds": 0.0012511,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(1,\"Food\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(1,\"Food\")",
+            "state": "Passed",
+            "durationSeconds": 0.001247,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(2,\"Waterskin\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(2,\"Waterskin\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010525,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(3,\"Seed\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(3,\"Seed\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010689,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,\"Food\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,\"Food\")",
+            "state": "Passed",
+            "durationSeconds": 0.00104,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,\"Cookable\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(4,\"Cookable\")",
+            "state": "Passed",
+            "durationSeconds": 0.0012431,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(5,\"Food\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(5,\"Food\")",
+            "state": "Passed",
+            "durationSeconds": 0.0011097,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(6,\"MineralPreparation\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(6,\"MineralPreparation\")",
+            "state": "Passed",
+            "durationSeconds": 0.0012576,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(7,\"Tonic\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(7,\"Tonic\")",
+            "state": "Passed",
+            "durationSeconds": 0.0012493,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(8,\"Food\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(8,\"Food\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010424,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(9,\"Physics\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(9,\"Physics\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010443,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingOrForeignFunctionCannotAdvertiseTheKnownItem(10,\"Physics\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.MissingOrForeignFunctionCannotAdvertiseTheKnownItem(10,\"Physics\")",
+            "state": "Passed",
+            "durationSeconds": 0.0010743,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RawQuartzAndClayDoNotBecomeSourcesOrFlames",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RawQuartzAndClayDoNotBecomeSourcesOrFlames",
+            "state": "Passed",
+            "durationSeconds": 0.0013209,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealPortableFootprintCanRenderItsCurrentCoveredCell",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RealPortableFootprintCanRenderItsCurrentCoveredCell",
+            "state": "Passed",
+            "durationSeconds": 0.0021759,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RememberedAndUnexploredCellsCannotExposeLooseItem",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.RememberedAndUnexploredCellsCannotExposeLooseItem",
+            "state": "Passed",
+            "durationSeconds": 0.0014421,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SemanticCarriedArtworkResolvesWithoutWorldInsertionOrPortraitAuthorization",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.SemanticCarriedArtworkResolvesWithoutWorldInsertionOrPortraitAuthorization",
+            "state": "Passed",
+            "durationSeconds": 0.0011365,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "StaleOldCellCannotDuplicateAMovedItem",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.StaleOldCellCannotDuplicateAMovedItem",
+            "state": "Passed",
+            "durationSeconds": 0.001235,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "UnrecognizedItemIdentityDoesNotAliasKnownArt(\"unknown-blueprint\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UnrecognizedItemIdentityDoesNotAliasKnownArt(\"unknown-blueprint\")",
+            "state": "Passed",
+            "durationSeconds": 0.0014829,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "UnrecognizedItemIdentityDoesNotAliasKnownArt(\"explicit-reskin\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UnrecognizedItemIdentityDoesNotAliasKnownArt(\"explicit-reskin\")",
+            "state": "Passed",
+            "durationSeconds": 0.001117,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "UntakeableItemKeepsTruthfulFallbackButNotItsPortableArt",
+            "fullName": "CavesOfOoo.Tests.FlatPixelOpeningItemsTests.UntakeableItemKeepsTruthfulFallbackButNotItsPortableArt",
+            "state": "Passed",
+            "durationSeconds": 0.0011989,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          }
+        ]
+      }
+    }
+  }
+}

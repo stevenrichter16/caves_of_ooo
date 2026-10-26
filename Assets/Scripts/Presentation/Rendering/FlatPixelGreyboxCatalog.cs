@@ -64,6 +64,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelCellarFloorCatalog _cellarFloorArt;
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
+        private FlatPixelAftermathCatalog _aftermathArt;
         private FlatPixelOrchardCatalog _orchardArt;
         private FlatPixelHedgeCatalog _hedgeArt;
         private readonly bool _loadOptionalResources;
@@ -799,12 +800,14 @@ namespace CavesOfOoo.Rendering
             bool incidentalNative = incidental != null && incidental.TryResolve(owner, out art);
             var equipment = local ? IncidentalEquipmentArtFor(owner) : null;
             bool equipmentNative = equipment != null && equipment.TryResolve(owner, out art);
+            var aftermath = local ? AftermathArtFor(owner) : null;
+            bool aftermathNative = aftermath != null && aftermath.TryResolve(owner, out art);
             var orchard = local ? OrchardArtFor(owner) : null;
             bool orchardNative = orchard != null && orchard.TryResolve(owner, out art);
             bool allowHedgeFallback = true;
             var hedges = local ? HedgeArtFor(owner, fallback.Remembered, out allowHedgeFallback) : null;
             bool hedgeNative = hedges != null && hedges.TryResolve(zone, x, y, out art);
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || orchardNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -848,6 +851,9 @@ namespace CavesOfOoo.Rendering
             var equipment = local ? IncidentalEquipmentArtFor(subject) : null;
             if (equipment != null && equipment.TryResolve(subject, out var equipmentTile))
             { sprite = equipmentTile.sprite; return sprite != null; }
+            var aftermath = local ? AftermathArtFor(subject) : null;
+            if (aftermath != null && aftermath.TryResolve(subject, out var aftermathTile))
+            { sprite = aftermathTile.sprite; return sprite != null; }
             var orchard = local ? OrchardArtFor(subject) : null;
             if (orchard != null && orchard.TryResolve(subject, out var hiveTile))
             { sprite = hiveTile.sprite; return sprite != null; }
@@ -884,6 +890,14 @@ namespace CavesOfOoo.Rendering
             if (_workingCourtArt == null && _loadOptionalResources)
                 _workingCourtArt = new FlatPixelWorkingCourtCatalog();
             return _workingCourtArt;
+        }
+
+        private FlatPixelAftermathCatalog AftermathArtFor(Entity owner)
+        {
+            if (!FlatPixelAftermathCatalog.HasKnownRole(owner)) return null;
+            if (_aftermathArt == null && _loadOptionalResources)
+                _aftermathArt = new FlatPixelAftermathCatalog();
+            return _aftermathArt;
         }
 
         private FlatPixelOrchardCatalog OrchardArtFor(Entity owner)
@@ -1000,6 +1014,8 @@ namespace CavesOfOoo.Rendering
             _incidentalActorArt = null;
             _incidentalEquipmentArt?.Dispose();
             _incidentalEquipmentArt = null;
+            _aftermathArt?.Dispose();
+            _aftermathArt = null;
             _orchardArt?.Dispose();
             _orchardArt = null;
             _hedgeArt?.Dispose();

@@ -2227,3 +2227,26 @@ scene-level gap. Cellar wateredgrowth,incidental loot/actor outcomes,additional
 cropfamilies,wholeopening/regional art and physicalDeck remainopen. Keeperloss
 onseed200893250requires separate reproduction before balance/protectionchanges;
 currentevidence proves mortality,not unavoidablefirst-activationdanger.
+
+
+## Continuation — combat aftermath identity, 2026-10-26 11:27 UTC
+
+[Aftermath pass](GRAPHICS-G3-OPENING-AFTERMATH.md) adds original native16×24
+Magpie/Viper remains and the existing VenomGland, following actual capture,
+imagegen reinterpretation, part extraction and editable flat Blender source.
+Living/approved art is unchanged. Native236/236passed,0skips, including51new
+exact-identity/custody/state/adversarial cases. Independent reviews clean.
+
+Actual isolated seed65 controls picked up the earned magpie corpse9225, displayed
+it in inventory and full Examine, dropped it at51,13, stepped aside and F5/F6
+retained its native body and metadata. HP35/tick2650 includes ordinary enemy
+attack/bleeding, not fabricated safety. Original pile red% is RawMeat atlayer5
+covering corpse atlayer3; priority is preserved. Viper outcomes remain native
+test coverage, not ordinary encounter acceptance. Actual04–07captures linked
+in the pass. Wholeopening/regional and physicalDeck acceptance remain open.
+
+OwnedPlay restored;776normal saves,374approvedart/source files,two foreignPNGs
+unchanged.29whitespace-only generatedmetas backed up/restored.No storagecleanup.
+Current2a8e71044Mac/Linux packages predate aftermath. Next: current North sole-
+water baseline and bounded shared bank reuse; preserve dry court/field, mixed
+liquids, ice, hidden neighbors and every other graph. No broad loot reskin.

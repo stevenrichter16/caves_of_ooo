@@ -1,0 +1,237 @@
+{
+  "zone": "Overworld.11.8.0",
+  "flat": true,
+  "player": [
+    51,
+    11
+  ],
+  "resolved": true,
+  "owner": "9224",
+  "native": false,
+  "sprite": "Flat world glyph 37",
+  "rows": [
+    {
+      "id": "8094",
+      "b": "Grass",
+      "n": "grass",
+      "tags": {
+        "Terrain": "",
+        "Vegetation": "",
+        "Plantable": ""
+      },
+      "render": {
+        "glyph": ".",
+        "layer": 0,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "9225",
+      "b": "CreatureCorpse",
+      "n": "magpie corpse",
+      "tags": {
+        "Corpse": "",
+        "Organic": ""
+      },
+      "render": {
+        "glyph": "%",
+        "layer": 3,
+        "visual": ""
+      },
+      "native": true,
+      "sprite": "Live16x24 aftermath 0",
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Commerce",
+        "Material"
+      ],
+      "properties": {
+        "CreatureName": "magpie",
+        "SourceBlueprint": "Magpie",
+        "SourceID": "9182",
+        "KillerID": "9183",
+        "KillerBlueprint": "MarlbackScrabbler"
+      }
+    },
+    {
+      "id": "9194",
+      "b": "KindleGrimoire",
+      "n": "Grimoire of Kindle",
+      "tags": {
+        "Item": "",
+        "Grimoire": "",
+        "Tier": "2"
+      },
+      "render": {
+        "glyph": "+",
+        "layer": 5,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Grimoire",
+        "Commerce"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "9195",
+      "b": "LampOil",
+      "n": "lamp oil",
+      "tags": {
+        "Item": "",
+        "Tier": "1",
+        "Alchemy": "",
+        "Reagent": ""
+      },
+      "render": {
+        "glyph": "%",
+        "layer": 5,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Commerce",
+        "Reagent",
+        "TorchRefuel"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "9196",
+      "b": "Cudgel",
+      "n": "cudgel",
+      "tags": {
+        "Item": "",
+        "MeleeWeapon": "",
+        "Tier": "1"
+      },
+      "render": {
+        "glyph": "/",
+        "layer": 5,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Handling",
+        "MeleeWeapon",
+        "Commerce",
+        "Composition",
+        "Repairable"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "9197",
+      "b": "IronSpikeComponent",
+      "n": "iron spike",
+      "tags": {
+        "Item": "",
+        "Tier": "1",
+        "WeaponComponent": ""
+      },
+      "render": {
+        "glyph": "]",
+        "layer": 5,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Commerce",
+        "WeaponComponent"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "9198",
+      "b": "Buckler",
+      "n": "buckler",
+      "tags": {
+        "Item": "",
+        "Armor": "",
+        "Tier": "1"
+      },
+      "render": {
+        "glyph": ")",
+        "layer": 5,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Equippable",
+        "Armor",
+        "Commerce"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "9224",
+      "b": "RawMeat",
+      "n": "raw meat",
+      "tags": {
+        "Item": "",
+        "Food": "",
+        "Tier": "1",
+        "Organic": "",
+        "Raw": "",
+        "RawMeat": ""
+      },
+      "render": {
+        "glyph": "%",
+        "layer": 5,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Stacker",
+        "Food",
+        "Cookable",
+        "Handling",
+        "Commerce",
+        "Material",
+        "Thermal"
+      ],
+      "properties": {}
+    }
+  ]
+}

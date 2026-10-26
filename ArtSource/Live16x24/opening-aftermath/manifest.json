@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "width": 48,
+  "height": 24,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 3,
+  "resource": "Sprites/Live16x24/opening-aftermath",
+  "source": "opening-aftermath.blend",
+  "generator": "Tools/Live16x24/build_opening_aftermath.py",
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "pixelsPerUnit": 16,
+  "concept": "ArtSource/Live16x24/concepts/opening-aftermath/concept.png",
+  "capture": "Docs/Verification/Live16x24/aftermath-02-before-near.png",
+  "sha256": "9bf35f1c4000ea79bd26624a9b42814cda6aad7630e36d83317d7752ab48f72c",
+  "frames": [
+    {
+      "index": 0,
+      "id": "magpie-remains",
+      "blueprint": "CreatureCorpse",
+      "description": "Low fallen bird with folded dark wing, cream breast and long slack tail.",
+      "use": "Exact SourceBlueprint Magpie corpse, ground or authorized carried subject.",
+      "limits": "No standing pose, active eye, loot sparkle, blood or guaranteed butchery.",
+      "occupiedPixels": 62,
+      "palette": [
+        "233C32",
+        "3C5148",
+        "526657",
+        "5F4830",
+        "E4D0A0"
+      ],
+      "bounds": [
+        1,
+        15,
+        15,
+        23
+      ]
+    },
+    {
+      "index": 1,
+      "id": "viper-remains",
+      "blueprint": "CreatureCorpse",
+      "description": "Slack open olive S with a flattened head and exposed underside.",
+      "use": "Exact SourceBlueprint Viper corpse; optional unspent Harvestable retains existing chance.",
+      "limits": "Neutral remains, no promise of a gland; harvesting consumes the whole corpse.",
+      "occupiedPixels": 56,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B",
+        "B5A47E"
+      ],
+      "bounds": [
+        2,
+        16,
+        14,
+        23
+      ]
+    },
+    {
+      "index": 2,
+      "id": "venom-gland",
+      "blueprint": "VenomGland",
+      "description": "One organic ochre olive sac with tapered duct and a quiet membrane highlight.",
+      "use": "Existing portable reagent with positive Toxic strength, dropped or carried.",
+      "limits": "Not a potion, food, gem or guaranteed corpse drop; no animation or potency claim.",
+      "occupiedPixels": 53,
+      "palette": [
+        "435A35",
+        "53683E",
+        "75834B",
+        "B5A47E"
+      ],
+      "bounds": [
+        4,
+        10,
+        11,
+        23
+      ]
+    }
+  ]
+}

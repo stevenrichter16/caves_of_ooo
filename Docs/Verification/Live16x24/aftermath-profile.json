@@ -1,0 +1,71 @@
+{
+  "label": "aftermath-profile",
+  "start": "2026-10-26T11:24:35.343894Z",
+  "end": "2026-10-26T11:26:19.880232Z",
+  "elapsedSeconds": 104.536339,
+  "frames": 57229,
+  "zone": "Overworld.11.8.0",
+  "player": [
+    52,
+    13
+  ],
+  "hp": 35,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 8556.1601257324219,
+      "max": 257375,
+      "p99": 23209
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1606115.041595459,
+      "max": 1095272333,
+      "p99": 2611167
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 24.0,
+      "max": 24,
+      "p99": 24
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 24.0,
+      "max": 24,
+      "p99": 24
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 5747.0,
+      "max": 5747,
+      "p99": 5747
+    }
+  ],
+  "bounds": "Editor aftermath observation with ordinary F6 load and inventory reader, with idle/tool time. No controlled baseline, hardware Deck, standalone or isolated-renderer attribution."
+}

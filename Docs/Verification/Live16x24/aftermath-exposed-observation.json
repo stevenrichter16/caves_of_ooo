@@ -1,0 +1,67 @@
+{
+  "zone": "Overworld.11.8.0",
+  "flat": true,
+  "player": [
+    52,
+    13
+  ],
+  "resolved": true,
+  "owner": "9225",
+  "native": true,
+  "sprite": "Live16x24 aftermath 0",
+  "rows": [
+    {
+      "id": "8174",
+      "b": "Grass",
+      "n": "grass",
+      "tags": {
+        "Terrain": "",
+        "Vegetation": "",
+        "Plantable": ""
+      },
+      "render": {
+        "glyph": ".",
+        "layer": 0,
+        "visual": ""
+      },
+      "native": false,
+      "sprite": null,
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable"
+      ],
+      "properties": {}
+    },
+    {
+      "id": "9225",
+      "b": "CreatureCorpse",
+      "n": "magpie corpse",
+      "tags": {
+        "Corpse": "",
+        "Organic": ""
+      },
+      "render": {
+        "glyph": "%",
+        "layer": 3,
+        "visual": ""
+      },
+      "native": true,
+      "sprite": "Live16x24 aftermath 0",
+      "parts": [
+        "Render",
+        "Physics",
+        "Examinable",
+        "Commerce",
+        "Material"
+      ],
+      "properties": {
+        "CreatureName": "magpie",
+        "SourceBlueprint": "Magpie",
+        "SourceID": "9182",
+        "KillerID": "9183",
+        "KillerBlueprint": "MarlbackScrabbler"
+      }
+    }
+  ]
+}
