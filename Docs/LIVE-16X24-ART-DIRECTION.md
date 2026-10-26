@@ -2308,3 +2308,24 @@ units require topping up to reach560wet worldticks for stage0→ripe2.
 Capture actual young stage1 and save/reload before completion. Existing
 cellarframes3/4/5 andproducts6/7 already cover these states; this is a pending
 ordinary-play gate, not evidence of missing artwork or new acceptance.
+
+
+## Continuation — current packaged cellar lifecycle, 2026-10-26 12:26 UTC
+
+[Cellar growth](GRAPHICS-G3-CELLAR-GROWTH.md) closes the ordinary watered
+sootroot gap in the e49047200 Mac package using the unchanged earned64fixture.
+Twenty-six actual captures show dry seed→watered→young, save/quit/Continue young,
+ripe, normal harvest2pulp+1seed, pickup with native inventory art, replant, water,
+real surface stairs/return and dry sprout after finite water expired. Savedticks
+620/890/900/1170/1800 andHP30 retained. No grants, forced growth, runtime/art
+changes or new native test claim. Independent visual review found no mismatch.
+
+Both preference maps restored, isolated Saves retained outside normal location;
+776normal saves,374approvedart/source and2foreignPNGs unchanged.30whitespace-only
+importer metas backed up/restored. Existing shutdown notices retained. No cleanup.
+
+Next: fresh current-generated opening scene framing at1x/2x through6zones,
+ordinary combat feedback and finite native/fallback census. Current packages
+remain e49047200. Older saved Northgeometry is not a current generation defect.
+Secondary crops, remaining regions, Linux execution and physical Deck remain
+open. Keep approved art stable unless the fresh scene reveals a named problem.

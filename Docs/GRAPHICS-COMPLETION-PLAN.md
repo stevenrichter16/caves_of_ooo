@@ -1,6 +1,6 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: meadow and East water changes are now in new dated Mac/Linux packages from source2a8e71044. Ordinary Mac water save/relaunch/return, newly generated meadow/forge access, inventory and a clean new game passed;17actual screenshots retained. [Delivery evidence](Verification/Live16x24/packaged-meadow-water-report.md) closes this package-parity slice. Current-package Nella marlroot growth/harvest/quitContinue/preparation also passed in [25actual captures](Verification/Live16x24/packaged-nella-report.md), with no artwork changes needed. Wholeopening/six-zone owner/state review is next. Linuxexecution,physicalDeck and remaining regional coverage stay open.
+Current status, 2026-10-26: current Mac/Linux packages freeze e49047200, including native aftermath and North water continuity. Actual Mac corpse carry/drop/restart, North crossing/return, Nella processing and cellar watered growth/harvest/replant/revisit are accepted within their recorded bounds. The cellar pass required no artwork changes. Fresh current-generated six-zone scene framing, ordinary combat feedback and a finite opening fallback census are next. Linux execution, physical Deck and remaining regional coverage stay open. [Current delivery](Verification/Live16x24/packaged-aftermath-north-report.md); [cellar acceptance](GRAPHICS-G3-CELLAR-GROWTH.md).
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art
@@ -1856,3 +1856,24 @@ units require topping up to reach560wet worldticks for stage0→ripe2.
 Capture actual young stage1 and save/reload before completion. Existing
 cellarframes3/4/5 andproducts6/7 already cover these states; this is a pending
 ordinary-play gate, not evidence of missing artwork or new acceptance.
+
+
+## Continuation — current packaged cellar lifecycle, 2026-10-26 12:26 UTC
+
+[Cellar growth](GRAPHICS-G3-CELLAR-GROWTH.md) closes the ordinary watered
+sootroot gap in the e49047200 Mac package using the unchanged earned64fixture.
+Twenty-six actual captures show dry seed→watered→young, save/quit/Continue young,
+ripe, normal harvest2pulp+1seed, pickup with native inventory art, replant, water,
+real surface stairs/return and dry sprout after finite water expired. Savedticks
+620/890/900/1170/1800 andHP30 retained. No grants, forced growth, runtime/art
+changes or new native test claim. Independent visual review found no mismatch.
+
+Both preference maps restored, isolated Saves retained outside normal location;
+776normal saves,374approvedart/source and2foreignPNGs unchanged.30whitespace-only
+importer metas backed up/restored. Existing shutdown notices retained. No cleanup.
+
+Next: fresh current-generated opening scene framing at1x/2x through6zones,
+ordinary combat feedback and finite native/fallback census. Current packages
+remain e49047200. Older saved Northgeometry is not a current generation defect.
+Secondary crops, remaining regions, Linux execution and physical Deck remain
+open. Keep approved art stable unless the fresh scene reveals a named problem.
