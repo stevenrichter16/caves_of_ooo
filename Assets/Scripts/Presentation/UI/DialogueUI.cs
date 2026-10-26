@@ -448,8 +448,8 @@ namespace CavesOfOoo.Rendering
                 int choiceCount = VisibleChoiceCount;
                 int textLines = VisibleTextLineCount;
 
-                // Opaque bg fill behind everything except the action bar (last row)
-                DrawBgFill(0, 0, _popupW, _popupH - 1);
+                // Reuse the body backing across the complete owned footprint, including hints.
+                DrawBgFill(0, 0, _popupW, _popupH);
 
                 // ----- Top border with embedded title: ╞══[ g Speaker Name ]═════╡ -----
                 var speaker = ConversationManager.Speaker;
@@ -657,7 +657,7 @@ namespace CavesOfOoo.Rendering
                     : " [Enter]select [a-z]quick [Esc]close";
                 if (actions.Length > _popupW)
                     actions = actions.Substring(0, _popupW);
-                DrawText(0, y, actions, QudColorParser.DarkGray);
+                DrawText(0, y, actions, QudColorParser.Gray);
 
                 // Record the full FG footprint we just painted so the NEXT
                 // Render/Close can erase it even if the popup's width,

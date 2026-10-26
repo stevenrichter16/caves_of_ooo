@@ -1,0 +1,67 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "cea7561dd66e4fffb115176e1bfb63d3",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793040925532,
+      "finished_unix_ms": 1793040943084,
+      "last_update_unix_ms": 1793040943084,
+      "progress": {
+        "completed": 11,
+        "total": 11,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793040942937,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.RealLongToShortNodeSelectionClearsOldFooterAndPreservesChoiceRows",
+        "last_finished_unix_ms": 1793040943043,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.ActionHintsStayReadableDuringAndAfterReveal(False)",
+            "message": "  Existing actionable footer text uses the backed action/pickup modal's light gray.\n  Expected: RGBA(0.670, 0.670, 0.670, 1.000)\n  But was:  RGBA(0.330, 0.330, 0.330, 1.000)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.ActionHintsStayReadableDuringAndAfterReveal(True)",
+            "message": "  Existing actionable footer text uses the backed action/pickup modal's light gray.\n  Expected: RGBA(0.670, 0.670, 0.670, 1.000)\n  But was:  RGBA(0.330, 0.330, 0.330, 1.000)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.CloseOrDisableClearsOwnedFooterAndPreservesForeignTiles(True)",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.ExistingFootprintIsBackedThroughFooterForLegacyNativeAndPagedLayouts(False,False,1,1)",
+            "message": "  The existing owned rectangle includes the footer row.\n  Expected: 224\n  But was:  192\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.ExistingFootprintIsBackedThroughFooterForLegacyNativeAndPagedLayouts(True,False,1,1)",
+            "message": "  The existing owned rectangle includes the footer row.\n  Expected: 266\n  But was:  228\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.ExistingFootprintIsBackedThroughFooterForLegacyNativeAndPagedLayouts(True,True,1,1)",
+            "message": "  The existing owned rectangle includes the footer row.\n  Expected: 380\n  But was:  342\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.ExistingFootprintIsBackedThroughFooterForLegacyNativeAndPagedLayouts(True,False,80,12)",
+            "message": "  The existing owned rectangle includes the footer row.\n  Expected: 3096\n  But was:  3024\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.RealLastTextPageShrinksBackingWithoutSelectingAnAction",
+            "message": "  The existing owned rectangle includes the footer row.\n  Expected: 648\n  But was:  576\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.DialogueFooterPresentationTests.RealLongToShortNodeSelectionClearsOldFooterAndPreservesChoiceRows",
+            "message": "  The existing owned rectangle includes the footer row.\n  Expected: 252\n  But was:  216\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

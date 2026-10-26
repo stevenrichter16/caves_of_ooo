@@ -2434,3 +2434,19 @@ corrected earned Nella fixture is current-journey-corrected-nella242967504.
 Whole opening, regions, physical Deck/Linux execution and performance remain
 open; keep the graphics heartbeat active. Avoid substituting asset counts for
 playable acceptance or overwriting the old failed package evidence.
+
+
+## Continuation — 2026-10-26 dialogue footer accepted
+
+Dialogue now backs the complete owned panel and renders controls in readable
+light gray. Native RED8/11failures → fill-only counter2/11failures → final
+100/100focused/neighboring GREEN after a verified assembly reload. Four actual
+Nella conversation/topic/return/closed screenshots pass independent review;
+no state changes or lingering tiles. Normal saves/art/foreign work preserved,
+Editor idle and isolation restored. See GRAPHICS-G3-DIALOGUE-FOOTER.md.
+
+Next: freeze and push these fixes, build new dated Mac/Linux-current packages
+per GRAPHICS-G3-NELLA-FOOTERS-DELIVERY.md, verify real packaged chat/save/Continue
+and restore all state. Then continue East/Orven/revisits. Existing5a3c74359
+packages predate Nella cold-population and both popup fixes; full opening and
+physical Deck acceptance remain open. Storage checks are inspection-only.
