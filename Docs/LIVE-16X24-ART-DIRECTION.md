@@ -1957,3 +1957,36 @@ importer-only metadata whitespace rewrites were backed up and restored. About
 c893ae58f and therefore predate this glade layout. Full packaged journey,
 physical Deck, whole-opening art and regional kits remain open. Continue the
 next scene using the same actual-capture and native-integration gates.
+
+
+## Continuation — eastern forge workpad accepted, 2026-10-26 05:52 UTC
+
+[East shelter composition](GRAPHICS-G3-EAST-SHELTER-COMPOSITION.md) now groups
+the existing forge and broken wall with an optional quiet native work surface.
+No new sprite packet, stock, enemies or gameplay service was added. Twelve
+candidate cells are filtered through actual ownership/ground; ordinary seed64
+admits11, seed65 admits9. Flowers and the forage margin remain intact. Shared
+north/east floor validation now protects malformed/late-mutated payloads and
+Owned Grass. Native RED38:31fail/7pass →178-case seven-fixture GREEN →42-case
+focused review rerun,182distinct cases total, zero skips.
+
+Actual1280×800 ordinary editor screenshots show seed64 adjacent forge use,
+menu/reader and F5/F6 plus glade exit/east return with all11floor/substrate IDs
+retained. Seed65's first southern approach died; an ordinary upper-lane replay
+reached the forge at65,3,31HP/50drams, used its menu/reader and preserved all9
+floor/substrate IDs through F5/F6. No supplies were granted, and no crafting
+success or seed65 border return is claimed. Before/after views differ in
+runtime IDs, fog and combat; independent visual review accepts the bounded
+composition improvement, not exact simulation equivalence or full-scene finish.
+
+Root restored normal editor/save/view state and verified all four protected
+normal save/backup hashes and two unrelated PNG hashes.26 importer-only meta
+rewrites and an incidental generated census were backed up and restored.
+About429GiB free; no storage deletion. The dated Mac/Linux packages are still
+sourcec893ae58f, preceding glade/east changes; physical Deck remains untested.
+
+Next: a coherent current six-zone1280×800 journey review with inventory,
+interaction/state and earned supplies, then current-package parity and actual
+Mac journey replay. Choose the largest remaining scene-level defect from those
+views. Do not keep producing disconnected packets. Full opening/regional art,
+complete forge lifecycle and device acceptance remain open; continue this work.

@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Failed(Child)" total="38" passed="7" failed="31" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 05:24:26Z" end-time="2026-10-26 05:24:51Z" duration="24.9469187">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31642" result="Failed" site="Child" start-time="2026-10-26 05:24:26Z" end-time="2026-10-26 05:24:51Z" duration="24.946919" total="38" passed="7" failed="31" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38956" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31642" result="Failed" site="Child" start-time="2026-10-26 05:24:26Z" end-time="2026-10-26 05:24:51Z" duration="24.897248" total="38" passed="7" failed="31" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38957" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31642" result="Failed" site="Child" start-time="2026-10-26 05:24:26Z" end-time="2026-10-26 05:24:51Z" duration="24.854090" total="38" passed="7" failed="31" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38958" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31642" result="Failed" site="Child" start-time="2026-10-26 05:24:26Z" end-time="2026-10-26 05:24:51Z" duration="24.812752" total="38" passed="7" failed="31" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="18950" name="EastTemperingGroundTests" fullname="CavesOfOoo.Tests.EastTemperingGroundTests" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-10-26 05:24:27Z" end-time="2026-10-26 05:24:51Z" duration="24.385413" total="38" passed="7" failed="31" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="18990" name="AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 05:24:27Z" end-time="2026-10-26 05:24:28Z" duration="1.623433" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18988" name="AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket(False)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket(False)" methodname="AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1506985889" result="Failed" start-time="2026-10-26 05:24:27Z" end-time="2026-10-26 05:24:28Z" duration="0.977475" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 11
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket (System.Boolean late) [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:262
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18989" name="AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket(True)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket(True)" methodname="AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="901774828" result="Failed" start-time="2026-10-26 05:24:28Z" end-time="2026-10-26 05:24:28Z" duration="0.642025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.AuthorityLossAfterActualGroundPlacementRollsBackOnlyThisPacket (System.Boolean late) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:261
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18978" name="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-26 05:24:28Z" end-time="2026-10-26 05:24:29Z" duration="0.971517" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="18974" name="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;authority&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;authority&quot;)" methodname="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1654708344" result="Passed" start-time="2026-10-26 05:24:28Z" end-time="2026-10-26 05:24:29Z" duration="0.340951" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="18975" name="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;capture&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;capture&quot;)" methodname="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="872714550" result="Passed" start-time="2026-10-26 05:24:29Z" end-time="2026-10-26 05:24:29Z" duration="0.237098" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="18976" name="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;factory&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;factory&quot;)" methodname="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="123409422" result="Passed" start-time="2026-10-26 05:24:29Z" end-time="2026-10-26 05:24:29Z" duration="0.296509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="18977" name="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;source-health&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority(&quot;source-health&quot;)" methodname="AVisibleSourceActorIsNotEnoughWithoutCurrentAuthority" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="2128401364" result="Passed" start-time="2026-10-26 05:24:29Z" end-time="2026-10-26 05:24:29Z" duration="0.090233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="18962" name="EastAddressAloneDoesNotPaveADifferentWorksiteFamily" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.EastAddressAloneDoesNotPaveADifferentWorksiteFamily" methodname="EastAddressAloneDoesNotPaveADifferentWorksiteFamily" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="698019913" result="Passed" start-time="2026-10-26 05:24:29Z" end-time="2026-10-26 05:24:30Z" duration="0.420356" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="18955" name="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26 05:24:30Z" end-time="2026-10-26 05:24:32Z" duration="2.164949" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18951" name="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(1,0)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(1,0)" methodname="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="840940408" result="Failed" start-time="2026-10-26 05:24:30Z" end-time="2026-10-26 05:24:30Z" duration="0.401279" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (20, 10), (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13), (20, 13) >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes (System.Int32 count, System.Int32 rotation) [0x00126] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18952" name="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(1,1)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(1,1)" methodname="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1514719" result="Failed" start-time="2026-10-26 05:24:30Z" end-time="2026-10-26 05:24:31Z" duration="0.567814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (22, 12), (22, 13), (21, 10), (21, 11), (21, 12), (21, 13), (20, 9), (20, 10), (20, 11), (19, 10), (19, 11), (19, 12) >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes (System.Int32 count, System.Int32 rotation) [0x00126] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18953" name="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(2,0)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(2,0)" methodname="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="561548520" result="Failed" start-time="2026-10-26 05:24:31Z" end-time="2026-10-26 05:24:31Z" duration="0.521964" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (20, 10), (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (20, 13) >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes (System.Int32 count, System.Int32 rotation) [0x00126] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18954" name="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(2,1)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes(2,1)" methodname="ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1453285892" result="Failed" start-time="2026-10-26 05:24:31Z" end-time="2026-10-26 05:24:32Z" duration="0.666183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (22, 12), (22, 13), (21, 10), (21, 11), (21, 12), (21, 13), (20, 9), (20, 10), (20, 11), (19, 10), (19, 12) >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.ExactSmallPadPreservesOwnersResourcesBudgetAndFourPhysicalRoutes (System.Int32 count, System.Int32 rotation) [0x00126] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18996" name="FinalReceiptRejectsChangedGroundOrSubstrate" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-26 05:24:32Z" end-time="2026-10-26 05:24:39Z" duration="7.607127" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18991" name="FinalReceiptRejectsChangedGroundOrSubstrate(&quot;floor&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate(&quot;floor&quot;)" methodname="FinalReceiptRejectsChangedGroundOrSubstrate" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="348338443" result="Failed" start-time="2026-10-26 05:24:37Z" end-time="2026-10-26 05:24:38Z" duration="0.518741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 12
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate (System.String fault) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:273
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18992" name="FinalReceiptRejectsChangedGroundOrSubstrate(&quot;substrate&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate(&quot;substrate&quot;)" methodname="FinalReceiptRejectsChangedGroundOrSubstrate" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="285576494" result="Failed" start-time="2026-10-26 05:24:38Z" end-time="2026-10-26 05:24:38Z" duration="0.370999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 12
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate (System.String fault) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:273
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18993" name="FinalReceiptRejectsChangedGroundOrSubstrate(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate(&quot;reserved&quot;)" methodname="FinalReceiptRejectsChangedGroundOrSubstrate" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="76730737" result="Failed" start-time="2026-10-26 05:24:38Z" end-time="2026-10-26 05:24:38Z" duration="0.355708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 12
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate (System.String fault) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:273
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18994" name="FinalReceiptRejectsChangedGroundOrSubstrate(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate(&quot;coating&quot;)" methodname="FinalReceiptRejectsChangedGroundOrSubstrate" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1327598055" result="Failed" start-time="2026-10-26 05:24:38Z" end-time="2026-10-26 05:24:39Z" duration="0.374849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 12
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate (System.String fault) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:273
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18995" name="FinalReceiptRejectsChangedGroundOrSubstrate(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate(&quot;solid&quot;)" methodname="FinalReceiptRejectsChangedGroundOrSubstrate" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="356585639" result="Failed" start-time="2026-10-26 05:24:39Z" end-time="2026-10-26 05:24:39Z" duration="0.497480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 12
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.FinalReceiptRejectsChangedGroundOrSubstrate (System.String fault) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:273
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="18987" name="HarmlessFactoryObservationKeepsAllElevenTwoSourceFloors" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.HarmlessFactoryObservationKeepsAllElevenTwoSourceFloors" methodname="HarmlessFactoryObservationKeepsAllElevenTwoSourceFloors" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="806811492" result="Failed" start-time="2026-10-26 05:24:39Z" end-time="2026-10-26 05:24:40Z" duration="0.471659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 11
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.HarmlessFactoryObservationKeepsAllElevenTwoSourceFloors () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:246
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="18986" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-26 05:24:40Z" end-time="2026-10-26 05:24:44Z" duration="3.957771" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18979" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;solid&quot;)" methodname="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1313834300" result="Failed" start-time="2026-10-26 05:24:40Z" end-time="2026-10-26 05:24:40Z" duration="0.652364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:235
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18980" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;takeable&quot;)" methodname="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1378351933" result="Failed" start-time="2026-10-26 05:24:40Z" end-time="2026-10-26 05:24:41Z" duration="0.506386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:235
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18981" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;harvest&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;harvest&quot;)" methodname="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="707069360" result="Failed" start-time="2026-10-26 05:24:41Z" end-time="2026-10-26 05:24:41Z" duration="0.488066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:235
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18982" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;liquid&quot;)" methodname="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="2074490181" result="Failed" start-time="2026-10-26 05:24:41Z" end-time="2026-10-26 05:24:42Z" duration="0.651501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:235
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18983" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;stairs&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;stairs&quot;)" methodname="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1740746147" result="Failed" start-time="2026-10-26 05:24:42Z" end-time="2026-10-26 05:24:43Z" duration="0.492158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:235
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18984" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;shared-physics&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;shared-physics&quot;)" methodname="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="2081653626" result="Failed" start-time="2026-10-26 05:24:43Z" end-time="2026-10-26 05:24:43Z" duration="0.664219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:235
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18985" name="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;terrain&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload(&quot;terrain&quot;)" methodname="LaterFloorFactoryCannotRedefineAnEarlierStagedPayload" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="149796392" result="Failed" start-time="2026-10-26 05:24:43Z" end-time="2026-10-26 05:24:44Z" duration="0.497379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.LaterFloorFactoryCannotRedefineAnEarlierStagedPayload (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:235
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18958" name="MissingOptionalRoadRetainsExactServicePositionsAndLoadouts" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.MissingOptionalRoadRetainsExactServicePositionsAndLoadouts" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 05:24:44Z" end-time="2026-10-26 05:24:46Z" duration="1.863247" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18956" name="MissingOptionalRoadRetainsExactServicePositionsAndLoadouts(1)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.MissingOptionalRoadRetainsExactServicePositionsAndLoadouts(1)" methodname="MissingOptionalRoadRetainsExactServicePositionsAndLoadouts" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="926412977" result="Failed" start-time="2026-10-26 05:24:44Z" end-time="2026-10-26 05:24:45Z" duration="0.885048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.MissingOptionalRoadRetainsExactServicePositionsAndLoadouts (System.Int32 count) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18957" name="MissingOptionalRoadRetainsExactServicePositionsAndLoadouts(2)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.MissingOptionalRoadRetainsExactServicePositionsAndLoadouts(2)" methodname="MissingOptionalRoadRetainsExactServicePositionsAndLoadouts" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1283419443" result="Failed" start-time="2026-10-26 05:24:45Z" end-time="2026-10-26 05:24:46Z" duration="0.974116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastTemperingGroundTests.MissingOptionalRoadRetainsExactServicePositionsAndLoadouts (System.Int32 count) [0x00097] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:156
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18973" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-26 05:24:46Z" end-time="2026-10-26 05:24:50Z" duration="4.448721" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="18963" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;soil&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;soil&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1861548691" result="Failed" start-time="2026-10-26 05:24:46Z" end-time="2026-10-26 05:24:46Z" duration="0.550060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18964" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;claimed&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;claimed&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1665158846" result="Failed" start-time="2026-10-26 05:24:46Z" end-time="2026-10-26 05:24:47Z" duration="0.396844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18965" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;reserved&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="515034141" result="Failed" start-time="2026-10-26 05:24:47Z" end-time="2026-10-26 05:24:47Z" duration="0.393832" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18966" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;interior&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1689882674" result="Failed" start-time="2026-10-26 05:24:47Z" end-time="2026-10-26 05:24:48Z" duration="0.542629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18967" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;coating&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1954217917" result="Failed" start-time="2026-10-26 05:24:48Z" end-time="2026-10-26 05:24:48Z" duration="0.402570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18968" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;barren&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="217706584" result="Failed" start-time="2026-10-26 05:24:48Z" end-time="2026-10-26 05:24:48Z" duration="0.395206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18969" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;mixed&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="606210280" result="Failed" start-time="2026-10-26 05:24:48Z" end-time="2026-10-26 05:24:49Z" duration="0.556966" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18970" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;empty&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="87610857" result="Failed" start-time="2026-10-26 05:24:49Z" end-time="2026-10-26 05:24:49Z" duration="0.391930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18971" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;road&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;road&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="1551929598" result="Failed" start-time="2026-10-26 05:24:49Z" end-time="2026-10-26 05:24:50Z" duration="0.392347" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="18972" name="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge(&quot;crop&quot;)" methodname="OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="424634234" result="Failed" start-time="2026-10-26 05:24:50Z" end-time="2026-10-26 05:24:50Z" duration="0.421461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < (21, 10), (18, 11), (19, 11), (20, 11), (21, 11), (17, 12), (18, 12), (19, 12), (18, 13), (19, 13)... >
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.EastTemperingGroundTests.OneIneligibleSubstrateIsSkippedWithoutMovingTheAcceptedForge (System.String fault) [0x00327] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/EastTemperingGroundTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="18961" name="OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 05:24:50Z" end-time="2026-10-26 05:24:51Z" duration="0.851637" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="18959" name="OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad(&quot;Overworld.15.10.0&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad(&quot;Overworld.15.10.0&quot;)" methodname="OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="540496113" result="Passed" start-time="2026-10-26 05:24:50Z" end-time="2026-10-26 05:24:51Z" duration="0.479967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="18960" name="OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.EastTemperingGroundTests.OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad(&quot;Overworld.12.11.0&quot;)" methodname="OtherForgeAddressesKeepTheirExistingServiceWithoutThisPad" classname="CavesOfOoo.Tests.EastTemperingGroundTests" runstate="Runnable" seed="21771785" result="Passed" start-time="2026-10-26 05:24:51Z" end-time="2026-10-26 05:24:51Z" duration="0.368144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

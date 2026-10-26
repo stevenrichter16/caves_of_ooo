@@ -1,11 +1,12 @@
 # G3 — Eastern tempering shelter composition
 
-Status: **current seed64 before-captures and concept inspected; twelve-cell
-footprint hypothesis selected; runtime/tests, current seed65 before-view and
-candidate acceptance pending**, 2026-10-26. This is the next bounded scene pass
-after the glade vegetation review. It creates no new art packet or gameplay
-system. Root owns Unity and ordinary Play. This document update inspects root's
-actual evidence and current source; it performs no runtime edit or new test.
+Status: **bounded native implementation and actual seed64/65 composition,
+forge access and save/load accepted**, 2026-10-26. Seed64 also proves ordinary
+border exit/return. Root owns Unity. This small scene pass groups existing
+functional objects; whole-opening art, a newly supplied forge operation,
+current-package parity and physical Deck remain separate gates. The historical
+planning sections below are retained; the final acceptance record supersedes
+their pending statements.
 
 ## Named problem and evidence
 
@@ -352,3 +353,170 @@ source/ground guards. Replay actual seed64 from the preserved pre-east checkpoin
 after implementation; protect ordinary supplies and record combat honestly.
 Update this record in the same commit as any eventual implementation, using
 CLAUDE.md's review and commit requirements.
+
+
+## Current continuation — seed65 before and RED, 2026-10-26
+
+Actual ordinary Warden seed65 walked from spawn `(40,12)` four south and39east,
+saved atglade `(79,16)` tick440, then entered east `(0,16)` tick450.
+`east-shelter-before65-pre-generation.*`, `-entry.*` and `-checkpoint.json`
+record the route and earned isolated checkpoint. Its forge4986 is at `(65,4)`,
+Stoneburr4987 `(67,5)`, walls4988–4990 `(63,2),(64,2),(67,2)` and the initial
+Cindercaller4991/Scrabbler4994 pair. These are script-observed owners; entry
+visibility does not prove every owner was on screen.
+
+Ordinary movement60east,11north,4east reached `(64,5)` tick1200. The actual
+`east-shelter-before65-contested-approach.*` shows the fire-worker contesting
+the shelter, HP34/40 and burning. One north then C/right opened the existing
+forge at `(64,4)` tick1210; `-forge-actions.*` and `-forge-examine.*` capture
+its real stock-free menu and reader. No components, quench or unequipped weapon
+was carried; no crafting success is claimed. Fire extinguished through the
+ordinary simulation and left Charred. The same sparse foreground lacks a
+working-area relationship, supporting the bounded ground hypothesis. Flowers
+occupy some candidate cells: skip them, never clear them for art. Root stopped
+and restored normal editor/save settings in `-restored.json` before compiling.
+
+Additional pre-implementation correction: `LocalGatheringClaims.Ground` does
+not reject an `Owned` tag on a literal Grass owner. The proposed unclaimed
+substrate contract therefore needs its own explicit exclusion, with a paired
+owned/unowned substrate test. No wider ownership-system change is proposed.
+The new focused `EastTemperingGroundTests` is38 cases. An initial native job
+used an unqualified group filter and selected zero tests; it is not RED/GREEN
+evidence. The corrected run uses the full `CavesOfOoo.Tests` namespace.
+
+
+### Native implementation and review
+
+Runtime now appends the12-candidate east footprint only after the original
+forge fit succeeds, using the same existing RoadStone render path. Shared
+`WorkGroundOwner` validates floor payloads at creation, after all factories and
+at final acceptance; it preserves the previous north semantics. The shared
+substrate gate additionally rejects literal `Owned` Grass. Original owners,
+source actor budget, rotations, approaches and rollback remain authoritative.
+No new sprites, supplies, stock, fire, enemies, runtime reconciliation or saved
+migration were added. Additional floors can affect later crop eligibility or
+entity IDs, so this is not described as mechanically invisible.
+
+- Corrected native RED:38 cases,7passed/31failed, zero skipped; expectedmissing
+  east floors and non-vacuous callback/receipt cases failed before runtime edit.
+- First native GREEN:178/178,0skipped across EastTemperingGround,
+  NorthWorksComposition, SpreadExplorationWorksites, SpreadWorksiteManifest,
+  SpreadWorkingLandscape, MendleafDryingYard and FlatPixelEastKitchen.
+- Independent source review found no notable runtime defect. It requested four
+  counter-cases: all candidates invalid for both source budgets, and coating
+  applied during actual publication with a harmless counterpart. These expand
+  the focused fixture to42; their separate run is recorded below when complete.
+- The first post-run isolation finish was refused because the Unity runner was
+  still cleaning up after writing XML; no normal save restoration was assumed.
+  The later `east-shelter-green-restored-final.json` confirms successful finish.
+
+Self-review: 🟡 north-only semantic guard and Owned-Grass mismatch addressed;
+🔵 zero/partial ground deliberately accepted rather than forcing12 cells;
+🧪 actual partial-pad visual acceptance and package/device coverage remain
+separate from native correctness. This is an original composition pass, not a
+claim of simulation or asset parity with Qud.
+
+
+## Final acceptance and continuation — 2026-10-26 05:52 UTC
+
+**Implemented:** optional quiet RoadStone joins the existing broken working edge
+and forge approaches at the exact fresh east shelter. Twelve candidates are a
+maximum, not a quota. Native seed64 admits11 and seed65 admits9. Existing
+flowers, source actors, walls, finite forage, forge and reserved/wet/claimed
+substrates remain authoritative; no object is relocated to complete the pad.
+No new raster or model is needed: the editable native-cell arrangement reuses
+the existing Road material. Saved graphs remain literal.
+
+The final focused native run is **42/42, zero skips** in
+`east-shelter-counter-native.xml`. The earlier seven-fixture sweep is178/178;
+together they cover182 distinct cases, not220. Added review cases prove
+all-invalid ground still commits the original functional layout/loadouts/RNG
+for both enemy budgets; a real-publication authority callback that independently
+adds a coating causes rollback of the packet while preserving that coating.
+The harmless counterpart commits. Independent final source review found no
+material defect in shared north/east validation. The census TSV regenerated
+only entity IDs; its full current rows are in the GREEN XML, and the historical
+tracked TSV was restored after backup.
+
+### Actual Unity comparison and use
+
+All named images below are unmodified1280×800 ordinary Play captures with
+adjacent JSON receipts. No debug reveal, teleport, item grant, enemy suppression,
+forced health or saved-graph retrofit was used.
+
+- **Seed64:** earned pre-east checkpoint → ordinary entry at0,16/tick1050,
+ 40HP/50drams. Seven east and two south reached7,18/tick1140,40HP. The
+ [use approach](Verification/Live16x24/east-shelter-after64-use-approach.png)
+ shows the new quiet pad; C/down opened the real component menu and `x` opened
+ the matching neutral reader. Empty selections prove access, not crafting.
+ F5/F6 preserves all11floor IDs, coordinates and original Grass IDs. Retreat
+ encountered Scrabbler damage/stun: the misleadingly named `-glade-return`
+ capture is still East0,16/tick1240/25HP. Only `-glade-verified` proves actual
+ glade79,16/tick1250, followed by East0,16/tick1260. Exact11floor/substrate rows
+ survive that exit/return. Initial before/after viewpoints and functional
+ coordinates match, but runtime IDs, simulation logs and fog differ.
+- **Seed65:** first replay followed the earlier southern approach but died to
+ the Scrabbler while trying north from60,16. The real death capture and receipt
+ are retained; this is not a completed use view. A second isolated replay of
+ the same earned pre-east checkpoint took the upper lane. Ordinary movement
+ bumped open a crate and later defeated the Scrabbler; no supplies or world
+ state were injected. The [successful approach](Verification/Live16x24/east-shelter-after65-upper-use-approach.png)
+ is65,3/tick1340,31HP/50drams. C/down and`x` demonstrate the real menu/reader;
+ F5/F6 retains all9floor IDs and their original Grass owners. The player's
+ unpaved65,3 tile still contains charmflowers, as Focus correctly reports.
+ This is qualitative composition evidence from a different route/time/combat
+ outcome, not a matched combat experiment. No seed65 border-return is claimed.
+
+Independent native-scale visual review accepts the change in both cases: the
+pad connects wall/forge into a recognizable working pocket while keeping the
+forage margin green and leaving the wilderness quiet. The small neutral forge
+and greater visual weight of the flower pen are preexisting limitations, not
+solved by this pass. No newly introduced must-fix visual defect was found.
+
+### Honesty bounds and scope divergence
+
+**Verified by code/tests and receipts:** exact admission, optional fallback,
+retained functional geometry/resources, transaction rollback, real floor and
+substrate identity, literal save/load and seed64 travel persistence. **Verified
+visually:** native-scale grouping, readable player, preserved plant gaps, actual
+menu/reader and unchanged neutral forge. **Not verified:** all seeds, full
+component forging/reforging, a new supplied quench/on-hit lifecycle, complete
+six-zone current-build journey, physical Deck controls/performance or final
+regional graphics. No performance improvement is claimed; this adds only
+bounded generation owners and uses the existing renderer.
+
+The plan's supplied forge operation remains open for the complete journey.
+Existing historical earned quench evidence remains valid for its old source;
+these unstocked candidate runs do not replace it. Three seed65 candidate cells
+and one seed64 candidate were skipped rather than clearing genuine occupants.
+The shared ground gate now rejects Owned Grass after the source sweep exposed
+that the previous generic ground predicate did not; north regressions pass.
+Additional real floor can affect downstream crop eligibility and later IDs.
+
+Self-review: 🟡 north-only payload guard and claimed-substrate gap fixed;
+🔵 zero/partial workpad and unchanged art are deliberate; 🧪 full supplied
+journey, newer packages and hardware remain open; ⚪ physical pose/animation
+breadth and whole-region coverage are not accepted by this small scene change.
+
+Root stopped Play and restored normal SampleScene, view, preferences and save
+pointer at05:52:39UTC. `east-shelter-final-preservation.json` verifies all four
+normal save/backup hashes and both unrelated PNGs unchanged,26 whitespace-only
+Unity metadata rewrites backed up/restored, about429GiB free and no storage
+deletions. Final Play console had0errors and2existing Metal warnings. The
+second run's earned31HP forge checkpoint is preserved at
+`/tmp/coo-east-after65-earned-forge/50e670c30b6d48feb82756df64bd1cbc`, with hashes
+in`east-shelter-after65-earned-checkpoint.json`; it is an audit continuation,
+never permission to replace a user save.
+
+Files: runtime`SpreadExplorationWorksites.cs`; new42-case
+`EastTemperingGroundTests.cs` and fresh meta; this living record, main art brief,
+completion plan and coverage ledger; before/after captures, native XML,
+preservation/play receipts and earned seed65 pre-generation fixture.
+
+**Next:** review the current six-zone journey as a whole at1280×800, including
+inventory, interactions, actual earned service supplies and moving/contested
+views. Pick the largest remaining visible inconsistency, not another isolated
+asset packet. Then make the current Mac/Linux packages include the accepted
+glade and east changes and replay the same journey in the Mac package. Preserve
+older/current outputs; Linux execution and physical Deck stay explicitly open
+until actually observed. Graphics work continues under the active heartbeat.

@@ -91,13 +91,13 @@ namespace CavesOfOoo.Core
    // No enriched shape fits. Only this pre-staging branch can retry the old packet;
    // failed factory/ownership transactions below never consume another attempt.
    if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final,opening);
-   // Ground follows the already accepted service layout: it never moves a still,
+   // Optional ground follows the accepted service layout; never move a service,
    // forage source or defender to make room for decoration. Keep the original grass.
    int yardStart=specs.Count;
-   if(drying&&factory.Blueprints.ContainsKey("RoadStone"))
+   if((drying||forgeLane)&&factory.Blueprints.ContainsKey("RoadStone"))
    {
     var occupied=new HashSet<(int x,int y)>(positions);var padded=positions.ToList();
-    foreach(var local in YardGroundOffsets)
+    foreach(var local in drying?YardGroundOffsets:TemperingGroundOffsets)
     {
      var at=At(origin,local,rotation);
      if(occupied.Contains(at)||Distance(at,Arrival)<=6||!before.Place(at.x,at.y)||!YardSubstrate(zone,at))continue;
@@ -108,7 +108,8 @@ namespace CavesOfOoo.Core
    var substrates=positions.Skip(yardStart).Take(specs.Count-yardStart).Select(p=>zone.GetCell(p.x,p.y).Objects.Single()).ToArray();
    var substrateProof=SpreadGenerationReceipt.CaptureFinalState(zone,substrates);
    var staged=new List<Entity>();var added=new HashSet<Entity>();var removed=new HashSet<Entity>();
-   bool GroundShape()=>substrateProof()&&Enumerable.Range(yardStart,specs.Count-yardStart)
+   bool GroundPayloadShape()=>staged.Count==specs.Count&&staged.Skip(yardStart).All(WorkGroundOwner);
+   bool GroundShape()=>GroundPayloadShape()&&substrateProof()&&Enumerable.Range(yardStart,specs.Count-yardStart)
     .All(i=>YardSubstrate(zone,positions[i],staged[i]));
    var goods=new List<Entity>();var goodsProofs=new List<Func<bool>>();
    var container=cache?.GetPart<ContainerPart>();Func<bool> supplied=null;bool stockAdded=false;
@@ -175,6 +176,7 @@ namespace CavesOfOoo.Core
       ||(spec.role=="broken-wall"&&e.GetPart<PhysicsPart>()?.Solid!=true)||((spec.role=="binding-forage"||spec.role=="cold-forage")&&!e.HasPart<HarvestablePart>()))return false;
      if(store&&!StoreOwner(e,spec.bp,spec.role))return false;
      if(drying&&!DryingOwner(e,spec.bp,spec.role))return false;
+     if(spec.role=="yard-ground"&&!WorkGroundOwner(e))return false;
      if(e.HasPart<HarvestablePart>()){var h=e.GetPart<HarvestablePart>();if(h.Harvested||h.YieldChance!=100||h.YieldMin<1||h.YieldMax<h.YieldMin||h.YieldMax>2||!factory.Blueprints.ContainsKey(h.YieldBlueprint))return false;}
      string cue=spec.role=="still"?"The field alembic still works. Single flasks can be brewed in the field; this still also prepares batches. Stoneburr carries the binding used in stoneskin brews; frost lichen carries cold for a freezing coating."
       :spec.role=="forge"?"The roadside forge still works. Carried weapon components can be forged or used to re-forge a weapon. A brewed coating can quench a weapon here; frost lichen supplies the cold for freezing coatings."
@@ -191,7 +193,7 @@ namespace CavesOfOoo.Core
     }
    }
    catch(Exception){return false;}
-   if(!StockCapacity()||!goodsProofs.All(p=>p())||goods.Any(e=>container.Contents.Any(old=>old.ID==e.ID))||!RoleShape()||!StoreShape()||!DryingShape()||!UniqueGraph(zone,staged.Concat(goods))||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
+   if(!StockCapacity()||!goodsProofs.All(p=>p())||goods.Any(e=>container.Contents.Any(old=>old.ID==e.ID))||!RoleShape()||!StoreShape()||!DryingShape()||!GroundPayloadShape()||!UniqueGraph(zone,staged.Concat(goods))||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities())||!SupplyShape())return false;
    if(!actors.TryConsume()||(store&&!stock.TryConsume()))return false;
    var detached=replaced.ToDictionary(e=>e,actors.CaptureDetachedOwnerState);
    var placedProof=new Dictionary<Entity,Func<bool>>();bool success=false;
@@ -320,14 +322,24 @@ namespace CavesOfOoo.Core
    if(role=="medicine-forage")return !e.HasTag("Creature")&&!physical.Solid&&!physical.Takeable&&!e.HasPart<CropPart>()
     &&e.GetPart<HarvestablePart>() is HarvestablePart harvest&&!harvest.Harvested&&harvest.YieldBlueprint=="MendleafSprig"
     &&harvest.YieldChance==100&&harvest.YieldMin==1&&harvest.YieldMax==2;
-   if(role=="yard-ground")return e.BlueprintName=="RoadStone"&&!physical.Solid&&!physical.Takeable&&!e.HasTag("Solid")
+   if(role=="yard-ground")return WorkGroundOwner(e);
+   if(role=="broken-wall")return physical.Solid&&e.HasTag("Solid");
+   return true;
+  }
+  // Shared by north and east, including after factory/placement callbacks.
+  // Ground is a literal quiet surface, never a disguised resource or obstacle.
+  static bool WorkGroundOwner(Entity e)
+  {
+   if(e==null||e.BlueprintName!="RoadStone"||e.GetProperty(RoleKey)!="yard-ground"||e.HasPart<SpatialFootprintPart>()
+    ||e.Parts.Any(p=>p==null||p.ParentEntity!=e))return false;
+   var physical=e.GetPart<PhysicsPart>();
+   if(physical?.ParentEntity!=e||physical.InInventory!=null||physical.Equipped!=null)return false;
+   return !physical.Solid&&!physical.Takeable&&!e.HasTag("Solid")
     &&e.HasTag("Terrain")&&!e.HasTag("Barren")&&!e.HasTag("Vegetation")&&!e.HasTag("Plantable")&&!e.HasTag("Creature")&&!e.HasTag("Item")&&!e.HasTag("Wall")&&!e.HasTag("Furniture")
     &&!e.HasPart<DoorPart>()&&!e.HasPart<SealedLibraryBarrierPart>()&&!e.HasPart<TileStateSourcePart>()
     &&!e.HasPart<CropPart>()&&!e.HasPart<CultivatedSoilPart>()&&!e.HasPart<FieldHarvestPart>()&&!e.HasPart<HarvestablePart>()
     &&!e.HasPart<RepairablePart>()&&!e.HasPart<ContainerPart>()&&!e.HasPart<LiquidPoolPart>()&&!e.HasPart<GasPoolPart>()
     &&!e.HasPart<TriggerOnStepPart>()&&!e.HasPart<StairsUpPart>()&&!e.HasPart<StairsDownPart>();
-   if(role=="broken-wall")return physical.Solid&&e.HasTag("Solid");
-   return true;
   }
   static bool OrdinaryActor(Zone z,Entity e)=>e!=null&&(e.BlueprintName=="Viper"||e.BlueprintName=="MarlbackScrabbler")
    &&e.SpatialZone==z&&z.GetEntityCell(e)!=null&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0
@@ -358,12 +370,15 @@ namespace CavesOfOoo.Core
   // Native editable 16x24 footprint: quiet workpad, aisle and short north approach.
   static readonly (int x,int y)[] YardGroundOffsets={(-1,-1),(-1,0),(-1,1),(0,1),(0,2),(1,1),(1,0),(1,-1),(0,-1),(0,-2),
    (2,0),(3,0),(3,-1),(3,1),(4,0),(4,-2),(4,-3),(4,-4),(5,0),(5,1)};
+  // East's compact worn shoulder leaves the forge, walls and forage margin bare.
+  static readonly (int x,int y)[] TemperingGroundOffsets={(0,-2),(1,-2),(-2,-1),(-1,-1),(0,-1),(1,-1),
+   (-3,0),(-2,0),(-1,0),(-2,1),(-1,1),(0,1)};
   static bool YardSubstrate(Zone zone,(int x,int y)at,Entity exactFloor=null)
   {
    var cell=zone.GetCell(at.x,at.y);
    if(cell==null||cell.IsInterior||zone.GenReservedCells.Contains(at)||zone.TileState.Get(at.x,at.y)?.IsEmpty==false||BarrenGroundRules.IsBarren(cell))return false;
    var original=cell.Objects.Where(e=>e!=exactFloor).ToArray();if(original.Length!=1)return false;
-   var grass=original[0];return grass.BlueprintName=="Grass"&&grass.HasTag("Terrain")&&grass.HasTag("Plantable")
+   var grass=original[0];return grass.BlueprintName=="Grass"&&!grass.HasTag("Owned")&&grass.HasTag("Terrain")&&grass.HasTag("Plantable")
     &&!grass.HasPart<CultivatedSoilPart>()&&DoorPart.IsBareGround(grass)&&LocalGatheringClaims.Ground(grass,zone);
   }
   static int Distance((int x,int y)a,(int x,int y)b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
