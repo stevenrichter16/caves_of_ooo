@@ -1,7 +1,14 @@
 # Graphics completion plan
 
-Status: **G1 delivery implemented and accepted in bounded ordinary Unity Play;
-opening/region art and packaged/device release remain incomplete.** Initial
+Current status, 2026-10-26: **Mac/Linux packages at `8902d3731` are delivered;
+the newer East meadow pass has bounded ordinary Unity Play acceptance and
+244/244 native passes but is not yet packaged.** The complete opening, regional
+art, Linux execution and physical Steam Deck acceptance remain open. Read the
+latest continuation for the evidence and next water-edge pass.
+
+Initial status, 2026-10-24, retained as historical context: **G1 delivery
+implemented and accepted in bounded ordinary Unity Play; opening/region art
+and packaged/device release remained incomplete.** Initial
 audit was 2026-10-23 against `ce2fe36e7`; its findings below are historical.
 As of 2026-10-24 UTC, normal fresh/Continue launch defaults to flat16×24,
 with a reversible Graphics choice and continuous projection during travel.
@@ -11,7 +18,7 @@ and accepted within its bounded ordinary keyboard route; see
 [wall evidence](GRAPHICS-G2-BOUNDARIES.md). Pond/road/soil are also integrated
 with bounded ordinary Play acceptance in [ground evidence](GRAPHICS-G2-GROUND.md);
 wet-soil ordinary validation and full scene acceptance remain open.
-This is not complete regional artwork or a new Steam Deck build.
+That checkpoint was not complete regional artwork or a new Steam Deck build.
 
 ## Project priority and decision authority
 
@@ -1705,3 +1712,42 @@ quiet destination margin while preserving budgets,workpad,owners and routes.
 After that, audit plain teal water rectangles outsideglade for shared bank
 presentation. Nella active/fallow hierarchy needs a current matched view before
 changing acceptedwork. Continue this scene-level cycle; no unrelatedassetpacket.
+
+## Continuation — East meadow composition accepted, 2026-10-26
+
+The [East meadow pass](GRAPHICS-G3-EAST-MEADOW-COMPOSITION.md) is accepted for its
+bounded density/readability defect. Actual before captures, imagegen critique
+and extraction led to generation-only thinning of existing flower bodies.
+Approved sprites, routes, service owners, stocks and the optional forge pad
+remain unchanged; no new atlas or rendering subsystem was added. Final native
+regression passed **244/244**, zero failures or skips, at 09:25:18–09:27:24 UTC.
+Full-generation controls preserve all compared nonflower fields, pad positions
+and reservations for seeds 64, 65 and 200893250; flowers change from 185/201/216
+to 120/130/139. Allocated equipment-cache keys are normalized to an equipped-item
+multiset with duplicate counts preserved; this does not certify anatomical
+slot assignment between independently generated worlds.
+
+Ordinary seed 64 Play reached East (7,18), tick 1140, HP 40 and 50 drams, and
+opened the forge reader through C/Down/X. F5/F6 preserved all 246 captured owner
+records exactly when compared by ID. An ordinary westward exit and return
+preserved all 120 flower IDs and positions; two Marlback hatchet hits reduced
+HP to 15 before re-entry at (0,16), tick 1250. Seed 65 independently entered the
+fresh East and reached (65,3), tick 1230, HP 40 and 50 drams, then opened the
+same reader. A timed-out movement batch was corrected from the observed actual
+position. Its older screenshot is a qualitative comparison only; no matched
+before/after combat state, new seed 65 save-return or crafting is claimed.
+Actual captures and route details are linked in the pass record.
+
+Current Mac/Linux packages remain at `8902d3731` and therefore precede this
+meadow change. No new per-frame work was added, but no FPS improvement was
+measured. Linux execution, physical Deck, the complete six-service journey,
+whole-opening acceptance and remaining regional art are still open. Repeated
+brine application/expiry log messages were observed and left unchanged outside
+this graphics slice.
+
+Next: capture the actual East pure-water patches, then test a narrow reuse of
+the existing disclosed-neighbor bank art. Preserve mixed liquids, ice, hidden
+neighbors, hazards and authoritative owners; do not broaden ground admission
+to every surface. The water handoff in the pass record is a plan, not implemented
+or accepted work. Preserve current Nella art pending a matched active/fallow
+scene review and its separate service-loss audit.

@@ -23,6 +23,10 @@ namespace CavesOfOoo.Core
         // northern hedge fragments cannot change existing lanes or other planned terrain cells.
         private readonly bool northernFragments;
         private readonly NellaFrontage? nellaFrontage;
+        // Cold-only bits: original flower substrate (1), retained flower (2).
+        // No loaded or cached world reconstructs this presentation-era mask.
+        private readonly byte[,] openingFlowers;
+        private const double OpeningFlowerRetention=.64;
         public int ParcelCount => parcels.Length;
         public Parcel GetParcel(int index) => parcels[index];
         public readonly struct Parcel
@@ -122,6 +126,48 @@ namespace CavesOfOoo.Core
             // the connectivity repair nor unrelated addresses can observe the new mask.
             if(topology!=SpreadExplorationTopology.Legacy&&id=="Overworld.11.8.0"&&Formation==Formation.FieldStrips)
                 nellaFrontage=FindNellaFrontage();
+            // Capture after the original connectivity repair, before assigning
+            // this mask. ObjectAt therefore observes the original grammar here.
+            if(OpeningFlowerDrifts)openingFlowers=ComposeOpeningFlowers();
+        }
+        /// <summary>Original cold substrate exclusion for the optional eastern workpad.
+        /// This is not a live permission or a persisted flower/resource allowance.</summary>
+        internal bool HadOriginalOpeningFlower(int x,int y)=>openingFlowers!=null&&InBounds(x,y)
+            &&(openingFlowers[x,y]&1)!=0;
+        private byte[,] ComposeOpeningFlowers()
+        {
+            var mask=new byte[Zone.Width,Zone.Height];
+            var bodies=new[]{new List<(int x,int y,double score)>(),
+                new List<(int x,int y,double score)>(),new List<(int x,int y,double score)>()};
+            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+            {
+                if(ObjectAt(x,y)!="CharmFlowers")continue;
+                mask[x,y]=1;
+                // The existing separated upper/lower bodies and small eastern
+                // echo each retain a substantial presence; no new cell is filled.
+                bodies[y>=12?1:x>=55?2:0].Add((x,y,OpeningFlowerAffinity(x,y)));
+            }
+            foreach(var body in bodies)
+            {
+                body.Sort((a,b)=>{int n=b.score.CompareTo(a.score);if(n!=0)return n;
+                    n=a.y.CompareTo(b.y);return n!=0?n:a.x.CompareTo(b.x);});
+                int retained=(int)Math.Ceiling(body.Count*OpeningFlowerRetention);
+                for(int i=0;i<retained;i++){var p=body[i];mask[p.x,p.y]|=2;}
+            }
+            return mask;
+        }
+        private double OpeningFlowerAffinity(int x,int y)
+        {
+            // Smooth spatial variation opens connected interiors; the smaller
+            // independent term feathers their edges without a uniform scatter.
+            // Coordinate hashes do not consume population/loadout RNG.
+            double u=(x+Hash(WorldX,WorldY,773)%4)/5.0,v=(y+Hash(WorldX,WorldY,779)%3)/3.0;
+            int gx=(int)u,gy=(int)v;double a=u-gx,b=v-gy;
+            a=a*a*(3-2*a);b=b*b*(3-2*b);
+            double Noise(int nx,int ny)=>Hash(nx,ny,787)%100;
+            double top=Noise(gx,gy)*(1-a)+Noise(gx+1,gy)*a;
+            double bottom=Noise(gx,gy+1)*(1-a)+Noise(gx+1,gy+1)*a;
+            return top*(1-b)+bottom*b+.4*(Hash(x,y,797)%100);
         }
         private NellaFrontage? FindNellaFrontage()
         {
@@ -304,6 +350,7 @@ namespace CavesOfOoo.Core
         public string ObjectAt(int x,int y)
         {
             if(!InBounds(x,y)||x<2||x>77||y<2||y>22||IsApproach(x,y)||IsLawn(x,y)||IsWater(x,y))return null;
+            if(HadOriginalOpeningFlower(x,y))return (openingFlowers[x,y]&2)!=0?"CharmFlowers":null;
             if(Landscape!=null)return LandscapeObjectAt(x,y);
             for(int i=0;i<parcels.Length;i++)
             {

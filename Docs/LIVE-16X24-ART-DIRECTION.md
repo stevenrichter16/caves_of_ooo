@@ -1,8 +1,10 @@
 # Live 16×24 art direction and integration
 
-Status: implementation brief, 2026-10-22. This supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
+Current status, 2026-10-26: the East meadow composition pass has bounded ordinary Unity Play acceptance on seeds 64 and 65 and 244/244 native passes. Current Mac/Linux packages at `8902d3731` precede this meadow change. The complete opening, remaining regional art, Linux execution and physical Deck acceptance remain open. Read the latest continuation below for the exact evidence and next water-edge pass.
 
-**Current delivery order, 2026-10-23:** read [Graphics completion plan](GRAPHICS-COMPLETION-PLAN.md)
+Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
+
+**Delivery order established 2026-10-23, still active:** read [Graphics completion plan](GRAPHICS-COMPLETION-PLAN.md)
 and the [coverage ledger](../ArtSource/Live16x24/release-coverage.json) after this
 pipeline. The user's latest priority is to finish consistent graphics and
 unblock normal play. **Graphics is the game's #1 priority and a release blocker,
@@ -49,7 +51,7 @@ Animations should explain action and character: directional movement, readable a
 
 **User-facing screenshot delivery (requested 2026-10-23):** share actual in-game screenshots inline in this chat as each visible milestone is reached, rather than waiting for the final report or only saving files in the repository. Briefly name the location and visible change. For substantial changes, include comparable before/after captures. Clearly label imagegen concepts, source contact sheets and greyboxes; never present them as finished gameplay. Reuse the verified captures from the production pipeline and provide full absolute image paths for inline display. This reporting preference applies to future agents continuing this session.
 
-**Current handoff:** the opt-in playable glade has accepted native base, cast, functional-anchor, state, motion, loose-item and exact-subject portrait integration. Its connected cellar now adds9 native frames and tested floor/admission, passing714 native cases. Actual cellar Play verifies loot/harvest/dismantle, return/revisit and in-session save/load. A live-discovered portrait color defect is fixed, with9 GPU cases, overlapping348-case regression and exact actual-popup pixel comparison. Earlier glade keyboard/F1/item evidence remains valid. The two exact north graphs now have tested opt-in greybox admission, ordinary border travel/still examine/Nella terms/trade and actual1280×800 captures. Three imagegen concepts/parts references and a measured owner/state plan are saved. The first native north packet now adds Tree/Hedge/BerryBush/DryBrush and reuses ordinary Bush/Reeds, with312 distinct Unity cases and actual entry, hedge collision, berry examine/harvest and plot captures. The next nine-frame [north works packet](LIVE-16X24-NORTH-WORKS.md) is also integrated: still, shelf, three forage sources, magpie, viper and the patchbearer healing-slot pair. It passed 755 selected native cases (69 new) and ordinary travel, combat/Calm, inventory healing, exact-subject examine, finite Stoneburr harvest and two-tonic batch brewing. Nella’s [plot packet](LIVE-16X24-NORTH-PLOT.md) now integrates the unchanged approved keeper, six growth frames, neutral tray and persistent ground cords, with860 distinct final native passes. A second ordinary keyboard visit now verifies the approved keeper portrait, paid rights, rain-fed crop stages, both reserve harvests/pickups, trade return, save/load and border revisit with14 actual captures. Continue direct products next; static new actors and other ordinary-Play coverage remain explicit gaps. East/kitchen remain unadmitted. Complete surface art, reaction/item journeys, release activation and physical Deck acceptance remain outstanding. Generated concepts are reference only. Continue from the records at the end, not historical pending-status paragraphs.
+**Historical handoff, retained and superseded by the dated continuations below:** the opt-in playable glade has accepted native base, cast, functional-anchor, state, motion, loose-item and exact-subject portrait integration. Its connected cellar now adds9 native frames and tested floor/admission, passing714 native cases. Actual cellar Play verifies loot/harvest/dismantle, return/revisit and in-session save/load. A live-discovered portrait color defect is fixed, with9 GPU cases, overlapping348-case regression and exact actual-popup pixel comparison. Earlier glade keyboard/F1/item evidence remains valid. The two exact north graphs now have tested opt-in greybox admission, ordinary border travel/still examine/Nella terms/trade and actual1280×800 captures. Three imagegen concepts/parts references and a measured owner/state plan are saved. The first native north packet now adds Tree/Hedge/BerryBush/DryBrush and reuses ordinary Bush/Reeds, with312 distinct Unity cases and actual entry, hedge collision, berry examine/harvest and plot captures. The next nine-frame [north works packet](LIVE-16X24-NORTH-WORKS.md) is also integrated: still, shelf, three forage sources, magpie, viper and the patchbearer healing-slot pair. It passed 755 selected native cases (69 new) and ordinary travel, combat/Calm, inventory healing, exact-subject examine, finite Stoneburr harvest and two-tonic batch brewing. Nella’s [plot packet](LIVE-16X24-NORTH-PLOT.md) now integrates the unchanged approved keeper, six growth frames, neutral tray and persistent ground cords, with860 distinct final native passes. A second ordinary keyboard visit now verifies the approved keeper portrait, paid rights, rain-fed crop stages, both reserve harvests/pickups, trade return, save/load and border revisit with14 actual captures. Continue direct products next; static new actors and other ordinary-Play coverage remain explicit gaps. East/kitchen remain unadmitted. Complete surface art, reaction/item journeys, release activation and physical Deck acceptance remain outstanding. Generated concepts are reference only. Continue from the records at the end, not historical pending-status paragraphs.
 
 ## Verification sweep before runtime work
 
@@ -2102,3 +2104,42 @@ quiet destination margin while preserving budgets,workpad,owners and routes.
 After that, audit plain teal water rectangles outsideglade for shared bank
 presentation. Nella active/fallow hierarchy needs a current matched view before
 changing acceptedwork. Continue this scene-level cycle; no unrelatedassetpacket.
+
+## Continuation — East meadow composition accepted, 2026-10-26
+
+The [East meadow pass](GRAPHICS-G3-EAST-MEADOW-COMPOSITION.md) is accepted for its
+bounded density/readability defect. Actual before captures, imagegen critique
+and extraction led to generation-only thinning of existing flower bodies.
+Approved sprites, routes, service owners, stocks and the optional forge pad
+remain unchanged; no new atlas or rendering subsystem was added. Final native
+regression passed **244/244**, zero failures or skips, at 09:25:18–09:27:24 UTC.
+Full-generation controls preserve all compared nonflower fields, pad positions
+and reservations for seeds 64, 65 and 200893250; flowers change from 185/201/216
+to 120/130/139. Allocated equipment-cache keys are normalized to an equipped-item
+multiset with duplicate counts preserved; this does not certify anatomical
+slot assignment between independently generated worlds.
+
+Ordinary seed 64 Play reached East (7,18), tick 1140, HP 40 and 50 drams, and
+opened the forge reader through C/Down/X. F5/F6 preserved all 246 captured owner
+records exactly when compared by ID. An ordinary westward exit and return
+preserved all 120 flower IDs and positions; two Marlback hatchet hits reduced
+HP to 15 before re-entry at (0,16), tick 1250. Seed 65 independently entered the
+fresh East and reached (65,3), tick 1230, HP 40 and 50 drams, then opened the
+same reader. A timed-out movement batch was corrected from the observed actual
+position. Its older screenshot is a qualitative comparison only; no matched
+before/after combat state, new seed 65 save-return or crafting is claimed.
+Actual captures and route details are linked in the pass record.
+
+Current Mac/Linux packages remain at `8902d3731` and therefore precede this
+meadow change. No new per-frame work was added, but no FPS improvement was
+measured. Linux execution, physical Deck, the complete six-service journey,
+whole-opening acceptance and remaining regional art are still open. Repeated
+brine application/expiry log messages were observed and left unchanged outside
+this graphics slice.
+
+Next: capture the actual East pure-water patches, then test a narrow reuse of
+the existing disclosed-neighbor bank art. Preserve mixed liquids, ice, hidden
+neighbors, hazards and authoritative owners; do not broaden ground admission
+to every surface. The water handoff in the pass record is a plan, not implemented
+or accepted work. Preserve current Nella art pending a matched active/fallow
+scene review and its separate service-loss audit.

@@ -100,7 +100,8 @@ namespace CavesOfOoo.Core
     foreach(var local in drying?YardGroundOffsets:TemperingGroundOffsets)
     {
      var at=At(origin,local,rotation);
-     if(occupied.Contains(at)||Distance(at,Arrival)<=6||!before.Place(at.x,at.y)||!YardSubstrate(zone,at))continue;
+     if(occupied.Contains(at)||Distance(at,Arrival)<=6||!before.Place(at.x,at.y)||!YardSubstrate(zone,at)
+      ||(forgeLane&&plan.HadOriginalOpeningFlower(at.x,at.y)))continue;
      specs.Add(("RoadStone","yard-ground",local.x,local.y));padded.Add(at);occupied.Add(at);
     }
     positions=padded.ToArray();
