@@ -1,8 +1,20 @@
 # Live 16×24 art direction and integration
 
-Current status, 2026-10-26: En Garde's border-crowded hotbar label is now En / Garde, with native93/93, six actual ordinary Unity captures and independent source/visual review. See [repair and exact bounds](GRAPHICS-G3-HOTBAR-NAMES.md). Current Mac/Linux packages remain daa388643 and do not contain this newest fix yet. Refresh and test them next, then continue the unchanged earned Pitchpod-resin checkpoint toward North still/East temper. The prior33-capture/31 saved-state [crop route](GRAPHICS-G3-COLLECTED-REVISIT.md) remains accepted. Approved art and normal saves/preferences/current builds/foreign edits were preserved. Full opening/regions, Linux execution, physical Deck and performance remain open.
+Current status, 2026-10-26: the En / Garde hotbar correction now ships in fresh
+Mac/Linux packages from `3aca7c18e`. Ten actual Mac captures verify mouse
+activation/cooldown refusal, keyboard AIM/cancel, inventory and full restart.
+The earned Nella resin→North still→East forge route also passed:32 actual
+captures and26/26 independent saved-state checks, including full restart.
+The same equipped sword has one Burning temper; one resin remains. See
+[package delivery](GRAPHICS-G3-HOTBAR-DELIVERY.md) and
+[earned route](GRAPHICS-G3-EARNED-RESIN-TEMPER.md).
+The suspected coating portrait gap was resolved by audit: it is the approved
+shared native flask, correctly mapped. Keep it stable and continue whole-scene
+acceptance. Full opening/regions, Linux execution, physical Deck and sustained
+performance remain open. Normal saves/preferences, prior builds and34 foreign
+edits are preserved; storage remains inspection-only.
 
-User-requested hourly reporting is active: list work completed/in progress/blocked and concrete coming-session goals, plus test/capture/push status. Last report checkpoint: 2026-10-26 21:53 UTC. See the [complete graphics-run change inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md). Intermediate ten-minute storage checks remain quiet and inspection-only.
+User-requested hourly reporting is active: list work completed/in progress/blocked and concrete coming-session goals, plus test/capture/push status. Last report checkpoint: 2026-10-26 22:40 UTC. See the [complete graphics-run change inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md). Intermediate ten-minute storage checks remain quiet and inspection-only.
 
 Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
@@ -2580,3 +2592,38 @@ wrapping for En Garde, with actual Warden rendering and counterchecks before
 package delivery. North still remains guarded by the living patchbearer at62,6,
 20HP; brewing and tempering are unaccepted. Whole opening, regions, device and
 performance gates remain open. The heartbeat stays active.
+
+
+## Continuation — 2026-10-26 hotbar delivery and earned Burning temper
+
+Frozen source3aca7c18e now has fresh Mac/Linux packages; both succeeded with
+0errors/4warnings. Ten original Mac captures verify1x/2x names, real mouse
+En Garde/cooldown refusal, keyboard Lunge AIM/cancel, inventory and quit/Continue.
+The Linux archive was independently checked; physical/Linux runtime gates stay
+open. Prior source93/93 retained without rerunning unchanged tests.
+
+The same ordinary standalone session carried the actually harvested resin from
+Nella through the North guard encounter and still, via glade to East forge.
+32 captures and26 independent saved-state checks accept the bounded route:
+same sword2710 equipped, one Burning30 potency1 temper, maxHP10→8, unchanged1d8,
+resin2→1/coating consumed, guard corpse provenance and genuine restart at
+tick11960,East45,6,HP25/42. No natural Burning or Riposte proc observed.
+
+The coating reader's muted bottle initially looked generic; source/visual audit
+proved it is the previously approved shared native flask. No asset or resolver
+change is justified. Keep accepted art stable. Next: fresh New Game whole-scene
+six-site review, compare the actual framing/motion with accepted references,
+then address the largest documented remaining visual gap. Full opening/regions
+and device performance remain unfinished.
+
+At22:29, player/Editor were closed. All48,657 baseline tracked objects compared;34foreign
+edits, normal save tree/full logical preferences and prior packages preserved.
+Three reviewed build settings plus the separately reviewed UnityConnect toggle
+restored. Test saves archived; no cache/storage deletion. Available415.3GiB.
+See [delivery](GRAPHICS-G3-HOTBAR-DELIVERY.md) and
+[earned route](GRAPHICS-G3-EARNED-RESIN-TEMPER.md) for evidence and bounds.
+
+A later Unity session changed Editor LastGameID/session keys after that verified
+restoration. It was not started by this root and is preserved untouched. The
+standalone player remains closed. Check active ownership before continuing
+ordinary Play; do not restore the old preference map over a later session.

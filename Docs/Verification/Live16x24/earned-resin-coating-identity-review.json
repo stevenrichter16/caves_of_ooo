@@ -1,0 +1,81 @@
+{
+  "kind": "independent_coating_identity_source_and_visual_review",
+  "recorded_utc": "2026-10-26T22:36:02.422001+00:00",
+  "decision": "Approved shared native flask is correctly displayed; preserve it. No mapping defect or new asset required.",
+  "actual_owner_semantics": {
+    "blueprint": "BrewedTonic",
+    "form": "Coating",
+    "effects_raw": "Burning:1",
+    "separate_burning_coating_blueprint_found": false
+  },
+  "mapping": {
+    "resource": "Sprites/Live16x24/north-works-products",
+    "frame": 5,
+    "frame_rect": [
+      80,
+      0,
+      16,
+      24
+    ],
+    "description": "Opaque broad-based grey-green flask with a short neck and a plain brown stopper."
+  },
+  "source_evidence": [
+    {
+      "path": "Assets/Scripts/Gameplay/Alchemy/BrewingService.cs",
+      "lines": "30,325\u2013370",
+      "finding": "Generated brews share BrewedTonic; canonical Form and EffectsRaw carry the outcome; display name is presentation."
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/FlatPixelOpeningArtCatalog.cs",
+      "lines": "250\u2013261,299\u2013315",
+      "finding": "Existing exact portable owner and owned Tonic guards map canonical Tonic/Coating/Throwable to native frame5; Food/unknown/foreign BrewItem refuses this frame."
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs",
+      "lines": "841\u2013880",
+      "finding": "Authorized current-graph subject path reaches shared opening-art resolution; current world/carried authority remains with existing callers."
+    },
+    {
+      "path": "Docs/LIVE-16X24-WORKS-PRODUCTS.md",
+      "lines": "41\u201343,56\u201364,261\u2013265",
+      "finding": "Neutral shared vessel is explicit approved policy. An earlier real Burning coating carried reader was accepted using this same frame."
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWorksProductTests.cs",
+      "lines": "132\u2013150,251\u2013288",
+      "finding": "Existing tests pin canonical form sharing, refusal for invalid/foreign forms, real brewing, carried/world reader routing and unchanged effects. Tests inspected, not run during this audit."
+    }
+  ],
+  "visual_evidence": {
+    "comparison": "Independently viewed actual earned-resin-17-coating-details.jpg and native contact. The same broad grey-green flask silhouette and brown stopper are displayed. No glyph fallback is visible in that portrait.",
+    "filename_correction": "earned-resin-16-coating-reader.jpg actually shows Item Actions; screenshot17 is Examine."
+  },
+  "evidence": {
+    "actual_examine": {
+      "path": "Docs/Verification/Live16x24/earned-resin-17-coating-details.jpg",
+      "sha256": "2355df2cb0f40871260091e41a3004ffdb97d8dd19ad976001b39b8f31b55f03"
+    },
+    "actual_actions": {
+      "path": "Docs/Verification/Live16x24/earned-resin-16-coating-reader.jpg",
+      "sha256": "656191b95cbfb0edf6a1c97d9e81f77c44e45a5670309bfc7bca0acaa130f64f"
+    },
+    "approved_contact": {
+      "path": "ArtSource/Live16x24/north-works-products/north-works-products-contact.png",
+      "sha256": "c7ac913362071bcb9ecc72eb3bdfcb6372e8a4830c4e60f0a8396fe0783e2b07"
+    },
+    "approved_manifest": {
+      "path": "ArtSource/Live16x24/north-works-products/manifest.json",
+      "sha256": "147d2a4fb2042e0e09f37f1fad7eef1ea85968d505049886f63af6d9ba806d46"
+    },
+    "runtime_atlas": {
+      "path": "Assets/Resources/Sprites/Live16x24/north-works-products.png",
+      "sha256": "9a4e06fdbb55242a66101df145e83e034125f5fd9ce8b2f02f4907fe055250a9"
+    }
+  },
+  "limits": [
+    "Visual inspection plus source mapping; no new runtime probe, Unity operation or native tests.",
+    "No separate effect-specific Burning coating art exists in the inspected resources. Adding such a distinction would require a new design pass, but is not necessary to correct current behavior.",
+    "Does not prove whole-game art completeness."
+  ],
+  "followup": "Preserve accepted flask and continue whole-scene gameplay acceptance."
+}

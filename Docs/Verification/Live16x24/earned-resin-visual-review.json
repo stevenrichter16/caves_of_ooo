@@ -1,0 +1,87 @@
+{
+  "reviewer": "inventory_stat_review",
+  "scope": "Independent visual inspection of seven original standalone Mac JPEG captures, without editing images, operating gameplay or inspecting mechanics archives.",
+  "result": "Bounded visual acceptance passes; no material UI, temper-result, equipment or restart presentation regression was found.",
+  "named_next_gap": {
+    "evidence": "earned-resin-17-coating-details.jpg",
+    "issue": "Generic gray-green bottle does not distinguish burning coating at a glance. Text truthfully identifies it.",
+    "priority_scope": "One product identity/portrait treatment if independently supported by catalog and mechanics review; do not infer a new mechanical state or redraw the accepted sword."
+  },
+  "images": [
+    {
+      "file": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/earned-resin-17-coating-details.jpg",
+      "sha256": "2355df2cb0f40871260091e41a3004ffdb97d8dd19ad976001b39b8f31b55f03",
+      "size": [
+        1280,
+        856
+      ],
+      "observation": "Burning coating title and mechanics are legible, including quench use and burning intensity 1. The native portrait is a generic muted gray-green bottle and does not visually distinguish the burning product; this is a bounded identity gap, not evidence of a broken transaction."
+    },
+    {
+      "file": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/earned-resin-23-temper-selected.jpg",
+      "sha256": "ca2f48a5750ee96ab3a8febf61ad8aa1adfb088565c237e423596ab1f6c96cdb",
+      "size": [
+        1280,
+        856
+      ],
+      "observation": "The forge menu visibly marks burning coating and long sword as picked; Craft and details/accept/back controls are legible on the panel. No missing price or truncated selected-item identity is visible."
+    },
+    {
+      "file": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/earned-resin-24-temper-result.jpg",
+      "sha256": "a1de90d537b990b19e0c9dafe356ba2b6f7f42bc2405a85180c9420deb396117",
+      "size": [
+        1280,
+        856
+      ],
+      "observation": "Menu closes without stale panel remnants. The log explicitly reports quenching the flame-quenched long sword and consuming the coating; weight is now 28/270, HP 25/42 and drams 40."
+    },
+    {
+      "file": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/earned-resin-25-tempered-equipped.jpg",
+      "sha256": "c4fca5af072cc0d079cc50b25bcffb971fda2a338b78076b8fef56f1fb9dba06",
+      "size": [
+        1280,
+        856
+      ],
+      "observation": "Full flame-quenched long sword name fits the row and left-hand slot; 1d8 and far-right [E] remain clear. The native sword portrait is coherent, and the intentional preview ellipsis has an F1 Details route."
+    },
+    {
+      "file": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/earned-resin-26-tempered-details.jpg",
+      "sha256": "4ec101f7ecd5c8ddc9af7f19129a2912456b20f047ee59f0725e961204de0b54",
+      "size": [
+        1280,
+        856
+      ],
+      "observation": "Reader page 1/2 clearly displays flame-quenched identity, 1d8 damage, +2 penetration, separate 25% bleeding and 30% set-ablaze attempts, and currently equipped left hand. Portrait and page controls are clean."
+    },
+    {
+      "file": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/earned-resin-30-restart-inventory.jpg",
+      "sha256": "b0f3ffd82081a19e2c1ac88928a6ff84b41c3bf1e8e3bf078121773448d5df36",
+      "size": [
+        1280,
+        856
+      ],
+      "observation": "After the documented restart the flame-quenched name, left-hand assignment, 1d8, [E], weight 28/270, HP 25/42 and drams 40 match the prior accepted visible state. A different focused empty body slot is not an item-state regression."
+    },
+    {
+      "file": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/earned-resin-31-restart-sword-details.jpg",
+      "sha256": "d9a9e5ab70079597ffc7854a50fdbeb87a2120023cbec9296dc6a905e9872554",
+      "size": [
+        1280,
+        856
+      ],
+      "observation": "Restart reader page 1/2 matches the pre-restart identity, sword portrait, damage, penetration, independent proc descriptions and equipped left-hand text."
+    }
+  ],
+  "limits": [
+    "These stills do not independently prove exact entity identity, resin 2-to-1, inventory absence or coating consumption. Those require the separate saved-state/archive audit.",
+    "The root-provided actual CUA sequence supplies action and full-restart provenance; images show the observed results rather than input execution.",
+    "Only sword reader page 1 of 2 was reviewed. No claim that page 2 or all possible long item names were exercised.",
+    "No Linux execution, physical controller/Steam Deck, combat proc execution or broader graphics-completion claim."
+  ],
+  "mutations": "Only this scratch JSON report was written; repository, Unity, player and captures were not changed.",
+  "later_resolution": {
+    "status": "initial_shared_flask_suspicion_disproven",
+    "evidence": "earned-resin-coating-identity-review.json",
+    "result": "Approved native north-works-products frame5 correctly used; preserve accepted shared flask. Earlier named_next_gap is superseded, not an unresolved defect."
+  }
+}

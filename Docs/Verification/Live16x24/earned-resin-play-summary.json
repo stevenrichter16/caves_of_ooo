@@ -1,0 +1,41 @@
+{
+  "at_utc": "2026-10-26T22:31:27.657357+00:00",
+  "source_commit": "3aca7c18ec2e093c1cbf215e63f74a1b0027ea44",
+  "fixture_start": "Fixtures/hotbar-parity242967504",
+  "fixture_end": "Fixtures/earned-resin-tempered242967504",
+  "seed": 242967504,
+  "start_turn": 9480,
+  "end_turn": 11960,
+  "actual_input_only": true,
+  "runtime_or_save_injection_after_launch": false,
+  "captures": 32,
+  "route": [
+    "Nella62,6 to southern border43,24, detouring around birds/grazer",
+    "North43,0 to still68,5; real Patchbearer fight at57,5/58,5",
+    "Select only Pitchpod resin and single-brew Burning coating",
+    "Ordinary North southern exit32,24 to glade32,0, cross at row15",
+    "East0,15 to45,6; unequip same sword, select coating and sword, Craft, re-equip",
+    "F5, full process quit/relaunch Continue, F1 sword reader, F5"
+  ],
+  "guard": {
+    "ordinary_combat": true,
+    "player_hp_before": 42,
+    "player_hp_after": 25,
+    "xp_before": 2,
+    "xp_after": 77,
+    "healing_tonic_used_by_guard": true,
+    "bleeding_observed": true,
+    "parry_or_riposte_observed": false
+  },
+  "verified_saved_state": "earned-resin-state-audit.json",
+  "saved_state_checks": "26/26",
+  "result": "Same sword2710 equipped, one Burning temper30% potency1, HP/max10\u21928, damage1d8 Pen2 unchanged; resin13757\u00d72\u21921, coating consumed; restart preserves scoped fields at tick11960",
+  "named_visual_gap": "Initial suspected coating identity gap disproven: actual grey-green bottle matches approved north-works-products frame5 intentionally shared by owned canonical brewed forms. Preserve accepted art; no resolver correction.",
+  "limits": [
+    "No natural Burning application or Riposte proc claimed",
+    "No whole-opening or full regional acceptance",
+    "No physical Steam Deck or Linux runtime test",
+    "Screenshot09 is an attempted Return while still AIM, not successful Lunge;10 shows resolved combat",
+    "Screenshot27 is equipment-reader page2, not proof of temper count/durability; those are independently decoded from saved state"
+  ]
+}

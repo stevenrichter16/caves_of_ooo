@@ -1,20 +1,20 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: En Garde now wraps into En / Garde. The source
-repair passed native RED then 93/93 GREEN, six actual ordinary Unity captures,
-and independent source/visual review. Normal saves/preferences, current builds
-and all 34 preexisting dirty tracked paths are preserved. See
-[hotbar repair](GRAPHICS-G3-HOTBAR-NAMES.md). Current Mac/Linux packages remain
-daa388643 and need this new source correction packaged next.
+Current status, 2026-10-26: the En / Garde hotbar correction now ships in fresh
+Mac/Linux packages from `3aca7c18e`. Ten actual Mac captures verify mouse
+activation/cooldown refusal, keyboard AIM/cancel, inventory and full restart.
+The earned Nella resin→North still→East forge route also passed:32 actual
+captures and26/26 independent saved-state checks, including full restart.
+The same equipped sword has one Burning temper; one resin remains. See
+[package delivery](GRAPHICS-G3-HOTBAR-DELIVERY.md) and
+[earned route](GRAPHICS-G3-EARNED-RESIN-TEMPER.md).
+The suspected coating portrait gap was resolved by audit: it is the approved
+shared native flask, correctly mapped. Keep it stable and continue whole-scene
+acceptance. Full opening/regions, Linux execution, physical Deck and sustained
+performance remain open. Normal saves/preferences, prior builds and34 foreign
+edits are preserved; storage remains inspection-only.
 
-The existing package's earned Pitchpod growth/harvest/replant, full restart
-and North border return remain accepted within the 33-capture/31 saved-state
-[route](GRAPHICS-G3-COLLECTED-REVISIT.md). Next: refresh/test packages, then the
-contested North still/East temper leg using its earned resin. Full opening,
-regions, Linux execution, physical Deck and sustained performance remain open.
-Storage remains inspection-only.
-
-Hourly report checkpoint: 2026-10-26 21:53 UTC. The active automation now requires
+Hourly report checkpoint: 2026-10-26 22:40 UTC. The active automation now requires
 itemized completed/in-progress/blocked work and coming-session goals once an
 hour. Intermediate ten-minute storage checks remain quiet/read-only. The
 [complete run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md) distinguishes

@@ -16,13 +16,16 @@ from mechanics or behavior actually changed during this run.
 - Ordinary fresh/Continue games now default to flat 16×24. The old presentation
   remains a reversible Graphics choice. Uncovered regions retain truthful
   flat glyphs, so flat continuity does not imply complete bespoke artwork.
-- Current Mac and Linux packages use source `daa388643`, including the latest
-  action-menu width and mouse fixes. Mac ordinary launch/travel/Continue has
-  actual gameplay evidence. Linux archive construction/checks are verified;
+- Current Mac and Linux packages now use source `3aca7c18e`, including the
+  action-menu fixes and En / Garde name wrap. Ten actual Mac captures verify
+  hotbar input, inventory and full restart. Linux archive checks are verified;
   Linux gameplay and physical Steam Deck acceptance remain open.
-- The new En Garde name wrap has 93/93 native passes, six actual Editor captures
-  and independent review. It is included in this report's source commit but
-  **not yet in those current packages**.
+- The hotbar source's93/93 native passes and six Editor captures are retained.
+  A subsequent32-capture earned resin→still→forge route passed26 independent
+  saved-state checks and full restart. This exercises existing mechanics;
+  it adds no new alchemy/forge rule or sprite. The shared native brew flask
+  was audited and kept unchanged. See [delivery](GRAPHICS-G3-HOTBAR-DELIVERY.md)
+  and [route](GRAPHICS-G3-EARNED-RESIN-TEMPER.md).
 - The user requested hourly itemized work and goals. The active automation now
   requires completed/in-progress/blocked items, next-session goals, tests,
   screenshots and push status once per hour. Its intermediate ten-minute

@@ -1,0 +1,46 @@
+{
+  "script": "/tmp/coo-earned-temper-audit-final.py",
+  "script_sha256": "ad37efd11b30a6d142894415443c097409c3ac1859ac07f16e76aab99f332fd2",
+  "command": [
+    "python3",
+    "/tmp/coo-earned-temper-audit-final.py",
+    "--baseline",
+    "/tmp/coo-hotbar-parity-earned-checkpoint",
+    "--before-restart",
+    "/tmp/coo-earned-temper-before-restart",
+    "--after-restart",
+    "/tmp/coo-earned-temper-after-restart",
+    "--output",
+    "/tmp/coo-earned-temper-reproduced.json"
+  ],
+  "checks_match_previous26": true,
+  "reproduced_passed": 26,
+  "reproduced_total": 26,
+  "all_six_input_files_unchanged": true,
+  "overwrite_guards": {
+    "input_overwrite": {
+      "exit_code": 2,
+      "refused": true,
+      "file_unchanged": true,
+      "diagnostic": "coo-earned-temper-audit-final.py: error: Output must be outside all input checkpoint directories."
+    },
+    "existing_output": {
+      "exit_code": 2,
+      "refused": true,
+      "file_unchanged": true,
+      "diagnostic": "coo-earned-temper-audit-final.py: error: Output already exists; refusing to overwrite any file."
+    }
+  },
+  "old_audit_amendment": "Only bounds visual conclusion and summary.visual_followup changed; all26 checks, snapshots, hashes and original audit timestamp preserved.",
+  "reviewed_scratch_script_sha256": "ad37efd11b30a6d142894415443c097409c3ac1859ac07f16e76aab99f332fd2",
+  "repository_script": "Docs/Verification/Live16x24/earned-resin-state-audit.py",
+  "repository_script_sha256": "f32bf37f2478a011428fb24ab822e2bf197dac8f944c9b12334f8c0e72fa6778",
+  "repository_cleanup": "Removed trailing whitespace from two blank lines only; behavior unchanged.",
+  "repository_reproduction": {
+    "output": "/tmp/coo-earned-temper-final-reproduced.json",
+    "checks_match_committed_audit": true,
+    "checks_passed": 26,
+    "checks_total": 26,
+    "input_files_unchanged": true
+  }
+}

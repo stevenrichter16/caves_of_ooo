@@ -1,0 +1,2613 @@
+{
+  "kind": "read_only_earned_temper_saved_state_audit",
+  "recorded_utc": "2026-10-26T22:38:00.831964+00:00",
+  "method": "Read gzip format8 bytes, check header/zone/cell tokens and exact selected public-field schemas. No gameplay loading/hooks. Input files hashed before and after. Output created exclusively.",
+  "bounds": [
+    "Fixture-specific expected seed242967504 and owner IDs2706/2710/13757/6930; unsupported or malformed inputs raise rather than pass.",
+    "Checks serialized endpoint records, not exact key timing or screenshot pixels.",
+    "No intermediate coating checkpoint: resin decrement, no remaining BrewItem and final authoritative temper payload support consumption, but do not identify the consumed coating ID.",
+    "A Burning weapon spec does not establish an actual on-hit proc.",
+    "Restart equality covers emitted player, sword, carried item, resin and guard-corpse fields, not every field/part in the whole save.",
+    "Resolved by independent source and screenshot review: earned-resin-17-coating-details.jpg shows approved native north-works-products frame5. BrewedTonic with canonical Coating intentionally shares the neutral flask; no missing asset mapping or fallback defect."
+  ],
+  "checks": {
+    "same_seed": true,
+    "before_nella_player62_6": true,
+    "after_east_player45_6": true,
+    "after_tick11960_and_hp25_42": true,
+    "same_sword2710_blueprint": true,
+    "sword_equipped_both_backrefs": true,
+    "sword_equipped_both_inventory_map": true,
+    "sword_not_carried_or_grounded": true,
+    "resin_same13757_two_to_one": true,
+    "resin_still_owned": true,
+    "no_brew_item_remains_in_after_saved_graph": true,
+    "no_prior_temper": true,
+    "single_burning_temper": true,
+    "weapon_durability10_to8": true,
+    "damage_pen_hit_unchanged": true,
+    "flame_quenched_name": true,
+    "guard_before_alive20": true,
+    "guard_after_removed_or_dead": true,
+    "guard_corpse_provenance": true,
+    "restart_same_game_seed": true,
+    "restart_same_tick_hp_position": true,
+    "restart_same_sword_all_audited_fields": true,
+    "restart_same_inventory_and_equipment": true,
+    "restart_same_resin1": true,
+    "restart_coating_still_absent": true,
+    "restart_guard_corpse_preserved": true
+  },
+  "all_checks_pass": true,
+  "input_files_unchanged": {
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/hotbar-parity242967504/Quick.json": true,
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/hotbar-parity242967504/Quick.sav.gz": true,
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered-before242967504/Quick.json": true,
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered-before242967504/Quick.sav.gz": true,
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered242967504/Quick.json": true,
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered242967504/Quick.sav.gz": true
+  },
+  "input_sha256": {
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/hotbar-parity242967504/Quick.json": "2736332a303d4b5f52709f9b012ed07dc4fccc2dd082f89343aac9a33cba4199",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/hotbar-parity242967504/Quick.sav.gz": "2f9f3e7de41746efa998c617e137154b80b0f0f1df45a041c25ed2ff67410dcc",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered-before242967504/Quick.json": "f7e8bb0ba56329ec079bfa6869224f6870b97239f2aeb5a68458c8d9657e65d3",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered-before242967504/Quick.sav.gz": "0ef0d43d1d10baa7593e493114cb898b6326651a9fc4376ec1caa9f271f8fdd3",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered242967504/Quick.json": "d0291bb2d83cd133b114bb9506498ad74f1dc0aaeaa6a3b0b136f8b637081d7f",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered242967504/Quick.sav.gz": "2371dbb69827149ecf48321fd73bd130fbaa6952742bde0cbcb378d14db1c935"
+  },
+  "before": {
+    "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/hotbar-parity242967504",
+    "sha256": "2f9f3e7de41746efa998c617e137154b80b0f0f1df45a041c25ed2ff67410dcc",
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 2,
+      "ActiveZoneID": "Overworld.11.8.0",
+      "ActiveZoneDisplayLabel": "Overworld.11.8.0",
+      "Turn": 9480,
+      "SaveTimestampUtc": "2026-10-26T22:10:24.4207530Z",
+      "HPSummary": "42/42",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "seed": 242967504,
+    "active_zone": "Overworld.11.8.0",
+    "body_owner_count": 13726,
+    "player": {
+      "id": "2706",
+      "pos": [
+        [
+          "Overworld.11.8.0",
+          62,
+          6
+        ]
+      ],
+      "stats": {
+        "Hitpoints": [
+          42,
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        "Strength": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Agility": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Toughness": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Intelligence": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Willpower": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Ego": [
+          16,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Speed": [
+          100,
+          0,
+          0,
+          0,
+          25,
+          200
+        ],
+        "DV": [
+          0,
+          0,
+          0,
+          0,
+          -50,
+          200
+        ],
+        "XPValue": [
+          10,
+          0,
+          0,
+          0,
+          0,
+          9999
+        ],
+        "Level": [
+          2,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Experience": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          999999
+        ],
+        "SP": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          999
+        ]
+      },
+      "properties": {
+        "FarmingKitGranted": "true",
+        "StartingBuild": "warden",
+        "TravellerSpawn:242967504:Overworld.11.9.0": "traveller:242967504:Overworld.11.9.0"
+      },
+      "carried_ids": [
+        "2707",
+        "2708",
+        "2709",
+        "2713",
+        "4750",
+        "4749",
+        "4756",
+        "11464",
+        "13748",
+        "13750",
+        "13751",
+        "13757"
+      ],
+      "equipment_slots": {
+        "8": "2710",
+        "9": "2711"
+      },
+      "capacity": 150
+    },
+    "sword": {
+      "id": "2710",
+      "bp": "LongSword",
+      "tags": {
+        "Item": "",
+        "MeleeWeapon": "",
+        "Tier": "2",
+        "Metal": "",
+        "Conductor": ""
+      },
+      "props": {},
+      "stats": {
+        "Hitpoints": [
+          10,
+          0,
+          0,
+          0,
+          0,
+          10
+        ]
+      },
+      "pos": [],
+      "physics": {
+        "Solid": false,
+        "Weight": 8,
+        "Takeable": true,
+        "ThrowBase": 0.0,
+        "ThrowHeight": -1.0,
+        "ThrowIntercept": -1,
+        "Category": "Melee Weapons",
+        "InInventory": null,
+        "Equipped": "2706"
+      },
+      "StackerPart": {
+        "StackCount": 1,
+        "MaxStack": 99
+      },
+      "MeleeWeaponPart": {
+        "BaseDamage": "1d8",
+        "PenBonus": 2,
+        "HitBonus": 0,
+        "MaxStrengthBonus": -1,
+        "Stat": "Strength",
+        "Attributes": "Cutting LongBlades",
+        "OnHitEffectsRaw": "",
+        "EmitGasOnHitRaw": ""
+      },
+      "RenderPart": {
+        "DisplayName": "long sword",
+        "RenderString": "/",
+        "ColorString": "&y",
+        "BackgroundColor": "",
+        "GlyphVariants": "",
+        "DetailColor": "",
+        "TileColor": "",
+        "Tile": null,
+        "VisualID": "",
+        "VisualVariant": "",
+        "VisualFacing": 0,
+        "RenderLayer": 5,
+        "Visible": true
+      }
+    },
+    "resin": {
+      "id": "13757",
+      "bp": "PitchpodResin",
+      "tags": {
+        "Item": "true",
+        "BotanicalHarvest": ""
+      },
+      "props": {},
+      "stats": {},
+      "pos": [],
+      "physics": {
+        "Solid": false,
+        "Weight": 1,
+        "Takeable": true,
+        "ThrowBase": 0.0,
+        "ThrowHeight": -1.0,
+        "ThrowIntercept": -1,
+        "Category": "",
+        "InInventory": "2706",
+        "Equipped": null
+      },
+      "StackerPart": {
+        "StackCount": 2,
+        "MaxStack": 99
+      },
+      "RenderPart": {
+        "DisplayName": "pitchpod resin",
+        "RenderString": ";",
+        "ColorString": "&W",
+        "BackgroundColor": "",
+        "GlyphVariants": "",
+        "DetailColor": "",
+        "TileColor": "",
+        "Tile": null,
+        "VisualID": "",
+        "VisualVariant": "",
+        "VisualFacing": 0,
+        "RenderLayer": 5,
+        "Visible": true
+      }
+    },
+    "carried": [
+      {
+        "id": "2707",
+        "bp": "WateringGrimoire",
+        "tags": {
+          "Item": "",
+          "Grimoire": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 2,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Books",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "watering grimoire",
+          "RenderString": "\"",
+          "ColorString": "&B",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2708",
+        "bp": "CandyCarrotSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 0,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 4,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "gladroot seed",
+          "RenderString": ",",
+          "ColorString": "&O",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2709",
+        "bp": "EmberwheatSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 0,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "emberwheat seed",
+          "RenderString": ",",
+          "ColorString": "&W",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2713",
+        "bp": "DriedMeat",
+        "tags": {
+          "Item": "",
+          "Food": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 2,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Food",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "dried meat",
+          "RenderString": "%",
+          "ColorString": "&r",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4750",
+        "bp": "DitchkeepersFootwork",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "Ditchkeepers' Footwork",
+          "RenderString": "?",
+          "ColorString": "&w",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 4,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4749",
+        "bp": "ShatteredRimeGrimoire",
+        "tags": {
+          "Item": "",
+          "Grimoire": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Books",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "Rite of the Shattered Rime",
+          "RenderString": "+",
+          "ColorString": "&C",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4756",
+        "bp": "SootrootPulp",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": "",
+          "Tonic": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "sootroot pulp",
+          "RenderString": "!",
+          "ColorString": "&K",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "11464",
+        "bp": "BogSap",
+        "tags": {
+          "Item": "",
+          "Tier": "1",
+          "Alchemy": "",
+          "Reagent": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "bog sap",
+          "RenderString": "%",
+          "ColorString": "&y",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13748",
+        "bp": "ClaspbeanPulp",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": "",
+          "Tonic": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "claspbean pulp",
+          "RenderString": "!",
+          "ColorString": "&g",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13750",
+        "bp": "ClaspbeanSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "claspbean seed",
+          "RenderString": "*",
+          "ColorString": "&g",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13751",
+        "bp": "FieldMeal",
+        "tags": {
+          "Item": ""
+        },
+        "props": {
+          "KitchenBatch.Station": "13729",
+          "KitchenBatch.Customer": "2706"
+        },
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Food",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "wrapped field meal",
+          "RenderString": "%",
+          "ColorString": "&y",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 4,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13757",
+        "bp": "PitchpodResin",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "pitchpod resin",
+          "RenderString": ";",
+          "ColorString": "&W",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      }
+    ],
+    "north_guard": {
+      "id": "6930",
+      "bp": "MarlbackPatchbearer",
+      "tags": {
+        "Creature": "",
+        "Faction": "OutlandRaiders",
+        "Tier": "2",
+        "Organic": ""
+      },
+      "props": {
+        "NaturalWeapon": "MarlbackRake",
+        "SpreadWorksite.Role": "patchbearer"
+      },
+      "stats": {
+        "Hitpoints": [
+          20,
+          0,
+          0,
+          0,
+          0,
+          20
+        ],
+        "Strength": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Agility": [
+          14,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Toughness": [
+          14,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Intelligence": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Willpower": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Ego": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Speed": [
+          100,
+          0,
+          0,
+          0,
+          25,
+          200
+        ],
+        "DV": [
+          0,
+          0,
+          0,
+          0,
+          -50,
+          200
+        ],
+        "XPValue": [
+          75,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "ColdResistance": [
+          25,
+          0,
+          0,
+          0,
+          -100,
+          200
+        ]
+      },
+      "pos": [
+        [
+          "Overworld.11.9.0",
+          64,
+          3
+        ]
+      ],
+      "physics": {
+        "Solid": true,
+        "Weight": 0,
+        "Takeable": false,
+        "ThrowBase": 0.0,
+        "ThrowHeight": -1.0,
+        "ThrowIntercept": -1,
+        "Category": "",
+        "InInventory": null,
+        "Equipped": null
+      },
+      "RenderPart": {
+        "DisplayName": "marlback patchbearer",
+        "RenderString": "s",
+        "ColorString": "&w",
+        "BackgroundColor": "",
+        "GlyphVariants": "",
+        "DetailColor": "",
+        "TileColor": "",
+        "Tile": null,
+        "VisualID": "",
+        "VisualVariant": "",
+        "VisualFacing": 2,
+        "RenderLayer": 10,
+        "Visible": true
+      }
+    },
+    "guard_corpse_or_provenance": [],
+    "all_brew_items": []
+  },
+  "before_restart": {
+    "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered-before242967504",
+    "sha256": "0ef0d43d1d10baa7593e493114cb898b6326651a9fc4376ec1caa9f271f8fdd3",
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 2,
+      "ActiveZoneID": "Overworld.12.10.0",
+      "ActiveZoneDisplayLabel": "Overworld.12.10.0",
+      "Turn": 11960,
+      "SaveTimestampUtc": "2026-10-26T22:24:52.9538100Z",
+      "HPSummary": "25/42",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "seed": 242967504,
+    "active_zone": "Overworld.12.10.0",
+    "body_owner_count": 13717,
+    "player": {
+      "id": "2706",
+      "pos": [
+        [
+          "Overworld.12.10.0",
+          45,
+          6
+        ]
+      ],
+      "stats": {
+        "Hitpoints": [
+          25,
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        "Strength": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Agility": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Toughness": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Intelligence": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Willpower": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Ego": [
+          16,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Speed": [
+          100,
+          0,
+          0,
+          0,
+          25,
+          200
+        ],
+        "DV": [
+          0,
+          0,
+          0,
+          0,
+          -50,
+          200
+        ],
+        "XPValue": [
+          10,
+          0,
+          0,
+          0,
+          0,
+          9999
+        ],
+        "Level": [
+          2,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Experience": [
+          77,
+          0,
+          0,
+          0,
+          0,
+          999999
+        ],
+        "SP": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          999
+        ]
+      },
+      "properties": {
+        "FarmingKitGranted": "true",
+        "StartingBuild": "warden",
+        "TravellerSpawn:242967504:Overworld.11.9.0": "traveller:242967504:Overworld.11.9.0"
+      },
+      "carried_ids": [
+        "2707",
+        "2708",
+        "2709",
+        "2713",
+        "4750",
+        "4749",
+        "4756",
+        "11464",
+        "13748",
+        "13750",
+        "13751",
+        "13757"
+      ],
+      "equipment_slots": {
+        "8": "2710",
+        "9": "2711"
+      },
+      "capacity": 150
+    },
+    "sword": {
+      "id": "2710",
+      "bp": "LongSword",
+      "tags": {
+        "Item": "",
+        "MeleeWeapon": "",
+        "Tier": "2",
+        "Metal": "",
+        "Conductor": ""
+      },
+      "props": {},
+      "stats": {
+        "Hitpoints": [
+          8,
+          0,
+          0,
+          0,
+          0,
+          8
+        ]
+      },
+      "pos": [],
+      "physics": {
+        "Solid": false,
+        "Weight": 8,
+        "Takeable": true,
+        "ThrowBase": 0.0,
+        "ThrowHeight": -1.0,
+        "ThrowIntercept": -1,
+        "Category": "Melee Weapons",
+        "InInventory": null,
+        "Equipped": "2706"
+      },
+      "StackerPart": {
+        "StackCount": 1,
+        "MaxStack": 99
+      },
+      "MeleeWeaponPart": {
+        "BaseDamage": "1d8",
+        "PenBonus": 2,
+        "HitBonus": 0,
+        "MaxStrengthBonus": -1,
+        "Stat": "Strength",
+        "Attributes": "Cutting LongBlades",
+        "OnHitEffectsRaw": "Burning,30,,0,1",
+        "EmitGasOnHitRaw": ""
+      },
+      "WeaponTemperPart": {
+        "TemperCount": 1,
+        "HpPenaltyTotal": 2,
+        "AppliedSpecsRaw": "Burning,30,,0,1"
+      },
+      "RenderPart": {
+        "DisplayName": "flame-quenched long sword",
+        "RenderString": "/",
+        "ColorString": "&y",
+        "BackgroundColor": "",
+        "GlyphVariants": "",
+        "DetailColor": "",
+        "TileColor": "",
+        "Tile": null,
+        "VisualID": "",
+        "VisualVariant": "",
+        "VisualFacing": 0,
+        "RenderLayer": 5,
+        "Visible": true
+      }
+    },
+    "resin": {
+      "id": "13757",
+      "bp": "PitchpodResin",
+      "tags": {
+        "Item": "true",
+        "BotanicalHarvest": ""
+      },
+      "props": {},
+      "stats": {},
+      "pos": [],
+      "physics": {
+        "Solid": false,
+        "Weight": 1,
+        "Takeable": true,
+        "ThrowBase": 0.0,
+        "ThrowHeight": -1.0,
+        "ThrowIntercept": -1,
+        "Category": "",
+        "InInventory": "2706",
+        "Equipped": null
+      },
+      "StackerPart": {
+        "StackCount": 1,
+        "MaxStack": 99
+      },
+      "RenderPart": {
+        "DisplayName": "pitchpod resin",
+        "RenderString": ";",
+        "ColorString": "&W",
+        "BackgroundColor": "",
+        "GlyphVariants": "",
+        "DetailColor": "",
+        "TileColor": "",
+        "Tile": null,
+        "VisualID": "",
+        "VisualVariant": "",
+        "VisualFacing": 0,
+        "RenderLayer": 5,
+        "Visible": true
+      }
+    },
+    "carried": [
+      {
+        "id": "2707",
+        "bp": "WateringGrimoire",
+        "tags": {
+          "Item": "",
+          "Grimoire": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 2,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Books",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "watering grimoire",
+          "RenderString": "\"",
+          "ColorString": "&B",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2708",
+        "bp": "CandyCarrotSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 0,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 4,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "gladroot seed",
+          "RenderString": ",",
+          "ColorString": "&O",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2709",
+        "bp": "EmberwheatSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 0,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "emberwheat seed",
+          "RenderString": ",",
+          "ColorString": "&W",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2713",
+        "bp": "DriedMeat",
+        "tags": {
+          "Item": "",
+          "Food": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 2,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Food",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "dried meat",
+          "RenderString": "%",
+          "ColorString": "&r",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4750",
+        "bp": "DitchkeepersFootwork",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "Ditchkeepers' Footwork",
+          "RenderString": "?",
+          "ColorString": "&w",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 4,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4749",
+        "bp": "ShatteredRimeGrimoire",
+        "tags": {
+          "Item": "",
+          "Grimoire": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Books",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "Rite of the Shattered Rime",
+          "RenderString": "+",
+          "ColorString": "&C",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4756",
+        "bp": "SootrootPulp",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": "",
+          "Tonic": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "sootroot pulp",
+          "RenderString": "!",
+          "ColorString": "&K",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "11464",
+        "bp": "BogSap",
+        "tags": {
+          "Item": "",
+          "Tier": "1",
+          "Alchemy": "",
+          "Reagent": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "bog sap",
+          "RenderString": "%",
+          "ColorString": "&y",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13748",
+        "bp": "ClaspbeanPulp",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": "",
+          "Tonic": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "claspbean pulp",
+          "RenderString": "!",
+          "ColorString": "&g",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13750",
+        "bp": "ClaspbeanSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "claspbean seed",
+          "RenderString": "*",
+          "ColorString": "&g",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13751",
+        "bp": "FieldMeal",
+        "tags": {
+          "Item": ""
+        },
+        "props": {
+          "KitchenBatch.Station": "13729",
+          "KitchenBatch.Customer": "2706"
+        },
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Food",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "wrapped field meal",
+          "RenderString": "%",
+          "ColorString": "&y",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 4,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13757",
+        "bp": "PitchpodResin",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "pitchpod resin",
+          "RenderString": ";",
+          "ColorString": "&W",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      }
+    ],
+    "north_guard": null,
+    "guard_corpse_or_provenance": [
+      {
+        "id": "13765",
+        "bp": "MarlbackCorpse",
+        "tags": {
+          "Corpse": "",
+          "Organic": ""
+        },
+        "props": {
+          "CreatureName": "marlback patchbearer",
+          "SourceBlueprint": "MarlbackPatchbearer",
+          "SourceID": "6930",
+          "KillerID": "2706",
+          "KillerBlueprint": "Player"
+        },
+        "stats": {},
+        "pos": [
+          [
+            "Overworld.11.9.0",
+            58,
+            5
+          ]
+        ],
+        "physics": {
+          "Solid": false,
+          "Weight": 10,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": null,
+          "Equipped": null
+        },
+        "RenderPart": {
+          "DisplayName": "marlback remains",
+          "RenderString": "%",
+          "ColorString": "&r",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 3,
+          "Visible": true
+        }
+      }
+    ],
+    "all_brew_items": []
+  },
+  "after_restart": {
+    "fixture": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-resin-tempered242967504",
+    "sha256": "2371dbb69827149ecf48321fd73bd130fbaa6952742bde0cbcb378d14db1c935",
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 2,
+      "ActiveZoneID": "Overworld.12.10.0",
+      "ActiveZoneDisplayLabel": "Overworld.12.10.0",
+      "Turn": 11960,
+      "SaveTimestampUtc": "2026-10-26T22:27:08.1420150Z",
+      "HPSummary": "25/42",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "seed": 242967504,
+    "active_zone": "Overworld.12.10.0",
+    "body_owner_count": 13717,
+    "player": {
+      "id": "2706",
+      "pos": [
+        [
+          "Overworld.12.10.0",
+          45,
+          6
+        ]
+      ],
+      "stats": {
+        "Hitpoints": [
+          25,
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        "Strength": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Agility": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Toughness": [
+          18,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Intelligence": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Willpower": [
+          10,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Ego": [
+          16,
+          0,
+          0,
+          0,
+          0,
+          999
+        ],
+        "Speed": [
+          100,
+          0,
+          0,
+          0,
+          25,
+          200
+        ],
+        "DV": [
+          0,
+          0,
+          0,
+          0,
+          -50,
+          200
+        ],
+        "XPValue": [
+          10,
+          0,
+          0,
+          0,
+          0,
+          9999
+        ],
+        "Level": [
+          2,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "Experience": [
+          77,
+          0,
+          0,
+          0,
+          0,
+          999999
+        ],
+        "SP": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          999
+        ]
+      },
+      "properties": {
+        "FarmingKitGranted": "true",
+        "StartingBuild": "warden",
+        "TravellerSpawn:242967504:Overworld.11.9.0": "traveller:242967504:Overworld.11.9.0"
+      },
+      "carried_ids": [
+        "2707",
+        "2708",
+        "2709",
+        "2713",
+        "4750",
+        "4749",
+        "4756",
+        "11464",
+        "13748",
+        "13750",
+        "13751",
+        "13757"
+      ],
+      "equipment_slots": {
+        "8": "2710",
+        "9": "2711"
+      },
+      "capacity": 150
+    },
+    "sword": {
+      "id": "2710",
+      "bp": "LongSword",
+      "tags": {
+        "Item": "",
+        "MeleeWeapon": "",
+        "Tier": "2",
+        "Metal": "",
+        "Conductor": ""
+      },
+      "props": {},
+      "stats": {
+        "Hitpoints": [
+          8,
+          0,
+          0,
+          0,
+          0,
+          8
+        ]
+      },
+      "pos": [],
+      "physics": {
+        "Solid": false,
+        "Weight": 8,
+        "Takeable": true,
+        "ThrowBase": 0.0,
+        "ThrowHeight": -1.0,
+        "ThrowIntercept": -1,
+        "Category": "Melee Weapons",
+        "InInventory": null,
+        "Equipped": "2706"
+      },
+      "StackerPart": {
+        "StackCount": 1,
+        "MaxStack": 99
+      },
+      "MeleeWeaponPart": {
+        "BaseDamage": "1d8",
+        "PenBonus": 2,
+        "HitBonus": 0,
+        "MaxStrengthBonus": -1,
+        "Stat": "Strength",
+        "Attributes": "Cutting LongBlades",
+        "OnHitEffectsRaw": "Burning,30,,0,1",
+        "EmitGasOnHitRaw": ""
+      },
+      "WeaponTemperPart": {
+        "TemperCount": 1,
+        "HpPenaltyTotal": 2,
+        "AppliedSpecsRaw": "Burning,30,,0,1"
+      },
+      "RenderPart": {
+        "DisplayName": "flame-quenched long sword",
+        "RenderString": "/",
+        "ColorString": "&y",
+        "BackgroundColor": "",
+        "GlyphVariants": "",
+        "DetailColor": "",
+        "TileColor": "",
+        "Tile": null,
+        "VisualID": "",
+        "VisualVariant": "",
+        "VisualFacing": 0,
+        "RenderLayer": 5,
+        "Visible": true
+      }
+    },
+    "resin": {
+      "id": "13757",
+      "bp": "PitchpodResin",
+      "tags": {
+        "Item": "true",
+        "BotanicalHarvest": ""
+      },
+      "props": {},
+      "stats": {},
+      "pos": [],
+      "physics": {
+        "Solid": false,
+        "Weight": 1,
+        "Takeable": true,
+        "ThrowBase": 0.0,
+        "ThrowHeight": -1.0,
+        "ThrowIntercept": -1,
+        "Category": "",
+        "InInventory": "2706",
+        "Equipped": null
+      },
+      "StackerPart": {
+        "StackCount": 1,
+        "MaxStack": 99
+      },
+      "RenderPart": {
+        "DisplayName": "pitchpod resin",
+        "RenderString": ";",
+        "ColorString": "&W",
+        "BackgroundColor": "",
+        "GlyphVariants": "",
+        "DetailColor": "",
+        "TileColor": "",
+        "Tile": null,
+        "VisualID": "",
+        "VisualVariant": "",
+        "VisualFacing": 0,
+        "RenderLayer": 5,
+        "Visible": true
+      }
+    },
+    "carried": [
+      {
+        "id": "2707",
+        "bp": "WateringGrimoire",
+        "tags": {
+          "Item": "",
+          "Grimoire": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 2,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Books",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "watering grimoire",
+          "RenderString": "\"",
+          "ColorString": "&B",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2708",
+        "bp": "CandyCarrotSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 0,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 4,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "gladroot seed",
+          "RenderString": ",",
+          "ColorString": "&O",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2709",
+        "bp": "EmberwheatSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 0,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "emberwheat seed",
+          "RenderString": ",",
+          "ColorString": "&W",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "2713",
+        "bp": "DriedMeat",
+        "tags": {
+          "Item": "",
+          "Food": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 2,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Food",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "dried meat",
+          "RenderString": "%",
+          "ColorString": "&r",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4750",
+        "bp": "DitchkeepersFootwork",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "Ditchkeepers' Footwork",
+          "RenderString": "?",
+          "ColorString": "&w",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 4,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4749",
+        "bp": "ShatteredRimeGrimoire",
+        "tags": {
+          "Item": "",
+          "Grimoire": "",
+          "Tier": "1"
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Books",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "Rite of the Shattered Rime",
+          "RenderString": "+",
+          "ColorString": "&C",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "4756",
+        "bp": "SootrootPulp",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": "",
+          "Tonic": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 2,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "sootroot pulp",
+          "RenderString": "!",
+          "ColorString": "&K",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "11464",
+        "bp": "BogSap",
+        "tags": {
+          "Item": "",
+          "Tier": "1",
+          "Alchemy": "",
+          "Reagent": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "bog sap",
+          "RenderString": "%",
+          "ColorString": "&y",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13748",
+        "bp": "ClaspbeanPulp",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": "",
+          "Tonic": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "claspbean pulp",
+          "RenderString": "!",
+          "ColorString": "&g",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13750",
+        "bp": "ClaspbeanSeed",
+        "tags": {
+          "Item": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "claspbean seed",
+          "RenderString": "*",
+          "ColorString": "&g",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13751",
+        "bp": "FieldMeal",
+        "tags": {
+          "Item": ""
+        },
+        "props": {
+          "KitchenBatch.Station": "13729",
+          "KitchenBatch.Customer": "2706"
+        },
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "Food",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "wrapped field meal",
+          "RenderString": "%",
+          "ColorString": "&y",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 4,
+          "Visible": true
+        }
+      },
+      {
+        "id": "13757",
+        "bp": "PitchpodResin",
+        "tags": {
+          "Item": "true",
+          "BotanicalHarvest": ""
+        },
+        "props": {},
+        "stats": {},
+        "pos": [],
+        "physics": {
+          "Solid": false,
+          "Weight": 1,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": "2706",
+          "Equipped": null
+        },
+        "StackerPart": {
+          "StackCount": 1,
+          "MaxStack": 99
+        },
+        "RenderPart": {
+          "DisplayName": "pitchpod resin",
+          "RenderString": ";",
+          "ColorString": "&W",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 5,
+          "Visible": true
+        }
+      }
+    ],
+    "north_guard": null,
+    "guard_corpse_or_provenance": [
+      {
+        "id": "13765",
+        "bp": "MarlbackCorpse",
+        "tags": {
+          "Corpse": "",
+          "Organic": ""
+        },
+        "props": {
+          "CreatureName": "marlback patchbearer",
+          "SourceBlueprint": "MarlbackPatchbearer",
+          "SourceID": "6930",
+          "KillerID": "2706",
+          "KillerBlueprint": "Player"
+        },
+        "stats": {},
+        "pos": [
+          [
+            "Overworld.11.9.0",
+            58,
+            5
+          ]
+        ],
+        "physics": {
+          "Solid": false,
+          "Weight": 10,
+          "Takeable": true,
+          "ThrowBase": 0.0,
+          "ThrowHeight": -1.0,
+          "ThrowIntercept": -1,
+          "Category": "",
+          "InInventory": null,
+          "Equipped": null
+        },
+        "RenderPart": {
+          "DisplayName": "marlback remains",
+          "RenderString": "%",
+          "ColorString": "&r",
+          "BackgroundColor": "",
+          "GlyphVariants": "",
+          "DetailColor": "",
+          "TileColor": "",
+          "Tile": null,
+          "VisualID": "",
+          "VisualVariant": "",
+          "VisualFacing": 0,
+          "RenderLayer": 3,
+          "Visible": true
+        }
+      }
+    ],
+    "all_brew_items": []
+  },
+  "summary": {
+    "checks_passed": 26,
+    "checks_total": 26,
+    "visual_followup": "Resolved by independent source and screenshot review: earned-resin-17-coating-details.jpg shows approved native north-works-products frame5. BrewedTonic with canonical Coating intentionally shares the neutral flask; no missing asset mapping or fallback defect."
+  }
+}

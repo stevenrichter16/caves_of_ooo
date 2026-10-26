@@ -1,0 +1,28 @@
+{
+  "at_utc": "2026-10-26T22:29:02.968409+00:00",
+  "source": "3aca7c18ec2e093c1cbf215e63f74a1b0027ea44",
+  "snapshot_sha256": "2c33ece546b02d1e8c3fa9757274642ace4ec7b1224222a0571d141e0ff1030c",
+  "path": "ProjectSettings/UnityConnectSettings.asset",
+  "baseline_sha256": "b7dd1e8290598f5ce86919ba1c98b42b766c8c42191a30fa2c4d12195c4ecd00",
+  "reviewed_generated_sha256": "98f142992d8a623501c99648e1b7363adca08b67bb50390b566df368d00bc9a0",
+  "baseline_state": {
+    "type": "file",
+    "bytes": 1063,
+    "mode": "0o644",
+    "sha256": "b7dd1e8290598f5ce86919ba1c98b42b766c8c42191a30fa2c4d12195c4ecd00"
+  },
+  "classification": "Exact sole top-level m_Enabled0->1 toggle; no other byte delta. Not allowed by original restore helper.",
+  "root_only_sequence": [
+    "Close both standalone player basenames and restore normal idle Editor, then hold imports/AutoRefresh or close owned Editor.",
+    "Recheck HEAD/index/snapshot and current generated hash against this receipt.",
+    "Create a new outside-repo backup directory; copy exact current generated file and this receipt, verify copied hash.",
+    "Read original bytes from frozen Git object; require baseline snapshot hash.",
+    "Write those exact original bytes to this one originally clean file preserving mode; fsync and verify full baseline file state.",
+    "Save a separate applied receipt. Then validate the main three-setting restore helper before any --apply."
+  ],
+  "applied": true,
+  "backup": "/tmp/coo-hotbar-unityconnect-restoration/generated.asset",
+  "baseline_restored": true,
+  "review_mutations_performed": false,
+  "restoration_mutations_performed": true
+}
