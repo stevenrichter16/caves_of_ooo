@@ -2035,3 +2035,21 @@ capture/concept/source/integration loop; do not label it freshwater or assume
 empty stock removes an independently renewed source coating. Preserve approved
 layout. Actor animation, incidental glyphs and full opening/regions/device/
 performance coverage remain open. Current report:2026-10-26 23:27UTC.
+
+
+### Pipe package delivery completed — 2026-10-26 23:35 UTC
+
+Source6b1032459 is on main. New Mac package passed ordinary Continue, pipe
+Examine, player cover/uncover, full quit/restart and North→glade→North travel;
+eight original screenshots and earned return checkpoint retained. Linux retry
+built with0errors/0warnings and its180-file archive passed independent integrity
+review; first attempt with2import-worker errors is preserved separately and
+rejected for delivery. Native105/105 tests remain the code gate. No Linux
+execution, physical Deck or performance acceptance claimed.
+
+Guarded restoration compared48,827 tracked objects;34foreign edits, normal
+saves/full logical preferences and previous packages preserved. Test saves
+archived, Editor idle/player closed; no storage cleanup. Current package paths,
+SHA and actual evidence are in [six-scene polish](GRAPHICS-SIX-SCENE-POLISH.md).
+Next: distinct kitchen brine identity from captured real owners and state,
+then actor-motion/incidental-glyph consistency; whole opening remains open.

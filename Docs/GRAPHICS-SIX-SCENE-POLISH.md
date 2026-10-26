@@ -2,8 +2,8 @@
 
 2026-10-26. **Connected CopperPipe correction accepted in native tests and
 ordinary Editor gameplay.** The six-scene review started from source c3d866f0c;
-the scoped source change is now implemented. Updated package delivery is the
-next root-owned gate. The whole opening is not yet accepted.
+the scoped source change is now implemented. Source `6b1032459` is delivered in verified Mac and Linux packages; actual Mac
+restart/travel checks passed. The whole opening is not yet accepted.
 
 Scope: glade, cellar, north works, Nella's plot, east connector and Orven's kitchen.
 Use the existing real geometry, actors and controls. Preserve accepted native art
@@ -148,3 +148,52 @@ the pipe consistency slice and documents six-site observation; broader scene
 hierarchy, animation, remaining incidental identities and regional coverage
 remain open. No updated package, Linux execution, physical Deck, measured frame
 rate or whole-opening release acceptance is claimed here.
+
+
+## Delivered pipe correction — 2026-10-26
+
+Source `6b1032459e5e045815af14047aa79710c6b7522e` was pushed and verified on
+origin/main before packaging. The historical source-checkpoint paragraph above
+records what was pending then; this section closes that bounded delivery gate.
+
+- Mac job `build-abc61e488e`: succeeded, zero errors/four warnings,
+  `Builds/Verification/2026-10-26-connected-pipes-6b1032459-current/CavesOfOoo.app`.
+- Linux accepted retry `build-8065cf1e41`: succeeded, zero errors/zero warnings.
+  The first attempt returned succeeded with two import-worker transport errors
+  and four warnings; rejected for delivery and retained separately, not deleted.
+- Current Linux archive: `Builds/SteamDeck/2026-10-26-connected-pipes-6b1032459-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,
+  SHA256 `ef2b3e94d3b906838687fb0e73aac1c333b0e52a90a1a00a48563ee4446f8aaf`.
+  Independent review checked180 regular files,10 directories,179 checksums,
+  sizes/modes/safe paths and19 source support/license files. Binaries are local
+  ignored deliverables; source, receipts, checkpoints and screenshots are in Git.
+
+[Eight original Mac captures and action record](Verification/Live16x24/packaged-connected-pipes-mac-play-summary.json)
+show ordinary boot/Continue, the unchanged earned North checkpoint, exact pipe
+Examine, player covering/uncovering, F5, full process quit/relaunch/Continue and
+ordinary North→glade→North travel. Images are1280×856 CUA screenshots including
+56px of Mac title chrome, with no repaint or cropping. The final earned save is
+North31,20 at turn490, HP25/40 and50 drams. Its [checkpoint](Verification/Live16x24/Fixtures/packaged-connected-pipes-return64/Quick.json)
+retains save SHA256 `f466413c2f5a88ddf09f219145c34825b04b0d6fe1b992e3300d6fd220cda2a7`.
+The separate binary-prefix observation confirms the zone/cell; HP/turn come
+from Quick metadata and actual display, not that limited parser.
+
+[Independent package review](Verification/Live16x24/packaged-connected-pipes-independent-review.json)
+found no material defect. Saved/restarted pipe/player/pool/worksite/tree image
+regions are pixel-identical; return world interior also matches. Both Player
+logs are retained: no exception/fatal/error lines in the scoped scan, with the
+known shutdown thread-finalization and ComputeBuffer disposal notices still
+present. This does not claim a warning-free runtime.
+
+[Guarded restoration](Verification/Live16x24/packaged-connected-pipes-project-restored.json)
+compared48,827 baseline tracked objects and restored only three reviewed build
+serialization files. All34 preexisting tracked edits, normal Editor saves,
+complete logical preference maps and previous packages were preserved. The
+standalone's original save-directory absence was restored by archiving the test
+save tree, not deleting it. Editor idle; standalone closed. Storage inspection
+showed about415GiB available; no storage/cache cleanup performed.
+
+Can verify: native105-case suite, actual Mac appearance/actions, restart/travel,
+archive integrity and preservation. Cannot verify: Linux execution, physical
+Deck controls/performance, all scene states, whole-opening or regional release.
+Next is the named kitchen brine identity through capture→imagegen→editable
+native source→integration, followed by actor-motion/incidental-identity review.

@@ -491,3 +491,8 @@ not independent proof of acceptance; the current scope and limits above govern.
     now share Nella's accepted connected native art in world/Examine, with no peat
     scope expansion.105/105 targeted native tests; actual ordinary six-site review
     and actor-cover checks recorded in GRAPHICS-SIX-SCENE-POLISH.md.
+
+74. **Connected-pipe package delivery:** New Mac/Linux packages from6b1032459;
+    eight actual Mac captures verify Continue, exact reader, actor overlap,
+    genuine restart and North/glade return. Zero-error Linux retry independently
+    archived; physical Deck/Linux execution and whole-opening release remain open.

@@ -1,0 +1,90 @@
+{
+  "recorded_at_utc": "2026-10-26T23:40:01.413792+00:00",
+  "source_commit": "6b1032459e5e045815af14047aa79710c6b7522e",
+  "platform": "Actual macOS standalone, Unity6000.3.4f1",
+  "build_receipt": "packaged-connected-pipes-mac-build.json",
+  "capture_provenance": "Eight original CUA screenshots,1280x856 including56px Mac title chrome and1280x800 game view. No crop, repaint, image generation or compositing.",
+  "input": "Ordinary keyboard input; no teleport, reveal, grant, scenario or presentation override.",
+  "initial_fixture": "Docs/Verification/Live16x24/Fixtures/six-scene-north-pipe64",
+  "initial_save_sha256": "ff46ccb5220dd0889f31e31975da5fcf1015dc37e67888ea5a2e185eecd061b6",
+  "game_id": "7149edb751014f1c8ef55c71dd7d5548",
+  "final_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-connected-pipes-return64",
+  "final_save_sha256": "f466413c2f5a88ddf09f219145c34825b04b0d6fe1b992e3300d6fd220cda2a7",
+  "final_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "7149edb751014f1c8ef55c71dd7d5548",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.11.9.0",
+    "ActiveZoneDisplayLabel": "Overworld.11.9.0",
+    "Turn": 490,
+    "SaveTimestampUtc": "2026-10-26T23:33:09.1097710Z",
+    "HPSummary": "25/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-01-boot.jpg",
+      "sha256": "f373a1156fa157b4f8cdabcace6df90c43009ec938d97d48b91fd52083d406c4",
+      "bytes": 210055,
+      "action_and_observation": "Ordinary executable launch; initial glade and Continue prompt. This is not fresh New Game completion."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-02-north-continue.jpg",
+      "sha256": "9031772d68a09f8639a49584ce6491ba994f50f228bf35077228136cf607bc2c",
+      "bytes": 180071,
+      "action_and_observation": "C Continue from unchanged earned North fixture; PageUp twice to ordinary 2x. Player31,20,HP25/40,50 drams."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-03-examine.jpg",
+      "sha256": "f3cdeed75a2619ee46a9ee433617df4edc1a4291da5f16cb647b5c61c392ea70",
+      "bytes": 211094,
+      "action_and_observation": "L,Left,Return,Return: exact CopperPipe30,20 Examine with matching native portrait and Copper identity."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-04-player-cover.jpg",
+      "sha256": "549894ac9e1225c26f749813989be200bc76fd0ecbce18de0e83580ac0f1df42",
+      "bytes": 174057,
+      "action_and_observation": "Escape four times then Left: player30,20 covers pipe; selected actor remains visible and disclosed pipe above ends truthfully."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-05-uncovered-saved.jpg",
+      "sha256": "99bdc7185bea852ec39a214682cbc396b5af5e0c5233b0f0e603fefb39521ce2",
+      "bytes": 177466,
+      "action_and_observation": "Right to31,20 restores joined pipe run; F5 saves at tick390. Quit via Command-Q."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-06-restart-continue.jpg",
+      "sha256": "b7c77198697e70ea4b6011dabef33304afdae32513c3e9fdc3413e2401765c6b",
+      "bytes": 178466,
+      "action_and_observation": "Relaunch full executable, C Continue, PageUp. Same player31,20 and HP25; joined pipe persists."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-07-glade-travel.jpg",
+      "sha256": "d31ced715eb3506ce7f00151bddda7f33a98a52d3d8a5d4b0393fbe57a57b0e2",
+      "bytes": 221532,
+      "action_and_observation": "Down five times crosses North to glade31,0, still flat2x."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-connected-pipes-08-north-return.jpg",
+      "sha256": "9f6630e717b125b2aeef42c33dd2b912e48192ccce381d4c31f8b2689757a6f4",
+      "bytes": 171399,
+      "action_and_observation": "Up five times returns North31,20; F5 saves tick490, HP25/40,50 drams. Quit via Command-Q."
+    }
+  ],
+  "log_findings": "Both raw Player logs retained. No exception/fatal/error lines found in scoped scan. Known shutdown thread-finalization and ComputeBuffer disposal notices persist; not a warning-free runtime claim.",
+  "script_observable": "Build receipts, archive integrity, final save header/cell location and Quick metadata, preservation hashes. Binary-prefix parser does not decode entity bodies, HP or tick.",
+  "visual_observable": "Connected North pipes, exact reader, actor cover/uncover, full restart and glade/North travel through ordinary Mac input.",
+  "not_verified": [
+    "Linux execution",
+    "Physical Steam Deck controls",
+    "Performance benchmark",
+    "Every state of six scenes",
+    "Whole opening or regions complete"
+  ],
+  "restoration": "packaged-connected-pipes-project-restored.json",
+  "storage_cleanup_performed": false
+}
