@@ -69,18 +69,21 @@ namespace CavesOfOoo.Core
             var toSpawn = Table.Roll(rng, zone.ZoneID);
             var exploration = ExplorationManager?.Exploration;
             SpreadExplorationEntry assignment = null;
-            // Roll indices retain provenance when the inhabited kitchen changes
+            // Roll indices retain provenance when the inhabited opening service changes
             // its encounter species. Matching ambient or pre-existing grazers
             // never become owners of this source receipt.
-            var kitchenReplacementIndices = new HashSet<int>();
+            var serviceReplacementIndices = new HashSet<int>();
             bool optedIn = !replaceSpread && ReferenceEquals(factory, ExplorationManager?.Factory)
                 && exploration != null && exploration.TryGetGenerationEntry(ExplorationManager, zone, out assignment);
             if (optedIn)
             {
                 bool kitchen = exploration.Version >= 11 && zone.ZoneID == KitchenBatchPart.KitchenZoneID
                     && assignment.Family == SpreadExplorationFamily.WaysideKitchen;
-                var rewritten = SpreadExplorationPopulationPolicy.Rewrite(Table, toSpawn, assignment.Family, kitchen);
-                string required = kitchen ? "ReedbackGrazer"
+                bool keeper = exploration.Version >= 11 && zone.ZoneID == "Overworld.11.8.0"
+                    && assignment.Family == SpreadExplorationFamily.SeedKeepersPlot;
+                bool inhabitedService = kitchen || keeper;
+                var rewritten = SpreadExplorationPopulationPolicy.Rewrite(Table, toSpawn, assignment.Family, kitchen, keeper);
+                string required = inhabitedService ? "ReedbackGrazer"
                     : assignment.Family == SpreadExplorationFamily.OccupiedBank ? "MarlbackScrabbler"
                     : assignment.Family == SpreadExplorationFamily.LastGleanings ? "ReedbackGrazer"
                     : assignment.Family == SpreadExplorationFamily.CollectorReturn ? "Tatterjay" : null;
@@ -95,10 +98,10 @@ namespace CavesOfOoo.Core
                 }
                 else
                 {
-                    if (kitchen && rewritten.Length == toSpawn.Count)
+                    if (inhabitedService && rewritten.Length == toSpawn.Count)
                         for (int i = 0; i < toSpawn.Count; i++)
                             if ((toSpawn[i] == "Viper" || toSpawn[i] == "MarlbackScrabbler") && rewritten[i] == "ReedbackGrazer")
-                                kitchenReplacementIndices.Add(i);
+                                serviceReplacementIndices.Add(i);
                     if ((assignment.Family == SpreadExplorationFamily.LastGleanings || assignment.Family == SpreadExplorationFamily.CollectorReturn) && rewritten.Length == toSpawn.Count)
                     {
                         // Preserve the precise changed roll index. An authored or matching
@@ -115,7 +118,7 @@ namespace CavesOfOoo.Core
             var group = receiptOwners == null || Table.Name != "SpreadTier1" || Table.Entries == null ? new HashSet<string>()
                 : new HashSet<string>(Table.Entries.Where(e => e != null && e.EncounterGroup == "SpreadTier1Encounter")
                     .Select(e => e.BlueprintName).Where(bp => Table.Entries.All(e => e == null || e.BlueprintName != bp || e.EncounterGroup == "SpreadTier1Encounter")));
-            int expected = replaceSpread ? 0 : toSpawn.Where((bp, i) => group.Contains(bp) || kitchenReplacementIndices.Contains(i)).Count();
+            int expected = replaceSpread ? 0 : toSpawn.Where((bp, i) => group.Contains(bp) || serviceReplacementIndices.Contains(i)).Count();
             // Exact explicit ordinary rows only. Duplicate or grouped declarations cannot
             // silently promote quest/foreign owners into an ambient or loose allowance.
             var loose = ReceiptBlueprints("Hatchet", "Cudgel", "LeatherBoots");
@@ -183,7 +186,7 @@ namespace CavesOfOoo.Core
                             x, y, reason = "blocks_static_passage" });
                 }
 
-                if (receiptOwners != null && !replaceSpread && (group.Contains(blueprintName) || kitchenReplacementIndices.Contains(spawnIndex))
+                if (receiptOwners != null && !replaceSpread && (group.Contains(blueprintName) || serviceReplacementIndices.Contains(spawnIndex))
                     && spawned != null && spawned.BlueprintName == blueprintName && zone.GetEntityCell(spawned) != null)
                     receiptOwners.Add(spawned);
 

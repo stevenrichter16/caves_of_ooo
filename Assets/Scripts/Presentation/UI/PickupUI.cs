@@ -330,7 +330,8 @@ namespace CavesOfOoo.Rendering
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
             int borderH = visibleCount + 4; // border rows (not including action bar)
 
-            DrawBgFill(0, 0, POPUP_W, borderH);
+            // Back the full owned footprint, including hints and refusal status.
+            DrawBgFill(0, 0, POPUP_W, _popupH);
 
             // Border
             DrawPopupBorder(0, 0, POPUP_W, borderH, visibleCount);
@@ -401,7 +402,7 @@ namespace CavesOfOoo.Rendering
 
             // Action bar below popup border
             string actions = " [Enter]take [Tab]all [F1]info [Esc/g]close";
-            DrawText(0, borderH, actions, QudColorParser.DarkGray);
+            DrawText(0, borderH, actions, QudColorParser.Gray);
 
             // Status message (e.g. "too heavy" feedback)
             if (!string.IsNullOrEmpty(_statusMessage))

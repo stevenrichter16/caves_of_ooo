@@ -1,0 +1,38 @@
+{
+  "kind": "scratch_recording_harness_not_Unity",
+  "runtime": ".NET SDK10.0.105 / CLR10.0.5 / NUnitLite3.14.0",
+  "runtime_before_sha256": "fe5458a161c9fb04bfec98426f602d62bcf90b0e61e92da77c8c04ac6091171b",
+  "saved_source_sha256": {
+    "Assets/Scripts/Presentation/UI/PickupUI.cs": "76d1593edb60940b036a9077e2cca2c05ccfa93b7f3a0e5791ab454ff57ec717",
+    "Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs": "2c97519c73a6067a76fdfd21ece86a85afc04265a4909c64ba4eea6c0486fccb"
+  },
+  "receipts": [
+    {
+      "label": "red",
+      "receipt": "Docs/Verification/Live16x24/pickup-footer-recording-red.xml",
+      "sha256": "69064f09e50c452804f5cc0305eb8ea7549b18fa4bda07bc48a8a2ed986aeb2a",
+      "total": 9,
+      "passed": 3,
+      "failed": 6
+    },
+    {
+      "label": "green",
+      "receipt": "Docs/Verification/Live16x24/pickup-footer-recording-green.xml",
+      "sha256": "15f686f0cb128b111f193193c09e11abfdc42b4b193c81c1c6ffbd5b7c6b2390",
+      "total": 9,
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "label": "dark-hints-mutation",
+      "receipt": "Docs/Verification/Live16x24/pickup-footer-recording-dark-hints-mutation.xml",
+      "sha256": "84adc395d1ccaaed52492adc592445a2801f2bca34ea2a75aad30b489397d9b3",
+      "total": 9,
+      "passed": 5,
+      "failed": 4
+    }
+  ],
+  "harness": "/tmp/coo-pickup-footer-check/Check.csproj",
+  "can_verify": "Actual saved PickupUI and saved NUnit fixture compile unchanged; a recording Tilemap verifies emitted tile positions/colors and clear/hide/redraw behavior. Color-only mutation fails4 cases.",
+  "cannot_verify": "Unity Tilemap engine, CP437 resource generation, screen appearance, actual mouse/gamepad handling, command/custody semantics, ordinary play or package/physicalDeck acceptance. Native fixtures and actual after-capture remain required."
+}

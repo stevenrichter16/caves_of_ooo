@@ -2409,3 +2409,28 @@ portraits fit with labels/choices. See the current-scene review for scope and
 failed/pre-fix evidence. Ordinary test saves/preferences/view are restored;
 storage remains inspection-only. Current packages47d678995 predate this work.
 Next: Nella's conductive pipe/bog corner, then fresh East/Orven whole views.
+
+
+## Continuation — 2026-10-26 current journey repairs
+
+Read GRAPHICS-G3-CURRENT-PACKAGE-JOURNEY.md, GRAPHICS-G3-NELLA-POPULATION.md and
+GRAPHICS-G3-PICKUP-FOOTER.md. Eighteen actual Mac-package captures extend fresh
+Warden seed242967504 through cellar combat/harvest/replant/water and North
+combat/finite frozen-coating brewing. Nella's entire service was missing; this
+is a failed journey gate, not full-opening acceptance. Keep the failing fixture.
+
+Corrected source now passes139native tests after reproduced RED. Exact cold
+Nella encounter slots use the existing bounded grazer policy; other zones/saves
+and published owners remain literal. Ordinary unchanged-cellar replay reaches
+Nella, opens native examine/chat portraits, pays8drams and reloads the same
+owner/rights. Six pickup screenshots verify backed readable hints, reader return,
+shrink, close and actual material recovery. Source corrections are not in the
+current5a3c74359packages yet. Approved art/source and776normal saves preserved;
+owned tests stopped/restored. No storage cleanup.
+
+Next: fix the separately observed dialogue footer in conversation13, freeze a
+corrected delivery, then resume actual East/Orven and six-site revisits. The
+corrected earned Nella fixture is current-journey-corrected-nella242967504.
+Whole opening, regions, physical Deck/Linux execution and performance remain
+open; keep the graphics heartbeat active. Avoid substituting asset counts for
+playable acceptance or overwriting the old failed package evidence.

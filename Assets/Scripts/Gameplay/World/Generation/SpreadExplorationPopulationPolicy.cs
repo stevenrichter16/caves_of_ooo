@@ -10,18 +10,27 @@ namespace CavesOfOoo.Core
  {
   const string Group="SpreadTier1Encounter";
   public static string[] Rewrite(PopulationTable table,IReadOnlyList<string> rolled,SpreadExplorationFamily family,bool connectedKitchen=false)
+   => Rewrite(table,rolled,family,connectedKitchen,false);
+
+  /// <summary>Rewrites unpublished ordinary rolls. The caller must establish
+  /// exact cold manager, version and zone authority before either service flag
+  /// is true; this method additionally checks family and encounter-table shape.</summary>
+  public static string[] Rewrite(PopulationTable table,IReadOnlyList<string> rolled,SpreadExplorationFamily family,
+   bool connectedKitchen,bool connectedKeeper)
   {
+   bool inhabitedService=connectedKitchen&&family==SpreadExplorationFamily.WaysideKitchen
+    ||connectedKeeper&&family==SpreadExplorationFamily.SeedKeepersPlot;
    if(rolled==null)throw new ArgumentNullException(nameof(rolled));
    var result=rolled.ToArray();
    if(table?.Name!="SpreadTier1"||table.Entries==null)return result;
-   if(family==SpreadExplorationFamily.OccupiedBank||connectedKitchen&&family==SpreadExplorationFamily.WaysideKitchen)
+   if(family==SpreadExplorationFamily.OccupiedBank||inhabitedService)
    {
     var entries=table.Entries.Where(e=>e!=null&&e.EncounterGroup==Group).ToArray();
     if(entries.Length!=2||entries.Count(e=>e.BlueprintName=="Viper")!=1||entries.Count(e=>e.BlueprintName=="MarlbackScrabbler")!=1
       ||table.Entries.Any(e=>e!=null&&e.EncounterGroup!=Group&&(e.BlueprintName=="Viper"||e.BlueprintName=="MarlbackScrabbler")))return result;
-    // The exact inhabited kitchen borrows each actual encounter allowance.
+    // The exact inhabited opening services borrow each actual encounter allowance.
     // No roll means no grazer; other domestic sites keep their ordinary danger.
-    if(connectedKitchen&&family==SpreadExplorationFamily.WaysideKitchen)
+    if(inhabitedService)
      return result.Select(bp=>bp=="Viper"||bp=="MarlbackScrabbler"?"ReedbackGrazer":bp).ToArray();
     var output=new List<string>();bool replaced=false;
     foreach(string bp in result)

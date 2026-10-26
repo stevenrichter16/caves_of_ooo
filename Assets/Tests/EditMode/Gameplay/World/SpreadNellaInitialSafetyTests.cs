@@ -121,7 +121,7 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase(224401440)] [TestCase(200893250)] [TestCase(64)] [TestCase(65)]
+        [TestCase(242967504)] [TestCase(224401440)] [TestCase(200893250)] [TestCase(64)] [TestCase(65)]
         public void NativeColdGenerationKeepsTheCompleteServiceOutsideInitialHostileAcquisition(int seed)
         {
             scope.Seed(unchecked(seed ^ FormationSelector.StableIndex(Nella, int.MaxValue)));

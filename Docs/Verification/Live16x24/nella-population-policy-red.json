@@ -1,0 +1,95 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "2586069d88214bde8bc7bbe50bf2b92f",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793039159422,
+      "finished_unix_ms": 1793039179075,
+      "last_update_unix_ms": 1793039179075,
+      "progress": {
+        "completed": 31,
+        "total": 31,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793039179051,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.NoActualHostileRollCannotMintAdditionalAnimals(True)",
+        "last_finished_unix_ms": 1793039179051,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.AmbiguousEncounterSchemaKeepsExactInput(\"duplicate-group\")",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.AmbiguousEncounterSchemaKeepsExactInput(\"duplicate-ordinary\")",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.AmbiguousEncounterSchemaKeepsExactInput(\"missing-viper\")",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.AmbiguousEncounterSchemaKeepsExactInput(\"foreign-group\")",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.AmbiguousEncounterSchemaKeepsExactInput(\"extra-group-row\")",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.AmbiguousEncounterSchemaKeepsExactInput(\"missing-entries\")",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.ColdCallerKeepsExactRollOwnershipAndRefusesForeignOrMissingReplacement(\"current\")",
+            "message": "  Expected and actual are both <System.String[2]>\n  Values differ at index [0]\n  Expected string length 14 but was 5. Strings differ at index 0.\n  Expected: \"ReedbackGrazer\"\n  But was:  \"Viper\"\n  -----------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.EachActualEncounterSlotBecomesOneGrazerWithoutChangingOtherRolls",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.ExplicitFalseAdmissionRetainsOrdinaryKeeperRolls",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.KeeperOptInDoesNotRewriteUnrelatedFamilies(None)",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.KeeperOptInDoesNotRewriteUnrelatedFamilies(RoadSpill)",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.KeeperOptInDoesNotRewriteUnrelatedFamilies(WaysideKitchen)",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.MissingOrForeignTableGrantsNoEncounterAuthority(False)",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.MissingOrForeignTableGrantsNoEncounterAuthority(True)",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.NoActualHostileRollCannotMintAdditionalAnimals(False)",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadNellaPopulationPolicyTests.NoActualHostileRollCannotMintAdditionalAnimals(True)",
+            "message": "  Exact connected keeper admission must opt into the pure roll policy.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

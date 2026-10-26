@@ -13,7 +13,7 @@ namespace CavesOfOoo.Tests
   {
    var asm=typeof(PopulationBuilder).Assembly;var type=asm.GetType("CavesOfOoo.Core.SpreadExplorationPopulationPolicy");
    Assert.NotNull(type,"Regional source budgets must be applied to actual rolls, not extra spawns after generation.");
-   var method=type.GetMethod("Rewrite",BindingFlags.Public|BindingFlags.Static);Assert.NotNull(method);
+   var method=type.GetMethods(BindingFlags.Public|BindingFlags.Static).Single(m=>m.Name=="Rewrite"&&m.GetParameters().Length==4);Assert.NotNull(method);
    var role=method.GetParameters()[2].ParameterType;
    return (string[])method.Invoke(null,new object[]{table,rolled,Enum.Parse(role,family),false});
   }

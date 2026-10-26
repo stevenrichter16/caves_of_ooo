@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="Check.dll" fullname="/private/tmp/coo-pickup-footer-check/bin/Debug/net10.0/Check.dll" testcasecount="9" result="Failed" start-time="2026-10-26T18:18:54.2388070Z" end-time="2026-10-26T18:18:54.3158540Z" duration="0.077021" total="9" passed="5" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="9035" random-seed="1037559583">
+  <command-line><![CDATA[/private/tmp/coo-pickup-footer-check/bin/Debug/net10.0/Check.dll --workers=0 --result=/tmp/coo-pickup-footer-check/dark-hints-mutation.xml --labels=Off]]></command-line>
+  <filter />
+  <test-suite type="Assembly" id="1012" name="Check.dll" fullname="/private/tmp/coo-pickup-footer-check/bin/Debug/net10.0/Check.dll" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-26T18:18:54.2388070Z" end-time="2026-10-26T18:18:54.3158540Z" duration="0.077021" total="9" passed="5" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="9035">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-pickup-footer-check" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="0" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-pickup-footer-check" />
+    </settings>
+    <properties>
+      <property name="_PID" value="48926" />
+      <property name="_APPDOMAIN" value="Check" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1013" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-26T18:18:54.2416600Z" end-time="2026-10-26T18:18:54.3158340Z" duration="0.074173" total="9" passed="5" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="9035">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1014" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-26T18:18:54.2418070Z" end-time="2026-10-26T18:18:54.3158120Z" duration="0.074004" total="9" passed="5" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="9035">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="PickupFooterPresentationTests" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-26T18:18:54.2418270Z" end-time="2026-10-26T18:18:54.3158050Z" duration="0.073977" total="9" passed="5" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="9035">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1005" name="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26T18:18:54.2428220Z" end-time="2026-10-26T18:18:54.2963850Z" duration="0.053562" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="6292">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(1)" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(1)" methodname="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="1298902560" result="Failed" start-time="2026-10-26T18:18:54.2429430Z" end-time="2026-10-26T18:18:54.2809150Z" duration="0.038037" asserts="653">
+              <failure>
+                <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(3)" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(3)" methodname="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="2013970937" result="Failed" start-time="2026-10-26T18:18:54.2819560Z" end-time="2026-10-26T18:18:54.2843900Z" duration="0.002434" asserts="837">
+              <failure>
+                <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+   at InvokeStub_PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+   at InvokeStub_PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(20)" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(20)" methodname="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="246076123" result="Failed" start-time="2026-10-26T18:18:54.2844300Z" end-time="2026-10-26T18:18:54.2885570Z" duration="0.004126" asserts="2401">
+              <failure>
+                <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+   at InvokeStub_PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+   at InvokeStub_PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(26)" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(26)" methodname="FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="1179905255" result="Failed" start-time="2026-10-26T18:18:54.2885900Z" end-time="2026-10-26T18:18:54.2957880Z" duration="0.007199" asserts="2401">
+              <failure>
+                <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+   at InvokeStub_PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actionable hints use the same light gray as the backed action modal.
+  Expected: UnityEngine.Color
+  But was:  UnityEngine.Color
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Int32 count) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/PickupFooterPresentationTests.cs:line 102
+   at InvokeStub_PickupFooterPresentationTests.FooterAndReservedStatusHaveOpaqueBackingForSmallFullAndScrolledLists(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1010" name="LargeToSmallRedrawClearsPreviousFooterRatherThanLeavingBlackStrips" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.LargeToSmallRedrawClearsPreviousFooterRatherThanLeavingBlackStrips" methodname="LargeToSmallRedrawClearsPreviousFooterRatherThanLeavingBlackStrips" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="83599215" result="Passed" start-time="2026-10-26T18:18:54.2967530Z" end-time="2026-10-26T18:18:54.3011270Z" duration="0.004374" asserts="1872" />
+          <test-case id="1011" name="OptionalMissingBackgroundStillAllowsNormalForegroundAndClose" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.OptionalMissingBackgroundStillAllowsNormalForegroundAndClose" methodname="OptionalMissingBackgroundStillAllowsNormalForegroundAndClose" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="1374585937" result="Passed" start-time="2026-10-26T18:18:54.3011420Z" end-time="2026-10-26T18:18:54.3025290Z" duration="0.001387" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1009" name="ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26T18:18:54.3026910Z" end-time="2026-10-26T18:18:54.3122400Z" duration="0.009549" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1007" name="ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles(False)" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles(False)" methodname="ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="1612227091" result="Passed" start-time="2026-10-26T18:18:54.3027790Z" end-time="2026-10-26T18:18:54.3087720Z" duration="0.005993" asserts="12" />
+            <test-case id="1008" name="ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles(True)" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles(True)" methodname="ReaderHideRestoreAndCloseClearTheWholeOwnedFooterWithoutTouchingOtherTiles" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="1259116902" result="Passed" start-time="2026-10-26T18:18:54.3087940Z" end-time="2026-10-26T18:18:54.3121700Z" duration="0.003375" asserts="12" />
+          </test-suite>
+          <test-case id="1006" name="StatusRowIsBackedAndLongRefusalStaysInsideTheExistingWidth" fullname="CavesOfOoo.Tests.PickupFooterPresentationTests.StatusRowIsBackedAndLongRefusalStaysInsideTheExistingWidth" methodname="StatusRowIsBackedAndLongRefusalStaysInsideTheExistingWidth" classname="CavesOfOoo.Tests.PickupFooterPresentationTests" runstate="Runnable" seed="717407646" result="Passed" start-time="2026-10-26T18:18:54.3122470Z" end-time="2026-10-26T18:18:54.3157770Z" duration="0.003531" asserts="840" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
