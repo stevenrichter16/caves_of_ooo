@@ -1876,3 +1876,40 @@ needed or performed in this pass. Old current builds and archives are retained.
 Next delivery action: freeze/push these source changes, build fresh dated Mac
 and Linux/Deck -current packages, smoke-test actual Mac launch/input/inventory,
 and record precise packaged/device limits. Full opening/regions remain ongoing.
+
+
+## Continuation — fresh Mac/Linux delivery and glade composition next, 2026-10-26
+
+Frozen source`c893ae58fea438d1d2bb6f803ace1e499df79acd` now has fresh dated
+Mac and Linux`-current`packages. Both normal SampleScene builds succeeded with
+0errors/4warnings. The new Linux archive is181files,128,641,647bytes,SHA256
+`aa64b959de5c477f3dd10893f4207d4c81f469afe816cdd46f6f5a9b108b7618`;
+all contained file hashes/sizes/modes match. See
+[October26 packaged delivery](GRAPHICS-G1-PACKAGED-DELIVERY.md#9-fresh-delivery--2026-10-26-0405-utc).
+Old October25 current packages remain preserved.
+
+Actual Mac/Metal play accepts Continue into the earned north checkpoint,
+current inventory`DMG / DEF`and far-right`[E]`,F1 sword reader,movement/F5 and
+normal quit. A separate fresh Warden starts in the flat glade and moves one
+cell. Six original screenshots are1280×856 including56pixels of macOS chrome;
+game viewport1280×800. Evidence:
+`Docs/Verification/Live16x24/packaged-flat-20261026-mac-play-report.md` and
+`packaged-flat-20261026-mac-play-summary.json`. Both shutdown logs retain six
+thread-finalization notices and one ComputeBuffer-disposal notice; no warning-free
+or performance claim. Mac save/preferences are restored. Separate
+`packaged-flat-20261026-editor-restored.json` confirms04:08:34UTC normal
+SampleScene/OSX,no Play/compile/import/build/isolation and null save root;
+`packaged-flat-20261026-project-restored.json` records29generated files restored.
+All29hashes and four protected normal save/backup hashes independently match;
+tracked`Assets`/`ProjectSettings`diff is empty. Platform reload first stalled in
+Mono domain unload for aboutroughly9minutes: root sampled and TERM-stopped its owned
+idle editor,restarted Linux64,preserved offered scene backups,finished the
+build and restored OSX. This recovery is not a code fix or recurrence guarantee.
+
+About430GiB is free; no deletion needed or performed. The next design uses the
+actual `packaged-flat-20261026-mac-new-game.jpg` as the glade baseline: uneven
+vegetation drifts should strengthen grouping while preserving existing service
+placements,finite stock,paths and access. A concept is generated; no new glade
+runtime changes or layout/art acceptance are claimed. Keep the approved16×24 sprites and complete the established capture→imagegen→
+extraction→native implementation→ordinary Play cycle. Linux execution,physical
+Deck,complete packaged journey,full opening art and regional kits remain open.

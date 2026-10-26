@@ -1,5 +1,10 @@
 # G1 — Packaged flat 16×24 delivery
 
+**Latest delivery: 2026-10-26**, source`c893ae58fea438d1d2bb6f803ace1e499df79acd`.
+See §9 for the fresh Mac/Linux packages, current inventory/reader smoke test and
+archive receipt. Sections1–8 below retain the October25 delivery history and
+its original source/limits; they are not claims about the new build.
+
 **Status, 2026-10-25 UTC:** current-source Linux and macOS packages built successfully. An ordinary macOS standalone launch, Continue, crop Examine and movement were observed. The Linux archive is verified and ready for transfer; Linux execution, physical Steam Deck acceptance and fresh performance measurements remain open.
 
 **Source:** `9ffd7c973a82d1b0fa351300f2b981d703694885`. This packaging slice introduces no intentional runtime changes after that source commit. It carries the accepted native opening art, connected six-site source work and reader leading correction into a new package. It does not certify every world owner or visual state.
@@ -135,3 +140,99 @@ The next bounded visual correction is the **prepared-bed readout cue** found on 
 - `Docs/Verification/Live16x24/packaged-flat-linux-build.json`, `packaged-flat-linux-build-info.json` and `packaged-flat-linux-archive.json`: Linux configuration, successful build and exact transfer archive verification.
 
 Implementation in this slice is packaging and evidence preservation. No runtime snippet is introduced. The plan's source acceptance is carried forward, while target execution and broader graphics release acceptance remain explicitly unfulfilled.
+
+
+## 9. Fresh delivery — 2026-10-26 04:05 UTC
+
+**Frozen runtime source:** `c893ae58fea438d1d2bb6f803ace1e499df79acd`.
+The October26 delivery carries the intervening popup sampling fix,inventory
+redesign/combat column,native equipment art and bounded Nella/north composition
+work. This is a normal non-development `SampleScene` build with the existing
+flat default and reversible presentation preference. No new artwork or gameplay
+behavior is introduced by this packaging pass.
+
+| Platform and receipt | Result | Duration | Reported size | Errors/warnings |
+| --- | --- | ---: | ---: | ---: |
+| [macOS](Verification/Live16x24/packaged-flat-20261026-mac-build.json) | Succeeded; universal x86_64+arm64 |46.919501s|233.97MB|0/4|
+| [Linux](Verification/Live16x24/packaged-flat-20261026-linux-build.json) | Succeeded; ELF64 x86-64 |33.879608s|214.47MB|0/4|
+
+New outputs, separate from the preserved October25 packages:
+
+- Mac: `Builds/Verification/2026-10-26-flat16x24-current/CavesOfOoo.app`.
+- Linux executable: `Builds/SteamDeck/2026-10-26-flat16x24-current/CavesOfOoo-current/CavesOfOoo.x86_64`.
+- Transfer archive: `Builds/SteamDeck/2026-10-26-flat16x24-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+
+The [archive receipt](Verification/Live16x24/packaged-flat-20261026-linux-archive.json)
+records **128,641,647archive bytes**,181regular files and225,372,292unpacked file
+bytes. SHA256:
+`aa64b959de5c477f3dd10893f4207d4c81f469afe816cdd46f6f5a9b108b7618`.
+Every file's hash,size and mode matched; no unsafe paths or links were admitted.
+A separate read independently matched the archive size and SHA256. Launcher,
+README,build report,all six audio-credit sections,license texts,provenance and
+starter-spell source notes are included. The
+[build information](Verification/Live16x24/packaged-flat-20261026-linux-build-info.json)
+records Mono and configured Vulkan; Linux execution was not observed. It
+explicitly avoids recycling historical native-test or Mac-smoke claims.
+
+### Current actual Mac smoke test
+
+The [reviewed play report](Verification/Live16x24/packaged-flat-20261026-mac-play-report.md)
+and [hashed summary](Verification/Live16x24/packaged-flat-20261026-mac-play-summary.json)
+record two ordinary Mac/Metal sessions. Six original JPEGs are1280×856 with
+56pixels of macOS chrome and a1280×800 game viewport:
+
+1. Normal launch offers Continue. C resumes the already-earned north checkpoint
+   at73,17,15/40HP and50drams. This is not the separate40HP Nella replay.
+2. I opens the current inventory. Long sword shows`1d8`,buckler`1 AV +1 DV`,
+   and each equipped item has`[E]`at the far right. F1 opens the sword's native
+   portrait and decision details on a solid backing. Closing menus and ordinary
+   movement reach72,17; F5 saves, then the player quits normally.
+3. A separate fresh Warden starts in the flat opening and moves40,12→41,12.
+   The retained new-character save records tick20 and40/40HP. This is fresh
+   startup/input evidence, not a full packaged six-site journey.
+
+Direct captures: [inventory](Verification/Live16x24/packaged-flat-20261026-mac-inventory.jpg),
+[item reader](Verification/Live16x24/packaged-flat-20261026-mac-reader.jpg),
+[fresh opening](Verification/Live16x24/packaged-flat-20261026-mac-new-game.jpg).
+Both player logs complete bootstrap and Input System shutdown, with no explicit
+exception/error/failed/fatal line in the review's keyword scan. **Both retain
+six premature-thread-finalization notices and one ComputeBuffer-disposal
+notice.** No warning-free shutdown,diagnosed cause or cleanup fix is claimed.
+Build warnings are reported but not individually identified in the player logs.
+
+The [Mac restoration receipt](Verification/Live16x24/packaged-flat-20261026-mac-restored.json)
+records restored preference domains and removal of the temporary bundle save
+location,which did not previously exist. Archived original/restored preference
+maps independently compare equal; earned and fresh checkpoints remain outside
+the repository. Separate [editor restoration](Verification/Live16x24/packaged-flat-20261026-editor-restored.json)
+at04:08:34.54461UTC confirms StandaloneOSX,normal SampleScene,no
+Play/compile/import/build/isolation/art launch/borrowed view and null save root.
+The [project restoration](Verification/Live16x24/packaged-flat-20261026-project-restored.json)
+records29reviewed generated files:26whitespace-only sprite metadata files and
+3Unity build-serialization assets. Independent rereading matches all29restored
+hashes,finds no tracked`Assets`/`ProjectSettings`diff,and confirms all four
+protected normal editor save/backup hashes unchanged. These checks are separate
+from Mac preference restoration.
+
+Platform switching initially stalled in Mono domain unload for aboutroughly9minutes.
+Root sampled the owned idle editor,stopped it with TERM,restarted targeting
+Linux64,preserved the offered scene backups,completed the build and switched
+back to OSX. This was operational recovery,not a source-code fix or proof that
+the reload problem cannot recur. The successful Linux build and final restoration
+receipts establish the recovered state; they do not erase the interruption.
+
+### Scope and next action
+
+Approximately430GiB is available. No cache/build deletion was needed or performed
+in this delivery pass; older packages,sources,editable assets and saves remain
+protected. Storage is no longer the reason to defer builds or longer playtests.
+
+Linux execution,physical Deck controls/readability/audio/performance,the full
+packaged journey,all owner/state art and new frame-time/memory/loading measures
+remain open. Mac screenshots and archive integrity do not close these gates.
+The next root-owned graphics design is an **uneven vegetation-drift composition
+for the glade**,using the actual fresh-game capture above. Preserve functional
+placements,stock and approaches. A design concept has now been generated,but
+no new glade runtime changes,artwork or layout are admitted yet. Accepted
+sprites remain stable while that proposal passes the existing actual
+capture→concept→owner/state→native implementation→ordinary Play loop.

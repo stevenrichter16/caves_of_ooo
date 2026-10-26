@@ -1,0 +1,234 @@
+{
+  "reviewed_at_utc": "2026-10-26T04:00:07.919735+00:00",
+  "runtime_source_commit": "c893ae58fea438d1d2bb6f803ace1e499df79acd",
+  "runtime_source_provenance": "Root build operator records the frozen source SHA; this evidence review does not independently reproduce source-to-binary compilation.",
+  "build": {
+    "job_id": "build-9b284ea039",
+    "result": "succeeded",
+    "platform": "StandaloneOSX",
+    "output_path": "Builds/Verification/2026-10-26-flat16x24-current/CavesOfOoo.app",
+    "started_at": "2026-10-26T03:49:33.816001Z",
+    "duration_seconds": 46.919501,
+    "completed_at": "2026-10-26T03:50:20.735502Z",
+    "total_size_mb": 233.97,
+    "errors": 0,
+    "warnings": 4
+  },
+  "binary_format": "Builds/Verification/2026-10-26-flat16x24-current/CavesOfOoo.app/Contents/MacOS/caves-of-ooo: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64:Mach-O 64-bit executable arm64]\nBuilds/Verification/2026-10-26-flat16x24-current/CavesOfOoo.app/Contents/MacOS/caves-of-ooo (for architecture x86_64):\tMach-O 64-bit executable x86_64\nBuilds/Verification/2026-10-26-flat16x24-current/CavesOfOoo.app/Contents/MacOS/caves-of-ooo (for architecture arm64):\tMach-O 64-bit executable arm64",
+  "observed_renderer": "Metal on Apple M5; Unity6000.3.4f1; Mono",
+  "capture_geometry": {
+    "original_window": [
+      1280,
+      856
+    ],
+    "macos_chrome_height": 56,
+    "game_viewport": [
+      1280,
+      800
+    ],
+    "screenshots_edited": false,
+    "screenshot_count": 6
+  },
+  "screenshots": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-start.jpg",
+      "observation": "Normal startup offers Continue and New Game before choosing the saved character."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-continued.jpg",
+      "observation": "Continue restores earned north-works checkpoint at73,17,HP15/40,XP75,drams50."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-inventory.jpg",
+      "observation": "I opens Pack & Equipment; long sword1d8 and buckler1AV+1DV appear under DMG/DEF, with [E] at the far right."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-reader.jpg",
+      "observation": "F1 opens long sword decision details, native sword portrait and1d8-per-penetration facts on page1/2."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-moved.jpg",
+      "observation": "After closing menus, ordinary movement changes73,17\u219272,17; HP remains15/40."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-new-game.jpg",
+      "observation": "A separate fresh Warden begins normally and moves to41,12; HP40/40,drams50 and Warden equipment/hotbar are visible."
+    }
+  ],
+  "actions_observed_by_root": [
+    "Launch normal player and use C to Continue the copied earned north-works save.",
+    "I opens inventory/equipment; inspect DMG/DEF and far-right [E].",
+    "F1 opens selected long sword details; close reader and inventory.",
+    "Move left from73,17 to72,17; F5 saves; quit normally.",
+    "Launch without the temporary continued save, choose a fresh Warden and move from40,12 to41,12; save and quit normally."
+  ],
+  "continued_checkpoint": {
+    "domains": [
+      "com.DefaultCompany.2D-URP",
+      "unity.DefaultCompany.caves-of-ooo"
+    ],
+    "bundle_save_preexisted": false,
+    "temporary_checkpoint": "54bc59c0fe6243aaa949342f54273a84",
+    "source": "/tmp/coo-seed65-ground-verified/54bc59c0fe6243aaa949342f54273a84",
+    "source_sha256": "a3e56d62871831933e6c489fb5210c630fca9bb16a6f6186c76adbb2c38a8402"
+  },
+  "retained_save_results": [
+    {
+      "metadata_path": "/tmp/coo-packaged-20261026-protection/continued-saves/54bc59c0fe6243aaa949342f54273a84/Quick.json",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "54bc59c0fe6243aaa949342f54273a84",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.11.9.0",
+        "ActiveZoneDisplayLabel": "Overworld.11.9.0",
+        "Turn": 1450,
+        "SaveTimestampUtc": "2026-10-26T03:53:03.2454870Z",
+        "HPSummary": "15/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "save_sha256": "13029d79f62d0ff7da57ef840d000a96f77b7ebfdc3dbf027b39d4e29fa35537"
+    },
+    {
+      "metadata_path": "/tmp/coo-packaged-20261026-protection/fresh-saves/9d0c0b27d7754da8805eacb5839c7be7/Quick.json",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "9d0c0b27d7754da8805eacb5839c7be7",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.11.10.0",
+        "ActiveZoneDisplayLabel": "Overworld.11.10.0",
+        "Turn": 20,
+        "SaveTimestampUtc": "2026-10-26T03:54:54.5019830Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "save_sha256": "3d9f7de67908582cfb66b1a4710b2c13fab99b4b1935d197be18dbc165011daf"
+    }
+  ],
+  "log_review": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-player.log",
+      "thread_finalization_notices": 6,
+      "compute_buffer_disposal_notices": 1,
+      "exception_error_failed_fatal_lines": [],
+      "shutdown_sequence_present": true
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-new-player.log",
+      "thread_finalization_notices": 6,
+      "compute_buffer_disposal_notices": 1,
+      "exception_error_failed_fatal_lines": [],
+      "shutdown_sequence_present": true
+    }
+  ],
+  "restoration": {
+    "at": "2026-10-26T03:55:35.510393+00:00",
+    "original_bundle_saves_absent": true,
+    "preferences_logically_restored": [
+      "com.DefaultCompany.2D-URP",
+      "unity.DefaultCompany.caves-of-ooo"
+    ],
+    "temporary_earned_and_fresh_checkpoints_retained": "/tmp/coo-packaged-20261026-protection"
+  },
+  "independent_preference_comparison": [
+    {
+      "domain": "com.DefaultCompany.2D-URP",
+      "archived_original_and_restored_logical_mapping_equal": true
+    },
+    {
+      "domain": "unity.DefaultCompany.caves-of-ooo",
+      "archived_original_and_restored_logical_mapping_equal": true
+    }
+  ],
+  "can_verify": [
+    "Successful Mac build:zero errors,four warnings.",
+    "Six actual original JPEG captures and their hashes/dimensions.",
+    "Continued gameplay, inventory combat values/equipped indicators, item reader, movement and fresh Warden rendering.",
+    "Retained saves record continued north-zone tick1450/HP15 and new-game tick20/HP40.",
+    "Archived preference maps match restoration receipts."
+  ],
+  "cannot_verify": [
+    "Linux execution/Vulkan or physical Steam Deck controls, readability, audio and performance.",
+    "Full connected six-site packaged journey or all inventory items/input routes.",
+    "Fresh performance benchmark or graphics release completeness.",
+    "No warning-free shutdown claim:both logs retain ComputeBuffer and thread-finalization notices.",
+    "The standalone restoration receipt is not a full normal-editor-save hash audit."
+  ],
+  "files": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-build.json",
+      "bytes": 451,
+      "sha256": "cb41dbdbbe7d4262dac8944d7a1f1cd64e0e1bb295da3606e0f5f29219481097"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-start.jpg",
+      "bytes": 215443,
+      "sha256": "aacfbe1f818cde84e5bf47e67797bf24ef9b1d7c032ea129e04a17af78161274",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 856
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-continued.jpg",
+      "bytes": 176964,
+      "sha256": "53fd3bc8be184520345f6d1db1220a0587a3e9b20554393bd04dbee48d7de614",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 856
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-inventory.jpg",
+      "bytes": 175711,
+      "sha256": "92dc7eb56e8f7f90a22c1bb03305dea5a29db35b022a1812688e82419e003c16",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 856
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-reader.jpg",
+      "bytes": 175819,
+      "sha256": "9a345edfe4a7d9ec58d101039ca32e2fa91cb8d949c0801cf4c46aef6efb71ed",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 856
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-moved.jpg",
+      "bytes": 182393,
+      "sha256": "a33dd3e6bd779a2eb107967e920bb609af412fb6b934aeec5215315be0f19c91",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 856
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-new-game.jpg",
+      "bytes": 238087,
+      "sha256": "b422f1120bc899e9e6d99d8cab3acd4ec68fe5c9993ba2556e1784524ca9763d",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 856
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-player.log",
+      "bytes": 4039,
+      "sha256": "420bc1df7a103b17716f371c1d9fdb1464940e32af7321853c8cc0b29c2d438b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-new-player.log",
+      "bytes": 4039,
+      "sha256": "8934edffe48037b5e47baa7ad45046b4a546a24ae0e189622231938637a95fd5"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-flat-20261026-mac-restored.json",
+      "bytes": 297,
+      "sha256": "520e43a06116404cd11ed3424488dbc957ab396a29dca4175ede52e419bbe0da"
+    }
+  ]
+}
