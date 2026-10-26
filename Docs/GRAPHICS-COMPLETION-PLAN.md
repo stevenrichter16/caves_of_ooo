@@ -9,9 +9,12 @@ actual screenshots and 21 save-audit checks support this bounded acceptance.
 The journey exposed a clipped two-dram recipe price. Adaptive popup width and
 coherent native mouse input now pass 115 native tests and six actual Editor
 captures, including a genuine mouse-paid commission. [Correction record](GRAPHICS-G3-ACTION-COST-READABILITY.md).
-Current Mac/Linux packages **99b86bb02 predate this menu correction**. Next:
-freeze a corrected delivery, replay its price/click path, then finish North/Nella
-revisits and remaining forge/crop acceptance from the collected checkpoint.
+Current Mac/Linux packages **daa388643 include this correction**. Fourteen
+actual Mac captures verify full price, keyboard priority, real mouse commission,
+short-menu clearing and full quit/Continue. The Linux archive passes independent
+member/hash/permission/license review. [Delivery record](Verification/Live16x24/packaged-action-menu-report.md).
+Next: North/Nella revisits and remaining forge/crop acceptance from the collected
+checkpoint using the new package; the En Garde hotbar label still clips.
 Approved art remains stable. Full six-zone opening, regional art, Linux execution,
 physical Deck and measured performance remain open. Storage remains inspection-only.
 

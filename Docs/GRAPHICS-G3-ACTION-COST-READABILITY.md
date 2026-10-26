@@ -161,3 +161,14 @@ next package gate. All776 normal-save files,374 protected sources and2 foreign
 PNGs remain unchanged. See `Verification/Live16x24/action-cost-settled-restoration.json`.
 No source, cache, save or build was deleted. Runtime fix cc963241d is verified
 on origin/main; this follow-up records the settled environment only.
+
+
+### Packaged correction accepted, 2026-10-26
+
+The historical package boundary above is superseded by
+[daa388643 delivery](Verification/Live16x24/packaged-action-menu-report.md).
+Fourteen real Mac captures verify full price, parked-pointer keyboard priority,
+real edge-click commission, short-menu mouse reader and fullquit/Continue.
+Both Mac/Linux builds succeed; independent Linux archive audit passes. No new
+runtime code or native rerun in delivery. Full opening, arbitrary labels, Linux
+execution, physical Deck and performance remain open.

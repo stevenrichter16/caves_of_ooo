@@ -2514,3 +2514,33 @@ next package gate. All776 normal-save files,374 protected sources and2 foreign
 PNGs remain unchanged. See `Verification/Live16x24/action-cost-settled-restoration.json`.
 No source, cache, save or build was deleted. Runtime fix cc963241d is verified
 on origin/main; this follow-up records the settled environment only.
+
+
+## Continuation — 2026-10-26 action-menu packages accepted
+
+[Delivery report](Verification/Live16x24/packaged-action-menu-report.md) freezes
+daa388643 (runtime correction cc963241d) into fresh dated Mac/Linux-current
+outputs. Both report zero build errors; warnings and shutdown notices are
+retained. Independent archive audit verifies181 files,180 checksums and source
+licenses. Archive SHA256219a1876f19c5c58879d9cd16419f42f85f59a4492377fdd8747829a6210b860.
+
+Fourteen actual Mac screenshots close the previously open packaged gate: full
+2-dram recipe/F1, parked-pointer keyboard Examine, real widened-edge click,
+40→38drams/tick4860→4870, covered Working art, clean48-column menu, mouse
+110-tick reader, fullquit/Continue and clean save. No runtime or art changes.
+Initial mistaken uncompressed fixture was archived and corrected before accepted
+play; all evidence and limits are explicit. Existing En Garde label clipping
+remains a named separate UI defect. No Linux execution/physicalDeck claim.
+
+Both apps are closed. Exact48,565-object snapshot comparison, normal saves,
+complete logical preferences, two foreign PNGs and previous packages pass.
+32whitespace metadata/3build serialization files restored; one additional
+UnityConnect enable-toggle separately reviewed/backed up/restored. No cleanup.
+The Packages with Errors startup modal was dismissed without dependency edits;
+reopen local MCP server before Unity and inspect fresh CUA state if it returns.
+
+Next: continue unchanged earned-east-collected242967504 in the NEW package,
+kitchen55,17,HP42level2tick5670,40drams,meal carried/empty board. Complete
+North/Nella revisits and remaining forge/crop gates, then next named visual
+repair; preserve accepted art. Complete opening/regions/device/performance
+remain open. Heartbeat remains active; storage inspections are read-only.
