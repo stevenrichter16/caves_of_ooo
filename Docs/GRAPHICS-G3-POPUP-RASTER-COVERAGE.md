@@ -1,7 +1,6 @@
 # World popup raster coverage
 
-Status: source/image audit and implementation plan only. No runtime fix or native
-RED/GREEN is claimed. Resume after adequate disk headroom is available.
+Status: native GPU and ordinary Play verification complete for this bounded popup fix.
 
 ## Player-visible defect and scope
 
@@ -63,10 +62,77 @@ does not call for replacing approved pixels or generating a new art concept.
    plan and coverage ledger in the same commit, then fetch/rebase/push exact owned
    changes. Do not claim opening, packaged build or physical Deck acceptance.
 
-## Acceptance and current limits
+## Historical pre-implementation limits
 
 No runtime code has changed. Native execution is pending because the latest
 recovery left only about221.5MiB and this session already encountered ENOSPC.
 Source/image inspection is useful preparation, not a substitute for the GPU
 test or actual gameplay captures. After this narrow defect, resume second-seed
 return/growth and the northern worksite composition cycle.
+
+
+## Implementation continuation — 2026-10-26
+
+Native reproduction at the actual 940×680 map viewport found 1,458 interior
+world pixels leaking through the reader; the wider 1171-pixel viewport leaked
+172. Full-screen integer spacing was already clean. See
+`Verification/Live16x24/popup-raster-exact-viewport-red-summary.json`.
+
+The first overlap candidate passed 43 tests, but independent review identified
+translucent DialogueUI (alpha .92). A new actual GPU counter-check measured
+.2196 red-channel variation across its interior: double blending. Rejected.
+A shared-transform integer backing grid also failed; reverted completely.
+
+The accepted native candidate changes only the UI SolidBlock texture: its
+16×16 opaque pixels now have a one-pixel opaque sampling gutter in an 18×18
+texture. Quad geometry, pixel count, foreground glyphs and grid layout remain
+unchanged. Fractional UV edges no longer sample adjacent transparent glyphs.
+No overlap, new updater or per-frame allocation. One small texture is made per
+UI bank generation, following the bank's existing cache lifetime.
+
+Native `popup-raster-padded-green` passes all 44 selected popup/input tests,
+including six new GPU cases. Opaque, translucent, resize, disabled-backing,
+closed-menu and fullscreen-inventory counter-checks pass. The initial tilebank
+filter used a wrong namespace and selected no tilebank cases; its corrected
+separate run is required before commit. Earlier trial results remain evidence,
+not acceptance. Source changes: CP437TilesetGenerator and
+WidePopupBackgroundCoverageTests; ZoneRenderer is unchanged from main.
+
+Self-review: 🟡 overlap transparency regression fixed by sampling gutter;
+🔵 shared-grid complexity rejected; 🧪 ordinary Play screenshots, packaged run
+and physical Deck checks must not be inferred from GPU tests. The current
+build is preserved and predates this fix. No gameplay or approved art changed.
+
+Storage: the user's separately authorized OpenClaw error-log truncation and
+XCTest simulator-data deletion recovered about428GiB; current available space
+is about432GiB. All further cleanup remains inspection-only. No project source,
+current build, normal save or active Unity cache was deleted by this graphics
+pass. Next: ordinary earned north replay, Examine/action-menu and inventory
+captures, then second-seed return/growth and north-yard composition.
+
+
+## Acceptance — final padded fill
+
+Corrected tilebank namespace selected five cases: 5/5 passed, alongside 44/44
+popup/input cases (49 total, no skips). Original 16×16 fill ink matches the game
+bank; all other glyphs retain their atlas. Independent review of the original
+candidate supplied the transparency finding; the final gutter fix was then
+self-reviewed against that finding and the GPU/shape counter-checks.
+
+Ordinary isolated Continue of earned seed64 north save: Look selected actual
+Mendleaf at (15,19), Return opened its action menu, X opened Examine. Real
+1280×800 captures `popup-raster-padded-menu.png` and
+`popup-raster-padded-reader.png` show continuous opaque backgrounds. Inventory
+and long-sword F1 details also open, close and reopen through actual keyboard
+input; see `popup-raster-padded-inventory.png`, `-inventory-selection.png` and
+`-inventory-reader.png`. `-pause.png` truthfully records an extra Escape reaching
+Pause, not inventory. No teleport, item grants, forced daylight or gameplay
+state changes were used. The existing earned checkpoint remains available.
+
+Can verify: actual keyboard routing, painted glyphs/backing, normal flat mode,
+GPU opacity and no double-blended translucent edges in the tested projections.
+Cannot verify: physical Deck/controller, updated packaged build, whole-world
+art acceptance or every future viewport. The native uniform-alpha test models
+the dialogue backing; this pass did not talk to a live NPC. These are bounded
+rendering acceptance claims. Next scene work remains north composition and
+second-seed return/growth, not more detached assets.

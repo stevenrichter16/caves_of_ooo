@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Failed(Child)" total="11" passed="8" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 02:19:50Z" end-time="2026-10-26 02:19:51Z" duration="1.6590595">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31488" result="Failed" site="Child" start-time="2026-10-26 02:19:50Z" end-time="2026-10-26 02:19:51Z" duration="1.659060" total="11" passed="8" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="38779" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31488" result="Failed" site="Child" start-time="2026-10-26 02:19:50Z" end-time="2026-10-26 02:19:51Z" duration="1.256552" total="11" passed="8" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="38780" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31488" result="Failed" site="Child" start-time="2026-10-26 02:19:50Z" end-time="2026-10-26 02:19:51Z" duration="0.998006" total="11" passed="8" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="38781" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31488" result="Failed" site="Child" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.742193" total="11" passed="8" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="37801" name="WidePopupBackgroundCoverageTests" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.519017" total="11" passed="8" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="37812" name="ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose" methodname="ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1640889515" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.199644" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=200,423..740,482 sentinelPixels=0
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=200,423..740,482 sentinelPixels=31860
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,377..787,543 sentinelPixels=0
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37811" name="ActualGpuReaderBackingCoversFractionalColumns" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.092017" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37808" name="ActualGpuReaderBackingCoversFractionalColumns(1280,940)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1280,940)" methodname="ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1842439653" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.025219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=115969
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=0
+]]></output>
+              </test-case>
+              <test-case id="37809" name="ActualGpuReaderBackingCoversFractionalColumns(1280,1280)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1280,1280)" methodname="ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1471538026" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.029575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[viewport=(x:0.00, y:0.00, width:1.00, height:1.00) sample=209,285..1072,515 sentinelPixels=186000
+viewport=(x:0.00, y:0.00, width:1.00, height:1.00) sample=209,285..1072,515 sentinelPixels=0
+]]></output>
+              </test-case>
+              <test-case id="37810" name="ActualGpuReaderBackingCoversFractionalColumns(1511,1171)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1511,1171)" methodname="ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1767093764" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.028542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[viewport=(x:0.00, y:0.15, width:0.77, height:0.85) sample=191,362..980,558 sentinelPixels=145698
+viewport=(x:0.00, y:0.15, width:0.77, height:0.85) sample=191,362..980,558 sentinelPixels=0
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="37813" name="ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs" methodname="ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="332606439" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.108984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=0
+viewport=(x:0.00, y:0.00, width:1.00, height:1.00) sample=209,285..1072,515 sentinelPixels=0
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=0
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=124264
+]]></output>
+            </test-case>
+            <test-case id="37814" name="ActualGpuTranslucentBackingDoesNotDarkenInternalEdges" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuTranslucentBackingDoesNotDarkenInternalEdges" methodname="ActualGpuTranslucentBackingDoesNotDarkenInternalEdges" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1476207843" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.015419" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,377..787,543 sentinelPixels=0
+]]></output>
+            </test-case>
+            <test-case id="37807" name="InventoryExamineQueueUsesFullscreenCameraAndOpaqueBackingWithoutErasingInventory" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.InventoryExamineQueueUsesFullscreenCameraAndOpaqueBackingWithoutErasingInventory" methodname="InventoryExamineQueueUsesFullscreenCameraAndOpaqueBackingWithoutErasingInventory" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="143581823" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.049744" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37805" name="PaintedAnnouncementHasContinuousOpaqueBacking" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.040641" total="3" passed="1" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="37802" name="PaintedAnnouncementHasContinuousOpaqueBacking(0.9f)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking(0.9f)" methodname="PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="448619625" result="Failed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.008021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 0.899999976f +/- 0.000199999995f
+  But was:  1.0f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WidePopupBackgroundCoverageTests+Rig.SetCellWidth (System.Single width) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WidePopupBackgroundCoverageTests.cs:434
+at CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking (System.Single cellWidth) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WidePopupBackgroundCoverageTests.cs:29
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="37803" name="PaintedAnnouncementHasContinuousOpaqueBacking(1.0f)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking(1.0f)" methodname="PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1507254355" result="Passed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.019976" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37804" name="PaintedAnnouncementHasContinuousOpaqueBacking(1.186031f)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking(1.186031f)" methodname="PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="2118175979" result="Failed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.007144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 1.1860311f +/- 0.000199999995f
+  But was:  1.0f
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WidePopupBackgroundCoverageTests+Rig.SetCellWidth (System.Single width) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WidePopupBackgroundCoverageTests.cs:434
+at CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking (System.Single cellWidth) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WidePopupBackgroundCoverageTests.cs:29
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="37806" name="ResizeWhileOpenUpdatesBackingWithoutRepaintingOrResizingGlyphs" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ResizeWhileOpenUpdatesBackingWithoutRepaintingOrResizingGlyphs" methodname="ResizeWhileOpenUpdatesBackingWithoutRepaintingOrResizingGlyphs" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="565088456" result="Failed" start-time="2026-10-26 02:19:51Z" end-time="2026-10-26 02:19:51Z" duration="0.006941" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0.899999976f +/- 0.000199999995f
+  But was:  1.0f
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WidePopupBackgroundCoverageTests+Rig.SetCellWidth (System.Single width) [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WidePopupBackgroundCoverageTests.cs:434
+at CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ResizeWhileOpenUpdatesBackingWithoutRepaintingOrResizingGlyphs () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WidePopupBackgroundCoverageTests.cs:42
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -138,7 +138,24 @@ namespace CavesOfOoo.Rendering
                 int row = Rows - 1 - (i / Columns);
 
                 Rect spriteRect = new Rect(col * GlyphSize, row * GlyphSize, GlyphSize, GlyphSize);
-                Sprite sprite = Sprite.Create(_uiAtlasTexture, spriteRect, new Vector2(0.5f, 0.5f), GlyphSize);
+                // Give the fill an opaque sampling gutter: fractional screen
+                // edges must not sample the transparent neighboring atlas glyph.
+                // Keep its 16x16 pixels and one-cell quad unchanged; overlapping
+                // geometry would double-blend translucent dialogue backgrounds.
+                Texture2D texture = _uiAtlasTexture;
+                if (c == SolidBlock)
+                {
+                    texture = new Texture2D(GlyphSize + 2, GlyphSize + 2, TextureFormat.RGBA32, false);
+                    texture.name = "UI_SolidBlock_Padded";
+                    texture.filterMode = FilterMode.Point;
+                    texture.wrapMode = TextureWrapMode.Clamp;
+                    var pixels = new Color[(GlyphSize + 2) * (GlyphSize + 2)];
+                    for (int pixel = 0; pixel < pixels.Length; pixel++) pixels[pixel] = Color.white;
+                    texture.SetPixels(pixels);
+                    texture.Apply();
+                    spriteRect = new Rect(1, 1, GlyphSize, GlyphSize);
+                }
+                Sprite sprite = Sprite.Create(texture, spriteRect, new Vector2(0.5f, 0.5f), GlyphSize);
                 sprite.name = $"UI_{i:X2}";
 
                 Tile tile = ScriptableObject.CreateInstance<Tile>();

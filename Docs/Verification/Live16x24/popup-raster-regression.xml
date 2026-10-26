@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="43" result="Passed" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 01:56:51Z" end-time="2026-10-26 01:56:56Z" duration="5.1160014">
+  <test-suite type="TestSuite" id="38806" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31487" result="Passed" start-time="2026-10-26 01:56:51Z" end-time="2026-10-26 01:56:56Z" duration="5.116001" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="38778" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31487" result="Passed" start-time="2026-10-26 01:56:52Z" end-time="2026-10-26 01:56:56Z" duration="4.818096" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="38779" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31487" result="Passed" start-time="2026-10-26 01:56:52Z" end-time="2026-10-26 01:56:56Z" duration="4.519582" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="38780" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31487" result="Passed" start-time="2026-10-26 01:56:52Z" end-time="2026-10-26 01:56:56Z" duration="4.319485" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="26581" name="SidebarAnnouncementTests" fullname="CavesOfOoo.Tests.SidebarAnnouncementTests" classname="CavesOfOoo.Tests.SidebarAnnouncementTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.477933" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="26582" name="AddAnnouncement_StillOpensModal_AndAlsoFeedsSidebarLog" fullname="CavesOfOoo.Tests.SidebarAnnouncementTests.AddAnnouncement_StillOpensModal_AndAlsoFeedsSidebarLog" methodname="AddAnnouncement_StillOpensModal_AndAlsoFeedsSidebarLog" classname="CavesOfOoo.Tests.SidebarAnnouncementTests" runstate="Runnable" seed="1276280139" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.274352" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="26600" name="SpreadWorldExamineReaderTests" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:56Z" duration="1.636072" total="29" passed="29" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="26620" name="ActionDetailsUseFreshLabelAndActualOwnerGroundWarning" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ActionDetailsUseFreshLabelAndActualOwnerGroundWarning" methodname="ActionDetailsUseFreshLabelAndActualOwnerGroundWarning" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="514867556" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.086654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26616" name="ActualPileSummaryIsDistinctFromSelectedOwnersFullDetails" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ActualPileSummaryIsDistinctFromSelectedOwnersFullDetails" methodname="ActualPileSummaryIsDistinctFromSelectedOwnersFullDetails" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1209918994" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.077340" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=4 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26614" name="ChangedSelectionCannotRevealStaleOwnerOrGround" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:55Z" duration="0.380269" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26606" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;removed&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="262895885" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.044248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26607" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;moved&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="709749857" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.041790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26608" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;hidden&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="476394635" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.042481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26609" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;fogged&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;fogged&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1731858299" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.042710" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26610" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;unexplored&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="467928277" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:54Z" duration="0.042460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26611" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;foreign-zone&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="764542317" result="Passed" start-time="2026-10-26 01:56:54Z" end-time="2026-10-26 01:56:55Z" duration="0.043289" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26612" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;missing-part&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;missing-part&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1958154276" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.042962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26613" name="ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;replacement-id&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(&quot;replacement-id&quot;)" methodname="ChangedSelectionCannotRevealStaleOwnerOrGround" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="670677093" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.043284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="26615" name="CurrentCorpseIsInspectableWithoutALivingActorGate" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.CurrentCorpseIsInspectableWithoutALivingActorGate" methodname="CurrentCorpseIsInspectableWithoutALivingActorGate" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1603390511" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.047026" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26628" name="DescriptionCallbackRemovingOwnerCannotPublishAPrevalidatedSnapshot" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.DescriptionCallbackRemovingOwnerCannotPublishAPrevalidatedSnapshot" methodname="DescriptionCallbackRemovingOwnerCannotPublishAPrevalidatedSnapshot" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="6160587" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.043491" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26625" name="EmptyActionMenuHasNoInventedDetails" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.EmptyActionMenuHasNoInventedDetails" methodname="EmptyActionMenuHasNoInventedDetails" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="165616128" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.048410" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=0 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26617" name="EmptyCellDoesNotInventAnOwnerOrQueueAReader" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.EmptyCellDoesNotInventAnOwnerOrQueueAReader" methodname="EmptyCellDoesNotInventAnOwnerOrQueueAReader" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="165671750" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.096355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26619" name="FullSelectedActionLabelUsesFreeReaderAndReturnsToCurrentMenu" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.FullSelectedActionLabelUsesFreeReaderAndReturnsToCurrentMenu" methodname="FullSelectedActionLabelUsesFreeReaderAndReturnsToCurrentMenu" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1586878980" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.054909" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26604" name="LongFlavorCannotHideCurrentWarningAndEveryParagraphRemainsReachable" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.LongFlavorCannotHideCurrentWarningAndEveryParagraphRemainsReachable" methodname="LongFlavorCannotHideCurrentWarningAndEveryParagraphRemainsReachable" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1936802161" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.067973" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26618" name="LongStatusOverflowPointsToExamineRatherThanAnotherCappedSummary" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.LongStatusOverflowPointsToExamineRatherThanAnotherCappedSummary" methodname="LongStatusOverflowPointsToExamineRatherThanAnotherCappedSummary" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1666380518" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.036968" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26626" name="PileReaderOmitsHiddenOwnersWithoutChangingTheWorld" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.PileReaderOmitsHiddenOwnersWithoutChangingTheWorld" methodname="PileReaderOmitsHiddenOwnersWithoutChangingTheWorld" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1965761918" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.045423" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26605" name="ReaderSnapshotStaysStableButReopeningUsesCooledCurrentSource" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ReaderSnapshotStaysStableButReopeningUsesCooledCurrentSource" methodname="ReaderSnapshotStaysStableButReopeningUsesCooledCurrentSource" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1007253728" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.066017" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26603" name="RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.156130" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26601" name="RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree(True,&quot;LookMode&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree(True,&quot;LookMode&quot;)" methodname="RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1692071046" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.055024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="26602" name="RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree(False,&quot;Normal&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree(False,&quot;Normal&quot;)" methodname="RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1846294377" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.052458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="26621" name="RemovedActionDoesNotOpenStaleDetailsAndRefreshesMenu" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RemovedActionDoesNotOpenStaleDetailsAndRefreshesMenu" methodname="RemovedActionDoesNotOpenStaleDetailsAndRefreshesMenu" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="11323784" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.037822" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26624" name="RemovedActionWhileReadingReturnsOnlyCurrentlyOfferedRows" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RemovedActionWhileReadingReturnsOnlyCurrentlyOfferedRows" methodname="RemovedActionWhileReadingReturnsOnlyCurrentlyOfferedRows" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="980371478" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.039659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26622" name="RemovedOwnerBeforeDetailsReturnsToPriorModeWithoutLeakingLabel" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RemovedOwnerBeforeDetailsReturnsToPriorModeWithoutLeakingLabel" methodname="RemovedOwnerBeforeDetailsReturnsToPriorModeWithoutLeakingLabel" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1389713058" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.041976" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26623" name="RemovedOwnerWhileReadingCannotReopenAStaleActionMenu" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RemovedOwnerWhileReadingCannotReopenAStaleActionMenu" methodname="RemovedOwnerWhileReadingCannotReopenAStaleActionMenu" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1325330122" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.044264" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="26627" name="SelectedPhysicalFootprintCellKeepsItsOwnGroundReadout" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.SelectedPhysicalFootprintCellKeepsItsOwnGroundReadout" methodname="SelectedPhysicalFootprintCellKeepsItsOwnGroundReadout" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1007629756" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:55Z" duration="0.049609" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26632" name="SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 01:56:55Z" end-time="2026-10-26 01:56:56Z" duration="0.192247" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26629" name="SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs(&quot;\n&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs(&quot;\n&quot;)" methodname="SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1771099332" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.037759" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26630" name="SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs(&quot;\r\n&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs(&quot;\r\n&quot;)" methodname="SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="392039812" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.038221" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26631" name="SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs(&quot;\r&quot;)" fullname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests.SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs(&quot;\r&quot;)" methodname="SharedReaderNormalizesAuthoredNewlinesWithoutControlGlyphs" classname="CavesOfOoo.Tests.SpreadWorldExamineReaderTests" runstate="Runnable" seed="1500480743" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.037133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="26713" name="ThrowSourcePopupVisibilityTests" fullname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests" classname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.244194" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="26715" name="ClosingManagerWithoutActivationRestoresGameplayCameraForFree" fullname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests.ClosingManagerWithoutActivationRestoresGameplayCameraForFree" methodname="ClosingManagerWithoutActivationRestoresGameplayCameraForFree" classname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests" runstate="Runnable" seed="104875735" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.050373" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26716" name="DirectionalActivationStillRestoresGameplayCameraWithoutResettingTargetState" fullname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests.DirectionalActivationStillRestoresGameplayCameraWithoutResettingTargetState" methodname="DirectionalActivationStillRestoresGameplayCameraWithoutResettingTargetState" classname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests" runstate="Runnable" seed="1472963982" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.039504" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="26714" name="ManagerActivationKeepsNewThrowSourceOverlayVisibleAfterManagerClose" fullname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests.ManagerActivationKeepsNewThrowSourceOverlayVisibleAfterManagerClose" methodname="ManagerActivationKeepsNewThrowSourceOverlayVisibleAfterManagerClose" classname="CavesOfOoo.Tests.ThrowSourcePopupVisibilityTests" runstate="Runnable" seed="498161800" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.067626" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="37801" name="WidePopupBackgroundCoverageTests" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.460276" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="37812" name="ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose" methodname="ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="2039123670" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.061967" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=200,423..740,482 sentinelPixels=0
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=200,423..740,482 sentinelPixels=31860
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,377..787,543 sentinelPixels=0
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37811" name="ActualGpuReaderBackingCoversFractionalColumns" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.111187" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37808" name="ActualGpuReaderBackingCoversFractionalColumns(1280,940)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1280,940)" methodname="ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="551965846" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.021943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=115969
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=0
+]]></output>
+              </test-case>
+              <test-case id="37809" name="ActualGpuReaderBackingCoversFractionalColumns(1280,1280)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1280,1280)" methodname="ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1663527018" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.026257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[viewport=(x:0.00, y:0.00, width:1.00, height:1.00) sample=209,285..1072,516 sentinelPixels=186813
+viewport=(x:0.00, y:0.00, width:1.00, height:1.00) sample=209,285..1072,516 sentinelPixels=0
+]]></output>
+              </test-case>
+              <test-case id="37810" name="ActualGpuReaderBackingCoversFractionalColumns(1511,1171)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1511,1171)" methodname="ActualGpuReaderBackingCoversFractionalColumns" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="5231764" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.024910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[viewport=(x:0.00, y:0.15, width:0.77, height:0.85) sample=191,362..980,558 sentinelPixels=145698
+viewport=(x:0.00, y:0.15, width:0.77, height:0.85) sample=191,362..980,558 sentinelPixels=0
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="37813" name="ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs" methodname="ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1670053751" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.043190" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=0
+viewport=(x:0.00, y:0.00, width:1.00, height:1.00) sample=209,285..1072,516 sentinelPixels=0
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=0
+viewport=(x:0.00, y:0.15, width:0.73, height:0.85) sample=153,362..787,558 sentinelPixels=124264
+]]></output>
+            </test-case>
+            <test-case id="37807" name="InventoryExamineQueueUsesFullscreenCameraAndOpaqueBackingWithoutErasingInventory" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.InventoryExamineQueueUsesFullscreenCameraAndOpaqueBackingWithoutErasingInventory" methodname="InventoryExamineQueueUsesFullscreenCameraAndOpaqueBackingWithoutErasingInventory" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="2033059877" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.044572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="37805" name="PaintedAnnouncementHasContinuousOpaqueBacking" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.103667" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="37802" name="PaintedAnnouncementHasContinuousOpaqueBacking(0.9f)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking(0.9f)" methodname="PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="949633020" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.021961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37803" name="PaintedAnnouncementHasContinuousOpaqueBacking(1.0f)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking(1.0f)" methodname="PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1921640373" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.021307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="37804" name="PaintedAnnouncementHasContinuousOpaqueBacking(1.186031f)" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.PaintedAnnouncementHasContinuousOpaqueBacking(1.186031f)" methodname="PaintedAnnouncementHasContinuousOpaqueBacking" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="5098958" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.021283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="37806" name="ResizeWhileOpenUpdatesBackingWithoutRepaintingOrResizingGlyphs" fullname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ResizeWhileOpenUpdatesBackingWithoutRepaintingOrResizingGlyphs" methodname="ResizeWhileOpenUpdatesBackingWithoutRepaintingOrResizingGlyphs" classname="CavesOfOoo.Tests.WidePopupBackgroundCoverageTests" runstate="Runnable" seed="1944568620" result="Passed" start-time="2026-10-26 01:56:56Z" end-time="2026-10-26 01:56:56Z" duration="0.053242" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

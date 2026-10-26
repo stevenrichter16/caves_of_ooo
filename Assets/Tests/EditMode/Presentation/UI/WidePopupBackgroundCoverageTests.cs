@@ -6,6 +6,8 @@ using CavesOfOoo.Rendering;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Tests
@@ -119,6 +121,84 @@ namespace CavesOfOoo.Tests
                 Assert.True(inventoryCanvas.isActiveAndEnabled);
                 CollectionAssert.AreEqual(inventoryLabels, CaptureInventoryLabels(rig.Inventory));
                 Assert.True(player.GetPart<InventoryPart>().Contains(item));
+            }
+        }
+
+        [TestCase(1280, 940)]
+        [TestCase(1280, 1280)]
+        [TestCase(1511, 1171)]
+        public void ActualGpuReaderBackingCoversFractionalColumns(int width, int mapWidth)
+        {
+            using (var rig = new Rig())
+            {
+                rig.ConfigureRaster(width, 800, mapWidth);
+                rig.Reader.Open("A real painted paragraph above the world.\nA second line remains readable.");
+                var backing = rig.Reader.BgTilemap.GetComponent<TilemapRenderer>();
+                backing.enabled = false;
+                Assert.Greater(rig.CountWorldPixelsInsideReader(), 1000,
+                    "Counter-check: the camera stack must expose the magenta world when only backing is disabled.");
+                backing.enabled = true;
+                Assert.Zero(rig.CountWorldPixelsInsideReader(),
+                    "Opaque popup backing must cover every interior screen pixel, including fractional cell edges.");
+                Assert.AreEqual(Matrix4x4.identity, rig.Reader.Tilemap.orientationMatrix);
+            }
+        }
+
+        [Test]
+        public void ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose()
+        {
+            using (var rig = new Rig())
+            {
+                rig.ConfigureRaster(1280, 800, 940);
+                var menu = rig.Reader.gameObject.AddComponent<WorldActionMenuUI>();
+                menu.Tilemap = rig.Reader.Tilemap; menu.BgTilemap = rig.Reader.BgTilemap;
+                menu.PopupCamera = rig.PopupCamera;
+                var target = new Entity { BlueprintName = "RasterTarget" };
+                target.AddPart(new RenderPart { DisplayName = "mendleaf plant", RenderString = "%" });
+                var zone = new Zone("Popup raster"); Assert.True(zone.AddEntity(target, 1, 1));
+                menu.Open(null, target, zone.GetCell(1, 1), new List<InventoryAction> {
+                    new InventoryAction { Name = "Examine", Command = "Examine" }
+                }, zone);
+                Assert.Zero(rig.CountWorldPixelsInsidePopup(menu, 48));
+                menu.HideForReader();
+                Assert.Zero(menu.BgTilemap.GetUsedTilesCount());
+                Assert.Greater(rig.CountWorldPixelsInsidePopup(menu, 48), 1000,
+                    "Closing the real action menu must expose the world again.");
+                rig.Reader.Open("A different popup follows the action menu.");
+                Assert.Zero(rig.CountWorldPixelsInsideReader());
+            }
+        }
+
+        [Test]
+        public void ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs()
+        {
+            using (var rig = new Rig())
+            {
+                rig.ConfigureRaster(1280, 800, 940);
+                rig.Reader.Open("Unchanged text through the world and fullscreen layouts.");
+                var glyphs = Capture(rig.Reader.Tilemap);
+                foreach (int mapWidth in new[] { 940, 1280, 940 })
+                {
+                    rig.SetRasterViewport(mapWidth);
+                    AssertTilesUnchanged(rig.Reader.Tilemap, glyphs);
+                    Assert.Zero(rig.CountWorldPixelsInsideReader());
+                    Assert.AreEqual(Matrix4x4.identity, rig.Reader.Tilemap.orientationMatrix);
+                }
+                rig.Reader.Close();
+                Assert.Greater(rig.CountWorldPixelsInsideReader(), 1000);
+            }
+        }
+
+        [Test]
+        public void ActualGpuTranslucentBackingDoesNotDarkenInternalEdges()
+        {
+            using (var rig = new Rig())
+            {
+                rig.ConfigureRaster(1280, 800, 940);
+                rig.Reader.Open("Uniform translucent backing control.");
+                rig.Reader.Tilemap.GetComponent<TilemapRenderer>().enabled = false;
+                rig.Reader.BgTilemap.color = new Color(1, 1, 1, .92f);
+                rig.CountWorldPixelsInsidePopup(rig.Reader, 56, true);
             }
         }
 
@@ -271,6 +351,82 @@ namespace CavesOfOoo.Tests
                 Input.ZoneRenderer = Renderer; Input.CameraFollow = follow;
                 Input.InventoryUI = Inventory; Input.AnnouncementUI = Reader;
             }
+            public void ConfigureRaster(int width, int height, int mapWidth)
+            {
+                Display = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
+                Display.Create();
+                MainCamera.targetTexture = Display;
+                MainCamera.cullingMask = 0;
+                MainCamera.clearFlags = CameraClearFlags.SolidColor;
+                MainCamera.backgroundColor = Color.magenta;
+                MainCamera.allowMSAA = false;
+                var mainData = MainCamera.GetUniversalAdditionalCameraData();
+                mainData.renderType = CameraRenderType.Base;
+                mainData.renderPostProcessing = false;
+                var popupData = PopupCamera.GetUniversalAdditionalCameraData();
+                popupData.renderType = CameraRenderType.Overlay;
+                popupData.renderPostProcessing = false;
+                mainData.cameraStack.Add(PopupCamera);
+                PopupCamera.transform.position = new Vector3(0, 0, -10);
+                PopupCamera.cullingMask = 1 << Reader.BgTilemap.gameObject.layer;
+                Assert.AreEqual(Reader.BgTilemap.gameObject.layer, Reader.Tilemap.gameObject.layer);
+                PopupCamera.clearFlags = CameraClearFlags.Depth;
+                PopupCamera.allowMSAA = false;
+                PopupCamera.enabled = true;
+                SetRasterViewport(mapWidth);
+            }
+            public void SetRasterViewport(int mapWidth)
+            {
+                int width = Display.width, height = Display.height;
+                var layout = GameplayViewportLayout.Measure(width / (float)height, 20f, 20f, 34, GameplayViewportLayout.DefaultHotbarRows);
+                MainCamera.rect = mapWidth == width ? new Rect(0, 0, 1, 1) : layout.MapRect;
+                Assert.That(MainCamera.rect.width * width, Is.EqualTo(mapWidth).Within(.01f));
+                CenteredPopupLayout.ConfigureOverlayCamera(PopupCamera, MainCamera.rect, mapWidth / (height * MainCamera.rect.height));
+                Renderer.SetPopupOverlayCamera(PopupCamera);
+            }
+            public int CountWorldPixelsInsideReader() => CountWorldPixelsInsidePopup(Reader, 56);
+            public int CountWorldPixelsInsidePopup(Component popup, int popupWidth, bool requireUniform = false)
+            {
+                var target = Display;
+                RenderTexture previous = RenderTexture.active;
+                var pixels = new Texture2D(target.width, target.height, TextureFormat.RGBA32, false);
+                try
+                {
+                    // StandardRequest renders the Base plus its actual Overlay stack.
+                    // SingleCameraRequest would skip the Overlay camera altogether.
+                    var request = new RenderPipeline.StandardRequest { destination = target };
+                    Assert.True(RenderPipeline.SupportsRenderRequest(MainCamera, request));
+                    RenderPipeline.SubmitRenderRequest(MainCamera, request);
+                    RenderTexture.active = target;
+                    pixels.ReadPixels(new Rect(0, 0, target.width, target.height), 0, 0);
+                    pixels.Apply();
+                    int left = (int)popup.GetType().GetField("_worldOriginX", Private).GetValue(popup);
+                    int top = (int)popup.GetType().GetField("_worldTopY", Private).GetValue(popup);
+                    int height = (int)popup.GetType().GetField("_popupH", Private).GetValue(popup);
+                    // Exclude the border, preserve all internal tile-edge pixels.
+                    var map = Reader.BgTilemap;
+                    Vector3 low = PopupCamera.WorldToViewportPoint(map.CellToWorld(new Vector3Int(left + 1, top - height + 2, 0)));
+                    Vector3 high = PopupCamera.WorldToViewportPoint(map.CellToWorld(new Vector3Int(left + popupWidth - 1, top, 0)));
+                    Rect view = MainCamera.rect;
+                    int x0 = Mathf.CeilToInt((view.x + low.x * view.width) * target.width);
+                    int x1 = Mathf.FloorToInt((view.x + high.x * view.width) * target.width);
+                    int y0 = Mathf.CeilToInt((view.y + low.y * view.height) * target.height);
+                    int y1 = Mathf.FloorToInt((view.y + high.y * view.height) * target.height);
+                    Assert.Greater((x1 - x0) * (y1 - y0), 1000);
+                    int leaked = 0;
+                    float minRed = 1f, maxRed = 0f;
+                    for (int y = y0; y < y1; y++) for (int x = x0; x < x1; x++)
+                    {
+                        Color c = pixels.GetPixel(x, y);
+                        minRed = Mathf.Min(minRed, c.r); maxRed = Mathf.Max(maxRed, c.r);
+                        if (c.r > .8f && c.b > .8f && c.g < .2f) leaked++;
+                    }
+                    TestContext.WriteLine("viewport=" + view + " sample=" + x0 + "," + y0 + ".." + x1 + "," + y1 + " sentinelPixels=" + leaked);
+                    if (requireUniform) Assert.Less(maxRed - minRed, .01f, "Translucent backing must not double-blend at shared edges.");
+                    return leaked;
+                }
+                finally { RenderTexture.active = previous; Object.DestroyImmediate(pixels); }
+            }
             public void SetCellWidth(float width)
             {
                 PopupCamera.aspect = width * 80f / 45f;
@@ -282,7 +438,7 @@ namespace CavesOfOoo.Tests
                 Reader.Close(); Inventory.Close(); MainCamera.targetTexture = null;
                 Object.DestroyImmediate(root);
                 foreach (var host in detached) if (host != null) Object.DestroyImmediate(host);
-                if (Display != null) Object.DestroyImmediate(Display);
+                if (Display != null) { Display.Release(); Object.DestroyImmediate(Display); }
                 ZoneRenderHooks.CellDirtyCallback = priorCellDirty;
                 ZoneRenderHooks.FullDirtyCallback = priorFullDirty;
                 MessageLog.Restore(oldLog, oldAnnouncements, oldFlash, oldSerial);

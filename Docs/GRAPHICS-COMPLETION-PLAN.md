@@ -1547,3 +1547,16 @@ Next scene target remains the weakly grouped northern worksite and broad field
 fragments; capture the unobscured yard before selecting a bounded layout change.
 Do not replace approved sprites or add unrelated asset packets. Full opening,
 regional graphics, updated package and physical Deck gates remain pending.
+
+
+## Continuation — popup sampling fix, 2026-10-26
+
+[Popup raster coverage](GRAPHICS-G3-POPUP-RASTER-COVERAGE.md) now records actual
+GPU RED, rejected overlap/shared-grid candidates, 49 passing native tests and
+ordinary earned north Play captures. UI SolidBlock has an opaque texture gutter;
+geometry and approved art remain unchanged. Mendleaf actions/Examine and
+inventory sword details have clean backgrounds. Editor isolation is restored.
+Storage blocker is cleared (about432GiB available after separately authorized
+OpenClaw error-log/XCTest cleanup); all other cleanup remains inspection-only.
+Next: second-seed return/growth and north-yard composition. Updated packages,
+physical Deck, full opening and regional graphics acceptance remain open.

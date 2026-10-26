@@ -1,0 +1,31 @@
+{
+  "start-time": "2026-10-26 02:17:57Z",
+  "end-time": "2026-10-26 02:17:59Z",
+  "total": "11",
+  "passed": "6",
+  "failed": "5",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuActionMenuUsesOpaqueBackingAndClearsOnClose",
+      "message": "  Expected: 0\n  But was:  408\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1280,940)",
+      "message": "  Opaque popup backing must cover every interior screen pixel, including fractional cell edges.\n  Expected: 0\n  But was:  1458\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuReaderBackingCoversFractionalColumns(1511,1171)",
+      "message": "  Opaque popup backing must cover every interior screen pixel, including fractional cell edges.\n  Expected: 0\n  But was:  172\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuResizeKeepsOpaqueBackingAndUnchangedGlyphs",
+      "message": "  Expected: 0\n  But was:  1462\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WidePopupBackgroundCoverageTests.ActualGpuTranslucentBackingDoesNotDarkenInternalEdges",
+      "message": "  Translucent backing must not double-blend at shared edges.\n  Expected: less than 0.00999999978f\n  But was:  0.682352901f\n"
+    }
+  ]
+}
