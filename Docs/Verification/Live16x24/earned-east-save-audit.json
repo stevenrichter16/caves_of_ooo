@@ -1,0 +1,2563 @@
+{
+  "kind": "read_only_binary_save_evidence_audit",
+  "recorded_utc": "2026-10-26T19:51:39.419476+00:00",
+  "method": "Read gzip save v8 bytes with independently scoped field schemas; no Unity, entity deserialization hooks, commands, or mutations. Only /tmp/earned-east-audit.json written.",
+  "bounds": [
+    "Snapshots validate owner/state/custody endpoints; source-linked repair/commission causality also relies on ordinary captures and recipe contracts. Baseline Nella precedes raw grain and Claspbean harvest, so this is not an immediate pre-action inventory snapshot.",
+    "Working escrow contains exactly2 Emberwheat+1 ClaspbeanPulp; these are spent only by completion, not merely marked in the pack.",
+    "The single commissioned meal remains carried and uneaten. HP6 to42 coincides with level1 to2, consistent with full level-up heal; this is not meal-healing acceptance.",
+    "IDs are compared semantically across token tables; allocation tokens are local to each save.",
+    "This is bounded save evidence, not complete arbitrary-Part-state equality or continuous gameplay proof."
+  ],
+  "checks": {
+    "same_game_and_seed": true,
+    "working_pan_repaired": true,
+    "collected_pan_same_repair_cause": true,
+    "repair_authored_by_player": true,
+    "working_state_and_due": true,
+    "working_paid_input_counts": true,
+    "working_escrow_exact_quantities": true,
+    "collected_pan_idle": true,
+    "collected_escrow_and_pickup_empty": true,
+    "one_carried_meal_uneaten": true,
+    "correct_meal_provenance": true,
+    "clay_baseline2_working0_collected0": true,
+    "grain_carried0_escrow2_then_consumed": true,
+    "pulp_one_left_carried_both": true,
+    "drams42_to40_preserved": true,
+    "nella_same9199_alive": true,
+    "north_still_same6921": true,
+    "north_patchbearer_same6930_alive": true,
+    "viper11461_no_live_placed_owner": true,
+    "viper_corpse_source_retained": true,
+    "level_up_confounds_healing": true
+  },
+  "snapshots": {
+    "baseline_nella": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/current-journey-packaged-nella242967504/Quick.sav.gz",
+      "sha256": "01ad0b725111e588e7ab10d404ffb74ee6897a8267ec10dc5108c26b5a628dda",
+      "bytes": 207600,
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.11.8.0",
+        "ActiveZoneDisplayLabel": "Overworld.11.8.0",
+        "Turn": 2290,
+        "SaveTimestampUtc": "2026-10-26T19:20:22.9933500Z",
+        "HPSummary": "31/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "game_id": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "seed": 242967504,
+      "active_zone": "Overworld.11.8.0",
+      "zone_reference_counts": {
+        "Overworld.11.10.0": 2703,
+        "Overworld.11.10.1": 2009,
+        "Overworld.11.9.0": 2178,
+        "Overworld.11.8.0": 2223
+      },
+      "player": {
+        "id": "2706",
+        "positions": [
+          {
+            "zone": "Overworld.11.8.0",
+            "x": 63,
+            "y": 9
+          }
+        ],
+        "stats": {
+          "Hitpoints": {
+            "value": 31,
+            "base": 31,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 40
+          },
+          "Strength": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Agility": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Toughness": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Intelligence": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Willpower": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Ego": {
+            "value": 16,
+            "base": 16,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Speed": {
+            "value": 100,
+            "base": 100,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 25,
+            "maximum": 200
+          },
+          "DV": {
+            "value": 0,
+            "base": 0,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": -50,
+            "maximum": 200
+          },
+          "XPValue": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "Level": {
+            "value": 1,
+            "base": 1,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Experience": {
+            "value": 45,
+            "base": 45,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999999
+          },
+          "SP": {
+            "value": 0,
+            "base": 0,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          }
+        },
+        "drams": 42,
+        "inventory": [
+          {
+            "id": "2707",
+            "blueprint": "WateringGrimoire",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2708",
+            "blueprint": "CandyCarrotSeed",
+            "count": 4,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2709",
+            "blueprint": "EmberwheatSeed",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2712",
+            "blueprint": "HealingTonic",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Tonics",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2713",
+            "blueprint": "DriedMeat",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4750",
+            "blueprint": "DitchkeepersFootwork",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4749",
+            "blueprint": "ShatteredRimeGrimoire",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4747",
+            "blueprint": "FireClay",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4756",
+            "blueprint": "SootrootPulp",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          }
+        ],
+        "inventory_ids": [
+          "2707",
+          "2708",
+          "2709",
+          "2712",
+          "2713",
+          "4750",
+          "4749",
+          "4747",
+          "4756"
+        ]
+      },
+      "pan": null,
+      "containers": {},
+      "known_owners": {
+        "9199": {
+          "id": "9199",
+          "blueprint": "SpreadSeedKeeper",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 63,
+              "y": 8
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Toughness": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 12,
+              "base": 12,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 9999
+            }
+          },
+          "int_properties": {
+            "Drams": 48,
+            "LastRestockTurn": 1890
+          },
+          "properties": {
+            "ShopStockTable": "SeedKeeperStock",
+            "SpreadResident.Role": "resident",
+            "ConnectedSpread.Role": "resident"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": {
+            "Configured": true,
+            "WorldSeed": 242967504,
+            "FirstX": 61,
+            "FirstY": 5,
+            "SecondX": 62,
+            "SecondY": 5,
+            "TrayX": 65,
+            "TrayY": 6,
+            "WorldKey": "4173402f0d5d4043b115d806b5cbbd8f",
+            "ZoneID": "Overworld.11.8.0",
+            "KeeperID": "9199",
+            "FirstSoilID": "7477",
+            "SecondSoilID": "7478",
+            "TrayID": "9217",
+            "FirstSoil": "7477",
+            "SecondSoil": "7478",
+            "Tray": "9217",
+            "Permissions": [
+              {
+                "Player": "2706",
+                "State": 1,
+                "BreachOrdinal": 0,
+                "LastBreach": null
+              }
+            ]
+          }
+        },
+        "6921": {
+          "id": "6921",
+          "blueprint": "AlchemyStill",
+          "positions": [
+            {
+              "zone": "Overworld.11.9.0",
+              "x": 67,
+              "y": 5
+            }
+          ],
+          "stats": {},
+          "int_properties": {},
+          "properties": {
+            "SpreadWorksite.Role": "still"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "6930": {
+          "id": "6930",
+          "blueprint": "MarlbackPatchbearer",
+          "positions": [
+            {
+              "zone": "Overworld.11.9.0",
+              "x": 61,
+              "y": 0
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 18,
+              "base": 18,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Toughness": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 75,
+              "base": 75,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "ColdResistance": {
+              "value": 25,
+              "base": 25,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -100,
+              "maximum": 200
+            }
+          },
+          "int_properties": {},
+          "properties": {
+            "NaturalWeapon": "MarlbackRake",
+            "SpreadWorksite.Role": "patchbearer"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "13711": null,
+        "11461": null
+      },
+      "viper_corpses": [],
+      "all_field_meals": []
+    },
+    "working": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-east-working242967504/Quick.sav.gz",
+      "sha256": "c69be8fb613d5bf6411d80063565f78e5050b7b61069dcb6c9aa2d9e5dd3c595",
+      "bytes": 302415,
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.12.11.0",
+        "ActiveZoneDisplayLabel": "Overworld.12.11.0",
+        "Turn": 4830,
+        "SaveTimestampUtc": "2026-10-26T19:43:52.0384570Z",
+        "HPSummary": "6/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "game_id": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "seed": 242967504,
+      "active_zone": "Overworld.12.11.0",
+      "zone_reference_counts": {
+        "Overworld.11.10.0": 2717,
+        "Overworld.11.10.1": 2009,
+        "Overworld.11.9.0": 2178,
+        "Overworld.11.8.0": 2222,
+        "Overworld.12.10.0": 2271,
+        "Overworld.12.11.0": 2188
+      },
+      "player": {
+        "id": "2706",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 55,
+            "y": 17
+          }
+        ],
+        "stats": {
+          "Hitpoints": {
+            "value": 6,
+            "base": 6,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 40
+          },
+          "Strength": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Agility": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Toughness": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Intelligence": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Willpower": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Ego": {
+            "value": 16,
+            "base": 16,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Speed": {
+            "value": 100,
+            "base": 100,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 25,
+            "maximum": 200
+          },
+          "DV": {
+            "value": 0,
+            "base": 0,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": -50,
+            "maximum": 200
+          },
+          "XPValue": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "Level": {
+            "value": 1,
+            "base": 1,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Experience": {
+            "value": 87,
+            "base": 87,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999999
+          },
+          "SP": {
+            "value": 0,
+            "base": 0,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          }
+        },
+        "drams": 40,
+        "inventory": [
+          {
+            "id": "2707",
+            "blueprint": "WateringGrimoire",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2708",
+            "blueprint": "CandyCarrotSeed",
+            "count": 4,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2709",
+            "blueprint": "EmberwheatSeed",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2713",
+            "blueprint": "DriedMeat",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4750",
+            "blueprint": "DitchkeepersFootwork",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4749",
+            "blueprint": "ShatteredRimeGrimoire",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4756",
+            "blueprint": "SootrootPulp",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "11464",
+            "blueprint": "BogSap",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "13748",
+            "blueprint": "ClaspbeanPulp",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "13750",
+            "blueprint": "ClaspbeanSeed",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          }
+        ],
+        "inventory_ids": [
+          "2707",
+          "2708",
+          "2709",
+          "2713",
+          "4750",
+          "4749",
+          "4756",
+          "11464",
+          "13748",
+          "13750"
+        ]
+      },
+      "pan": {
+        "id": "13729",
+        "blueprint": "ConnectedBatchPan",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 54,
+            "y": 17
+          }
+        ],
+        "stats": {},
+        "int_properties": {},
+        "properties": {
+          "SpreadResident.Role": "pan",
+          "ConnectedSpread.Role": "pan"
+        },
+        "repair": {
+          "RecipeId": "clay-batch-pan",
+          "Repaired": true,
+          "PortableEquipment": false,
+          "RepairedBy": "2706",
+          "RepairCauseID": "7576f394d36544cd8d365609f18ddea2",
+          "RepairedZoneID": "Overworld.12.11.0",
+          "RepairWorldKey": "4173402f0d5d4043b115d806b5cbbd8f"
+        },
+        "batch": {
+          "Configured": true,
+          "ZoneID": "Overworld.12.11.0",
+          "StationID": "13729",
+          "WorkerID": "13711",
+          "EscrowID": "13730",
+          "PickupID": "13731",
+          "CommissionerID": "2706",
+          "OutputID": null,
+          "Worker": "13711",
+          "Escrow": "13730",
+          "Pickup": "13731",
+          "Commissioner": "2706",
+          "Output": null,
+          "State": "Working",
+          "BlockedReason": "",
+          "JobOrdinal": 1,
+          "StartTick": 4820,
+          "DueTick": 4940,
+          "StationX": 54,
+          "StationY": 17,
+          "EscrowX": 54,
+          "EscrowY": 18,
+          "PickupX": 54,
+          "PickupY": 19,
+          "Inputs": [
+            "9219",
+            "6fe8ae21d1a94242b1e36ba6b9c539e7"
+          ],
+          "InputIDs": [
+            "9219",
+            "6fe8ae21d1a94242b1e36ba6b9c539e7"
+          ],
+          "InputCounts": [
+            2,
+            1
+          ]
+        },
+        "container": null,
+        "claim": null
+      },
+      "containers": {
+        "13730": {
+          "container": {
+            "Contents": [
+              "9219",
+              "6fe8ae21d1a94242b1e36ba6b9c539e7"
+            ],
+            "Preposition": "in",
+            "Locked": false,
+            "MaxItems": 8
+          },
+          "contents": [
+            {
+              "id": "9219",
+              "blueprint": "Emberwheat",
+              "count": 2,
+              "positions": [],
+              "physics": {
+                "Solid": false,
+                "Weight": 1,
+                "Takeable": true,
+                "ThrowBase": 0.0,
+                "ThrowHeight": -1.0,
+                "ThrowIntercept": -1,
+                "Category": "Food",
+                "InInventory": "13730",
+                "Equipped": null
+              },
+              "properties": {},
+              "int_properties": {},
+              "field_meal_part_present": false
+            },
+            {
+              "id": "6fe8ae21d1a94242b1e36ba6b9c539e7",
+              "blueprint": "ClaspbeanPulp",
+              "count": 1,
+              "positions": [],
+              "physics": {
+                "Solid": false,
+                "Weight": 1,
+                "Takeable": true,
+                "ThrowBase": 0.0,
+                "ThrowHeight": -1.0,
+                "ThrowIntercept": -1,
+                "Category": "",
+                "InInventory": "13730",
+                "Equipped": null
+              },
+              "properties": {},
+              "int_properties": {},
+              "field_meal_part_present": false
+            }
+          ]
+        },
+        "13731": {
+          "container": {
+            "Contents": [],
+            "Preposition": "in",
+            "Locked": false,
+            "MaxItems": 8
+          },
+          "contents": []
+        }
+      },
+      "known_owners": {
+        "9199": {
+          "id": "9199",
+          "blueprint": "SpreadSeedKeeper",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 63,
+              "y": 8
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Toughness": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 12,
+              "base": 12,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 9999
+            }
+          },
+          "int_properties": {
+            "Drams": 48,
+            "LastRestockTurn": 1890
+          },
+          "properties": {
+            "ShopStockTable": "SeedKeeperStock",
+            "SpreadResident.Role": "resident",
+            "ConnectedSpread.Role": "resident"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": {
+            "Configured": true,
+            "WorldSeed": 242967504,
+            "FirstX": 61,
+            "FirstY": 5,
+            "SecondX": 62,
+            "SecondY": 5,
+            "TrayX": 65,
+            "TrayY": 6,
+            "WorldKey": "4173402f0d5d4043b115d806b5cbbd8f",
+            "ZoneID": "Overworld.11.8.0",
+            "KeeperID": "9199",
+            "FirstSoilID": "7477",
+            "SecondSoilID": "7478",
+            "TrayID": "9217",
+            "FirstSoil": "7477",
+            "SecondSoil": "7478",
+            "Tray": "9217",
+            "Permissions": [
+              {
+                "Player": "2706",
+                "State": 1,
+                "BreachOrdinal": 0,
+                "LastBreach": null
+              }
+            ]
+          }
+        },
+        "6921": {
+          "id": "6921",
+          "blueprint": "AlchemyStill",
+          "positions": [
+            {
+              "zone": "Overworld.11.9.0",
+              "x": 67,
+              "y": 5
+            }
+          ],
+          "stats": {},
+          "int_properties": {},
+          "properties": {
+            "SpreadWorksite.Role": "still"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "6930": {
+          "id": "6930",
+          "blueprint": "MarlbackPatchbearer",
+          "positions": [
+            {
+              "zone": "Overworld.11.9.0",
+              "x": 62,
+              "y": 6
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 18,
+              "base": 18,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Toughness": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 75,
+              "base": 75,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "ColdResistance": {
+              "value": 25,
+              "base": 25,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -100,
+              "maximum": 200
+            }
+          },
+          "int_properties": {},
+          "properties": {
+            "NaturalWeapon": "MarlbackRake",
+            "SpreadWorksite.Role": "patchbearer"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "13711": {
+          "id": "13711",
+          "blueprint": "SpreadWaysideCook",
+          "positions": [
+            {
+              "zone": "Overworld.12.11.0",
+              "x": 52,
+              "y": 17
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Toughness": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 12,
+              "base": 12,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 9999
+            }
+          },
+          "int_properties": {
+            "Drams": 37,
+            "LastRestockTurn": 4480
+          },
+          "properties": {
+            "ShopStockTable": "WaysideCookStock",
+            "SpreadResident.Role": "resident",
+            "ConnectedSpread.Role": "resident"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "11461": null
+      },
+      "viper_corpses": [
+        {
+          "id": "11510",
+          "blueprint": "CreatureCorpse",
+          "count": 1,
+          "positions": [
+            {
+              "zone": "Overworld.12.10.0",
+              "x": 38,
+              "y": 15
+            }
+          ],
+          "physics": {
+            "Solid": false,
+            "Weight": 10,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "properties": {
+            "CreatureName": "viper",
+            "SourceBlueprint": "Viper",
+            "SourceID": "11461",
+            "KillerID": "2706",
+            "KillerBlueprint": "Player"
+          },
+          "int_properties": {},
+          "field_meal_part_present": false
+        }
+      ],
+      "all_field_meals": []
+    },
+    "collected": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/Fixtures/earned-east-collected242967504/Quick.sav.gz",
+      "sha256": "f83f4e3296849649af916b20a679368d9cd7e64602049dc72fd14e98fc37c350",
+      "bytes": 302563,
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 2,
+        "ActiveZoneID": "Overworld.12.11.0",
+        "ActiveZoneDisplayLabel": "Overworld.12.11.0",
+        "Turn": 5670,
+        "SaveTimestampUtc": "2026-10-26T19:48:54.9118760Z",
+        "HPSummary": "42/42",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "game_id": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "seed": 242967504,
+      "active_zone": "Overworld.12.11.0",
+      "zone_reference_counts": {
+        "Overworld.11.10.0": 2717,
+        "Overworld.11.10.1": 2009,
+        "Overworld.11.9.0": 2178,
+        "Overworld.11.8.0": 2222,
+        "Overworld.12.10.0": 2271,
+        "Overworld.12.11.0": 2188
+      },
+      "player": {
+        "id": "2706",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 55,
+            "y": 17
+          }
+        ],
+        "stats": {
+          "Hitpoints": {
+            "value": 42,
+            "base": 42,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 42
+          },
+          "Strength": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Agility": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Toughness": {
+            "value": 18,
+            "base": 18,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Intelligence": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Willpower": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Ego": {
+            "value": 16,
+            "base": 16,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          },
+          "Speed": {
+            "value": 100,
+            "base": 100,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 25,
+            "maximum": 200
+          },
+          "DV": {
+            "value": 0,
+            "base": 0,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": -50,
+            "maximum": 200
+          },
+          "XPValue": {
+            "value": 10,
+            "base": 10,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "Level": {
+            "value": 2,
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 1,
+            "maximum": 50
+          },
+          "Experience": {
+            "value": 2,
+            "base": 2,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999999
+          },
+          "SP": {
+            "value": 1,
+            "base": 1,
+            "bonus": 0,
+            "penalty": 0,
+            "boost": 0,
+            "minimum": 0,
+            "maximum": 999
+          }
+        },
+        "drams": 40,
+        "inventory": [
+          {
+            "id": "2707",
+            "blueprint": "WateringGrimoire",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2708",
+            "blueprint": "CandyCarrotSeed",
+            "count": 4,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2709",
+            "blueprint": "EmberwheatSeed",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 0,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "2713",
+            "blueprint": "DriedMeat",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 2,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4750",
+            "blueprint": "DitchkeepersFootwork",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4749",
+            "blueprint": "ShatteredRimeGrimoire",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Books",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "4756",
+            "blueprint": "SootrootPulp",
+            "count": 2,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "11464",
+            "blueprint": "BogSap",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "13748",
+            "blueprint": "ClaspbeanPulp",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "13750",
+            "blueprint": "ClaspbeanSeed",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {},
+            "int_properties": {},
+            "field_meal_part_present": false
+          },
+          {
+            "id": "13751",
+            "blueprint": "FieldMeal",
+            "count": 1,
+            "positions": [],
+            "physics": {
+              "Solid": false,
+              "Weight": 1,
+              "Takeable": true,
+              "ThrowBase": 0.0,
+              "ThrowHeight": -1.0,
+              "ThrowIntercept": -1,
+              "Category": "Food",
+              "InInventory": "2706",
+              "Equipped": null
+            },
+            "properties": {
+              "KitchenBatch.Station": "13729",
+              "KitchenBatch.Customer": "2706"
+            },
+            "int_properties": {
+              "KitchenBatch.Ordinal": 1
+            },
+            "field_meal_part_present": true
+          }
+        ],
+        "inventory_ids": [
+          "2707",
+          "2708",
+          "2709",
+          "2713",
+          "4750",
+          "4749",
+          "4756",
+          "11464",
+          "13748",
+          "13750",
+          "13751"
+        ]
+      },
+      "pan": {
+        "id": "13729",
+        "blueprint": "ConnectedBatchPan",
+        "positions": [
+          {
+            "zone": "Overworld.12.11.0",
+            "x": 54,
+            "y": 17
+          }
+        ],
+        "stats": {},
+        "int_properties": {},
+        "properties": {
+          "SpreadResident.Role": "pan",
+          "ConnectedSpread.Role": "pan"
+        },
+        "repair": {
+          "RecipeId": "clay-batch-pan",
+          "Repaired": true,
+          "PortableEquipment": false,
+          "RepairedBy": "2706",
+          "RepairCauseID": "7576f394d36544cd8d365609f18ddea2",
+          "RepairedZoneID": "Overworld.12.11.0",
+          "RepairWorldKey": "4173402f0d5d4043b115d806b5cbbd8f"
+        },
+        "batch": {
+          "Configured": true,
+          "ZoneID": "Overworld.12.11.0",
+          "StationID": "13729",
+          "WorkerID": "13711",
+          "EscrowID": "13730",
+          "PickupID": "13731",
+          "CommissionerID": null,
+          "OutputID": null,
+          "Worker": "13711",
+          "Escrow": "13730",
+          "Pickup": "13731",
+          "Commissioner": null,
+          "Output": null,
+          "State": "Idle",
+          "BlockedReason": "",
+          "JobOrdinal": 1,
+          "StartTick": 0,
+          "DueTick": 0,
+          "StationX": 54,
+          "StationY": 17,
+          "EscrowX": 54,
+          "EscrowY": 18,
+          "PickupX": 54,
+          "PickupY": 19,
+          "Inputs": [],
+          "InputIDs": [],
+          "InputCounts": []
+        },
+        "container": null,
+        "claim": null
+      },
+      "containers": {
+        "13730": {
+          "container": {
+            "Contents": [],
+            "Preposition": "in",
+            "Locked": false,
+            "MaxItems": 8
+          },
+          "contents": []
+        },
+        "13731": {
+          "container": {
+            "Contents": [],
+            "Preposition": "in",
+            "Locked": false,
+            "MaxItems": 8
+          },
+          "contents": []
+        }
+      },
+      "known_owners": {
+        "9199": {
+          "id": "9199",
+          "blueprint": "SpreadSeedKeeper",
+          "positions": [
+            {
+              "zone": "Overworld.11.8.0",
+              "x": 63,
+              "y": 8
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Toughness": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 12,
+              "base": 12,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 9999
+            }
+          },
+          "int_properties": {
+            "Drams": 48,
+            "LastRestockTurn": 1890
+          },
+          "properties": {
+            "ShopStockTable": "SeedKeeperStock",
+            "SpreadResident.Role": "resident",
+            "ConnectedSpread.Role": "resident"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": {
+            "Configured": true,
+            "WorldSeed": 242967504,
+            "FirstX": 61,
+            "FirstY": 5,
+            "SecondX": 62,
+            "SecondY": 5,
+            "TrayX": 65,
+            "TrayY": 6,
+            "WorldKey": "4173402f0d5d4043b115d806b5cbbd8f",
+            "ZoneID": "Overworld.11.8.0",
+            "KeeperID": "9199",
+            "FirstSoilID": "7477",
+            "SecondSoilID": "7478",
+            "TrayID": "9217",
+            "FirstSoil": "7477",
+            "SecondSoil": "7478",
+            "Tray": "9217",
+            "Permissions": [
+              {
+                "Player": "2706",
+                "State": 1,
+                "BreachOrdinal": 0,
+                "LastBreach": null
+              }
+            ]
+          }
+        },
+        "6921": {
+          "id": "6921",
+          "blueprint": "AlchemyStill",
+          "positions": [
+            {
+              "zone": "Overworld.11.9.0",
+              "x": 67,
+              "y": 5
+            }
+          ],
+          "stats": {},
+          "int_properties": {},
+          "properties": {
+            "SpreadWorksite.Role": "still"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "6930": {
+          "id": "6930",
+          "blueprint": "MarlbackPatchbearer",
+          "positions": [
+            {
+              "zone": "Overworld.11.9.0",
+              "x": 62,
+              "y": 6
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 18,
+              "base": 18,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Toughness": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 75,
+              "base": 75,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "ColdResistance": {
+              "value": 25,
+              "base": 25,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -100,
+              "maximum": 200
+            }
+          },
+          "int_properties": {},
+          "properties": {
+            "NaturalWeapon": "MarlbackRake",
+            "SpreadWorksite.Role": "patchbearer"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "13711": {
+          "id": "13711",
+          "blueprint": "SpreadWaysideCook",
+          "positions": [
+            {
+              "zone": "Overworld.12.11.0",
+              "x": 52,
+              "y": 17
+            }
+          ],
+          "stats": {
+            "Hitpoints": {
+              "value": 20,
+              "base": 20,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 20
+            },
+            "Strength": {
+              "value": 14,
+              "base": 14,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Agility": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Toughness": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Intelligence": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Willpower": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 1,
+              "maximum": 50
+            },
+            "Ego": {
+              "value": 12,
+              "base": 12,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 999
+            },
+            "Speed": {
+              "value": 100,
+              "base": 100,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 25,
+              "maximum": 200
+            },
+            "DV": {
+              "value": 0,
+              "base": 0,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": -50,
+              "maximum": 200
+            },
+            "XPValue": {
+              "value": 10,
+              "base": 10,
+              "bonus": 0,
+              "penalty": 0,
+              "boost": 0,
+              "minimum": 0,
+              "maximum": 9999
+            }
+          },
+          "int_properties": {
+            "Drams": 100,
+            "LastRestockTurn": 5310
+          },
+          "properties": {
+            "ShopStockTable": "WaysideCookStock",
+            "SpreadResident.Role": "resident",
+            "ConnectedSpread.Role": "resident"
+          },
+          "repair": null,
+          "batch": null,
+          "container": null,
+          "claim": null
+        },
+        "11461": null
+      },
+      "viper_corpses": [
+        {
+          "id": "11510",
+          "blueprint": "CreatureCorpse",
+          "count": 1,
+          "positions": [
+            {
+              "zone": "Overworld.12.10.0",
+              "x": 38,
+              "y": 15
+            }
+          ],
+          "physics": {
+            "Solid": false,
+            "Weight": 10,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "",
+            "InInventory": null,
+            "Equipped": null
+          },
+          "properties": {
+            "CreatureName": "viper",
+            "SourceBlueprint": "Viper",
+            "SourceID": "11461",
+            "KillerID": "2706",
+            "KillerBlueprint": "Player"
+          },
+          "int_properties": {},
+          "field_meal_part_present": false
+        }
+      ],
+      "all_field_meals": [
+        {
+          "id": "13751",
+          "blueprint": "FieldMeal",
+          "count": 1,
+          "positions": [],
+          "physics": {
+            "Solid": false,
+            "Weight": 1,
+            "Takeable": true,
+            "ThrowBase": 0.0,
+            "ThrowHeight": -1.0,
+            "ThrowIntercept": -1,
+            "Category": "Food",
+            "InInventory": "2706",
+            "Equipped": null
+          },
+          "properties": {
+            "KitchenBatch.Station": "13729",
+            "KitchenBatch.Customer": "2706"
+          },
+          "int_properties": {
+            "KitchenBatch.Ordinal": 1
+          },
+          "field_meal_part_present": true
+        }
+      ]
+    }
+  }
+}

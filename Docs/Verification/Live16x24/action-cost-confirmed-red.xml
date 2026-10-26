@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="5" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 19:57:23Z" end-time="2026-10-26 19:57:25Z" duration="2.609839">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32146" result="Failed" site="Child" start-time="2026-10-26 19:57:23Z" end-time="2026-10-26 19:57:25Z" duration="2.609839" total="16" passed="5" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39590" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32146" result="Failed" site="Child" start-time="2026-10-26 19:57:23Z" end-time="2026-10-26 19:57:25Z" duration="2.286114" total="16" passed="5" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39591" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32146" result="Failed" site="Child" start-time="2026-10-26 19:57:23Z" end-time="2026-10-26 19:57:25Z" duration="2.125862" total="16" passed="5" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39592" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32146" result="Failed" site="Child" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:25Z" duration="1.819469" total="16" passed="5" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="38604" name="WorldActionCostReadabilityTests" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:25Z" duration="1.577683" total="16" passed="5" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="38618" name="CloseClearsWideFooterAndPreservesForeignTiles" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.CloseClearsWideFooterAndPreservesForeignTiles" methodname="CloseClearsWideFooterAndPreservesForeignTiles" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="197243405" result="Passed" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:24Z" duration="0.208888" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="38608" name="CompleteCostLabelIsActuallyPainted" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:24Z" duration="0.268166" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38605" name="CompleteCostLabelIsActuallyPainted(&quot;prepare field meal (2 grain, 1 claspbean, 2 drams)&quot;)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted(&quot;prepare field meal (2 grain, 1 claspbean, 2 drams)&quot;)" methodname="CompleteCostLabelIsActuallyPainted" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="138647707" result="Failed" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:24Z" duration="0.095321" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 50 but was 41. Strings differ at index 40.
+  Expected: "prepare field meal (2 grain, 1 claspbean, 2 drams)"
+  But was:  "prepare field meal (2 grain, 1 claspbean~"
+  ---------------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted (System.String label) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38606" name="CompleteCostLabelIsActuallyPainted(&quot;prepare dressing (2 claspbean, 1 salt, 1 oil, and 3 clean jars)&quot;)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted(&quot;prepare dressing (2 claspbean, 1 salt, 1 oil, and 3 clean jars)&quot;)" methodname="CompleteCostLabelIsActuallyPainted" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="1370514867" result="Failed" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:24Z" duration="0.084242" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 63 but was 41. Strings differ at index 40.
+  Expected: "prepare dressing (2 claspbean, 1 salt, 1 oil, and 3 clean jars)"
+  But was:  "prepare dressing (2 claspbean, 1 salt, 1~"
+  ---------------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted (System.String label) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38607" name="CompleteCostLabelIsActuallyPainted(&quot;prepare ink (2 soot, 1 water, 1 gum, and 2 clean bottles)&quot;)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted(&quot;prepare ink (2 soot, 1 water, 1 gum, and 2 clean bottles)&quot;)" methodname="CompleteCostLabelIsActuallyPainted" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="446307635" result="Failed" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:24Z" duration="0.079850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 57 but was 41. Strings differ at index 40.
+  Expected: "prepare ink (2 soot, 1 water, 1 gum, and 2 clean bottles)"
+  But was:  "prepare ink (2 soot, 1 water, 1 gum, and~"
+  ---------------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted (System.String label) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:53
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="38621" name="FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:25Z" duration="0.165657" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38619" name="FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity(False)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity(False)" methodname="FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="1070258335" result="Failed" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:24Z" duration="0.079416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Offscreen long rows set stable width at open.
+  Expected: 57
+  But was:  48
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity (System.Boolean shortcut) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:102
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=20 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38620" name="FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity(True)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity(True)" methodname="FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="1172739484" result="Failed" start-time="2026-10-26 19:57:24Z" end-time="2026-10-26 19:57:25Z" duration="0.078103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Offscreen long rows set stable width at open.
+  Expected: 57
+  But was:  48
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity (System.Boolean shortcut) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:102
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=20 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="38622" name="MouseAcceptsExpandedInteriorAndRejectsItsBorderAndFooter" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.MouseAcceptsExpandedInteriorAndRejectsItsBorderAndFooter" methodname="MouseAcceptsExpandedInteriorAndRejectsItsBorderAndFooter" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="1506863110" result="Failed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.084186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  -1
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.MouseAcceptsExpandedInteriorAndRejectsItsBorderAndFooter () [0x000ae] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:119
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="38613" name="OrdinaryShortMenusRetainTheirFootprint" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.OrdinaryShortMenusRetainTheirFootprint" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.317162" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="38609" name="OrdinaryShortMenusRetainTheirFootprint(0)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.OrdinaryShortMenusRetainTheirFootprint(0)" methodname="OrdinaryShortMenusRetainTheirFootprint" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="788551432" result="Passed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.078995" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=0 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38610" name="OrdinaryShortMenusRetainTheirFootprint(1)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.OrdinaryShortMenusRetainTheirFootprint(1)" methodname="OrdinaryShortMenusRetainTheirFootprint" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="797008396" result="Passed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.076341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38611" name="OrdinaryShortMenusRetainTheirFootprint(12)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.OrdinaryShortMenusRetainTheirFootprint(12)" methodname="OrdinaryShortMenusRetainTheirFootprint" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="2086778181" result="Passed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.077399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=12 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38612" name="OrdinaryShortMenusRetainTheirFootprint(20)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.OrdinaryShortMenusRetainTheirFootprint(20)" methodname="OrdinaryShortMenusRetainTheirFootprint" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="963508420" result="Passed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.076384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=20 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="38625" name="ReaderReopenRetainsHighlightAndDeviceFooter" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.ReaderReopenRetainsHighlightAndDeviceFooter" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.168977" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38623" name="ReaderReopenRetainsHighlightAndDeviceFooter(False)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.ReaderReopenRetainsHighlightAndDeviceFooter(False)" methodname="ReaderReopenRetainsHighlightAndDeviceFooter" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="910799622" result="Failed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.078989" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 50 but was 41. Strings differ at index 40.
+  Expected: "prepare field meal (2 grain, 1 claspbean, 2 drams)"
+  But was:  "prepare field meal (2 grain, 1 claspbean~"
+  ---------------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.ReaderReopenRetainsHighlightAndDeviceFooter (System.Boolean controller) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:130
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38624" name="ReaderReopenRetainsHighlightAndDeviceFooter(True)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.ReaderReopenRetainsHighlightAndDeviceFooter(True)" methodname="ReaderReopenRetainsHighlightAndDeviceFooter" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="1694536645" result="Failed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.081654" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected string length 50 but was 41. Strings differ at index 40.
+  Expected: "prepare field meal (2 grain, 1 claspbean, 2 drams)"
+  But was:  "prepare field meal (2 grain, 1 claspbean~"
+  ---------------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.ReaderReopenRetainsHighlightAndDeviceFooter (System.Boolean controller) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:130
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=2 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="38617" name="ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.165242" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38615" name="ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground(False)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground(False)" methodname="ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="747305878" result="Failed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.081166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than 48
+  But was:  48
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground (System.Boolean noBackground) [0x000b3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38616" name="ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground(True)" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground(True)" methodname="ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="576033014" result="Failed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.077302" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: greater than 48
+  But was:  48
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground (System.Boolean noBackground) [0x000b3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=NULL
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="38614" name="UnboundedNameStaysInsideOverlayAndSignalsOverflow" fullname="CavesOfOoo.Tests.WorldActionCostReadabilityTests.UnboundedNameStaysInsideOverlayAndSignalsOverflow" methodname="UnboundedNameStaysInsideOverlayAndSignalsOverflow" classname="CavesOfOoo.Tests.WorldActionCostReadabilityTests" runstate="Runnable" seed="177080088" result="Failed" start-time="2026-10-26 19:57:25Z" end-time="2026-10-26 19:57:25Z" duration="0.074722" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 78
+  But was:  48
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionCostReadabilityTests.UnboundedNameStaysInsideOverlayAndSignalsOverflow () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionCostReadabilityTests.cs:70
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=1 Tilemap=set BgTilemap=set
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

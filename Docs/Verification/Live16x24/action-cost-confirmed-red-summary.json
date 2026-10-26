@@ -1,0 +1,55 @@
+{
+  "start-time": "2026-10-26 19:57:23Z",
+  "end-time": "2026-10-26 19:57:25Z",
+  "total": "16",
+  "passed": "5",
+  "failed": "11",
+  "skipped": "0",
+  "result": "Failed(Child)",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted(\"prepare field meal (2 grain, 1 claspbean, 2 drams)\")",
+      "message": "  Expected string length 50 but was 41. Strings differ at index 40.\n  Expected: \"prepare field meal (2 grain, 1 claspbean, 2 drams)\"\n  But was:  \"prepare field meal (2 grain, 1 claspbean~\"\n  ---------------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted(\"prepare dressing (2 claspbean, 1 salt, 1 oil, and 3 clean jars)\")",
+      "message": "  Expected string length 63 but was 41. Strings differ at index 40.\n  Expected: \"prepare dressing (2 claspbean, 1 salt, 1 oil, and 3 clean jars)\"\n  But was:  \"prepare dressing (2 claspbean, 1 salt, 1~\"\n  ---------------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.CompleteCostLabelIsActuallyPainted(\"prepare ink (2 soot, 1 water, 1 gum, and 2 clean bottles)\")",
+      "message": "  Expected string length 57 but was 41. Strings differ at index 40.\n  Expected: \"prepare ink (2 soot, 1 water, 1 gum, and 2 clean bottles)\"\n  But was:  \"prepare ink (2 soot, 1 water, 1 gum, and~\"\n  ---------------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity(False)",
+      "message": "  Offscreen long rows set stable width at open.\n  Expected: 57\n  But was:  48\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.FullWidthIsStableWhenScrollingAndSelectionKeepsAbsoluteIdentity(True)",
+      "message": "  Offscreen long rows set stable width at open.\n  Expected: 57\n  But was:  48\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.MouseAcceptsExpandedInteriorAndRejectsItsBorderAndFooter",
+      "message": "  Expected: 0\n  But was:  -1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.ReaderReopenRetainsHighlightAndDeviceFooter(False)",
+      "message": "  Expected string length 50 but was 41. Strings differ at index 40.\n  Expected: \"prepare field meal (2 grain, 1 claspbean, 2 drams)\"\n  But was:  \"prepare field meal (2 grain, 1 claspbean~\"\n  ---------------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.ReaderReopenRetainsHighlightAndDeviceFooter(True)",
+      "message": "  Expected string length 50 but was 41. Strings differ at index 40.\n  Expected: \"prepare field meal (2 grain, 1 claspbean, 2 drams)\"\n  But was:  \"prepare field meal (2 grain, 1 claspbean~\"\n  ---------------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground(False)",
+      "message": "  Expected: greater than 48\n  But was:  48\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.ShrinkingClearsPriorForegroundIncludingWithoutOptionalBackground(True)",
+      "message": "  Expected: greater than 48\n  But was:  48\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldActionCostReadabilityTests.UnboundedNameStaysInsideOverlayAndSignalsOverflow",
+      "message": "  Expected: 78\n  But was:  48\n"
+    }
+  ]
+}

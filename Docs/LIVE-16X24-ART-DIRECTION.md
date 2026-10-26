@@ -1,6 +1,6 @@
 # Live 16×24 art direction and integration
 
-Current status, 2026-10-26: native world zoom now reaches visible1×–4× through PageUp/PageDown and LT+D-pad. The fix is delivered in current Mac/Linux packages47d678995;23/23 native zoom tests, actual Unity Look/inventory and standalone Mac zoom/surface/cellar/Continue checks are accepted within their recorded bounds. Default framing and approved art remain unchanged. Fresh six-zone composition, finite fallback census, Linux execution, physical Deck and remaining regional coverage stay open. [Zoom record](GRAPHICS-G3-PLAYABLE-ZOOM.md); [current packages](Verification/Live16x24/packaged-playable-zoom-report.md).
+Current status, 2026-10-26: the earned current-package journey now reaches East/Orven and verifies actual repaired, Working, Ready and collected states across save/quit/Continue and a border return. The journey exposed clipped recipe cost and stale mouse coordinates; corrected source passes 115 native cases and actual keyboard/mouse replay. Current Mac/Linux packages99b86bb02 predate those menu fixes. See [completion plan](GRAPHICS-COMPLETION-PLAN.md), [journey](GRAPHICS-G3-EARNED-EAST-JOURNEY.md), and [menu correction](GRAPHICS-G3-ACTION-COST-READABILITY.md). Full opening/regions, Linux execution, physical Deck and performance remain open.
 
 Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
@@ -2470,3 +2470,37 @@ Verification/Live16x24/Fixtures/current-journey-packaged-nella242967504
 earned but its already-generated Nella is not a second fresh-population test.
 Full opening/region, Linux execution, physical Deck and frame-time gates remain
 open. Keep heartbeat active and approved art stable; fix named actual gaps.
+
+
+## Continuation — 2026-10-26 earned East/kitchen and action-menu correction
+
+Read GRAPHICS-G3-EARNED-EAST-JOURNEY.md and GRAPHICS-G3-ACTION-COST-READABILITY.md.
+The unchanged seed242967504 Nella checkpoint continued through North/glade/East
+and Orven in actual package99b86bb02. Two glade grain, finite BogSap, real viper
+combat/tonic/poison, two-clay repair, two-dram paid meal, Working save/full-quit/
+Continue, Ready parcel, collection and East/kitchen return are recorded in22
+actual screenshots. Collection levelled up and healed the player; the still-carried
+meal did not cause that healing. Source art was unchanged.
+
+Menu width now expands from48 to78 columns using all action labels and clears
+its prior foreground footprint. An actual mouse failure exposed stale legacy
+coordinates; world actions now read one native position/left-edge pair, with
+coherent legacy fallback. Reproduced RED and final115/115 native GREEN, six
+actual Editor captures, and independent code/visual reviews accept the bounded
+fix. Full price/F1/close, real right-edge click costing40→38drams and short-menu
+Examine all work. The native test wrapper's early startup timeout is recorded;
+completed Unity XML confirms115 executed passes. Editor/test isolation restored.
+776normal-save files,374protected sources and2foreign PNGs unchanged.32import
+metadata deltas were proven whitespace-only before exact restoration. No cleanup.
+
+Next: freeze/push the corrected source, build dated Mac/Linux-current outputs
+without replacing old builds, test the actual packaged price/mouse path and
+restore normal preferences/saves. Then resume the ordinary collected checkpoint
+`Verification/Live16x24/Fixtures/earned-east-collected242967504`
+(kitchen55,17,HP42,level2,tick5670,40drams; meal carried, empty board).
+Complete North/Nella service revisits and remaining forge/crop gates; a visible
+En Garde hotbar label clipping remains a named follow-up. Do not restart the
+art pipeline or alter accepted sprites without a demonstrated defect. Full
+opening, regional coverage, Linux execution, physical Deck and frame-time gates
+remain open. Current packages99b86bb02 predate this menu correction. Heartbeat
+continues; storage checks remain inspection-only.

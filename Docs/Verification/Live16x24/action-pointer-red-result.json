@@ -1,0 +1,93 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"0df3ef9f137c42fe874c11f7e0c425cc\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1793046058536,\"finished_unix_ms\":1793046072193,\"last_update_unix_ms\":1793046072193,\"progress\":{\"completed\":13,\"total\":13,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1793046072057,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight\",\"last_finished_unix_ms\":1793046072152,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair(False)\",\"message\":\"  The position and left-button edge must come from the same enabled pointer backend.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair(True)\",\"message\":\"  The position and left-button edge must come from the same enabled pointer backend.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.EnabledNativePointerSuppliesOneCoherentPositionAndLeftEdgePair\",\"message\":\"  The position and left-button edge must come from the same enabled pointer backend.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.HeldPressCannotSelectReopenedMenuButReleaseAndRepressCan\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting(False)\",\"message\":\"  Expected: same as <CavesOfOoo.Core.InventoryAction>\\n  But was:  <CavesOfOoo.Core.InventoryAction>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting(True)\",\"message\":\"  Expected: same as <CavesOfOoo.Core.InventoryAction>\\n  But was:  <CavesOfOoo.Core.InventoryAction>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(\\\"outside\\\")\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(\\\"border\\\")\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(\\\"footer\\\")\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,False)\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,True)\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1920,1080,True)\",\"message\":\"  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.WorldActionMenuPointerTests.PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight\",\"message\":\"  Expected: same as <CavesOfOoo.Core.InventoryAction>\\n  But was:  <CavesOfOoo.Core.InventoryAction>\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "0df3ef9f137c42fe874c11f7e0c425cc",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1793046058536,
+        "finished_unix_ms": 1793046072193,
+        "last_update_unix_ms": 1793046072193,
+        "progress": {
+          "completed": 13,
+          "total": 13,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1793046072057,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight",
+          "last_finished_unix_ms": 1793046072152,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair(False)",
+              "message": "  The position and left-button edge must come from the same enabled pointer backend.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair(True)",
+              "message": "  The position and left-button edge must come from the same enabled pointer backend.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.EnabledNativePointerSuppliesOneCoherentPositionAndLeftEdgePair",
+              "message": "  The position and left-button edge must come from the same enabled pointer backend.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.HeldPressCannotSelectReopenedMenuButReleaseAndRepressCan",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting(False)",
+              "message": "  Expected: same as <CavesOfOoo.Core.InventoryAction>\n  But was:  <CavesOfOoo.Core.InventoryAction>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting(True)",
+              "message": "  Expected: same as <CavesOfOoo.Core.InventoryAction>\n  But was:  <CavesOfOoo.Core.InventoryAction>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(\"outside\")",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(\"border\")",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(\"footer\")",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,False)",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,True)",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1920,1080,True)",
+              "message": "  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldActionMenuPointerTests.PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight",
+              "message": "  Expected: same as <CavesOfOoo.Core.InventoryAction>\n  But was:  <CavesOfOoo.Core.InventoryAction>\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

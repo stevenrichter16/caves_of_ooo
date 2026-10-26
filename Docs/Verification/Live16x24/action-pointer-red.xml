@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Failed(Child)" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 20:21:09Z" end-time="2026-10-26 20:21:12Z" duration="2.7697871">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32164" result="Failed" site="Child" start-time="2026-10-26 20:21:09Z" end-time="2026-10-26 20:21:12Z" duration="2.769787" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39614" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32164" result="Failed" site="Child" start-time="2026-10-26 20:21:09Z" end-time="2026-10-26 20:21:12Z" duration="2.375568" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39615" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32164" result="Failed" site="Child" start-time="2026-10-26 20:21:09Z" end-time="2026-10-26 20:21:12Z" duration="2.184919" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39616" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32164" result="Failed" site="Child" start-time="2026-10-26 20:21:10Z" end-time="2026-10-26 20:21:12Z" duration="1.829611" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="38632" name="WorldActionMenuPointerTests" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-26 20:21:10Z" end-time="2026-10-26 20:21:12Z" duration="1.451221" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="38649" name="AbsentOrDisabledNativeMouseUsesActualLegacyPair" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 20:21:10Z" end-time="2026-10-26 20:21:11Z" duration="0.348690" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38647" name="AbsentOrDisabledNativeMouseUsesActualLegacyPair(False)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair(False)" methodname="AbsentOrDisabledNativeMouseUsesActualLegacyPair" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="1643578183" result="Failed" start-time="2026-10-26 20:21:10Z" end-time="2026-10-26 20:21:10Z" duration="0.246001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The position and left-button edge must come from the same enabled pointer backend.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.AssertPointer (UnityEngine.Vector3 position, System.Boolean pressed) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:177
+at CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair (System.Boolean disabled) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:169
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38648" name="AbsentOrDisabledNativeMouseUsesActualLegacyPair(True)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair(True)" methodname="AbsentOrDisabledNativeMouseUsesActualLegacyPair" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="437214118" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.099370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The position and left-button edge must come from the same enabled pointer backend.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.AssertPointer (UnityEngine.Vector3 position, System.Boolean pressed) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:177
+at CavesOfOoo.Tests.WorldActionMenuPointerTests.AbsentOrDisabledNativeMouseUsesActualLegacyPair (System.Boolean disabled) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:169
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="38646" name="EnabledNativePointerSuppliesOneCoherentPositionAndLeftEdgePair" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.EnabledNativePointerSuppliesOneCoherentPositionAndLeftEdgePair" methodname="EnabledNativePointerSuppliesOneCoherentPositionAndLeftEdgePair" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="755686171" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.102548" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The position and left-button edge must come from the same enabled pointer backend.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.AssertPointer (UnityEngine.Vector3 position, System.Boolean pressed) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:177
+at CavesOfOoo.Tests.WorldActionMenuPointerTests.EnabledNativePointerSuppliesOneCoherentPositionAndLeftEdgePair () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:154
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-case id="38644" name="HeldPressCannotSelectReopenedMenuButReleaseAndRepressCan" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.HeldPressCannotSelectReopenedMenuButReleaseAndRepressCan" methodname="HeldPressCannotSelectReopenedMenuButReleaseAndRepressCan" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="1699808367" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.097285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.AssertSelected (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:86
+at CavesOfOoo.Tests.WorldActionMenuPointerTests.HeldPressCannotSelectReopenedMenuButReleaseAndRepressCan () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:130
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="38639" name="NativeHoverAndRightButtonMoveHighlightWithoutSelecting" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.193558" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38637" name="NativeHoverAndRightButtonMoveHighlightWithoutSelecting(False)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting(False)" methodname="NativeHoverAndRightButtonMoveHighlightWithoutSelecting" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="458969220" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.090672" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CavesOfOoo.Core.InventoryAction>
+  But was:  <CavesOfOoo.Core.InventoryAction>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting (System.Boolean right) [0x00054] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:108
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38638" name="NativeHoverAndRightButtonMoveHighlightWithoutSelecting(True)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting(True)" methodname="NativeHoverAndRightButtonMoveHighlightWithoutSelecting" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="764262379" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.089423" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <CavesOfOoo.Core.InventoryAction>
+  But was:  <CavesOfOoo.Core.InventoryAction>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativeHoverAndRightButtonMoveHighlightWithoutSelecting (System.Boolean right) [0x00054] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:108
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="38643" name="NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.276746" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38640" name="NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(&quot;outside&quot;)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(&quot;outside&quot;)" methodname="NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="1132150988" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.090793" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction (System.String location) [0x000b3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:121
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38641" name="NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(&quot;border&quot;)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(&quot;border&quot;)" methodname="NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="1888720178" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.088406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction (System.String location) [0x000b3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:121
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38642" name="NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(&quot;footer&quot;)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction(&quot;footer&quot;)" methodname="NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="280341498" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.088112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressOutsideActionRowsCancelsWithoutBorrowingAnAction (System.String location) [0x000b3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:121
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="38636" name="NativePressSelectsExactPaintedActionIncludingExpandedRightEdge" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:12Z" duration="0.285390" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="38633" name="NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,False)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,False)" methodname="NativePressSelectsExactPaintedActionIncludingExpandedRightEdge" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="1238008221" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.091769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.AssertSelected (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:86
+at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge (System.Int32 width, System.Int32 height, System.Boolean wide) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:99
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38634" name="NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,True)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1280,800,True)" methodname="NativePressSelectsExactPaintedActionIncludingExpandedRightEdge" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="1324111815" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:11Z" duration="0.091393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.AssertSelected (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:86
+at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge (System.Int32 width, System.Int32 height, System.Boolean wide) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:99
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+              <test-case id="38635" name="NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1920,1080,True)" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge(1920,1080,True)" methodname="NativePressSelectsExactPaintedActionIncludingExpandedRightEdge" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="1294020226" result="Failed" start-time="2026-10-26 20:21:11Z" end-time="2026-10-26 20:21:12Z" duration="0.093067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.AssertSelected (System.Int32 index) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:86
+at CavesOfOoo.Tests.WorldActionMenuPointerTests.NativePressSelectsExactPaintedActionIncludingExpandedRightEdge (System.Int32 width, System.Int32 height, System.Boolean wide) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:99
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="38645" name="PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight" fullname="CavesOfOoo.Tests.WorldActionMenuPointerTests.PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight" methodname="PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight" classname="CavesOfOoo.Tests.WorldActionMenuPointerTests" runstate="Runnable" seed="997221869" result="Failed" start-time="2026-10-26 20:21:12Z" end-time="2026-10-26 20:21:12Z" duration="0.094679" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <CavesOfOoo.Core.InventoryAction>
+  But was:  <CavesOfOoo.Core.InventoryAction>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.WorldActionMenuPointerTests.PointerParkedWhenOpenedCannotUndoRestoredOrKeyboardHighlight () [0x000e1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/WorldActionMenuPointerTests.cs:146
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TinkerRecipeRegistry: generated 68 equipment build recipes from blueprints.
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+[ActionMenu:ui-open] actions=3 Tilemap=set BgTilemap=set
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

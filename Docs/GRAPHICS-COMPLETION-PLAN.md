@@ -1,15 +1,19 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: corrected Nella/popup packages99b86bb02 delivered.
-The fresh packaged journey exposed a missing Nella service and unreadable pickup
-controls. Nella's bounded cold-population repair and pickup footer passed139
-native checks plus ordinary earned-cellar replay; dialogue footer passed100
-focused/neighboring checks and real UI review. New Mac/Linux builds contain
-these fixes.17actual Mac captures verify conversation, inventory, pickup and
-save/quit/Continue;181Linux archive files independently verified. Previous
-builds, saves and sources are preserved. [Delivery record](Verification/Live16x24/packaged-nella-footers-report.md).
-Next: East/Orven/revisits from the earned Nella checkpoint. Full six-zone opening,
-remaining regional art, Linux execution, physical Deck and performance remain open.
+Current status, 2026-10-26: the actual Mac package journey now connects the
+earned Nella checkpoint through North, glade, East and Orven, including repair,
+paid cooking, full quit/Continue, collection and an empty-board return. Twenty-two
+actual screenshots and 21 save-audit checks support this bounded acceptance.
+[Journey record](GRAPHICS-G3-EARNED-EAST-JOURNEY.md).
+
+The journey exposed a clipped two-dram recipe price. Adaptive popup width and
+coherent native mouse input now pass 115 native tests and six actual Editor
+captures, including a genuine mouse-paid commission. [Correction record](GRAPHICS-G3-ACTION-COST-READABILITY.md).
+Current Mac/Linux packages **99b86bb02 predate this menu correction**. Next:
+freeze a corrected delivery, replay its price/click path, then finish North/Nella
+revisits and remaining forge/crop acceptance from the collected checkpoint.
+Approved art remains stable. Full six-zone opening, regional art, Linux execution,
+physical Deck and measured performance remain open. Storage remains inspection-only.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art

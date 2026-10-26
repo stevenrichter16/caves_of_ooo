@@ -37,7 +37,9 @@ namespace CavesOfOoo.Rendering
         public Tilemap BgTilemap;
         public Camera PopupCamera;
 
-        private const int POPUP_W = 48;
+        private const int MIN_POPUP_W = 48;
+        private const int MAX_POPUP_W = CenteredPopupLayout.GridWidth - 2;
+        private int _popupW = MIN_POPUP_W;
         private const int POPUP_MAX_VISIBLE = 12;
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
@@ -72,6 +74,11 @@ namespace CavesOfOoo.Rendering
         private int _worldOriginX;
         private int _worldTopY;
         private int _popupH;
+        private bool _fgDrawn;
+        private int _fgDrawnW;
+        private int _fgDrawnH;
+        private int _fgDrawnOriginX;
+        private int _fgDrawnTopY;
         private bool _bgDrawn;
         private int _bgDrawnW;
         private int _bgDrawnH;
@@ -138,10 +145,19 @@ namespace CavesOfOoo.Rendering
             if (actions != null)
                 _actions.AddRange(actions);
             _shortcuts = MenuShortcutMap.ForActions(_actions);
+            // Size from every choice once so scrolling cannot move the popup.
+            // Leave the established row/hotkey layout intact. Dynamic names
+            // beyond the overlay still use the explicit overflow marker/F1 reader.
+            _popupW = MIN_POPUP_W;
+            foreach (var action in _actions)
+            {
+                string label = action.Display ?? action.Name ?? "";
+                _popupW = Mathf.Max(_popupW, Mathf.Min(label.Length, MAX_POPUP_W - 7) + 7);
+            }
 
             _cursorIndex = 0;
             _scrollOffset = 0;
-            _lastMousePosition = Input.mousePosition;
+            ReadPointer(out _lastMousePosition, out _);
             _selectionMade = false;
             _selectionCancelled = false;
             _selectedAction = null;
@@ -182,7 +198,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            Vector3 mousePosition = Input.mousePosition;
+            ReadPointer(out Vector3 mousePosition, out bool mousePressed);
             bool mouseMoved = mousePosition != _lastMousePosition;
             _lastMousePosition = mousePosition;
             // A parked pointer must not undo keyboard/controller navigation.
@@ -197,7 +213,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (mousePressed)
             {
                 int clickedRow = GetRowAtMouse();
                 if (clickedRow >= 0 && clickedRow < _actions.Count)
@@ -274,7 +290,7 @@ namespace CavesOfOoo.Rendering
 
         private void Close()
         {
-            ClearRegion(0, 0, POPUP_W, _popupH);
+            ClearFgRegion();
             ClearBgRegion();
             _isOpen = false;
             // Actions kept for the caller; cleared on next Open.
@@ -293,7 +309,7 @@ namespace CavesOfOoo.Rendering
 
         // ---- Rendering ----
         //
-        // Layout (width = POPUP_W, height = actions + 4 + 1 title line):
+        // Layout (width = _popupW, height = actions + 4 + 1 title line):
         //
         //   ┌──────────────────────────────────────────────┐
         //   │ {title — cell description}                   │
@@ -383,6 +399,7 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null) return;
 
+            ClearFgRegion();
             ClearBgRegion();
             ComputePopupPosition();
 
@@ -390,14 +407,14 @@ namespace CavesOfOoo.Rendering
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
             int borderH = visibleCount + 4 + StatusBlockRows;
 
-            ClearRegion(0, 0, POPUP_W, _popupH);
-            DrawBgFill(0, 0, POPUP_W, _popupH);
-            DrawPopupBorder(0, 0, POPUP_W, borderH, _statusLines.Count, visibleCount);
+            ClearRegion(0, 0, _popupW, _popupH);
+            DrawBgFill(0, 0, _popupW, _popupH);
+            DrawPopupBorder(0, 0, _popupW, borderH, _statusLines.Count, visibleCount);
 
 
             // Generic choices supply their own title; world menus describe the cell.
             string title = BuildTitle();
-            int maxTitleLen = POPUP_W - 4;
+            int maxTitleLen = _popupW - 4;
             if (!string.IsNullOrEmpty(title) && title.Length > maxTitleLen)
                 title = title.Substring(0, maxTitleLen - 1) + "~";
             DrawText(2, 1, title, QudColorParser.BrightYellow);
@@ -405,7 +422,7 @@ namespace CavesOfOoo.Rendering
             // Hint row at the bottom-right of title bar
             bool controller = NativeGamepadInput.IsConnected;
             string hint = controller ? "[A]ok [B]back" : "[Enter]ok [Esc]x";
-            int hintX = POPUP_W - hint.Length - 2;
+            int hintX = _popupW - hint.Length - 2;
             if (hintX > title.Length + 4)
                 DrawText(hintX, 1, hint, QudColorParser.DarkGray);
 
@@ -415,7 +432,7 @@ namespace CavesOfOoo.Rendering
             for (int si = 0; si < _statusLines.Count; si++)
             {
                 string line = _statusLines[si];
-                int maxLineLen = POPUP_W - 4;
+                int maxLineLen = _popupW - 4;
                 if (line.Length > maxLineLen)
                     line = line.Substring(0, maxLineLen - 1) + "~";
                 bool isGround = line.StartsWith("On the ground:");
@@ -450,7 +467,7 @@ namespace CavesOfOoo.Rendering
                     }
 
                     string label = action.Display ?? action.Name ?? "";
-                    int maxLabelLen = POPUP_W - 7;
+                    int maxLabelLen = _popupW - 7;
                     if (label.Length > maxLabelLen)
                         label = label.Substring(0, maxLabelLen - 1) + "~";
                     DrawText(5, rowY, label,
@@ -458,14 +475,19 @@ namespace CavesOfOoo.Rendering
                 }
 
                 if (_scrollOffset > 0)
-                    DrawChar(POPUP_W - 2, contentY, '^', QudColorParser.Gray);
+                    DrawChar(_popupW - 2, contentY, '^', QudColorParser.Gray);
                 if (_scrollOffset + visibleCount < totalRows)
-                    DrawChar(POPUP_W - 2, contentY + visibleCount - 1, 'v', QudColorParser.Gray);
+                    DrawChar(_popupW - 2, contentY + visibleCount - 1, 'v', QudColorParser.Gray);
             }
             string footer = controller
                 ? (_titleOverride != null ? "[A]select [B]back" : "[A]select [B]back [LT+RT]details")
                 : (_titleOverride != null ? "[Enter]ok [Esc]back" : "[F1]details [Enter]ok [Esc]back");
             DrawText(2, borderH, footer, QudColorParser.Gray);
+            _fgDrawn = true;
+            _fgDrawnW = _popupW;
+            _fgDrawnH = _popupH;
+            _fgDrawnOriginX = _worldOriginX;
+            _fgDrawnTopY = _worldTopY;
         }
 
         private void ComputePopupPosition()
@@ -473,13 +495,29 @@ namespace CavesOfOoo.Rendering
             int totalRows = _actions.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
             _popupH = visibleCount + 5 + StatusBlockRows;
-            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
+            _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(_popupW);
             _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
+        }
+
+        // Keep position and edge on the same backend, as inventory/hotbar do.
+        // Legacy coordinates can remain stale while native clicks are delivered.
+        private static void ReadPointer(out Vector3 position, out bool pressed)
+        {
+            var mouse = UnityEngine.InputSystem.Mouse.current;
+            if (mouse != null && mouse.enabled)
+            {
+                position = mouse.position.ReadValue();
+                pressed = mouse.leftButton.wasPressedThisFrame;
+                return;
+            }
+            position = Input.mousePosition;
+            pressed = Input.GetMouseButtonDown(0);
         }
 
         private int GetRowAtMouse()
         {
-            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, Input.mousePosition,
+            // HandleInput captures this pointer once before hover/click dispatch.
+            if (!CenteredPopupLayout.ScreenToGrid(PopupCamera, Tilemap, _lastMousePosition,
                     out int gridX, out int gridY))
                 return -1;
 
@@ -490,7 +528,7 @@ namespace CavesOfOoo.Rendering
             int visibleCount = Mathf.Min(totalRows, POPUP_MAX_VISIBLE);
             int contentY = ContentY;
 
-            if (gx > 0 && gx < POPUP_W - 1 && gy >= contentY && gy < contentY + visibleCount)
+            if (gx > 0 && gx < _popupW - 1 && gy >= contentY && gy < contentY + visibleCount)
             {
                 int vi = gy - contentY;
                 int rowIdx = _scrollOffset + vi;
@@ -540,6 +578,17 @@ namespace CavesOfOoo.Rendering
             _bgDrawnH = height;
             _bgDrawnOriginX = _worldOriginX + gx;
             _bgDrawnTopY = _worldTopY - gy;
+        }
+
+        // Clear where the previous menu was actually drawn, before a new
+        // width/height recenters it. This also works without optional backing.
+        private void ClearFgRegion()
+        {
+            if (!_fgDrawn || Tilemap == null) return;
+            for (int y = 0; y < _fgDrawnH; y++)
+                for (int x = 0; x < _fgDrawnW; x++)
+                    Tilemap.SetTile(new Vector3Int(_fgDrawnOriginX + x, _fgDrawnTopY - y, 0), null);
+            _fgDrawn = false;
         }
 
         private void ClearBgRegion()
