@@ -49,6 +49,11 @@ namespace CavesOfOoo.Tests
                     var still = zone.GetReadOnlyEntities().Single(e => e.GetProperty(Role) == "still");
                     var medic = zone.GetReadOnlyEntities().Single(e => e.GetProperty(Role) == "patchbearer");
                     var shelves = zone.GetReadOnlyEntities().Where(e => e.GetProperty(Role) == "drying-shelf").ToArray();
+                    var floor=zone.GetReadOnlyEntities().Where(e=>e.GetProperty(Role)=="yard-ground").ToArray();
+                    Assert.IsNotEmpty(floor);
+                    string[] FloorState(Zone current)=>current.GetReadOnlyEntities().Where(e=>e.GetProperty(Role)=="yard-ground")
+                        .Select(e=>e.ID+":"+e.BlueprintName+":"+current.GetEntityPosition(e)+":"+e.GetPart<PhysicsPart>().Solid).OrderBy(v=>v).ToArray();
+                    var floorState=FloorState(zone);
                     Assert.AreEqual(2, shelves.Length); Assert.True(shelves.All(e => e.GetPart<ContainerPart>().Contents.Count == 0));
                     var medicine = medic.GetPart<FieldMedicinePart>(); var bottle = medicine.FindCarriedMedicine();
                     Assert.NotNull(bottle); Assert.AreEqual(1, Units(bottle)); Assert.AreEqual("4d6+4", bottle.GetPart<TonicPart>().Healing);
@@ -117,6 +122,8 @@ namespace CavesOfOoo.Tests
                         var current = loaded.GetReadOnlyEntities().Single(e => e.ID == shelf.ID); Assert.AreNotSame(shelf, current);
                         Assert.AreEqual(zone.GetEntityPosition(shelf), loaded.GetEntityPosition(current)); Assert.IsEmpty(current.GetPart<ContainerPart>().Contents);
                     }
+                    CollectionAssert.AreEqual(floorState,FloorState(loaded),"Saved pad identity/count/position remains exact.");
+                    foreach(var original in floor)Assert.AreNotSame(original,loaded.GetReadOnlyEntities().Single(e=>e.ID==original.ID));
                     var loadedMedic = loaded.GetReadOnlyEntities().SingleOrDefault(e => e.ID == medic.ID);
                     if (outcome == "recovered") Assert.Null(loadedMedic);
                     else
@@ -136,6 +143,7 @@ namespace CavesOfOoo.Tests
                     Assert.True(restored.ZoneManager.ActiveZone.RemoveEntity(restored.Player)); Assert.True(loaded.AddEntity(restored.Player, approach.x, approach.y));
                     restored.ZoneManager.SetActiveZone(loaded); Assert.AreSame(loaded, restored.ZoneManager.GetZone(North));
                     Assert.AreEqual(inventory, Stock(restored.Player)); Assert.False(loaded.GetReadOnlyEntities().Any(e => e.BlueprintName == "MendleafPlant"));
+                    CollectionAssert.AreEqual(floorState,FloorState(restored.ZoneManager.GetZone(North)),"Cached return does not duplicate ground.");
                     Assert.AreEqual(outcome == "herb-only" ? 1 : 0, loaded.GetReadOnlyEntities().Where(e => e.HasPart<FieldMedicinePart>())
                         .Sum(e => Packed(e, "HealingTonic")), "Cached return must not reissue the enemy's spent or recovered bottle.");
                 }

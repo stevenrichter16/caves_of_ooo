@@ -342,3 +342,68 @@ other activity consumes space between checks. No large safe remaining project
 cache/build target was found. Main active caches, source, editable assets,
 saves/backups, dependencies and current packages remain protected. Exact receipt:
 [small-cache cleanup](Verification/Live16x24/nella-composition-small-cache-cleanup.json).
+
+
+## Seed65 live return and mature-crop replay — 2026-10-26 03:05–03:22 UTC
+
+This follow-up closes the earlier **sampled seed65 crop maturation/save-return**
+gap. It adds actual gameplay evidence to the accepted composition, without
+changing its layout or sprites and without extending acceptance to the complete
+opening, other crops/seeds, packaged players or physical Steam Deck.
+
+Root continued the earned seed65 Warden checkpoint through ordinary keyboard
+input in the normal flat presentation. The active character in this replay is
+`54bc59c0fe6243aaa949342f54273a84`; it is distinct from the earlier seed65
+Breaker checkpoint `d5180ca0d60a4a179b51b1879f4f454a`. Do not merge their
+identity, inventory or timing. Read-only receipts accompany actual1280×800
+Game captures. At each of the eight recorded garden/departure checkpoints,
+playerHP remains40, currency42drams and the LongSword2703/Buckler2704 equipment
+remains unchanged. Nella9200 remains at22,9 with Granted rights in the garden
+receipts; there is no second charge in this replay.
+
+| Observation and UTC | Simulation tick | Actual state |
+| --- | ---: | --- |
+| [Existing rights](Verification/Live16x24/seed65-composition-resume-rights.json),03:05:37 |1670| Player20,7 in11,8. Original marlroot9216 at20,6 is ripe(stage2); adjacent pitchpod9217 is stage0/dry. No marlroot clods are yet in inventory. |
+| [Harvest, replant and first watering](Verification/Live16x24/seed65-composition-resume-watered.json),03:08:28 |1700| Original9216 is absent; replacement marlroot9223 occupies the same20,6 bed at stage0,1growth unit,39moisture. Inventory contains2clods in stack9220. |
+| [Second watering](Verification/Live16x24/seed65-composition-resume-second-water.json),03:09:12 |1830| The same9223 has14growth units and39moisture. This second Rain replenishment is part of the observed lifecycle; do not attribute full maturation to one watering. |
+| [Departure](Verification/Live16x24/seed65-composition-resume-departed.json),03:10:02, and [reload](Verification/Live16x24/seed65-composition-resume-reloaded.json),03:10:41 |2010| Player20,0 in11,9. Save/load preserves tick,position,HP,currency,gear and the2-clod inventory. The garden is inactive/cached while the player is outside it. |
+| [Return while young](Verification/Live16x24/seed65-composition-resume-return-young.json),03:11:45 |2190| Back at20,7 in11,8, the same9223 is stage1 with24growth units and3moisture. Adjacent pitchpod9217 is already stage2; the two emberwheat crops are only stage1. |
+| [Ripe crop and available action](Verification/Live16x24/seed65-composition-resume-ripe.json),03:12:14 |2210| Marlroot9223 reaches stage2,0stage units,1moisture; the actual action menu offers harvest and gather into pack. |
+| [Gathered result](Verification/Live16x24/seed65-composition-resume-harvested.json),03:12:50 |2220| Crop9223 is removed. Existing clod stack9220 rises2→4; one marlroot seed9232 is present. The reopened cell menu shows the prepared planting bed with Examine and no remaining harvest/gather choice. |
+
+The [inactive-zone crop readout](Verification/Live16x24/seed65-composition-resume-cached-crop-fields.json)
+at worldtick2010 records9223 at stage1,5growth units,22moisture,lastTick2000.
+The returned graph contains that same ID exactly once and no original9216.
+Together with the same-tick outside-zone reload, this verifies persistence of
+this planted owner and subsequent return progression. It does not claim that
+an unloaded crop was simulated every frame or that every crop species has been
+exercised. Tick differences are simulation-clock measurements, not elapsed
+real-time growth rates or an exact count of keyboard presses.
+
+Actual visual pairs:
+[young returned garden](Verification/Live16x24/seed65-composition-resume-return-young.png),
+[ripe marlroot actions](Verification/Live16x24/seed65-composition-resume-ripe.png),
+[depleted bed after gathering](Verification/Live16x24/seed65-composition-resume-harvested.png).
+The visible log says3items were packed and0remain; the inventory receipt resolves
+that into2additional clods and1seed. No duplicate mature crop or extra yield is
+visible across the sampled reload/harvest. The depleted-cell menu is the live
+counter-check; this record does not claim a separately forced second harvest.
+The public gladroots also finish and disappear, with two readiness messages,
+but their floor-owner yields are outside the filtered receipt and are not
+added to the verified inventory result.
+
+### Continuation checkpoints and limits
+
+- [Outside-zone save export](Verification/Live16x24/seed65-composition-resume-departed-export.json): `/tmp/coo-seed65-second-water-departed/54bc59c0fe6243aaa949342f54273a84/Quick.sav.gz`, SHA256`450f938539ca8df52032787307b663efb3ff3fcf4c01f9bb3a0ed98d083c13ec`, tick2010.
+- [Post-harvest save export](Verification/Live16x24/seed65-composition-resume-harvest-export.json): `/tmp/coo-seed65-after-ripe-return/54bc59c0fe6243aaa949342f54273a84/Quick.sav.gz`, SHA256`8e536ce6367e5864ca28e2f8c8a3ae873b58eb3167d9da133f8d7eafa6d2493b`, tick2220.
+- [Later north-court continuation](Verification/Live16x24/seed65-composition-resume-court-export.json): `/tmp/coo-seed65-still-court/54bc59c0fe6243aaa949342f54273a84/Quick.sav.gz`, SHA256`b5f02309189b92f6271280c6446ab04add28d9ff722bab895bd63e5266ebfe29`, tick3130. This export is a continuation point, not evidence of completing the still's service.
+- [Editor restoration](Verification/Live16x24/seed65-composition-resume-restored.json),03:22:18UTC: stopped, no isolation/art launch/borrowed view, null save override, normal SampleScene. This receipt establishes editor restoration; it is not independently a hash audit of every normal save.
+
+**Can verify:** the sampled native garden's real earned permission, one original
+harvest and replacement crop, two waterings, outside-zone save/reload, unchanged
+crop identity on return, mature gather, finite observed yield and the depleted
+bed action menu; actual current flat gameplay captures.
+**Cannot verify here:** all crop schedules or weather conditions, every owner or
+seed, a full new-character journey in a packaged executable, physical controller
+or Deck readability/performance, a complete regional art release or a speedup.
+No new behavioral test total is claimed by this evidence-only continuation.

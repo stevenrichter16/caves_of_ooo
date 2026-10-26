@@ -106,6 +106,83 @@ namespace CavesOfOoo.Tests
             return reached;
         }
 
+        [TestCase(0)] [TestCase(1)]
+        public void WorkingGroundConnectsTheRealYardWithoutChangingOriginalOwners(int rotation)
+        {
+            using(var f=new Fixture(rotation:rotation))
+            {
+                var old=f.Zone.GetReadOnlyEntities().Except(f.Population.SourceReceipt.Owners).ToArray();var proof=f.Proof(old);
+                Assert.True(f.Place());Assert.True(f.Final());Assert.True(proof());
+                var ground=f.Owners.Where(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)=="yard-ground").ToArray();
+                Assert.That(ground.Length,Is.InRange(8,20));
+                foreach(var e in ground)
+                {
+                    Assert.AreEqual("RoadStone",e.BlueprintName);Assert.False(e.GetPart<PhysicsPart>().Solid);Assert.False(e.GetPart<PhysicsPart>().Takeable);
+                    var cell=f.Zone.GetEntityCell(e);Assert.False(cell.BlocksMovement());Assert.AreEqual(2,cell.Objects.Count);
+                    Assert.AreEqual("Grass",cell.Objects.Single(o=>o!=e).BlueprintName);
+                    Assert.False(f.Zone.GenReservedCells.Contains((cell.X,cell.Y)));Assert.False(cell.IsInterior);
+                }
+                var reached=Reach(f.Zone,(40,12),false);Assert.True(ground.All(e=>reached.Contains(f.Zone.GetEntityPosition(e))));
+            }
+        }
+        [Test]
+        public void OptionalRoadContentCannotRelocateTheFunctionalYard()
+        {
+            string[] baseline;
+            using(var f=new Fixture())
+            {
+                f.Factory.Blueprints.Remove("RoadStone");Assert.True(f.Place());Assert.True(f.Final());
+                Assert.False(f.Owners.Any(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)=="yard-ground"));
+                baseline=f.Owners.Select(e=>e.BlueprintName+":"+f.Zone.GetEntityPosition(e)).OrderBy(s=>s).ToArray();
+            }
+            using(var f=new Fixture())
+            {
+                Assert.True(f.Place());Assert.True(f.Owners.Any(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)=="yard-ground"));
+                CollectionAssert.AreEqual(baseline,f.Owners.Where(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)!="yard-ground")
+                    .Select(e=>e.BlueprintName+":"+f.Zone.GetEntityPosition(e)).OrderBy(s=>s).ToArray());
+            }
+        }
+        [TestCase("Overworld.12.10.0")] [TestCase("Overworld.11.11.0")]
+        public void WorkingGroundIsNotAddedToOtherAlembics(string id)
+        {using(var f=new Fixture(id:id)){Assert.True(f.Place());Assert.True(f.Final());Assert.False(f.Owners.Any(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)=="yard-ground"));}}
+        static void CorruptYardGround(Entity e,string fault)
+        {
+            if(fault=="solid")e.GetPart<PhysicsPart>().Solid=true;
+            else if(fault=="tag")e.Tags["Solid"]="";
+            else if(fault=="takeable")e.GetPart<PhysicsPart>().Takeable=true;
+            else if(fault=="door")e.AddPart(new DoorPart());
+            else if(fault=="soil")e.AddPart(new CultivatedSoilPart());
+            else if(fault=="terrain")e.Tags.Remove("Terrain");
+        }
+        [TestCase("solid")] [TestCase("tag")] [TestCase("takeable")] [TestCase("door")] [TestCase("soil")] [TestCase("terrain")]
+        public void LaterGroundFactoryCannotTurnTheWalkablePadIntoAnObstacle(string fault)
+        {
+            using(var f=new Fixture())
+            {
+                var old=f.Zone.GetReadOnlyEntities().ToArray();var proof=f.Proof(old);Entity first=null;int calls=0;
+                f.Factory.RegisterPartType<SpreadGenerationReceiptTests.ReceiptCreatedPart>("ReceiptCreated");
+                f.Factory.Blueprints["RoadStone"].Parts["ReceiptCreated"]=new Dictionary<string,string>();
+                SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=e=>{calls++;if(first==null)first=e;else CorruptYardGround(first,fault);};
+                try{Assert.False(f.Place());Assert.Greater(calls,1);Assert.True(proof());CollectionAssert.AreEquivalent(old,f.Zone.GetReadOnlyEntities());Assert.True(f.Population.SourceReceipt.IsCurrent);}
+                finally{SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=null;}
+            }
+        }
+        [TestCase("floor")] [TestCase("substrate")] [TestCase("reserved")] [TestCase("interior")] [TestCase("coating")]
+        public void FinalGroundReceiptRejectsLaterOwnershipOrSubstrateChanges(string fault)
+        {
+            using(var f=new Fixture())
+            {
+                Assert.True(f.Place());Assert.True(f.Final());var floor=f.Owners.FirstOrDefault(e=>e.GetProperty(SpreadExplorationWorksites.RoleKey)=="yard-ground");Assert.NotNull(floor);
+                var cell=f.Zone.GetEntityCell(floor);
+                if(fault=="floor")f.Zone.RemoveEntity(floor);
+                if(fault=="substrate")cell.Objects.Single(e=>e!=floor).AddPart(new CultivatedSoilPart());
+                if(fault=="reserved")f.Zone.GenReservedCells.Add((cell.X,cell.Y));
+                if(fault=="interior")cell.IsInterior=true;
+                if(fault=="coating")f.Zone.TileState.WriteCoating(cell.X,cell.Y,"water",5);
+                Assert.False(f.Final());
+            }
+        }
+
         [TestCase(64)] [TestCase(1729)]
         public void ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(int seed)
         {

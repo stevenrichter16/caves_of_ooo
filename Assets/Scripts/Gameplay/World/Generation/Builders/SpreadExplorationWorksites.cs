@@ -91,7 +91,25 @@ namespace CavesOfOoo.Core
    // No enriched shape fits. Only this pre-staging branch can retry the old packet;
    // failed factory/ownership transactions below never consume another attempt.
    if(positions.Length==0)return drying&&TryPlaceCore(zone,factory,terrain,population,containers,family,authority,false,out owners,out final,opening);
+   // Ground follows the already accepted service layout: it never moves a still,
+   // forage source or defender to make room for decoration. Keep the original grass.
+   int yardStart=specs.Count;
+   if(drying&&factory.Blueprints.ContainsKey("RoadStone"))
+   {
+    var occupied=new HashSet<(int x,int y)>(positions);var padded=positions.ToList();
+    foreach(var local in YardGroundOffsets)
+    {
+     var at=At(origin,local,rotation);
+     if(occupied.Contains(at)||Distance(at,Arrival)<=6||!before.Place(at.x,at.y)||!YardSubstrate(zone,at))continue;
+     specs.Add(("RoadStone","yard-ground",local.x,local.y));padded.Add(at);occupied.Add(at);
+    }
+    positions=padded.ToArray();
+   }
+   var substrates=positions.Skip(yardStart).Take(specs.Count-yardStart).Select(p=>zone.GetCell(p.x,p.y).Objects.Single()).ToArray();
+   var substrateProof=SpreadGenerationReceipt.CaptureFinalState(zone,substrates);
    var staged=new List<Entity>();var added=new HashSet<Entity>();var removed=new HashSet<Entity>();
+   bool GroundShape()=>substrateProof()&&Enumerable.Range(yardStart,specs.Count-yardStart)
+    .All(i=>YardSubstrate(zone,positions[i],staged[i]));
    var goods=new List<Entity>();var goodsProofs=new List<Func<bool>>();
    var container=cache?.GetPart<ContainerPart>();Func<bool> supplied=null;bool stockAdded=false;
    var otherStock=opening?SpreadGenerationReceipt.CaptureFinalState(zone,stock.Owners.Where(e=>e!=cache)):null;
@@ -202,7 +220,7 @@ namespace CavesOfOoo.Core
     var finalPacket=SpreadGenerationReceipt.CaptureFinalState(zone,packet);
     bool Final()=>authority()&&Provenance()&&RoleShape()&&StoreShape()&&DryingShape()&&SupplyShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
      &&(!store||(opening?supplied?.Invoke()==true&&otherStock():stock.MatchesOwnedState()))&&finalPacket()&&detached.Values.All(p=>p())
-     &&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,drying,retainedThreats,origin,rotation,plan);
+     &&GroundShape()&&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,drying,retainedThreats,origin,rotation,plan);
     if(!Final()||!Others())return false;owners=packet;final=Final;success=true;return true;
    }
    finally
@@ -302,6 +320,12 @@ namespace CavesOfOoo.Core
    if(role=="medicine-forage")return !e.HasTag("Creature")&&!physical.Solid&&!physical.Takeable&&!e.HasPart<CropPart>()
     &&e.GetPart<HarvestablePart>() is HarvestablePart harvest&&!harvest.Harvested&&harvest.YieldBlueprint=="MendleafSprig"
     &&harvest.YieldChance==100&&harvest.YieldMin==1&&harvest.YieldMax==2;
+   if(role=="yard-ground")return e.BlueprintName=="RoadStone"&&!physical.Solid&&!physical.Takeable&&!e.HasTag("Solid")
+    &&e.HasTag("Terrain")&&!e.HasTag("Barren")&&!e.HasTag("Vegetation")&&!e.HasTag("Plantable")&&!e.HasTag("Creature")&&!e.HasTag("Item")&&!e.HasTag("Wall")&&!e.HasTag("Furniture")
+    &&!e.HasPart<DoorPart>()&&!e.HasPart<SealedLibraryBarrierPart>()&&!e.HasPart<TileStateSourcePart>()
+    &&!e.HasPart<CropPart>()&&!e.HasPart<CultivatedSoilPart>()&&!e.HasPart<FieldHarvestPart>()&&!e.HasPart<HarvestablePart>()
+    &&!e.HasPart<RepairablePart>()&&!e.HasPart<ContainerPart>()&&!e.HasPart<LiquidPoolPart>()&&!e.HasPart<GasPoolPart>()
+    &&!e.HasPart<TriggerOnStepPart>()&&!e.HasPart<StairsUpPart>()&&!e.HasPart<StairsDownPart>();
    if(role=="broken-wall")return physical.Solid&&e.HasTag("Solid");
    return true;
   }
@@ -331,14 +355,26 @@ namespace CavesOfOoo.Core
    }
    return true;
   }
+  // Native editable 16x24 footprint: quiet workpad, aisle and short north approach.
+  static readonly (int x,int y)[] YardGroundOffsets={(-1,-1),(-1,0),(-1,1),(0,1),(0,2),(1,1),(1,0),(1,-1),(0,-1),(0,-2),
+   (2,0),(3,0),(3,-1),(3,1),(4,0),(4,-2),(4,-3),(4,-4),(5,0),(5,1)};
+  static bool YardSubstrate(Zone zone,(int x,int y)at,Entity exactFloor=null)
+  {
+   var cell=zone.GetCell(at.x,at.y);
+   if(cell==null||cell.IsInterior||zone.GenReservedCells.Contains(at)||zone.TileState.Get(at.x,at.y)?.IsEmpty==false||BarrenGroundRules.IsBarren(cell))return false;
+   var original=cell.Objects.Where(e=>e!=exactFloor).ToArray();if(original.Length!=1)return false;
+   var grass=original[0];return grass.BlueprintName=="Grass"&&grass.HasTag("Terrain")&&grass.HasTag("Plantable")
+    &&!grass.HasPart<CultivatedSoilPart>()&&DoorPart.IsBareGround(grass)&&LocalGatheringClaims.Ground(grass,zone);
+  }
   static int Distance((int x,int y)a,(int x,int y)b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
   static (int x,int y) At((int x,int y)at,(int x,int y)p,int turn)=>turn==0?(at.x+p.x,at.y+p.y)
    :turn==1?(at.x-p.y,at.y+p.x):turn==2?(at.x-p.x,at.y-p.y):(at.x+p.y,at.y-p.x);
   static bool Fits(Zone z,SpreadWildernessSituationBuilder.Geometry g,SpreadWildernessSituationBuilder.Geometry before,(int x,int y)[] positions,
    List<(string bp,string role,int x,int y)> specs,bool pair,bool store,bool drying,Entity[] retainedThreats,(int x,int y)origin,int rotation,SpreadCompositionPlan plan)
   {
-   if(positions.Any(p=>Distance(p,Arrival)<=6||!g.Place(p.x,p.y))||!g.PreservesAgainst(before,positions))return false;
-   var blocked=new HashSet<(int x,int y)>(positions);
+   var obstacles=positions.Where((p,i)=>i>=specs.Count||specs[i].role!="yard-ground").ToArray();
+   if(positions.Any(p=>Distance(p,Arrival)<=6||!g.Place(p.x,p.y))||positions.Distinct().Count()!=positions.Length||!g.PreservesAgainst(before,obstacles))return false;
+   var blocked=new HashSet<(int x,int y)>(obstacles);
    var threat=specs.Select((s,i)=>(s.role,at:positions[i])).Where(s=>s.role=="ranged"||s.role=="melee"||s.role=="patchbearer").ToArray();
    bool Avoid(int x,int y)=>threat.Any(t=>Distance((x,y),t.at)<=(t.role=="ranged"?6:10))
     ||retainedThreats.Any(e=>Distance((x,y),z.GetEntityPosition(e))<=Math.Max(e.GetPart<BrainPart>().SightRadius,e.GetPart<CombatTacticsPart>()?.AssistRadius??0));
@@ -357,7 +393,7 @@ namespace CavesOfOoo.Core
    // nor opening the actual cache forces the player onto the visible trap.
    for(int i=0;i<positions.Length;i++)
    {
-    if(i<specs.Count&&(specs[i].role=="broken-wall"||specs[i].role=="melee"||specs[i].role=="ranged"||specs[i].role=="patchbearer"||specs[i].role=="trap"))continue;
+    if(i<specs.Count&&(specs[i].role=="yard-ground"||specs[i].role=="broken-wall"||specs[i].role=="melee"||specs[i].role=="ranged"||specs[i].role=="patchbearer"||specs[i].role=="trap"))continue;
     var p=positions[i];if(new[]{(p.x-1,p.y),(p.x+1,p.y),(p.x,p.y-1),(p.x,p.y+1)}.Count(n=>g.Walk(n.Item1,n.Item2,blocked)&&reachable[n.Item1,n.Item2])<2)return false;
    }
    return true;

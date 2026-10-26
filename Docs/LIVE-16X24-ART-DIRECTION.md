@@ -1854,3 +1854,25 @@ Storage blocker is cleared (about432GiB available after separately authorized
 OpenClaw error-log/XCTest cleanup); all other cleanup remains inspection-only.
 Next: second-seed return/growth and north-yard composition. Updated packages,
 physical Deck, full opening and regional graphics acceptance remain open.
+
+## Continuation — seed65 crop return and readable north workpad, 2026-10-26
+
+The real Nella marlroot loop now includes two ordinary Rain castings, outside-zone
+F5/F6 and return to the same crop9223 at maturity; one harvest yields2more clods
+and1seed. HP40 and42drams stay fixed. Exact receipts and limits are in
+`GRAPHICS-G3-NELLA-COMPOSITION.md`; concepts/tests are not used as this evidence.
+
+North still-court actual capture → built-in imagegen → extracted quiet existing
+RoadStone footprint → transactional cold-generation placement → native RED38
+(13expectedfails)/GREEN88 and review42 → ordinary fresh pre-north replay.
+`GRAPHICS-G3-NORTH-COMPOSITION.md` records exact comparisons, preserved owners,
+stock/routes and independent review.18visible ground owners survive ordinary
+F5/F6 after real aisle combat; source terrain stays literal. Ground is added
+only on fresh exact north enriched yards, not retroactively to saves. Accepted
+sprites and former3D presentation are unchanged. Root restored Unity/save/view.
+
+Approximately431GiB remains free; caffeinate is running. No storage cleanup is
+needed or performed in this pass. Old current builds and archives are retained.
+Next delivery action: freeze/push these source changes, build fresh dated Mac
+and Linux/Deck -current packages, smoke-test actual Mac launch/input/inventory,
+and record precise packaged/device limits. Full opening/regions remain ongoing.

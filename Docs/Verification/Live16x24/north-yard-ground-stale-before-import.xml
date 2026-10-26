@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Passed" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 03:29:07Z" end-time="2026-10-26 03:29:33Z" duration="25.2763011">
+  <test-suite type="TestSuite" id="38818" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31497" result="Passed" start-time="2026-10-26 03:29:07Z" end-time="2026-10-26 03:29:33Z" duration="25.276301" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="38790" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31497" result="Passed" start-time="2026-10-26 03:29:08Z" end-time="2026-10-26 03:29:33Z" duration="25.034017" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42769" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="38791" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31497" result="Passed" start-time="2026-10-26 03:29:08Z" end-time="2026-10-26 03:29:33Z" duration="24.927309" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="38792" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31497" result="Passed" start-time="2026-10-26 03:29:08Z" end-time="2026-10-26 03:29:33Z" duration="24.696951" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="21472" name="MendleafDryingYardTests" fullname="CavesOfOoo.Tests.MendleafDryingYardTests" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-10-26 03:29:08Z" end-time="2026-10-26 03:29:33Z" duration="24.449311" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="21503" name="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 03:29:08Z" end-time="2026-10-26 03:29:11Z" duration="2.746144" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21501" name="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(False)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(False)" methodname="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="505830070" result="Passed" start-time="2026-10-26 03:29:08Z" end-time="2026-10-26 03:29:10Z" duration="1.499894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Combat] marlback patchbearer is killed by you!
+[Combat] marlback patchbearer is killed by you!
+[Combat] You gain 75 XP.
+[Combat] You gain 75 XP.
+[Combat] marlback patchbearer's short sword falls to the ground!
+[Combat] marlback patchbearer's short sword falls to the ground!
+[Combat] marlback patchbearer's leather gloves falls to the ground!
+[Combat] marlback patchbearer's leather gloves falls to the ground!
+[Combat] Your reputation with the outland raiders worsens.
+[Combat] Your reputation with the outland raiders worsens.
+[Combat] Your reputation with the Villagers improves.
+[Combat] Your reputation with the Villagers improves.
+]]></output>
+              </test-case>
+              <test-case id="21502" name="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(True)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome(True)" methodname="ActualGeneratedMedicineHasOnlyItsOriginalUnusedOrConsumedDeathOutcome" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="141327731" result="Passed" start-time="2026-10-26 03:29:10Z" end-time="2026-10-26 03:29:11Z" duration="1.240787" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Combat] marlback patchbearer heals 8 HP.
+[Combat] marlback patchbearer heals 8 HP.
+[Combat] marlback patchbearer drinks healing tonic.
+[Combat] marlback patchbearer drinks healing tonic.
+[Combat] marlback patchbearer is killed by you!
+[Combat] marlback patchbearer is killed by you!
+[Combat] You gain 75 XP.
+[Combat] You gain 75 XP.
+[Combat] marlback patchbearer's short sword falls to the ground!
+[Combat] marlback patchbearer's short sword falls to the ground!
+[Combat] marlback patchbearer's leather gloves falls to the ground!
+[Combat] marlback patchbearer's leather gloves falls to the ground!
+[Combat] Your reputation with the outland raiders worsens.
+[Combat] Your reputation with the outland raiders worsens.
+[Combat] Your reputation with the Villagers improves.
+[Combat] Your reputation with the Villagers improves.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21475" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 03:29:11Z" end-time="2026-10-26 03:29:15Z" duration="4.254677" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21473" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(64)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(64)" methodname="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1278911410" result="Passed" start-time="2026-10-26 03:29:11Z" end-time="2026-10-26 03:29:13Z" duration="2.091327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21474" name="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(1729)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount(1729)" methodname="ActualNorthColdGenerationAddsOneStockedMedicAndFiniteHerbWithoutIncreasingActorCount" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="716231720" result="Passed" start-time="2026-10-26 03:29:13Z" end-time="2026-10-26 03:29:15Z" duration="2.156685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="21500" name="ActualShallowHarvestIsFiniteAndAnEarnedSprigBrewsOneWeakTonicAwayFromTheStill" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ActualShallowHarvestIsFiniteAndAnEarnedSprigBrewsOneWeakTonicAwayFromTheStill" methodname="ActualShallowHarvestIsFiniteAndAnEarnedSprigBrewsOneWeakTonicAwayFromTheStill" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="644816139" result="Passed" start-time="2026-10-26 03:29:15Z" end-time="2026-10-26 03:29:16Z" duration="1.197579" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Combat] You harvest mendleaf plant: 1 x MendleafSprig.
+[Combat] You harvest mendleaf plant: 1 x MendleafSprig.
+[Combat] Discovery: Vitality distilled — knits wounds closed. Toxins spoil it.
+[Combat] Discovery: Vitality distilled — knits wounds closed. Toxins spoil it.
+[Combat] You brew mending tonic.
+[Combat] You brew mending tonic.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="21498" name="EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 03:29:16Z" end-time="2026-10-26 03:29:19Z" duration="2.643704" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21496" name="EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(0)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(0)" methodname="EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1884351235" result="Passed" start-time="2026-10-26 03:29:16Z" end-time="2026-10-26 03:29:18Z" duration="1.260378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21497" name="EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(1)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays(1)" methodname="EitherAxisHasAnIndependentShallowWithdrawalAndPhysicalDryingBays" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1789952288" result="Passed" start-time="2026-10-26 03:29:18Z" end-time="2026-10-26 03:29:19Z" duration="1.375457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21478" name="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 03:29:19Z" end-time="2026-10-26 03:29:21Z" duration="2.460553" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21476" name="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(1)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(1)" methodname="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="815493025" result="Passed" start-time="2026-10-26 03:29:19Z" end-time="2026-10-26 03:29:20Z" duration="1.205140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21477" name="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(2)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched(2)" methodname="ExactlyOneActualReceiptActorIsReplacedAndEveryUnselectedOwnerStaysUntouched" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1053645243" result="Passed" start-time="2026-10-26 03:29:20Z" end-time="2026-10-26 03:29:21Z" duration="1.249495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21494" name="LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 03:29:21Z" end-time="2026-10-26 03:29:23Z" duration="1.320652" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21491" name="LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover(&quot;medicine&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover(&quot;medicine&quot;)" methodname="LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="619594447" result="Passed" start-time="2026-10-26 03:29:21Z" end-time="2026-10-26 03:29:22Z" duration="0.413828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21492" name="LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover(&quot;harvest&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover(&quot;harvest&quot;)" methodname="LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1811157832" result="Passed" start-time="2026-10-26 03:29:22Z" end-time="2026-10-26 03:29:22Z" duration="0.512662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21493" name="LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover(&quot;shelf&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover(&quot;shelf&quot;)" methodname="LaterWindbreakFactoryCannotAcceptADepletedMedicineSourceOrFalseCover" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1241876495" result="Passed" start-time="2026-10-26 03:29:22Z" end-time="2026-10-26 03:29:23Z" duration="0.388973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21488" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-26 03:29:23Z" end-time="2026-10-26 03:29:25Z" duration="1.711904" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21485" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MarlbackPatchbearer&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MarlbackPatchbearer&quot;)" methodname="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="907947365" result="Passed" start-time="2026-10-26 03:29:23Z" end-time="2026-10-26 03:29:23Z" duration="0.603108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21486" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MendleafPlant&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;MendleafPlant&quot;)" methodname="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="936365850" result="Passed" start-time="2026-10-26 03:29:23Z" end-time="2026-10-26 03:29:24Z" duration="0.500743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21487" name="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;AlchemyShelf&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic(&quot;AlchemyShelf&quot;)" methodname="MissingOptionalContentFallsBackBeforeClaimingSourcesAndKeepsTheOriginalAlembic" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="911057205" result="Passed" start-time="2026-10-26 03:29:24Z" end-time="2026-10-26 03:29:25Z" duration="0.601885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21481" name="NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 03:29:25Z" end-time="2026-10-26 03:29:27Z" duration="2.477627" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21479" name="NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained(False)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained(False)" methodname="NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="480803260" result="Passed" start-time="2026-10-26 03:29:25Z" end-time="2026-10-26 03:29:26Z" duration="1.252646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21480" name="NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained(True)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained(True)" methodname="NearArrivalSourceIsSelectedWithEitherActualReceiptOrderAndFarBorderThreatIsRetained" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1266729418" result="Passed" start-time="2026-10-26 03:29:26Z" end-time="2026-10-26 03:29:27Z" duration="1.219436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="21490" name="NeutralAmbientMagpieNearArrivalDoesNotVetoTheHostileSourceYard" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.NeutralAmbientMagpieNearArrivalDoesNotVetoTheHostileSourceYard" methodname="NeutralAmbientMagpieNearArrivalDoesNotVetoTheHostileSourceYard" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="425855776" result="Passed" start-time="2026-10-26 03:29:27Z" end-time="2026-10-26 03:29:28Z" duration="1.153074" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21495" name="ObservingTheActualStagedFactoryOwnersPreservesAnOtherwiseValidPlacement" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.ObservingTheActualStagedFactoryOwnersPreservesAnOtherwiseValidPlacement" methodname="ObservingTheActualStagedFactoryOwnersPreservesAnOtherwiseValidPlacement" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1614223800" result="Passed" start-time="2026-10-26 03:29:28Z" end-time="2026-10-26 03:29:29Z" duration="1.163786" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="21499" name="OppositeFacingKeepsHerbOnArrivalSideOfTheUnchangedHostileCurtain" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.OppositeFacingKeepsHerbOnArrivalSideOfTheUnchangedHostileCurtain" methodname="OppositeFacingKeepsHerbOnArrivalSideOfTheUnchangedHostileCurtain" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="519111207" result="Passed" start-time="2026-10-26 03:29:29Z" end-time="2026-10-26 03:29:31Z" duration="1.524012" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="21484" name="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 03:29:31Z" end-time="2026-10-26 03:29:32Z" duration="1.123276" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21482" name="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.10.9.0&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.10.9.0&quot;)" methodname="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="283563738" result="Passed" start-time="2026-10-26 03:29:31Z" end-time="2026-10-26 03:29:31Z" duration="0.546174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21483" name="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.12.9.0&quot;)" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement(&quot;Overworld.12.9.0&quot;)" methodname="OtherAlembicsRemainThePreviousSmallServiceWithoutMedicineOrActorReplacement" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1691402371" result="Passed" start-time="2026-10-26 03:29:31Z" end-time="2026-10-26 03:29:32Z" duration="0.571295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="21489" name="SpaceForOnlyTheEarlierAlembicKeepsItsServiceAndEverySourceOwner" fullname="CavesOfOoo.Tests.MendleafDryingYardTests.SpaceForOnlyTheEarlierAlembicKeepsItsServiceAndEverySourceOwner" methodname="SpaceForOnlyTheEarlierAlembicKeepsItsServiceAndEverySourceOwner" classname="CavesOfOoo.Tests.MendleafDryingYardTests" runstate="Runnable" seed="1165564085" result="Passed" start-time="2026-10-26 03:29:32Z" end-time="2026-10-26 03:29:33Z" duration="0.665453" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

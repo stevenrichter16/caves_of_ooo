@@ -173,3 +173,80 @@ seed65 visual counter-evidence. Do not replay/grant missing resources or claim
 full six-site completion. Packages still use9ffd7c973 and predate prepared-bed
 and northern composition follow-ups; physical Deck remains untested. No new
 sprite, frame-time or draw-call result is claimed by this layout-only change.
+
+## Shared working ground — plan and source sweep, 2026-10-26
+
+The seed65 ordinary garden return then reached the actual still at69,17, with
+shelves73,16/18 and the deeper patchbearer. The still-court PNG/JSON records
+tick3130, HP40, player69,16. The approach broke two hedges through ordinary
+movement; this is not an untouched terrain comparison. The retained earned
+checkpoint predates this composition pass.
+
+Built-in imagegen reinterpreted that actual capture; exact prompt and concept
+are `ArtSource/Live16x24/concepts/north-composition/yard-ground-*`. Its shared
+footprint clarifies the working bay, but dense texture is rejected. Extraction:
+existing RoadStone / packed-road ground, an irregular quiet pad around the
+still connected to the drying aisle and its north approach. Keep all existing
+functional owners, forage, walls and original ground. Native editable source
+is a bounded local cell mask; no new raster sprite or animation is required.
+
+| Source-sweep correction | Implementation decision |
+| --- | --- |
+| PackedRoad is a display idea, not a blueprint | Use existing RoadStone, rendered as quiet Ground.Road. No JSON reserialization. |
+| The generation solver treats every spec as blocking | Append optional yard-ground only after functional origin/rotation is selected; exclude ground from obstacle/functional-approach checks. |
+| Grass may be cultivated, claimed or occupied | Admit only one literal ordinary Grass owner, bare and unclaimed, outside reserved/interior/hazard cells. Preserve that owner unchanged. |
+| Factory callbacks may rewrite earlier staged entities | Validate ground payload at creation, after staging and final acceptance; keep ordinary transaction proofs/rollback. |
+| Current loaded yards are saved graphs | Fresh cold generation gets the pad; existing saves remain literal. New ordinary pre-north replay is required. |
+
+Plan: RED positive footprint and exact-zone controls; counter-check optional
+missing RoadStone against identical service positions; hostile payload and
+late callback mutations; all-axis access and original-source-budget regression;
+GREEN plus independent review; actual fresh north approach capture. Ground is
+optional, at most20 cells, no stock, new mechanical service or collision. Crop
+placement later in generation will avoid those newly paved cells. Tests prove
+the contract; visual acceptance must come from actual Play.
+
+Implementation adds up to20 existing RoadStone owners only after successful
+functional placement. Grass owners remain exact; the final receipt also pins
+those substrates and their live cell constraints. Floor owners participate in
+staging, payload checks, ownership, save/load and rollback, but never obstruct
+the route solver. Native RED38:25passed/13expectedfailures; GREEN88/88, no
+skips. The first attempted RED used the prior assembly after a test-only Tags
+API typo; its23old passing cases are explicitly excluded. The corrected38-case
+RED contains the new tests. Independent source review found no blocking defect;
+added final wet-cell and saved-floor identity checks before replay.
+
+### Ordinary pad replay and review
+
+Native review additions passed42/42 (not additive to the overlapping88-case
+sweep). Fresh ordinary Continue replay used the original pre-north seed65
+cellar checkpoint, with no runtime grants, teleports or painting. After seven
+blocked attempts against cellar masonry, the player followed its open aisle,
+ascended at40,12 and crossed north at40,24/tick960. It reached the still at
+69,16/tick1370 with40HP/50drams. This differs from the earlier garden journey's
+tick3130; the same camera/player/still position supports a composition comparison,
+not an identical-world-state claim. All already-generated saved terrain stays
+literal. The earlier court PNG is input/reference, not an edited gameplay image.
+
+Actual captures `seed65-composition-ground-{entry,court,still-actions,aisle,
+crossed,reloaded}` record ordinary movement, the real still menu and crossing.
+The patchbearer attacked during the aisle attempt; normal bump attacks killed
+it and the player retained15HP. The next two rightward steps reached73,17,
+between the shelves, at1440. F5/F6 preserved player position/tick/HP and all18
+visible yard-ground IDs/coordinates. No new brew, peaceful crossing or physical
+Deck run is claimed. The original herb sources remained present.
+
+The accepted named change is a quiet shared workpad at the still and shelves.
+Existing pixel sprites/palette remain unchanged; the rendered pad is sparser
+than the concept. This does not resolve whole-zone empty ground, regimented
+trees, all seed variants or regional graphics. No per-frame renderer work was
+added; no new performance measurement is claimed.
+
+- 🔵 Source review found no blocking defect. Added wet-cell and explicit native
+  floor save/replacement/cached-return checks requested by review; all pass.
+- 🧪 Full northern scene quality and physical Deck acceptance remain open.
+- ⚪ No asset animation changed; this was an editable native layout correction.
+
+Owned replay export: `/tmp/coo-seed65-ground-verified/54bc59c0fe6243aaa949342f54273a84`,
+Quick.sav.gz SHA256 `a3e56d62871831933e6c489fb5210c630fca9bb16a6f6186c76adbb2c38a8402`.
+Editor stopped and restored original scene/view/save path at03:46UTC.
