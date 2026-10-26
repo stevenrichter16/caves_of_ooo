@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Optional visible opening ground, exact East water and Nella soil. Borrows its atlas and strict
+    /// <summary>Optional visible opening ground, exact East/North water and Nella soil. Borrows its atlas and strict
     /// cell selector; owns only cached sprites/tiles. Lower terrain is selected
     /// independently of a covering actor. No gameplay or crop time is advanced.</summary>
     public sealed class FlatPixelOpeningGroundCatalog : IDisposable
@@ -15,6 +15,7 @@ namespace CavesOfOoo.Rendering
         private const int Width = 16, Height = 24, Frames = 21;
         private const string NellaZoneID = "Overworld.11.8.0";
         private const string EastZoneID = "Overworld.12.10.0";
+        private const string NorthZoneID = "Overworld.11.9.0";
         private readonly FlatPixelFallbackCatalog _selector;
         private readonly Texture2D _atlas;
         private readonly Tile[] _tiles;
@@ -55,11 +56,11 @@ namespace CavesOfOoo.Rendering
         // below still proves the current graph/cell and visible owner authority.
         internal static bool IsSupportedZone(Zone zone)
             => ReferenceGladePlan.IsActive(zone)
-                || (zone?.ZoneID == NellaZoneID || zone?.ZoneID == EastZoneID)
+                || (zone?.ZoneID == NellaZoneID || zone?.ZoneID == EastZoneID || zone?.ZoneID == NorthZoneID)
                     && FlatPixelGreyboxCatalog.IsAdmitted(zone);
 
         /// <summary>Returns opaque native ground with an untinted white draw
-        /// color for visible opening cells, exact East water or Nella soil. Remembered cells,
+        /// color for visible opening cells, exact East/North water or Nella soil. Remembered cells,
         /// unsupported higher-priority ground and mixed coatings retain the
         /// caller's existing color/hazard presentation.</summary>
         public bool TryResolve(Zone zone, int x, int y, out Tile tile, out Color tint)
@@ -67,7 +68,7 @@ namespace CavesOfOoo.Rendering
             tile = null; tint = Color.white;
             if (_disposed || _atlas == null || _tiles == null || !IsSupportedZone(zone)) return false;
             bool opening = ReferenceGladePlan.IsActive(zone);
-            bool eastWaterOnly = zone.ZoneID == EastZoneID;
+            bool connectedWaterOnly = zone.ZoneID == EastZoneID || zone.ZoneID == NorthZoneID;
             var cell = zone.GetCell(x, y);
             // Visibility is checked before the selector or any live state read.
             if (!CurrentCell(zone, cell) || !cell.Explored || !cell.IsVisible
@@ -85,7 +86,7 @@ namespace CavesOfOoo.Rendering
                     // Rejected live coatings never fall through to dry ground.
                     // Nella borrows soil only; its live coatings retain the
                     // existing generic ground and hazard presentation.
-                    if ((!opening && !eastWaterOnly) || coatings.Count != 1 || coating.Id != "water") return false;
+                    if ((!opening && !connectedWaterOnly) || coatings.Count != 1 || coating.Id != "water") return false;
                     int mask = 0;
                     if (DisclosedDry(zone, x, y - 1)) mask |= 1;
                     if (DisclosedDry(zone, x + 1, y)) mask |= 2;
@@ -96,9 +97,9 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            // East borrows water only. Its dry fields, road and prepared soil
+            // East and North borrow water only. Their dry fields, road and prepared soil
             // retain their existing presentation after expiry, removal or travel.
-            if (eastWaterOnly) return false;
+            if (connectedWaterOnly) return false;
 
             bool field = false, fieldColor = false, road = false, prepared = false;
             int crops = 0;

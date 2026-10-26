@@ -154,7 +154,7 @@ namespace CavesOfOoo.Tests
             Assert.False(ground.TryResolve(zone, X, Y, out _, out _));
         }
 
-        [TestCase("Overworld.11.9.0")] [TestCase("Overworld.11.8.0")]
+        [TestCase("Overworld.11.7.0")] [TestCase("Overworld.11.8.0")]
         [TestCase("Overworld.12.11.0")] [TestCase(GleanersCellarBuilder.ZoneID)]
         [TestCase("Overworld.12.12.0")]
         public void OtherSitesDoNotAcquireEastWaterArt(string id)

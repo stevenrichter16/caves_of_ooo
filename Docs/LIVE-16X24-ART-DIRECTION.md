@@ -2250,3 +2250,27 @@ unchanged.29whitespace-only generatedmetas backed up/restored.No storagecleanup.
 Current2a8e71044Mac/Linux packages predate aftermath. Next: current North sole-
 water baseline and bounded shared bank reuse; preserve dry court/field, mixed
 liquids, ice, hidden neighbors and every other graph. No broad loot reskin.
+
+
+## Continuation — North water material continuity, 2026-10-26 11:49 UTC
+
+[North water pass](GRAPHICS-G3-NORTH-WATER.md) reuses the approved native bank
+frames for sole live water on exact admitted North. Actual capture, imagegen
+reinterpretation and part/state extraction led to a minimal scope change;
+no new artwork, entities or resource changes. Dry North terrain and mixed,
+frozen, hidden or foreign graph states retain their existing presentation.
+
+Native22expectedRED →299/299GREEN, zero skipped. Actual seed65 Continue at
+(58,16), crossing the PeatBog, F5/F6, garden exit and North return are captured.
+Both matched and reload comparisons retain205owners plus player/inventory/
+coating state exactly. Bog6905 retains70water; its source lease4 is distinct
+from the observed permanent surface coating. Independent review found no
+material issue. A bounded26.4s editor profile is retained without a device
+performance claim. Normal scene/preferences/save root restored;776normal
+saves,374approvedart/source and two foreign screenshots unchanged. No cleanup.
+
+Current2a8e71044Mac/Linux packages precede aftermath and North water. Next
+refresh dated packages, preserve all earlier outputs, then replay actual
+Mac Continue/corpse inventory/North crossing and save-return. Whole opening,
+cellar watered growth, secondary crops, regional kits, Linux execution and
+physical Deck remain open. Do not replace those gates with asset counts.
