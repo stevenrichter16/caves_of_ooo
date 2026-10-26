@@ -373,7 +373,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase("Overworld.11.9.0")]
         [TestCase("Overworld.11.10.1")]
-        [TestCase("Overworld.12.10.0")]
+        [TestCase("Overworld.12.12.0")]
         public void OtherGraphsDoNotBorrowTheOpeningGroundFamily(string id)
         {
             using (var f = new CatalogFixture())

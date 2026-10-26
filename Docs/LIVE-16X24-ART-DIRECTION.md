@@ -1,6 +1,6 @@
 # Live 16×24 art direction and integration
 
-Current status, 2026-10-26: the East meadow composition pass has bounded ordinary Unity Play acceptance on seeds 64 and 65 and 244/244 native passes. Current Mac/Linux packages at `8902d3731` precede this meadow change. The complete opening, remaining regional art, Linux execution and physical Deck acceptance remain open. Read the latest continuation below for the exact evidence and next water-edge pass.
+Current status, 2026-10-26: East water continuity has bounded ordinary Unity Play acceptance and229/229native passes, following the accepted meadow composition. Current Mac/Linux packages8902d3731precede both changes. Package parity is next, followed by wholeopening/six-zone and remaining regional review. Linuxexecution and physicalDeck remain unverified. Read the latest continuation and East water record for evidence.
 
 Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
@@ -2143,3 +2143,31 @@ neighbors, hazards and authoritative owners; do not broaden ground admission
 to every surface. The water handoff in the pass record is a plan, not implemented
 or accepted work. Preserve current Nella art pending a matched active/fallow
 scene review and its separate service-loss audit.
+
+
+## Continuation — 2026-10-26: East surface-water material continuity
+
+Bounded ordinary Unity Play accepted in [East water record](GRAPHICS-G3-EAST-WATER.md).
+The exact admitted East graph now reuses opening-water bank frames only for a
+sole live water coating; dry ground, other regions, mixed liquids, ice and
+hidden-neighbor disclosure remain unchanged. Existing artwork/source bytes are
+preserved. Built-in imagegen reinterpretation and part/state extraction used
+an actual earned-bank screenshot, with no concept pixels in production.
+
+Native RED36expectedfailures preceded the minimal ground-catalog change;
+GREEN229/229passed,0skips across six fixtures. Independent review found no
+material blocker. Actual1280×800 before/after shows the same earned(50,20)bank
+and(51,20)wet crossing.371observed owner tuples match by exactID; inventory,
+coatings,HP/drams/tick match before/after and F5/F6. RealDown5to kitchen(51,0),
+Up5return retains bank art and water footprint. Freeze/melt remains native
+rather than ordinary spell-input coverage.86.13s mixed editor profile includes
+crossing/save-load/idle time and is not a Deck or controlled performance claim.
+
+OwnedPlay ended; normalSampleScene/prefs/view/save root restored.776normal save
+files,374preexisting art/source files and2foreignscreenshots remain unchanged.
+No storage deletion. About427.5GiBfree. Exact owned source/evidence/doc changes
+are the main-publication unit; current packages8902d3731still predate meadow
+and water. Next refresh dated Mac/Linux packages, preserve all existing outputs,
+and check ordinary Mac Continue/new-game/crossing/save-return. Then resume the
+complete six-zone review and separate Nella service-loss audit; wholeopening,
+remaining regional art,Linuxexecution and physicalDeck acceptance remain open.

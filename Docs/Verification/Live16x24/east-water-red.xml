@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="36" result="Failed(Child)" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 10:04:22Z" end-time="2026-10-26 10:04:25Z" duration="3.0198191">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31799" result="Failed" site="Child" start-time="2026-10-26 10:04:22Z" end-time="2026-10-26 10:04:25Z" duration="3.019819" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39147" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31799" result="Failed" site="Child" start-time="2026-10-26 10:04:22Z" end-time="2026-10-26 10:04:25Z" duration="2.969579" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39148" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31799" result="Failed" site="Child" start-time="2026-10-26 10:04:22Z" end-time="2026-10-26 10:04:25Z" duration="2.925850" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39149" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31799" result="Failed" site="Child" start-time="2026-10-26 10:04:22Z" end-time="2026-10-26 10:04:25Z" duration="2.882826" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27855" name="EastSurfaceWaterPresentationTests" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-10-26 10:04:22Z" end-time="2026-10-26 10:04:25Z" duration="2.441042" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27894" name="ActualExpiryRepaintsNeighborBanksBelowAnUnchangedActorWithoutAFullPass" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.ActualExpiryRepaintsNeighborBanksBelowAnUnchangedActorWithoutAFullPass" methodname="ActualExpiryRepaintsNeighborBanksBelowAnUnchangedActorWithoutAFullPass" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1583911446" result="Failed" start-time="2026-10-26 10:04:22Z" end-time="2026-10-26 10:04:23Z" duration="0.300350" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests+PaintFixture.AssertNative (System.Int32 x, System.Int32 y, System.Int32 mask) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:367
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.ActualExpiryRepaintsNeighborBanksBelowAnUnchangedActorWithoutAFullPass () [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:240
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27895" name="AuthoredFreezeAndMeltRemoveThenRestoreNativeWaterAndRetainIceCue" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.AuthoredFreezeAndMeltRemoveThenRestoreNativeWaterAndRetainIceCue" methodname="AuthoredFreezeAndMeltRemoveThenRestoreNativeWaterAndRetainIceCue" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="2063488462" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.077901" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests+PaintFixture.AssertNative (System.Int32 x, System.Int32 y, System.Int32 mask) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:367
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.AuthoredFreezeAndMeltRemoveThenRestoreNativeWaterAndRetainIceCue () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:261
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27890" name="CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.108233" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27888" name="CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt(&quot;Player&quot;)" methodname="CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="895063110" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.050193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt (System.String blueprint) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27889" name="CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt(&quot;HealingTonic&quot;)" methodname="CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1494882603" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.052005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.CoveringForegroundPreservesItsOwnerWhileWaterRemainsBelowIt (System.String blueprint) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27887" name="CurrentGraphBiomePoiAndCanonicalAddressRemainAuthority" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.CurrentGraphBiomePoiAndCanonicalAddressRemainAuthority" methodname="CurrentGraphBiomePoiAndCanonicalAddressRemainAuthority" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1031888774" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.042447" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.CurrentGraphBiomePoiAndCanonicalAddressRemainAuthority () [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:170
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27859" name="DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.172834" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27856" name="DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast(64)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast(64)" methodname="DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="549702855" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.065768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The default presentation must route here without test injection.
+  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast (System.Int32 seed) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27857" name="DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast(65)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast(65)" methodname="DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1441583411" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.049778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The default presentation must route here without test injection.
+  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast (System.Int32 seed) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27858" name="DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast(200893250)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast(200893250)" methodname="DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1362327726" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.051166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The default presentation must route here without test injection.
+  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.DefaultWorldUsesTheExistingBankAtlasForTheActualAdmittedEast (System.Int32 seed) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27880" name="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.373012" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27876" name="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;RoadStone&quot;)" methodname="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="858434810" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.043246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt (System.String blueprint) [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27877" name="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;CropRow&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;CropRow&quot;)" methodname="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1918487418" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.063663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt (System.String blueprint) [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27878" name="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;RipeCropRow&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;RipeCropRow&quot;)" methodname="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="961612408" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.097887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt (System.String blueprint) [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27879" name="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;prepared-Grass&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt(&quot;prepared-Grass&quot;)" methodname="EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1260932496" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.163092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.EastWaterAdmissionDoesNotAdmitRoadFieldOrPreparedSoilArt (System.String blueprint) [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27869" name="HiddenCenterNeverRevealsCurrentWaterOrItsBanks" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.HiddenCenterNeverRevealsCurrentWaterOrItsBanks" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.108284" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27867" name="HiddenCenterNeverRevealsCurrentWaterOrItsBanks(False)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.HiddenCenterNeverRevealsCurrentWaterOrItsBanks(False)" methodname="HiddenCenterNeverRevealsCurrentWaterOrItsBanks" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1780284578" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.053596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.HiddenCenterNeverRevealsCurrentWaterOrItsBanks (System.Boolean explored) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27868" name="HiddenCenterNeverRevealsCurrentWaterOrItsBanks(True)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.HiddenCenterNeverRevealsCurrentWaterOrItsBanks(True)" methodname="HiddenCenterNeverRevealsCurrentWaterOrItsBanks" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="2097544456" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:23Z" duration="0.048375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.HiddenCenterNeverRevealsCurrentWaterOrItsBanks (System.Boolean explored) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27892" name="MissingOptionalArtKeepsExistingFlatWaterWithoutMutatingBorrowedResources" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MissingOptionalArtKeepsExistingFlatWaterWithoutMutatingBorrowedResources" methodname="MissingOptionalArtKeepsExistingFlatWaterWithoutMutatingBorrowedResources" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="386928086" result="Failed" start-time="2026-10-26 10:04:23Z" end-time="2026-10-26 10:04:24Z" duration="0.051572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MissingOptionalArtKeepsExistingFlatWaterWithoutMutatingBorrowedResources () [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:213
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27875" name="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.218254" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27870" name="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;oil&quot;)" methodname="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="862191955" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.042337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27871" name="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;ice&quot;)" methodname="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="425156075" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.043823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27872" name="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;brine&quot;)" methodname="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1971415787" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.043124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27873" name="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;duplicate-water&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;duplicate-water&quot;)" methodname="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="121150025" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.042412" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27874" name="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;expired-extra&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater(&quot;expired-extra&quot;)" methodname="MixedOrOtherCoatingsCannotBePortrayedAsCleanWater" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1885771952" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.041652" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.MixedOrOtherCoatingsCannotBePortrayedAsCleanWater (System.String fault) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:134
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27899" name="NativeBankGroundDoesNotSuppressOtherPrioritizedHazards" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.NativeBankGroundDoesNotSuppressOtherPrioritizedHazards" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.234991" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27896" name="NativeBankGroundDoesNotSuppressOtherPrioritizedHazards(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.NativeBankGroundDoesNotSuppressOtherPrioritizedHazards(&quot;charge&quot;,'*')" methodname="NativeBankGroundDoesNotSuppressOtherPrioritizedHazards" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="950200114" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.072388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests+PaintFixture.AssertNative (System.Int32 x, System.Int32 y, System.Int32 mask) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:367
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.NativeBankGroundDoesNotSuppressOtherPrioritizedHazards (System.String hazard, System.Char glyph) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27897" name="NativeBankGroundDoesNotSuppressOtherPrioritizedHazards(&quot;embers&quot;,'&quot;')" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.NativeBankGroundDoesNotSuppressOtherPrioritizedHazards(&quot;embers&quot;,'&quot;')" methodname="NativeBankGroundDoesNotSuppressOtherPrioritizedHazards" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="303727420" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.069328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests+PaintFixture.AssertNative (System.Int32 x, System.Int32 y, System.Int32 mask) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:367
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.NativeBankGroundDoesNotSuppressOtherPrioritizedHazards (System.String hazard, System.Char glyph) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27898" name="NativeBankGroundDoesNotSuppressOtherPrioritizedHazards(&quot;steam&quot;,'\'')" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.NativeBankGroundDoesNotSuppressOtherPrioritizedHazards(&quot;steam&quot;,'\'')" methodname="NativeBankGroundDoesNotSuppressOtherPrioritizedHazards" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1434829765" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.088319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 Greybox Atlas (placeholder) (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests+PaintFixture.AssertNative (System.Int32 x, System.Int32 y, System.Int32 mask) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:367
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.NativeBankGroundDoesNotSuppressOtherPrioritizedHazards (System.String hazard, System.Char glyph) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27866" name="OnlyDisclosedCoatingFreeNeighborAddsABank" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.232387" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27861" name="OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;hidden&quot;)" methodname="OnlyDisclosedCoatingFreeNeighborAddsABank" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="652165585" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.053470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27862" name="OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;unexplored&quot;)" methodname="OnlyDisclosedCoatingFreeNeighborAddsABank" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1008092461" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.043295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27863" name="OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;ice&quot;)" methodname="OnlyDisclosedCoatingFreeNeighborAddsABank" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="977016375" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.043241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27864" name="OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;oil&quot;)" methodname="OnlyDisclosedCoatingFreeNeighborAddsABank" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1847179258" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.042400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27865" name="OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;expired-record&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank(&quot;expired-record&quot;)" methodname="OnlyDisclosedCoatingFreeNeighborAddsABank" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1688036821" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.040837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OnlyDisclosedCoatingFreeNeighborAddsABank (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27886" name="OtherSitesDoNotAcquireEastWaterArt" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:25Z" duration="0.374390" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27881" name="OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.11.9.0&quot;)" methodname="OtherSitesDoNotAcquireEastWaterArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1276854915" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.041945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt (System.String id) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27882" name="OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.11.8.0&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.11.8.0&quot;)" methodname="OtherSitesDoNotAcquireEastWaterArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="776931366" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.040708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt (System.String id) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27883" name="OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.12.11.0&quot;)" methodname="OtherSitesDoNotAcquireEastWaterArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1447951545" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:24Z" duration="0.102025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt (System.String id) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27884" name="OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.11.10.1&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.11.10.1&quot;)" methodname="OtherSitesDoNotAcquireEastWaterArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="719203211" result="Failed" start-time="2026-10-26 10:04:24Z" end-time="2026-10-26 10:04:25Z" duration="0.137631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt (System.String id) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27885" name="OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.12.12.0&quot;)" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt(&quot;Overworld.12.12.0&quot;)" methodname="OtherSitesDoNotAcquireEastWaterArt" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1696639376" result="Failed" start-time="2026-10-26 10:04:25Z" end-time="2026-10-26 10:04:25Z" duration="0.046046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.OtherSitesDoNotAcquireEastWaterArt (System.String id) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27860" name="SixteenMasksUseOnlyDisclosedCardinalBanksAndNeverChangeState" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.SixteenMasksUseOnlyDisclosedCardinalBanksAndNeverChangeState" methodname="SixteenMasksUseOnlyDisclosedCardinalBanksAndNeverChangeState" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="160101418" result="Failed" start-time="2026-10-26 10:04:25Z" end-time="2026-10-26 10:04:25Z" duration="0.044761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.SixteenMasksUseOnlyDisclosedCardinalBanksAndNeverChangeState () [0x0006e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:96
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27893" name="WarmWaterSelectionAllocatesNothingAndPreservesTileState" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.WarmWaterSelectionAllocatesNothingAndPreservesTileState" methodname="WarmWaterSelectionAllocatesNothingAndPreservesTileState" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="1868097654" result="Failed" start-time="2026-10-26 10:04:25Z" end-time="2026-10-26 10:04:25Z" duration="0.045838" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.WarmWaterSelectionAllocatesNothingAndPreservesTileState () [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:227
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27891" name="WaterArtDoesNotInventAReservoirOrSpendAnExistingPool" fullname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.WaterArtDoesNotInventAReservoirOrSpendAnExistingPool" methodname="WaterArtDoesNotInventAReservoirOrSpendAnExistingPool" classname="CavesOfOoo.Tests.EastSurfaceWaterPresentationTests" runstate="Runnable" seed="797517804" result="Failed" start-time="2026-10-26 10:04:25Z" end-time="2026-10-26 10:04:25Z" duration="0.046786" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Current East clean-water ground is still excluded.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.Expect (System.Int32 mask) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:51
+at CavesOfOoo.Tests.EastSurfaceWaterPresentationTests.WaterArtDoesNotInventAReservoirOrSpendAnExistingPool () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EastSurfaceWaterPresentationTests.cs:201
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

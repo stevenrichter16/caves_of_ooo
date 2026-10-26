@@ -1,0 +1,11 @@
+var r=UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+if(r?.CurrentZone?.ZoneID!="Overworld.12.10.0")throw new System.InvalidOperationException("Expected real East before profiling.");
+var names=new[]{"COO.ZoneRenderer.LateUpdate","Main Thread","Draw Calls Count","Batches Count","Triangles Count"};
+var categories=new[]{Unity.Profiling.ProfilerCategory.Scripts,Unity.Profiling.ProfilerCategory.Internal,Unity.Profiling.ProfilerCategory.Render,Unity.Profiling.ProfilerCategory.Render,Unity.Profiling.ProfilerCategory.Render};
+var records=new System.Collections.Generic.List<Unity.Profiling.ProfilerRecorder>();
+for(int i=0;i<names.Length;i++)records.Add(Unity.Profiling.ProfilerRecorder.StartNew(categories[i],names[i],131072,Unity.Profiling.ProfilerRecorderOptions.Default|Unity.Profiling.ProfilerRecorderOptions.SumAllSamplesInFrame));
+System.AppDomain.CurrentDomain.SetData("EastWater.Recorders",records);
+System.AppDomain.CurrentDomain.SetData("EastWater.Names",names);
+System.AppDomain.CurrentDomain.SetData("EastWater.Start",System.DateTime.UtcNow);
+System.AppDomain.CurrentDomain.SetData("EastWater.Frame",UnityEngine.Time.frameCount);
+return new{started=System.DateTime.UtcNow,zone=r.CurrentZone.ZoneID,frames=131072,runInBackground=UnityEngine.Application.runInBackground};

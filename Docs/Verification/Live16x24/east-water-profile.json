@@ -1,0 +1,71 @@
+{
+  "label": "east-water-profile",
+  "start": "2026-10-26T10:08:06.725902Z",
+  "end": "2026-10-26T10:09:32.856215Z",
+  "elapsedSeconds": 86.130314,
+  "frames": 18550,
+  "zone": "Overworld.12.10.0",
+  "player": [
+    51,
+    20
+  ],
+  "hp": 30,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 18551,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 126231.80718020591,
+      "max": 68856167,
+      "p99": 282209
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 18551,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 4637065.762708209,
+      "max": 1027775709,
+      "p99": 21129958
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 18551,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 41.01040375181931,
+      "max": 42,
+      "p99": 42
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 18551,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 41.01040375181931,
+      "max": 42,
+      "p99": 42
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 18551,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 9347.61026359765,
+      "max": 9362,
+      "p99": 9362
+    }
+  ],
+  "bounds": "Editor interval includes one East water step, F5/F6 save/load and substantial idle/tool time, before the border return. Unwrapped samples; no controlled baseline, physical Deck, standalone or isolated-renderer attribution."
+}
