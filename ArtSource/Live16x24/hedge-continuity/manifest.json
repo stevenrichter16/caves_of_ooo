@@ -1,0 +1,499 @@
+{
+  "schema": 1,
+  "generator": "Tools/Live16x24/build_hedge_continuity.py",
+  "editableSource": "hedge-continuity.blend",
+  "editableCells": "source-cells.json",
+  "nativeSize": [
+    256,
+    24
+  ],
+  "frameSize": [
+    16,
+    24
+  ],
+  "frameCount": 16,
+  "cardinalBits": {
+    "N": 1,
+    "E": 2,
+    "S": 4,
+    "W": 8
+  },
+  "resource": "Sprites/Live16x24/hedge-continuity",
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "alpha": [
+    0,
+    255
+  ],
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "resourceSha256": "734ce9e8782cda60a353cc8288c73aa104eb328ad83257db0ef37a1b621c70d1",
+  "isolatedSource": "Tools/Live16x24/build_north_vegetation.py:make_frames()[1]",
+  "concept": "ArtSource/Live16x24/concepts/hedge-continuity/scene-v1.png",
+  "extraction": "ArtSource/Live16x24/concepts/hedge-continuity/README.md",
+  "actualCaptures": [
+    "Docs/Verification/Live16x24/hedge-before-court.png",
+    "Docs/Verification/Live16x24/hedge-before-corner.png"
+  ],
+  "contactCells": [
+    {
+      "x": 0,
+      "y": 0,
+      "mask": 2
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "mask": 10
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "mask": 10
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "mask": 10
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "mask": 10
+    },
+    {
+      "x": 5,
+      "y": 0,
+      "mask": 10
+    },
+    {
+      "x": 6,
+      "y": 0,
+      "mask": 8
+    },
+    {
+      "x": 8,
+      "y": 0,
+      "mask": 2
+    },
+    {
+      "x": 9,
+      "y": 0,
+      "mask": 10
+    },
+    {
+      "x": 10,
+      "y": 0,
+      "mask": 10
+    },
+    {
+      "x": 11,
+      "y": 0,
+      "mask": 8
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "mask": 6
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "mask": 10
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "mask": 10
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "mask": 10
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "mask": 12
+    },
+    {
+      "x": 6,
+      "y": 2,
+      "mask": 6
+    },
+    {
+      "x": 7,
+      "y": 2,
+      "mask": 10
+    },
+    {
+      "x": 8,
+      "y": 2,
+      "mask": 10
+    },
+    {
+      "x": 9,
+      "y": 2,
+      "mask": 12
+    },
+    {
+      "x": 11,
+      "y": 2,
+      "mask": 0
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "mask": 5
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "mask": 5
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "mask": 5
+    },
+    {
+      "x": 9,
+      "y": 3,
+      "mask": 5
+    },
+    {
+      "x": 0,
+      "y": 4,
+      "mask": 3
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "mask": 10
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "mask": 10
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "mask": 10
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "mask": 9
+    },
+    {
+      "x": 6,
+      "y": 4,
+      "mask": 5
+    },
+    {
+      "x": 8,
+      "y": 4,
+      "mask": 2
+    },
+    {
+      "x": 9,
+      "y": 4,
+      "mask": 15
+    },
+    {
+      "x": 10,
+      "y": 4,
+      "mask": 8
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "mask": 1
+    },
+    {
+      "x": 9,
+      "y": 5,
+      "mask": 1
+    }
+  ],
+  "frames": [
+    {
+      "mask": 0,
+      "id": "isolated-approved",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": true
+    },
+    {
+      "mask": 1,
+      "id": "hedge-N",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 2,
+      "id": "hedge-E",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 3,
+      "id": "hedge-NE",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 4,
+      "id": "hedge-S",
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 5,
+      "id": "hedge-NS",
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 6,
+      "id": "hedge-ES",
+      "rect": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 7,
+      "id": "hedge-NES",
+      "rect": [
+        112,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 8,
+      "id": "hedge-W",
+      "rect": [
+        128,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 9,
+      "id": "hedge-NW",
+      "rect": [
+        144,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 10,
+      "id": "hedge-EW",
+      "rect": [
+        160,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 11,
+      "id": "hedge-NEW",
+      "rect": [
+        176,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 12,
+      "id": "hedge-SW",
+      "rect": [
+        192,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 13,
+      "id": "hedge-NSW",
+      "rect": [
+        208,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 14,
+      "id": "hedge-ESW",
+      "rect": [
+        224,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    },
+    {
+      "mask": 15,
+      "id": "hedge-NESW",
+      "rect": [
+        240,
+        0,
+        16,
+        24
+      ],
+      "blueprint": "Hedge",
+      "footprint": [
+        1,
+        1
+      ],
+      "state": "Neutral live identity. No growth/damage animation; actual removal creates gap.",
+      "portrait": false
+    }
+  ],
+  "limits": "Source contacts are native geometry previews, not gameplay. Root owns runtime/disclosure/owner acceptance and actual Unity captures."
+}

@@ -2050,3 +2050,29 @@ retains the actual harvest and pan repair for subsequent comparisons. Separately
 reproduce Nella's initial threat exposure in seed 200893250 before changing
 placement; mortality is intentional. Full opening/regional art and package/device
 acceptance remain open. Continue from this bounded next scene refinement.
+
+
+## Continuation — connected hedge accepted, 2026-10-26 08:17 UTC
+
+[Hedge continuity](GRAPHICS-G3-HEDGE-CONTINUITY.md) completes actual baseline →
+imagegen reinterpretation/extraction → two native source passes → narrow runtime
+integration → native338/338 → independent review → ordinary Play. Existing hedge
+owners now form continuous ends/corners/runs through disclosed cardinal neighbors.
+The isolated approved image and every original source remain intact. Native RED
+was30/30 expected failures; the first337/338 GREEN exposed only an overlapping
+footprint test setup, corrected before final338/338 with zero skips.
+
+Actual1280×800 earned kitchen play shows matching court/corner views, examination,
+nonlethal hit, destruction, walking through the real gap, F5/F6 and a western
+chunk exit/return retaining the gap. No grants or geometry edits. One added shared
+atlas batch was observed (38→39draw calls); this is not a Deck timing benchmark.
+All776 normal saves and two unrelated PNGs are unchanged;42 prior art/source files
+are preserved. Normal scene/view/save settings restored;28 importer whitespace
+rewrites backed up/restored. About428GiB free, no cleanup/deletion.
+
+Next: fresh dated Mac/Linux current packages from this pushed source, including
+underfoot actions, hive/court and connected hedges, then actual Mac ordinary
+Continue/inventory/reader/movement/save-return. Existing dce87081d packages predate
+those changes. Preserve previous outputs. Full six-service/whole-opening art,
+regional kits, Linux execution and physical Deck remain open. Nella's service
+loss is still a separate scoped audit; do not declare mortality itself a bug.

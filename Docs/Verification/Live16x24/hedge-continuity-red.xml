@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Failed(Child)" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 07:50:48Z" end-time="2026-10-26 07:50:51Z" duration="2.76746">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="31740" result="Failed" site="Child" start-time="2026-10-26 07:50:48Z" end-time="2026-10-26 07:50:51Z" duration="2.767460" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39075" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="31740" result="Failed" site="Child" start-time="2026-10-26 07:50:48Z" end-time="2026-10-26 07:50:51Z" duration="2.695372" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10823" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39076" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31740" result="Failed" site="Child" start-time="2026-10-26 07:50:48Z" end-time="2026-10-26 07:50:51Z" duration="2.629750" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39077" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31740" result="Failed" site="Child" start-time="2026-10-26 07:50:48Z" end-time="2026-10-26 07:50:51Z" duration="2.568478" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28870" name="FlatPixelHedgeContinuityTests" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:51Z" duration="1.692233" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="28905" name="ActualDestructionClearsTheGapAndCapsBothSubmittedNeighborsIncrementally" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.ActualDestructionClearsTheGapAndCapsBothSubmittedNeighborsIncrementally" methodname="ActualDestructionClearsTheGapAndCapsBothSubmittedNeighborsIncrementally" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="779598124" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:49Z" duration="0.099567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.ActualDestructionClearsTheGapAndCapsBothSubmittedNeighborsIncrementally () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:221
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28878" name="AllSixteenCardinalShapesStayCachedAndIgnoreDiagonalsAndDistantHedges" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.AllSixteenCardinalShapesStayCachedAndIgnoreDiagonalsAndDistantHedges" methodname="AllSixteenCardinalShapesStayCachedAndIgnoreDiagonalsAndDistantHedges" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1953186085" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:49Z" duration="0.044181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.AllSixteenCardinalShapesStayCachedAndIgnoreDiagonalsAndDistantHedges () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:104
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28877" name="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:50Z" duration="0.323717" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28871" name="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.10.0&quot;)" methodname="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1967634321" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:49Z" duration="0.072904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A horizontal run still repeats the isolated hedge frame.
+  Expected: (x:160.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:16.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission (System.String id) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28872" name="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.10.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.10.1&quot;)" methodname="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="177850163" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:49Z" duration="0.049503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A horizontal run still repeats the isolated hedge frame.
+  Expected: (x:160.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:16.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission (System.String id) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28873" name="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.9.0&quot;)" methodname="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="40556371" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:49Z" duration="0.048408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A horizontal run still repeats the isolated hedge frame.
+  Expected: (x:160.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:16.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission (System.String id) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28874" name="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.8.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.11.8.0&quot;)" methodname="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1369843396" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:49Z" duration="0.049018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A horizontal run still repeats the isolated hedge frame.
+  Expected: (x:160.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:16.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission (System.String id) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28875" name="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.12.10.0&quot;)" methodname="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="359814236" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:49Z" duration="0.050671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A horizontal run still repeats the isolated hedge frame.
+  Expected: (x:160.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:16.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission (System.String id) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28876" name="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission(&quot;Overworld.12.11.0&quot;)" methodname="DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="630479373" result="Failed" start-time="2026-10-26 07:50:49Z" end-time="2026-10-26 07:50:50Z" duration="0.049446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A horizontal run still repeats the isolated hedge frame.
+  Expected: (x:160.00, y:0.00, width:16.00, height:24.00)
+  But was:  (x:16.00, y:0.00, width:16.00, height:24.00)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DefaultWorldActuallyUsesConnectedHedgeArtInsideExistingAdmission (System.String id) [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28906" name="DisclosureAndForegroundChangesRepaintExistingConnectionsWithoutFullRedraw" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DisclosureAndForegroundChangesRepaintExistingConnectionsWithoutFullRedraw" methodname="DisclosureAndForegroundChangesRepaintExistingConnectionsWithoutFullRedraw" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="324667586" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.044080" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DisclosureAndForegroundChangesRepaintExistingConnectionsWithoutFullRedraw () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:237
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28904" name="DisposalAndOldInjectedConstructorDoNotOwnOrLoadOptionalPixels" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DisposalAndOldInjectedConstructorDoNotOwnOrLoadOptionalPixels" methodname="DisposalAndOldInjectedConstructorDoNotOwnOrLoadOptionalPixels" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="2132056166" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.041076" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.DisposalAndOldInjectedConstructorDoNotOwnOrLoadOptionalPixels () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:213
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28891" name="InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.134699" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28888" name="InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole(0)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole(0)" methodname="InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="811689771" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.046635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole (System.Int32 group) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:145
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28889" name="InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole(1)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole(1)" methodname="InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1396807748" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.041820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole (System.Int32 group) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:145
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28890" name="InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole(2)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole(2)" methodname="InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="2053098899" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.042972" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidCenterAndNeighborCannotBorrowTheLiveHedgeRole (System.Int32 group) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:145
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28898" name="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.442244" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28892" name="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;visual-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;visual-variant&quot;)" methodname="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="597701692" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.042841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28893" name="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;glyph-variants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;glyph-variants&quot;)" methodname="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="595753228" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.069678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28894" name="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;missing-destructible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;missing-destructible&quot;)" methodname="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="146255126" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.099453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28895" name="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;foreign-destructible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;foreign-destructible&quot;)" methodname="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="895252258" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.141257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28896" name="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;gone&quot;)" methodname="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="710684940" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.043730" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28897" name="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;zero-hp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation(&quot;zero-hp&quot;)" methodname="InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1111383489" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.041914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.InvalidKnownHedgeCannotEscapeThroughOlderNativeVegetation (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28903" name="MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.111999" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28901" name="MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources(False)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources(False)" methodname="MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1819859257" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.043682" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources (System.Boolean malformed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:201
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28902" name="MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources(True)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources(True)" methodname="MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1280802699" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.065196" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.MissingOrMalformedOptionalGroupRetainsOldArtAndBorrowedResources (System.Boolean malformed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:201
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28887" name="OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.169863" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28884" name="OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem(&quot;hidden&quot;)" methodname="OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="646082301" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.074314" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28885" name="OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem(&quot;unexplored&quot;)" methodname="OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1087641546" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.043370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28886" name="OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem(&quot;covered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem(&quot;covered&quot;)" methodname="OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="366065816" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:50Z" duration="0.048760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.OnlyDisclosedSelectedNeighborsContributeAndRevealRestoresThem (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:128
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28899" name="PortraitStaysIsolatedAndWarmQueriesDoNotAllocateOrChangeSimulation" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.PortraitStaysIsolatedAndWarmQueriesDoNotAllocateOrChangeSimulation" methodname="PortraitStaysIsolatedAndWarmQueriesDoNotAllocateOrChangeSimulation" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1743672406" result="Failed" start-time="2026-10-26 07:50:50Z" end-time="2026-10-26 07:50:51Z" duration="0.051151" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.PortraitStaysIsolatedAndWarmQueriesDoNotAllocateOrChangeSimulation () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:168
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28883" name="SimilarObjectsNeverSupplyHedgeConnections" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-26 07:50:51Z" end-time="2026-10-26 07:50:51Z" duration="0.179493" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28879" name="SimilarObjectsNeverSupplyHedgeConnections(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections(&quot;Tree&quot;)" methodname="SimilarObjectsNeverSupplyHedgeConnections" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="12605271" result="Failed" start-time="2026-10-26 07:50:51Z" end-time="2026-10-26 07:50:51Z" duration="0.050252" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28880" name="SimilarObjectsNeverSupplyHedgeConnections(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections(&quot;Bush&quot;)" methodname="SimilarObjectsNeverSupplyHedgeConnections" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="587462002" result="Failed" start-time="2026-10-26 07:50:51Z" end-time="2026-10-26 07:50:51Z" duration="0.042418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28881" name="SimilarObjectsNeverSupplyHedgeConnections(&quot;BerryBush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections(&quot;BerryBush&quot;)" methodname="SimilarObjectsNeverSupplyHedgeConnections" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1024986975" result="Failed" start-time="2026-10-26 07:50:51Z" end-time="2026-10-26 07:50:51Z" duration="0.042317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28882" name="SimilarObjectsNeverSupplyHedgeConnections(&quot;StoneWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections(&quot;StoneWall&quot;)" methodname="SimilarObjectsNeverSupplyHedgeConnections" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1603836442" result="Failed" start-time="2026-10-26 07:50:51Z" end-time="2026-10-26 07:50:51Z" duration="0.041135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.SimilarObjectsNeverSupplyHedgeConnections (System.String blueprint) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:121
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28900" name="StaleMembersDuplicateIdsCurrentGraphAndRegionalAuthorityStayStrict" fullname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.StaleMembersDuplicateIdsCurrentGraphAndRegionalAuthorityStayStrict" methodname="StaleMembersDuplicateIdsCurrentGraphAndRegionalAuthorityStayStrict" classname="CavesOfOoo.Tests.FlatPixelHedgeContinuityTests" runstate="Runnable" seed="1407100432" result="Failed" start-time="2026-10-26 07:50:51Z" end-time="2026-10-26 07:50:51Z" duration="0.042820" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No disclosed-owner native hedge continuity adapter exists.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.Create (UnityEngine.Texture2D source, System.Boolean injectWorld) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:54
+at CavesOfOoo.Tests.FlatPixelHedgeContinuityTests.StaleMembersDuplicateIdsCurrentGraphAndRegionalAuthorityStayStrict () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHedgeContinuityTests.cs:183
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

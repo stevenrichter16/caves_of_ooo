@@ -1,0 +1,123 @@
+{
+  "scope": "Root-owned isolated Unity Play using ordinary keyboard inputs; test fixtures and concepts separate.",
+  "source_before": "87ebff4b1462c38b0ff5d9ba3f21ec93198c816a",
+  "seed": 200893250,
+  "fixture": "Docs/Verification/Live16x24/Fixtures/packaged-glade-east-earned-kitchen",
+  "steps": [
+    {
+      "capture": "hedge-before-court",
+      "inputs": "Normal C Continue from copied earned save",
+      "player": [
+        23,
+        9
+      ],
+      "tick": 4290
+    },
+    {
+      "capture": "hedge-before-corner",
+      "inputs": "Left16, Up5",
+      "player": [
+        7,
+        4
+      ],
+      "tick": 4500
+    },
+    {
+      "capture": "hedge-after-court",
+      "inputs": "Normal C Continue, same original earned save",
+      "player": [
+        23,
+        9
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4290
+    },
+    {
+      "capture": "hedge-after-corner",
+      "inputs": "Left16,Up5",
+      "player": [
+        7,
+        4
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4500
+    },
+    {
+      "capture": "hedge-examine",
+      "inputs": "C,Left; Left again after awaiting-direction observation; X",
+      "player": [
+        7,
+        4
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4500
+    },
+    {
+      "capture": "hedge-around-end",
+      "inputs": "Return closes reader;Down3,Left2,Up2",
+      "player": [
+        5,
+        5
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4570
+    },
+    {
+      "capture": "hedge-first-strike",
+      "inputs": "Right bump strike; player stays5,5; Hedge12057 HP10->1",
+      "player": [
+        5,
+        5
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4580
+    },
+    {
+      "capture": "hedge-broken-gap",
+      "inputs": "Right bump strike; Hedge12057 removed; player stays5,5",
+      "player": [
+        5,
+        5
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4590
+    },
+    {
+      "capture": "hedge-gap-reloaded",
+      "inputs": "Right2 traverses new gap;F5,Right,F6",
+      "player": [
+        7,
+        5
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4610
+    },
+    {
+      "capture": "hedge-western-exit",
+      "inputs": "Left8 traverses gap and exits west",
+      "player": [
+        79,
+        5
+      ],
+      "zone": "Overworld.11.11.0",
+      "tick": 4690
+    },
+    {
+      "capture": "hedge-returned-gap",
+      "inputs": "Right8 returns and traverses persistent gap",
+      "player": [
+        7,
+        5
+      ],
+      "zone": "Overworld.12.11.0",
+      "tick": 4770
+    }
+  ],
+  "bounds": [
+    "No teleport, grants, forced discovery, injected geometry or altered simulation state.",
+    "NPC timing may differ across replays; matching player/tick/geometry does not imply identical whole-world replay.",
+    "Native, current package, Linux execution and physical Deck are separate gates."
+  ],
+  "observer": "hedge-observer.cs.txt",
+  "baseline_observer_note": "Before snapshots omit submitted tile rects; after observer adds read-only submitted EnvironmentSpriteRenderer overlay identity."
+}

@@ -1,0 +1,43 @@
+{
+  "before": {
+    "at": "2026-10-26T07:24:26.279443Z",
+    "zone": "Overworld.12.11.0",
+    "player": [
+      23,
+      9
+    ],
+    "tick": 4290,
+    "stats": {
+      "batches": 38,
+      "drawCalls": 38,
+      "setPassCalls": 64,
+      "triangles": 8022,
+      "vertices": 16064,
+      "renderTextureCount": 35,
+      "renderTextureBytes": 101790360
+    },
+    "allocated": 529241089,
+    "scope": "Editor single observation; not a device frame-time benchmark"
+  },
+  "after": {
+    "at": "2026-10-26T08:07:21.781898Z",
+    "zone": "Overworld.12.11.0",
+    "player": [
+      23,
+      9
+    ],
+    "tick": 4290,
+    "stats": {
+      "batches": 39,
+      "drawCalls": 39,
+      "setPassCalls": 64,
+      "triangles": 8022,
+      "vertices": 16064,
+      "renderTextureCount": 35,
+      "renderTextureBytes": 101790360
+    },
+    "allocated": 639656206,
+    "scope": "Editor single observation; not a device frame-time benchmark"
+  },
+  "interpretation": "Same earned court23,9/tick4290:38->39 drawCalls/batches,64setPass,8022triangles,16064vertices unchanged. One additional shared hedge atlas batch observed. Editor allocations differ after native tests; no attributable memory, frame time or physicalDeck claim."
+}

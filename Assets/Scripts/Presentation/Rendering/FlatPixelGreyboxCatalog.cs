@@ -65,6 +65,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
         private FlatPixelOrchardCatalog _orchardArt;
+        private FlatPixelHedgeCatalog _hedgeArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -800,7 +801,10 @@ namespace CavesOfOoo.Rendering
             bool equipmentNative = equipment != null && equipment.TryResolve(owner, out art);
             var orchard = local ? OrchardArtFor(owner) : null;
             bool orchardNative = orchard != null && orchard.TryResolve(owner, out art);
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || orchardNative || allowNativeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            bool allowHedgeFallback = true;
+            var hedges = local ? HedgeArtFor(owner, fallback.Remembered, out allowHedgeFallback) : null;
+            bool hedgeNative = hedges != null && hedges.TryResolve(zone, x, y, out art);
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || orchardNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -831,6 +835,10 @@ namespace CavesOfOoo.Rendering
             var boundaries = BoundaryArtFor(zone, subject, false, out bool allowNativeFallback);
             if (!allowNativeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             if (boundaries != null && boundaries.TryGetSubjectSprite(subject, out sprite, out tint)) return true;
+            bool allowHedgeFallback = true;
+            var hedges = local ? HedgeArtFor(subject, false, out allowHedgeFallback) : null;
+            if (!allowHedgeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            if (hedges != null && hedges.TryGetSubjectSprite(subject, out sprite)) return true;
             var court = local ? WorkingCourtArtFor(zone) : null;
             if (court != null && court.TryResolve(zone, x, y, out var courtTile, out var courtFloor) && courtFloor == subject)
             { sprite = courtTile.sprite; return sprite != null; }
@@ -884,6 +892,22 @@ namespace CavesOfOoo.Rendering
             if (_orchardArt == null && _loadOptionalResources)
                 _orchardArt = new FlatPixelOrchardCatalog();
             return _orchardArt;
+        }
+
+        private FlatPixelHedgeCatalog HedgeArtFor(Entity owner, bool remembered, out bool allowNativeFallback)
+        {
+            allowNativeFallback = true;
+            if (!_loadOptionalResources && _hedgeArt == null || !FlatPixelHedgeCatalog.HasKnownRole(owner)) return null;
+            // Reject known invalid semantics even when the optional atlas is
+            // missing. Never inspect hidden live condition to update memory.
+            allowNativeFallback = !remembered && FlatPixelHedgeCatalog.IsEligible(owner);
+            if (!allowNativeFallback) return null;
+            if (_hedgeArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _hedgeArt = new FlatPixelHedgeCatalog(_glyphFallback);
+            }
+            return _hedgeArt;
         }
 
         private FlatPixelCellarFloorCatalog CellarFloorArtFor(Zone zone)
@@ -978,6 +1002,8 @@ namespace CavesOfOoo.Rendering
             _incidentalEquipmentArt = null;
             _orchardArt?.Dispose();
             _orchardArt = null;
+            _hedgeArt?.Dispose();
+            _hedgeArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);
