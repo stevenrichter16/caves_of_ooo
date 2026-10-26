@@ -1,0 +1,75 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "c220be2dc254452e9353cd782f72bacf",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793018404139,
+      "finished_unix_ms": 1793018408038,
+      "last_update_unix_ms": 1793018408038,
+      "progress": {
+        "completed": 18,
+        "total": 18,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793018407953,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.RepeatedControllerPressesClampAtFourAndReverseOneStepBackToOne",
+        "last_finished_unix_ms": 1793018408002,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.FirstControllerZoomAtDeckResolutionImmediatelyReachesTwoNativePixels",
+            "message": "  Expected: 2.0d +/- 0.0010000000474974513d\n  But was:  1.0d\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.FirstStepStartsFromTheActuallyDisplayedAutomaticScale",
+            "message": "  Expected: 3.0d +/- 0.0010000000474974513d\n  But was:  2.0d\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1280,800)",
+            "message": "  Expected: 2.0d +/- 0.0010000000474974513d\n  But was:  1.0d\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1281,801)",
+            "message": "  Expected: 2.0d +/- 0.0010000000474974513d\n  But was:  1.0d\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1920,1080)",
+            "message": "  Expected: 2.0d +/- 0.0010000000474974513d\n  But was:  1.0d\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.NativeZoomDoesNotRewriteTheLegacyWorldPreference",
+            "message": "  Expected: 3.0d +/- 0.0010000000474974513d\n  But was:  1.0d\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"ui\")",
+            "message": "  Expected: 25.6499996f\n  But was:  21.25f\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"fullscreen\")",
+            "message": "  Expected: 1.60000002f\n  But was:  1.38235295f\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"centered\")",
+            "message": "  Expected: (x:0.00, y:0.15, width:0.73, height:0.85)\n  But was:  (x:0.00, y:0.15, width:0.73, height:0.85)\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.RealKeyboardEdgesZoomOnceAndPageDownReversesWithoutATurn",
+            "message": "  Expected: 2.0d +/- 0.0010000000474974513d\n  But was:  1.0d\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.RepeatedControllerPressesClampAtFourAndReverseOneStepBackToOne",
+            "message": "  Expected: 2.0d +/- 0.0010000000474974513d\n  But was:  1.0d\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

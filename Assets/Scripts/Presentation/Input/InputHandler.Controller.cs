@@ -153,9 +153,7 @@ namespace CavesOfOoo.Rendering
         }
         private void ControllerZoom(float factor)
         {
-            if (CameraFollow == null) return;
-            CameraFollow.GameplayZoomMultiplier = Mathf.Clamp(CameraFollow.GameplayZoomMultiplier * factor, .5f, 1.5f);
-            CameraFollow.SnapToPlayer();
+            CameraFollow?.StepGameplayZoom(factor < 1f);
         }
         private void HandleControllerDirection()
         {

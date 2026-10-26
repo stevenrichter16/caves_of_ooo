@@ -1,6 +1,6 @@
 # Live 16×24 art direction and integration
 
-Current status, 2026-10-26: East water continuity has bounded ordinary Unity Play acceptance and229/229native passes, following the accepted meadow composition. Current Mac/Linux packages8902d3731precede both changes. Package parity is next, followed by wholeopening/six-zone and remaining regional review. Linuxexecution and physicalDeck remain unverified. Read the latest continuation and East water record for evidence.
+Current status, 2026-10-26: native world zoom now reaches visible1×–4× through PageUp/PageDown and LT+D-pad;23/23zoom tests and actual Unity Look/inventory/movement checks accepted. Default framing and approved art remain unchanged. Current packaged sourcee49047200includes aftermath/North water/cellar acceptance but precedes this zoom repair; refresh packages next. Freshsix-zone framing, fallback census, Linux execution and physicalDeck remain open. [Zoom record](GRAPHICS-G3-PLAYABLE-ZOOM.md).
 
 Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
@@ -2329,3 +2329,15 @@ ordinary combat feedback and finite native/fallback census. Current packages
 remain e49047200. Older saved Northgeometry is not a current generation defect.
 Secondary crops, remaining regions, Linux execution and physical Deck remain
 open. Keep approved art stable unless the fresh scene reveals a named problem.
+
+
+## Continuation — 2026-10-26 playable native zoom
+
+[Plan, RED/GREEN and actual captures](GRAPHICS-G3-PLAYABLE-ZOOM.md).
+The fresh scene review found controller zoom could never reach2×atDeck layout.
+Fixed real input access without changing approved art/default framing.
+23native cases pass;3broader log pointer preconditions also fail on unchanged
+code and are disclosed. Actual1280×800Game views verify2×, notice targeting,
+inventoryreturn and ordinarycamera tracking. Package newsource next, then use
+its ordinary zoom for six-zone scene review. Do not use oldsavedlayouts to
+judge currentgeneration; newseed224401440fixture is preserved.

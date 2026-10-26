@@ -66,6 +66,37 @@ namespace CavesOfOoo.Rendering
         private const float NativeTownMinimumHalfHeight = 13.75f;
         private bool _paused;
         private bool _centeredPopupOverlayActive;
+        // Zero retains automatic framing until the player explicitly zooms.
+        // Kept separate from legacy zoom so switching presentation is reversible.
+        private int _selectedNativePixelScale;
+
+        /// <summary>One visible zoom step without changing simulation or HUD size.</summary>
+        public void StepGameplayZoom(bool zoomIn)
+        {
+            if (_paused || CurrentZone == null || Player == null) return;
+            SnapToPlayer();
+            if (_camera == null) return;
+            bool authoredScene = _scenePresenter != null && _scenePresenter.PresentationVisible
+                && ReferenceEquals(_scenePresenter.CurrentZone, CurrentZone);
+            if (WorldTilemap != null && WorldPixelsPerUnit > 0
+                && !HasSpawnRingPresentation && !HasMorrowfastPresentation && !authoredScene
+                && _camera.pixelRect.height > 0f)
+            {
+                int current = Mathf.Max(1, Mathf.RoundToInt(_camera.pixelRect.height
+                    / (2f * _camera.orthographicSize * WorldPixelsPerUnit)));
+                // Unusually tight automatic framing can already exceed the manual
+                // cap. Never make "in" zoom out, or "out" skip several scales.
+                _selectedNativePixelScale = zoomIn
+                    ? (current >= 4 ? current : current + 1)
+                    : Mathf.Max(1, current - 1);
+            }
+            else
+            {
+                GameplayZoomMultiplier = Mathf.Clamp(GameplayZoomMultiplier
+                    * (zoomIn ? .85f : 1f / .85f), .5f, 1.5f);
+            }
+            SnapToPlayer();
+        }
 
         // Screen shake state
         private float _shakeTimeRemaining;
@@ -346,7 +377,8 @@ namespace CavesOfOoo.Rendering
             if (projectedWorld && WorldPixelsPerUnit > 0 && viewportPixels.height > 0f)
             {
                 float preferredScale = viewportPixels.height / (2f * _camera.orthographicSize * WorldPixelsPerUnit);
-                int scale = Mathf.Max(1, Mathf.FloorToInt(preferredScale + 0.0001f));
+                int scale = _selectedNativePixelScale > 0 ? _selectedNativePixelScale
+                    : Mathf.Max(1, Mathf.FloorToInt(preferredScale + 0.0001f));
                 pixelsPerWorldUnit = WorldPixelsPerUnit * scale;
                 _camera.orthographicSize = viewportPixels.height / (2f * pixelsPerWorldUnit);
             }

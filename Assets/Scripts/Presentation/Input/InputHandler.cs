@@ -842,6 +842,14 @@ namespace CavesOfOoo.Rendering
             if (TryOpenAnnouncement())
                 return;
 
+            // World-only: readers and other modal owners have already handled
+            // their page keys. Zoom is free and cannot also move/use an ability.
+            if (InputHelper.GetKeyDown(KeyCode.PageUp) || InputHelper.GetKeyDown(KeyCode.PageDown))
+            {
+                CameraFollow?.StepGameplayZoom(InputHelper.GetKeyDown(KeyCode.PageUp));
+                return;
+            }
+
             if (TryHandleSidebarLogScrollInput())
                 return;
 

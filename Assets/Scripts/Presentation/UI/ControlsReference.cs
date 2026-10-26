@@ -29,6 +29,7 @@ namespace CavesOfOoo.Rendering
             new Row("C", "interact / talk (pick a direction)"),
             new Row("G / ,", "pick up what's underfoot"),
             new Row("L", "look mode (Enter on a tile for actions)"),
+            new Row("Page Up / Page Down", "world zoom in/out (Mac: Fn+Up/Down; flat pixels: 1x-4x)"),
             new Row("X", "skills (spend skill points)"),
             new Row("M", "ability manager (bind abilities to slots)"),
             new Row("1-0", "use hotbar ability"),

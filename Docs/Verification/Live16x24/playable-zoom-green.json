@@ -1,0 +1,249 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "912eaf4f0e9149649ddfd78f73ca7bd6",
+      "status": "succeeded",
+      "mode": "EditMode",
+      "started_unix_ms": 1793018940357,
+      "finished_unix_ms": 1793018945624,
+      "last_update_unix_ms": 1793018945624,
+      "progress": {
+        "completed": 23,
+        "total": 23,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793018945520,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelZoomInputTests.ZoomPreservesHotbarSelectionEvenWhenSelectionKeyArrivesOnTheSameFrame",
+        "last_finished_unix_ms": 1793018945598,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": {
+        "mode": "EditMode",
+        "summary": {
+          "total": 23,
+          "passed": 23,
+          "failed": 0,
+          "skipped": 0,
+          "durationSeconds": 2.6646794,
+          "resultState": "Passed"
+        },
+        "results": [
+          {
+            "name": "ActualGamepadZoomChordUsesEdgesAndDoesNotMoveOrRepeatWhileHeld",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.ActualGamepadZoomChordUsesEdgesAndDoesNotMoveOrRepeatWhileHeld",
+            "state": "Passed",
+            "durationSeconds": 0.128658,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "AnnouncementPageKeysStillTurnPagesInsteadOfZoomingTheWorld",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.AnnouncementPageKeysStillTurnPagesInsteadOfZoomingTheWorld",
+            "state": "Passed",
+            "durationSeconds": 0.0627515,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "AutomaticScaleAboveManualCapNeverReversesZoomDirection",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.AutomaticScaleAboveManualCapNeverReversesZoomDirection",
+            "state": "Passed",
+            "durationSeconds": 0.0886286,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExistingSidebarPlusAndMinusDoNotBecomeZoomKeys(Equals)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.ExistingSidebarPlusAndMinusDoNotBecomeZoomKeys(Equals)",
+            "state": "Passed",
+            "durationSeconds": 0.0250989,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ExistingSidebarPlusAndMinusDoNotBecomeZoomKeys(Minus)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.ExistingSidebarPlusAndMinusDoNotBecomeZoomKeys(Minus)",
+            "state": "Passed",
+            "durationSeconds": 0.0249567,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FirstControllerZoomAtDeckResolutionImmediatelyReachesTwoNativePixels",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.FirstControllerZoomAtDeckResolutionImmediatelyReachesTwoNativePixels",
+            "state": "Passed",
+            "durationSeconds": 0.0506803,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "FirstStepStartsFromTheActuallyDisplayedAutomaticScale",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.FirstStepStartsFromTheActuallyDisplayedAutomaticScale",
+            "state": "Passed",
+            "durationSeconds": 0.0884505,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1280,800)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1280,800)",
+            "state": "Passed",
+            "durationSeconds": 0.1031775,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1281,801)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1281,801)",
+            "state": "Passed",
+            "durationSeconds": 0.1010554,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1920,1080)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(1920,1080)",
+            "state": "Passed",
+            "durationSeconds": 0.1005198,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(3840,2160)",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.IntegerZoomKeepsSquarePixelsAndAlignedEdgesAtCenterAndZoneCorners(3840,2160)",
+            "state": "Passed",
+            "durationSeconds": 0.1016993,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "LegacyContinuousZoomStillMultipliesAndClampsItsExistingRange",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.LegacyContinuousZoomStillMultipliesAndClampsItsExistingRange",
+            "state": "Passed",
+            "durationSeconds": 0.7481617,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "LookModeOwnsItsInputAndDoesNotChangeWorldZoom",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.LookModeOwnsItsInputAndDoesNotChangeWorldZoom",
+            "state": "Passed",
+            "durationSeconds": 0.0298465,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "MissingCameraControllerInputIsAHarmlessNoOp",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.MissingCameraControllerInputIsAHarmlessNoOp",
+            "state": "Passed",
+            "durationSeconds": 0.024632,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "NativeZoomDoesNotRewriteTheLegacyWorldPreference",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.NativeZoomDoesNotRewriteTheLegacyWorldPreference",
+            "state": "Passed",
+            "durationSeconds": 0.0874352,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"ui\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"ui\")",
+            "state": "Passed",
+            "durationSeconds": 0.0634155,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"fullscreen\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"fullscreen\")",
+            "state": "Passed",
+            "durationSeconds": 0.0619229,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"centered\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.PausedUiCannotZoomOrSilentlyChangeTheReturningWorld(\"centered\")",
+            "state": "Passed",
+            "durationSeconds": 0.0622536,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RealKeyboardEdgesZoomOnceAndPageDownReversesWithoutATurn",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.RealKeyboardEdgesZoomOnceAndPageDownReversesWithoutATurn",
+            "state": "Passed",
+            "durationSeconds": 0.1254161,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "RepeatedControllerPressesClampAtFourAndReverseOneStepBackToOne",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.RepeatedControllerPressesClampAtFourAndReverseOneStepBackToOne",
+            "state": "Passed",
+            "durationSeconds": 0.2997563,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SelectedScaleSurvivesOverlayResizeZoneTransitionAndLegacyRoundTrip",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.SelectedScaleSurvivesOverlayResizeZoneTransitionAndLegacyRoundTrip",
+            "state": "Passed",
+            "durationSeconds": 0.102533,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "SimultaneousZoomAndDirectionDoesNotAlsoSpendAMovementTurn",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.SimultaneousZoomAndDirectionDoesNotAlsoSpendAMovementTurn",
+            "state": "Passed",
+            "durationSeconds": 0.0575419,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          },
+          {
+            "name": "ZoomPreservesHotbarSelectionEvenWhenSelectionKeyArrivesOnTheSameFrame",
+            "fullName": "CavesOfOoo.Tests.FlatPixelZoomInputTests.ZoomPreservesHotbarSelectionEvenWhenSelectionKeyArrivesOnTheSameFrame",
+            "state": "Passed",
+            "durationSeconds": 0.07771,
+            "message": null,
+            "stackTrace": null,
+            "output": ""
+          }
+        ]
+      }
+    }
+  }
+}
