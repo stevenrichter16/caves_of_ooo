@@ -1,6 +1,6 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: ordinary zoom is delivered in packages47d678995.
+Current status, 2026-10-26: consolidated packages5a3c74359 now include the latest accepted source and ordinary zoom.
 Fresh scene review has now replaced North's underscore river shrine with a
 native16×24stone and matching reader.31focused+184regression tests pass;
 actual donation/save/load/border revisit are accepted. Nella's initial access
@@ -13,8 +13,8 @@ remains open: Nella’s conductive pipe/peat corner is now accepted with139 nati
 checks and actual wet entry/reload/revisit. Fresh East/Orven views exposed an
 initial cook mortality bug, now corrected with104 native checks and actual
 conversation/trade/reload/revisit. East’s wall/gate/peat art gaps are now accepted with249 native checks and actual
-inspection/open-close/crossing/save/revisit. Next are consolidated current packages. [Current scene review](GRAPHICS-G3-CURRENT-SCENE-REVIEW.md).
-Current packages predate shrine, placement and dialogue fixes; no new device/build claim.
+inspection/open-close/crossing/save/revisit. Actual packaged Mac gate/restart/reader/crossing, inventory and fresh-start checks pass; Linux archive independently verified. [Delivery record](Verification/Live16x24/packaged-current-scene-report.md).
+Next: complete the fresh connected journey in these packages. Full opening/regional art, Linux execution, physical Deck and performance acceptance remain open.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art
@@ -1928,3 +1928,19 @@ These are source/editor acceptances; packages47d678995 still predate them.
 Next finish fresh East/Orven whole views and remaining bounded six-zone review,
 then consolidate delivery. Do not call individual accepted corners a complete
 opening release or replace the accepted keeper/crops without a named defect.
+
+## Continuation — 2026-10-26 consolidated current-scene delivery
+
+Runtime5a3c74359 now has new dated Mac/Linux-current packages. Both build
+receipts succeed with0errors/4warnings; the181file Linux archive independently
+passes hash/size/mode verification. Fourteen actual Mac captures show ordinary
+Continue, gate close/save/quit/Continue, matching reader, reopen/cross, zoom,
+inventory and fresh Warden movement. [Complete record](Verification/Live16x24/packaged-current-scene-report.md).
+
+All48289tracked prebuild objects,776normal save files,374approved source/art
+files and both foreign PNGs are preserved. Complete logical standalone prefs
+restored, generated test saves archived, old current builds/archive unchanged.
+Storage inspection only. Integrated cold-eye source and independent package/
+visual reviews found no significant issue. Next use this consolidated build
+for fresh six-site services/scene acceptance; opening completion and physical
+Deck/performance remain open. Keep the graphics heartbeat active.

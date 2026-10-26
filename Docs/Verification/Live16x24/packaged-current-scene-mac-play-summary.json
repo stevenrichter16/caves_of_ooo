@@ -1,0 +1,236 @@
+{
+  "at_utc": "2026-10-26T17:49:23.628261+00:00",
+  "runtime_source_commit": "5a3c7435985f1842e162a7cfbfb7f38bd554eaac",
+  "platform": "macOS / Metal",
+  "app": "Builds/Verification/2026-10-26-current-scene-5a3c74359-current/CavesOfOoo.app",
+  "input": "Ordinary keyboard through native CUA; no runtime state injection",
+  "images": "14 original CUA JPEGs with1280x800 viewport plus56px native Mac window chrome. No crop, resize, compositing or imagegen.",
+  "fixture": "Docs/Verification/Live16x24/Fixtures/current-scene-earned-gate224401440",
+  "fixture_copied_unchanged": true,
+  "presentation_override": false,
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-01-ordinary-boot.jpg",
+      "bytes": 207261,
+      "sha256": "c49d7c107b74761ff18c2791d6991f5bd7bfd95633287568be9af5b50cbcf721",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Ordinary boot, no presentation override, flat opening and C/continue prompt."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-02-earned-east-gate.jpg",
+      "bytes": 179281,
+      "sha256": "4e983106c493d559ff02e3bf369f6ed00304dd812dcf587805a9f091fad4d7a2",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "C Continue unchanged earned gate fixture at55,19HP32tick3500; PageUp twice reaches3x."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-03-gate-closed.jpg",
+      "bytes": 172748,
+      "sha256": "21ee61b06131728de5a37495eadef9195c3137c38624acb0bc1f4c39d90851d5",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "C then Left selects adjacent gate; Return closes it. Native closed frame and restricted visibility."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-04-saved-closed.jpg",
+      "bytes": 173468,
+      "sha256": "fd669836e89a86a592b9ed72997dc08f7babdddb86fe21ac6e18fcca25b12a6f",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "F5 reports Game saved; Quick metadata tick3510HP32East. Gate remains closed."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-05-relaunch-closed.jpg",
+      "bytes": 158143,
+      "sha256": "366bde59be9d42e00639b6673823d3dcca715c53c31c420301af189a71703a05",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Quit/relaunch/C at55,19HP32; closed gate retained, zoom starts at automatic1x."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-06-gate-examine.jpg",
+      "bytes": 239539,
+      "sha256": "fdad83cc336df6bb6893a69383410b22688d5f7acb339a66fad6c1460b1e784f",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "PageUp twice, C/Left/x opens matching closed gate portrait with Structure10/10."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-07-gate-reopened.jpg",
+      "bytes": 194487,
+      "sha256": "bd8d7606187ee3de64797ec26689630f3f042de1eee0aa273c64f7d92e4c6f3b",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Escape/C/Left/Return opens gate; open frame and visible pen interior."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-08-through-gate.jpg",
+      "bytes": 192245,
+      "sha256": "6f6b35614d8949e7049c34974f32488d17dcfce39e534ab7e3a8f0e7bc63ad3d",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Left twice crosses gate from55,19 to53,19; HP32, native grazer visible."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-09-inventory.jpg",
+      "bytes": 175732,
+      "sha256": "3ed167c3a6368cad8d4fc0bae50298986b59291129fbbfe29c6aa0a321e446ee",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "I opens fullscreen equipment; long sword1d8, buckler1AV+1DV, far-right[E]."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-10-pack-weapon.jpg",
+      "bytes": 201605,
+      "sha256": "f9697178d81f43aff9512dd26b8243ffd2013ef07f5b33f618d0a44a7eff8a80",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Tab selects Inventory: matching native sword portrait, details and bounded ellipsis/F1."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-11-after-inventory-save.jpg",
+      "bytes": 179623,
+      "sha256": "b3dc61d4866194aa2e84ccace3d0f279df26229ac8663b235de45acbd38b8dab",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Escape returns world, PageDown from3x to2x, F5 saves tick3540HP32 at53,19."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-12-new-game-picker.jpg",
+      "bytes": 261286,
+      "sha256": "c7d7dcbaa62593c299664dc80fa8f1e08147ac93d441c07653dbc795b66d8275",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "Quit/relaunch/N opens ordinary seven-build starter picker."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-13-new-warden.jpg",
+      "bytes": 227205,
+      "sha256": "6bda3e6c364ebe396ae519511f614e97c7bbfef3cdd66d82105db4d3046ed962",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "5 then Return begins fresh Warden at40,12HP40; initial checkpoint and native flat opening."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-14-new-game-movement.jpg",
+      "bytes": 208079,
+      "sha256": "738460157be447a4450b61afc5d643bb2372017fee839ad28fd57ea1db4489e9",
+      "size": [
+        1280,
+        856
+      ],
+      "action": "PageUp to2x, Down reaches40,13, F5 saves tick20HP40. Brinna NPC combat log present; safety outcome unassessed."
+    }
+  ],
+  "saved_metadata": {
+    "packaged-gate-closed-Quick.json": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "b343f331bf5d40a189c86e4aaba9aa47",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.12.10.0",
+      "ActiveZoneDisplayLabel": "Overworld.12.10.0",
+      "Turn": 3510,
+      "SaveTimestampUtc": "2026-10-26T17:42:53.3158560Z",
+      "HPSummary": "32/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "packaged-gate-traversed-Quick.json": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "b343f331bf5d40a189c86e4aaba9aa47",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.12.10.0",
+      "ActiveZoneDisplayLabel": "Overworld.12.10.0",
+      "Turn": 3540,
+      "SaveTimestampUtc": "2026-10-26T17:45:02.9907410Z",
+      "HPSummary": "32/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "packaged-fresh-Quick.json": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "2d7e9e30d7d249b3b1958bc7a3431229",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.11.10.0",
+      "ActiveZoneDisplayLabel": "Overworld.11.10.0",
+      "Turn": 20,
+      "SaveTimestampUtc": "2026-10-26T17:46:04.1027520Z",
+      "HPSummary": "40/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    }
+  },
+  "logs": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-earned-Player.log",
+      "sha256": "aec261546a21168bbbc933e5b6b17d7727f42a5b7e16fa7a45ab0eeef7e7874c",
+      "fatal_or_exception_lines": [],
+      "known_shutdown_notices": [
+        "Thread 0x16d763000 may have been prematurely finalized",
+        "Thread 0x16c50b000 may have been prematurely finalized",
+        "Thread 0x16c6af000 may have been prematurely finalized",
+        "Thread 0x16c623000 may have been prematurely finalized",
+        "Thread 0x16c597000 may have been prematurely finalized",
+        "Thread 0x16c73b000 may have been prematurely finalized",
+        "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-current-scene-fresh-Player.log",
+      "sha256": "ad3c3e1c7023ec42faecae2cac8b5730a409ec20af8c1bd61bbf68ca1b9834bd",
+      "fatal_or_exception_lines": [],
+      "known_shutdown_notices": [
+        "Thread 0x16f9e3000 may have been prematurely finalized",
+        "Thread 0x16e78b000 may have been prematurely finalized",
+        "Thread 0x16e8a3000 may have been prematurely finalized",
+        "Thread 0x16e817000 may have been prematurely finalized",
+        "Thread 0x16e6ff000 may have been prematurely finalized",
+        "Thread 0x16e92f000 may have been prematurely finalized",
+        "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+      ]
+    }
+  ],
+  "limits": [
+    "Screenshot endpoints and save metadata, not full-frame video or controller feel.",
+    "No Linux execution, physical Deck, benchmark or complete six-zone acceptance.",
+    "Fresh Brinna/Marlback combat is not assessed by one movement.",
+    "Existing thread-finalization and ComputeBuffer shutdown notices remain; no fatal or exception line found."
+  ]
+}

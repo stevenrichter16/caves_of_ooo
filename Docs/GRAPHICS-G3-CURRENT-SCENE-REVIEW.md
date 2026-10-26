@@ -2,8 +2,8 @@
 
 Status, 2026-10-26: river shrine art, Nella southern-approach placement
 exact-speaker native dialogue portraits, Nella's conductive bog corner, kitchen's initial staffed access and East's stone/gate/peat fixtures accepted in bounded ordinary Unity Play. Fresh six-zone review remains
-incomplete. Packaged runtime47d678995/delivery record39f68b6b3 predate these
-source changes. This pass continues the unchanged seed224401440
+incomplete. Consolidated runtime5a3c74359 now contains these source changes;
+bounded Mac checks and Linux archive verification pass. This scene pass continues the unchanged seed224401440
 checkpoint earned through the current package's opening/cellar route. It does
 not replace that history with a synthetic full map or forced art scene.
 
@@ -409,3 +409,19 @@ storage inspection only. Continue the existing graphics heartbeat.
 
 
 Latest continuation: East fixtures are accepted in actual84–97 with249 native checks. See [East/kitchen review](GRAPHICS-G3-EAST-KITCHEN-REVIEW.md). Save/reload and border return preserve exact owner/state. Consolidated current Mac/Linux package refresh is next; existing47d678995 outputs are preserved. Cudgel loot remains a named truthful glyph fallback; whole-world/Deck coverage remains open.
+
+## Consolidated package acceptance — 2026-10-26
+
+[Mac screenshots, source freeze, archive and restoration](Verification/Live16x24/packaged-current-scene-report.md).
+New5a3c74359 packages include all source changes above. Ordinary Mac Continue
+from the unchanged earned gate checkpoint, close/F5/quit/Continue, matching
+reader, open/cross, inventory return and fresh Warden movement pass. Independent
+source/archive/actual visual review found no significant issue. This updates
+the delivery gap, not the complete-scene status.
+
+Next: fresh current-package six-site services and whole-view review with the
+real ordinary paths, then remaining item/state/feedback gaps and regional kits.
+Loose Cudgel loot remains a named glyph fallback. The fresh-start Brinna combat
+log is an observation requiring a longer route, not proof of a new mortality
+bug or kitchen safety. Normal saves, preferences, previous builds and unrelated
+work are preserved; storage inspection only. Continue the active heartbeat.

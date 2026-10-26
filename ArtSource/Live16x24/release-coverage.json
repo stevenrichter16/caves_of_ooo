@@ -771,13 +771,14 @@
     {
       "id": "target_platform",
       "status": "current_linux_package_built_verified_physical_deck_open",
-      "detail": "Current e49047200 Mac/Linux builds successful0errors4warnings;181archivefiles verified. Actual Mac North crossing/return, corpse carry/drop/restart, cellar watered growth/replant/revisit accepted. Linux execution and physical Deck remain unverified.",
+      "detail": "Consolidated5a3c74359 Mac/Linux builds succeeded0errors4warnings;181archivefiles independently verified. Actual Mac gate close/restart/Continue/examine/open/cross,inventory and fresh Warden movement accepted. Linux execution,physicalDeck and performance remain unverified.",
       "refs": [
         "Docs/GRAPHICS-G1-PACKAGED-DELIVERY.md",
         "Docs/Verification/Live16x24/packaged-meadow-water-report.md",
         "Docs/Verification/Live16x24/packaged-meadow-water-linux-archive.json",
         "Docs/Verification/Live16x24/packaged-aftermath-north-report.md",
-        "Docs/GRAPHICS-G3-CELLAR-GROWTH.md"
+        "Docs/GRAPHICS-G3-CELLAR-GROWTH.md",
+        "Docs/Verification/Live16x24/packaged-current-scene-report.md"
       ]
     },
     {
@@ -837,9 +838,9 @@
   },
   "latest_observation": {
     "date": "2026-10-26",
-    "status": "east_fixture_reuse_accepted_boundedly",
-    "evidence": "Docs/GRAPHICS-G3-EAST-KITCHEN-REVIEW.md",
-    "actual": "Unity84\u201397: native stone/peat/gate, matching readers, real gate open/close/passage, identical F5/F6 state and same-owner border revisit.249 native checks pass. Existing packages remain47d678995."
+    "status": "current_scene_packages_bounded_mac_accepted_linux_archive_verified",
+    "evidence": "Docs/Verification/Live16x24/packaged-current-scene-report.md",
+    "actual": "Both builds0errors4warnings;181archivefiles independently verified.14 original Mac captures show real gate/restart/reader/crossing,inventory and freshmovement.48289tracked objects restored to prebuild state; normal saves/prefs and oldcurrent builds preserved. Full opening/Deck remains open."
   },
   "current_environment_blocker": {
     "status": "none_for_current_editor_and_mac_work",
@@ -852,31 +853,30 @@
     ]
   },
   "packaged_delivery": {
-    "source_commit": "47d6789955b6f84a5e9a9168e6317f4ef2086fd4",
-    "linux_archive": "Builds/SteamDeck/2026-10-26-playable-zoom-47d678995-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "sha256": "6751aa6177bbe7999939955fa2ba5bfb6b550f2bb812aec4aba4ec267e562262",
-    "archive_bytes": 128744597,
-    "regular_files": 188,
-    "mac_smoke": "ordinary Continue,1x2x4x wide,inventoryreturn,cellarstairsdescentreturn,savequitrelaunchContinue",
+    "source_commit": "5a3c7435985f1842e162a7cfbfb7f38bd554eaac",
+    "linux_archive": "Builds/SteamDeck/2026-10-26-current-scene-5a3c74359-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "sha256": "63736cde4c503bb7a055be9edcca3afd7b91916d1773f86150d7b05609f3cd2c",
+    "archive_bytes": 128671917,
+    "regular_files": 181,
+    "mac_smoke": "ordinary boot/Continue, gate close/F5/quit/relaunch/Continue, matching Examine, reopen/cross, 1x2x3x, equipment/pack return, fresh Warden/movement/F5",
     "linux_execution": "unverified",
     "physical_deck": "unverified",
-    "limits": "Bounded fresh-checkpoint Mac path. Uncompressed playerdata, gzip transferarchive. Fullsix-zone/regional/deviceperformance remains open.",
+    "limits": "14 actual Mac endpoints; latest accepted source consolidated. LZ4 player data; no performance benchmark or complete six-zone/regional acceptance. Prior current outputs preserved.",
     "refs": [
-      "Docs/Verification/Live16x24/packaged-playable-zoom-report.md",
-      "Docs/Verification/Live16x24/packaged-playable-zoom-linux-archive.json",
-      "Docs/Verification/Live16x24/packaged-playable-zoom-mac-play-summary.json",
-      "Docs/Verification/Live16x24/packaged-playable-zoom-player-restored.json",
-      "Docs/Verification/Live16x24/packaged-playable-zoom-editor-restored.json",
-      "Docs/Verification/Live16x24/packaged-playable-zoom-project-restored.json",
-      "Docs/Verification/Live16x24/packaged-playable-zoom-independent-review.json"
+      "Docs/Verification/Live16x24/packaged-current-scene-report.md",
+      "Docs/Verification/Live16x24/packaged-current-scene-linux-archive.json",
+      "Docs/Verification/Live16x24/packaged-current-scene-mac-play-summary.json",
+      "Docs/Verification/Live16x24/packaged-current-scene-project-restored.json",
+      "Docs/Verification/Live16x24/packaged-current-scene-editor-restored.json",
+      "Docs/Verification/Live16x24/packaged-current-scene-independent-review.json"
     ]
   },
   "next_scoped_work": {
-    "id": "current_scene_consolidated_packages",
-    "status": "source_reviewed_freeze_then_build",
-    "next": "Push exact reviewed source; build new dated Mac/Linux-current including shrine,Nella access/dialogue/corner,kitchen initial safety and East fixtures. Preserve existing builds/saves. Ordinary Mac earned gate Continue/open-close/savequitContinue, zoom and inventory; fresh new-game smoke. Verify archives/restoration; no physicalDeck claim.",
-    "implementation_plan": "Docs/GRAPHICS-G3-EAST-KITCHEN-REVIEW.md",
-    "delivery_limits": "Whole opening/regional coverage, new package acceptance and physical Deck remain open."
+    "id": "current_package_full_six_site_acceptance",
+    "status": "ready_for_ordinary_new_game_route",
+    "next": "Use consolidated5a3c74359 to test fresh six-site services,1x2x scene framing, save/quit/Continue and returns. Preserve failures. Address named visible state/art/route gaps from those captures; loose Cudgel remains glyph fallback. Keep ordinary gameplay evidence separate from concepts and test counts.",
+    "implementation_plan": "Docs/GRAPHICS-G3-CURRENT-SCENE-REVIEW.md",
+    "delivery_limits": "No complete opening/regional or physical Deck acceptance yet. Storage inspection only; preserve current and prior builds/saves/source."
   },
   "popup_raster_continuation": {
     "date": "2026-10-26",
@@ -1133,6 +1133,12 @@
     {
       "date": "2026-10-26",
       "observation": "Current seed224401440: native river shrine accepted; Nella southern approach now passes actual contact/trade/save/load/revisit after radius-only replay failure.104 distinct native placement cases pass. Capture34 has465disclosed cells/51selected native rows/0unmatched. Full six-zone scene acceptance remains open."
+    },
+    {
+      "date": "2026-10-26",
+      "status": "east_fixture_reuse_accepted_boundedly",
+      "evidence": "Docs/GRAPHICS-G3-EAST-KITCHEN-REVIEW.md",
+      "actual": "Unity84\u201397: native stone/peat/gate, matching readers, real gate open/close/passage, identical F5/F6 state and same-owner border revisit.249 native checks pass. Existing packages remain47d678995."
     }
   ],
   "packaged_delivery_history": [
@@ -1255,6 +1261,26 @@
         "Docs/Verification/Live16x24/packaged-aftermath-north-editor-restored.json",
         "Docs/Verification/Live16x24/packaged-aftermath-north-project-restored.json",
         "Docs/Verification/Live16x24/packaged-aftermath-north-independent-review.json"
+      ]
+    },
+    {
+      "source_commit": "47d6789955b6f84a5e9a9168e6317f4ef2086fd4",
+      "linux_archive": "Builds/SteamDeck/2026-10-26-playable-zoom-47d678995-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "sha256": "6751aa6177bbe7999939955fa2ba5bfb6b550f2bb812aec4aba4ec267e562262",
+      "archive_bytes": 128744597,
+      "regular_files": 188,
+      "mac_smoke": "ordinary Continue,1x2x4x wide,inventoryreturn,cellarstairsdescentreturn,savequitrelaunchContinue",
+      "linux_execution": "unverified",
+      "physical_deck": "unverified",
+      "limits": "Bounded fresh-checkpoint Mac path. Uncompressed playerdata, gzip transferarchive. Fullsix-zone/regional/deviceperformance remains open.",
+      "refs": [
+        "Docs/Verification/Live16x24/packaged-playable-zoom-report.md",
+        "Docs/Verification/Live16x24/packaged-playable-zoom-linux-archive.json",
+        "Docs/Verification/Live16x24/packaged-playable-zoom-mac-play-summary.json",
+        "Docs/Verification/Live16x24/packaged-playable-zoom-player-restored.json",
+        "Docs/Verification/Live16x24/packaged-playable-zoom-editor-restored.json",
+        "Docs/Verification/Live16x24/packaged-playable-zoom-project-restored.json",
+        "Docs/Verification/Live16x24/packaged-playable-zoom-independent-review.json"
       ]
     }
   ],
@@ -1420,6 +1446,13 @@
       "next": "Freeze reviewedsource, builddatedMac/Linux-current andtestactualMacPageUp/Down/menus. Then freshcurrentseed224401440six-zonecomposition/finiteencounteredfallbackreview.",
       "implementation_plan": "Docs/GRAPHICS-G3-PLAYABLE-ZOOM.md",
       "delivery_limits": "Existingcurrente490packageprecedeszoom;Linuxexecution/physicalDeck/allregionsopen."
+    },
+    {
+      "id": "current_scene_consolidated_packages",
+      "status": "source_reviewed_freeze_then_build",
+      "next": "Push exact reviewed source; build new dated Mac/Linux-current including shrine,Nella access/dialogue/corner,kitchen initial safety and East fixtures. Preserve existing builds/saves. Ordinary Mac earned gate Continue/open-close/savequitContinue, zoom and inventory; fresh new-game smoke. Verify archives/restoration; no physicalDeck claim.",
+      "implementation_plan": "Docs/GRAPHICS-G3-EAST-KITCHEN-REVIEW.md",
+      "delivery_limits": "Whole opening/regional coverage, new package acceptance and physical Deck remain open."
     }
   ]
 }

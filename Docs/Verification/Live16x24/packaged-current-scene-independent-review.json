@@ -1,0 +1,47 @@
+{
+  "reviewer": "/root/current_build_plan",
+  "scope": "Independent stream archive verification plus individual review of all14 actual package screenshots",
+  "source_commit": "5a3c7435985f1842e162a7cfbfb7f38bd554eaac",
+  "archive": {
+    "regular_files": 181,
+    "checksum_entries": 180,
+    "hash_size_mode_disk_receipt_match": true,
+    "sha256": "63736cde4c503bb7a055be9edcca3afd7b91916d1773f86150d7b05609f3cd2c",
+    "bytes": 128671917,
+    "safe_paths_no_links_duplicates": true,
+    "launcher_readme_match_frozen_source": true,
+    "elf64_x86_64": true,
+    "executable_modes": "0755 for launcher, executable and UnityPlayer.so",
+    "credit_sections": 6,
+    "license_texts": 5
+  },
+  "visual": {
+    "captures_reviewed": 14,
+    "blocking_visual_findings": [],
+    "observed": [
+      "Gate open/closed and quit/Continue persistence",
+      "Matching native examine portrait",
+      "Damage/defense and far-right[E] in equipment and pack",
+      "Return to zoomed world",
+      "Fresh Warden starts and moves"
+    ]
+  },
+  "limits": [
+    "Linux execution, physical Deck and performance untested",
+    "Brinna combat log14 unassessed; no kitchen safety claim",
+    "Endpoints only; not complete opening/world acceptance"
+  ],
+  "integrated_source_review": {
+    "reviewer": "/root/seed65_route_audit",
+    "range": "47d678995..5a3c74359",
+    "significant_findings": [],
+    "reviewed": [
+      "catalog identity/disclosure and tile/sprite disposal",
+      "exact-speaker conversation/trade/close lifecycle",
+      "cold-generation authority and saved-layout preservation",
+      "exact kitchen slot provenance",
+      "door/lock state and sole-water/coated-peat semantics"
+    ],
+    "new_tests_requested": false
+  }
+}
