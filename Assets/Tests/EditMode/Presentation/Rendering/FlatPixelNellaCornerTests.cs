@@ -95,12 +95,13 @@ namespace CavesOfOoo.Tests
             Assert.False(value.BlocksMovement); Assert.False(zone.GetCell(X, Y).BlocksMovement());
         }
 
-        [Test] public void AllSixteenPipeMasksCacheExactCardinalOwnersAndIgnoreDiagonals()
+        [TestCase(Plot)] [TestCase("Overworld.11.9.0")] [TestCase("Overworld.12.10.0")]
+        public void AllSixteenPipeMasksCacheExactCardinalOwnersAndIgnoreDiagonals(string id)
         {
             Create(atlas); var seen = new HashSet<Tile>();
             for (int mask = 0; mask < 16; mask++)
             {
-                zone = Attach(Plot); var center = Add(); Neighbors(mask); Add(x: X + 1, y: Y + 1); Add(x: X + 2);
+                zone = Attach(id); var center = Add(); Neighbors(mask); Add(x: X + 1, y: Y + 1); Add(x: X + 2);
                 var tile = Expect(mask); Assert.True(seen.Add(tile)); Assert.AreSame(tile, Expect(mask));
                 Assert.True(portrait(zone, center, X, Y, out var sprite)); Assert.AreSame(tile.sprite, sprite);
                 Assert.False(zone.GetCell(X, Y).BlocksMovement()); Assert.IsNull(center.GetPart<DestructiblePart>(), "CopperPipe has no invented HP prerequisite.");
@@ -203,7 +204,7 @@ namespace CavesOfOoo.Tests
             Assert.False(query(zone, X, Y, out _)); Assert.False(portrait(zone, pipe, X, Y, out _));
         }
 
-        [TestCase("Overworld.11.9.0")] [TestCase("Overworld.12.10.0")] [TestCase("Overworld.12.12.0")]
+        [TestCase("Overworld.11.10.0")] [TestCase("Overworld.12.11.0")] [TestCase("Overworld.12.12.0")]
         public void OtherSitesKeepTheirExistingPresentationInsteadOfBorrowingTheCorner(string id)
         {
             Create(atlas, true); zone = Attach(id); var owner = Add(); Neighbors(5);
@@ -251,9 +252,10 @@ namespace CavesOfOoo.Tests
             world = new FlatPixelGreyboxCatalog((Texture2D)null); Assert.False(Visible().NativeForeground);
         }
 
-        [Test] public void NeighborRemovalCoverAndDisclosureRepaintSubmittedConnectionsIncrementally()
+        [TestCase(Plot)] [TestCase("Overworld.11.9.0")] [TestCase("Overworld.12.10.0")]
+        public void NeighborRemovalCoverAndDisclosureRepaintSubmittedConnectionsIncrementally(string id)
         {
-            Create(atlas, true); Add(); var east = Add(x: X + 1);
+            zone = Attach(id); Create(atlas, true); Add(); var east = Add(x: X + 1);
             using (var paint = new Paint(world, zone))
             {
                 Frame(paint.At(X, Y), atlas, 2); long full = EnvironmentSpriteRenderer.Perf.FullPasses;
@@ -267,6 +269,96 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
                 long cells = EnvironmentSpriteRenderer.Perf.CellsResolved; paint.Step(); Assert.AreEqual(cells, EnvironmentSpriteRenderer.Perf.CellsResolved);
             }
+        }
+
+
+        [TestCase("Overworld.11.9.0", 5)] [TestCase("Overworld.11.9.0", 10)]
+        [TestCase("Overworld.12.10.0", 5)] [TestCase("Overworld.12.10.0", 10)]
+        public void NorthAndEastWorldAndReaderReuseConnectedPixelsWithoutCoveringTheActor(string id, int mask)
+        {
+            zone = Attach(id); var center = Add(); Neighbors(mask); world = new FlatPixelGreyboxCatalog();
+            var resource = Resources.Load<Texture2D>(Resource); Assert.NotNull(resource);
+            var value = Visible(); Assert.AreSame(center, value.Owner); Assert.True(value.NativeForeground);
+            Frame(value.ForegroundTile, resource, mask);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, center, X, Y, out var sprite, out _));
+            Assert.AreSame(value.ForegroundTile.sprite, sprite); Assert.False(value.BlocksMovement);
+            var actor = Add("Player"); actor.GetPart<RenderPart>().RenderLayer = 100;
+            Assert.AreSame(actor, Visible().Owner);
+            Assert.AreNotSame(sprite, Visible().ForegroundTile.sprite);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, center, X, Y, out var underfoot, out _));
+            Assert.AreSame(sprite, underfoot, "The authorized lower subject keeps its own pipe identity.");
+        }
+
+        [TestCase("Overworld.11.9.0")] [TestCase("Overworld.12.10.0")]
+        public void ExtendedPipesStillRequireCurrentUnclaimedSpreadWorldAndExactOwner(string id)
+        {
+            Create(atlas, true); int mapX = id == "Overworld.11.9.0" ? 11 : 12;
+            int mapY = id == "Overworld.11.9.0" ? 9 : 10;
+            foreach (string fault in new[] { "replaced-graph", "wrong-biome", "poi" })
+            {
+                zone = Attach(id); var center = Add(); Expect(0);
+                if (fault == "replaced-graph") manager.CachedZones[id] = new Zone(id);
+                if (fault == "wrong-biome") manager.WorldMap.Tiles[mapX, mapY] = BiomeType.Sodden;
+                if (fault == "poi") manager.WorldMap.SetPOI(mapX, mapY, new PointOfInterest(POIType.Village, "pipe counter", null, 1));
+                Assert.False(query(zone, X, Y, out _), fault);
+                Assert.False(portrait(zone, center, X, Y, out _), fault);
+                if (world.TryResolvePresentation(zone, X, Y, out var value) && value.ForegroundTile != null)
+                    Assert.AreNotSame(atlas, value.ForegroundTile.sprite.texture, fault);
+                manager.CachedZones[id] = zone; manager.WorldMap.Tiles[mapX, mapY] = BiomeType.Spread;
+                manager.WorldMap.SetPOI(mapX, mapY, null); Expect(0);
+            }
+            var foreignManager = OverworldZoneManager.CreateDetached(content.Factory, 65, true);
+            var foreignZone = new Zone(id); foreignManager.SetActiveZone(foreignZone);
+            var foreignPipe = content.Factory.CreateEntity("CopperPipe"); Assert.True(foreignZone.AddEntity(foreignPipe, X + 1, Y));
+            zone.GetCell(X + 1, Y).Objects.Add(foreignPipe); Expect(0);
+            Assert.False(portrait(zone, foreignPipe, X + 1, Y, out _));
+            Assert.True(zone.AddEntity(content.Factory.CreateEntity("CopperPipe"), X, Y - 1)); Expect(1);
+        }
+
+        [TestCase("Overworld.11.9.0")] [TestCase("Overworld.12.10.0")]
+        public void ReusingPipeTopologyDoesNotExtendThisPeatRoleOrAlterExistingEastPeat(string id)
+        {
+            zone = Attach(id); var peat = Add("PeatBog"); Create(atlas);
+            Assert.False(query(zone, X, Y, out _)); Assert.False(portrait(zone, peat, X, Y, out _));
+            world = new FlatPixelGreyboxCatalog(); var value = Visible(); Assert.AreSame(peat, value.Owner);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, peat, X, Y, out var sprite, out _));
+            if (id == "Overworld.12.10.0")
+            {
+                var approved = Resources.Load<Texture2D>(Resource); Frame(value.ForegroundTile, approved, 16);
+                Assert.AreSame(value.ForegroundTile.sprite, sprite);
+            }
+            else
+            {
+                Assert.False(value.NativeForeground, "North peat is outside this pipe-only change.");
+                Assert.AreNotSame(Resources.Load<Texture2D>(Resource), sprite.texture);
+            }
+            Assert.AreEqual(70, peat.GetPart<LiquidPoolPart>().Volume);
+        }
+
+        [TestCase("Overworld.11.9.0", false)] [TestCase("Overworld.11.9.0", true)]
+        [TestCase("Overworld.12.10.0", false)] [TestCase("Overworld.12.10.0", true)]
+        public void MissingConnectedPixelsPreservePriorWorldAndPortraitFallback(string id, bool malformed)
+        {
+            zone = Attach(id); var center = Add(); Neighbors(5);
+            var bad = malformed ? new Texture2D(271, 24) : null;
+            try
+            {
+                Create(bad); world = new FlatPixelGreyboxCatalog(); Write(world, "_nellaCornerArt", adapter);
+                Assert.False(query(zone, X, Y, out _)); var value = Visible();
+                Assert.AreSame(center, value.Owner); Assert.NotNull(value.ForegroundTile);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, center, X, Y, out var sprite, out _));
+                if (id == "Overworld.12.10.0")
+                {
+                    var previous = Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.ResourcePath);
+                    Assert.True(value.NativeForeground); Frame(value.ForegroundTile, previous, 15);
+                    Assert.AreSame(value.ForegroundTile.sprite, sprite);
+                }
+                else
+                {
+                    Assert.False(value.NativeForeground); Assert.AreNotSame(Resources.Load<Texture2D>(Resource), sprite.texture);
+                }
+            }
+            finally { if (bad != null) Object.DestroyImmediate(bad); }
         }
 
         static void Fault(Entity owner, string fault)

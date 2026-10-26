@@ -485,3 +485,9 @@ not independent proof of acceptance; the current scope and limits above govern.
 | `daa388643` | 2026-10-26T15:34:51-05:00 | docs(graphics): record settled editor and metadata restoration |
 | `d9959fe60` | 2026-10-26T16:02:28-05:00 | docs(graphics): verify action-menu fixes in current player packages |
 | `4e8b21e23` | 2026-10-26T16:28:46-05:00 | docs(graphics): verify the earned Pitchpod cycle in current package |
+
+
+73. **Connected copper consistency (2026-10-26):** North and East exact pipe owners
+    now share Nella's accepted connected native art in world/Examine, with no peat
+    scope expansion.105/105 targeted native tests; actual ordinary six-site review
+    and actor-cover checks recorded in GRAPHICS-SIX-SCENE-POLISH.md.

@@ -1,0 +1,72 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "2b6642fc7ac346c499b8c9c187804eab",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793055918944,
+      "finished_unix_ms": 1793055924910,
+      "last_update_unix_ms": 1793055924910,
+      "progress": {
+        "completed": 47,
+        "total": 47,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793055924838,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.ReusingPipeTopologyDoesNotExtendThisPeatRoleOrAlterExistingEastPeat(\"Overworld.12.10.0\")",
+        "last_finished_unix_ms": 1793055924881,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.AllSixteenPipeMasksCacheExactCardinalOwnersAndIgnoreDiagonals(\"Overworld.11.9.0\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.AllSixteenPipeMasksCacheExactCardinalOwnersAndIgnoreDiagonals(\"Overworld.12.10.0\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.ExtendedPipesStillRequireCurrentUnclaimedSpreadWorldAndExactOwner(\"Overworld.11.9.0\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.ExtendedPipesStillRequireCurrentUnclaimedSpreadWorldAndExactOwner(\"Overworld.12.10.0\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.NeighborRemovalCoverAndDisclosureRepaintSubmittedConnectionsIncrementally(\"Overworld.11.9.0\")",
+            "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.NeighborRemovalCoverAndDisclosureRepaintSubmittedConnectionsIncrementally(\"Overworld.12.10.0\")",
+            "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.NorthAndEastWorldAndReaderReuseConnectedPixelsWithoutCoveringTheActor(\"Overworld.11.9.0\",5)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.NorthAndEastWorldAndReaderReuseConnectedPixelsWithoutCoveringTheActor(\"Overworld.11.9.0\",10)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.NorthAndEastWorldAndReaderReuseConnectedPixelsWithoutCoveringTheActor(\"Overworld.12.10.0\",5)",
+            "message": "  Expected: same as <nella-corner (UnityEngine.Texture2D)>\n  But was:  <east-kitchen (UnityEngine.Texture2D)>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelNellaCornerTests.NorthAndEastWorldAndReaderReuseConnectedPixelsWithoutCoveringTheActor(\"Overworld.12.10.0\",10)",
+            "message": "  Expected: same as <nella-corner (UnityEngine.Texture2D)>\n  But was:  <east-kitchen (UnityEngine.Texture2D)>\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

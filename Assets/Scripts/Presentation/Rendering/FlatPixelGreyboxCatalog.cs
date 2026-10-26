@@ -810,7 +810,11 @@ namespace CavesOfOoo.Rendering
             var riverShrine = local ? RiverShrineArtFor(owner) : null;
             bool riverShrineNative = riverShrine != null && riverShrine.TryResolve(owner, out art);
             var nellaCorner = local && !fallback.Remembered ? NellaCornerArtFor(zone, owner) : null;
-            bool nellaCornerNative = nellaCorner != null && nellaCorner.TryResolve(zone, x, y, out art);
+            // East may already have its approved isolated pipe frame. A missing
+            // optional connected atlas must not erase that successful fallback.
+            Tile connectedCornerArt = null;
+            bool nellaCornerNative = nellaCorner != null && nellaCorner.TryResolve(zone, x, y, out connectedCornerArt);
+            if (nellaCornerNative) art = connectedCornerArt;
             var eastFixture = local && !fallback.Remembered ? EastFixtureArtFor(zone, owner) : null;
             bool eastFixtureNative = eastFixture != null && eastFixture.TryResolve(zone, x, y, out art);
             bool allowHedgeFallback = true;
@@ -934,7 +938,7 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelNellaCornerCatalog NellaCornerArtFor(Zone zone, Entity owner)
         {
-            if (zone.ZoneID != "Overworld.11.8.0" || !FlatPixelNellaCornerCatalog.HasKnownRole(owner)) return null;
+            if (!FlatPixelNellaCornerCatalog.SupportsRole(zone, owner)) return null;
             if (_nellaCornerArt == null && _loadOptionalResources)
             {
                 if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();

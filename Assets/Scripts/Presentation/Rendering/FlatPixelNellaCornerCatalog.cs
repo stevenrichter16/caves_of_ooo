@@ -7,7 +7,8 @@ using Object = UnityEngine.Object;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>Disclosed copper topology and neutral peat in Nella's existing
-    /// plot. Borrows atlas/selector; owns only cached tiles and sprites. Neither
+    /// plot and the exact North/East pipe runs. Borrows atlas/selector; owns only
+    /// cached tiles and sprites. Neither
     /// pipe flow nor water stock is inferred from these material identities.</summary>
     public sealed class FlatPixelNellaCornerCatalog : IDisposable
     {
@@ -45,7 +46,14 @@ namespace CavesOfOoo.Rendering
         internal static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "CopperPipe" || owner?.BlueprintName == "PeatBog";
 
-        bool Available(Zone zone) => !disposed && tiles != null && zone?.ZoneID == Plot
+        // Reuse only the observed conductor family across these exact sites.
+        // Peat remains Nella-local here; East's existing peat adapter is separate.
+        internal static bool SupportsRole(Zone zone, Entity owner)
+            => HasKnownRole(owner) && (zone?.ZoneID == Plot
+                || owner.BlueprintName == "CopperPipe"
+                    && (zone?.ZoneID == "Overworld.11.9.0" || zone?.ZoneID == "Overworld.12.10.0"));
+
+        bool Available(Zone zone) => !disposed && tiles != null
             && FlatPixelGreyboxCatalog.IsAdmitted(zone) && FlatPixelFallbackCatalog.IsCurrentGraph(zone);
 
         /// <summary>Only the selected live foreground owner can occupy this
@@ -64,7 +72,7 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity subject, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (!Available(zone) || !Disclosed(zone, x, y) || !Eligible(subject)
+            if (!Available(zone) || !SupportsRole(zone, subject) || !Disclosed(zone, x, y) || !Eligible(subject)
                 || !ReferenceEquals(subject.SpatialZone, zone)) return false;
             var cell = zone.GetCell(x, y);
             if (!ReferenceEquals(zone.GetEntityCell(subject), cell) || !cell.Objects.Contains(subject)) return false;
@@ -90,7 +98,7 @@ namespace CavesOfOoo.Rendering
         {
             owner = null;
             if (!Disclosed(zone, x, y) || !selector.TryResolve(zone, x, y, out var selected)
-                || selected.Remembered || !Eligible(selected.Owner)) return false;
+                || selected.Remembered || !SupportsRole(zone, selected.Owner) || !Eligible(selected.Owner)) return false;
             owner = selected.Owner; return true;
         }
 

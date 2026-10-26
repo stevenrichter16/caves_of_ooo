@@ -2627,3 +2627,29 @@ A later Unity session changed Editor LastGameID/session keys after that verified
 restoration. It was not started by this root and is preserved untouched. The
 standalone player remains closed. Check active ownership before continuing
 ordinary Play; do not restore the old preference map over a later session.
+
+
+## Continuation — 2026-10-26 connected six-scene consistency pass
+
+Fresh seed64 ordinary input reviewed glade, cellar, North, Nella, East and
+kitchen at1x/2x across two isolated sessions.40 actual captures and runtime
+receipts are indexed in [six-scene polish](GRAPHICS-SIX-SCENE-POLISH.md).
+CopperPipe had three conflicting appearances: North glyph, East repeated
+elbow, Nella joined native line. Exact North/East owners now reuse accepted
+Nella cardinal frames in world and Examine; peat scope stays unchanged.
+Native RED:10fail/37pass; GREEN:105/105 across the corner/East suites. Actual
+walking covers/uncovering and Examine verified both affected sites.
+
+Normal saves, complete logical preferences,34foreign tracked edits and previous
+packages preserved. Before-fix disposable checkpoint was lost to automatic
+Play-stop cleanup; retained captures are a fresh-seed comparison, not identical
+tick acceptance. Post-fix checkpoints were archived before stopping. No storage
+cleanup. Package delivery/restart acceptance follows this source checkpoint.
+
+Next named visual defect: Kitchen BrinePool11528 at36,13 and11527 at36,14 still
+use blue glyphs. Actual volumes90 each, effective coatingbrine, no current
+heat/cold/charge, freeze−8°C. Author distinct native salt-water art through the
+capture/concept/source/integration loop; do not label it freshwater or assume
+empty stock removes an independently renewed source coating. Preserve approved
+layout. Actor animation, incidental glyphs and full opening/regions/device/
+performance coverage remain open. Current report:2026-10-26 23:27UTC.
