@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
    Assert.NotNull(type,"Regional source budgets must be applied to actual rolls, not extra spawns after generation.");
    var method=type.GetMethod("Rewrite",BindingFlags.Public|BindingFlags.Static);Assert.NotNull(method);
    var role=method.GetParameters()[2].ParameterType;
-   return (string[])method.Invoke(null,new object[]{table,rolled,Enum.Parse(role,family)});
+   return (string[])method.Invoke(null,new object[]{table,rolled,Enum.Parse(role,family),false});
   }
   [TestCase("Viper")][TestCase("MarlbackScrabbler")]
   public void OccupiedBankReplacesExactlyTheExistingHostileAllowance(string hostile)

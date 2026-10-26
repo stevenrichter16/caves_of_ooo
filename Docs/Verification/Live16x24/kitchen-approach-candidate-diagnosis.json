@@ -1,0 +1,39 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "cc63b905833a4e749ff0d1039afa8b88",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793032668459,
+      "finished_unix_ms": 1793032727811,
+      "last_update_unix_ms": 1793032727811,
+      "progress": {
+        "completed": 12,
+        "total": 12,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793032723040,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.NonInitiatingPopulationKeepsTheExistingCourtComposition(\"passive\")",
+        "last_finished_unix_ms": 1793032727757,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(224401440)",
+            "message": "  Do not solve the service failure by omitting its site. {\"zoneId\":\"Overworld.12.11.0\",\"reason\":\"no-safe-footprint\",\"stage\":\"authority\"} BudgetCandidates=66 normalPlace/Fits/Safe=0/0/0 relaxedFloorPlace/Fits/Safe=0/0/0 safe= nearest=(29, 5) turn1 budget10 bad=kitchen-crop@(27, 3):reserved=False;(28, 5) turn1 budget11 bad=kitchen-crop@(26, 3):reserved=False,court-floor@(27, 5):reserved=False;(27, 5) turn1 budget12 bad=resident@(27, 5):reserved=False,oven@(27, 3):reserved=False,kitchen-crop@(25, 3):reserved=False;(30, 6) turn0 budget10 bad=shelter@(27, 3):reserved=False,shelter@(27, 4):reserved=False,shelter@(27, 5):reserved=False;(29, 4) turn1 budget10 bad=shelter@(33, 1):reserved=False,shelter@(32, 1):reserved=False,shelter@(31, 1):reserved=False,shelter@(30, 1):reserved=False;(26, 5) turn1 budget13 bad=oven@(26, 3):reserved=False,kitchen-crop@(24, 3):reserved=False,court-floor@(27, 4):reserved=False,court-floor@(27, 5):reserved=False,court-floor@(25, 5):reserved=False;(28, 4) turn1 budget11 bad=shelter@(32, 1):reserved=False,shelter@(31, 1):reserved=False,shelter@(30, 1):reserved=False,shelter@(29, 1):reserved=False,court-floor@(27, 4):reserved=False,court-floor@(27, 5):reserved=False;(27, 4) turn1 budget12 bad=resident@(27, 4):reserved=False,shelter@(31, 1):reserved=False,shelter@(30, 1):reserved=False,shelter@(29, 1):reserved=False,shelter@(28, 1):reserved=False,court-floor@(27, 5):reserved=False,court-floor@(26, 4):reserved=False\n  Expected: 2\n  But was:  1\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(64)",
+            "message": "  Do not solve the service failure by omitting its site. {\"zoneId\":\"Overworld.12.11.0\",\"reason\":\"no-safe-footprint\",\"stage\":\"authority\"} BudgetCandidates=0 normalPlace/Fits/Safe=0/0/0 relaxedFloorPlace/Fits/Safe=0/0/0 safe= nearest=\n  Expected: 2\n  But was:  1\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

@@ -9,16 +9,20 @@ namespace CavesOfOoo.Core
  public static class SpreadExplorationPopulationPolicy
  {
   const string Group="SpreadTier1Encounter";
-  public static string[] Rewrite(PopulationTable table,IReadOnlyList<string> rolled,SpreadExplorationFamily family)
+  public static string[] Rewrite(PopulationTable table,IReadOnlyList<string> rolled,SpreadExplorationFamily family,bool connectedKitchen=false)
   {
    if(rolled==null)throw new ArgumentNullException(nameof(rolled));
    var result=rolled.ToArray();
    if(table?.Name!="SpreadTier1"||table.Entries==null)return result;
-   if(family==SpreadExplorationFamily.OccupiedBank)
+   if(family==SpreadExplorationFamily.OccupiedBank||connectedKitchen&&family==SpreadExplorationFamily.WaysideKitchen)
    {
     var entries=table.Entries.Where(e=>e!=null&&e.EncounterGroup==Group).ToArray();
     if(entries.Length!=2||entries.Count(e=>e.BlueprintName=="Viper")!=1||entries.Count(e=>e.BlueprintName=="MarlbackScrabbler")!=1
       ||table.Entries.Any(e=>e!=null&&e.EncounterGroup!=Group&&(e.BlueprintName=="Viper"||e.BlueprintName=="MarlbackScrabbler")))return result;
+    // The exact inhabited kitchen borrows each actual encounter allowance.
+    // No roll means no grazer; other domestic sites keep their ordinary danger.
+    if(connectedKitchen&&family==SpreadExplorationFamily.WaysideKitchen)
+     return result.Select(bp=>bp=="Viper"||bp=="MarlbackScrabbler"?"ReedbackGrazer":bp).ToArray();
     var output=new List<string>();bool replaced=false;
     foreach(string bp in result)
     {

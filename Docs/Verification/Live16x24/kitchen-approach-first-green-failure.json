@@ -1,0 +1,39 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "6e69d85c26214337bc909a1bbd4918eb",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793032019803,
+      "finished_unix_ms": 1793032037479,
+      "last_update_unix_ms": 1793032037479,
+      "progress": {
+        "completed": 4,
+        "total": 4,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793032034503,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(65)",
+        "last_finished_unix_ms": 1793032037437,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(224401440)",
+            "message": "  Do not solve the service failure by omitting its site.\n  Expected: 2\n  But was:  1\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(64)",
+            "message": "  Do not solve the service failure by omitting its site.\n  Expected: 2\n  But was:  1\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

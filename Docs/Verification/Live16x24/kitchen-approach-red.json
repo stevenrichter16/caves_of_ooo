@@ -1,0 +1,47 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "c034ff0c53ef4a97a138bf094c6db08b",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793031863220,
+      "finished_unix_ms": 1793031886490,
+      "last_update_unix_ms": 1793031886490,
+      "progress": {
+        "completed": 4,
+        "total": 4,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793031883700,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(65)",
+        "last_finished_unix_ms": 1793031886436,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(224401440)",
+            "message": "  Viper consumes the normal-speed northern approach margin.\n  Expected: greater than or equal to 4680\n  But was:  200\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(200893250)",
+            "message": "  MarlbackScrabbler starts inside acquisition range of the cook.\n  Expected: greater than 10\n  But was:  9\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(64)",
+            "message": "  Viper consumes the normal-speed northern approach margin.\n  Expected: greater than or equal to 7540\n  But was:  2500\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(65)",
+            "message": "  MarlbackScrabbler consumes the normal-speed northern approach margin.\n  Expected: greater than or equal to 2700\n  But was:  1600\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

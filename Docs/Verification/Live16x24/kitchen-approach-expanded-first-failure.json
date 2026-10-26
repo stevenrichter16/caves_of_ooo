@@ -1,0 +1,47 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "2632758282e9475285af7a9dbdafea6a",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793032381994,
+      "finished_unix_ms": 1793032432629,
+      "last_update_unix_ms": 1793032432629,
+      "progress": {
+        "completed": 12,
+        "total": 12,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793032427673,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.NonInitiatingPopulationKeepsTheExistingCourtComposition(\"passive\")",
+        "last_finished_unix_ms": 1793032432586,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ActualViperSpeedChangesTheRequiredNorthernApproachMargin(100)",
+            "message": "  This fixture must expose the shortest cardinal approach.\n  Expected: 34\n  But was:  36\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ActualViperSpeedChangesTheRequiredNorthernApproachMargin(130)",
+            "message": "  This fixture must expose the shortest cardinal approach.\n  Expected: 34\n  But was:  36\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(224401440)",
+            "message": "  Do not solve the service failure by omitting its site. {\"zoneId\":\"Overworld.12.11.0\",\"reason\":\"no-safe-footprint\",\"stage\":\"authority\"}\n  Expected: 2\n  But was:  1\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadKitchenInitialSafetyTests.ColdKitchenKeepsCompleteStaffedCourtOutsideSpeedAwareNorthernApproach(64)",
+            "message": "  Do not solve the service failure by omitting its site. {\"zoneId\":\"Overworld.12.11.0\",\"reason\":\"no-safe-footprint\",\"stage\":\"authority\"}\n  Expected: 2\n  But was:  1\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

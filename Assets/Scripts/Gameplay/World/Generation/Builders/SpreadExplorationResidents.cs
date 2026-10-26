@@ -65,12 +65,14 @@ namespace CavesOfOoo.Core
                         ("ConnectedKitchenPickup", "pickup", 2, -2), ("ClaspbeanCrop", "kitchen-crop", -2, 2) }).ToArray();
             if (court) specs = specs.Concat(CourtStones.Select(p => ("StoneFloor", "court-floor", p.x, p.y))).ToArray();
             if (specs.Any(s => !factory.Blueprints.ContainsKey(s.bp)) || !Current()) return Refuse("admission");
-            // Give the required connected stop a geometric approach margin from
-            // its authored southern port. Read baked identity only: creating a
+            // Give each required connected stop a geometric approach margin from
+            // its authored journey port. Read baked identity only: creating a
             // trial trader here would allocate stock and consume its stream.
-            bool initialSafety = connected && plot && zone.ZoneID == "Overworld.11.8.0";
+            bool kitchenSafety = connected && !plot && zone.ZoneID == "Overworld.12.11.0";
+            bool initialSafety = kitchenSafety || connected && plot && zone.ZoneID == "Overworld.11.8.0";
+            var approachPort = kitchenSafety ? (x: plan.NorthX, y: 0) : (x: plan.SouthX, y: Zone.Height - 1);
             string residentFaction = null;
-            if (initialSafety) factory.GetBlueprint("SpreadSeedKeeper").Tags.TryGetValue("Faction", out residentFaction);
+            if (initialSafety) factory.GetBlueprint(plot ? "SpreadSeedKeeper" : "SpreadWaysideCook").Tags.TryGetValue("Faction", out residentFaction);
             var initialCreatures = initialSafety ? original.Where(e => e.HasTag("Creature")).ToArray() : Array.Empty<Entity>();
             var before = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
             var anchor = (x: SpreadExplorationPlan.Rank(plan.Seed, zone.ZoneID, "resident-anchor") % 2 == 0 ? 22 : 58, y: 12);
@@ -82,10 +84,10 @@ namespace CavesOfOoo.Core
             {
                 for (int turn = 0; turn < 2; turn++)
                 {
-                    int approachBudget = SouthernApproachBudget(zone, initialCreatures, at, residentFaction);
+                    int approachBudget = InitialApproachBudget(zone, initialCreatures, at, residentFaction);
                     // A necessary, cheap path lower bound keeps impossible near-threat
                     // candidates from consuming the finite expensive Fits allowance.
-                    if (Math.Max(0, Math.Abs(at.x - plan.SouthX) + Math.Abs(at.y - (Zone.Height - 1)) - 1) > approachBudget) continue;
+                    if (Math.Max(0, Math.Abs(at.x - approachPort.x) + Math.Abs(at.y - approachPort.y) - 1) > approachBudget) continue;
                     var candidate = specs.Select(s => At(at, (s.x, s.y), turn)).ToArray();
                     if (candidate.Any(p => Distance(p, Arrival) <= 6 || !before.Place(p.x, p.y))) continue;
                     if (connected && specs.Select((spec, i) => (spec, i)).Where(s => s.spec.role == "reserve-crop" || s.spec.role == "kitchen-crop")
@@ -94,7 +96,7 @@ namespace CavesOfOoo.Core
                         && !SteppingGround(zone, candidate[s.i]))) continue;
                     if (++trials > MaxTrials) return Refuse("admission");
                     if (!Fits(zone, before, before, candidate, plot, at, turn, plan, court ? specs : null, residentFaction)) continue;
-                    if (!HasSouthernApproach(before, candidate, at, plan, approachBudget)) continue;
+                    if (!HasInitialApproach(before, candidate, at, approachPort, approachBudget, court ? specs : null)) continue;
                     positions = candidate; origin = at; rotation = turn; break;
                 }
                 if (positions != null) break;
@@ -231,7 +233,8 @@ namespace CavesOfOoo.Core
                     var geometry = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>(packet));
                     string faction = initialSafety ? FactionManager.GetFaction(staged[0]) : null;
                     return Fits(zone, geometry, before, positions, plot, origin, rotation, plan, court ? specs : null, faction)
-                        && HasSouthernApproach(geometry, positions, origin, plan, SouthernApproachBudget(zone, initialCreatures, origin, faction));
+                        && HasInitialApproach(geometry, positions, origin, approachPort,
+                            InitialApproachBudget(zone, initialCreatures, origin, faction), court ? specs : null);
                 }
                 if (!Final()) return Refuse("final-proof");
                 owners = packet; final = Final; success = true; return true;
@@ -361,7 +364,7 @@ namespace CavesOfOoo.Core
             var obstructions = courtSpecs == null ? positions : positions.Where((p, i) => CourtBlocks(courtSpecs[i].role)).ToArray();
             if (!geometry.PreservesAgainst(before, obstructions)) return false;
             // Keep all existing creatures outside the opening footprint. This is deliberately
-            // conservative for a friendly site. Connected Nella also avoids initial hostile
+            // conservative for a friendly site. Connected residents also avoid initial hostile
             // acquisition; neither check promises that later roaming threats stay away.
             if (zone.GetReadOnlyEntities().Any(e => e.HasTag("Creature") && e.GetProperty(RoleKey) != "resident"
                 && (positions.Any(p => Distance(p, zone.GetEntityPosition(e)) <= 3)
@@ -411,7 +414,7 @@ namespace CavesOfOoo.Core
                 && FactionManager.GetFactionFeeling(FactionManager.GetFaction(creature), residentFaction) <= FactionManager.HOSTILE_THRESHOLD;
         }
 
-        static int SouthernApproachBudget(Zone zone, Entity[] creatures, (int x, int y) origin, string residentFaction)
+        static int InitialApproachBudget(Zone zone, Entity[] creatures, (int x, int y) origin, string residentFaction)
         {
             int budget = int.MaxValue;
             foreach (var creature in creatures)
@@ -427,14 +430,18 @@ namespace CavesOfOoo.Core
             return budget;
         }
 
-        static bool HasSouthernApproach(SpreadWildernessSituationBuilder.Geometry geometry,
-            (int x, int y)[] positions, (int x, int y) origin, SpreadCompositionPlan plan, int budget)
+        static bool HasInitialApproach(SpreadWildernessSituationBuilder.Geometry geometry,
+            (int x, int y)[] positions, (int x, int y) origin, (int x, int y) port, int budget,
+            (string bp, string role, int x, int y)[] courtSpecs)
         {
             if (budget == int.MaxValue) return true; // No initiating source threats: retain the accepted layout.
             if (budget < 0) return false;
-            // As in Fits, conservatively avoid the entire stamp, including its
-            // passable crops. This changes no owner's physical collision.
-            var reached = geometry.Flood(new HashSet<(int x, int y)>(positions), (plan.SouthX, Zone.Height - 1), budget, null);
+            // Match Fits: Nella conservatively avoids its entire stamp. The
+            // guarded kitchen court retains its proven passable stone/service
+            // access, rather than inventing collision around the cook.
+            var obstructions = courtSpecs == null ? positions
+                : positions.Where((p, i) => CourtBlocks(courtSpecs[i].role));
+            var reached = geometry.Flood(new HashSet<(int x, int y)>(obstructions), port, budget, null);
             return reached[origin.x - 1, origin.y] || reached[origin.x + 1, origin.y]
                 || reached[origin.x, origin.y - 1] || reached[origin.x, origin.y + 1];
         }

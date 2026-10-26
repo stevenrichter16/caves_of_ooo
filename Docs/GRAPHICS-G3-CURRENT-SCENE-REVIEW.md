@@ -390,3 +390,19 @@ and2foreign PNGs unchanged. Storage inspection only. Existing packages47d678995
 still predate the recent source fixes. Next: East and Orven ordinary whole views,
 remaining scene defects/acceptance, then consolidated current builds. Preserve
 the earned corner fixture and continue the active graphics heartbeat.
+
+## East and kitchen follow-through — 2026-10-26 17:04 UTC
+
+[Route, failed approach, correction and acceptance](GRAPHICS-G3-EAST-KITCHEN-REVIEW.md).
+Actual62–72 exposed a required cook dying to initial vipers before contact.
+A placement-only correction refused two seed sites; reserved-floor relaxation
+was disproved. Exact cold kitchen encounter rolls now become ordinary reedback
+grazers one-for-one; other sites and existing saved graphs stay literal.
+104 native checks and independent review pass. Actual73–83 show ordinary arrival,
+living cook conversation/portrait/trade, a9dram ingredient purchase, identical
+F5/F6 custody and a living same-owner border revisit. No permanent safety claim.
+
+Next: East's15 plain Wall owners (11seen), FrontierPenGate and2peat owners reuse
+approved native art, then consolidated packages. The current47d678995 packages
+still predate these source passes. Source/art/save preservation verified;
+storage inspection only. Continue the existing graphics heartbeat.
