@@ -1,6 +1,6 @@
 # Live 16×24 art direction and integration
 
-Current status, 2026-10-26: native world zoom now reaches visible1×–4× through PageUp/PageDown and LT+D-pad;23/23zoom tests and actual Unity Look/inventory/movement checks accepted. Default framing and approved art remain unchanged. Current packaged sourcee49047200includes aftermath/North water/cellar acceptance but precedes this zoom repair; refresh packages next. Freshsix-zone framing, fallback census, Linux execution and physicalDeck remain open. [Zoom record](GRAPHICS-G3-PLAYABLE-ZOOM.md).
+Current status, 2026-10-26: native world zoom now reaches visible1×–4× through PageUp/PageDown and LT+D-pad. The fix is delivered in current Mac/Linux packages47d678995;23/23 native zoom tests, actual Unity Look/inventory and standalone Mac zoom/surface/cellar/Continue checks are accepted within their recorded bounds. Default framing and approved art remain unchanged. Fresh six-zone composition, finite fallback census, Linux execution, physical Deck and remaining regional coverage stay open. [Zoom record](GRAPHICS-G3-PLAYABLE-ZOOM.md); [current packages](Verification/Live16x24/packaged-playable-zoom-report.md).
 
 Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
@@ -2341,3 +2341,16 @@ code and are disclosed. Actual1280×800Game views verify2×, notice targeting,
 inventoryreturn and ordinarycamera tracking. Package newsource next, then use
 its ordinary zoom for six-zone scene review. Do not use oldsavedlayouts to
 judge currentgeneration; newseed224401440fixture is preserved.
+
+
+## Continuation — 2026-10-26 delivered playable zoom
+
+Current packages freeze47d678995 and now contain the zoom fix. Actual Mac
+captures verify1×/2×/4×, inventory return, ordinary stairs into the cellar and
+back, save/relaunch/Continue. Source23native cases pass; disclosed3 broader
+log-pointer precondition failures also occur on unchanged code. Independent
+visual/archive review passed. No new artwork was warranted for this camera
+repair. All normal gameplay state and approved assets remain preserved; storage
+inspection only. Read the package record and continue the fresh seed224401440
+six-zone scene review using the now-reachable ordinary zoom. The surface/cellar
+path is accepted, but not complete regional or device coverage.

@@ -1,7 +1,9 @@
 # Playable native-pixel zoom
 
 Status: runtime/native and bounded actual Unity acceptance complete, 2026-10-26.
-Standalone packaging and wider six-zone review follow in the next record.
+Standalone Mac travel/Continue and Linux archive acceptance also complete.
+[Package evidence](Verification/Live16x24/packaged-playable-zoom-report.md);
+wider six-zone scene review and physical Deck remain open.
 
 The whole-opening framing review found a delivery defect: at the 1280×800 Deck
 layout, ordinary controller zoom cannot reach 2× pixels. Keyboard has no world
@@ -116,3 +118,12 @@ ControlsReference.cs. New FlatPixelZoomInputTests.cs/.meta. Receipts, actual
 captures, earned fixture, this record and both living plans/coverage ledger are
 versioned with the change. The test helper is the measurable scenario; ordinary
 play capture is used for the visual gate, without a new production debug menu.
+
+
+## Packaged follow-up — 2026-10-26
+
+Both current packages now freeze47d678995. Twelve actual Mac captures verify
+zoom levels, inventory, surface/cellar travel and quit/Continue. This closes
+the packaging and zone-transition gates left open above. The same new session
+returns to default automatic framing by design. Independent review and archive
+verification passed; see the package record for restoration and exact limits.
