@@ -151,3 +151,13 @@ checkpoint's North/Nella revisit and remaining forge/crop acceptance. Full openi
 regional coverage, Linux execution, physical Deck and performance remain open.
 
 The six `action-cost-01`–`06` complete observational JSON receipts are losslessly archived as `.json.gz`; the actual PNG captures are unchanged. The raw receipts include off-camera owners and are not a visible-coverage census.
+
+
+Post-push restoration, 20:34 UTC: Unity auto-import rewrote the same32 proven
+trailing-whitespace-only metadata files after the initial restoration. The idle
+editor was closed normally with Command-Q, then those exact bytes were restored
+again. Editor is now closed for handoff; reopen the existing project for the
+next package gate. All776 normal-save files,374 protected sources and2 foreign
+PNGs remain unchanged. See `Verification/Live16x24/action-cost-settled-restoration.json`.
+No source, cache, save or build was deleted. Runtime fix cc963241d is verified
+on origin/main; this follow-up records the settled environment only.
