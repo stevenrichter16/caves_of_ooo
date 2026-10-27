@@ -317,3 +317,44 @@ MOD FlatPixelGreyboxCatalog, ZoneRenderer.FlatPixelPaint, EnvironmentSpriteRende
 verification captures/fixtures/receipts/reviews and the same-commit living records.
 See `Docs/Verification/Live16x24/stump-fauna-after-receipt.json` for exact source
 and image hashes, route/actions, operator corrections and limits.
+
+
+### First-five Stump delivery verified — 2026-10-27 14:03 UTC
+
+Source `0ddd8b6abf89a22275db7c09dde39bbb47392c03` is verified on main.
+Fresh Mac/Linux builds have zero errors and four warnings each. The new Mac
+app passed bounded Gorge→Grainfield travel, actual frog/Wayfarer readers, F5,
+full quit and fresh-process Continue. Six actual screenshots and earned
+`Fixtures/packaged-stump-fauna72` retain turn8200,HP29/40. Linux archive integrity
+passed independent review; Linux and physical Deck gameplay remain unverified.
+See the detailed checkpoint above and the `packaged-stump-fauna-*`
+receipts. Normal saves/preferences, all captured tracked source and previous
+builds remain preserved; storage is inspection-only. No new runtime after the
+457 native passes/one skipped allocation control. Remaining four Stump fauna,
+Grovelands actors and all-world families remain queued; separate area-polish
+states remain unchanged. Last actual hourly report13:27UTC; next14:27UTC.
+
+Current Mac: `Builds/Verification/2026-10-27-stump-fauna-0ddd8b6ab-current/CavesOfOoo.app`.
+Current Linux archive: `Builds/SteamDeck/2026-10-27-stump-fauna-0ddd8b6ab-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,
+128,791,440bytes,SHA256 `97b85d1387a650a329b971fc0428c24e6a2f8dfac61500e740f173b6e96db69a`.
+Independent archive review verified189files/13directories/202members and internal
+checksums, paths, permissions and credits. The package helper preserves exact
+44+414 XMLs:457passed/1knownskip, rather than silently reporting458passed.
+
+Actual Mac exact executable PIDs88691 and89135 were verified separately; only
+normal controls used. Two areas/two reader interactions are accepted, not all
+five species' packaged interactions. Saved/restarted decodedJPEG world rectangle
+[0,96,940,696] matches564000pixels; this is not lossless renderer-buffer evidence.
+Restart log has0Exception lines,6premature-thread notices and1ComputeBuffer
+cleanup notice, so no clean-log claim. Independent image review found no new
+body/UI regression and retains wet-frog/subdued-Sari/fullness limits.
+
+Protection correction: the first full snapshot overlapped Mac build startup
+and correctly refused changed status. It was not used as proof. Before any
+player launch, root backed up/restored the three known generated settings,
+completed a stable fresh snapshot, then built Linux and played Mac. Final
+restoration confirms50,772tracked file hashes,44preexisting dirty paths,
+normalEditor saves and standalone absence/preferences. Previous packages and
+all saved test roots remain preserved. Free space~423.8GB; no cleanup performed.
+Current Unity state is clean Edit with no active test run. Delivery records
+are ready for their separate exact reviewed main push; runtime remains0ddd8b6ab.

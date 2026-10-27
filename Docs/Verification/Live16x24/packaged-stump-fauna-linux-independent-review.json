@@ -1,0 +1,128 @@
+{
+  "reviewed_at_utc": "2026-10-27T14:02:18.393037+00:00",
+  "reviewer": "independent world_coverage_ledger agent",
+  "verdict": "PASS \u2014 archive integrity and bounded evidence bindings",
+  "runtime_source_commit": "0ddd8b6abf89a22275db7c09dde39bbb47392c03",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-stump-fauna-0ddd8b6ab-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_bytes": 128791440,
+  "archive_sha256": "97b85d1387a650a329b971fc0428c24e6a2f8dfac61500e740f173b6e96db69a",
+  "receipt_sha256": "5796731e4d6a1f7880a873e60ac12b821957b0641783a2957543b0079b5c5140",
+  "build_info_sha256": "af862798d846a3cf3a44e6c170493c714ef72522c6bf84c36f5e9e7560778cfb",
+  "regular_files_verified": 189,
+  "directories_verified": 13,
+  "archive_members_verified": 202,
+  "unpacked_bytes_verified": 341087611,
+  "current_tree_matches_receipt_and_archive": true,
+  "every_file_hash_size_mode_verified": true,
+  "every_directory_mode_verified": true,
+  "safe_unique_relative_paths_only": true,
+  "links_and_special_entries_absent": true,
+  "special_permission_bits_absent": true,
+  "internal_sha256sums_covers_all_188_other_files": true,
+  "external_archive_sha256_verified": true,
+  "gzip_crc_size_footer_verified_by_full_eof_read": true,
+  "linux_elf64_x86_64_header_and_executable_permissions_verified": true,
+  "source_support_files_verified": 21,
+  "credit_sections_verified": [
+    "CREDITS.txt",
+    "PLACES-CREDITS.txt",
+    "ATMOSPHERIC-CREDITS.txt",
+    "UTILITY-CREDITS.txt",
+    "REGIONAL-MUSIC-CREDITS.txt",
+    "DEFENSE-CREDITS.txt"
+  ],
+  "license_texts_verified": [
+    "CC-BY-4.0.txt",
+    "CC0-1.0.txt",
+    "kenney_impact-sounds.txt",
+    "kenney_interface-sounds.txt",
+    "kenney_rpg-audio.txt"
+  ],
+  "provenance_sources_verified": [
+    "atmospheric-provenance.json",
+    "places-provenance.json",
+    "provenance.json",
+    "regional-music-provenance.json",
+    "utility-provenance.json"
+  ],
+  "combined_audio_credits_match_sources": true,
+  "fresh_mac_and_linux_success_receipts_match_actual_output_paths": true,
+  "both_builds_zero_errors_four_warnings": true,
+  "build_receipts": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-stump-fauna-linux-build.json",
+      "sha256": "fd4562984b293e9232030014126509cc71f744605f85c50423dbba0d8f150d7e",
+      "summary": {
+        "job_id": "build-ad137e13f4",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-10-27-stump-fauna-0ddd8b6ab-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+        "started_at": "2026-10-27T13:57:00.676181Z",
+        "duration_seconds": 50.264925999999996,
+        "completed_at": "2026-10-27T13:57:50.941107Z",
+        "total_size_mb": 324.82,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-stump-fauna-mac-build.json",
+      "sha256": "03c778e7c9246aeb62f2369abe918187397f625df20b79a657737388ea8dbeb3",
+      "summary": {
+        "job_id": "build-dd7f365482",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-10-27-stump-fauna-0ddd8b6ab-current/CavesOfOoo.app",
+        "started_at": "2026-10-27T13:55:04.908018Z",
+        "duration_seconds": 65.832427,
+        "completed_at": "2026-10-27T13:56:10.740445Z",
+        "total_size_mb": 344.36,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  ],
+  "native_test_evidence": {
+    "receipts": [
+      {
+        "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/stump-fauna-green.xml",
+        "sha256": "7a02c7066243ef28f1c38435e9235489920352c6b37d906387d28554482030e3",
+        "total": 44,
+        "passed": 44,
+        "skipped": 0
+      },
+      {
+        "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/stump-fauna-related-green.xml",
+        "sha256": "573adec5684c12ac766a59453717dd2eeaa3e7251d266f02e323b5025a3325dc",
+        "total": 414,
+        "passed": 413,
+        "skipped": 1
+      }
+    ],
+    "distinct_identities": 458,
+    "passed": 457,
+    "failed": 0,
+    "skipped": 1,
+    "inconclusive": 0,
+    "overlap": 0,
+    "all_passed": false,
+    "known_skip": "CavesOfOoo.Tests.FlatPixelActorMotionTests.WarmMovingBodyReadoutQueriesAllocateNothingWhenTheRuntimeCounterWorks",
+    "known_skip_reason": "This runtime allocation counter does not observe a known allocation; zero cannot prove the query allocates nothing.",
+    "allocation_zero_proven": false
+  },
+  "linux_execution": false,
+  "physical_steam_deck_execution": false,
+  "mac_gameplay_reviewed_here": false,
+  "performance_benchmark": false,
+  "files_changed_by_reviewer": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-stump-fauna-linux-independent-review.json"
+  ],
+  "review_correction": "The first independent read stopped at a reviewer assumption of 19 support sources; the observed current package has 21 (5 base,6 credit,5 license,5 provenance). No artifact failed and no file was written by that attempt. The corrected complete verification passed against all 21 actual sources.",
+  "limitations": [
+    "This pass reads the actual archive, current output tree, support sources and recorded native/build evidence; it does not execute either game or rerun Unity tests.",
+    "Full source revision and freeze boundary remain root-operator provenance assertions. No Git was invoked; source-to-binary reproducibility is not independently proved.",
+    "Archive equals the current built tree; prior-build preservation, pre-packaging original bytes and normal save restoration require separate root snapshot/restoration evidence.",
+    "457 passed plus one known skip are not all-passed and do not prove zero allocations. Earlier material totals are not added.",
+    "Package integrity does not accept full Stump fauna lifecycle, remaining four species, all areas, chunk fullness, world polish, Linux gameplay, physical Deck controls or sustained performance."
+  ]
+}

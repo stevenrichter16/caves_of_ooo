@@ -1,0 +1,104 @@
+{
+  "at_utc": "2026-10-27T14:01:57.634803+00:00",
+  "source_commit": "0ddd8b6abf89a22275db7c09dde39bbb47392c03",
+  "executable": "Builds/Verification/2026-10-27-stump-fauna-0ddd8b6ab-current/CavesOfOoo.app/Contents/MacOS/caves-of-ooo",
+  "verified_processes": [
+    88691,
+    89135
+  ],
+  "controls": "Exact-path launch, normalC from earned after71; L/period/arrows/Return/x actualGlasspaneFrogreader; ordinary world-map Up3/enter toGrainfield; actualWayfarerreader; F5,fullQuit,exact-path freshprocessC. No injected entities or teleports.",
+  "actual_areas": [
+    "Overworld.2.5.0 CascadeGorge",
+    "Overworld.2.2.0 Grainfield"
+  ],
+  "observed": "Native frog bodies/wet cues and actualGlasspane reader; nativeWayfarer/Wardline aftertravel and actualWayfarerreader; fullprocessrestartreturns40,12HP29/40andnativebodies. This is twoareas/twoactualreaders, not allfive package interactions.",
+  "earned_fixture": "Fixtures/packaged-stump-fauna72",
+  "earned_meta": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.2.2.0",
+    "ActiveZoneDisplayLabel": "Overworld.2.2.0",
+    "Turn": 8200,
+    "SaveTimestampUtc": "2026-10-27T13:59:31.6785970Z",
+    "HPSummary": "29/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-stump-fauna-01-gorge-continue.jpg",
+      "sha256": "ff6672c9f5b8003a195065463157bc14a2326a58320e318102fce30a7697cd2e",
+      "size": [
+        1280,
+        856
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-stump-fauna-02-frog-reader.jpg",
+      "sha256": "0c64d0ddd6f81063e894ebc8ea38082f81ec2af50c8e148515f8b7387fe05fe2",
+      "size": [
+        1280,
+        856
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-stump-fauna-03-grainfield-travel.jpg",
+      "sha256": "8bab10742601c683b0240196cc96399501edeb99f75c2b4118ffdd9be898eaee",
+      "size": [
+        1280,
+        856
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-stump-fauna-04-wayfarer-reader.jpg",
+      "sha256": "656dd2fa7ce5f7da29da7ec14cc3deaa980b2d643b7c7a3eefc14edb84a73a9a",
+      "size": [
+        1280,
+        856
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-stump-fauna-05-saved.jpg",
+      "sha256": "dc340b07c262aec7b944ad3d091c10929ea335e6aa2b051cc75a2dcbe6d47ae6",
+      "size": [
+        1280,
+        856
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-stump-fauna-06-fresh-continue.jpg",
+      "sha256": "5e31cd782dc2f4aa6e3b423f5f33ff4524d1a0857bc0354c7058cc1ccf8abc51",
+      "size": [
+        1280,
+        856
+      ]
+    }
+  ],
+  "restart_comparison": {
+    "rectangle": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "decoded_rgb_equal": true,
+    "bound": "JPEG window-capture world rectangle only; excludes56px titlebar, no lossless renderer-buffer identity claim. Exact new executable/PID checked separately."
+  },
+  "log_bounds": {
+    "exception_lines": 0,
+    "premature_thread_notices": 6,
+    "compute_buffer_disposal_notices": 1,
+    "clean_log_claim": false
+  },
+  "not_verified": [
+    "Allfivepackagedinteractions",
+    "Fullbiomecoverage/polish",
+    "Linuxexecution",
+    "PhysicalSteamDeck",
+    "SustainedFPS/zeroallocation"
+  ]
+}

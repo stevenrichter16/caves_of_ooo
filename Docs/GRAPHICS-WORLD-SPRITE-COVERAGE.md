@@ -1103,3 +1103,19 @@ coverage. Nuanced animation remains deferred.
 report; this integration record is not another report. Earlier dated entries
 remain historical. See [the fauna phase record](GRAPHICS-STUMP-FAUNA.md) and
 the two JSON ledgers for the bounded checkpoint and remaining gaps.
+
+
+### First-five Stump delivery verified — 2026-10-27 14:03 UTC
+
+Source `0ddd8b6abf89a22275db7c09dde39bbb47392c03` is verified on main.
+Fresh Mac/Linux builds have zero errors and four warnings each. The new Mac
+app passed bounded Gorge→Grainfield travel, actual frog/Wayfarer readers, F5,
+full quit and fresh-process Continue. Six actual screenshots and earned
+`Fixtures/packaged-stump-fauna72` retain turn8200,HP29/40. Linux archive integrity
+passed independent review; Linux and physical Deck gameplay remain unverified.
+See [the fauna phase record](GRAPHICS-STUMP-FAUNA.md) and the `packaged-stump-fauna-*`
+receipts. Normal saves/preferences, all captured tracked source and previous
+builds remain preserved; storage is inspection-only. No new runtime after the
+457 native passes/one skipped allocation control. Remaining four Stump fauna,
+Grovelands actors and all-world families remain queued; separate area-polish
+states remain unchanged. Last actual hourly report13:27UTC; next14:27UTC.
