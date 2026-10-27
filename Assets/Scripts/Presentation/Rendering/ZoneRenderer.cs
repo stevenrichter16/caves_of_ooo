@@ -1263,12 +1263,18 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void PaintTileStateMark(int x, int y, Vector3Int tilePos, Cell cell)
         {
-            bool represented = FlatPixelModeActive && _envSpriteRenderer.TryResolveFlatPresentation(this, CurrentZone, x, y, out var flat)
-                && flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water;
-            PaintTileStateMarkCore(x, y, tilePos, cell, represented);
+            FlatPixelGreyboxCell flat = default;
+            bool resolved = FlatPixelModeActive && _envSpriteRenderer.TryResolveFlatPresentation(this, CurrentZone, x, y, out flat);
+            PaintTileStateMarkWithBrine(x, y, tilePos, cell,
+                resolved && flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water,
+                resolved && flat.RepresentedBrine);
         }
 
         private void PaintTileStateMarkCore(int x, int y, Vector3Int tilePos, Cell cell, bool flatWaterRepresented)
+            => PaintTileStateMarkWithBrine(x, y, tilePos, cell, flatWaterRepresented, false);
+
+        private void PaintTileStateMarkWithBrine(int x, int y, Vector3Int tilePos, Cell cell,
+            bool flatWaterRepresented, bool flatBrineRepresented)
         {
             if (_tileStateTilemap == null) return;
 
@@ -1317,7 +1323,8 @@ namespace CavesOfOoo.Rendering
                 glyph = '~'; color = new Color(0.35f, 0.25f, 0.45f);     // oil
             }
             else if (state.Coatings.Count > 0 && !IsAuthoredRiverWater(x, y, cell, state)
-                && !IsFlatPixelWaterRepresented(state, flatWaterRepresented))
+                && !IsFlatPixelWaterRepresented(state, flatWaterRepresented)
+                && !(flatBrineRepresented && FlatPixelKitchenBrineCatalog.IsSoleLiveBrine(state)))
             {
                 // Per-liquid tint: ice used to paint the same blue as
                 // water — indistinguishable even on the map (study §1).

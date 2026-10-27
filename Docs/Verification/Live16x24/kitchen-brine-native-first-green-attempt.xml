@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="58" result="Failed(Child)" total="58" passed="57" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:58:03Z" duration="7.9913437">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32253" result="Failed" site="Child" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:58:03Z" duration="7.991344" total="58" passed="57" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39718" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32253" result="Failed" site="Child" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:58:03Z" duration="7.900738" total="58" passed="57" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39719" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32253" result="Failed" site="Child" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:58:03Z" duration="7.896739" total="58" passed="57" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39720" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32253" result="Failed" site="Child" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:58:03Z" duration="7.893848" total="58" passed="57" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29339" name="FlatPixelKitchenBrineTests" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:58:03Z" duration="7.883076" total="58" passed="57" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="29404" name="AuthoredFreezeMeltAndSourceRenewalPreserveTheMixedPhaseUntilWaterExpires" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.AuthoredFreezeMeltAndSourceRenewalPreserveTheMixedPhaseUntilWaterExpires" methodname="AuthoredFreezeMeltAndSourceRenewalPreserveTheMixedPhaseUntilWaterExpires" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="332799321" result="Failed" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:57:55Z" duration="0.271660" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <CP437_7E (UnityEngine.Tilemaps.Tile)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelKitchenBrineTests.AuthoredFreezeMeltAndSourceRenewalPreserveTheMixedPhaseUntilWaterExpires () [0x001e6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelKitchenBrineTests.cs:239
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29403" name="CoveredAndMissingBrineArtRetainWaveWhileUncoverRepaintsItAway" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.CoveredAndMissingBrineArtRetainWaveWhileUncoverRepaintsItAway" methodname="CoveredAndMissingBrineArtRetainWaveWhileUncoverRepaintsItAway" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="729589773" result="Passed" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:57:55Z" duration="0.080457" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29394" name="DisposeOwnsOnlyCachedSpriteAndTileAndNeverLoadsMissingInjection" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.DisposeOwnsOnlyCachedSpriteAndTileAndNeverLoadsMissingInjection" methodname="DisposeOwnsOnlyCachedSpriteAndTileAndNeverLoadsMissingInjection" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="863172159" result="Passed" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:57:55Z" duration="0.049149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29349" name="ExactKitchenScopeDoesNotSpreadToOtherSites" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExactKitchenScopeDoesNotSpreadToOtherSites" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:57:56Z" duration="0.258589" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29344" name="ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.12.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.12.10.0&quot;)" methodname="ExactKitchenScopeDoesNotSpreadToOtherSites" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1736249326" result="Passed" start-time="2026-10-26 23:57:55Z" end-time="2026-10-26 23:57:56Z" duration="0.099320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29345" name="ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.11.9.0&quot;)" methodname="ExactKitchenScopeDoesNotSpreadToOtherSites" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="17785402" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.041221" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29346" name="ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.11.8.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.11.8.0&quot;)" methodname="ExactKitchenScopeDoesNotSpreadToOtherSites" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="2051224724" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.038059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29347" name="ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.11.10.0&quot;)" methodname="ExactKitchenScopeDoesNotSpreadToOtherSites" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="677210615" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.038564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29348" name="ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.12.11.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExactKitchenScopeDoesNotSpreadToOtherSites(&quot;Overworld.12.11.1&quot;)" methodname="ExactKitchenScopeDoesNotSpreadToOtherSites" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1352482783" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.037957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29389" name="ExactLowerReaderAndWorldPriorityStayIndependent" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExactLowerReaderAndWorldPriorityStayIndependent" methodname="ExactLowerReaderAndWorldPriorityStayIndependent" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1329781015" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.040884" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29390" name="ExpiredBrineAndForeignGraphRefuseWithoutCreatingState" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.ExpiredBrineAndForeignGraphRefuseWithoutCreatingState" methodname="ExpiredBrineAndForeignGraphRefuseWithoutCreatingState" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1801340814" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.039819" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29388" name="HiddenOrRememberedCellDoesNotReadLiveBrine" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.HiddenOrRememberedCellDoesNotReadLiveBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.085067" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29386" name="HiddenOrRememberedCellDoesNotReadLiveBrine(False)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.HiddenOrRememberedCellDoesNotReadLiveBrine(False)" methodname="HiddenOrRememberedCellDoesNotReadLiveBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="937029710" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.040558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29387" name="HiddenOrRememberedCellDoesNotReadLiveBrine(True)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.HiddenOrRememberedCellDoesNotReadLiveBrine(True)" methodname="HiddenOrRememberedCellDoesNotReadLiveBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1698477845" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.040054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29393" name="MissingOrMalformedOptionalResourceCannotSuppressFallback" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MissingOrMalformedOptionalResourceCannotSuppressFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.083174" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29391" name="MissingOrMalformedOptionalResourceCannotSuppressFallback(False)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MissingOrMalformedOptionalResourceCannotSuppressFallback(False)" methodname="MissingOrMalformedOptionalResourceCannotSuppressFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="297222461" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.040564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29392" name="MissingOrMalformedOptionalResourceCannotSuppressFallback(True)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MissingOrMalformedOptionalResourceCannotSuppressFallback(True)" methodname="MissingOrMalformedOptionalResourceCannotSuppressFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="858208505" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:57:56Z" duration="0.039826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29385" name="MixedCoatingNeverPromisesNeutralBrine" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MixedCoatingNeverPromisesNeutralBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-26 23:57:56Z" end-time="2026-10-26 23:58:01Z" duration="5.008813" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29381" name="MixedCoatingNeverPromisesNeutralBrine(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MixedCoatingNeverPromisesNeutralBrine(&quot;ice&quot;)" methodname="MixedCoatingNeverPromisesNeutralBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="708773496" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.041469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29382" name="MixedCoatingNeverPromisesNeutralBrine(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MixedCoatingNeverPromisesNeutralBrine(&quot;water&quot;)" methodname="MixedCoatingNeverPromisesNeutralBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1864844226" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.041018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29383" name="MixedCoatingNeverPromisesNeutralBrine(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MixedCoatingNeverPromisesNeutralBrine(&quot;oil&quot;)" methodname="MixedCoatingNeverPromisesNeutralBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1717771962" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.040682" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29384" name="MixedCoatingNeverPromisesNeutralBrine(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.MixedCoatingNeverPromisesNeutralBrine(&quot;acid&quot;)" methodname="MixedCoatingNeverPromisesNeutralBrine" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="314073491" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.039457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29380" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:02Z" duration="1.339186" total="30" passed="30" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29350" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;zero&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="602537273" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.040103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29351" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;negative&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1647755190" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.039581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29352" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;water&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="172168987" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.042167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29353" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;material&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1586178336" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.064201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29354" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;frozen-temperature&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;frozen-temperature&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="618676171" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.091881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29355" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;nan-temperature&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;nan-temperature&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1309559070" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.040524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29356" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;nan-threshold&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;nan-threshold&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1695451357" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.039636" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29357" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;frozen-effect&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;frozen-effect&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="452191667" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.042738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29358" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;electrified-effect&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;electrified-effect&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1939473749" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.039946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29359" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;source&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1658765991" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.040122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29360" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;visual&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="535425247" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.039626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29361" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;variant&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="638048001" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:01Z" duration="0.039792" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29362" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;glyph-variants&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;glyph-variants&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="724889865" result="Passed" start-time="2026-10-26 23:58:01Z" end-time="2026-10-26 23:58:02Z" duration="0.039375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29363" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;invisible&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;invisible&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="48686761" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.039132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29364" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;carried&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="226231708" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.038767" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29365" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;equipped&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1737980470" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.039328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29366" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;takeable&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="714208789" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.038776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29367" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;solid&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1691787478" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.039135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29368" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;creature&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="658282643" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.053206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29369" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;item&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;item&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1930054519" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.090270" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29370" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;player&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1764255647" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.040606" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29371" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;terrain&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;terrain&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="580077" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.040372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29372" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;footprint&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1766410626" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.040817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29373" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-pool&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1058506453" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.039713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29374" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-thermal&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-thermal&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1691492333" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.039283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29375" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-source&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="914828394" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.039471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29376" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-render&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1179049322" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.038807" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29377" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-physics&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="93887181" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.038675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29378" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;foreign-material&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1282197440" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.038841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29379" name="NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.NonNeutralOrMalformedOwnerKeepsTruthfulFallback(&quot;zero-stack&quot;)" methodname="NonNeutralOrMalformedOwnerKeepsTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1656231580" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.039129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29343" name="OrdinaryResourcesConstructionLoadsTheShippedBrineForWorldAndExactReader" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.OrdinaryResourcesConstructionLoadsTheShippedBrineForWorldAndExactReader" methodname="OrdinaryResourcesConstructionLoadsTheShippedBrineForWorldAndExactReader" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="531647081" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.043489" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29342" name="PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.083506" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29340" name="PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState(1)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState(1)" methodname="PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="44948198" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.041035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29341" name="PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState(90)" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState(90)" methodname="PositiveBrineStockUsesExactWorldAndReaderFrameWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1900511259" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.038770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29402" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:03Z" duration="0.493186" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29395" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;none&quot;,'\0')" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;none&quot;,'\0')" methodname="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="242804452" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:02Z" duration="0.095768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29396" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;charge&quot;,'*')" methodname="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="14069095" result="Passed" start-time="2026-10-26 23:58:02Z" end-time="2026-10-26 23:58:03Z" duration="0.093144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29397" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;heat&quot;,'^')" methodname="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1440940110" result="Passed" start-time="2026-10-26 23:58:03Z" end-time="2026-10-26 23:58:03Z" duration="0.061241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29398" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;cold&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;cold&quot;,'^')" methodname="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="673258080" result="Passed" start-time="2026-10-26 23:58:03Z" end-time="2026-10-26 23:58:03Z" duration="0.058975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29399" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;cloud&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;cloud&quot;,'\'')" methodname="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1454281549" result="Passed" start-time="2026-10-26 23:58:03Z" end-time="2026-10-26 23:58:03Z" duration="0.061449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29400" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;veil-mist&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;veil-mist&quot;,'\'')" methodname="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1263443323" result="Passed" start-time="2026-10-26 23:58:03Z" end-time="2026-10-26 23:58:03Z" duration="0.060306" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29401" name="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;embers&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests.SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards(&quot;embers&quot;,'&quot;')" methodname="SubmittedNeutralBrineRemovesOnlyDuplicateWaveAndRetainsHazards" classname="CavesOfOoo.Tests.FlatPixelKitchenBrineTests" runstate="Runnable" seed="1690105294" result="Passed" start-time="2026-10-26 23:58:03Z" end-time="2026-10-26 23:58:03Z" duration="0.059442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

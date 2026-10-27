@@ -30,17 +30,19 @@ namespace CavesOfOoo.Rendering
         public readonly bool Remembered, BlocksMovement;
         /// <summary>Live presentation treatment, independent of regional admission.</summary>
         public readonly bool NativeForeground, LocalGround;
+        /// <summary>Exact native foreground represents the sole live brine layer.</summary>
+        public readonly bool RepresentedBrine;
 
         internal FlatPixelGreyboxCell(Tile ground, Tile foreground, Color groundColor,
             Color foregroundColor, Entity owner, FlatPixelGreyboxKind kind,
             FlatPixelGreyboxGround groundKind, bool remembered, bool blocksMovement, Tile groundDecoration = null,
-            bool nativeForeground = false, bool localGround = false)
+            bool nativeForeground = false, bool localGround = false, bool representedBrine = false)
         {
             GroundTile = ground; ForegroundTile = foreground; GroundDecorationTile = groundDecoration;
             GroundColor = groundColor; ForegroundColor = foregroundColor;
             Owner = owner; Kind = kind; GroundKind = groundKind;
             Remembered = remembered; BlocksMovement = blocksMovement;
-            NativeForeground = nativeForeground; LocalGround = localGround;
+            NativeForeground = nativeForeground; LocalGround = localGround; RepresentedBrine = representedBrine;
         }
     }
 
@@ -69,6 +71,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelRiverShrineCatalog _riverShrineArt;
         private FlatPixelNellaCornerCatalog _nellaCornerArt;
         private FlatPixelEastFixtureCatalog _eastFixtureArt;
+        private FlatPixelKitchenBrineCatalog _kitchenBrineArt;
         private FlatPixelHedgeCatalog _hedgeArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
@@ -817,10 +820,14 @@ namespace CavesOfOoo.Rendering
             if (nellaCornerNative) art = connectedCornerArt;
             var eastFixture = local && !fallback.Remembered ? EastFixtureArtFor(zone, owner) : null;
             bool eastFixtureNative = eastFixture != null && eastFixture.TryResolve(zone, x, y, out art);
+            var brine = local && !fallback.Remembered ? KitchenBrineArtFor(zone, owner) : null;
+            Tile brineArt = null;
+            bool brineNative = brine != null && brine.TryResolve(zone, x, y, out brineArt);
+            if (brineNative) art = brineArt;
             bool allowHedgeFallback = true;
             var hedges = local ? HedgeArtFor(owner, fallback.Remembered, out allowHedgeFallback) : null;
             bool hedgeNative = hedges != null && hedges.TryResolve(zone, x, y, out art);
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                 && _openingArt.TryResolve(owner, x, y, out art);
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
@@ -837,7 +844,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local, brineNative);
             return true;
         }
 
@@ -877,6 +884,8 @@ namespace CavesOfOoo.Rendering
             if (nellaCorner != null && nellaCorner.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var eastFixture = local ? EastFixtureArtFor(zone, subject) : null;
             if (eastFixture != null && eastFixture.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+            var brine = local ? KitchenBrineArtFor(zone, subject) : null;
+            if (brine != null && brine.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
             if (eastern != null && eastern.TryResolvePresentation(zone, subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
@@ -956,6 +965,17 @@ namespace CavesOfOoo.Rendering
                 _eastFixtureArt = new FlatPixelEastFixtureCatalog(_glyphFallback);
             }
             return _eastFixtureArt;
+        }
+
+        private FlatPixelKitchenBrineCatalog KitchenBrineArtFor(Zone zone, Entity owner)
+        {
+            if (zone.ZoneID != "Overworld.12.11.0" || owner?.BlueprintName != "BrinePool") return null;
+            if (_kitchenBrineArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _kitchenBrineArt = new FlatPixelKitchenBrineCatalog(_glyphFallback);
+            }
+            return _kitchenBrineArt;
         }
 
         private FlatPixelHedgeCatalog HedgeArtFor(Entity owner, bool remembered, out bool allowNativeFallback)
@@ -1074,6 +1094,8 @@ namespace CavesOfOoo.Rendering
             _nellaCornerArt = null;
             _eastFixtureArt?.Dispose();
             _eastFixtureArt = null;
+            _kitchenBrineArt?.Dispose();
+            _kitchenBrineArt = null;
             _hedgeArt?.Dispose();
             _hedgeArt = null;
             _glyphFallback?.Dispose();

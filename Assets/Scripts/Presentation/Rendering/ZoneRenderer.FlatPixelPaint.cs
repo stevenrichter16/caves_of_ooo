@@ -30,8 +30,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            PaintTileStateMarkCore(x, y, position, cell,
-                flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water);
+            PaintTileStateMarkWithBrine(x, y, position, cell,
+                flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water, flat.RepresentedBrine);
             var tint = !flat.Remembered && flat.Owner != null
                 ? ResolveRenderColor(flat.Owner, flat.Owner.GetPart<RenderPart>(), x, y)
                 : ApplyFlatLighting(flat.ForegroundColor, x, y);

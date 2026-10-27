@@ -2671,3 +2671,21 @@ archived, Editor idle/player closed; no storage cleanup. Current package paths,
 SHA and actual evidence are in [six-scene polish](GRAPHICS-SIX-SCENE-POLISH.md).
 Next: distinct kitchen brine identity from captured real owners and state,
 then actor-motion/incidental-glyph consistency; whole opening remains open.
+
+
+## Kitchen brine consistency — 2026-10-27 00:10 UTC
+
+The exact Kitchen12.11 brine pools now have an original editable native16×24
+identity, shared with their reader portraits. Actual keyboard Continue/Look/
+Examine/cover/uncover/F5 captures establish this bounded Editor result;192/192
+native tests cover the new state gates and neighboring water/pipes/fixtures.
+Source RED preceded implementation. Freeze/melt/renewal uses existing semantics;
+only a represented neutral brine layer loses its duplicate wave. See
+[Kitchen brine](GRAPHICS-KITCHEN-BRINE.md) for pipeline, corrections, actual
+screenshots, profile spike/limits and preservation receipts.
+
+Normal saves/gameplay settings,34foreign edits and current packages preserved;
+no storage cleanup. Current delivery still source6b1032459 pending new package
+verification. Next: push current source, fresh Mac/Linux builds, normal kitchen
+Continue/restart capture, then six-site actor-motion/incidental identity review.
+Whole opening and remaining regions remain unfinished.

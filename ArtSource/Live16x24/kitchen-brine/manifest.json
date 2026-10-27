@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 1,
+  "blueprint": "BrinePool",
+  "state": "identity",
+  "footprintCells": [
+    1,
+    1
+  ],
+  "baselineRow": 22,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "pixelsPerUnit": 16,
+  "alpha": "Binary0/255",
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "source": "native.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_kitchen_brine.py",
+  "native": "native.png",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "resource": "Sprites/Live16x24/kitchen-brine",
+  "nativeSHA256": "c48258f0cd5722f0197bda2f11778f4908507399bd1873a4680aac2b7a4d8428",
+  "referenceSHA256": {
+    "ArtSource/Live16x24/kitchen-brine/concept.png": "53dd0153af3884e1a75d9339bc5c3b6c8c92f5a391c3446bc685992ae52ad08f",
+    "ArtSource/Live16x24/kitchen-brine/imagegen-prompt.txt": "de59e3f0a755bb5712125f3afb5bbfd329faf125a41cf29dae09fe8b7faacc54",
+    "ArtSource/Live16x24/kitchen-brine/references.md": "9b2e3cb4c23d92517b763b31cc74e938d296bdeeaf9576d86ffac6350c3af092",
+    "Docs/Verification/Live16x24/kitchen-brine-02-before-world-2x.jpg": "6d579fe860f0ef69fc62c0dcee11f357a8744ba6051fc940fcad92974fed7132",
+    "ArtSource/Live16x24/east-kitchen/source-cells.json": "b3e6cdbdcb0a2e4240bf6307e01382900f92a5e0ac518b08168e7e5f1efe33df",
+    "ArtSource/Live16x24/east-kitchen/east-kitchen-contact.png": "7559a2ef06a610fef27c2f926a341f78883944f382679bcc200877a05944f732"
+  },
+  "parts": [
+    "asymmetric dark mud edge",
+    "flat dark teal interior",
+    "interrupted muted salt deposits",
+    "one quiet water mark"
+  ],
+  "sourceEvidence": {
+    "red": "source-red.txt",
+    "green": "source-green.txt",
+    "verification": "verification.json"
+  },
+  "paletteProvenance": "Water0C4344/184B45 from approved Ground; mud233C32, silt526657 and salt8D9B78 from approved stone/shrine grammar. Deep063638 is one original low-contrast water pocket.",
+  "rejected": [
+    "uniform raised rim",
+    "clay bowl",
+    "noisy highlights",
+    "soft alpha",
+    "3D lighting",
+    "volume states",
+    "ice",
+    "charge",
+    "flow",
+    "steam",
+    "bubbles"
+  ],
+  "limits": "One static material identity only; no contents quantity, potability, available liquid, freeze or charge promise. Runtime admission, hazard overlays, owner disclosure, Unity import and actual gameplay acceptance remain root-owned."
+}
