@@ -1,0 +1,899 @@
+{
+  "kind": "display_space_patch_analysis_not_visual_acceptance",
+  "patches_in_1280x800": {
+    "floor_west": [
+      350,
+      180,
+      390,
+      230
+    ],
+    "floor_south": [
+      385,
+      425,
+      415,
+      455
+    ],
+    "wall_horizontal": [
+      258,
+      90,
+      345,
+      109
+    ],
+    "wall_vertical": [
+      224,
+      165,
+      235,
+      270
+    ],
+    "void": [
+      90,
+      120,
+      150,
+      180
+    ]
+  },
+  "images": [
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-00-baseline.png",
+      "sha256": "ef8727c686196d6dfc6124b33d6cc2c114d15cccbe042004dc33ca435a97daa6",
+      "size": [
+        1280,
+        800
+      ],
+      "patches": {
+        "floor_west": {
+          "actual_box": [
+            350,
+            180,
+            390,
+            230
+          ],
+          "mean_rgb": [
+            63.37,
+            54.536,
+            44.345
+          ],
+          "mode": [
+            [
+              64,
+              55,
+              45
+            ],
+            1905
+          ],
+          "p10_median_p90": [
+            56.191,
+            56.191,
+            56.191
+          ]
+        },
+        "floor_south": {
+          "actual_box": [
+            385,
+            425,
+            415,
+            455
+          ],
+          "mean_rgb": [
+            64.097,
+            55.093,
+            45.03
+          ],
+          "mode": [
+            [
+              64,
+              55,
+              45
+            ],
+            822
+          ],
+          "p10_median_p90": [
+            56.191,
+            56.191,
+            56.191
+          ]
+        },
+        "wall_horizontal": {
+          "actual_box": [
+            258,
+            90,
+            345,
+            109
+          ],
+          "mean_rgb": [
+            46.776,
+            42.956,
+            37.318
+          ],
+          "mode": [
+            [
+              46,
+              42,
+              36
+            ],
+            1056
+          ],
+          "p10_median_p90": [
+            38.277,
+            42.417,
+            47.489
+          ]
+        },
+        "wall_vertical": {
+          "actual_box": [
+            224,
+            165,
+            235,
+            270
+          ],
+          "mean_rgb": [
+            46.838,
+            43.067,
+            37.487
+          ],
+          "mode": [
+            [
+              46,
+              42,
+              36
+            ],
+            670
+          ],
+          "p10_median_p90": [
+            38.277,
+            42.417,
+            47.489
+          ]
+        },
+        "void": {
+          "actual_box": [
+            90,
+            120,
+            150,
+            180
+          ],
+          "mean_rgb": [
+            28,
+            22,
+            19
+          ],
+          "mode": [
+            [
+              28,
+              22,
+              19
+            ],
+            3600
+          ],
+          "p10_median_p90": [
+            23.059,
+            23.059,
+            23.059
+          ]
+        }
+      }
+    },
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-01-neutral-grade.png",
+      "sha256": "902636032097695d5534728560e99c52b7d6175fb1ff9534d459a19755328deb",
+      "size": [
+        1280,
+        800
+      ],
+      "patches": {
+        "floor_west": {
+          "actual_box": [
+            350,
+            180,
+            390,
+            230
+          ],
+          "mean_rgb": [
+            57.392,
+            60.447,
+            62.023
+          ],
+          "mode": [
+            [
+              58,
+              61,
+              63
+            ],
+            1905
+          ],
+          "p10_median_p90": [
+            60.507,
+            60.507,
+            60.507
+          ]
+        },
+        "floor_south": {
+          "actual_box": [
+            385,
+            425,
+            415,
+            455
+          ],
+          "mean_rgb": [
+            58.18,
+            61.097,
+            63.107
+          ],
+          "mode": [
+            [
+              58,
+              61,
+              63
+            ],
+            769
+          ],
+          "p10_median_p90": [
+            60.507,
+            60.507,
+            60.719
+          ]
+        },
+        "wall_horizontal": {
+          "actual_box": [
+            258,
+            90,
+            345,
+            109
+          ],
+          "mean_rgb": [
+            41.474,
+            47.136,
+            53.158
+          ],
+          "mode": [
+            [
+              41,
+              46,
+              51
+            ],
+            1056
+          ],
+          "p10_median_p90": [
+            40.23,
+            45.298,
+            51.089
+          ]
+        },
+        "wall_vertical": {
+          "actual_box": [
+            224,
+            165,
+            235,
+            270
+          ],
+          "mean_rgb": [
+            41.497,
+            47.266,
+            53.455
+          ],
+          "mode": [
+            [
+              41,
+              46,
+              51
+            ],
+            670
+          ],
+          "p10_median_p90": [
+            40.23,
+            45.298,
+            51.089
+          ]
+        },
+        "void": {
+          "actual_box": [
+            90,
+            120,
+            150,
+            180
+          ],
+          "mean_rgb": [
+            22,
+            22,
+            27
+          ],
+          "mode": [
+            [
+              22,
+              22,
+              27
+            ],
+            3600
+          ],
+          "p10_median_p90": [
+            22.361,
+            22.361,
+            22.361
+          ]
+        }
+      }
+    },
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-02-neutral-grade-light.png",
+      "sha256": "bae8442fe2862a384cc5747554a3e1fd62776697fefccc11b37dd8fcf5b3538d",
+      "size": [
+        1280,
+        800
+      ],
+      "patches": {
+        "floor_west": {
+          "actual_box": [
+            350,
+            180,
+            390,
+            230
+          ],
+          "mean_rgb": [
+            85.484,
+            89.239,
+            92.624
+          ],
+          "mode": [
+            [
+              86,
+              90,
+              94
+            ],
+            1216
+          ],
+          "p10_median_p90": [
+            89.438,
+            89.438,
+            89.651
+          ]
+        },
+        "floor_south": {
+          "actual_box": [
+            385,
+            425,
+            415,
+            455
+          ],
+          "mean_rgb": [
+            86.044,
+            90.049,
+            94.042
+          ],
+          "mode": [
+            [
+              86,
+              90,
+              94
+            ],
+            886
+          ],
+          "p10_median_p90": [
+            89.438,
+            89.438,
+            89.438
+          ]
+        },
+        "wall_horizontal": {
+          "actual_box": [
+            258,
+            90,
+            345,
+            109
+          ],
+          "mean_rgb": [
+            62.773,
+            70.795,
+            80.575
+          ],
+          "mode": [
+            [
+              62,
+              69,
+              78
+            ],
+            1056
+          ],
+          "p10_median_p90": [
+            61.736,
+            68.162,
+            76.74
+          ]
+        },
+        "wall_vertical": {
+          "actual_box": [
+            224,
+            165,
+            235,
+            270
+          ],
+          "mean_rgb": [
+            62.816,
+            71.005,
+            80.894
+          ],
+          "mode": [
+            [
+              62,
+              69,
+              78
+            ],
+            670
+          ],
+          "p10_median_p90": [
+            61.736,
+            68.162,
+            76.74
+          ]
+        },
+        "void": {
+          "actual_box": [
+            90,
+            120,
+            150,
+            180
+          ],
+          "mean_rgb": [
+            35,
+            35,
+            42
+          ],
+          "mode": [
+            [
+              35,
+              35,
+              42
+            ],
+            3600
+          ],
+          "p10_median_p90": [
+            35.505,
+            35.505,
+            35.505
+          ]
+        }
+      }
+    },
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-03-neutral-with-dark-void.png",
+      "sha256": "5dd285721ff7409924b16595d25588cac9be37716187439775bce432e5f5ed2f",
+      "size": [
+        1280,
+        800
+      ],
+      "patches": {
+        "floor_west": {
+          "actual_box": [
+            350,
+            180,
+            390,
+            230
+          ],
+          "mean_rgb": [
+            85.484,
+            89.239,
+            92.624
+          ],
+          "mode": [
+            [
+              86,
+              90,
+              94
+            ],
+            1216
+          ],
+          "p10_median_p90": [
+            89.438,
+            89.438,
+            89.651
+          ]
+        },
+        "floor_south": {
+          "actual_box": [
+            385,
+            425,
+            415,
+            455
+          ],
+          "mean_rgb": [
+            86.044,
+            90.049,
+            94.042
+          ],
+          "mode": [
+            [
+              86,
+              90,
+              94
+            ],
+            886
+          ],
+          "p10_median_p90": [
+            89.438,
+            89.438,
+            89.438
+          ]
+        },
+        "wall_horizontal": {
+          "actual_box": [
+            258,
+            90,
+            345,
+            109
+          ],
+          "mean_rgb": [
+            62.773,
+            70.795,
+            80.575
+          ],
+          "mode": [
+            [
+              62,
+              69,
+              78
+            ],
+            1056
+          ],
+          "p10_median_p90": [
+            61.736,
+            68.162,
+            76.74
+          ]
+        },
+        "wall_vertical": {
+          "actual_box": [
+            224,
+            165,
+            235,
+            270
+          ],
+          "mean_rgb": [
+            62.816,
+            71.005,
+            80.894
+          ],
+          "mode": [
+            [
+              62,
+              69,
+              78
+            ],
+            670
+          ],
+          "p10_median_p90": [
+            61.736,
+            68.162,
+            76.74
+          ]
+        },
+        "void": {
+          "actual_box": [
+            90,
+            120,
+            150,
+            180
+          ],
+          "mean_rgb": [
+            27,
+            21,
+            21
+          ],
+          "mode": [
+            [
+              27,
+              21,
+              21
+            ],
+            3600
+          ],
+          "p10_median_p90": [
+            22.276,
+            22.276,
+            22.276
+          ]
+        }
+      }
+    },
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-04-restored-control.png",
+      "sha256": "7da47d5376560d86509c4240a16d3059749eafbc0f5f956577d018e6ddccc79b",
+      "size": [
+        1280,
+        800
+      ],
+      "patches": {
+        "floor_west": {
+          "actual_box": [
+            350,
+            180,
+            390,
+            230
+          ],
+          "mean_rgb": [
+            63.37,
+            54.536,
+            44.345
+          ],
+          "mode": [
+            [
+              64,
+              55,
+              45
+            ],
+            1905
+          ],
+          "p10_median_p90": [
+            56.191,
+            56.191,
+            56.191
+          ]
+        },
+        "floor_south": {
+          "actual_box": [
+            385,
+            425,
+            415,
+            455
+          ],
+          "mean_rgb": [
+            64.1,
+            55.094,
+            45.03
+          ],
+          "mode": [
+            [
+              64,
+              55,
+              45
+            ],
+            820
+          ],
+          "p10_median_p90": [
+            56.191,
+            56.191,
+            56.191
+          ]
+        },
+        "wall_horizontal": {
+          "actual_box": [
+            258,
+            90,
+            345,
+            109
+          ],
+          "mean_rgb": [
+            46.776,
+            42.956,
+            37.318
+          ],
+          "mode": [
+            [
+              46,
+              42,
+              36
+            ],
+            1056
+          ],
+          "p10_median_p90": [
+            38.277,
+            42.417,
+            47.489
+          ]
+        },
+        "wall_vertical": {
+          "actual_box": [
+            224,
+            165,
+            235,
+            270
+          ],
+          "mean_rgb": [
+            46.838,
+            43.067,
+            37.487
+          ],
+          "mode": [
+            [
+              46,
+              42,
+              36
+            ],
+            670
+          ],
+          "p10_median_p90": [
+            38.277,
+            42.417,
+            47.489
+          ]
+        },
+        "void": {
+          "actual_box": [
+            90,
+            120,
+            150,
+            180
+          ],
+          "mean_rgb": [
+            28,
+            22,
+            19
+          ],
+          "mode": [
+            [
+              28,
+              22,
+              19
+            ],
+            3600
+          ],
+          "p10_median_p90": [
+            23.059,
+            23.059,
+            23.059
+          ]
+        }
+      }
+    },
+    {
+      "path": "ArtSource/Live16x24/shale-caves/scene-reference-01.png",
+      "sha256": "78ef9c4d2175131516dd6a7c5280682ecdaa0100432662d4fc108a5d254baaf9",
+      "size": [
+        1586,
+        992
+      ],
+      "patches": {
+        "floor_west": {
+          "actual_box": [
+            434,
+            223,
+            483,
+            285
+          ],
+          "mean_rgb": [
+            64.827,
+            69.538,
+            75.483
+          ],
+          "mode": [
+            [
+              65,
+              70,
+              76
+            ],
+            279
+          ],
+          "p10_median_p90": [
+            64.583,
+            69.37,
+            71.583
+          ]
+        },
+        "floor_south": {
+          "actual_box": [
+            477,
+            527,
+            514,
+            564
+          ],
+          "mean_rgb": [
+            65.809,
+            70.435,
+            76.475
+          ],
+          "mode": [
+            [
+              65,
+              70,
+              76
+            ],
+            82
+          ],
+          "p10_median_p90": [
+            62.655,
+            67.442,
+            76.37
+          ]
+        },
+        "wall_horizontal": {
+          "actual_box": [
+            320,
+            112,
+            427,
+            135
+          ],
+          "mean_rgb": [
+            44.242,
+            49.538,
+            55.777
+          ],
+          "mode": [
+            [
+              43,
+              48,
+              54
+            ],
+            12
+          ],
+          "p10_median_p90": [
+            19.651,
+            47.154,
+            79.809
+          ]
+        },
+        "wall_vertical": {
+          "actual_box": [
+            278,
+            205,
+            291,
+            335
+          ],
+          "mean_rgb": [
+            43.769,
+            48.949,
+            55.091
+          ],
+          "mode": [
+            [
+              69,
+              78,
+              87
+            ],
+            9
+          ],
+          "p10_median_p90": [
+            20.723,
+            46.442,
+            77.524
+          ]
+        },
+        "void": {
+          "actual_box": [
+            112,
+            149,
+            186,
+            223
+          ],
+          "mean_rgb": [
+            27.878,
+            21.574,
+            17.826
+          ],
+          "mode": [
+            [
+              28,
+              22,
+              18
+            ],
+            1968
+          ],
+          "p10_median_p90": [
+            21.987,
+            22.702,
+            22.987
+          ]
+        }
+      }
+    }
+  ],
+  "ui_controls": [
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-01-neutral-grade.png",
+      "sidebar_identical": true,
+      "hotbar_identical": true
+    },
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-02-neutral-grade-light.png",
+      "sidebar_identical": true,
+      "hotbar_identical": true
+    },
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-03-neutral-with-dark-void.png",
+      "sidebar_identical": true,
+      "hotbar_identical": true
+    },
+    {
+      "path": "Docs/Verification/Live16x24/shale-parity-04-restored-control.png",
+      "sidebar_identical": true,
+      "hotbar_identical": true
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "created_at_utc": "2026-10-27T20:49:12.761349+00:00",
+  "runtime_source_commit": "d9f757841d7809b69ec859d0924bd0fba62016ca",
+  "package_flavor": "shared-storage-body-reuse",
+  "built_after_utc": "2026-10-27T20:46:11+00:00",
+  "slice_description": "Five exact genuine storage identities (Chest, LockedChest, StrongBox, Crate and OreCache), plus the explicit living MimicChest disguise guard, reuse four immutable native sources through a shared body-only catalog. Chest, LockedChest and living MimicChest share the same approved body across lock, contents, dormancy and wake states. Crate uses its approved cell; StrongBox and OreCache retain centered native 16x16 geometry. Current graph, owner, placement, disclosure and authorized-reader rules remain required. Existing access, inventory, destruction, damage/status and ambush mechanics retain their meaning; no fake open/full/empty/lock/awake sprite or render-time goal scan is introduced. Borrowed constructor inputs and old rendering entry points share the same refusal policy. No source art, generation, collision, loot, save or camera mechanics change.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-storage-mac-build.json",
+    "sha256": "7da94c54d7a5a3dde12f5757f3d4c4abd99ecefaff4f56f40b17bdb2d86c9bab",
+    "summary": {
+      "job_id": "build-b8163e3f53",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-27-shared-storage-d9f757841-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T20:46:11.956487Z",
+      "duration_seconds": 71.050367,
+      "completed_at": "2026-10-27T20:47:23.006854Z",
+      "total_size_mb": 344.41,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-storage-linux-build.json",
+    "sha256": "eb642c83706bd95ab1b7d2fe51b358a1c2f10db57bbb7bfb0f11a47d6bf57fcc",
+    "summary": {
+      "job_id": "build-7cad2bcafb",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-27-shared-storage-d9f757841-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T20:47:51.98041Z",
+      "duration_seconds": 66.38719999999999,
+      "completed_at": "2026-10-27T20:48:58.36761Z",
+      "total_size_mb": 324.87,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-storage-focused-green.json",
+          "sha256": "7737a02cd34757f552d254498adbd12356fca7b150910cc2dd4313c52fedd815",
+          "mode": "EditMode",
+          "job_id": "73732da547144227a3c53eb1f7d4f41c",
+          "summary": {
+            "total": 136,
+            "passed": 136,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 5.5558454,
+            "resultState": "Passed"
+          },
+          "actual_job_metadata": {
+            "JobId": "73732da547144227a3c53eb1f7d4f41c",
+            "Status": 1,
+            "Mode": "EditMode",
+            "StartedUnixMs": 1793132539683,
+            "FinishedUnixMs": 1793132554371,
+            "LastUpdateUnixMs": 1793132554371,
+            "TotalTests": 136,
+            "CompletedTests": 136,
+            "Error": null
+          },
+          "started_unix_ms": 1793132539683,
+          "finished_unix_ms": 1793132554371,
+          "scope": "Earlier completed native execution; this helper does not run tests.",
+          "overlap_with_preceding_receipts": 0
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-storage-related-green.json",
+          "sha256": "8dd74c87631747667295444ca8e1dd92e2abe0560954c6cb578e37d4c3063ec9",
+          "mode": "EditMode",
+          "job_id": "91605255fd584cec87347236b39b1009",
+          "summary": {
+            "total": 470,
+            "passed": 470,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 37.5016037,
+            "resultState": "Passed"
+          },
+          "actual_job_metadata": {
+            "JobId": "91605255fd584cec87347236b39b1009",
+            "Status": 1,
+            "Mode": "EditMode",
+            "StartedUnixMs": 1793132593018,
+            "FinishedUnixMs": 1793132639073,
+            "LastUpdateUnixMs": 1793132639073,
+            "TotalTests": 470,
+            "CompletedTests": 470,
+            "Error": null
+          },
+          "started_unix_ms": 1793132593018,
+          "finished_unix_ms": 1793132639073,
+          "scope": "Earlier completed native execution; this helper does not run tests.",
+          "overlap_with_preceding_receipts": 0
+        }
+      ],
+      "source_binding_receipt": {
+        "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-storage-native-summary.json",
+        "sha256": "9cebe0d994433d71fd1ebaf1b1a7b133049ce46f512ff2546ef136228af175df",
+        "source_sha256": {
+          "Assets/Tests/EditMode/FlatPixelSharedStorageTests.cs": "f4c4ab5ecf881e4ac45a1232dadaec9540eb7f4dad7aacbb184f5a400e5ca499",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedStorageCatalog.cs": "2c3913eb439625c36f5df97d423f54f0daa396b2bc01b96b50750911799ef0dd",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "49ffcbb269b032de5b5d51635e0c7656e4e7adf0f2f0d71af6c72b0533d3a072"
+        },
+        "current_source_bytes_match_recorded_tested_source": true,
+        "limits": "Exact current source/test bytes are checked; Git commit and source-to-binary provenance remain root operator assertions."
+      },
+      "job_metadata_receipt": {
+        "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-storage-native-job-metadata.json",
+        "sha256": "f0ed0f1c9df653c881617ad818d2e0b18cec0e45fab3fb05870bd8f87b1fc809",
+        "binding": "Exact selected job IDs/counts and raw-result hashes are pinned here; actual exported timestamps are not inferred."
+      },
+      "execution_occurrences": 606,
+      "passed_execution_occurrences": 606,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "distinct_test_identities_across_listed_receipts": 606,
+      "distinct_passed_test_identities": 606,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "skipped_identities": [],
+      "skipped_reason": null,
+      "limits": "136 focused/compatibility plus 470 disjoint related cases = 606 Passed identities. The focused set contains 43 new storage cases and 93 prior anchor/cellar compatibility cases. Historical RED jobs and earlier aggregates are not added. Raw results and actual job metadata are byte-pinned separately. This helper runs no tests and certifies neither whole-area graphics, actual gameplay, Linux execution, physical Deck behavior nor performance."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "This finite shared-owner integration is not every container, all actors, all biomes or whole-chunk graphics acceptance. The mimic is a separately guarded actor, not a sixth genuine storage family. Uncovered storage/reskins, actors, hazards, deeper strata, room props and special sites remain separate work.",
+    "Native bodies and matching readers do not establish whole-scene fullness or area polish. Ordinary access, transfer, damage, wake and persistence evidence must be assessed separately; no actual mimic encounter is inferred from native tests.",
+    "The two native raw-result receipts contain 606 distinct passed identities: 136 focused/compatibility and 470 related, with zero skips, failures or inconclusives. Earlier executions are not added. Actual native job metadata supplies the time bounds. These checks do not establish allocation or device performance.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Remaining worldwide static coverage stays queued; nuanced animation remains deferred."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

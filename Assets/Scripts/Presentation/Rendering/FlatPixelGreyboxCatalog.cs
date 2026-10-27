@@ -1040,6 +1040,13 @@ namespace CavesOfOoo.Rendering
             Tile shaleArt = null;
             bool shaleNative = shale != null && shale.TryResolveForeground(zone, x, y, owner, out shaleArt);
             if (shaleNative) art = shaleArt;
+            Tile shaleRecessTile = null; Color shaleRecessColor = default;
+            bool shaleRecessBackdrop = shaleNative && !shaleGround
+                && shale.TryResolveWallRecessBackdrop(zone, x, y, owner, out shaleRecessTile, out shaleRecessColor);
+            if (shaleRecessBackdrop)
+            {
+                groundTile = shaleRecessTile; groundColor = shaleRecessColor;
+            }
             bool beatingBrineNative = beatingNative && owner.BlueprintName == "BrinePool";
             bool mireNative = soddenNative && owner.BlueprintName == "MirePool";
             bool productKnown = FlatPixelHarvestProductsCatalog.HasKnownRole(owner);
@@ -1092,7 +1099,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative, caveBackdrop || limestoneBackdrop || shaleBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop);
             return true;
         }
 

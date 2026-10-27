@@ -1,0 +1,79 @@
+Mono path[0] = '/Users/steven/caves-of-ooo/Builds/Verification/2026-10-27-shared-storage-d9f757841-current/CavesOfOoo.app/Contents/Resources/Data/Managed'
+Mono config path = '/Users/steven/caves-of-ooo/Builds/Verification/2026-10-27-shared-storage-d9f757841-current/CavesOfOoo.app/Contents/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.3.4f1 (fdd3b8998ec4)
+[Subsystems] Discovering subsystems at path /Users/steven/caves-of-ooo/Builds/Verification/2026-10-27-shared-storage-d9f757841-current/CavesOfOoo.app/Contents/Resources/Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeThreaded
+ preferred device: Apple M5 (high power)
+Metal devices available: 1
+0: Apple M5 (high power)
+Using device Apple M5 (high power)
+Initializing Metal device caps: Apple M5
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.112 seconds
+- Finished resetting the current domain, in  0.001 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+UnloadTime: 0.504333 ms
+[Bootstrap] Awake called
+[Bootstrap] Start called
+[Bootstrap] Step 1/9: Initializing factions...
+[FactionLoader] Loaded 14 factions.
+[Bootstrap] Step 1b/9: Initializing material reactions...
+[Bootstrap] Loaded 13 reaction file(s), 13 reaction(s) total.
+[Bootstrap] Step 1b'/9: Initializing liquid definitions...
+[Bootstrap] Loaded 26 liquid file(s), 26 liquid(s) total.
+[Bootstrap] Step 1b''/9: Initializing gas definitions...
+[Bootstrap] Loaded 9 gas file(s), 9 gas(es) total.
+[Bootstrap] Step 1c/9: Loading House Dramas...
+[HouseDramaLoader] Loaded 2 drama(s).
+[Bootstrap] Step 1d/9: Loading Storylets...
+[StoryletRegistry] Loaded 23 storylet(s).
+[Conversation] Loaded 79 conversations from 31 files.
+[Bootstrap] Step 3/9: Creating EntityFactory...
+[Bootstrap] Step 4/9: Loading blueprints...
+[Bootstrap] Loaded 712 blueprints
+[Bootstrap/ASCII] Blueprint render validation passed.
+[Bootstrap/Handling] Blueprint handling validation passed.
+[Bootstrap] Step 4b/9: Loading loot tables...
+[Bootstrap] Loaded 100 loot table(s), 0 problem(s).
+[Bootstrap] Step 4c/9: Loading starting builds...
+[Bootstrap] Loaded 7 starting build(s); new-game picker ON.
+[Bootstrap] Step 5/9: Generating starting zone...
+[Bootstrap] Zone generated: 2665 entities
+[Bootstrap] Step 6/9: Creating player...
+[Bootstrap] Player created. Has Body part: True, Body initialized: True
+[Bootstrap/Farming] Granted 3 farming kit item stack(s) to the player.
+[Bootstrap/Farming] Plantable cells near spawn: 25.
+[Bootstrap] Step 7/9: Setting up turns...
+GameBootstrap: Registered 7 creatures for turns
+[Bootstrap] Step 8/9: Wiring renderer...
+[Bootstrap] ZoneRenderer wired successfully
+[Bootstrap] Step 9/9: Wiring input...
+[ActionMenu:wire] component=True Tilemap=SET BgTilemap=SET PopupCamera=SET
+[Bootstrap] DONE. Zone has 2666 entities. WASD/arrows to move.
+[ActionMenu:ui-open] actions=4 Tilemap=set BgTilemap=set
+Thread 0x16f087000 may have been prematurely finalized
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+Thread 0x16de2f000 may have been prematurely finalized
+Thread 0x16dda3000 may have been prematurely finalized
+Thread 0x16df47000 may have been prematurely finalized
+Thread 0x16dfd3000 may have been prematurely finalized
+Thread 0x16debb000 may have been prematurely finalized
+GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer.

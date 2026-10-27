@@ -1,5 +1,15 @@
 # Caves of Ooo — Project Rules for Claude
 
+**Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
+coverage across every biome and area, starting with shared Bed and Chair bodies.
+Keep straight wall silhouettes as the current default. The isolated shale parity
+prototype is parked, disabled and not accepted as reference parity; preserve its
+editable candidates and evidence reversibly, with no further automatic art
+iterations. Carry layered/shaded 2D wall relief and flatter quiet floors into the
+later biome-by-biome, area-by-area polish phase. Coverage is not polish acceptance.
+Normal saves, approved art, current builds and unrelated work remain preserved.
+See [the parked study](Docs/GRAPHICS-SHALE-PARITY-TEST.md) and the shared-furniture plan.
+
 **Chunk composition requirement (2026-10-26 local):** The user also requires
 chunks not to feel too bare. Fill regions with coherent, biome-appropriate
 terrain variation, flora, props and landmarks while preserving readable routes,

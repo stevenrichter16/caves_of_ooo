@@ -1,6 +1,27 @@
 # Worldwide native sprite coverage
 
-**Current shared-storage source-ready checkpoint — 2026-10-27:** Shared-storage body integration is independently reviewed as a bounded five-genuine-owner Editor pass:606 distinct native passes after43 RED failures, four immutable bodies and a separate living MimicChest guard. Eighteen actual captures retain five body/readers, Crate transfer and functional fresh Continue, plus ordinary StrongBox cave→surface→cave return to70,3,HP23 and F5fixture105turn11290. The05 Pause/06 clean image comparison remains invalid. Ordinary mimic, successful-key unlocking and destruction remain unobserved in actual play. Source publication and fresh shared-storage packages are pending; current main51810153080 and shale packagesa10e13300 remain verified. Profile peaks and sparse surface composition are retained without performance or polish acceptance; all55+5 polish states remain unchanged. Last actual hourly report20:28:11UTC; next21:28:11UTC.
+**Current continuation — broad coverage resumed, 2026-10-27:** The user ended
+the isolated cave detour and retained straight walls as the default. The prototype
+is parked with 182 native passes; actual21 and pause/disable/re-enable22–25 are
+retained evidence, not parity acceptance. Root verified study disabled, Unity
+stopped, save-root null and scene clean at22:19UTC; the v5b save directory was
+already absent, so no new v5b archive is claimed. Preserve its source reversibly.
+Shared-storage source `d9f757841` is verified on main; fresh Mac eight-view
+transfer/save/full-process restart and Linux archive integrity passed bounded
+review. Delivery evidence publication is pending root. Both builds retain four
+warnings; no Linux/Deck execution or full-area polish is claimed. Next is shared
+Bed/Chair reuse, with ordinary room65 before evidence underway. Root observed
+north-room player34,8 HP38, normal movement to34,12, then south room50,17 HP38
+and an actual Bed glyph reader. Earned fixture107 saves turn2250; these are
+before observations, not furniture integration. Later queued strata, services, actors and props remain
+open. All 55 inventory polish scopes and five Stump area statuses remain unchanged.
+Last actual hourly report21:28:31UTC; next22:28:31UTC (no new report inferred).
+
+Evidence: [parked restoration](Verification/Live16x24/shale-parity-parked-restoration.json),
+[storage package review](Verification/Live16x24/packaged-shared-storage-independent-review.md),
+[shared furniture plan](GRAPHICS-SHARED-FURNITURE.md).
+
+**Historical shared-storage source-ready checkpoint — 2026-10-27:** Shared-storage body integration is independently reviewed as a bounded five-genuine-owner Editor pass:606 distinct native passes after43 RED failures, four immutable bodies and a separate living MimicChest guard. Eighteen actual captures retain five body/readers, Crate transfer and functional fresh Continue, plus ordinary StrongBox cave→surface→cave return to70,3,HP23 and F5fixture105turn11290. The05 Pause/06 clean image comparison remains invalid. Ordinary mimic, successful-key unlocking and destruction remain unobserved in actual play. Source publication and fresh shared-storage packages are pending; current main51810153080 and shale packagesa10e13300 remain verified. Profile peaks and sparse surface composition are retained without performance or polish acceptance; all55+5 polish states remain unchanged. Last actual hourly report20:28:11UTC; next21:28:11UTC.
 
 **Historical shale delivery checkpoint — 2026-10-27:** Shale depths 5/6 are delivered from verified main source a10e13300: 467 retained distinct native passes, bounded Editor evidence, seven actual fresh Mac views, Rubble reader, ordinary 5→4→5→6→5 travel and full-process Continue at turn 12590, HP33. The 564,000-pixel Mac world rectangle matches exactly. Both builds have zero errors/four warnings; Linux archive integrity and scoped restoration passed independent review. Source is published; delivery-evidence commit remains pending. Whole-area polish, Linux/Deck gameplay and sustained performance are unaccepted. Next is shared storage with its mandatory mimic disguise guard; actual before views are pending. Slate7 remains a fallback baseline only. All55+5 polish states remain unchanged. Last actual hourly report19:28:00UTC; next20:28:00UTC.
 

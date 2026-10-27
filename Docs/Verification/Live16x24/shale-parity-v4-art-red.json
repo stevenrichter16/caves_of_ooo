@@ -1,0 +1,409 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 44,
+    "passed": 3,
+    "failed": 41,
+    "skipped": 0,
+    "durationSeconds": 11.3217801,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "CandidateAmbientIsNotARealFloorAndNeverConcealsLiveState",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CandidateAmbientIsNotARealFloorAndNeverConcealsLiveState",
+      "state": "Failed",
+      "durationSeconds": 0.2459137,
+      "message": "  Expected: RGBA(0.247, 0.267, 0.290, 1.000)\n  But was:  RGBA(0.329, 0.345, 0.361, 1.000)\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CandidateAmbientIsNotARealFloorAndNeverConcealsLiveState () [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:226\n",
+      "output": ""
+    },
+    {
+      "name": "CandidateRetainsSurvivingDamageIdentityAndRefusesGoneWall",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CandidateRetainsSurvivingDamageIdentityAndRefusesGoneWall",
+      "state": "Failed",
+      "durationSeconds": 0.1074774,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CandidateRetainsSurvivingDamageIdentityAndRefusesGoneWall () [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:251\n",
+      "output": ""
+    },
+    {
+      "name": "CardinalMaskUsesActualDisclosedWalkableShaleFloor(0,-1,1)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor(0,-1,1)",
+      "state": "Failed",
+      "durationSeconds": 0.0675382,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor (System.Int32 dx, System.Int32 dy, System.Int32 bit) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:151\n",
+      "output": ""
+    },
+    {
+      "name": "CardinalMaskUsesActualDisclosedWalkableShaleFloor(1,0,2)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor(1,0,2)",
+      "state": "Failed",
+      "durationSeconds": 0.0955972,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor (System.Int32 dx, System.Int32 dy, System.Int32 bit) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:151\n",
+      "output": ""
+    },
+    {
+      "name": "CardinalMaskUsesActualDisclosedWalkableShaleFloor(0,1,4)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor(0,1,4)",
+      "state": "Failed",
+      "durationSeconds": 0.0667064,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor (System.Int32 dx, System.Int32 dy, System.Int32 bit) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:151\n",
+      "output": ""
+    },
+    {
+      "name": "CardinalMaskUsesActualDisclosedWalkableShaleFloor(-1,0,8)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor(-1,0,8)",
+      "state": "Failed",
+      "durationSeconds": 0.0722111,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CardinalMaskUsesActualDisclosedWalkableShaleFloor (System.Int32 dx, System.Int32 dy, System.Int32 bit) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:151\n",
+      "output": ""
+    },
+    {
+      "name": "CombinedMaskAndAdjacentSolidWallKeepDistinctTruthfulFaces",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CombinedMaskAndAdjacentSolidWallKeepDistinctTruthfulFaces",
+      "state": "Failed",
+      "durationSeconds": 0.0555798,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CombinedMaskAndAdjacentSolidWallKeepDistinctTruthfulFaces () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:160\n",
+      "output": ""
+    },
+    {
+      "name": "DefaultWorldLoadsSiblingCandidateOnlyForExplicitIsolatedStudy",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DefaultWorldLoadsSiblingCandidateOnlyForExplicitIsolatedStudy",
+      "state": "Failed",
+      "durationSeconds": 0.0573767,
+      "message": "  Expected: (1152, 24)\n  But was:  (576, 24)\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DefaultWorldLoadsSiblingCandidateOnlyForExplicitIsolatedStudy () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:139\n",
+      "output": ""
+    },
+    {
+      "name": "DefaultWorldUsesScopedRubbleDerivativeAndRestoresOriginalWhenOff",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DefaultWorldUsesScopedRubbleDerivativeAndRestoresOriginalWhenOff",
+      "state": "Failed",
+      "durationSeconds": 0.0514122,
+      "message": "  Sprites/Live16x24/shale-parity-rubble\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DefaultWorldUsesScopedRubbleDerivativeAndRestoresOriginalWhenOff () [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:283\n",
+      "output": ""
+    },
+    {
+      "name": "DisposalOwnsOnlyCachedViewsAndDoesNotBreakPeerUsingBorrowedTextures",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DisposalOwnsOnlyCachedViewsAndDoesNotBreakPeerUsingBorrowedTextures",
+      "state": "Failed",
+      "durationSeconds": 0.0533262,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DisposalOwnsOnlyCachedViewsAndDoesNotBreakPeerUsingBorrowedTextures () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:372\n",
+      "output": ""
+    },
+    {
+      "name": "ExplicitRubbleDerivativePreservesNativeSquareAndSameOwnerReader",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.ExplicitRubbleDerivativePreservesNativeSquareAndSameOwnerReader",
+      "state": "Failed",
+      "durationSeconds": 0.053308,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.ExplicitRubbleDerivativePreservesNativeSquareAndSameOwnerReader () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:296\n",
+      "output": ""
+    },
+    {
+      "name": "GateRevocationReturnsBothFloorAndWallToOriginalAtlas(\"off\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.GateRevocationReturnsBothFloorAndWallToOriginalAtlas(\"off\")",
+      "state": "Failed",
+      "durationSeconds": 0.050255,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.GateRevocationReturnsBothFloorAndWallToOriginalAtlas (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:195\n",
+      "output": ""
+    },
+    {
+      "name": "GateRevocationReturnsBothFloorAndWallToOriginalAtlas(\"normal-save\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.GateRevocationReturnsBothFloorAndWallToOriginalAtlas(\"normal-save\")",
+      "state": "Failed",
+      "durationSeconds": 0.0476495,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.GateRevocationReturnsBothFloorAndWallToOriginalAtlas (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:195\n",
+      "output": ""
+    },
+    {
+      "name": "GateRevocationReturnsBothFloorAndWallToOriginalAtlas(\"other-depth\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.GateRevocationReturnsBothFloorAndWallToOriginalAtlas(\"other-depth\")",
+      "state": "Failed",
+      "durationSeconds": 0.0469207,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.GateRevocationReturnsBothFloorAndWallToOriginalAtlas (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:195\n",
+      "output": ""
+    },
+    {
+      "name": "HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"invisible\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"invisible\")",
+      "state": "Failed",
+      "durationSeconds": 0.065707,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:182\n",
+      "output": ""
+    },
+    {
+      "name": "HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"carried\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"carried\")",
+      "state": "Failed",
+      "durationSeconds": 0.0513716,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:182\n",
+      "output": ""
+    },
+    {
+      "name": "HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"equipped\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"equipped\")",
+      "state": "Failed",
+      "durationSeconds": 0.0533096,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:182\n",
+      "output": ""
+    },
+    {
+      "name": "HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"foreign-physics\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary(\"foreign-physics\")",
+      "state": "Failed",
+      "durationSeconds": 0.0476981,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.HiddenOrCustodiedSolidCannotChangeDisclosedFloorBoundary (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:182\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidCandidateFallsBackToOriginalArtAndOriginalAmbient(\"missing\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidCandidateFallsBackToOriginalArtAndOriginalAmbient(\"missing\")",
+      "state": "Passed",
+      "durationSeconds": 0.1104683,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCandidateFallsBackToOriginalArtAndOriginalAmbient(\"wrong-width\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidCandidateFallsBackToOriginalArtAndOriginalAmbient(\"wrong-width\")",
+      "state": "Failed",
+      "durationSeconds": 0.0598197,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidCandidateFallsBackToOriginalArtAndOriginalAmbient (System.String fault) [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:207\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidCandidateFallsBackToOriginalArtAndOriginalAmbient(\"wrong-height\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidCandidateFallsBackToOriginalArtAndOriginalAmbient(\"wrong-height\")",
+      "state": "Passed",
+      "durationSeconds": 0.0500735,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"custom\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"custom\")",
+      "state": "Failed",
+      "durationSeconds": 0.0488565,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:329\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"carried\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"carried\")",
+      "state": "Failed",
+      "durationSeconds": 0.0488664,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:329\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"equipped\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"equipped\")",
+      "state": "Failed",
+      "durationSeconds": 0.0486066,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:329\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"invisible\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"invisible\")",
+      "state": "Failed",
+      "durationSeconds": 0.0477729,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:329\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"remembered\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"remembered\")",
+      "state": "Failed",
+      "durationSeconds": 0.0465676,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:329\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"unexplored\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"unexplored\")",
+      "state": "Failed",
+      "durationSeconds": 0.0501221,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:329\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"actor\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative(\"actor\")",
+      "state": "Failed",
+      "durationSeconds": 0.0471333,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidOrUndisclosedRubbleCannotClaimStudyDerivative (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:329\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls(\"missing\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls(\"missing\")",
+      "state": "Failed",
+      "durationSeconds": 0.0529738,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls (System.String fault) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:309\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls(\"wrong-width\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls(\"wrong-width\")",
+      "state": "Failed",
+      "durationSeconds": 0.0496281,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls (System.String fault) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:309\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls(\"wrong-height\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls(\"wrong-height\")",
+      "state": "Failed",
+      "durationSeconds": 0.0479045,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.InvalidRubbleDerivativeRetainsOriginalWithoutDisablingCandidateWalls (System.String fault) [0x00034] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:309\n",
+      "output": ""
+    },
+    {
+      "name": "LegacyExplicitConstructorNeverImplicitlyLoadsCandidate",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.LegacyExplicitConstructorNeverImplicitlyLoadsCandidate",
+      "state": "Passed",
+      "durationSeconds": 0.0529477,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NonShaleOwnersAndCustomWallIdentityRetainExistingPresentation",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.NonShaleOwnersAndCustomWallIdentityRetainExistingPresentation",
+      "state": "Failed",
+      "durationSeconds": 0.0492324,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.NonShaleOwnersAndCustomWallIdentityRetainExistingPresentation () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:237\n",
+      "output": ""
+    },
+    {
+      "name": "RubbleDerivativeCannotActivateWithoutCompleteMainCandidate",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeCannotActivateWithoutCompleteMainCandidate",
+      "state": "Failed",
+      "durationSeconds": 0.0488196,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeCannotActivateWithoutCompleteMainCandidate () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:347\n",
+      "output": ""
+    },
+    {
+      "name": "RubbleDerivativeDisposalOwnsViewsButPreservesBorrowedTextureAndPeer",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeDisposalOwnsViewsButPreservesBorrowedTextureAndPeer",
+      "state": "Failed",
+      "durationSeconds": 0.0506289,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeDisposalOwnsViewsButPreservesBorrowedTextureAndPeer () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:353\n",
+      "output": ""
+    },
+    {
+      "name": "RubbleDerivativeRevokesWithStudyScope(\"off\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeRevokesWithStudyScope(\"off\")",
+      "state": "Failed",
+      "durationSeconds": 0.0505574,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeRevokesWithStudyScope (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:317\n",
+      "output": ""
+    },
+    {
+      "name": "RubbleDerivativeRevokesWithStudyScope(\"normal-save\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeRevokesWithStudyScope(\"normal-save\")",
+      "state": "Failed",
+      "durationSeconds": 0.0515258,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeRevokesWithStudyScope (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:317\n",
+      "output": ""
+    },
+    {
+      "name": "RubbleDerivativeRevokesWithStudyScope(\"other-depth\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeRevokesWithStudyScope(\"other-depth\")",
+      "state": "Failed",
+      "durationSeconds": 0.0519119,
+      "message": "  Missing explicit eight-argument rubble injection constructor.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Inject (UnityEngine.Texture2D suppliedCandidate, System.Boolean legacy, System.Boolean includeRubble, UnityEngine.Texture2D suppliedRubble) [0x00162] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:83\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RubbleDerivativeRevokesWithStudyScope (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:317\n",
+      "output": ""
+    },
+    {
+      "name": "SpatialVariationUsesAllEightFloorsAndFourInteriorWallFrames",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.SpatialVariationUsesAllEightFloorsAndFourInteriorWallFrames",
+      "state": "Failed",
+      "durationSeconds": 0.0787035,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.SpatialVariationUsesAllEightFloorsAndFourInteriorWallFrames () [0x0005d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:267\n",
+      "output": ""
+    },
+    {
+      "name": "UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"remembered\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"remembered\")",
+      "state": "Failed",
+      "durationSeconds": 0.1163328,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:170\n",
+      "output": ""
+    },
+    {
+      "name": "UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"unexplored\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"unexplored\")",
+      "state": "Failed",
+      "durationSeconds": 0.0888761,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:170\n",
+      "output": ""
+    },
+    {
+      "name": "UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"invisible\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"invisible\")",
+      "state": "Failed",
+      "durationSeconds": 0.1043293,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:170\n",
+      "output": ""
+    },
+    {
+      "name": "UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"custom-floor\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"custom-floor\")",
+      "state": "Failed",
+      "durationSeconds": 0.1445637,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:170\n",
+      "output": ""
+    },
+    {
+      "name": "UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"heated-floor\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace(\"heated-floor\")",
+      "state": "Failed",
+      "durationSeconds": 0.2644095,
+      "message": "  Expected: same as < (UnityEngine.Texture2D)>\n  But was:  < (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelShaleParityArtTests.Wall (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture, System.Nullable`1[T] mask) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:97\nat CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedOrInvalidFloorCannotAdvertiseAnExposedFace (System.String fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleParityArtTests.cs:170\n",
+      "output": ""
+    }
+  ]
+}

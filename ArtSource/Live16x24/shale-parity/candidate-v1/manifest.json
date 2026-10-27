@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "atlas": "shale-parity.png",
+  "dimensions": [
+    576,
+    24
+  ],
+  "frame_size": [
+    16,
+    24
+  ],
+  "frame_count": 36,
+  "floor_frames": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "wall_frame_formula": "4 + exposureMask*2 + variant",
+  "exposure_bits": {
+    "N": 1,
+    "E": 2,
+    "S": 4,
+    "W": 8
+  },
+  "exposure_meaning": "Only actual disclosed valid floor neighbors; unknown never supplies an exposed face. Mask0 is joined/unknown continuation.",
+  "wall_variants": 2,
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "mesh": "FullRect",
+  "alpha": "Fully opaque",
+  "palette": {
+    "floor": "3F444A",
+    "chip": "4C5157",
+    "chip-shadow": "363B41",
+    "crevice": "14181D",
+    "deep": "1D242C",
+    "mass": "272F3A",
+    "slab": "313B46",
+    "facet": "3D4753",
+    "edge": "4A5560",
+    "cut": "545F6B"
+  },
+  "blend": "shale-parity.blend",
+  "source_cells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_shale_parity.py",
+  "source_references": [
+    "ArtSource/Live16x24/shale-caves/scene-reference-01.png",
+    "Docs/Verification/Live16x24/shale-caves-after-01-depth6-entry.png"
+  ],
+  "scope": "Isolated candidate only; original rich shaded2D wall layers and cool flat ground. No global grading, simulation or gameplay parity acceptance.",
+  "protected_input_count": 150
+}

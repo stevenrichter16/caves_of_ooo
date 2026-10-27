@@ -1,0 +1,13 @@
+Source contract RED before v4 output; existing native PNG is frozen v3.
+exit=1
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 451, in <module>
+    elif a.verify_source:verify(False)
+                         ^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 251, in verify
+    assert im.mode=='RGBA';pixels=im.tobytes();stats=validate(source['frames'],im.size,pixels)
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 202, in validate
+    assert frames==source_cells(),'Authored source changed'
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Authored source changed

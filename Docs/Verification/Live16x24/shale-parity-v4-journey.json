@@ -1,0 +1,37 @@
+{
+  "checkpoint": "Docs/Verification/Live16x24/Fixtures/shale-parity-v4-travel",
+  "turn": 12440,
+  "hp": "33/40",
+  "zone": "Overworld.16.13.6",
+  "player": [
+    40,
+    13
+  ],
+  "reader_captures": [
+    "shale-parity-17-rubble-reader.png",
+    "shale-parity-18-wall-reader.png"
+  ],
+  "travel": [
+    {
+      "capture": "shale-parity-19-departure-original-depth5.png",
+      "zone": "Overworld.16.13.5",
+      "study": false,
+      "patcher": true,
+      "ambient": 0.45,
+      "torch": true
+    },
+    {
+      "capture": "shale-parity-20-reentry-candidate-v4.png",
+      "zone": "Overworld.16.13.6",
+      "study": true,
+      "patcher": false,
+      "ambient": 1,
+      "torch": false
+    }
+  ],
+  "fixture_sha256": {
+    "Quick.json": "8c61213754dc3b6d6558aed45ce5fb35827d87a58c57c0f8a8d17750d8d52aee",
+    "Quick.sav.gz": "b3d737a9f5032def5204e648274597a153eb0848bc64c121a0c6ac7d6653ff4f"
+  },
+  "limits": "Actual v4 reader/travel/save only; fresh restart and new depth6 destruction pending."
+}

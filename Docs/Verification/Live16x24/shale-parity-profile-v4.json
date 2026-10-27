@@ -1,0 +1,48 @@
+{
+  "startedUtc": "2026-10-27T21:47:36.389685Z",
+  "endedUtc": "2026-10-27T21:48:30.936093Z",
+  "seconds": 54.546408,
+  "context": "Root-owned actual Editor isolated v4 cave study: wall reader, ordinary ascent depth6 to5 and return; idle and MCP/CUA instrumentation included. No matched baseline timing or sustained package/Deck FPS claim.",
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "count": 19041,
+      "mean": 118151.23339110341,
+      "p95": 208833,
+      "max": 26987167,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-parity-profile-v4-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "count": 19041,
+      "mean": 136645.81046163541,
+      "p95": 27458,
+      "max": 1865382416,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-parity-profile-v4-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "count": 19041,
+      "mean": 2860676.081245733,
+      "p95": 3677000,
+      "max": 1908874750,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-parity-profile-v4-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "count": 19041,
+      "mean": 88553.129615041224,
+      "p95": 311019,
+      "max": 310336206,
+      "unit": "Bytes",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-parity-profile-v4-3.csv"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema": 2,
+  "atlas": "shale-parity.png",
+  "dimensions": [
+    1152,
+    24
+  ],
+  "frame_size": [
+    16,
+    24
+  ],
+  "frame_count": 72,
+  "floor_frames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "wall_frame_formula": "8 + exposureMask*4 + variant",
+  "exposure_bits": {
+    "N": 1,
+    "E": 2,
+    "S": 4,
+    "W": 8
+  },
+  "exposure_meaning": "Only actual disclosed valid floor neighbors; unknown never supplies an exposed face. Mask0 is joined/unknown continuation.",
+  "wall_variants": 4,
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "mesh": "FullRect",
+  "alpha": "Terrain fully opaque; separate Rubble binary alpha",
+  "rubble": {
+    "file": "shale-parity-rubble.png",
+    "dimensions": [
+      16,
+      16
+    ],
+    "cells": "rubble-source-cells.json",
+    "palette": {
+      "contact": "2C3137",
+      "lower": "454B52",
+      "face": "5B6168",
+      "facet": "70767C",
+      "fresh": "7E848A"
+    },
+    "owner": "Rubble",
+    "original_retained": "Assets/Resources/Sprites/Environment/rubble.png"
+  },
+  "palette": {
+    "floor": "3F444A",
+    "chip": "575C62",
+    "chip-light": "696E74",
+    "chip-shadow": "33383E",
+    "crevice": "111214",
+    "deep": "1D2025",
+    "mass": "272B33",
+    "slab": "31373F",
+    "facet": "3D434C",
+    "edge": "4A5159",
+    "cut": "545B63"
+  },
+  "blend": "shale-parity.blend",
+  "source_cells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_shale_parity.py",
+  "source_references": [
+    "ArtSource/Live16x24/shale-caves/scene-reference-01.png",
+    "Docs/Verification/Live16x24/shale-caves-after-01-depth6-entry.png"
+  ],
+  "scope": "Isolated candidate only; original rich shaded2D wall layers and cool flat ground. No global grading, simulation or gameplay parity acceptance.",
+  "protected_input_count": 150
+}

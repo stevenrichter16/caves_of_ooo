@@ -1,0 +1,87 @@
+{
+  "native_xml": "Docs/Verification/Live16x24/shale-parity-recess-red-preview-green.xml",
+  "sha256": "409c6dbbac438dc4d3d788c2b699317e42eafeca87e750bb2136565377a26565",
+  "summary": {
+    "id": "2",
+    "testcasecount": "77",
+    "result": "Failed(Child)",
+    "total": "77",
+    "passed": "61",
+    "failed": "16",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-27 22:01:30Z",
+    "end-time": "2026-10-27 22:01:36Z",
+    "duration": "6.1188938"
+  },
+  "failed": [
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CurrentCellStateRefusesRecessAndUsesOriginalOpaqueWall(\"water\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CurrentCellStateRefusesRecessAndUsesOriginalOpaqueWall(\"heat\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.CurrentCellStateRefusesRecessAndUsesOriginalOpaqueWall(\"charge\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DisclosedCompetingCurrentOwnerRefusesRecessWithoutChangingWallIdentity(\"real-floor\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DisclosedCompetingCurrentOwnerRefusesRecessWithoutChangingWallIdentity(\"foreign-ground\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DisclosedCompetingCurrentOwnerRefusesRecessWithoutChangingWallIdentity(\"background\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DisclosedCompetingCurrentOwnerRefusesRecessWithoutChangingWallIdentity(\"pool\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.DisclosedWallRecessUsesGroundPixelsWithoutInventingFloorOrChangingSolidOwner",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RecessNeverBelongsToAnOccludedWallOrItsCoveringActor",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RecessRevokesWhenStudyResourceOrCurrentAuthorityIsLost(\"off\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RecessRevokesWhenStudyResourceOrCurrentAuthorityIsLost(\"missing-candidate\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RecessRevokesWhenStudyResourceOrCurrentAuthorityIsLost(\"replaced-graph\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.RememberedNeighborCannotCreateRecessAndRedisclosureRestoresIt",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedCurrentCoOwnerCannotLeakThroughWallRecess(\"invisible\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedCurrentCoOwnerCannotLeakThroughWallRecess(\"carried\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FlatPixelShaleParityArtTests.UndisclosedCurrentCoOwnerCannotLeakThroughWallRecess(\"foreign-physics\")",
+      "message": "  Missing selected-wall recess underlay policy.\n  Expected: not null\n  But was:  null\n"
+    }
+  ],
+  "transport_note": "MCP job9b45ddf846784ac9aaf5bc8a8c60937d reported initialization timeout but Unity native XML independently confirms77discovered execution61passed16missing-underlay failures. Preview17allpassed. Do not count the transport timeout as regression RED."
+}

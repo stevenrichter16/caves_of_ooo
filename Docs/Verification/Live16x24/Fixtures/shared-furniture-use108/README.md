@@ -1,0 +1,1 @@
+Earned ordinary seed65 Sodden shelter55,19 HP40/40 turn2440. Continued unchanged room65, walked actual paths, Bed12657 restored2HP and advanced60clock, Chair12666 offeredSit but refused invalid_context because loaded player2695 lacks StatusEffectsPart. No gameplay/save edits. Baseline107 retains pre-useHP38 and matched south-room entry50,17.

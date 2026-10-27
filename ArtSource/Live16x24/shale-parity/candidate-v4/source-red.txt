@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 301, in <module>
+    elif a.verify:verify()
+                  ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 161, in verify
+    assert (OUT/'shale-parity.png').exists(),'Native parity atlas absent; original geometry render required'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Native parity atlas absent; original geometry render required

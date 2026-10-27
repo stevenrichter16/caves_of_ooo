@@ -1,0 +1,88 @@
+{
+  "utc": "2026-10-27T22:27:25.712749+00:00",
+  "source_fixture": "sodden-before-room65",
+  "zone": "Overworld.15.7.0",
+  "route": [
+    "34,8",
+    "34,12",
+    "50,12",
+    "50,17",
+    "47,19",
+    "55,19"
+  ],
+  "before_fixture": "shared-furniture-before107",
+  "before_turn": 2250,
+  "before_hp": "38/40",
+  "bed": {
+    "id": "12657",
+    "cell": [
+      47,
+      19
+    ],
+    "reader": "03",
+    "actual_sleep": "Rested, healed2, clockAdvanced60, turn2360",
+    "occupied_after": false
+  },
+  "chair": {
+    "id": "12666",
+    "cell": [
+      55,
+      19
+    ],
+    "reader": "07",
+    "actual_sit": "Rejected invalid_context atturn2440",
+    "effects_part_present": false,
+    "player_tag": true,
+    "both_owners_placed": true,
+    "occupied_after": false,
+    "occupant_after": null,
+    "sit_stand_accepted": false
+  },
+  "final_fixture": "shared-furniture-use108",
+  "final_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.15.7.0",
+    "ActiveZoneDisplayLabel": "Overworld.15.7.0",
+    "Turn": 2440,
+    "SaveTimestampUtc": "2026-10-27T22:27:00.5406670Z",
+    "HPSummary": "40/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "preserved_session": "/private/tmp/coo-shared-furniture-before-preserved-f3c5d501",
+  "preserved_hashes": {
+    "empty-launch-Quick.sav.gz": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "FlatPixelGreyboxMarker/Quick.sav.gz": "f03a8e40ca8fb4398ce664653a490588d80cfb77d2f9b0e4cef16d6e3a9dd032",
+    "FlatPixelGreyboxMarker/Quick.json": "6b55279b8721a06ec6206342df8c3de0591ff57bb623acc2e0f6dea0557b18a3",
+    "50e670c30b6d48feb82756df64bd1cbc/Quick.sav.gz": "a1d53d8ca2e7454b2bfd8acd998cfbd8ea65cfaf69f87a4b7a626921ff75fa40",
+    "50e670c30b6d48feb82756df64bd1cbc/Quick.sav.gz.bak": "82db32af658e9ea50f6eef005a589a234990597afddd57a1f504c871b00498fb",
+    "50e670c30b6d48feb82756df64bd1cbc/Quick.json.bak": "095ec2df5dde038a2ceaa210994cb28c08de25b83209a7ec3e8035721aa1dc10",
+    "50e670c30b6d48feb82756df64bd1cbc/Quick.json": "131d55556848dca9c4b4be71d32a32b9614d3db8ca2855f1b2bb54575b66ea6d"
+  },
+  "captures": {
+    "shared-furniture-before-01-north-room.png": "133c89a31de56285f08a55ae27882dc98e81505b5058c1c56df9708125aec567",
+    "shared-furniture-before-02-south-room.png": "e5872bc0729c42a49eed7e9ddfd56b12154f67990d1e234bac46416b77d9a0cd",
+    "shared-furniture-before-03-bed-reader.png": "73bf21e659160031c831ef3b663252a06d3a4add832027332f3b4b8f4980565b",
+    "shared-furniture-before-04-bed-rest.png": "90619dc5cc9a7663bea4492659697a4a3fab882fd672a625525e31e8e66cd850",
+    "shared-furniture-before-05-chair-refusal.png": "0babf4f4912ca9fcf338cf5299b813d6d5fde526869f51af40c1367d9d629f93",
+    "shared-furniture-before-06-chair-menu.png": "cca91fb902b6d180a1c47e4317fd4d9dcf66ddb3666fd9ddb41817f2d15c9303",
+    "shared-furniture-before-07-chair-reader.png": "1c15830941cf6343deaa8cccb3631489c12c724bbc762e6f3fac1fab05f68a69",
+    "shared-furniture-before-08-saved.png": "5a874eeb0d53559540d5f59096ad531a40d0281d14e8f900f6671f56c9f3084a"
+  },
+  "new_runtime_or_art": false,
+  "coverage_acceptance": false,
+  "polish_acceptance": false,
+  "study_enabled": false,
+  "limitations": [
+    "Existing glyphs documented; native furniture integration not implemented",
+    "Night/dawn ambient and large sparse room are observed polish debt, not changed for capture",
+    "No new prototype scene, teleport, fog reveal, runtime-spawn or HP/time/save edit",
+    "Chair missing-effects rejection requires focused source/native follow-up before acceptance",
+    "No new packaged/Deck run"
+  ]
+}

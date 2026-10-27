@@ -1,0 +1,38 @@
+{
+  "validation_passed": false,
+  "failed_cases": [
+    {
+      "mask": 9,
+      "variant": 2,
+      "error": "Detached opaque island"
+    },
+    {
+      "mask": 11,
+      "variant": 2,
+      "error": "Detached opaque island"
+    },
+    {
+      "mask": 13,
+      "variant": 2,
+      "error": "Detached opaque island"
+    },
+    {
+      "mask": 15,
+      "variant": 2,
+      "error": "Detached opaque island"
+    }
+  ],
+  "cause": "Slow profiles were allowed to retain disconnected corner slivers after perpendicular cuts.",
+  "workflow_correction": "Preflight asserted before writing source RED; a subsequent build call in the same orchestration mistakenly still ran after command failure. These source-only outputs are rejected/preserved. Runtime stayed v4. No successful source RED is claimed for that failed attempt.",
+  "hashes": {
+    "source-cells.json": "f91bc6904b6cf1e203d50144e59de2980c4905c00c407621ad5185927bef8cdf",
+    "build_shale_parity.py": "77a9a365f53d5b6b899746be753000a0483d07b5f222f4fe09e525d32ab250de",
+    "contact.png": "341008afdada8af2a3b759539ceb56a0f4f4cfa2c070ae79d8302b51ae0d2b7a",
+    "shale-parity.png": "cf484b90815eded552d6cf09779b88e3de318b9b325c6bfbf1abdd2fbb437003",
+    "shale-parity.blend": "e146ae87214b1d5232ef2943cfabeb886f6771fbe607f6c1d043e5565250887f",
+    "iteration5b-build.log": "e448d38d360c8706c24289a3c7ff1f6a14107dc7c6f0cda3fd2866e0fecf3ce3",
+    "manifest.json": "8f2841af87267a848d032293531406638ce7cb0a08ba1fb31d58692e69f0a15f",
+    "material-study.png": "cb38b2fef48f79bee00ef083cd7dfb8b2781655da3aa4cdac33f8428c063d6ab",
+    "contact-native.png": "1084f8044bd871ef72b1f13fb28c7434c1d0fc6ce130d89a054dc4a2c3544ae2"
+  }
+}

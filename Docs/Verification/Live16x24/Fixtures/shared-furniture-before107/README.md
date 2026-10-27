@@ -1,0 +1,1 @@
+Earned ordinary seed65 Sodden shelter south room. Continued unchanged sodden-before-room65, walked34,8→34,12→50,12→50,17, inspected Bed47,19, closed reader and F5 saved. HP38/40. No placement/fog/time/health/save edits. Straight wall presentation; shale study disabled. Matched before furniture coverage.

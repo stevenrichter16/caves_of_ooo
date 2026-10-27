@@ -1,0 +1,93 @@
+{
+  "source_commit": "d9f757841d7809b69ec859d0924bd0fba62016ca",
+  "mac_build_receipt": "packaged-shared-storage-mac-build.json",
+  "fixture_setup": {
+    "source_commit": "d9f757841d7809b69ec859d0924bd0fba62016ca",
+    "normal_standalone_root_previously_absent": true,
+    "fixture": "Docs/Verification/Live16x24/Fixtures/shared-storage-crate-after104",
+    "target": "/Users/steven/Library/Application Support/com.DefaultCompany.2D-URP/Saves/50e670c30b6d48feb82756df64bd1cbc",
+    "metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.3.4.0",
+      "ActiveZoneDisplayLabel": "Overworld.3.4.0",
+      "Turn": 9100,
+      "SaveTimestampUtc": "2026-10-27T20:26:22.1469780Z",
+      "HPSummary": "29/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "pair_sha256": {
+      "Quick.json": "c1c9ba659bae66c5833fe883e2d31bed64ba17fe5fc00b1fba412962c6b856fe",
+      "Quick.sav.gz": "ffa6030a87b22f3292dc63fc87866a1db830caecb22fa9b0dd94cebc58e24d3c"
+    },
+    "preferences_changed_by_setup": false
+  },
+  "actual_process_runs": 2,
+  "actions": [
+    "Ordinary launch and Continue of unchanged earned104",
+    "Look/Examine Crate67305 shows matching native body andWood10/10",
+    "Open contains actual HealingTonic and StunGasGrenade; Return takesHealingTonic, weight39\u219240, oneStunGasGrenade remains",
+    "Closepickup, F5saves turn9110HP29; capture06 cleanworld",
+    "FullCmdQ and verify no player process; fresh app launch and normalC loads at45,2HP29",
+    "Capture07 cleanworld exactlymatches06 on564000 worldpixels; actualOpen shows oneStunGasGrenade; fullquitverified"
+  ],
+  "captures": {
+    "packaged-shared-storage-mac-01-launch.png": "d403695172e27766fd5a1d3e782ac98c8be0fa9c908c2b6584163de8f88c1b6e",
+    "packaged-shared-storage-mac-02-crate.png": "c5b0bd70e923d690e02e3eb216d0732009db1f9814f18f21cc87bc588b1de693",
+    "packaged-shared-storage-mac-03-crate-reader.png": "0f3d6881fb8147b49d7b353b1980e06ef94e4eb5ce62a1a2421bc84b196a02b4",
+    "packaged-shared-storage-mac-04-contents.png": "aad5fc12a62fa37465c1bca1014c204f44af3c08c612ce8b6dacd70df4b3c434",
+    "packaged-shared-storage-mac-05-transfer.png": "39136c8263e0f8588ceeb0dc146099fb7e20192a6900e99358eeb4a107d91727",
+    "packaged-shared-storage-mac-06-saved.png": "213c322340cce5919ca94780df8748714693c6f5b05fd4342e21cf6eb244739c",
+    "packaged-shared-storage-mac-07-fresh-continue.png": "79e017bcef71d4a70fc279e73117f627848f6fb3ff6580dad46a942a60213958",
+    "packaged-shared-storage-mac-08-remaining-contents.png": "89da4fb0dba9344aebf50fb3a68bb3d21e03ecafe923714bfb00de0a6a89150a"
+  },
+  "earned_fixture": "Fixtures/shared-storage-packaged106",
+  "metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.3.4.0",
+    "ActiveZoneDisplayLabel": "Overworld.3.4.0",
+    "Turn": 9110,
+    "SaveTimestampUtc": "2026-10-27T20:49:53.1537370Z",
+    "HPSummary": "29/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "fixture_sha256": {
+    "Quick.json": "b79649ffbf758f099fc5fa446dcd7bd67061669819e0b2ff754f939dc478161a",
+    "Quick.sav.gz": "c6a562a01cb27fd17f78b545bdf9d4c236c2c6855b96848c094fa730521551f0"
+  },
+  "world_comparison": {
+    "rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "changed": 0,
+    "pixels": 564000,
+    "equivalent_world_capture": true
+  },
+  "restart_log": {
+    "path": "packaged-shared-storage-mac-restart.log",
+    "sha256": "9bc6f0ee97f023156bcf9e7ab49cf852ab958915aac934517cf35ac328f77a1e",
+    "error_exception_failed_matches": 0
+  },
+  "limits": [
+    "Only actualMacexecuted; Linuxarchiveverified but unexecuted; physicalDeckuntested",
+    "No ordinarymimic or successfulkeyunlock inactualphase",
+    "Stumpcomposition remains sparse and domeblockingcue subtle; fullareapolishnotaccepted",
+    "No sustainedstandaloneFPSbenchmark; Editorprofileincludesidle/tooloverhead",
+    "No in-process standaloneentityread; itemnames/count/actionlog and save metadata are observed; identities established in priorEditorfixture"
+  ],
+  "restoration_receipt": "packaged-shared-storage-restoration.json"
+}

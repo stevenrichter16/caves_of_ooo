@@ -16,6 +16,7 @@ namespace CavesOfOoo.Rendering
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
         readonly Tile[] walls, floors, rubble, stalagmite, down, up;
+        readonly Tile[] parityWalls, parityFloors, parityRubble;
         bool disposed;
         struct Address
         {
@@ -51,12 +52,24 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>("Sprites/Environment/rubble"),
                 Resources.Load<Texture2D>("Sprites/Environment/stalagmite"),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath),
+                Resources.Load<Texture2D>(FlatPixelShaleParityStudy.ResourcePath), borrowedSelector,
+                Resources.Load<Texture2D>(FlatPixelShaleParityStudy.RubbleResourcePath)) { }
 
         /// <summary>Each optional group fails independently. Explicit null input
         /// never reloads a resource. Square sources remain centered 16 PPU.</summary>
         public FlatPixelShaleCavesCatalog(Texture2D shale6, Texture2D rubble16, Texture2D stalagmite16, Texture2D anchors12,
             Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector)
+            : this(shale6, rubble16, stalagmite16, anchors12, cellar9, null, borrowedSelector) { }
+
+        /// <summary>The optional sibling study never replaces the preserved base
+        /// atlas. Explicit null/wrong dimensions retain the original presentation.</summary>
+        public FlatPixelShaleCavesCatalog(Texture2D shale6, Texture2D rubble16, Texture2D stalagmite16, Texture2D anchors12,
+            Texture2D cellar9, Texture2D parity72, FlatPixelFallbackCatalog borrowedSelector)
+            : this(shale6, rubble16, stalagmite16, anchors12, cellar9, parity72, borrowedSelector, null) { }
+
+        public FlatPixelShaleCavesCatalog(Texture2D shale6, Texture2D rubble16, Texture2D stalagmite16, Texture2D anchors12,
+            Texture2D cellar9, Texture2D parity72, FlatPixelFallbackCatalog borrowedSelector, Texture2D parityRubble16)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -66,6 +79,11 @@ namespace CavesOfOoo.Rendering
             stalagmite = Frames(stalagmite16, 1, Width, 0, 1, "stalagmite");
             down = Frames(anchors12, 12, Height, 4, 1, "down");
             up = Frames(cellar9, 9, Height, 0, 1, "up");
+            parityFloors = Frames(parity72, FlatPixelShaleParityStudy.FrameCount, Height, 0,
+                FlatPixelShaleParityStudy.FloorVariants, "study floor");
+            parityWalls = Frames(parity72, FlatPixelShaleParityStudy.FrameCount, Height,
+                FlatPixelShaleParityStudy.FloorVariants, 16 * FlatPixelShaleParityStudy.WallVariants, "study wall");
+            parityRubble = Frames(parityRubble16, 1, Width, 0, 1, "study rubble");
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -97,7 +115,9 @@ namespace CavesOfOoo.Rendering
                 else if (CompetingGround(owner)) return false;
             }
             if (actual == null) return false;
-            floor = actual; tile = floors[VariantAt(x, y)]; return true;
+            floor = actual;
+            tile = ParityActive(zone) ? parityFloors[StudyVariantAt(x, y)] : floors[VariantAt(x, y)];
+            return true;
         }
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
@@ -108,15 +128,86 @@ namespace CavesOfOoo.Rendering
             switch (owner.BlueprintName)
             {
                 case "ShaleWall": group = walls; break;
-                case "Rubble": group = rubble; break;
+                case "Rubble": group = parityRubble != null && ParityActive(zone) ? parityRubble : rubble; break;
                 case "Stalagmite": group = stalagmite; break;
                 case "StairsDown": group = down; break;
                 case "StairsUp": group = up; break;
                 default: return false;
             }
             if (group == null) return false;
+            if (owner.BlueprintName == "ShaleWall" && ParityActive(zone))
+            {
+                int mask = ExposedFloorMask(zone, x, y);
+                // A recessed silhouette requires safe backing. Otherwise retain
+                // the original opaque body instead of exposing a false floor.
+                if (mask == 0 || SafeWallRecessCell(zone, cell, owner))
+                {
+                    tile = parityWalls[mask * FlatPixelShaleParityStudy.WallVariants
+                        + StudyVariantAt(x, y) % FlatPixelShaleParityStudy.WallVariants];
+                    return true;
+                }
+            }
             tile = group[owner.BlueprintName == "ShaleWall" && VariantAt(x, y) != 0 ? 1 : 0];
             return true;
+        }
+
+        /// <summary>Pattern beneath the selected wall's shallow silhouette cuts.
+        /// This is presentation backing, never a floor owner or passable cell.</summary>
+        public bool TryResolveWallRecessBackdrop(Zone zone, int x, int y, Entity owner, out Tile tile, out Color tint)
+        {
+            tile = null; tint = default;
+            if (owner?.BlueprintName != "ShaleWall" || !ParityActive(zone)
+                || !TryResolveForeground(zone, x, y, owner, out _)
+                || ExposedFloorMask(zone, x, y) == 0
+                || !SafeWallRecessCell(zone, zone.GetCell(x, y), owner)) return false;
+            tile = parityFloors[StudyVariantAt(x, y)]; tint = Color.white;
+            return true;
+        }
+
+        static bool SafeWallRecessCell(Zone zone, Cell cell, Entity wall)
+        {
+            if (cell == null) return false;
+            var state = zone.TileState.Get(cell.X, cell.Y);
+            if (state != null && !state.IsEmpty) return false;
+            foreach (var owner in cell.Occupants)
+            {
+                if (ReferenceEquals(owner, wall) || !Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                // The selected wall's authored ^k is replaced only here. Other
+                // real substrates, sources and authored backgrounds retain authority.
+                if (owner.HasTag("Terrain") || CompetingGround(owner) || ForeignMeaning(owner)
+                    || !string.IsNullOrEmpty(Owned<RenderPart>(owner).BackgroundColor)) return false;
+            }
+            return true;
+        }
+
+        bool ParityActive(Zone zone) => parityFloors != null && parityWalls != null
+            && FlatPixelShaleParityStudy.IsActive(zone, true); // This catalog serves flat presentation only.
+
+        int ExposedFloorMask(Zone zone, int x, int y)
+            => (DisclosedFloor(zone, x, y - 1) ? 1 : 0)
+             | (DisclosedFloor(zone, x + 1, y) ? 2 : 0)
+             | (DisclosedFloor(zone, x, y + 1) ? 4 : 0)
+             | (DisclosedFloor(zone, x - 1, y) ? 8 : 0);
+
+        bool DisclosedFloor(Zone zone, int x, int y)
+        {
+            // Unknown/remembered space is not evidence of an exposed face.
+            // Ground validation also excludes tile state and foreign materials.
+            if (!TryResolveGround(zone, x, y, out _, out _)) return false;
+            var cell = zone.GetCell(x, y);
+            foreach (var owner in cell.Occupants)
+            {
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (Owned<PhysicsPart>(owner).Solid || owner.HasTag("Solid") || owner.HasTag("Wall")) return false;
+            }
+            return true;
+        }
+
+        static int StudyVariantAt(int x, int y)
+        {
+            uint value = unchecked((uint)x * 0x9e3779b1u ^ (uint)y * 0x85ebca77u);
+            value ^= value >> 16; value = unchecked(value * 0x7feb352du); value ^= value >> 15;
+            return (int)(value % FlatPixelShaleParityStudy.FloorVariants);
         }
         /// <summary>Quiet visible-cell canvas, not a terrain owner or material.
         /// It cannot replace real ground, authored backgrounds or live hazards.
@@ -137,7 +228,7 @@ namespace CavesOfOoo.Rendering
                     || owner.BlueprintName == "Rubble" && !OrdinaryForeground(owner)) return false;
             }
             tile = selector.BackgroundTile;
-            color = new Color32(84, 88, 92, 255); // Unmarked base of the native shale floor.
+            color = ParityActive(zone) ? new Color32(63, 68, 74, 255) : new Color32(84, 88, 92, 255);
             return true;
         }
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
@@ -313,6 +404,7 @@ namespace CavesOfOoo.Rendering
             if (disposed) return; disposed = true;
             DestroyFrames(walls); DestroyFrames(floors); DestroyFrames(rubble);
             DestroyFrames(stalagmite); DestroyFrames(down); DestroyFrames(up);
+            DestroyFrames(parityWalls); DestroyFrames(parityFloors); DestroyFrames(parityRubble);
         }
         static void DestroyFrames(Tile[] tiles)
         {

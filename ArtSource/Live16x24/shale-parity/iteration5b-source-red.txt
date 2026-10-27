@@ -1,0 +1,14 @@
+Corrected v5b source RED before corrected output; rejected previous source retains a corner island.
+builder_sha256=8226de37ed1bee883c9e4120adc3f9f20db9117dd1b2946e5b3e2e67322112c4
+exit=1
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 530, in <module>
+    elif a.verify_source:verify(False)
+                         ^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 314, in verify
+    assert im.mode=='RGBA';pixels=im.tobytes();stats=validate(source['frames'],im.size,pixels)
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_parity.py", line 257, in validate
+    assert frames==source_cells(),'Authored source changed'
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Authored source changed
