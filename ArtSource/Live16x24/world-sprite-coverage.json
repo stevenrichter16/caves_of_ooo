@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "source_grounded_scope_and_coverage_plan_not_runtime_manifest",
-  "reviewed_at_utc": "2026-10-27T08:37:50.738382+00:00",
+  "reviewed_at_utc": "2026-10-27T09:32:11.471735+00:00",
   "baseline_source_revision": "bf38cfd98 (root-provided audit baseline; no Git operation in this audit)",
   "priority": "Complete native16x24 sprite coverage across every biome and area before optional nuanced animation; ensure chunks feel intentionally composed rather than bare.",
   "bounds": [
@@ -332,10 +332,10 @@
       ],
       "coverage_axes": {
         "registered_scope": "source_inventoried",
-        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
-        "ordinary_scene_and_states": "not_yet_audited",
-        "chunk_composition_fullness": "not_yet_audited",
-        "packaged_area_acceptance": "not_yet_audited"
+        "native_region_kit": "14newmaterialframes_22borrowedcells_integrated_495nativepass",
+        "ordinary_scene_and_states": "four_area_samples_observed_draw_sign_cache_forage_and_fresh_restart_verified",
+        "chunk_composition_fullness": "bounded_normalzoom_views_reviewed; water_actors_props_crops_and_full_region_open",
+        "packaged_area_acceptance": "pending_newbuild"
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
@@ -343,7 +343,7 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review."
+      "note": "Ordinary real Grovelands guards; world/inventory/examine identity and restart verified in bounded Editor route. No whole-biome completion; sparse approaches intentional, visible water glyphs and missing owner art remain."
     },
     {
       "key": "Overwrit",
@@ -2381,13 +2381,13 @@
       "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65",
       "gate": "Capture actual product world/inventory/examine behavior; imagegen/extraction, editable native authoring, exact portable owner/state guards, RED/GREEN, real carry/drop/read/save/travel comparison and package verification. Do not widen regional ground admission. Return to regional area kits afterward.",
       "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65",
-      "remaining": "Other15 exact products await ordinary observation. Bone standalone uncovered-world evidence remains open. Do not gate regional breadth on acquiring all15; no whole-biome/fullness acceptance.",
+      "remaining": "This harvest pass observedPaleSalt/Bone; laterGrovelands route additionally observesGroveRed/GoldCoin. Other13products awaitordinaryobservation. Do not gate regionalbreadth on acquiringall.",
       "retained_combat_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-combat65"
     },
     {
       "id": "W3_remaining_world_families",
-      "scope": "Grovelands, Overwrit and Stump native area kits next, then remaining registered biomes, settlements/interiors, underground bands, sinkholes and special owners; retain Beating/Sodden missing props/services/actors",
-      "status": "Grovelands_source_preflight_ready_actual_baseline_pending; remaining_regional_art_and_whole_scene_acceptance_open",
+      "scope": "Deliver this material slice, then close visible Fen water continuity and observed regional actor bodies; continue Overwrit/Stump and all remaining registered area kits. No nuanced animation prerequisite.",
+      "status": "Grovelands_materials_editor_accepted_package_pending; visible_water_and_actor_gaps_then_Overwrit_Stump_remainingworld",
       "gate": "Actual Grovelands whole-view baseline and real current map/POI/lair ownership, then imagegen/extraction/native source and meaningful RED/GREEN, gameplay and package comparison. Preserve readable approaches and biome-appropriate clusters/landmarks. Do not replace missing owner art with arbitrary decorative generation or wait for all15 unobserved harvest products.",
       "next_preflight": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md",
       "next_provisional_new_frames": 14,
@@ -3196,5 +3196,69 @@
         "reviewed_build_serialization": 4
       }
     }
+  },
+  "grovelands_materials_delivery": {
+    "status": "native_and_bounded_editor_accepted_package_pending",
+    "plan": "Docs/GRAPHICS-GROVELANDS-MATERIALS.md",
+    "baseline_actions": "Docs/Verification/Live16x24/grovelands-baseline-actions.md",
+    "play_summary": "Docs/Verification/Live16x24/grovelands-play-summary.json",
+    "native_new_frames": 14,
+    "native_new_owner_families": 9,
+    "borrowed_cells": 22,
+    "borrowed_owner_families": 4,
+    "borrowed_atlases": 3,
+    "native_png_sha256": "e994ff638167310ec4c50a733a5cdea5d5d23ef170e48297fdc154ca0dad60b2",
+    "native_tests": {
+      "green": 495,
+      "new": 91,
+      "related": 404,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "xml": "Docs/Verification/Live16x24/grovelands-native-green.xml",
+      "red": "Docs/Verification/Live16x24/grovelands-native-red-jobs.json",
+      "red_bounds": "Two91-case jobs failed before implementation; service omitted finalXML and capped failure detail, so no91-individual-failure claim.",
+      "trial": "Docs/Verification/Live16x24/grovelands-native-trial.xml",
+      "trial_passed": 494,
+      "trial_failed": 1,
+      "test_premise_correction": "Existing coating precedesHeat; corrected assertion retainscounter-check removingcoating, production unchanged."
+    },
+    "observed_areas": [
+      "Overworld.4.7.0",
+      "Overworld.5.7.0",
+      "Overworld.4.8.0",
+      "Overworld.0.8.0"
+    ],
+    "actual_editor_restart": true,
+    "actual_products": [
+      {
+        "blueprint": "GroveRed",
+        "id": "51793",
+        "quantity": 1
+      },
+      {
+        "blueprint": "GoldCoin",
+        "id": "49426",
+        "quantity": 3
+      }
+    ],
+    "actual_state": {
+      "seep_volume": 39,
+      "cache_consumed_row_retained": true,
+      "forage_consumed": true,
+      "hp": 38,
+      "turn": 4430
+    },
+    "whole_scene_status": "Four actual normal-zoom views and bounded walks reviewed; not full80x25, all37ordinarycandidates or finalbiome acceptance. Fenplainwaterglyphstrips, actors/props/crops/hazards/specialsites remain open.",
+    "review": "Docs/Verification/Live16x24/grovelands-final-review.md",
+    "pending": [
+      "main_push",
+      "packaged_refresh",
+      "plain_Fen_water",
+      "regional_actors_props_hazards_crops_special_sites",
+      "remaining_biomes_and_areas"
+    ],
+    "package_status": "Current delivered Mac/Linux remain harvest source8ab450809 until newbuildandplayverification.",
+    "next": "Deliver this material slice, then close visible Fen water continuity and observed regional actor bodies; continue Overwrit/Stump and all remaining registered area kits. No nuanced animation prerequisite."
   }
 }

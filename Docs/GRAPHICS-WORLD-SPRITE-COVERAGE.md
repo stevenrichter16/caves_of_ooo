@@ -397,3 +397,29 @@ nuanced animation.
 Last actual hourly report remains **08:24 UTC; next due 09:24 UTC**. These evidence
 updates are not a new hourly report. Storage reclamation remains inspection-only;
 this documentation update performs no cleanup.
+
+
+## Grovelands materials — 2026-10-27 09:35 UTC
+
+Fourteen original native frames for nine material owners and22 unchanged borrowed cells
+for grass, vines, tree and bush now have bounded Editor acceptance. Final495native tests
+pass, including91new. Four normal-zoom actual formation views, real water draw/sign
+reading, compost and forage harvests, travel and fresh save restart are verified.
+See [phase record](GRAPHICS-GROVELANDS-MATERIALS.md),
+[actual play receipt](Verification/Live16x24/grovelands-play-summary.json) and
+[independent review](Verification/Live16x24/grovelands-final-review.md).
+
+Grovelands remains **partial**, including whole-chunk fullness: only four ordinary
+samples and bounded walks, not all37 candidate areas/full80×25 exploration. Native
+materials reveal the designed columns, quiet approaches, shelf beds and low row bands.
+Plain Fen water still shows glyph/black strips; actor, prop, hazard, crop, remembered
+presentation and special-site gaps remain. No new decorative objects were scattered.
+The after-art harvest yields1GroveRed and3GoldCoin; exact identities and consumed source
+states survive restart, extending actual product observation beyond earlierPaleSalt/Bone.
+This does not promote all17products or allbiomes to observed status.
+
+Delivery next: exact reviewed source push, Mac/Linux refresh and actualMac continuation.
+Then close the named Fen water continuity defect and observed regional actor bodies,
+continue Overwrit/Stump/remaining registered biomes and all other area categories.
+Nuanced animations stay deferred. Current binaries still use harvest8ab450809.
+No storage cleanup. Last actual hourly report09:27UTC; next10:27UTC.

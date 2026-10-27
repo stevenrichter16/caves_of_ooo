@@ -1,0 +1,254 @@
+{
+  "atUtc": "2026-10-27T09:39:06.898346+00:00",
+  "reason": "The original protection snapshot captured Unity-serialized trailing spaces in four previously approved runtime metadata files. Root archived those bytes and restored canonical tracked versions before source freeze. This receipt preserves the originals and reconciles only those four approved byte-hash records.",
+  "rootReportedCanonicalSource": "Restored HEAD by root; source agent independently compared archived/current bytes and parsed all metadata, without Git or Unity actions.",
+  "originalProtectionManifest": "revisions/metadata-canonicalization/preserved-inputs.json",
+  "originalProtectionManifestSHA256": "736733ae0038a924f0be8c66999aea2e008d01cd54d686984b131934a3f181d4",
+  "canonicalProtectionManifest": "preserved-inputs.json",
+  "canonicalProtectionManifestSHA256": "81542e65ed5266afea41a08b771d05560cdf63e2458bc09f3bfa5eeb7d297fad",
+  "protectedEntries": 407,
+  "changedProtectedEntries": [
+    "Assets/Resources/Sprites/Live16x24/beating-materials.png.meta",
+    "Assets/Resources/Sprites/Live16x24/sill-envelope.png.meta",
+    "Assets/Resources/Sprites/Live16x24/sodden-travel.png.meta",
+    "Assets/Resources/Sprites/Live16x24/world-harvest-products.png.meta"
+  ],
+  "otherProtectedEntriesUnchanged": 403,
+  "originalFailedVerification": "revisions/metadata-canonicalization/verification.json",
+  "originalHandoff": "revisions/metadata-canonicalization/frozen-handoff.json",
+  "comparisons": [
+    {
+      "path": "Assets/Resources/Sprites/Live16x24/beating-materials.png.meta",
+      "archivedSerializedSource": "/tmp/coo-grovelands-prebuild-generated-meta/beating-materials.png.meta",
+      "serializedSHA256": "22a4db543300458ac89d652e288396265a5002f8e5d6e911506933959f078aa2",
+      "canonicalSHA256": "be3f0143742273cea626de3a27711e92e3cb4bd35493a706996b284315c11058",
+      "serializedBytes": 2324,
+      "canonicalBytes": 2318,
+      "lineCount": 104,
+      "removedTrailingSpaces": 6,
+      "exactTrailingWhitespaceOnly": true,
+      "parsedMetadataIncludingGUIDEqual": true,
+      "changedLines": [
+        {
+          "line": 87,
+          "serialized": "    customData: \n",
+          "canonical": "    customData:\n"
+        },
+        {
+          "line": 93,
+          "serialized": "    indices: \n",
+          "canonical": "    indices:\n"
+        },
+        {
+          "line": 100,
+          "serialized": "  mipmapLimitGroupName: \n",
+          "canonical": "  mipmapLimitGroupName:\n"
+        },
+        {
+          "line": 102,
+          "serialized": "  userData: \n",
+          "canonical": "  userData:\n"
+        },
+        {
+          "line": 103,
+          "serialized": "  assetBundleName: \n",
+          "canonical": "  assetBundleName:\n"
+        },
+        {
+          "line": 104,
+          "serialized": "  assetBundleVariant: \n",
+          "canonical": "  assetBundleVariant:\n"
+        }
+      ]
+    },
+    {
+      "path": "Assets/Resources/Sprites/Live16x24/sill-envelope.png.meta",
+      "archivedSerializedSource": "/tmp/coo-grovelands-prebuild-generated-meta/sill-envelope.png.meta",
+      "serializedSHA256": "aeee6d011efaa37537bef756cebb0ff242cb6ff6f85124ba6086c33d8cfdbffb",
+      "canonicalSHA256": "75b2479451cb9517085562380ab6450328ce36743d14e838be0db3e919510e20",
+      "serializedBytes": 2324,
+      "canonicalBytes": 2318,
+      "lineCount": 104,
+      "removedTrailingSpaces": 6,
+      "exactTrailingWhitespaceOnly": true,
+      "parsedMetadataIncludingGUIDEqual": true,
+      "changedLines": [
+        {
+          "line": 87,
+          "serialized": "    customData: \n",
+          "canonical": "    customData:\n"
+        },
+        {
+          "line": 93,
+          "serialized": "    indices: \n",
+          "canonical": "    indices:\n"
+        },
+        {
+          "line": 100,
+          "serialized": "  mipmapLimitGroupName: \n",
+          "canonical": "  mipmapLimitGroupName:\n"
+        },
+        {
+          "line": 102,
+          "serialized": "  userData: \n",
+          "canonical": "  userData:\n"
+        },
+        {
+          "line": 103,
+          "serialized": "  assetBundleName: \n",
+          "canonical": "  assetBundleName:\n"
+        },
+        {
+          "line": 104,
+          "serialized": "  assetBundleVariant: \n",
+          "canonical": "  assetBundleVariant:\n"
+        }
+      ]
+    },
+    {
+      "path": "Assets/Resources/Sprites/Live16x24/sodden-travel.png.meta",
+      "archivedSerializedSource": "/tmp/coo-grovelands-prebuild-generated-meta/sodden-travel.png.meta",
+      "serializedSHA256": "447bcc5b53eab78f529cdae7042dddba1bf67a54a2c52b72fb789093e636c91d",
+      "canonicalSHA256": "5fced12e170739e5307137f5c5a73658aa00e3c84bf0f098fdc848a56f577339",
+      "serializedBytes": 2324,
+      "canonicalBytes": 2318,
+      "lineCount": 104,
+      "removedTrailingSpaces": 6,
+      "exactTrailingWhitespaceOnly": true,
+      "parsedMetadataIncludingGUIDEqual": true,
+      "changedLines": [
+        {
+          "line": 87,
+          "serialized": "    customData: \n",
+          "canonical": "    customData:\n"
+        },
+        {
+          "line": 93,
+          "serialized": "    indices: \n",
+          "canonical": "    indices:\n"
+        },
+        {
+          "line": 100,
+          "serialized": "  mipmapLimitGroupName: \n",
+          "canonical": "  mipmapLimitGroupName:\n"
+        },
+        {
+          "line": 102,
+          "serialized": "  userData: \n",
+          "canonical": "  userData:\n"
+        },
+        {
+          "line": 103,
+          "serialized": "  assetBundleName: \n",
+          "canonical": "  assetBundleName:\n"
+        },
+        {
+          "line": 104,
+          "serialized": "  assetBundleVariant: \n",
+          "canonical": "  assetBundleVariant:\n"
+        }
+      ]
+    },
+    {
+      "path": "Assets/Resources/Sprites/Live16x24/world-harvest-products.png.meta",
+      "archivedSerializedSource": "/tmp/coo-grovelands-prebuild-generated-meta/world-harvest-products.png.meta",
+      "serializedSHA256": "819fe05f4d13ea9b35e924be9bf5a96934b622b6c7c36461679c91b9bc1950b3",
+      "canonicalSHA256": "fefaeb2d1da122ffea075127b2bbba539cbe0ddefda602f74253acdc9c662933",
+      "serializedBytes": 2324,
+      "canonicalBytes": 2318,
+      "lineCount": 104,
+      "removedTrailingSpaces": 6,
+      "exactTrailingWhitespaceOnly": true,
+      "parsedMetadataIncludingGUIDEqual": true,
+      "changedLines": [
+        {
+          "line": 87,
+          "serialized": "    customData: \n",
+          "canonical": "    customData:\n"
+        },
+        {
+          "line": 93,
+          "serialized": "    indices: \n",
+          "canonical": "    indices:\n"
+        },
+        {
+          "line": 100,
+          "serialized": "  mipmapLimitGroupName: \n",
+          "canonical": "  mipmapLimitGroupName:\n"
+        },
+        {
+          "line": 102,
+          "serialized": "  userData: \n",
+          "canonical": "  userData:\n"
+        },
+        {
+          "line": 103,
+          "serialized": "  assetBundleName: \n",
+          "canonical": "  assetBundleName:\n"
+        },
+        {
+          "line": 104,
+          "serialized": "  assetBundleVariant: \n",
+          "canonical": "  assetBundleVariant:\n"
+        }
+      ]
+    },
+    {
+      "path": "Assets/Resources/Sprites/Live16x24/grovelands-materials.png.meta",
+      "archivedSerializedSource": "/tmp/coo-grovelands-prebuild-generated-meta/grovelands-materials.png.meta",
+      "serializedSHA256": "5232ad7a4de8fd848445ca2807f55ae8e51996b467b8750b6e35f1264af7249b",
+      "canonicalSHA256": "5ed23f42de9251ca4738c9ccf99fdff02a229c6e9c56421d9b248a4b9f57edbd",
+      "serializedBytes": 2324,
+      "canonicalBytes": 2318,
+      "lineCount": 104,
+      "removedTrailingSpaces": 6,
+      "exactTrailingWhitespaceOnly": true,
+      "parsedMetadataIncludingGUIDEqual": true,
+      "changedLines": [
+        {
+          "line": 87,
+          "serialized": "    customData: \n",
+          "canonical": "    customData:\n"
+        },
+        {
+          "line": 93,
+          "serialized": "    indices: \n",
+          "canonical": "    indices:\n"
+        },
+        {
+          "line": 100,
+          "serialized": "  mipmapLimitGroupName: \n",
+          "canonical": "  mipmapLimitGroupName:\n"
+        },
+        {
+          "line": 102,
+          "serialized": "  userData: \n",
+          "canonical": "  userData:\n"
+        },
+        {
+          "line": 103,
+          "serialized": "  assetBundleName: \n",
+          "canonical": "  assetBundleName:\n"
+        },
+        {
+          "line": 104,
+          "serialized": "  assetBundleVariant: \n",
+          "canonical": "  assetBundleVariant:\n"
+        }
+      ],
+      "sourceTemplateSHA256": "80fea55907131cee132575ced6ff44d811fac044c295ea9471e7ffaebc1b9509",
+      "sourceTemplateBytes": 1345,
+      "everyAuthoredMetadataValueAndStructureMatchesCanonicalRuntime": true,
+      "sourceTemplateIntentionallyOmitsUnityDefaultFields": true
+    }
+  ],
+  "unchangedSourceArtifacts": {
+    "ArtSource/Live16x24/grovelands-materials/grovelands-materials.png": "e994ff638167310ec4c50a733a5cdea5d5d23ef170e48297fdc154ca0dad60b2",
+    "ArtSource/Live16x24/grovelands-materials/grovelands-materials.blend": "6e94444097284b9b282c11a07d2a00b885bff4272dc891987ef4c031a8adbab0",
+    "ArtSource/Live16x24/grovelands-materials/source-cells.json": "de4ab36ea7d880a04bda92575a8fa7def623f8f04e3cae0bbadb5919c40620c8",
+    "ArtSource/Live16x24/grovelands-materials/grovelands-materials.png.meta": "80fea55907131cee132575ced6ff44d811fac044c295ea9471e7ffaebc1b9509",
+    "Tools/Live16x24/build_grovelands_materials.py": "c46834404f9b351ca6218e6ac0cbc232231d3d4263d1b301f031dc251e1dd799",
+    "Tools/Live16x24/verify_grovelands_materials.py": "6dad42174a3cb4fb3e0175db16aa0b0c2b769ec1761dea341f7ac0675ce1117e"
+  },
+  "limits": "No art, geometry, code, source template or Assets bytes were changed by this reconciliation. The fifth row records root whitespace-only canonicalization of the new runtime Grovelands metadata and is not a protected-input replacement."
+}

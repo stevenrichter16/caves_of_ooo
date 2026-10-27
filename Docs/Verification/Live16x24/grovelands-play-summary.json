@@ -1,0 +1,367 @@
+{
+  "recorded_at_utc": "2026-10-27T09:32:11.471735+00:00",
+  "context": "Unity Editor 6000.3.4f1, actual1280x800 Game captures, ordinary keyboard controls, root-owned save isolation",
+  "input_fixture": "Docs/Verification/Live16x24/Fixtures/grovelands-grove-baseline65",
+  "input_turn": 3720,
+  "game_id": "50e670c30b6d48feb82756df64bd1cbc",
+  "route": [
+    "Overworld.4.7.0",
+    "Overworld.5.7.0",
+    "Overworld.4.8.0",
+    "Overworld.0.8.0"
+  ],
+  "actions": [
+    {
+      "action": "Grove nine Right, Up, C/Right, X; close, C/Right, W; F5",
+      "result": "Actual seep reader; stock40 to39; same wet cell"
+    },
+    {
+      "action": "Walk to61,12; C/Up/X",
+      "result": "Real GroveSign61,11 native portrait and full text"
+    },
+    {
+      "action": "Ordinary world map travel east toFruitingWall5,7 then southwest toCompostingField4,8",
+      "result": "Actual four formation material views; no layout/generation changes"
+    },
+    {
+      "action": "Right23 to63,12; C/Right, A everything, A cache, H; F5",
+      "result": "Actual CompostCache64,12 harvested for3GoldCoin; cache absent, underlying row remains; turn4290"
+    },
+    {
+      "action": "Ordinary world map four left toFen0,8; Down3; C/Right/H; F5",
+      "result": "Actual GroveRedGrowth41,15 harvested forONE GroveRed, source removed; turn4430; HP38"
+    },
+    {
+      "action": "Inventory and F1 details, stop owned Play, fresh isolation, unchanged earnedFen save copied, normal C Continue",
+      "result": "Same exact item IDs/counts, seep39, absent cache and forage after restart; native product portrait retained"
+    }
+  ],
+  "final_turn": 4430,
+  "hp": 38,
+  "player_cell": [
+    40,
+    15
+  ],
+  "actual_state_before_restart": {
+    "zone": "Overworld.0.8.0",
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/4ccbb8b57430451db264d06387eabe91",
+    "hp": 38,
+    "inventory": [
+      {
+        "BlueprintName": "WateringGrimoire",
+        "ID": "2696",
+        "count": 1
+      },
+      {
+        "BlueprintName": "CandyCarrotSeed",
+        "ID": "2697",
+        "count": 4
+      },
+      {
+        "BlueprintName": "EmberwheatSeed",
+        "ID": "2698",
+        "count": 2
+      },
+      {
+        "BlueprintName": "HealingTonic",
+        "ID": "2701",
+        "count": 2
+      },
+      {
+        "BlueprintName": "DriedMeat",
+        "ID": "2702",
+        "count": 2
+      },
+      {
+        "BlueprintName": "PaleSalt",
+        "ID": "42025",
+        "count": 1
+      },
+      {
+        "BlueprintName": "GoldCoin",
+        "ID": "49426",
+        "count": 3
+      },
+      {
+        "BlueprintName": "GroveRed",
+        "ID": "51793",
+        "count": 1
+      }
+    ],
+    "seep": [
+      {
+        "ID": "46948",
+        "volume": 39
+      }
+    ],
+    "compostCell": [
+      "Grass",
+      "CompostRow"
+    ],
+    "forageCell": [
+      "Grass"
+    ]
+  },
+  "actual_state_after_restart": {
+    "zone": "Overworld.0.8.0",
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/e95598ac407d48b69ef9d15ac6774255",
+    "hp": 38,
+    "inventory": [
+      {
+        "BlueprintName": "WateringGrimoire",
+        "ID": "2696",
+        "count": 1
+      },
+      {
+        "BlueprintName": "CandyCarrotSeed",
+        "ID": "2697",
+        "count": 4
+      },
+      {
+        "BlueprintName": "EmberwheatSeed",
+        "ID": "2698",
+        "count": 2
+      },
+      {
+        "BlueprintName": "HealingTonic",
+        "ID": "2701",
+        "count": 2
+      },
+      {
+        "BlueprintName": "DriedMeat",
+        "ID": "2702",
+        "count": 2
+      },
+      {
+        "BlueprintName": "PaleSalt",
+        "ID": "42025",
+        "count": 1
+      },
+      {
+        "BlueprintName": "GoldCoin",
+        "ID": "49426",
+        "count": 3
+      },
+      {
+        "BlueprintName": "GroveRed",
+        "ID": "51793",
+        "count": 1
+      }
+    ],
+    "seep": [
+      {
+        "ID": "46948",
+        "volume": 39
+      }
+    ],
+    "compostCell": [
+      "Grass",
+      "CompostRow"
+    ],
+    "forageCell": [
+      "Grass"
+    ]
+  },
+  "restart_equivalent_except_isolation_path": true,
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-01-grove.png",
+      "bytes": 82269,
+      "sha256": "785f62794848593094cdb4ea978fd8e19b83e83a97506038cffc00bce95c5cd5"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-02-seep-reader.png",
+      "bytes": 56609,
+      "sha256": "b723d3026d740cf1c2a5074f470f2df8e6fc8271cfea6c9e4f89989e6cae7f32"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-03-seep-drawn.png",
+      "bytes": 85182,
+      "sha256": "cd6f62190a27fc7650865d89ed97cf8799805c589ef4180fba6a5777e5144578"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-04-sign-reader.png",
+      "bytes": 64269,
+      "sha256": "0efa5ba57923f4cccf48da3ef992b01f3eae6b216a881d23a381cb70c411fe4a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-05-fruiting-wall.png",
+      "bytes": 68470,
+      "sha256": "85ec78e179fe713cc4256fa95dead71b44e83ff3eb671b9680f27ddc2ee81180"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-06-compost.png",
+      "bytes": 77559,
+      "sha256": "4eabf11fb64b290286b3327f409122c4effc9dd5e617e886e39ca8681056fb8d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-07-cache-context.png",
+      "bytes": 71728,
+      "sha256": "9cc308db500e80bf00b1259891e21f1657bfbf749d4b6ec5ad78ce16f338300c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-08-cache-picker.png",
+      "bytes": 71516,
+      "sha256": "3665192b2326b67d1d9f160be3aed11f786efbebf3e38de484673e0d45a90d76"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-09-cache-harvested.png",
+      "bytes": 74559,
+      "sha256": "38e6ad7aa3cc7a3f98db8f73929570eb0bf8d35be28555a4e457a7e2eb82871c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-10-fen.png",
+      "bytes": 115143,
+      "sha256": "dcdbb197913a4e14fd9be159e19c25c8a2ccb3b9eed867e830c7cb60999880c4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-11-forage-harvested.png",
+      "bytes": 115861,
+      "sha256": "95a7649341c1b8a8e75b4663dae478a324f31ccacacd03366297846de68acfab"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-12-inventory.png",
+      "bytes": 223125,
+      "sha256": "d065f3658203508a22d31d10035b8aef31baa5e390787f7639ebb961827f834f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-13-forage-inventory.png",
+      "bytes": 196154,
+      "sha256": "070c63767aebb29dac118a5898722589e025062ecc35d091fbdb7081201e4b0f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-14-forage-details.png",
+      "bytes": 24177,
+      "sha256": "70c3ffb0e74cd78a4064196351c4672eda2d8d072f37bd81aea3ca3b690a068a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-15-restart-fen.png",
+      "bytes": 117838,
+      "sha256": "e9ba15461ab353c7fb67a1fa51150b18488a74be3f1633a4b04442e1424e8133"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-after-16-restart-inventory.png",
+      "bytes": 188151,
+      "sha256": "45923afcc772b68168992df3679da3692f666750a389c7d42adb11da7e6e7196"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-after-cache65/Quick.json",
+      "bytes": 407,
+      "sha256": "a7697e622885224ce5bf1210292e04b710ae83d12629ef3d1f001836f7983be7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-after-cache65/Quick.sav.gz",
+      "bytes": 1070012,
+      "sha256": "51b319cc4b75b93d886b532125ee7c2f7313c7741a238d715405b8357e8fdcfb"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-after-fen65/Quick.json",
+      "bytes": 407,
+      "sha256": "0ae9157d456fac5827a96fd09e11cabcea031640ec93bc30f5af16309ae7ee53"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-after-fen65/Quick.sav.gz",
+      "bytes": 1122541,
+      "sha256": "b2bc9b479691f52442796bd94433b25999a1a481f8f599164e96a47a6bb29a27"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-compost-baseline65/Quick.json",
+      "bytes": 407,
+      "sha256": "04be339f8eee189e60b6ac7cb60d2315dbda71d9ac0c25b9248640e3940eaba1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-compost-baseline65/Quick.sav.gz",
+      "bytes": 1068705,
+      "sha256": "cef18bb799df0fed6d9a11dcd821fa8c0a0485fd8609897c0c24e59cbb2e97a8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-fen-baseline65/Quick.json",
+      "bytes": 407,
+      "sha256": "1cf667a60019bd667098646f482d946c0093c362df110c2634845387a1dbfdce"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-fen-baseline65/Quick.sav.gz",
+      "bytes": 1121239,
+      "sha256": "b4c718eb4ce3a6febc9a30215a06d1552cb9d81abbe3d6d3d6b2a3c4f71930a0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-fruiting-baseline65/Quick.json",
+      "bytes": 407,
+      "sha256": "5be91a734b659d3ffea1050f9cf1c35c32b355d0bc4bc8b03bbeb49ad4f0d4ae"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-fruiting-baseline65/Quick.sav.gz",
+      "bytes": 967687,
+      "sha256": "505c86d05ab5668e3a4333da26ea84220e8d6eb521eada2f3ba1c8394ca869e6"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-grove-baseline65/Quick.json",
+      "bytes": 407,
+      "sha256": "b940f4781bdfb357aa7eb90088ce18d157fa3cc70e2536ead2e3ca5edb4670e7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-grove-baseline65/Quick.sav.gz",
+      "bytes": 1019211,
+      "sha256": "ce2c19fd97df8611685766c7597a05bb29acce89f8654b527e08a9ca53289ecb"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-red-harvested65/Quick.json",
+      "bytes": 407,
+      "sha256": "6bf0cd8d1c9625fa7b5eaf58c8e8d9cc05de0ef265febc9d4ce1f7f6d09c3305"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-red-harvested65/Quick.sav.gz",
+      "bytes": 1121503,
+      "sha256": "295ac49a69c3ee0f7e3ee1283495586124723a366d1757b92aaf265e4abb9640"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-seep-drawn65/Quick.json",
+      "bytes": 407,
+      "sha256": "8e3c0fe5cf212a5b3903c01e7846384c45a4175d02e15c4c0039f3ef985b15f0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/grovelands-seep-drawn65/Quick.sav.gz",
+      "bytes": 1019417,
+      "sha256": "9afe590ae4706480a666813c4891f6ecc3b21039bc64f654e4ab10f9b66667c6"
+    }
+  ],
+  "informational_render_counters": {
+    "Grove": {
+      "draw_calls": 36,
+      "batches": 36,
+      "triangles": 9130,
+      "setpass": 41
+    },
+    "FruitingWall": {
+      "draw_calls": 36,
+      "batches": 36,
+      "triangles": 9448,
+      "setpass": 41
+    },
+    "Fen": {
+      "draw_calls": 36,
+      "batches": 36,
+      "triangles": 9946,
+      "setpass": 41
+    },
+    "limits": "Single Editor instants, not controlled benchmark, speedup, sustained profiling, standalone or device acceptance."
+  },
+  "owned_archives": [
+    "/tmp/coo-grovelands-baseline-earned-c58f1b3d",
+    "/tmp/coo-grovelands-after-earned-4ccbb8b5",
+    "/tmp/coo-grovelands-restart-earned-e95598ac"
+  ],
+  "normal_save_roots_unchanged": true,
+  "foreign_tracked_files_unchanged": 38,
+  "storage_cleanup": false,
+  "limits": [
+    "Four ordinary area samples, not37 ordinary candidates or complete80x25 exploration.",
+    "ChoirIronVein not naturally observed; empty seep and zero-yield cache native tests only.",
+    "Plain Fen water still blue glyph/black strips; actors, props, hazards, crops, special sites and remembered glyphs remain incomplete.",
+    "Compost actual hostile telegraph appeared; no invented invulnerability or modified mechanics.",
+    "Before-art separate route yielded TWO GroveRed; after-art route yields ONE. The earlier draft2 claim was corrected from actual inventory and save evidence.",
+    "No Mac/Linux package or physical Deck acceptance for this new kit yet."
+  ]
+}

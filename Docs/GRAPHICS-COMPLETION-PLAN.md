@@ -2417,3 +2417,79 @@ nine owners are provisional; source counts do not establish acceptance. All
 remaining regional, underground, interior and special-site coverage stays open,
 including Beating/Sodden props, actors and fullness. Last actual hourly report:
 08:24 UTC; next due 09:24 UTC. This delivery note is not another hourly report.
+
+## Current continuation — 2026-10-27 09:03 UTC
+
+Grovelands material/envelope pass is actively underway. Root ordinarily travelled
+from the current quiet SaltPan fixture to FruitingWall5,7, Grove4,7,
+CompostingField4,8 and TendrilFen0,8. Eight actual before-art captures and six
+unchanged earned checkpoints are retained. Walking, one real water draw
+(GroveSeep40→39) and a real forage harvest (2×GroveRed; source removed) were
+observed. HP38 retained. See `Verification/Live16x24/grovelands-baseline-actions.md`
+and its census. These are existing-layout baselines, not native material acceptance.
+
+Built-in imagegen reinterpreted four actual captures plus the approved Sill
+contact. Native authoring extracts only useful material/silhouette decisions;
+the generated clutter, oversized caps, fake fog-edge architecture and mushroom
+compost were rejected. Exact inputs/prompt/provenance are saved. Fourteen native
+frames for nine owners plus22 unchanged borrowed cells for four base families
+are being authored. Root owns Unity; agents own explicitly divided art/runtime
+files. Two native RED jobs completed91 cases/statusfailed before production;
+MCP returned capped failure detail and no final payload, so do not claim91
+individually verified failures or invent an XML. Saved raw job receipts document
+the known positive failures and one corrected unexplored-cell test accessor.
+
+Next: compile/review the native material resolver and original editable art,
+run the bounded combined native suite, then compare all four earned views and
+real interactions/restart in ordinary play. Whole80×25 exploration, cache/sign/ore
+live states, actors/crops/optional hazards and packaged Grovelands remain pending.
+The Harvest Mac/Linux build remains current at source8ab4508093bb0a7894d659af7c58a770e009e2ab;
+remote main was verified at deliveryf5177fca77467ba6cd2f24ea83a86ece0782dd04.
+Do not call Grovelands or any biome complete from this kit. Continue all-region
+coverage; nuanced animation remains deferred. Normal saves and38 unrelated files
+remain hash-identical; no storage cleanup. Last actual hourly report08:24UTC;
+next09:24UTC. This continuation is not a report.
+
+## Current continuation — 2026-10-27 09:35 UTC
+
+**Grovelands material source and bounded ordinary Editor acceptance complete;
+exact main push and package refresh are the immediate delivery steps.** Fourteen
+new16×24 frames and22 unchanged cells from four approved families now render in
+ordinary Grove, FruitingWall, CompostingField and TendrilFen contexts. No generation,
+mechanics, arbitrary clutter or nuanced animation changes. Source/owner decisions,
+reference/imagegen extraction, editable geometry, native source and current semantic
+guards are in `GRAPHICS-GROVELANDS-MATERIALS.md`.
+
+Final native XML **495/495 passed (91new+404related), zero failed/skipped/inconclusive**.
+Retained prior494/1 trial exposed a test premise: existing coating renders before heat;
+its corrected assertion and removed-coating counter-check pass without changing
+production precedence. RED jobs failed before implementation but the service capped
+failure detail and omitted finalXML: do not fabricate91 individual failures.
+
+Actual baseline and16 after-art Game captures cover four ordinary formation samples,
+normal travel/walking, seep40→39 draw and reader, sign reader, compost cache harvest
+3GoldCoin with row retained, and Fen forage ONE GroveRed with source removed. Earlier
+before-art branch yieldedTWO; do not conflate its RNG with this longer route. Fresh
+isolated restart restores exact IDs/counts (GoldCoin49426×3, GroveRed51793×1,
+PaleSalt42025×1), seep46948stock39, underlying cache row/forage grass, HP38, turn4430.
+Root and independent reviewer inspected actual restart scene/inventory captures.
+`grovelands-play-summary.json` binds capture/fixture hashes and runtime observations.
+
+Whole-view review finds coherent existing landmarks and approach lanes without
+manufactured decoration. This is not all80×25 cells, all37 ordinary candidates, or a
+finished biome. **Plain Fen water still renders blue glyphs on black strips** and is
+the next visible terrain continuity defect. Shambler/Mosshulk/ChoirTendril, props,
+hazards, crops, special sites and remaining registered biomes are open. ChoirIronVein
+is native-test-only; empty seep and zero-yield cache are not claimed as live actions.
+Next deliver packages, then water/observed static actor families, then Overwrit/Stump
+and the rest of the worldwide inventory. Subtle animation stays deferred.
+
+Play is stopped, scene clean, isolation null. Earned test roots archived intact;
+normal Editor/standalone saves and38 foreign tracked bytes compare unchanged.
+Storage checks remain read-only; no cleanup. Current delivered packages remain
+harvest source8ab450809 until the Grovelands builds and real Mac smoke are verified.
+Single Editor render-counter samples are informational, not performance acceptance.
+
+**Last actual hourly report09:27UTC; next10:27UTC.** It itemized the material integration,
+native/live results, pending persistence/source push, and next water/actor/package goals.
+The persistence step has since passed; do not send a duplicate hourly report for delivery.
