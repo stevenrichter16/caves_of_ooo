@@ -1,0 +1,1 @@
+Earned Mac standalone source eafc02a22. Continued prior real causeway2390 save, moved40,12→40,13, examined realDuckboard8/8, moved south3onto40,16, F5 tick2430 HP38/40. Full process restart is checked in adjacent screenshots. No scripted gameplay or forced state.

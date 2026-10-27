@@ -3,7 +3,7 @@
 Status: the first integration has actual gameplay evidence. The revised 28-frame
 atlas, ground continuity and direct address lookup pass 304 native cases. Three
 allocation checks are inconclusive after their positive control returned zero.
-District Editor gameplay, restart and profiling are verified and pushed as d48f623f5. Ordinary six-formation reuse is now also verified below; current packages remain the earlier Sill batch until the next delivery step.
+District Editor gameplay, restart and profiling are verified and pushed as d48f623f5. Ordinary six-formation reuse is now also verified below; fresh Mac and Linux packages now use ordinary source eafc02a22, with bounded actual Mac play below.
 
 ## Purpose and scope
 
@@ -280,3 +280,35 @@ settlements, underground and other regions remain in the world ledger. First
 refresh ordinary packaged delivery after exact source push. Approved pixels,
 normal saves, foreign edits and prior builds remain protected; no cleanup.
 Last hourly report05:25UTC; next06:25UTC.
+
+### Packaged delivery and hourly handoff — 2026-10-27 06:25 UTC
+
+Runtime source **eafc02a228136ded429f0999ed01a2c29459382e** is verified on
+origin/main. Fresh Mac38.77s and Linux30.46s builds succeeded with0 errors and
+4 warnings each. Previous Sill outputs are preserved. Current Linux archive is
+128,693,449bytes, SHA256
+`4b5904f483870d473c2eef59bb9f33581019afffb40903341b5157cfc76c0e4b`.
+Independent stream verification covers all 195 members / 182 files / 13 directories,
+internal 181-file checksums, directory/file modes, licenses, source-bound build
+receipts and gzip CRC/footer/EOF. Linux was not run; Deck was not tested.
+
+Seven original Mac window screenshots show ordinary flat boot, Continue2390
+at natural Causeway19,7/40,12/HP38, Duckboard Examine8/8, walking to40,16,
+F52430, full quit/relaunch Continue at the same position/health, then ordinary
+world travel back to district16,7/20,12 and F52510. Earned causeway and crossing
+fixtures are preserved. Existing shutdown thread-finalization/ComputeBuffer
+notices remain in the logs; no gameplay exception was reported.
+
+Exact prebuild preservation checked 50,031 tracked objects, normal saves, complete
+logical standalone preferences, Editor gameplay preferences, all 38 foreign files
+and priorSill builds/archive. Only 4 reviewed build settings and 2 owned metadata
+whitespace changes were restored; test Saves archived, no cleanup.
+
+**Completed this hour:** district/ordinary source integration, six actual formation
+comparisons, native183pass/0fail/3inconclusive, real reader/walkedboundary/restart,
+fresh packaged delivery and restoration. **Still open:** full biome/scene density,
+plain water, actual creatures/plants/props and the remaining world. **Next:**
+Beating source-grounded natural-layout capture and imagegen/native material/flora
+production. Check whole views for clustered detail, landmarks and readable
+routes. Keep Sodden residuals and the services plan; do not restart subtle motion.
+Last hourly report06:25UTC; next07:25UTC. Heartbeat remains active.

@@ -1,0 +1,1 @@
+Earned Mac packaged seed65 source eafc02a22. Continued causeway2390, realDuckboardreader and walked4steps, saved/restarted2430HP38; normalmapwest3 anddescend reachedcrossing16,7 at20,12, F52510HP38. No teleport, force-reveal, generationoverride, healing or placement. New baseline for broader region travel; normaltestsave archived/restored.

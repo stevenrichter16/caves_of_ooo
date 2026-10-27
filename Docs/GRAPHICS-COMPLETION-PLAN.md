@@ -2283,3 +2283,22 @@ and fresh Mac/Linux packaging are next; current protected packages are still
 Sill246bda61e. Future static services plan is preserved; then Beating and all
 remaining areas. No nuanced animation or storage cleanup. Root owns Unity;
 isolation restored and roots archived. Last hourly report05:25UTC,next06:25UTC.
+
+## Current continuation and hourly report — 2026-10-27 06:25 UTC
+
+Sodden district and ordinary source is pushed as d48f623f5/eafc02a22. Six natural
+formations have matched actual before/after views; ordinary suite183pass,0fail,
+3inconclusive(all22newpass). Actual reader/walking/boundary/combat/save/restart
+verified. Fresh Mac/Linux sourceeafc02a22 built; actual MacCauseway2390→reader
+→walk/F52430→fullrestart→crossing2510HP38 verified. Linux archive independently
+verified128693449bytes/SHA4b5904f483870d473c2eef59bb9f33581019afffb40903341b5157cfc76c0e4b; noLinux/Deckexecution. Allprebuildtrackedobjects,normalSaves/preferences,foreign38andpriorbuilds restored/preserved. No cleanup.
+
+Next: Beating real six-layout baseline, screenshot reinterpretation withimagegen,
+then cohesive native terrain/flora coverage. Source-preflight is planning only;
+current earned packaged crossing fixture is `Verification/Live16x24/Fixtures/packaged-sodden-crossing65`.
+Sodden plainwater/actors/props/plants, repeatedgrass/wideboards andwholechunkfullness
+remain open. Preserve all-world scope and no nuanced animation. Root alone owns
+Unity; currently outsidePlay, cleanSampleScene/nullroot, Linuxactiveplatform.
+Last actual hourly report06:25UTC,next07:25UTC. Activeheartbeatcontinues.
+
+Beating preflight is saved at `Verification/Live16x24/beating-first-kit-plan.md`. It identifies six natural candidate addresses and actual source families; saved-map evidence is not gameplay acceptance. Next action is the real baseline route and imagegen.

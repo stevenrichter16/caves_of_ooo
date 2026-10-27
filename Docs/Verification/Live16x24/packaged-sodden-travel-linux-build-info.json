@@ -1,0 +1,129 @@
+{
+  "created_at_utc": "2026-10-27T06:19:45.253727+00:00",
+  "runtime_source_commit": "eafc02a228136ded429f0999ed01a2c29459382e",
+  "package_flavor": "sodden-travel-districts-and-ordinary-formations",
+  "built_after_utc": "2026-10-27T06:15:36.536772+00:00",
+  "slice_description": "Static Sodden travel materials: 16 connected duckboard states, quiet filled and depleted-but-still-wet mire variants, solid cut peat banks and bare dead trees; approved reeds and quiet ground are reused. Current-map gates admit the three authored Sodden districts and eligible canonical ordinary Sodden addresses across 57 authored candidates, with current POI and saved-lair exclusions. The six observed ordinary formations are gameplay samples, not the complete runtime address scope. No generation, gameplay or optional animation was added. Earlier approved Sill, equipment and other art remain inherited.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-sodden-travel-mac-build.json",
+    "sha256": "9546337fb2f20032fdfe7659dc04dbdae54973cbe7b4d62daa4453fe0c899bf7",
+    "summary": {
+      "job_id": "build-6a3a2d4fba",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-27-sodden-travel-eafc02a22-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T06:15:48.791585Z",
+      "duration_seconds": 38.766726999999996,
+      "completed_at": "2026-10-27T06:16:27.558312Z",
+      "total_size_mb": 234.12,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-sodden-travel-linux-build.json",
+    "sha256": "20950d4e578e6028d91fb926d52ae1d6ac1fe3e2c3656e01452ec7bb099ba594",
+    "summary": {
+      "job_id": "build-e9fa4de397",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-27-sodden-travel-eafc02a22-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T06:16:53.281542Z",
+      "duration_seconds": 30.464067999999997,
+      "completed_at": "2026-10-27T06:17:23.74561Z",
+      "total_size_mb": 214.5,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/sodden-travel-native-final.xml",
+          "sha256": "af530d54a23f8c20b3d30f3216734301603b50531f9d321a2079ab2de320b727",
+          "mode": "EditMode",
+          "summary": {
+            "id": "2",
+            "testcasecount": "307",
+            "result": "Passed",
+            "total": "307",
+            "passed": "304",
+            "failed": "0",
+            "inconclusive": "3",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-27 05:40:08Z",
+            "end-time": "2026-10-27 05:40:38Z",
+            "duration": "29.3050695"
+          },
+          "overlap_with_preceding_receipts": 0,
+          "inconclusive_identities": [
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")"
+          ],
+          "inconclusive_reason": "Current-thread allocation counter did not detect the positive control.",
+          "scope": "District final suite: 304 passed, zero failed, three allocation probes inconclusive. Already recorded; this helper does not run tests."
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/sodden-ordinary-native-green.xml",
+          "sha256": "f38c2ca8decdfa2981b599eab909255dca5f7f18ea40d97471173edf62bd4a84",
+          "mode": "EditMode",
+          "summary": {
+            "id": "2",
+            "testcasecount": "186",
+            "result": "Passed",
+            "total": "186",
+            "passed": "183",
+            "failed": "0",
+            "inconclusive": "3",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-27 05:59:35Z",
+            "end-time": "2026-10-27 05:59:55Z",
+            "duration": "20.3354109"
+          },
+          "overlap_with_preceding_receipts": 162,
+          "inconclusive_identities": [
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")"
+          ],
+          "inconclusive_reason": "Current-thread allocation counter did not detect the positive control.",
+          "scope": "Ordinary six-formation extension: 183 passed, zero failed, the same three allocation probes inconclusive; all 22 new ordinary cases passed. Already recorded; this helper does not run tests."
+        }
+      ],
+      "execution_occurrences": 493,
+      "passed_execution_occurrences": 487,
+      "failed_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 6,
+      "distinct_test_identities_across_two_final_receipts": 331,
+      "distinct_passed_test_identities": 328,
+      "distinct_inconclusive_test_identities": 3,
+      "all_cases_passed": false,
+      "limits": "Overlapping receipts are not added as distinct tests. The three allocation probes are inconclusive in both runs, not passes or proof of allocation behavior. This packaging process executes no tests."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "This bounded Sodden material coverage is not a complete biome or worldwide graphical acceptance; plain water, service owners, creatures, plants and other identities remain unfinished.",
+    "Other unimplemented identities retain truthful glyphs/colors; nuanced East caster motion remains deferred.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality or device performance."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

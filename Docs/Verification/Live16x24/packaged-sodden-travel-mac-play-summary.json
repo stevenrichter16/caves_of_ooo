@@ -1,0 +1,77 @@
+{
+  "runtime_source_commit": "eafc02a228136ded429f0999ed01a2c29459382e",
+  "kind": "actual_mac_standalone_play",
+  "input_fixture": "Docs/Verification/Live16x24/Fixtures/sodden-ordinary-before-causeway65",
+  "final_causeway_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-sodden-causeway65",
+  "actions": [
+    "ordinary default flat startup",
+    "Continue2390 naturalCauseway19,7 at40,12 HP38",
+    "one south to40,13; C/Down/X nativeDuckboard Examine8/8",
+    "Escape then south3 to40,16, PageUp2x and F52430 HP38",
+    "confirmed full process quit; relaunch Continue2430 at40,16 HP38,1x then2x",
+    "ordinaryworldmap west3 to district16,7, descent20,12, F52510 HP38 thenquit"
+  ],
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sodden-travel-00-startup.jpg",
+      "sha256": "80a8ab31bb41cca10b0fa45b27e85f9d58b54fc2981d3b415f4960493d635394",
+      "bytes": 206080
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sodden-travel-01-causeway.jpg",
+      "sha256": "28b91a3feff0bca3a855072948a853324e0b26feb6c7165ff50ae20321b71481",
+      "bytes": 239575
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sodden-travel-02-board-reader.jpg",
+      "sha256": "323274fab17015ecd3da9865f9b540001194c3faa7c7850b48d1337afa256257",
+      "bytes": 247586
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sodden-travel-03-board-walk-saved.jpg",
+      "sha256": "1c3da50c79062e2c650d6262f39d6d00937a8fdb9e3318aeac26dd735f7f379c",
+      "bytes": 213916
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sodden-travel-04-restart-continue.jpg",
+      "sha256": "2a0c8a40bed91ac6382f05f79d6c844b4627b672f20b34f483f4024b1ba9b939",
+      "bytes": 246786
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sodden-travel-05-restart-zoom.jpg",
+      "sha256": "216b24413ecc1e0daece5f496a077ec5fbe2ce3c475d46bd692086026b2e2509",
+      "bytes": 214482
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sodden-travel-06-district-crossing.jpg",
+      "sha256": "75a3f8a733f051d9a6977624443957622206279deb4b567d9414f65b29b3a963",
+      "bytes": 198071
+    }
+  ],
+  "capture_geometry": "Seven unedited native1280x856 window JPEGs include1280x800 game and56px titlebar. No screenshot manipulation.",
+  "source_push_verified": true,
+  "can_verify": [
+    "normal default flat launch",
+    "natural causeway native material kit",
+    "real Duckboard reader, actual boardwalk movement",
+    "F5 and full process restart continuity",
+    "normal world travel to native district crossing"
+  ],
+  "cannot_verify": [
+    "all57 candidate chunks or whole-Sodden/fullness completion",
+    "all asset states, wet-film depletion play",
+    "Linux execution",
+    "physical Steam Deck",
+    "sustained hardware performance"
+  ],
+  "known_gaps": [
+    "plain-water and other liquid glyphs",
+    "missing services/creatures/plants/containers",
+    "regular grass stipple and wide duckboard lattice repetition"
+  ],
+  "log_limits": [
+    "premature-thread-finalization shutdown notices",
+    "ComputeBuffer disposal shutdown warning"
+  ],
+  "storage_cleanup_performed": false
+}
