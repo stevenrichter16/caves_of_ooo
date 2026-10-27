@@ -1,6 +1,6 @@
 # Graphics completion plan
 
-**Current integration checkpoint — 2026-10-27:** Grovelands Shambler, Mosshulk and living merchant ChoirTendril have bounded native/world/reader integration: 407 distinct native passes and 13 distinct readable actual Editor acceptance views covering windup/evasion/recovery, Grove-to-Fen travel, talk/trade and fresh saved Continue. The later profiling walk ended in player death and is separately retained as capture15; it is not a quiet-route or FPS result. Source push and new packages remain pending; current delivered builds remain Maw source751d9247c, delivery6f85e167b verified on main. All-world coverage and separate serious area polish remain incomplete. Last actual hourly report15:27UTC; next16:27UTC. Earlier checkpoints below are historical.
+**Current delivery checkpoint — 2026-10-27:** Grovelands Shambler, Mosshulk and living merchant ChoirTendril are delivered from source4dbdc9be9 verified on origin/main: 407 retained distinct native passes, bounded Editor intent/trade/restart and nine actual Mac views covering bodies/readers, restored services, Fen-to-Grove travel and full-process restart. Both fresh builds have0errors/4warnings; Linux archive independently verified, not executed. All-world coverage and separate area polish remain open. Next: actual ordinary shallow-cave baseline for six material/travel owners; source preflight only so far. Last actual hourly report16:27:02UTC; next17:27:02UTC. Earlier checkpoints below are historical.
 
 **Historical coverage checkpoint — 2026-10-27:** First-five Stump fauna source
 `0ddd8b6abf89a22275db7c09dde39bbb47392c03` and delivery
@@ -3347,7 +3347,7 @@ remains required. Optional nuanced animation stays deferred. Actual hourly clock
 remains15:27UTC, next16:27UTC; this delivery update is not another report.
 
 
-### Grovelands three actors: native and ordinary Editor checkpoint — 2026-10-27
+### Historical pre-package Grovelands native and ordinary Editor checkpoint — 2026-10-27
 
 Shambler, Mosshulk and living merchant ChoirTendril now have bounded native
 world/reader coverage. The original Shambler uses one editable 16×24 body;
@@ -3393,3 +3393,53 @@ polish records remain unchanged. Finish this slice's source push and delivery,
 then continue uncovered biome/area sprite families from the ongoing preflight.
 Optional nuanced animation remains deferred. Last actual hourly report15:27UTC;
 next16:27UTC, unchanged. This saved continuation is not another hourly report.
+
+
+### Grovelands actors packaged delivery and actual hourly report — 2026-10-27
+
+Source `4dbdc9be95658341260efa10307dadb784ba8392` is pushed and verified on
+origin/main. It is now the current Mac/Linux build, replacing the preserved
+Maw package. Mac completed in 65.64 seconds and Linux in 60.52 seconds, each with
+zero errors/four warnings. The retained native result remains 44 focused plus
+363 disjoint related passes:407 distinct, zero failures/skips/inconclusive.
+Packaging did not rerun or add to that count. The later delivery/evidence
+commit remains pending root's push.
+
+Nine actual Mac views record all three bodies and readers, real Choir Chat
+and Trade with the earned purchase/purse/stock restored, normal Fen0,8→Grove4,7
+travel, one Right move and F5. Earned fixture
+`Fixtures/packaged-grovelands-actors82` retains turn 10420, player41,12 HP23.
+Full quit removed process 16871; fresh process 17885 Continued that state.
+Saved08/restarted09 world rectangle `[0,96,940,696]` has 564,000 identical
+decoded RGB pixels. **No new packaged purchase, combat, hurt flash, Wet or
+death trial is claimed**; earlier log history is not a new event.
+
+The independently verified Linux archive has 189 files/13 directories/202 members,
+128,791,876 bytes and SHA256
+`8ed7261f523993000e80124bcd0c10b2e889524604a46961217684c156339a21`.
+This proves archive integrity, not Linux or physical Deck execution. No sustained
+performance claim follows from the builds or the earlier fatal Editor profile.
+See [Mac play](Verification/Live16x24/packaged-grovelands-actors-mac-play.json),
+[archive](Verification/Live16x24/packaged-grovelands-actors-linux-archive.json),
+[independent package review](Verification/Live16x24/packaged-grovelands-actors-review.md)
+and [restoration](Verification/Live16x24/packaged-grovelands-actors-restoration.json).
+
+Restoration verifies 50,963 tracked files and 45 pre-build dirty paths unchanged
+(the 44 foreign paths plus the pre-existing Maw meta whitespace difference),
+normal saves/preferences and all prior builds/archive preserved. Five generated
+build files were backed up/restored and the owned test session archived. Root
+confirmed the UI/Unity were idle afterward. No storage cleanup occurred.
+
+**Actual hourly report sent 16:27:02 UTC; next 17:27:02 UTC.** At that report,
+Maw delivery and Grovelands native/Editor/source-main work were complete,
+Grovelands packages were in progress, and the next goals were shallow-cave
+baseline/coverage and continued worldwide sprites. The package outcome above
+is the later delivery result, not a retroactive change to the report.
+
+Next is the six-owner ordinary shallow sandstone cave material/travel slice:
+SandstoneFloor, SandstoneWall, Rubble, Stalagmite, StairsDown and StairsUp.
+[The shallow-cave phase](GRAPHICS-SHALLOW-CAVES.md) is source preflight; no actual
+cave visit, native integration or acceptance is claimed yet. Remaining glyph
+owners, Grove quiet patches, Fen routes and conversation clipping stay explicit.
+All 55 inventory polish scopes and 5 Stump area-polish records are unchanged.
+Coverage is not whole-area polish; optional nuanced animation remains deferred.

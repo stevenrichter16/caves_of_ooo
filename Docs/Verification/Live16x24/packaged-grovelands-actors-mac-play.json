@@ -1,0 +1,109 @@
+{
+  "at_utc": "2026-10-27T16:35:57.764957+00:00",
+  "runtime_source_commit": "4dbdc9be95658341260efa10307dadb784ba8392",
+  "source_push_verified": true,
+  "mac_app": "Builds/Verification/2026-10-27-grovelands-actors-4dbdc9be9-current/CavesOfOoo.app",
+  "first_process_pid": 16871,
+  "restart_process_pid": 17885,
+  "old_process_absent_after_full_quit": true,
+  "presentation": "Flat16x24 default (no presentation preference needed)",
+  "capture_dimensions": [
+    1280,
+    856
+  ],
+  "game_dimensions": [
+    1280,
+    800
+  ],
+  "starting_fixture": "Fixtures/grovelands-actors-after81",
+  "actions": [
+    "Ordinary Continue: Fen0,8 player20,16HP23/40purse32; native world bodies.",
+    "Look/examine Choir19,17HP80neutral, native portrait.",
+    "Normal Interact/Chat/Trade retains native portrait and saved two-item stock,purse118. Player retains purchasedVenomGland and32drams. No new purchase.",
+    "Look/examine Mosshulk14,8HP55hostile on realwater ground, native square portrait.",
+    "Ordinary world-map4east1north toGrove4,7; native Shamblerworldbody andreader22,10HP16hostile,Flesh.",
+    "OneRight player41,12 thenF5turn10420HP23.",
+    "Fullquit oldprocessabsent; exactappfreshprocessContinue restoresGrove41,12HP23."
+  ],
+  "earned_fixture": "Fixtures/packaged-grovelands-actors82",
+  "saved_turn": 10420,
+  "player_cell": [
+    41,
+    12
+  ],
+  "player_hp": 23,
+  "captures": {
+    "packaged-grovelands-actors-01-fen.jpg": "199e6787b339ac58953036e85dcd7982f43982b10946e409cda9305b69b4f8ca",
+    "packaged-grovelands-actors-02-choir-reader.jpg": "914add73fcd1673da54aeba074cd29ac4009992d9e366e2645830beb0d59fdbc",
+    "packaged-grovelands-actors-03-conversation.jpg": "d0573b56e446bf593f477c337f99d85244bf17a09db45676d06a7acc2021c64d",
+    "packaged-grovelands-actors-04-trade-restored.jpg": "c22c7079a39f0e9888a4278e9382453209451f64fe271fe396c436a528769bdc",
+    "packaged-grovelands-actors-05-mosshulk-reader.jpg": "8164d83673f81858a1efcd3d9b4f2cddd64ef44a93fd165cf92c71f7584e8006",
+    "packaged-grovelands-actors-06-grove.jpg": "e679a5f73fa78f8cd70d84670517f35fb23ef4fd7bac79af7b5ee6678e65b5d1",
+    "packaged-grovelands-actors-07-shambler-reader.jpg": "7de7f067686a2eac9086c52b51bd67ee5d0969832fe49f2ab261aeda3c86eb09",
+    "packaged-grovelands-actors-08-saved.jpg": "6c9e563e930e60384d352cb955e60139a4e6398372bc41fffbbfeb65caadad58",
+    "packaged-grovelands-actors-09-restarted.jpg": "1c8e4acec39a8e7657f481e7a2dfa216c8937c5777c5af64631f932085eb5880"
+  },
+  "fixture_sha256": {
+    "Quick.sav.gz": "1b65a6cf9bcc92bc1381b08a59b44e796048ce4a1096e7a532114d5e10feb838",
+    "Quick.json": "db8cd6ab6b149fe645a0f76058e25e5ae5ec7e572f442fd43963068a55a8d770"
+  },
+  "native_evidence": "44focused+363disjointrelated=407distinctpasses; notrerunduringpackaging.",
+  "archive_receipt": "packaged-grovelands-actors-linux-archive.json",
+  "restoration_receipt": "packaged-grovelands-actors-restoration.json",
+  "independent_review": "packaged-grovelands-actors-review.md",
+  "limits": [
+    "No new packaged combat, damage flash, Wet application or death trial. Logs inherited from earnedEditorhistory are not newevents.",
+    "No standalone runtime ownerID query; actualUI labels/cells/health and sourceidentity.",
+    "No Linux or physicalDeck execution or sustained performance claim.",
+    "Three actorbodies plus boundedservices/travel/save/restart, not all-region or area-polish acceptance. Conversationclipping andremainingglyphprops persist.",
+    "First process shutdown emitted six thread-finalization diagnostics and a ComputeBuffer manual-release warning; retained and not attributed to this sprite adapter without reproduction."
+  ],
+  "saved_restart_world_comparison": {
+    "decoded_rgb_rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "compared_pixels": 564000,
+    "changed_pixels": 0,
+    "scope": "worldrectangleonly;header/sidebar/log/footer excluded"
+  },
+  "logs": {
+    "packaged-grovelands-actors-Player-prev.log": {
+      "bytes": 4239,
+      "sha256": "19d2992bbcbb065e77986143f407727d91fbd83067b9ee292e767e2fb1294dd7"
+    },
+    "packaged-grovelands-actors-Player.log": {
+      "bytes": 3266,
+      "sha256": "28de1b5a5db340cdcc0ff4908b6642a2f25c2577c863a5ea26572c8e402a81c9"
+    }
+  },
+  "log_review": {
+    "packaged-grovelands-actors-Player-prev.log": [],
+    "packaged-grovelands-actors-Player.log": []
+  },
+  "log_review_search": {
+    "original_terms_case_sensitive": [
+      "Exception",
+      "Error",
+      "Warning",
+      "NullReference",
+      "Failed",
+      "fatal"
+    ],
+    "limit": "Initial bounded search omitted shutdown diagnostic phrases. Follow-up below records them; logs are not claimed warning-free."
+  },
+  "shutdown_diagnostics": {
+    "packaged-grovelands-actors-Player-prev.log": [
+      "Thread 0x170df3000 may have been prematurely finalized",
+      "Thread 0x16fb0f000 may have been prematurely finalized",
+      "Thread 0x16fa83000 may have been prematurely finalized",
+      "Thread 0x16fb9b000 may have been prematurely finalized",
+      "Thread 0x16fc27000 may have been prematurely finalized",
+      "Thread 0x16fcb3000 may have been prematurely finalized",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ],
+    "packaged-grovelands-actors-Player.log": []
+  }
+}

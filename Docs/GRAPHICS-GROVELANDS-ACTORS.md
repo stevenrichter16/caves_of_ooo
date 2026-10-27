@@ -1,13 +1,12 @@
 # Grovelands — three living actor identities
 
-2026-10-27, 16:18 UTC. **Three native actor identities are implemented; native
-tests and the bounded ordinary Editor comparison have passed. Source push and
-fresh packages remain pending.** The current delivered build is still the Maw
-package from source `751d9247cf05f55e0baf8f8f8cb02ded0eb931ae`. The final checkpoint
-below records 44 genuine RED cases, 44 focused GREEN plus 363 related GREEN
-cases (407 distinct passes), real Shambler windup/evasion, Choir talk/trade,
-save/fresh Continue and the separate fatal Mosshulk route. No whole-region,
-polish, packaged-runtime or physical Deck acceptance is implied.
+2026-10-27. **Three native living actor identities are delivered from source
+`4dbdc9be95658341260efa10307dadb784ba8392`, verified on origin/main.**
+The407 distinct native passes, bounded ordinary Editor comparison and fresh
+Mac world/readers/services/travel/save/full-process restart are recorded below.
+Both fresh builds succeeded; the Linux archive is independently verified but
+not executed. The later delivery/evidence commit is pending. Regional coverage,
+serious area polish, physical Deck and sustained performance remain open.
 
 The implemented scope is exact **Shambler, Mosshulk and ChoirTendril**: one
 original native 16×24 Shambler body and two unchanged approved 16×16 bodies.
@@ -277,7 +276,7 @@ Independent review then found a test-isolation gap: actual committed melee can
 invoke WorldAudioCombat.Callback; save/neutralize/restore that hook before
 GREEN. This fixture-only correction does not alter the44 observed RED cases.
 
-## Final implementation and bounded Editor acceptance — 2026-10-27 16:18 UTC
+## Historical pre-package implementation and bounded Editor acceptance — 2026-10-27 16:18 UTC
 
 The three selected living owners now have native world and reader identities.
 `FlatPixelGrovelandsActorsCatalog` caches one centered 16×24 Shambler pair and
@@ -371,7 +370,7 @@ route. It includes the combat/death transition, idle frames and MCP/CUA overhead
 There is no matched pre-change profile. It cannot establish FPS improvement,
 sustained package performance, Linux execution or physical Steam Deck behavior.
 
-### Files changed and remaining gates
+### Files changed and historical pre-package gates
 
 | File or exact packet | Change |
 | --- | --- |
@@ -405,3 +404,53 @@ sustained package performance, Linux execution or physical Steam Deck behavior.
 There is no gameplay scope expansion from the approved plan. The deliberate
 production split remains one newly authored body plus two immutable source
 reuses, with essential cues supplied by existing systems.
+
+
+### Grovelands actors packaged delivery and actual hourly report — 2026-10-27
+
+Source `4dbdc9be95658341260efa10307dadb784ba8392` is pushed and verified on
+origin/main. It is now the current Mac/Linux build, replacing the preserved
+Maw package. Mac completed in 65.64 seconds and Linux in 60.52 seconds, each with
+zero errors/four warnings. The retained native result remains 44 focused plus
+363 disjoint related passes:407 distinct, zero failures/skips/inconclusive.
+Packaging did not rerun or add to that count. The later delivery/evidence
+commit remains pending root's push.
+
+Nine actual Mac views record all three bodies and readers, real Choir Chat
+and Trade with the earned purchase/purse/stock restored, normal Fen0,8→Grove4,7
+travel, one Right move and F5. Earned fixture
+`Fixtures/packaged-grovelands-actors82` retains turn 10420, player41,12 HP23.
+Full quit removed process 16871; fresh process 17885 Continued that state.
+Saved08/restarted09 world rectangle `[0,96,940,696]` has 564,000 identical
+decoded RGB pixels. **No new packaged purchase, combat, hurt flash, Wet or
+death trial is claimed**; earlier log history is not a new event.
+
+The independently verified Linux archive has 189 files/13 directories/202 members,
+128,791,876 bytes and SHA256
+`8ed7261f523993000e80124bcd0c10b2e889524604a46961217684c156339a21`.
+This proves archive integrity, not Linux or physical Deck execution. No sustained
+performance claim follows from the builds or the earlier fatal Editor profile.
+See [Mac play](Verification/Live16x24/packaged-grovelands-actors-mac-play.json),
+[archive](Verification/Live16x24/packaged-grovelands-actors-linux-archive.json),
+[independent package review](Verification/Live16x24/packaged-grovelands-actors-review.md)
+and [restoration](Verification/Live16x24/packaged-grovelands-actors-restoration.json).
+
+Restoration verifies 50,963 tracked files and 45 pre-build dirty paths unchanged
+(the 44 foreign paths plus the pre-existing Maw meta whitespace difference),
+normal saves/preferences and all prior builds/archive preserved. Five generated
+build files were backed up/restored and the owned test session archived. Root
+confirmed the UI/Unity were idle afterward. No storage cleanup occurred.
+
+**Actual hourly report sent 16:27:02 UTC; next 17:27:02 UTC.** At that report,
+Maw delivery and Grovelands native/Editor/source-main work were complete,
+Grovelands packages were in progress, and the next goals were shallow-cave
+baseline/coverage and continued worldwide sprites. The package outcome above
+is the later delivery result, not a retroactive change to the report.
+
+Next is the six-owner ordinary shallow sandstone cave material/travel slice:
+SandstoneFloor, SandstoneWall, Rubble, Stalagmite, StairsDown and StairsUp.
+[The shallow-cave phase](GRAPHICS-SHALLOW-CAVES.md) is source preflight; no actual
+cave visit, native integration or acceptance is claimed yet. Remaining glyph
+owners, Grove quiet patches, Fen routes and conversation clipping stay explicit.
+All 55 inventory polish scopes and 5 Stump area-polish records are unchanged.
+Coverage is not whole-area polish; optional nuanced animation remains deferred.
