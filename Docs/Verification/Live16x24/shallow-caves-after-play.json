@@ -1,0 +1,250 @@
+{
+  "recorded_at_utc": "2026-10-27T17:53:17.398903+00:00",
+  "environment": "Actual isolated Unity Editor normal GameBootstrap, flat16x24,1280x800; keyboard-only gameplay, read-only observation and ScreenCapture",
+  "source_base": "83b455e4140ad2fd7f7391402b2d33dad7ac56dc",
+  "source_status": "Reviewed source changes not yet committed at time of this evidence record",
+  "native_current": {
+    "focused": 56,
+    "related_disjoint": 339,
+    "distinct_pass": 395,
+    "failed": 0,
+    "skipped": 0
+  },
+  "scope": [
+    "SandstoneFloor",
+    "SandstoneWall",
+    "Rubble",
+    "Stalagmite",
+    "StairsDown",
+    "StairsUp"
+  ],
+  "route": [
+    "Fixture83 normal Continue: Overworld.0.9.1 at56,7 HP23; after04 corrected matched-entry backdrop.",
+    "after06 up-stair examine and after07 stalagmite reader; ordinary ascent to0.9.0 after08 and reentry after09.",
+    "Autowalk toward depth2 interrupted by hostiles. At48,13 wall70725 HP28\u219216\u21925\u2192destroyed to real Rubble72942; entered passable cell. after11/12.",
+    "Actual autosave turn10980 HP23 at48,13 copied from GameID directory into fixture84; fresh Continue after15 preserves wreckage. after16 actual rubble examine.",
+    "Returned to surface0.9.0 through ordinary movement/stairs; world map travel to16,13; after18 surface, after19 depth1 at45,9 HP23.",
+    "Existing inventory had two HealingTonics. Ordinary inventory/menu drink consumed one:HP23\u219240, no item or health injection.",
+    "Ordinary wall destruction at41,9 and MarlbackScrabbler combat; killed attacker and reached HP33. after24.",
+    "Ordinary > reached Overworld.16.13.2 at40,12 HP33 after25. F5 saved turn11910 to fixture85.",
+    "A rapid movement/return input batch had no verified transition. A repeated single normal < succeeded: after26 Overworld.16.13.1 at40,12 HP33.",
+    "Archived and finished isolated Play; fresh isolated normal Continue from fixture85 restored Overworld.16.13.2 at40,12 HP33 after27.",
+    "Look/normal action menu/examine on visible down stair39,12 after28/29 confirms shared native stair portrait."
+  ],
+  "rejected_or_partial_evidence": [
+    "BEFORE route died at tunnel guard; before-depth2 was not observed.",
+    "First AFTER trial after01 exposed black rectangular pits; fixed only after separate strict12case RED\u2192GREEN.",
+    "after02-up-stair-menu was focus-missed ordinary view, not menu evidence.",
+    "after13-rejected-skills-input is Skills UI, not Rubble examine; after14-pause-input is Pause, not F5 proof.",
+    "Initial fixture84 extraction selected stale launch marker; metadata check rejected it, copy preserved under/tmp/coo-cave84-rejected-launch-marker-copy and fixture84 replaced only with earned GameID autosave. Fixture83 unchanged.",
+    "Initial fixture85 copy expected wrong compressed suffix; metadata copied, then actual Quick.sav.gz copied byte-for-byte. No save payload editing."
+  ],
+  "visual_findings": {
+    "fixed": "Accidental black pit-like gaps in disclosed neutral cells; cached backdrop matches floor base without creating an owner.",
+    "remaining": [
+      "Conservative legacy memory/fog boundary",
+      "Repeated quiet floor/rubble vocabulary",
+      "Uncovered cave creatures, containers and TarSeep presentation",
+      "Whole-chunk route/extremity and serious polish review not completed",
+      "Deeper limestone/shale/roomed caves and authored underground sites separate"
+    ]
+  },
+  "profile": "shallow-caves-profile.json;90.286573s18378samples;includes real travel, hostile interruption, damage and tool/idle overhead. No before-route baseline or optimization/Deck performance claim.",
+  "fixtures": {
+    "shallow-caves-entry83": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.0.9.1",
+        "ActiveZoneDisplayLabel": "Overworld.0.9.1",
+        "Turn": 10730,
+        "SaveTimestampUtc": "2026-10-27T16:41:43.2392900Z",
+        "HPSummary": "23/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "8a725340aaa37e82bd8b1d2bb3e2f02873e6ced587c2c17db192188c1a87db93",
+        "Quick.json": "d26e002f00f90357e6605a705cece4abe39e1ac5ca775f0d3ca64bc80943603f"
+      }
+    },
+    "shallow-caves-wreckage84": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.0.9.1",
+        "ActiveZoneDisplayLabel": "Overworld.0.9.1",
+        "Turn": 10980,
+        "SaveTimestampUtc": "2026-10-27T17:37:31.9055400Z",
+        "HPSummary": "23/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "3deafa91b37506afa402e1969ec0542f3dd400374810a90084e9a22064fc9a39",
+        "Quick.json": "65cbab8678452a83e20f1a665d309e77184d737eac43843a81411281d0ae1e9a"
+      }
+    },
+    "shallow-caves-depth2-85": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.16.13.2",
+        "ActiveZoneDisplayLabel": "Overworld.16.13.2",
+        "Turn": 11910,
+        "SaveTimestampUtc": "2026-10-27T17:49:53.6404320Z",
+        "HPSummary": "33/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": {
+        "Quick.sav.gz": "f3e75fc1f5009c3d5a72eed68e0c8b6704ee87cbe07f267ce25daf0b3495d34e",
+        "Quick.json": "5dbd0fdcace82e1b349df62d1fded1bf227b5e2c75260155e2456c023edb30c5"
+      }
+    }
+  },
+  "captures": [
+    {
+      "path": "shallow-caves-after-01-entry.png",
+      "sha256": "1af5d121ed615f15e161cdaba81d90ceecca457fb28eeaf37f6817cd4912795b"
+    },
+    {
+      "path": "shallow-caves-after-02-up-stair-menu.png",
+      "sha256": "af5f6ebde7c5411f638adda2791624540541edb33ce7a67e3ea327409908a360"
+    },
+    {
+      "path": "shallow-caves-after-03-up-stair-examine.png",
+      "sha256": "af590a7e303d61f77f5664156fbb2c9c58af389e4b3f2f83e54c4c532f990793"
+    },
+    {
+      "path": "shallow-caves-after-04-backdrop-entry.png",
+      "sha256": "f9c332ae5b73b5b7c28e2257191f38eedce76fc4d451312860eea62619c096c0"
+    },
+    {
+      "path": "shallow-caves-after-05-up-stair-menu.png",
+      "sha256": "34dd738824360485488f04fd0899e124b58ff079237270a0beb3a8efb0be4222"
+    },
+    {
+      "path": "shallow-caves-after-06-up-stair-examine.png",
+      "sha256": "0a1d35ad42dbbe187abab2c037d23bbbda60022d91e55338f820440a21816ca3"
+    },
+    {
+      "path": "shallow-caves-after-07-stalagmite-reader.png",
+      "sha256": "2ba6edf886bda09770563c552eb9215974878cb59a1066a42d10c6c1f59e2301"
+    },
+    {
+      "path": "shallow-caves-after-08-surface-return.png",
+      "sha256": "a9d8832a20cc44c3e006829eaec1d1f103f4e29ce0cdf7195ed988a0707622a3"
+    },
+    {
+      "path": "shallow-caves-after-09-reentry.png",
+      "sha256": "e1c9b48ed6e59a2192c2682041f5a5e68cdd8e1ab8c32b9287faf8268b5868aa"
+    },
+    {
+      "path": "shallow-caves-after-10-passage.png",
+      "sha256": "eb6481dd8fbb793b67052e642f597fcb70708cff46d7ae11d5c554bb515fe451"
+    },
+    {
+      "path": "shallow-caves-after-11-wall-damage.png",
+      "sha256": "0394bb1687c209be43a5b884b2958e162878dcbb9cfa8e28e74add862c43ab75"
+    },
+    {
+      "path": "shallow-caves-after-12-wall-wreckage.png",
+      "sha256": "83cc00652517f6fcc0a879f517e24fd3b2bd7e9d41e91a5572c3c21bc78a4e1d"
+    },
+    {
+      "path": "shallow-caves-after-13-rejected-skills-input.png",
+      "sha256": "b1e607121b1d966286db1abcb3722942f208e26121af88db9267ac7a17decb34"
+    },
+    {
+      "path": "shallow-caves-after-14-pause-input.png",
+      "sha256": "4cf6668e925c18a11d0905ddeb9f549f62f4ef974e41cb84e2673a7ed1a38108"
+    },
+    {
+      "path": "shallow-caves-after-15-fresh-continue.png",
+      "sha256": "27abbb74fa898b4d9cd250b174089ed5aef4fc7534331392901d47491f272603"
+    },
+    {
+      "path": "shallow-caves-after-16-rubble-examine.png",
+      "sha256": "066e1858836cc847a16cbcba02393255401557740ecbc8bfbdb1fac00ed61419"
+    },
+    {
+      "path": "shallow-caves-after-17-map-route.png",
+      "sha256": "d84e1347c193f4a704b43ca936ada909b25c19cbd49610dab9f6080c4c7756a7"
+    },
+    {
+      "path": "shallow-caves-after-18-wind-barrens-entrance.png",
+      "sha256": "518ce974c7252acd4995ff3d4bee720a9680ec185d73c27c0db52ccf4a40bfcd"
+    },
+    {
+      "path": "shallow-caves-after-19-second-column.png",
+      "sha256": "eb9f14f83b61530878971a1c48a8f4f262a9299a067ddf7487879b64ffe6d861"
+    },
+    {
+      "path": "shallow-caves-after-20-second-passage.png",
+      "sha256": "aa4103a30100a33a3945c2590bb10cabf4d16219760b85072ab17ee20e8495a1"
+    },
+    {
+      "path": "shallow-caves-after-21-inventory-supplies.png",
+      "sha256": "f9465caf7c81d1f4f895eb321fa024484d019e102613564e8846e8bf90f3bea1"
+    },
+    {
+      "path": "shallow-caves-after-22-inventory-actions.png",
+      "sha256": "4b7f0b431277863279955ec7093b85b30979c16da2b30d0a97038f211933daaf"
+    },
+    {
+      "path": "shallow-caves-after-23-tonic-menu.png",
+      "sha256": "1a80c6016ccc6f9e6a68da185a90b3d31c90020242c80045cc5c538bc7f83ab5"
+    },
+    {
+      "path": "shallow-caves-after-24-route-combat.png",
+      "sha256": "8cdd7a5134eb3e43b30b6c7600a3849d6cbc7ca19e30f418fd173a08b6bed4f8"
+    },
+    {
+      "path": "shallow-caves-after-25-depth2.png",
+      "sha256": "ace94b7b925c1c2298bbde66a8a26de293b7a2dd08bd187ed77b0f4224ea0f50"
+    },
+    {
+      "path": "shallow-caves-after-26-depth2-return.png",
+      "sha256": "46ccffd051f65faec6dad3c4c542aaa2b85226ffb149092a091744d6c68ae8e8"
+    },
+    {
+      "path": "shallow-caves-after-27-depth2-fresh-continue.png",
+      "sha256": "1725d4a1d4555b7ce0b637c405e11e9e919af49d3c9b3ceb425ea50ed95b0a0b"
+    },
+    {
+      "path": "shallow-caves-after-28-down-stair-menu.png",
+      "sha256": "cc08b980b48d5675012984fcaffb9669c6820b6ac84555e507e17b35df184336"
+    },
+    {
+      "path": "shallow-caves-after-29-down-stair-examine.png",
+      "sha256": "8bc7e1a1ecea464e6c4e0bf89acef9d987d369a46978738fe46e504d82ca735e"
+    }
+  ],
+  "limits": [
+    "This is Editor gameplay acceptance for a finite kit, not a current-source packaged run.",
+    "No full biome/area/whole-cave acceptance.",
+    "No physical Steam Deck or Linux runtime verification.",
+    "No simulation teleport, spawn, reveal, health or inventory mutation through code.",
+    "No storage cleanup/deletion."
+  ],
+  "save_roots_archived": [
+    "4861fb1dfdd0471d8f301f62b5f528df-cave-before-death-preserved",
+    "e4200c135a14440b89f97f2576fa935d-cave-first-trial-preserved",
+    "36279a5261ce4b159fab4c29e1a91c2a-cave-wreckage-preserved",
+    "adb34198440a49f880d28cbc1fe1140f-cave-depth2-preserved",
+    "d86aaa1a54c34887b66d67f1cd35b658-cave-depth2-restart-preserved"
+  ]
+}

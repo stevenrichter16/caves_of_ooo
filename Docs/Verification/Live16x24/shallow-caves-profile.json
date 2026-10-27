@@ -1,0 +1,48 @@
+{
+  "startedUtc": "2026-10-27T17:34:27.608069Z",
+  "endedUtc": "2026-10-27T17:35:57.894642Z",
+  "seconds": 90.286573,
+  "context": "Root-owned actual Editor cave reentry, stair-autowalk hostile interruption, ordinary wall-damage actions, idle and MCP/CUA instrumentation. No same-route BEFORE baseline or sustained package/Deck FPS claim. Recorders stopped/disposed before further travel.",
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "count": 18378,
+      "mean": 121362.82468168462,
+      "p95": 197458,
+      "max": 24002292,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shallow-caves-profile-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "count": 18378,
+      "mean": 17352.569158776798,
+      "p95": 30250,
+      "max": 14026334,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shallow-caves-profile-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "count": 18378,
+      "mean": 4905821.622809881,
+      "p95": 13729792,
+      "max": 1354185833,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shallow-caves-profile-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "count": 18378,
+      "mean": 64519.31113287627,
+      "p95": 19135,
+      "max": 139923785,
+      "unit": "Bytes",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shallow-caves-profile-3.csv"
+    }
+  ]
+}

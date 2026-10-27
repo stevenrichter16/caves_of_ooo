@@ -47,7 +47,7 @@ namespace CavesOfOoo.Rendering
             {
                 _bgTilemap.SetTile(position, flat.GroundTile);
                 _bgTilemap.SetTileFlags(position, TileFlags.None);
-                _bgTilemap.SetColor(position, flat.LocalGround ? flat.GroundColor : ApplyFlatLighting(flat.GroundColor, x, y));
+                _bgTilemap.SetColor(position, flat.LocalGround || flat.AmbientBackdrop ? flat.GroundColor : ApplyFlatLighting(flat.GroundColor, x, y));
                 _bgTilemap.SetTransformMatrix(position, Matrix4x4.identity);
             }
         }

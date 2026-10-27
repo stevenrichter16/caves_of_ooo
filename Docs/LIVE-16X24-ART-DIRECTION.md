@@ -1,6 +1,8 @@
 # Live 16×24 art direction and integration
 
-**Current delivery checkpoint — 2026-10-27:** Grovelands Shambler, Mosshulk and living merchant ChoirTendril are delivered from source4dbdc9be9 verified on origin/main: 407 retained distinct native passes, bounded Editor intent/trade/restart and nine actual Mac views covering bodies/readers, restored services, Fen-to-Grove travel and full-process restart. Both fresh builds have0errors/4warnings; Linux archive independently verified, not executed. All-world coverage and separate area polish remain open. Next: actual ordinary shallow-cave baseline for six material/travel owners; source preflight only so far. Last actual hourly report16:27:02UTC; next17:27:02UTC. Earlier checkpoints below are historical.
+**Current shallow-cave checkpoint — 2026-10-27 17:53 UTC:** The six-owner shallow-cave foundation has395 distinct current native passes and bounded Editor verification in two ordinary columns: the accidental pit-like backing is fixed; readers, real wall destruction into Rubble, movement onto it, surface/depth1 and depth1/depth2 roundtrips, and fresh Continue at both earned checkpoints were observed. Final fixture85 restores Overworld.16.13.2 at40,12,HP33; the adjacent down-stair menu and native reader are verified. Source commit/push and new packages remain pending; current delivery remains Grovelands source4dbdc9be9/evidence83b455e41. Whole-cave, biome, chunk-fullness and serious polish acceptance remain open. Last actual hourly report17:27:22UTC; next18:27:22UTC.
+
+**Historical delivered checkpoint — 2026-10-27:** Grovelands Shambler, Mosshulk and living merchant ChoirTendril are delivered from source4dbdc9be9 verified on origin/main: 407 retained distinct native passes, bounded Editor intent/trade/restart and nine actual Mac views covering bodies/readers, restored services, Fen-to-Grove travel and full-process restart. Both fresh builds have0errors/4warnings; Linux archive independently verified, not executed. All-world coverage and separate area polish remain open. Next: actual ordinary shallow-cave baseline for six material/travel owners; source preflight only so far. Last actual hourly report16:27:02UTC; next17:27:02UTC. Earlier checkpoints below are historical.
 
 **Chunk composition requirement (2026-10-26 local):** The user also requires
 chunks not to feel too bare. Fill regions with coherent, biome-appropriate
@@ -3290,3 +3292,177 @@ cave visit, native integration or acceptance is claimed yet. Remaining glyph
 owners, Grove quiet patches, Fen routes and conversation clipping stay explicit.
 All 55 inventory polish scopes and 5 Stump area-polish records are unchanged.
 Coverage is not whole-area polish; optional nuanced animation remains deferred.
+
+## Continuation — 2026-10-27 17:09 UTC: shallow-cave foundation, actual AFTER pending
+
+Ordinary shallow-cave six-owner foundation is integrated and native GREEN383 distinct (44 focused plus339 related) after genuine RED44/44. Nine actual BEFORE Editor captures reached depth1 and recorded a fatal interruption; the preserved entry83 save remains available. Two new native wall cells and five unchanged borrowed families await actual AFTER comparison, depth2/return/restart and package gates. Current delivered package remains Grovelands source4dbdc9be9 with delivery83b455e41 verified on origin/main. No cave-area, all-world or serious polish acceptance is claimed.
+
+The focused native run is **44 passed / 0 failed / 0 skipped / 0 inconclusive**
+(17:06:24–17:06:31 UTC), after retained genuine **44 failed / 0 passed** RED.
+The first43/44 trial exposed a test coordinate error: a floor placed at `X-1,Y`
+was checked at the helper's default `X,Y`. The saved test call was corrected;
+production was not relaxed. The related run
+passed339/339 (17:08:38–17:09:04 UTC): zero overlap, **383 distinct passes**
+combined. Actual XML is authoritative; MCP startup metadata incorrectly reported
+a timeout while the native run completed.
+See [native and source review](Verification/Live16x24/shallow-caves-independent-review.md).
+
+The new32×24 atlas contains two original native wall cells
+(`4bb598677352f0ccd8b5be8a67f31e79d6aeab0704aa96db9c826b0d4b8dc576`).
+Five borrowed families remain unchanged: Beating floor12–15, square rubble and
+stalagmite, down stair anchor4 and up stair cellar0. No new generation, population,
+lighting, optional animation or edge-mask behavior was introduced. Existing
+native painter colors bypass cell-light tint; actual cave contrast remains an
+AFTER acceptance question. The pre-RED adapter draft was kept outside Assets;
+production import occurred only after genuine RED, a disclosed drafting-order
+deviation recorded in the phase.
+
+Nine BEFORE Editor captures establish real surface-to-depth1 travel, visible
+owners, wall damage and the actual hostile interruption. The preserved
+`Fixtures/shallow-caves-entry83` remains at turn10730, cell56,7, HP23. Later
+MarlbackTunnelguard damage killed that isolated route; this does not establish
+depth2, a successful return or accepted cave graphics. Root owns the next actual
+replay. Source push and new cave packages remain pending; Grovelands source
+`4dbdc9be95658341260efa10307dadb784ba8392` and evidence `83b455e4140ad2fd7f7391402b2d33dad7ac56dc`
+remain the current verified delivery.
+
+Next: Complete actual matched cave AFTER gameplay from preserved entry83, using short observed ordinary steps; verify six-owner readability, real destruction/stairs, depth2 and return if the encounter permits, then save/restart and bounded package delivery. Keep hazards, cave actors/loot, whole-chunk composition and remaining underground/special regions explicit gaps. Continue broad world coverage before the separately required biome-by-biome/area-by-area polish; optional animation remains deferred.
+
+Last actual hourly report remains **16:27:02 UTC**, next **17:27:02 UTC**.
+This checkpoint is not another hourly report. Every existing55 inventory and5
+Stump area polish status is unchanged. Normal saves, prior art/builds and foreign
+work remain protected; storage work is inspection-only.
+
+## Continuation — first shallow-cave AFTER trial: visual correction required
+
+The first actual shallow-cave AFTER trial failed the visual readability gate: transparent Rubble-only and visually ownerless cells appear as near-black pits among the native floor/walls. The six-owner foundation retains383 native passes, but those precede this new defect correction. A separate AmbientBackdrop repair is planned; new RED, implementation and revalidation are pending. No cave gameplay/package/area-polish acceptance is claimed; the current delivered build remains Grovelands source4dbdc9be9 with evidence83b455e41 verified on main.
+
+- `shallow-caves-after-01-entry.png` shows the named black-hole readability
+  defect. A real Rubble owner keeps its existing sprite and reader; the proposed
+  quiet cell background must not create a SandstoneFloor owner or material.
+- `shallow-caves-after-02-up-stair-menu.png` is misnamed: the focus/menu attempt
+  missed, so it is an ordinary view, not menu evidence. Capture03 is the verified
+  actual up-stair examine reader.
+- Root archived the isolated session as
+  `e4200c135a14440b89f97f2576fa935d-cave-first-trial-preserved`, then finished to
+  idle. The preserved entry83 fixture remains the controlled replay starting point.
+
+The proposed **AmbientBackdrop** flag is separate from actual `LocalGround`.
+Only background color treatment changes; owner/null, body, reader, passability,
+actual floor priority and independent marks remain unchanged. Never inspect raw
+occupant count or collision to vary backing: hidden/foreign/custodied contents
+must not disclose themselves through a background change. New native RED has
+not run and no production draft for this correction has been written at this
+checkpoint. Existing383 passes apply to the preceding foundation only.
+
+Next: Write and run new native RED for an owner-free cave AmbientBackdrop, then implement the minimal background-only fix without creating floor entities or changing simulation. Keep LocalGround and subject identity unchanged; add backdrop color treatment only to the two background paint paths, preserving water/other marks, hidden-state invariance, current authority and actual floor priority. Then repeat actual matched cave views/readers/travel/restart and package checks before acceptance. Continue remaining worldwide coverage and separate later biome/area polish; defer optional animation.
+
+No source/package/area-polish acceptance follows from this trial. Existing55+5
+polish records remain unchanged. Last actual hourly report16:27:02UTC;
+next17:27:02UTC. Storage remains inspection-only.
+
+## Continuation — 2026-10-27 17:27:22 UTC: backdrop native GREEN, actual repeat pending
+
+The separate shallow-cave AmbientBackdrop repair is implemented after genuine new RED and passes56 focused native cases. It preserves actual floor identity, selected bodies/readers, hidden-state invariance and hazard marks. Actual visual replay, deeper travel/return, restart, source push and packages remain pending. The339 related passes predate this repair and are awaiting rerun; they are not current-revision regression acceptance. Current delivered package remains Grovelands source4dbdc9be9/evidence83b455e41 on main. All-world coverage and serious area polish remain open.
+
+Strengthened native RED ran17:22:59–17:23:14UTC:12 new cases failed while the
+original44 passed, before production. Root then implemented the four-file repair.
+Final `shallow-caves-backdrop-green.xml` ran17:27:05–17:27:19UTC with56 passed,
+0 failed/skipped/inconclusive, SHA256
+`189ebe9792c41cc8e7d765a2c2e6d84b604aa611a83d6affefc341d1c5cdd5cb`.
+The retained55/1 first trial was an injected-texture expectation error: the
+fixture invoked a helper expecting the global Resources texture after injection.
+It now checks the injected floor, actual owner/ground and reader parity directly;
+no production relaxation was needed.
+
+The separate `AmbientBackdrop` flag changes only background color treatment.
+`LocalGround`, existing `GroundKind`, physical owners, collision, foreground and
+reader identity remain unchanged. The runtime author for this repair was root;
+the ledger agent independently cold-reviewed it with no significant source
+finding. That is distinct from the ledger agent's self-review of the earlier
+six-owner adapter. The actual first-trial hole defect remains unaccepted until
+new gameplay views prove the correction.
+
+The339 related native passes are **pre-backdrop** and cannot be counted as
+current-revision regression acceptance; root's rerun is pending. No cave source
+push, new package, depth2/return or visual/fullness acceptance is inferred.
+
+Actual hourly report **17:27:22 UTC** sent; next **18:27:22 UTC**. Completed:
+Grovelands delivery83b455e41 on main. In progress: shallow six-owner foundation,
+backdrop repair, actual/deeper/restart/source/package gates. Goals: Finish post-backdrop related native checks and actual matched cave replay, then honest deeper stair/return, restart, source-main and package gates. Once this cave foundation is delivered, continue limestone/shale and remaining underground/world families using the source-only next-gap plan. Keep hazards, actors, landmarks and full-area polish explicit; defer optional animation.
+
+The [limestone/shale handoff](Verification/Live16x24/post-shallow-caves-next-gap-plan.md)
+is source-only; it does not begin or accept a deeper phase. All55+5 existing
+polish statuses remain unchanged. Storage remains inspection-only.
+
+## Continuation — 2026-10-27 17:30:03 UTC: current native regression complete, actual replay pending
+
+The six-owner shallow-cave foundation and separate AmbientBackdrop repair now have395 distinct current native passes:56 focused plus339 related, with zero overlapping test identities and no failures/skips/inconclusives. Actual visual replay of the first-trial black-hole defect, deeper travel/return, restart, source push and packages remain pending. Current delivered package remains Grovelands source4dbdc9be9/evidence83b455e41 on main. All-world coverage and serious area polish remain open.
+
+`shallow-caves-backdrop-related-green.xml` ran17:29:38–17:30:03UTC and records
+339 passed, zero failures/skips/inconclusives, SHA256
+`ad2353650ad520a64d6df46e16b86a5a654448b353c54fba216dc14d8d31c345`.
+Its339 full test identities and the current focused56 are disjoint, yielding395
+distinct current passes. This supersedes the immediately preceding related-rerun
+pending state; the earlier pre-backdrop339 receipt remains historical evidence.
+Actual cave visual/gameplay, deeper travel/return, persistence and delivery gates
+remain open. No biome/area-polish state advances. Last actual hourly report stays
+17:27:22UTC; next18:27:22UTC. This result is a checkpoint, not another hourly report.
+
+## Continuation — 2026-10-27 17:51 UTC: actual cave repair and travel, depth2 restart pending
+
+The corrected shallow-cave entry removes the accidental black-pit appearance. Actual ordinary controls verified up-stair and Stalagmite readers, surface ascent/reentry, real wall destruction into Rubble and movement onto it, a fresh depth1 Continue with the wreckage retained, and a second ordinary column reaching depth2 and returning to depth1. Current native result remains395 distinct passes. Depth2 fixture85 is saved; its fresh Continue is pending. Source push and new packages remain pending; current delivery remains Grovelands source4dbdc9be9/evidence83b455e41. This is bounded material/readability and travel evidence, not full cave or area-polish acceptance.
+
+Actual corrected entry04 removes the pit-like black backing while keeping dark
+walls and the pointed Stalagmite readable. The independent visual reviewer
+sampled oldRGB6,4,3 becoming94,67,41, matching adjacent real floor; this is a
+bounded material repair, not full-frame identity or density acceptance. Actual
+readers06/07, ordinary ascent08/reentry09, and wall48,13 damage28→16→5→real
+Rubble72942 in11/12 establish real state changes. The player walked onto that
+cell.13 is a rejected Skills input and14 is Pause; neither proves rubble or save.
+The actual autosave was extracted with its correct GameID as wreckage84,
+turn10980. Fresh normal Continue15 retained depth1,48,13,HP23;16 shows its actual
+Rubble reader.
+
+Normal surface/world-map travel reached16,13 in18 and its depth1 in19. Existing
+tonic use through the ordinary inventory raised HP23→40; subsequent real wall
+breaking at41,9 and Scrabbler combat left HP33. Normal descent25 reached
+Overworld.16.13.2 and ascent26 returned to16.13.1. Actual F5 saved depth2
+fixture85 atturn11910,HP33. Its fresh Continue is still pending here.
+
+Current native result remains395 distinct passes. The90.286573-second Editor
+profile has18,378 samples per recorder and no capacity overflow; its route,
+idle, hostile interruption and MCP/CUA overhead are recorded explicitly. It is
+not a matched performance comparison or package/Deck FPS result. Root's
+consolidated after-play receipt is forthcoming. Source push and new packages
+remain pending; the current Grovelands delivery is preserved. Next: Confirm the saved depth2 fixture85 through fresh Continue, finish the actual evidence/review, then push source and complete fresh package checks. After this bounded cave foundation, proceed to the source-only limestone/shale and remaining underground/world families plan. Keep actors, hazards, loot, room landmarks, chunk composition and later serious area polish open; defer optional animation.
+
+All55+5 existing polish statuses remain unchanged. The actual hourly clock stays
+17:27:22UTC→18:27:22UTC; this checkpoint is not another hourly report. No cleanup
+or gameplay/simulation change is inferred from the visual work.
+
+## Continuation — 2026-10-27 17:53 UTC: bounded cave Editor checkpoint complete
+
+The six-owner shallow-cave foundation has395 distinct current native passes and bounded Editor verification in two ordinary columns: the accidental pit-like backing is fixed; readers, real wall destruction into Rubble, movement onto it, surface/depth1 and depth1/depth2 roundtrips, and fresh Continue at both earned checkpoints were observed. Final fixture85 restores Overworld.16.13.2 at40,12,HP33; the adjacent down-stair menu and native reader are verified. Source commit/push and new packages remain pending; current delivery remains Grovelands source4dbdc9be9/evidence83b455e41. Whole-cave, biome, chunk-fullness and serious polish acceptance remain open.
+
+The saved `Verification/Live16x24/shallow-caves-after-play.json` records the
+actual route, exact83/84/85 fixture hashes and29 retained captures.29 includes
+the failed first trial and rejected/misnamed UI views, not29 accepted outcomes.
+Fresh normal Continue27 restores the earned depth2 fixture85 at40,12,HP33;
+normal menu28 and examine29 on visible down stair39,12 verify the shared native
+portrait. This completes the pending bounded Editor persistence/reader gate.
+The independent [final visual review](Verification/Live16x24/shallow-caves-final-visual-review.md)
+accepts the useful material checkpoint and corrected backing in sampled ordinary
+depths1/2, while retaining repetition, remembered glyph transitions, uncovered
+owners and whole-chunk composition as explicit limits.
+
+Root archived and finished the isolated sessions, verified normal Editor and
+standalone saves against the retained baseline and44 foreign tracked paths
+against the Maw baseline, and confirmed Playfalse/rootnull/clean scene. This
+records root's checks; no additional whole-preference identity claim is made.
+The current395 native passes are unchanged. Source commit/push and new packages
+are still pending; no current cave Linux or physical Deck run is claimed.
+Next: Review and push the bounded cave source/evidence, then build and verify fresh packages. After that delivery, proceed to the source-only limestone/shale and remaining underground/world families plan. Preserve separate coverage work for actors, hazards, loot, room landmarks and whole-chunk composition, followed by the required serious biome/area polish phase; optional animation remains deferred.
+
+All55+5 polish states remain unchanged. Last actual hourly17:27:22UTC and next
+18:27:22UTC remain unchanged; no extra hourly report or cleanup occurred.

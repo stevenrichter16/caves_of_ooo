@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "owner": "SandstoneWall",
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "state": "Surviving structural wall; full and surviving partial HP use same intact mass."
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "state": "Surviving structural wall; full and surviving partial HP use same intact mass."
+    }
+  ],
+  "atlas": "shallow-caves.png",
+  "width": 32,
+  "height": 24,
+  "palette": {
+    "mass": "5A4B37",
+    "fracture": "4C3F2F",
+    "seam": "544634",
+    "worn": "64543E"
+  },
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,FullRect; root owns runtime import.",
+  "opaque": true,
+  "edge_masks": false,
+  "destroyed_state": "Owner removed by actual DestructionSystem; existing real Rubble handles its own presentation.",
+  "blend": "shallow-caves.blend",
+  "source_cells": "source-cells.json",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 14
+    },
+    {
+      "frame": 1,
+      "left": 32,
+      "top": 14
+    },
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 44
+    },
+    {
+      "frame": 1,
+      "left": 24,
+      "top": 44
+    },
+    {
+      "frame": 0,
+      "left": 40,
+      "top": 44
+    },
+    {
+      "frame": 1,
+      "left": 56,
+      "top": 44
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 44
+    },
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 68
+    },
+    {
+      "frame": 0,
+      "left": 24,
+      "top": 68
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 68
+    },
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 92
+    },
+    {
+      "frame": 1,
+      "left": 24,
+      "top": 92
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 92
+    }
+  ],
+  "contact_size_native": [
+    128,
+    120
+  ],
+  "study_floor": "Only unchanged Beating floor base RGB128,106,76; no borrowed floor sprite reproduced or changed.",
+  "references": [
+    "scene-reference-01.png",
+    "scene-prompt.txt",
+    "parts-reference-01.png",
+    "parts-prompt.txt",
+    "REFERENCE-CRITIQUE.md"
+  ],
+  "extraction": "Keep planar dark continuous mass and sparse interior fractures. Reject generated noise, nonuniform pixels, incorrect row labels, tile outlines, raised rubble, masonry, extrusion and cast shadows.",
+  "protected_input_counts": [
+    20,
+    5
+  ],
+  "png_nonpixel_timing_normalization": {
+    "shallow-caves.png": {
+      "raw_sha256": "ccdde5b2593d264364143a02c4586fd534f065784a122d721df829746e5c5554",
+      "canonical_sha256": "4bb598677352f0ccd8b5be8a67f31e79d6aeab0704aa96db9c826b0d4b8dc576",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact-native.png": {
+      "raw_sha256": "5aae814b8f1a53504a462a998985bbbc74b0a7ea450a6206ca0f578cdaf0d6b7",
+      "canonical_sha256": "0e1169cb9df5da4c8589efb164e606d01e9f423e5f47751ed5e977f8248b5c86",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact.png": {
+      "raw_sha256": "d232ef1be295871af530e00b660e62f7f3b99d53dea448ceddb2b71182d52468",
+      "canonical_sha256": "fbbe66a737ac6fe0549f1f7a87ea8666ec4a85dcd64e283c9267787c0f2c803b",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    }
+  },
+  "runtime_acceptance": false,
+  "area_polish_acceptance": false
+}
