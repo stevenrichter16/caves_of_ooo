@@ -264,6 +264,35 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [Test] public void SillVineRemovalCapsSubmittedNeighborsThroughTheGlobalDirtyRadius()
+        {
+            zone = Attach("Overworld.10.10.0");
+            for (int x = X - 1; x <= X + 1; x++) Add("Grass", x, Y);
+            Add("VineWall", X - 1); var center = Add("VineWall"); Add("VineWall", X + 1);
+            world = new FlatPixelGreyboxCatalog();
+            var source = Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.ResourcePath); Assert.NotNull(source);
+            void SillFrame(Tile tile, int mask)
+            {
+                Assert.NotNull(tile); Assert.AreSame(source, tile.sprite.texture);
+                Assert.AreEqual(new Rect(mask * 16, 0, 16, 24), tile.sprite.rect);
+            }
+            using (var paint = new Paint(world, zone))
+            {
+                SillFrame(paint.At(X - 1, Y), 2); SillFrame(paint.At(X, Y), 10); SillFrame(paint.At(X + 1, Y), 8);
+                long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+                Assert.AreEqual(DestroyVerdict.Destroyed, DestructionSystem.Damage(center, 999, null, zone));
+                Assert.IsNull(zone.GetEntityCell(center)); Assert.False(paint.FullDirty); paint.Step();
+                SillFrame(paint.At(X - 1, Y), 0); SillFrame(paint.At(X + 1, Y), 0);
+                var gap = paint.At(X, Y);
+                // VineWall may leave real Rubble; require no stale intact vine, not an empty world cell.
+                Assert.True(gap == null || gap.sprite.texture != source);
+                Assert.False(zone.GetCell(X, Y).BlocksMovement()); Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
+                Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
+                long cells = EnvironmentSpriteRenderer.Perf.CellsResolved; paint.Step();
+                Assert.AreEqual(cells, EnvironmentSpriteRenderer.Perf.CellsResolved);
+            }
+        }
+
         static void Fault(Entity owner, string fault)
         {
             var r = owner.GetPart<RenderPart>(); var p = owner.GetPart<PhysicsPart>(); var d = owner.GetPart<DestructiblePart>(); var foreign = new Entity();

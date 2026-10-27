@@ -190,3 +190,30 @@ change is authorized as an automatic solution.
 - Actual settled restart reader accepted in
   `portable-equipment-after-07-reloaded-reader-settled.png`; incomplete earlier
   capture06 is explicitly not an acceptance image.
+
+
+### Sill material integration — 2026-10-27 04:43 UTC
+
+24 new native frames cover woven VineWall connectivity, two-axis ordinary doors
+(open/closed) and quiet Grass. Actual StoneFloor, StoneWall and AlchemyStill reuse
+approved pixels. Exact current Sill only; all other area rows remain open.
+The public renderer, dirty neighbor repaint and examine path are integrated.
+Independent review found hidden competing owners suppressing the native ground;
+52-case RED had50pass2fail, then the saved guard passed final136/136.
+Related regression224/224 also passed (counts overlap; do not sum as360unique).
+
+Actual Unity Play used the unchanged earned seed65 save, ordinary controls and
+real actors. Both door axes closed, occupied doorway refused closure, bump opened
+an east door before moving, player crossed onto actual stone, and the north door
+reader used the native portrait. Natural gremlin/NPC combat left the player38HP.
+F5 checkpoint1070 at67,18 was reloaded unchanged and the matched2x view retained
+338visible selected cells, including120WaterPuddle glyph cells. Actual glade and
+cellar counterchecks remained flat. Detailed capture corrections and source/test
+records are in `Docs/GRAPHICS-SILL-ENVELOPE.md`.
+
+Fullness is **not accepted**: coherent shells and readable passages are improved,
+but grass lanes remain repetitive/underfurnished and river/services/furniture/
+residents need their actual sprites. Hidden fog is not counted as empty content.
+No random clutter or generation changes were made. Next is the source-supported
+Sodden crossing16,7 and shelter15,7: mire, boards, peat banks and dead-tree families,
+then the remaining regions. Current packages still need this frozen source batch.

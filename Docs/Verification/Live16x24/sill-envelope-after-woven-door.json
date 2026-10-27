@@ -1,0 +1,2131 @@
+{
+  "label": "sill-envelope-after-woven-door",
+  "observational": true,
+  "source": "Existing paint receipts, actual current tilemap sprites and active animated bodies; no resolver calls",
+  "zone": "Overworld.10.10.0",
+  "seed": 65,
+  "tick": 700,
+  "player": [
+    57,
+    13
+  ],
+  "screen": [
+    2321,
+    1139
+  ],
+  "nativeScale": 2.0,
+  "onscreenCells": 162,
+  "disclosedOffscreenCellsOmitted": 153,
+  "unmatchedReceipts": 0,
+  "selectedCellCounts": {
+    "Chair | glyph-fallback": 1,
+    "Chest | glyph-fallback": 1,
+    "Grass | ground-only": 126,
+    "Player | authored-16x24": 1,
+    "StoneFloor | ground-only": 6,
+    "StoneWall | authored-16x24": 5,
+    "VillageChild | glyph-fallback": 2,
+    "VillageDoor | authored-16x24": 1,
+    "VineWall | authored-16x24": 19
+  },
+  "groundCellCounts": {
+    "Live16x24 Sill envelope 20 | authored-16x24": 115,
+    "Live16x24 Sill envelope 21 | authored-16x24": 12,
+    "Live16x24 Sill envelope 22 | authored-16x24": 9,
+    "Live16x24 Sill envelope 23 | authored-16x24": 19,
+    "Live16x24 Sill floor 0 | authored-16x24": 4,
+    "Live16x24 Sill floor 2 | authored-16x24": 2,
+    "Live16x24 Sill floor 3 | authored-16x24": 1
+  },
+  "cells": [
+    {
+      "x": 61,
+      "y": 8,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6863",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 4",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          64.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6251",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 60,
+      "y": 9,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6859",
+        "blueprint": "StoneFloor",
+        "display": "stone floor",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "terrain",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "ground-only",
+      "channel": "main-tilemap",
+      "foreground": null,
+      "ground": {
+        "name": "Live16x24 Sill floor 0",
+        "texture": "cellar-floor",
+        "asset": "Assets/Resources/Sprites/Live16x24/cellar-floor.png",
+        "rect": [
+          0.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [],
+      "tileState": null
+    },
+    {
+      "x": 61,
+      "y": 9,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6864",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 5",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          80.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6252",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 43,
+      "y": 10,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7578",
+        "blueprint": "VillageChild",
+        "display": "child",
+        "visualID": "",
+        "variant": "",
+        "layer": 10,
+        "category": "actor",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": 10
+      },
+      "selectedVisualID": "",
+      "resolution": "glyph-fallback",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Flat world glyph 99",
+        "texture": "Live16x24 World Glyph Fallback",
+        "asset": "",
+        "rect": [
+          48.0,
+          144.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "glyph-fallback"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "5803",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 59,
+      "y": 10,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6868",
+        "blueprint": "Chair",
+        "display": "wooden chair",
+        "visualID": "",
+        "variant": "",
+        "layer": 5,
+        "category": "prop",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "glyph-fallback",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Flat world glyph 104",
+        "texture": "Live16x24 World Glyph Fallback",
+        "asset": "",
+        "rect": [
+          128.0,
+          144.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "glyph-fallback"
+      },
+      "ground": {
+        "name": "Live16x24 Sill floor 2",
+        "texture": "cellar-floor",
+        "asset": "Assets/Resources/Sprites/Live16x24/cellar-floor.png",
+        "rect": [
+          32.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6855",
+          "blueprint": "StoneFloor",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 60,
+      "y": 10,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6860",
+        "blueprint": "StoneFloor",
+        "display": "stone floor",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "terrain",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "ground-only",
+      "channel": "main-tilemap",
+      "foreground": null,
+      "ground": {
+        "name": "Live16x24 Sill floor 0",
+        "texture": "cellar-floor",
+        "asset": "Assets/Resources/Sprites/Live16x24/cellar-floor.png",
+        "rect": [
+          0.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [],
+      "tileState": null
+    },
+    {
+      "x": 61,
+      "y": 10,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6865",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 1",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          16.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6253",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 42,
+      "y": 11,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7404",
+        "blueprint": "StoneWall",
+        "display": "stone wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill stone 8",
+        "texture": "opening-cellar",
+        "asset": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "5779",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 43,
+      "y": 11,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7483",
+        "blueprint": "Chest",
+        "display": "chest",
+        "visualID": "",
+        "variant": "",
+        "layer": 1,
+        "category": "prop",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "glyph-fallback",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Flat world glyph 61",
+        "texture": "Live16x24 World Glyph Fallback",
+        "asset": "",
+        "rect": [
+          208.0,
+          72.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "glyph-fallback"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "5804",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 58,
+      "y": 11,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6851",
+        "blueprint": "StoneFloor",
+        "display": "stone floor",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "terrain",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "ground-only",
+      "channel": "main-tilemap",
+      "foreground": null,
+      "ground": {
+        "name": "Live16x24 Sill floor 0",
+        "texture": "cellar-floor",
+        "asset": "Assets/Resources/Sprites/Live16x24/cellar-floor.png",
+        "rect": [
+          0.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [],
+      "tileState": null
+    },
+    {
+      "x": 59,
+      "y": 11,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6856",
+        "blueprint": "StoneFloor",
+        "display": "stone floor",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "terrain",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "ground-only",
+      "channel": "main-tilemap",
+      "foreground": null,
+      "ground": {
+        "name": "Live16x24 Sill floor 2",
+        "texture": "cellar-floor",
+        "asset": "Assets/Resources/Sprites/Live16x24/cellar-floor.png",
+        "rect": [
+          32.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [],
+      "tileState": null
+    },
+    {
+      "x": 60,
+      "y": 11,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6861",
+        "blueprint": "StoneFloor",
+        "display": "stone floor",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "terrain",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "ground-only",
+      "channel": "main-tilemap",
+      "foreground": null,
+      "ground": {
+        "name": "Live16x24 Sill floor 0",
+        "texture": "cellar-floor",
+        "asset": "Assets/Resources/Sprites/Live16x24/cellar-floor.png",
+        "rect": [
+          0.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [],
+      "tileState": null
+    },
+    {
+      "x": 71,
+      "y": 11,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7473",
+        "blueprint": "VillageDoor",
+        "display": "door",
+        "visualID": "",
+        "variant": "",
+        "layer": 5,
+        "category": "prop",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 19",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          304.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6504",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 72,
+      "y": 11,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6787",
+        "blueprint": "StoneFloor",
+        "display": "stone floor",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "terrain",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "ground-only",
+      "channel": "main-tilemap",
+      "foreground": null,
+      "ground": {
+        "name": "Live16x24 Sill floor 3",
+        "texture": "cellar-floor",
+        "asset": "Assets/Resources/Sprites/Live16x24/cellar-floor.png",
+        "rect": [
+          48.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [],
+      "tileState": null
+    },
+    {
+      "x": 42,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7413",
+        "blueprint": "StoneWall",
+        "display": "stone wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill stone 8",
+        "texture": "opening-cellar",
+        "asset": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "5780",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 56,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6842",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 2",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          32.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6130",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 57,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6847",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 8",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6155",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 58,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7579",
+        "blueprint": "VillageChild",
+        "display": "child",
+        "visualID": "",
+        "variant": "",
+        "layer": 10,
+        "category": "actor",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": 10
+      },
+      "selectedVisualID": "",
+      "resolution": "glyph-fallback",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Flat world glyph 99",
+        "texture": "Live16x24 World Glyph Fallback",
+        "asset": "",
+        "rect": [
+          48.0,
+          144.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "glyph-fallback"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6180",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        },
+        {
+          "id": "7475",
+          "blueprint": "VillageDoor",
+          "layer": 5,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 59,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6857",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 2",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          32.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6205",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 60,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6862",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 10",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          160.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 21",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          336.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6230",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 61,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6867",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 8",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6255",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 71,
+      "y": 12,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6782",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 4",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          64.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6505",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 57,
+      "y": 13,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "2695",
+        "blueprint": "Player",
+        "display": "you",
+        "visualID": "",
+        "variant": "",
+        "layer": 20,
+        "category": "player",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": 40
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "animated-body",
+      "foreground": {
+        "name": "Live16x24 Player idle",
+        "texture": "opening-base",
+        "asset": "Assets/Resources/Sprites/Live16x24/opening-base.png",
+        "rect": [
+          0.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6156",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 71,
+      "y": 13,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6783",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 5",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          80.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6506",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 42,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7421",
+        "blueprint": "StoneWall",
+        "display": "stone wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill stone 8",
+        "texture": "opening-cellar",
+        "asset": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 22",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          352.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "5782",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 56,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6929",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 2",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          32.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6132",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 57,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6933",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 10",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          160.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6157",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 58,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6937",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 10",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          160.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6182",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 59,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6941",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 10",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          160.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6207",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 60,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6945",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 10",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          160.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6232",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 61,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6949",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 10",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          160.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6257",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 62,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6953",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 10",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          160.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6282",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 63,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6957",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 8",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 20",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          320.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6307",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 71,
+      "y": 14,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "6784",
+        "blueprint": "VineWall",
+        "display": "vine wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill envelope 1",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          16.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 21",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          336.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "6507",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 42,
+      "y": 16,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7448",
+        "blueprint": "StoneWall",
+        "display": "stone wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill stone 8",
+        "texture": "opening-cellar",
+        "asset": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 22",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          352.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "5784",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    },
+    {
+      "x": 42,
+      "y": 17,
+      "receiptCurrent": true,
+      "owner": {
+        "id": "7464",
+        "blueprint": "StoneWall",
+        "display": "stone wall",
+        "visualID": "",
+        "variant": "",
+        "layer": 0,
+        "category": "wall",
+        "sourceBlueprint": null,
+        "sourceID": null,
+        "crop": null,
+        "repaired": null,
+        "harvested": null,
+        "liquid": null,
+        "hp": null
+      },
+      "selectedVisualID": "",
+      "resolution": "authored-16x24",
+      "channel": "environment-overlay",
+      "foreground": {
+        "name": "Live16x24 Sill stone 8",
+        "texture": "opening-cellar",
+        "asset": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+        "rect": [
+          128.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "ground": {
+        "name": "Live16x24 Sill envelope 22",
+        "texture": "sill-envelope",
+        "asset": "Assets/Resources/Sprites/Live16x24/sill-envelope.png",
+        "rect": [
+          352.0,
+          0.0,
+          16.0,
+          24.0
+        ],
+        "ppu": 16.0,
+        "classification": "authored-16x24"
+      },
+      "stateMark": null,
+      "decoration": null,
+      "coveredOwnersNotArtAssessed": [
+        {
+          "id": "5785",
+          "blueprint": "Grass",
+          "layer": 0,
+          "visualID": ""
+        }
+      ],
+      "tileState": null
+    }
+  ],
+  "limits": "Current on-screen visible cells only, not six-zone completion or all-owner art coverage. Counts are cells, not unique entities. Covered owners are not classified. Existing pixel snapshots can be stale during movement; use after settling. Actual sprite asset/rect takes precedence over authored VisualID. Ground, hazard marks and foreground are separate. Classification is sprite provenance, not quality acceptance. Does not assess inventory/readers or other states."
+}

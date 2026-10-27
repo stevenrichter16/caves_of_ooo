@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="43" result="Failed(Child)" total="43" passed="6" failed="37" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 04:16:15Z" end-time="2026-10-27 04:16:18Z" duration="2.8171307">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32435" result="Failed" site="Child" start-time="2026-10-27 04:16:15Z" end-time="2026-10-27 04:16:18Z" duration="2.817131" total="43" passed="6" failed="37" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39938" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32435" result="Failed" site="Child" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:18Z" duration="2.598797" total="43" passed="6" failed="37" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39939" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32435" result="Failed" site="Child" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:18Z" duration="2.534446" total="43" passed="6" failed="37" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39940" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32435" result="Failed" site="Child" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:18Z" duration="2.472435" total="43" passed="6" failed="37" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30658" name="FlatPixelSillEnvelopeTests" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:18Z" duration="2.112133" total="43" passed="6" failed="37" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="30692" name="ActualFloorMaterialStaysBelowARealCoveringOwner" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ActualFloorMaterialStaysBelowARealCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.137705" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30690" name="ActualFloorMaterialStaysBelowARealCoveringOwner(&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-envelope&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ActualFloorMaterialStaysBelowARealCoveringOwner(&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-envelope&quot;)" methodname="ActualFloorMaterialStaysBelowARealCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1369553872" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.094670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:71
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ActualFloorMaterialStaysBelowARealCoveringOwner (System.String blueprint, System.String material) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30691" name="ActualFloorMaterialStaysBelowARealCoveringOwner(&quot;StoneFloor&quot;,&quot;Sprites/Live16x24/cellar-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ActualFloorMaterialStaysBelowARealCoveringOwner(&quot;StoneFloor&quot;,&quot;Sprites/Live16x24/cellar-floor&quot;)" methodname="ActualFloorMaterialStaysBelowARealCoveringOwner" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1413165762" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.040386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <cellar-floor (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:72
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ActualFloorMaterialStaysBelowARealCoveringOwner (System.String blueprint, System.String material) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:172
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30669" name="AllCardinalVineShapesDescribeRealWallsAndRetainGaps" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AllCardinalVineShapesDescribeRealWallsAndRetainGaps" methodname="AllCardinalVineShapesDescribeRealWallsAndRetainGaps" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="714845380" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.040317" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AllCardinalVineShapesDescribeRealWallsAndRetainGaps () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:110
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30675" name="AnUnqualifiedNeighborNeverDrawsAConnection" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.204365" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30670" name="AnUnqualifiedNeighborNeverDrawsAConnection(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection(&quot;hidden&quot;)" methodname="AnUnqualifiedNeighborNeverDrawsAConnection" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="244306290" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.038893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30671" name="AnUnqualifiedNeighborNeverDrawsAConnection(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection(&quot;unexplored&quot;)" methodname="AnUnqualifiedNeighborNeverDrawsAConnection" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2106793522" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.039062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30672" name="AnUnqualifiedNeighborNeverDrawsAConnection(&quot;covered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection(&quot;covered&quot;)" methodname="AnUnqualifiedNeighborNeverDrawsAConnection" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1792812711" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.037516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30673" name="AnUnqualifiedNeighborNeverDrawsAConnection(&quot;wrong-owner&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection(&quot;wrong-owner&quot;)" methodname="AnUnqualifiedNeighborNeverDrawsAConnection" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1854909455" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.037703" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30674" name="AnUnqualifiedNeighborNeverDrawsAConnection(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection(&quot;gone&quot;)" methodname="AnUnqualifiedNeighborNeverDrawsAConnection" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="120443192" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:16Z" duration="0.037428" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.AnUnqualifiedNeighborNeverDrawsAConnection (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30688" name="DoorAxisAndActualClosedStateChooseEssentialFrames" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:17Z" duration="0.405506" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30682" name="DoorAxisAndActualClosedStateChooseEssentialFrames(0,True,17)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames(0,True,17)" methodname="DoorAxisAndActualClosedStateChooseEssentialFrames" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2147352161" result="Failed" start-time="2026-10-27 04:16:16Z" end-time="2026-10-27 04:16:17Z" duration="0.055273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames (System.Int32 turns, System.Boolean open, System.Int32 frame) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30683" name="DoorAxisAndActualClosedStateChooseEssentialFrames(0,False,16)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames(0,False,16)" methodname="DoorAxisAndActualClosedStateChooseEssentialFrames" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2046580056" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.098352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames (System.Int32 turns, System.Boolean open, System.Int32 frame) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30684" name="DoorAxisAndActualClosedStateChooseEssentialFrames(1,True,19)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames(1,True,19)" methodname="DoorAxisAndActualClosedStateChooseEssentialFrames" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2067972405" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.116778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames (System.Int32 turns, System.Boolean open, System.Int32 frame) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30685" name="DoorAxisAndActualClosedStateChooseEssentialFrames(1,False,18)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames(1,False,18)" methodname="DoorAxisAndActualClosedStateChooseEssentialFrames" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="977802571" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.041625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames (System.Int32 turns, System.Boolean open, System.Int32 frame) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30686" name="DoorAxisAndActualClosedStateChooseEssentialFrames(2,True,17)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames(2,True,17)" methodname="DoorAxisAndActualClosedStateChooseEssentialFrames" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="564740317" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.039516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames (System.Int32 turns, System.Boolean open, System.Int32 frame) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30687" name="DoorAxisAndActualClosedStateChooseEssentialFrames(3,False,18)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames(3,False,18)" methodname="DoorAxisAndActualClosedStateChooseEssentialFrames" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1212823569" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.040358" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.DoorAxisAndActualClosedStateChooseEssentialFrames (System.Int32 turns, System.Boolean open, System.Int32 frame) [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30661" name="ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.092573" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30659" name="ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening(&quot;StoneWall&quot;,&quot;Sprites/Live16x24/opening-cellar&quot;,8)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening(&quot;StoneWall&quot;,&quot;Sprites/Live16x24/opening-cellar&quot;,8)" methodname="ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2082001206" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.039068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening (System.String blueprint, System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30660" name="ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening(&quot;AlchemyStill&quot;,&quot;Sprites/Live16x24/north-works&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening(&quot;AlchemyStill&quot;,&quot;Sprites/Live16x24/north-works&quot;,0)" methodname="ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1276673594" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.040154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening (System.String blueprint, System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30699" name="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.244236" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30693" name="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;water&quot;)" methodname="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2048527150" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.039969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:71
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial (System.String reason) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30694" name="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;oil&quot;)" methodname="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="267775075" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.037798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:71
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial (System.String reason) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30695" name="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;cultivation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;cultivation&quot;)" methodname="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="560847151" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.038651" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:71
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial (System.String reason) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30696" name="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;crop&quot;)" methodname="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="977182712" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.037055" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:71
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial (System.String reason) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30697" name="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;well-marker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;well-marker&quot;)" methodname="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="987060707" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.046497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:71
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial (System.String reason) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30698" name="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;road&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(&quot;road&quot;)" methodname="HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="571948684" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.041352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeGround (System.String resource) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:71
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial (System.String reason) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30708" name="HiddenCellsDoNotRevealLiveEnvelopeState" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HiddenCellsDoNotRevealLiveEnvelopeState" methodname="HiddenCellsDoNotRevealLiveEnvelopeState" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1903942162" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.038506" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.HiddenCellsDoNotRevealLiveEnvelopeState () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:220
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30681" name="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:18Z" duration="0.332232" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30676" name="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;visual&quot;)" methodname="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="267803618" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.038576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30677" name="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;non-solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;non-solid&quot;)" methodname="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1511921926" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.039021" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30678" name="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;zero-hp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;zero-hp&quot;)" methodname="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="264818873" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.038449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30679" name="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;takeable&quot;)" methodname="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="693556762" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:17Z" duration="0.062472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30680" name="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt(&quot;foreign-physics&quot;)" methodname="InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="722283613" result="Failed" start-time="2026-10-27 04:16:17Z" end-time="2026-10-27 04:16:18Z" duration="0.139548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.InvalidVineCenterFallsBackInsteadOfBorrowingIntactWallArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:137
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30689" name="LockedDoorUsesClosedArtEvenWhenSavedOpenFlagIsTrue" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.LockedDoorUsesClosedArtEvenWhenSavedOpenFlagIsTrue" methodname="LockedDoorUsesClosedArtEvenWhenSavedOpenFlagIsTrue" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2068431192" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.040754" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.LockedDoorUsesClosedArtEvenWhenSavedOpenFlagIsTrue () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:163
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30668" name="PendingFamiliesDoNotAcquireAnOpeningAlias" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.254139" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="30662" name="PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;MarketStall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;MarketStall&quot;)" methodname="PendingFamiliesDoNotAcquireAnOpeningAlias" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1066630229" result="Passed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.040903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30663" name="PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;Well&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;Well&quot;)" methodname="PendingFamiliesDoNotAcquireAnOpeningAlias" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="822796031" result="Passed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.039787" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30664" name="PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;WellGroundMarker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;WellGroundMarker&quot;)" methodname="PendingFamiliesDoNotAcquireAnOpeningAlias" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="510994282" result="Passed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.038075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30665" name="PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;Apothecary&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;Apothecary&quot;)" methodname="PendingFamiliesDoNotAcquireAnOpeningAlias" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1246467065" result="Passed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.043998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30666" name="PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;Hedge&quot;)" methodname="PendingFamiliesDoNotAcquireAnOpeningAlias" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="435747116" result="Passed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.039308" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="30667" name="PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;RepairLinedWell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias(&quot;RepairLinedWell&quot;)" methodname="PendingFamiliesDoNotAcquireAnOpeningAlias" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2110365817" result="Passed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.038789" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="30707" name="SameNamedManagerlessZoneAndOtherSettlementCannotAdoptTheKit" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SameNamedManagerlessZoneAndOtherSettlementCannotAdoptTheKit" methodname="SameNamedManagerlessZoneAndOtherSettlementCannotAdoptTheKit" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="93375586" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.038885" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SameNamedManagerlessZoneAndOtherSettlementCannotAdoptTheKit () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:212
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30706" name="SillIdentityAndCurrentWorldGraphAreRequired" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.239532" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30700" name="SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-missing&quot;)" methodname="SillIdentityAndCurrentWorldGraphAreRequired" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1203165229" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.038899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30701" name="SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-type&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-type&quot;)" methodname="SillIdentityAndCurrentWorldGraphAreRequired" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="652514215" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.038552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30702" name="SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-name&quot;)" methodname="SillIdentityAndCurrentWorldGraphAreRequired" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="731757184" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.037266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30703" name="SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired(&quot;poi-profile&quot;)" methodname="SillIdentityAndCurrentWorldGraphAreRequired" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="189477349" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.036869" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30704" name="SillIdentityAndCurrentWorldGraphAreRequired(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired(&quot;biome&quot;)" methodname="SillIdentityAndCurrentWorldGraphAreRequired" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="1955737074" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.036611" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30705" name="SillIdentityAndCurrentWorldGraphAreRequired(&quot;stale-graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired(&quot;stale-graph&quot;)" methodname="SillIdentityAndCurrentWorldGraphAreRequired" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2973117" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.038299" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.SillIdentityAndCurrentWorldGraphAreRequired (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30709" name="WarmQueriesKeepCurrentOwnersAndSimulationUnchanged" fullname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.WarmQueriesKeepCurrentOwnersAndSimulationUnchanged" methodname="WarmQueriesKeepCurrentOwnersAndSimulationUnchanged" classname="CavesOfOoo.Tests.FlatPixelSillEnvelopeTests" runstate="Runnable" seed="2074853904" result="Failed" start-time="2026-10-27 04:16:18Z" end-time="2026-10-27 04:16:18Z" duration="0.038093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.NativeForeground (System.String resource, System.Int32 frame) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:60
+at CavesOfOoo.Tests.FlatPixelSillEnvelopeTests.WarmQueriesKeepCurrentOwnersAndSimulationUnchanged () [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs:229
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

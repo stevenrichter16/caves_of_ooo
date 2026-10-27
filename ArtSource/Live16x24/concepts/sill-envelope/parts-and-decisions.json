@@ -1,0 +1,37 @@
+{
+  "status": "concept only; not gameplay or accepted production sprites",
+  "tool": "built-in imagegen",
+  "actual_input": "Docs/Verification/Live16x24/portable-equipment-before-01-sill.png",
+  "style_input": "Docs/Verification/Live16x24/fresh-opening-north-after-entry.png",
+  "material_reference": {
+    "url": "https://www.nps.gov/places/signs-of-dwellings-tour-stop-2.htm",
+    "image_url": "https://www.nps.gov/common/uploads/cropped_image/primary/7C1211C2-FCDA-96E5-A46D08D769DADF9A.jpg?mode=crop&quality=90&width=1600",
+    "use": "woven cane material construction principle, original pixel shapes; no source photograph pixels copied"
+  },
+  "critique": [
+    "Useful quiet soil/grass clusters and distinct woven material silhouettes.",
+    "REJECT invented walls following fog silhouette: the imagegen topology is not authoritative. Runtime must use actual disclosed owners and connections.",
+    "REJECT extra flower/resource implications and bright bevels; keep quiet original pixel details.",
+    "Existing StoneWall images remain unchanged. Sill current full coverage and scene fullness remain pending."
+  ],
+  "parts": [
+    {
+      "owner": "Grass",
+      "frames": 4,
+      "footprint": "one16x24 cell",
+      "state": "quiet substrate variants, no harvest/loot claims"
+    },
+    {
+      "owner": "VineWall",
+      "frames": 16,
+      "footprint": "one16x24 cell",
+      "state": "disclosed owned cardinal connection mask"
+    },
+    {
+      "owner": "VillageDoor",
+      "frames": 4,
+      "footprint": "one16x24 cell",
+      "state": "actual closed/open DoorPart and QuarterTurns aperture axis; source audit corrected concept two-state assumption"
+    }
+  ]
+}

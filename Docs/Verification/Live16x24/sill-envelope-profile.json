@@ -1,0 +1,71 @@
+{
+  "label": "sill-envelope-profile",
+  "start": "2026-10-27T04:32:12.743868Z",
+  "end": "2026-10-27T04:38:03.722501Z",
+  "elapsedSeconds": 350.978633,
+  "frames": 183368,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    67,
+    18
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 106826.23509216309,
+      "max": 29510917,
+      "p99": 232333
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1948397.4658355713,
+      "max": 2505771708,
+      "p99": 5700417
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 35.706298828125,
+      "max": 39,
+      "p99": 39
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 35.330711364746094,
+      "max": 39,
+      "p99": 39
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 131072,
+      "capacity": 131072,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9395.071403503418,
+      "max": 11481,
+      "p99": 11481
+    }
+  ],
+  "bounds": "Editor ordinary Sill village walking, door interaction and terrain transitions, with idle/tool time. No controlled baseline, hardware Deck, standalone or isolated-renderer attribution."
+}

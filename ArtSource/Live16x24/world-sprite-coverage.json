@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "source_grounded_scope_and_coverage_plan_not_runtime_manifest",
-  "reviewed_at_utc": "2026-10-27T03:56:34.861584+00:00",
+  "reviewed_at_utc": "2026-10-27T04:43:16.736805+00:00",
   "baseline_source_revision": "bf38cfd98 (root-provided audit baseline; no Git operation in this audit)",
   "priority": "Complete native16x24 sprite coverage across every biome and area before optional nuanced animation; ensure chunks feel intentionally composed rather than bare.",
   "bounds": [
@@ -461,10 +461,10 @@
       ],
       "coverage_axes": {
         "registered_scope": "source_inventoried",
-        "native_region_kit": "not_yet_audited",
-        "ordinary_scene_and_states": "not_yet_audited",
-        "chunk_composition_fullness": "not_yet_audited",
-        "packaged_area_acceptance": "not_yet_audited"
+        "native_region_kit": "partial_static_envelope_integrated",
+        "ordinary_scene_and_states": "entry_two_door_axes_interior_river_return_reload_observed",
+        "chunk_composition_fullness": "partial_needs_river_service_furniture_flora_coverage",
+        "packaged_area_acceptance": "pending_new_source_build"
       },
       "required_families": [
         "architecture_and_actual_interiors",
@@ -474,7 +474,8 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "evidence": "Docs/GRAPHICS-SILL-ENVELOPE.md"
     },
     {
       "name": "Gantry",
@@ -2328,16 +2329,16 @@
         "Hatchet",
         "Cudgel"
       ],
-      "status": "planned_no_runtime_change_at_audit",
+      "status": "native_verified_editor_long_sword_observed_pushed_a0dbac413_package_pending",
       "art": "reuse_approved_pixels_unchanged",
       "gate": "NativeRED then narrow global identity policy, ordinary carry/drop/examine travel/save/revisit; preserve regional ground/services and all disclosure guards."
     },
     {
       "id": "W2_first_nonopening_regional_scene",
-      "scope": "Actual Spread-to-Sodden district approach and representative wetland scene",
+      "scope": "Sodden cutbank crossing16,7 and shelter15,7; reusable mire, duckboard, peat-bank and dead-tree static families",
       "status": "baseline_route_and_capture_pending",
       "art": "Select coherent missing material/flora/creature/prop family from real visible owners; imagegen/native production follows capture.",
-      "gate": "Chunk fullness and legibility, all relevant state/owner mappings, actual integration screenshots. No detailed new motion."
+      "gate": "Actual baseline, imagegen/extraction/native source, RED/GREEN current-owner/state routing, whole-scene fullness, real travel/interior/boundary captures, packages; no subtle animation."
     },
     {
       "id": "W3_remaining_world_families",
@@ -2398,5 +2399,41 @@
     "observed": "Seed65 ordinary Sill drop/pickup/auto-equip, exact inventory reader, glade-return travel and F5/restart; LongSword only. Other three identities native tested.",
     "actual_capture": "Docs/Verification/Live16x24/portable-equipment-after-07-reloaded-reader-settled.png",
     "scope_limit": "Does not admit region terrain/services or close any biome kit; old current packages unchanged."
+  },
+  "sill_envelope_delivery": {
+    "status": "integrated_native_verified_editor_play_and_reload_observed_package_pending",
+    "identities": [
+      "Grass",
+      "StoneFloor",
+      "StoneWall",
+      "VineWall",
+      "VillageDoor",
+      "AlchemyStill"
+    ],
+    "new_frames": 24,
+    "source": "ArtSource/Live16x24/sill-envelope/",
+    "plan": "Docs/GRAPHICS-SILL-ENVELOPE.md",
+    "native_tests": {
+      "focused_final": "Docs/Verification/Live16x24/sill-envelope-final-native-green.xml",
+      "focused_passed": 136,
+      "related_regression": "Docs/Verification/Live16x24/sill-envelope-native-regression.xml",
+      "related_passed": 224,
+      "counts_overlap": true,
+      "hidden_owner_red": "Docs/Verification/Live16x24/sill-envelope-hidden-ground-native-red.xml"
+    },
+    "actual_play": [
+      "sill-envelope-after-01-entry.png",
+      "sill-envelope-after-07-east-door-closed.png",
+      "sill-envelope-after-09-stone-floor.png",
+      "sill-envelope-after-10-north-door-closed.png",
+      "sill-envelope-after-11-door-reader.png",
+      "sill-envelope-after-14-river-bank.png",
+      "sill-envelope-after-18-sill-return.png",
+      "sill-envelope-after-20-reload-matched-zoom.png"
+    ],
+    "ordinary_checkpoint": "Docs/Verification/Live16x24/Fixtures/sill-envelope-after65",
+    "fullness": "Partial improvement only. Entry/building shells cohesive and routes open; grass lanes repetitive and underfurnished, river still120 selected WaterPuddle glyph cells in matched2x view. Furniture, actors, services and banks still pending. Fog is not bare terrain. No generation changed.",
+    "profile": "Docs/Verification/Live16x24/sill-envelope-profile.json",
+    "limits": "Exact current Sill graph only; visible-only materials, existing fog/memory fallback preserved. Current packages still prior North source. No whole-Sill, Spread, world or physical-Deck acceptance."
   }
 }

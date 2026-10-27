@@ -403,3 +403,30 @@ then first high-impact missing sprite family/area kit. Opening six-scene status
 remains bounded; broader coverage is not declared complete. Next scheduled
 hourly report remains04:25UTC; this is a priority correction, not a duplicate
 hourly report. Main-push status will be recorded after exact preservation commit.
+
+### Worldwide sprite continuation — 2026-10-27 04:25 UTC
+
+Hourly report sent04:25UTC; next05:25UTC. Worldscope/chunkfullness priority
+and deferredEast source preservation onmainbc7089f76. PortableLongSword/
+LeatherArmor/Hatchet/Cudgel native continuity onmaina0dbac413:222nativepass,
+actualLongSwordSillpickup/reader/travel/F5/restart checked. Normal saves,
+38foreign diffs and priorpackages preserved;412GiBfree, no cleanup.
+Sill24frame envelope candidate now integrated with82initialnativepass:
+newGrass/VineWall/VillageDoor states plus immutable StoneWall/still/floor reuse.
+Independentreview,actual entry/interior/river views,fullness/profile andpackage
+acceptance pending. Next finishactualSillcoherence,fixissues,pushexactchanges;
+then remaining regionalfamilies. No whole-worldcompletion claim.
+
+
+### World coverage continuation — Sill envelope, 2026-10-27 04:43 UTC
+
+Sill24-frame static envelope integrated; final136native passes plus224related
+passes (overlap). Hiddenowner ground-disclosure finding fixed after genuineRED.
+Actual01..20captures include entry,bothdooraxes,occupiedcountercheck,stonefloor,
+northdoorportrait,riverbank,glade/cellar andSillreturn,restart1070matchedzoom.
+Captures12/16/17 are retained navigation missteps, not river/Sill acceptance;
+use14/18/20. Source/gate details in Docs/GRAPHICS-SILL-ENVELOPE.md.
+Normal saves/preferences,38foreigndiffs and currentbuilds preserved;411GiBfree,
+no storage cleanup. Fullness remains incomplete, especially river/service/furniture/
+actor families and monotonous grass lanes. Freeze/push/package this source, then
+Soddencrossing16,7+shelter15,7 staticmaterial coverage. Next hourlyreport05:25UTC.
