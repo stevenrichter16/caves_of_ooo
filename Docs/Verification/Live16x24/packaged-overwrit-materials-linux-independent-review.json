@@ -1,0 +1,70 @@
+{
+  "reviewed_at_utc": "2026-10-27T11:26:15.109656+00:00",
+  "verdict": "PASS within archive-integrity and retained-evidence scope",
+  "runtime_source_commit": "00959edf0f7a154acf03fd8e521326099d652414",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-overwrit-materials-00959edf0-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_sha256": "0aa1f10174b3ed860021ae9b58153546a24073cb18338cfd5cf278e2951849da",
+  "archive_bytes": 128780457,
+  "archive_receipt_sha256": "dba9ec4f1f0c34485c25da4b675c2f4051e44913ccba6c1e064fcf37a9d88bfb",
+  "files_verified": 189,
+  "directories_verified": 13,
+  "members_verified": 202,
+  "unpacked_file_bytes": 340965158,
+  "every_archive_file_hash_size_mode_verified": true,
+  "every_directory_mode_verified": true,
+  "complete_output_tree_matches_archive_manifest": true,
+  "no_duplicate_unsafe_or_link_members": true,
+  "gzip_crc_size_footer_verified_to_eof": true,
+  "gzip_decoded_stream_bytes": 341299200,
+  "gzip_decoded_stream_sha256": "4726b6697fe6d91a8ee9edca68763104306200bc5141876fdf34b8f54931b823",
+  "internal_checksums_cover_every_other_file_exactly": true,
+  "external_archive_checksum_verified": true,
+  "embedded_external_build_info_equal": true,
+  "successful_fresh_output_bound_build_receipts": [
+    {
+      "platform": "StandaloneOSX",
+      "job_id": "build-88ae0aa8d4",
+      "warnings": 4,
+      "errors": 0,
+      "output": "/Users/steven/caves-of-ooo/Builds/Verification/2026-10-27-overwrit-materials-00959edf0-current/CavesOfOoo.app",
+      "receipt_sha256": "88dffd8ff5304a82b6685c1a4b379997f4a49b100efe66c2a3d10bfd4ddb3077"
+    },
+    {
+      "platform": "StandaloneLinux64",
+      "job_id": "build-fe367bf076",
+      "warnings": 4,
+      "errors": 0,
+      "output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-overwrit-materials-00959edf0-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "receipt_sha256": "11c4465a3cd1f48858d97d55bb02bb69801806754383d4ec6582e41431aba5fc"
+    }
+  ],
+  "credit_sections": 6,
+  "license_texts": 5,
+  "support_source_copies_verified": 19,
+  "native_evidence": {
+    "retained_execution_occurrences": 1034,
+    "distinct_cases": 533,
+    "distinct_passed": 533,
+    "overlap": 501,
+    "grading_cases": 9,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "receipt_hashes": [
+      "ef801c964a809669df58d4f33acbc602574a3c5f4663fc01223b85860c372b65",
+      "9eb3a0655171d9b276a5cc6a090f5e9ebd2fd8c8ce04d9573dabad1ad0c1c2a7"
+    ]
+  },
+  "elf_header": "ELF64 little-endian x86-64; inspected only",
+  "executed_linux": false,
+  "executed_unity": false,
+  "executed_git": false,
+  "extracted_archive": false,
+  "modified_builds": false,
+  "limits": [
+    "Full source commit and freeze boundary are root operator assertions, consistent with source-named outputs and fresh successful receipts; this review does not establish reproducible source-to-binary provenance.",
+    "No Linux or physical Steam Deck execution, gameplay acceptance, controller verification or performance benchmark. Root owns separate Mac smoke testing.",
+    "No independent baseline audit of prior packages, normal saves, preferences or foreign work. Current Linux output and archive are fully checked.",
+    "533 distinct native identities are retained evidence, not execution by this review. Their 1034 retained occurrences include all 501 previous cases twice; they do not certify natural coverage of all 22 Overwrit candidates."
+  ]
+}

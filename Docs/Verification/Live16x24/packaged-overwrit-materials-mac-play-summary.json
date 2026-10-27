@@ -1,0 +1,78 @@
+{
+  "source_commit": "00959edf0f7a154acf03fd8e521326099d652414",
+  "platform": "native macOS standalone",
+  "captureDimensions": "1280x856 original CUA image bytes including56pixel titlebar;800pixelgame",
+  "method": "Ordinary keyboard Continue earned6230, C/Right/X bench11/12; Return/Left/C/Left/X shoot4/4; Return/Right/F5 saves6250; CmdQ fullquit, relaunch, Continue, C/Right/X bench11/12. No injection, teleport or save-state edits.",
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-00-startup.jpg",
+      "bytes": 206075,
+      "sha256": "b954828322e12c75e558865202765b2f7d10c00d1c65db32259c3e54afa77bbf"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-01-continue.jpg",
+      "bytes": 139563,
+      "sha256": "a9d60c243f2034382467eb4ce93fccbe6eb1fc616dc911cd9b278cdfecd21792"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-02-bench-reader.jpg",
+      "bytes": 182715,
+      "sha256": "8157eaf71186bda6d8accd1806aa3134588bfb8edafeddedbb9a7e3f75c8d991"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-03-shoot-reader.jpg",
+      "bytes": 189299,
+      "sha256": "713fdc265da75631e1b6bbd164c9a6e461a0ca4a7d254e590283248fdd8250f0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-04-return-saved.jpg",
+      "bytes": 145453,
+      "sha256": "b293a05ddd2469986dc38d31bd7d8e20143f5e026f5ed52dc10902e9770c3ba8"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-05-restart-continue.jpg",
+      "bytes": 145453,
+      "sha256": "6b561058de3e6118350b6735d9cdc95babf759ad6cd38bd60ebf3752436c0aa9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-06-restart-bench-reader.jpg",
+      "bytes": 189956,
+      "sha256": "580aa6e62f58d4f2ffc6a0304d5c5831849be83c924a8de9c740bf929dc5c58c"
+    }
+  ],
+  "input_fixture": "Fixtures/overwrit-grading-return65",
+  "input_turn": 6230,
+  "output_fixture": "Fixtures/packaged-overwrit65",
+  "saved_turn": 6250,
+  "zone": "Overworld.4.12.0",
+  "player_position": [
+    75,
+    18
+  ],
+  "hp": "38/40",
+  "bench_structure": "11/12",
+  "shoot_structure": "4/4",
+  "same_palette_visually_observed": true,
+  "logs": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-player.log",
+      "sha256": "c4e6f74ee7702277ea3776db958ebb6011e87c697c470dddb034b22b59ea346c",
+      "bytes": 4002
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-restart-player.log",
+      "sha256": "140e1493bbc971058418c78efc7cfef3e58cf047ffc328da6c32328812febf9d",
+      "bytes": 3945
+    }
+  ],
+  "error_or_exception_lines": {
+    "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-player.log": [],
+    "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-restart-player.log": []
+  },
+  "limits": [
+    "Bounded ordinaryOverwrit sample only; no completebiome/world/fullnessclaim.",
+    "Whole-regionfullness, crop/stairfallbacks and naturallyunobservedwaymarker remainopen.",
+    "No Linuxexecution or physicalSteamDeck acceptance.",
+    "Existing five premature-finalizer thread notices and one ComputeBuffer-disposal notice perprocess retained; not clean-log/leak-freeclaim."
+  ]
+}

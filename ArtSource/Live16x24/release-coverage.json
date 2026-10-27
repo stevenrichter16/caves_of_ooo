@@ -862,17 +862,22 @@
     }
   },
   "latest_observation": {
-    "at_utc": "2026-10-27T11:16:00Z",
-    "summary": "Travel/reload color blocker resolved in bounded actual replay: correct renderer/patcher graph and current manager on Overwrit\u2192Grovelands\u2192Overwrit travel, F5turn6230 and fresh Continue. Runtime Overwrit filter0.9/0.9/0.9, contrast-10/saturation-40; shared asset preserved. Matched world field564000 RGB pixels identical. Exact final nativeXML533/533 passed, including prior501+9 grading+23 existing palette/patcher. Source commit/packages pending; fullness/crop/stair/marker gaps remain.",
-    "evidence": "Docs/Verification/Live16x24/biome-grading-actual-replay.json",
+    "at_utc": "2026-10-27T11:26:00Z",
+    "summary": "Overwrit material/grading source00959edf0 verified on origin/main. Fresh Mac/Linux builds0errors4warnings; actual Mac seven captures6230\u21926250,bench11/12,shoot4/4,full process restart and identical decoded world field. Restoration50524objects/38foreign/normal state/prior builds verified. Linux archive128780457bytes/189files/202members independently verified. Coverage/fullness limits remain; evidence push pending.",
+    "evidence": "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-play-summary.json",
+    "independent_mac_review": "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-independent-review.md",
+    "restoration": "Docs/Verification/Live16x24/packaged-overwrit-materials-restoration.json",
     "actual_captures": [
-      "Docs/Verification/Live16x24/overwrit-grading-01-continue.png",
-      "Docs/Verification/Live16x24/overwrit-grading-02-bench-reader.png",
-      "Docs/Verification/Live16x24/overwrit-grading-03-grovelands-travel.png",
-      "Docs/Verification/Live16x24/overwrit-grading-04-return.png",
-      "Docs/Verification/Live16x24/overwrit-grading-05-fresh-return-continue.png"
+      "Docs/Verification/Live16x24/packaged-overwrit-materials-00-startup.jpg",
+      "Docs/Verification/Live16x24/packaged-overwrit-materials-01-continue.jpg",
+      "Docs/Verification/Live16x24/packaged-overwrit-materials-02-bench-reader.jpg",
+      "Docs/Verification/Live16x24/packaged-overwrit-materials-03-shoot-reader.jpg",
+      "Docs/Verification/Live16x24/packaged-overwrit-materials-04-return-saved.jpg",
+      "Docs/Verification/Live16x24/packaged-overwrit-materials-05-restart-continue.jpg",
+      "Docs/Verification/Live16x24/packaged-overwrit-materials-06-restart-bench-reader.jpg"
     ],
-    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/overwrit-grading-return65"
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-overwrit65",
+    "independent_linux_review": "Docs/Verification/Live16x24/packaged-overwrit-materials-linux-independent-review.json"
   },
   "current_environment_blocker": {
     "status": "no_current_blocker_recheck_ownership_before_play",
@@ -882,81 +887,101 @@
     ]
   },
   "packaged_delivery": {
-    "source_commit": "ab26e270cb376253c971a41c3449ecbbf4171444",
-    "linux_archive": "Builds/SteamDeck/2026-10-27-grovelands-materials-ab26e270c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "mac_app": "Builds/Verification/2026-10-27-grovelands-materials-ab26e270c-current/CavesOfOoo.app",
-    "sha256": "e201376c18d3370e4e52ccbb7d9104881b6c577dd29180bbef88060b09268a3c",
-    "archive_bytes": 128773591,
+    "status": "source_pushed_native_mac_bounded_play_linux_archive_and_restoration_verified",
+    "source_commit": "00959edf0f7a154acf03fd8e521326099d652414",
+    "linux_archive": "Builds/SteamDeck/2026-10-27-overwrit-materials-00959edf0-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "mac_app": "Builds/Verification/2026-10-27-overwrit-materials-00959edf0-current/CavesOfOoo.app",
+    "sha256": "0aa1f10174b3ed860021ae9b58153546a24073cb18338cfd5cf278e2951849da",
+    "archive_bytes": 128780457,
     "regular_files": 189,
     "archive_members": 202,
-    "mac_actual_play": "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-play-summary.json",
-    "mac_independent_review": "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-independent-review.md",
-    "archive_verification": "Docs/Verification/Live16x24/packaged-grovelands-materials-linux-independent-review.json",
-    "archive_receipt": "Docs/Verification/Live16x24/packaged-grovelands-materials-linux-archive.json",
-    "restoration_receipt": "Docs/Verification/Live16x24/packaged-grovelands-materials-restoration.json",
+    "mac_actual_play": "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-play-summary.json",
+    "mac_independent_review": "Docs/Verification/Live16x24/packaged-overwrit-materials-mac-independent-review.md",
+    "archive_verification": "Docs/Verification/Live16x24/packaged-overwrit-materials-linux-independent-review.json",
+    "archive_verification_status": "Independent PASS:189 files/13 directories/202 members, full gzip EOF, hashes/sizes/modes, checksum manifests, fresh build receipt/output bindings,19 support source copies and533 distinct retained native identities verified; no Linux execution.",
+    "archive_receipt": "Docs/Verification/Live16x24/packaged-overwrit-materials-linux-archive.json",
+    "restoration_receipt": "Docs/Verification/Live16x24/packaged-overwrit-materials-restoration.json",
     "builds": {
       "mac": {
         "result": "succeeded",
         "errors": 0,
         "warnings": 4,
-        "duration_seconds": 54.155144
+        "duration_seconds": 47.702915999999995
       },
       "linux": {
         "result": "succeeded",
         "errors": 0,
         "warnings": 4,
-        "duration_seconds": 48.001903
+        "duration_seconds": 49.60084
       }
     },
     "source_push_verified": true,
-    "source_push_verification_basis": "Root operator confirmed exact source revision pushed and remotely verified on main; this documentation task did not run Git.",
-    "release_evidence_push_status": "Verified on origin/main as074045a890f49a00966753865b1f799676e675b0; see Docs/Verification/Live16x24/grovelands-delivery-push.json",
+    "source_push_verification_basis": "Root operator confirmed exact source00959edf0f7a154acf03fd8e521326099d652414 present on origin/main; this documentation task did not run Git.",
+    "release_evidence_push_status": "Pending exact reviewed evidence/living-record push; no future evidence-commit SHA claimed.",
     "linux_execution_verified": false,
     "physical_deck_verified": false,
     "sustained_hardware_performance_verified": false,
-    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-grovelands-water65",
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-overwrit65",
     "actual_mac": {
-      "captures": 11,
-      "input_turn": 4510,
-      "saved_turn": 4590,
-      "zone": "Overworld.0.8.0",
+      "captures": 7,
+      "input_turn": 6230,
+      "saved_turn": 6250,
+      "zone": "Overworld.4.12.0",
       "start_and_finish": [
-        40,
-        15
+        75,
+        18
       ],
       "hp": 38,
-      "crossing_reader_and_player_foreground": true,
+      "bench_structure": "11/12",
+      "shoot_structure": "4/4",
+      "ordinary_left_right_save_and_reader": true,
       "full_process_restart": true,
-      "inventory_counts": {
-        "GroveRed": 1,
-        "GoldCoin": 3,
-        "PaleSalt": 1
-      },
-      "fresh_harvest_in_this_package_pass": false
+      "corrected_palette_consistent": true,
+      "decoded_world_rgb_match": {
+        "captures": [
+          "01-continue",
+          "04-return-saved",
+          "05-restart-continue"
+        ],
+        "bounds": [
+          0,
+          96,
+          940,
+          696
+        ],
+        "pixels": 564000,
+        "rgb_channels": 1692000,
+        "identical": true,
+        "sha256": "975b642dee150bc5ace48a1ed5201be7adb03355582db2b2731578b10599b868",
+        "basis": "Decoded original CUA JPEG world rectangle; not a lossless renderer-buffer assertion."
+      }
     },
     "restoration": {
-      "tracked_objects_compared": 50411,
+      "tracked_objects_compared": 50524,
       "foreign_files_preserved": 38,
-      "reviewed_generated_files_restored": 9,
-      "normal_saves_and_preferences_restored": true,
+      "reviewed_generated_files_restored": 10,
+      "normal_editor_saves_unchanged": true,
+      "normal_standalone_saves_absence_restored": true,
+      "standalone_preferences_logically_restored": true,
+      "test_saves_archived": "/tmp/coo-overwrit-build-restored-00959edf0/standalone-session-Saves",
       "prior_builds_and_archives_preserved": true,
-      "storage_cleanup_performed": false
+      "storage_cleanup_performed": false,
+      "free_bytes": 429638950912
     },
     "shutdown_notices": {
-      "perProcess": {
-        "threadPrematureFinalizer": 6,
-        "ComputeBufferFinalizerDisposal": 1
+      "per_process": {
+        "thread_premature_finalizer": 5,
+        "compute_buffer_finalizer_disposal": 1
       },
-      "alsoPresentInPriorHarvestLog": true,
-      "limits": "Retained pre-existing shutdown notices; no Error/Exception log lines in either new process. This is not a clean-log or global leak-free claim."
+      "limits": "Retained notices in each process; no Error/Exception lines. Not a clean-log or leak-free claim."
     },
-    "limits": "Eleven actual native Mac captures verify flat boot, earned Fen Continue4510, truthful grass/water reader, visible player on water, opposite bank40,19, return40,15/F54590 HP38, carried native GroveRed inventory/details and full-process restart with GroveRed1, GoldCoin3 and PaleSalt1. Exact entity IDs remain separate Editor evidence. Inventory07/10 bytes are identical; the separate restart process log and world09 support restart chronology. Both process logs retain six thread-finalizer and one ComputeBuffer-disposal notices also present in the earlier harvest log, with no Error/Exception lines. This is one bounded Fen sample, not all four formations/all37 sites/full-biome or chunk-fullness acceptance. No Linux execution, physical Deck or sustained-performance claim."
+    "limits": "Seven actual native Mac captures verify ordinary startup, earned Overwrit Continue6230, native bench11/12 and shoot4/4 readers, local Left/Right/F56250HP38, complete process quit/relaunch and persistent native bench11/12. Independent reviewer confirms identical decoded world rectangle in01/04/05. One ordinary sample only: not every formation, all22 addresses, full80x25/chunk-fullness, every biome, combat or all controls. Crop/soil/stair, Binderroot, second bench, naturally unobserved Waymarker and centered Pilgrimage cue remain open. No Linux execution, physical Deck or sustained performance acceptance."
   },
   "next_scoped_work": {
     "priority": "Broad static sprite coverage across every biome/area, with coherent whole-chunk composition",
-    "next": "Push the exact reviewed Overwrit material and biome-grading source/evidence, then create and verify fresh Mac/Linux packages with actual Mac travel/fresh-Continue checks. Continue truthful crop/soil/stair coverage and centered Pilgrimage composition review alongside Stump eight-owner static materials, then observed Grovelands actors and the remaining worldwide scope; defer nuanced animation.",
-    "plan": "Docs/GRAPHICS-OVERWRIT-MATERIALS.md",
-    "status": "Overwrit material/state and actual travel/reload color consistency verified within scope; source commit/new packages pending. Crop/stair/fullness gaps and Stump breadth retained.",
+    "next": "Push exact reviewed Overwrit delivery/evidence records, then continue Stump eight-owner static materials through actual baseline/concept/native/integration gates. Retain Overwrit crop/soil/stair coverage, Binderroot/Waymarker observation and centered Pilgrimage fullness follow-up, then observed Grovelands actors and remaining registered biomes, settlements/interiors, underground and special sites. No Stump native acceptance is claimed; defer nuanced animation.",
+    "plan": "Docs/Verification/Live16x24/world-next-static-kit-audit.md",
+    "status": "Source00959edf0 remotely verified; fresh bounded Mac play, independent Linux archive review and restoration complete. Delivery/evidence push pending; Stump baseline/native gates next, no Stump art acceptance.",
     "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/overwrit-blank-baseline65",
     "source_candidate_counts": {
       "ordinary_Overwrit_addresses": 22,
@@ -1412,6 +1437,19 @@
         "Docs/Verification/Live16x24/overwrit-after-09-fresh-continue.png",
         "Docs/Verification/Live16x24/overwrit-after-10-fresh-damaged-reader.png"
       ]
+    },
+    {
+      "at_utc": "2026-10-27T11:16:00Z",
+      "summary": "Travel/reload color blocker resolved in bounded actual replay: correct renderer/patcher graph and current manager on Overwrit\u2192Grovelands\u2192Overwrit travel, F5turn6230 and fresh Continue. Runtime Overwrit filter0.9/0.9/0.9, contrast-10/saturation-40; shared asset preserved. Matched world field564000 RGB pixels identical. Exact final nativeXML533/533 passed, including prior501+9 grading+23 existing palette/patcher. Source commit/packages pending; fullness/crop/stair/marker gaps remain.",
+      "evidence": "Docs/Verification/Live16x24/biome-grading-actual-replay.json",
+      "actual_captures": [
+        "Docs/Verification/Live16x24/overwrit-grading-01-continue.png",
+        "Docs/Verification/Live16x24/overwrit-grading-02-bench-reader.png",
+        "Docs/Verification/Live16x24/overwrit-grading-03-grovelands-travel.png",
+        "Docs/Verification/Live16x24/overwrit-grading-04-return.png",
+        "Docs/Verification/Live16x24/overwrit-grading-05-fresh-return-continue.png"
+      ],
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/overwrit-grading-return65"
     }
   ],
   "packaged_delivery_history": [
@@ -1857,6 +1895,77 @@
       "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65",
       "retained_combat_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-combat65",
       "limits": "Twelve actual Mac captures observe two products, not all17 natural acquisitions. Bone native inventory/full details and actual drop/pickup were observed, but enemies covered the dropped item: no clean uncovered Bone world or individual world-reader acceptance. The real combat branch was saved at3570 HP15, bleeding/poisoned. A separate unchanged earlier BrineLens3210 checkpoint verifies PaleSalt native inventory, uncovered world and adjacent reader, pickup, ordinary travel toSaltPan15,13, save3300 HP38 and full process restart with native inventory quantity1. This is not continuous escape from the combat branch. Standalone identity/count observations are UI evidence; exact entity IDs were separately read in Editor. Other15 products, whole-biome/fullness coverage, Linux execution, physical Deck and sustained performance remain unverified."
+    },
+    {
+      "source_commit": "ab26e270cb376253c971a41c3449ecbbf4171444",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-grovelands-materials-ab26e270c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "mac_app": "Builds/Verification/2026-10-27-grovelands-materials-ab26e270c-current/CavesOfOoo.app",
+      "sha256": "e201376c18d3370e4e52ccbb7d9104881b6c577dd29180bbef88060b09268a3c",
+      "archive_bytes": 128773591,
+      "regular_files": 189,
+      "archive_members": 202,
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-play-summary.json",
+      "mac_independent_review": "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-independent-review.md",
+      "archive_verification": "Docs/Verification/Live16x24/packaged-grovelands-materials-linux-independent-review.json",
+      "archive_receipt": "Docs/Verification/Live16x24/packaged-grovelands-materials-linux-archive.json",
+      "restoration_receipt": "Docs/Verification/Live16x24/packaged-grovelands-materials-restoration.json",
+      "builds": {
+        "mac": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 4,
+          "duration_seconds": 54.155144
+        },
+        "linux": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 4,
+          "duration_seconds": 48.001903
+        }
+      },
+      "source_push_verified": true,
+      "source_push_verification_basis": "Root operator confirmed exact source revision pushed and remotely verified on main; this documentation task did not run Git.",
+      "release_evidence_push_status": "Verified on origin/main as074045a890f49a00966753865b1f799676e675b0; see Docs/Verification/Live16x24/grovelands-delivery-push.json",
+      "linux_execution_verified": false,
+      "physical_deck_verified": false,
+      "sustained_hardware_performance_verified": false,
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-grovelands-water65",
+      "actual_mac": {
+        "captures": 11,
+        "input_turn": 4510,
+        "saved_turn": 4590,
+        "zone": "Overworld.0.8.0",
+        "start_and_finish": [
+          40,
+          15
+        ],
+        "hp": 38,
+        "crossing_reader_and_player_foreground": true,
+        "full_process_restart": true,
+        "inventory_counts": {
+          "GroveRed": 1,
+          "GoldCoin": 3,
+          "PaleSalt": 1
+        },
+        "fresh_harvest_in_this_package_pass": false
+      },
+      "restoration": {
+        "tracked_objects_compared": 50411,
+        "foreign_files_preserved": 38,
+        "reviewed_generated_files_restored": 9,
+        "normal_saves_and_preferences_restored": true,
+        "prior_builds_and_archives_preserved": true,
+        "storage_cleanup_performed": false
+      },
+      "shutdown_notices": {
+        "perProcess": {
+          "threadPrematureFinalizer": 6,
+          "ComputeBufferFinalizerDisposal": 1
+        },
+        "alsoPresentInPriorHarvestLog": true,
+        "limits": "Retained pre-existing shutdown notices; no Error/Exception log lines in either new process. This is not a clean-log or global leak-free claim."
+      },
+      "limits": "Eleven actual native Mac captures verify flat boot, earned Fen Continue4510, truthful grass/water reader, visible player on water, opposite bank40,19, return40,15/F54590 HP38, carried native GroveRed inventory/details and full-process restart with GroveRed1, GoldCoin3 and PaleSalt1. Exact entity IDs remain separate Editor evidence. Inventory07/10 bytes are identical; the separate restart process log and world09 support restart chronology. Both process logs retain six thread-finalizer and one ComputeBuffer-disposal notices also present in the earlier harvest log, with no Error/Exception lines. This is one bounded Fen sample, not all four formations/all37 sites/full-biome or chunk-fullness acceptance. No Linux execution, physical Deck or sustained-performance claim."
     }
   ],
   "scoped_work_history": [
@@ -2147,25 +2256,26 @@
   ],
   "hourly_reporting": {
     "requested_on": "2026-10-26",
-    "last_report_at_utc": "2026-10-27T10:27:00+00:00",
+    "last_report_at_utc": "2026-10-27T11:27:00+00:00",
     "automation_id": "overnight-clearing-art-pipeline",
     "items": "Completed/in-progress/blocked items; biome/area and sprite families addressed; verified missing gaps closed and remaining missing/unaudited coverage; test/capture/main-push status; concrete next coverage goals. Deferred animation listed separately. Intermediate10minute storage checks remain quiet/read-only.",
-    "report": "Docs/GRAPHICS-GROVELANDS-MATERIALS.md",
+    "report": "Docs/GRAPHICS-OVERWRIT-MATERIALS.md",
     "completed": [
-      "Combined Grovelands material plus ownerless permanent Fen-water source pushed;600 native cases passed.",
-      "Fresh Mac/Linux builds and11 actual Mac captures verify bounded water crossing/reader/player/product and cold restart; Linux archive independently verified."
+      "Overwrit eight native cells/four exact owners integrated; final533 native cases passed, including the grading lifecycle correction.",
+      "Actual travel/fresh-Continue grading replay and fresh Mac seven-capture owner/color/save/restart pass; independent Linux archive review and restoration verified.",
+      "Source00959edf0f7a154acf03fd8e521326099d652414 verified on origin/main; delivery/evidence push remains a separate pending action."
     ],
     "next_goals": [
-      "Push exact reviewed delivery/evidence records.",
-      "Author/integrate/test the bounded native Overwrit kit from actual baseline and selected concept direction.",
-      "Continue Stump eight-owner materials, then observed Grovelands actors and the remaining worldwide scope."
+      "Complete Stump baseline coverage across all five formations and the eight planned owner families, then source-grounded concept/native production and integration gates.",
+      "Push exact reviewed Overwrit delivery/evidence records.",
+      "Retain Overwrit crop/stair/fullness follow-up, then Grovelands actors and remaining worldwide static coverage; defer nuanced animation."
     ],
     "priority_update_at_utc": "2026-10-27T03:40:00+00:00",
-    "last_report_summary": "Actual10:27UTC report sent: completed600-case material/water source delivery and fresh packages with11 Mac captures; in progressOverwrit8baselines/two concepts; next exact evidence push, Overwrit native integration, Stump. The09:27report is retained in history.",
-    "next_report_due_at_utc": "2026-10-27T11:27:00+00:00",
+    "last_report_summary": "Actual11:27UTC report sent: Overwrit8cells/4owners,533 native passes, actual grading replay and fresh Mac/Linux bounded delivery from source00959edf0 on main completed; Stump ordinary baseline in progress, next allfiveformations/eightowners. Overwrit crop/stair/fullness remains open; nuanced animation deferred.",
+    "next_report_due_at_utc": "2026-10-27T12:27:00+00:00",
     "in_progress": [
-      "Overwrit eight ordinary before visits and real bench reader retained; two imagegen concepts reviewed.",
-      "v2 quiet ground/shoot direction selected only; native artwork, integration and after/fullness acceptance remain pending."
+      "Stump ordinary gameplay baseline is in progress; no Stump native art/whole-region acceptance is recorded.",
+      "Overwrit crop/soil/stair coverage and centered Pilgrimage fullness remain unfinished."
     ]
   },
   "kitchen_brine_consistency": {
@@ -2254,9 +2364,9 @@
     "plan": "Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md",
     "status": "initial_source_scope_audit_not_complete_runtime_census",
     "chunk_composition": "Every area requires actual whole-scene fullness/composition review: biome-appropriate terrain, vegetation, props, architecture and landmarks with readable traversal/hazards. No density percentages or artificial clutter.",
-    "latest_delivered_source_slice": "Combined Grovelands source ab26e270c:14 new material frames,22 unchanged forest cells and16 unchanged water cells;600 native passes, four Editor material views/seven water captures,11 actual Mac captures and independently verified Linux archive. Whole region/fullness remains partial.",
-    "next": "Push the exact reviewed Overwrit material and biome-grading source/evidence, then create and verify fresh Mac/Linux packages with actual Mac travel/fresh-Continue checks. Continue truthful crop/soil/stair coverage and centered Pilgrimage composition review alongside Stump eight-owner static materials, then observed Grovelands actors and the remaining worldwide scope; defer nuanced animation.",
-    "latest_integrated_source_slice": "Overwrit eight-frame/four-owner material integration plus current biome/profile lifecycle correction:533 final native cases passed; bounded Editor material/state and real Overwrit/Grovelands travel/fresh-Continue color consistency verified. Whole-region fullness remains open; source push and new packages pending."
+    "latest_delivered_source_slice": "Overwrit source00959edf0:8 native cells/4 exact owners plus biome-grading correction;533 final native cases and bounded Editor replay passed. Fresh Mac/Linux builds, seven actual Mac captures/restart, independent Mac/archive reviews and restoration verified. Whole-region/fullness remains open; delivery evidence push pending.",
+    "next": "Push exact reviewed Overwrit delivery/evidence records, then continue Stump eight-owner static materials through actual baseline/concept/native/integration gates. Retain Overwrit crop/soil/stair coverage, Binderroot/Waymarker observation and centered Pilgrimage fullness follow-up, then observed Grovelands actors and remaining registered biomes, settlements/interiors, underground and special sites. No Stump native acceptance is claimed; defer nuanced animation.",
+    "latest_integrated_source_slice": "Overwrit source00959edf0:8 native cells/4 exact owners plus biome-grading correction;533 final native cases and bounded Editor replay passed. Fresh Mac/Linux builds, seven actual Mac captures/restart, independent Mac/archive reviews and restoration verified. Whole-region/fullness remains open; delivery evidence push pending."
   },
   "sill_envelope": {
     "status": "source_integrated_native_editor_and_mac_standalone_verified_linux_archive_checked",
@@ -3363,13 +3473,36 @@
       "priority_update_at_utc": "2026-10-27T03:40:00+00:00",
       "last_report_summary": "Actual 09:27 UTC report itemized Grovelands material integration, native/live results, pending persistence/source push and next water/actor/package goals. Subsequent persistence and water acceptance are recorded separately and do not count as another hourly report.",
       "next_report_due_at_utc": "2026-10-27T10:27:00+00:00"
+    },
+    {
+      "requested_on": "2026-10-26",
+      "last_report_at_utc": "2026-10-27T10:27:00+00:00",
+      "automation_id": "overnight-clearing-art-pipeline",
+      "items": "Completed/in-progress/blocked items; biome/area and sprite families addressed; verified missing gaps closed and remaining missing/unaudited coverage; test/capture/main-push status; concrete next coverage goals. Deferred animation listed separately. Intermediate10minute storage checks remain quiet/read-only.",
+      "report": "Docs/GRAPHICS-GROVELANDS-MATERIALS.md",
+      "completed": [
+        "Combined Grovelands material plus ownerless permanent Fen-water source pushed;600 native cases passed.",
+        "Fresh Mac/Linux builds and11 actual Mac captures verify bounded water crossing/reader/player/product and cold restart; Linux archive independently verified."
+      ],
+      "next_goals": [
+        "Push exact reviewed delivery/evidence records.",
+        "Author/integrate/test the bounded native Overwrit kit from actual baseline and selected concept direction.",
+        "Continue Stump eight-owner materials, then observed Grovelands actors and the remaining worldwide scope."
+      ],
+      "priority_update_at_utc": "2026-10-27T03:40:00+00:00",
+      "last_report_summary": "Actual10:27UTC report sent: completed600-case material/water source delivery and fresh packages with11 Mac captures; in progressOverwrit8baselines/two concepts; next exact evidence push, Overwrit native integration, Stump. The09:27report is retained in history.",
+      "next_report_due_at_utc": "2026-10-27T11:27:00+00:00",
+      "in_progress": [
+        "Overwrit eight ordinary before visits and real bench reader retained; two imagegen concepts reviewed.",
+        "v2 quiet ground/shoot direction selected only; native artwork, integration and after/fullness acceptance remain pending."
+      ]
     }
   ],
   "overwrit_materials_delivery": {
-    "status": "native_material_owner_state_and_bounded_actual_color_consistency_pass;source_commit_and_packages_pending",
-    "recorded_at_utc": "2026-10-27T11:16:00Z",
-    "source_commit": null,
-    "source_push_verified": false,
+    "status": "source_pushed_native_editor_bounded_mac_linux_archive_and_restoration_verified",
+    "recorded_at_utc": "2026-10-27T11:26:00Z",
+    "source_commit": "00959edf0f7a154acf03fd8e521326099d652414",
+    "source_push_verified": true,
     "plan": "Docs/GRAPHICS-OVERWRIT-MATERIALS.md",
     "source_preflight": "Docs/Verification/Live16x24/overwrit-native-preflight.md",
     "source_atlas": "ArtSource/Live16x24/overwrit-materials/overwrit-materials.png",
@@ -3507,14 +3640,14 @@
       "total_ticks_delta": 2380603,
       "bounds": "Observed warmed query and instrumented 11-move samples only; not a universal allocation, FPS, faster rendering, sustained hardware or Steam Deck claim."
     },
-    "package_status": "Overwrit material/grading source commit and fresh package verification pending. Current delivered combined Grovelands source remains ab26e270cb376253c971a41c3449ecbbf4171444.",
+    "package_status": "Source00959edf0 fresh Mac/Linux builds0errors/4warnings each; seven actual Mac captures verify native owner/color/save/restart. Independent Mac and full Linux archive reviews pass within scope; restoration50524objects/38foreign/normal state/prior builds verified. Delivery/evidence push pending; no Linux execution or physical Deck claim.",
     "remaining_gaps": [
       "HollowchimeCrop and StairsDown fallback black cells in GreenRim; MargincressCrop fallback black cells at the approached bench. Cultivated source floors require truthful soil/stage coverage, not a plain-floor bypass.",
       "BinderrootCrop and second bench remain outside this after sample; Waymarker is native/test-covered but naturally unobserved.",
       "Centered Pilgrimage view offers almost no eastern destination/rim cue within the 59-column viewport. Full 80x25 composition and exploration fullness remain open; no generation density change was made.",
       "Other areas/biomes, actors, special sites, depths and remaining mechanics remain incomplete. No Linux execution, physical Deck or sustained performance acceptance."
     ],
-    "next": "Push the exact reviewed Overwrit material and biome-grading source/evidence, then create and verify fresh Mac/Linux packages with actual Mac travel/fresh-Continue checks. Continue truthful crop/soil/stair coverage and centered Pilgrimage composition review alongside Stump eight-owner static materials, then observed Grovelands actors and the remaining worldwide scope; defer nuanced animation.",
+    "next": "Push exact reviewed Overwrit delivery/evidence records, then continue Stump eight-owner static materials through actual baseline/concept/native/integration gates. Retain Overwrit crop/soil/stair coverage, Binderroot/Waymarker observation and centered Pilgrimage fullness follow-up, then observed Grovelands actors and remaining registered biomes, settlements/interiors, underground and special sites. No Stump native acceptance is claimed; defer nuanced animation.",
     "active_blocker": null,
     "blocker_history": [
       {
@@ -3692,6 +3825,7 @@
         "Material, owner-state and color-consistency verification is bounded; crop/stair/soil, centered Pilgrimage cue, naturally unobserved marker and wider-world gaps remain.",
         "Source commit and new packages pending; no Linux execution, physical Deck or sustained performance claim."
       ]
-    }
+    },
+    "packaged_delivery_record": "packaged_delivery"
   }
 }

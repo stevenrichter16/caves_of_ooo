@@ -2779,3 +2779,83 @@ question, Stump eight-owner breadth and the remaining world queue. No generation
 density change, whole-region acceptance, Linux execution, physical Deck or
 sustained-performance claim is added. Last actual hourly report remains
 **10:27UTC; next11:27UTC**. Storage remains inspection-only.
+
+
+## Overwrit source and packaged Mac delivery — 2026-10-27 11:26 UTC
+
+**Source `00959edf0f7a154acf03fd8e521326099d652414` is verified on origin/main.**
+It contains the eight-cell/four-owner material slice and the current biome/profile
+lifecycle correction, backed by the retained533-case GREEN and matched actual
+Editor travel/restart evidence. The future delivery/evidence commit is pending;
+no hash for that commit is asserted here.
+
+Fresh tag `2026-10-27-overwrit-materials-00959edf0-current` builds succeeded:
+Mac47.702916s and Linux49.60084s, each **zero errors/four warnings**. The
+[Mac play receipt](Verification/Live16x24/packaged-overwrit-materials-mac-play-summary.json)
+and [independent review](Verification/Live16x24/packaged-overwrit-materials-mac-independent-review.md)
+retain seven actual original1280×856 CUA JPEGs00–06. Ordinary Continue at6230
+loads Overwrit4,12, player75,18 HP38; the real bench reads11/12 and the shoot4/4.
+A normal Left/Right step, F5 at6250, full process quit/relaunch and Continue
+preserve the bench11/12 and corrected neutral field. The decoded world rectangle
+[0,96,940,696] in01/04/05 matches all564,000 RGB pixels, SHA256
+`975b642dee150bc5ace48a1ed5201be7adb03355582db2b2731578b10599b868`.
+This is a captured JPEG comparison, not a lossless renderer-buffer assertion.
+Each process log retains **five premature-finalizer notices and one ComputeBuffer
+notice**, with no Error/Exception lines; no clean-log/leak-free claim is made.
+
+The [Linux archive receipt](Verification/Live16x24/packaged-overwrit-materials-linux-archive.json)
+records **128,780,457 bytes,189 regular files and202 archive members**, SHA256
+`0aa1f10174b3ed860021ae9b58153546a24073cb18338cfd5cf278e2951849da`.
+The helper verified all file/directory hashes, sizes/modes, safe membership,
+checksum manifest and gzip EOF; **independent Linux review is still pending**.
+It has not been executed on Linux or a physical Deck.
+
+[Restoration](Verification/Live16x24/packaged-overwrit-materials-restoration.json)
+verified all50,524 tracked source objects against the snapshot,38 foreign files,
+normal Editor saves, restored standalone-save absence/preferences and preserved
+prior builds/archives. Ten build-generated metadata/settings files were restored;
+test saves were archived. No storage cleanup occurred. The earned package fixture
+is `Verification/Live16x24/Fixtures/packaged-overwrit65` at6250, HP38.
+
+This is a bounded native Mac owner/color/restart pass; whole-region fullness,
+Hollowchime/Margincress/Binderroot crop and truthful soil graphics, stairs,
+second-bench area, naturally unobserved Waymarker and centered Pilgrimage cue
+remain open. Finish independent archive review and exact evidence push. **Next
+regional breadth remains Stump's eight-owner static kit** through actual
+baseline/concept/native/integration gates, followed by observed Grovelands actors
+and every remaining biome/area. Stump's18 candidates are source-based and are not
+visited/accepted by this record. Retain Overwrit crop/stair/fullness follow-up
+without displacing regional breadth. Last actual hourly report remains
+**10:27UTC; next11:27UTC**. No sustained-performance or physical Deck claim.
+
+
+### Independent archive completion — 2026-10-27
+
+The [independent Linux archive review](Verification/Live16x24/packaged-overwrit-materials-linux-independent-review.json)
+now **passes within archive-integrity/retained-evidence scope**:189 files,
+13 directories,202 members, full gzip EOF, actual tree/hash/size/mode, internal
+and external checksums, both fresh build/output bindings,19 support-source copies
+and533 distinct native identities. Its retained1034 test occurrences overlap by
+501; they are not1034 distinct cases. The pending-review statement above is now
+superseded. No Linux or physical Deck execution is claimed.
+
+Overwrit source, bounded Mac play/restart, archive integrity and restoration are
+verified; the exact delivery/evidence push remains pending. Proceed with Stump's
+eight-owner baseline/native gates and retain the named Overwrit crop/stair and
+fullness follow-up. No Stump sprite coverage is accepted by this package record.
+The actual hourly timestamp remains10:27UTC until root sends the next report;
+next due11:27UTC. No future evidence-commit SHA is invented.
+
+
+### Actual hourly report — 2026-10-27 11:27 UTC
+
+**Root sent the requested itemized report at11:27UTC; next due12:27UTC.**
+Completed: Overwrit's8 native cells/4 owners,533 native passes, actual grading
+travel/restart replay, fresh Mac/Linux builds with bounded Mac gameplay,
+independent archive review/restoration and source `00959edf0` on main. The
+separate exact delivery/evidence push remains pending. In progress: Stump's
+ordinary gameplay baseline. The coming session targets its **five formations
+and eight owner families**, then concept/native/integration gates; none is yet
+accepted as Stump native coverage. Overwrit crop/soil/stair and centered
+Pilgrimage fullness remain unfinished. Preserve the all-biome/area queue and
+defer nuanced animation. Earlier report times above are historical.

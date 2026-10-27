@@ -2,7 +2,7 @@
 
 2026-10-27. Named defect found during actual Overwrit native-material acceptance.
 Current pass: genuine native RED, minimum correction,533 native passes and actual
-matched travel/Continue replay complete; new packages pending. This is CoO presentation behavior, not a
+matched travel/Continue replay complete; fresh Mac/Linux delivery verified. This is CoO presentation behavior, not a
 claim of Caves of Qud parity. No sprite repaint or gameplay generation change
 is needed for this defect.
 
@@ -82,3 +82,14 @@ standalone saves and38 unrelated tracked changes remained unchanged. Storage
 inspection was read-only. This fixes a global lifecycle fault, but visual
 acceptance is bounded to the observed route; whole-region fullness, fallback
 crop/stair sprites, and physical Deck performance remain open.
+
+2026-10-27 11:27 UTC: source00959edf0f7a154acf03fd8e521326099d652414 was
+verified on origin/main. Fresh Mac and Linux builds succeeded with zero errors
+and four warnings each. The Mac player restored6230, examined bench11/12 and
+shoot4/4, saved6250 after actual movement, fully quit, then restored the same
+bench and palette. Independent review recomputed identical world rectangles in
+packaged01/04/05 original captures. Linux archive integrity was independently
+verified; the Linux player was not executed. Normal saves/preferences and prior
+builds were restored/preserved, with no cache deletion. See the packaged-overwrit-
+materials receipts and reviews in Verification/Live16x24. This delivery does not
+close whole-biome sprite coverage or physical Steam Deck acceptance.
