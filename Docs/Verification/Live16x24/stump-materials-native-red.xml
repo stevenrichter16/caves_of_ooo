@@ -1,0 +1,1687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="92" result="Failed(Child)" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 11:42:51Z" end-time="2026-10-27 11:42:59Z" duration="7.597213">
+  <test-suite type="TestSuite" id="40716" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33071" result="Failed" site="Child" start-time="2026-10-27 11:42:51Z" end-time="2026-10-27 11:42:59Z" duration="7.597213" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="40688" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33071" result="Failed" site="Child" start-time="2026-10-27 11:42:51Z" end-time="2026-10-27 11:42:59Z" duration="7.510303" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="40689" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33071" result="Failed" site="Child" start-time="2026-10-27 11:42:51Z" end-time="2026-10-27 11:42:59Z" duration="7.443755" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="40690" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33071" result="Failed" site="Child" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:59Z" duration="7.372284" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1203" name="FlatPixelStumpMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:59Z" duration="7.071769" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1268" name="ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:52Z" duration="0.292474" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1265" name="ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt(&quot;Tree&quot;,&quot;burning&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt(&quot;Tree&quot;,&quot;burning&quot;)" methodname="ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1853360401" result="Failed" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:52Z" duration="0.147687" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:313
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1266" name="ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt(&quot;Bush&quot;,&quot;wet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt(&quot;Bush&quot;,&quot;wet&quot;)" methodname="ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1853632805" result="Failed" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:52Z" duration="0.054991" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:313
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1267" name="ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt(&quot;TepuiWall&quot;,&quot;nan&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt(&quot;TepuiWall&quot;,&quot;nan&quot;)" methodname="ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="127802420" result="Failed" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:52Z" duration="0.055657" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActiveTintOrInvalidThermalStateCannotKeepNeutralMaterialArt (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:313
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1300" name="ActualVeinHarvestRemovesItsBodyAndKeepsExistingPortableProductIdentity" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActualVeinHarvestRemovesItsBodyAndKeepsExistingPortableProductIdentity" methodname="ActualVeinHarvestRemovesItsBodyAndKeepsExistingPortableProductIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1194302136" result="Failed" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:52Z" duration="0.051914" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ActualVeinHarvestRemovesItsBodyAndKeepsExistingPortableProductIdentity () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:397
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1282" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:53Z" duration="0.870817" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1275" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;cultivation&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;cultivation&quot;)" methodname="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="606620018" result="Failed" start-time="2026-10-27 11:42:52Z" end-time="2026-10-27 11:42:53Z" duration="0.546112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:328
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1276" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;plantable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;plantable&quot;)" methodname="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1267170977" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.061828" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:328
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1277" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;unknown-terrain&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;unknown-terrain&quot;)" methodname="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1272842598" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.039638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:328
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1278" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;duplicate-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;duplicate-floor&quot;)" methodname="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1889058224" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.038246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:328
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1279" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;water&quot;)" methodname="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1880747882" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.037572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:328
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1280" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;heat&quot;)" methodname="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1165823075" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.036641" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:328
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1281" name="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState(&quot;charge&quot;)" methodname="CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1876182162" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.038643" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredGroundDoesNotEraseCultivationOtherTerrainOrIndependentState (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:328
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1227" name="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.217468" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1223" name="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;biome&quot;)" methodname="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1661794022" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.040152" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:205
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1224" name="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;poi&quot;)" methodname="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="860061022" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.039992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:205
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1225" name="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;map-shape&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;map-shape&quot;)" methodname="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="201001437" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.038347" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:205
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1226" name="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;poi-shape&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt(&quot;poi-shape&quot;)" methodname="CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1731609777" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.039386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:205
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1260" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:54Z" duration="0.378359" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1252" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;DescentLedge&quot;,&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;DescentLedge&quot;,&quot;solid&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1852469502" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.041431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1253" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;GrainRidge&quot;,&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;GrainRidge&quot;,&quot;material&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="159916345" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.039402" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1254" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TankBrocchinia&quot;,&quot;missing-well&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TankBrocchinia&quot;,&quot;missing-well&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="241326608" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:53Z" duration="0.037740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1255" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TankBrocchinia&quot;,&quot;foreign-well&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TankBrocchinia&quot;,&quot;foreign-well&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="75218361" result="Failed" start-time="2026-10-27 11:42:53Z" end-time="2026-10-27 11:42:54Z" duration="0.037893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1256" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TankBrocchinia&quot;,&quot;finite-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TankBrocchinia&quot;,&quot;finite-pool&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1535852778" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.039512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1257" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TepuiboneVein&quot;,&quot;wrong-yield&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TepuiboneVein&quot;,&quot;wrong-yield&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1742694450" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.039457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1258" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TepuiboneVein&quot;,&quot;spent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TepuiboneVein&quot;,&quot;spent&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1124575501" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.039699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1259" name="ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TepuiboneVein&quot;,&quot;foreign-harvest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning(&quot;TepuiboneVein&quot;,&quot;foreign-harvest&quot;)" methodname="ExactBlueprintDoesNotOverrideChangedGameplayMeaning" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="63786055" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.037215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactBlueprintDoesNotOverrideChangedGameplayMeaning (System.String name, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:285
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1274" name="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.268875" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1269" name="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;GrainRidge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;GrainRidge&quot;)" methodname="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2043242163" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.041817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:321
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1270" name="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;DescentLedge&quot;)" methodname="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="417751871" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.038747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:321
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1271" name="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;StoneDome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;StoneDome&quot;)" methodname="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1190330073" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.038010" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:321
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1272" name="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;TankBrocchinia&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;TankBrocchinia&quot;)" methodname="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2060763752" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.038275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:321
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1273" name="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone(&quot;Bush&quot;)" methodname="ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="378697076" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.054864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactDryTerrainOverlayRetainsOnlyItsActualUnderlyingTepuiStone (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:321
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1214" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.469296" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1204" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TepuiStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TepuiStone&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="686811825" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.042038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1205" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TepuiWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TepuiWall&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="525541557" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.040343" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1206" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;GrainRidge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;GrainRidge&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1616970209" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.038844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1207" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;DescentLedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;DescentLedge&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="733919641" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.040484" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1208" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;SprayPool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;SprayPool&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2041341688" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.041822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1209" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;StoneDome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;StoneDome&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="261270220" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.039491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1210" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TankBrocchinia&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TankBrocchinia&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1430022967" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.040881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1211" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TepuiboneVein&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;TepuiboneVein&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1631679137" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.039953" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1212" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;Tree&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1855105601" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.039723" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1213" name="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot(&quot;Bush&quot;)" methodname="ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="823981187" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:54Z" duration="0.046967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ExactFactoryOwnersUseTheirNativeFamilyAndReaderButCustomIdentityDoesNot (System.String name) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:161
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1222" name="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:56Z" duration="1.179197" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1217" name="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.2.5.0&quot;,CascadeGorge,&quot;SprayPool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.2.5.0&quot;,CascadeGorge,&quot;SprayPool&quot;)" methodname="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1407738575" result="Failed" start-time="2026-10-27 11:42:54Z" end-time="2026-10-27 11:42:55Z" duration="0.207430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection (System.String id, CavesOfOoo.Core.Formation formation, System.String name) [0x00079] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1218" name="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.2.2.0&quot;,Grainfield,&quot;GrainRidge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.2.2.0&quot;,Grainfield,&quot;GrainRidge&quot;)" methodname="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1982464524" result="Failed" start-time="2026-10-27 11:42:55Z" end-time="2026-10-27 11:42:55Z" duration="0.382518" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection (System.String id, CavesOfOoo.Core.Formation formation, System.String name) [0x00079] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1219" name="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.4.5.0&quot;,ButtressRidge,&quot;TepuiboneVein&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.4.5.0&quot;,ButtressRidge,&quot;TepuiboneVein&quot;)" methodname="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2137117627" result="Failed" start-time="2026-10-27 11:42:55Z" end-time="2026-10-27 11:42:55Z" duration="0.323981" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection (System.String id, CavesOfOoo.Core.Formation formation, System.String name) [0x00079] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1220" name="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.3.4.0&quot;,SummitScrub,&quot;StoneDome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.3.4.0&quot;,SummitScrub,&quot;StoneDome&quot;)" methodname="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="761896410" result="Failed" start-time="2026-10-27 11:42:55Z" end-time="2026-10-27 11:42:56Z" duration="0.100731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection (System.String id, CavesOfOoo.Core.Formation formation, System.String name) [0x00079] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1221" name="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.2.3.0&quot;,RimForest,&quot;TankBrocchinia&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection(&quot;Overworld.2.3.0&quot;,RimForest,&quot;TankBrocchinia&quot;)" methodname="FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1721609191" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.098079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.FiveRealSeed65FormationsSupplyTheirSelectedOwnerWithoutFixtureInjection (System.String id, CavesOfOoo.Core.Formation formation, System.String name) [0x00079] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:196
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1283" name="HiddenOrForeignGroundCompetitorCannotVetoVisiblePlainFloor" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.HiddenOrForeignGroundCompetitorCannotVetoVisiblePlainFloor" methodname="HiddenOrForeignGroundCompetitorCannotVetoVisiblePlainFloor" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="390336182" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.036006" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.HiddenOrForeignGroundCompetitorCannotVetoVisiblePlainFloor () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:341
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1307" name="ImportedTwentySixFramesAreCachedAndTheCatalogRequiresItsSelector" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ImportedTwentySixFramesAreCachedAndTheCatalogRequiresItsSelector" methodname="ImportedTwentySixFramesAreCachedAndTheCatalogRequiresItsSelector" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="395912617" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.036315" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ImportedTwentySixFramesAreCachedAndTheCatalogRequiresItsSelector () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:425
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1298" name="LastActualFlaskFillChangesNativeStockFrameButLeavesNaturalWetOwner" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.LastActualFlaskFillChangesNativeStockFrameButLeavesNaturalWetOwner" methodname="LastActualFlaskFillChangesNativeStockFrameButLeavesNaturalWetOwner" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="739266043" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.038624" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.LastActualFlaskFillChangesNativeStockFrameButLeavesNaturalWetOwner () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:374
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1251" name="MalformedOwnersCannotBorrowTheTankIdentity" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.368733" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1243" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;foreign-render&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="845982612" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.040532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1244" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;foreign-physics&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="109289744" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.036904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1245" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;duplicate-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;duplicate-render&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1323240693" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.036926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1246" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;carried&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1454956564" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.035915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1247" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;equipped&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2142040516" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.036608" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1248" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;takeable&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1939143212" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.037046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1249" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;wrong-glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;wrong-glyph&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="960804744" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.038795" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1250" name="MalformedOwnersCannotBorrowTheTankIdentity(&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity(&quot;wrong-blueprint&quot;)" methodname="MalformedOwnersCannotBorrowTheTankIdentity" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="641133429" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.040444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MalformedOwnersCannotBorrowTheTankIdentity (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1306" name="MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.134668" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1304" name="MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources(&quot;tree&quot;,&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources(&quot;tree&quot;,&quot;Tree&quot;)" methodname="MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="716811534" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.040055" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources (System.String group, System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:417
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1305" name="MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources(&quot;bush&quot;,&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources(&quot;bush&quot;,&quot;Bush&quot;)" methodname="MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="269114980" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.038395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingBorrowedGroupCannotDisableMainAndDisposalDoesNotDestroySources (System.String group, System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:417
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1303" name="MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.096191" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1301" name="MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush(False)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush(False)" methodname="MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="803423165" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.036439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush (System.Boolean malformed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:406
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1302" name="MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush(True)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush(True)" methodname="MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="457558526" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.035837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.MissingOrMalformedMainCannotReloadOrDisableExactTreeAndBush (System.Boolean malformed) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:406
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1241" name="NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.167697" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1238" name="NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources(&quot;hidden&quot;)" methodname="NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1178147405" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.038096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:245
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1239" name="NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources(&quot;remembered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources(&quot;remembered&quot;)" methodname="NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2001904697" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.035453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:245
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1240" name="NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources(&quot;unexplored&quot;)" methodname="NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="570266910" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:56Z" duration="0.035622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.NativeBodyWaterAndPortraitDoNotRevealUndisclosedSources (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:245
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1216" name="OnlyEighteenCanonicalCurrentOrdinaryAddressesAreSupported" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.OnlyEighteenCanonicalCurrentOrdinaryAddressesAreSupported" methodname="OnlyEighteenCanonicalCurrentOrdinaryAddressesAreSupported" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1712858249" result="Failed" start-time="2026-10-27 11:42:56Z" end-time="2026-10-27 11:42:57Z" duration="0.037096" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.OnlyEighteenCanonicalCurrentOrdinaryAddressesAreSupported () [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:181
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1215" name="OrdinaryAuthoredFloorVariantsAreAcceptedButUnfamiliarVariantsAreNot" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.OrdinaryAuthoredFloorVariantsAreAcceptedButUnfamiliarVariantsAreNot" methodname="OrdinaryAuthoredFloorVariantsAreAcceptedButUnfamiliarVariantsAreNot" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2093947161" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.037609" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.OrdinaryAuthoredFloorVariantsAreAcceptedButUnfamiliarVariantsAreNot () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:169
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1264" name="PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.296325" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1261" name="PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite(&quot;TepuiWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite(&quot;TepuiWall&quot;)" methodname="PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1141983735" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.076441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:299
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1262" name="PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite(&quot;Tree&quot;)" methodname="PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1247339263" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.085775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:299
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1263" name="PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite(&quot;Bush&quot;)" methodname="PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1169441482" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.076663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PartialDamageKeepsItsRealBodyAndDestructionDoesNotLeaveTheOldSprite (System.String name) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:299
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1237" name="QueriesAreReadOnlyDoNotCreateALairLedgerAndRejectAReplacedGraph" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.QueriesAreReadOnlyDoNotCreateALairLedgerAndRejectAReplacedGraph" methodname="QueriesAreReadOnlyDoNotCreateALairLedgerAndRejectAReplacedGraph" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1843352772" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.065721" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.QueriesAreReadOnlyDoNotCreateALairLedgerAndRejectAReplacedGraph () [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:235
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1235" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:58Z" duration="0.836550" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1228" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.2.4.0&quot;)" methodname="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="76176741" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.066395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:221
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1229" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.3.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.3.3.0&quot;)" methodname="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="524455761" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.057754" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:221
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1230" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.3.5.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.3.5.0&quot;)" methodname="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1430840699" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:57Z" duration="0.164678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:221
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1231" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.3.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.3.7.0&quot;)" methodname="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="559229664" result="Failed" start-time="2026-10-27 11:42:57Z" end-time="2026-10-27 11:42:58Z" duration="0.376267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:221
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1232" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.2.5.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.2.5.1&quot;)" methodname="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="438752422" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.037563" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:221
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1233" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.02.5.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.02.5.0&quot;)" methodname="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1644393029" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.036567" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:221
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1234" name="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions(&quot;Overworld.11.10.0&quot;)" methodname="RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1061184093" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.038212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.RelabelingCannotAdmitSpecialSitesDepthAliasesOrOtherRegions (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:221
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1236" name="SavedLairClaimStillRefusesAfterItsMapLabelIsRemoved" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SavedLairClaimStillRefusesAfterItsMapLabelIsRemoved" methodname="SavedLairClaimStillRefusesAfterItsMapLabelIsRemoved" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="216831766" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.038581" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SavedLairClaimStillRefusesAfterItsMapLabelIsRemoved () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:226
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1242" name="SelectedOwnerFootprintAndRemovalKeepReadersBoundToTheActualBody" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SelectedOwnerFootprintAndRemovalKeepReadersBoundToTheActualBody" methodname="SelectedOwnerFootprintAndRemovalKeepReadersBoundToTheActualBody" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="595646468" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.039241" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SelectedOwnerFootprintAndRemovalKeepReadersBoundToTheActualBody () [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:254
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1287" name="SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.172718" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1284" name="SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor(40)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor(40)" methodname="SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1867538352" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.040396" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor (System.Int32 stock) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:349
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1285" name="SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor(1)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor(1)" methodname="SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="176703961" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.036968" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor (System.Int32 stock) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:349
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1286" name="SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor(0)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor(0)" methodname="SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="685759417" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.037689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SprayWaterUsesActualSourceStockAndRemainsWetUnderACoveringActor (System.Int32 stock) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:349
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1311" name="SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.441277" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1308" name="SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks(&quot;heat&quot;,'^')" methodname="SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1236040467" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.259875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks (System.String state, System.Char glyph) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:439
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1309" name="SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks(&quot;charge&quot;,'*')" methodname="SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="253463889" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.063949" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks (System.String state, System.Char glyph) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:439
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1310" name="SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks(&quot;cloud&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks(&quot;cloud&quot;,'\'')" methodname="SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="158541624" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.060433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.SubmittedWaterSuppressesOnlyItsOwnWaveAndRetainsIndependentHazardMarks (System.String state, System.Char glyph) [0x00038] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:439
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1299" name="TankDrinkingHasNoFiniteStockOrProjectedWetFloorAndKeepsItsSprite" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.TankDrinkingHasNoFiniteStockOrProjectedWetFloorAndKeepsItsSprite" methodname="TankDrinkingHasNoFiniteStockOrProjectedWetFloorAndKeepsItsSprite" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1010398902" result="Failed" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:58Z" duration="0.037140" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.TankDrinkingHasNoFiniteStockOrProjectedWetFloorAndKeepsItsSprite () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:390
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1297" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-27 11:42:58Z" end-time="2026-10-27 11:42:59Z" duration="0.424572" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1288" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;wrong-liquid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;wrong-liquid&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1818805793" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.038962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1289" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;negative-stock&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;negative-stock&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1005286955" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.037439" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1290" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;foreign-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;foreign-pool&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="578767415" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.038586" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1291" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;duplicate-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;duplicate-pool&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2055672371" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.038238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1292" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;missing-water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;missing-water&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2128303464" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.037915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1293" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;temporary-water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;temporary-water&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1789687572" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.040295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1294" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;oil&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2113419332" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.040459" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1295" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;ice&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="92682444" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.036957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1296" name="WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;second-source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(&quot;second-source&quot;)" methodname="WetLookingCellsCannotBypassExactSourceAndCoatingGuards" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1963008536" result="Failed" start-time="2026-10-27 11:42:59Z" end-time="2026-10-27 11:42:59Z" duration="0.038570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stump current-owner material catalog is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:75
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:85
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:120
+at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:361
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

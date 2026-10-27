@@ -27,6 +27,14 @@ prioritize coherent, verified normal gameplay over unrelated feature growth
 or asset counts. Continue across sessions with precise handoffs rather than
 stopping after isolated packets. Preserve the user's approved art direction.
 
+**Required later polish phase (2026-10-27):** After broad sprite coverage,
+revisit every biome and area for a serious visual polish pass. Track area polish
+separately from sprite integration: whole-chunk composition/fullness, palette,
+silhouettes, material and gameplay readability, interiors, landmarks, travel,
+visibility states and reader identity need actual before/after gameplay review.
+See the completion plan and world coverage ledger; asset counts and one center
+viewport cannot establish a polished area.
+
 **Latest user priority (2026-10-27): cover missing/inconsistent sprites across
 ALL biomes and areas before nuanced animation polish.** The six connected opening
 scenes are an anchor, not the full scope. Include terrain, flora, actors/NPCs,

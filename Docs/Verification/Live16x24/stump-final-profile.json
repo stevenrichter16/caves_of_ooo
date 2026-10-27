@@ -1,0 +1,52 @@
+{
+  "startedUtc": "2026-10-27T12:41:08.618998Z",
+  "endedUtc": "2026-10-27T12:42:04.722767Z",
+  "seconds": 56.10377,
+  "context": "Editor actual RimForest tank examine/drink using normal controls and MCP/capture overhead; no same-route before baseline, build FPS, GPU, Linux or Deck claim",
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "count": 11607,
+      "mean": 101143.85043508228,
+      "max": 5005750,
+      "p95": 158792,
+      "unit": "TimeNanoseconds",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-final-profile-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "count": 11607,
+      "mean": 8069.060911518911,
+      "max": 8073292,
+      "p95": 16250,
+      "unit": "TimeNanoseconds",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-final-profile-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "count": 11607,
+      "mean": 2515628.4437839235,
+      "max": 1089428250,
+      "p95": 4923750,
+      "unit": "TimeNanoseconds",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-final-profile-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "count": 11607,
+      "mean": 18228.80279141897,
+      "max": 529430,
+      "p95": 18103,
+      "unit": "Bytes",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-final-profile-3.csv"
+    }
+  ]
+}

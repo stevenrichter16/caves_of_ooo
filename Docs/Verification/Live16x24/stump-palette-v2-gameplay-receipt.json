@@ -1,0 +1,47 @@
+{
+  "recordedUtc": "2026-10-27T12:17:02.549195+00:00",
+  "atlasSha256": "f8d12d504b4cbbc4d0079f5f4a46607673e207a2edc623e8ecf5b1bde3e2876c",
+  "kind": "actual Unity palette-only correction trial, partial visual repair",
+  "startFixture": "Fixtures/stump-before66",
+  "seed": 65,
+  "continuedPose": {
+    "zone": "Overworld.2.3.0",
+    "xy": [
+      37,
+      11
+    ],
+    "HP": 38
+  },
+  "visits": [
+    "Overworld.2.3.0",
+    "Overworld.3.4.0"
+  ],
+  "collision": {
+    "controls": "Right four times, Up twice from Summit40,12; observed44,10; Up attempted towardStoneDome44,9",
+    "before": [
+      44,
+      10
+    ],
+    "after": [
+      44,
+      10
+    ],
+    "targetSolid": true,
+    "HP": 38
+  },
+  "verdict": "Floor/dome contrast repaired; solid masses still too similar to dark floor patches. Perimeter-only native boundary correction required, with quiet connected interiors. No fullness or kit acceptance.",
+  "captures": {
+    "stump-palette-v2-01-rim-forest.png": "34b439ede3a9bc5e9909cf18d5d9314438f6caf6ff6db25d838812f67633a3fd",
+    "stump-palette-v2-02-summit-scrub.png": "8f250d41fba9c65e08b9631e78681c0fd5e5fceb2f250aa18ea82a9843a4013e",
+    "stump-palette-v2-dome-collision.png": "1686f15239e160467eab3c91031e2f18f25277243a3e1c68c1fdb84c33c53f4e"
+  },
+  "profiling": "stump-palette-v2-profile.json plus4raw CSVs;155.1s editor window,13643samples; bridge/capture overhead included; no isolated renderer or build claim.",
+  "protection": {
+    "archivedRoot": "/private/tmp/coo-stump-palette-v2-archived-cf3a794a",
+    "deleted": false,
+    "normalSavesEqual": true,
+    "foreign38Equal": true,
+    "stoppedCleanEdit": true,
+    "saveRootOverride": null
+  }
+}

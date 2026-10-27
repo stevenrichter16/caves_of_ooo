@@ -1,0 +1,114 @@
+{
+  "recordedUtc": "2026-10-27T12:09:43.912470+00:00",
+  "kind": "actual Unity Game view first material trial, visual correction required",
+  "sourceBase": "587837b255e90fc642adef38291483c5de09b782",
+  "uncommittedCatalog": "FlatPixelStumpMaterialsCatalog",
+  "atlasSha256": "caa932d3b2f8fcd0602e9a6bde905309414a412b57ba06b52f36e332789e49c1",
+  "seed": 65,
+  "continuedFixture": "Fixtures/stump-before66",
+  "continuedTurn": 6810,
+  "controls": "ordinary Continue; C/Left/X tank reader; Return,C/Left/W tank drink; ordinary world-map travel RimForest \u2192 SummitScrub \u2192 ButtressRidge \u2192 Grainfield \u2192 CascadeGorge; F5",
+  "normalSimulationMutations": "Only ordinary game controls; no injected actors, moves, stock or disclosure",
+  "tank": {
+    "zone": "Overworld.2.3.0",
+    "ownerId": "68316",
+    "cell": [
+      36,
+      11
+    ],
+    "playerCell": [
+      37,
+      11
+    ],
+    "log": "You drink. The well water is cool.",
+    "after": {
+      "Well": true,
+      "LiquidPool": false,
+      "wetCell": false,
+      "HP": 38
+    }
+  },
+  "grade": {
+    "biome": "Stump",
+    "preset": "Cave",
+    "actualColorFilter": [
+      1.05,
+      0.88,
+      0.7
+    ],
+    "contrast": -5,
+    "saturation": -10,
+    "runtimeProfileSeparate": true
+  },
+  "visualVerdict": "Not accepted: StoneDome almost merges with ground; ridges/walls need stronger solid versus walkable value separation under existing Cave grade. Correct only new stone palette before final comparison. Water/tank/mineral frames retained. Density changes not yet justified.",
+  "coverageLimits": [
+    "Five center views do not show every column in each 80x25 zone.",
+    "Gorge undisclosed/fog areas are not proof of bare composition.",
+    "Actors/crops/soil/stairs/hazards/props remain fallback coverage.",
+    "No actual vein harvest or vessel draw/zero-stock observation in this trial.",
+    "No packaged Stump run or physical Deck evidence."
+  ],
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-01-rim-forest-trial.png",
+      "bytes": 52146,
+      "sha256": "2863069d84a05cdca6af0d9902f4fd60b9c2974fad2d35b1cbcf70a67d33704e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-02-tank-menu-trial.png",
+      "bytes": 57700,
+      "sha256": "547dc0b3b5013ee736f865d466bd77d03232e87103edc41a549b72d5eb4fcf5a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-03-tank-reader-trial.png",
+      "bytes": 57164,
+      "sha256": "fc94050d47cf27266f4ed94459eccb6bae73d4bf9b61aadd0c8d41c2e4a1e728"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-04-tank-drink-trial.png",
+      "bytes": 53834,
+      "sha256": "9cee4356b01f792edd1f4324f7e9805b31123ebf0aab44446ef25ada2a0ee11a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-05-summit-scrub-trial.png",
+      "bytes": 48215,
+      "sha256": "b9fb77ed0af8cf9f2c86ed5c4fc6d33d8cce2d5aae37cc0058a9d60a13c7f20d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-06-buttress-ridge-trial.png",
+      "bytes": 42510,
+      "sha256": "2637048d992a3c61691ee3c8a448a8493043f78ea2a60b7bb3f7106006f9d581"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-07-grainfield-trial.png",
+      "bytes": 46554,
+      "sha256": "ba0802edd8bf9ef9664f3e0a17c252f655611153225e3e5768f71e941a044d08"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-after-08-cascade-gorge-trial.png",
+      "bytes": 34996,
+      "sha256": "77ad2b8b1143dd00646d08bd286319194a229eb118cbaa13171b8e23af380c75"
+    }
+  ],
+  "earnedEndFixture": {
+    "directory": "Fixtures/stump-trial67",
+    "turn": 7130,
+    "zone": "Overworld.2.5.0",
+    "HP": "38/40",
+    "files": {
+      "Quick.sav.gz": "42b71decec7c3f2ae4d40528a265bd622dfdd9d84ebfe57bc1856ba9407d80a2",
+      "Quick.json": "8c185d39ab9121881b509c1a661c9ffa2a6d1b81d08e17fd8c852fb22dfa635e"
+    }
+  },
+  "restoration": {
+    "ownedRootArchived": "/private/tmp/coo-stump-trial-archived-07fffe05",
+    "deleted": false,
+    "editorStopped": true,
+    "cleanScene": "Assets/Scenes/Main/SampleScene.unity",
+    "saveRootOverride": null,
+    "normalEditorSavesEqual": true,
+    "normalStandaloneSavesEqual": true,
+    "foreignTracked38Equal": true,
+    "storageCleanup": "none"
+  }
+}

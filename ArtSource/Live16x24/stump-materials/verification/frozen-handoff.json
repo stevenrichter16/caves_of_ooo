@@ -1,0 +1,59 @@
+{
+  "frozenAtUtc": "2026-10-27T12:26:21.209393+00:00",
+  "state": "Perimeter corrective candidate frozen for native runtime and actual gameplay comparison; no gameplay acceptance.",
+  "atlasFrames": 71,
+  "atlasSize": [
+    1136,
+    24
+  ],
+  "resource": "Sprites/Live16x24/stump-materials",
+  "frameMapping": {
+    "0-3": "TepuiStone",
+    "4-5": "TepuiWall interior",
+    "6-9": "GrainRidge interior",
+    "10-11": "DescentLedge",
+    "12-15": "SprayPool Volume>0",
+    "16-19": "SprayPool Volume=0 still wet",
+    "20-21": "StoneDome interior",
+    "22-23": "TankBrocchinia",
+    "24-25": "TepuiboneVein",
+    "26-40": "TepuiWall exposed mask1..15",
+    "41-55": "GrainRidge exposed mask1..15",
+    "56-70": "StoneDome exposed mask1..15"
+  },
+  "maskBits": {
+    "N": 1,
+    "E": 2,
+    "S": 4,
+    "W": 8
+  },
+  "maskZero": "unchanged interior frame selected by runtime",
+  "preservedInputs": 350,
+  "sourcePixelChecks": 27264,
+  "corruptionCounterchecks": 11,
+  "nativeAndDirectContactsRebuildByteIdentical": true,
+  "correctsNamedDefect": "Palette-v2 improved mass contrast but actual solid-vs-floor collision readability still lacked an outside-boundary cue.",
+  "original26FramesPixelAndDefinitionExact": true,
+  "paletteUnchanged": true,
+  "newFramesAreEdgeOnly": 45,
+  "priorCandidateHistory": "verification/palette-v2-before-perimeter",
+  "reviewWatchItem": "Root must confirm outside-boundary cues remain readable under unchanged Cave grading in actual formations, without hidden-owner disclosure or internal tile grid. No density or borrowed-art changes.",
+  "files": {
+    "Tools/Live16x24/build_stump_materials.py": "006a1227c76dc7f6f31bd6adefb492941573ce1b4027e3d3ae328c71655a7b64",
+    "Assets/Resources/Sprites/Live16x24/stump-materials.png": "fd33497368615b60f09ccc2d16efe25dd0033370034c95ce93fe0445bb2af7f1",
+    "Assets/Resources/Sprites/Live16x24/stump-materials.png.meta": "b625dd81cc477e54baa7c29ce493705b9879ca82afc2430160efddfcfaff4f13",
+    "ArtSource/Live16x24/stump-materials/source-cells.json": "adb8c44b849800b0444f151e826befddf932086546441971decbb833f0e61072",
+    "ArtSource/Live16x24/stump-materials/palette.json": "f96b1fad59e28134408f31b39774d5a10c611d23af3e3ff4ad222d55dbe7808e",
+    "ArtSource/Live16x24/stump-materials/import-spec.json": "c9086e3f047b3c67b242e8f316d7b1af4d49a91082504fa14516c1d98a977c47",
+    "ArtSource/Live16x24/stump-materials/manifest.json": "70f3de4562b79fd92d99fc9d687293d399a6132dd72d0ad59f1829d8fd1b11fb",
+    "ArtSource/Live16x24/stump-materials/contact-native.png": "47b20bacd1e2269d954a0ca58e4cdb96b50050772bae6ed9e08435c56b3b937f",
+    "ArtSource/Live16x24/stump-materials/contact-enlarged.png": "3c0e1da1a00f594edc2a300ea0cf52f72408bdf2b4fce158f559c5539c441d75",
+    "ArtSource/Live16x24/stump-materials/stump-materials.blend": "904b2106d152af0c556780f5af204749aabc8a0bbe4763f2f4a8412f3c8dae44",
+    "ArtSource/Live16x24/stump-materials/verification/source-green.json": "f6949d92dd5bfeddac4a790717ec506a74d7ececba7ebc600635ec82e5379d66",
+    "ArtSource/Live16x24/stump-materials/verification/corruption-counterchecks.json": "da96fbba273f573d6409003e033bd710a6293eba53d8834542435bcb26513536",
+    "ArtSource/Live16x24/stump-materials/verification/perimeter-preservation.json": "ee2e4ff0c88ed8a3ef9485a31b76291e50c84e99f1f614934e5f8b39269b19c2",
+    "ArtSource/Live16x24/stump-materials/verification/perimeter-native-rebuild-identity.json": "c6192e25636300d45cd962578289af9108979f4a1f648f80c05dc6e8ce595683",
+    "ArtSource/Live16x24/stump-materials/verification/perimeter-source-red.json": "24c61d3c6630e982896509ab28a7fb3e6a540401052a0f8823513c6cf03b79e0",
+    "ArtSource/Live16x24/stump-materials/verification/perimeter-source-plan.json": "8846075a901dd4b674e06d74322344c1d6e9aa1c97e19c4b2e00af071872620b"
+  }
+}

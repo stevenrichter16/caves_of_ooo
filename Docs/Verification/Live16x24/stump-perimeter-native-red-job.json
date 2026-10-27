@@ -1,0 +1,135 @@
+{
+  "job": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Test job started.\",\"error\":null,\"data\":{\"job_id\":\"9b1877f50b144af2ac09795e79ef086e\",\"status\":\"running\",\"mode\":\"EditMode\",\"include_details\":false,\"include_failed_tests\":true},\"hint\":null}"
+      }
+    ],
+    "structuredContent": {
+      "result": {
+        "success": true,
+        "message": "Test job started.",
+        "error": null,
+        "data": {
+          "job_id": "9b1877f50b144af2ac09795e79ef086e",
+          "status": "running",
+          "mode": "EditMode",
+          "include_details": false,
+          "include_failed_tests": true
+        },
+        "hint": null
+      }
+    },
+    "isError": false
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"9b1877f50b144af2ac09795e79ef086e\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1793103729549,\"finished_unix_ms\":1793103755611,\"last_update_unix_ms\":1793103755611,\"progress\":{\"completed\":111,\"total\":111,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1793103754912,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(\\\"second-source\\\")\",\"last_finished_unix_ms\":1793103754955,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ImportedSeventyOneFramesPreserveOriginalFamiliesAndRequireTheSelector\",\"message\":\"  Expected: 71\\n  But was:  26\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterAllSixteenMasksUseExactCardinalEdgesAndKeepReaderParity(\\\"TepuiWall\\\")\",\"message\":\"  TepuiWall exposed mask 1\\n  Expected: 26\\n  But was:  4\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterAllSixteenMasksUseExactCardinalEdgesAndKeepReaderParity(\\\"GrainRidge\\\")\",\"message\":\"  GrainRidge exposed mask 1\\n  Expected: 41\\n  But was:  6\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterAllSixteenMasksUseExactCardinalEdgesAndKeepReaderParity(\\\"StoneDome\\\")\",\"message\":\"  StoneDome exposed mask 1\\n  Expected: 56\\n  But was:  20\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterOnlySameFamilyCardinalBodiesJoin(\\\"TepuiWall\\\")\",\"message\":\"  TepuiWall exposed mask 15\\n  Expected: 40\\n  But was:  4\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterOnlySameFamilyCardinalBodiesJoin(\\\"GrainRidge\\\")\",\"message\":\"  GrainRidge exposed mask 15\\n  Expected: 55\\n  But was:  6\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterOnlySameFamilyCardinalBodiesJoin(\\\"StoneDome\\\")\",\"message\":\"  StoneDome exposed mask 15\\n  Expected: 70\\n  But was:  20\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterRealWallDestructionExposesItsNeighborsThroughTheExistingDirtyHook\",\"message\":\"  TepuiWall exposed mask 1\\n  Expected: 26\\n  But was:  4\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterSubmittedNeighborCoverAndUncoverRepaintWithoutFullRedrawOrStateChanges(\\\"TepuiWall\\\")\",\"message\":\"  TepuiWall exposed mask 1\\n  Expected: 26\\n  But was:  4\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterSubmittedNeighborCoverAndUncoverRepaintWithoutFullRedrawOrStateChanges(\\\"GrainRidge\\\")\",\"message\":\"  GrainRidge exposed mask 1\\n  Expected: 41\\n  But was:  6\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterSubmittedNeighborCoverAndUncoverRepaintWithoutFullRedrawOrStateChanges(\\\"StoneDome\\\")\",\"message\":\"  StoneDome exposed mask 1\\n  Expected: 56\\n  But was:  20\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor(\\\"TepuiWall\\\")\",\"message\":\"  hidden\\n  Expected: No Exception to be thrown\\n  But was:  <NUnit.Framework.AssertionException:   TepuiWall exposed mask 1\\n  Expected: 26\\n  But was:  4\\n\\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Perimeter (CavesOfOoo.Core.Entity owner, System.Int32 mask, System.Int32 x, System.Int32 y) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:483 \\n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests+<>c__DisplayClass80_0.<PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:539 \\n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor(\\\"GrainRidge\\\")\",\"message\":\"  hidden\\n  Expected: No Exception to be thrown\\n  But was:  <NUnit.Framework.AssertionException:   GrainRidge exposed mask 1\\n  Expected: 41\\n  But was:  6\\n\\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Perimeter (CavesOfOoo.Core.Entity owner, System.Int32 mask, System.Int32 x, System.Int32 y) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:483 \\n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests+<>c__DisplayClass80_0.<PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:539 \\n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor(\\\"StoneDome\\\")\",\"message\":\"  hidden\\n  Expected: No Exception to be thrown\\n  But was:  <NUnit.Framework.AssertionException:   StoneDome exposed mask 1\\n  Expected: 56\\n  But was:  20\\n\\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Perimeter (CavesOfOoo.Core.Entity owner, System.Int32 mask, System.Int32 x, System.Int32 y) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:483 \\n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests+<>c__DisplayClass80_0.<PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:539 \\n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \\n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterZoneEdgesNeverReadOrLoadAnotherZone(\\\"TepuiWall\\\")\",\"message\":\"  TepuiWall exposed mask 9\\n  Expected: 34\\n  But was:  4\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterZoneEdgesNeverReadOrLoadAnotherZone(\\\"GrainRidge\\\")\",\"message\":\"  GrainRidge exposed mask 9\\n  Expected: 49\\n  But was:  6\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterZoneEdgesNeverReadOrLoadAnotherZone(\\\"StoneDome\\\")\",\"message\":\"  StoneDome exposed mask 9\\n  Expected: 64\\n  But was:  20\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+      }
+    ],
+    "structuredContent": {
+      "result": {
+        "success": true,
+        "message": "Test job status retrieved.",
+        "error": null,
+        "data": {
+          "job_id": "9b1877f50b144af2ac09795e79ef086e",
+          "status": "failed",
+          "mode": "EditMode",
+          "started_unix_ms": 1793103729549,
+          "finished_unix_ms": 1793103755611,
+          "last_update_unix_ms": 1793103755611,
+          "progress": {
+            "completed": 111,
+            "total": 111,
+            "current_test_full_name": null,
+            "current_test_started_unix_ms": 1793103754912,
+            "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.WetLookingCellsCannotBypassExactSourceAndCoatingGuards(\"second-source\")",
+            "last_finished_unix_ms": 1793103754955,
+            "stuck_suspected": false,
+            "editor_is_focused": true,
+            "blocked_reason": null,
+            "failures_so_far": [
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.ImportedSeventyOneFramesPreserveOriginalFamiliesAndRequireTheSelector",
+                "message": "  Expected: 71\n  But was:  26\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterAllSixteenMasksUseExactCardinalEdgesAndKeepReaderParity(\"TepuiWall\")",
+                "message": "  TepuiWall exposed mask 1\n  Expected: 26\n  But was:  4\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterAllSixteenMasksUseExactCardinalEdgesAndKeepReaderParity(\"GrainRidge\")",
+                "message": "  GrainRidge exposed mask 1\n  Expected: 41\n  But was:  6\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterAllSixteenMasksUseExactCardinalEdgesAndKeepReaderParity(\"StoneDome\")",
+                "message": "  StoneDome exposed mask 1\n  Expected: 56\n  But was:  20\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterOnlySameFamilyCardinalBodiesJoin(\"TepuiWall\")",
+                "message": "  TepuiWall exposed mask 15\n  Expected: 40\n  But was:  4\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterOnlySameFamilyCardinalBodiesJoin(\"GrainRidge\")",
+                "message": "  GrainRidge exposed mask 15\n  Expected: 55\n  But was:  6\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterOnlySameFamilyCardinalBodiesJoin(\"StoneDome\")",
+                "message": "  StoneDome exposed mask 15\n  Expected: 70\n  But was:  20\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterRealWallDestructionExposesItsNeighborsThroughTheExistingDirtyHook",
+                "message": "  TepuiWall exposed mask 1\n  Expected: 26\n  But was:  4\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterSubmittedNeighborCoverAndUncoverRepaintWithoutFullRedrawOrStateChanges(\"TepuiWall\")",
+                "message": "  TepuiWall exposed mask 1\n  Expected: 26\n  But was:  4\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterSubmittedNeighborCoverAndUncoverRepaintWithoutFullRedrawOrStateChanges(\"GrainRidge\")",
+                "message": "  GrainRidge exposed mask 1\n  Expected: 41\n  But was:  6\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterSubmittedNeighborCoverAndUncoverRepaintWithoutFullRedrawOrStateChanges(\"StoneDome\")",
+                "message": "  StoneDome exposed mask 1\n  Expected: 56\n  But was:  20\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor(\"TepuiWall\")",
+                "message": "  hidden\n  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   TepuiWall exposed mask 1\n  Expected: 26\n  But was:  4\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Perimeter (CavesOfOoo.Core.Entity owner, System.Int32 mask, System.Int32 x, System.Int32 y) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:483 \n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests+<>c__DisplayClass80_0.<PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:539 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor(\"GrainRidge\")",
+                "message": "  hidden\n  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   GrainRidge exposed mask 1\n  Expected: 41\n  But was:  6\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Perimeter (CavesOfOoo.Core.Entity owner, System.Int32 mask, System.Int32 x, System.Int32 y) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:483 \n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests+<>c__DisplayClass80_0.<PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:539 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor(\"StoneDome\")",
+                "message": "  hidden\n  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   StoneDome exposed mask 1\n  Expected: 56\n  But was:  20\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.Perimeter (CavesOfOoo.Core.Entity owner, System.Int32 mask, System.Int32 x, System.Int32 y) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:483 \n  at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests+<>c__DisplayClass80_0.<PerimeterUndisclosedCoveredOrInvalidNeighborsEqualAnAbsentNeighbor>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:539 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterZoneEdgesNeverReadOrLoadAnotherZone(\"TepuiWall\")",
+                "message": "  TepuiWall exposed mask 9\n  Expected: 34\n  But was:  4\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterZoneEdgesNeverReadOrLoadAnotherZone(\"GrainRidge\")",
+                "message": "  GrainRidge exposed mask 9\n  Expected: 49\n  But was:  6\n"
+              },
+              {
+                "full_name": "CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.PerimeterZoneEdgesNeverReadOrLoadAnotherZone(\"StoneDome\")",
+                "message": "  StoneDome exposed mask 9\n  Expected: 64\n  But was:  20\n"
+              }
+            ],
+            "failures_capped": false
+          },
+          "error": null,
+          "result": null
+        },
+        "hint": null
+      }
+    },
+    "isError": false
+  }
+}

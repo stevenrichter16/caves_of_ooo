@@ -1,0 +1,111 @@
+{
+  "status": "actual BEFORE gameplay survey; native Stump kit pending",
+  "sourceCommit": "00959edf0f7a154acf03fd8e521326099d652414",
+  "deliveryEvidenceCommit": "587837b255e90fc642adef38291483c5de09b782",
+  "input": "ordinary keyboard Continue, WorldMap travel, descent, local movement, C/Left/X examine, F5",
+  "interventions": "isolated save-root fixture only; no spawns, teleports, stock edits, state manipulation, HUD/image alteration",
+  "route": [
+    "Overwrit4,12 at75,18 turn6250",
+    "world Left2 Up7 -> Stump2,5 CascadeGorge",
+    "Up3 -> Stump2,2 Grainfield",
+    "Right2 Down3 -> Stump4,5 ButtressRidge",
+    "Left Up -> Stump3,4 SummitScrub",
+    "Left Up -> Stump2,3 RimForest",
+    "local Left3 Up ->37,11; examine tank36,11; close; F5"
+  ],
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/stump-before-01-cascade-gorge.png",
+      "bytes": 67592,
+      "sha256": "432b67e7307edc83daa0c63b0da7d0f937f9557d38407c85a6c5f5121bf3e963"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-before-02-grainfield.png",
+      "bytes": 56994,
+      "sha256": "583a779dd1147b1a39798bbe8b1978a224d2da8b8a6ab772e2fd1a1ae00335a1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-before-03-buttress-ridge.png",
+      "bytes": 50394,
+      "sha256": "af7520eae3defcf061ce42696f5e94cf3dde71d0839bfcad594e54a46de2fcba"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-before-04-summit-scrub.png",
+      "bytes": 54131,
+      "sha256": "951c7f12e6dd2ceae73a186e1ffb0e4e2765325d5ae30806f4650b11b288b95d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-before-05-rim-forest.png",
+      "bytes": 57811,
+      "sha256": "1e5f50f839f3f82637b5335a45f9fd3a6acd476fe12fd0322a8529b7fa47a09f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-before-06-tank-reader.png",
+      "bytes": 57859,
+      "sha256": "3ec594bc9ff39806de9dab3bb694123d099177e5d1df4531dc2e484e64572e84"
+    }
+  ],
+  "ownerCensus": {
+    "path": "Docs/Verification/Live16x24/stump-before-owner-census.json",
+    "bytes": 193799,
+    "sha256": "6d5b06b613770607d78c0117d29f2338b342576114288358f532fe55e71a61ec"
+  },
+  "earnedCheckpoint": {
+    "header": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.2.3.0",
+      "ActiveZoneDisplayLabel": "Overworld.2.3.0",
+      "Turn": 6810,
+      "SaveTimestampUtc": "2026-10-27T11:34:12.3960760Z",
+      "HPSummary": "38/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "files": [
+      {
+        "path": "Docs/Verification/Live16x24/Fixtures/stump-before66/Quick.json",
+        "bytes": 407,
+        "sha256": "abb8acbd33e4cbe6720b44aa7dec0f8d8d12236e2df790b371d775aeaa0f5395"
+      },
+      {
+        "path": "Docs/Verification/Live16x24/Fixtures/stump-before66/Quick.sav.gz",
+        "bytes": 1435652,
+        "sha256": "1a03c6647793e07179c85d521d65f4c5024aa069147163cee17385baf068875a"
+      }
+    ]
+  },
+  "sessionRestoration": {
+    "savePendingBeforeFinish": false,
+    "archive": "/private/tmp/coo-stump-baseline-archived-4fc73aaf",
+    "play": false,
+    "saveRootOverride": null,
+    "scene": "Assets/Scenes/Main/SampleScene.unity",
+    "sceneDirty": false,
+    "normalEditorSavesEqual": true,
+    "normalStandaloneSavesEqual": true,
+    "foreign38ChangesEqual": true,
+    "freeBytes": 429555736576,
+    "deletedFiles": []
+  },
+  "honesty": {
+    "verified": [
+      "current actual graph identity in five native owner censuses",
+      "ordinary travel and material fallback visibility",
+      "tank examine via controls",
+      "earned checkpoint turn6810 HP38",
+      "source and save preservation"
+    ],
+    "notVerified": [
+      "Stump native integration",
+      "drink,draw,depletion or harvest through controls",
+      "all18 ordinary addresses",
+      "full80-column chunk composition",
+      "Stump packaged delivery or physical Steam Deck"
+    ]
+  }
+}

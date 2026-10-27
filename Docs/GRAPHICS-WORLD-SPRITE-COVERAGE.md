@@ -801,3 +801,196 @@ and eight owner families**, then concept/native/integration gates; none is yet
 accepted as Stump native coverage. Overwrit crop/soil/stair and centered
 Pilgrimage fullness remain unfinished. Preserve the all-biome/area queue and
 defer nuanced animation. Earlier report times above are historical.
+
+
+## Stump actual before survey and next production gate — 2026-10-27 11:40 UTC
+
+**Overwrit delivery/evidence commit
+`587837b255e90fc642adef38291483c5de09b782` is verified on origin/main**, alongside
+source `00959edf0`. Its prior pending evidence-push statements are now historical.
+The current delivered Mac/Linux package remains that bounded Overwrit release.
+
+Stump's ordinary-controls **BEFORE survey now covers all five formation roles**:
+CascadeGorge2,5; Grainfield2,2; ButtressRidge4,5; SummitScrub3,4; RimForest2,3.
+The [actual census](Verification/Live16x24/stump-before-owner-census.json) binds
+all five to current graphs without saved lairs, HP38, and2,000TepuiStone owners
+per area. The six `stump-before-01..06` PNGs comprise five world views plus the
+real tank reader. [Independent composition review](Verification/Live16x24/stump-before-composition-review.md)
+finds distinct existing landform structure obscured by glyphs; it does not
+justify arbitrary added density. SummitScrub's exposed center is the strongest
+current fullness risk, to reassess after truthful native materials.
+
+The earned `Verification/Live16x24/Fixtures/stump-before66` checkpoint is
+**turn6810,RimForest2,3,player37,11,HP38**. TankBrocchinia36,11 was approached and
+examined; no drinking or harvesting action has yet been verified. Gorge pools,
+Grainfield gaps, Buttress fingers, Summit domes and RimForest vegetation/crack
+remain actual geometry to preserve. Centered views show59of80columns, not every
+80×25 cell or all18 ordinary source candidates. Actors, crops/soil, hazards,
+stairs, props and special sites remain explicit gaps.
+
+The [Stump implementation plan](GRAPHICS-STUMP-MATERIALS.md) defines eight new
+owner families and two exact unchanged Tree/Bush sprite reuses. Native source
+and meaningful RED-test preparation are now underway. Conceptv1 was rejected
+for3D/elevation and cactus imagery; v2 contributes only palette/quiet-ground
+direction, with changed placements and HUD rejected. **No Stump native runtime
+integration, test pass, after-view, fullness or package acceptance is claimed.**
+Proceed through genuine native RED, bounded integration, GREEN and matched
+five-formation actual travel/state/restart review. Keep Overwrit crop/soil/stair
+and Pilgrimage-fullness follow-up, then Grovelands actors and the all-world queue;
+nuanced animation remains deferred.
+
+Root archived the owned save session at
+`/private/tmp/coo-stump-baseline-archived-4fc73aaf` and finished isolation; Unity
+was idle/clean in SampleScene with no owned root. Normal saves and38 foreign
+files were unchanged; approximately429.56GB free was reported, with no deletion.
+This is protection evidence, not authorization for storage cleanup. **No new
+hourly report is recorded: last11:27UTC,next12:27UTC remain unchanged.**
+
+
+## 2026-10-27 Stump perimeter continuation — native GREEN, final gameplay pending
+
+The current Stump material slice is integrated but is **not yet accepted for
+final gameplay or delivery**. Its 71-cell native atlas covers eight material
+owners, with two unchanged Tree/Bush reuses. The 26 palette-v2 cells are retained;
+45 appended cells give the three solid families restrained connected perimeters.
+The atlas SHA256 is
+`fd33497368615b60f09ccc2d16efe25dd0033370034c95ce93fe0445bb2af7f1`.
+
+Genuine perimeter RED retained **111 cases:94 passed,17 failed**. The subsequent
+native run at12:29:02–12:30:00UTC passed **663 distinct cases:111 Stump
+(92 original plus19 perimeter) and552 related**, with no failures, skips or
+inconclusive results. Evidence is
+`Docs/Verification/Live16x24/stump-perimeter-related-green.xml` (SHA256
+`ee0a5cca8aa3fa3ec40e52a1d263f68e69ab97d016af917b087410b4a5538ba3`).
+The earlier92-case RED/candidate GREEN and644-case related GREEN remain history;
+these overlapping runs are not added together.
+
+Actual initial five-formation trials failed stone/floor color and collision
+readability. Palette-v2 repaired color in two views, but solid domes/ridges still
+read as floor patches; a normal blocked bump toward StoneDome44,9 preserved
+player44,10 andHP38. The real tank reader/drink trial is recorded. The current
+perimeter revision addresses that named visual defect; its final five-view
+comparison, ordinary state/harvest checks, profile and fresh Continue remain
+pending. See `Docs/Verification/Live16x24/stump-trial-composition-review.md`,
+`stump-trial-gameplay-receipt.json` and `stump-palette-v2-gameplay-receipt.json`
+under the same verification directory, and `Docs/GRAPHICS-STUMP-MATERIALS.md`.
+
+The user played during the first final session. Root saved turn7640 with F5 and
+reports all six files persistently backed up and verified. Those interrupted
+captures/profile are **nonacceptance evidence**. Root is restarting the unchanged
+earned6810 fixture at `Docs/Verification/Live16x24/Fixtures/stump-before66` for
+a clean review; the user's progress must remain protected. No new source commit
+or package is claimed. The delivered Overwrit source remains
+`00959edf0f7a154acf03fd8e521326099d652414`, with delivery/evidence
+`587837b255e90fc642adef38291483c5de09b782` verified on main.
+
+Next: complete corrected material gameplay/delivery, then the nine source-grounded
+Stump fauna identities in `Docs/GRAPHICS-STUMP-FAUNA.md` (eighteen census encounters;
+preflight only), followed by Grovelands actors and the remaining all-world queue.
+Overwrit crop/soil/stair and Pilgrimage composition gaps, other actors, props,
+hazards, settlements, underground and special sites remain open. No generation
+density change or whole-biome/fullness acceptance is inferred from tests or
+partial views. Nuanced animation remains deferred. Completed trial isolation
+preserved normal saves and38 foreign files; no storage cleanup or source deletion
+was performed.
+
+**Last actual hourly report:12:27UTC; next due:13:27UTC.** The later native result
+updates current evidence only; this entry does not claim another report was sent.
+
+
+## 2026-10-27 Stump clean material checkpoint — source and packages pending
+
+The corrected 71-frame material kit now has a **bounded clean Editor integration
+checkpoint**. Root traversed all five formations through ordinary controls:
+RimForest (`stump-final-01`), SummitScrub (`05`), ButtressRidge (`07`), Grainfield
+(`08`) and CascadeGorge (`18`). These are five actual formation views, not all
+18 eligible addresses or full 80×25 chunk acceptance. Consolidated evidence is
+`Docs/Verification/Live16x24/stump-final-gameplay-receipt.json`; all20 final
+captures are in that verification directory. The earlier interrupted session
+remains excluded, with the user's separately backed-up turn7640 progress protected.
+
+Actual tank reader/drink is shown in final03/04. A normal Up bump at44,10 toward
+the dome kept44,10 andHP38. At Grainfield35,18, ordinary harvesting removed the
+vein and yielded **Tepuibone ID69509,count1**; final16 inventory and17 reader
+verify the selected native product. Interim inventory-navigation images do not
+establish that product acceptance. The Gorge route crossed wet39,11 towet43,11,
+then dry DescentLedge43,12, retainingHP38. F5 saved
+`Docs/Verification/Live16x24/Fixtures/stump-final68` atturn7360. Fresh-session
+Continue in final20 restored43,12, HP38, the same product/count and the removed
+vein. Root's decoded RGB comparison of the world viewport `(0,40,940,640)` in
+final19/20 is equal, as recorded in the receipt.
+
+Native663/663 remains the current test result. The final Editor profile covers
+56.10377seconds with11,607 valid samples for each of four counters and no capacity
+overflow (`stump-final-profile.json`). It includes MCP/capture overhead and has no
+matched performance baseline: it is not an optimization, build-FPS, GPU, Linux or
+physical Deck claim.
+
+`Docs/Verification/Live16x24/stump-final-composition-review.md` records the bounded
+material checkpoint. Full regional polish remains open: dome blocking semantics
+are still subtle, Summit composition is sparse, and glyph actors/black-backed
+effects still interrupt native coverage. No generation density change or complete
+biome/fullness claim is made. **Exact main push and fresh packages are next**;
+source commit is not yet assigned and the current delivered package remains
+Overwrit00959edf0/evidence587837b. Final-session restoration is root-owned and is
+not inferred solely from gameplay completion.
+
+After material delivery, continue the nine-identity Stump fauna plan in
+`Docs/GRAPHICS-STUMP-FAUNA.md`, then Grovelands actors and all remaining world
+families. Keep Overwrit crop/soil/stair/Pilgrimage and every settlement,
+underground, special-site and whole-scene composition gap visible. Nuanced
+animation remains deferred. **Last actual hourly report remains12:27UTC;
+next due13:27UTC.** No new hourly report or storage cleanup is claimed here.
+
+
+## Explicit user requirement — separate all-world polish phase
+
+The user requires a **serious biome-by-biome and area-by-area polish pass after
+broad sprite coverage**. This is a separate required phase, not a synonym for
+sprite integration. Current material checkpoints, native-test totals, package
+verification and asset counts do not establish polished areas. The current
+coverage order stays in place: finish the Stump material delivery, fill the
+planned Stump fauna and Grovelands actor gaps, and continue missing families
+through every biome/area. Optional nuanced animation does not come first.
+
+The dedicated pass must review each ordinary formation, settlement and real
+interior, underground/depth/layout role, lair, opening-journey area and special
+site as its own scope. At normal gameplay zoom, inspect the whole traversable
+chunk through multiple real views. Dense sections and intentionally quiet
+sections must both have coherent composition, readable routes and a deliberate
+visual identity; neither random clutter nor a density number proves quality.
+Review silhouettes, palette, scale and materials; landmarks, interiors,
+services, entrances, stairs and hazards; neighboring-area transitions; FOV,
+occlusion and remembered cells; essential state changes; and the same owner's
+world/inventory/examine identity. Preserve saves and real gameplay systems.
+
+Each area requires actual before/after captures with seed, zone, zoom, route,
+state and source revision; normal control/interaction checks; an honestly
+scoped profile; and relevant regressions. Independent visual review should
+assess the result where practical. Acceptance remains bounded to the actual
+views, states, routes and platforms tested. Atlas counts, concepts, contact
+sheets and tests alone cannot replace this evidence.
+
+Track polish independently in
+`ArtSource/Live16x24/world-sprite-coverage.json` using these states:
+
+- **not_audited**: the dedicated review for this exact scope has not happened.
+- **in_progress**: actual review or a named correction is underway.
+- **reviewed**: findings and evidence are recorded, but unresolved defects remain.
+- **bounded_accepted**: the named area/state/route meets the gate with explicit
+  evidence and limits; other areas and the biome as a whole remain separate.
+
+Every biome and area needs its own state, named defects and disposition.
+Concrete zone/depth/interior instances must be expanded from the source-grounded
+inventory before acceptance; unexpanded and unknown coverage remains explicit.
+Open-ended generated areas require bounded variants and retained unknowns,
+not a claim that every possible seed was visited. The new phase is **not
+complete or retrospectively accepted**. Prior bounded material receipts remain
+valid without being promoted to polish acceptance.
+
+Known actual priorities include sparse SummitScrub composition and subtle
+blocking-dome cues in Stump, plus remaining glyph actors/black-backed effects.
+Overwrit crop/soil/stair and centered Pilgrimage composition gaps remain open;
+its deliberately quiet aesthetic does not exempt it from polish review. These
+named defects must survive the coverage handoff into the dedicated polish pass.
+The current12:27UTC hourly report and13:27UTC next-report clock are unchanged.

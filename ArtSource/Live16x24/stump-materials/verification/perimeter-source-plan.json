@@ -1,0 +1,48 @@
+{
+  "status": "Planning only; root stopped Play but native runtime RED still pending. No new atlas generated.",
+  "currentFrameCount": 26,
+  "targetFrameCount": 71,
+  "targetDimensions": [
+    1136,
+    24
+  ],
+  "preserveFirst26FramesExactly": true,
+  "existingPaletteOnly": true,
+  "geometryRule": "For each new frame, copy its family base and replace only pixels on the exposed N/E/S/W outermost edges. No extrusion or transparent halo. No inset borders.",
+  "maskBits": {
+    "N": 1,
+    "E": 2,
+    "S": 4,
+    "W": 8
+  },
+  "sourceCoordinates": "Top-left x right/y down: N row0, E column15, S row23, W column0. Runtime world-direction mapping must be verified independently.",
+  "groups": [
+    {
+      "family": "TepuiWall",
+      "baseFrame": 4,
+      "firstMaskFrame": 26,
+      "lastMaskFrame": 40,
+      "light": "wall-light",
+      "dark": "wall-grain"
+    },
+    {
+      "family": "GrainRidge",
+      "baseFrame": 6,
+      "firstMaskFrame": 41,
+      "lastMaskFrame": 55,
+      "light": "ridge-light",
+      "dark": "ridge-grain"
+    },
+    {
+      "family": "StoneDome",
+      "baseFrame": 20,
+      "firstMaskFrame": 56,
+      "lastMaskFrame": 70,
+      "light": "dome-light",
+      "dark": "dome-grain"
+    }
+  ],
+  "maskZero": "No appended frame; runtime retains existing interior pair/variant selection.",
+  "edgeColorRule": "N/W use existing family light; E/S use existing family grain. Apply N,W,E,S in that order so E/S dominate shared corners.",
+  "acceptance": "Source native/contact pixel checks, all45 edge-only contracts, original26 pixel/geometry preservation, meaningful mask corruption counterchecks, fresh rebuild identity, then root actual gameplay comparison. No filled props or new density."
+}

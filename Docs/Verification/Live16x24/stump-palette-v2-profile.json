@@ -1,0 +1,56 @@
+{
+  "startedUtc": "2026-10-27T12:13:17.49265Z",
+  "endedUtc": "2026-10-27T12:15:52.599541Z",
+  "seconds": 155.106892,
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "unit": "TimeNanoseconds",
+      "count": 13643,
+      "mean": 79871.17642747196,
+      "max": 803792,
+      "p95": 117167,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-palette-v2-profile-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "valid": true,
+      "unit": "TimeNanoseconds",
+      "count": 13643,
+      "mean": 10493.470864179433,
+      "max": 68125,
+      "p95": 17708,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-palette-v2-profile-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "unit": "TimeNanoseconds",
+      "count": 13643,
+      "mean": 1564728.4023308656,
+      "max": 1470305000,
+      "p95": 1773750,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-palette-v2-profile-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "valid": true,
+      "unit": "Bytes",
+      "count": 13643,
+      "mean": 64282.82584475555,
+      "max": 137223223,
+      "p95": 354561,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-palette-v2-profile-3.csv"
+    }
+  ],
+  "bound": "Editor ordinary controls plus MCP/capture overhead; no pre-change same-route baseline, isolated renderer attribution, build FPS, GPU, Linux or physical Deck claim."
+}

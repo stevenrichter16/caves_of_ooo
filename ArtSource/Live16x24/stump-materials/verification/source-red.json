@@ -1,0 +1,8 @@
+{
+  "atUtc": "2026-10-27T11:44:16.072597+00:00",
+  "expectedMissingOutputRed": true,
+  "returnCode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/steven/caves-of-ooo/Tools/Live16x24/build_stump_materials.py\", line 340, in <module>\n    elif '--verify' in sys.argv: verify()\n                                 ^^^^^^^^\n  File \"/Users/steven/caves-of-ooo/Tools/Live16x24/build_stump_materials.py\", line 231, in verify\n    source=json.loads((OUT/'source-cells.json').read_text())\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py\", line 1027, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/Live16x24/stump-materials/source-cells.json'\n",
+  "scope": "Verifier run before native generation; not Unity or runtime tests."
+}

@@ -1,5 +1,14 @@
 # The Stump: grain, spray and petrified canopy
 
+**2026-10-27 current-source correction:** The completion statement below records
+the older voxel presentation, not the new flat 16×24 graphics. Current
+`Objects.json` gives `SprayPool` a real water `LiquidPool` (initial volume 40);
+its remaining owner projects permanent water even at zero draw stock.
+`TankBrocchinia` now has the working `Well` service without a finite pool or
+projected wet floor. The two earlier water claims below are historical and
+superseded. Preserve current mechanics. Flat material coverage and its actual
+gameplay gates are tracked in [GRAPHICS-STUMP-MATERIALS.md](GRAPHICS-STUMP-MATERIALS.md).
+
 Status: complete and verified, 2026-09-14. All 18 ordinary
 Stump chunks, five formations and 56 voxel models are integrated. ST25 passes
 363/363 targeted checks, including 148 new cases. ST26 finishes 12,230/12,262 passing, with the same 32 baseline failures and zero C# errors.
@@ -41,8 +50,8 @@ stamps and props. This uses cloned local stamps, not a modified shared catalog.
 | Premise | Verified contract and decision |
 |---|---|
 | Stump has 21 authored cells | Current map has 22; the southern root spur is an existing authored pilot, not new wilderness. Final eligible count is 18. |
-| Pools imply drinkable/permanent water | SprayPool has Water material and examine text only. Preserve this native identity; no invented LiquidPool or wetness lease. |
-| Tanks are usable water sources | TankBrocchinia is walkable vegetation and real Sentinel cover; drinking/study/inoculation are W6 debt. |
+| Pools imply drinkable/permanent water | Historical initial pass: Water material/examine only. Superseded by the current LiquidPool and permanent-water contract in the correction above. |
+| Tanks are usable water sources | Historical initial pass: walkable vegetation/Sentinel cover only. Current Well drinking is implemented; do not treat that action as still-unimplemented W6 debt. |
 | Reserving habitats protects ecology | PopulationBuilder excludes all reserved cells before habitat filtering. Temporarily expose only protected walkable habitat cells to the existing band population pass, then restore reservations before later dressing. Never bypass flag rolls or synthesize fauna. |
 | Existing summit terrain supports both endemics | Scrub lacks Tree; RimForest lacks tanks. Every new summit plan must supply both, with native eligible open cells. |
 | All rock scenery is destructible | TepuiWall has HP40/hardness3 and yields Rubble. GrainRidge and StoneDome have no Destructible. Retain current behavior and do not claim universal destruction. |
@@ -145,7 +154,7 @@ art/metadata files remain byte-identical apart from the expanded library asset.
 
 | Design boundary | Current scope |
 |---|---|
-| Original connected spray ribbon | Replaced after visual RED by three intact unequal basins with dry necks. SprayPool still has no LiquidPool or TileStateSource. |
+| Original connected spray ribbon | Replaced after visual RED by three intact unequal basins with dry necks. The original no-LiquidPool claim is superseded by the current-source correction above. |
 | Individually capped domes and crosswise grain rails | Replaced after art RED by full-cell slabs whose native footprint and neighbor heights define the larger form. |
 | Uniform summit tanks | Exactly eight tanks cluster within two cells of scrub domes or three cells of rim trees in the tested plans; both formations retain Singer trees and Sentinel cover. |
 | Universal object destruction | Not added. Native destructibility, harvestability and non-destructible terrain remain explicit. |

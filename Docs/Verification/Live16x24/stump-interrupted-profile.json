@@ -1,0 +1,56 @@
+{
+  "startedUtc": "2026-10-27T12:32:07.444034Z",
+  "endedUtc": "2026-10-27T12:35:45.682945Z",
+  "seconds": 218.238912,
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "unit": "TimeNanoseconds",
+      "count": 5354,
+      "mean": 100015.7837131117,
+      "max": 2995916,
+      "p95": 178291,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-interrupted-profile-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "valid": true,
+      "unit": "TimeNanoseconds",
+      "count": 5354,
+      "mean": 217310.4986925663,
+      "max": 1097877125,
+      "p95": 25417,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-interrupted-profile-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "unit": "TimeNanoseconds",
+      "count": 5354,
+      "mean": 2545304.2665296975,
+      "max": 1351870250,
+      "p95": 3115542,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-interrupted-profile-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "valid": true,
+      "unit": "Bytes",
+      "count": 5354,
+      "mean": 116215.26036608143,
+      "max": 425424434,
+      "p95": 20301,
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/stump-interrupted-profile-3.csv"
+    }
+  ],
+  "bound": "NOT an acceptance profile: user and agent input overlapped during this session. User confirmed they were playing; retain raw values only as mixed activity evidence."
+}

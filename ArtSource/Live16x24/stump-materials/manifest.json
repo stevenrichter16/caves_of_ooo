@@ -1,0 +1,2182 @@
+{
+  "schema": 1,
+  "resource": "Sprites/Live16x24/stump-materials",
+  "atlas": "Assets/Resources/Sprites/Live16x24/stump-materials.png",
+  "atlasSha256": "fd33497368615b60f09ccc2d16efe25dd0033370034c95ce93fe0445bb2af7f1",
+  "width": 1136,
+  "height": 24,
+  "frameCount": 71,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "source": "stump-materials.blend",
+  "generator": "Tools/Live16x24/build_stump_materials.py",
+  "scope": "Eight exact Stump source families. Original26 palette-v2 cells preserved;45 exposed-edge frames appended for actual disclosed boundaries. Approved Tree/Bush borrowed unchanged by runtime. Actual Unity comparison pending root.",
+  "pngMetadata": "Only volatile cycles.*_time text chunks removed; original IDAT/pixels and color metadata retained.",
+  "conceptReferences": [
+    {
+      "path": "ArtSource/Live16x24/stump-materials/concepts/concept-v1.png",
+      "sha256": "fb47cd39aa9d1b70a2831a16d4963ca2d6c517f6c937f46627dd958ecf49981e"
+    },
+    {
+      "path": "ArtSource/Live16x24/stump-materials/concepts/concept-v2.png",
+      "sha256": "8e64717360621024630c60ae9219a670ef05b0997cec201fa1c3810e4fac081e"
+    }
+  ],
+  "rejectedConceptFeatures": [
+    "extruded walls",
+    "changed source positions/HUD/actor",
+    "barrel/cactus tanks",
+    "oversized domes",
+    "dense dotted ground"
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "id": "quiet-pink-stone-0",
+      "blueprint": "TepuiStone",
+      "description": "Quiet worn pink-grey stone plane. Rare shallow fossil grain; no dot carpet, raised rubble or tile border.",
+      "state": {
+        "variant": 0,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        0,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 1,
+      "id": "quiet-pink-stone-1",
+      "blueprint": "TepuiStone",
+      "description": "Quiet worn pink-grey stone plane. Rare shallow fossil grain; no dot carpet, raised rubble or tile border.",
+      "state": {
+        "variant": 1,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        16,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 2,
+      "id": "quiet-pink-stone-2",
+      "blueprint": "TepuiStone",
+      "description": "Quiet worn pink-grey stone plane. Rare shallow fossil grain; no dot carpet, raised rubble or tile border.",
+      "state": {
+        "variant": 2,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        32,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 3,
+      "id": "quiet-pink-stone-3",
+      "blueprint": "TepuiStone",
+      "description": "Quiet worn pink-grey stone plane. Rare shallow fossil grain; no dot carpet, raised rubble or tile border.",
+      "state": {
+        "variant": 3,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        48,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 4,
+      "id": "stone-shoulder-0",
+      "blueprint": "TepuiWall",
+      "description": "Opaque low stone shoulder field. Real owner boundaries define the connected outcrop; no extrusion or brick joints.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true
+      },
+      "unityRect": [
+        64,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 5,
+      "id": "stone-shoulder-1",
+      "blueprint": "TepuiWall",
+      "description": "Opaque low stone shoulder field. Real owner boundaries define the connected outcrop; no extrusion or brick joints.",
+      "state": {
+        "variant": 1,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true
+      },
+      "unityRect": [
+        80,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 6,
+      "id": "petrified-grain-mass-0",
+      "blueprint": "GrainRidge",
+      "description": "Connected opaque petrified wood-grain stone. Majority quiet field; sparse east-west fragments, never repeated rails or individual boulders.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        96,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 7,
+      "id": "petrified-grain-mass-1",
+      "blueprint": "GrainRidge",
+      "description": "Connected opaque petrified wood-grain stone. Majority quiet field; sparse east-west fragments, never repeated rails or individual boulders.",
+      "state": {
+        "variant": 1,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        112,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 8,
+      "id": "petrified-grain-mass-2",
+      "blueprint": "GrainRidge",
+      "description": "Connected opaque petrified wood-grain stone. Majority quiet field; sparse east-west fragments, never repeated rails or individual boulders.",
+      "state": {
+        "variant": 2,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        128,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 9,
+      "id": "petrified-grain-mass-3",
+      "blueprint": "GrainRidge",
+      "description": "Connected opaque petrified wood-grain stone. Majority quiet field; sparse east-west fragments, never repeated rails or individual boulders.",
+      "state": {
+        "variant": 3,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        144,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 10,
+      "id": "passable-low-shelf-0",
+      "blueprint": "DescentLedge",
+      "description": "Thin flat shelf laid on real ground. No vertical face, tall cliff, stairs, arrow or promised drop.",
+      "state": {
+        "variant": 0,
+        "solid": false,
+        "opaque": false
+      },
+      "unityRect": [
+        160,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 11,
+      "id": "passable-low-shelf-1",
+      "blueprint": "DescentLedge",
+      "description": "Thin flat shelf laid on real ground. No vertical face, tall cliff, stairs, arrow or promised drop.",
+      "state": {
+        "variant": 1,
+        "solid": false,
+        "opaque": false
+      },
+      "unityRect": [
+        176,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 12,
+      "id": "available-spray-water-0",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 0,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume > 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        192,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 13,
+      "id": "available-spray-water-1",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 1,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume > 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        208,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 14,
+      "id": "available-spray-water-2",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 2,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume > 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        224,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 15,
+      "id": "available-spray-water-3",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 3,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume > 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        240,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 16,
+      "id": "empty-still-wet-0",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 0,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume == 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        256,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 17,
+      "id": "empty-still-wet-1",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 1,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume == 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        272,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 18,
+      "id": "empty-still-wet-2",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 2,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume == 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        288,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 19,
+      "id": "empty-still-wet-3",
+      "blueprint": "SprayPool",
+      "description": "Continuous cool wet surface with sparse muted reflections. Zero draw stock still has actual water; no dry bed or separate tile bowl.",
+      "state": {
+        "variant": 3,
+        "solid": false,
+        "opaque": true,
+        "volumeRule": "Volume == 0",
+        "stillWet": true,
+        "quietBaseWeight": 75
+      },
+      "unityRect": [
+        304,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 20,
+      "id": "smooth-dome-mass-0",
+      "blueprint": "StoneDome",
+      "description": "Low connected smooth dome surface. Rounded actual owner clusters supply the outer silhouette; no per-tile capped cylinder or stacked 3D boulder.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true
+      },
+      "unityRect": [
+        320,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 21,
+      "id": "smooth-dome-mass-1",
+      "blueprint": "StoneDome",
+      "description": "Low connected smooth dome surface. Rounded actual owner clusters supply the outer silhouette; no per-tile capped cylinder or stacked 3D boulder.",
+      "state": {
+        "variant": 1,
+        "solid": true,
+        "opaque": true
+      },
+      "unityRect": [
+        336,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 22,
+      "id": "broad-living-tank-0",
+      "blueprint": "TankBrocchinia",
+      "description": "Compact broad living leaf cup with contained dark water. Low asymmetric bromeliad, not a barrel, cactus, crop or depleted finite pool.",
+      "state": {
+        "variant": 0,
+        "solid": false,
+        "opaque": false,
+        "well": true,
+        "finiteStock": false
+      },
+      "unityRect": [
+        352,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 23,
+      "id": "broad-living-tank-1",
+      "blueprint": "TankBrocchinia",
+      "description": "Compact broad living leaf cup with contained dark water. Low asymmetric bromeliad, not a barrel, cactus, crop or depleted finite pool.",
+      "state": {
+        "variant": 1,
+        "solid": false,
+        "opaque": false,
+        "well": true,
+        "finiteStock": false
+      },
+      "unityRect": [
+        368,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 24,
+      "id": "pale-stone-wood-vein-0",
+      "blueprint": "TepuiboneVein",
+      "description": "Pale mineral seam in a low angular stone-wood source. Larger than its carried chip; no depleted node after successful harvest.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": false,
+        "unharvested": true,
+        "yieldBlueprint": "Tepuibone"
+      },
+      "unityRect": [
+        384,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 25,
+      "id": "pale-stone-wood-vein-1",
+      "blueprint": "TepuiboneVein",
+      "description": "Pale mineral seam in a low angular stone-wood source. Larger than its carried chip; no depleted node after successful harvest.",
+      "state": {
+        "variant": 1,
+        "solid": true,
+        "opaque": false,
+        "unharvested": true,
+        "yieldBlueprint": "Tepuibone"
+      },
+      "unityRect": [
+        400,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "id": "wall-exposed-boundary-1",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 1,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        416,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 27,
+      "id": "wall-exposed-boundary-2",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 2,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        432,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 28,
+      "id": "wall-exposed-boundary-3",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 3,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        448,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 29,
+      "id": "wall-exposed-boundary-4",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 4,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        464,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 30,
+      "id": "wall-exposed-boundary-5",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 5,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        480,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 31,
+      "id": "wall-exposed-boundary-6",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 6,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        496,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 32,
+      "id": "wall-exposed-boundary-7",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 7,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        512,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 33,
+      "id": "wall-exposed-boundary-8",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 8,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        528,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 34,
+      "id": "wall-exposed-boundary-9",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 9,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        544,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 35,
+      "id": "wall-exposed-boundary-10",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 10,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        560,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 36,
+      "id": "wall-exposed-boundary-11",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 11,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        576,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 37,
+      "id": "wall-exposed-boundary-12",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 12,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        592,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 38,
+      "id": "wall-exposed-boundary-13",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 13,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        608,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 39,
+      "id": "wall-exposed-boundary-14",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 14,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        624,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 40,
+      "id": "wall-exposed-boundary-15",
+      "blueprint": "TepuiWall",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "partialDamageRetainsIdentity": true,
+        "exposedMask": 15,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 4
+      },
+      "unityRect": [
+        640,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 41,
+      "id": "ridge-exposed-boundary-1",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 1,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        656,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 42,
+      "id": "ridge-exposed-boundary-2",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 2,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        672,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 43,
+      "id": "ridge-exposed-boundary-3",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 3,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        688,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 44,
+      "id": "ridge-exposed-boundary-4",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 4,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        704,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 45,
+      "id": "ridge-exposed-boundary-5",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 5,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        720,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 46,
+      "id": "ridge-exposed-boundary-6",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 6,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        736,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 47,
+      "id": "ridge-exposed-boundary-7",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 7,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        752,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 48,
+      "id": "ridge-exposed-boundary-8",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 8,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        768,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 49,
+      "id": "ridge-exposed-boundary-9",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 9,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        784,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 50,
+      "id": "ridge-exposed-boundary-10",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 10,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        800,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 51,
+      "id": "ridge-exposed-boundary-11",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 11,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        816,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 52,
+      "id": "ridge-exposed-boundary-12",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 12,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        832,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 53,
+      "id": "ridge-exposed-boundary-13",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 13,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        848,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 54,
+      "id": "ridge-exposed-boundary-14",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 14,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        864,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 55,
+      "id": "ridge-exposed-boundary-15",
+      "blueprint": "GrainRidge",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "quietBaseWeight": 75,
+        "exposedMask": 15,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 6
+      },
+      "unityRect": [
+        880,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 56,
+      "id": "dome-exposed-boundary-1",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 1,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        896,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 57,
+      "id": "dome-exposed-boundary-2",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 2,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        912,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 58,
+      "id": "dome-exposed-boundary-3",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 3,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        928,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 59,
+      "id": "dome-exposed-boundary-4",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 4,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        944,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 60,
+      "id": "dome-exposed-boundary-5",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 5,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        960,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 61,
+      "id": "dome-exposed-boundary-6",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 6,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        976,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 62,
+      "id": "dome-exposed-boundary-7",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 7,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        992,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 63,
+      "id": "dome-exposed-boundary-8",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 8,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1008,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 64,
+      "id": "dome-exposed-boundary-9",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 9,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1024,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 65,
+      "id": "dome-exposed-boundary-10",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 10,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1040,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 66,
+      "id": "dome-exposed-boundary-11",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 11,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1056,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 67,
+      "id": "dome-exposed-boundary-12",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 12,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1072,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 68,
+      "id": "dome-exposed-boundary-13",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 13,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1088,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 69,
+      "id": "dome-exposed-boundary-14",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 14,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1104,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 70,
+      "id": "dome-exposed-boundary-15",
+      "blueprint": "StoneDome",
+      "description": "Flat one-pixel exposed outside boundary only. Connected sides and every interior pixel retain the original material; no extrusion or tile grid.",
+      "state": {
+        "variant": 0,
+        "solid": true,
+        "opaque": true,
+        "exposedMask": 15,
+        "maskBits": {
+          "N": 1,
+          "E": 2,
+          "S": 4,
+          "W": 8
+        },
+        "sourceBaseFrame": 20
+      },
+      "unityRect": [
+        1120,
+        0,
+        16,
+        24
+      ]
+    }
+  ],
+  "contact": {
+    "nativeSize": [
+      352,
+      512
+    ],
+    "scales": [
+      1,
+      8
+    ],
+    "framePlacements": [
+      {
+        "frame": 0,
+        "topLeft": [
+          16,
+          20
+        ]
+      },
+      {
+        "frame": 1,
+        "topLeft": [
+          48,
+          20
+        ]
+      },
+      {
+        "frame": 2,
+        "topLeft": [
+          80,
+          20
+        ]
+      },
+      {
+        "frame": 3,
+        "topLeft": [
+          112,
+          20
+        ]
+      },
+      {
+        "frame": 4,
+        "topLeft": [
+          144,
+          20
+        ]
+      },
+      {
+        "frame": 5,
+        "topLeft": [
+          176,
+          20
+        ]
+      },
+      {
+        "frame": 6,
+        "topLeft": [
+          208,
+          20
+        ]
+      },
+      {
+        "frame": 7,
+        "topLeft": [
+          240,
+          20
+        ]
+      },
+      {
+        "frame": 8,
+        "topLeft": [
+          272,
+          20
+        ]
+      },
+      {
+        "frame": 9,
+        "topLeft": [
+          304,
+          20
+        ]
+      },
+      {
+        "frame": 10,
+        "topLeft": [
+          16,
+          56
+        ]
+      },
+      {
+        "frame": 11,
+        "topLeft": [
+          48,
+          56
+        ]
+      },
+      {
+        "frame": 12,
+        "topLeft": [
+          80,
+          56
+        ]
+      },
+      {
+        "frame": 13,
+        "topLeft": [
+          112,
+          56
+        ]
+      },
+      {
+        "frame": 14,
+        "topLeft": [
+          144,
+          56
+        ]
+      },
+      {
+        "frame": 15,
+        "topLeft": [
+          176,
+          56
+        ]
+      },
+      {
+        "frame": 16,
+        "topLeft": [
+          208,
+          56
+        ]
+      },
+      {
+        "frame": 17,
+        "topLeft": [
+          240,
+          56
+        ]
+      },
+      {
+        "frame": 18,
+        "topLeft": [
+          272,
+          56
+        ]
+      },
+      {
+        "frame": 19,
+        "topLeft": [
+          304,
+          56
+        ]
+      },
+      {
+        "frame": 20,
+        "topLeft": [
+          16,
+          92
+        ]
+      },
+      {
+        "frame": 21,
+        "topLeft": [
+          48,
+          92
+        ]
+      },
+      {
+        "frame": 22,
+        "topLeft": [
+          80,
+          92
+        ]
+      },
+      {
+        "frame": 23,
+        "topLeft": [
+          112,
+          92
+        ]
+      },
+      {
+        "frame": 24,
+        "topLeft": [
+          144,
+          92
+        ]
+      },
+      {
+        "frame": 25,
+        "topLeft": [
+          176,
+          92
+        ]
+      },
+      {
+        "frame": 26,
+        "topLeft": [
+          208,
+          92
+        ]
+      },
+      {
+        "frame": 27,
+        "topLeft": [
+          240,
+          92
+        ]
+      },
+      {
+        "frame": 28,
+        "topLeft": [
+          272,
+          92
+        ]
+      },
+      {
+        "frame": 29,
+        "topLeft": [
+          304,
+          92
+        ]
+      },
+      {
+        "frame": 30,
+        "topLeft": [
+          16,
+          128
+        ]
+      },
+      {
+        "frame": 31,
+        "topLeft": [
+          48,
+          128
+        ]
+      },
+      {
+        "frame": 32,
+        "topLeft": [
+          80,
+          128
+        ]
+      },
+      {
+        "frame": 33,
+        "topLeft": [
+          112,
+          128
+        ]
+      },
+      {
+        "frame": 34,
+        "topLeft": [
+          144,
+          128
+        ]
+      },
+      {
+        "frame": 35,
+        "topLeft": [
+          176,
+          128
+        ]
+      },
+      {
+        "frame": 36,
+        "topLeft": [
+          208,
+          128
+        ]
+      },
+      {
+        "frame": 37,
+        "topLeft": [
+          240,
+          128
+        ]
+      },
+      {
+        "frame": 38,
+        "topLeft": [
+          272,
+          128
+        ]
+      },
+      {
+        "frame": 39,
+        "topLeft": [
+          304,
+          128
+        ]
+      },
+      {
+        "frame": 40,
+        "topLeft": [
+          16,
+          164
+        ]
+      },
+      {
+        "frame": 41,
+        "topLeft": [
+          48,
+          164
+        ]
+      },
+      {
+        "frame": 42,
+        "topLeft": [
+          80,
+          164
+        ]
+      },
+      {
+        "frame": 43,
+        "topLeft": [
+          112,
+          164
+        ]
+      },
+      {
+        "frame": 44,
+        "topLeft": [
+          144,
+          164
+        ]
+      },
+      {
+        "frame": 45,
+        "topLeft": [
+          176,
+          164
+        ]
+      },
+      {
+        "frame": 46,
+        "topLeft": [
+          208,
+          164
+        ]
+      },
+      {
+        "frame": 47,
+        "topLeft": [
+          240,
+          164
+        ]
+      },
+      {
+        "frame": 48,
+        "topLeft": [
+          272,
+          164
+        ]
+      },
+      {
+        "frame": 49,
+        "topLeft": [
+          304,
+          164
+        ]
+      },
+      {
+        "frame": 50,
+        "topLeft": [
+          16,
+          200
+        ]
+      },
+      {
+        "frame": 51,
+        "topLeft": [
+          48,
+          200
+        ]
+      },
+      {
+        "frame": 52,
+        "topLeft": [
+          80,
+          200
+        ]
+      },
+      {
+        "frame": 53,
+        "topLeft": [
+          112,
+          200
+        ]
+      },
+      {
+        "frame": 54,
+        "topLeft": [
+          144,
+          200
+        ]
+      },
+      {
+        "frame": 55,
+        "topLeft": [
+          176,
+          200
+        ]
+      },
+      {
+        "frame": 56,
+        "topLeft": [
+          208,
+          200
+        ]
+      },
+      {
+        "frame": 57,
+        "topLeft": [
+          240,
+          200
+        ]
+      },
+      {
+        "frame": 58,
+        "topLeft": [
+          272,
+          200
+        ]
+      },
+      {
+        "frame": 59,
+        "topLeft": [
+          304,
+          200
+        ]
+      },
+      {
+        "frame": 60,
+        "topLeft": [
+          16,
+          236
+        ]
+      },
+      {
+        "frame": 61,
+        "topLeft": [
+          48,
+          236
+        ]
+      },
+      {
+        "frame": 62,
+        "topLeft": [
+          80,
+          236
+        ]
+      },
+      {
+        "frame": 63,
+        "topLeft": [
+          112,
+          236
+        ]
+      },
+      {
+        "frame": 64,
+        "topLeft": [
+          144,
+          236
+        ]
+      },
+      {
+        "frame": 65,
+        "topLeft": [
+          176,
+          236
+        ]
+      },
+      {
+        "frame": 66,
+        "topLeft": [
+          208,
+          236
+        ]
+      },
+      {
+        "frame": 67,
+        "topLeft": [
+          240,
+          236
+        ]
+      },
+      {
+        "frame": 68,
+        "topLeft": [
+          272,
+          236
+        ]
+      },
+      {
+        "frame": 69,
+        "topLeft": [
+          304,
+          236
+        ]
+      },
+      {
+        "frame": 70,
+        "topLeft": [
+          16,
+          272
+        ]
+      }
+    ],
+    "groundStudyQuietBaseCount": 60,
+    "groundStudyCount": 80,
+    "notGameplayEvidence": true
+  },
+  "protectedInputCount": 350
+}

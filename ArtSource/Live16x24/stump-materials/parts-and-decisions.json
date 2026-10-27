@@ -1,0 +1,148 @@
+{
+  "status": "concept critique and extraction only; not in-game acceptance",
+  "createdUtc": "2026-10-27T11:43:00Z",
+  "tool": "built-in image_gen",
+  "concepts": [
+    {
+      "file": "concepts/concept-v1.png",
+      "prompt": "concepts/prompt-v1.txt",
+      "accepted": [
+        "pink-grey/teal/green material relationships",
+        "five formation identities"
+      ],
+      "rejected": [
+        "3D extrusion and brick-like masses",
+        "invented cactus-like vegetation",
+        "changed density and object placement",
+        "pebble/noise carpeting",
+        "concept text/geometry as authoritative"
+      ]
+    },
+    {
+      "file": "concepts/concept-v2.png",
+      "prompt": "concepts/prompt-v2.txt",
+      "accepted": [
+        "quieter continuous ground as a directional reference",
+        "distinct contained tank water",
+        "living tree/bush distinction"
+      ],
+      "rejected": [
+        "changed positions and plant counts",
+        "modified HUD health/text and player art",
+        "barrel-like tank silhouette; native redraw must remain living broad leaf cup",
+        "oversized dome objects; native must fit real cells",
+        "copying image into runtime or cropping/downsampling assets"
+      ]
+    }
+  ],
+  "sourceOfTruth": "Actual registered owners and Unity before captures; native catalog never consumes concepts",
+  "extraction": [
+    [
+      "TepuiStone",
+      [
+        0,
+        1,
+        2,
+        3
+      ],
+      "quiet opaque floor; 75% base; sparse low contrast grain; cultivated cells excluded"
+    ],
+    [
+      "TepuiWall",
+      [
+        4,
+        5
+      ],
+      "compact solid shoulder; preserve damage/thermal semantics"
+    ],
+    [
+      "GrainRidge",
+      [
+        6,
+        7,
+        8,
+        9
+      ],
+      "subdued petrified grain bands; solid masses; no tall walls"
+    ],
+    [
+      "DescentLedge",
+      [
+        10,
+        11
+      ],
+      "passable low shelf; no descent or stair promise"
+    ],
+    [
+      "SprayPool positive volume",
+      [
+        12,
+        13,
+        14,
+        15
+      ],
+      "continuous actual water body, sparse highlights"
+    ],
+    [
+      "SprayPool zero volume",
+      [
+        16,
+        17,
+        18,
+        19
+      ],
+      "still wet; no remaining collection stock; never dry floor"
+    ],
+    [
+      "StoneDome",
+      [
+        20,
+        21
+      ],
+      "low smooth solid mass; native single cell"
+    ],
+    [
+      "TankBrocchinia",
+      [
+        22,
+        23
+      ],
+      "broad living cupped leaves and contained water; one state with silhouette variation, no finite depletion"
+    ],
+    [
+      "TepuiboneVein",
+      [
+        24,
+        25
+      ],
+      "pale seam in angular stone-wood; harvest removes actual owner"
+    ]
+  ],
+  "reuse": [
+    {
+      "owner": "Tree",
+      "resource": "Sprites/Live16x24/north-vegetation",
+      "frame": 0,
+      "change": "none"
+    },
+    {
+      "owner": "Bush",
+      "resource": "Sprites/Live16x24/opening-base",
+      "frame": 5,
+      "change": "none"
+    }
+  ],
+  "deferred": [
+    "optional animation",
+    "fauna/NPC/crop/hazard/stair/prop families outside eight-owner scope",
+    "special sites and underground",
+    "full-chunk and all-world acceptance"
+  ],
+  "prohibited": [
+    "fake services",
+    "new loot or ownerless props",
+    "runtime generation changes",
+    "imagegen screenshots as evidence",
+    "concept images as production atlases"
+  ]
+}

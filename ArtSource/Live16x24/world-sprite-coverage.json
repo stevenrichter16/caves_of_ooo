@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "source_grounded_scope_and_coverage_plan_not_runtime_manifest",
-  "reviewed_at_utc": "2026-10-27T11:26:00Z",
+  "reviewed_at_utc": "2026-10-27T12:52:00Z",
   "baseline_source_revision": "bf38cfd98 (root-provided audit baseline; no Git operation in this audit)",
   "priority": "Complete native16x24 sprite coverage across every biome and area before optional nuanced animation; ensure chunks feel intentionally composed rather than bare.",
   "bounds": [
@@ -53,7 +53,8 @@
       "independent_readability_and_composition_review",
       "named_defects_and_scope_limits"
     ],
-    "prohibited_shortcut": "No arbitrary entity-count target or random clutter fill can substitute for scene acceptance."
+    "prohibited_shortcut": "No arbitrary entity-count target or random clutter fill can substitute for scene acceptance.",
+    "separate_polish_phase": "world_polish_phase: coverage integration does not close this gate; the dedicated all-world area polish pass remains required."
   },
   "biomes": [
     {
@@ -81,7 +82,13 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Desert",
@@ -106,7 +113,13 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Jungle",
@@ -131,7 +144,13 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Ruins",
@@ -159,7 +178,13 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Spread",
@@ -208,7 +233,13 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "The five admitted surface graphs and one cellar retain their existing bounded evidence. Remaining Spread formations, towns and work sites are not audited as complete."
+      "note": "The five admitted surface graphs and one cellar retain their existing bounded evidence. Remaining Spread formations, towns and work sites are not audited as complete.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Sodden",
@@ -249,7 +280,13 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Three districts plus six natural samples and one walked neighbor observed. Material coverage extended; actual plain water, actors, flora, props and chunk polish remain incomplete. No63-cell biome-completion claim."
+      "note": "Three districts plus six natural samples and one walked neighbor observed. Material coverage extended; actual plain water, actors, flora, props and chunk polish remain incomplete. No63-cell biome-completion claim.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Beating",
@@ -300,7 +337,13 @@
         "Docs/Verification/Live16x24/beating-final-play-summary.json",
         "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json",
         "Docs/Verification/Live16x24/packaged-beating-materials-linux-archive.json"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Grovelands",
@@ -343,7 +386,13 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Current ordinary Grovelands guards retained. Four material samples and native-water Fen route/restart are Editor verified; combined source ab26e270c is delivered with a bounded Mac Fen crossing/reader/player/product/restart. No full-biome or whole-chunk acceptance; missing actors/props/crops/sites and unsupported water classes remain explicit."
+      "note": "Current ordinary Grovelands guards retained. Four material samples and native-water Fen route/restart are Editor verified; combined source ab26e270c is delivered with a bounded Mac Fen crossing/reader/player/product/restart. No full-biome or whole-chunk acceptance; missing actors/props/crops/sites and unsupported water classes remain explicit.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "key": "Overwrit",
@@ -376,7 +425,17 @@
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
       "note": "Four exact native owner families integrated with current graph/semantic/state refusal. Final533 native cases passed, including prior501 with70 material cases, nine grading and23 existing palette/patcher cases. Eight initial material after views sample four formations; five corrective replay captures verify correct palette/manager through ordinary Overwrit/Grovelands travel and fresh Continue, bench11/12 and HP38. The matched564000-pixel world RGB field is identical. Prior color failure is retained in history and resolved. Waymarker remains naturally unobserved; Binderroot and second bench are outside after views. Source00959edf0 remotely verified; fresh Mac seven-capture owner/color/restart pass and restoration complete, independent Linux archive review passed within integrity/evidence scope. No whole-area/fullness acceptance.",
-      "composition_note": "Blank/rim contrast and deliberate quietness are authored identity; do not scatter arbitrary clutter. Still require actual visual-quality/fullness review of boundaries, landmarks, material variation and routes. Current ordinary composition explicitly lists22addresses of23tablecells;2,11 is not certified here."
+      "composition_note": "Blank/rim contrast and deliberate quietness are authored identity; do not scatter arbitrary clutter. Still require actual visual-quality/fullness review of boundaries, landmarks, material variation and routes. Current ordinary composition explicitly lists22addresses of23tablecells;2,11 is not certified here.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null,
+        "known_defects": [
+          "Crop/soil/stair presentation gaps",
+          "Centered Pilgrimage composition/readability"
+        ]
+      }
     },
     {
       "key": "Stump",
@@ -410,10 +469,10 @@
       ],
       "coverage_axes": {
         "registered_scope": "source_inventoried",
-        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
-        "ordinary_scene_and_states": "not_yet_audited",
-        "chunk_composition_fullness": "not_yet_audited",
-        "packaged_area_acceptance": "not_yet_audited"
+        "native_region_kit": "integrated_71_native_frames_8owners_2unchanged_vegetation_reuses;663native_pass;clean_Editor_material_checkpoint;source_push_pending",
+        "ordinary_scene_and_states": "five_actual_formations_normal_travel;real_tank_drink_dome_collision_Tepuibone_harvest_reader_wet_dry_crossing_and_turn7360_fresh_Continue_verified",
+        "chunk_composition_fullness": "open;perimeters_improve_boundaries_but_subtle_dome_cues_sparse_Summit_glyph_actors_effects_remain;no_generation_density_change_or_full80x25chunk_acceptance",
+        "packaged_area_acceptance": "Stump_pending;current_delivered_Overwrit00959edf0_evidence587837b"
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
@@ -421,12 +480,23 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review. Population depends on ecological/world flags.",
+      "note": "Clean final71-frame Editor route covers RimForest2,3, SummitScrub3,4, ButtressRidge4,5, Grainfield2,2 and CascadeGorge2,5 through normal controls. Real tank drink, blocked dome movement, Tepuibone69509/count1 harvest/native inventory/reader and wet-to-dry DescentLedge crossing verified. F5turn7360/fresh Continue preserved43,12 HP38, product identity and removed vein; final19/20 decoded world RGB equal. This is bounded material integration, not all18eligible addresses or whole80x25chunks. Source push/packages pending; subtle dome cues, sparse Summit, glyph actors/effects and all remaining family/fullness gaps remain. Interrupted user turn7640 progress separately protected, excluded from acceptance.",
       "elevation_bands": [
         "Foothills",
         "Slopes",
         "Summit"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null,
+        "known_defects": [
+          "Sparse SummitScrub composition",
+          "Subtle blocking-dome cues",
+          "Glyph actors and black-backed effects"
+        ]
+      }
     }
   ],
   "settlements": [
@@ -454,7 +524,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Sill",
@@ -481,7 +557,13 @@
         "chunk_composition_and_routes"
       ],
       "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
-      "evidence": "Docs/GRAPHICS-SILL-ENVELOPE.md"
+      "evidence": "Docs/GRAPHICS-SILL-ENVELOPE.md",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Gantry",
@@ -507,7 +589,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Tine",
@@ -533,7 +621,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Cinderhold",
@@ -559,7 +653,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Posy",
@@ -585,7 +685,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Marrowstye",
@@ -611,7 +717,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Quillhold",
@@ -637,7 +749,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Tally",
@@ -663,7 +781,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Wellmeet",
@@ -689,7 +813,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "the First Tent",
@@ -715,7 +845,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "the Salt-Vault",
@@ -741,7 +877,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Sumphold",
@@ -767,7 +909,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "the Drowned Ledger",
@@ -793,7 +941,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Slip",
@@ -819,7 +973,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "the Last Counter",
@@ -845,7 +1005,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "the Quiet's Door",
@@ -871,7 +1037,13 @@
         "doors_gates_notices",
         "chunk_composition_and_routes"
       ],
-      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     }
   ],
   "sinkhole_stacks": [
@@ -904,7 +1076,13 @@
         "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
-      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "the Deepest Cathedral",
@@ -935,7 +1113,13 @@
         "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
-      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Lampwell",
@@ -966,7 +1150,13 @@
         "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
-      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Spivenor",
@@ -997,7 +1187,13 @@
         "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
-      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Ginmere",
@@ -1028,7 +1224,13 @@
         "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
-      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "name": "Stillleaf",
@@ -1059,7 +1261,13 @@
         "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
-      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     }
   ],
   "ordinary_underground_materials": [
@@ -1089,7 +1297,13 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
         "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
       ],
-      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "material": "Limestone",
@@ -1117,7 +1331,13 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
         "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
       ],
-      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "material": "Shale",
@@ -1145,7 +1365,13 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
         "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
       ],
-      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "material": "Slate",
@@ -1173,7 +1399,13 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
         "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
       ],
-      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "material": "Quartzite",
@@ -1201,7 +1433,13 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
         "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
       ],
-      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "material": "Obsidian",
@@ -1229,7 +1467,13 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
         "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
       ],
-      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count.",
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     }
   ],
   "other_area_families": [
@@ -1249,7 +1493,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Map/WorldMap.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "root",
@@ -1268,7 +1518,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Generation/Builders/RootSite.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "felling_site",
@@ -1286,7 +1542,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Generation/Builders/FellingSiteBuilder.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "morrowfast_special",
@@ -1304,7 +1566,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "multicell_pilot",
@@ -1322,7 +1590,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/MultiCellPilotRuntime.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "sodden_district",
@@ -1342,7 +1616,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Generation/SoddenDistrictPlan.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "tenth_fire",
@@ -1360,7 +1640,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "doll_grove",
@@ -1378,7 +1664,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "abandoned_counters",
@@ -1397,7 +1689,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "repair_cultivation",
@@ -1415,7 +1713,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/RepairCultivationSite.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "spread_exploration",
@@ -1431,7 +1735,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "regional_requests",
@@ -1447,7 +1757,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/RegionalSituations.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "second_exploration",
@@ -1463,7 +1779,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/Exploration/SecondExplorationSites.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "lair_stacks",
@@ -1479,7 +1801,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Generation/LairStacks.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "merchant_camps",
@@ -1495,7 +1823,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Generation/WorldGenerator.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     },
     {
       "id": "river_chunk",
@@ -1511,7 +1845,13 @@
       },
       "source_refs": [
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
-      ]
+      ],
+      "polish_review": {
+        "status": "not_audited",
+        "known_defects_audit": "not_complete",
+        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
+        "acceptance_record": null
+      }
     }
   ],
   "opening_anchor": {
@@ -2386,14 +2726,14 @@
     },
     {
       "id": "W3_remaining_world_families",
-      "scope": "Push exact reviewed Overwrit delivery/evidence records, then continue Stump eight-owner static materials through actual baseline/concept/native/integration gates. Retain Overwrit crop/soil/stair coverage, Binderroot/Waymarker observation and centered Pilgrimage fullness follow-up, then observed Grovelands actors and remaining registered biomes, settlements/interiors, underground and special sites. No Stump native acceptance is claimed; defer nuanced animation.",
-      "status": "Overwrit_source_boundedMac_archive_restoration_verified;evidence_push_pending;Stump_baseline_native_gates_next_plus_crop_stair_fullness_followup",
+      "scope": "Review and push the exact Stump material source/evidence, then build and verify fresh packages. The clean five-formation Editor route, real tank drink, dome collision, Tepuibone harvest/reader, wet-to-dry crossing and fresh Continue are now verified as a bounded material integration checkpoint. Next implement the nine source-grounded Stump fauna identities from the saved plan, then observed Grovelands actors and remaining all-world families. Retain subtle dome collision cues, sparse Summit composition, glyph actors/effects and Overwrit crop/soil/stair/Pilgrimage gaps; defer nuanced animation.",
+      "status": "Overwrit_delivered;Stump663native_clean_five_formation_Editor_checkpoint_pass;source_push_package_pending;regional_polish_open",
       "gate": "Preserve exact current graph/state and gameplay identity; capture, imagegen/reuse critique, native source, RED/GREEN, actual whole-view/travel/restart and package gates. No arbitrary decoration or nuanced-animation prerequisite; do not wait to acquire all 13 remaining unobserved harvest products.",
-      "next_preflight": "Docs/Verification/Live16x24/world-next-static-kit-audit.md",
+      "next_preflight": "Docs/GRAPHICS-STUMP-MATERIALS.md",
       "source_candidate_counts": {
         "ordinary_Overwrit_addresses": 22,
         "ordinary_Stump_addresses": 18,
-        "basis": "Source authoring tables; eight Overwrit before visits are recorded separately and are not native acceptance. Stump remains source-planned."
+        "basis": "Source authoring tables only; Stump five-formation actual trials and bounded native integration are recorded separately. Neither18ordinary addresses nor22authored surface cells is an acceptance count."
       },
       "first_scope": [
         "OverwritGround",
@@ -2416,15 +2756,39 @@
         "Mosshulk",
         "ChoirTendril"
       ],
-      "baseline_record": "overwrit_baseline",
-      "integration_record": "overwrit_materials_delivery"
+      "baseline_record": "stump_baseline",
+      "current_scope": [
+        "TepuiStone",
+        "TepuiWall",
+        "GrainRidge",
+        "DescentLedge",
+        "SprayPool",
+        "StoneDome",
+        "TankBrocchinia",
+        "TepuiboneVein"
+      ],
+      "previous_integration_record": "overwrit_materials_delivery",
+      "current_integration_record": "stump_materials_delivery",
+      "next_fauna_plan": "Docs/GRAPHICS-STUMP-FAUNA.md",
+      "next_fauna_scope": [
+        "SariSnake",
+        "Wardline",
+        "CascadeFather",
+        "GlasspaneFrog",
+        "YellowfootWayfarer",
+        "SummitSinger",
+        "BrocchiniaSentinel",
+        "SkySari",
+        "MawToad"
+      ],
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/stump-final68"
     }
   ],
   "deferred_animation": {
     "east_cindercaller": "Source-only preserved, not imported or native-tested; see Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md.",
     "rule": "Existing animation stays; nuanced new pose work follows broad coverage except a demonstrated essential-readability blocker."
   },
-  "update_rule": "For each real slice, update exact area/family/identity/context and evidence axes with source revision, route/seed/zone/captures. Preserve earlier bounded acceptance and dated historical results. Never infer region completion from generic fallback or atlas totals.",
+  "update_rule": "For each real slice, update exact area/family/identity/context and evidence axes with source revision, route/seed/zone/captures. Preserve earlier bounded acceptance and dated historical results. Never infer region completion from generic fallback or atlas totals. Maintain independent polish_review states for each biome/area and concrete area_reviews records; do not promote material or package checkpoints into polish acceptance. Unexpanded/unknown areas remain not_audited.",
   "source_snapshot": {
     "method": "Read-only source bytes; useful for detecting audit drift, not a runtime result.",
     "sha256": {
@@ -3868,7 +4232,7 @@
       "Centered Pilgrimage view offers almost no eastern destination/rim cue within the 59-column viewport. Full 80x25 composition and exploration fullness remain open; no generation density change was made.",
       "Other areas/biomes, actors, special sites, depths and remaining mechanics remain incomplete. No Linux execution, physical Deck or sustained performance acceptance."
     ],
-    "next": "Push exact reviewed Overwrit delivery/evidence records, then continue Stump eight-owner static materials through actual baseline/concept/native/integration gates. Retain Overwrit crop/soil/stair coverage, Binderroot/Waymarker observation and centered Pilgrimage fullness follow-up, then observed Grovelands actors and remaining registered biomes, settlements/interiors, underground and special sites. No Stump native acceptance is claimed; defer nuanced animation.",
+    "next": "Finish the bounded Stump native source and meaningful RED tests now underway, then implement only after genuine native RED, run GREEN/related controls, and repeat the five actual formation views plus real pool/tank/vein actions and travel/restart. Preserve truthful state and scene fullness; no Stump native integration or acceptance yet. Retain Overwrit crop/soil/stair and centered Pilgrimage fullness follow-up, then observed Grovelands actors and every remaining biome/area; defer nuanced animation.",
     "active_blocker": null,
     "blocker_history": [
       {
@@ -4047,7 +4411,9 @@
         "Source commit and new packages pending; no Linux execution, physical Deck or sustained performance claim."
       ]
     },
-    "packaged_delivery_record": "overwrit_package_delivery"
+    "packaged_delivery_record": "overwrit_package_delivery",
+    "release_evidence_commit": "587837b255e90fc642adef38291483c5de09b782",
+    "release_evidence_push_verified": true
   },
   "overwrit_package_delivery": {
     "status": "source_pushed_native_mac_bounded_play_linux_archive_and_restoration_verified",
@@ -4080,7 +4446,7 @@
     },
     "source_push_verified": true,
     "source_push_verification_basis": "Root operator confirmed exact source00959edf0f7a154acf03fd8e521326099d652414 present on origin/main; this documentation task did not run Git.",
-    "release_evidence_push_status": "Pending exact reviewed evidence/living-record push; no future evidence-commit SHA claimed.",
+    "release_evidence_push_status": "Verified on origin/main as587837b255e90fc642adef38291483c5de09b782; root confirmed exact delivery/evidence preservation.",
     "linux_execution_verified": false,
     "physical_deck_verified": false,
     "sustained_hardware_performance_verified": false,
@@ -4138,13 +4504,625 @@
       },
       "limits": "Retained notices in each process; no Error/Exception lines. Not a clean-log or leak-free claim."
     },
-    "limits": "Seven actual native Mac captures verify ordinary startup, earned Overwrit Continue6230, native bench11/12 and shoot4/4 readers, local Left/Right/F56250HP38, complete process quit/relaunch and persistent native bench11/12. Independent reviewer confirms identical decoded world rectangle in01/04/05. One ordinary sample only: not every formation, all22 addresses, full80x25/chunk-fullness, every biome, combat or all controls. Crop/soil/stair, Binderroot, second bench, naturally unobserved Waymarker and centered Pilgrimage cue remain open. No Linux execution, physical Deck or sustained performance acceptance."
+    "limits": "Seven actual native Mac captures verify ordinary startup, earned Overwrit Continue6230, native bench11/12 and shoot4/4 readers, local Left/Right/F56250HP38, complete process quit/relaunch and persistent native bench11/12. Independent reviewer confirms identical decoded world rectangle in01/04/05. One ordinary sample only: not every formation, all22 addresses, full80x25/chunk-fullness, every biome, combat or all controls. Crop/soil/stair, Binderroot, second bench, naturally unobserved Waymarker and centered Pilgrimage cue remain open. No Linux execution, physical Deck or sustained performance acceptance.",
+    "release_evidence_commit": "587837b255e90fc642adef38291483c5de09b782",
+    "release_evidence_push_verified": true
   },
   "hourly_reporting": {
-    "last_report_at_utc": "2026-10-27T11:27:00+00:00",
-    "next_report_due_at_utc": "2026-10-27T12:27:00+00:00",
-    "report": "Docs/GRAPHICS-OVERWRIT-MATERIALS.md",
-    "summary": "Actual11:27UTC report sent: Overwrit8cells/4owners,533 native passes, actual grading replay and fresh Mac/Linux bounded delivery from source00959edf0 on main completed; Stump ordinary baseline in progress, next allfiveformations/eightowners. Overwrit crop/stair/fullness remains open; nuanced animation deferred.",
-    "basis": "Root explicitly confirmed actual11:27UTC report sent; planning timestamps do not advance the report clock."
+    "last_report_at_utc": "2026-10-27T12:27:00+00:00",
+    "next_report_due_at_utc": "2026-10-27T13:27:00+00:00",
+    "report": "Docs/GRAPHICS-STUMP-MATERIALS.md",
+    "summary": "Actual12:27UTC itemized report sent: Overwrit main delivery completed; Stump baseline/eightowner native integration and actual tank/collision recorded; palette/perimeter correction in progress with related native run underway; next five corrected views/harvest/persistence/exact main push then fauna. No wholebiome completion claim.",
+    "basis": "Root explicitly confirmed actual12:27UTC itemized report sent. The later663-case result is recorded in stump_materials_delivery; this documentation update does not send or backdate a new report."
+  },
+  "stump_baseline": {
+    "status": "five_formation_actual_before_survey_and_concept_critique_complete;native_source_and_red_tests_underway;no_native_integration_or_acceptance",
+    "recorded_at_utc": "2026-10-27T11:40:00Z",
+    "source_commit": "00959edf0f7a154acf03fd8e521326099d652414",
+    "entry_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-overwrit65",
+    "plan": "Docs/GRAPHICS-STUMP-MATERIALS.md",
+    "census": "Docs/Verification/Live16x24/stump-before-owner-census.json",
+    "composition_review": "Docs/Verification/Live16x24/stump-before-composition-review.md",
+    "captures": [
+      "Docs/Verification/Live16x24/stump-before-01-cascade-gorge.png",
+      "Docs/Verification/Live16x24/stump-before-02-grainfield.png",
+      "Docs/Verification/Live16x24/stump-before-03-buttress-ridge.png",
+      "Docs/Verification/Live16x24/stump-before-04-summit-scrub.png",
+      "Docs/Verification/Live16x24/stump-before-05-rim-forest.png",
+      "Docs/Verification/Live16x24/stump-before-06-tank-reader.png"
+    ],
+    "input_method": "Ordinary keyboard Continue, world-map travel and descent; no teleports, injected owners or save edits.",
+    "actual_formation_count": 5,
+    "actual_area_count": 5,
+    "actual_capture_count": 6,
+    "areas": [
+      {
+        "zone": "Overworld.2.5.0",
+        "actualCurrentGraph": true,
+        "savedLair": false,
+        "counts": {
+          "TepuiStone": 2000,
+          "TepuiWall": 199,
+          "Bush": 17,
+          "SprayPool": 285,
+          "DescentLedge": 18,
+          "StairsDown": 1,
+          "PeatBog": 3,
+          "BrinePool": 2,
+          "CascadeFather": 1,
+          "GlasspaneFrog": 2,
+          "OreCache": 1,
+          "WoodenBarrel": 1,
+          "Sack": 1,
+          "Crate": 1,
+          "Player": 1
+        },
+        "formation": "CascadeGorge",
+        "band": "Foothills",
+        "hp": 38
+      },
+      {
+        "zone": "Overworld.2.2.0",
+        "actualCurrentGraph": true,
+        "savedLair": false,
+        "counts": {
+          "TepuiStone": 2000,
+          "Bush": 44,
+          "Tree": 30,
+          "GrainRidge": 266,
+          "TepuiboneVein": 12,
+          "AshBed": 5,
+          "SariSnake": 1,
+          "Wardline": 1,
+          "YellowfootWayfarer": 1,
+          "MawToad": 2,
+          "OreCache": 3,
+          "Crate": 1,
+          "CloudwickCrop": 2,
+          "BiomeCropPatchRecord": 1,
+          "Player": 1
+        },
+        "formation": "Grainfield",
+        "band": "Slopes",
+        "hp": 38
+      },
+      {
+        "zone": "Overworld.4.5.0",
+        "actualCurrentGraph": true,
+        "savedLair": false,
+        "counts": {
+          "TepuiStone": 2000,
+          "GrainRidge": 181,
+          "Bush": 24,
+          "Tree": 11,
+          "TepuiboneVein": 12,
+          "StairsDown": 1,
+          "Wall": 15,
+          "Chest": 1,
+          "GlowQuartzVein": 1,
+          "BrinePool": 2,
+          "TarSeep": 4,
+          "SariSnake": 1,
+          "Wardline": 1,
+          "OreCache": 2,
+          "WoodenBarrel": 1,
+          "Sack": 1,
+          "PrismreedCrop": 2,
+          "BiomeCropPatchRecord": 1,
+          "Player": 1
+        },
+        "formation": "ButtressRidge",
+        "band": "Slopes",
+        "hp": 38
+      },
+      {
+        "zone": "Overworld.3.4.0",
+        "actualCurrentGraph": true,
+        "savedLair": false,
+        "counts": {
+          "TepuiStone": 2000,
+          "TankBrocchinia": 8,
+          "StoneDome": 156,
+          "Tree": 6,
+          "AshBed": 3,
+          "PeatBog": 3,
+          "CopperPipe": 2,
+          "SummitSinger": 3,
+          "BrocchiniaSentinel": 1,
+          "Crate": 2,
+          "WoodenBarrel": 1,
+          "OreCache": 2,
+          "Player": 1
+        },
+        "formation": "SummitScrub",
+        "band": "Summit",
+        "hp": 38
+      },
+      {
+        "zone": "Overworld.2.3.0",
+        "actualCurrentGraph": true,
+        "savedLair": false,
+        "counts": {
+          "TepuiStone": 2000,
+          "StoneDome": 45,
+          "Tree": 44,
+          "Bush": 52,
+          "TankBrocchinia": 8,
+          "AshBed": 5,
+          "SummitSinger": 2,
+          "BrocchiniaSentinel": 1,
+          "SkySari": 1,
+          "Sack": 1,
+          "Crate": 1,
+          "OreCache": 2,
+          "Player": 1
+        },
+        "formation": "RimForest",
+        "band": "Summit",
+        "hp": 38
+      }
+    ],
+    "source_candidate_addresses": 18,
+    "source_authored_surface_cells": 22,
+    "candidate_scope_bounds": "The18 canonical ordinary source addresses are a scope limit, not18 visits or completed chunks; exclude special sites, depths and wrong current graph/POI/lair authority.",
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/stump-before66",
+    "earned_turn": 6810,
+    "earned_zone": "Overworld.2.3.0",
+    "earned_formation": "RimForest",
+    "player_cell": [
+      37,
+      11
+    ],
+    "hp": 38,
+    "tank_reader": {
+      "blueprint": "TankBrocchinia",
+      "cell": [
+        36,
+        11
+      ],
+      "player_cell": [
+        37,
+        11
+      ],
+      "examined": true,
+      "drink_action_observed": false,
+      "harvest_action_observed": false
+    },
+    "concepts": {
+      "v1": "ArtSource/Live16x24/stump-materials/concepts/concept-v1.png",
+      "v1_disposition": "Rejected:3D/elevation and cactus imagery do not represent the flat native owners.",
+      "v2": "ArtSource/Live16x24/stump-materials/concepts/concept-v2.png",
+      "v2_disposition": "Useful palette and quiet-ground direction only; altered placements/HUD rejected. Neither concept is native production art or gameplay evidence."
+    },
+    "planned_source_scope": {
+      "new_owner_families": [
+        "TepuiStone",
+        "TepuiWall",
+        "GrainRidge",
+        "DescentLedge",
+        "SprayPool",
+        "StoneDome",
+        "TankBrocchinia",
+        "TepuiboneVein"
+      ],
+      "provisional_native_frames": 26,
+      "provisional_atlas_pixels": [
+        416,
+        24
+      ],
+      "unchanged_reuses": [
+        {
+          "owner": "Tree",
+          "resource": "Sprites/Live16x24/north-vegetation",
+          "frame": 0
+        },
+        {
+          "owner": "Bush",
+          "resource": "Sprites/Live16x24/opening-base",
+          "frame": 5
+        }
+      ],
+      "status": "Source authoring and RED-test preparation underway; no imported atlas/production adapter/native result claimed."
+    },
+    "composition_findings": [
+      "Current before views already have distinct authored geometry; glyph/punctuation coverage obscures it. No blanket density addition is justified.",
+      "SummitScrub open center is the strongest observed fullness risk; compare after real materials and landmarks before any separately tested composition change.",
+      "Preserve Gorge dry/wet boundaries and passable ledges, Grainfield bands and gaps, Buttress fingers/pockets, Summit domes and RimForest vegetation/open crack. Fog is not bare terrain.",
+      "Only59of80columns are visible in each centered viewport; no full80x25 or whole-region acceptance. Actors,crops/soil,hazards,stairs,props and special sites remain separate gaps."
+    ],
+    "normal_state_protection": {
+      "owned_root_archived": "/private/tmp/coo-stump-baseline-archived-4fc73aaf",
+      "owned_session_finished": true,
+      "editor_idle_clean_sample_scene": true,
+      "normal_saves_unchanged": true,
+      "foreign_files_unchanged": 38,
+      "reported_free_storage_decimal_gb_approx": 429.56,
+      "storage_cleanup_performed": false,
+      "basis": "Root operator confirmed completed isolation/protection; this documentation task did not operate Unity or delete files."
+    },
+    "limits": [
+      "Six before captures cover five areas/formation roles, not six zones or every owner/state. Tank examination is not drinking, harvesting or depletion.",
+      "No Stump native integration, GREEN, actual after, package, Linux execution, physical Deck or performance acceptance.",
+      "Concept palette selection and prospective frame counts are production directions, not accepted art coverage."
+    ],
+    "next": "Finish the bounded Stump native source and meaningful RED tests now underway, then implement only after genuine native RED, run GREEN/related controls, and repeat the five actual formation views plus real pool/tank/vein actions and travel/restart. Preserve truthful state and scene fullness; no Stump native integration or acceptance yet. Retain Overwrit crop/soil/stair and centered Pilgrimage fullness follow-up, then observed Grovelands actors and every remaining biome/area; defer nuanced animation."
+  },
+  "stump_materials_delivery": {
+    "status": "663native_green_and_clean_five_formation_Editor_material_checkpoint_pass;source_push_and_packages_pending;regional_polish_open",
+    "native_verified_at_utc": "2026-10-27T12:30:00Z",
+    "plan": "Docs/GRAPHICS-STUMP-MATERIALS.md",
+    "source_commit": null,
+    "scope": {
+      "owners": [
+        "TepuiStone",
+        "TepuiWall",
+        "GrainRidge",
+        "DescentLedge",
+        "SprayPool",
+        "StoneDome",
+        "TankBrocchinia",
+        "TepuiboneVein"
+      ],
+      "atlas_frames": 71,
+      "atlas_pixels": [
+        1136,
+        24
+      ],
+      "new_perimeter_frames": 45,
+      "unchanged_palette_v2_base_frames": 26,
+      "unchanged_borrowed_families": [
+        "Tree",
+        "Bush"
+      ],
+      "ordinary_source_candidate_addresses": 18,
+      "authored_surface_table_cells": 22,
+      "formation_count": 5,
+      "area_counts_are_acceptance": false
+    },
+    "atlas": {
+      "path": "Assets/Resources/Sprites/Live16x24/stump-materials.png",
+      "sha256": "fd33497368615b60f09ccc2d16efe25dd0033370034c95ce93fe0445bb2af7f1"
+    },
+    "native": {
+      "green": {
+        "xml": "Docs/Verification/Live16x24/stump-perimeter-related-green.xml",
+        "sha256": "ee0a5cca8aa3fa3ec40e52a1d263f68e69ab97d016af917b087410b4a5538ba3",
+        "started_at_utc": "2026-10-27T12:29:02Z",
+        "finished_at_utc": "2026-10-27T12:30:00Z",
+        "distinct_cases": 663,
+        "passed": 663,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "stump_cases": 111,
+        "original_stump_cases": 92,
+        "new_perimeter_cases": 19,
+        "related_cases": 552
+      },
+      "perimeter_red": {
+        "xml": "Docs/Verification/Live16x24/stump-perimeter-native-red.xml",
+        "total": 111,
+        "passed": 94,
+        "failed": 17
+      },
+      "earlier_history": {
+        "original_red": "Docs/Verification/Live16x24/stump-materials-native-red.xml",
+        "original_red_failed": 92,
+        "candidate_green": "Docs/Verification/Live16x24/stump-materials-candidate.xml",
+        "candidate_passed": 92,
+        "related_green": "Docs/Verification/Live16x24/stump-materials-related.xml",
+        "related_passed": 644,
+        "overlap_note": "The earlier644 includes the92 candidate cases. Current663 includes111 Stump and552 related; do not add overlapping runs."
+      }
+    },
+    "actual_trials": {
+      "first_trial": "Docs/Verification/Live16x24/stump-trial-gameplay-receipt.json",
+      "first_trial_verdict": "Five formation views exposed weak stone/floor separation; actual tank reader/drink verified, but palette/readability not accepted.",
+      "palette_v2_trial": "Docs/Verification/Live16x24/stump-palette-v2-gameplay-receipt.json",
+      "palette_v2_verdict": "Two actual views repaired color, but solids still read as floor patches. Normal bump toward StoneDome44,9 kept player44,10,HP38; connected perimeters required.",
+      "independent_composition_review": "Docs/Verification/Live16x24/stump-trial-composition-review.md",
+      "perimeter_runtime_review": "Docs/Verification/Live16x24/stump-runtime-independent-review.md",
+      "final_v3_status": "Clean five-formation normal route, tank drink, dome collision, Tepuibone harvest/reader, wet-to-dry crossing and fresh Continue verified. Earlier interrupted final session remains excluded. Whole-area polish/fullness is open."
+    },
+    "interrupted_session": {
+      "basis": "Root reported user interaction interrupted the first final session; F5 saved turn7640 and all six files were persistently backed up and verified.",
+      "saved_turn": 7640,
+      "backed_up_files": 6,
+      "captures_and_profile_are_acceptance": false,
+      "clean_replay_baseline": "Docs/Verification/Live16x24/Fixtures/stump-before66",
+      "clean_replay_turn": 6810,
+      "preserve_user_progress": true
+    },
+    "delivery": {
+      "stump_source_push": "pending",
+      "stump_packages": "pending",
+      "current_delivered_source": "00959edf0f7a154acf03fd8e521326099d652414",
+      "current_delivery_evidence": "587837b255e90fc642adef38291483c5de09b782",
+      "current_package": "Overwrit; unchanged by the uncommitted Stump slice"
+    },
+    "remaining": [
+      "Review/exact main push and fresh package verification; no Stump source-push/build claim yet.",
+      "Subtle dome collision cues, sparse Summit composition, glyph actors and black-backed effects keep regional polish and whole-chunk fullness open.",
+      "Nine Stump fauna identities/eighteen census encounters remain a source-only next plan; crops/soil/hazards/stairs/props/special-site gaps remain.",
+      "All remaining surface, settlement, underground and special-area families remain in the worldwide queue.",
+      "No Linux execution, physical Deck, performance optimization or build-FPS claim."
+    ],
+    "next_fauna_plan": "Docs/GRAPHICS-STUMP-FAUNA.md",
+    "protection": "The separate user-interrupted turn7640/six-file save backup remains protected and excluded from acceptance. Completed earlier trial/v2 isolation preserved normal saves and38 foreign files. Final-session restoration is root-owned and is not inferred from the completed gameplay receipt; no cleanup or source deletion performed.",
+    "next": "Review and push the exact Stump material source/evidence, then build and verify fresh packages. The clean five-formation Editor route, real tank drink, dome collision, Tepuibone harvest/reader, wet-to-dry crossing and fresh Continue are now verified as a bounded material integration checkpoint. Next implement the nine source-grounded Stump fauna identities from the saved plan, then observed Grovelands actors and remaining all-world families. Retain subtle dome collision cues, sparse Summit composition, glyph actors/effects and Overwrit crop/soil/stair/Pilgrimage gaps; defer nuanced animation.",
+    "actual_clean_replay": {
+      "status": "bounded_native_Editor_material_integration_checkpoint_pass;whole_region_polish_and_delivery_open",
+      "receipt": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json",
+      "normal_route": [
+        "Overworld.2.3.0 RimForest",
+        "Overworld.3.4.0 SummitScrub",
+        "Overworld.4.5.0 ButtressRidge",
+        "Overworld.2.2.0 Grainfield",
+        "Overworld.2.5.0 CascadeGorge"
+      ],
+      "actual_formation_count": 5,
+      "eligible_address_count_is_not_observed_count": 18,
+      "captures": [
+        "Docs/Verification/Live16x24/stump-final-01-rim-forest.png",
+        "Docs/Verification/Live16x24/stump-final-02-tank-menu.png",
+        "Docs/Verification/Live16x24/stump-final-03-tank-reader.png",
+        "Docs/Verification/Live16x24/stump-final-04-tank-drink.png",
+        "Docs/Verification/Live16x24/stump-final-05-summit-scrub.png",
+        "Docs/Verification/Live16x24/stump-final-06-dome-collision.png",
+        "Docs/Verification/Live16x24/stump-final-07-buttress-ridge.png",
+        "Docs/Verification/Live16x24/stump-final-08-grainfield.png",
+        "Docs/Verification/Live16x24/stump-final-09-vein-menu.png",
+        "Docs/Verification/Live16x24/stump-final-10-vein-reader.png",
+        "Docs/Verification/Live16x24/stump-final-11-vein-harvest.png",
+        "Docs/Verification/Live16x24/stump-final-12-harvest-inventory.png",
+        "Docs/Verification/Live16x24/stump-final-13-product-inventory.png",
+        "Docs/Verification/Live16x24/stump-final-14-product-filter.png",
+        "Docs/Verification/Live16x24/stump-final-15-product-selected.png",
+        "Docs/Verification/Live16x24/stump-final-16-tepuibone-inventory.png",
+        "Docs/Verification/Live16x24/stump-final-17-tepuibone-reader.png",
+        "Docs/Verification/Live16x24/stump-final-18-cascade-gorge.png",
+        "Docs/Verification/Live16x24/stump-final-19-dry-ledge.png",
+        "Docs/Verification/Live16x24/stump-final-20-fresh-continue.png"
+      ],
+      "tank": "Normal RimForest C/Left/X reader and C/Left/W cool-water drink; final03 reader/final04 drink.",
+      "dome_collision": {
+        "zone": "Overworld.3.4.0",
+        "before": [
+          44,
+          10
+        ],
+        "input": "Up",
+        "after": [
+          44,
+          10
+        ],
+        "hp": 38,
+        "capture": "Docs/Verification/Live16x24/stump-final-06-dome-collision.png",
+        "visual_collision_affordance_remains_polish_gap": true
+      },
+      "harvest": {
+        "zone": "Overworld.2.2.0",
+        "removed_vein_cell": [
+          35,
+          18
+        ],
+        "remaining_cell_owners": [
+          "TepuiStone"
+        ],
+        "earned_blueprint": "Tepuibone",
+        "earned_id": "69509",
+        "earned_count": 1,
+        "authoritative_product_captures": [
+          "Docs/Verification/Live16x24/stump-final-16-tepuibone-inventory.png",
+          "Docs/Verification/Live16x24/stump-final-17-tepuibone-reader.png"
+        ],
+        "interim_inventory_navigation_is_not_product_acceptance": true
+      },
+      "gorge_transition": {
+        "zone": "Overworld.2.5.0",
+        "route": [
+          {
+            "cell": [
+              39,
+              11
+            ],
+            "wet": true
+          },
+          {
+            "cell": [
+              43,
+              11
+            ],
+            "wet": true
+          },
+          {
+            "cell": [
+              43,
+              12
+            ],
+            "wet": false,
+            "owner": "DescentLedge"
+          }
+        ],
+        "hp": 38
+      },
+      "save_restart": {
+        "fixture": "Docs/Verification/Live16x24/Fixtures/stump-final68",
+        "turn": 7360,
+        "zone": "Overworld.2.5.0",
+        "cell": [
+          43,
+          12
+        ],
+        "hp": 38,
+        "earned_id": "69509",
+        "earned_count": 1,
+        "harvested_vein_absent": true,
+        "fresh_session_continue_observed": true,
+        "restart_capture": "Docs/Verification/Live16x24/stump-final-20-fresh-continue.png",
+        "decoded_RGB_world_rectangle": [
+          0,
+          40,
+          940,
+          640
+        ],
+        "before_after_world_pixels_equal": true,
+        "comparison_basis": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json"
+      },
+      "profile": {
+        "receipt": "Docs/Verification/Live16x24/stump-final-profile.json",
+        "seconds": 56.10377,
+        "samples_per_counter": 11607,
+        "counter_count": 4,
+        "all_samples_valid": true,
+        "capacity_overflow": false,
+        "scope": "Native Editor ordinary tank reader/drink with MCP and capture overhead; no matched performance baseline, optimization, build-FPS, GPU, Linux or Deck claim."
+      },
+      "composition_review": "Docs/Verification/Live16x24/stump-final-composition-review.md",
+      "remaining_visual_limits": [
+        "Subtle dome collision semantics remain a polish issue even though blocked movement is verified.",
+        "Sparse Summit and whole-chunk composition remain open; no generation density change or full80x25chunk acceptance.",
+        "Glyph actors and black-backed effects remain inconsistent; all remaining world families still require coverage."
+      ],
+      "push_and_packages": "pending;current_delivered_Overwrit_unchanged"
+    }
+  },
+  "world_polish_phase": {
+    "requested_on": "2026-10-27",
+    "status": "required_not_complete;dedicated_worldwide_polish_pass_not_started",
+    "order": "After broad missing-sprite coverage, conduct a separate systematic biome-by-biome and area-by-area polish pass. Keep the current Stump delivery/fauna, Grovelands actors and all-world coverage queue in order. Fix demonstrated gameplay-readability blockers when found; optional nuanced animation does not precede this pass.",
+    "scope": "All registered biomes and actual areas: ordinary formations, settlements and their real interiors, opening journey, underground/depth/layout roles, lairs and other special sites. Deliberately sparse areas require review too.",
+    "separation_rule": "Sprite coverage/integration and package delivery are separate from polish acceptance. No atlas frame count, owner count, test total, single viewport or material checkpoint implies an area is polished.",
+    "review_states": {
+      "not_audited": "The dedicated polish review has not been performed for this exact biome/area scope; earlier sprite integration evidence does not advance this state.",
+      "in_progress": "Actual area review or a named defect correction is underway; defects and missing evidence remain explicit.",
+      "reviewed": "A serious actual-area review has recorded findings and evidence; unresolved defects prevent acceptance.",
+      "bounded_accepted": "The listed area, states, viewpoints and route meet the polish gate with recorded evidence and explicit limitations; this does not accept other areas or the whole biome."
+    },
+    "area_acceptance_criteria": [
+      "At normal gameplay zoom, inspect the entire traversable chunk through multiple actual views: dense and deliberately quiet sections must both have coherent composition, readable routes and no accidental unfinished-looking gaps. No random clutter or density count can establish quality.",
+      "Check silhouettes, scale, palette, material differentiation and collision cues together under actual regional grading; visible ground, walls, actors and interactables must remain distinguishable.",
+      "Review landmarks, interiors, functional services, props, entrances, stairs and hazards for clear identity and interaction cues, including depleted, damaged, open/closed and other essential states.",
+      "Traverse neighboring areas, biome boundaries and vertical/interior connections normally; verify visual continuity, arrivals, return routes and fresh Continue where relevant.",
+      "Exercise current visibility, occlusion, FOV, remembered cells and entity/state changes without leaking hidden owners or stale presentation.",
+      "Verify the same current owner/state across world, inventory and examine presentation, including actual use, harvest, carried/dropped identity and essential feedback.",
+      "Retain actual before/after gameplay captures with seed, zone/address, zoom, route, states and source revision; add control/interaction checks, an honestly scoped profile and relevant native regressions. Use independent visual review where practical; concepts, atlas totals and native tests alone are insufficient."
+    ],
+    "tracking_rule": "Maintain a separate polish state for each biome and each concrete area. Resolve and record seed/current zone ID, formation/POI/depth/interior role and source revision before reviewing it; do not merge distinct areas into a family-wide acceptance. Use the existing inventory as a worklist and register omitted/newly discovered areas explicitly. Unknown or unexpanded instances remain not_audited, never silently accepted.",
+    "required_area_record_fields": [
+      "biome",
+      "area_key",
+      "seed",
+      "zone_id_or_unresolved",
+      "formation_POI_depth_interior_role",
+      "source_revision",
+      "status",
+      "named_defects_with_severity_and_disposition",
+      "actual_before_after_captures",
+      "normal_zoom_whole_chunk_view_scope",
+      "route_state_control_checks",
+      "profile_scope_and_limits",
+      "regression_results",
+      "independent_review",
+      "remaining_limits"
+    ],
+    "known_priority_defects": [
+      {
+        "biome": "Stump",
+        "area": "SummitScrub / Overworld.3.4.0, seed65",
+        "defect": "Sparse central composition and subtle blocking-stone/dome cues need serious polish despite the material integration checkpoint.",
+        "evidence": "Docs/Verification/Live16x24/stump-final-composition-review.md"
+      },
+      {
+        "biome": "Stump",
+        "area": "Observed ordinary formation views",
+        "defect": "Remaining glyph actors and black-backed effects break visual consistency.",
+        "evidence": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json"
+      },
+      {
+        "biome": "Overwrit",
+        "area": "Observed ordinary formations, including PilgrimageRim",
+        "defect": "Crop/soil/stair presentation and centered Pilgrimage composition remain open; quiet intent does not exempt review.",
+        "evidence": "Docs/GRAPHICS-OVERWRIT-MATERIALS.md"
+      }
+    ],
+    "world_complete": false,
+    "inventory": "ArtSource/Live16x24/world-sprite-coverage.json",
+    "area_reviews": [
+      {
+        "biome": "Stump",
+        "area_key": "seed65/Overworld.2.3.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.2.3.0",
+        "formation_POI_depth_interior_role": "ordinary RimForest",
+        "status": "not_audited",
+        "prior_material_checkpoint": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json",
+        "known_defects": [
+          "Subtle blocking-stone cues",
+          "Glyph actors and black-backed effects"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null
+      },
+      {
+        "biome": "Stump",
+        "area_key": "seed65/Overworld.3.4.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.3.4.0",
+        "formation_POI_depth_interior_role": "ordinary SummitScrub",
+        "status": "not_audited",
+        "prior_material_checkpoint": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json",
+        "known_defects": [
+          "Sparse central composition",
+          "Subtle blocking-dome cues",
+          "Missing native fauna"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null
+      },
+      {
+        "biome": "Stump",
+        "area_key": "seed65/Overworld.4.5.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.4.5.0",
+        "formation_POI_depth_interior_role": "ordinary ButtressRidge",
+        "status": "not_audited",
+        "prior_material_checkpoint": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json",
+        "known_defects": [
+          "Whole-chunk composition and remaining family audit pending"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null
+      },
+      {
+        "biome": "Stump",
+        "area_key": "seed65/Overworld.2.2.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.2.2.0",
+        "formation_POI_depth_interior_role": "ordinary Grainfield",
+        "status": "not_audited",
+        "prior_material_checkpoint": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json",
+        "known_defects": [
+          "Whole-chunk composition and remaining family audit pending"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null
+      },
+      {
+        "biome": "Stump",
+        "area_key": "seed65/Overworld.2.5.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.2.5.0",
+        "formation_POI_depth_interior_role": "ordinary CascadeGorge",
+        "status": "not_audited",
+        "prior_material_checkpoint": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json",
+        "known_defects": [
+          "Glyph actors/effects and whole-chunk readability audit pending"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null
+      }
+    ],
+    "area_inventory_bounds": "The five initial concrete records are observed Stump examples, not the entire area census or accepted polish. All current10biome,17settlement,6sinkhole,6ordinary-underground-material and16other-family inventory entries also have separate not_audited polish states; concrete areas/depths/interiors in every scope still require individual expansion and review. Open-ended generated/depth spaces require explicitly bounded representative variants and retained unknowns, never a claim that every possible seed was visited."
   }
 }
