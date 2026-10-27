@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "source_grounded_scope_and_coverage_plan_not_runtime_manifest",
-  "reviewed_at_utc": "2026-10-27T04:43:16.736805+00:00",
+  "reviewed_at_utc": "2026-10-27T05:48:00Z",
   "baseline_source_revision": "bf38cfd98 (root-provided audit baseline; no Git operation in this audit)",
   "priority": "Complete native16x24 sprite coverage across every biome and area before optional nuanced animation; ensure chunks feel intentionally composed rather than bare.",
   "bounds": [
@@ -238,9 +238,9 @@
       ],
       "coverage_axes": {
         "registered_scope": "source_inventoried",
-        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
+        "native_region_kit": "bounded_three_district_materials_28_frames_editor_verified",
         "ordinary_scene_and_states": "not_yet_audited",
-        "chunk_composition_fullness": "not_yet_audited",
+        "chunk_composition_fullness": "reviewed_three_districts_incomplete",
         "packaged_area_acceptance": "not_yet_audited"
       },
       "source_refs": [
@@ -249,7 +249,7 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review."
+      "note": "Shared materials verified only in15,7/16,7/17,7. Six ordinary formations are next; observed district service/crop/actor glyphs and regular grass composition remain open. No biome completion claim."
     },
     {
       "key": "Beating",
@@ -1463,7 +1463,7 @@
       "id": "lair_stacks",
       "name": "Finite generated lair columns",
       "zone_ids": [],
-      "note": "Fresh placement targets3–5lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal.",
+      "note": "Fresh placement targets3\u20135lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal.",
       "coverage_axes": {
         "registered_scope": "source_inventoried",
         "native_region_kit": "not_yet_audited",
@@ -1479,7 +1479,7 @@
       "id": "merchant_camps",
       "name": "Generated merchant camps",
       "zone_ids": [],
-      "note": "Fresh placement targets2–3camps with bounded attempts; excludes Overwrit/Stump.",
+      "note": "Fresh placement targets2\u20133camps with bounded attempts; excludes Overwrit/Stump.",
       "coverage_axes": {
         "registered_scope": "source_inventoried",
         "native_region_kit": "not_yet_audited",
@@ -2467,5 +2467,55 @@
       "sustained_hardware_performance_verified": false
     },
     "packaged_checkpoint": "Docs/Verification/Live16x24/Fixtures/packaged-sill-envelope65"
+  },
+  "sodden_travel_delivery": {
+    "status": "integrated_native_verified_editor_three_districts_and_restart; package_pending",
+    "identities": [
+      "Duckboard",
+      "MirePool",
+      "PeatBank",
+      "DeadTree",
+      "Reeds",
+      "Grass",
+      "StoneFloor",
+      "StoneWall"
+    ],
+    "new_frames": 28,
+    "scope": [
+      "Overworld.15.7.0",
+      "Overworld.16.7.0",
+      "Overworld.17.7.0"
+    ],
+    "source": "ArtSource/Live16x24/sodden-travel",
+    "plan": "Docs/GRAPHICS-SODDEN-TRAVEL.md",
+    "native_tests": {
+      "total": 307,
+      "passed": 304,
+      "failed": 0,
+      "inconclusive": 3,
+      "allocation_counter_positive_control_failed": true,
+      "receipt": "sodden-travel-native-final.xml"
+    },
+    "actual_play": "Docs/Verification/Live16x24/sodden-travel-play-summary.json",
+    "fullness": "Not yet accepted. Existing geometry renders more coherently, but grass stippling is repetitive and key service/plant/actor identities remain glyphs. Fog/memory is not bare terrain. No generation changed.",
+    "observed_fallbacks": [
+      "Bandfrog",
+      "SoddenRouteNotice",
+      "SoddenPassageGuard",
+      "SoddenPassagePost",
+      "SumpsieveCrop",
+      "PeatCutter",
+      "SoddenDressingBench",
+      "Merchant",
+      "SoddenWorksSalvage"
+    ],
+    "limits": [
+      "Actual filled mire observed; depleted wet-film and unsupported hazard states have native tests only.",
+      "No ordinary Sodden formation runtime admission yet.",
+      "No new packaged Sodden run, Linux execution or physical Deck acceptance.",
+      "Profile includes idle/tool/reader time; no controlled performance comparison.",
+      "Screen fields in paint receipts describe tool Editor context; original PNGs are1280x800."
+    ],
+    "next": "Reuse exact material kit in all six ordinary Sodden formations; then regional functional owners and next biome."
   }
 }

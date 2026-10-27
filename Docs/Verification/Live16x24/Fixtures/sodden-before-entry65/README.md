@@ -1,0 +1,1 @@
+Ordinary earned seed65 Sill1170 >worldmap16,7 >crossing20,12; F5turn1370HP38. Actual version17 graph, no teleport, regeneration or forced disclosure. Before new wetland native sprites. Reuse unchanged via private save root.

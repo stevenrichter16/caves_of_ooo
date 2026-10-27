@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 05:16:52Z" end-time="2026-10-27 05:16:53Z" duration="1.1915762">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32546" result="Failed" site="Child" start-time="2026-10-27 05:16:52Z" end-time="2026-10-27 05:16:53Z" duration="1.191576" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="40067" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32546" result="Failed" site="Child" start-time="2026-10-27 05:16:52Z" end-time="2026-10-27 05:16:53Z" duration="1.103925" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="40068" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32546" result="Failed" site="Child" start-time="2026-10-27 05:16:52Z" end-time="2026-10-27 05:16:53Z" duration="0.822289" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="40069" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32546" result="Failed" site="Child" start-time="2026-10-27 05:16:52Z" end-time="2026-10-27 05:16:53Z" duration="0.738301" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30723" name="FlatPixelSoddenTravelTests" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="101" result="Failed" site="Child" start-time="2026-10-27 05:16:53Z" end-time="2026-10-27 05:16:53Z" duration="0.359606" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="30812" name="HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 05:16:53Z" end-time="2026-10-27 05:16:53Z" duration="0.349126" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30810" name="HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround(&quot;Overworld.16.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround(&quot;Overworld.16.7.0&quot;)" methodname="HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1750296378" result="Failed" start-time="2026-10-27 05:16:53Z" end-time="2026-10-27 05:16:53Z" duration="0.288274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Hidden owner-local cultivation must not erase disclosed ordinary ground.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround (System.String id) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:447
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30811" name="HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround(&quot;Overworld.10.10.0&quot;)" methodname="HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1861831462" result="Failed" start-time="2026-10-27 05:16:53Z" end-time="2026-10-27 05:16:53Z" duration="0.053918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Hidden owner-local cultivation must not erase disclosed ordinary ground.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround (System.String id) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:447
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

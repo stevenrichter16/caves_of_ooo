@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "comparison": "Two bounded Blender-native renders of unchanged quiet-mire geometry. No raster editing or resizing.",
+  "encodedByteDeterminism": false,
+  "encodedByteCheckFailureRetained": {
+    "sodden-travel.png": {
+      "firstSha256": "70d837c2877305de4a7309340f7c508dc5d7ffd5d1b8689c7b08797fa7fcfa01",
+      "repeatSha256": "45df6770bc5ff407c4dd2d719918855affd5aa7931197222b7e9e65a08839a1b",
+      "byteIdentical": false
+    },
+    "source-cells.json": {
+      "firstSha256": "5aa0255cef6f28fa9aff5c27360b637789befbfd39ae343c41777a39380ec55c",
+      "repeatSha256": "5aa0255cef6f28fa9aff5c27360b637789befbfd39ae343c41777a39380ec55c",
+      "byteIdentical": true
+    },
+    "manifest.json": {
+      "firstSha256": "229949c766de8e85750edc91cd794324cf344ce84948b6bd9277cfdf990c2683",
+      "repeatSha256": "6e2c476df5d5c93ef287adc682ebc1464412f211d06e4e38d038949264b90a35",
+      "byteIdentical": false
+    },
+    "contact-native.png": {
+      "firstSha256": "613e4e36c37d76fb7165c91ec3e7772ae3cf8391e9b2e1845e2c73a008af0f52",
+      "repeatSha256": "613e4e36c37d76fb7165c91ec3e7772ae3cf8391e9b2e1845e2c73a008af0f52",
+      "byteIdentical": true
+    },
+    "contact.png": {
+      "firstSha256": "b54e3f4d30bdfc84f0feb6b1b52be6a329ed4fd1c99359e5ccbb0ebab9e6731d",
+      "repeatSha256": "27a1aacf52c78eaa5cc93f2801743fc6b1b91b622b94453a29d806f58ce4fb9c",
+      "byteIdentical": false
+    }
+  },
+  "decodedNativePixelsIdentical": true,
+  "decodedNativeSha256": "20a8d4561d90845a1317219abbf4d4f76d01937a6c00f70445714c84652c723d",
+  "sourceCellsByteIdentical": true,
+  "bothRunsAllNativeAndContactPlacementPixelsMatchSource": true,
+  "pngMetadataObservation": "Blender PNG embeds cycles.ViewLayer render-time and memory statistics. Native file hashes differ despite exact decoded RGBA agreement. No encoded-byte determinism claim.",
+  "actualDefectReference": {
+    "path": "Docs/Verification/Live16x24/sodden-after-01-crossing-entry.png",
+    "sha256": "d2533842fada7a60746dfe2a247e3f6f39a3f6b0c76ad63c6cc0a74bbe230adf",
+    "description": "Actual integrated crossing showed repeated paired bright mire shapes as carpet. Parent gameplay audit reported 433 filled Mire cells; source author inspected whole-view appearance."
+  },
+  "limits": "Source/native-pixel reproducibility only; first6x contact full-image decoded hash was not retained. No deterministic blend serialization, Unity mapping, gameplay or device acceptance."
+}

@@ -1,0 +1,119 @@
+{
+  "kind": "actual_unedited_Unity_Game_captures",
+  "verified_at_utc": "2026-10-27T05:48:00Z",
+  "source": "working source after cc130817a; exact commit supplied by enclosing commit",
+  "scope": [
+    "Overworld.15.7.0",
+    "Overworld.16.7.0",
+    "Overworld.17.7.0"
+  ],
+  "native_tests": {
+    "total": 307,
+    "passed": 304,
+    "failed": 0,
+    "inconclusive": 3,
+    "allocation_counter_positive_control_failed": true,
+    "receipt": "sodden-travel-native-final.xml"
+  },
+  "route": "Unchanged earned tick1370 crossing20,12 \u219220,3\u219260,3; normal board Examine; world travel to shelter40,12\u219234,9\u219234,8; world travel to works40,12\u219239,16; normal peat Examine; F5tick2110; finish and restart isolated ordinary Play; Continue at39,16,38HP.",
+  "final_game_captures": [
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-01-crossing-entry.png",
+      "bytes": 59079,
+      "sha256": "7f4dddcb4fca897c307601bd567a8be56f18edee7903759267834d98a4fd8145"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-02-raised-turn.png",
+      "bytes": 64701,
+      "sha256": "d99bf711455d623004aec67a13d9f9b5e259542248093f84615e9c696ebc458e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-03-east-board.png",
+      "bytes": 66742,
+      "sha256": "1641ac730b45bfe340d63698bb8a83fa4a0ef992c548a021c23044701875fd25"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-04-east-detail.png",
+      "bytes": 51783,
+      "sha256": "a37995a807a6cfce51d2d09e2e304b24236b069681cf7e17cb50636e39951aed"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-05-board-reader.png",
+      "bytes": 47351,
+      "sha256": "0e112a0c8b043e43cde8617c2fe4705c2547c38d5c763b38753d5787e3cff0e3"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-06-shelter-entry.png",
+      "bytes": 55949,
+      "sha256": "f7f6498231bd8b74ac8eba53de5df709793a4ca4f043c0b766fcfbdb628627be"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-07-shelter-room.png",
+      "bytes": 48641,
+      "sha256": "b10bb861317b0ead8e2933431d21b620197cfabbe7fdc2f1ea640af87227fb94"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-08-shelter-room-matched.png",
+      "bytes": 47778,
+      "sha256": "49a226cf38fed34282acf5ace10f883f15486e2d3688f53df71a3a3317807c34"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-09-peat-works-entry.png",
+      "bytes": 52035,
+      "sha256": "baff704d9a55f9a74e498bb3ba01fc810c403a13056296dee7641d0146209e60"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-10-peat-cut-route.png",
+      "bytes": 55546,
+      "sha256": "2f7dfa50f7494cd06002fba902e34f9967f1d7caf0313715ca26030fc83d6696"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-11-peat-reader.png",
+      "bytes": 48096,
+      "sha256": "fe73b6d2ad438c03f2d15ca0bacf12f23fb3991fc8c68e131152b3f2468d7853"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-12-saved-works.png",
+      "bytes": 55799,
+      "sha256": "234a139bda4ef63a9ab362cd5237c0fc930828a71991501426db49e830a7902f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/sodden-final-13-reloaded-works.png",
+      "bytes": 56997,
+      "sha256": "fdde1a06f7a6df6435d3b096b5ecd3f05989f1625e663782e88ecbce3c7eb88a"
+    }
+  ],
+  "reload": {
+    "same_visible_paint_cells": true,
+    "zone": "Overworld.17.7.0",
+    "seed": 65,
+    "tick": 2110,
+    "player": [
+      39,
+      16
+    ],
+    "hp": 38,
+    "fixture": "Fixtures/sodden-final-works65",
+    "scope": "Editor Play restart, not packaged process restart"
+  },
+  "first_integration_destruction": "Ordinary Break8\u21925\u2192removed crossing Duckboard58,3 is in sodden-after-07/08 and preserved first-after-room65. Final route does not repeat destruction.",
+  "fullness": "Not yet accepted. Existing geometry renders more coherently, but grass stippling is repetitive and key service/plant/actor identities remain glyphs. Fog/memory is not bare terrain. No generation changed.",
+  "observed_fallbacks": [
+    "Bandfrog",
+    "SoddenRouteNotice",
+    "SoddenPassageGuard",
+    "SoddenPassagePost",
+    "SumpsieveCrop",
+    "PeatCutter",
+    "SoddenDressingBench",
+    "Merchant",
+    "SoddenWorksSalvage"
+  ],
+  "limits": [
+    "Actual filled mire observed; depleted wet-film and unsupported hazard states have native tests only.",
+    "No ordinary Sodden formation runtime admission yet.",
+    "No new packaged Sodden run, Linux execution or physical Deck acceptance.",
+    "Profile includes idle/tool/reader time; no controlled performance comparison.",
+    "Screen fields in paint receipts describe tool Editor context; original PNGs are1280x800."
+  ]
+}

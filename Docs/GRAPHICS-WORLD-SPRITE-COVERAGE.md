@@ -217,3 +217,24 @@ residents need their actual sprites. Hidden fog is not counted as empty content.
 No random clutter or generation changes were made. Next is the source-supported
 Sodden crossing16,7 and shelter15,7: mire, boards, peat banks and dead-tree families,
 then the remaining regions. Current packages still need this frozen source batch.
+
+## Current continuation — 2026-10-27 05:48 UTC
+
+Static sprite coverage across all biomes/areas and non-bare chunk composition
+remain the priority. New subtle animation remains deferred. Sill and portable
+equipment are packaged and on main through cc130817a. The new Sodden travel kit
+covers the actual shelter, crossing and peat works only: 28 editable frames plus
+unchanged borrowed materials, 304 native passes, 3 inconclusive allocation probes,
+13 final actual Game captures and ordinary F5/Play-restart Continue at works39,16.
+Bright repeated mire and black dry-overlay backing were corrected through actual
+comparison. Fullness is still incomplete: regular grass and remaining real
+service/plant/actor glyphs are listed in `GRAPHICS-SODDEN-TRAVEL.md`.
+
+Next extend the same material kit to six ordinary Sodden formations with actual
+current map/POI/saved-lair authority, before adding unrelated art packets. Preserve
+Copse plain water. Follow the saved ordinary plan, real baseline/after captures,
+RED→GREEN and independent review. Then cover missing Sodden services and Beating,
+continuing all-biome, settlement, underground and special-site inventory. Current
+packages are Sill; Sodden package refresh is pending. No Linux/Deck claim. Normal
+saves and unrelated work stay protected; storage is inspection-only.
+Last hourly report05:25UTC;next06:25UTC.

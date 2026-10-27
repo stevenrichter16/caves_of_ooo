@@ -2853,3 +2853,24 @@ Next is the East Cindercaller ordinary movement/cast baseline, as planned in
 `Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md`. Preserve existing spell FX/audio and
 approved neutral body; carried FireMoss is not spell fuel. No new caster graphics
 are claimed yet. Keep continuation active. Last hourly report02:25UTC,next03:25UTC.
+
+## Current continuation — 2026-10-27 05:48 UTC
+
+Static sprite coverage across all biomes/areas and non-bare chunk composition
+remain the priority. New subtle animation remains deferred. Sill and portable
+equipment are packaged and on main through cc130817a. The new Sodden travel kit
+covers the actual shelter, crossing and peat works only: 28 editable frames plus
+unchanged borrowed materials, 304 native passes, 3 inconclusive allocation probes,
+13 final actual Game captures and ordinary F5/Play-restart Continue at works39,16.
+Bright repeated mire and black dry-overlay backing were corrected through actual
+comparison. Fullness is still incomplete: regular grass and remaining real
+service/plant/actor glyphs are listed in `GRAPHICS-SODDEN-TRAVEL.md`.
+
+Next extend the same material kit to six ordinary Sodden formations with actual
+current map/POI/saved-lair authority, before adding unrelated art packets. Preserve
+Copse plain water. Follow the saved ordinary plan, real baseline/after captures,
+RED→GREEN and independent review. Then cover missing Sodden services and Beating,
+continuing all-biome, settlement, underground and special-site inventory. Current
+packages are Sill; Sodden package refresh is pending. No Linux/Deck claim. Normal
+saves and unrelated work stay protected; storage is inspection-only.
+Last hourly report05:25UTC;next06:25UTC.

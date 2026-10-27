@@ -83,7 +83,9 @@ namespace CavesOfOoo.Rendering
             tile = null; floor = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
-            if (state != null && !state.IsEmpty || CultivatedSoilPart.IsCultivated(zone, cell)) return false;
+            if (state != null && !state.IsEmpty) return false;
+            // Owner-local cultivation is checked below with disclosed owned parts.
+            // The gameplay helper ignores Render visibility and would leak hidden owners.
             Entity grass = null, stone = null;
             foreach (var owner in cell.Occupants)
             {

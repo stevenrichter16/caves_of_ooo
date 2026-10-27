@@ -2217,3 +2217,52 @@ Next is the East Cindercaller ordinary movement/cast baseline, as planned in
 `Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md`. Preserve existing spell FX/audio and
 approved neutral body; carried FireMoss is not spell fuel. No new caster graphics
 are claimed yet. Keep continuation active. Last hourly report02:25UTC,next03:25UTC.
+
+## Current continuation and hourly report — 2026-10-27 05:25 UTC
+
+The user priority is missing static sprites across every biome/area and coherent,
+non-bare chunks. Nuanced new motion remains deferred. Portable equipment and
+Sill24-frame terrain/woven walls/doors are delivered through cc130817a on main;
+actual Mac Continue/full restart and matching Linux archive were verified.
+
+Current slice: [Sodden travel](GRAPHICS-SODDEN-TRAVEL.md). Actual before-route,
+imagegen and native source/integration done.99-case original RED96fail/3pass
+then99GREEN; independent hidden-cultivation counter failed in both Sodden and
+Sill, then the narrow saved guard correction passed295 selected native cases.
+A post-run scene-restoration timing error occurred when root started Play;
+retain that limitation and verify runner completion before later transitions.
+
+Actual crossing entry, north/east raised route, Duckboard native Examine and
+ordinary Break→removal of58,3 are captured. First real view revealed bright
+repeated mire carpet and black backing beneath vegetation/boards. These are
+named defects, not accepted polish. Source is revising only mire to weighted
+static variants; runtime will preserve real dry Grass/StoneFloor beneath exact
+neutral dry overlay owners. No generated backdrop or invented prop placement.
+
+Coming-hour goals: finish those visual corrections, final crossing/shelter/works
+whole-view/play/save/profile checks, review and exactpush, then ordinary Sodden
+formations. Source audit finds six coherent formations/57static addresses;
+DrownedCopse uses literal plain water and must not become mire. Actual density
+and all-biome acceptance remain open. Storage remains inspection-only.
+Last hourly report05:25UTC;next06:25UTC.
+
+## Current continuation — 2026-10-27 05:48 UTC
+
+Static sprite coverage across all biomes/areas and non-bare chunk composition
+remain the priority. New subtle animation remains deferred. Sill and portable
+equipment are packaged and on main through cc130817a. The new Sodden travel kit
+covers the actual shelter, crossing and peat works only: 28 editable frames plus
+unchanged borrowed materials, 304 native passes, 3 inconclusive allocation probes,
+13 final actual Game captures and ordinary F5/Play-restart Continue at works39,16.
+Bright repeated mire and black dry-overlay backing were corrected through actual
+comparison. Fullness is still incomplete: regular grass and remaining real
+service/plant/actor glyphs are listed in `GRAPHICS-SODDEN-TRAVEL.md`.
+
+Next extend the same material kit to six ordinary Sodden formations with actual
+current map/POI/saved-lair authority, before adding unrelated art packets. Preserve
+Copse plain water. Follow the saved ordinary plan, real baseline/after captures,
+RED→GREEN and independent review. Then cover missing Sodden services and Beating,
+continuing all-biome, settlement, underground and special-site inventory. Current
+packages are Sill; Sodden package refresh is pending. No Linux/Deck claim. Normal
+saves and unrelated work stay protected; storage is inspection-only.
+Last hourly report05:25UTC;next06:25UTC.

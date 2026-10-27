@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 05:28:47Z" end-time="2026-10-27 05:28:50Z" duration="2.4751143">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32555" result="Failed" site="Child" start-time="2026-10-27 05:28:47Z" end-time="2026-10-27 05:28:50Z" duration="2.475114" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="40078" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32555" result="Failed" site="Child" start-time="2026-10-27 05:28:47Z" end-time="2026-10-27 05:28:50Z" duration="2.409672" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="40079" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32555" result="Failed" site="Child" start-time="2026-10-27 05:28:48Z" end-time="2026-10-27 05:28:50Z" duration="2.353145" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="40080" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32555" result="Failed" site="Child" start-time="2026-10-27 05:28:48Z" end-time="2026-10-27 05:28:50Z" duration="2.236103" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30723" name="FlatPixelSoddenTravelTests" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-10-27 05:28:49Z" end-time="2026-10-27 05:28:50Z" duration="0.756561" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="30819" name="ExactDryOverlayCannotBypassActualCompetingGround" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-27 05:28:49Z" end-time="2026-10-27 05:28:50Z" duration="0.329108" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30814" name="ExactDryOverlayCannotBypassActualCompetingGround(&quot;mire&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround(&quot;mire&quot;)" methodname="ExactDryOverlayCannotBypassActualCompetingGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="2035536068" result="Failed" start-time="2026-10-27 05:28:49Z" end-time="2026-10-27 05:28:49Z" duration="0.137005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround (System.String condition) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:513
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30815" name="ExactDryOverlayCannotBypassActualCompetingGround(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround(&quot;coating&quot;)" methodname="ExactDryOverlayCannotBypassActualCompetingGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1405281696" result="Failed" start-time="2026-10-27 05:28:49Z" end-time="2026-10-27 05:28:49Z" duration="0.049389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround (System.String condition) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:513
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30816" name="ExactDryOverlayCannotBypassActualCompetingGround(&quot;unknown-terrain&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround(&quot;unknown-terrain&quot;)" methodname="ExactDryOverlayCannotBypassActualCompetingGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1782239731" result="Failed" start-time="2026-10-27 05:28:49Z" end-time="2026-10-27 05:28:49Z" duration="0.046178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround (System.String condition) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:513
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30817" name="ExactDryOverlayCannotBypassActualCompetingGround(&quot;cultivated&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround(&quot;cultivated&quot;)" methodname="ExactDryOverlayCannotBypassActualCompetingGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1083463007" result="Failed" start-time="2026-10-27 05:28:49Z" end-time="2026-10-27 05:28:50Z" duration="0.044600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround (System.String condition) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:513
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30818" name="ExactDryOverlayCannotBypassActualCompetingGround(&quot;custom-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround(&quot;custom-variant&quot;)" methodname="ExactDryOverlayCannotBypassActualCompetingGround" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1472447338" result="Failed" start-time="2026-10-27 05:28:50Z" end-time="2026-10-27 05:28:50Z" duration="0.046673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.ExactDryOverlayCannotBypassActualCompetingGround (System.String condition) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:513
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30724" name="MireAreaUsesStableSparseVariationsWithoutChangingStockOrHazards" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.MireAreaUsesStableSparseVariationsWithoutChangingStockOrHazards" methodname="MireAreaUsesStableSparseVariationsWithoutChangingStockOrHazards" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="558912703" result="Failed" start-time="2026-10-27 05:28:50Z" end-time="2026-10-27 05:28:50Z" duration="0.123875" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < 16, 22, 23, 24 >
+  But was:  < 16 >
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.MireAreaUsesStableSparseVariationsWithoutChangingStockOrHazards () [0x00334] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:185
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30820" name="StoneFloorWinsOverGrassAndDuplicateFloorsRemainConservativeUnderNeutralBoards" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.StoneFloorWinsOverGrassAndDuplicateFloorsRemainConservativeUnderNeutralBoards" methodname="StoneFloorWinsOverGrassAndDuplicateFloorsRemainConservativeUnderNeutralBoards" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="446637359" result="Failed" start-time="2026-10-27 05:28:50Z" end-time="2026-10-27 05:28:50Z" duration="0.050704" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.StoneFloorWinsOverGrassAndDuplicateFloorsRemainConservativeUnderNeutralBoards () [0x000aa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:535
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30813" name="SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 05:28:50Z" end-time="2026-10-27 05:28:50Z" duration="0.157350" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30810" name="SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass(&quot;Reeds&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass(&quot;Reeds&quot;)" methodname="SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="875180917" result="Failed" start-time="2026-10-27 05:28:50Z" end-time="2026-10-27 05:28:50Z" duration="0.046070" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass (System.String blueprint) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:487
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30811" name="SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass(&quot;DeadTree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass(&quot;DeadTree&quot;)" methodname="SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="311717348" result="Failed" start-time="2026-10-27 05:28:50Z" end-time="2026-10-27 05:28:50Z" duration="0.045381" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass (System.String blueprint) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:487
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30812" name="SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass(&quot;Duckboard&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass(&quot;Duckboard&quot;)" methodname="SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1587814894" result="Failed" start-time="2026-10-27 05:28:50Z" end-time="2026-10-27 05:28:50Z" duration="0.044267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass (System.String blueprint) [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:487
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,126 @@
+{
+  "kind": "concept_to_native_extraction_not_gameplay",
+  "concept": "concept.png",
+  "exact_prompt": "prompt.txt",
+  "layout_inputs": [
+    "Docs/Verification/Live16x24/sodden-before-03-east-board.png"
+  ],
+  "supporting_context": [
+    "Docs/Verification/Live16x24/sodden-before-04-shelter-entry.png"
+  ],
+  "style_anchor": [
+    "Docs/Verification/Live16x24/sill-envelope-after-14-river-bank.png"
+  ],
+  "external_reference": {
+    "page": "https://www.nps.gov/places/forest-loop-trail-boardwalk.htm",
+    "image": "https://www.nps.gov/common/uploads/cropped_image/primary/D9F92AC2-9710-AD34-B380CDF1917FD89C.jpeg?mode=crop&quality=90&width=1600",
+    "inspection": "Primary page read; direct image fetch timed out. Official NPS boardwalk imagery also inspected through image search. Weathered timber/moss wetland principle only; no photo bytes sampled into native source.",
+    "supporting_image_page": "https://home.nps.gov/articles/100035.htm"
+  },
+  "accepted": [
+    "dark brown/olive mire surface distinct from green land",
+    "ash-grey forked dead trunk",
+    "existing raised route remains legible"
+  ],
+  "rejected": [
+    "stone-like board material",
+    "fence-like peat-bank poles",
+    "overly busy repeated grass texture",
+    "any topology/owner/fog-boundary changes"
+  ],
+  "parts": [
+    {
+      "owner": "Duckboard",
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "states": "N1 E2 S4 W8 disclosed selected matching neighbor mask",
+      "native_direction": "narrow grey-brown wooden walk with transverse divisions and restrained grain; no rails"
+    },
+    {
+      "owner": "MirePool",
+      "frames": [
+        16,
+        17,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "states": [
+        "positive stock bog-mire",
+        "zero stock still-wet mire film; independent source coating remains hazardous"
+      ],
+      "native_direction": "Continuous darkolive wet field, verysubdued sparse reflections; coordinate-stable75%quietbase,25%three variants forbothstockstates. Never dryground.",
+      "filled_frames": [
+        16,
+        22,
+        23,
+        24
+      ],
+      "depleted_wet_frames": [
+        17,
+        25,
+        26,
+        27
+      ]
+    },
+    {
+      "owner": "PeatBank",
+      "frames": [
+        18,
+        19
+      ],
+      "states": [
+        "neutral solid variation0",
+        "neutral solid variation1"
+      ],
+      "native_direction": "compressed dark layered peat mass, root fibers and muted moss lip; not logs or masonry"
+    },
+    {
+      "owner": "DeadTree",
+      "frames": [
+        20,
+        21
+      ],
+      "states": [
+        "neutral solid variation0",
+        "neutral solid variation1"
+      ],
+      "native_direction": "one-cell compact ash-grey split trunk and angular bare branches"
+    }
+  ],
+  "borrowed_pixels": [
+    "Reeds opening-base3/4",
+    "Grass sill-envelope20..23",
+    "StoneFloor cellar-floor0..3",
+    "StoneWall opening-cellar8"
+  ],
+  "production": "Editable original native integer-cell geometry with source-cells, Blender collections and Point-import atlas. No crop-only scene reskin.",
+  "remaining": "Sodden actors, crops, furniture, services and other areas remain open; no whole-biome/fullness acceptance from this packet.",
+  "actual_iteration": {
+    "defect_capture": "Docs/Verification/Live16x24/sodden-after-01-crossing-entry.png",
+    "defects": [
+      "bright repeated two-mound mirecarpet across433 actualvisiblecells",
+      "blackbacking under disclosed actualGrass+neutralReeds/DeadTree/Duckboard"
+    ],
+    "revision": "Keep20nonmireframes byte-equivalent in decodedpixels; revise16/17,append6staticmirevariants; preserveactualdrysubstratebeneathqualifiedoverlays. Noanimation/ownerplacementchange."
+  }
+}
