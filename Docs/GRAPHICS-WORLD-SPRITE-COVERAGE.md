@@ -583,3 +583,23 @@ RED before implementation, and compare actual after views for consistency and
 whole-chunk fullness. Stump eight-owner materials, then observed Grovelands
 actors and the remaining world follow. The current combined Grovelands package
 is unchanged; root will push the reviewed delivery/evidence records.
+
+### Verified main checkpoint — 2026-10-27T10:34:08.763922+00:00
+
+The55owned delivery/baseline/concept files are committed and verified on
+`origin/main` at `074045a890f49a00966753865b1f799676e675b0`; see
+[push receipt](Verification/Live16x24/grovelands-delivery-push.json). This
+supersedes the pending evidence-push notes above. Runtime/package source remains
+`ab26e270cb376253c971a41c3449ecbbf4171444`; do not rebuild merely because
+evidence-only commits follow it. Root normalized only5owned importer whitespace
+files after isolated Play;38foreign changes and normal saves remain intact.
+No storage cleanup.
+
+Next implement the8cell original Overwrit kit using the
+[native preflight](Verification/Live16x24/overwrit-native-preflight.md) and
+[reviewed extraction map](../ArtSource/Live16x24/overwrit-materials/concepts/critique-and-parts.md).
+Independent review resolved the written shoot requirement: common clipped tip
+height, no flowers. Native pixels/runtime/after-gameplay acceptance are still
+pending. Root session is idle/clean; owned baseline save root was archived,
+with three earned checkpoints preserved. Stump and remaining worldwide scope
+follow. Last actual hourly report10:27UTC; next11:27UTC.
