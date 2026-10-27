@@ -69,6 +69,8 @@ namespace CavesOfOoo.Rendering
         private FlatPixelCellarFloorCatalog _cellarFloorArt;
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
+        private FlatPixelHarvestProductsCatalog _harvestProductsArt;
+        private readonly Texture2D _harvestItemsAtlas, _harvestWorksAtlas;
         private FlatPixelAftermathCatalog _aftermathArt;
         private FlatPixelOrchardCatalog _orchardArt;
         private FlatPixelRiverShrineCatalog _riverShrineArt;
@@ -178,6 +180,7 @@ namespace CavesOfOoo.Rendering
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas, Texture2D worksProductsAtlas, Texture2D longSwordAtlas)
         {
             _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas, worksProductsAtlas, longSwordAtlas);
+            _harvestItemsAtlas = itemsAtlas; _harvestWorksAtlas = worksProductsAtlas;
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
@@ -223,7 +226,15 @@ namespace CavesOfOoo.Rendering
             Color foregroundColor = ForegroundColor(kind);
             Tile foreground = kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road
                 ? null : _tiles[(int)kind];
-            if (_openingArt.TryResolve(owner, x, y, out var openingTile))
+            if (FlatPixelHarvestProductsCatalog.HasKnownRole(owner))
+            {
+                var products = HarvestProductsArtFor(owner);
+                if (products != null && products.TryResolve(owner, out var productTile))
+                { foreground = productTile; foregroundColor = Color.white; }
+                else if (TryResolveFallback(zone, x, y, out var fallback))
+                { foreground = fallback.ForegroundTile; foregroundColor = fallback.ForegroundColor; }
+            }
+            else if (_openingArt.TryResolve(owner, x, y, out var openingTile))
             {
                 foreground = openingTile;
                 foregroundColor = Color.white;
@@ -466,6 +477,13 @@ namespace CavesOfOoo.Rendering
             if (_disposed || owner == null) return false;
             var render = owner.GetPart<RenderPart>();
             if (render == null || render.ParentEntity != owner || !render.Visible) return false;
+            if (FlatPixelHarvestProductsCatalog.HasKnownRole(owner))
+            {
+                var products = HarvestProductsArtFor(owner);
+                if (products != null && products.TryResolve(owner, out var productTile))
+                { sprite = productTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
+            }
             var kind = Classify(owner);
             Tile tile;
             if (_openingArt.TryResolve(owner, x, y, out tile))
@@ -879,7 +897,14 @@ namespace CavesOfOoo.Rendering
             if (beatingNative) art = beatingArt;
             bool beatingBrineNative = beatingNative && owner.BlueprintName == "BrinePool";
             bool mireNative = soddenNative && owner.BlueprintName == "MirePool";
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative
+            bool productKnown = FlatPixelHarvestProductsCatalog.HasKnownRole(owner);
+            var products = HarvestProductsArtFor(owner);
+            Tile productArt = null;
+            bool productNative = products != null && products.TryResolve(owner, out productArt);
+            if (productKnown) art = productArt;
+            // Known-product refusal is authoritative: older local item groups
+            // must not bypass current semantic or optional-resource guards.
+            bool native = productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -910,6 +935,13 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            if (FlatPixelHarvestProductsCatalog.HasKnownRole(subject))
+            {
+                var products = HarvestProductsArtFor(subject);
+                if (products != null && products.TryResolve(subject, out var productTile))
+                { sprite = productTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             bool local = IsAdmitted(zone);
             var sill = SillEnvelopeArtFor(zone);
             if (sill != null && sill.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
@@ -1000,6 +1032,18 @@ namespace CavesOfOoo.Rendering
             if (_incidentalActorArt == null && _loadOptionalResources)
                 _incidentalActorArt = new FlatPixelIncidentalActorCatalog();
             return _incidentalActorArt;
+        }
+
+        private FlatPixelHarvestProductsCatalog HarvestProductsArtFor(Entity owner)
+        {
+            if (!FlatPixelHarvestProductsCatalog.HasKnownRole(owner)) return null;
+            if (_harvestProductsArt == null)
+            {
+                if (_loadOptionalResources) _harvestProductsArt = new FlatPixelHarvestProductsCatalog();
+                else if (_harvestItemsAtlas != null || _harvestWorksAtlas != null)
+                    _harvestProductsArt = new FlatPixelHarvestProductsCatalog(null, _harvestItemsAtlas, _harvestWorksAtlas);
+            }
+            return _harvestProductsArt;
         }
 
         private FlatPixelIncidentalEquipmentCatalog IncidentalEquipmentArtFor(Entity owner)
@@ -1181,6 +1225,8 @@ namespace CavesOfOoo.Rendering
             _incidentalActorArt = null;
             _incidentalEquipmentArt?.Dispose();
             _incidentalEquipmentArt = null;
+            _harvestProductsArt?.Dispose();
+            _harvestProductsArt = null;
             _aftermathArt?.Dispose();
             _aftermathArt = null;
             _orchardArt?.Dispose();

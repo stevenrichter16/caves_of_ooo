@@ -1,0 +1,45 @@
+{
+  "capturedAtUtc": "2026-10-27T07:53:39Z",
+  "kind": "actual Unity Editor isolated normal-input baseline",
+  "sourceCommit": "e65d0348ded4df93f0096794d6d85c0c6977cb02",
+  "fixture": "Fixtures/packaged-beating-brine65",
+  "zone": "Overworld.17.13.0",
+  "initialTurn": 3210,
+  "finalTurn": 3240,
+  "playerFinal": [
+    40,
+    12
+  ],
+  "hp": 38,
+  "product": {
+    "blueprint": "PaleSalt",
+    "entityId": "42025",
+    "count": 1
+  },
+  "actions": [
+    "Continue earned checkpoint",
+    "I, Tab, seven Down: inventory PaleSalt",
+    "F1: carried details",
+    "Escape: inventory; D: drop",
+    "Escape: world; Left:39,12",
+    "C, Right, X: actual adjacent ground reader",
+    "Return: close reader; Escape inadvertently opened pause; Escape closed pause",
+    "Right:40,12; G: real pickup",
+    "F5: save3240"
+  ],
+  "captures": [
+    "harvest-products-before-01-brine-lens.png",
+    "harvest-products-before-02-inventory.png",
+    "harvest-products-before-03-details.png",
+    "harvest-products-before-04-drop-state.png",
+    "harvest-products-before-05-ground.png",
+    "harvest-products-before-06-ground-reader.png"
+  ],
+  "observed": "PaleSalt remains a glyph in inventory, details, uncovered ground and adjacent reader before implementation; same item survives drop/pickup.",
+  "limits": [
+    "Only PaleSalt observed in ordinary play; other16 product observations remain pending.",
+    "No new biome scene fullness is accepted by this item baseline."
+  ],
+  "archivedOwnedRoot": "/tmp/coo-harvest-baseline-earned-380eb552",
+  "normalSaveProtection": "/tmp/coo-beating-baseline-protection.py reports unchanged normal Editor and standalone saves and38 unrelated tracked edits."
+}

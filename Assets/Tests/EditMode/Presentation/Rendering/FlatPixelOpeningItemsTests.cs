@@ -104,11 +104,23 @@ namespace CavesOfOoo.Tests
             zone.GetCell(X+1,Y).Explored=zone.GetCell(X+1,Y).IsVisible=true;
             Assert.True(catalog.TryResolve(zone,X+1,Y,out var moved));AssertFrame(moved,0);
         }
-        [Test] public void RealPortableFootprintCanRenderItsCurrentCoveredCell()
+        [Test] public void NativeTimberRequiresItsApprovedSingleCellWhileLargerBodyKeepsTruthfulFallback()
         {
             var owner=factory.CreateEntity("SalvagedTimber");
-            owner.AddPart(new SpatialFootprintPart { CellsRaw="0,0;1,0" });
-            Assert.True(zone.AddEntity(owner,X-1,Y));Create();AssertFrame(Resolve(),10);
+            owner.AddPart(new SpatialFootprintPart { CellsRaw="0,0" });
+            Assert.True(zone.AddEntity(owner,X,Y));Create();AssertFrame(Resolve(),10);
+            Assert.True(zone.TryChangeFootprint(owner,"0,0;1,0"));
+            Assert.AreEqual(2,zone.GetOccupiedCells(owner).Count,"Art refusal must not shrink the real body.");
+            var value=Resolve();Assert.AreSame(owner,value.Owner);
+            Assert.True(catalog.TryGetFallbackSubjectSprite(owner,X,Y,out var glyph,out var tint));
+            Assert.AreSame(glyph.texture,value.ForegroundTile.sprite.texture);
+            Assert.AreEqual(glyph.rect,value.ForegroundTile.sprite.rect);
+            Assert.AreNotSame(items,value.ForegroundTile.sprite.texture);
+            zone.GetCell(X+1,Y).Explored=zone.GetCell(X+1,Y).IsVisible=true;
+            Assert.True(catalog.TryResolve(zone,X+1,Y,out var covered));Assert.AreSame(owner,covered.Owner);
+            Assert.AreSame(glyph.texture,covered.ForegroundTile.sprite.texture);
+            Assert.True(zone.TryChangeFootprint(owner,"0,0"));AssertFrame(Resolve(),10);
+            Assert.AreEqual(1,zone.GetOccupiedCells(owner).Count);
             Assert.True(zone.RemoveEntity(owner));Assert.IsNull(Resolve().ForegroundTile);
         }
         [Test] public void RememberedAndUnexploredCellsCannotExposeLooseItem()

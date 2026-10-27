@@ -239,7 +239,7 @@ packages are Sill; Sodden package refresh is pending. No Linux/Deck claim. Norma
 saves and unrelated work stay protected; storage is inspection-only.
 Last hourly report05:25UTC;next06:25UTC.
 
-## Current continuation — 2026-10-27 07:15 UTC
+## Previous continuation — 2026-10-27 07:15 UTC
 
 The Beating's ordinary surface materials now have 34 editable native frames.
 The workflow covered real greyboxes, two imagegen passes, original source art,
@@ -296,3 +296,70 @@ remains deferred. Root owns Unity.
 
 The last actual hourly report was at 07:24 UTC; the next is due at 08:24 UTC.
 This continuation update does not itself count as another report.
+
+
+## Current continuation — portable harvest products, 2026-10-27
+
+The 17 exact harvest products in [the harvest-product plan](GRAPHICS-HARVEST-PRODUCTS.md)
+now share native world, inventory and authorized examine presentation: **eight new
+16×24 sprites and nine unchanged approved frame reuses**. This is a portable item
+slice across biomes; it does not admit new regional ground, change harvesting or
+inventory mechanics, or complete any whole biome. Known products that fail the
+approved owner/state/footprint contract retain truthful fallback, including in the
+opening where the older weaker mapper could otherwise bypass the refusal.
+
+Native verification is **399 passed, zero failed/skipped/inconclusive: 123 new
+plus 276 related cases**, completed 08:10:32 UTC. The original 123-case RED and the
+399-case first trial (397 passed/two failures) remain saved alongside the final
+GREEN in `Docs/Verification/Live16x24/harvest-products-native-*.xml`; the concise
+receipt is `harvest-products-native-summary.json`. The saved corrections made the
+submitted-render fixture request the same public dirty repaint used by actual UI
+flows and updated the old two-cell timber art expectation to preserve truthful
+fallback for a changed physical body. Physical footprint mechanics were unchanged.
+Native results establish bounded behavior, not ordinary acquisition or package
+acceptance for all 17 products.
+
+Root's actual Editor pass captured `harvest-products-after-01` through `10`:
+
+- PaleSalt 42025, quantity 1: native inventory and details, drop, uncovered world
+  sprite and world reader, then pickup. It persists through normal area travel
+  from `Overworld.17.13.0` to `Overworld.19.13.0`.
+- At cell 59,9, an actual harvest removes source Bones 38104 and yields Bone 42026,
+  quantity 1; the new product appears in the inventory alongside PaleSalt.
+- Final F5 checkpoint is turn 3540 at 59,9 in `Overworld.19.13.0`, HP 38/40, saved
+  08:16:51 UTC. The earned fixture is
+  `Docs/Verification/Live16x24/Fixtures/harvest-products-road65`.
+
+A fresh isolated **Editor restart is verified** in `harvest-products-after-10-restart-inventory.png`: turn 3540, zone 19,13, cell 59,9, HP 38, PaleSalt 42025 and Bone 42026 at quantity 1 each, with only Sand and Player at the harvest cell and Bones 38104 absent. Root archived the earned restart root at `/tmp/coo-harvest-restart-earned-0a21facb`; normal-state protection passed. This is Editor restart evidence, not a packaged process restart.
+
+**Packaging and source push remain pending.** The current delivered
+package remains Beating source `2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc`; its
+historical PaleSalt glyph capture remains a truthful record of that older build.
+The new integration's main push is also pending root's commit/remote check. The
+other 15 products have native-test coverage but have not been observed through
+ordinary acquisition and readers in this pass. No Linux execution, physical Deck,
+sustained performance or whole-biome/fullness claim follows from these checks.
+
+After closing package verification, continue **Grovelands actual whole-view
+baselines** using [the source preflight](Verification/Live16x24/grovelands-next-kit-preflight.md).
+The first cohesive proposal is the existing forest envelope plus **14 provisional
+new frames for nine real owners**: MycelialColumn, GroveSeep, GroveSign,
+GroveRedGrowth, FruitingBody, CompostRow, CompostCache, ChoirIronVein and
+WineLeafSundew. Final art scope follows actual captures and imagegen critique;
+no Grovelands production or scene acceptance is implied by this source plan.
+Then continue Overwrit and Stump, remaining registered biomes, settlements,
+interiors, underground and special sites. Retain Beating/Sodden missing props,
+services and actors. **Do not delay regional breadth until all 15 remaining
+harvest products have ordinary-play captures.**
+
+Whole-chunk fullness remains an open gameplay-view gate: layered biome-appropriate
+terrain, coherent flora/prop/landmark clusters, and readable routes, hazards and
+interactions. Portable sprites add no placement or density acceptance. Use the
+existing real Grovelands formation owners before considering extra decoration;
+source-only placement expectations need actual-view validation. Preserve
+intentional sparse areas while reviewing their composition; continue to defer
+nuanced animation.
+
+Last actual hourly report remains **07:24 UTC; next due 08:24 UTC**. These evidence
+updates are not a new hourly report. Storage reclamation remains inspection-only;
+this documentation update performs no cleanup.

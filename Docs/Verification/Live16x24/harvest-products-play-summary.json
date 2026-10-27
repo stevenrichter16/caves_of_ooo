@@ -1,0 +1,122 @@
+{
+  "capturedAtUtc": "2026-10-27T08:24:00Z",
+  "kind": "Actual Unity Editor normal-input play and fresh isolated restart",
+  "sourceBase": "e65d0348ded4df93f0096794d6d85c0c6977cb02",
+  "nativeEvidence": "harvest-products-native-green.xml",
+  "nativePassed": 399,
+  "inputFixture": "Fixtures/packaged-beating-brine65",
+  "initial": {
+    "turn": 3210,
+    "zone": "Overworld.17.13.0",
+    "cell": [
+      40,
+      12
+    ],
+    "hp": 38
+  },
+  "final": {
+    "turn": 3540,
+    "zone": "Overworld.19.13.0",
+    "cell": [
+      59,
+      9
+    ],
+    "hp": 38,
+    "gameId": "50e670c30b6d48feb82756df64bd1cbc"
+  },
+  "observedProducts": [
+    {
+      "blueprint": "PaleSalt",
+      "id": "42025",
+      "count": 1
+    },
+    {
+      "blueprint": "Bone",
+      "id": "42026",
+      "count": 1
+    }
+  ],
+  "actions": [
+    "Continue unchanged earned baseline; I/Tab/Down7 selects native PaleSalt; F1 full details",
+    "Escape,D drop; Escape,Left to39,12 exposes native item40,12; C/Right/X actual ground reader",
+    "Return,Right,G picks up same42025; F5",
+    "Shift+comma world map,Right2,Shift+period ordinary entry to CaravanRoad19,13",
+    "Right18,Up3 reaches58,9; C/Right/H harvests actualBones38104 at59,9",
+    "Native Bone42026 count1 inspected in inventory; PaleSalt42025 still native after travel",
+    "Close inventory, walk to59,9; F5 saves3540 HP38; export unchanged save pair",
+    "Finish isolation; fresh Launch; copy unchanged earned fixture into owned root; normal C continues; I/Tab/Down8 shows Bone native after restart"
+  ],
+  "restartObserved": {
+    "zone": "Overworld.19.13.0",
+    "cell": [
+      59,
+      9
+    ],
+    "hp": 38,
+    "sameProductIdsAndCounts": true,
+    "ground59_9": [
+      "Sand",
+      "Player"
+    ],
+    "harvestedBonesAbsent": true
+  },
+  "captures": [
+    {
+      "path": "harvest-products-after-01-inventory.png",
+      "sha256": "0547ee3abd4d6497ebda34d9483227502542d11c9c1d9d0b17cb4cc78b612637"
+    },
+    {
+      "path": "harvest-products-after-02-details.png",
+      "sha256": "8c1fd091c8ac516ad2e8d67d2478f71a133baf11a4fcc5ca13c875992475eb18"
+    },
+    {
+      "path": "harvest-products-after-03-ground.png",
+      "sha256": "b13dc0bd22545158253cb900868471e306df3357125cd4821e0327398edca1e3"
+    },
+    {
+      "path": "harvest-products-after-04-ground-reader.png",
+      "sha256": "b556399e5076a590042e109cf832d9ba40f4a6434dbb6f0363c1638b1bee4c51"
+    },
+    {
+      "path": "harvest-products-after-05-picked-up.png",
+      "sha256": "b29846e41aac963eb6a4cf4a5752fa711b7472cf5f988f6ec2ef51f1907906c4"
+    },
+    {
+      "path": "harvest-products-after-06-caravan-road.png",
+      "sha256": "f282d770069311afc7b66640a6e34374a4363357c73a094646e8560dcd1ea6d7"
+    },
+    {
+      "path": "harvest-products-after-07-bones-action.png",
+      "sha256": "f821ebd0a5c8b088e63b54b00bae651aab313f9b741c1d98187c126d7652dbfd"
+    },
+    {
+      "path": "harvest-products-after-08-bone-inventory.png",
+      "sha256": "d613a645f1d9df29e798b162fb97a178f9afe4801357b23ffc1c17c118bb4d72"
+    },
+    {
+      "path": "harvest-products-after-09-travel-inventory.png",
+      "sha256": "cea7a558c7b59716da7dd506d0a4eb58b831be6463cee825576699a688f8fb5d"
+    },
+    {
+      "path": "harvest-products-after-10-restart-inventory.png",
+      "sha256": "9897df748e329832fb5e338509cc6c558c4ba46b178b5b9ce63575b97b3d968b"
+    }
+  ],
+  "earnedFixture": "Fixtures/harvest-products-road65",
+  "fixtureHashes": {
+    "Quick.json": "9c3f5cf816e46787d48b9299625e5e67674bb86a7ead17676e0a0e364bc9386f",
+    "Quick.sav.gz": "a29c24265d5f8435acbbb7dfdf295e7e0353218e835b0b339fa82e0ad0263d39"
+  },
+  "profile": "harvest-products-editor-profile.json",
+  "profileLimits": "29.847s informational Editor sample includes UI/walk/save/tool time; no controlled baseline or hardware performance acceptance",
+  "archivedOwnedRoots": [
+    "/tmp/coo-harvest-after-earned-4361ea57",
+    "/tmp/coo-harvest-restart-earned-0a21facb"
+  ],
+  "normalState": "Normal Editor/standalone saves and38 foreign tracked changes hash-unchanged; final Play false, compiling false, root null, pending false; no cleanup",
+  "limits": [
+    "Only PaleSalt and Bone ordinarily observed; remaining15 mappings have native/source evidence only in this slice.",
+    "No all-item, all-biome or whole-scene completeness claim; CaravanRoad still contains unresolved prop/actor families.",
+    "Mac/Linux package refresh pending; no physical Steam Deck execution."
+  ]
+}

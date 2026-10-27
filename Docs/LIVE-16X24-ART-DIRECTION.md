@@ -2932,3 +2932,29 @@ remains deferred. Root owns Unity.
 
 The last actual hourly report was at 07:24 UTC; the next is due at 08:24 UTC.
 This continuation update does not itself count as another report.
+
+## Current continuation — 2026-10-27 08:24 UTC
+
+The portable harvest slice is integrated:17 registered output identities, eight
+new editable native16x24 frames and nine unchanged approved reuses. Actual
+gameplay shows PaleSalt in inventory/F1/uncovered ground/ground reader, normal
+drop/pickup, ordinary travel to CaravanRoad, and normal Bones harvest yielding
+Bone. Same IDs/counts and harvested-source removal survive fresh Editor restart.
+Final native suite399/399passed (123new,276related), no skips/inconclusives.
+See `GRAPHICS-HARVEST-PRODUCTS.md` and
+`Verification/Live16x24/harvest-products-play-summary.json` for exact evidence.
+The other15 products are integrated/tested but not ordinarily observed in this
+slice. No biome/fullness completion is implied. Runtime frozen; main push and
+fresh Mac/Linux packages follow. Current packaged source is still Beating
+2e5a0ca4c until separate harvest delivery evidence exists. Normal saves and38
+foreign edits preserved; no storage cleanup. Root owns Unity.
+
+Next area: actual Grovelands gameplay baseline, imagegen reinterpretation and
+cohesive terrain/vegetation kit;14provisional frames/9owners are a source-grounded
+plan, not authored/observed acceptance. Continue all biomes, underground,
+settlements/interiors and special sites, including unfinished Beating/Sodden
+props/actors/fullness. Nuanced animation remains deferred.
+
+An actual itemized hourly report was sent at08:24UTC; next due09:24UTC. It
+reported the17mapping slice,399passes, actual PaleSalt/Bone/restart, pending
+push/packages and Grovelands goals. Heartbeat remains active.

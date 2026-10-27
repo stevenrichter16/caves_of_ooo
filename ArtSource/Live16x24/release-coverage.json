@@ -862,9 +862,22 @@
     }
   },
   "latest_observation": {
-    "at_utc": "2026-10-27T07:33:13.840259+00:00",
-    "summary": "Beating34-frame ordinary materials verified in six Editor formations and two actual Mac area samples. Saved turn3210 at BrineLens with HP38 and persistent PaleSalt1 glyph. Whole-area fullness and other biome families remain incomplete.",
-    "evidence": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json"
+    "at_utc": "2026-10-27T08:16:51.0413990Z",
+    "summary": "17 portable harvest products integrated with8 new and9 unchanged reused frames;399 native tests passed. Actual Editor PaleSalt42025 count1 world/inventory/details/drop/read/pickup persists through normal travel17,13 to19,13; actual Bones38104 harvest at59,9 removes source and yields Bone42026 count1. F5turn3540 at59,9 HP38. Fresh Editor restart restored the exact3540 checkpoint, both product IDs/counts and absent harvested source; source push and package verification pending; other15 ordinary products and whole-biome/fullness coverage remain open.",
+    "evidence": "Docs/Verification/Live16x24/harvest-products-native-summary.json",
+    "actual_captures": [
+      "Docs/Verification/Live16x24/harvest-products-after-01-inventory.png",
+      "Docs/Verification/Live16x24/harvest-products-after-02-details.png",
+      "Docs/Verification/Live16x24/harvest-products-after-03-ground.png",
+      "Docs/Verification/Live16x24/harvest-products-after-04-ground-reader.png",
+      "Docs/Verification/Live16x24/harvest-products-after-05-picked-up.png",
+      "Docs/Verification/Live16x24/harvest-products-after-06-caravan-road.png",
+      "Docs/Verification/Live16x24/harvest-products-after-07-bones-action.png",
+      "Docs/Verification/Live16x24/harvest-products-after-08-bone-inventory.png",
+      "Docs/Verification/Live16x24/harvest-products-after-09-travel-inventory.png",
+      "Docs/Verification/Live16x24/harvest-products-after-10-restart-inventory.png"
+    ],
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65"
   },
   "current_environment_blocker": {
     "status": "no_current_blocker_recheck_ownership_before_play",
@@ -908,11 +921,25 @@
     "limits": "Eight actual Mac captures verify ordinary flat boot, earned SaltPan Continue3140 at31,13 HP38, one east step and uncovered Sand native reader, F53150/full process restart at32,13, then normal world-map travel to BrineLens17,13 at40,12 and F53210 HP38. Underfoot Sand retains the selected-owner fallback while the player covers it. PaleSalt quantity1 persists but still uses a glyph. This verifies a bounded material slice in two packaged area samples, not whole-Beating/full-scene acceptance. Props, services, residents, creatures, hazards, products, other biomes, interiors and underground remain incomplete. Existing shutdown notices persist. Final95 and earlier related225 have zero identity overlap:320 distinct cases,317 passed,3 inconclusive; the related suite predates the final road revision."
   },
   "next_scoped_work": {
-    "priority": "Broad static sprite coverage across every biome/area",
-    "next": "Implement the planned17 exact portable harvest products (eight new native sprites, nine immutable frame reuses) from real inventory/world/examine baselines. Then continue Grovelands, Overwrit and Stump native area kits, followed by remaining registered biomes, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps; defer nuanced animation.",
+    "priority": "Broad static sprite coverage across every biome/area, with coherent whole-chunk composition",
+    "next": "Finish the harvest-product package verification, then capture actual Grovelands ordinary formations and develop the provisional14-frame/nine-owner static area kit. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all15 remaining harvest products; defer nuanced animation.",
     "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
-    "status": "planned; new product art and portable implementation not yet authored or accepted",
-    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65"
+    "status": "17 products integrated;399 native pass; actual PaleSalt/Bone Editor actions and checkpoint restart verified; source push and packaging pending; Grovelands source preflight ready, actual baseline and art pending",
+    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65",
+    "next_regional_plan": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md",
+    "next_regional_provisional_frames": 14,
+    "next_regional_provisional_owners": [
+      "MycelialColumn",
+      "GroveSeep",
+      "GroveSign",
+      "GroveRedGrowth",
+      "FruitingBody",
+      "CompostRow",
+      "CompostCache",
+      "ChoirIronVein",
+      "WineLeafSundew"
+    ],
+    "breadth_rule": "Continue Grovelands, Overwrit, Stump and remaining world coverage without making ordinary observation of all15 remaining products a prerequisite."
   },
   "popup_raster_continuation": {
     "date": "2026-10-26",
@@ -1222,6 +1249,11 @@
       "at_utc": "2026-10-27T05:48:00Z",
       "summary": "Sodden final actual three-district traversal and Editor restart observed;304 native passed,3 allocation probes inconclusive; fullness and ordinary coverage open",
       "evidence": "Docs/Verification/Live16x24/sodden-travel-play-summary.json"
+    },
+    {
+      "at_utc": "2026-10-27T07:33:13.840259+00:00",
+      "summary": "Beating34-frame ordinary materials verified in six Editor formations and two actual Mac area samples. Saved turn3210 at BrineLens with HP38 and persistent PaleSalt1 glyph. Whole-area fullness and other biome families remain incomplete.",
+      "evidence": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json"
     }
   ],
   "packaged_delivery_history": [
@@ -1826,14 +1858,21 @@
       "status": "deferred_by_user_after_ordinary_baseline",
       "work": "East Cindercaller movement/cast attribution in the ordinary encounter. Follow Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md; capture first, preserve working spell FX/audio and neutral approved identity. FireMoss is not spell ammo.",
       "reason": "Prioritize complete sprites across all biomes/areas before nuanced animations. East source-only derivatives and unrun test draft preserved outside Assets; no motion runtime imported."
+    },
+    {
+      "priority": "Broad static sprite coverage across every biome/area",
+      "next": "Implement the planned17 exact portable harvest products (eight new native sprites, nine immutable frame reuses) from real inventory/world/examine baselines. Then continue Grovelands, Overwrit and Stump native area kits, followed by remaining registered biomes, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps; defer nuanced animation.",
+      "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
+      "status": "planned; new product art and portable implementation not yet authored or accepted",
+      "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65"
     }
   ],
   "hourly_reporting": {
     "requested_on": "2026-10-26",
-    "last_report_at_utc": "2026-10-27T07:24:00+00:00",
+    "last_report_at_utc": "2026-10-27T08:24:00+00:00",
     "automation_id": "overnight-clearing-art-pipeline",
     "items": "Completed/in-progress/blocked items; biome/area and sprite families addressed; verified missing gaps closed and remaining missing/unaudited coverage; test/capture/main-push status; concrete next coverage goals. Deferred animation listed separately. Intermediate10minute storage checks remain quiet/read-only.",
-    "report": "Docs/GRAPHICS-BEATING-MATERIALS.md",
+    "report": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
     "completed": [
       "Beating34-frame material source pushed2e5a0ca4c; six actual final Editor formations plus harvested-source removal, inventory identity and Continue3140 verified.",
       "Final native suite95/95 passed; earlier related225 yielded222 passed and3 inconclusive. Zero case-identity overlap,320 distinct; related suite predates final road revision."
@@ -1844,8 +1883,8 @@
       "Continue Grovelands/Overwrit/Stump and remaining region, interior and underground kits; keep Beating/Sodden props and whole-scene fullness open."
     ],
     "priority_update_at_utc": "2026-10-27T03:40:00+00:00",
-    "last_report_summary": "At07:24UTC, Beating source/editor material acceptance was pushed and packaging was next. Later package receipts are recorded separately; updating this ledger is not a new hourly report.",
-    "next_report_due_at_utc": "2026-10-27T08:24:00+00:00"
+    "last_report_summary": "Actual08:24UTC report:17 mappings/8new9reused;399nativepasses; ordinaryPaleSalt/Bone/travel/restart completed; mainpush/package pending; nextGrovelands baseline and cohesive terrain/vegetation, other15observations/worldcoverage open; subtle animation deferred.",
+    "next_report_due_at_utc": "2026-10-27T09:24:00+00:00"
   },
   "kitchen_brine_consistency": {
     "status": "native_editor_and_mac_restart_accepted_linux_archive_verified",
@@ -1933,8 +1972,8 @@
     "plan": "Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md",
     "status": "initial_source_scope_audit_not_complete_runtime_census",
     "chunk_composition": "Every area requires actual whole-scene fullness/composition review: biome-appropriate terrain, vegetation, props, architecture and landmarks with readable traversal/hazards. No density percentages or artificial clutter.",
-    "latest_delivered_source_slice": "Four approved portable equipment identities;222native pass; ordinary LongSword Sill/glade/reader/save-restart verified; packagepending.",
-    "next": "Continue actual Sodden crossing/shelter static material coverage after delivered Sill package; all-biome and chunk-fullness gates remain open."
+    "latest_delivered_source_slice": "Latest delivered package remains Beating2e5a0ca4c; current harvest17-product source integration has399 native passes and actual Editor PaleSalt/Bone actions and checkpoint restart evidence, with commit/package verification pending.",
+    "next": "Finish the harvest-product package verification, then capture actual Grovelands ordinary formations and develop the provisional14-frame/nine-owner static area kit. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all15 remaining harvest products; defer nuanced animation."
   },
   "sill_envelope": {
     "status": "source_integrated_native_editor_and_mac_standalone_verified_linux_archive_checked",
@@ -2293,5 +2332,202 @@
       "prior_sodden_packages_preserved": true,
       "storage_cleanup_performed": false
     }
+  },
+  "harvest_products": {
+    "status": "17 exact portable products integrated;399 native cases passed; actual Editor PaleSalt and Bone verified through earned checkpoint restart; source push and package verification pending",
+    "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
+    "source": "ArtSource/Live16x24/world-harvest-products",
+    "products": [
+      "PaleSalt",
+      "Bone",
+      "SaltbriarSprig",
+      "ChoirIron",
+      "Honeycomb",
+      "GroveRed",
+      "Tepuibone",
+      "KnotflaxCord",
+      "GlowQuartz",
+      "Mushroom",
+      "FireClay",
+      "SalvagedTimber",
+      "StoneburrSeed",
+      "FrostLichen",
+      "MendleafSprig",
+      "WildBerries",
+      "GoldCoin"
+    ],
+    "new_native_frames": 8,
+    "unchanged_reused_frames": 9,
+    "reuse": {
+      "Sprites/Live16x24/opening-items": {
+        "GlowQuartz": 6,
+        "Mushroom": 4,
+        "FireClay": 9,
+        "SalvagedTimber": 10
+      },
+      "Sprites/Live16x24/north-works-products": {
+        "StoneburrSeed": 0,
+        "FrostLichen": 1,
+        "MendleafSprig": 2,
+        "WildBerries": 3,
+        "GoldCoin": 4
+      }
+    },
+    "new_frame_mapping": {
+      "PaleSalt": 0,
+      "Bone": 1,
+      "SaltbriarSprig": 2,
+      "ChoirIron": 3,
+      "Honeycomb": 4,
+      "GroveRed": 5,
+      "Tepuibone": 6,
+      "KnotflaxCord": 7
+    },
+    "runtime_scope": "Exact approved product identities across current disclosed world selection and authorized carried/examine readers. Sole owned parts, actual portable custody, single-cell footprint, supported current semantics and no active owner color override; refused known products retain truthful fallback without weaker local-opening bypass. No biome admission, generation, harvesting, inventory, quantity or price mechanics changed.",
+    "native_tests": {
+      "red": {
+        "total": 123,
+        "failed": 123,
+        "xml": "Docs/Verification/Live16x24/harvest-products-native-red.xml"
+      },
+      "trial": {
+        "total": 399,
+        "passed": 397,
+        "failed": 2,
+        "xml": "Docs/Verification/Live16x24/harvest-products-native-trial.xml"
+      },
+      "green": {
+        "total": 399,
+        "new": 123,
+        "related": 276,
+        "passed": 399,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-10-27T08:09:45Z",
+        "ended_at_utc": "2026-10-27T08:10:32Z",
+        "xml": "Docs/Verification/Live16x24/harvest-products-native-green.xml"
+      },
+      "summary": "Docs/Verification/Live16x24/harvest-products-native-summary.json",
+      "limits": "Native behavioral coverage is not ordinary acquisition, visual-quality, packaged-run, Linux-execution, physical-Deck or sustained-performance acceptance."
+    },
+    "actual_editor_play": {
+      "observed_products": [
+        "PaleSalt",
+        "Bone"
+      ],
+      "PaleSalt": {
+        "entity_id": 42025,
+        "quantity": 1,
+        "observed_contexts": [
+          "inventory",
+          "item details",
+          "drop",
+          "uncovered world sprite",
+          "world reader",
+          "pickup",
+          "normal area travel"
+        ]
+      },
+      "Bone": {
+        "entity_id": 42026,
+        "quantity": 1,
+        "harvest_source_blueprint": "Bones",
+        "harvest_source_entity_id": 38104,
+        "harvest_source_removed": true,
+        "harvest_cell": [
+          59,
+          9
+        ],
+        "observed_contexts": [
+          "actual harvest",
+          "inventory",
+          "travel inventory"
+        ]
+      },
+      "route": [
+        "Overworld.17.13.0",
+        "Overworld.19.13.0"
+      ],
+      "final_save": {
+        "turn": 3540,
+        "zone": "Overworld.19.13.0",
+        "player": [
+          59,
+          9
+        ],
+        "hp": 38,
+        "max_hp": 40,
+        "saved_at_utc": "2026-10-27T08:16:51.0413990Z",
+        "fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65"
+      },
+      "captures": [
+        "Docs/Verification/Live16x24/harvest-products-after-01-inventory.png",
+        "Docs/Verification/Live16x24/harvest-products-after-02-details.png",
+        "Docs/Verification/Live16x24/harvest-products-after-03-ground.png",
+        "Docs/Verification/Live16x24/harvest-products-after-04-ground-reader.png",
+        "Docs/Verification/Live16x24/harvest-products-after-05-picked-up.png",
+        "Docs/Verification/Live16x24/harvest-products-after-06-caravan-road.png",
+        "Docs/Verification/Live16x24/harvest-products-after-07-bones-action.png",
+        "Docs/Verification/Live16x24/harvest-products-after-08-bone-inventory.png",
+        "Docs/Verification/Live16x24/harvest-products-after-09-travel-inventory.png",
+        "Docs/Verification/Live16x24/harvest-products-after-10-restart-inventory.png"
+      ],
+      "restart_status": "verified in a fresh isolated Editor play session; packaged process restart remains unverified for this slice",
+      "ordinary_products_not_yet_observed": [
+        "SaltbriarSprig",
+        "ChoirIron",
+        "Honeycomb",
+        "GroveRed",
+        "Tepuibone",
+        "KnotflaxCord",
+        "GlowQuartz",
+        "Mushroom",
+        "FireClay",
+        "SalvagedTimber",
+        "StoneburrSeed",
+        "FrostLichen",
+        "MendleafSprig",
+        "WildBerries",
+        "GoldCoin"
+      ],
+      "limits": "Root performed the ordinary Editor actions and captures. Only PaleSalt and Bone have current ordinary-play evidence; the other15 have native test coverage but no ordinary acquisition/reader evidence in this pass.",
+      "restart": {
+        "context": "Editor restart of exact earned fixture",
+        "fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65",
+        "turn": 3540,
+        "zone": "Overworld.19.13.0",
+        "player": [
+          59,
+          9
+        ],
+        "hp": 38,
+        "inventory": [
+          {
+            "blueprint": "PaleSalt",
+            "entity_id": 42025,
+            "quantity": 1
+          },
+          {
+            "blueprint": "Bone",
+            "entity_id": 42026,
+            "quantity": 1
+          }
+        ],
+        "player_cell_owners": [
+          "Sand",
+          "Player"
+        ],
+        "harvest_source_Bones38104_absent": true,
+        "capture": "Docs/Verification/Live16x24/harvest-products-after-10-restart-inventory.png",
+        "archived_isolated_root": "/tmp/coo-harvest-restart-earned-0a21facb",
+        "normal_state_protection": "passed; root performed restart/restoration checks"
+      }
+    },
+    "source_push_status": "pending root commit and remote verification",
+    "package_status": "pending; current delivered package remains Beating source2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+    "whole_biome_and_fullness_status": "open; portable item coverage adds no terrain/flora/architecture/actor placement or whole-scene density acceptance",
+    "next": "Finish the harvest-product package verification, then capture actual Grovelands ordinary formations and develop the provisional14-frame/nine-owner static area kit. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all15 remaining harvest products; defer nuanced animation.",
+    "next_regional_preflight": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md"
   }
 }

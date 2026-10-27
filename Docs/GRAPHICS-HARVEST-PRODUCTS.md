@@ -1,6 +1,6 @@
 # Next worldwide sprite slice: portable harvest products
 
-2026-10-27. **Status: planned. The eight new product sprites are not authored, integrated or accepted; the nine existing native frames are reuse candidates whose portable delivery remains unimplemented.** This is the approved next slice after the current Beating package delivery. No new runtime or test implementation is claimed by this plan. Source inspected: the actual boot-loaded `Assets/Resources/Content/Blueprints/Objects.json`, native catalogs, ordinary population/composition sources, loot registry and existing inventory/examine route. Bootstrap loads this exact Objects file (`GameBootstrap.cs:230–239`); BlueprintLoader resolves inheritance (`BlueprintLoader.cs:35–105`).
+2026-10-27. **Status: eight native frames and nine unchanged reuses integrated; final399/399 native tests pass. PaleSalt and Bone are observed through ordinary gameplay and Editor restart. Source push and fresh packages are next; the other15 ordinary observations remain open.** Source inspected: the actual boot-loaded `Assets/Resources/Content/Blueprints/Objects.json`, native catalogs, ordinary population/composition sources, loot registry and existing inventory/examine route. Bootstrap loads this exact Objects file (`GameBootstrap.cs:230–239`); BlueprintLoader resolves inheritance (`BlueprintLoader.cs:35–105`).
 
 ## Concrete problem and bounded deliverable
 
@@ -28,7 +28,7 @@ Source selectors: `FlatPixelOpeningArtCatalog.cs:270–283,319–353,540–563`;
 
 ## Eight new products — proposed frozen part map after actual concept critique
 
-Proposed `world-harvest-products` atlas:8 horizontal cells,128×24, transparent item silhouettes, Point/no mipmaps. These are real carried products, not miniature world nodes. Exact final prompts/parts must be recorded after the screenshot reinterpretation. No production pixels have been authored here.
+Proposed `world-harvest-products` atlas:8 horizontal cells,128×24, transparent item silhouettes, Point/no mipmaps. These are real carried products, not miniature world nodes. Exact final prompts/parts must be recorded after the screenshot reinterpretation. The frozen source now follows this exact eight-frame map; ordinary gameplay acceptance remains pending.
 
 | Frame | Product / registered source | Distinct silhouette and required semantics |
 |---:|---|---|
@@ -85,3 +85,194 @@ Use one small exact-product semantic adapter or a narrow portable helper plus8-f
 The17-item set closes the inspected finite Harvestable output family, not all items. Crop produce/seeds, prepared derivatives (CleansedGrovePulp, bandages, haft/head/binding components), RawMeat/CookedMeat, liquid vessels/content states, all remaining weapons/armor/books, quest stones MemoryMarble/MuteStone, artifacts and dynamic corpses stay separate. Existing accepted plot-products and other local item frames may need later portable delivery checks. Regions still need coherent terrain/flora/actors/props and whole-chunk fullness; this inventory-focused slice must not replace the continuing all-biome scene work.
 
 **Next action:** root preserves the current Beating release, then creates the actual product baseline/concept/native8 + portable17 test slice. No further broad census is necessary before that bounded work starts.
+
+## Test-first preflight — 2026-10-27 07:40 UTC
+
+Status: source/API verification and native RED test authoring. Production routing
+and the eight new sprites have not been accepted. This is CoO-original item
+presentation; no external-game parity is claimed. Root retains Unity and actual
+play ownership.
+
+| Planned assumption | Verified correction / implementation contract |
+| --- | --- |
+| All products can share a generic mineral/food shape | The inherited Objects definitions give every one of the 17 an Item, Render, Physics, Stacker and Commerce shape, but distinct functional parts. None authors Material or Thermal. GroveRed is a layer-3 toxic reagent; the other products are layer 5. Do not add nonexistent parts or require a generic layer. |
+| Reagent values must match literal authored text | `ReagentPart.GetProperties` parses and caches current raw properties; require the meaningful positive properties, including GroveRed's vital **and toxic** identities, without requiring original potency, ordering or letter case. |
+| Recipe membership can use substring matching | `PreparationRecipePart.Allows` uses exact comma-separated tokens. Tepuibone requires shape_head; timber shape_haft; cord braid_binding and bandage; GroveRed detox_grove_red; Mendleaf concentrate_mendleaf. Art must not execute a recipe. |
+| A missing product resolver can simply fall through | The older local `FlatPixelOpeningArtCatalog.ItemFrameOf` and `WorksProductFrameOf` use weaker guards. A known product refused for malformed parts, reskin or owner-color state must not regain native art through those paths. Test both the real opening and a non-opening graph. |
+| Frozen/electric is a useful original-item effect counter | Original products have no authored Material tags, so those effects may be refused before the art query. `ObjectStatusMatrix` permits Wet on objects; assert actual Wet application and its blue render override before testing neutral-art refusal. |
+| Quantities or commerce must equal defaults | Require a live owned stack within its current maximum and correct functional ownership, not exact quantity, value, price or condition. Stacker defaults to maximum 99; cord and timber author 20. |
+| Footprint refresh is a public helper named RefreshEntityFootprint | The real public mutation is `Zone.TryChangeFootprint`; `RefreshFootprint` and `Entity.SpatialZone` are internal. Tests use public zone/custody methods and reflection only for the proposed companion and existing fixture seams. |
+
+Proposed small adapter: `FlatPixelHarvestProductsCatalog`, default resource-loading
+constructor plus `(Texture2D products8, Texture2D openingItems12,
+Texture2D worksProducts7)`, `TryResolve(Entity, out Tile)`, and owned cached-frame
+`Dispose`. Greybox owns an optional `_harvestProductsArt` instance. This resolver
+answers semantic art only; existing current-graph, selected world owner and
+inventory/examine document authority remain responsible for disclosure. A
+missing injected texture group remains unavailable without a Resources reload.
+The proposed tests use actual factory products and public world/readers, with
+paired part, state, custody, current-graph, stack and resource counterchecks,
+real harvest/pickup/drop, and one submitted full/dirty paint sequence. They do
+not certify ordinary player acquisition, image quality or all-biome travel.
+
+## Current production pass — 2026-10-27 07:56 UTC
+
+Actual isolated Editor baseline resumed the earned packaged BrineLens checkpoint
+(turn3210, HP38, player40,12). PaleSalt42025 quantity1 was inspected in inventory,
+F1 details, dropped, viewed at40,12 from39,12, examined through C→Right→X,
+then recovered with normal movement/G and F5 saved atturn3240. All four visual
+contexts used the old glyph. Six unedited Game captures and exact actions are in
+`Verification/Live16x24/harvest-products-baseline.json`. The normal save trees and
+38 pre-existing tracked edits remain unchanged; owned baseline saves were archived.
+
+Built-in imagegen reinterpreted the actual packaged inventory capture and the
+approved item atlases, then produced an eight-part silhouette study. Prompts,
+concepts and selected external reference records are in
+`ArtSource/Live16x24/world-harvest-products/concepts`. Concepts are direction only.
+Original native pixel geometry was authored in the editable Blender source; no
+concept crops became game assets. Root reviewed the eight silhouettes on green,
+sand and inventory backgrounds and approved the integration trial. Source checks
+retain missing-art RED, GREEN,13 mutation counters,317 unchanged approved inputs
+and exact decoded-pixel reproducibility. Native PNG encoding metadata can vary
+between renders; byte-identical PNG reproduction is not claimed. The runtime
+copy and authored Unity metadata pass the source import verifier.
+
+Native RED at07:55:34–07:55:41 UTC ran123 cases, all123 failed on absent companion
+or actual world/carried glyph delivery, with zero compile failures. Raw XML and
+MCP receipt are saved as `harvest-products-native-red.*`. Production implementation
+started only after this result. No GREEN, ordinary-after, package or whole-biome
+completion claim follows from this current record.
+
+
+### Native RED and first implementation
+
+Root saved the genuine native RED in
+`Verification/Live16x24/harvest-products-native-red.xml`: **123 cases failed**,
+including the missing companion and public world/carried-reader glyph assertions.
+Production followed that run. `FlatPixelHarvestProductsCatalog` now maps the
+17 exact products to the eight new native cells and nine unchanged atlas reuses.
+`FlatPixelGreyboxCatalog` owns the lazy adapter, preserves the injected legacy
+item/works texture groups, and prevents refused known products from falling back
+to weaker local native selectors. Both subject routes and old/continuous world
+routes share that policy. The implementation owns only cached Tiles/Sprites,
+uses current parsed reagent properties and exact nonallocating recipe-token
+comparison, and changes no generation, inventory rules or material definitions.
+
+Files in this first test/runtime change: new
+`Assets/Tests/EditMode/Presentation/Rendering/FlatPixelHarvestProductsTests.cs`
+and metadata; new
+`Assets/Scripts/Presentation/Rendering/FlatPixelHarvestProductsCatalog.cs` and
+metadata; `Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs`;
+and this preflight/implementation record. The source-art packet and native atlas
+are handled separately by the root and art owner. Compilation, GREEN, independent
+runtime review and actual after-play/package acceptance remain pending at this
+recording point. The 123-case RED is not passing behavior or visual acceptance.
+
+
+### First combined native trial and saved corrections
+
+The first combined run recorded **397 passes and 2 failures out of 399**, retained
+in `Verification/Live16x24/harvest-products-native-trial.xml`. One submitted-paint
+test called raw one-cell inventory/Zone mutations without asking for a renderer
+refresh, so it inspected the previous player's glyph. Zone publishes automatic
+footprint dirty hooks only for explicit footprints; the real inventory UI owns
+its closing redraw. The saved test now submits the changed cell through the
+public dirty API after the real drop/pickup, still requiring the actual painted
+native tile, its disappearance and no full repaint. This is a fixture correction,
+not a new gameplay invalidation behavior.
+
+**Intentional narrower art contract:** the old opening test permitted a repeated
+native SalvagedTimber image on an authored two-cell body. The new portable17
+policy only represents the approved single zero-offset product silhouette.
+A changed multi-cell timber owner now keeps its truthful glyph while its real
+physical footprint and interactions remain intact. Root approved that bounded
+contract change. The old test was replaced with a paired single-cell native →
+public two-cell footprint change → same-owner glyph/unchanged two-cell body →
+single-cell native restoration → removal check. No footprint mechanic changed.
+Corrected native GREEN remains pending; the failed trial is preserved.
+
+### First integration trial and corrections
+
+The combined native run at08:03:52–08:04:39 UTC executed399 cases:397 passed,
+2 failed, no inconclusive/skipped cases. Raw `harvest-products-native-trial.xml`
+remains unchanged. One older test deliberately rendered a modified two-cell
+SalvagedTimber through the local legacy route; the new exact carried-item policy
+requires a one-cell neutral silhouette and instead preserves the truthful glyph
+and physical footprint. The paired regression is being updated to this documented
+stricter visual contract; no movement, item, save or footprint mechanics change.
+
+The submitted-paint fixture called raw inventory/zone methods without the UI's
+normal repaint notification and retained the old player's glyph. Public one-cell
+Zone movement does not itself publish that render hook. The fixture correction
+requests only the changed cell via the public renderer dirty hook, then verifies
+the actual submitted native tile and pickup clearing without a full refresh.
+Ordinary UI drop/pickup acceptance remains a separate required gameplay gate.
+
+### Native GREEN and bounded self-review — 2026-10-27 08:10 UTC
+
+Root's rerun of the same combined suite passed **399/399 distinct cases**:
+**123 harvest-product cases and 276 related cases**, with **0 failures,
+0 skipped and 0 inconclusive**. The saved native XML is
+`Verification/Live16x24/harvest-products-native-green.xml`, recorded from
+08:09:45 to 08:10:32 UTC. This confirms the corrected saved source and tests;
+the original 123-failure RED and 397/399 first trial remain retained.
+Production code is now frozen for root's actual UI/world comparison.
+
+The native result covers exact product/frame identity in public world and
+carried-reader routes; all ten registered biome keys as bounded synthetic
+contexts; current-graph, visibility and custody guards; single-cell/part/stack
+semantics; the actual Wet positive control; recipe/reagent meanings; real
+harvest, stack, pickup/drop/recipient actions; optional-resource isolation;
+legacy injected frame compatibility; disposal; and submitted dirty repaint.
+The registered-biome matrix is not natural travel or an actual source capture
+from all ten biomes. The test's explicit dirty submission is not evidence that
+raw inventory commands independently invalidate UI. No quantities, prices,
+recipes, footprint mechanics or world generation were changed for the art.
+
+Self-review before gameplay acceptance:
+
+- 🟡 Fixed the legacy-selector bypass: refused known products cannot regain
+  native art through the older opening item groups. Both real opening and
+  non-opening counterchecks pass.
+- 🟡 Fixed the submitted-paint fixture's missing redraw request, retaining
+  actual drop/pickup and submitted-tile assertions. No gameplay patch was needed.
+- 🟡 Documented and tested the intentionally narrower multi-cell timber art
+  contract; the real body and interaction geometry remain intact.
+- 🔵 Eight new native product frames and nine immutable frame reuses share a
+  cached semantic resolver. Injected optional groups do not reload Resources;
+  disposal destroys generated sprites/tiles and preserves borrowed textures.
+- 🔵 The live owner retains recipe, reagent toxicity, commerce, stack and
+  custody truth; art queries do not fire Render events or perform preparation.
+- 🧪 Actual after-play inventory/F1/ground captures, carry/travel/save/reload,
+  packaged delivery and hardware performance remain pending at this checkpoint.
+- ⚪ These 17 products do not complete all items, a biome, or whole-scene
+  fullness. Grovelands/Overwrit/Stump and remaining region/underground/site kits,
+  plus Beating/Sodden props, services and actors, remain in the coverage queue.
+
+## Actual integration acceptance — 2026-10-27 08:24 UTC
+
+The unchanged turn3210 Beating checkpoint now shows PaleSalt42025 natively in
+inventory, full details, uncovered ground and adjacent ground reader. Normal
+D/drop, walking and G/pickup preserve its identity/count. Ordinary world-map
+travel reaches CaravanRoad19,13; normal C/Right/H harvests actual Bones38104
+at59,9 into Bone42026 count1. Inventory shows the new bone and the carried salt.
+F5 atturn3540 saves HP38,cell59,9. A fresh isolated Editor launch/Continue from
+the exact earned save restores both items and the absent harvested Bones.
+Capture after10 shows the bone after restart. The exported checkpoint is
+`Verification/Live16x24/Fixtures/harvest-products-road65`; actions, hashes and
+all ten actual after screenshots are in `harvest-products-play-summary.json`.
+
+Can verify: real input actions, current owners/counts, native portraits, harvest
+removal, cross-zone portability and Editor save/restart continuity. Visual
+inspection confirms a small crystalline salt cluster distinct from its vein and
+a narrow animal bone distinct from the Bones world pile. The29.847second Editor
+profile is informational, not a controlled speed comparison or device benchmark.
+Cannot verify here: ordinary observation of the other15 products, whole-biome
+fullness, packaged launch of this revision or physical Deck operation.
+
+Normal saves and38 foreign tracked modifications remain hash-unchanged; owned
+isolation roots are archived. No cache or build deletion occurred. No gameplay
+quantities, recipes, prices, damage, generation or optional animations changed.
+Next: preserve reviewed source on main, refresh packages, then begin the actual
+Grovelands baseline and native area kit. Do not wait for all15 remote product
+observations before covering unrepresented regions.
