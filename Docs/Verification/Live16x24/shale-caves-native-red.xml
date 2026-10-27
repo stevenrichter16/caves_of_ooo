@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="36" result="Failed(Child)" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:25Z" duration="2.6935388">
+  <test-suite type="TestSuite" id="41039" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33345" result="Failed" site="Child" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:25Z" duration="2.693539" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41011" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33345" result="Failed" site="Child" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:25Z" duration="2.648959" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41012" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33345" result="Failed" site="Child" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:25Z" duration="2.643723" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41013" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33345" result="Failed" site="Child" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:25Z" duration="2.640877" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1320" name="FlatPixelShaleCavesTests" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:25Z" duration="2.633315" total="36" passed="0" failed="36" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1362" name="ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:22Z" duration="0.249636" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1360" name="ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired(5)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired(5)" methodname="ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="580537159" result="Failed" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:22Z" duration="0.171435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired (System.Int32 lowerDepth) [0x000b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:372
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1361" name="ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired(6)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired(6)" methodname="ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="493431903" result="Failed" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:22Z" duration="0.060498" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-anchors (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ActualVerticalCounterpartsSupportRoundTripButMissingReturnEndpointDoesNotGetRepaired (System.Int32 lowerDepth) [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:371
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1351" name="AmbientBackingIsOwnerFreeAndUsesBothExistingUnattenuatedPaintPaths" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.AmbientBackingIsOwnerFreeAndUsesBothExistingUnattenuatedPaintPaths" methodname="AmbientBackingIsOwnerFreeAndUsesBothExistingUnattenuatedPaintPaths" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="234096748" result="Failed" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:22Z" duration="0.037531" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Art () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:92
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ground (UnityEngine.Tilemaps.Tile& tile, CavesOfOoo.Core.Entity& owner, System.Int32 x, System.Int32 y) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:96
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ambient (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:150
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.AmbientBackingIsOwnerFreeAndUsesBothExistingUnattenuatedPaintPaths () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:300
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1339" name="CurrentPoiMapShapeAndCachedGraphRevokeWarmAuthorityWithoutGenerating" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.CurrentPoiMapShapeAndCachedGraphRevokeWarmAuthorityWithoutGenerating" methodname="CurrentPoiMapShapeAndCachedGraphRevokeWarmAuthorityWithoutGenerating" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="112209439" result="Failed" start-time="2026-10-27 19:12:22Z" end-time="2026-10-27 19:12:23Z" duration="0.037131" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.CurrentPoiMapShapeAndCachedGraphRevokeWarmAuthorityWithoutGenerating () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:194
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1345" name="CurrentSelectionFootprintAndRemovalPreserveFloorAndReaderAuthority" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.CurrentSelectionFootprintAndRemovalPreserveFloorAndReaderAuthority" methodname="CurrentSelectionFootprintAndRemovalPreserveFloorAndReaderAuthority" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1068454299" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.038510" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.CurrentSelectionFootprintAndRemovalPreserveFloorAndReaderAuthority () [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:226
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1359" name="DisposalDestroysOnlyOwnedViewsNotBorrowedTexturesOrSelectorBackdrop" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.DisposalDestroysOnlyOwnedViewsNotBorrowedTexturesOrSelectorBackdrop" methodname="DisposalDestroysOnlyOwnedViewsNotBorrowedTexturesOrSelectorBackdrop" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="938054491" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.040062" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Inject (UnityEngine.Texture2D[] inputs) [0x00099] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:139
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.DisposalDestroysOnlyOwnedViewsNotBorrowedTexturesOrSelectorBackdrop () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:363
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1356" name="GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.183629" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1353" name="GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark(&quot;water&quot;)" methodname="GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="97641045" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.036889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark (System.String kind) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:326
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1354" name="GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark(&quot;heat&quot;)" methodname="GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1345585429" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.036510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark (System.String kind) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:326
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1355" name="GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark(&quot;charge&quot;)" methodname="GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="2059219621" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.042842" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.GroundAndAmbientNeverReplaceLiveHazardOrItsSubmittedMark (System.String kind) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:326
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1352" name="HiddenForeignAndCustodiedCompetitorsCannotSignalThroughTheBackdrop" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.HiddenForeignAndCustodiedCompetitorsCannotSignalThroughTheBackdrop" methodname="HiddenForeignAndCustodiedCompetitorsCannotSignalThroughTheBackdrop" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="2125917638" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.037149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Art () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:92
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ground (UnityEngine.Tilemaps.Tile& tile, CavesOfOoo.Core.Entity& owner, System.Int32 x, System.Int32 y) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:96
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ambient (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:150
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.HiddenForeignAndCustodiedCompetitorsCannotSignalThroughTheBackdrop () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:316
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1338" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.326629" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1331" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.0.9.4&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.0.9.4&quot;)" methodname="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="978166262" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.038016" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1332" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.0.9.7&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.0.9.7&quot;)" methodname="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1525193752" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.035220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1333" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.00.9.5&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.00.9.5&quot;)" methodname="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="2141445464" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.036449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1334" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.11.10.5&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.11.10.5&quot;)" methodname="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="968602536" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.037090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1335" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.3.7.6&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.3.7.6&quot;)" methodname="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="970327433" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.036390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1336" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.2.7.5&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.2.7.5&quot;)" methodname="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="447744741" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.037271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1337" name="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.3.3.6&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn(&quot;Overworld.3.3.6&quot;)" methodname="MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="52052697" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.038064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MaterialNamesDoNotAdmitWrongDepthAliasOrReservedColumn (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:189
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1358" name="MissingOrMalformedAtlasDoesNotInventFloorAndBorrowedGroupsFailIndependently" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.MissingOrMalformedAtlasDoesNotInventFloorAndBorrowedGroupsFailIndependently" methodname="MissingOrMalformedAtlasDoesNotInventFloorAndBorrowedGroupsFailIndependently" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1425658008" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.042653" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Inject (UnityEngine.Texture2D[] inputs) [0x00099] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:139
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.MissingOrMalformedAtlasDoesNotInventFloorAndBorrowedGroupsFailIndependently () [0x0006c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:351
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1344" name="NeitherMaterialNorAmbientLeaksUndisclosedOwners" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.NeitherMaterialNorAmbientLeaksUndisclosedOwners" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.187852" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1341" name="NeitherMaterialNorAmbientLeaksUndisclosedOwners(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.NeitherMaterialNorAmbientLeaksUndisclosedOwners(&quot;hidden&quot;)" methodname="NeitherMaterialNorAmbientLeaksUndisclosedOwners" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="753785915" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.040741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.NeitherMaterialNorAmbientLeaksUndisclosedOwners (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:217
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1342" name="NeitherMaterialNorAmbientLeaksUndisclosedOwners(&quot;remembered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.NeitherMaterialNorAmbientLeaksUndisclosedOwners(&quot;remembered&quot;)" methodname="NeitherMaterialNorAmbientLeaksUndisclosedOwners" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="2040806871" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.038260" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.NeitherMaterialNorAmbientLeaksUndisclosedOwners (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:217
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1343" name="NeitherMaterialNorAmbientLeaksUndisclosedOwners(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.NeitherMaterialNorAmbientLeaksUndisclosedOwners(&quot;unexplored&quot;)" methodname="NeitherMaterialNorAmbientLeaksUndisclosedOwners" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1286173664" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.040431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.NeitherMaterialNorAmbientLeaksUndisclosedOwners (System.String fault) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:217
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1346" name="OwnedPartsCustodyAndCustomIdentityAreRequiredForNeutralWallPixels" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.OwnedPartsCustodyAndCustomIdentityAreRequiredForNeutralWallPixels" methodname="OwnedPartsCustodyAndCustomIdentityAreRequiredForNeutralWallPixels" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1941368722" result="Failed" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:23Z" duration="0.060673" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.OwnedPartsCustodyAndCustomIdentityAreRequiredForNeutralWallPixels () [0x0006b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:237
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1330" name="RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 19:12:23Z" end-time="2026-10-27 19:12:24Z" duration="0.817726" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1328" name="RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata(5)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata(5)" methodname="RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1971702810" result="Failed" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:24Z" duration="0.316680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata (System.Int32 depth) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1329" name="RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata(6)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata(6)" methodname="RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1194189781" result="Failed" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:24Z" duration="0.431630" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealCurrentDepthGraphContainsExactShaleAndDoesNotWidenAdjacentStrata (System.Int32 depth) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:177
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1350" name="RealFloorUnderStairRubbleAndActorStaysDistinctFromOwnerFreeBackingInDirtyPaint" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealFloorUnderStairRubbleAndActorStaysDistinctFromOwnerFreeBackingInDirtyPaint" methodname="RealFloorUnderStairRubbleAndActorStaysDistinctFromOwnerFreeBackingInDirtyPaint" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1856660299" result="Failed" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:24Z" duration="0.036992" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealFloorUnderStairRubbleAndActorStaysDistinctFromOwnerFreeBackingInDirtyPaint () [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:290
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1349" name="RealWallDamageAndDestructionSubmitActualRubbleAndPreserveUnrelatedHazardAndHealth" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealWallDamageAndDestructionSubmitActualRubbleAndPreserveUnrelatedHazardAndHealth" methodname="RealWallDamageAndDestructionSubmitActualRubbleAndPreserveUnrelatedHazardAndHealth" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="619091152" result="Failed" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:24Z" duration="0.036175" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.RealWallDamageAndDestructionSubmitActualRubbleAndPreserveUnrelatedHazardAndHealth () [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:275
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1347" name="ShaleIsNotAnAliasForAdjacentStrataGenericWallVineOrCustomFloorMeaning" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.ShaleIsNotAnAliasForAdjacentStrataGenericWallVineOrCustomFloorMeaning" methodname="ShaleIsNotAnAliasForAdjacentStrataGenericWallVineOrCustomFloorMeaning" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1298929301" result="Failed" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:24Z" duration="0.037391" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ShaleIsNotAnAliasForAdjacentStrataGenericWallVineOrCustomFloorMeaning () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:252
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1327" name="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:25Z" duration="0.307722" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1321" name="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;ShaleFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;ShaleFloor&quot;)" methodname="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1716276819" result="Failed" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:24Z" duration="0.050442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState (System.String name) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1322" name="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;ShaleWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;ShaleWall&quot;)" methodname="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="59960499" result="Failed" start-time="2026-10-27 19:12:24Z" end-time="2026-10-27 19:12:25Z" duration="0.037594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState (System.String name) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1323" name="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;Rubble&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;Rubble&quot;)" methodname="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="922557841" result="Failed" start-time="2026-10-27 19:12:25Z" end-time="2026-10-27 19:12:25Z" duration="0.040853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState (System.String name) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1324" name="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;Stalagmite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;Stalagmite&quot;)" methodname="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="847536019" result="Failed" start-time="2026-10-27 19:12:25Z" end-time="2026-10-27 19:12:25Z" duration="0.037369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState (System.String name) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1325" name="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;StairsDown&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;StairsDown&quot;)" methodname="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="481727509" result="Failed" start-time="2026-10-27 19:12:25Z" end-time="2026-10-27 19:12:25Z" duration="0.035950" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState (System.String name) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1326" name="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;StairsUp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState(&quot;StairsUp&quot;)" methodname="SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1041013406" result="Failed" start-time="2026-10-27 19:12:25Z" end-time="2026-10-27 19:12:25Z" duration="0.036477" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.SixExactOwnersSubmitSameNativeWorldAndAuthorizedReaderWithoutChangingState (System.String name) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:162
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1348" name="StructuralSurvivalUsesShaleTwentyEightAndHardnessTwoNotCreatureHealth" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.StructuralSurvivalUsesShaleTwentyEightAndHardnessTwoNotCreatureHealth" methodname="StructuralSurvivalUsesShaleTwentyEightAndHardnessTwoNotCreatureHealth" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1807481965" result="Failed" start-time="2026-10-27 19:12:25Z" end-time="2026-10-27 19:12:25Z" duration="0.057145" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Supported (CavesOfOoo.Core.Zone z) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:94
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:116
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.StructuralSurvivalUsesShaleTwentyEightAndHardnessTwoNotCreatureHealth () [0x000ea] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:264
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1340" name="SurfaceKeyedSavedLairRemainsExcludedAfterPoiRemovalWithoutCreatingNewLedger" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.SurfaceKeyedSavedLairRemainsExcludedAfterPoiRemovalWithoutCreatingNewLedger" methodname="SurfaceKeyedSavedLairRemainsExcludedAfterPoiRemovalWithoutCreatingNewLedger" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1771096423" result="Failed" start-time="2026-10-27 19:12:25Z" end-time="2026-10-27 19:12:25Z" duration="0.038857" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Art () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:92
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ground (UnityEngine.Tilemaps.Tile& tile, CavesOfOoo.Core.Entity& owner, System.Int32 x, System.Int32 y) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:96
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ambient (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:150
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.SurfaceKeyedSavedLairRemainsExcludedAfterPoiRemovalWithoutCreatingNewLedger () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:209
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1357" name="VisibleCompetingMeaningAndExplicitBlackBackgroundOutrankAmbientWithoutHidingOwner" fullname="CavesOfOoo.Tests.FlatPixelShaleCavesTests.VisibleCompetingMeaningAndExplicitBlackBackgroundOutrankAmbientWithoutHidingOwner" methodname="VisibleCompetingMeaningAndExplicitBlackBackgroundOutrankAmbientWithoutHidingOwner" classname="CavesOfOoo.Tests.FlatPixelShaleCavesTests" runstate="Runnable" seed="1205824564" result="Failed" start-time="2026-10-27 19:12:25Z" end-time="2026-10-27 19:12:25Z" duration="0.035714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing ordinary shale-cave adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelShaleCavesTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:86
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Art () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:92
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ground (UnityEngine.Tilemaps.Tile& tile, CavesOfOoo.Core.Entity& owner, System.Int32 x, System.Int32 y) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:96
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.Ambient (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:150
+at CavesOfOoo.Tests.FlatPixelShaleCavesTests.VisibleCompetingMeaningAndExplicitBlackBackgroundOutrankAmbientWithoutHidingOwner () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelShaleCavesTests.cs:338
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

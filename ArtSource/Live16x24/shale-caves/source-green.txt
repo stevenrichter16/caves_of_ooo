@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "dimensions": [
+    96,
+    24
+  ],
+  "frames": 6,
+  "palette": {
+    "floor": "54585C",
+    "fleck": "5C6064",
+    "dust": "4A4E54",
+    "mass": "3C434C",
+    "fissure": "343D46",
+    "seam": "47525F",
+    "secondary": "424C58"
+  },
+  "exact_native_pixels_checked": 2304,
+  "direct_contact_pixels_checked": 748800,
+  "fully_opaque": true,
+  "identical_family_base_edges": true,
+  "frame_stats": [
+    {
+      "frame": 0,
+      "owner": "ShaleFloor",
+      "base_pixels": 379,
+      "detail_pixels": 5,
+      "base_fraction": 0.9869791666666666,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 1,
+      "owner": "ShaleFloor",
+      "base_pixels": 378,
+      "detail_pixels": 6,
+      "base_fraction": 0.984375,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 2,
+      "owner": "ShaleFloor",
+      "base_pixels": 377,
+      "detail_pixels": 7,
+      "base_fraction": 0.9817708333333334,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 3,
+      "owner": "ShaleFloor",
+      "base_pixels": 377,
+      "detail_pixels": 7,
+      "base_fraction": 0.9817708333333334,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 4,
+      "owner": "ShaleWall",
+      "base_pixels": 272,
+      "detail_pixels": 112,
+      "base_fraction": 0.7083333333333334,
+      "minimum_base_fraction": 0.65
+    },
+    {
+      "frame": 5,
+      "owner": "ShaleWall",
+      "base_pixels": 269,
+      "detail_pixels": 115,
+      "base_fraction": 0.7005208333333334,
+      "minimum_base_fraction": 0.65
+    }
+  ],
+  "atlas_sha256": "e749ed4470297915ae9542e07dfea589ad096155f080adf0cefcddf15ef033ae",
+  "decoded_rgba_sha256": "642b93af8f741260136a5e2473fa7978f4f79d1a1168c42659857862cfcb3a8f",
+  "source_cells_sha256": "1247a0bd574e62ca050798d159e4f1bd70aa294b06d63f9cb3e33ec35a8cb28a",
+  "blend_sha256": "438ccbcaa88c497ab6dd65174d8133906836010990cb7702c320bc6297fd285b",
+  "protected_exact_inputs": 48,
+  "protected_normalized_metas": 23,
+  "protected_revision_inputs": 21,
+  "approved_floor_pixels_unchanged": 1536,
+  "counterchecks_rejected": [
+    "incorrect canvas",
+    "transparent hole",
+    "partial alpha",
+    "altered floor base edge",
+    "altered wall base edge",
+    "altered original chip",
+    "swapped floor variant pixels",
+    "duplicate source",
+    "named part drift",
+    "changed importer rejected despite whitespace tolerance"
+  ],
+  "metadata_whitespace_counter_accepted": true,
+  "gameplay_acceptance": false,
+  "limits": "Original geometry/render validation only; contacts are ungraded static source studies. Runtime,actual Cave grading,readers,states,travel,fullness and packaged gates are separate.",
+  "runtime_png_present": true,
+  "runtime_png_sha256": "e749ed4470297915ae9542e07dfea589ad096155f080adf0cefcddf15ef033ae",
+  "runtime_import_fields": {
+    "enableMipMap": "0",
+    "filterMode": "0",
+    "wrapU": "1",
+    "wrapV": "1",
+    "spritePixelsToUnits": "16",
+    "textureCompression": "0"
+  }
+}

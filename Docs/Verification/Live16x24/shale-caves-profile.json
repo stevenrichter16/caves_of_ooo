@@ -1,0 +1,48 @@
+{
+  "startedUtc": "2026-10-27T19:18:19.650118Z",
+  "endedUtc": "2026-10-27T19:19:54.122395Z",
+  "seconds": 94.47227699999999,
+  "context": "Root-owned actual Editor shale depth6 entry, wall reader, three-step approach and one wall strike; actual CaveBear dealt25damage, HP33to8; idle and MCP/CUA instrumentation included. No matched BEFORE timing or sustained package/Deck FPS claim. Recorders stopped/disposed before further travel.",
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "count": 34675,
+      "mean": 120941.07509733237,
+      "p95": 196291,
+      "max": 28576583,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-caves-profile-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "count": 34675,
+      "mean": 34484.2632444124,
+      "p95": 28917,
+      "max": 662931833,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-caves-profile-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "count": 34675,
+      "mean": 2720409.776582552,
+      "p95": 5369458,
+      "max": 1384246458,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-caves-profile-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "count": 34675,
+      "mean": 47478.343042537854,
+      "p95": 18818,
+      "max": 310472283,
+      "unit": "Bytes",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/shale-caves-profile-3.csv"
+    }
+  ]
+}

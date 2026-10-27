@@ -1,0 +1,334 @@
+{
+  "kind": "actual Editor gameplay evidence",
+  "source_base": "cd5e9af1ac3b7d3d95a57c5d856beeb963dc4928",
+  "implementation_uncommitted": true,
+  "actions": [
+    {
+      "action": "Fresh isolated Continue of unchanged fixture93",
+      "state": {
+        "zone": "Overworld.16.13.6",
+        "x": 40,
+        "y": 13,
+        "hp": 33,
+        "flat": true,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/d4f4ec1f787145a18b7e023ce9810253"
+      },
+      "capture": "shale-caves-after-01-depth6-entry.png"
+    },
+    {
+      "action": "Look recenter, Up4, Return, x; actual wall40,9 reader",
+      "state": {
+        "zone": "Overworld.16.13.6",
+        "playerX": 40,
+        "playerY": 13,
+        "playerHP": 33,
+        "block": true,
+        "owners": [
+          {
+            "id": "91332",
+            "name": "ShaleWall",
+            "hp": 28,
+            "gone": false
+          }
+        ]
+      },
+      "capture": "shale-caves-after-02-wall-reader.png"
+    },
+    {
+      "action": "Normal Up3 approached40,10; one Up wallstrike; CaveBear93657 at39,11 hit25, HP33to8; F5 fixture94; archive before Finish",
+      "wall": {
+        "strikes": 1,
+        "zone": "Overworld.16.13.6",
+        "playerX": 40,
+        "playerY": 10,
+        "playerHP": 8,
+        "block": true,
+        "owners": [
+          {
+            "id": "91332",
+            "name": "ShaleWall",
+            "hp": 26,
+            "gone": false
+          }
+        ]
+      },
+      "capture": "shale-caves-after-03-wall-damaged.png",
+      "fixture": "Fixtures/shale-caves-damaged94"
+    },
+    {
+      "action": "Earlier earned fixture92 into a new isolated trial; prior damage/combat save94 preserved separately. Current depth5 entry39,13 HP33; no visible creature at entry.",
+      "capture": "shale-caves-after-04-depth5-entry.png"
+    },
+    {
+      "action": "8 ordinary Up attacks on ShaleWall87914 at39,12; actual Rubble90323 and nonblocking before entry; Up entered39,12, F5fixture95 and archivedroot",
+      "history": [
+        {
+          "strikes": 0,
+          "zone": "Overworld.16.13.5",
+          "playerX": 39,
+          "playerY": 13,
+          "playerHP": 33,
+          "block": true,
+          "owners": [
+            {
+              "id": "87914",
+              "name": "ShaleWall",
+              "hp": 28,
+              "gone": false
+            }
+          ]
+        },
+        {
+          "strikes": 1,
+          "zone": "Overworld.16.13.5",
+          "playerX": 39,
+          "playerY": 13,
+          "playerHP": 33,
+          "block": true,
+          "owners": [
+            {
+              "id": "87914",
+              "name": "ShaleWall",
+              "hp": 24,
+              "gone": false
+            }
+          ]
+        },
+        {
+          "strikes": 4,
+          "zone": "Overworld.16.13.5",
+          "playerX": 39,
+          "playerY": 13,
+          "playerHP": 33,
+          "block": true,
+          "owners": [
+            {
+              "id": "87914",
+              "name": "ShaleWall",
+              "hp": 12,
+              "gone": false
+            }
+          ]
+        },
+        {
+          "strikes": 6,
+          "zone": "Overworld.16.13.5",
+          "playerX": 39,
+          "playerY": 13,
+          "playerHP": 33,
+          "block": true,
+          "owners": [
+            {
+              "id": "87914",
+              "name": "ShaleWall",
+              "hp": 8,
+              "gone": false
+            }
+          ]
+        },
+        {
+          "strikes": 7,
+          "zone": "Overworld.16.13.5",
+          "playerX": 39,
+          "playerY": 13,
+          "playerHP": 33,
+          "block": true,
+          "owners": [
+            {
+              "id": "87914",
+              "name": "ShaleWall",
+              "hp": 4,
+              "gone": false
+            }
+          ]
+        },
+        {
+          "strikes": 8,
+          "zone": "Overworld.16.13.5",
+          "playerX": 39,
+          "playerY": 13,
+          "playerHP": 33,
+          "block": false,
+          "owners": [
+            {
+              "id": "90323",
+              "name": "Rubble",
+              "hp": null,
+              "gone": null
+            }
+          ]
+        }
+      ],
+      "capture": "shale-caves-after-07-wreckage-saved.png"
+    },
+    {
+      "action": "Fresh isolated Continue fixture95 restores same Rubble90323/player39,12 HP33",
+      "state": {
+        "zone": "Overworld.16.13.5",
+        "playerX": 39,
+        "playerY": 12,
+        "playerHP": 33,
+        "block": true,
+        "owners": [
+          {
+            "id": "90323",
+            "name": "Rubble",
+            "hp": null,
+            "gone": null
+          },
+          {
+            "id": "2695",
+            "name": "Player",
+            "hp": null,
+            "gone": null
+          }
+        ]
+      },
+      "capture": "shale-caves-after-08-fresh-continue.png"
+    },
+    {
+      "action": "After actual readers and passable corridor39,13\u219239,18\u219239,13, ordinary < at39,13 returns limestone4",
+      "state": {
+        "zone": "Overworld.16.13.4",
+        "x": 39,
+        "y": 13,
+        "hp": 33,
+        "flat": true,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/25723e6169a64534ab9a1b75bff4ed52"
+      },
+      "capture": "shale-caves-after-13-limestone-return.png",
+      "input_limits": "One combined close/look batch missed Look and moved down five cells; confirmed player39,18. Incorrect target39,24 canceled. Captured correct stalagmite39,19 and floor40,18 after recenter. EnGarde became active during incidental Return input; no ability grant/state injection."
+    },
+    {
+      "action": "Normal >4to5 returns39,13 HP33; changedwall persists",
+      "state": {
+        "zone": "Overworld.16.13.5",
+        "x": 39,
+        "y": 13,
+        "hp": 33,
+        "flat": true,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/25723e6169a64534ab9a1b75bff4ed52"
+      },
+      "capture": "shale-caves-after-14-shale-return.png"
+    },
+    {
+      "action": "Normal Right40,13 then >5to6",
+      "state": {
+        "zone": "Overworld.16.13.6",
+        "x": 40,
+        "y": 13,
+        "hp": 33,
+        "flat": true,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/25723e6169a64534ab9a1b75bff4ed52"
+      },
+      "capture": "shale-caves-after-16-depth6-travel.png"
+    },
+    {
+      "action": "Normal <6to5 returns40,13 HP33",
+      "state": {
+        "zone": "Overworld.16.13.5",
+        "x": 40,
+        "y": 13,
+        "hp": 33,
+        "flat": true,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/25723e6169a64534ab9a1b75bff4ed52"
+      },
+      "capture": "shale-caves-after-17-depth5-roundtrip.png"
+    }
+  ],
+  "profile": "shale-caves-profile.json",
+  "wall_history": "shale-caves-wall-history.json",
+  "final_fixture": "Fixtures/shale-caves-roundtrip96",
+  "final_turn": 12730,
+  "final_hp": 33,
+  "final_zone": "Overworld.16.13.5",
+  "final_cell": [
+    40,
+    13
+  ],
+  "limits": [
+    "No complete80x25wholechunk or polished-area acceptance",
+    "Depth6 combat-interrupted trial94 preserved, not erased; later trial starts earlier earnedfixture92 explicitly",
+    "Incidental normal input moved to39,18 and activated EnGarde when combined reader/menu input missed; no scripts modified gameplay",
+    "Native467tests separate from ordinary gameplay; package gate pending",
+    "All normal saves and prefs preserved through existing isolated launcher; three isolated roots archived",
+    "Depth5wall blocktrue afterplayerentry is player occupancy, while actual Rubble cell was nonblocking before entry"
+  ],
+  "captures": {
+    "shale-caves-after-01-depth6-entry.png": "e24b73e3476c48573c3b9a7c0eba723856e3f36a1c130d0fcb637178caa176f1",
+    "shale-caves-after-02-wall-reader.png": "4ff2206f545e9742b373739a65a10c0d2c9f2e9c941678969a9f798bc7db5d20",
+    "shale-caves-after-03-wall-damaged.png": "131949c7a37d6691aeae179031e9dbd996c112dbc405e0557855bf0a5fc704ed",
+    "shale-caves-after-04-depth5-entry.png": "a8c9c36d5cedde75f27c6fea770da51137d4ce1b31721b58b3edfde92f962c09",
+    "shale-caves-after-05-depth5-damaged.png": "c2b71ebf8a5f62abc9d89809e75535bd0af90e37dd51977af0274173271906ce",
+    "shale-caves-after-06-depth5-wreckage.png": "5c4bce78c47077e7d0cd8c8466116e41930faa8fdafb7116461efa35a89346c3",
+    "shale-caves-after-07-wreckage-saved.png": "9f89bee16d34e28060f6ecb0db94cb95d3aabf2da88471d2dca9aec02f7295b6",
+    "shale-caves-after-08-fresh-continue.png": "5afc25ff61457c6cf81ce8f15edcf72ed8dbd031701772f486c3821f12cad7e9",
+    "shale-caves-after-09-rubble-reader.png": "c8ea2c44f494a4f2df683a55d2bf77fdf1c4e792e5b09995926ea8a1e727eeb8",
+    "shale-caves-after-10-stalagmite-reader.png": "381b1de84b12f0fc7be68a2eb8f39438c36fe0e0ad9583e3fabdefbcb5e12360",
+    "shale-caves-after-11-floor-reader.png": "cf8aa6f93d57efa610affde5729321d8b12aac3154a1ce42fcf8a29daf553bd5",
+    "shale-caves-after-12-up-reader.png": "53a8cdd198439e87aacb6fef1bf487aa4065a08b6ac2546dda3d9d8027a0e27c",
+    "shale-caves-after-13-limestone-return.png": "4a14dc7a4d07cf2dfc6f60c9ba5c7f80fd31a8d85aa6f11cda75ac0c8367bfcc",
+    "shale-caves-after-14-shale-return.png": "204439b76fd8c540379677e8f52befb0f4fb0b0e73a20f670614af97bdc18165",
+    "shale-caves-after-15-down-reader.png": "17ee9237b320241985dbcb4a4dfb46aff48e076afbc064713457b96aa872353e",
+    "shale-caves-after-16-depth6-travel.png": "2549708d003ee904df7703c031b63267fe751db3062c897d3f7d7bbb808bb232",
+    "shale-caves-after-17-depth5-roundtrip.png": "859155f18d71f9ca27285298b2eb645fb642c4e07096ff0ceb04255aaf792fff"
+  },
+  "readers": {
+    "ShaleWall": [
+      40,
+      9,
+      6
+    ],
+    "ShaleFloor": [
+      40,
+      18,
+      5
+    ],
+    "Rubble": [
+      39,
+      12,
+      5
+    ],
+    "Stalagmite": [
+      39,
+      19,
+      5
+    ],
+    "StairsUp": [
+      39,
+      13,
+      5
+    ],
+    "StairsDown": [
+      40,
+      13,
+      5
+    ]
+  },
+  "finish_verified": {
+    "playing": false,
+    "root": null,
+    "scene_dirty": false,
+    "at_utc": "2026-10-27T19:28:00Z"
+  },
+  "archived_isolated_roots": [
+    "d4f4ec1f787145a18b7e023ce9810253-shale-damaged-preserved",
+    "a92d212676f24b9d8b7cea5acf9e297d-shale-wreckage-preserved",
+    "25723e6169a64534ab9a1b75bff4ed52-shale-roundtrip-preserved"
+  ],
+  "archived_roots_parent": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits",
+  "fixture_hashes": {
+    "shale-caves-damaged94": {
+      "Quick.sav.gz": "5a4fdfdd9fb45609489f1e9998d3013c6b940560ded3d20f1eee906b9e31b6a0",
+      "Quick.json": "9a4f6ff57820b31e033a35794b2cc3aaa660bbd53bbc2734ef17d83877c07028"
+    },
+    "shale-caves-wreckage95": {
+      "Quick.sav.gz": "2d45c5e4833eae223aa18ca21e2325588eabc2555659d2ecd06621143a593690",
+      "Quick.json": "3aaf0b2aa7ad0df80a11de59a4f0e2acc010de25ad6590c0718e7d58091eedd8"
+    },
+    "shale-caves-roundtrip96": {
+      "Quick.sav.gz": "adf87743a1cd55d536da149831b61842938fe761f3994876ff3df4b34d68c556",
+      "Quick.json": "ec84584ffe9614b50531dc00806cac03de0e8bd9f5491b259300f8f843d2c1c5"
+    }
+  }
+}

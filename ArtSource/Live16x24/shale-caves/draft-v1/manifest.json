@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "owner": "ShaleFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owner": "ShaleFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 2,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "owner": "ShaleFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 3,
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "owner": "ShaleFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 4,
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "owner": "ShaleWall",
+      "state": "Surviving structuralHP1..28/max28/hardness2; actual destruction removes owner and places existing Rubble"
+    },
+    {
+      "index": 5,
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "owner": "ShaleWall",
+      "state": "Surviving structuralHP1..28/max28/hardness2; actual destruction removes owner and places existing Rubble"
+    }
+  ],
+  "atlas": "shale-caves.png",
+  "width": 96,
+  "height": 24,
+  "palette": {
+    "floor": "54585C",
+    "fleck": "5C6064",
+    "dust": "4A4E54",
+    "mass": "3C434C",
+    "fissure": "303840",
+    "seam": "56616E",
+    "worn": "6A7582"
+  },
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,FullRect.",
+  "opaque": true,
+  "edge_masks": false,
+  "blend": "shale-caves.blend",
+  "source_cells": "source-cells.json",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 16
+    },
+    {
+      "frame": 1,
+      "left": 36,
+      "top": 16
+    },
+    {
+      "frame": 2,
+      "left": 64,
+      "top": 16
+    },
+    {
+      "frame": 3,
+      "left": 92,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 120,
+      "top": 16
+    },
+    {
+      "frame": 5,
+      "left": 148,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 60
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 60
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 60
+    },
+    {
+      "frame": 3,
+      "left": 88,
+      "top": 60
+    },
+    {
+      "frame": 2,
+      "left": 104,
+      "top": 60
+    },
+    {
+      "frame": 1,
+      "left": 120,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 8,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 24,
+      "top": 84
+    },
+    {
+      "frame": 5,
+      "left": 40,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 56,
+      "top": 84
+    },
+    {
+      "frame": 1,
+      "left": 72,
+      "top": 84
+    },
+    {
+      "frame": 0,
+      "left": 88,
+      "top": 84
+    },
+    {
+      "frame": 3,
+      "left": 104,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 120,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 108
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 108
+    },
+    {
+      "frame": 2,
+      "left": 72,
+      "top": 108
+    },
+    {
+      "frame": 1,
+      "left": 88,
+      "top": 108
+    },
+    {
+      "frame": 0,
+      "left": 104,
+      "top": 108
+    },
+    {
+      "frame": 3,
+      "left": 120,
+      "top": 108
+    }
+  ],
+  "contact_size_native": [
+    192,
+    140
+  ],
+  "ambient_base_rgb": [
+    84,
+    88,
+    92
+  ],
+  "ambient_limit": "Optional owner-free backing belongs to separately guarded runtime; not a floor owner or reader.",
+  "references": [
+    "scene-reference-01.png",
+    "scene-prompt.txt",
+    "parts-reference-01.png",
+    "parts-prompt.txt",
+    "REFERENCE-CRITIQUE.md"
+  ],
+  "extraction": "Palette and flat material separation only. Reject uniform gravel,dense stripes,invented geometry,changed visibility/UI,gradients and nonuniform pixels.",
+  "protected_input_counts": [
+    48,
+    23
+  ],
+  "png_nonpixel_timing_normalization": {
+    "shale-caves.png": {
+      "raw_sha256": "b0dd8a6d96eff70bf3fba807100df443e038f34fdd3a83324e6a1177314c93ff",
+      "canonical_sha256": "b2d8797166424e1d9bb2a75fb09397e3a36f3ae71591c2fbe1a55bb103f5db39",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact-native.png": {
+      "raw_sha256": "6bc9805cd79827f7915681a3ad0b9462b8148bdd9153347a415a49d29d45b33e",
+      "canonical_sha256": "5338f7e418e4d8464828c87a10d639b317236dcf6c3e29b133261a695996a04a",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact.png": {
+      "raw_sha256": "19f89a849d3bd6ebb16f56079fd9552fd680a825ff0a497117eabad55222149c",
+      "canonical_sha256": "7c75a898eb25d686d0ca8ce14f0b555e8006f8371bdbbe16c1f167a486bda42d",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    }
+  },
+  "runtime_acceptance": false,
+  "area_polish_acceptance": false
+}

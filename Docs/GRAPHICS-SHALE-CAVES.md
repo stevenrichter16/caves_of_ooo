@@ -1,12 +1,17 @@
 # Ordinary shale caves — finite material coverage plan
 
-**Status: source-corrected preimplementation plan and actual depth5/6 entry
-baselines only.** No shale runtime, test fixture, native art or acceptance is
-created by this document. The preceding limestone source
+**Status:467 distinct native passes and a bounded actual Editor checkpoint.**
+Root completed17 captures, all six owner readers, real wall damage/destruction,
+Rubble traversal/fresh Continue and ordinary5→4→5→6→5 travel. The separate
+depth6 combat interruption is preserved. Independent source/art/Editor review
+is complete; source publication and fresh packages remain pending; no whole-area polish or device
+performance acceptance is claimed. Earlier preimplementation and pending-GREEN
+sections below are historical; the latest checkpoint records current state.
+The preceding limestone source
 `7f49fb70054b7b29957dacd17c999ae4b521c9fd` is verified on main with bounded fresh
 Mac play and Linux archive integrity; this separate shale phase does not
 inherit that material or area acceptance. Root owns Unity, further ordinary
-play and Git. The five shared living records remain frozen during this task.
+play and Git. The five shared living records now reflect this bounded checkpoint.
 
 First proposed scope is exact `ShaleFloor` and `ShaleWall` in conservatively
 eligible current ordinary depths5–6, with unchanged Rubble, Stalagmite,
@@ -235,3 +240,283 @@ unchanged; broad static coverage precedes the later serious all-area polish.
 Files changed for this checkpoint: `Docs/GRAPHICS-SHALE-CAVES.md` only.
 Last actual hourly report remains18:27:43UTC;next19:27:43UTC. This plan is not an
 additional report and makes no acceptance claim.
+
+## Source and reference checkpoint — 2026-10-27 19:10 UTC
+
+The preceding limestone delivery evidence is now verified on origin/main at
+`cd5e9af1ac3b7d3d95a57c5d856beeb963dc4928`. Root confirmed Editor stopped,
+no compilation/build, clean SampleScene and the same46 unrelated tracked paths.
+Those paths remain outside this phase.
+
+Root used the actual depth6 entry capture for the built-in imagegen scene
+reinterpretation, then generated a separate six-part material study. Exact
+prompts and untouched reference outputs are in
+`ArtSource/Live16x24/shale-caves/`. The useful direction is cool-gray thin
+layered shale with quiet walkable ground and a distinct dense solid body.
+The scene study changes resolution/UI and wall geometry, loses lighting and
+introduces repetitive gravel; those changes are rejected. The parts study is
+reference only: its striped walls and antialiased pixels must not be copied or
+downscaled into production.
+
+The bounded native contract selected before tests is96×24: four original16×24
+floor cells at0–3, two wall cells at4–5. Floor/ownerless neutral base is
+RGB84,88,92; wall palette and cluster placement remain an art decision subject
+to actual comparison. Existing Rubble/Stalagmite/stairs remain unchanged.
+Independent source audit confirmed28/max28,hardness2 shale versus generic
+Wall40/3 and limestone35/3. Clarification: LocalGround/AmbientBackdrop bypass
+per-cell attenuation but still pass through final camera grading; source RGB
+is not an actual scene-color guarantee. No gameplay or generation edit is
+authorized by this material plan. Native test fixture is being authored before
+production; no RED/GREEN or new playable acceptance is claimed yet.
+
+Genuine native RED completed19:12:25UTC before any shale runtime source:
+36/36 failed (35 missing companion, one actual depth5 stair still glyph).
+`shale-caves-native-red.xml` and its summary retain the evidence. The earlier
+zero-case request is retained as invalid, with no assumed cause; reflection
+subsequently found the fixture and a forced refresh allowed36-case discovery.
+Runtime implementation is now permitted. Root rejected the initial wall-source
+draft because three isolated highlighted piles read as loose rubble rather than
+solid compressed layers. The four quiet floors remain stable; only the two new
+wall cells are being revised with denser subtle broken laminae. That draft is
+preserved separately and has no gameplay acceptance.
+
+## Runtime integration checkpoint — RED verified, GREEN pending
+
+The raw [native RED](Verification/Live16x24/shale-caves-native-red.xml) contains
+36 executed failures from19:12:22–19:12:25UTC:35 missing-adapter failures and one
+depth5 stair retaining glyph presentation. Its SHA256 is
+`799c09353912995a4a6ecfbe11abefb55ce07a6a6ea7a0a3c0aaca7995a733f1`.
+The earlier zero-case attempt remains invalid evidence. The runtime author
+independently parsed the retained36-case XML and confirmed that the new source
+file did not exist before starting production. No shale production draft
+preceded this RED boundary.
+
+The new [FlatPixelShaleCavesCatalog](../Assets/Scripts/Presentation/Rendering/FlatPixelShaleCavesCatalog.cs:12)
+borrows the selector and five independently optional textures. Its default
+constructor loads the original96×24 shale atlas and unchanged rubble,
+stalagmite and stair sources; explicit null injection does not reload assets.
+Four floor frames0–3 and two wall frames4–5 retain the approved frame contract.
+The wall-source revision remains pending: root rejected the first draft's
+isolated highlighted piles as loose rubble, rather than a solid compressed
+mass. The first draft is preserved; runtime integration does not accept its art.
+
+Exact implemented wall and ambient excerpts:
+
+```csharp
+case "ShaleWall":
+    return Render(render, "#", "&K", 0) && render.BackgroundColor == "^k"
+        && SolidObject(owner) && owner.HasTag("Wall") && Stone(owner)
+        && SurvivingWall(owner) && NeutralThermal(owner);
+// SurvivingWall also requires owned, non-Gone, positive structural HP,
+// MaxHP28, Hardness2 and Rubble wreckage.
+color = new Color32(84, 88, 92, 255);
+```
+
+Depth5/6 admission uses precomputed canonical addresses, the attached current
+manager and exact cached graph, correctly shaped current map/POI arrays,
+current POI absence and the read-only saved-lair surface key. Reserved columns
+remain excluded. This is current eligibility, not reconstructed generation
+provenance. Exact owner/parts, selected/disclosed placement, state, custody and
+footprint checks preserve fallback for generic Wall, adjacent strata, custom
+roles and incompatible hazards.
+
+The [Greybox integration](../Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs:945)
+adds one optional companion field, lazy acquisition, true ground, separate
+ambient backdrop, foreground and authorized subject lookups, and disposal.
+Separate output variables prevent failed optional lookups from erasing accepted
+art. Only the actual submitted ShaleFloor suppresses its redundant glyph;
+owner-free backing never sets LocalGround or creates an owner. Existing native
+paint flags already preserve direct color in both painters, so neither painter
+was edited. Camera grading remains a separate actual-view check.
+
+### Scope and performance self-review
+
+| Planned invariant | Implemented boundary / divergence |
+| --- | --- |
+| Six exact ordinary shale owners | ShaleFloor, ShaleWall, Rubble, Stalagmite, StairsDown and StairsUp only; no broader material alias or regional opening admission. No scope divergence. |
+| Existing cave behavior remains intact | The limestone source hash is unchanged. Shale matches its finite control flow after names, depths5/6, authored colors,28/2 structure and84/88/92 backdrop substitutions. No shared framework/refactor was introduced. |
+| Pure presentation | No gameplay, generation, blueprint, serialized Part, parser, command, transaction or diagnostic-action change; no extra Render event or frame polling. |
+| Finite resources and cheap misses | Immutable address facts and ten Sprite/Tile views are prepared once. Explicit missing groups remain missing; borrowed textures and selector are not destroyed. |
+| Existing incremental repaint | The companion participates only in existing queries and dirty-cell submission. It introduces no new Update/LateUpdate loop, full-world scan or forced full redraw. |
+
+🔵 The runtime author read [PERF-FOUNDATION.md](PERF-FOUNDATION.md) and checked
+the hot paths: no authored per-query collection/string allocation, reflection,
+LINQ, parsing, generation or event dispatch. Local occupants use the existing
+struct enumerator; current authority and owner state are rechecked instead of
+caching mutable eligibility. One-time resource/view creation is not claimed to
+be free. Actual instrumentation and native submitted-paint counters remain
+required; source symmetry is not a performance measurement.
+
+🔵 The test author's36-case fixture received a separate read-only source review
+before implementation, including generic Wall's matching color/structure spoof,
+thermal boundaries, missing-resource/backdrop separation and real4↔5/5↔6 stair
+counterparts. No concrete fixture blocker was found. Root then reviewed the
+new runtime symmetry and Greybox seams without identifying a blocker. These
+are bounded source reviews, not GREEN or actual gameplay evidence.
+
+🧪 Native compile/GREEN, related regressions, independent runtime review,
+revised-source acceptance, whole-view contrast/fullness, ordinary wall
+destruction/readers/travel/restart and profile remain pending. The pure
+presentation scope uses these relevant counterchecks, not unrelated command
+or serialization scaffolding. No new source push, package, Linux execution,
+physical Deck performance or area-polish claim is made at this checkpoint.
+
+### Frozen files for the native candidate
+
+| File | SHA256 at integration freeze |
+| --- | --- |
+| `Assets/Scripts/Presentation/Rendering/FlatPixelShaleCavesCatalog.cs` | `eedecdb31479994c5678b0b954dbb7802e85d042a27546bb4502ad5e5681959d` |
+| Its new `.cs.meta` | `27a7fe1df249d5e9469d2efbac3cae5b06b1c028d40f9351ec2e53c8b9346c65` |
+| `Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs` | `efdf1001274e215b40f69d31eba5a799748efb106800e1433bea32bdd2188625` |
+| Frozen test fixture `FlatPixelShaleCavesTests.cs`, authored separately | `3d36614b36e5c0088492d3c08e70affbeb474e1571a0fea909b72470a602a793` |
+| Unchanged predecessor `FlatPixelLimestoneCavesCatalog.cs` | `03ea7981d2ba80b845fbf1d303856760634f44503d9fc869018f263f40463ee5` |
+
+Runtime author changed only the new companion/meta and the existing Greybox
+seams. This follow-up changes only this phase document. Art and native tests
+remain separate owners; root owns Unity, actual play, source publication and
+delivery. This remains original CoO presentation, with no Qud parity claim.
+
+### Prepared delivery helpers — independent source review only
+
+Read-only comparison of `/tmp/coo-package-shale-caves.py` and
+`/tmp/coo-shale-caves-restore.py` against the reviewed limestone predecessors
+found no concrete guard regression. Ten generic package functions are
+AST-identical, including source/build/output validation, manifest hashes,
+safe archive membership/modes and full gzip EOF verification. The new native
+gate rejects the intentionally empty GREEN hashes and zero related count
+before writes; final byte pins and disjoint counts still require root review.
+No future passing test count is inferred from the36-case RED fixture.
+
+The restorer changes only phase labels and its exact three owned shale
+metadata paths. The four settings allowlist, reviewed changed-set equality,
+preexisting dirty-file protection, metadata trailing-whitespace-only rule,
+index/save/preference/prior-build checks and explicit `--apply` remain intact.
+Neither helper was imported or executed by this reviewer; no package, build
+or restoration occurred as part of this check. Reviewed helper hashes:
+`c4d042116d3f48e44838a8d839a66a86e8752909063e3f0ae002aa3a63cbbeea`
+(package), and
+`a17c5ee8fcb40ce2624ce9e8a3ed627b43d4aab2ca717cead5465b9ac7e6dd77`
+(restore). Final bound pins and actual delivery still need their separate gates.
+
+## Actual Editor checkpoint and hourly report —2026-10-27 19:28 UTC
+
+### Native evidence and current source
+
+The final focused [GREEN XML](Verification/Live16x24/shale-caves-native-green.xml)
+contains36 Passed cases,19:16:06–19:16:11UTC, SHA256
+`2ebd61f7f19d5649183710da71754d88d4dce1c39e987e03ae5014ff9b658e09`.
+The [related rerun](Verification/Live16x24/shale-caves-related-green.xml) contains
+431 Passed,19:16:51–19:17:24UTC, SHA256
+`73aa27761ff010c25c7932afa748a8bad73b8ef57c966a2cc0bc657082dc943f`.
+The two sets are disjoint: **467 distinct Passed, zero failed/skipped/inconclusive**.
+This record author independently parsed both exact raw receipts and identities;
+no tests were rerun for documentation. The
+[summary](Verification/Live16x24/shale-caves-native-summary.json) retains those bounds.
+
+The prepared package helper now pins those exact two receipts and derives467
+from their reviewed disjoint counts; current helper SHA256 is
+`6ee8b3dc4378dfc7db619093e11e31b19dce79d3ab23fe63e8048ea1f5412b19`.
+Only the bound hashes, related count and preparation wording changed after the
+earlier cold read. Its values were independently checked without importing or
+executing the helper. Runtime publication and new builds have not occurred at
+this checkpoint. Limestone source7f49fb700 and delivery evidence
+`cd5e9af1ac3b7d3d95a57c5d856beeb963dc4928` remain the verified prior delivery.
+
+### Ordinary gameplay, including the interruption
+
+Root performed the controls and inspected the Game captures. This document
+author read the [actual receipt](Verification/Live16x24/shale-caves-after-play.json),
+[wall history](Verification/Live16x24/shale-caves-wall-history.json), fixture
+metadata and17 saved capture files; that is not an independent visual replay.
+
+| Trial / evidence | Actual observed outcome and limit |
+| --- | --- |
+| Depth6 from unchanged earned93; captures01–03 | Native entry and actual wall40,9 reader. One ordinary wall strike changed wall91332 from28→26. CaveBear93657 at39,11 then dealt25 damage, player HP33→8. F5 retained [damaged94](Verification/Live16x24/Fixtures/shale-caves-damaged94/Quick.json),turn12470; the full isolated trial was archived. This branch is not a completed destruction or safe encounter. |
+| Separate depth5 trial from earlier unchanged earned92;04–07 | The earlier damage/combat branch remains intact. Eight ordinary Up attacks on wall87914 at39,12 changed structural28→24→12→8→4→actual Rubble90323. These are retained sampled checkpoints, not an invented per-hit sequence. The cell was nonblocking before entry. The player walked into39,12 and F5 saved [wreckage95](Verification/Live16x24/Fixtures/shale-caves-wreckage95/Quick.json),turn12500,HP33. |
+| New isolated Continue of95;08 | Same depth5, player39,12,HP33 and real Rubble90323. The receipt's block=true after arrival is player occupancy; it does not make Rubble solid. This is actual persistence, not a scripted replacement or health reset. |
+| Six owner readers;02,09–12,15 | Actual ShaleWall, Rubble, Stalagmite, ShaleFloor, StairsUp and StairsDown readers. Native tests separately cover malformed/hidden/resource cases; six observed readers do not establish every owner in a whole column. |
+| Ordinary vertical route;13–17 | From depth5, normal `<` returned to limestone4; `>` reentered5; Right to40,13 then `>` entered6; `<` returned5. F5 preserved [roundtrip96](Verification/Live16x24/Fixtures/shale-caves-roundtrip96/Quick.json),turn12730,HP33 at40,13. No grants, teleports or AI/visibility edits were used. |
+
+Input imperfections are retained: a combined close/Look batch missed Look and
+walked the player to39,18. A wrong39,24 target was canceled, then the actual
+stalagmite39,19 and floor40,18 were read after recentering. Incidental Return
+activated EnGarde through normal input. These are disclosed actions, not
+retroactively credited as the intended keys.
+
+Root reports all three isolated roots archived before Finish, with Playfalse,
+rootnull and clean SampleScene, and normal saves/preferences preserved through
+the existing isolated launcher. This record author did not rerun the protection
+audit. Fixture metadata and save hashes were read for94/95/96 and recorded in
+both coverage ledgers; no save content was changed.
+
+### Actual profile and its limits
+
+The [profile](Verification/Live16x24/shale-caves-profile.json) spans
+19:18:19.650118–19:19:54.122395UTC, **94.472277 seconds**, with34,675 samples for
+each marker and capacity not reached. It includes the depth6 entry, reader,
+three-step approach, wall strike, bear hit, idle and MCP/CUA instrumentation.
+Recorders were stopped/disposed before the later trial. Values below convert
+the retained nanoseconds to milliseconds; no samples or maxima were discarded.
+
+| Marker | Mean | p95 | Maximum |
+| --- | ---: | ---: | ---: |
+| ZoneRenderer.LateUpdate |0.120941ms |0.196291ms |28.576583ms |
+| Input.Update |0.034484ms |0.028917ms |662.931833ms |
+| Main Thread |2.720410ms |5.369458ms |1384.246458ms |
+| GC Allocated In Frame |47,478.343bytes |18,818bytes |310,472,283bytes |
+
+These data do not isolate the adapter's cost. There is no matched before run,
+sustained package benchmark, physical Deck measurement or demonstrated speedup.
+The large maxima remain visible; low averages cannot certify smooth gameplay.
+Native counterchecks and source allocation review address a different claim.
+
+### Review state, remaining work and report clock
+
+🔵 The finite material/state/travel/persistence journey is now observed in actual
+Editor Play, alongside467 native passes. The damaged bear branch is preserved
+and the later healthy trial is explicitly identified as a separate earlier
+earned start. No game mechanic or generation change was needed.
+
+🧪 Independent source/art/actual-view review is now complete with no new
+significant issue. Exact owned source push and fresh Mac/Linux delivery remain open. The17 views do not accept the complete
+80×25 chunks, all columns or serious area polish. Slate, quartzite, obsidian,
+shared storage and mimic disguise, remaining actors, hazards and room props
+remain separate coverage work. No Linux execution or physical Deck claim.
+
+Root **sent the hourly report at19:28:00UTC**: completed limestonecd5 delivery
+and this bounded shale Editor checkpoint; review/push/packages in progress;
+next verify fresh Mac/Linux delivery, then missing world families. The next
+report is due20:28:00UTC. Both JSON ledgers preserve the prior18:27:43 report
+once in history and advance the clock once. This document update is not an
+additional notification. All55+5 polish states remain unchanged; coverage is
+not polish and storage cleanup remains unauthorized.
+
+Files changed for this continuation: this phase document, the three shared
+graphics Markdown records and the two coverage JSON ledgers only. No runtime,
+test, asset, Unity or Git operation was performed for this record update.
+
+
+### Independent Editor review completed
+
+The [retained review](Verification/Live16x24/shale-caves-independent-review.md)
+independently inspected all17 actual captures and found no new significant
+material or reader regression. Runtime/art/actual-view review is independent;
+the fixture author explicitly identifies the test audit as self-review. The
+bounded six-owner Editor integration is accepted within the recorded route,
+with broader area composition and source/package gates still open.
+
+The review's decoded07/08 restart comparison found8,729 changed pixels out of
+639,200 in rectangle[0,0,940,680], maximum channel delta100, near the player/light
+area[382,252,558,432]. No owner/layout mismatch was visually apparent and
+recorded save state agrees, but the cause of those pixel changes was not
+established. Do not claim exact restart image identity. The hourly record and
+all55+5 polish states remain unchanged; no new tests or actual replay occurred
+for this final record adjustment.
+
+Protection clarification from root’s read-only comparison: normal Editor and
+standalone Saves, all46 foreign hashes, standalone preferences and game
+preference keys are unchanged against the prior limestone prebuild snapshot.
+Only Editor telemetry keys `unity.player_session_count`, `unity.player_sessionid`,
+`PT_Run` and `unity_connect.session_id` differ. Full Editor plist byte identity
+is not claimed; the fresh prebuild snapshot will retain current telemetry, with
+no session-ID restoration needed.

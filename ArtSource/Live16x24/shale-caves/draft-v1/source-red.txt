@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_caves.py", line 334, in <module>
+    elif args.verify:verify()
+                     ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_shale_caves.py", line 163, in verify
+    assert (OUT/'shale-caves.png').exists(),'Native shale atlas missing: render required before GREEN'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Native shale atlas missing: render required before GREEN
