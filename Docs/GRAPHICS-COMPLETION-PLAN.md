@@ -2084,3 +2084,22 @@ world/carried/reader, pickup/drop and save-return. Preserve accepted art. Do not
 call static motion captures an animation defect. Physical Deck/Linux execution
 and sustained performance remain unverified. Use explicit compress_lz4 for the
 next fresh delivery. Last user-report checkpoint:2026-10-27 00:25UTC.
+
+
+## East cudgel integrated — 2026-10-27 00:54 UTC
+
+Cudgel9357 from the real East loot pile now has original native16x24 wood art in
+world, inventory and Examine. Actual baseline travel, exact pile selection,
+pickup/drop, unchanged-checkpoint comparison and auto-equip/sword-restore pass.
+Source RED42failed/6passed → GREEN48/48 plus129neighbor regressions. Editable
+Blender/cells, built-in imagegen prompt/concept and imported source checks retained.
+Independent source/runtime/visual review found no significant defect. Captures
+cudgel01–10 are actual Unity Editor gameplay; normal saves/preferences,34foreign
+tracked edits and previous packages preserved. No storage cleanup.
+
+See [Cudgel record](GRAPHICS-EAST-CUDGEL.md). Next freeze/push this source, fresh
+compressed Mac/Linux packages and actual ordinary Continue/restart from earned
+Fixtures/cudgel-after64 (3500,East26,6,28HP,club27,6). Existing current447e82c4f
+packages predate this item. Whole six-scene opening/regional/physical Deck gates
+remain open. Next named scene candidate is the visible East steam-vent glyph;
+audit exact owner/state before authoring. Last hourly report remains00:25UTC.

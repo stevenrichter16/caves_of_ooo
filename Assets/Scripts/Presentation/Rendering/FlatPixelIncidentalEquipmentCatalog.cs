@@ -13,22 +13,30 @@ namespace CavesOfOoo.Rendering
     {
         public const string LeatherArmorResourcePath = "Sprites/Live16x24/leather-armor";
         public const string HatchetResourcePath = "Sprites/Live16x24/hatchet";
-        private readonly Tile _leatherArmor, _hatchet;
+        public const string CudgelResourcePath = "Sprites/Live16x24/cudgel";
+        private readonly Tile _leatherArmor, _hatchet, _cudgel;
         private bool _disposed;
 
         public FlatPixelIncidentalEquipmentCatalog()
-            : this(Resources.Load<Texture2D>(LeatherArmorResourcePath), Resources.Load<Texture2D>(HatchetResourcePath)) { }
+            : this(Resources.Load<Texture2D>(LeatherArmorResourcePath), Resources.Load<Texture2D>(HatchetResourcePath),
+                   Resources.Load<Texture2D>(CudgelResourcePath)) { }
 
         /// <summary>Independent optional resources. Null or malformed injected
         /// textures stay unavailable without an implicit Resources lookup.</summary>
         public FlatPixelIncidentalEquipmentCatalog(Texture2D leatherArmor, Texture2D hatchet)
+            : this(leatherArmor, hatchet, null) { }
+
+        /// <summary>Independent optional identities; missing injected art stays unavailable.</summary>
+        public FlatPixelIncidentalEquipmentCatalog(Texture2D leatherArmor, Texture2D hatchet, Texture2D cudgel)
         {
             _leatherArmor = Build(leatherArmor, "Leather armor");
             _hatchet = Build(hatchet, "Hatchet");
+            _cudgel = Build(cudgel, "Cudgel");
         }
 
         internal static bool HasKnownRole(Entity owner)
-            => owner?.BlueprintName == "LeatherArmor" || owner?.BlueprintName == "Hatchet";
+            => owner?.BlueprintName == "LeatherArmor" || owner?.BlueprintName == "Hatchet"
+                || owner?.BlueprintName == "Cudgel";
 
         /// <summary>Resolve semantic art without authorizing world or inventory
         /// disclosure. Neutral frames do not encode condition, stats or provenance.</summary>
@@ -55,7 +63,7 @@ namespace CavesOfOoo.Rendering
             else
             {
                 if (Owned<MeleeWeaponPart>(owner) == null || equipment?.Slot != "Hand") return false;
-                tile = _hatchet;
+                tile = owner.BlueprintName == "Cudgel" ? _cudgel : _hatchet;
             }
             return tile != null;
         }
@@ -90,7 +98,7 @@ namespace CavesOfOoo.Rendering
         {
             if (_disposed) return;
             _disposed = true;
-            DestroyFrame(_leatherArmor); DestroyFrame(_hatchet);
+            DestroyFrame(_leatherArmor); DestroyFrame(_hatchet); DestroyFrame(_cudgel);
         }
         private static void DestroyFrame(Tile tile)
         {
