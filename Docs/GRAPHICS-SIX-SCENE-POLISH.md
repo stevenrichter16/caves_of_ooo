@@ -370,3 +370,36 @@ Next is the East Cindercaller ordinary movement/cast baseline, as planned in
 `Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md`. Preserve existing spell FX/audio and
 approved neutral body; carried FireMoss is not spell fuel. No new caster graphics
 are claimed yet. Keep continuation active. Last hourly report02:25UTC,next03:25UTC.
+
+
+### Active East continuation — 2026-10-27 03:25 UTC
+
+Last hourly report03:25UTC; next04:25UTC. North delivery remains on origin/main atbf38cfd98. E1 ordinary baseline in progress from unchanged seed65 pre-generation fixture. Earned approach1130, post-partner1270 and close1320 checkpoints are preserved; player30HP after natural Scrabbler combat. Current Cindercaller4920 has pursued magpie4884 rather than immediately attacking the player. Static body movement is captured; genuine cast is still pending. Do not force targets/RNG/cooldowns. Root owns isolated Unity Play; no East runtime/art changes yet. Source/API and editable-art preflights are ready. Next finish actual cast baseline, imagegen reinterpretation, native derivatives and RED/GREEN integration. Storage inspection-only; no cleanup.
+
+
+### 2026-10-27 03:40 UTC — user shifts priority to worldwide sprite coverage
+
+The user explicitly directs less nuanced animation work and asks that missing
+sprites be filled for everything across all biomes and areas. The scheduled
+continuation was updated and saved ACTIVE, preserving its existing ten-minute
+inspection cadence and once-hourly reporting requirement. It now names worldwide
+sprite coverage ahead of optional pose polish, requires an explicit area/family
+inventory and coverage-oriented hourly results/goals, and preserves the normal
+integration/capture/test/push gates and inspection-only storage restriction.
+This priority supersedes animation-first next actions in historical records.
+
+East E1 completed after the03:25 report: ordinary Lunge at1630 damaged the
+caster, and the real NPC then cast EmberSpit at its Magpie target. The player
+remained69,18. Seven finite capture sessions preserve131 actual frame receipts;
+fire FX already worked, while the approved caster body remained static. See
+[East plan](GRAPHICS-EAST-CASTER-MOTION-PLAN.md) and its independent baseline review.
+No new motion runtime or atlas was imported. The five-pose editable source packet
+and reviewed but unrun39-case draft are preserved, explicitly deferred. The
+new test draft was moved out of Assets before any native run. Unity is idle;
+saves, prior builds and pre-existing work remain protected. No storage deletion.
+
+Active work now: source-grounded whole-world biome/area/content coverage audit,
+then first high-impact missing sprite family/area kit. Opening six-scene status
+remains bounded; broader coverage is not declared complete. Next scheduled
+hourly report remains04:25UTC; this is a priority correction, not a duplicate
+hourly report. Main-push status will be recorded after exact preservation commit.

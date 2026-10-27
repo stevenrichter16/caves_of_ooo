@@ -1,6 +1,12 @@
 # East caster encounter: motion and action attribution
 
-2026-10-27. **Plan and source/checkpoint audit only.** North motion source
+2026-10-27. **DEFERRED by the user after E1; no motion runtime integration.**
+The latest priority is missing sprite coverage across all biomes/areas before
+nuanced animations. Preserve this work for later; do not resume it ahead of
+that coverage. The original plan below is historical except for the new
+continuation at the end.
+
+Original pre-implementation plan: North motion source
 `2375284dd` is delivered to main; actual Mac encounter/restart and matching
 Linux archive are now verified in the North delivery record. No East runtime,
 art, scene, save or editor changes were made for this audit. Root retains Unity
@@ -270,3 +276,63 @@ checkpoint audit and route-section review found no material false claim; root
 review pending, then E1. Files changed: this
 document only. No runtime/art/save/editor/Git action performed by this planning
 task. Update this document in the same commit as later implementation.
+
+
+## 2026-10-27 03:40 UTC — baseline established; motion deferred by user
+
+**E1 completed in a bounded ordinary Editor encounter.** Root continued the
+unchanged earned pre-generation65 fixture through the isolated launcher and
+ordinary controls. Current generation disclosed Cindercaller4920 and
+Scrabbler4923. The upper route reached55,3 at tick1130 before contact. Ordinary
+melee defeated the partner at1220; player HP40→30. Pursuing the actual caster
+showed it chasing Magpie4884. At1630, the existing Lunge dealt3 to the caster
+at67,20; the player remained69,18. The same NPC turn produced genuine AI
+`Pyromancy_EmberSpit` from67,20 to65,20, dealing3 to the Magpie and Burning.
+The existing projected fire/contact effects were working. The caster's neutral
+body remained unchanged during movement, damage and the cast; the existing
+hurt color flash still occurred. No RNG, position, HP, cooldown, hostility,
+AI choice, visibility, animation timing or gameplay events were forced.
+
+Seven bounded action capture folders preserve131 actual1280×800 frame receipts.
+The genuine cast is in `Verification/Live16x24/G2Action-20261027-032836-072/`.
+This is selective observation, not continuous video, normal performance proof
+or audio-feel acceptance. An independent reviewer inspected13 original PNGs,
+all frame dimensions/receipts and the four earned checkpoint prefixes/hashes:
+[baseline review](Verification/Live16x24/east-caster-baseline-independent-review.json).
+The03 reader still is the target/action menu, not full F1 Examine.
+
+Earned fixtures are preserved under `Verification/Live16x24/Fixtures/`:
+`east-caster-approach65`, `east-caster-post-partner65`, `east-caster-close65`,
+`east-caster-post-cast65`. Their READMEs contain the exact state and hashes.
+The isolated session was exported and stopped; normal saves, gameplay
+preferences,38 pre-existing tracked modifications and prior current packages
+were verified unchanged in [restoration receipt](Verification/Live16x24/east-caster-baseline-restoration.json).
+No storage cleanup occurred.
+
+**E2 partially complete, then deliberately deferred.** Built-in imagegen used
+the actual cast and post-cast screenshots plus the unchanged approved caster.
+Prompt/concept are preserved in `ArtSource/Live16x24/concepts/` under
+`east-caster-motion-*`. The gesture ideas were retained, but enlarged anatomy,
+faux grid, palette drift and a replacement idle were rejected. A source-only
+five-frame80×24 derivative packet and editable Blender source are preserved in
+`ArtSource/Live16x24/east-cindercaller-motion/`. The author records missing-output
+source RED→first-build GREEN with8 mutation counterchecks and232 preserved
+inputs. Root has not approved the contact sheet; repeat-build determinism and
+saved-Blender inspection remain undone. These are source-authoring results,
+not imported art or gameplay acceptance.
+
+**E3/E4 not started.** The independently reviewed39-case test draft was briefly
+copied into Assets, but no native RED run occurred and no runtime implementation
+was made. At the user's priority change, those exact new files were moved to
+`Tools/Live16x24/DeferredTests/`, outside Unity's active test tree. No motion
+atlas was imported. Current delivered game remains North source2375284dd.
+Do not count this packet as completed sprite coverage or an animation milestone.
+
+One plan correction from E1/source review: a hidden source with visible contact
+can still have its resolved FX accepted and produce the existing CastCallback.
+The future actor adapter must refuse disclosing that body without suppressing
+valid target-side FX. The earlier table's generic hidden-rejection shorthand
+must not be used as a whole-sequence visibility rule.
+
+Next action: follow the worldwide sprite-coverage priority in the completion
+plan; retain this bounded plan and source work for a later animation pass.

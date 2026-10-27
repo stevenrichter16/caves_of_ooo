@@ -1,5 +1,11 @@
 # Caves of Ooo — Project Rules for Claude
 
+**Chunk composition requirement (2026-10-26 local):** The user also requires
+chunks not to feel too bare. Fill regions with coherent, biome-appropriate
+terrain variation, flora, props and landmarks while preserving readable routes,
+hazards and interactions. Judge actual whole gameplay views, not only sprite
+sheets. See `Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md` for the acceptance gate.
+
 > Auto-loaded every session. Read this first. The rules below are
 > non-optional unless the user explicitly relaxes them in a given turn.
 
@@ -21,11 +27,20 @@ prioritize coherent, verified normal gameplay over unrelated feature growth
 or asset counts. Continue across sessions with precise handoffs rather than
 stopping after isolated packets. Preserve the user's approved art direction.
 
+**Latest user priority (2026-10-27): cover missing/inconsistent sprites across
+ALL biomes and areas before nuanced animation polish.** The six connected opening
+scenes are an anchor, not the full scope. Include terrain, flora, actors/NPCs,
+items/equipment, props/architecture and essential gameplay states across surface,
+underground and special sites. Maintain a source-grounded coverage inventory;
+missing and not-yet-audited coverage must remain explicit. Preserve existing
+animations and accepted sprites. Defer new subtle animation work unless a named
+defect blocks gameplay understanding or interaction.
+
 For this session's visual overhaul, read `Docs/LIVE-16X24-ART-DIRECTION.md`
 first, especially **Required production pipeline and agent handoff**. Read
 `Docs/GRAPHICS-COMPLETION-PLAN.md` next for the current delivery order:
-normal-launch 2D continuity and scene-level completion before more isolated
-asset packets. `ArtSource/Live16x24/release-coverage.json` records bounded
+normal-launch 2D continuity, followed by missing sprite coverage across all
+biomes/areas with coherent scene-level integration. `ArtSource/Live16x24/release-coverage.json` records bounded
 coverage and pending acceptance; it is not a complete census. The actual
 game target is flat 16×24 pixel art. Use a playable real-world greybox,
 capture it, reinterpret it with imagegen, extract parts, produce sprites and

@@ -1,5 +1,25 @@
 # Live 16×24 art direction and integration
 
+**Chunk composition requirement (2026-10-26 local):** The user also requires
+chunks not to feel too bare. Fill regions with coherent, biome-appropriate
+terrain variation, flora, props and landmarks while preserving readable routes,
+hazards and interactions. Judge actual whole gameplay views, not only sprite
+sheets. See `Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md` for the acceptance gate.
+
+**Latest user priority — 2026-10-27 03:40 UTC:** Fill out the sprites for
+everything across **all biomes and areas** first. Defer nuanced animation work
+while missing, placeholder or inconsistent native identities remain. The scope
+includes surface, underground, towns/interiors, dungeons and special sites,
+covering terrain, vegetation, creatures/NPCs, items/equipment, props/architecture
+and gameplay-essential states. The six-scene opening is an anchor, not the full
+scope. Keep accepted art and existing animation stable; only interrupt coverage
+for a demonstrated rendering, interaction or essential-readability blocker.
+Maintain a source-grounded coverage inventory with explicit missing and
+not-yet-audited categories. Asset counts and truthful glyph fallbacks do not
+certify finished art. This priority supersedes historical animation-first and
+opening-polish-first next actions below. See [completion plan](GRAPHICS-COMPLETION-PLAN.md).
+
+
 Current status, 2026-10-26: the En / Garde hotbar correction now ships in fresh
 Mac/Linux packages from `3aca7c18e`. Ten actual Mac captures verify mouse
 activation/cooldown refusal, keyboard AIM/cancel, inventory and full restart.
@@ -18,7 +38,7 @@ User-requested hourly reporting is active: list work completed/in progress/block
 
 Original implementation brief, 2026-10-22: this supersedes the crop-only next step in the overnight clearing plan. The user clarified that the intended result is a striking visual transformation fully integrated into the playable game, and explicitly allows the time each sprite and animation needs. Asset counts, arbitrary iteration totals and an overnight deadline are not completion criteria.
 
-**Delivery order established 2026-10-23, still active:** read [Graphics completion plan](GRAPHICS-COMPLETION-PLAN.md)
+**Historical delivery order established 2026-10-23; superseded by the priority above:** read [Graphics completion plan](GRAPHICS-COMPLETION-PLAN.md)
 and the [coverage ledger](../ArtSource/Live16x24/release-coverage.json) after this
 pipeline. The user's latest priority is to finish consistent graphics and
 unblock normal play. **Graphics is the game's #1 priority and a release blocker,
@@ -33,7 +53,7 @@ Read the latest continuation below for the current accepted scope.
 
 ## What completion means
 
-A coherent playable opening: original characters, terrain, architecture, props, items, animation and feedback share one visual language. The real player can move, fight, inspect, use services and change the world; the art responds to those changes. The user-approved native 16×24 characters are the anchor. Existing 3D art and its return path remain recoverable.
+A coherent playable world across every biome and area, anchored by the opening: original characters, terrain, architecture, props, items and essential state feedback share one visual language. Optional nuanced animation follows broad sprite coverage. The real player can move, fight, inspect, use services and change the world; the art responds to those changes. The user-approved native 16×24 characters are the anchor. Existing 3D art and its return path remain recoverable.
 
 The earlier standalone clearing is a static asset study. Its seven passing tests establish scene routing and asset persistence, not live integration. Do not present that study, an imagegen render or a crop-only reskin as completion of this goal. The later opt-in live integration is recorded below; it does not yet complete the visual release.
 
@@ -53,11 +73,14 @@ Animations should explain action and character: directional movement, readable a
 
 **Tool delegation:** the user gives current and future agents full discretion to choose and use any available tools needed for this work, including imagegen, procedural tools, pixel editors, Blender, Unity MCP, browsing, code and tests. Continue autonomously without asking about routine tool or art-production choices. Use the access actually available and record tools used honestly. Take the time each sprite and animation needs; keep the approved source art and previous presentation recoverable.
 
-1. **Greybox the real playable opening.** Use simple colored 16×24 tiles and rough silhouettes attached to the existing world entities in the actual spawn at Overworld.11.10.0. Exercise ordinary movement, collision, targeting, combat spacing and interaction access. Check composition, landmarks, sightlines, quiet ground, scale, camera and selection. The separate static clearing cannot satisfy this gate.
+1. **Greybox the real playable area being covered.** The opening is the first
+   anchor; subsequent biome/site kits require their real playable areas too.
+   Use simple colored 16×24 tiles and rough silhouettes attached to the existing world entities in the actual target
+   zone (the opening anchor is Overworld.11.10.0). Exercise ordinary movement, collision, targeting, combat spacing and interaction access. Check composition, landmarks, sightlines, quiet ground, scale, camera and selection. The separate static clearing cannot satisfy this gate.
 2. **Capture and critique the greybox.** Save actual Unity Game captures at 1280×800 plus the seed, zone, renderer mode and tested route/actions. Identify weak composition and gameplay readability before detailed art. Any meaningful layout change belongs in the real world generation/owners, not an unconnected backdrop.
 3. **Reinterpret the captured scene with imagegen.** Use the actual greybox screenshot as the composition input, approved sprites as style anchors, and selected external references for specific shapes/materials. Preserve traversable paths, functional landmarks, flat view and native cell proportions. Save exact prompts, inputs, outputs and critique.
 4. **Extract a practical parts list.** Separate the chosen concept into terrain, wall/edge variants, props, characters, items and animation/state frames. Record each part's real blueprint/VisualID, footprint, pivot, palette and required states. Extract/cut out useful reference parts with imagegen or an appropriate editor, then resolve irregular generated pixels during native sprite authoring. A complete scene image is not a substitute for usable game assets.
-5. **Produce native sprites and animations.** Create editable sources and exact-resolution frames with square pixels, consistent baselines and Point imports. Use purposeful movement/action/state animation. Keep concept art separate from production sprites; do not assume shrinking an image produces a coherent pixel grid. Preserve approved base frames and author derivatives separately.
+5. **Produce native sprites and essential states first.** Create editable sources and exact-resolution frames with square pixels, consistent baselines and Point imports. Defer optional nuanced movement/action animation until broad sprite coverage is filled; preserve working animation and essential gameplay cues. Keep concept art separate from production sprites; do not assume shrinking an image produces a coherent pixel grid. Preserve approved base frames and author derivatives separately.
 6. **Reintegrate with the real simulation.** Map art to actual owners and states, including visibility, damage, harvest, repair, death and removal. Use shared materials, atlases and batched/static tile rendering where suitable; profile the result rather than assuming fewer objects are faster. Keep dynamic actors and state changes correct.
 7. **Play, capture, compare and revise.** Re-run the same route/actions and inspect actual frames and motion. Check camera, UI, selection, visibility, transitions and rendering cost. Compare the accepted concept with the real game, fix the largest visible or functional mismatch, and repeat the relevant passes. Reuse a verified greybox while its geometry/composition remains valid; do not redo it for every small sprite correction.
 

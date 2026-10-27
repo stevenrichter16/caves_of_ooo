@@ -1,20 +1,32 @@
 # Graphics completion plan
 
-Current status,2026-10-27 03:01 UTC: North Patchbearer encounter motion is
-verified in source2375284dd and fresh Mac/Linux packages.278native tests pass,
-1allocation-counter control skips; actual Editor full/empty motion/death/revisit
-and Maccombat/tonic/reader/save/fullrestart accepted. Earlier copper, brine,
-cudgel and steam corrections remain included. The next scene-level pass is
-East Cindercaller movement/cast attribution; capture ordinary gameplay first.
-See[North delivery](GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md) and
-[East plan](GRAPHICS-EAST-CASTER-MOTION-PLAN.md). Whole opening, remaining regions,
-Linux execution, physical Deck and sustained performance remain unverified.
-Normal saves/preferences,34foreign edits and previous builds preserved;
-storage inspection-only.
+**Chunk composition requirement (2026-10-26 local):** The user also requires
+chunks not to feel too bare. Fill regions with coherent, biome-appropriate
+terrain variation, flora, props and landmarks while preserving readable routes,
+hazards and interactions. Judge actual whole gameplay views, not only sprite
+sheets. See `Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md` for the acceptance gate.
 
-Hourly report checkpoint:2026-10-27 02:25UTC; next03:25UTC. Continue itemized results and
-concrete coming-session goals. The [run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md)
-distinguishes new graphics/gameplay fixes from existing mechanics exercised.
+Current priority, 2026-10-27 03:40 UTC: **fill missing and inconsistent sprites
+across the entire game before nuanced animation polish.** This is the user's
+latest direction and supersedes the earlier opening-first polish queue. Cover
+all biomes and areas, including surface, underground, towns, interiors, dungeons
+and special sites. The six connected opening scenes remain a valuable verified
+anchor; they are not the boundary of this graphics journey. Preserve accepted
+art and existing animation, but defer optional pose refinements while uncovered
+regions and object families remain. See the dated continuation below.
+
+Delivered baseline remains North source2375284dd and its Mac/Linux packages:
+278 native passes,1 unsupported allocation-counter control skipped; bounded
+Editor and Mac gameplay accepted. The East caster baseline was subsequently
+captured with real movement/combat/casting, and source-only motion derivatives
+were preserved. **East motion is deferred, not integrated or accepted.**
+Normal saves, previous builds and unrelated work remain preserved. Storage
+reclamation remains inspection-only.
+
+Hourly report checkpoint:2026-10-27 03:25UTC; next04:25UTC. Reports must name
+biomes/areas and sprite families addressed, verified gaps closed, remaining
+missing/unaudited coverage, and concrete next coverage goals, with test/capture/
+main-push status. See the [run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md).
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art
@@ -65,8 +77,11 @@ The player must see it by launching the actual game, keep it while travelling,
 and understand characters, terrain, objects and changes without consulting an
 art review. Preserve the previous presentation as an explicit reversible option.
 
-The immediate release is the **complete opening journey**, followed by region
-coverage using the same production system. A coherent fallback permits travel
+The current production priority is **complete native sprite coverage across all
+biomes and areas**, with coherent playable slices delivered throughout the journey.
+Do not require the opening's optional animation polish to finish before covering
+unrepresented regions. Keep normal launch/travel and essential state readability
+working as this coverage expands. A coherent fallback permits travel
 while art is unfinished; it is not evidence that a region's art is finished.
 Do not require every item in the whole game to have a bespoke picture before
 delivering the opening. Do require every encountered object to remain truthful,
@@ -141,12 +156,14 @@ Use one complete gameplay view or related visual family per loop:
    walkability, gradients and pseudo-3D lighting. Save input, exact prompt,
    output and the selected design decisions.
 4. **Map parts and states.** Extract the needed silhouettes, connected edges,
-   palette clusters and animation poses. Give each a real owner, footprint,
+   palette clusters and gameplay-essential state variants. Optional animation
+   poses are deferred until broad sprite coverage is filled. Give each a real owner, footprint,
    pivot and state source. Art must never imply a resource, opening or service
    the simulation does not have.
 5. **Author natively.** Produce editable exact-resolution sprites/frames.
    Imagegen is the design assistant, not the final pixel-grid exporter.
-   Preserve approved bases; animation derivatives remain separate.
+   Preserve approved bases. New ordinary sprites and essential state variants
+   take priority over optional animation derivatives, which remain separate.
 6. **Integrate the family.** Use shared materials/atlases where suitable,
    cached lookups and the existing state/visibility rules. Finish the related
    outcomes together: a harvest may leave a spent plant, remove the owner, or
@@ -187,7 +204,9 @@ has never been checked in the game.
   neighbors. Water edges must agree with water/hazard cells.
 - Native-size shape conveys object identity. Color alone must not be the only
   cue for hostility, ripe/spent, intact/broken, or charged/empty where relevant.
-- Animation explains movement, attack contact, defence and state change.
+- Preserve existing animation. Until broad sprite coverage is filled, only
+  prioritize animation work for a demonstrated gameplay-readability blocker.
+  Later animation polish explains movement, attack contact, defence and state change.
   Avoid generic bouncing or constant environmental motion. Diagonal travel
   and action timing must be coherent; identical copied frames do not count as
   a complete directional set.

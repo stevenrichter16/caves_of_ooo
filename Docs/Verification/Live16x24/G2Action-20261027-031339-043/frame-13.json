@@ -1,0 +1,110 @@
+{
+  "sequence": 13,
+  "frame": 391760,
+  "at": "2026-10-27T03:14:23.6720640Z",
+  "unscaledTime": 559.158,
+  "deltaTime": 0.00295154471,
+  "zone": "Overworld.12.10.0",
+  "tick": 1200,
+  "player": [
+    59,
+    3
+  ],
+  "hp": 30,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "4923",
+      "blueprint": "MarlbackScrabbler",
+      "hp": 4,
+      "sprite": "Live16x24 MarlbackScrabbler attack",
+      "atlas": "opening-motion",
+      "rect": [
+        160.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Attack",
+      "stateTime": 0.061466828,
+      "pending": false,
+      "pendingState": "Attack",
+      "dying": false,
+      "cell": [
+        60,
+        3
+      ],
+      "world": [
+        60.5,
+        31.5
+      ],
+      "screen": [
+        502.000031,
+        608.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "2695",
+      "blueprint": "Player",
+      "hp": 30,
+      "sprite": "Live16x24 Player idle",
+      "atlas": "opening-base",
+      "rect": [
+        0.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Attack",
+      "stateTime": 0.121466838,
+      "pending": false,
+      "pendingState": "Hurt",
+      "dying": false,
+      "cell": [
+        59,
+        3
+      ],
+      "world": [
+        59.5,
+        31.5
+      ],
+      "screen": [
+        470.0,
+        608.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "4923",
+      "text": "8",
+      "number": 8,
+      "numeric": true,
+      "x": 60,
+      "y": 5,
+      "width": 1,
+      "lane": 0,
+      "remaining": 0.478533119,
+      "originOnly": false
+    },
+    {
+      "owner": "2695",
+      "text": "Parried",
+      "number": 0,
+      "numeric": false,
+      "x": 56,
+      "y": 1,
+      "width": 7,
+      "lane": 2,
+      "remaining": 0.97853297,
+      "originOnly": false
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

@@ -1,0 +1,1910 @@
+{
+  "frames": [
+    {
+      "sequence": 0,
+      "frame": 372696,
+      "at": "2026-10-27T03:13:39.0570770Z",
+      "unscaledTime": 514.535645,
+      "deltaTime": 0.774017453,
+      "zone": "Overworld.12.10.0",
+      "tick": 1170,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 40,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 15,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 18.0075665,
+          "pending": false,
+          "pendingState": "Idle",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 40,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 18.0075665,
+          "pending": false,
+          "pendingState": "Idle",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": []
+    },
+    {
+      "sequence": 1,
+      "frame": 376585,
+      "at": "2026-10-27T03:13:46.7944110Z",
+      "unscaledTime": 522.2691,
+      "deltaTime": 0.00586425047,
+      "zone": "Overworld.12.10.0",
+      "tick": 1180,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler hurt",
+          "atlas": "opening-motion",
+          "rect": [
+            176.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Hurt",
+          "stateTime": 0.0,
+          "pending": true,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player attack",
+          "atlas": "opening-motion",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.0,
+          "pending": true,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "3",
+          "number": 3,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.6,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "10",
+          "number": 10,
+          "numeric": true,
+          "x": 59,
+          "y": 1,
+          "width": 2,
+          "lane": 2,
+          "remaining": 0.6,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 2,
+      "frame": 376605,
+      "at": "2026-10-27T03:13:46.8470200Z",
+      "unscaledTime": 522.331238,
+      "deltaTime": 0.00264041242,
+      "zone": "Overworld.12.10.0",
+      "tick": 1180,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler attack",
+          "atlas": "opening-motion",
+          "rect": [
+            160.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.002103084,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player hurt",
+          "atlas": "opening-motion",
+          "rect": [
+            48.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Hurt",
+          "stateTime": 0.002103084,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "3",
+          "number": 3,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.5378969,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "10",
+          "number": 10,
+          "numeric": true,
+          "x": 59,
+          "y": 1,
+          "width": 2,
+          "lane": 2,
+          "remaining": 0.5378969,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 3,
+      "frame": 376653,
+      "at": "2026-10-27T03:13:46.9446600Z",
+      "unscaledTime": 522.429932,
+      "deltaTime": 0.00159204227,
+      "zone": "Overworld.12.10.0",
+      "tick": 1180,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler attack",
+          "atlas": "opening-motion",
+          "rect": [
+            160.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.100801706,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Hurt",
+          "stateTime": 0.100801706,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "3",
+          "number": 3,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.439198136,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "10",
+          "number": 10,
+          "numeric": true,
+          "x": 59,
+          "y": 1,
+          "width": 2,
+          "lane": 2,
+          "remaining": 0.439198136,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "frame": 376660,
+      "at": "2026-10-27T03:13:46.9644310Z",
+      "unscaledTime": 522.45,
+      "deltaTime": 0.00273341825,
+      "zone": "Overworld.12.10.0",
+      "tick": 1180,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.120872714,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Hurt",
+          "stateTime": 0.120872714,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "3",
+          "number": 3,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.419127166,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "10",
+          "number": 10,
+          "numeric": true,
+          "x": 59,
+          "y": 1,
+          "width": 2,
+          "lane": 2,
+          "remaining": 0.419127166,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 5,
+      "frame": 376719,
+      "at": "2026-10-27T03:13:47.0853250Z",
+      "unscaledTime": 522.5706,
+      "deltaTime": 0.00166875,
+      "zone": "Overworld.12.10.0",
+      "tick": 1180,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.08042275,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.100436844,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "3",
+          "number": 3,
+          "numeric": true,
+          "x": 60,
+          "y": 4,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.2985247,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "10",
+          "number": 10,
+          "numeric": true,
+          "x": 59,
+          "y": 0,
+          "width": 2,
+          "lane": 2,
+          "remaining": 0.2985247,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 6,
+      "frame": 376844,
+      "at": "2026-10-27T03:13:47.3834440Z",
+      "unscaledTime": 522.8694,
+      "deltaTime": 0.00200549886,
+      "zone": "Overworld.12.10.0",
+      "tick": 1180,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.379218251,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.399232358,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": []
+    },
+    {
+      "sequence": 7,
+      "frame": 382471,
+      "at": "2026-10-27T03:14:03.5823010Z",
+      "unscaledTime": 539.059448,
+      "deltaTime": 0.005092581,
+      "zone": "Overworld.12.10.0",
+      "tick": 1190,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler attack",
+          "atlas": "opening-motion",
+          "rect": [
+            160.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.0,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 16.5893059,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "2695",
+          "text": "En garde",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 5,
+          "width": 8,
+          "lane": 0,
+          "remaining": 1.1,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 8,
+      "frame": 382519,
+      "at": "2026-10-27T03:14:03.6951760Z",
+      "unscaledTime": 539.1805,
+      "deltaTime": 0.0016613804,
+      "zone": "Overworld.12.10.0",
+      "tick": 1190,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.12099614,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 16.7103043,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "2695",
+          "text": "En garde",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 5,
+          "width": 8,
+          "lane": 0,
+          "remaining": 0.9790038,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 9,
+      "frame": 382727,
+      "at": "2026-10-27T03:14:04.1242990Z",
+      "unscaledTime": 539.6095,
+      "deltaTime": 0.00242954213,
+      "zone": "Overworld.12.10.0",
+      "tick": 1190,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.388494253,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 17.1393337,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "2695",
+          "text": "En garde",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 4,
+          "width": 8,
+          "lane": 0,
+          "remaining": 0.549969256,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 10,
+      "frame": 382941,
+      "at": "2026-10-27T03:14:04.6765010Z",
+      "unscaledTime": 540.1624,
+      "deltaTime": 0.0032206208,
+      "zone": "Overworld.12.10.0",
+      "tick": 1190,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 12,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.9413844,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 17.69223,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": []
+    },
+    {
+      "sequence": 11,
+      "frame": 391718,
+      "at": "2026-10-27T03:14:23.5647550Z",
+      "unscaledTime": 559.03656,
+      "deltaTime": 0.005163669,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler hurt",
+          "atlas": "opening-motion",
+          "rect": [
+            176.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Hurt",
+          "stateTime": 0.0,
+          "pending": true,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player attack",
+          "atlas": "opening-motion",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.0,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "8",
+          "number": 8,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.6,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "Parried",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 1,
+          "width": 7,
+          "lane": 2,
+          "remaining": 1.1,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 12,
+      "frame": 391734,
+      "at": "2026-10-27T03:14:23.6123830Z",
+      "unscaledTime": 559.097046,
+      "deltaTime": 0.00205929,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler attack",
+          "atlas": "opening-motion",
+          "rect": [
+            160.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.0005024986,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player attack",
+          "atlas": "opening-motion",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.0605024956,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "8",
+          "number": 8,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.539497435,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "Parried",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 1,
+          "width": 7,
+          "lane": 2,
+          "remaining": 1.03949749,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 13,
+      "frame": 391760,
+      "at": "2026-10-27T03:14:23.6720640Z",
+      "unscaledTime": 559.158,
+      "deltaTime": 0.00295154471,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler attack",
+          "atlas": "opening-motion",
+          "rect": [
+            160.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.061466828,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.121466838,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "8",
+          "number": 8,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.478533119,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "Parried",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 1,
+          "width": 7,
+          "lane": 2,
+          "remaining": 0.97853297,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 14,
+      "frame": 391788,
+      "at": "2026-10-27T03:14:23.7317950Z",
+      "unscaledTime": 559.2179,
+      "deltaTime": 0.003106753,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Attack",
+          "stateTime": 0.12133316,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.02026517,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "8",
+          "number": 8,
+          "numeric": true,
+          "x": 60,
+          "y": 5,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.41866678,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "Parried",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 1,
+          "width": 7,
+          "lane": 2,
+          "remaining": 0.918666661,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 15,
+      "frame": 391845,
+      "at": "2026-10-27T03:14:23.8501210Z",
+      "unscaledTime": 559.3366,
+      "deltaTime": 0.0014516298,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.07786308,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.139032483,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "8",
+          "number": 8,
+          "numeric": true,
+          "x": 60,
+          "y": 4,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.299899429,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "Parried",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 1,
+          "width": 7,
+          "lane": 2,
+          "remaining": 0.799899459,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 16,
+      "frame": 391956,
+      "at": "2026-10-27T03:14:24.1004530Z",
+      "unscaledTime": 559.586853,
+      "deltaTime": 0.00154425309,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.328067571,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.389237016,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "4923",
+          "text": "8",
+          "number": 8,
+          "numeric": true,
+          "x": 60,
+          "y": 4,
+          "width": 1,
+          "lane": 0,
+          "remaining": 0.04969481,
+          "originOnly": false
+        },
+        {
+          "owner": "2695",
+          "text": "Parried",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 0,
+          "width": 7,
+          "lane": 2,
+          "remaining": 0.5496949,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 17,
+      "frame": 391975,
+      "at": "2026-10-27T03:14:24.1507640Z",
+      "unscaledTime": 559.6371,
+      "deltaTime": 0.00137024513,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.378310651,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.4394801,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": [
+        {
+          "owner": "2695",
+          "text": "Parried",
+          "number": 0,
+          "numeric": false,
+          "x": 56,
+          "y": 0,
+          "width": 7,
+          "lane": 2,
+          "remaining": 0.499451637,
+          "originOnly": false
+        }
+      ]
+    },
+    {
+      "sequence": 18,
+      "frame": 392196,
+      "at": "2026-10-27T03:14:24.6515030Z",
+      "unscaledTime": 560.1372,
+      "deltaTime": 0.00142391585,
+      "zone": "Overworld.12.10.0",
+      "tick": 1200,
+      "player": [
+        59,
+        3
+      ],
+      "hp": 30,
+      "width": 1280,
+      "height": 800,
+      "actors": [
+        {
+          "id": "4923",
+          "blueprint": "MarlbackScrabbler",
+          "hp": 4,
+          "sprite": "Live16x24 MarlbackScrabbler idle",
+          "atlas": "opening-cast",
+          "rect": [
+            32.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.8784628,
+          "pending": false,
+          "pendingState": "Attack",
+          "dying": false,
+          "cell": [
+            60,
+            3
+          ],
+          "world": [
+            60.5,
+            31.5
+          ],
+          "screen": [
+            502.000031,
+            608.0
+          ],
+          "flipX": true,
+          "alpha": 1.0
+        },
+        {
+          "id": "2695",
+          "blueprint": "Player",
+          "hp": 30,
+          "sprite": "Live16x24 Player idle",
+          "atlas": "opening-base",
+          "rect": [
+            0.0,
+            0.0,
+            16.0,
+            24.0
+          ],
+          "state": "Idle",
+          "stateTime": 0.9396321,
+          "pending": false,
+          "pendingState": "Hurt",
+          "dying": false,
+          "cell": [
+            59,
+            3
+          ],
+          "world": [
+            59.5,
+            31.5
+          ],
+          "screen": [
+            470.0,
+            608.0
+          ],
+          "flipX": false,
+          "alpha": 1.0
+        }
+      ],
+      "readouts": []
+    }
+  ],
+  "errors": [],
+  "bounds": "Actual WaitForEndOfFrame screenshots from ordinary Play. Selective pose sampling and synchronous readback overhead: not continuous video or timing/performance proof."
+}

@@ -1,0 +1,110 @@
+{
+  "sequence": 3,
+  "frame": 376653,
+  "at": "2026-10-27T03:13:46.9446600Z",
+  "unscaledTime": 522.429932,
+  "deltaTime": 0.00159204227,
+  "zone": "Overworld.12.10.0",
+  "tick": 1180,
+  "player": [
+    59,
+    3
+  ],
+  "hp": 30,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "4923",
+      "blueprint": "MarlbackScrabbler",
+      "hp": 12,
+      "sprite": "Live16x24 MarlbackScrabbler attack",
+      "atlas": "opening-motion",
+      "rect": [
+        160.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Attack",
+      "stateTime": 0.100801706,
+      "pending": false,
+      "pendingState": "Attack",
+      "dying": false,
+      "cell": [
+        60,
+        3
+      ],
+      "world": [
+        60.5,
+        31.5
+      ],
+      "screen": [
+        502.000031,
+        608.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "2695",
+      "blueprint": "Player",
+      "hp": 30,
+      "sprite": "Live16x24 Player idle",
+      "atlas": "opening-base",
+      "rect": [
+        0.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.100801706,
+      "pending": false,
+      "pendingState": "Hurt",
+      "dying": false,
+      "cell": [
+        59,
+        3
+      ],
+      "world": [
+        59.5,
+        31.5
+      ],
+      "screen": [
+        470.0,
+        608.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "4923",
+      "text": "3",
+      "number": 3,
+      "numeric": true,
+      "x": 60,
+      "y": 5,
+      "width": 1,
+      "lane": 0,
+      "remaining": 0.439198136,
+      "originOnly": false
+    },
+    {
+      "owner": "2695",
+      "text": "10",
+      "number": 10,
+      "numeric": true,
+      "x": 59,
+      "y": 1,
+      "width": 2,
+      "lane": 2,
+      "remaining": 0.439198136,
+      "originOnly": false
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

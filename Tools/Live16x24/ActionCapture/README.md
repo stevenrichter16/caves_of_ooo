@@ -76,3 +76,25 @@ cleanup. Receipts: `Docs/Verification/Live16x24/g2-action-helper-red.txt` and
 `g2-action-helper-green.txt`.
 This is helper/control-flow evidence, **not a native Unity or gameplay test**.
 Actual EOF captures remain the parent-operated Unity acceptance gate.
+
+
+## Preserved East caster baseline observer (2026-10-27)
+
+`arm-east-caster.cs`, `observe-east-caster.cs` and
+`finish-east-caster-events.cs` are the bounded method-body variants used for
+E1 in `Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md`. They preserve the original
+capture workflow and add actual selected static caster rows plus short50ms
+cast sampling buckets. Static rows are observational metadata, not motion
+admission. The cast observer listens additively to the existing resolved hook;
+it does not emit it. Hidden source coordinates/identity are not disclosed merely
+because a target-side effect is visible.
+
+Use the normal `finish.cs` for pixel export AND the matching
+`finish-east-caster-events.cs` to detach attack, damage AND cast observers.
+The old `finish-events.cs` removes only its original two observers and is not
+sufficient for this variant. The E1 seven-session receipts establish that this
+variant ran in actual Unity; the second/third/fourth/etc folders with no event
+log entries are movement samples, not casting proof. The final
+`G2Action-20261027-032836-072` contains the genuine cast. No normal performance
+measurement or new animation acceptance is implied. The planned animation
+integration is now deferred by the user's worldwide sprite-coverage priority.

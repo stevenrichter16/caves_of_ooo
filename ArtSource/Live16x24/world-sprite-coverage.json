@@ -1,0 +1,2383 @@
+{
+  "schema_version": 1,
+  "kind": "source_grounded_scope_and_coverage_plan_not_runtime_manifest",
+  "reviewed_at_utc": "2026-10-27T03:56:34.861584+00:00",
+  "baseline_source_revision": "bf38cfd98 (root-provided audit baseline; no Git operation in this audit)",
+  "priority": "Complete native16x24 sprite coverage across every biome and area before optional nuanced animation; ensure chunks feel intentionally composed rather than bare.",
+  "bounds": [
+    "Source inventory and known integration seams only; no fresh Unity/gameplay acceptance earned by this ledger.",
+    "Raw definitions, PNG totals, surface coordinates and frame counts are not a completion percentage or unique sprite denominator.",
+    "Candidate identity lists are nonexhaustive source references, not guaranteed spawns. POIs and authored overlays can replace ordinary biome recipes.",
+    "Existing accepted opening and packaged receipts remain valid within their named bounds; do not reset them or promote them to complete regional coverage.",
+    "Unavailable/unaudited identity, state, held goods and generated variations remain explicit unknowns.",
+    "Normal projection/glyph fallback preserves playability but does not close a native-art coverage gap."
+  ],
+  "authority_refs": [
+    "CLAUDE.md",
+    "Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md",
+    "Docs/GRAPHICS-COMPLETION-PLAN.md",
+    "Docs/LIVE-16X24-ART-DIRECTION.md",
+    "ArtSource/Live16x24/release-coverage.json",
+    "Docs/Verification/Live16x24/world-sprite-scope-audit.md"
+  ],
+  "counts": {
+    "serialized_biome_keys": 10,
+    "authored_surface_coordinates": 400,
+    "authored_surface_biomes": 6,
+    "authored_settlements": 17,
+    "authored_sinkhole_mouths": 6,
+    "ordinary_underground_material_bands": 6,
+    "formation_enum_non_none": 27,
+    "separate_overwrit_formations": 4,
+    "raw_blueprint_definitions": 712,
+    "biome_crop_species": 35,
+    "exact_crop_names_in_local_flat_catalogs": 5,
+    "biome_crop_families_without_exact_flat_catalog_name": 30,
+    "liquid_definition_files": 26
+  },
+  "chunk_fullness_gate": {
+    "status": "required_not_yet_accepted_worldwide",
+    "requirement": "Review whole playable chunks for coherent visual richness in actual1280x800 gameplay at1x/2x, not just individual sprite correctness.",
+    "checklist": [
+      "Biome-specific ground/material variation supports the scene without indiscriminate noise.",
+      "Vegetation, rocks, structures and functional props form coherent clusters and transitions instead of uniform scatter or isolated samples.",
+      "Landmarks and secondary details create a recognizable area and avoid accidental large unfinished-looking gaps.",
+      "Traversal lanes, sightlines, target selection, hazards and interactable owners remain legible; decoration does not invent collision or services.",
+      "Adjacent chunks have continuity and meaningful formation differences; density is not copied identically everywhere.",
+      "Deliberately sparse areas such as Overwrit retain their authored identity, but still require explicit review of material, edge, landmark and route composition. Sparse is not a blanket visual-quality exemption.",
+      "If actual geometry must change, change the real generation/owner system under tests and preserve saves; never hide incomplete gameplay under a disconnected backdrop."
+    ],
+    "evidence_needed": [
+      "actual_before_and_after_scene_captures",
+      "route_collision_selection_and_interaction_check",
+      "independent_readability_and_composition_review",
+      "named_defects_and_scope_limits"
+    ],
+    "prohibited_shortcut": "No arbitrary entity-count target or random clutter fill can substitute for scene acceptance."
+  },
+  "biomes": [
+    {
+      "key": "Cave",
+      "scope": "retained_compatibility_and_underground_key",
+      "surface_table_cells": 0,
+      "formations": [],
+      "candidate_identities_not_exhaustive": [
+        "CaveBat",
+        "CaveSlime",
+        "CaveBear",
+        "Glowmaw",
+        "Stalagmite"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+    },
+    {
+      "key": "Desert",
+      "scope": "retained_compatibility_and_underground_key",
+      "surface_table_cells": 0,
+      "formations": [],
+      "candidate_identities_not_exhaustive": [
+        "DesertBandit",
+        "SandWurm",
+        "Rock"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+    },
+    {
+      "key": "Jungle",
+      "scope": "retained_compatibility_and_underground_key",
+      "surface_table_cells": 0,
+      "formations": [],
+      "candidate_identities_not_exhaustive": [
+        "JungleApe",
+        "CanopyStrangler",
+        "SporeShambler"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+    },
+    {
+      "key": "Ruins",
+      "scope": "retained_compatibility_and_underground_key",
+      "surface_table_cells": 0,
+      "formations": [],
+      "candidate_identities_not_exhaustive": [
+        "RuinScavenger",
+        "SkeletalSentry",
+        "StoneGolem",
+        "BrassHusk",
+        "CharredHusk",
+        "PalimpsestEcho"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Zero fresh authored surface cells does not remove this live serialized/routed key from scope. Existing local cellar art does not certify generic underground coverage."
+    },
+    {
+      "key": "Spread",
+      "scope": "authored_surface",
+      "surface_table_cells": 142,
+      "formations": [
+        "Hedgerow",
+        "FieldStrips",
+        "OldRoad",
+        "FlowerMeadow",
+        "Fallow",
+        "RiverMeadow"
+      ],
+      "candidate_identities_not_exhaustive": [
+        "Grass",
+        "Tree",
+        "Bush",
+        "Hedge",
+        "Reeds",
+        "CharmFlowers",
+        "CropRow",
+        "RipeCropRow",
+        "RoadStone",
+        "Magpie",
+        "Viper",
+        "PetDog",
+        "MarlbackScrabbler",
+        "MarlbackGleaner",
+        "MarlbackTunnelguard",
+        "GiantSpider",
+        "BerryBush",
+        "Beehive",
+        "HollowStump",
+        "Signpost"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "bounded_six_graph_anchor_only",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "The five admitted surface graphs and one cellar retain their existing bounded evidence. Remaining Spread formations, towns and work sites are not audited as complete."
+    },
+    {
+      "key": "Sodden",
+      "scope": "authored_surface",
+      "surface_table_cells": 63,
+      "formations": [
+        "OpenMire",
+        "PeatCuts",
+        "ReedMaze",
+        "DrownedCopse",
+        "Causeway",
+        "BogFace"
+      ],
+      "candidate_identities_not_exhaustive": [
+        "MirePool",
+        "PeatBank",
+        "Duckboard",
+        "DeadTree",
+        "Reeds",
+        "BogTakenBody",
+        "Bandfrog",
+        "GinFrog",
+        "Reedfrog",
+        "Greatdew",
+        "MawToad",
+        "Viper"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review."
+    },
+    {
+      "key": "Beating",
+      "scope": "authored_surface",
+      "surface_table_cells": 107,
+      "formations": [
+        "SaltPan",
+        "RuinField",
+        "DuneBelt",
+        "CaravanRoad",
+        "WindBarrens",
+        "BrineLens"
+      ],
+      "candidate_identities_not_exhaustive": [
+        "SaltCrust",
+        "DuneCrest",
+        "Sand",
+        "SandstoneWall",
+        "SandstoneFloor",
+        "BrinePool",
+        "DryBrush",
+        "Cactus",
+        "Rock",
+        "Bones",
+        "PaleSaltVein",
+        "Scorpion",
+        "SunStriker",
+        "BrittleHound",
+        "GlassScorpion",
+        "DuneLurker"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review."
+    },
+    {
+      "key": "Grovelands",
+      "scope": "authored_surface",
+      "surface_table_cells": 43,
+      "formations": [
+        "Grove",
+        "TendrilFen",
+        "FruitingWall",
+        "CompostingField"
+      ],
+      "candidate_identities_not_exhaustive": [
+        "MycelialColumn",
+        "GroveSeep",
+        "GroveSign",
+        "GroveRedGrowth",
+        "FruitingBody",
+        "VineWall",
+        "CompostRow",
+        "CompostCache",
+        "ChoirIronVein",
+        "GroveLanternMoth",
+        "HelmwoodFrog",
+        "WineLeafSundew",
+        "ChoirTendril",
+        "Rotling",
+        "Shambler",
+        "Mosshulk"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review."
+    },
+    {
+      "key": "Overwrit",
+      "scope": "authored_surface",
+      "surface_table_cells": 23,
+      "formations": [
+        "Blank",
+        "GreenRim",
+        "DryRim",
+        "PilgrimageRim"
+      ],
+      "candidate_identities_not_exhaustive": [
+        "OverwritGround",
+        "OverwritNewGrowth",
+        "OverwritPilgrimBench",
+        "OverwritWaymarker",
+        "Rubble"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review.",
+      "composition_note": "Blank/rim contrast and deliberate quietness are authored identity; do not scatter arbitrary clutter. Still require actual visual-quality/fullness review of boundaries, landmarks, material variation and routes. Current ordinary composition explicitly lists22addresses of23tablecells;2,11 is not certified here."
+    },
+    {
+      "key": "Stump",
+      "scope": "authored_surface",
+      "surface_table_cells": 22,
+      "formations": [
+        "Grainfield",
+        "CascadeGorge",
+        "ButtressRidge",
+        "SummitScrub",
+        "RimForest"
+      ],
+      "candidate_identities_not_exhaustive": [
+        "TepuiStone",
+        "TepuiWall",
+        "GrainRidge",
+        "DescentLedge",
+        "SprayPool",
+        "StoneDome",
+        "TankBrocchinia",
+        "TepuiboneVein",
+        "CascadeFather",
+        "GlasspaneFrog",
+        "YellowfootWayfarer",
+        "Wardline",
+        "MawToad",
+        "SkySari",
+        "SariSnake",
+        "BrocchiniaSentinel",
+        "SummitSinger"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "region_specific_native_kit_not_admitted_at_audit",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs",
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "Assets/Scripts/Data/Tables/PopulationTable.cs"
+      ],
+      "note": "Current global flat projection/four portable actors are not a completed regional kit. Legacy resources require native-scale semantic and integration review. Population depends on ecological/world flags.",
+      "elevation_bands": [
+        "Foothills",
+        "Slopes",
+        "Summit"
+      ]
+    }
+  ],
+  "settlements": [
+    {
+      "name": "Morrowfast",
+      "zone_id": "Overworld.3.6.0",
+      "faction": "Stillcord",
+      "profile": "Morrowfast",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Sill",
+      "zone_id": "Overworld.10.10.0",
+      "faction": "Villagers",
+      "profile": "plain_village",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Gantry",
+      "zone_id": "Overworld.7.8.0",
+      "faction": "Villagers",
+      "profile": "CrossroadsExchange",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Tine",
+      "zone_id": "Overworld.13.7.0",
+      "faction": "Villagers",
+      "profile": "LakesideVillage",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Cinderhold",
+      "zone_id": "Overworld.6.6.0",
+      "faction": "SaccharineConcord",
+      "profile": "PruningPost",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Posy",
+      "zone_id": "Overworld.5.9.0",
+      "faction": "BowerFolk",
+      "profile": "plain_village",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Marrowstye",
+      "zone_id": "Overworld.12.12.0",
+      "faction": "PaleCuration",
+      "profile": "Intake",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Quillhold",
+      "zone_id": "Overworld.14.9.0",
+      "faction": "Palimpsest",
+      "profile": "PrimaryArchive",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Tally",
+      "zone_id": "Overworld.10.14.0",
+      "faction": "SaccharineConcord",
+      "profile": "CentralExchange",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Wellmeet",
+      "zone_id": "Overworld.8.16.0",
+      "faction": "TentRight",
+      "profile": "TentCamp",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "the First Tent",
+      "zone_id": "Overworld.5.17.0",
+      "faction": "TentRight",
+      "profile": "TentCampFirst",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "the Salt-Vault",
+      "zone_id": "Overworld.15.15.0",
+      "faction": "PaleCuration",
+      "profile": "plain_village",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Sumphold",
+      "zone_id": "Overworld.15.6.0",
+      "faction": "Villagers",
+      "profile": "Boatyard",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "the Drowned Ledger",
+      "zone_id": "Overworld.17.5.0",
+      "faction": "Palimpsest",
+      "profile": "ExcavationCamp",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "Slip",
+      "zone_id": "Overworld.16.11.0",
+      "faction": "Villagers",
+      "profile": "plain_village",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "the Last Counter",
+      "zone_id": "Overworld.18.18.0",
+      "faction": "SaccharineConcord",
+      "profile": "ConcordPost",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    },
+    {
+      "name": "the Quiet's Door",
+      "zone_id": "Overworld.16.1.0",
+      "faction": "CatacombFolk",
+      "profile": "plain_village",
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_families": [
+        "architecture_and_actual_interiors",
+        "faction_and_named_residents",
+        "shops_and_service_states",
+        "held_and_traded_goods",
+        "doors_gates_notices",
+        "chunk_composition_and_routes"
+      ],
+      "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs."
+    }
+  ],
+  "sinkhole_stacks": [
+    {
+      "name": "Olderdeep",
+      "mouth_zone": "Overworld.4.6.0",
+      "authored_depth_scope": [
+        0,
+        1,
+        2
+      ],
+      "scene_identity": "Founding/stranded settlement",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "mouth",
+        "descent",
+        "floor_occupants",
+        "doors_and_seals",
+        "loot",
+        "return_route"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/SinkholeSites.cs",
+        "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+    },
+    {
+      "name": "the Deepest Cathedral",
+      "mouth_zone": "Overworld.5.4.0",
+      "authored_depth_scope": [
+        0,
+        1,
+        2
+      ],
+      "scene_identity": "Choir cathedral",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "mouth",
+        "descent",
+        "floor_occupants",
+        "doors_and_seals",
+        "loot",
+        "return_route"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/SinkholeSites.cs",
+        "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+    },
+    {
+      "name": "Lampwell",
+      "mouth_zone": "Overworld.12.3.0",
+      "authored_depth_scope": [
+        0,
+        1,
+        2
+      ],
+      "scene_identity": "Bioluminescent stranded/catacomb settlement",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "mouth",
+        "descent",
+        "floor_occupants",
+        "doors_and_seals",
+        "loot",
+        "return_route"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/SinkholeSites.cs",
+        "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+    },
+    {
+      "name": "Spivenor",
+      "mouth_zone": "Overworld.16.4.0",
+      "authored_depth_scope": [
+        0,
+        1,
+        2
+      ],
+      "scene_identity": "Spore-Wedded stranded settlement",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "mouth",
+        "descent",
+        "floor_occupants",
+        "doors_and_seals",
+        "loot",
+        "return_route"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/SinkholeSites.cs",
+        "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+    },
+    {
+      "name": "Ginmere",
+      "mouth_zone": "Overworld.2.7.0",
+      "authored_depth_scope": [
+        0,
+        1,
+        2
+      ],
+      "scene_identity": "Drowned Sima, nest and PrickleBrowGecko",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "mouth",
+        "descent",
+        "floor_occupants",
+        "doors_and_seals",
+        "loot",
+        "return_route"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/SinkholeSites.cs",
+        "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+    },
+    {
+      "name": "Stillleaf",
+      "mouth_zone": "Overworld.2.4.0",
+      "authored_depth_scope": [
+        0,
+        1,
+        2
+      ],
+      "scene_identity": "Sealed library/archive",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "mouth",
+        "descent",
+        "floor_occupants",
+        "doors_and_seals",
+        "loot",
+        "return_route"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/SinkholeSites.cs",
+        "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "note": "Mouth/depth roles require separate scene evidence; deeper ordinary underground is a distinct scope."
+    }
+  ],
+  "ordinary_underground_materials": [
+    {
+      "material": "Sandstone",
+      "depth_min": 1,
+      "depth_max": 2,
+      "wall_blueprint": "SandstoneWall",
+      "floor_blueprint": "SandstoneFloor",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "wall_floor_edges",
+        "stairs_and_return",
+        "natural_cave_layout",
+        "roomed_layout_when_applicable",
+        "hazards",
+        "fauna",
+        "loot_and_essential_outcomes"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
+        "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
+      ],
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+    },
+    {
+      "material": "Limestone",
+      "depth_min": 3,
+      "depth_max": 4,
+      "wall_blueprint": "LimestoneWall",
+      "floor_blueprint": "LimestoneFloor",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "wall_floor_edges",
+        "stairs_and_return",
+        "natural_cave_layout",
+        "roomed_layout_when_applicable",
+        "hazards",
+        "fauna",
+        "loot_and_essential_outcomes"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
+        "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
+      ],
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+    },
+    {
+      "material": "Shale",
+      "depth_min": 5,
+      "depth_max": 6,
+      "wall_blueprint": "ShaleWall",
+      "floor_blueprint": "ShaleFloor",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "wall_floor_edges",
+        "stairs_and_return",
+        "natural_cave_layout",
+        "roomed_layout_when_applicable",
+        "hazards",
+        "fauna",
+        "loot_and_essential_outcomes"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
+        "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
+      ],
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+    },
+    {
+      "material": "Slate",
+      "depth_min": 7,
+      "depth_max": 8,
+      "wall_blueprint": "SlateWall",
+      "floor_blueprint": "SlateFloor",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "wall_floor_edges",
+        "stairs_and_return",
+        "natural_cave_layout",
+        "roomed_layout_when_applicable",
+        "hazards",
+        "fauna",
+        "loot_and_essential_outcomes"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
+        "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
+      ],
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+    },
+    {
+      "material": "Quartzite",
+      "depth_min": 9,
+      "depth_max": 10,
+      "wall_blueprint": "QuartziteWall",
+      "floor_blueprint": "QuartziteFloor",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "wall_floor_edges",
+        "stairs_and_return",
+        "natural_cave_layout",
+        "roomed_layout_when_applicable",
+        "hazards",
+        "fauna",
+        "loot_and_essential_outcomes"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
+        "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
+      ],
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+    },
+    {
+      "material": "Obsidian",
+      "depth_min": 11,
+      "depth_max": null,
+      "wall_blueprint": "ObsidianWall",
+      "floor_blueprint": "ObsidianFloor",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "required_roles": [
+        "wall_floor_edges",
+        "stairs_and_return",
+        "natural_cave_layout",
+        "roomed_layout_when_applicable",
+        "hazards",
+        "fauna",
+        "loot_and_essential_outcomes"
+      ],
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs",
+        "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs"
+      ],
+      "note": "Roomed layouts apply only to eligible ordinary Spread/Sodden/Beating columns atdepth3+; authored columns retain their own rules. Depth11+ is an open-ended material band, not a finite level count."
+    }
+  ],
+  "other_area_families": [
+    {
+      "id": "world_map",
+      "name": "WorldMap",
+      "zone_ids": [
+        "WorldMap"
+      ],
+      "note": "Map markers/fog are an intentional cartographic role, not automatically missing world sprites.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/WorldMap.cs"
+      ]
+    },
+    {
+      "id": "root",
+      "name": "Root mouth and chamber",
+      "zone_ids": [
+        "Overworld.3.3.0",
+        "Overworld.3.3.1"
+      ],
+      "note": "TheRoot identity and ending states; deeper columns return to ordinary underground.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/RootSite.cs"
+      ]
+    },
+    {
+      "id": "felling_site",
+      "name": "Felling-Site",
+      "zone_ids": [
+        "Overworld.3.5.0"
+      ],
+      "note": "Authored circle, participants and ending states.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/FellingSiteBuilder.cs"
+      ]
+    },
+    {
+      "id": "morrowfast_special",
+      "name": "Morrowfast dedicated scene",
+      "zone_ids": [
+        "Overworld.3.6.0"
+      ],
+      "note": "Also counted once among17settlements; dedicated scene/resident roles require distinct evidence.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs"
+      ]
+    },
+    {
+      "id": "multicell_pilot",
+      "name": "Multi-cell pilot",
+      "zone_ids": [
+        "Overworld.3.7.0"
+      ],
+      "note": "True footprints, selected ownership, cover/movement/removal; do not compress all owners into one tile.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/MultiCellPilotRuntime.cs"
+      ]
+    },
+    {
+      "id": "sodden_district",
+      "name": "Sodden inhabited district",
+      "zone_ids": [
+        "Overworld.15.7.0",
+        "Overworld.16.7.0",
+        "Overworld.17.7.0"
+      ],
+      "note": "Dressing shelter, cutbank crossing and abandoned peat works.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/SoddenDistrictPlan.cs"
+      ]
+    },
+    {
+      "id": "tenth_fire",
+      "name": "Tenth Fire",
+      "zone_ids": [
+        "Overworld.2.19.0"
+      ],
+      "note": "Preserve authored quietness; actual composition still requires visual-quality review.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ]
+    },
+    {
+      "id": "doll_grove",
+      "name": "Authored doll grove",
+      "zone_ids": [
+        "Overworld.1.6.0"
+      ],
+      "note": "Preserve authored scene identity and negative space; no generic clutter filler.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ]
+    },
+    {
+      "id": "abandoned_counters",
+      "name": "Abandoned counters",
+      "zone_ids": [
+        "Overworld.19.18.0",
+        "Overworld.19.19.0"
+      ],
+      "note": "Actual counter/storage/workplace owners and states.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ]
+    },
+    {
+      "id": "repair_cultivation",
+      "name": "Repair/cultivation site",
+      "zone_ids": [
+        "Overworld.2.6.0"
+      ],
+      "note": "Exact repair/cultivation owners and current outcomes.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/RepairCultivationSite.cs"
+      ]
+    },
+    {
+      "id": "spread_exploration",
+      "name": "Seed-selected exploration families",
+      "zone_ids": [],
+      "note": "19non-None families plus rare encounter, wayhouse and wilderness-situation overlays; placement not guaranteed.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs"
+      ]
+    },
+    {
+      "id": "regional_requests",
+      "name": "Regional service/cargo routes",
+      "zone_ids": [],
+      "note": "Five request routes; service/cargo overlays are not new biome counts.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/RegionalSituations.cs"
+      ]
+    },
+    {
+      "id": "second_exploration",
+      "name": "Second-exploration destinations",
+      "zone_ids": [],
+      "note": "11destination overlays, including archives, rental/guest services, sinkhole landings and works.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/Exploration/SecondExplorationSites.cs"
+      ]
+    },
+    {
+      "id": "lair_stacks",
+      "name": "Finite generated lair columns",
+      "zone_ids": [],
+      "note": "Fresh placement targets3–5lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/LairStacks.cs"
+      ]
+    },
+    {
+      "id": "merchant_camps",
+      "name": "Generated merchant camps",
+      "zone_ids": [],
+      "note": "Fresh placement targets2–3camps with bounded attempts; excludes Overwrit/Stump.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Generation/WorldGenerator.cs"
+      ]
+    },
+    {
+      "id": "river_chunk",
+      "name": "Registered RiverChunk POI pipeline",
+      "zone_ids": [],
+      "note": "Supported route; current fresh PlacePOIs does not itself place this kind. Track legacy/scenario reachability separately.",
+      "coverage_axes": {
+        "registered_scope": "source_inventoried",
+        "native_region_kit": "not_yet_audited",
+        "ordinary_scene_and_states": "not_yet_audited",
+        "chunk_composition_fullness": "not_yet_audited",
+        "packaged_area_acceptance": "not_yet_audited"
+      },
+      "source_refs": [
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ]
+    }
+  ],
+  "opening_anchor": {
+    "zone_ids": [
+      "Overworld.11.10.0",
+      "Overworld.11.10.1",
+      "Overworld.11.9.0",
+      "Overworld.11.8.0",
+      "Overworld.12.10.0",
+      "Overworld.12.11.0"
+    ],
+    "status": "bounded_native_packets_and_named_play_routes_accepted_not_whole_opening_or_region_complete",
+    "evidence": "ArtSource/Live16x24/release-coverage.json",
+    "rule": "Preserve approved art and existing animation; optional opening polish must not block uncovered region sprite work."
+  },
+  "biome_crop_registry": [
+    {
+      "id": "Claspbean",
+      "biome": "Spread",
+      "crop": "ClaspbeanCrop",
+      "seed": "ClaspbeanSeed",
+      "yield": "ClaspbeanPulp",
+      "utility": "Cure",
+      "native_mapping_source_observation": "exact_crop_name_in_local_catalog",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Pitchpod",
+      "biome": "Spread",
+      "crop": "PitchpodCrop",
+      "seed": "PitchpodSeed",
+      "yield": "PitchpodResin",
+      "utility": "Reagent",
+      "native_mapping_source_observation": "exact_crop_name_in_local_catalog",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Drawgourd",
+      "biome": "Spread",
+      "crop": "DrawgourdCrop",
+      "seed": "DrawgourdSeed",
+      "yield": "DrawgourdShell",
+      "utility": "WaterVessel",
+      "native_mapping_source_observation": "exact_crop_name_in_local_catalog",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Wickrush",
+      "biome": "Spread",
+      "crop": "WickrushCrop",
+      "seed": "WickrushSeed",
+      "yield": "WickrushCandle",
+      "utility": "Torch",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Marlroot",
+      "biome": "Spread",
+      "crop": "MarlrootCrop",
+      "seed": "MarlrootSeed",
+      "yield": "MarlrootClod",
+      "utility": "Process",
+      "native_mapping_source_observation": "exact_crop_name_in_local_catalog",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Sumpsieve",
+      "biome": "Sodden",
+      "crop": "SumpsieveCrop",
+      "seed": "SumpsieveSeed",
+      "yield": "SumpsievePad",
+      "utility": "Cure",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Drowsebell",
+      "biome": "Sodden",
+      "crop": "DrowsebellCrop",
+      "seed": "DrowsebellSeed",
+      "yield": "DrowsebellBladder",
+      "utility": "Gas",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Chillcress",
+      "biome": "Sodden",
+      "crop": "ChillcressCrop",
+      "seed": "ChillcressSeed",
+      "yield": "ChillcressTip",
+      "utility": "Reagent",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Slipsedge",
+      "biome": "Sodden",
+      "crop": "SlipsedgeCrop",
+      "seed": "SlipsedgeSeed",
+      "yield": "SlipsedgeGel",
+      "utility": "Reagent",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Peatlantern",
+      "biome": "Sodden",
+      "crop": "PeatlanternCrop",
+      "seed": "PeatlanternSeed",
+      "yield": "PeatlanternCup",
+      "utility": "Light",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Sunbladder",
+      "biome": "Beating",
+      "crop": "SunbladderCrop",
+      "seed": "SunbladderSeed",
+      "yield": "SunbladderShell",
+      "utility": "WaterVessel",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Shalebean",
+      "biome": "Beating",
+      "crop": "ShalebeanCrop",
+      "seed": "ShalebeanSeed",
+      "yield": "ShalebeanWax",
+      "utility": "Status",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Shadefan",
+      "biome": "Beating",
+      "crop": "ShadefanCrop",
+      "seed": "ShadefanSeed",
+      "yield": "ShadefanHood",
+      "utility": "HeadCover",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Cinderpea",
+      "biome": "Beating",
+      "crop": "CinderpeaCrop",
+      "seed": "CinderpeaSeed",
+      "yield": "CinderpeaOil",
+      "utility": "ThrownStatus",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Spurgrass",
+      "biome": "Beating",
+      "crop": "SpurgrassCrop",
+      "seed": "SpurgrassSeed",
+      "yield": "SpurgrassSpine",
+      "utility": "ThrownWeapon",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Choirwick",
+      "biome": "Grovelands",
+      "crop": "ChoirwickCrop",
+      "seed": "ChoirwickSeed",
+      "yield": "ChoirwickBranch",
+      "utility": "Light",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Knitmoss",
+      "biome": "Grovelands",
+      "crop": "KnitmossCrop",
+      "seed": "KnitmossSeed",
+      "yield": "KnitmossPad",
+      "utility": "Healing",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Sourmantle",
+      "biome": "Grovelands",
+      "crop": "SourmantleCrop",
+      "seed": "SourmantleSeed",
+      "yield": "SourmantleFold",
+      "utility": "Reagent",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Murmurpod",
+      "biome": "Grovelands",
+      "crop": "MurmurpodCrop",
+      "seed": "MurmurpodSeed",
+      "yield": "MurmurpodBladder",
+      "utility": "Gas",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Sealbark",
+      "biome": "Grovelands",
+      "crop": "SealbarkCrop",
+      "seed": "SealbarkSeed",
+      "yield": "SealbarkSlat",
+      "utility": "Process",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Absentmint",
+      "biome": "Overwrit",
+      "crop": "AbsentmintCrop",
+      "seed": "AbsentmintSeed",
+      "yield": "AbsentmintLeaf",
+      "utility": "Cure",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Margincress",
+      "biome": "Overwrit",
+      "crop": "MargincressCrop",
+      "seed": "MargincressSeed",
+      "yield": "MargincressRibbon",
+      "utility": "Cure",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Binderroot",
+      "biome": "Overwrit",
+      "crop": "BinderrootCrop",
+      "seed": "BinderrootSeed",
+      "yield": "BinderrootKnot",
+      "utility": "Reagent",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Greybladder",
+      "biome": "Overwrit",
+      "crop": "GreybladderCrop",
+      "seed": "GreybladderSeed",
+      "yield": "GreybladderCup",
+      "utility": "LiquidVessel",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Hollowchime",
+      "biome": "Overwrit",
+      "crop": "HollowchimeCrop",
+      "seed": "HollowchimeSeed",
+      "yield": "HollowchimePod",
+      "utility": "Gas",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Raingourd",
+      "biome": "Stump",
+      "crop": "RaingourdCrop",
+      "seed": "RaingourdSeed",
+      "yield": "RaingourdCup",
+      "utility": "WaterVessel",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Prismreed",
+      "biome": "Stump",
+      "crop": "PrismreedCrop",
+      "seed": "PrismreedSeed",
+      "yield": "PrismreedPith",
+      "utility": "Reagent",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "ScarletSundew",
+      "biome": "Stump",
+      "crop": "ScarletSundewCrop",
+      "seed": "ScarletSundewSeed",
+      "yield": "ScarletSundewDew",
+      "utility": "ThrownStatus",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Cloudwick",
+      "biome": "Stump",
+      "crop": "CloudwickCrop",
+      "seed": "CloudwickSeed",
+      "yield": "CloudwickTuft",
+      "utility": "Light",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Gripfrond",
+      "biome": "Stump",
+      "crop": "GripfrondCrop",
+      "seed": "GripfrondSeed",
+      "yield": "GripfrondWrap",
+      "utility": "Handwear",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Lampvein",
+      "biome": "Cave",
+      "crop": "LampveinCrop",
+      "seed": "LampveinSeed",
+      "yield": "LampveinFan",
+      "utility": "Light",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Knucklecap",
+      "biome": "Cave",
+      "crop": "KnucklecapCrop",
+      "seed": "KnucklecapSeed",
+      "yield": "KnucklecapWax",
+      "utility": "Status",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Sootroot",
+      "biome": "Cave",
+      "crop": "SootrootCrop",
+      "seed": "SootrootSeed",
+      "yield": "SootrootPulp",
+      "utility": "Cure",
+      "native_mapping_source_observation": "exact_crop_name_in_local_catalog",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Veilpuff",
+      "biome": "Cave",
+      "crop": "VeilpuffCrop",
+      "seed": "VeilpuffSeed",
+      "yield": "VeilpuffBladder",
+      "utility": "Gas",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    },
+    {
+      "id": "Brinebutton",
+      "biome": "Cave",
+      "crop": "BrinebuttonCrop",
+      "seed": "BrinebuttonSeed",
+      "yield": "BrinebuttonPaste",
+      "utility": "Cure",
+      "native_mapping_source_observation": "no_exact_crop_family_name_in_flat_catalogs",
+      "art_source_audit": "not_yet_audited",
+      "ordinary_complete_lifecycle": "not_yet_audited_in_this_world_ledger",
+      "required_state_roles": [
+        "seed_and_product_identity",
+        "early_growth",
+        "ripe_harvest",
+        "dry_or_moisture_pause_when_applicable",
+        "spent_removed_or_surviving_bed",
+        "utility_outcome"
+      ],
+      "note": "Exact-name source search is not all-context runtime or visual acceptance. Preserve previously accepted bounded receipts in release-coverage.json."
+    }
+  ],
+  "cross_region_families": [
+    {
+      "id": "portable_equipment",
+      "state": "partial_authored_local_mapping_global_gap",
+      "known_first_identities": [
+        "LongSword",
+        "LeatherArmor",
+        "Hatchet",
+        "Cudgel"
+      ],
+      "required_contexts": [
+        "ground",
+        "inventory",
+        "equipped",
+        "authorized_examine"
+      ],
+      "note": "Approved art exists; world/subject local gating is the first integration slice. Other equipment remains unaudited/missing."
+    },
+    {
+      "id": "creatures_npcs_and_outcomes",
+      "state": "partial_local_and_four_portable_actor_identities",
+      "required_roles": [
+        "species_faction_named_identity",
+        "companion",
+        "boss",
+        "corpse_remains",
+        "butchery_loot"
+      ],
+      "note": "Portable actors at audit:Player/PetDog/exactMarlbackScrabbler/exactMarlbackGleaner. Other region actors and outcomes not certified."
+    },
+    {
+      "id": "terrain_architecture_flora",
+      "state": "bounded_six_graph_art_remainder_not_audited",
+      "required_roles": [
+        "biome_materials",
+        "connected_edges",
+        "traversable_vs_blocking_vegetation",
+        "walls_doors_gates",
+        "plants_and_harvest_outcomes",
+        "chunk_fullness"
+      ]
+    },
+    {
+      "id": "knowledge_documents",
+      "state": "known_uncovered_examples_and_unclassified_remainder",
+      "known_uncovered_examples": [
+        "DitchkeepersFootwork",
+        "WateringGrimoire"
+      ],
+      "note": "Manuals, maps, notices and unique documents require actual identity mapping; no broad arbitrary book alias."
+    },
+    {
+      "id": "food_medicine_materials",
+      "state": "selected_local_native_products_remainder_not_audited",
+      "required_roles": [
+        "raw_cooked_food",
+        "tonics_and_finite_stock",
+        "reagents_brewed_outputs",
+        "seeds_products_ore",
+        "repair_and_quest_materials"
+      ],
+      "note": "Intentionally neutral approved flask remains valid within its established semantic contract."
+    },
+    {
+      "id": "furniture_services_multicell",
+      "state": "selected_local_native_roles_remainder_not_audited",
+      "required_roles": [
+        "shop_storage_rest",
+        "forge_kitchen_still_well",
+        "stairs_ropes",
+        "repairable_and_depleted_states",
+        "heavy_multicell_props"
+      ]
+    },
+    {
+      "id": "hazards_liquids_gases_tile_state",
+      "state": "selected_local_native_surfaces_remainder_not_audited",
+      "required_roles": [
+        "fresh_water_brine_mixed_liquids",
+        "ice_heat_cold_charge",
+        "coatings_residues_clouds",
+        "entity_surface_vs_tile_state"
+      ],
+      "note": "Definition-file counts do not establish visual coverage or authorize universal water art."
+    },
+    {
+      "id": "ui_and_cartography",
+      "state": "bounded_ui_work_worldwide_identity_consistency_not_audited",
+      "required_roles": [
+        "inventory_equipment",
+        "world_and_item_examine",
+        "dialogue_targeting",
+        "world_map_and_poi_markers"
+      ],
+      "note": "Cartographic symbols are intentional representation; they still require consistency/readability review."
+    }
+  ],
+  "next_queue": [
+    {
+      "id": "W1_portable_equipment",
+      "scope": [
+        "LongSword",
+        "LeatherArmor",
+        "Hatchet",
+        "Cudgel"
+      ],
+      "status": "planned_no_runtime_change_at_audit",
+      "art": "reuse_approved_pixels_unchanged",
+      "gate": "NativeRED then narrow global identity policy, ordinary carry/drop/examine travel/save/revisit; preserve regional ground/services and all disclosure guards."
+    },
+    {
+      "id": "W2_first_nonopening_regional_scene",
+      "scope": "Actual Spread-to-Sodden district approach and representative wetland scene",
+      "status": "baseline_route_and_capture_pending",
+      "art": "Select coherent missing material/flora/creature/prop family from real visible owners; imagegen/native production follows capture.",
+      "gate": "Chunk fullness and legibility, all relevant state/owner mappings, actual integration screenshots. No detailed new motion."
+    },
+    {
+      "id": "W3_remaining_world_families",
+      "scope": "Other canon regions, settlements/interiors, underground bands, sinkholes, special sites and shared goods in this ledger",
+      "status": "not_yet_audited",
+      "gate": "Advance cohesive kits with actual scene evidence; keep unknowns explicit and avoid repeated opening polish."
+    }
+  ],
+  "deferred_animation": {
+    "east_cindercaller": "Source-only preserved, not imported or native-tested; see Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md.",
+    "rule": "Existing animation stays; nuanced new pose work follows broad coverage except a demonstrated essential-readability blocker."
+  },
+  "update_rule": "For each real slice, update exact area/family/identity/context and evidence axes with source revision, route/seed/zone/captures. Preserve earlier bounded acceptance and dated historical results. Never infer region completion from generic fallback or atlas totals.",
+  "source_snapshot": {
+    "method": "Read-only source bytes; useful for detecting audit drift, not a runtime result.",
+    "sha256": {
+      "Assets/Resources/Content/Blueprints/Objects.json": "d8d1ec5f172cfa5fe91223fe759f61c3f48beabd02c81f0d8680b891a887a29e",
+      "Assets/Resources/Content/Data/Farming/BiomeCrops.json": "325eac6bc1af66ad3cd6c33f773bcc3981cec41328097db6b353b8e892c7397a",
+      "Assets/Scripts/Data/Tables/PopulationTable.cs": "a1a9e14562cb08b9c4f679f700b335a99d665698c2f8291d44743cd81fb185ec",
+      "Assets/Scripts/Gameplay/Exploration/SecondExplorationSites.cs": "fdfc31f39b74fe7ae6859b3b71ac4e7d409d3c3901a496272ab9afc2730c681d",
+      "Assets/Scripts/Gameplay/World/Generation/Builders/FellingSiteBuilder.cs": "1f575d27a0f368265bafce2036727bbd1ed00e17180e02884ca2258692be29d7",
+      "Assets/Scripts/Gameplay/World/Generation/Builders/RootSite.cs": "5ca526f829dcd7a0a66a6bf5bec5833a159f88c91f55a4ce4d4ad21f2c636524",
+      "Assets/Scripts/Gameplay/World/Generation/Builders/SolidEarthBuilder.cs": "709dd78f0237a39456199fbd356fb44b29adc712e0ec35b74e21db15737673c9",
+      "Assets/Scripts/Gameplay/World/Generation/Formation.cs": "6b975ba0b0579e3a58f7ee777bd0381e6bd1307b48b31856ff061359ee9f9f64",
+      "Assets/Scripts/Gameplay/World/Generation/LairStacks.cs": "def68755b4ff7088ee53939f48dac8fd79257218384a9ebc8a9468faf8cd4e3e",
+      "Assets/Scripts/Gameplay/World/Generation/OverwritCompositionPlan.cs": "8af5834e7efafd3f11708e625efab2e59688c653583fa1d708def98d7d850e19",
+      "Assets/Scripts/Gameplay/World/Generation/SoddenDistrictPlan.cs": "019a28eafc6be9e55bb5d19742b673324e56f6b8d9592a86c642b16ea889acbe",
+      "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs": "c19bfe6a7e1ebc13b91a94a1b34a5705b85908eaf5c56601a0e244a016e05f50",
+      "Assets/Scripts/Gameplay/World/Generation/UndergroundLayoutPlan.cs": "7dac81b49837bff728b6e1743d5c76cbc58c0cadd1e814f8dcdd3662197e9447",
+      "Assets/Scripts/Gameplay/World/Generation/WorldGenerator.cs": "c529dd431c4500c91d3ed41004190ee12ae83edea1a60e1c66f3bd15ab492375",
+      "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs": "479ad337dd86a99db25bd3cc40938caa12d8aa4c6234cc1b656e81d1ae107aee",
+      "Assets/Scripts/Gameplay/World/Map/SinkholeArchetypes.cs": "3c4e9cbd2e4cd5309cf9cf84772dd1d63196dee5655cb1fe36b9c3dbd7958dc5",
+      "Assets/Scripts/Gameplay/World/Map/SinkholeSites.cs": "bbe54ce4f8614bfc550415798f5a4ec03ac8d0b0c991f04556940ca04ef0462c",
+      "Assets/Scripts/Gameplay/World/Map/WorldMap.cs": "cfe7af9c5d89297061fd49b8ef713218ac6cc772d24cfd0b65f055dd3b9a4b56",
+      "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs": "ae82b1a54bc19dab86c904889947d5f664381b67567a5d8b23674ca74d5ab8d5",
+      "Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs": "a86fd5917d2859d7af223cdc2bd2a97584cc6da9ce5a6d3c5d8bc0d883164a27",
+      "Assets/Scripts/Gameplay/World/MultiCellPilotRuntime.cs": "415fdeee00c25e093ce249884e981988c501c4f733bf01ba07d2838564c02679",
+      "Assets/Scripts/Gameplay/World/RegionalSituations.cs": "70e1f2e16ddfc8729daf471a9854771baa0cc661997c442db01f1ed9599d53ff",
+      "Assets/Scripts/Gameplay/World/RepairCultivationSite.cs": "bd3b13add2722773f91d457dcbaa1b95fb59ee767cea7127d4253b83f9316b22",
+      "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "3eba17e66790abe85d0744db829caa8306545e3a699456688a775fbc48b0d387"
+    }
+  }
+}
