@@ -82,6 +82,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSoddenTravelCatalog _soddenTravelArt;
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsMaterialsArt;
+        private FlatPixelOverwritMaterialsCatalog _overwritMaterialsArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -870,6 +871,16 @@ namespace CavesOfOoo.Rendering
                 ground = FlatPixelGreyboxGround.Water;
                 if (grovelandsWaterGrass != null && owner == grovelandsWaterGrass) kind = FlatPixelGreyboxKind.Ground;
             }
+            var overwrit = !fallback.Remembered ? OverwritMaterialsArtFor(zone) : null;
+            Tile overwritGroundTile = null;
+            Entity overwritFloor = null;
+            bool overwritGround = overwrit != null && overwrit.TryResolveGround(zone, x, y, out overwritGroundTile, out overwritFloor);
+            if (overwritGround)
+            {
+                groundTile = overwritGroundTile; groundColor = Color.white;
+                ground = FlatPixelGreyboxGround.Ground;
+                if (owner == overwritFloor) kind = FlatPixelGreyboxKind.Ground;
+            }
             var foreground = fallback.ForegroundTile;
             var foregroundColor = fallback.ForegroundColor;
             Tile art = null;
@@ -919,6 +930,9 @@ namespace CavesOfOoo.Rendering
             Tile grovelandsArt = null;
             bool grovelandsNative = grovelands != null && grovelands.TryResolveForeground(zone, x, y, owner, out grovelandsArt);
             if (grovelandsNative) art = grovelandsArt;
+            Tile overwritArt = null;
+            bool overwritNative = overwrit != null && overwrit.TryResolveForeground(zone, x, y, owner, out overwritArt);
+            if (overwritNative) art = overwritArt;
             bool beatingBrineNative = beatingNative && owner.BlueprintName == "BrinePool";
             bool mireNative = soddenNative && owner.BlueprintName == "MirePool";
             bool productKnown = FlatPixelHarvestProductsCatalog.HasKnownRole(owner);
@@ -928,7 +942,7 @@ namespace CavesOfOoo.Rendering
             if (productKnown) art = productArt;
             // Known-product refusal is authoritative: older local item groups
             // must not bypass current semantic or optional-resource guards.
-            bool native = productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative
+            bool native = productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -936,7 +950,7 @@ namespace CavesOfOoo.Rendering
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
                 || sillGround && owner == sillFloor || soddenGround && owner == soddenFloor || beatingGroundOwner
-                || grovelandsGround && owner == grovelandsFloor
+                || grovelandsGround && owner == grovelandsFloor || overwritGround && owner == overwritFloor
                 || grovelandsWater && grovelandsWaterGrass != null && owner == grovelandsWaterGrass) foreground = null;
             if (fallback.Remembered)
             {
@@ -951,7 +965,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater, brineNative || beatingBrineNative, mireNative);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround, brineNative || beatingBrineNative, mireNative);
             return true;
         }
 
@@ -977,6 +991,8 @@ namespace CavesOfOoo.Rendering
             if (beating != null && beating.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var grovelands = GrovelandsMaterialsArtFor(zone);
             if (grovelands != null && grovelands.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+            var overwrit = OverwritMaterialsArtFor(zone);
+            if (overwrit != null && overwrit.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var boundaries = BoundaryArtFor(zone, subject, false, out bool allowNativeFallback);
             if (!allowNativeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             if (boundaries != null && boundaries.TryGetSubjectSprite(subject, out sprite, out tint)) return true;
@@ -1063,6 +1079,17 @@ namespace CavesOfOoo.Rendering
                 _grovelandsMaterialsArt = new FlatPixelGrovelandsMaterialsCatalog(_glyphFallback);
             }
             return _grovelandsMaterialsArt;
+        }
+
+        private FlatPixelOverwritMaterialsCatalog OverwritMaterialsArtFor(Zone zone)
+        {
+            if (!FlatPixelOverwritMaterialsCatalog.IsSupportedZone(zone)) return null;
+            if (_overwritMaterialsArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _overwritMaterialsArt = new FlatPixelOverwritMaterialsCatalog(_glyphFallback);
+            }
+            return _overwritMaterialsArt;
         }
 
         private FlatPixelIncidentalActorCatalog IncidentalActorArtFor(Entity owner)
@@ -1287,7 +1314,9 @@ namespace CavesOfOoo.Rendering
             _beatingMaterialsArt?.Dispose();
             _beatingMaterialsArt = null;
             _grovelandsMaterialsArt?.Dispose();
+            _overwritMaterialsArt?.Dispose();
             _grovelandsMaterialsArt = null;
+            _overwritMaterialsArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

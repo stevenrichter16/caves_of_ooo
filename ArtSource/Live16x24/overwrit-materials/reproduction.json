@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "method": "Two independent Blender background renders from the same original integer geometry. Required native PNG/source/import artifacts compared byte-for-byte.",
+  "requiredExactFiles": [
+    "overwrit-materials.png",
+    "source-cells.json",
+    "manifest.json",
+    "overwrit-materials.png.meta"
+  ],
+  "before": {
+    "overwrit-materials.png": "b379fcec4e4f1a991029598c70053a24ff37c45cfef6cc71b21f60a5f9889cc7",
+    "source-cells.json": "fa466c1be5932641fdf9c1977b8d6208fb511d84f9960f335906c78e8e6320a6",
+    "manifest.json": "5f4eb7b27d2d728b7ec0e542dd5c9d194563038a78749fb777e82cf38a0ac248",
+    "contact-native.png": "3d8c6e4eac7588be3a2e5d2f7f14f36798cb01a39a1f3f164c9f1c4c3e7ab5b6",
+    "contact.png": "23df37959f37042eeafdbf1da90cf837786ffeac4411673409e3fe715cfbfaa1",
+    "overwrit-materials.png.meta": "107012732f7cb8eae409acc1e5455ace67518749a69a40860d39ad9359055793"
+  },
+  "after": {
+    "overwrit-materials.png": "b379fcec4e4f1a991029598c70053a24ff37c45cfef6cc71b21f60a5f9889cc7",
+    "source-cells.json": "fa466c1be5932641fdf9c1977b8d6208fb511d84f9960f335906c78e8e6320a6",
+    "manifest.json": "5f4eb7b27d2d728b7ec0e542dd5c9d194563038a78749fb777e82cf38a0ac248",
+    "contact-native.png": "a7d961751cda8c63acecb151ceab96a207629ff280f73646d6f581e85f2bb2c8",
+    "contact.png": "8b55aefa1ed7397e302bdc89f3ef4ef3a194afa07b19f2562366ede28f40933f",
+    "overwrit-materials.png.meta": "107012732f7cb8eae409acc1e5455ace67518749a69a40860d39ad9359055793"
+  },
+  "contactByteEquality": {
+    "contact-native.png": false,
+    "contact.png": false
+  },
+  "limitations": "Direct contact scenes include vector-text labels and are not byte-deterministic; neither contact nor .blend byte reproducibility is asserted. Exact native atlas, source cells, manifest and metadata are deterministic. No Unity or gameplay invocation."
+}

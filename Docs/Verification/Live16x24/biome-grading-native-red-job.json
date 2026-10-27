@@ -1,0 +1,73 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"15e84dc135774b6586ab97600d7f84de\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1793099407733,\"finished_unix_ms\":1793099424016,\"last_update_unix_ms\":1793099424016,\"progress\":{\"completed\":9,\"total\":9,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1793099423900,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel\",\"last_finished_unix_ms\":1793099423920,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged\",\"message\":\"  Continue replaces the boot manager; matching zone text does not preserve its authority.\\n  Expected: same as <CavesOfOoo.Core.OverworldZoneManager>\\n  But was:  <CavesOfOoo.Core.OverworldZoneManager>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(False)\",\"message\":\"  Expected: -17.0f\\n  But was:  -10.0f\\n\"},{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(True)\",\"message\":\"  Expected: -17.0f\\n  But was:  -10.0f\\n\"},{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(\\\"Overworld.4.12.1\\\",Spread)\",\"message\":\"  The first Cave target must start a fade or already be applied; enum equality is insufficient.\\n  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(\\\"Overworld.4.12.0\\\",Cave)\",\"message\":\"  The first Cave target must start a fade or already be applied; enum equality is insufficient.\\n  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(False)\",\"message\":\"  The rendered instance must reach the current biome's complete palette.\\n  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(True)\",\"message\":\"  The rendered instance must reach the current biome's complete palette.\\n  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.BiomeColorPatcherTravelTests.SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel\",\"message\":\"  A seeded boot zone must not prevent discovery of the actual renderer.\\n  Expected: same as <Zone(Overworld.4.12.0) [0 entities]>\\n  But was:  <Zone(Overworld.11.10.0) [0 entities]>\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "15e84dc135774b6586ab97600d7f84de",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1793099407733,
+        "finished_unix_ms": 1793099424016,
+        "last_update_unix_ms": 1793099424016,
+        "progress": {
+          "completed": 9,
+          "total": 9,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1793099423900,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel",
+          "last_finished_unix_ms": 1793099423920,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged",
+              "message": "  Continue replaces the boot manager; matching zone text does not preserve its authority.\n  Expected: same as <CavesOfOoo.Core.OverworldZoneManager>\n  But was:  <CavesOfOoo.Core.OverworldZoneManager>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(False)",
+              "message": "  Expected: -17.0f\n  But was:  -10.0f\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(True)",
+              "message": "  Expected: -17.0f\n  But was:  -10.0f\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(\"Overworld.4.12.1\",Spread)",
+              "message": "  The first Cave target must start a fade or already be applied; enum equality is insufficient.\n  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(\"Overworld.4.12.0\",Cave)",
+              "message": "  The first Cave target must start a fade or already be applied; enum equality is insufficient.\n  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(False)",
+              "message": "  The rendered instance must reach the current biome's complete palette.\n  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(True)",
+              "message": "  The rendered instance must reach the current biome's complete palette.\n  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.BiomeColorPatcherTravelTests.SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel",
+              "message": "  A seeded boot zone must not prevent discovery of the actual renderer.\n  Expected: same as <Zone(Overworld.4.12.0) [0 entities]>\n  But was:  <Zone(Overworld.11.10.0) [0 entities]>\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

@@ -603,3 +603,121 @@ height, no flowers. Native pixels/runtime/after-gameplay acceptance are still
 pending. Root session is idle/clean; owned baseline save root was archived,
 with three earned checkpoints preserved. Stump and remaining worldwide scope
 follow. Last actual hourly report10:27UTC; next11:27UTC.
+
+
+## Overwrit native material and state pass — 2026-10-27 10:56 UTC
+
+**Eight native 16×24 cells now cover four exact owner identities across the
+22-address ordinary Overwrit scope.** Ground0–3, clipped shoots4–5, inward-facing
+wood bench6 and stone waymarker7 are integrated with the current owner, graph,
+visibility and essential-state guards. Actual cultivated floors retain their
+meaning; no generator, density, footprint, service or gameplay semantics changed.
+The source atlas is128×24; existing approved art remains stable.
+
+Genuine preimplementation [RED](Verification/Live16x24/overwrit-materials-native-red-job.json)
+completed70 cases with failed status,25 capped failure details and null final
+result. This is not evidence that all70 individually failed, and no RED XML is
+claimed. The [focused native run](Verification/Live16x24/overwrit-materials-native-green-job.json)
+passed70. The [combined run](Verification/Live16x24/overwrit-materials-related-green-job.json)
+passed501: **70 new plus431 related**, with the focused70 included, zero failures
+or skips. Cold runtime review reported no unresolved blocker.
+
+Eight actual after screenshots cover Blank0,10, GreenRim0,9, PilgrimageRim4,12
+and DryRim0,13 through normal keyboard travel, HP38. They show continuous native
+ground, clipped growth, a native bench reader with Wood/Structure12/12, a shoot
+reader with Plant/Structure4/4, and the same bench at11/12 after a real Right-bump
+strike. The [census/profile receipt](Verification/Live16x24/overwrit-after-census-and-profile.json)
+and [independent actual-view review](Verification/Live16x24/overwrit-after-independent-review.md)
+bind this **bounded material and essential-state pass**. That reviewer authored
+the source pixels, but did not author the regional runtime or operate Unity.
+
+Whole-region graphics/fullness remains open. GreenRim has conspicuous fallback
+Hollowchime/stair black cells; the approached bench view has Margincress fallback
+cells. Binderroot and the second bench are outside this after sample; the
+waymarker remains naturally unobserved. The centered Pilgrimage view has almost
+no eastern rim/destination cue within the59-column viewport. Neither deliberately
+quiet ground nor a partial viewport certifies the full80×25 chunk. Preserve real
+crop/soil meaning when filling these gaps; do not hide it under plain ground or
+add arbitrary decoration. Stump's eight-owner kit remains the next regional
+breadth slice, followed by observed Grovelands actors and the remaining world.
+
+The actual warmed current-bench probe measured256 queries,0 allocated bytes and
+39,141 Stopwatch ticks at10,000,000Hz. Eleven normal moves measured11 full
+passes,22,000 cells resolved,110,718 writes and2,380,603 ticks in the instrumented
+renderer. These are bounded samples, not FPS, general zero-allocation, sustained
+performance or physical Deck acceptance.
+
+**Source push, earned fresh Continue and Overwrit packages are pending.** The
+current delivered package remains combined Grovelands source
+`ab26e270cb376253c971a41c3449ecbbf4171444`; no new packaged claim replaces it.
+Finish those verification/delivery gates, then the named crop/stair/fullness
+follow-up alongside Stump breadth. Last actual hourly report remains
+**10:27 UTC; next11:27 UTC**. Storage reclamation remains inspection-only.
+
+
+### Historical travel/reload color blocker — 2026-10-27 11:01 UTC (resolved below)
+
+Fresh Continue now confirms that the actual bench persists at **11/12**, with
+normal saves protected, but it exposes a **blocking presentation mismatch**:
+the same Height view changes from tan in after07 to green in after09/10. Owner
+persistence does not establish color consistency. The earlier pending-restart
+statement is superseded by this partial result; **Overwrit packages are held**.
+
+The [actual diagnostic](Verification/Live16x24/overwrit-travel-reload-color-red.json)
+shows renderer zone `Overworld.4.12.0` while the biome patcher retains
+`Overworld.11.10.0`/Spread, a null renderer reference and `currentManager=false`.
+The active filter is `[0.85,1.05,0.9]`, contrast5 and saturation12. The shared
+Volume-profile lifecycle is also under investigation; it is a hypothesis, not
+an established additional cause. After09 fresh Continue and after10 damaged
+reader are real gameplay evidence of the discrepancy, not accepted color match.
+
+**Immediate next work:** root's source/test correction for current biome binding
+and filter lifecycle, independent review, and matched ordinary travel/fresh
+Continue replay. Only then finish exact source push and package acceptance.
+Retain the native501 and bounded material/bench-persistence results without
+promoting them to a complete presentation pass. Crop/soil/stair coverage,
+centered Pilgrimage fullness and Stump breadth remain next; all-world static
+coverage continues. Last actual hourly report remains10:27UTC, next11:27UTC.
+
+
+### Travel/reload color correction verified — 2026-10-27 11:16 UTC
+
+**The active color-consistency blocker is resolved within the actual tested
+route.** The [retained native RED](Verification/Live16x24/biome-grading-native-red.xml)
+had9 cases:8 failed and1 passed. The final [native GREEN XML](Verification/Live16x24/biome-grading-related-green.xml)
+records **533/533 passed**, zero failed, skipped or inconclusive: all501 prior
+renderer cases,9 new grading travel/profile cases and23 existing palette/patcher
+cases. Its SHA256 is
+`9eb3a0655171d9b276a5cc6a090f5e9ebd2fd8c8ce04d9573dabad1ad0c1c2a7`.
+The actual run completed11:11:41–11:12:29UTC despite an incorrect MCP
+initialization timeout; the complete XML establishes completion. The focused70
+and previous501 are included in533, not additional distinct coverage.
+
+The [actual replay receipt](Verification/Live16x24/biome-grading-actual-replay.json)
+and five `overwrit-grading-01..05` screenshots record normal Continue at5460
+with the bench11/12, world-map4Left4Up to Grovelands0,8,4Right4Down back to
+Overwrit4,12, then35Right6Down to75,18, F5 at6230 and fresh Continue, HP38.
+No entities, travel or save state were injected. The renderer, patcher zone and
+current manager now agree throughout. Grovelands uses filter[.88,.92,.85],
+contrast8/saturation6; returned and reloaded Overwrit uses[.9,.9,.9],
+contrast−10/saturation−40. The rendered instance is separate from the preserved
+shared profile[1,.97,.91].
+
+The returned/fresh-Continue captures04/05 have **564,000 byte-identical RGB
+pixels** in the world field bounded by(0,40,940,640), with zero changed channels;
+world RGB SHA256
+`8b43758ba102c04ee3b8f35dc368bf294936ae8a5fb3ceccdf180165e264ece7`.
+This is a bounded actual material/owner-state/color-consistency pass, not a
+claim about every biome, whole UI, all lighting or sustained performance.
+The earned fixture is `Verification/Live16x24/Fixtures/overwrit-grading-return65`.
+The earlier tan/green mismatch remains historical failure evidence, superseded
+by this corrective replay.
+
+**Source commit/push and new Mac/Linux package verification remain pending.**
+The current delivered package remains combined Grovelands `ab26e270c`.
+Finish exact reviewed delivery, then retain the truthful crop/soil/stair gaps,
+Binderroot and unobserved marker, centered Pilgrimage destination/fullness
+question, Stump eight-owner breadth and the remaining world queue. No generation
+density change, whole-region acceptance, Linux execution, physical Deck or
+sustained-performance claim is added. Last actual hourly report remains
+**10:27UTC; next11:27UTC**. Storage remains inspection-only.

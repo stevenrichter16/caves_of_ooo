@@ -54,6 +54,7 @@ namespace CavesOfOoo.Presentation.Rendering
         private Color _currentColorFilter;
         private float _currentVignetteIntensity;
         private float _fadeProgress = 1f; // 1 = fully at target
+        private bool _hasResolvedPalette;
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -91,8 +92,12 @@ namespace CavesOfOoo.Presentation.Rendering
                     + "found or profile missing. Component is a no-op.");
                 return;
             }
-            _globalVolume.sharedProfile.TryGet(out _colorAdjustments);
-            _globalVolume.sharedProfile.TryGet(out _vignette);
+            // Use the same Volume-owned instance as rendering and bootstrap.
+            // Mutating sharedProfile instead leaves an existing clone stale and
+            // changes the source profile for other volumes or later sessions.
+            var profile = _globalVolume.profile;
+            profile.TryGet(out _colorAdjustments);
+            profile.TryGet(out _vignette);
 
             // Snapshot current state as the starting "current" values
             // so initial lerp from real values, not from zero.
@@ -117,19 +122,23 @@ namespace CavesOfOoo.Presentation.Rendering
             // SetCurrentZone on every transition. ZoneRenderer.CurrentZone
             // is the source of truth for "what zone is the camera
             // looking at right now."
-            if (CurrentZone == null
-                || (_zoneRendererRef != null && _zoneRendererRef.CurrentZone != CurrentZone))
-            {
-                if (_zoneRendererRef == null)
-                    _zoneRendererRef = Object.FindAnyObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
-                if (_zoneRendererRef != null && _zoneRendererRef.CurrentZone != null)
-                    CurrentZone = _zoneRendererRef.CurrentZone;
-            }
+            if (_zoneRendererRef == null)
+                _zoneRendererRef = Object.FindAnyObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+            if (_zoneRendererRef != null && _zoneRendererRef.CurrentZone != null)
+                CurrentZone = _zoneRendererRef.CurrentZone;
+
+            // Continue replaces the world graph, even when its zone ID matches
+            // startup. Prefer the displayed zone's attached authority; retain
+            // explicit wiring for isolated scenes without an attached graph.
+            var currentManager = WorldLocationContext.For(CurrentZone);
+            if (currentManager != null)
+                ZoneManager = currentManager;
 
             // 1. Detect biome change via player's current zone.
             var currentBiome = ResolveCurrentBiome();
-            if (currentBiome != _activeBiome)
+            if (!_hasResolvedPalette || currentBiome != _activeBiome)
             {
+                _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
                 _targetPalette = BiomePalette.GetForBiome(currentBiome);
                 _fadeProgress = 0f;

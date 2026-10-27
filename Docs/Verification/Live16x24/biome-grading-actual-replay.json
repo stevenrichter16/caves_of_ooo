@@ -1,0 +1,152 @@
+{
+  "at_utc": "2026-10-27T11:16:00Z",
+  "method": "Real isolated normal Continue, CUA world-map travel Overwrit4,12 to Grovelands0,8 and back, local35Right6Down, F5 turn6230 and fresh Launch/Continue. No injected entities, teleport or save edits.",
+  "diagnostics": {
+    "gradingContinueGreen": {
+      "renderZone": "Overworld.4.12.0",
+      "patcherZone": "Overworld.4.12.0",
+      "activeBiome": "Overwrit",
+      "currentManager": true,
+      "renderedFilter": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "contrast": -10,
+      "saturation": -40,
+      "sharedFilter": [
+        1,
+        0.97,
+        0.91
+      ],
+      "separateProfile": true,
+      "fade": 1
+    },
+    "gradingGroveGreen": {
+      "renderZone": "Overworld.0.8.0",
+      "patcherZone": "Overworld.0.8.0",
+      "activeBiome": "Grovelands",
+      "currentManager": true,
+      "renderedFilter": [
+        0.88,
+        0.92,
+        0.85
+      ],
+      "contrast": 8,
+      "saturation": 6,
+      "sharedFilter": [
+        1,
+        0.97,
+        0.91
+      ],
+      "separateProfile": true,
+      "fade": 1
+    },
+    "gradingReturnGreen": {
+      "renderZone": "Overworld.4.12.0",
+      "patcherZone": "Overworld.4.12.0",
+      "activeBiome": "Overwrit",
+      "currentManager": true,
+      "renderedFilter": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "contrast": -10,
+      "saturation": -40,
+      "sharedFilter": [
+        1,
+        0.97,
+        0.91
+      ],
+      "separateProfile": true,
+      "fade": 1
+    },
+    "gradingRestartGreen": {
+      "renderZone": "Overworld.4.12.0",
+      "patcherZone": "Overworld.4.12.0",
+      "activeBiome": "Overwrit",
+      "currentManager": true,
+      "renderedFilter": [
+        0.9,
+        0.9,
+        0.9
+      ],
+      "contrast": -10,
+      "saturation": -40,
+      "sharedFilter": [
+        1,
+        0.97,
+        0.91
+      ],
+      "separateProfile": true,
+      "fade": 1
+    }
+  },
+  "comparison": {
+    "captures": [
+      "overwrit-grading-04-return.png",
+      "overwrit-grading-05-fresh-return-continue.png"
+    ],
+    "bounds": [
+      0,
+      40,
+      940,
+      640
+    ],
+    "pixels": 564000,
+    "identical": true,
+    "changed_channels": 0,
+    "world_rgb_sha256": "8b43758ba102c04ee3b8f35dc368bf294936ae8a5fb3ceccdf180165e264ece7"
+  },
+  "tests": {
+    "red": "biome-grading-native-red.xml",
+    "red_total": 9,
+    "red_failed": 8,
+    "red_passed": 1,
+    "green": "biome-grading-related-green.xml",
+    "green_total": 533,
+    "green_passed": 533,
+    "green_failed": 0,
+    "green_skipped": 0,
+    "includes_prior_501": true,
+    "grading_cases": 9,
+    "mcp_timeout": "The combined MCPjob incorrectly timed out initialization; native run executed to completion and exact final XML was preserved."
+  },
+  "limits": [
+    "Only observed Overwrit/Grovelands travel; no claim everybiome visuallyaccepted.",
+    "Whole-regionfullness and crop/stairfallbacks remain open.",
+    "Mac/Linux packages pending; no physicalDeckperformance claim."
+  ],
+  "sessions_archived": [
+    "/private/tmp/coo-grading-archived-f8a37f9f",
+    "/private/tmp/coo-grading-restart-archived-6fc680df"
+  ],
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-grading-01-continue.png",
+      "sha256": "75377d592643cc45d3fcd9646ffab4aa19fd7ae4bf59d37d0d899dcb4e1330d5",
+      "bytes": 39549
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-grading-02-bench-reader.png",
+      "sha256": "3c4877f779c6cdb0c1e70570cfa545f7ab7d7f6cf801fb75514f834eeb4227e4",
+      "bytes": 45208
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-grading-03-grovelands-travel.png",
+      "sha256": "f09e33474ef0c4b2d1d85ebbe3289063276371a54b7e36f3ec8051197536e2b9",
+      "bytes": 83689
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-grading-04-return.png",
+      "sha256": "3aaa7a78780d5cb9a4ce914f2f446cb53b18340fec0b49f40951cea5d1b6ec44",
+      "bytes": 38147
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-grading-05-fresh-return-continue.png",
+      "sha256": "3aaa7a78780d5cb9a4ce914f2f446cb53b18340fec0b49f40951cea5d1b6ec44",
+      "bytes": 38147
+    }
+  ]
+}

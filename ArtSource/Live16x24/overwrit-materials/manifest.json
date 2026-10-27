@@ -1,0 +1,263 @@
+{
+  "schema": 1,
+  "artifact": "overwrit-materials.png",
+  "resource": "Sprites/Live16x24/overwrit-materials",
+  "width": 128,
+  "height": 24,
+  "frameCount": 8,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "filterMode": "Point",
+  "wrapMode": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "source": "overwrit-materials.blend",
+  "generator": "Tools/Live16x24/build_overwrit_materials.py",
+  "palette": {
+    "ground": "A7A292",
+    "scuff": "9E998A",
+    "scuff-light": "ACA797",
+    "shoot-dark": "465343",
+    "shoot": "65745A",
+    "shoot-tip": "99A084",
+    "wood-dark": "4A4033",
+    "wood": "75644B",
+    "wood-edge": "948064",
+    "stone-dark": "62665E",
+    "stone": "83877B",
+    "stone-light": "9CA091"
+  },
+  "unityExportDeferred": true,
+  "scope": "Four exact Overwrit owners, eight static native cells. Marker has not been naturally observed. No animation or generation change. Actual gameplay acceptance remains root-owned.",
+  "references": [
+    "references.json",
+    "concepts/critique-and-parts.md",
+    "concepts/overwrit-v2.png",
+    "Docs/Verification/Live16x24/overwrit-native-preflight.md"
+  ],
+  "contact": {
+    "nativeSize": [
+      208,
+      216
+    ],
+    "scales": [
+      1,
+      8
+    ],
+    "instances": [
+      {
+        "frame": 0,
+        "topLeft": [
+          16,
+          16
+        ]
+      },
+      {
+        "frame": 1,
+        "topLeft": [
+          64,
+          16
+        ]
+      },
+      {
+        "frame": 2,
+        "topLeft": [
+          112,
+          16
+        ]
+      },
+      {
+        "frame": 3,
+        "topLeft": [
+          160,
+          16
+        ]
+      },
+      {
+        "frame": 4,
+        "topLeft": [
+          16,
+          60
+        ]
+      },
+      {
+        "frame": 5,
+        "topLeft": [
+          64,
+          60
+        ]
+      },
+      {
+        "frame": 6,
+        "topLeft": [
+          112,
+          60
+        ]
+      },
+      {
+        "frame": 7,
+        "topLeft": [
+          160,
+          60
+        ]
+      }
+    ],
+    "blankGroundWeight": 0.75,
+    "approvedComparisonOnly": "ArtSource/Live16x24/base/source-cells.json frame0"
+  },
+  "sha256": "b379fcec4e4f1a991029598c70053a24ff37c45cfef6cc71b21f60a5f9889cc7",
+  "frames": [
+    {
+      "index": 0,
+      "id": "scraped-ground-0",
+      "blueprint": "OverwritGround",
+      "description": "Smooth pale warm-grey ground; no stones, joins, per-cell border or light emission.",
+      "state": {
+        "variant": 0,
+        "opaque": true,
+        "baseSelectionWeight": 75
+      },
+      "unityRect": [
+        0,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 1,
+      "id": "scraped-ground-1",
+      "blueprint": "OverwritGround",
+      "description": "Smooth pale warm-grey ground; no stones, joins, per-cell border or light emission.",
+      "state": {
+        "variant": 1,
+        "opaque": true,
+        "baseSelectionWeight": null
+      },
+      "unityRect": [
+        16,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 2,
+      "id": "scraped-ground-2",
+      "blueprint": "OverwritGround",
+      "description": "Smooth pale warm-grey ground; no stones, joins, per-cell border or light emission.",
+      "state": {
+        "variant": 2,
+        "opaque": true,
+        "baseSelectionWeight": null
+      },
+      "unityRect": [
+        32,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 3,
+      "id": "scraped-ground-3",
+      "blueprint": "OverwritGround",
+      "description": "Smooth pale warm-grey ground; no stones, joins, per-cell border or light emission.",
+      "state": {
+        "variant": 3,
+        "opaque": true,
+        "baseSelectionWeight": null
+      },
+      "unityRect": [
+        48,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 4,
+      "id": "clipped-young-shoots-0",
+      "blueprint": "OverwritNewGrowth",
+      "description": "Three small young shoots share the same flat cut height. Lower leaves vary; no flowers, seed beads or harvest promise.",
+      "state": {
+        "variant": 0,
+        "solid": false,
+        "clippedTipY": 15,
+        "stemTipXs": [
+          4,
+          7,
+          11
+        ]
+      },
+      "unityRect": [
+        64,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 5,
+      "id": "clipped-young-shoots-1",
+      "blueprint": "OverwritNewGrowth",
+      "description": "Three small young shoots share the same flat cut height. Lower leaves vary; no flowers, seed beads or harvest promise.",
+      "state": {
+        "variant": 1,
+        "solid": false,
+        "clippedTipY": 15,
+        "stemTipXs": [
+          3,
+          8,
+          12
+        ]
+      },
+      "unityRect": [
+        80,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 6,
+      "id": "plain-bench-inward-west",
+      "blueprint": "OverwritPilgrimBench",
+      "description": "Plain one-cell wooden bench in side view. East/right backrest; west/left open seat faces the inward empty field. No resting/service emblem.",
+      "state": {
+        "solid": true,
+        "facing": "west",
+        "backrestSide": "east",
+        "service": false
+      },
+      "unityRect": [
+        96,
+        0,
+        16,
+        24
+      ]
+    },
+    {
+      "index": 7,
+      "id": "short-blank-stone",
+      "blueprint": "OverwritWaymarker",
+      "description": "Short plain stone standing in the ground. A cool broad blank face, no letters, arrow, symbol or service. Not yet naturally observed.",
+      "state": {
+        "solid": true,
+        "naturallyObserved": false,
+        "wreckage": "Rubble"
+      },
+      "unityRect": [
+        112,
+        0,
+        16,
+        24
+      ]
+    }
+  ]
+}
