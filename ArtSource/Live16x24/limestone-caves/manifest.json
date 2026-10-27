@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "owner": "LimestoneFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owner": "LimestoneFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 2,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "owner": "LimestoneFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 3,
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "owner": "LimestoneFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 4,
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "owner": "LimestoneWall",
+      "state": "Surviving structuralHP1..35/max35/hardness3; actual destruction removes owner and places existing Rubble"
+    },
+    {
+      "index": 5,
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "owner": "LimestoneWall",
+      "state": "Surviving structuralHP1..35/max35/hardness3; actual destruction removes owner and places existing Rubble"
+    }
+  ],
+  "atlas": "limestone-caves.png",
+  "width": 96,
+  "height": 24,
+  "palette": {
+    "floor": "707064",
+    "fleck": "78786A",
+    "dust": "68685C",
+    "mass": "929282",
+    "fissure": "7E7E6F",
+    "seam": "88887A",
+    "worn": "9E9E8C"
+  },
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,FullRect.",
+  "opaque": true,
+  "edge_masks": false,
+  "blend": "limestone-caves.blend",
+  "source_cells": "source-cells.json",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 16
+    },
+    {
+      "frame": 1,
+      "left": 36,
+      "top": 16
+    },
+    {
+      "frame": 2,
+      "left": 64,
+      "top": 16
+    },
+    {
+      "frame": 3,
+      "left": 92,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 120,
+      "top": 16
+    },
+    {
+      "frame": 5,
+      "left": 148,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 60
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 60
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 60
+    },
+    {
+      "frame": 3,
+      "left": 88,
+      "top": 60
+    },
+    {
+      "frame": 2,
+      "left": 104,
+      "top": 60
+    },
+    {
+      "frame": 1,
+      "left": 120,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 8,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 24,
+      "top": 84
+    },
+    {
+      "frame": 5,
+      "left": 40,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 56,
+      "top": 84
+    },
+    {
+      "frame": 1,
+      "left": 72,
+      "top": 84
+    },
+    {
+      "frame": 0,
+      "left": 88,
+      "top": 84
+    },
+    {
+      "frame": 3,
+      "left": 104,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 120,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 108
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 108
+    },
+    {
+      "frame": 2,
+      "left": 72,
+      "top": 108
+    },
+    {
+      "frame": 1,
+      "left": 88,
+      "top": 108
+    },
+    {
+      "frame": 0,
+      "left": 104,
+      "top": 108
+    },
+    {
+      "frame": 3,
+      "left": 120,
+      "top": 108
+    }
+  ],
+  "contact_size_native": [
+    192,
+    140
+  ],
+  "ambient_base_rgb": [
+    112,
+    112,
+    100
+  ],
+  "ambient_limit": "Optional owner-free backing belongs to separately guarded runtime; not a floor owner or reader.",
+  "references": [
+    "scene-reference-01.png",
+    "scene-prompt.txt",
+    "parts-reference-01.png",
+    "parts-prompt.txt",
+    "REFERENCE-CRITIQUE.md"
+  ],
+  "extraction": "Palette and flat quiet material only. Reject concept fog expansion,memory disclosure,relief edges,gradients,nonuniform pixels and excess detail.",
+  "protected_input_counts": [
+    27,
+    9
+  ],
+  "png_nonpixel_timing_normalization": {
+    "limestone-caves.png": {
+      "raw_sha256": "5903401d5e152138915c41b5a1311adb0dfeca82d1cc5428425a39cd37f61c7e",
+      "canonical_sha256": "a0d6a6bc7e8e3273125de077ca522835b565ec1c7bc88a1f885e2a0d77f0093d",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact-native.png": {
+      "raw_sha256": "bf18e00f23ffec00be030d2cfa08ee23e969f513ca878bb166d4778bc6845dbc",
+      "canonical_sha256": "2727cb582d2bb5862d23b2f1acaaf7b641724a1ebd9970111d579d2a7d2dbe56",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact.png": {
+      "raw_sha256": "5569db6b973588cf24100c8be2af87500ccac385ca2e124b9f0c863022892ff6",
+      "canonical_sha256": "9d798bf5a7ba12aeadd50145491086ddefba95827d3797332f2424ebbf54501f",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    }
+  },
+  "runtime_acceptance": false,
+  "area_polish_acceptance": false
+}

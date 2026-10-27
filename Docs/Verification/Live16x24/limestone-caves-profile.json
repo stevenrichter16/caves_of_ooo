@@ -1,0 +1,48 @@
+{
+  "startedUtc": "2026-10-27T18:30:13.686387Z",
+  "endedUtc": "2026-10-27T18:32:02.522925Z",
+  "seconds": 108.83653799999999,
+  "context": "Root-owned actual Editor limestone chamber, wall reader and four ordinary wall attacks; idle and MCP/CUA instrumentation included. No matched BEFORE timing or sustained package/Deck FPS claim. Recorders stopped/disposed before further travel.",
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "count": 22805,
+      "mean": 112269.10028502521,
+      "p95": 196000,
+      "max": 4653708,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/limestone-caves-profile-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "count": 22805,
+      "mean": 15764.993422495067,
+      "p95": 28875,
+      "max": 16500833,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/limestone-caves-profile-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "count": 22805,
+      "mean": 4767790.977811883,
+      "p95": 13911666,
+      "max": 1400857042,
+      "unit": "TimeNanoseconds",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/limestone-caves-profile-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "count": 22805,
+      "mean": 55268.90804648103,
+      "p95": 18269,
+      "max": 138915979,
+      "unit": "Bytes",
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/limestone-caves-profile-3.csv"
+    }
+  ]
+}

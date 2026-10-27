@@ -217,3 +217,140 @@ Stone,solid,structure35/35. No wall was attacked. The full isolated root was
 archived, then Finish verified Playfalse,rootnull,scene clean. The exact control
 receipt is `Verification/Live16x24/deeper-strata-before-editor-play.json`. These
 views extend the baseline only; no native limestone coverage is accepted.
+
+## Native RED and reference-study checkpoint — 18:18 UTC
+
+The source and shallow delivery evidence are now verified on origin/main at
+`4d6ad8a1811a3058dd5b28678f562772c156cc22`. Limestone baseline and plan were
+preserved in that evidence commit; new limestone implementation is separate.
+
+Root installed the test-only fixture with SHA256
+`e8963f3f8f8ebfe9849fe4c35c26ba123935daa8e8690255ea3f3ce8eeae5c83` before
+any runtime implementation. The first MCP invocation selected zero tests and
+is retained in `limestone-caves-empty-filter.json`, explicitly invalid for
+acceptance. Correcting the test-name filter executed **36 distinct native
+failures** at18:17:40–44UTC:35 missing-companion assertions and one depth3
+stair still using the glyph texture. Native XML SHA256
+`185bc6d5a6e1cee3af748ad534c1453e688cfc1837a6b09aee1f64216306a7ca`
+is retained with the preflight. Only after this result did root delegate the
+new companion and minimal Greybox seams. No production code draft preceded RED.
+
+Built-in imagegen scene and parts studies are saved under
+`ArtSource/Live16x24/limestone-caves/`, with exact prompts and preserved original
+outputs. The scene suggests useful pale wall/darker floor separation, but
+incorrectly brightens remembered extents and implies relief: reject those
+changes. The parts study has useful sparse-cluster direction but uneven pixels,
+shading and excess detail; it is reference only, never resized into game art.
+The finite original native atlas is96×24:six16×24 cells,floors0–3 andwalls4–5.
+Floor/backing baseRGB112,112,100 is verified from existing limestone floor art;
+wall massRGB146,146,130 distinguishes solid stone. Exact source pixels and
+palette still require native validation and actual cave comparison.
+
+Runtime and art are in progress. The existing36 counterchecked contracts cover
+six exact identities,depth/current-column guards,structural35/3 semantics,
+state/disclosure/custody,ground/backing separation,reader/paint agreement,
+resources and stairs. No GREEN,native limestone screenshot,profile or package
+acceptance yet. Coverage and all55+5 area-polish statuses are unchanged.
+
+Source-ledger correction: the Sandstone material row still named the previous
+Grovelands package in its packaged-area field after the shallow delivery. It
+now records bounded six-owner Mac/package-integrity evidence while explicitly
+leaving whole-area and Linux/Deck play unaccepted. No polish state changed.
+
+### Related-suite correction saved before test revision
+
+The36 new native cases passed at18:25:08–13UTC. The related suite then ran395
+cases with394passes and1failure, retained verbatim in
+`limestone-caves-related-first.xml`. Its old shallow-cave scope test correctly
+refused direct shallow backing atdepth3, then incorrectly expected the global
+world view to have no ambient backing atall. That premise predates this new
+limestone kit. The runtime did not widen sandstone admission. Preserve direct
+shallow refusal and all other excluded cases, and verify the depth3 view has
+limestone backingRGB112,112,100,not real floor ownership or sandstone color.
+This is a test expectation correction for intentional new coverage, not a
+runtime defect or a reason to erase the failed run. The corrected fixture and
+related rerun remain pending at this note.
+
+## Actual hourly report — 2026-10-27 18:27:43 UTC
+
+Completed: shallow sandstone source1ae80a355 and delivery4d6ad8a18 verified on
+main,395 native passes,actual Mac read/travel/restart and independent Linux
+archive integrity. No Linux/Deck gameplay or sustained performance acceptance.
+In progress: limestone3/4 actual baseline,six editable native cells and
+integration,36 GREEN. Related394/395 exposed one obsolete global depth3 ambient
+expectation; independently reviewed correction is saved,rerun pending.
+Next hour: finish regressions,actual matching views/readers,wall destruction,
+stairs,restart and honest profile;then sourcepush and package gates. Continue
+shale/deeper bands and shared underground families. Broad all-biome coverage
+and separate serious area polish remain open; all55+5 polish states unchanged.
+Optional nuanced animation remains deferred. Next report19:27:43UTC.
+
+
+## Integrated source and actual gameplay checkpoint — 18:47 UTC
+
+Six-owner ordinary depth3/4 presentation is now verified in the Editor:
+LimestoneFloor, LimestoneWall, and correctly reused Rubble, Stalagmite,
+StairsUp and StairsDown. The new atlas contains four floor and two wall cells;
+borrowed approved art was not redrawn. Current eligibility guards do not prove
+historical natural/roomed generation provenance. No whole-area polish status is
+promoted.
+
+The36 new native cases and corrected395 related cases all passed: **431 distinct
+identities**, no overlap, skips or inconclusives. The first related394/395 run
+remains preserved. The old shallow test correction retained direct depth3
+refusal while checking intentional global limestone backing. Runtime and art
+hashes stayed unchanged after GREEN. Independent runtime/art review and source
+rebuild/corruption checks are in `limestone-caves-independent-review.md` and the
+editable source handoff.
+
+Actual normal controls produced17 retained1280×800 screenshots and the exact
+`limestone-caves-after-play.json` control receipt. A35HP limestone wall was
+struck17times, remained solid through damage, then became actual Rubble86926;
+the cell was traversable before the player entered. F5fixture89 and a fresh
+isolated Continue restored the same rubble and position44,15HP33. The uncovered
+rubble, floor, wall, stalagmite and both stair readers retain their real names
+and native portraits. Normal stairs completed4→3→2→3→4. A live scrabbler on the
+return route blocked the upstair, and ordinary movement/combat reduced HP33→21→6;
+no AI/health/placement mutation was used. Final earned90 is depth4at40,12,
+turn12490HP6. Package checks will use unchanged earned89, not an edited90.
+Two full isolated roots are archived; Finish verified Playfalse,rootnull and
+scene clean. Batched input misses and corrected position assumptions are
+explicit in the control receipt. Terrain is not a portable inventory item, so
+no invented inventory trial is claimed.
+
+The108.836538second instrumented Editor profile retained22,805samples each:
+ZoneRenderer mean0.112269ms,p950.196,max4.653708; Main Thread max1400.857042ms.
+This includes the chamber, reader, four attacks, idle time and tool overhead,
+not a matched baseline or sustained frame-rate/package/Deck claim.
+
+### In-phase self-review and remaining acceptance
+
+- 🟢 Native RED preceded production;431 final native passes include explicit
+  owner/state/eligibility/resource counterchecks. Independent source/art review
+  found no significant implementation defect. The old global backing premise
+  was corrected before rerun and its failure remains recorded.
+- 🟢 Actual before/after, real structural replacement, normal travel and fresh
+  Editor restart verified. Normal saves/current builds/unrelated work preserved.
+- 🧪 Sourcepush and fresh Mac/Linux package delivery remain pending here. Linux
+  archive integrity cannot establish Linux or physical Deck gameplay.
+- ⚪ Broader floor expanses remain lightly furnished; repeated wall fractures,
+  uncovered room props/hazards/generic terrain and memory transitions are later
+  coverage/polish debts. These viewports are not an entire80×25chunk census.
+- ⚪ New subtle animation remains deferred. Shale and deeper materials, shared
+  storage, CaveBear and special-site kits remain open. The source-only
+  `post-limestone-shared-owner-audit.md` prioritizes five true container owners;
+  it grants no sprite or gameplay acceptance.
+- ⚪ CoO-original presentation; no Qud parity or changed combat/damage mechanic.
+
+Files in this implementation: new limestone companion and two metadata files,
+minimal Greybox seams, new36casefixture plus narrow shallow-test correction,
+editable source atlas/builder/reference studies, raw RED/GREEN/first-related
+failure/final-related receipts,17actualcaptures/profile/controlreceipts,
+earned89/90fixtures and same-commit five living coverage/direction records.
+Full exact path list is reviewed by root before staging. Source and delivery
+commits are separate; no unrelated staging or storage deletion is authorized.
+
+Precommit hygiene: stripped only six trailing spaces from empty new limestone
+PNG metadata values. Original and normalized hashes are retained in the frozen
+handoff; no GUID/importer field or sprite pixel changed. All46foreign tracked
+changes match the prephase protection snapshot.

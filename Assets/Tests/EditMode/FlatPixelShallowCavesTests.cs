@@ -422,8 +422,13 @@ namespace CavesOfOoo.Tests
         {
             Ambient();int count=manager.CachedZoneCount;Assert.False(HasLedger(manager));manager.WorldMap.SetPOI(0,9,new PointOfInterest(POIType.MerchantCamp,"authored"));
             Assert.False(Backdrop(out _,out _));Assert.False(IsAmbient(View()));manager.WorldMap.SetPOI(0,9,null);Ambient();Assert.False(HasLedger(manager));Assert.AreEqual(count,manager.CachedZoneCount);
-            foreach(string id in new[]{"Overworld.0.9.0","Overworld.0.9.3","Overworld.00.9.1","Overworld.11.10.1"})
+            foreach(string id in new[]{"Overworld.0.9.0","Overworld.00.9.1","Overworld.11.10.1"})
             {zone=Attach(id);Assert.False(Backdrop(out _,out _));Assert.False(IsAmbient(View()));}
+            // Limestone now has its own backing; shallow admission must still refuse it.
+            zone=Attach("Overworld.0.9.3");Assert.False(Backdrop(out _,out _));var limestone=View();
+            Assert.True(IsAmbient(limestone));Assert.False(limestone.LocalGround);Assert.IsNull(limestone.Owner);
+            Assert.AreEqual((Color)new Color32(112,112,100,255),limestone.GroundColor);
+            Assert.AreNotEqual((Color)new Color32(128,106,76,255),limestone.GroundColor);
             manager=OverworldZoneManager.CreateDetached(content.Factory,65,true);manager.WorldMap.SetPOI(0,9,new PointOfInterest(POIType.Lair,"retained lair",null,1,"DesertProwler"));
             LairStacks.Restore(manager,null);Assert.NotNull(LairStacks.Inspect(manager,"Overworld.0.9.0"));manager.WorldMap.SetPOI(0,9,null);zone=Attach(Home);
             Assert.False(Backdrop(out _,out _));Assert.False(IsAmbient(View()));

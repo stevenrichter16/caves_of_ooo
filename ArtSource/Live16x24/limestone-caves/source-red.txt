@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_limestone_caves.py", line 332, in <module>
+    elif args.verify:verify()
+                     ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_limestone_caves.py", line 161, in verify
+    assert (OUT/'limestone-caves.png').exists(),'Native limestone atlas missing: render required before GREEN'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Native limestone atlas missing: render required before GREEN

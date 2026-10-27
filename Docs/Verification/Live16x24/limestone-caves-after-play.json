@@ -1,0 +1,107 @@
+{
+  "at_utc": "2026-10-27T18:45:23.683124+00:00",
+  "source_parent": "4d6ad8a1811a3058dd5b28678f562772c156cc22",
+  "environment": "Actual Unity Editor Play; real GameBootstrap, earned saves, normal CUA controls; read-only observation only",
+  "runtime_sha256": {
+    "Assets/Scripts/Presentation/Rendering/FlatPixelLimestoneCavesCatalog.cs": "03ea7981d2ba80b845fbf1d303856760634f44503d9fc869018f263f40463ee5",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "80064f17b828f23d1d4f99d696475302aeef6ffcef808564b7c917a04f99d210",
+    "Assets/Resources/Sprites/Live16x24/limestone-caves.png": "a0d6a6bc7e8e3273125de077ca522835b565ec1c7bc88a1f885e2a0d77f0093d"
+  },
+  "captures": {
+    "limestone-caves-after-01-matched-chamber.png": "c0c9349b6c599bb77f65b078ee64c8801cbd50f56615ebc561a916782d15524e",
+    "limestone-caves-after-02-wall-reader.png": "9e6e1e21d7014ca131aaae9bda15115714f3c68a8a566838022abbff07310c6e",
+    "limestone-caves-after-03-wall-damage.png": "30e97ba17340d183898ed40889debba05f817400abb38bd553ec2c14316a7834",
+    "limestone-caves-after-04-surviving-wall.png": "0df017c70853a096915240b61ab361b90ecb1685f1de0cd32142bf9aedefecf9",
+    "limestone-caves-after-05-entered-wreckage.png": "23873ec26ab0aa4abfbeed6f6b30bde3f0dbfc75d2b38ca034b9b8fd6258e26f",
+    "limestone-caves-after-06-wreckage-restart.png": "a964ca005af371a25f98da67f9f479a72d30fd06c83b4d542715f5c811a93fe9",
+    "limestone-caves-after-07-rubble-reader.png": "f9c530233082d06fbdb5056e06a2ea46dd647242deb2590f94e6a1c4687ca902",
+    "limestone-caves-after-08-stair-return-route.png": "eeef5aa0484b3f1f75450c424eb67dd61f62e3b56d9e222f6cc24b73fafaf3d0",
+    "limestone-caves-after-09-depth3-return.png": "acd9b68ec5347104e7b0b4e469c61b6417a4393e86aca51ec1f84b8815987969",
+    "limestone-caves-after-10-stalagmite-reader.png": "5e98d53c61585915902327048b3184b4d5ca62c2e51f5899fbe2337dd2de78b2",
+    "limestone-caves-after-11-up-reader.png": "18fb2668df91cb4a0b598f7365a5127d062901103ac50c31aae3e9d6748a210f",
+    "limestone-caves-after-12-sandstone-return.png": "78414467095b87504a5fd84420936f2b72b139d1b533e3a58f288966722b7580",
+    "limestone-caves-after-13-limestone-reentry.png": "ac975c4d6e897c4433efdd4d65ddc673f71a0a304ae2185e2484801e812e0ae7",
+    "limestone-caves-after-14-down-reader.png": "a0aef5cf51beef7c7273340714d9a0835573224957622026163eeee863e366b8",
+    "limestone-caves-after-15-floor-reader.png": "099b9b8a015542e49e6dc9bb7bc09aaa95c1f24cbf3f89ab9abc1b3c7b66346d",
+    "limestone-caves-after-16-route-encounter.png": "c31ecefae74234aa79c7657901c69b2fe7d293d7845ca265f2704732e8b6a385",
+    "limestone-caves-after-17-depth4-roundtrip.png": "e408d524739caba212d264367ae9dc817e762cb5df29865495fffd69cebfe5f1"
+  },
+  "actions": [
+    "Continue earned fixture88: depth4 at44,16HP33, matched chamber01 and actual wall reader02 at44,15.",
+    "17 normal upward strikes break actual wall84455 with35 max structuralHP; intermediate read-only history and captures03/04. Replacement Rubble86926 nonblocking before normal Up enters44,15. F5fixture89 turn12270HP33.",
+    "Archive whole first isolated root, Finish, fresh isolated Continue89: depth4 at44,15HP33 and same Rubble86926. Capture06. Normal Down44,16 and real rubble reader07.",
+    "Left4 thenUp4 reaches depth4up40,12. Normal < reaches depth3at40,12HP33; captures08/09.",
+    "Look/examine real Stalagmite40,22 and upstair39,12: captures10/11.",
+    "NormalLeft to39,12 and < reaches depth2at39,12HP33 (12). Normal > returns depth3at39,12HP33 (13).",
+    "Real downstair40,12 reader14. A batched reader-close/look sequence failed to enter Look; Down moved player normally39,13. Read-only state detected this; next Look recentered thenDown targeted actual floor39,14, reader15.",
+    "Attempted Up attacks scrabbler83313 standing onupstairs39,12; player misses and is hit12HP from33to21. Right in that batch did not move; capture16 retains encounter. SingleRight reaches40,13HP21, singleUp reaches40,12HP6 after15damage. Normal > reaches depth4at40,12HP6 (17).",
+    "F5 saves fixture90 turn12490depth4HP6. Whole second isolated root archived; Finish verified Playfalse/rootnull/scene clean."
+  ],
+  "input_limits": [
+    "Initial Down/Look after fresh Continue89 missed due GameView focus; read-only state showed unchangedposition before focus/retry.",
+    "Movement plus stair batches missed final stair input; source zone guards refused capture until separate retry achieved intended zone. No missed action is counted as success.",
+    "Combat was a live encounter during travel, not a deterministic balance test; no AI disable, grants, health edits, teleports or gameplay event injection."
+  ],
+  "archives": [
+    "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/3a46d5034f6e4d92b9d4cce463ed5da3-limestone-wall-trial-preserved",
+    "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/1e39200569da46c69cfe2fa2cbbe5fba-limestone-roundtrip-preserved"
+  ],
+  "fixtures": {
+    "limestone-caves-wreckage89": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.16.13.4",
+        "ActiveZoneDisplayLabel": "Overworld.16.13.4",
+        "Turn": 12270,
+        "SaveTimestampUtc": "2026-10-27T18:33:39.9911660Z",
+        "HPSummary": "33/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "d6568dcada02eca07a652acd16c4ff8abbc24054c2f04f8d02446ff02e98dd9b",
+        "Quick.sav.gz": "94538f6c20aa76053b8682dc267fa0b76c6b68eb4046aa7a167b28c6d7e93418"
+      }
+    },
+    "limestone-caves-roundtrip90": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.16.13.4",
+        "ActiveZoneDisplayLabel": "Overworld.16.13.4",
+        "Turn": 12490,
+        "SaveTimestampUtc": "2026-10-27T18:44:10.2808800Z",
+        "HPSummary": "6/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.json": "8514cc2029f403eac4e8d98bd88686a5d1bed920a0f3a04ea9bc0320f6428620",
+        "Quick.sav.gz": "fd1d6cdd6508db33c095cfc8796dc5456084bb669a92c59e79891d040444addb"
+      }
+    }
+  },
+  "finish_verified": {
+    "playing": false,
+    "save_root_override": null,
+    "scene_dirty": false
+  },
+  "profile": "limestone-caves-profile.json;108.836538seconds instrumented Editorwindow, not matched before/after or package/Deck performance",
+  "limits": [
+    "Six-owner material/reader/travel/destruction/restart coverage only; not full underground coverage or polished wholechunks.",
+    "GenericWall/VineWall,containers,hazards,CaveBear,special-site envelopes and deeper strata remain separate gaps. Existing portable Marlback art reused, not new actor coverage.",
+    "Disclosed normal-zoom views only. Original saved natural/roomed generation provenance not proved.",
+    "No hazard application trial; no new inventory object was introduced by terrain kit.",
+    "No packaged Linux/Deck gameplay. Fresh package delivery pending.",
+    "Storage remains inspection-only; no cache/build/source deletion."
+  ]
+}

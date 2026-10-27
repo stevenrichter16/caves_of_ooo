@@ -1,6 +1,10 @@
 # Worldwide native sprite coverage
 
-**Current shallow-cave delivery checkpoint — 2026-10-27:** The bounded shallow-cave foundation is now delivered from source1ae80a3555e13ce77ff440a6054b732f00888dca, verified on origin/main by root.395 distinct native passes, actual Editor material/state/travel/restarts and seven fresh Mac package captures support the finite six-owner kit. Mac ordinary down-reader,depth1 return/depth2 reentry,F5turn11950 and full-process fresh Continue at42,12,HP33 passed; the Linux archive independently passed integrity review without execution. Restoration preserved the snapshot,normal saves/preferences and prior builds. Delivery-evidence commit remains pending. Limestone depth3 is an actual uncovered baseline only; whole-area polish and remaining world coverage remain open. Last actual hourly report17:27:22UTC; next18:27:22UTC.
+**Current limestone Editor checkpoint — 2026-10-27:** Limestone depths3/4 reached a bounded six-owner Editor checkpoint:431 distinct native passes,17 actual captures, all six owner readers, a35HP wall becoming traversable real Rubble with fresh Continue persistence, and ordinary4→3→2→3→4 travel. Live scrabbler combat reduced player HP33→21→6; final fixture90 preserves depth4 at40,12,turn12490. Source push and fresh packages remain pending; current delivered packages remain shallow source1ae80a355/delivery4d6ad8a18. This does not accept whole-area composition or polish. Last actual hourly report18:27:43UTC; next19:27:43UTC.
+
+**Historical limestone integration checkpoint — 2026-10-27:** Shallow source1ae80a355 and delivery4d6ad8a18 are verified on origin/main. Limestone depths3/4 now have six original native material cells and a six-owner integration with 431 distinct native passes (36 focused plus395 related). Actual before views/censuses and wall reader are retained; actual after comparison, profile, persistence, source publication and new packages remain pending. Current delivered packages remain shallow source1ae80a355; all-world coverage and separate area polish remain open. Last actual hourly report18:27:43UTC; next19:27:43UTC. The hourly report text below remains the historical report as sent; the related rerun completed afterward.
+
+**Historical shallow-cave delivery checkpoint — 2026-10-27:** The bounded shallow-cave foundation is now delivered from source1ae80a3555e13ce77ff440a6054b732f00888dca, verified on origin/main by root.395 distinct native passes, actual Editor material/state/travel/restarts and seven fresh Mac package captures support the finite six-owner kit. Mac ordinary down-reader,depth1 return/depth2 reentry,F5turn11950 and full-process fresh Continue at42,12,HP33 passed; the Linux archive independently passed integrity review without execution. Restoration preserved the snapshot,normal saves/preferences and prior builds. Delivery-evidence commit remains pending. Limestone depth3 is an actual uncovered baseline only; whole-area polish and remaining world coverage remain open. Last actual hourly report17:27:22UTC; next18:27:22UTC.
 
 **Historical delivered checkpoint — 2026-10-27:** Grovelands Shambler, Mosshulk and living merchant ChoirTendril are delivered from source4dbdc9be9 verified on origin/main: 407 retained distinct native passes, bounded Editor intent/trade/restart and nine actual Mac views covering bodies/readers, restored services, Fen-to-Grove travel and full-process restart. Both fresh builds have0errors/4warnings; Linux archive independently verified, not executed. All-world coverage and separate area polish remain open. Next: actual ordinary shallow-cave baseline for six material/travel owners; source preflight only so far. Last actual hourly report16:27:02UTC; next17:27:02UTC. Earlier checkpoints below are historical.
 
@@ -1599,3 +1603,100 @@ claimed. Next: Push exact delivery evidence, then continue the limestone3–4 ph
 
 All55+5 polish statuses and actual hourly17:27:22UTC→18:27:22UTC are unchanged.
 The later exact delivery-evidence commit is pending root push.
+
+## Actual hourly report — 2026-10-27 18:27:43 UTC
+
+Completed: shallow sandstone source1ae80a355 and delivery4d6ad8a18 verified on
+main,395 native passes,actual Mac read/travel/restart and independent Linux
+archive integrity. No Linux/Deck gameplay or sustained performance acceptance.
+In progress: limestone3/4 actual baseline,six editable native cells and
+integration,36 GREEN. Related394/395 exposed one obsolete global depth3 ambient
+expectation; independently reviewed correction is saved,rerun pending.
+Next hour: finish regressions,actual matching views/readers,wall destruction,
+stairs,restart and honest profile;then sourcepush and package gates. Continue
+shale/deeper bands and shared underground families. Broad all-biome coverage
+and separate serious area polish remain open; all55+5 polish states unchanged.
+Optional nuanced animation remains deferred. Next report19:27:43UTC.
+
+
+## Limestone integration checkpoint after related rerun — 2026-10-27 18:28:55 UTC
+
+Shallow source `1ae80a3555e13ce77ff440a6054b732f00888dca` and delivery
+`4d6ad8a1811a3058dd5b28678f562772c156cc22` are verified on origin/main by root.
+Those Mac/Linux packages remain current. Their bounded acceptance and known
+shutdown warnings remain in the retained delivery receipts; Linux and Deck
+were not executed.
+
+The [limestone phase](GRAPHICS-LIMESTONE-CAVES.md) now integrates exact
+LimestoneFloor/LimestoneWall and unchanged Rubble, Stalagmite and up/down stair
+art in eligible ordinary current depth3/4 graphs. Six original opaque16×24
+cells form a96×24 atlas: four quiet floor variants and two solid-wall variants.
+Editable Blender source, exact pixels/geometry/contacts and protected inputs
+passed source review. The concept's invented fog/relief and uneven pixels were
+rejected. This is an integration trial, not area acceptance.
+
+Actual before evidence covers depth3 entry/return and depth4 entry, passage,
+chamber and a35/35 Stone wall reader. Fixture88 preserves44,16,HP33,turn12090.
+Whole graph counts include hidden owners and are not visual inspection counts.
+Generic Wall/VineWall, landmarks, actors, hazards, containers and services
+remain separate uncovered meanings; no historical roomed/natural provenance is
+claimed from these views.
+
+Native evidence is **431 distinct passes**:36 focused and395 related, with no
+overlap, failures, skips or inconclusives in the final runs. Genuine36-case RED
+preceded runtime production. The first related run's394passes/1failure is
+retained: its old global depth3 ambient expectation was corrected to recognize
+limestone backing while preserving direct shallow refusal. This was a saved
+test correction, not runtime admission relaxation. Exact receipts are
+`Verification/Live16x24/limestone-caves-native-red.xml`,
+`limestone-caves-native-green.xml`, `limestone-caves-related-first.xml` and
+`limestone-caves-related-green.xml`.
+
+Actual after comparison, meaningful profile, destruction/stairs, save/fresh
+Continue, source publication and new packages remain pending. All55 inventory
+polish scopes and5 Stump area states remain unchanged. Continue shale/deeper
+bands and other missing world families after this bounded delivery, then the
+required serious biome-by-biome/area-by-area polish. Optional nuanced animation
+remains deferred. Last actual hourly report18:27:43UTC; next19:27:43UTC. This
+record update is not an additional hourly report. No storage cleanup occurred.
+
+
+## Bounded limestone Editor checkpoint — 2026-10-27 18:45 UTC
+
+[Actual play receipt](Verification/Live16x24/limestone-caves-after-play.json)
+retains17 real captures and the normal-input/retry limits. All six exact owners
+have actual native world/reader evidence. Atdepth4,17 ordinary strikes broke
+wall84455 at44,15 from35 structuralHP into real nonblocking Rubble86926. Normal
+movement entered that cell. Fixture89 atturn12270,HP33 and a fresh isolated
+Continue preserved the same wreckage, position and health; the real Rubble
+reader followed. No simulation, loot, collision or gameplay edits were made.
+
+Ordinary stairs traversed4→3→2→3→4, with Stalagmite,up/down stair and floor
+readers. The return encountered real scrabbler83313: the player missed, took12
+and then15 damage, and reached depth4 at40,12 withHP6. F5 preserved fixture90
+atturn12490; both whole isolated roots were archived, followed by Playfalse,
+rootnull and clean scene. Fixture90 is a saved final route, not an additional
+fresh-restart claim. Missed/focus-confused commands are disclosed in the receipt
+and are not counted as successful actions.
+
+The retained [profile](Verification/Live16x24/limestone-caves-profile.json)
+contains22,805 samples per recorder over108.836538 seconds, with no capacity
+reached. It covers instrumented Editor chamber/readers/four wall attacks plus
+idle and MCP/CUA overhead; recorders stopped before later travel. Full maximum
+values remain available, including the1.400857042-second main-thread maximum
+and138,915,979-byte allocation maximum. This is not a matched optimization,
+sustained package frame-rate or Deck performance result. Current native count
+remains431 distinct passes; no extra run is invented.
+
+Source push and fresh packages remain pending. Current delivered packages are
+still shallow source1ae80a355 with delivery4d6ad8a18 verified main. The finite
+[next shared-owner audit](Verification/Live16x24/post-limestone-shared-owner-audit.md)
+is source-only triage: after material work, Chest/LockedChest/StrongBox/Crate/
+OreCache form a possible shared-storage slice, and CaveBear is separate.
+ChoirTendril and MarlbackScrabbler already have portable native paths. No new
+production or acceptance follows from that audit.
+
+Whole-area composition, remembered/fog boundaries, remaining props/hazards/
+actors/special sites and deeper strata remain open. All55 inventory polish
+scopes and5 Stump area states are unchanged. Optional nuanced animation remains
+deferred. Last actual hourly report18:27:43UTC; next19:27:43UTC. No cleanup.
