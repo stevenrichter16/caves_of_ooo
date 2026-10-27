@@ -860,6 +860,16 @@ namespace CavesOfOoo.Rendering
                 ground = FlatPixelGreyboxGround.Ground;
                 if (owner == grovelandsFloor) kind = FlatPixelGreyboxKind.Ground;
             }
+            Tile grovelandsWaterTile = null;
+            Entity grovelandsWaterGrass = null;
+            bool grovelandsWater = grovelands != null
+                && grovelands.TryResolveWaterGround(zone, x, y, out grovelandsWaterTile, out grovelandsWaterGrass);
+            if (grovelandsWater)
+            {
+                groundTile = grovelandsWaterTile; groundColor = Color.white;
+                ground = FlatPixelGreyboxGround.Water;
+                if (grovelandsWaterGrass != null && owner == grovelandsWaterGrass) kind = FlatPixelGreyboxKind.Ground;
+            }
             var foreground = fallback.ForegroundTile;
             var foregroundColor = fallback.ForegroundColor;
             Tile art = null;
@@ -926,7 +936,8 @@ namespace CavesOfOoo.Rendering
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
                 || sillGround && owner == sillFloor || soddenGround && owner == soddenFloor || beatingGroundOwner
-                || grovelandsGround && owner == grovelandsFloor) foreground = null;
+                || grovelandsGround && owner == grovelandsFloor
+                || grovelandsWater && grovelandsWaterGrass != null && owner == grovelandsWaterGrass) foreground = null;
             if (fallback.Remembered)
             {
                 if (local) { groundColor *= .35f; groundColor.a = 1; }
@@ -940,7 +951,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround, brineNative || beatingBrineNative, mireNative);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater, brineNative || beatingBrineNative, mireNative);
             return true;
         }
 

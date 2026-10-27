@@ -16,7 +16,7 @@ namespace CavesOfOoo.Rendering
         public const int FrameCount = 14;
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] materials, sill, vegetation, opening;
+        readonly Tile[] materials, sill, vegetation, opening, water;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -34,17 +34,25 @@ namespace CavesOfOoo.Rendering
         public FlatPixelGrovelandsMaterialsCatalog(FlatPixelFallbackCatalog borrowedSelector)
             : this(Resources.Load<Texture2D>(ResourcePath), Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
+                Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath), borrowedSelector) { }
 
         /// <summary>Optional groups fail independently. Never reload injected
         /// textures, modify source pixels/settings, or dispose the borrowed selector.</summary>
         public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
             Texture2D vegetation4, Texture2D opening10, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas14, sill24, vegetation4, opening10, null, borrowedSelector) { }
+
+        /// <summary>The independently optional opening-ground group supplies only
+        /// ownerless permanent water. Older injected material groups do not opt in.</summary>
+        public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
+            Texture2D vegetation4, Texture2D opening10, Texture2D water21, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
             materials = Frames(atlas14, FrameCount, "materials"); sill = Frames(sill24, 24, "forest");
             vegetation = Frames(vegetation4, 4, "tree"); opening = Frames(opening10, 10, "bush");
+            water = Frames(water21, 21, "water");
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -101,6 +109,49 @@ namespace CavesOfOoo.Rendering
             if (grass == null || sill == null) return false;
             floor = grass; tile = sill[20 + VariantAt(x, y)]; return true;
         }
+        /// <summary>Represents a disclosed permanent water substrate, never a
+        /// physical source or subject portrait. The optional grass output permits
+        /// suppressing only that same neutral foreground owner, not a covering body.</summary>
+        public bool TryResolveWaterGround(Zone zone, int x, int y, out Tile tile, out Entity representedGrass)
+        {
+            tile = null; representedGrass = null;
+            if (water == null || !ReadyCell(zone, x, y, out var cell)
+                || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered) return false;
+            var coatings = zone.TileState.Get(x, y)?.Coatings;
+            // Match the painter's exact one-entry rule; an expired extra is not
+            // license to hide a mixed/unknown coating behind native water.
+            if (coatings == null || coatings.Count != 1) return false;
+            var coating = coatings[0];
+            if (coating == null || coating.Id != "water" || coating.Turns != ZoneTileState.Permanent
+                || !string.IsNullOrEmpty(coating.ProjectionOwnerId)) return false;
+            Entity grass = null; int grasses = 0;
+            foreach (var owner in cell.Occupants)
+            {
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                // Ordinary pools also write unowned water. Their bodies and
+                // source overlays remain separate from this Fen substrate pass.
+                if (owner.HasPart<LiquidPoolPart>() || owner.HasPart<WellPart>() || owner.HasPart<TileStateSourcePart>()
+                    || owner.HasPart<GasPoolPart>() || owner.HasPart<FiniteLiquidFilmPart>()) return false;
+                if (owner.BlueprintName == "Grass")
+                { grasses++; if (ReferenceEquals(selected.Owner, owner) && OrdinaryGrass(owner)) grass = owner; }
+            }
+            int mask = 0;
+            if (DisclosedDryBank(zone, x, y - 1)) mask |= 1;
+            if (DisclosedDryBank(zone, x + 1, y)) mask |= 2;
+            if (DisclosedDryBank(zone, x, y + 1)) mask |= 4;
+            if (DisclosedDryBank(zone, x - 1, y)) mask |= 8;
+            tile = water[mask];
+            if (tile == null) return false;
+            if (grasses == 1) representedGrass = grass;
+            return true;
+        }
+        bool DisclosedDryBank(Zone zone, int x, int y)
+        {
+            if (!ReadyCell(zone, x, y, out _) || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered) return false;
+            var coatings = zone.TileState.Get(x, y)?.Coatings;
+            return coatings == null || coatings.Count == 0;
+        }
+
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
@@ -336,7 +387,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(materials); DestroyFrames(sill); DestroyFrames(vegetation); DestroyFrames(opening);
+            DestroyFrames(materials); DestroyFrames(sill); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(water);
         }
         static void DestroyFrames(Tile[] tiles)
         {

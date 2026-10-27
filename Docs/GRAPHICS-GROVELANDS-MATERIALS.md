@@ -1,6 +1,6 @@
 # Grovelands native materials and forest envelope
 
-2026-10-27. **Status: native GREEN 495/495, actual ordinary Editor interactions and fresh restart verified in 16 after-art captures; Grovelands packaging pending.** Root owns Unity, actual four-formation baseline captures, imagegen, native source authoring, integration and Git. This document retains the preimplementation contract and records the bounded verified integration. The user prioritizes coherent static sprite coverage across every biome/area and actual whole-chunk fullness ahead of subtle animation. It is not a whole-Grovelands completion claim.
+2026-10-27. **Status: materials plus bounded permanent Fen-water integration are Editor-verified; latest native GREEN is 600/600. Sixteen material and seven water captures are retained; combined Grovelands packaging pending.** Root owns Unity, actual four-formation baseline captures, imagegen, native source authoring, integration and Git. This document retains the preimplementation contract and records the bounded verified integration. The user prioritizes coherent static sprite coverage across every biome/area and actual whole-chunk fullness ahead of subtle animation. It is not a whole-Grovelands completion claim.
 
 ## Scope and production gate
 
@@ -165,3 +165,48 @@ Continue to inspect whole gameplay views, preserving quiet approaches and
 existing coherent clusters. Do not add arbitrary decoration or spend time on
 nuanced animation to conceal these remaining identity gaps. Regional breadth
 continues through Overwrit/Stump and the remaining world after bounded delivery.
+
+## Permanent ownerless Fen water follow-up — 2026-10-27 10:00 UTC
+
+The earlier recorded Fen glyph-strip defect is closed for the bounded permanent
+ownerless substrate. The [water implementation record](Verification/Live16x24/grovelands-water-next-preflight.md)
+retains its source corrections and RED/GREEN evidence. It reuses unchanged
+approved opening-water masks 0–15; none of the 14 material frames, 22 forest
+cells or source palettes changed. Source-backed physical water, including
+GroveSeep full/empty states, finite water, mixtures, ice and projections keep
+their previous cues. No global water admission or overlay-priority change.
+
+The first combined water GREEN passed **600/600 (12 new water +91 original
+material +497 related)** with no failed/skipped/inconclusive cases. All 12 new
+assertions failed before production in the saved raw native job receipt; no
+RED XML is claimed. [Independent source review](Verification/Live16x24/grovelands-water-independent-review.md)
+found no unresolved Yellow-or-higher finding.
+
+[Seven actual Editor captures](Verification/Live16x24/grovelands-water-play-summary.json)
+verify the exact earned turn-4430 Fen view at 40,15, HP 38, truthful adjacent
+water context/reader from 40,16, native player on water at 40,17, opposite bank
+at 40,19, return to 40,15 and F5 turn 4510, then fresh isolated Continue.
+PaleSalt 42025 ×1, GoldCoin 49426 ×3, GroveRed 51793 ×1, seep 46948 stock 39,
+consumed cache with its row, and consumed forage with Grass survive unchanged.
+The checkpoint is `Verification/Live16x24/Fixtures/grovelands-water-crossed65`.
+
+| Capture | Actual observation |
+| --- | --- |
+| [01 matched Fen](Verification/Live16x24/grovelands-water-after-01-matched-fen.png) | Same earned baseline view with native water continuity. |
+| [02 edge context](Verification/Live16x24/grovelands-water-after-02-edge-context.png) | Actual adjacent water selection. |
+| [03 reader](Verification/Live16x24/grovelands-water-after-03-reader.png) | Grass identity and actual water state remain truthful. |
+| [04 player on water](Verification/Live16x24/grovelands-water-after-04-player-on-water.png) | Player body remains visible over the substrate. |
+| [05 opposite bank](Verification/Live16x24/grovelands-water-after-05-opposite-bank.png) | Normal traversal reaches the real dry bank. |
+| [06 return/save](Verification/Live16x24/grovelands-water-after-06-return-saved.png) | Returned to 40,15 and saved turn 4510, HP 38. |
+| [07 fresh Continue](Verification/Live16x24/grovelands-water-after-07-restart.png) | New isolated session restores the earned route and persistent state. |
+
+Material source `a2800c25f572838924e57f7fff6c3ce20c6ed607` is pushed; the water
+source commit/push and combined packages remain pending. Current delivered
+builds still use harvest `8ab4508093bb0a7894d659af7c58a770e009e2ab`. Next complete
+that bounded delivery, then static actors/props and Overwrit/Stump/remaining
+world coverage. Actors, NPCs, crops, hazards, special sites and whole-region
+fullness remain partial; the actual crossing does not certify all water states
+or all 37 ordinary addresses. No new Linux execution, Deck or performance claim.
+
+Normal saves and 38 foreign tracked files remain protected; no cleanup occurred.
+Last actual hourly report remains 09:27 UTC, next due 10:27 UTC.

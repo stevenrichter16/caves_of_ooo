@@ -443,6 +443,207 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(full,EnvironmentSpriteRenderer.Perf.FullPasses);
             }
         }
+        // Fen substrate follow-up: keep the preceding 91 material cases intact.
+        const string WaterGround = "Sprites/Live16x24/opening-ground";
+        void FenWater(int x = X, int y = Y)
+            => zone.TileState.WriteCoating(x, y, "water", ZoneTileState.Permanent);
+        FlatPixelGreyboxCell NativeFenWater(int x = X, int y = Y, int mask = -1)
+        {
+            var value = View(x, y); Assert.True(value.LocalGround); Assert.AreEqual(FlatPixelGreyboxGround.Water, value.GroundKind);
+            Assert.AreEqual(Color.white, value.GroundColor); NativeTile(value.GroundTile, WaterGround);
+            if (mask >= 0) Assert.AreEqual(mask * 16, value.GroundTile.sprite.rect.x);
+            Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone)); return value;
+        }
+        void NoFenWater(int x = X, int y = Y)
+        {
+            var value = View(x, y); Assert.AreNotSame(Resources.Load<Texture2D>(WaterGround), value.GroundTile.sprite.texture);
+            Assert.False(value.LocalGround && value.GroundKind == FlatPixelGreyboxGround.Water);
+        }
+        void InjectFenWater(Texture2D water, bool includeBodies = true)
+        {
+            world.Dispose(); injectedAdapter?.Dispose(); injectedSelector?.Dispose();
+            world = new FlatPixelGreyboxCatalog((Texture2D)null); injectedSelector = new FlatPixelFallbackCatalog();
+            var constructor = AdapterType().GetConstructor(new[] { typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(FlatPixelFallbackCatalog) });
+            Assert.NotNull(constructor, "Water is an independently optional borrowed group; legacy injection remains unchanged.");
+            injectedAdapter = (IDisposable)constructor.Invoke(new object[] { includeBodies ? Resources.Load<Texture2D>(Atlas) : null,
+                includeBodies ? Resources.Load<Texture2D>(Sill) : null, includeBodies ? Resources.Load<Texture2D>(Vegetation) : null,
+                includeBodies ? Resources.Load<Texture2D>(Opening) : null, water, injectedSelector });
+            Write(world, "_grovelandsMaterialsArt", injectedAdapter);
+        }
+
+        [Test] public void FenWater_ActualSeed65FormationUsesCurrentStateWithoutInventingAnOwner()
+        {
+            manager = OverworldZoneManager.CreateDetached(content.Factory, 65, true);
+            zone = manager.GetZone("Overworld.0.8.0"); manager.SetActiveZone(zone); Reveal(zone);
+            Assert.True(Supported(zone)); Assert.AreEqual(Formation.TendrilFen, FormationSelector.For(BiomeType.Grovelands, zone.ZoneID));
+            Cell wet = null;
+            for (int y = 0; y < Zone.Height && wet == null; y++) for (int x = 0; x < Zone.Width; x++)
+            {
+                var state = zone.TileState.Get(x, y);
+                if (state?.Coatings.Count != 1 || state.Coatings[0].Id != "water" || state.Coatings[0].Turns != ZoneTileState.Permanent) continue;
+                if (world.TryResolveFallback(zone, x, y, out var old) && old.Owner?.BlueprintName == "Grass") { wet = zone.GetCell(x, y); break; }
+            }
+            Assert.NotNull(wet, "The actual natural Fen must supply a plain permanent water cell.");
+            var before = View(wet.X, wet.Y); int version = zone.EntityVersion; string stateBefore = zone.TileState.ToSaveString();
+            var members = zone.GetReadOnlyEntities().ToArray(); var native = NativeFenWater(wet.X, wet.Y);
+            Assert.AreSame(before.Owner, native.Owner); Assert.AreEqual(before.BlocksMovement, native.BlocksMovement); Assert.IsNull(native.ForegroundTile);
+            Assert.AreEqual(version, zone.EntityVersion); Assert.AreEqual(stateBefore, zone.TileState.ToSaveString()); CollectionAssert.AreEquivalent(members, zone.GetReadOnlyEntities());
+            Assert.True(zone.TileState.RemoveCoating(wet.X, wet.Y, "water")); NoFenWater(wet.X, wet.Y); Assert.AreSame(before.Owner, View(wet.X, wet.Y).Owner);
+        }
+        [Test] public void FenWater_AllCardinalMasksUseOnlyDisclosedCoatingFreeNeighbors()
+        {
+            Add("Grass"); FenWater(); var offsets = new[] { new Vector2Int(0,-1), new Vector2Int(1,0), new Vector2Int(0,1), new Vector2Int(-1,0) };
+            for (int mask = 0; mask < 16; mask++)
+            {
+                for (int n = 0; n < 4; n++) { int x = X + offsets[n].x, y = Y + offsets[n].y; zone.TileState.Clear(x,y); if ((mask & (1 << n)) == 0) FenWater(x,y); }
+                NativeFenWater(mask: mask); FenWater(X+1,Y+1); NativeFenWater(mask: mask);
+            }
+            var east = zone.GetCell(X+1,Y); east.IsVisible = false; NativeFenWater(mask: 13); east.IsVisible = true;
+            east.Explored = false; NativeFenWater(mask: 13); east.Explored = true;
+            zone.TileState.WriteCoating(X+1,Y,"ice",3); NativeFenWater(mask: 13); zone.TileState.Clear(X+1,Y);
+            FenWater(X+1,Y); zone.TileState.Get(X+1,Y).Coatings[0].Turns = 0; NativeFenWater(mask: 13);
+            zone.TileState.Clear(X+1,Y); NativeFenWater(mask: 15);
+        }
+        [Test] public void FenWater_SubmittedBackgroundReplacesOnlyGrassAndRecoversAfterRemoval()
+        {
+            var grass = Add("Grass");
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); NativeTile(paint.GroundAt(X,Y), Sill); long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+                FenWater(); string state = zone.TileState.ToSaveString(); paint.Step(); NativeFenWater(mask: 15);
+                NativeTile(paint.GroundAt(X,Y), WaterGround); Assert.IsNull(paint.At(X,Y)); Assert.IsNull(paint.Mark);
+                Assert.AreSame(grass, View().Owner); Assert.AreEqual(state, zone.TileState.ToSaveString());
+                Assert.True(zone.TileState.RemoveCoating(X,Y,"water")); paint.Step(); NoFenWater(); NativeTile(paint.GroundAt(X,Y), Sill);
+                Assert.IsNull(paint.Mark); Assert.IsNull(paint.At(X,Y)); Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
+            }
+        }
+        [Test] public void FenWater_CoveredWaterKeepsExactActorAndPortableItemBodiesAndReaders()
+        {
+            var grass = Add("Grass");
+            using (var paint = new Paint(world,zone))
+            foreach (string name in new[] { "Player", "PaleSalt" })
+            {
+                var owner = Add(name); var dry = View(); Assert.AreSame(owner, dry.Owner); Assert.NotNull(dry.ForegroundTile);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, owner, X,Y,out var portrait,out _));
+                FenWater(); var wet = NativeFenWater(); Assert.AreSame(owner, wet.Owner); Assert.AreSame(dry.ForegroundTile, wet.ForegroundTile);
+                Assert.AreEqual(dry.BlocksMovement, wet.BlocksMovement); Assert.True(world.TryGetPresentationSubjectSprite(zone, owner,X,Y,out var afterPortrait,out _)); Assert.AreSame(portrait,afterPortrait);
+                paint.Dirty(X,Y); paint.Step(); NativeTile(paint.GroundAt(X,Y),WaterGround); Assert.AreSame(wet.ForegroundTile,paint.At(X,Y)); Assert.IsNull(paint.Mark);
+                Assert.True(zone.RemoveEntity(owner)); NativeFenWater(); Assert.AreSame(grass,View().Owner); Assert.IsNull(View().ForegroundTile);
+                Assert.True(zone.TileState.RemoveCoating(X,Y,"water"));
+            }
+        }
+        [Test] public void FenWater_CultivationAndReskinsNeverBecomeErasedGrassOrInventedDrySoil()
+        {
+            var grass = Add("Grass"); FenWater(); NativeFenWater(); Assert.IsNull(View().ForegroundTile);
+            grass.GetPart<RenderPart>().VisualVariant = "different grass"; NativeFenWater(); Assert.NotNull(View().ForegroundTile);
+            Assert.True(zone.TileState.RemoveCoating(X,Y,"water")); NoFenWater(); Assert.False(View().LocalGround);
+            grass.GetPart<RenderPart>().VisualVariant = ""; grass.AddPart(new CultivatedSoilPart());
+            var crop = Add("DrawgourdCrop"); var part = crop.GetPart<CropPart>(); Assert.NotNull(part); int moisture = part.MoistureTicks, stage = part.GrowthStage;
+            var dry = View(); Assert.AreSame(crop,dry.Owner); Assert.NotNull(dry.ForegroundTile); FenWater(); var wet = NativeFenWater();
+            Assert.AreSame(crop,wet.Owner); Assert.AreSame(dry.ForegroundTile,wet.ForegroundTile); Assert.AreEqual(stage,part.GrowthStage); Assert.AreEqual(moisture,part.MoistureTicks);
+            Assert.True(zone.TileState.RemoveCoating(X,Y,"water")); var again = View(); NoFenWater(); Assert.False(again.LocalGround);
+            Assert.AreSame(dry.GroundTile,again.GroundTile); Assert.AreSame(dry.ForegroundTile,again.ForegroundTile); Assert.AreEqual(dry.GroundColor,again.GroundColor);
+        }
+        [Test] public void FenWater_FiniteFrozenMixedDuplicateExpiredAndOwnedProjectionsKeepFallbackMarks()
+        {
+            Add("Grass");
+            using (var paint = new Paint(world,zone))
+            foreach (string fault in new[] { "finite", "ice", "oil", "duplicate", "expired-extra", "projection" })
+            {
+                zone.TileState.Clear(X,Y); FenWater(); paint.Step(); NativeFenWater(); Assert.IsNull(paint.Mark);
+                var state = zone.TileState.Get(X,Y);
+                if (fault == "finite") state.Coatings[0].Turns = 3;
+                if (fault == "ice") { zone.TileState.RemoveCoating(X,Y,"water"); zone.TileState.WriteCoating(X,Y,"ice",3); }
+                if (fault == "oil") zone.TileState.WriteCoating(X,Y,"oil",3);
+                if (fault == "duplicate" || fault == "expired-extra") state.Coatings.Add(new ZoneTileState.Layer { Id = fault == "duplicate" ? "water" : "acid", Turns = fault == "duplicate" ? 3 : 0 });
+                if (fault == "projection") state.Coatings[0].ProjectionOwnerId = "finite source";
+                string before = zone.TileState.ToSaveString(); paint.Dirty(X,Y); paint.Step(); NoFenWater();
+                Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark,fault); Assert.AreEqual(before,zone.TileState.ToSaveString());
+            }
+        }
+        [Test] public void FenWater_SubmittedIndependentHazardsKeepTheirEstablishedPriority()
+        {
+            Add("Grass");
+            using (var paint = new Paint(world,zone))
+            foreach (string hazard in new[] { "heat", "cold", "charge", "residue", "mist", "cloud" })
+            {
+                zone.TileState.Clear(X,Y); FenWater(); paint.Step(); NativeFenWater(); Assert.IsNull(paint.Mark);
+                char expected = '^';
+                if (hazard == "heat") zone.TileState.AddHeat(X,Y,1);
+                if (hazard == "cold") zone.TileState.AddCold(X,Y,1);
+                if (hazard == "charge") { zone.TileState.AddHeat(X,Y,1); zone.TileState.AddCharge(X,Y,1); expected = '*'; }
+                if (hazard == "residue") { zone.TileState.AddCharge(X,Y,1); zone.TileState.WriteResidue(X,Y,"grit",3); expected = '"'; }
+                if (hazard == "mist") { zone.TileState.WriteResidue(X,Y,"grit",3); zone.TileState.WriteCloud(X,Y,"veil-mist",3); expected = '\''; }
+                if (hazard == "cloud") { zone.TileState.WriteCloud(X,Y,"smoke",3); expected = '\''; }
+                string before = zone.TileState.ToSaveString(); paint.Step(); NativeFenWater(); NativeTile(paint.GroundAt(X,Y),WaterGround);
+                Assert.AreSame(CP437TilesetGenerator.GetTile(expected),paint.Mark,hazard); Assert.AreEqual(before,zone.TileState.ToSaveString());
+            }
+        }
+        [Test] public void FenWater_PhysicalSeepSourcesKeepTheirOriginalWetBodyAndWave()
+        {
+            Add("Grass"); FenWater(); NativeFenWater(); var seep = Add("GroveSeep"); var pool = seep.GetPart<LiquidPoolPart>();
+            using (var paint = new Paint(world,zone))
+            {
+                foreach (int stock in new[] { 40, 0 })
+                {
+                    pool.Volume = stock; paint.Dirty(X,Y); paint.Step(); NoFenWater(); NativeTile(paint.At(X,Y),Atlas); FamilyFrame(seep,paint.At(X,Y));
+                    Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark); Assert.AreEqual(ZoneTileState.Permanent,zone.TileState.CoatingTurns(X,Y,"water"));
+                }
+                seep.GetPart<RenderPart>().Visible = false; paint.Dirty(X,Y); paint.Step(); NativeFenWater(); Assert.IsNull(paint.Mark);
+                seep.GetPart<RenderPart>().Visible = true; paint.Dirty(X,Y); paint.Step(); NoFenWater(); Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark);
+            }
+        }
+        [Test] public void FenWater_CurrentMapGraphAndSavedSiteAuthorityCanRevokeAFormerClaim()
+        {
+            Add("Grass"); FenWater(); NativeFenWater(); var map = manager.WorldMap;
+            map.Tiles[4,7] = BiomeType.Sodden; NoFenWater(); map.Tiles[4,7] = BiomeType.Grovelands; NativeFenWater();
+            map.SetPOI(4,7,new PointOfInterest(POIType.MerchantCamp,"current camp")); NoFenWater(); map.SetPOI(4,7,null); NativeFenWater();
+            var prior = zone; manager.SetActiveZone(new Zone(Home)); Assert.False(world.TryResolvePresentation(prior,X,Y,out _)); manager.SetActiveZone(prior); NativeFenWater();
+            manager = OverworldZoneManager.CreateDetached(content.Factory,65,true); manager.WorldMap.SetPOI(4,7,new PointOfInterest(POIType.Lair,"saved site",null,1,"DesertProwler"));
+            var saved = manager.GetZone(Home); Assert.NotNull(LairStacks.Inspect(manager,Home)); manager.WorldMap.SetPOI(4,7,null);
+            zone = Attach(Home); Add("Grass"); FenWater(); Assert.False(Supported(zone)); NoFenWater(); Assert.AreNotSame(saved,zone);
+        }
+        [Test] public void FenWater_SubmittedFogClearsWaterAndLiveHazardsUntilDisclosedAgain()
+        {
+            Add("Grass"); FenWater(); zone.TileState.AddCharge(X,Y,1);
+            using (var paint = new Paint(world,zone))
+            {
+                paint.Step(); NativeFenWater(); Assert.AreSame(CP437TilesetGenerator.GetTile('*'),paint.Mark);
+                var cell = zone.GetCell(X,Y); cell.IsVisible = false; paint.Dirty(X,Y); paint.Step(); NoFenWater(); Assert.True(View().Remembered); Assert.IsNull(paint.Mark);
+                cell.Explored = false; paint.Dirty(X,Y); paint.Step(); Assert.False(world.TryResolvePresentation(zone,X,Y,out _)); Assert.IsNull(paint.Mark);
+                cell.Explored = cell.IsVisible = true; paint.Dirty(X,Y); paint.Step(); NativeFenWater(); NativeTile(paint.GroundAt(X,Y),WaterGround); Assert.AreSame(CP437TilesetGenerator.GetTile('*'),paint.Mark);
+            }
+        }
+        [Test] public void FenWater_PublicNeighborWritesRefreshSubmittedBanksWithoutAFullZonePass()
+        {
+            Add("Grass"); FenWater();
+            using (var paint = new Paint(world,zone))
+            {
+                paint.Step(); NativeFenWater(mask: 15); Assert.AreEqual(15*16,paint.GroundAt(X,Y).sprite.rect.x); long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+                FenWater(X+1,Y); paint.Step(); NativeFenWater(mask: 13); Assert.AreEqual(13*16,paint.GroundAt(X,Y).sprite.rect.x);
+                Assert.True(zone.TileState.RemoveCoating(X+1,Y,"water")); paint.Step(); NativeFenWater(mask: 15); Assert.AreEqual(15*16,paint.GroundAt(X,Y).sprite.rect.x);
+                Assert.AreEqual(full,EnvironmentSpriteRenderer.Perf.FullPasses); Assert.False(paint.FullDirty);
+            }
+        }
+        [Test] public void FenWater_OptionalResourceFailureNeverRelinquishesItsWaveOrOtherBodies()
+        {
+            Add("Grass"); FenWater(); NativeFenWater(); var atlas = Resources.Load<Texture2D>(WaterGround); var main = Resources.Load<Texture2D>(Atlas);
+            var filtering = atlas.filterMode; var wrapping = atlas.wrapMode; var wrong = new Texture2D(16,24);
+            try
+            {
+                foreach (var missing in new Texture2D[] { null, wrong })
+                {
+                    InjectFenWater(missing); var column = Add("MycelialColumn");
+                    using (var paint = new Paint(world,zone)) { paint.Step(); NoFenWater(); NativeTile(paint.At(X,Y),Atlas); Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark); }
+                    Assert.True(zone.RemoveEntity(column));
+                }
+                InjectFenWater(atlas,false); NativeFenWater(); injectedAdapter.Dispose(); NoFenWater();
+                Assert.True(atlas != null); Assert.True(main != null); Assert.AreEqual(filtering,atlas.filterMode); Assert.AreEqual(wrapping,atlas.wrapMode);
+                Assert.True(injectedSelector.TryResolve(zone,X,Y,out _),"A regional companion never owns its borrowed selector.");
+            }
+            finally { Object.DestroyImmediate(wrong); }
+        }
+
         // Existing submitted ZoneRenderer fixture; no alternate drawing implementation.
         sealed class Paint : IDisposable
         {

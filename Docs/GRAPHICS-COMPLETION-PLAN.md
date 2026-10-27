@@ -2493,3 +2493,53 @@ Single Editor render-counter samples are informational, not performance acceptan
 **Last actual hourly report09:27UTC; next10:27UTC.** It itemized the material integration,
 native/live results, pending persistence/source push, and next water/actor/package goals.
 The persistence step has since passed; do not send a duplicate hourly report for delivery.
+
+Source delivery checkpoint,09:41UTC: material source `a2800c25f572838924e57f7fff6c3ce20c6ed607`
+was pushed and verified against origin/main. Retained metadata reconciliation proves
+exactly four prior input pins changed only for Unity trailing-space serialization;
+all407 current pins and original native pixels pass. Continue immediately with the
+named Fen water defect using existing approved connected-water cells, then refresh
+the combined playable packages. Avoid immediately superseded intermediate builds.
+No new art is needed unless actual water comparison exposes a named visual defect.
+
+## Current continuation — Grovelands Fen water, 2026-10-27 10:00 UTC
+
+**The named ownerless permanent Fen-water continuity defect now has bounded
+native and actual Editor acceptance.** Reused approved `opening-ground` frames
+0–15 replace the bright wave/black-strip substrate with calm native water and
+disclosed inset banks. No new pixels, topology, gameplay or animation changes.
+Physical sources including GroveSeep, finite water, mixtures, ice and projected
+coatings retain their previous fallback; actors/items/readers and independent
+hazard priority remain intact. See the [water record](Verification/Live16x24/grovelands-water-next-preflight.md)
+and [actual play receipt](Verification/Live16x24/grovelands-water-play-summary.json).
+
+Native RED recorded all 12 new failures before production. The first combined
+GREEN passed **600/600: 12 water, 91 unchanged material, 497 related cases**,
+zero failed/skipped/inconclusive. Complete GREEN XML is retained; RED is an
+uncapped raw job receipt, not an XML claim. Independent source review found no
+unresolved material finding.
+
+Seven actual Game captures replay the exact earned Fen turn 4430 at 40,15, HP 38:
+Down to 40,16 and C/Down/X reads the real Grass owner and water state; Down to
+40,17 keeps the native player body visible on water; Down twice reaches the
+opposite bank at 40,19. Up four returns to 40,15; F5 saves turn 4510. A fresh
+isolated Continue retains HP 38, PaleSalt 42025 ×1, GoldCoin 49426 ×3, GroveRed
+51793 ×1, seep 46948 stock 39, consumed cache with its row remaining, and consumed
+forage with Grass remaining. The earned checkpoint is
+`Verification/Live16x24/Fixtures/grovelands-water-crossed65`.
+
+Material source `a2800c25f572838924e57f7fff6c3ce20c6ed607` is already pushed;
+the water source commit/push is pending root verification. **Current delivered
+Mac/Linux packages remain harvest source `8ab4508093bb0a7894d659af7c58a770e009e2ab`.**
+Next push the bounded water changes and build/playtest the combined Grovelands
+delivery, then continue static actor/prop families and Overwrit/Stump/remaining
+registered biomes, interiors, underground and special sites. This is not all
+37 ordinary Grovelands candidates, full 80×25 exploration, whole-biome or
+whole-chunk-fullness completion. Source waves and other water classes remain
+explicitly outside the fix. Nuanced animations stay deferred.
+
+Normal Editor/standalone saves and 38 foreign tracked files remain unchanged;
+free space is 437.228 GB in the receipt, with **zero cleanup deletion**. No new
+standalone, Linux-execution, Deck or sustained-performance claim. Last actual
+hourly report remains **09:27 UTC; next due 10:27 UTC**. This record is not a new
+hourly report.
