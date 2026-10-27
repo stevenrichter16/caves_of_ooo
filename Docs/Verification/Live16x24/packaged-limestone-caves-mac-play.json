@@ -1,0 +1,98 @@
+{
+  "at_utc": "2026-10-27T18:54:18.563914+00:00",
+  "runtime_source_commit": "7f49fb70054b7b29957dacd17c999ae4b521c9fd",
+  "source_push_verified": true,
+  "mac_app": "Builds/Verification/2026-10-27-limestone-caves-7f49fb700-current/CavesOfOoo.app",
+  "first_process_pid": 45475,
+  "restart_process_pid": 45876,
+  "old_process_absent_after_full_quit": true,
+  "both_owned_processes_closed": true,
+  "presentation": "Flat16x24 default; no presentation preference introduced",
+  "capture_dimensions": [
+    1280,
+    856
+  ],
+  "game_dimensions": [
+    1280,
+    800
+  ],
+  "starting_fixture": "Fixtures/limestone-caves-wreckage89",
+  "actions": [
+    "Normal Continue89 restores depth4at44,15HP33 with rubble beneath player. Existing destruction log is inherited, not new packaged destruction.",
+    "Normal Down44,16 thenLook/recenter/Up/actionmenu/examine real rubble44,15: native portrait and identity (02). Close reader, chamber03.",
+    "NormalLeft4thenUp4 reaches40,12; < returnsdepth3(04), > reentersdepth4(05),HP33 throughout.",
+    "NormalDown40,13; F5save then separate F5 confirms. Fixture91turn12390HP33.",
+    "Fullquit45475 absent, exactappfreshPID45876 normalContinue restores40,13HP33 (07).",
+    "Additional next-gap baseline: Left39,13 then normal > reaches depth5shale at39,13HP33. F5fixture92turn12410. Normal < returnslimestone4at39,13HP33."
+  ],
+  "earned_fixture": "Fixtures/packaged-limestone-caves91",
+  "saved_turn": 12390,
+  "player_cell": [
+    40,
+    13
+  ],
+  "player_hp": 33,
+  "captures": {
+    "packaged-limestone-caves-01-restored-wreckage.jpg": "39262e8bc7fed0557e8837f6eccde5df8954ccfe6df47141300a6c69dd77d7c5",
+    "packaged-limestone-caves-02-rubble-reader.jpg": "d7bc1f72c35f6c4cf241f686a475b02fff5e7949a38274832ae77ede13498a38",
+    "packaged-limestone-caves-03-chamber.jpg": "34773e00a0a0f3b39350d788dc7ab137ae0bd8936a83c3913a213e2b04a41d73",
+    "packaged-limestone-caves-04-depth3-return.jpg": "e3e34910c1f482580a2d608f6ce6efc47155738877bb5f1bfa5f8c278dcd5d44",
+    "packaged-limestone-caves-05-depth4-reentry.jpg": "16aa459967887eece30b628fdfbbc1d947284c355084fb9c3ae57090f234e128",
+    "packaged-limestone-caves-06-saved.jpg": "ce74be5cd7c83c71c6c8e1181ad61b99dd6cb24db67b905aa45a9666e9c15bd2",
+    "packaged-limestone-caves-07-fresh-restart.jpg": "927f2b70efe41633d74c06ef51750546d029797fe66c2145e779cbdd21cf6e4c"
+  },
+  "fixture_sha256": {
+    "Quick.sav.gz": "15d6ac4b1ac4966eeaf6afccaf8271cb4faa7e538f58670f82d77dfa733dcff3",
+    "Quick.json": "0576e5bf2d9c8f7a5f9c4fd31da2b6d44b781c649f65eeec8b990e8262811ba9"
+  },
+  "saved_restart_world_comparison": {
+    "decoded_rgb_rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "compared_pixels": 564000,
+    "changed_pixels": 0,
+    "scope": "World rectangle only; excludes header/sidebar/log/footer."
+  },
+  "native_evidence": "36focused+395disjointrelated=431Passed; not rerun during packaging",
+  "archive_receipt": "packaged-limestone-caves-linux-archive.json",
+  "restoration_receipt": "packaged-limestone-caves-restoration.json",
+  "logs": {
+    "packaged-limestone-caves-Player-prev.log": {
+      "bytes": 4073,
+      "sha256": "9104cbb9b02c0711904804b6b3716497663dd9514d876ff05f4bc2d96dd7aab0"
+    },
+    "packaged-limestone-caves-Player.log": {
+      "bytes": 3906,
+      "sha256": "d7db0c893780739d4f75d50b57a69149fd96f8d335e8f84aa0dff87111f95a95"
+    }
+  },
+  "log_review": {
+    "packaged-limestone-caves-Player-prev.log": [
+      "Thread 0x17152b000 may have been prematurely finalized",
+      "Thread 0x170247000 may have been prematurely finalized",
+      "Thread 0x1703eb000 may have been prematurely finalized",
+      "Thread 0x170477000 may have been prematurely finalized",
+      "Thread 0x1702d3000 may have been prematurely finalized",
+      "Thread 0x17035f000 may have been prematurely finalized",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ],
+    "packaged-limestone-caves-Player.log": [
+      "Thread 0x16ec8b000 may have been prematurely finalized",
+      "Thread 0x16d9a7000 may have been prematurely finalized",
+      "Thread 0x16dabf000 may have been prematurely finalized",
+      "Thread 0x16da33000 may have been prematurely finalized",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ]
+  },
+  "limits": [
+    "No packaged new destruction/combat/hazard application; separate actual Editor evidence is retained.",
+    "No standalone script owner-ID query; actual UI labels/cells/health and save metadata.",
+    "No Linux or physical Deck execution,sustainedFPS,whole-area fullness/polish acceptance.",
+    "Editor and Mac grading differ; not a pixelidentical cross-environment claim.",
+    "Shale still uses fallback. Two entry/return captures and fixture92 are nextphasebaseline only.",
+    "Shutdown logs include threadfinalization and ComputeBuffer disposal warnings; no warningfreeclaim."
+  ]
+}

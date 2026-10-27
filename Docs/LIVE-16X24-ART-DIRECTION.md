@@ -1,6 +1,8 @@
 # Live 16×24 art direction and integration
 
-**Current limestone Editor checkpoint — 2026-10-27:** Limestone depths3/4 reached a bounded six-owner Editor checkpoint:431 distinct native passes,17 actual captures, all six owner readers, a35HP wall becoming traversable real Rubble with fresh Continue persistence, and ordinary4→3→2→3→4 travel. Live scrabbler combat reduced player HP33→21→6; final fixture90 preserves depth4 at40,12,turn12490. Source push and fresh packages remain pending; current delivered packages remain shallow source1ae80a355/delivery4d6ad8a18. This does not accept whole-area composition or polish. Last actual hourly report18:27:43UTC; next19:27:43UTC.
+**Current limestone delivery checkpoint — 2026-10-27:** Limestone six-owner coverage is delivered from source7f49fb70054b7b29957dacd17c999ae4b521c9fd verified on main, with431 retained distinct native passes, bounded Editor material/state/reader/travel evidence and seven actual fresh Mac views. Mac rubble reader, depth4→3→4 travel and full-process fresh Continue at40,13,HP33,turn12390 passed; the564000-pixel world rectangle matches. Both builds have0errors/4warnings; Linux archive integrity is verified without execution. Restoration preserved51190 snapshot objects,46 baseline foreign paths,normal saves/preferences and prior builds. Delivery-evidence commit is pending. Shale depth5 entry/return is a baseline only; whole-area and world polish remain open. Last actual hourly report18:27:43UTC; next19:27:43UTC.
+
+**Historical limestone Editor checkpoint — 2026-10-27:** Limestone depths3/4 reached a bounded six-owner Editor checkpoint:431 distinct native passes,17 actual captures, all six owner readers, a35HP wall becoming traversable real Rubble with fresh Continue persistence, and ordinary4→3→2→3→4 travel. Live scrabbler combat reduced player HP33→21→6; final fixture90 preserves depth4 at40,12,turn12490. Source push and fresh packages remain pending; current delivered packages remain shallow source1ae80a355/delivery4d6ad8a18. This does not accept whole-area composition or polish. Last actual hourly report18:27:43UTC; next19:27:43UTC.
 
 **Historical limestone integration checkpoint — 2026-10-27:** Shallow source1ae80a355 and delivery4d6ad8a18 are verified on origin/main. Limestone depths3/4 now have six original native material cells and a six-owner integration with 431 distinct native passes (36 focused plus395 related). Actual before views/censuses and wall reader are retained; actual after comparison, profile, persistence, source publication and new packages remain pending. Current delivered packages remain shallow source1ae80a355; all-world coverage and separate area polish remain open. Last actual hourly report18:27:43UTC; next19:27:43UTC. The hourly report text below remains the historical report as sent; the related rerun completed afterward.
 
@@ -3605,3 +3607,56 @@ Whole-area composition, remembered/fog boundaries, remaining props/hazards/
 actors/special sites and deeper strata remain open. All55 inventory polish
 scopes and5 Stump area states are unchanged. Optional nuanced animation remains
 deferred. Last actual hourly report18:27:43UTC; next19:27:43UTC. No cleanup.
+
+
+## Limestone package delivery checkpoint — 2026-10-27 18:54 UTC
+
+Root verified source `7f49fb70054b7b29957dacd17c999ae4b521c9fd` on main.
+Fresh Mac/Linux builds succeeded in59.143178/64.449915 seconds respectively,
+with0errors and4warnings each. The existing431 distinct native passes are
+retained, not counted as a new packaging run.
+
+The [Mac receipt](Verification/Live16x24/packaged-limestone-caves-mac-play.json)
+records seven actual captures. Ordinary Continue starts earlier fixture89 at
+44,15,HP33; the real rubble reader, chamber and normal4→3→4 stair route passed.
+F5 earned fixture91 at40,13,depth4,turn12390,HP33. Full quit removedPID45475;
+freshPID45876 ordinary Continue restored that state. The saved/restarted world
+rectangle[0,96,940,696] has0changed pixels out of564,000. This is a scoped
+world comparison, not a cross-environment color claim. No new packaged combat,
+wall destruction or hazard application occurred; inherited log text is not new
+action evidence. Thread-finalization and ComputeBuffer-disposal shutdown
+warnings remain in both retained logs; no warning-free claim is made.
+
+The [Linux archive receipt](Verification/Live16x24/packaged-limestone-caves-linux-archive.json)
+verifies128,802,831 bytes,189files,13directories and202members, safe paths,
+file bytes/modes, internal checksums and full gzip EOF. Archive SHA256 is
+`19b8248db537956f7cd76dc58d21e92123adc9cef80cea268c3d23989120fdd4`.
+This is integrity evidence only; Linux and physical Deck were not executed.
+
+[Restoration](Verification/Live16x24/packaged-limestone-caves-restoration.json)
+completed18:54:49UTC:51,190 snapshot objects match,46 baseline foreign paths and
+normal saves/preferences/prior builds are preserved. Four exact serialization
+files were backed up/restored; root separately backed up and normalized owned
+shallow-caves metadata. No cleanup occurred;414,170,562,560 bytes were free.
+The later delivery-evidence commit remains pending.
+
+The same actual package continued one normal stair transition into shale
+`Overworld.16.13.5` at39,13,HP33 and returned to limestone4. Fixture92 preserves
+turn12410; [two entry/return captures](Verification/Live16x24/shale-caves-before-play.json)
+are a next-phase baseline only. No native shale coverage,depth6 observation or
+full-area acceptance is implied. The finite shared-storage audit remains
+source-only planning while the next implementation plan is prepared.
+
+All55 inventory polish scopes and5 Stump area states remain unchanged. Whole
+chunks, remaining strata, special sites, actors, props and hazards remain open.
+Optional nuanced animation stays deferred. Last actual hourly report18:27:43UTC;
+next19:27:43UTC. This delivery record does not advance that clock.
+
+Next coverage baseline extension: actual isolated Editor5→6 travel, wall28/28
+Stone/solid and floorTerrain readers are retained with four PNGs, exact owner
+censuses and earnedfixture93(depth6,40,13,HP33,turn12430). Fullroot archived and
+Finish verified. See `Docs/GRAPHICS-SHALE-CAVES.md` and
+`shale-caves-before-play.json`; this is still fallback-only baseline, not new
+shale integration or polish. `Docs/GRAPHICS-SHARED-STORAGE.md` records the next
+five genuinebox identities plus mandatory MimicChest disguise protection; no
+production or acceptance there yet. Last hourly18:27:43,next19:27:43 unchanged.

@@ -1,0 +1,72 @@
+{
+  "at_utc": "2026-10-27T18:54:18.563914+00:00",
+  "runtime_source_commit": "7f49fb70054b7b29957dacd17c999ae4b521c9fd",
+  "baseline_only": true,
+  "environment": "Actual ordinary packaged Mac game",
+  "actions": [
+    "Additional next-gap baseline: Left39,13 then normal > reaches depth5shale at39,13HP33. F5fixture92turn12410. Normal < returnslimestone4at39,13HP33."
+  ],
+  "captures": {
+    "shale-caves-before-01-packaged-entry.jpg": "f4ba6e37ba98a02e353932d8e28e3b6314cd2c7980bb7efc5df216184a07cf85",
+    "shale-caves-before-02-limestone-return.jpg": "cf2948e5e3f3840f952a5494b79c5ad0a5ca4836583b9b69f6d91cb69cf80e4f"
+  },
+  "fixture": "Fixtures/shale-caves-entry92",
+  "metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.16.13.5",
+    "ActiveZoneDisplayLabel": "Overworld.16.13.5",
+    "Turn": 12410,
+    "SaveTimestampUtc": "2026-10-27T18:52:40.3338980Z",
+    "HPSummary": "33/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "fixture_sha256": {
+    "Quick.sav.gz": "1cb2a87d18b3d1fe77316cd95caa800d08d477305197186981043d0a1668300c",
+    "Quick.json": "0dd3d06b0ee552261a8500a9b3e40f8103414203ee2be172cd4a4f79a949067f"
+  },
+  "limits": [
+    "No new shale native art,integration,test or coverage acceptance.",
+    "Single disclosedentry and normalreturn; deepercensus/readers/fullarea pending."
+  ],
+  "editor_continuation": {
+    "at_utc": "2026-10-27T18:58:56.667415+00:00",
+    "actions": [
+      "Fresh isolated normalContinue92depth5at39,13HP33 (03).",
+      "NormalRight40,13 and >depth6at40,13HP33 (04).",
+      "F5fixture93turn12430depth6HP33.",
+      "NormalLook40,9/examine confirmsShaleWallStone28/28solid (05);Look41,13/examine realShaleFloorTerrain (06)."
+    ],
+    "captures": {
+      "shale-caves-before-03-editor-entry.png": "0836681c57c2f3adeed1997790b17635ecf00dffbaef901b7c01a8ec8d75d564",
+      "shale-caves-before-04-depth6-entry.png": "3c6b1804c1b69d3e1058e22633c336e7cb68371466db7b31f984376b88f72f9f",
+      "shale-caves-before-05-wall-reader.png": "90dbf7a2899a1aa8288961724989b81a69efd66f073e0fde96184779be8a8a56",
+      "shale-caves-before-06-floor-reader.png": "4348516bd46dffc7a8ce1c37cae1f011f319ae29b4c77337f83e4a32b53a3146"
+    },
+    "censuses": {
+      "shale-caves-before-depth5-census.json": "346919cc0b6474094375d56e381302ecf331aacc7b57ba301eff86f6b08e2965",
+      "shale-caves-before-depth6-census.json": "894d3e77fca653e13eac4ff4bcc45afd4cfba348076c04662e8abe60bc049521"
+    },
+    "fixture": "Fixtures/shale-caves-depth6-93",
+    "fixture_sha256": {
+      "Quick.sav.gz": "86ea190eff43320f194555f98129263ddf5b05641444adc668fe55342ac1d922",
+      "Quick.json": "cde5efb5272f60977f1d368b4fb5cb1cfd21013ce15d5cdb6a76ab18afd8b43f"
+    },
+    "archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/755d213cfff441148df7890c00b33a00-shale-before-preserved",
+    "finish_verified": {
+      "playing": false,
+      "save_root_override": null,
+      "scene_dirty": false
+    },
+    "limits": [
+      "Read-only actual owner census includes hiddenowners explicitly; does not claim all observed.",
+      "No combat/damage/hazard application; no health/AI/world mutation or generation provenance claim.",
+      "Entry views and realreaders establish baseline only, no new shale native coverage/polish."
+    ]
+  }
+}

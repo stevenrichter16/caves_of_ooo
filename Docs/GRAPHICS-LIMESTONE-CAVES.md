@@ -354,3 +354,44 @@ Precommit hygiene: stripped only six trailing spaces from empty new limestone
 PNG metadata values. Original and normalized hashes are retained in the frozen
 handoff; no GUID/importer field or sprite pixel changed. All46foreign tracked
 changes match the prephase protection snapshot.
+
+
+## Source and package delivery — 18:55 UTC
+
+Source `7f49fb70054b7b29957dacd17c999ae4b521c9fd` was pushed to main and
+verified by exact remote head. Its77ownedpaths include editable art and all
+source/native/actual evidence. No unrelated work was staged.
+
+Fresh Mac59.143178s/344.39MB and Linux64.449915s/324.85MB builds both completed
+with0errors and4warnings. Mac actual normal Continue89 restored the destroyed
+wall's rubble, reader identity and traversal; normal4↔3stairs, F5fixture91 at
+40,13HP33turn12390 and a full process quit/relaunch passed. First PID45475 was
+absent before freshPID45876. Seven actual captures are retained; save/restart
+world rectangle564,000pixels has0changedpixels. This does not compare Editor
+and Mac grading. No new package destruction/combat/hazard trial is claimed.
+Shutdown logs retain four/six threadfinalization warnings and one ComputeBuffer
+disposal warning per process; no cleanlog assertion.
+
+The Linux archive is128,802,831bytes,SHA256
+`19b8248db537956f7cd76dc58d21e92123adc9cef80cea268c3d23989120fdd4`.
+All189files/13directories/202members, permissions, hashes, safe paths and gzip
+footer were verified. No Linux/Deck execution or sustainedperformance claim.
+The prior shallow packages remain preserved.
+
+Normal saves/preferences and all51,190protectedtrackedobjects were verified
+restored at18:54:49UTC;46foreignmodifiedpaths remain byte-identical. Four exact
+buildserializations were backedup/restored by the reviewed helper; priorowned
+shallow metadata's six empty-value trailing spaces were separately backedup
+and normalized before the fullsnapshotcheck. No assetpixel, source deletion,
+cache reclamation or drivecleanup occurred. Read-only diskcheck:386GiBfree.
+
+Further coverage work has an actual nextbaseline: normal packaged > from
+limestone4at39,13 reaches shale5at39,13HP33, F5fixture92turn12410, then normal<
+returns tolimestone. `shale-caves-before-play.json` and two actual images retain
+this fallback-only observation. Shale native production and wider gameplay
+remain pending. Sharedstorage five-owner plan is also source-only, with a
+required MimicChest disguise safeguard; it grants no sprite acceptance.
+
+Delivery records are a separate exactowned evidence commit following the source
+commit. Broad worldcoverage, fullchunkcomposition and all-area seriouspolish
+remain open. Last actual hourly18:27:43UTC,next19:27:43UTC is unchanged.
