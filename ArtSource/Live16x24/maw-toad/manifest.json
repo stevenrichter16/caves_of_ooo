@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "artifact": "maw-toad.png",
+  "width": 16,
+  "height": 24,
+  "frame_count": 1,
+  "blueprint": "MawToad",
+  "state": "idle",
+  "sprite_rect": [
+    0,
+    0,
+    16,
+    24
+  ],
+  "pivot_normalized": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "mesh_type": "FullRect",
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,binary alpha; root owns integration",
+  "source": "maw-toad.blend",
+  "source_cells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_maw_toad.py",
+  "native_png_sha256": "b9495996458c2a9474b580925b964f163264fbb6cc0b6ed4776cc9d5905c08a2",
+  "contact": "maw-toad-contact.png",
+  "contact_scale": 8,
+  "contact_backings": [
+    "99887D",
+    "3F553E",
+    "10120E"
+  ],
+  "contact_placements_top_left": [
+    [
+      8,
+      14
+    ],
+    [
+      40,
+      14
+    ],
+    [
+      72,
+      14
+    ]
+  ],
+  "palette": {
+    "mouth": "302B22",
+    "umber": "51432F",
+    "earth": "785A38",
+    "ochre": "9C7A49",
+    "olive": "6D6B42",
+    "throat": "918653",
+    "sand": "C1A571"
+  },
+  "bounds_top_left": [
+    1,
+    10,
+    15,
+    23
+  ],
+  "baseline_row_top_left": 22,
+  "protected_input_count": 1639,
+  "concept_inputs": [
+    "scene-concept-v1.png",
+    "parts-reference-v1.png"
+  ],
+  "critique": "Keep broad dark mouth, squat asymmetric mass and tucked limbs; reject generated gradients, glow/halo, uneven source pixels and invented scene alterations. Seven flat earthy colors; no teeth row, tongue, shell, attack pose or ground shadow.",
+  "self_review": "Squat asymmetric14x13 earth-brown mass, broad22pixel dark mouth and tucked feet are distinct from smallSinger/five-sheet frogs and domed tortoise. Small sand eye/foot marks are restrained; no halo/gradients/source trace. Actual biome grading, wet/damage cues and mouth contrast require root after-integration review. Source/render checkpoint only; no wholebiome or runtime acceptance.",
+  "runtime_acceptance": false,
+  "polish_acceptance": false
+}

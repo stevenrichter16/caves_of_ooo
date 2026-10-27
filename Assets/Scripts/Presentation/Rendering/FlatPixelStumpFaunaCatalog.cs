@@ -6,8 +6,8 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Eight exact living species, using unchanged sheet cells or square sources.
-    /// Owns eight cached sprite/tile pairs; borrows textures. Current graph,
+    /// <summary>Nine exact living species, using native cells or square sources.
+    /// Owns nine cached sprite/tile pairs; borrows textures. Current graph,
     /// disclosure, selection and reader authority remain with presentation callers.</summary>
     public sealed class FlatPixelStumpFaunaCatalog : IDisposable
     {
@@ -19,15 +19,18 @@ namespace CavesOfOoo.Rendering
         public const string SummitSingerResourcePath = "Sprites/Environment/summit_singer";
         public const string BrocchiniaSentinelResourcePath = "Sprites/Environment/brocchinia_sentinel";
         public const string SkySariResourcePath = "Sprites/Environment/sky_sari";
+        public const string MawToadResourcePath = "Sprites/Live16x24/maw-toad";
         readonly Tile cascadeFather, glasspaneFrog, yellowfootWayfarer, wardline, sariSnake;
         readonly Tile summitSinger, brocchiniaSentinel, skySari;
+        readonly Tile mawToad;
         bool disposed;
 
         public FlatPixelStumpFaunaCatalog()
             : this(Resources.Load<Texture2D>(CascadeFatherResourcePath), Resources.Load<Texture2D>(GlasspaneFrogResourcePath),
                 Resources.Load<Texture2D>(YellowfootWayfarerResourcePath), Resources.Load<Texture2D>(WardlineResourcePath),
                 Resources.Load<Texture2D>(SariSnakeResourcePath), Resources.Load<Texture2D>(SummitSingerResourcePath),
-                Resources.Load<Texture2D>(BrocchiniaSentinelResourcePath), Resources.Load<Texture2D>(SkySariResourcePath)) { }
+                Resources.Load<Texture2D>(BrocchiniaSentinelResourcePath), Resources.Load<Texture2D>(SkySariResourcePath),
+                Resources.Load<Texture2D>(MawToadResourcePath)) { }
 
         /// <summary>Optional sheets fail independently. Explicit null/malformed
         /// injection never reloads resources or changes a borrowed texture.</summary>
@@ -37,6 +40,12 @@ namespace CavesOfOoo.Rendering
 
         public FlatPixelStumpFaunaCatalog(Texture2D cascade, Texture2D glasspane, Texture2D yellowfoot,
             Texture2D wardlineSheet, Texture2D sari, Texture2D singer, Texture2D sentinel, Texture2D sky)
+            : this(cascade, glasspane, yellowfoot, wardlineSheet, sari, singer, sentinel, sky, null) { }
+
+        /// <summary>The optional MawToad input is one exact 16x24 cell. Existing
+        /// five/eight-input callers omit it without an implicit resource load.</summary>
+        public FlatPixelStumpFaunaCatalog(Texture2D cascade, Texture2D glasspane, Texture2D yellowfoot,
+            Texture2D wardlineSheet, Texture2D sari, Texture2D singer, Texture2D sentinel, Texture2D sky, Texture2D maw)
         {
             cascadeFather = Build(cascade, "CascadeFather");
             glasspaneFrog = Build(glasspane, "GlasspaneFrog");
@@ -46,6 +55,8 @@ namespace CavesOfOoo.Rendering
             summitSinger = BuildSquare(singer, "SummitSinger");
             brocchiniaSentinel = BuildSquare(sentinel, "BrocchiniaSentinel");
             skySari = BuildSquare(sky, "SkySari");
+            if (maw != null && maw.width == 16 && maw.height == 24)
+                mawToad = BuildFrame(maw, new Rect(0, 0, 16, 24), "MawToad");
         }
 
         /// <summary>Exact blueprint recognition only; does not grant visibility
@@ -54,7 +65,8 @@ namespace CavesOfOoo.Rendering
             => owner?.BlueprintName == "CascadeFather" || owner?.BlueprintName == "GlasspaneFrog"
                 || owner?.BlueprintName == "YellowfootWayfarer" || owner?.BlueprintName == "Wardline"
                 || owner?.BlueprintName == "SariSnake" || owner?.BlueprintName == "SummitSinger"
-                || owner?.BlueprintName == "BrocchiniaSentinel" || owner?.BlueprintName == "SkySari";
+                || owner?.BlueprintName == "BrocchiniaSentinel" || owner?.BlueprintName == "SkySari"
+                || owner?.BlueprintName == "MawToad";
 
         /// <summary>Pure semantic body lookup. Surviving damage, relationships,
         /// authored base color and status effects do not change species identity.
@@ -84,6 +96,7 @@ namespace CavesOfOoo.Rendering
                 case "SummitSinger": if (render.RenderString == "f") tile = summitSinger; break;
                 case "BrocchiniaSentinel": if (render.RenderString == "l") tile = brocchiniaSentinel; break;
                 case "SkySari": if (render.RenderString == "E") tile = skySari; break;
+                case "MawToad": if (render.RenderString == "t") tile = mawToad; break;
             }
             return tile != null;
         }
@@ -132,6 +145,7 @@ namespace CavesOfOoo.Rendering
             DestroyFrame(cascadeFather); DestroyFrame(glasspaneFrog); DestroyFrame(yellowfootWayfarer);
             DestroyFrame(wardline); DestroyFrame(sariSnake);
             DestroyFrame(summitSinger); DestroyFrame(brocchiniaSentinel); DestroyFrame(skySari);
+            DestroyFrame(mawToad);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }

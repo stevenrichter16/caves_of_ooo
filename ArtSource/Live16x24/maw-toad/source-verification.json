@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "native_dimensions": [
+    16,
+    24
+  ],
+  "exact_native_rgba_matches_authored_cells": true,
+  "native_pixels_checked": 384,
+  "direct_integer8x_contact_pixels_checked": 73728,
+  "binary_alpha": true,
+  "maximum_palette_colors": 7,
+  "stats": {
+    "occupied_pixels": 141,
+    "palette_colors": 7,
+    "mouth_pixels": 22,
+    "bounds_top_left": [
+      1,
+      10,
+      15,
+      23
+    ],
+    "baseline_row_top_left": 22
+  },
+  "source_png_sha256": "b9495996458c2a9474b580925b964f163264fbb6cc0b6ed4776cc9d5905c08a2",
+  "decoded_rgba_sha256": "d338d33f7f5a62f5dd2f7047a7f304bcd106baa3f30d17667f6e2a1602223093",
+  "source_cells_sha256": "881e6dd1cb581144a63f3c5441de11e47ca07ab3e3163b5df298ef0d4069c155",
+  "editable_blend_sha256": "fc57002ea48885db7e8e9135ce2be713c1a0acb5fd15f996c0952a6176f6b3ca",
+  "contact_sha256": "adc20f0ab031c26f76d6b08f7f974f933148129147bcf1038a6f3a19fdc94f5d",
+  "protected_inputs_unchanged": 1639,
+  "corruption_counterchecks": [
+    {
+      "name": "partial alpha",
+      "rejected": true
+    },
+    {
+      "name": "wrong broad-mouth color",
+      "rejected": true
+    },
+    {
+      "name": "wrong canvas dimensions",
+      "rejected": true
+    },
+    {
+      "name": "missing baseline foot",
+      "rejected": true
+    },
+    {
+      "name": "source-cell color drift",
+      "rejected": true
+    }
+  ],
+  "image_mutations_by_verifier": false,
+  "limits": "Source/render verification only. No Unity import, runtime native tests, actual after gameplay, package, Linux/Deck execution or biome/polish acceptance."
+}

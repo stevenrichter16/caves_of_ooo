@@ -1,8 +1,8 @@
 # Graphics completion plan
 
-**Current delivery checkpoint —14:56UTC:** SummitSinger, BrocchiniaSentinel and SkySari are delivered from source `3bafb1ee3` with 285 current native passes, bounded Editor/Mac world-reader/travel/restart checks, and verified Linux archive (not executed). Eight of nine identified Stump fauna bodies are integrated/observed. MawToad is the next missing body; its actual Grainfield world/reader baseline is now saved. All-world coverage and serious area polish remain open. Last actual hourly report14:27UTC; next15:27UTC. Earlier checkpoints below are historical.
+**Current integration checkpoint —2026-10-27:** MawToad now has one original editable native16x24 body with305 distinct native passes and bounded actual Editor world/reader, chase, combat damage cue, F5 and fresh Continue evidence. All nine identified Stump fauna bodies are integrated/observed, not whole-biome or area-polish acceptance. Maw source push and fresh packages are pending; current delivered package remains canopy source3bafb1ee3. Last actual hourly report15:27UTC; next16:27UTC. Earlier checkpoints below are historical.
 
-**Current coverage checkpoint — 2026-10-27:** First-five Stump fauna source
+**Historical coverage checkpoint — 2026-10-27:** First-five Stump fauna source
 `0ddd8b6abf89a22275db7c09dde39bbb47392c03` and delivery
 `d87669092c56d1f23bb99b7c33bbde8eff59ee69` are verified on main. Fresh Mac bounded
 play/restart and Linux archive/restoration are complete; Linux and Deck were not
@@ -3250,3 +3250,50 @@ Next: Push the reviewed next-three source, verify fresh Mac/Linux delivery, then
 SummitSinger, BrocchiniaSentinel and SkySari are delivered from source `3bafb1ee3` with 285 current native passes, bounded Editor/Mac world-reader/travel/restart checks, and verified Linux archive (not executed). Eight of nine identified Stump fauna bodies are integrated/observed. MawToad is the next missing body; its actual Grainfield world/reader baseline is now saved. All-world coverage and serious area polish remain open. Both builds had zero errors/four warnings. The Linux archive is128,790,824bytes with independently verified contents/checksums. Mac saved/restarted world rectangle564,000pixels is identical. Normal saves/preferences, all50,825tracked files including44pre-existing dirty files and previous builds were restored/verified; test sessions archived, no storage deletion. See [Mac play receipt](Verification/Live16x24/packaged-stump-canopy-mac-play.json) and [independent review](Verification/Live16x24/packaged-stump-canopy-review.md).
 
 Complete crisp MawToad from its retained actual baseline and imagegen references, then Grovelands Shambler/Mosshulk/ChoirTendril and other uncovered regional/shared families. Optional animation remains deferred. No area-polish status advances. The actual next baseline is Grainfield24,0 MawToad HP22; fixture76turn9140player29/40. Broad sparse centers, subtle stone blockers, missing props/corpses and other regional families remain open.
+
+
+### MawToad native and actual Editor checkpoint —2026-10-27
+
+MawToad now has one original editable native16x24 body with305 distinct native passes and bounded actual Editor world/reader, chase, combat damage cue, F5 and fresh Continue evidence. All nine identified Stump fauna bodies are integrated/observed, not whole-biome or area-polish acceptance. Maw source push and fresh packages are pending; current delivered package remains canopy source3bafb1ee3.
+
+One original seven-color16×24 body is reconstructed as editable integer-cell
+Blender geometry, with exact native/contact/source verification and1,639 prior
+art inputs preserved. Final focused20 and disjoint related285 cases pass
+(305 distinct; no skips/failures). Retained genuine20RED and initial18/20
+fixture-correction results are historical, not additional final passes.
+
+Ordinary fixture76 Continue in Grainfield2,2 began at40,12 HP29/40. Reader
+Maw62804 at24,0 had22/22HP. Walking around the stone ridge led to an actual
+hostile approach at31,1 beside player32,1. Normal combat hit the Maw for7,
+leaving15HP, and its bite dealt6 to the player, leaving23HP; capture05 visibly
+records the red damage cue. Three rightward moves ended at player35,1 with
+Maw34,1, and F5 retained fixture77turn9530. Fresh isolated Continue restores
+those cells/health plus second Maw62805 at73,24 HP22. Seven actual captures
+and [the play receipt](Verification/Live16x24/maw-toad-after-receipt.json)
+record the bounded result. Saved06/restarted07 world rectangle[0,0,940,680]
+is exactly639,200 decoded RGB pixels equal; sidebar/hotbar are outside the claim.
+Both isolated roots were archived before Finish. Wet, death/corpse and multicell
+counterchecks are native-tested only; no ordinary observation of those states
+is claimed here.
+
+Finish the reviewed MawToad source push and fresh Mac/Linux delivery, then Grovelands Shambler, Mosshulk and living merchant ChoirTendril. Continue remaining native terrain/flora/actors/props/services/crops and essential states across every biome, settlement, underground and special area. Separate serious area polish remains required after broad coverage; optional nuanced animation is deferred.
+Current delivered package stays canopy source3bafb1ee3; source push and new
+Maw packages remain pending. No Linux/Deck execution or sustained performance
+claim. Existing55 inventory polish scopes and5 Stump area-polish records are
+unchanged. Last actual hourly report15:27UTC; next16:27UTC. This is a saved
+continuation, not another hourly report. See [the Maw phase](GRAPHICS-MAW-TOAD.md).
+
+
+**Final protection and actual hourly report —15:27UTC:** Root confirms Unity
+Edit is idle (not playing/compiling/pending/active), isolated rootnull and scene
+clean. Normal saves and44 foreign paths are preserved; game preference keys
+are restored and standalone preferences match fully. Editor engine/test metadata
+keys `PT_Run`, `unity.player_session_count`, `unity.player_sessionid` and
+`unity_connect.session_id` changed as expected; full Editor preferences are
+not claimed identical. Both isolated earned roots were archived before Finish.
+
+The actual15:27UTC itemized report completed canopy deliverya6add4a20 and Maw
+native/Editor verification, marked Maw push/packages in progress, and set next
+goals to Grovelands Shambler/Mosshulk/living ChoirTendril and remaining regional
+families. Sparse chunks, subtle stone blockers and glyph props remain polish
+debt. Optional animation remains deferred. Next hourly report16:27UTC.

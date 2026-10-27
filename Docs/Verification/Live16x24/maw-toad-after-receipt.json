@@ -1,0 +1,179 @@
+{
+  "at_utc": "2026-10-27T15:26:55.819129+00:00",
+  "kind": "actual isolated Unity Editor ordinary GameBootstrap play; not packaged player",
+  "source_parent": "a6add4a206409f8d93ebe3ce813611f3df675da8",
+  "runtime_sha256": "22ce473916bcb8e70150aa712529ed37ee785aa423cfcce3f34289d92b4d89b1",
+  "native_resource_sha256": "b9495996458c2a9474b580925b964f163264fbb6cc0b6ed4776cc9d5905c08a2",
+  "native_tests": {
+    "red": 20,
+    "focused_passed": 20,
+    "related_passed": 285,
+    "distinct_passed": 305,
+    "failed": 0,
+    "skipped": 0,
+    "xmls": [
+      "maw-toad-red.xml",
+      "maw-toad-initial-green.xml",
+      "maw-toad-green.xml",
+      "maw-toad-related-green.xml"
+    ]
+  },
+  "baseline": {
+    "fixture": "Fixtures/maw-toad-before76",
+    "turn": 9140,
+    "zone": "Overworld.2.2.0",
+    "player": [
+      40,
+      12
+    ],
+    "hp": 29,
+    "maw62804": [
+      24,
+      0,
+      22
+    ],
+    "maw62805": [
+      73,
+      24,
+      22
+    ]
+  },
+  "controls": "normal Continue, Look/examine, arrows around actual blocking stone ridge, one bump attack, three right retreat steps, F5, stopped Play and fresh launcher Continue",
+  "observed": [
+    "native world/examine identity",
+    "actual hostile approach from24,0 to31,1",
+    "real sword hit7 changesMaw22 to15; realbite6changesplayer29 to23",
+    "red damage cue retained inactual05capture",
+    "further chase to34,1",
+    "earned save and fresh Continue preserve bothMawowners/player/HP"
+  ],
+  "save_and_restart": {
+    "fixture": "Fixtures/maw-toad-after77",
+    "turn": 9530,
+    "player": [
+      35,
+      1
+    ],
+    "hp": 23,
+    "maw62804": [
+      34,
+      1,
+      15
+    ],
+    "maw62805": [
+      73,
+      24,
+      22
+    ],
+    "world_comparison": {
+      "rectangle": [
+        0,
+        0,
+        940,
+        680
+      ],
+      "compared_RGB_pixels": 639200,
+      "changed_pixels": 0,
+      "excluded": "sidebar and hotbar; not entire screenshot equality"
+    }
+  },
+  "captures": [
+    {
+      "path": "maw-toad-after-01-grainfield.png",
+      "sha256": "f099c3565a1837ea822d0284ec47a8d101adfffa0b4d98efa7fd1a0b16cc024a",
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "maw-toad-after-02-reader.png",
+      "sha256": "6299b371bbddb6ba3569a613cb3e9c017095b54920623cf04b9b5d87f7ba8782",
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "maw-toad-after-03-approach.png",
+      "sha256": "d48044cc4222ea09b0b112ee6d883a7e18dc24405c52e0ed38db2ebeab1a977a",
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "maw-toad-after-04-hostile-approach.png",
+      "sha256": "49ac14170500977f50295f31bafeb5200feba713eaecb710d3f2a229a16d4b85",
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "maw-toad-after-05-combat.png",
+      "sha256": "901e85ec546668013cb53342e55f7dbea34f11e1f2b61d4ffb915a8508112c7d",
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "maw-toad-after-06-saved.png",
+      "sha256": "e5e2344992520f4d30b37c8071c142b30d5102f834695bd4083b7ef31cde3191",
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "maw-toad-after-07-restarted.png",
+      "sha256": "b7e546cc422947455379396845ab3318170e34274001610a1099ee9c001bfa63",
+      "size": [
+        1280,
+        800
+      ]
+    }
+  ],
+  "preservation": {
+    "normal_saves": {
+      "normal-editor": true,
+      "normal-standalone": true
+    },
+    "preferences": {
+      "unity.DefaultCompany.caves-of-ooo": {
+        "game_preferences_equal": true,
+        "engine_test_metadata_changed_keys": [
+          "PT_Run",
+          "unity.player_session_count",
+          "unity.player_sessionid",
+          "unity_connect.session_id"
+        ]
+      },
+      "com.DefaultCompany.2D-URP": {
+        "game_preferences_equal": true,
+        "engine_test_metadata_changed_keys": []
+      }
+    },
+    "all44foreign_dirty_equal": true,
+    "isolated_roots_archived_before_finish": [
+      "320bacce05d94e0f8fac54cfadc755ef-maw-after-preserved",
+      "0f576f2d5224475488ebf6d6e8b4bd78-maw-restart-preserved"
+    ],
+    "final_editor": {
+      "playing": false,
+      "compiling": false,
+      "pending": false,
+      "isolation_active": false,
+      "root": null,
+      "scene_dirty": false
+    },
+    "storage_deletion": false
+  },
+  "limits": [
+    "Wet, death/corpse, removal and multicell refusal are native-tested; not newly exercised in this play run",
+    "No Linux or physical Deck execution; Maw packages pending",
+    "No performance or all-area polish acceptance",
+    "Whole-scene view retains broad sparse regions, subtle stone blockers and glyph props; coverage body accepted separately"
+  ]
+}

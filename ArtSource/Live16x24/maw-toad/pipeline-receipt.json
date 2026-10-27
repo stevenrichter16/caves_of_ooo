@@ -1,0 +1,27 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "scene_use": "Actual Grainfield baseline plus original identity and approved cast style",
+  "outputs_are_reference_only": true,
+  "inputs_outputs_sha256": {
+    "Docs/Verification/Live16x24/maw-toad-before-01-grainfield.jpg": "29ea28144ed068da4398b1baf00dd450cb0fc4b0cd34827642dc3f1f0a9b6a7c",
+    "Assets/Resources/Sprites/Environment/maw_toad.png": "84b5d64d22fbc86c6714c9a41fba28bb83a788bc6deab4a0ce059a671138eb65",
+    "ArtSource/Live16x24/cast/opening-cast-contact.png": "60a30dbe57b5d03ca1ee899d65ecab9b9cf9544e3e279c9d566bc57604611f0f",
+    "ArtSource/Live16x24/maw-toad/concept-prompt.txt": "b27ed9fb3791dff3410673e6c6eb8d372a514cb05cf801bbd0dcbbf2eabbc451",
+    "ArtSource/Live16x24/maw-toad/parts-prompt.txt": "23b57048ffe69f733448998d4acc48de1f35a941d6422ff4590ee76859db66ca",
+    "ArtSource/Live16x24/maw-toad/scene-concept-v1.png": "d3bc30a69401bbc68515a007399405e69d411ae7e49f894ce332a291fb893899",
+    "ArtSource/Live16x24/maw-toad/parts-reference-v1.png": "a11f9ba0715bddf7bf3d43278564ae8ee33e4bf346efc07875f8d1db6403c1e9"
+  },
+  "selected_motifs": [
+    "Broad dark mouth",
+    "Squat earth-brown body",
+    "Tucked limbs"
+  ],
+  "rejected": [
+    "Concept scene/UI alterations",
+    "Generated glow and gradients",
+    "Soft alpha/edges",
+    "Uneven pixels"
+  ],
+  "production": "Original integer-cell Blender reconstruction, not raster downsample; separate source verification files",
+  "runtime_acceptance": false
+}
