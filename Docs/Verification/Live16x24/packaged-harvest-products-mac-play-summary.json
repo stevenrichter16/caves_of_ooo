@@ -1,0 +1,127 @@
+{
+  "source_commit": "8ab4508093bb0a7894d659af7c58a770e009e2ab",
+  "at_utc": "2026-10-27T08:35:55.462561+00:00",
+  "platform": "native macOS standalone",
+  "captureDimensions": "1280x856 native window including56pixel titlebar;800pixel game content, original CUA bytes",
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-00-startup.jpg",
+      "sha256": "eed554631a344a5722295df6c824d2918b2701b4ac206683549a42c44932767d",
+      "bytes": 209874,
+      "observation": "Ordinary flat startup; save detected"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-01-bone-inventory.jpg",
+      "sha256": "a6e8bab8c0ce4f1e6a7be0304aa1fd43ba83490a4864118e81581c84432c9f07",
+      "bytes": 198403,
+      "observation": "Continue3540; carried Bone native, HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-02-bone-details.jpg",
+      "sha256": "ec793afc64f2b516ba0280fac4303cba7a8a507a95ed3091e69cb22e9ee61505",
+      "bytes": 130605,
+      "observation": "F1 Bone native full reader"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-03-combat-covered-bone.jpg",
+      "sha256": "8800e09bf6a6c416cfaa72aaa7308a46bd5ac13a8fdf9b197d5507f91e0b6d21",
+      "bytes": 189960,
+      "observation": "Left bumps enemy; bone stays covered at59,9; not uncovered rendering evidence"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-04-pile-notes.jpg",
+      "sha256": "42710e5668e2f376c4329409ef7c4fcc1222874ce65e0de2f0d3483717ac6787",
+      "bytes": 207325,
+      "observation": "Pile field notes includes bone and brittle hound; NOT individual native reader evidence"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-05-combat-saved.jpg",
+      "sha256": "a4a14bb2b1f19aaa7d15aa72c54cfd38d480ce3f89db3f833bd72b298a8de2f7",
+      "bytes": 186783,
+      "observation": "Real adjacent pickup succeeded; combatbranch saved3570HP15 bleeding/poisoned"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-06-salt-inventory.jpg",
+      "sha256": "d8e24b2aa5faeb8affbae0504d1bae328feee2abd60e0b4d60db2f088bbb92f1",
+      "bytes": 204272,
+      "observation": "Earlier unchanged BrineLens3210 checkpoint; PaleSalt native inventory HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-07-salt-ground.jpg",
+      "sha256": "dc3f3e247e3f58643a5bb14193021614ddb1ceeecb868eb22f1fa03e8f76a0d0",
+      "bytes": 175933,
+      "observation": "Normal D/drop andLeft39,12 exposes PaleSalt40,12 native"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-08-salt-ground-reader.jpg",
+      "sha256": "dfdfb4d2014012a45ab2d57f4c63a284218d88012c33cffd9a6aec02e45555b8",
+      "bytes": 217130,
+      "observation": "C/Right/X actual adjacent native PaleSalt reader"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-09-travel-saved.jpg",
+      "sha256": "9b15552fd2ea3a995c2bf702452a0e3923c2a95304257b3c8586ed6cb7216e15",
+      "bytes": 174422,
+      "observation": "Normal pickup and world-map travel2west toSaltPan15,13; F5turn3300HP38cell40,12"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-10-restart-world.jpg",
+      "sha256": "bb20604704d07f5bee571a596094c7cb86e61f7f1d731fe8719a92037bae1069",
+      "bytes": 176023,
+      "observation": "Full process quit/relaunch/Continue atSaltPan40,12HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-harvest-products-11-restart-salt.jpg",
+      "sha256": "d8e24b2aa5faeb8affbae0504d1bae328feee2abd60e0b4d60db2f088bbb92f1",
+      "bytes": 204272,
+      "observation": "Same PaleSalt native inventory quantity1 after full restart"
+    }
+  ],
+  "initial_fixture": "Fixtures/harvest-products-road65",
+  "combat_branch": {
+    "saved_turn": 3570,
+    "zone": "Overworld.19.13.0",
+    "player_position": [
+      60,
+      9
+    ],
+    "hp": "15/40",
+    "condition": "bleeding and poisoned",
+    "fixture": "Fixtures/packaged-harvest-products-combat65",
+    "whole_owned_saves_archive": "/tmp/coo-harvest-mac-combat-saves",
+    "scope": "Bone carried fullreader and actualdrop/pickup observed; enemies covereddrop so nocleanworldrenderclaim. Savedbranchretained; noinvulnerabilityorHPcorrection."
+  },
+  "quiet_branch": {
+    "input_fixture": "Fixtures/packaged-beating-brine65",
+    "input_turn": 3210,
+    "note": "Separate unchanged earlier legitimate checkpoint after quit; not presented as continuous combat escape.",
+    "saved_turn": 3300,
+    "zone": "Overworld.15.13.0",
+    "player_position": [
+      40,
+      12
+    ],
+    "hp": "38/40",
+    "fixture": "Fixtures/packaged-harvest-products-saltpan65",
+    "observations": "Native PaleSalt world/inventory/adjacentreader, ordinary pickup/travel/save/fullprocessrestart."
+  },
+  "fixture_hashes": {
+    "packaged-harvest-products-combat65": {
+      "Quick.sav.gz": "2bd8483504973be69e8557e7a9d1d9ad05a087c13285070619b86f30be26de44",
+      "Quick.json": "12539d355bb3cdfd8a7423f23b445cea997b57680d3ad49416d2fc8e3cc70755"
+    },
+    "packaged-harvest-products-saltpan65": {
+      "Quick.sav.gz": "dc932283791587fe43bc60eabeeec8236083f44fc8a56d53a89cf6abbedb5d33",
+      "Quick.json": "6352004e4adc6889ef9fb7d3fee0356b489a1303d780d4930500e5d4318cc7c3"
+    }
+  },
+  "input": "Actual CUA normal Continue, inventory, details, drop, walking, context menus, pickup, world map and F5. No injected owners, health or simulation command.",
+  "limitations": [
+    "Two products observed, not17natural acquisitions.",
+    "No whole-biome/fullness completion. Enemy/prop glyphs still visible.",
+    "No Linux execution, physical Deck or sustainedperformanceacceptance.",
+    "Standalone count/identity observations are UI evidence; exact runtime IDs were separately read in Editor."
+  ],
+  "player_log": "packaged-harvest-products-mac-player.log",
+  "playerLogExceptionOrErrorLines": 0
+}

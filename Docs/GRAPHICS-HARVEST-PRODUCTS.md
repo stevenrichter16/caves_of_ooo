@@ -1,6 +1,6 @@
 # Next worldwide sprite slice: portable harvest products
 
-2026-10-27. **Status: eight native frames and nine unchanged reuses integrated; final399/399 native tests pass. PaleSalt and Bone are observed through ordinary gameplay and Editor restart. Source push and fresh packages are next; the other15 ordinary observations remain open.** Source inspected: the actual boot-loaded `Assets/Resources/Content/Blueprints/Objects.json`, native catalogs, ordinary population/composition sources, loot registry and existing inventory/examine route. Bootstrap loads this exact Objects file (`GameBootstrap.cs:230–239`); BlueprintLoader resolves inheritance (`BlueprintLoader.cs:35–105`).
+2026-10-27. **Status: eight native frames and nine unchanged reuses integrated; final399/399 native tests pass. PaleSalt and Bone are observed through ordinary gameplay and Editor restart. Source8ab450809 is pushed, fresh Mac/Linux delivery is verified, and the other15 ordinary observations remain open.** Source inspected: the actual boot-loaded `Assets/Resources/Content/Blueprints/Objects.json`, native catalogs, ordinary population/composition sources, loot registry and existing inventory/examine route. Bootstrap loads this exact Objects file (`GameBootstrap.cs:230–239`); BlueprintLoader resolves inheritance (`BlueprintLoader.cs:35–105`).
 
 ## Concrete problem and bounded deliverable
 
@@ -276,3 +276,53 @@ quantities, recipes, prices, damage, generation or optional animations changed.
 Next: preserve reviewed source on main, refresh packages, then begin the actual
 Grovelands baseline and native area kit. Do not wait for all15 remote product
 observations before covering unrepresented regions.
+
+## Packaged delivery — 2026-10-27 08:39 UTC
+
+Runtime source `8ab4508093bb0a7894d659af7c58a770e009e2ab` is verified on
+origin/main. Exact staging preserved unrelated changes. Rebase refused the dirty
+working tree; fetched origin was already an ancestor, so no replay or stash was
+needed before the fast-forward push.
+
+Both fresh builds succeeded: Mac 39.875953 seconds, Linux 33.835358 seconds,
+zero errors and four warnings each. Paths:
+- `Builds/Verification/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo.app`
+- `Builds/SteamDeck/2026-10-27-harvest-products-8ab450809-current/`
+
+The Linux archive is 128,697,337 bytes with 182 regular files and 195 members.
+SHA256: `5d9fe132a6c2bb4b0a767e2b3657de033e66c456e6a9be0377d54b0a7745aaaf`.
+Independent stream review verified every hash, size, mode and member, gzip EOF,
+build receipts, 399 native passes and required credits/licenses. Linux execution,
+physical Steam Deck operation and sustained performance remain untested.
+
+Twelve original Mac captures are recorded in
+`Verification/Live16x24/packaged-harvest-products-mac-play-summary.json`.
+The earned Caravan Road checkpoint at turn 3540 shows native Bone in inventory
+and F1. Actual drop/pickup attracts adjacent enemies: the attempted left step
+bumps a brittle hound, which then covers the item. Those views do not prove an
+uncovered native Bone or an individual ground reader. The combat branch is
+preserved at `Fixtures/packaged-harvest-products-combat65`: turn 3570, 15 HP,
+bleeding and poisoned.
+
+After quitting, a separate unchanged earlier Brine Lens checkpoint at turn 3210
+starts the quiet check. Native PaleSalt appears in inventory, uncovered ground
+and the adjacent reader. Real pickup, ordinary world-map travel two cells west
+to Salt Pan 15,13, F5 at turn 3300 / 38 HP / cell 40,12, and full process
+quit/relaunch/Continue all succeed. The inventory sprite persists. This is not
+a continuous escape from combat. The final quiet fixture is
+`Fixtures/packaged-harvest-products-saltpan65`. Exact product IDs were separately
+read in Editor; packaged observations are actual UI and save-metadata evidence.
+
+Restoration compared 50,263 tracked objects and restored eight exact reviewed
+generated files: four whitespace-only metadata changes and four build settings.
+All 38 foreign changes, normal Editor/standalone saves and logical preferences,
+and previous Beating builds/archive were preserved. Owned test Saves were
+archived by rename. The final Player log contains no Exception/Error lines.
+See `packaged-harvest-products-restoration.json`. No storage cleanup occurred.
+
+This closes bounded source, integration and package gates for 17 harvest
+identities, with ordinary observations for PaleSalt and Bone only. It does not
+complete all items, any biome, or whole-scene fullness. Next is the actual
+Grovelands four-formation baseline and cohesive terrain/vegetation kit, followed
+by Overwrit, Stump and every remaining registered area. Optional animation is
+not a prerequisite.

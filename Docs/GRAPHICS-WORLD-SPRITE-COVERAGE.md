@@ -332,16 +332,50 @@ Root's actual Editor pass captured `harvest-products-after-01` through `10`:
 
 A fresh isolated **Editor restart is verified** in `harvest-products-after-10-restart-inventory.png`: turn 3540, zone 19,13, cell 59,9, HP 38, PaleSalt 42025 and Bone 42026 at quantity 1 each, with only Sand and Player at the harvest cell and Bones 38104 absent. Root archived the earned restart root at `/tmp/coo-harvest-restart-earned-0a21facb`; normal-state protection passed. This is Editor restart evidence, not a packaged process restart.
 
-**Packaging and source push remain pending.** The current delivered
-package remains Beating source `2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc`; its
-historical PaleSalt glyph capture remains a truthful record of that older build.
-The new integration's main push is also pending root's commit/remote check. The
-other 15 products have native-test coverage but have not been observed through
-ordinary acquisition and readers in this pass. No Linux execution, physical Deck,
-sustained performance or whole-biome/fullness claim follows from these checks.
+**Source and bounded package verification are complete.** Source
+`8ab4508093bb0a7894d659af7c58a770e009e2ab` was pushed to main. Fresh Mac and
+Linux builds both succeeded with zero errors and four warnings, in 39.876 and
+33.835 seconds respectively. The current Linux archive is 128,697,337 bytes,
+182 regular files and 195 members, SHA-256
+`5d9fe132a6c2bb4b0a767e2b3657de033e66c456e6a9be0377d54b0a7745aaaf`.
+Independent archive verification passed; see
+`Verification/Live16x24/packaged-harvest-products-linux-independent-review.json`.
+The former Beating package and its historical glyph evidence remain preserved.
 
-After closing package verification, continue **Grovelands actual whole-view
-baselines** using [the source preflight](Verification/Live16x24/grovelands-next-kit-preflight.md).
+The actual Mac run has **12 captures**, documented in
+`Verification/Live16x24/packaged-harvest-products-mac-play-summary.json`:
+
+- Continue from the earned turn 3540 fixture showed native Bone inventory and
+  full item details. Actual drop/pickup was exercised, but adjacent enemies
+  covered the dropped Bone. The pile reader is not individual native reader
+  evidence, and there is **no clean uncovered Bone world capture**. This real
+  combat branch was saved at turn 3570, HP 15/40, bleeding and poisoned, in
+  `Fixtures/packaged-harvest-products-combat65`; no health correction was made.
+- After quitting, a **separate unchanged earlier BrineLens turn 3210 fixture**
+  supplied the quiet PaleSalt pass. Native inventory, uncovered ground and
+  adjacent reader were observed, followed by normal pickup and world-map travel
+  to SaltPan 15,13. F5 saved turn 3300 at 40,12, HP 38/40. Full process
+  quit/relaunch/Continue retained native PaleSalt inventory quantity 1 in
+  `Fixtures/packaged-harvest-products-saltpan65`. This is not a continuous
+  escape from the combat branch.
+
+Standalone identity and count observations come from the actual UI; exact
+runtime IDs were separately read in Editor. The other 15 products have native
+test coverage but have not been observed through ordinary acquisition/readers
+in this pass. No Linux execution, physical Deck, sustained performance or
+whole-biome/fullness acceptance follows from these checks.
+
+Restoration compared **50,263 tracked objects**, restored eight reviewed
+build-generated files, preserved all 38 unrelated edits and normal Editor and
+standalone saves/logical preferences, and kept current and earlier builds
+intact. Owned test saves were archived; no storage cleanup occurred. The receipt
+is `Verification/Live16x24/packaged-harvest-products-restoration.json`.
+The source push is verified; packaged evidence and these living-record updates
+still await root's final commit and remote check.
+
+Next, begin **Grovelands actual whole-view baselines** using
+[the source preflight](Verification/Live16x24/grovelands-next-kit-preflight.md)
+and the preserved quiet SaltPan fixture as a legitimate travel starting point.
 The first cohesive proposal is the existing forest envelope plus **14 provisional
 new frames for nine real owners**: MycelialColumn, GroveSeep, GroveSign,
 GroveRedGrowth, FruitingBody, CompostRow, CompostCache, ChoirIronVein and
@@ -360,6 +394,6 @@ source-only placement expectations need actual-view validation. Preserve
 intentional sparse areas while reviewing their composition; continue to defer
 nuanced animation.
 
-Last actual hourly report remains **07:24 UTC; next due 08:24 UTC**. These evidence
+Last actual hourly report remains **08:24 UTC; next due 09:24 UTC**. These evidence
 updates are not a new hourly report. Storage reclamation remains inspection-only;
 this documentation update performs no cleanup.

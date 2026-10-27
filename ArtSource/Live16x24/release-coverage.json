@@ -862,22 +862,25 @@
     }
   },
   "latest_observation": {
-    "at_utc": "2026-10-27T08:16:51.0413990Z",
-    "summary": "17 portable harvest products integrated with8 new and9 unchanged reused frames;399 native tests passed. Actual Editor PaleSalt42025 count1 world/inventory/details/drop/read/pickup persists through normal travel17,13 to19,13; actual Bones38104 harvest at59,9 removes source and yields Bone42026 count1. F5turn3540 at59,9 HP38. Fresh Editor restart restored the exact3540 checkpoint, both product IDs/counts and absent harvested source; source push and package verification pending; other15 ordinary products and whole-biome/fullness coverage remain open.",
-    "evidence": "Docs/Verification/Live16x24/harvest-products-native-summary.json",
+    "at_utc": "2026-10-27T08:37:50.738382+00:00",
+    "summary": "Harvest-product source8ab450809 pushed with17 identities,8 new/9 unchanged frames and399 native passes. Fresh Mac/Linux builds succeeded. Twelve actual Mac captures separately show Bone carried/details/drop/pickup in real combat saved3570 HP15 (no clean uncovered Bone capture), then PaleSalt from unchanged earlier Brine3210 through uncovered world/reader/pickup/travel/SaltPan3300 HP38/full process restart. Restoration preserved normal state and prior builds. Other15 ordinary products and whole-biome/fullness coverage remain open.",
+    "evidence": "Docs/Verification/Live16x24/packaged-harvest-products-mac-play-summary.json",
     "actual_captures": [
-      "Docs/Verification/Live16x24/harvest-products-after-01-inventory.png",
-      "Docs/Verification/Live16x24/harvest-products-after-02-details.png",
-      "Docs/Verification/Live16x24/harvest-products-after-03-ground.png",
-      "Docs/Verification/Live16x24/harvest-products-after-04-ground-reader.png",
-      "Docs/Verification/Live16x24/harvest-products-after-05-picked-up.png",
-      "Docs/Verification/Live16x24/harvest-products-after-06-caravan-road.png",
-      "Docs/Verification/Live16x24/harvest-products-after-07-bones-action.png",
-      "Docs/Verification/Live16x24/harvest-products-after-08-bone-inventory.png",
-      "Docs/Verification/Live16x24/harvest-products-after-09-travel-inventory.png",
-      "Docs/Verification/Live16x24/harvest-products-after-10-restart-inventory.png"
+      "Docs/Verification/Live16x24/packaged-harvest-products-00-startup.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-01-bone-inventory.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-02-bone-details.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-03-combat-covered-bone.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-04-pile-notes.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-05-combat-saved.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-06-salt-inventory.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-07-salt-ground.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-08-salt-ground-reader.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-09-travel-saved.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-10-restart-world.jpg",
+      "Docs/Verification/Live16x24/packaged-harvest-products-11-restart-salt.jpg"
     ],
-    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65"
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65",
+    "retained_combat_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-combat65"
   },
   "current_environment_blocker": {
     "status": "no_current_blocker_recheck_ownership_before_play",
@@ -887,45 +890,47 @@
     ]
   },
   "packaged_delivery": {
-    "source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
-    "linux_archive": "Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "mac_app": "Builds/Verification/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo.app",
-    "sha256": "09354fd2e13f73cd3e7cf7e33a12c63ac32dd988bb745902dc1fbc3bb12d87e7",
-    "archive_bytes": 128681400,
-    "regular_files": 181,
-    "archive_members": 191,
-    "mac_actual_play": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json",
-    "archive_verification": "Docs/Verification/Live16x24/packaged-beating-materials-independent-review.md",
-    "archive_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-linux-archive.json",
-    "restoration_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-restoration.json",
+    "source_commit": "8ab4508093bb0a7894d659af7c58a770e009e2ab",
+    "linux_archive": "Builds/SteamDeck/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "mac_app": "Builds/Verification/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo.app",
+    "sha256": "5d9fe132a6c2bb4b0a767e2b3657de033e66c456e6a9be0377d54b0a7745aaaf",
+    "archive_bytes": 128697337,
+    "regular_files": 182,
+    "archive_members": 195,
+    "mac_actual_play": "Docs/Verification/Live16x24/packaged-harvest-products-mac-play-summary.json",
+    "archive_verification": "Docs/Verification/Live16x24/packaged-harvest-products-linux-independent-review.json",
+    "archive_receipt": "Docs/Verification/Live16x24/packaged-harvest-products-linux-archive.json",
+    "restoration_receipt": "Docs/Verification/Live16x24/packaged-harvest-products-restoration.json",
     "builds": {
       "mac": {
         "result": "succeeded",
         "errors": 0,
-        "warnings": 5,
-        "duration_seconds": 40.005505
+        "warnings": 4,
+        "duration_seconds": 39.875952999999996
       },
       "linux": {
         "result": "succeeded",
         "errors": 0,
-        "warnings": 0,
-        "duration_seconds": 21.215808
+        "warnings": 4,
+        "duration_seconds": 33.835358
       }
     },
     "source_push_verified": true,
-    "release_evidence_push_status": "included in this delivery commit; verify remote ancestry on resume",
+    "source_push_verification_basis": "Root operator confirmed exact source revision pushed to main; this documentation task did not run Git.",
+    "release_evidence_push_status": "pending root commit and remote verification of packaged evidence/living records",
     "linux_execution_verified": false,
     "physical_deck_verified": false,
     "sustained_hardware_performance_verified": false,
-    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65",
-    "limits": "Eight actual Mac captures verify ordinary flat boot, earned SaltPan Continue3140 at31,13 HP38, one east step and uncovered Sand native reader, F53150/full process restart at32,13, then normal world-map travel to BrineLens17,13 at40,12 and F53210 HP38. Underfoot Sand retains the selected-owner fallback while the player covers it. PaleSalt quantity1 persists but still uses a glyph. This verifies a bounded material slice in two packaged area samples, not whole-Beating/full-scene acceptance. Props, services, residents, creatures, hazards, products, other biomes, interiors and underground remain incomplete. Existing shutdown notices persist. Final95 and earlier related225 have zero identity overlap:320 distinct cases,317 passed,3 inconclusive; the related suite predates the final road revision."
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65",
+    "retained_combat_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-combat65",
+    "limits": "Twelve actual Mac captures observe two products, not all17 natural acquisitions. Bone native inventory/full details and actual drop/pickup were observed, but enemies covered the dropped item: no clean uncovered Bone world or individual world-reader acceptance. The real combat branch was saved at3570 HP15, bleeding/poisoned. A separate unchanged earlier BrineLens3210 checkpoint verifies PaleSalt native inventory, uncovered world and adjacent reader, pickup, ordinary travel toSaltPan15,13, save3300 HP38 and full process restart with native inventory quantity1. This is not continuous escape from the combat branch. Standalone identity/count observations are UI evidence; exact entity IDs were separately read in Editor. Other15 products, whole-biome/fullness coverage, Linux execution, physical Deck and sustained performance remain unverified."
   },
   "next_scoped_work": {
     "priority": "Broad static sprite coverage across every biome/area, with coherent whole-chunk composition",
-    "next": "Finish the harvest-product package verification, then capture actual Grovelands ordinary formations and develop the provisional14-frame/nine-owner static area kit. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all15 remaining harvest products; defer nuanced animation.",
-    "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
-    "status": "17 products integrated;399 native pass; actual PaleSalt/Bone Editor actions and checkpoint restart verified; source push and packaging pending; Grovelands source preflight ready, actual baseline and art pending",
-    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65",
+    "next": "Begin actual Grovelands ordinary-formation whole-view baselines, then develop the provisional 14-frame/nine-owner static area kit from captures and imagegen critique. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all 15 remaining harvest products; defer nuanced animation.",
+    "plan": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md",
+    "status": "Harvest17 source and bounded Editor/Mac package verification complete; Grovelands source preflight ready, actual baseline and regional art pending; other15 ordinary product observations remain open",
+    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65",
     "next_regional_plan": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md",
     "next_regional_provisional_frames": 14,
     "next_regional_provisional_owners": [
@@ -1254,6 +1259,24 @@
       "at_utc": "2026-10-27T07:33:13.840259+00:00",
       "summary": "Beating34-frame ordinary materials verified in six Editor formations and two actual Mac area samples. Saved turn3210 at BrineLens with HP38 and persistent PaleSalt1 glyph. Whole-area fullness and other biome families remain incomplete.",
       "evidence": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json"
+    },
+    {
+      "at_utc": "2026-10-27T08:16:51.0413990Z",
+      "summary": "17 portable harvest products integrated with8 new and9 unchanged reused frames;399 native tests passed. Actual Editor PaleSalt42025 count1 world/inventory/details/drop/read/pickup persists through normal travel17,13 to19,13; actual Bones38104 harvest at59,9 removes source and yields Bone42026 count1. F5turn3540 at59,9 HP38. Fresh Editor restart restored the exact3540 checkpoint, both product IDs/counts and absent harvested source; source push and package verification pending; other15 ordinary products and whole-biome/fullness coverage remain open.",
+      "evidence": "Docs/Verification/Live16x24/harvest-products-native-summary.json",
+      "actual_captures": [
+        "Docs/Verification/Live16x24/harvest-products-after-01-inventory.png",
+        "Docs/Verification/Live16x24/harvest-products-after-02-details.png",
+        "Docs/Verification/Live16x24/harvest-products-after-03-ground.png",
+        "Docs/Verification/Live16x24/harvest-products-after-04-ground-reader.png",
+        "Docs/Verification/Live16x24/harvest-products-after-05-picked-up.png",
+        "Docs/Verification/Live16x24/harvest-products-after-06-caravan-road.png",
+        "Docs/Verification/Live16x24/harvest-products-after-07-bones-action.png",
+        "Docs/Verification/Live16x24/harvest-products-after-08-bone-inventory.png",
+        "Docs/Verification/Live16x24/harvest-products-after-09-travel-inventory.png",
+        "Docs/Verification/Live16x24/harvest-products-after-10-restart-inventory.png"
+      ],
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65"
     }
   ],
   "packaged_delivery_history": [
@@ -1629,6 +1652,40 @@
       "physical_deck_verified": false,
       "sustained_hardware_performance_verified": false,
       "limits": "Seven actual Mac window captures verify normal flat boot, earned Causeway2390 Continue, real Duckboard reader8/8, four walked steps, F52430 and full process restart40,16HP38, then normal world travel to district16,7 at20,12/F52510HP38. Whole Sodden coverage/fullness, plain water, service/creature/plant/prop families and other regions remain incomplete. Existing shutdown notices persist. Both final native reports overlap;328 distinct passed identities and3inconclusive allocation probes, not331passes."
+    },
+    {
+      "source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "mac_app": "Builds/Verification/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo.app",
+      "sha256": "09354fd2e13f73cd3e7cf7e33a12c63ac32dd988bb745902dc1fbc3bb12d87e7",
+      "archive_bytes": 128681400,
+      "regular_files": 181,
+      "archive_members": 191,
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json",
+      "archive_verification": "Docs/Verification/Live16x24/packaged-beating-materials-independent-review.md",
+      "archive_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-linux-archive.json",
+      "restoration_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-restoration.json",
+      "builds": {
+        "mac": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 5,
+          "duration_seconds": 40.005505
+        },
+        "linux": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 0,
+          "duration_seconds": 21.215808
+        }
+      },
+      "source_push_verified": true,
+      "release_evidence_push_status": "included in this delivery commit; verify remote ancestry on resume",
+      "linux_execution_verified": false,
+      "physical_deck_verified": false,
+      "sustained_hardware_performance_verified": false,
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65",
+      "limits": "Eight actual Mac captures verify ordinary flat boot, earned SaltPan Continue3140 at31,13 HP38, one east step and uncovered Sand native reader, F53150/full process restart at32,13, then normal world-map travel to BrineLens17,13 at40,12 and F53210 HP38. Underfoot Sand retains the selected-owner fallback while the player covers it. PaleSalt quantity1 persists but still uses a glyph. This verifies a bounded material slice in two packaged area samples, not whole-Beating/full-scene acceptance. Props, services, residents, creatures, hazards, products, other biomes, interiors and underground remain incomplete. Existing shutdown notices persist. Final95 and earlier related225 have zero identity overlap:320 distinct cases,317 passed,3 inconclusive; the related suite predates the final road revision."
     }
   ],
   "scoped_work_history": [
@@ -1865,6 +1922,27 @@
       "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
       "status": "planned; new product art and portable implementation not yet authored or accepted",
       "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65"
+    },
+    {
+      "priority": "Broad static sprite coverage across every biome/area, with coherent whole-chunk composition",
+      "next": "Finish the harvest-product package verification, then capture actual Grovelands ordinary formations and develop the provisional14-frame/nine-owner static area kit. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all15 remaining harvest products; defer nuanced animation.",
+      "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
+      "status": "17 products integrated;399 native pass; actual PaleSalt/Bone Editor actions and checkpoint restart verified; source push and packaging pending; Grovelands source preflight ready, actual baseline and art pending",
+      "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/harvest-products-road65",
+      "next_regional_plan": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md",
+      "next_regional_provisional_frames": 14,
+      "next_regional_provisional_owners": [
+        "MycelialColumn",
+        "GroveSeep",
+        "GroveSign",
+        "GroveRedGrowth",
+        "FruitingBody",
+        "CompostRow",
+        "CompostCache",
+        "ChoirIronVein",
+        "WineLeafSundew"
+      ],
+      "breadth_rule": "Continue Grovelands, Overwrit, Stump and remaining world coverage without making ordinary observation of all15 remaining products a prerequisite."
     }
   ],
   "hourly_reporting": {
@@ -1972,8 +2050,8 @@
     "plan": "Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md",
     "status": "initial_source_scope_audit_not_complete_runtime_census",
     "chunk_composition": "Every area requires actual whole-scene fullness/composition review: biome-appropriate terrain, vegetation, props, architecture and landmarks with readable traversal/hazards. No density percentages or artificial clutter.",
-    "latest_delivered_source_slice": "Latest delivered package remains Beating2e5a0ca4c; current harvest17-product source integration has399 native passes and actual Editor PaleSalt/Bone actions and checkpoint restart evidence, with commit/package verification pending.",
-    "next": "Finish the harvest-product package verification, then capture actual Grovelands ordinary formations and develop the provisional14-frame/nine-owner static area kit. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all15 remaining harvest products; defer nuanced animation."
+    "latest_delivered_source_slice": "Harvest17 portable products, source8ab450809:8 new/9 unchanged frames,399 native pass, two ordinary Editor/Mac product observations and independently verified Linux archive. Other15 product observations and regional/fullness coverage remain open.",
+    "next": "Begin actual Grovelands ordinary-formation whole-view baselines, then develop the provisional 14-frame/nine-owner static area kit from captures and imagegen critique. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all 15 remaining harvest products; defer nuanced animation."
   },
   "sill_envelope": {
     "status": "source_integrated_native_editor_and_mac_standalone_verified_linux_archive_checked",
@@ -2334,7 +2412,7 @@
     }
   },
   "harvest_products": {
-    "status": "17 exact portable products integrated;399 native cases passed; actual Editor PaleSalt and Bone verified through earned checkpoint restart; source push and package verification pending",
+    "status": "17 exact portable products source pushed;399 native cases passed; two products observed in Editor and actual Mac package; Linux archive verified; remaining ordinary observations and whole scenes open",
     "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
     "source": "ArtSource/Live16x24/world-harvest-products",
     "products": [
@@ -2473,7 +2551,7 @@
         "Docs/Verification/Live16x24/harvest-products-after-09-travel-inventory.png",
         "Docs/Verification/Live16x24/harvest-products-after-10-restart-inventory.png"
       ],
-      "restart_status": "verified in a fresh isolated Editor play session; packaged process restart remains unverified for this slice",
+      "restart_status": "verified in a fresh isolated Editor play session; separate packaged PaleSalt process restart is recorded in actual_mac_play",
       "ordinary_products_not_yet_observed": [
         "SaltbriarSprig",
         "ChoirIron",
@@ -2524,10 +2602,117 @@
         "normal_state_protection": "passed; root performed restart/restoration checks"
       }
     },
-    "source_push_status": "pending root commit and remote verification",
-    "package_status": "pending; current delivered package remains Beating source2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+    "source_push_status": "exact source revision pushed to main, confirmed by root operator",
+    "package_status": "Fresh Mac and Linux builds succeeded;12 actual Mac captures and full quiet-branch process restart verified; Linux archive independently verified; no Linux execution or physical Deck acceptance",
     "whole_biome_and_fullness_status": "open; portable item coverage adds no terrain/flora/architecture/actor placement or whole-scene density acceptance",
-    "next": "Finish the harvest-product package verification, then capture actual Grovelands ordinary formations and develop the provisional14-frame/nine-owner static area kit. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all15 remaining harvest products; defer nuanced animation.",
-    "next_regional_preflight": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md"
+    "next": "Begin actual Grovelands ordinary-formation whole-view baselines, then develop the provisional 14-frame/nine-owner static area kit from captures and imagegen critique. Continue Overwrit, Stump, remaining registered biomes, settlements/interiors, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps. Do not delay regional breadth to obtain ordinary captures of all 15 remaining harvest products; defer nuanced animation.",
+    "next_regional_preflight": "Docs/Verification/Live16x24/grovelands-next-kit-preflight.md",
+    "source_commit": "8ab4508093bb0a7894d659af7c58a770e009e2ab",
+    "actual_mac_play": {
+      "summary": "Docs/Verification/Live16x24/packaged-harvest-products-mac-play-summary.json",
+      "capture_count": 12,
+      "captures": [
+        "Docs/Verification/Live16x24/packaged-harvest-products-00-startup.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-01-bone-inventory.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-02-bone-details.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-03-combat-covered-bone.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-04-pile-notes.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-05-combat-saved.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-06-salt-inventory.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-07-salt-ground.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-08-salt-ground-reader.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-09-travel-saved.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-10-restart-world.jpg",
+        "Docs/Verification/Live16x24/packaged-harvest-products-11-restart-salt.jpg"
+      ],
+      "combat_branch": {
+        "saved_turn": 3570,
+        "zone": "Overworld.19.13.0",
+        "player_position": [
+          60,
+          9
+        ],
+        "hp": "15/40",
+        "condition": "bleeding and poisoned",
+        "fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-combat65",
+        "whole_owned_saves_archive": "/tmp/coo-harvest-mac-combat-saves",
+        "scope": "Bone carried fullreader and actualdrop/pickup observed; enemies covereddrop so nocleanworldrenderclaim. Savedbranchretained; noinvulnerabilityorHPcorrection."
+      },
+      "quiet_branch": {
+        "input_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65",
+        "input_turn": 3210,
+        "note": "Separate unchanged earlier legitimate checkpoint after quit; not presented as continuous combat escape.",
+        "saved_turn": 3300,
+        "zone": "Overworld.15.13.0",
+        "player_position": [
+          40,
+          12
+        ],
+        "hp": "38/40",
+        "fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65",
+        "observations": "Native PaleSalt world/inventory/adjacentreader, ordinary pickup/travel/save/fullprocessrestart."
+      },
+      "full_process_restart_verified_for": "PaleSalt quiet branch at SaltPan turn3300, cell40,12, HP38; native inventory quantity1",
+      "individual_uncovered_Bone_world_verified": false,
+      "identity_evidence": "Standalone UI counts/identity names; exact runtime IDs separately read in Editor.",
+      "limits": [
+        "Two products observed, not17natural acquisitions.",
+        "No whole-biome/fullness completion. Enemy/prop glyphs still visible.",
+        "No Linux execution, physical Deck or sustainedperformanceacceptance.",
+        "Standalone count/identity observations are UI evidence; exact runtime IDs were separately read in Editor."
+      ]
+    },
+    "package_delivery": {
+      "source_commit": "8ab4508093bb0a7894d659af7c58a770e009e2ab",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "mac_app": "Builds/Verification/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo.app",
+      "sha256": "5d9fe132a6c2bb4b0a767e2b3657de033e66c456e6a9be0377d54b0a7745aaaf",
+      "archive_bytes": 128697337,
+      "regular_files": 182,
+      "archive_members": 195,
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-harvest-products-mac-play-summary.json",
+      "archive_verification": "Docs/Verification/Live16x24/packaged-harvest-products-linux-independent-review.json",
+      "archive_receipt": "Docs/Verification/Live16x24/packaged-harvest-products-linux-archive.json",
+      "restoration_receipt": "Docs/Verification/Live16x24/packaged-harvest-products-restoration.json",
+      "builds": {
+        "mac": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 4,
+          "duration_seconds": 39.875952999999996
+        },
+        "linux": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 4,
+          "duration_seconds": 33.835358
+        }
+      },
+      "source_push_verified": true,
+      "source_push_verification_basis": "Root operator confirmed exact source revision pushed to main; this documentation task did not run Git.",
+      "release_evidence_push_status": "pending root commit and remote verification of packaged evidence/living records",
+      "linux_execution_verified": false,
+      "physical_deck_verified": false,
+      "sustained_hardware_performance_verified": false,
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65",
+      "retained_combat_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-harvest-products-combat65",
+      "limits": "Twelve actual Mac captures observe two products, not all17 natural acquisitions. Bone native inventory/full details and actual drop/pickup were observed, but enemies covered the dropped item: no clean uncovered Bone world or individual world-reader acceptance. The real combat branch was saved at3570 HP15, bleeding/poisoned. A separate unchanged earlier BrineLens3210 checkpoint verifies PaleSalt native inventory, uncovered world and adjacent reader, pickup, ordinary travel toSaltPan15,13, save3300 HP38 and full process restart with native inventory quantity1. This is not continuous escape from the combat branch. Standalone identity/count observations are UI evidence; exact entity IDs were separately read in Editor. Other15 products, whole-biome/fullness coverage, Linux execution, physical Deck and sustained performance remain unverified."
+    },
+    "restoration": {
+      "receipt": "Docs/Verification/Live16x24/packaged-harvest-products-restoration.json",
+      "tracked_objects_compared": 50263,
+      "foreign_dirty_files_preserved": 38,
+      "reviewed_generated_files_restored": 8,
+      "comparison": "All tracked snapshot objects matched after restoration; six reviewed living records were preserved. Logical preferences were compared, not physical plist byte identity.",
+      "normal_editor_saves_and_logical_preferences_preserved": true,
+      "normal_standalone_saves_absence_and_logical_preferences_restored": true,
+      "previous_packages_preserved": true,
+      "owned_test_saves_archived_at": "/private/tmp/coo-harvest-package-restoration/standalone-session-Saves",
+      "storage_cleanup_performed": false,
+      "restored_file_kinds": {
+        "trailing_whitespace_only_metadata": 4,
+        "reviewed_build_serialization": 4
+      }
+    }
   }
 }

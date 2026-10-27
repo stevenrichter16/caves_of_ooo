@@ -2386,3 +2386,34 @@ props/actors/fullness. Nuanced animation remains deferred.
 An actual itemized hourly report was sent at08:24UTC; next due09:24UTC. It
 reported the17mapping slice,399passes, actual PaleSalt/Bone/restart, pending
 push/packages and Grovelands goals. Heartbeat remains active.
+
+### Harvest delivery and next-area handoff — 2026-10-27 08:39 UTC
+
+Source `8ab4508093bb0a7894d659af7c58a770e009e2ab` is remotely verified on main.
+Fresh Mac/Linux builds succeeded with zero errors and four warnings each:
+39.875953 seconds on Mac, 33.835358 seconds on Linux. The Linux archive has
+128,697,337 bytes, 182 files and 195 members, independently verified at SHA256
+`5d9fe132a6c2bb4b0a767e2b3657de033e66c456e6a9be0377d54b0a7745aaaf`.
+See `GRAPHICS-HARVEST-PRODUCTS.md` and the packaged-harvest-products receipts.
+
+Actual Mac Bone inventory/F1 and real drop/pickup are observed. Combat covered
+the ground item, so that capture is not clean world-render proof. The saved
+combat branch (turn 3570, 15 HP) is preserved. A separate unchanged earlier
+Brine Lens checkpoint verifies PaleSalt ground/reader/pickup, ordinary travel
+to Salt Pan 15,13, F5 at turn 3300 / 38 HP, and native inventory after a full
+process restart. Twelve original captures are retained. No Linux execution,
+physical Deck or performance claim; only two of 17 products ordinarily observed.
+
+Restoration compared 50,263 tracked objects: eight reviewed generated files
+restored, 38 foreign changes preserved. Normal saves/preferences and previous
+builds/archive remain intact. No cleanup. Editor idle with null override and
+clean SampleScene; both players closed. The current quiet earned checkpoint is
+`Verification/Live16x24/Fixtures/packaged-harvest-products-saltpan65`.
+Prefer it for the next journey; Caravan Road has adjacent enemies.
+
+Next: actual Grovelands whole-chunk baselines across Grove, Fruiting Wall,
+Compost and Fen, then imagegen and the native kit. The preflight's 14 frames and
+nine owners are provisional; source counts do not establish acceptance. All
+remaining regional, underground, interior and special-site coverage stays open,
+including Beating/Sodden props, actors and fullness. Last actual hourly report:
+08:24 UTC; next due 09:24 UTC. This delivery note is not another hourly report.

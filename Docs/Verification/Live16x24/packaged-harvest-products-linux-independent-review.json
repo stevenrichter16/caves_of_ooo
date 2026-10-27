@@ -1,0 +1,59 @@
+{
+  "reviewed_at_utc": "2026-10-27T08:34:22.054634+00:00",
+  "verdict": "PASS within archive-integrity and retained-evidence scope",
+  "runtime_source_commit": "8ab4508093bb0a7894d659af7c58a770e009e2ab",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_sha256": "5d9fe132a6c2bb4b0a767e2b3657de033e66c456e6a9be0377d54b0a7745aaaf",
+  "archive_bytes": 128697337,
+  "files_verified": 182,
+  "directories_verified": 13,
+  "members_verified": 195,
+  "unpacked_file_bytes": 225402922,
+  "every_archive_file_hash_size_mode_verified": true,
+  "every_directory_mode_verified": true,
+  "complete_output_tree_matches_archive_manifest": true,
+  "no_duplicate_unsafe_or_link_members": true,
+  "gzip_crc_size_footer_verified_to_eof": true,
+  "internal_checksums_cover_every_other_file_exactly": true,
+  "external_archive_checksum_verified": true,
+  "embedded_external_build_info_equal": true,
+  "successful_fresh_output_bound_build_receipts": [
+    {
+      "platform": "StandaloneOSX",
+      "job_id": "build-9c4e3408ec",
+      "warnings": 4,
+      "errors": 0,
+      "output": "/Users/steven/caves-of-ooo/Builds/Verification/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo.app"
+    },
+    {
+      "platform": "StandaloneLinux64",
+      "job_id": "build-7762537d19",
+      "warnings": 4,
+      "errors": 0,
+      "output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-harvest-products-8ab450809-current/CavesOfOoo-current/CavesOfOoo.x86_64"
+    }
+  ],
+  "credit_sections": 6,
+  "license_texts": 5,
+  "support_source_copies_verified": 19,
+  "native_evidence": {
+    "distinct_cases": 399,
+    "passed": 399,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "sha256": "b6a910dd2859f1290e29198a121377df1580248bb08d35ea93a2d9603497a35d"
+  },
+  "elf_header": "ELF64 little-endian x86-64; inspected only",
+  "executed_linux": false,
+  "executed_unity": false,
+  "executed_git": false,
+  "extracted_archive": false,
+  "modified_builds": false,
+  "limits": [
+    "Full source commit and freeze boundary are the root operator assertions, consistent with output names and fresh successful receipts; this review does not establish reproducible source-to-binary provenance.",
+    "No Linux or physical Steam Deck execution, gameplay acceptance, controller verification or performance benchmark. Root owns separate Mac smoke testing.",
+    "No new independent baseline audit of prior packages, normal saves, preferences or foreign work. Current output and archive are fully checked.",
+    "399 native identities are retained test evidence, not execution by this review or natural coverage of all products/biomes."
+  ]
+}
