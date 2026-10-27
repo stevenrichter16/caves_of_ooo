@@ -227,7 +227,19 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(408, sprite.texture.height, "Outside native scope uses the identity-preserving glyph bank.");
                 AssertPortrait(portraits.GetPortrait(f.Document(owner), f.Renderer), sprite); AssertNoPreview(portraits);
                 Assert.True(f.Zone.RemoveEntity(owner)); f.Show(ReferenceGladePlan.ZoneID); Assert.True(f.Zone.AddEntity(owner, X, Y)); f.Frame();
-                var native = f.Foreground()?.sprite; Assert.NotNull(native); Assert.AreEqual(24, native.texture.height);
+                Sprite native;
+                if (blueprint == "MarlbackPatchbearer")
+                {
+                    Assert.IsNull(f.Foreground()); Assert.AreEqual(1, f.Actors.ActiveViewCount);
+                    native = f.Body(blueprint)?.sprite; Assert.NotNull(native);
+                    Assert.AreSame(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath), native.texture);
+                    int idle = owner.GetPart<FieldMedicinePart>().FindCarriedMedicine() == null ? 8 : 7;
+                    Assert.AreEqual(new Rect(idle * 16, 0, 16, 24), native.rect);
+                    Assert.AreEqual(new Vector2(8, 0), native.pivot);
+                    Assert.False(FlatPixelActorMotionCatalog.IsPortableActor(owner));
+                }
+                else native = f.Foreground()?.sprite;
+                Assert.NotNull(native); Assert.AreEqual(24, native.texture.height);
                 AssertPortrait(portraits.GetPortrait(f.Document(owner), f.Renderer), native); AssertNoPreview(portraits);
             }
         }

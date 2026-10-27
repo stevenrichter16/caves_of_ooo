@@ -1,0 +1,98 @@
+{
+  "sequence": 5,
+  "frame": 318563,
+  "at": "2026-10-27T02:40:35.3427960Z",
+  "unscaledTime": 391.0221,
+  "deltaTime": 0.00110603741,
+  "zone": "Overworld.11.9.0",
+  "tick": 710,
+  "player": [
+    6,
+    23
+  ],
+  "hp": 17,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "2707",
+      "blueprint": "Player",
+      "hp": 17,
+      "sprite": "Live16x24 Player idle",
+      "atlas": "opening-base",
+      "rect": [
+        0.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.100438818,
+      "pending": false,
+      "pendingState": "Hurt",
+      "dying": false,
+      "cell": [
+        6,
+        23
+      ],
+      "world": [
+        6.5,
+        1.5
+      ],
+      "screen": [
+        104.000023,
+        184.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "4940",
+      "blueprint": "MarlbackPatchbearer",
+      "hp": 2,
+      "sprite": "Live16x24 Patchbearer north-patchbearer-motion 6",
+      "atlas": "north-patchbearer-motion",
+      "rect": [
+        96.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Attack",
+      "stateTime": 0.100438818,
+      "pending": false,
+      "pendingState": "Attack",
+      "dying": false,
+      "cell": [
+        6,
+        24
+      ],
+      "world": [
+        6.5,
+        0.0
+      ],
+      "screen": [
+        104.000023,
+        160.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "2707",
+      "text": "3",
+      "number": 3,
+      "numeric": true,
+      "x": 6,
+      "y": 22,
+      "width": 1,
+      "lane": 0,
+      "remaining": 0.4995613,
+      "originOnly": false
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

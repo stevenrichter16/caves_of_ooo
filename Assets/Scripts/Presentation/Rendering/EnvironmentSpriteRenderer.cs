@@ -1155,7 +1155,8 @@ namespace CavesOfOoo.Rendering
                 if (_flatPixelGreybox.TryResolvePresentation(zone, x, zoneY, out var flat))
                 {
                     bool actorAccepted = flat.NativeForeground && !flat.Remembered
-                        && FlatPixelActorMotionCatalog.IsPortableActor(flat.Owner)
+                        && (FlatPixelActorMotionCatalog.IsPortableActor(flat.Owner)
+                            || FlatPixelPatchbearerMotionCatalog.IsLocalActor(zone, flat.Owner))
                         && _flatActorObserver?.Invoke(zone, flat.Owner, x, zoneY) == true;
                     if (!actorAccepted && flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, FlatForegroundTint(zone, x, zoneY, flat));
                     else ClaimMainCellWithoutOverlay(pos);

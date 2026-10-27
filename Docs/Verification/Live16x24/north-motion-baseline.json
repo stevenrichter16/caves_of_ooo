@@ -1,0 +1,80 @@
+{
+  "source": "e8b01bb94427c79b0a5850a5b5df0ca567c0718b",
+  "seed": 224401440,
+  "game": "b343f331bf5d40a189c86e4aaba9aa47",
+  "loaded_fixture": "Fixtures/playable-zoom-fresh-opening",
+  "loaded_sha256": "e93b4b6394dcf1aae671881fed91393f3c410befa18f3870416588a3d640fe7f",
+  "normal_load_verified": {
+    "seed": 224401440,
+    "cached_zones": 1,
+    "zone": "Overworld.11.10.0",
+    "player": [
+      40,
+      12
+    ],
+    "hp": 40,
+    "tick": 10
+  },
+  "route": [
+    "Up x13: North40,24 tick140 HP40",
+    "Left x20:20,24 tick340 HP40",
+    "Left x8 then Up x3:12,21 tick450 HP40",
+    "Left x4 then Up x2:11,19 tick510 HP36 (blocked/hostile contact changes actual displacement); F5 earned pre-Patchbearer-contact fixture",
+    "Down x3: Scrabbler killed by ordinary bump attacks; player11,20 tick540 HP36",
+    "Up x1 then Left x8 then Down x2: actual movement and Patchbearer contact/attacks; player6,21 tick650 HP2; Patchbearer4940 at6,20 HP15; actual tonic consumed",
+    "PageUp; L; Up; Return; X: exact Patchbearer examine without turn; Escape twice",
+    "Up x1 ordinary melee:tick660 playerHP2 PatchbearerHP6; F5"
+  ],
+  "actors": {
+    "player": "2707",
+    "patchbearer": "4940",
+    "scrabbler": "4906"
+  },
+  "capture_sessions": [
+    {
+      "path": "G2Action-20261027-020419-570",
+      "frames": 24,
+      "errors": 0,
+      "events": 23,
+      "limits": "Frame cap exhausted at tick590 before Patchbearer contact; later actual attack/damage events retained separately."
+    },
+    {
+      "path": "G2Action-20261027-020531-687",
+      "frames": 5,
+      "errors": 0,
+      "events": 3,
+      "limits": "Actual final melee and player recovery. Patchbearer static, absent from animated view list; no fabricated timing or animation claim."
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 17 log entries.",
+    "data": [
+      "[Combat] marlback patchbearer [left hand: dagger] CRITICALLY hits you in the body for 3 damage! (33 HP remaining)",
+      "[Combat] You [left hand: long sword] hit marlback patchbearer in the right arm for 8 damage! (12 HP remaining)",
+      "[Combat] marlback patchbearer (Shank) CRITICALLY hits you in the right hand for 9 damage! (24 HP remaining)",
+      "[Combat] You [left hand: long sword] hit marlback patchbearer in the body for 2 damage! (10 HP remaining)",
+      "[Combat] marlback patchbearer [left hand: dagger] hits you in the right arm for 7 damage! (17 HP remaining)",
+      "[Combat] You [left hand: long sword] hit marlback patchbearer in the feet for 7 damage! (3 HP remaining)",
+      "[Combat] marlback patchbearer is bleeding!",
+      "[Combat] marlback patchbearer takes 1 bleed damage.",
+      "[Combat] marlback patchbearer heals 18 HP.",
+      "[Combat] marlback patchbearer drinks healing tonic.",
+      "[Combat] marlback patchbearer takes 2 bleed damage.",
+      "[Combat] marlback patchbearer [left hand: dagger] hits you in the handwear for 4 damage! (13 HP remaining)",
+      "[Combat] marlback patchbearer [right hand: digging rake] hits you in the right arm for 9 damage! (4 HP remaining)",
+      "[Combat] marlback patchbearer takes 3 bleed damage.",
+      "[Combat] You see a marlback patchbearer.",
+      "[Combat] You [left hand: long sword] hit marlback patchbearer in the head for 8 damage! (7 HP remaining)",
+      "[Combat] marlback patchbearer stops bleeding."
+    ]
+  },
+  "finish": {
+    "playing": false,
+    "compiling": false,
+    "pending": false,
+    "saveRootOverride": null,
+    "sceneDirty": false
+  },
+  "limits": "Baseline only, actual ordinary input. No gameplay entities edited, no artificial health/supplies/timing. Capture readback overhead prevents normal performance or continuous-video claims. Final player HP2 means subsequent acceptance should restart earned precontact rather than force healing."
+}

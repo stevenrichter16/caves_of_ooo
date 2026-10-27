@@ -1,0 +1,7 @@
+Command: python3 ArtSource/Live16x24/north-patchbearer-motion/verify.py
+Exit: 1
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/Live16x24/north-patchbearer-motion/verify.py", line 18, in <module>
+    assert not missing, 'Source RED: Patchbearer motion outputs missing: '+', '.join(missing)
+           ^^^^^^^^^^^
+AssertionError: Source RED: Patchbearer motion outputs missing: native.blend, north-patchbearer-motion.png, north-patchbearer-motion.png.meta, contact-native.png, contact.png, source-cells.json, manifest.json

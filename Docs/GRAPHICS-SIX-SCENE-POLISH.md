@@ -318,3 +318,22 @@ Next: ordinary pre-fight North capture and Patchbearer encounter motion/readabil
 according to`Docs/GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md`. Current steam is stable.
 Last hourly report01:25UTC; this delivery is a visible milestone, not a duplicate
 hourly report. Keep the continuation active.
+
+
+### North encounter motion — 2026-10-27 02:50 UTC
+
+[North motion record](GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md) now verifies
+ordinary full/empty walk, attack, hurt and recovery, real finite tonic use,
+exact-reader consistency, death, glade return and North revisit/F5. Eight native
+editable derivatives borrow approved idles.278native cases pass,1allocation
+probe skips after its counter-control fails. Independent code/art/capture review
+found no material issue. Five sampled sequences60frames and seven original Game
+stills retained; no continuous-video or whole-scene claim. Profile is a bounded
+Editor stationary/reader sample, not hardware performance acceptance.
+
+Next freeze/push source and package normal MacContinue/restart. Then capture
+East Cindercaller body motion/cast attribution beside animated Scrabbler; existing
+Ember Spit FX/audio is functional. All six scenes have bounded evidence; whole
+opening, remaining actors/services/regional kits, Linux execution and physical
+Deck remain open. Normal saves/gameplay preferences and34foreign tracked edits
+preserved. Storage inspection only. Last hourly report02:25UTC,next03:25UTC.

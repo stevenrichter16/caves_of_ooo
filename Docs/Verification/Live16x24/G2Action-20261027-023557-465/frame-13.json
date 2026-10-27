@@ -1,0 +1,98 @@
+{
+  "sequence": 13,
+  "frame": 139853,
+  "at": "2026-10-27T02:36:52.7397410Z",
+  "unscaledTime": 168.377838,
+  "deltaTime": 0.0029543296,
+  "zone": "Overworld.11.9.0",
+  "tick": 620,
+  "player": [
+    6,
+    20
+  ],
+  "hp": 30,
+  "width": 1280,
+  "height": 800,
+  "actors": [
+    {
+      "id": "2707",
+      "blueprint": "Player",
+      "hp": 30,
+      "sprite": "Live16x24 Player hurt",
+      "atlas": "opening-motion",
+      "rect": [
+        48.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Hurt",
+      "stateTime": 0.0,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        6,
+        20
+      ],
+      "world": [
+        6.5,
+        6.0
+      ],
+      "screen": [
+        208.000015,
+        312.0
+      ],
+      "flipX": true,
+      "alpha": 1.0
+    },
+    {
+      "id": "4940",
+      "blueprint": "MarlbackPatchbearer",
+      "hp": 20,
+      "sprite": "Live16x24 Patchbearer north-works 7",
+      "atlas": "north-works",
+      "rect": [
+        112.0,
+        0.0,
+        16.0,
+        24.0
+      ],
+      "state": "Idle",
+      "stateTime": 0.3666776,
+      "pending": false,
+      "pendingState": "Idle",
+      "dying": false,
+      "cell": [
+        6,
+        21
+      ],
+      "world": [
+        6.5,
+        4.5
+      ],
+      "screen": [
+        208.000015,
+        264.0
+      ],
+      "flipX": false,
+      "alpha": 1.0
+    }
+  ],
+  "readouts": [
+    {
+      "owner": "2707",
+      "text": "6",
+      "number": 6,
+      "numeric": true,
+      "x": 6,
+      "y": 19,
+      "width": 1,
+      "lane": 0,
+      "remaining": 0.6,
+      "originOnly": false
+    }
+  ],
+  "captureWidth": 1280,
+  "captureHeight": 800
+}

@@ -1,0 +1,72 @@
+{
+  "review": "North Patchbearer motion final saved-source review",
+  "reviewer": "inventory_stat_review; implementation author performing final self-review. Separate source/counter review performed by seed65_route_audit.",
+  "recorded_utc": "2026-10-27T02:48:11.828305+00:00",
+  "result": "No material source blocker found",
+  "findings": [],
+  "scope": "Local admitted six-scene flat16x24 Patchbearer only. Global four portable identities and existing non-flat branch remain unchanged. Ordinary reviewed encounter is North, not an all-world motion-coverage claim.",
+  "checked": [
+    "Canonical current graph, actual spatial owner, explored/visible selected cell and custody are checked before finite medicine state is queried.",
+    "The existing static WorksFrameOf predicate supplies actual carried HealingTonic full/empty semantics; health and separate Antidote are not substituted for stock.",
+    "The exact full/empty asset pair can refresh only Asset and current sprite; state time, duration, pending reaction, movement anchors and position are retained.",
+    "Other asset mismatches retain retirement/reacquisition. Genuine Gleaner-to-Scrabbler counter RED was fixed and the focused39-case suite passed.",
+    "Event resolution permits the existing lethal HP0 capture before removal, allowing empty harness after real stock drops; Dying snapshots avoid subsequent removed-inventory queries.",
+    "Static foreground is suppressed only after the motion observer accepts; missing or malformed atlases retain static body and ground.",
+    "No actor enumeration was added. Reconciliation remains bounded to tracked views; new catalog caches two assets and ten slices.",
+    "Dispose destroys owned slices after renderer view retirement and leaves borrowed textures intact."
+  ],
+  "mechanics_change_review": "Reviewed production diff is confined to presentation. It does not edit blueprints, FieldMedicinePart, combat, AI, turn scheduling, costs, HP, equipment, spawn/generation or save schemas; no new self-use event or pose is added.",
+  "owned_sprite_preservation": {
+    "approved_input_manifest": "ArtSource/Live16x24/north-patchbearer-motion/preserved-inputs.json",
+    "verified_count": 163,
+    "mismatches": [],
+    "idle_reuse": "Runtime slices approved north-works frames7/8 with bottom pivot(.5,0); same source pixels, not same Sprite instance or static centered pivot.",
+    "new_owned_slices": 10,
+    "borrowed_textures": 2
+  },
+  "native_receipts": [
+    {
+      "path": "Docs/Verification/Live16x24/north-motion-green-regressions.xml",
+      "sha256": "fd90eee3ee80ea91d6490eaa089055bad1f498dfeba3c4f47f79ea2f4d062ed3",
+      "total": 273,
+      "passed": 272,
+      "failed": 0,
+      "skipped": 1,
+      "focused_cases": 39,
+      "limits": [
+        {
+          "test": "CavesOfOoo.Tests.FlatPixelActorMotionTests.WarmMovingBodyReadoutQueriesAllocateNothingWhenTheRuntimeCounterWorks",
+          "reason": "This runtime allocation counter does not observe a known allocation; zero cannot prove the query allocates nothing."
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/north-motion-adversarial-green.xml",
+      "sha256": "77b5f7bf32e16791336faaab9e75338997c365969570963fc3830b3fca28229b",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "focused_cases": 0,
+      "limits": []
+    }
+  ],
+  "native_receipt_overlap": 0,
+  "source_sha256": {
+    "Assets/Scripts/Presentation/Rendering/FlatPixelPatchbearerMotionCatalog.cs": "27701eb36771385a22fdd742a6e9f170f0f38b0ec28321bd166c058b279a9096",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelOpeningArtCatalog.cs": "bedd2ee28b6cc3c255835735dcd9704cf879d956e68c0d494282c51571806f22",
+    "Assets/Scripts/Presentation/Rendering/AnimatedEntityRenderer.FlatPixel.cs": "c48a25d61b6bd3b14053f46ce803752f4a23c5e16c59f05debed0bf7160fcdf2",
+    "Assets/Scripts/Presentation/Rendering/AnimatedEntityRenderer.cs": "339b86b035895aaf69b371d0946b36bec39f446b5769ca7599f9c8b1336e0a66",
+    "Assets/Scripts/Presentation/Rendering/EnvironmentSpriteRenderer.cs": "8ed1cb009a13b92dc4aab013fa185a4db7c09119abe38f98ab08f623f4a3c20a",
+    "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs": "45631988cb01999d7535e423db6b71cc713a6a3206d251bc501db30811a62886",
+    "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionAdversarialTests.cs": "d64593b2f23eb59f7e4b112c4126673046199825d0fb94df5a1732a05b0bd94c",
+    "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs": "04a30f640b38eadadf381491fb5ad6466a9c49fda97e8dce71c8fe80011923f2"
+  },
+  "limits": [
+    "Read-only source/diff and saved native-result audit; no Unity invocation, gameplay control, Git mutation or repository edit in this review.",
+    "273-case native run has272 passes and one skipped preexisting allocation-counter test because its positive control failed; no zero-allocation or performance proof is claimed. Separate dedicated adversarial run is6/6.",
+    "Source review does not independently certify feel, all regional encounters, packaged playback or physical Steam Deck behavior. Root and separate visual reviewer own actual before/after encounter acceptance.",
+    "Preservation covers the163 paths in the supplied manifest, not a claim that every unrelated repository or user file was checked.",
+    "No whole-game graphics completion claim."
+  ]
+}

@@ -11,6 +11,7 @@ namespace CavesOfOoo.Rendering
         private const float ReadoutBoundsEpsilon = .0001f;
         private bool _flatPixelMode;
         private FlatPixelActorMotionCatalog _flatMotionCatalog;
+        private FlatPixelPatchbearerMotionCatalog _flatPatchbearerMotionCatalog;
         private Material _flatMaterial;
         private readonly HashSet<int> _flatRepaintCells = new HashSet<int>();
         private readonly List<Entity> _flatResumeOwners = new List<Entity>();
@@ -55,6 +56,8 @@ namespace CavesOfOoo.Rendering
             _flatPixelMode = active;
             if (active && _flatMotionCatalog == null)
                 _flatMotionCatalog = new FlatPixelActorMotionCatalog();
+            if (active && _flatPatchbearerMotionCatalog == null)
+                _flatPatchbearerMotionCatalog = new FlatPixelPatchbearerMotionCatalog();
             if (active && _flatMaterial == null)
             {
                 Shader shader = Shader.Find("Universal Render Pipeline/2D/Sprite-Unlit-Default");
@@ -70,8 +73,13 @@ namespace CavesOfOoo.Rendering
         {
             if (!_initialized || !_flatPixelMode || !_presentationVisible || !enabled
                 || !ReferenceEquals(zone, _zone) || !ValidFlatOwner(owner, x, y, false)
-                || !_flatMotionCatalog.TryGetAsset(owner, out var asset)) return false;
-            if (!_views.TryGetValue(owner, out var view))
+                || !TryGetFlatAsset(owner, out var asset)) return false;
+            if (_views.TryGetValue(owner, out var view) && !RefreshFlatAsset(view, asset))
+            {
+                ReleaseView(owner);
+                view = null;
+            }
+            if (view == null)
             {
                 var render = owner.GetPart<RenderPart>();
                 view = AcquireView(owner, asset, x, y, render.VisualFacing);
@@ -91,15 +99,15 @@ namespace CavesOfOoo.Rendering
 
         private bool ValidFlatOwner(Entity owner, int x, int y, bool allowDead)
         {
-            if (owner == null || !FlatPixelFallbackCatalog.IsCurrentGraph(_zone) || owner.SpatialZone != _zone
-                || _flatMotionCatalog == null || !_flatMotionCatalog.TryGetAsset(owner, out _)) return false;
+            if (owner == null || !FlatPixelFallbackCatalog.IsCurrentGraph(_zone) || owner.SpatialZone != _zone) return false;
             var cell = _zone.GetEntityCell(owner);
             var physical = owner.GetPart<PhysicsPart>();
             if (cell == null || cell.ParentZone != _zone || !ReferenceEquals(_zone.GetCell(x, y), cell)
                 || cell.X != x || cell.Y != y || !cell.IsVisible || !cell.Explored
                 || !ReferenceEquals(cell.GetTopVisibleObject(), owner) || !cell.Objects.Contains(owner)
                 || physical == null || physical.ParentEntity != owner
-                || physical.InInventory != null || physical.Equipped != null) return false;
+                || physical.InInventory != null || physical.Equipped != null
+                || !TryGetFlatAsset(owner, out _)) return false;
             return allowDead || (!CombatSystem.IsDeathHandled(owner)
                 && (owner.GetStat("Hitpoints") == null || owner.GetStatValue("Hitpoints") > 0));
         }
@@ -111,8 +119,9 @@ namespace CavesOfOoo.Rendering
             if (!view.Dying)
             {
                 var current = _zone.GetEntityCell(view.Entity);
-                return current != null && ValidFlatOwner(view.Entity, current.X, current.Y, false)
-                    && _flatMotionCatalog.TryGetAsset(view.Entity, out var currentAsset) && ReferenceEquals(currentAsset, view.Asset);
+                if (current == null || !ValidFlatOwner(view.Entity, current.X, current.Y, false)
+                    || !TryGetFlatAsset(view.Entity, out var currentAsset)) return false;
+                return RefreshFlatAsset(view, currentAsset);
             }
             var cell = _zone.GetCell(view.CellX, view.CellY);
             if (cell == null || !cell.IsVisible || !cell.Explored) return false;
@@ -166,8 +175,43 @@ namespace CavesOfOoo.Rendering
             if (!_presentationVisible || !enabled || !ReferenceEquals(zone, _zone)
                 || entity == null || !_views.TryGetValue(entity, out view) || view.Dying) return false;
             var cell = zone.GetEntityCell(entity);
-            if (cell != null && ValidFlatOwner(entity, cell.X, cell.Y, allowDead)) return true;
+            if (cell != null && ValidFlatOwner(entity, cell.X, cell.Y, allowDead)
+                && TryGetFlatAsset(entity, out var asset) && RefreshFlatAsset(view, asset))
+            {
+                return true;
+            }
             ReleaseView(entity); view = null; return false;
+        }
+
+        private bool TryGetFlatAsset(Entity owner, out EntityVisualAsset asset)
+        {
+            asset = null;
+            return (_flatMotionCatalog != null && _flatMotionCatalog.TryGetAsset(owner, out asset))
+                || (_flatPatchbearerMotionCatalog != null && _flatPatchbearerMotionCatalog.TryGetAsset(_zone, owner, out asset));
+        }
+
+        /// <summary>Stock changes replace only the pose source. Preserve the
+        /// current view, elapsed reaction, pending reaction and interpolated movement.</summary>
+        private bool RefreshFlatAsset(EntityView view, EntityVisualAsset asset)
+        {
+            if (ReferenceEquals(view.Asset, asset)) return true;
+            // Only this catalog's finite-supply pair may change in place.
+            // Other identity changes retain their existing retire/reacquire policy.
+            if (_flatPatchbearerMotionCatalog == null
+                || !_flatPatchbearerMotionCatalog.CanRefresh(view.Asset, asset)) return false;
+            view.Asset = asset;
+            var state = view.State;
+            int frame = 0;
+            if (state == EntityVisualState.Walk)
+            {
+                if (view.ForcedIdle) state = EntityVisualState.Idle;
+                else frame = Mathf.Min(1, Mathf.FloorToInt(Mathf.Clamp01(view.StateTime / Mathf.Max(.000001f, view.StateDuration)) * 2));
+            }
+            else if (state == EntityVisualState.Attack || state == EntityVisualState.Hurt)
+                frame = view.StateTime < view.StateDuration - FlatRecoveryDuration ? 0 : 1;
+            else state = EntityVisualState.Idle;
+            view.Body.sprite = asset.GetFrame(state, view.Facing, frame);
+            return true;
         }
 
         private void MoveFlatView(EntityView view, int oldX, int oldY, int newX, int newY, bool forced)

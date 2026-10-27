@@ -391,6 +391,18 @@ namespace CavesOfOoo.Rendering
             return tile != null;
         }
 
+        /// <summary>The same finite healing-slot semantics used by static art.
+        /// Stateful callers must establish graph, cell and disclosure authority first.</summary>
+        internal static bool TryGetPatchbearerIdleFrame(Entity owner, out int frame)
+        {
+            frame = -1;
+            if (owner?.BlueprintName != "MarlbackPatchbearer" || owner.HasTag("Corpse")) return false;
+            var render = Owned<RenderPart>(owner);
+            if (render == null || !render.Visible) return false;
+            frame = WorksFrameOf(owner, render.VisualID);
+            return frame == 7 || frame == 8;
+        }
+
         private static int WorksFrameOf(Entity owner, string visual)
         {
             if (!string.IsNullOrEmpty(visual) || owner.HasTag("Player") || owner.HasTag("Item")) return -1;

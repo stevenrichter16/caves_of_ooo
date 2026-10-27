@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Failed(Child)" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 02:22:30Z" end-time="2026-10-27 02:22:33Z" duration="2.8727214">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32362" result="Failed" site="Child" start-time="2026-10-27 02:22:30Z" end-time="2026-10-27 02:22:33Z" duration="2.872721" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39848" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32362" result="Failed" site="Child" start-time="2026-10-27 02:22:30Z" end-time="2026-10-27 02:22:33Z" duration="2.726536" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39849" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32362" result="Failed" site="Child" start-time="2026-10-27 02:22:30Z" end-time="2026-10-27 02:22:33Z" duration="2.663015" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39850" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32362" result="Failed" site="Child" start-time="2026-10-27 02:22:30Z" end-time="2026-10-27 02:22:33Z" duration="2.602783" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30449" name="FlatPixelPatchbearerMotionTests" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-10-27 02:22:30Z" end-time="2026-10-27 02:22:33Z" duration="2.272050" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="30486" name="ActualCellPassTakesOverOnlyTheBodyAndKeepsTheApprovedIdleAndGround" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ActualCellPassTakesOverOnlyTheBodyAndKeepsTheApprovedIdleAndGround" methodname="ActualCellPassTakesOverOnlyTheBodyAndKeepsTheApprovedIdleAndGround" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1249821244" result="Failed" start-time="2026-10-27 02:22:30Z" end-time="2026-10-27 02:22:31Z" duration="0.405102" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ActualCellPassTakesOverOnlyTheBodyAndKeepsTheApprovedIdleAndGround () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:156
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30452" name="ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.075568" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30450" name="ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels(False)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels(False)" methodname="ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="27241956" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.035507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels (System.Boolean empty) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30451" name="ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels(True)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels(True)" methodname="ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="463374543" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.035561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ActualStockSelectsCachedDerivativesAndBorrowsApprovedIdlePixels (System.Boolean empty) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:24
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30464" name="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.262715" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30460" name="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;corpse&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;corpse&quot;)" methodname="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="2125024846" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.035087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30461" name="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;reskin&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;reskin&quot;)" methodname="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="544212761" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.060093" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30462" name="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;inventory&quot;)" methodname="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1260720386" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.125421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30463" name="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges(&quot;takeable&quot;)" methodname="ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1685189292" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.039920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ACurrentPlacedActorCannotBorrowMotionAfterItsMeaningChanges (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30485" name="DisposalOwnsOnlyItsCachedSpritesAndIsIdempotent" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.DisposalOwnsOnlyItsCachedSpritesAndIsIdempotent" methodname="DisposalOwnsOnlyItsCachedSpritesAndIsIdempotent" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1710659110" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.042536" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.DisposalOwnsOnlyItsCachedSpritesAndIsIdempotent () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:143
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30475" name="ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.118948" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30472" name="ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor(&quot;Overworld.11.9.0&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor(&quot;Overworld.11.9.0&quot;,True)" methodname="ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1343661554" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.039509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor (System.String zoneID, System.Boolean expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30473" name="ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor(&quot;Overworld.12.10.0&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor(&quot;Overworld.12.10.0&quot;,True)" methodname="ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1537682461" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.038383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor (System.String zoneID, System.Boolean expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30474" name="ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor(&quot;Overworld.12.12.0&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor(&quot;Overworld.12.12.0&quot;,False)" methodname="ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1612097591" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.037571" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.ExistingLocalScenePolicyDoesNotCreateAGlobalFifthActor (System.String zoneID, System.Boolean expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30493" name="HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:32Z" duration="0.125843" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30491" name="HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine(False)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine(False)" methodname="HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="373352507" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:31Z" duration="0.062093" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine (System.Boolean covered) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:241
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30492" name="HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine(True)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine(True)" methodname="HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="56372211" result="Failed" start-time="2026-10-27 02:22:31Z" end-time="2026-10-27 02:22:32Z" duration="0.061413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.HiddenOrCoveredBodyRetiresAndUncoverResolvesCurrentMedicine (System.Boolean covered) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:241
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30480" name="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.149213" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30476" name="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;zero-stack&quot;)" methodname="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1793135308" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.037066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30477" name="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;foreign-custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;foreign-custody&quot;)" methodname="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1574797820" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.036562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30478" name="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;equipped&quot;)" methodname="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1489033853" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.035114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30479" name="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;ground&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains(&quot;ground&quot;)" methodname="InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1012334592" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.036705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.InvalidHealingSupplyUsesEmptyFramesWhileSeparateAntidoteRemains (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30487" name="MissingMotionRetainsExistingStaticNorthBody" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingMotionRetainsExistingStaticNorthBody" methodname="MissingMotionRetainsExistingStaticNorthBody" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1614613226" result="Passed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.059977" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30484" name="MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.134076" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30481" name="MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures(&quot;missing-works&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures(&quot;missing-works&quot;)" methodname="MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1961041800" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.035878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30482" name="MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures(&quot;missing-motion&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures(&quot;missing-motion&quot;)" methodname="MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="29329407" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.035514" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30483" name="MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures(&quot;wrong-width&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures(&quot;wrong-width&quot;)" methodname="MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="620888716" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.059421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.MissingOrMalformedArtRefusesWithoutChangingBorrowedTextures (System.String fault) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:132
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30490" name="RealCureKeepsHealingBottleAndDoesNotReplaceAnOngoingHurt" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealCureKeepsHealingBottleAndDoesNotReplaceAnOngoingHurt" methodname="RealCureKeepsHealingBottleAndDoesNotReplaceAnOngoingHurt" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1349741478" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.134772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealCureKeepsHealingBottleAndDoesNotReplaceAnOngoingHurt () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:225
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30495" name="RealDamageAndAcceptedMissKeepTheirExistingPositiveAndNegativeMeanings" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealDamageAndAcceptedMissKeepTheirExistingPositiveAndNegativeMeanings" methodname="RealDamageAndAcceptedMissKeepTheirExistingPositiveAndNegativeMeanings" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="2074478900" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.062726" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealDamageAndAcceptedMissKeepTheirExistingPositiveAndNegativeMeanings () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:268
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30489" name="RealHealingDuringAttackAndQueuedHurtRebindsWithoutRestartOrFakeSelfUsePose" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealHealingDuringAttackAndQueuedHurtRebindsWithoutRestartOrFakeSelfUsePose" methodname="RealHealingDuringAttackAndQueuedHurtRebindsWithoutRestartOrFakeSelfUsePose" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="655005492" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.063689" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealHealingDuringAttackAndQueuedHurtRebindsWithoutRestartOrFakeSelfUsePose () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:202
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30494" name="RealLethalDamageCapturesEmptyHarnessAfterStockDropsThenRetires" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealLethalDamageCapturesEmptyHarnessAfterStockDropsThenRetires" methodname="RealLethalDamageCapturesEmptyHarnessAfterStockDropsThenRetires" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1678872160" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.059429" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealLethalDamageCapturesEmptyHarnessAfterStockDropsThenRetires () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:255
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30488" name="RealMovementAndReversibleMedicineTransferKeepElapsedPositionAndFacing" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealMovementAndReversibleMedicineTransferKeepElapsedPositionAndFacing" methodname="RealMovementAndReversibleMedicineTransferKeepElapsedPositionAndFacing" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1048852852" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.059092" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual EnvironmentSpriteRenderer cell path must admit the local Patchbearer.
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Paint.RequireBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:373
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RealMovementAndReversibleMedicineTransferKeepElapsedPositionAndFacing () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:180
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30459" name="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.211333" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30453" name="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Render&quot;)" methodname="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="674956345" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.035799" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch (System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30454" name="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Physics&quot;)" methodname="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="178907431" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.035324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch (System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30455" name="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Body&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Body&quot;)" methodname="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="289911973" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.035171" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch (System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30456" name="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Brain&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Brain&quot;)" methodname="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1992167938" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.033578" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch (System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30457" name="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;FieldMedicine&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;FieldMedicine&quot;)" methodname="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1608310467" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.033386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch (System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30458" name="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Inventory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch(&quot;Inventory&quot;)" methodname="RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="690127538" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.033499" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.RequiredPartsMustBelongToTheExactActorEvenWhenIDsMatch (System.String name) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:53
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30471" name="StateResolutionRequiresActualCurrentDisclosedTopOwner" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:33Z" duration="0.298223" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30465" name="StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;hidden&quot;)" methodname="StateResolutionRequiresActualCurrentDisclosedTopOwner" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1894350723" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:32Z" duration="0.034004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30466" name="StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;unexplored&quot;)" methodname="StateResolutionRequiresActualCurrentDisclosedTopOwner" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1571090827" result="Failed" start-time="2026-10-27 02:22:32Z" end-time="2026-10-27 02:22:33Z" duration="0.034218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30467" name="StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;covered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;covered&quot;)" methodname="StateResolutionRequiresActualCurrentDisclosedTopOwner" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1818227569" result="Failed" start-time="2026-10-27 02:22:33Z" end-time="2026-10-27 02:22:33Z" duration="0.033157" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30468" name="StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;replaced-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;replaced-cell&quot;)" methodname="StateResolutionRequiresActualCurrentDisclosedTopOwner" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="1797273918" result="Failed" start-time="2026-10-27 02:22:33Z" end-time="2026-10-27 02:22:33Z" duration="0.033424" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30469" name="StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;foreign-cell&quot;)" methodname="StateResolutionRequiresActualCurrentDisclosedTopOwner" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="897080040" result="Failed" start-time="2026-10-27 02:22:33Z" end-time="2026-10-27 02:22:33Z" duration="0.056497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:81
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30470" name="StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;replaced-graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner(&quot;replaced-graph&quot;)" methodname="StateResolutionRequiresActualCurrentDisclosedTopOwner" classname="CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests" runstate="Runnable" seed="118912355" result="Failed" start-time="2026-10-27 02:22:33Z" end-time="2026-10-27 02:22:33Z" duration="0.103298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing local Patchbearer motion adapter.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests+Catalog..ctor (UnityEngine.Texture2D works, UnityEngine.Texture2D motion) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:294
+at CavesOfOoo.Tests.FlatPixelPatchbearerMotionTests.StateResolutionRequiresActualCurrentDisclosedTopOwner (System.String fault) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPatchbearerMotionTests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

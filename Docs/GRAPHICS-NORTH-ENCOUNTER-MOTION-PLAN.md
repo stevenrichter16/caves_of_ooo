@@ -1,12 +1,12 @@
 # North encounter motion and readability
 
-Status: **verified plan, implementation and fresh acceptance pending**, 2026-10-27 UTC.
+Status: **native source and ordinary Editor encounter accepted; package delivery next**, 2026-10-27 UTC.
 This is the next scene-level pass after the East steam correction. Its outcome
 is a readable encounter with the existing North Patchbearer, including its
 finite medicine state, rather than another unrelated sprite. This document
 was prepared by reading source, archived captures and checkpoint bytes. No
 Unity session, gameplay, runtime code, art or saved fixture was changed for
-this audit. Only this plan was written.
+the initial audit. The dated continuation below records subsequent work.
 
 Read with [six-scene polish](GRAPHICS-SIX-SCENE-POLISH.md),
 [the current delivery plan](GRAPHICS-COMPLETION-PLAN.md),
@@ -260,3 +260,128 @@ parity or physical Steam Deck performance. Record those separately when run.
 Implementation log: pending N1 capture, then source RED/design/native art,
 integration RED→GREEN, ordinary encounter review and scoped delivery.
 Files changed in this audit: this document only.
+
+## N1–N3 continuation — 2026-10-27 02:24 UTC
+
+The unchanged earliest fixture loaded through ordinary Continue: seed224401440,
+one cached glade, player40,12,40HP,tick10. Normal Up input crossed into North
+at40,24,tick140. Its Patchbearer4940 was actually at6,19 initially, not the
+seed64 reference location. Ordinary approach through the pipe worksite produced
+an earned pre-contact checkpoint at11,19,tick510,36HP. The adjacent Scrabbler
+was defeated normally; subsequent approach and bump attacks reached the
+Patchbearer. It genuinely healed18HP and consumed its healing tonic. Exact
+Examine showed the empty cradle and the separate remaining Antidote. Final
+recorded exchange: player6,21,2HP,tick660; Patchbearer6,20,6HP. No health,
+inventory, position, revelation, event or simulation timing was modified.
+
+Evidence: `Verification/Live16x24/north-motion-baseline.json`, seven actual
+`north-motion-before-*.png` Game captures, earned fixtures
+`north-motion-precontact224401440` and `north-motion-baseline-after224401440`.
+Existing bounded ActionCapture helper exported24 frames in
+`G2Action-20261027-020419-570` and5 in `G2Action-20261027-020531-687`, no export
+errors; additive event observers were removed before stopping Play. The first
+frame cap exhausted during approach at tick590; its later event log still
+records actual Patchbearer combat, but is not a later image sequence. The second
+sequence records the player's real attack and recovery while Patchbearer stays
+static. Neither capture is continuous video or uninstrumented timing proof.
+
+The actual zoomed empty-cradle encounter and approved North works contact were
+fed to built-in imagegen. Exact prompt and concept are retained in
+`ArtSource/Live16x24/north-patchbearer-motion`. Accept restrained leg alternation,
+generic claw extension and compact recoil; reject the concept's oversized detail,
+larger body compression and any implied weapon. Source RED preceded native
+production. The first native8-cell contact was visually reviewed at1x and8x;
+approved idles remain borrowed, and full/empty derivatives differ only in their
+actual healing-slot pixels. This is approval for in-game trial, not acceptance.
+
+Native behavior RED:38 cases,37failed/1passed at02:22:30–33UTC, retained in
+`north-motion-red.xml`. Real cell takeover fails with zero animated views and
+the adapter is absent; static missing-motion fallback already passes. The first
+run during reload selected0tests and is explicitly not counted. Production
+implementation began only after this verified RED.
+
+Readiness corrections from independent source review: validate canonical disclosed
+top ownership before stateful medicine lookup; refresh assets before existing
+reference-equality retirement; rebind on both quiet and event paths. Death drops
+inventory before its callback, so capture current stock after the drop before
+freezing the dying view. A detached authoritative manager is valid; reject stale,
+foreign or unmanaged connected graphs without tightening existing glade policy.
+
+Baseline closure verified: Play off, pending false, normal save root restored,
+clean scene. Normal save trees, gameplay preferences,34 unrelated tracked edits
+and current delivered packages remain preserved. Storage inspection only.
+Hourly report sent02:25UTC: East steam delivered/pushed with211native cases and
+actual Mac restart; North baseline/design/native derivatives complete for trial,
+integration in progress. Coming-hour goals are the gates below. Next report03:25UTC.
+
+Next: minimal integration, native GREEN/adversarial/regressions, actual same-save
+after capture, review and delivery. Whole-opening and physical Deck gates remain open.
+
+
+## N3–N4 verified source — 2026-10-27 02:50 UTC
+
+Eight native derivatives are imported. A local catalog borrows the two approved
+idles, caches ten owned sprite slices over two borrowed textures and admits the
+existing exact disclosed owner only. Full/empty asset refresh preserves view,
+cell/facing, interpolation, elapsed reaction and the bounded pending reaction.
+Other actor identity changes retain retire/reacquire behavior; the four globally
+portable identities are unchanged. Missing motion art falls back to approved
+static art. Death reads stock after ordinary inventory drops before freezing its
+brief existing fade. There are no AI, combat, inventory or turn-cost changes.
+
+A new portable-identity counter exposed an overly broad in-place refresh:
+`north-motion-identity-red.xml` records38passed/1failed. The final refresh is
+restricted to this catalog's full/empty pair. Native combined GREEN records
+272passed/1skipped, and separately imported adversarial tests6/6pass: **278passed,
+1skipped,0failed**. The skip is the existing allocation probe whose known-allocation
+counter does not work; this is not a zero-allocation result. Earlier initial RED
+was37failed/1passed. XMLs and author/independent review receipts are retained.
+
+Ordinary Continue from the earned tick510 checkpoint produced real full-state
+walk/attack/hurt, then actual healing12HP and consumed tonic at640. Empty-state
+Hurt continued through recovery and subsequent attack/walk, matching exact
+Examine with Antidote still carried. Both1x and2x were inspected. The final
+ordinary blow at720 killed the2HP actor; sampled empty dying Hurt retired, then
+normal movement crossed its cell, returned to glade740 and revisited North750.
+Corpse/loot remained with no live ghost. F5 earned final17HP checkpoint.
+No actor, inventory, HP, revelation, event, position or simulation timing was
+changed for the camera. Baseline combat outcomes differed naturally; this is
+same-checkpoint comparison, not identical RNG replay. Existing En garde text was
+visible, but Guarded/Parried success was not observed and remains unaccepted here.
+
+Five actual bounded sequences contain60frames, plus seven original1280x800 Game
+stills. Full/empty body stays aligned; no duplicated body, stale healing bottle
+or persistent readout found by independent review. Default-scale detail remains
+subtle; displacement/outline and2x improve readability. These are sampled frames,
+not continuous video. Exact route, test receipts and capture lists are in
+`Verification/Live16x24/north-motion-editor-play-summary.json`.
+
+Profile:73.0036s stationary North/reader/tool session,64,458 samples. Renderer
+mean0.058324ms,p990.096ms,max3.112083ms; draw calls mean38.8068,max41. No capture
+readback during sample. This is neither controlled before/after nor combat,
+standalone or Deck benchmark. Recorders disposed. Existing Metal memoryless
+load/store diagnostics remain; no clean-console claim.
+
+Self-review: 🟡 fixed generic identity-refresh regression under RED; 🟡 fixed
+hidden-owner authority ordering and death-after-drop state before GREEN.
+🔵 original163 source/art inputs unchanged; new full/empty differences contain
+only the eight healing pixels. 🧪 packagedContinue/restart still pending;
+physicalDeck, Linux execution, guard/parry and sustained performance remain open.
+⚪ no drinking pose or directional rows: generic SelfUse also covers Antidote.
+Independent source and visual reviews found no outstanding material defect.
+
+Files: new local motion catalog,8-frame resource and metas; scoped edits to
+AnimatedEntityRenderer/FlatPixel,EnvironmentSpriteRenderer and shared idle resolver;
+39motion cases,6adversarial cases and global admission counter; editable Blender,
+cells/generator/concept/verification; actual evidence, earned fixtures and living
+docs. Root closed Play with pendingfalse,normalroot,clean SampleScene and removed
+capture observers. Normal saves/gameplay preferences,34foreign tracked edits and
+previous delivered packages preserved. Three reviewed whitespace-only importer
+changes restored from HEAD after backup. Storage inspection only,~411GiB free.
+
+Next: freeze/push exact reviewed source, fresh compressed Mac/Linux builds,
+ordinary MacContinue/full-empty encounter/save/restart; preserve old packages.
+Then East Cindercaller movement/cast attribution beside animated Scrabbler is the
+next named scene-level gap. Existing Ember Spit FX/audio works; capture the actual
+caster before changing its body. Whole six-scene acceptance remains unfinished.
+Last hourly report02:25UTC; next03:25UTC.

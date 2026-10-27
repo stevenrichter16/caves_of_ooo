@@ -103,7 +103,7 @@ namespace CavesOfOoo.Rendering
             return _initialized
                 && _presentationVisible
                 && (_flatPixelMode ? FlatPixelFallbackCatalog.IsCurrentGraph(_zone)
-                    && _flatMotionCatalog != null && _flatMotionCatalog.TryGetAsset(entity, out _)
+                    && TryGetFlatAsset(entity, out _)
                     : EntityVisualCatalog.TryGetAsset(entity, out _))
                 && !IsOwnedBySource(entity);
         }
@@ -688,6 +688,8 @@ namespace CavesOfOoo.Rendering
             while (_pool.Count > 0) DestroyOwned(_pool.Pop().Root);
             _flatMotionCatalog?.Dispose();
             _flatMotionCatalog = null;
+            _flatPatchbearerMotionCatalog?.Dispose();
+            _flatPatchbearerMotionCatalog = null;
             DestroyOwned(_flatMaterial);
             DestroyOwned(_sharedMaterial);
         }

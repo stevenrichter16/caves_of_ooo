@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-10-27T02:49:27.059067+00:00",
+  "reviewer": "Independent agent seed65_route_audit",
+  "scope": "Bounded North Patchbearer local flat 16x24 motion, finite healing-slot continuity, sampled final death fade and ordinary return screenshots.",
+  "decision": "No must-fix defect found in the reviewed bounded slice.",
+  "method": "Read-only inspection of all five action-sequence index/frame state records and the explicit representative full-resolution PNGs listed below. No Unity control, capture generation, gameplay mutation, native test execution or performance measurement was performed by this reviewer.",
+  "sequences": [
+    {
+      "index": "Docs/Verification/Live16x24/G2Action-20261027-023557-465/index.json",
+      "frame_receipts_inspected": 23,
+      "actual_pngs_visually_inspected": [
+        "Docs/Verification/Live16x24/G2Action-20261027-023557-465/frame-07.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023557-465/frame-08.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023557-465/frame-09.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023557-465/frame-17.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023557-465/frame-18.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023557-465/frame-20.png"
+      ],
+      "receipt_ticks": [
+        570,
+        580,
+        590,
+        600,
+        610,
+        620,
+        630
+      ]
+    },
+    {
+      "index": "Docs/Verification/Live16x24/G2Action-20261027-023729-824/index.json",
+      "frame_receipts_inspected": 10,
+      "actual_pngs_visually_inspected": [
+        "Docs/Verification/Live16x24/G2Action-20261027-023729-824/frame-00.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023729-824/frame-01.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023729-824/frame-02.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023729-824/frame-05.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023729-824/frame-09.png"
+      ],
+      "receipt_ticks": [
+        630,
+        640,
+        650
+      ]
+    },
+    {
+      "index": "Docs/Verification/Live16x24/G2Action-20261027-023910-515/index.json",
+      "frame_receipts_inspected": 14,
+      "actual_pngs_visually_inspected": [
+        "Docs/Verification/Live16x24/G2Action-20261027-023910-515/frame-01.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023910-515/frame-04.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023910-515/frame-05.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-023910-515/frame-13.png"
+      ],
+      "receipt_ticks": [
+        650,
+        660,
+        670,
+        680,
+        690
+      ]
+    },
+    {
+      "index": "Docs/Verification/Live16x24/G2Action-20261027-024024-194/index.json",
+      "frame_receipts_inspected": 9,
+      "actual_pngs_visually_inspected": [
+        "Docs/Verification/Live16x24/G2Action-20261027-024024-194/frame-04.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-024024-194/frame-08.png"
+      ],
+      "receipt_ticks": [
+        690,
+        700,
+        710
+      ]
+    },
+    {
+      "index": "Docs/Verification/Live16x24/G2Action-20261027-024225-894/index.json",
+      "frame_receipts_inspected": 4,
+      "actual_pngs_visually_inspected": [
+        "Docs/Verification/Live16x24/G2Action-20261027-024225-894/frame-00.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-024225-894/frame-01.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-024225-894/frame-02.png",
+        "Docs/Verification/Live16x24/G2Action-20261027-024225-894/frame-03.png"
+      ],
+      "receipt_ticks": [
+        710,
+        720
+      ]
+    }
+  ],
+  "other_actual_pngs_visually_inspected": [
+    "Docs/Verification/Live16x24/north-motion-before-06-zoomed-empty.png",
+    "Docs/Verification/Live16x24/G2Action-20261027-020531-687/frame-01.png",
+    "Docs/Verification/Live16x24/north-motion-after-05-final-exchange.png",
+    "Docs/Verification/Live16x24/north-motion-after-06-glade-return.png",
+    "Docs/Verification/Live16x24/north-motion-after-07-north-revisit.png"
+  ],
+  "source_references_visually_inspected": [
+    "ArtSource/Live16x24/north-patchbearer-motion/contact.png",
+    "ArtSource/Live16x24/north-patchbearer-motion/imagegen-motion-concept.png"
+  ],
+  "final_events_inspected": "Docs/Verification/Live16x24/G2Action-20261027-024225-894/events-20261027-024226-501-06c5c6205ad54fcaa55f74047b3fe8f5.json",
+  "observations": [
+    {
+      "subject": "Ownership and locomotion",
+      "assessment": "One visible Patchbearer body follows the disclosed actor 4940. Both full WalkA/B and empty retreat WalkA/B appear between the recorded cell anchors, with the approved idle restored on completion. The inspected images do not show an additional static living body left behind or an unintended baseline jump.",
+      "evidence": [
+        "023557 frames 07-09 and 17-20",
+        "023910 frames 04-05 and 13"
+      ]
+    },
+    {
+      "subject": "Finite healing-slot state",
+      "assessment": "Sequence 023729 starts with approved full idle at tick 630 and resolves empty Hurt at tick 640. The actual log records 3 damage, 1 bleed damage, healing 12 HP and use of a healing tonic. The receipt reports 20 HP after that action. Empty idle/recovery and empty Attack remain at tick 650; there is no new drinking pose or claim that all other medicine is gone.",
+      "evidence": [
+        "023729 frames 00-02, 05 and 09"
+      ]
+    },
+    {
+      "subject": "Reaction and readout clarity",
+      "assessment": "Hurt shows a narrower recoil and Attack a short foreclaw extension while preserving the existing silhouette, palette and foot anchor. Sampled red damage numbers and cyan En garde text remain separate from the actor body and clear afterward. Recovery returns to the approved idle. Default-scale pose and cradle details remain subtle; the 2x view makes these differences easier to inspect.",
+      "evidence": [
+        "023557 frames 17-20",
+        "023729 frames 01, 05 and 09",
+        "023910 frames 01, 04-05",
+        "024024 frames 04 and 08"
+      ]
+    },
+    {
+      "subject": "Final blow and retirement",
+      "assessment": "At tick 710 the same actor has 2 HP and empty idle. The recorded tick-720 attack and lethal 2 damage target actor 4940. Frame 01 captures its empty Hurt with Dying=true at alpha 1; frame 02 keeps the same anchor with alpha 0.567459464; frame 03 no longer lists or shows the live body. The follow-up image shows the resulting ground pile rather than a resurrected or duplicate actor. This verifies those sampled fade endpoints, not continuous fade smoothness.",
+      "evidence": [
+        "024225 frames 00-03 and the two-event receipt",
+        "north-motion-after-05-final-exchange.png"
+      ]
+    },
+    {
+      "subject": "Return and revisit",
+      "assessment": "The glade-return image shows the player and existing glade presentation. The North-revisit image shows the player at 6,24 over the disclosed pile, with Focus listing marlback remains, leather armor, dagger, antidote and other loot. No living Patchbearer ghost is visible. These screenshots establish visible return results; this review does not independently prove complete save-graph equality.",
+      "evidence": [
+        "north-motion-after-06-glade-return.png",
+        "north-motion-after-07-north-revisit.png"
+      ]
+    }
+  ],
+  "nonblocking_limits": [
+    "Earlier static captures are qualitative controls: route, timing, HP and disclosure differ from the after sequences. No pixel-identical replay or identical combat outcome is claimed.",
+    "The supplied captures are selective action-frame samples with synchronous screenshot readback overhead, not continuous video, timing-quality proof or a sustained-performance benchmark.",
+    "No physical Steam Deck, controller-feel or packaged playback acceptance was performed by this reviewer.",
+    "Canonical east-facing art and horizontal flipping do not provide newly authored north/south directional poses.",
+    "Existing post-death loot/fallback marks remain visible. This slice and review do not assert that every loot identity or the complete opening/world is graphically finished.",
+    "Pose changes at default scale are modest, consistent with the small approved sprite and the bounded design; no new larger silhouette or effect is required by the inspected evidence."
+  ],
+  "must_fix_findings": [],
+  "actual_action_frame_receipts_inspected_total": 60,
+  "actual_pngs_visually_inspected_total": 26
+}

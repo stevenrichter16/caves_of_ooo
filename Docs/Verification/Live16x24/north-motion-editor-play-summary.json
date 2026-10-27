@@ -1,0 +1,267 @@
+{
+  "utc": "2026-10-27T02:50:04.468919+00:00",
+  "status": "Editor encounter accepted; packaged validation pending",
+  "seed": 224401440,
+  "game_id": "b343f331bf5d40a189c86e4aaba9aa47",
+  "player_id": "2707",
+  "patchbearer_id": "4940",
+  "start": "Unchanged earned precontact fixture; North11,19,tick510,36HP via ordinary Continue",
+  "input": "Native keyboard only; no gameplay mutation, actor relocation, HP/inventory grants or event injection",
+  "route": [
+    {
+      "tick": 600,
+      "player": [
+        7,
+        19
+      ],
+      "hp": 36,
+      "patchbearer": [
+        5,
+        22
+      ],
+      "patch_hp": 20,
+      "state": "Full; earned close-approach fixture saved"
+    },
+    {
+      "tick": 630,
+      "player": [
+        6,
+        20
+      ],
+      "hp": 25,
+      "patch_hp": 12,
+      "state": "Full hurt and attack"
+    },
+    {
+      "tick": 640,
+      "player": [
+        6,
+        20
+      ],
+      "hp": 25,
+      "patch_hp": 20,
+      "state": "Real healing12HP and tonic consumption; empty Hurt/recovery"
+    },
+    {
+      "tick": 650,
+      "hp": 20,
+      "patch_hp": 10,
+      "state": "Empty Hurt/attack"
+    },
+    {
+      "tick": 690,
+      "player": [
+        6,
+        21
+      ],
+      "hp": 20,
+      "patch_hp": 2,
+      "state": "Empty retreat WalkA/B at default1x"
+    },
+    {
+      "tick": 710,
+      "player": [
+        6,
+        23
+      ],
+      "hp": 17,
+      "patch_hp": 2,
+      "state": "Empty attack; exact reader shows Antidote remains"
+    },
+    {
+      "tick": 720,
+      "hp": 17,
+      "patch_hp": 0,
+      "state": "Ordinary final blow; empty dying Hurt then view removed"
+    },
+    {
+      "tick": 740,
+      "zone": "Overworld.11.10.0",
+      "player": [
+        6,
+        0
+      ],
+      "hp": 17,
+      "state": "Ordinary glade return"
+    },
+    {
+      "tick": 750,
+      "zone": "Overworld.11.9.0",
+      "player": [
+        6,
+        24
+      ],
+      "hp": 17,
+      "state": "Revisit former actor cell; corpse/dropped items persist; F5 saved"
+    }
+  ],
+  "captures": [
+    {
+      "directory": "G2Action-20261027-023557-465",
+      "frames": 23,
+      "ticks": [
+        570,
+        580,
+        590,
+        600,
+        610,
+        620,
+        630
+      ],
+      "events_files": [
+        "events-20261027-023558-084-98c79036e4544637a1508cdc8dbc46cb.json"
+      ]
+    },
+    {
+      "directory": "G2Action-20261027-023729-824",
+      "frames": 10,
+      "ticks": [
+        630,
+        640,
+        650
+      ],
+      "events_files": [
+        "events-20261027-023730-442-742f5815242941b1b0b21635567ef6e1.json"
+      ]
+    },
+    {
+      "directory": "G2Action-20261027-023910-515",
+      "frames": 14,
+      "ticks": [
+        650,
+        660,
+        670,
+        680,
+        690
+      ],
+      "events_files": [
+        "events-20261027-023911-215-5288727f280b42b1ad42a317497c623c.json"
+      ]
+    },
+    {
+      "directory": "G2Action-20261027-024024-194",
+      "frames": 9,
+      "ticks": [
+        690,
+        700,
+        710
+      ],
+      "events_files": [
+        "events-20261027-024024-916-efa04b4d0f544fc9862302af08cf8ce7.json"
+      ]
+    },
+    {
+      "directory": "G2Action-20261027-024225-894",
+      "frames": 4,
+      "ticks": [
+        710,
+        720
+      ],
+      "events_files": [
+        "events-20261027-024226-501-06c5c6205ad54fcaa55f74047b3fe8f5.json"
+      ]
+    }
+  ],
+  "stills": [
+    "north-motion-after-01-approach.png",
+    "north-motion-after-02-tonic-used.png",
+    "north-motion-after-03-default-scale.png",
+    "north-motion-after-04-empty-reader.png",
+    "north-motion-after-05-final-exchange.png",
+    "north-motion-after-06-glade-return.png",
+    "north-motion-after-07-north-revisit.png"
+  ],
+  "tests": [
+    {
+      "file": "north-motion-red.xml",
+      "result": {
+        "id": "2",
+        "testcasecount": "38",
+        "result": "Failed(Child)",
+        "total": "38",
+        "passed": "1",
+        "failed": "37",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-27 02:22:30Z",
+        "end-time": "2026-10-27 02:22:33Z",
+        "duration": "2.8727214"
+      }
+    },
+    {
+      "file": "north-motion-identity-red.xml",
+      "result": {
+        "id": "2",
+        "testcasecount": "39",
+        "result": "Failed(Child)",
+        "total": "39",
+        "passed": "38",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-27 02:28:23Z",
+        "end-time": "2026-10-27 02:28:26Z",
+        "duration": "2.8325442"
+      }
+    },
+    {
+      "file": "north-motion-green-regressions.xml",
+      "result": {
+        "id": "2",
+        "testcasecount": "273",
+        "result": "Skipped:Ignored",
+        "total": "273",
+        "passed": "272",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "1",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-27 02:31:48Z",
+        "end-time": "2026-10-27 02:32:34Z",
+        "duration": "45.7602371"
+      }
+    },
+    {
+      "file": "north-motion-adversarial-green.xml",
+      "result": {
+        "id": "2",
+        "testcasecount": "6",
+        "result": "Passed",
+        "total": "6",
+        "passed": "6",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-27 02:33:41Z",
+        "end-time": "2026-10-27 02:33:42Z",
+        "duration": "0.8262621"
+      }
+    }
+  ],
+  "earned_fixtures": [
+    "Fixtures/north-motion-close-approach224401440",
+    "Fixtures/north-motion-after224401440"
+  ],
+  "performance": "north-motion-editor-profile.json;73.0036s stationary/reader/editor/tool sample;renderer mean0.058324ms,p990.096ms,max3.112083ms,draw calls mean38.8068,max41. Not combat or standalone benchmark.",
+  "limits": [
+    "Before/after use same earned checkpoint but real RNG/outcomes differ; not deterministic replay.",
+    "Sampled bounded action frames, not continuous video or timing certification.",
+    "En garde text observed; no Guarded/Parried success captured.",
+    "No new directional rows or self-use/drinking pose.",
+    "Allocation test skipped because runtime counter failed known-allocation control; no zero-allocation claim.",
+    "Whole opening, remaining actors/regions, Linux execution, physical Deck and sustained performance remain open."
+  ],
+  "console": "Existing Metal memoryless load/store diagnostics seen; read_console also labels ordinary Autosaved log as Exception. Save receipt and restored state verified; no blanket clean-console claim.",
+  "restoration": "north-motion-editor-restoration.json"
+}
