@@ -1,0 +1,1 @@
+Earned through ordinary fresh Mac13178d5c0 Continue110, examine Chair, Stand, Sit and F5. Player55,19 HP40, Sitting. Copied unchanged after full process quit; no gameplay/save edits. Root actual captures packaged-shared-furniture-mac-02 through05.

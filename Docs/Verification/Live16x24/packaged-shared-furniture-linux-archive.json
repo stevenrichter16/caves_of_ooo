@@ -1,0 +1,1464 @@
+{
+  "at_utc": "2026-10-27T23:09:12.228306+00:00",
+  "runtime_source_commit": "13178d5c0302bb655347a1daff20425d990b6c84",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-shared-furniture-13178d5c0-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_bytes": 128810632,
+  "archive_sha256": "777506410e6a2f70f9918a5e59869e1403741cfb3f497a90ad5a3285a69b3bd3",
+  "regular_files": 189,
+  "archive_members": 202,
+  "directories": 13,
+  "unpacked_file_bytes": 341269165,
+  "every_archived_file_hash_size_mode_verified": true,
+  "every_archived_directory_and_mode_verified": true,
+  "unsafe_paths_or_links": false,
+  "gzip_crc_size_and_footer_verified_to_eof": true,
+  "internal_sha256sums_covers_every_other_file": true,
+  "original_build_bytes_preserved": true,
+  "prior_packages_modified": false,
+  "linux_executable_format": "ELF64 little-endian x86-64 (header inspected; not executed)",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "licenses": {
+    "credit_sections": [
+      "CREDITS.txt",
+      "PLACES-CREDITS.txt",
+      "ATMOSPHERIC-CREDITS.txt",
+      "UTILITY-CREDITS.txt",
+      "REGIONAL-MUSIC-CREDITS.txt",
+      "DEFENSE-CREDITS.txt"
+    ],
+    "license_texts": [
+      "CC-BY-4.0.txt",
+      "CC0-1.0.txt",
+      "kenney_impact-sounds.txt",
+      "kenney_interface-sounds.txt",
+      "kenney_rpg-audio.txt"
+    ],
+    "starter_spell_sources": true
+  },
+  "build_info": {
+    "created_at_utc": "2026-10-27T23:09:04.023332+00:00",
+    "runtime_source_commit": "13178d5c0302bb655347a1daff20425d990b6c84",
+    "package_flavor": "shared-furniture-body-reuse",
+    "built_after_utc": "2026-10-27T23:05:31+00:00",
+    "slice_description": "Exact placed Bed and Chair identities reuse the unchanged approved East atlas cells 2 and 3 through one shared neutral-body catalog. Current graph, placement, selection, disclosure and authorized-reader rules remain required. Owner, reservation and occupant state do not invent alternate sprites; existing rest, sit/stand and NPC reservation mechanics retain their meaning. Borrowed constructor inputs and all four rendering entry points share the same refusal policy, and the existing painter supplies one Render-event color cue. No source pixels, generation, collision, saves, loot or camera behavior is changed by this presentation slice.",
+    "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+    "platform": "Linux x86_64",
+    "mac_build_receipt": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-furniture-mac-build.json",
+      "sha256": "54834c8d7f6720e5de77a1d0d72bdf7f1dbac24e2e72444c81255ce135531998",
+      "summary": {
+        "job_id": "build-2537e7018c",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-10-27-shared-furniture-13178d5c0-current/CavesOfOoo.app",
+        "started_at": "2026-10-27T23:05:32.019361Z",
+        "duration_seconds": 69.074049,
+        "completed_at": "2026-10-27T23:06:41.09341Z",
+        "total_size_mb": 344.52,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux_build_receipt": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-furniture-linux-build.json",
+      "sha256": "03e512fb07a7635d5af214b49fa68c333d75f87ec87a517d8ed194b1bf16e281",
+      "summary": {
+        "job_id": "build-532a744001",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-10-27-shared-furniture-13178d5c0-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+        "started_at": "2026-10-27T23:06:58.14828Z",
+        "duration_seconds": 62.116099,
+        "completed_at": "2026-10-27T23:08:00.264379Z",
+        "total_size_mb": 324.98,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "default_presentation": "Flat16x24 when no saved explicit choice exists",
+    "prior_presentation_retained": true,
+    "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+    "verification": {
+      "native_test_evidence": {
+        "receipts": [
+          {
+            "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-expanded-green.json",
+            "sha256": "02e9145c5368291640f1d7316d236033670a04e286bd24f42afacfad1338c0b6",
+            "mode": "EditMode",
+            "job_id": "b3381fb749de44799fa42ef162cee56e",
+            "raw_summary": {
+              "total": 256,
+              "passed": 256,
+              "failed": 0,
+              "skipped": 0,
+              "durationSeconds": 23.7055357,
+              "resultState": "Passed"
+            },
+            "actual_case_rows": 259,
+            "derived_passed": 256,
+            "derived_inconclusive": 3,
+            "actual_job_metadata": {
+              "job_id": "b3381fb749de44799fa42ef162cee56e",
+              "status": "succeeded",
+              "mode": "EditMode",
+              "started_unix_ms": 1793141364928,
+              "finished_unix_ms": 1793141391006,
+              "last_update_unix_ms": 1793141391006,
+              "progress": {
+                "completed": 259,
+                "total": 259,
+                "current_test_full_name": null,
+                "current_test_started_unix_ms": 1793141390776,
+                "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+                "last_finished_unix_ms": 1793141390813,
+                "stuck_suspected": false,
+                "editor_is_focused": true,
+                "blocked_reason": null,
+                "failures_so_far": [],
+                "failures_capped": false
+              },
+              "error": null,
+              "result": {
+                "mode": "EditMode",
+                "summary": {
+                  "total": 256,
+                  "passed": 256,
+                  "failed": 0,
+                  "skipped": 0,
+                  "durationSeconds": 23.7055357,
+                  "resultState": "Passed"
+                },
+                "results": [
+                  {
+                    "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+                    "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+                    "state": "Inconclusive",
+                    "durationSeconds": 0.0382936,
+                    "message": "Current-thread allocation counter did not detect the positive control.",
+                    "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:617\n",
+                    "output": ""
+                  },
+                  {
+                    "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+                    "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+                    "state": "Inconclusive",
+                    "durationSeconds": 0.0369299,
+                    "message": "Current-thread allocation counter did not detect the positive control.",
+                    "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:617\n",
+                    "output": ""
+                  },
+                  {
+                    "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+                    "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+                    "state": "Inconclusive",
+                    "durationSeconds": 0.0364416,
+                    "message": "Current-thread allocation counter did not detect the positive control.",
+                    "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:617\n",
+                    "output": ""
+                  }
+                ]
+              }
+            },
+            "job_receipt": {
+              "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-expanded-job.json",
+              "sha256": "49e899d5cb2950fe91e3969cd53b42e8dd2295e2ed47b565d3d9b66d815f95ab"
+            },
+            "started_unix_ms": 1793141364928,
+            "finished_unix_ms": 1793141391006,
+            "scope": "Earlier completed native execution; this helper does not run tests.",
+            "overlap_with_preceding_receipts": 0
+          },
+          {
+            "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-related-green.json",
+            "sha256": "1da24af254a5c19412d58a49bca17ac86037b25a7e97898e52a791b9e02cd538",
+            "mode": "EditMode",
+            "job_id": "8ef42e9dc4174c8996c77e07efb59c20",
+            "raw_summary": {
+              "total": 139,
+              "passed": 139,
+              "failed": 0,
+              "skipped": 0,
+              "durationSeconds": 14.6964885,
+              "resultState": "Passed"
+            },
+            "actual_case_rows": 139,
+            "derived_passed": 139,
+            "derived_inconclusive": 0,
+            "actual_job_metadata": {
+              "job_id": "8ef42e9dc4174c8996c77e07efb59c20",
+              "status": "succeeded",
+              "mode": "EditMode",
+              "started_unix_ms": 1793141240590,
+              "finished_unix_ms": 1793141261199,
+              "last_update_unix_ms": 1793141261199,
+              "progress": {
+                "completed": 139,
+                "total": 139,
+                "current_test_full_name": null,
+                "current_test_started_unix_ms": 1793141260639,
+                "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(\"gone\")",
+                "last_finished_unix_ms": 1793141260729,
+                "stuck_suspected": false,
+                "editor_is_focused": true,
+                "blocked_reason": null,
+                "failures_so_far": [],
+                "failures_capped": false
+              },
+              "error": null,
+              "result": null
+            },
+            "job_receipt": {
+              "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-related-job.json",
+              "sha256": "0b06976ceb811045b7bd35ff5db94b7c18694f4166da181cbdff656473037664"
+            },
+            "started_unix_ms": 1793141240590,
+            "finished_unix_ms": 1793141261199,
+            "scope": "Earlier completed native execution; this helper does not run tests.",
+            "overlap_with_preceding_receipts": 0
+          }
+        ],
+        "source_binding_receipt": {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-native-summary.json",
+          "sha256": "6052b1eb389bb6ea66d88ac37eefc9c0f35b747328e294cb5ff07d6346bb3665",
+          "pins": {
+            "Assets/Scripts/Presentation/Rendering/FlatPixelSharedFurnitureCatalog.cs": "5ebb088d74b5a0b31635694b72ae2e825bcb4494c6634dc85f49474968cf54b8",
+            "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "95a8d370879626fb133b72b042c99421fe0f7f7b5faebe4dc5b062d5a4bb207e",
+            "Assets/Scripts/Presentation/Rendering/FlatPixelEastKitchenCatalog.cs": "823c1957396a2be45300e09ad3dbe5f115fcb8f5e255e986338d02a694bea099",
+            "Assets/Tests/EditMode/FlatPixelSharedFurnitureTests.cs": "1b0e291b60c799762503563201835cd579563919fd8c2bc198d994315b9be700",
+            "Docs/Verification/Live16x24/shared-furniture-expanded-green.json": "02e9145c5368291640f1d7316d236033670a04e286bd24f42afacfad1338c0b6",
+            "Docs/Verification/Live16x24/shared-furniture-related-green.json": "1da24af254a5c19412d58a49bca17ac86037b25a7e97898e52a791b9e02cd538",
+            "Docs/Verification/Live16x24/shared-furniture-expanded-job.json": "49e899d5cb2950fe91e3969cd53b42e8dd2295e2ed47b565d3d9b66d815f95ab",
+            "Docs/Verification/Live16x24/shared-furniture-related-job.json": "0b06976ceb811045b7bd35ff5db94b7c18694f4166da181cbdff656473037664",
+            "Assets/Resources/Sprites/Live16x24/east-kitchen.png": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56"
+          },
+          "current_source_evidence_resource_bytes_match": true,
+          "limits": "Exact current runtime/test/evidence/borrowed-atlas bytes are checked. The final Git revision and source-to-binary provenance remain root operator assertions."
+        },
+        "execution_occurrences": 398,
+        "passed_execution_occurrences": 395,
+        "failed_execution_occurrences": 0,
+        "skipped_execution_occurrences": 0,
+        "inconclusive_execution_occurrences": 3,
+        "distinct_test_identities_across_listed_receipts": 398,
+        "distinct_passed_test_identities": 395,
+        "distinct_skipped_test_identities": 0,
+        "distinct_inconclusive_test_identities": 3,
+        "all_cases_passed": false,
+        "focused_furniture_passed": 33,
+        "skipped_identities": [],
+        "skipped_reason": null,
+        "inconclusive_identities": [
+          "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+          "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+          "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")"
+        ],
+        "inconclusive_reason": "Current-thread allocation counter did not detect the positive control.",
+        "limits": "The expanded receipt has 259 rows: 33 furniture cases and 223 related Passed, plus three existing Sodden allocation-counter Inconclusive cases. Another disjoint receipt has 139 related Passed. Total 395 Passed plus three Inconclusive; none is converted to a pass. The raw expanded summary omits those three from its total; complete result rows and actual job progress retain them. Initial two-case GREEN, RED, first-effect prerequisite runs and earlier aggregates are not added. This helper runs no tests and certifies neither whole-area graphics, actual gameplay, Linux execution, physical Deck behavior nor performance."
+      },
+      "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+      "editor_gameplay": "Not verified by this packaging helper.",
+      "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+      "linux_execution": false,
+      "physical_steam_deck": false,
+      "performance_benchmark": "Not performed or certified."
+    },
+    "coverage_limits": [
+      "This finite shared-owner integration covers exact ordinary Bed and Chair, not every furniture type, every site, every biome or whole-chunk graphics acceptance. Missing actors, hazards, deeper strata, room props and special sites remain separate work.",
+      "Native bodies and matching readers do not establish whole-scene fullness or area polish. Ordinary rest, sitting, reservations, movement and persistence evidence must be assessed separately.",
+      "The two complete native results contain 395 distinct Passed and 3 Inconclusive identities; all 33 focused furniture cases passed. The three existing Sodden allocation positive-control cases remain inconclusive, with zero failed or skipped cases. Earlier executions are not added. Actual native job receipts supply the time bounds; this is not allocation or device-performance proof.",
+      "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Remaining worldwide static coverage stays queued; nuanced animation remains deferred."
+    ],
+    "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+  },
+  "files": [
+    {
+      "path": "ATMOSPHERIC-CREDITS.txt",
+      "mode": "0o644",
+      "bytes": 8461,
+      "sha256": "617e02753175114f7c9fe56580e4708d88e7a418d9364b2d3ae7538c2dd517e2"
+    },
+    {
+      "path": "AUDIO-CREDITS.txt",
+      "mode": "0o644",
+      "bytes": 37228,
+      "sha256": "f828560663eafa1e04cb2fdd133350805657ca1a8431403f841414e7aa7cd25b"
+    },
+    {
+      "path": "Audio-Licenses/CC-BY-4.0.txt",
+      "mode": "0o644",
+      "bytes": 18657,
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    {
+      "path": "Audio-Licenses/CC0-1.0.txt",
+      "mode": "0o644",
+      "bytes": 7048,
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "path": "Audio-Licenses/kenney_impact-sounds.txt",
+      "mode": "0o644",
+      "bytes": 608,
+      "sha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db"
+    },
+    {
+      "path": "Audio-Licenses/kenney_interface-sounds.txt",
+      "mode": "0o644",
+      "bytes": 574,
+      "sha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9"
+    },
+    {
+      "path": "Audio-Licenses/kenney_rpg-audio.txt",
+      "mode": "0o644",
+      "bytes": 478,
+      "sha256": "5735dfd72cb64cbbceda4ebc00c380c41ca680edb82ff153aa7c9ab97614c539"
+    },
+    {
+      "path": "CREDITS.txt",
+      "mode": "0o644",
+      "bytes": 8853,
+      "sha256": "66f3018863850a4c8b866538aecc820c4959f6845f09845bc5f596d8284512b8"
+    },
+    {
+      "path": "CavesOfOoo.x86_64",
+      "mode": "0o755",
+      "bytes": 4472,
+      "sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/CavesOfOoo.dll",
+      "mode": "0o644",
+      "bytes": 9520128,
+      "sha256": "2a338b940007a32b185150b41965ce226fa4081ecc4b564b8d78c1a829663c0a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/MCPForUnity.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 25088,
+      "sha256": "a16ebe279791bf84d010686a609a940dc3fd2f748f17dfe78ff44c05e33b0419"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Mono.Security.dll",
+      "mode": "0o644",
+      "bytes": 241152,
+      "sha256": "b9f8cb4e1157f4de0300b5bfa37f12875d7935ad130c01cddb3d78ffade4817a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Newtonsoft.Json.dll",
+      "mode": "0o644",
+      "bytes": 691712,
+      "sha256": "a56146202232958f46bd6a28b5a7da166aea123ee0d646735a46e5c341dfbf1f"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.ComponentModel.Composition.dll",
+      "mode": "0o644",
+      "bytes": 257024,
+      "sha256": "bc3c05dc82c378243b3a5b4edaa8fc670163b6e3503eb1a3c2bcfdee7ed19adb"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Configuration.dll",
+      "mode": "0o644",
+      "bytes": 124928,
+      "sha256": "4c9edd3e91ec8ee8b39569e4d078ce98a5c1a4b64a95058ef883c03120ad54c9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Core.dll",
+      "mode": "0o644",
+      "bytes": 1115136,
+      "sha256": "e7da9724a4275d9060d7dc54b625f71b38ea91299b5e307bbe810b7f039d14d9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Data.DataSetExtensions.dll",
+      "mode": "0o644",
+      "bytes": 29696,
+      "sha256": "bead35200ddc698cf4b2112c2308010729785cb828769d5929a2124c729f20d7"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Data.dll",
+      "mode": "0o644",
+      "bytes": 2104320,
+      "sha256": "5e0ddc5ef2377c87b747c6d947592b8441f36fa3c0a51c85c968a28fd799d738"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Drawing.dll",
+      "mode": "0o644",
+      "bytes": 489984,
+      "sha256": "7b384486597d5f33c145d1ef7f9f37aae9854f8bf037c2a67767284e669f1555"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.EnterpriseServices.dll",
+      "mode": "0o644",
+      "bytes": 44544,
+      "sha256": "6b461ca43b8688b40d0ef5d3f312ee53f1415c10c3486d036e99d3ac9d71c791"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.IO.Compression.FileSystem.dll",
+      "mode": "0o644",
+      "bytes": 18432,
+      "sha256": "5cf4a8f970b9599fe46c40f6b8e56634f752c147555d5aadd0087741d485402d"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.IO.Compression.dll",
+      "mode": "0o644",
+      "bytes": 114688,
+      "sha256": "9dc861820c6aa4dd6771e5787a57dc8d16b65230fde14646b00e1b2c0d1c9352"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.IO.Hashing.dll",
+      "mode": "0o644",
+      "bytes": 50488,
+      "sha256": "ac7ac3e83805b0b621c48b90543dc733c9a89106835278618357d6187e3da74e"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Memory.dll",
+      "mode": "0o644",
+      "bytes": 4608,
+      "sha256": "c4f030a2cba7da7cdcf493257c24560e203d355904aee490d645a935842f834a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Net.Http.dll",
+      "mode": "0o644",
+      "bytes": 281600,
+      "sha256": "9abeeb5e85ef597bb95df3599880cb2f37bac2621937dca3be6b90b8855d33ec"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Numerics.dll",
+      "mode": "0o644",
+      "bytes": 119296,
+      "sha256": "9eebda108e3e6b827161edaffc7c7acf638bc3da25f75fe52b230c3eee3f0224"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Runtime.CompilerServices.Unsafe.dll",
+      "mode": "0o644",
+      "bytes": 18024,
+      "sha256": "01748200f2400c742aa689f1f5101bd6298efdfd92c00c18f4fa473847235ba9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Runtime.Serialization.dll",
+      "mode": "0o644",
+      "bytes": 934400,
+      "sha256": "7160e4944de819832cb62daca85bfd1871308fa504127bdf1cea6726d151dfe5"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 12288,
+      "sha256": "fbc8607d8c4312460f5234c1950a74d098ff8cab5abcc1a093e55b2bbed75d30"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Security.dll",
+      "mode": "0o644",
+      "bytes": 314880,
+      "sha256": "aae657a75d42131ddc7044bcfe9b7f949fef6d89e75a36fe1b5ec600f9995602"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.ServiceModel.Internals.dll",
+      "mode": "0o644",
+      "bytes": 215040,
+      "sha256": "2765b92793227caecb7c9f125e673a04a863e1c1652a1fed1a4cdca7c1fbe64f"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Transactions.dll",
+      "mode": "0o644",
+      "bytes": 35328,
+      "sha256": "ff41dae7fe7d4a5b43565c5d1a7183aece8a72a2ddcd7bb1f7e4c84cf4219504"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Xml.Linq.dll",
+      "mode": "0o644",
+      "bytes": 136704,
+      "sha256": "7df6407b2d847f394f018faf9a8d90944ae26e025533fe47c05512bdd1317474"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.Xml.dll",
+      "mode": "0o644",
+      "bytes": 3160064,
+      "sha256": "c6bdafe408dbc8d2cf3217d28a717330f07041e97c3d43c30105116388ade577"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/System.dll",
+      "mode": "0o644",
+      "bytes": 2655744,
+      "sha256": "ee8bc771a80a449e6693ed97d59e36ada21f149217453835ff5182f75d48365e"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.2D.Animation.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 91136,
+      "sha256": "53cdfd9aa6a4a34c33513efc9adc0868d8baad40c1865273888eaa7082aaa8ce"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.2D.Common.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 58368,
+      "sha256": "e0efef6ca9dc8f7adbc22009961075e5bb3171962ffa804365ee31049a86fda5"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.2D.IK.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 40960,
+      "sha256": "279cbedaf35dc15323ce8aa71faf820d2a120f91c9b332ce46e7bde6df9a5831"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Burst.Unsafe.dll",
+      "mode": "0o644",
+      "bytes": 5632,
+      "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Burst.dll",
+      "mode": "0o644",
+      "bytes": 304640,
+      "sha256": "9aa645eec07e31c8108842c30edc09bcb2b4f6c1c382b2a651040f2842bc5b30"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Cinemachine.dll",
+      "mode": "0o644",
+      "bytes": 480768,
+      "sha256": "870f2be8467dc69edc17862cfd83e930a3a844bbb1139a41281905c340d448fe"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Collections.LowLevel.ILSupport.dll",
+      "mode": "0o644",
+      "bytes": 5120,
+      "sha256": "ff50383f807f9692e4913b97e47d86fefcb8faa33d6d48cd3e3fd6fc7ffb448d"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Collections.dll",
+      "mode": "0o644",
+      "bytes": 450560,
+      "sha256": "196916177ea17829113671690236a3175cada0e632581efe879be0c4d4d7e7b9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.InputSystem.ForUI.dll",
+      "mode": "0o644",
+      "bytes": 16384,
+      "sha256": "4c62389491cd68dfab185e8028ea6557a2e722206c349d8b764d139edfad07b2"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.InputSystem.dll",
+      "mode": "0o644",
+      "bytes": 1140736,
+      "sha256": "9d8fa8f624d352fab3c8cb4a5ed2ad2bad71340b5e4dc173a59b32003d5fbf40"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.InternalAPIEngineBridge.001.dll",
+      "mode": "0o644",
+      "bytes": 6656,
+      "sha256": "f208bced47283489b0b9704cdf6fef32d093dcd95a53f63719b234a25490b448"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.InternalAPIEngineBridge.004.dll",
+      "mode": "0o644",
+      "bytes": 4608,
+      "sha256": "e18d025e7d40e62803599c44edb1349e12561af83fdf07da9bdc700c004db92f"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Mathematics.dll",
+      "mode": "0o644",
+      "bytes": 752640,
+      "sha256": "21c7de9b16b7248b47b01837e40e10b16091f6b2ea4e5bc27d369601bbbdf021"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Multiplayer.Center.Common.dll",
+      "mode": "0o644",
+      "bytes": 10752,
+      "sha256": "689f32e7e07f10bde89da2e6e9cd4b9602dd36811f0d083fc142ec2243a3c754"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.ProBuilder.Csg.dll",
+      "mode": "0o644",
+      "bytes": 18944,
+      "sha256": "19f88d5b3e3aa1239005a3d355a5854a7ce44ccbc11caf9270d5a5d7f5353f25"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.ProBuilder.KdTree.dll",
+      "mode": "0o644",
+      "bytes": 21504,
+      "sha256": "e51895c0c9f941c3d10f7e7ccfb2fa58f9715732c413acd804c350683ac34554"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.ProBuilder.Poly2Tri.dll",
+      "mode": "0o644",
+      "bytes": 39936,
+      "sha256": "d700e7473d986d0e4aef300c00162e9ae818e23529e9fab9947be23f9cdc08c3"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.ProBuilder.Stl.dll",
+      "mode": "0o644",
+      "bytes": 13824,
+      "sha256": "20ac13f3185f6e99e875459365bf5fe4fe3147948bdeabe00db1fde12062aa77"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.ProBuilder.dll",
+      "mode": "0o644",
+      "bytes": 404992,
+      "sha256": "b75a941f523f49e2503e735c1a51b51b366232254a4b5a65a8daf4acdfadb94c"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "mode": "0o644",
+      "bytes": 9216,
+      "sha256": "0b97ed097f56268097f9497987e79725e63ed41fde28c4db175cfd87d7657678"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.Core.Runtime.Shared.dll",
+      "mode": "0o644",
+      "bytes": 5632,
+      "sha256": "619eda87ae826968864f95de8e8abc8540b634407364957a5bd887b7fa8c183f"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.Core.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 1200640,
+      "sha256": "c406cf62d4e801e580b2a2631f31cfe106ba7db651785edc8b4bdec898b112d2"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+      "mode": "0o644",
+      "bytes": 4608,
+      "sha256": "39573b9105853abee85a809aa439666e8f7ae605a11ab4e081d5c8c343108bb4"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.GPUDriven.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 235008,
+      "sha256": "b038a8323746a8544a1accd55cff7177f17ac2290036efe9f09fb49f3636a01b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+      "mode": "0o644",
+      "bytes": 4608,
+      "sha256": "275c091c3ac04f8dbc0ff5291fd8b702d4f46fe1978123fb21c9fd7a042bd171"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.Universal.2D.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 233984,
+      "sha256": "b25d37de779b83037b1ef9b2ff3cf52019829c50abdb25377d157eb53c8a6f92"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 5632,
+      "sha256": "2de5f243a9bf35bf355f4f6f04c06e1f4336079c78d57a71d7bb20bbbdd3c7d5"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 763392,
+      "sha256": "5bc3a50ebb37b869cdf8011e4e86730fcebd866b6d88572aca0f689ef41b84c6"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.RenderPipelines.Universal.Shaders.dll",
+      "mode": "0o644",
+      "bytes": 4608,
+      "sha256": "5d7154c8d845fa3fa2d13f2cfd20870c3b0161a5d1b6c7fabea2c7495ced4733"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.Splines.dll",
+      "mode": "0o644",
+      "bytes": 150528,
+      "sha256": "1a8afb9364b512525bbaae358d043e54d6d24dd0faab943cede675839c0dcb86"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.TextMeshPro.dll",
+      "mode": "0o644",
+      "bytes": 446464,
+      "sha256": "41daca720e1342dafeedfc4fe831da850d2b9187a315da2933cbcda6814ad8be"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.UnifiedRayTracing.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 101376,
+      "sha256": "372de1604698c4709f14eda91b5ad17e343dd373e4aaf329d0f13aea28ff4a3d"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/Unity.VisualEffectGraph.Runtime.dll",
+      "mode": "0o644",
+      "bytes": 79360,
+      "sha256": "56d5d1aa0f9115baac388cdafc46baae348bceb2a5c08c46c7ca75e154149443"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.AIModule.dll",
+      "mode": "0o644",
+      "bytes": 66048,
+      "sha256": "30100434362b66bc99ef60bae7e695f86d419d634f896e21152e3f03bae01b2e"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.AccessibilityModule.dll",
+      "mode": "0o644",
+      "bytes": 39424,
+      "sha256": "dfbf1eb694bc95c9995b279563183e0d081a077950e860730030187b94a02075"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.AdaptivePerformanceModule.dll",
+      "mode": "0o644",
+      "bytes": 110592,
+      "sha256": "2d21a3770370e4ace4414e8505d3db2ad5c8bcc5316fc16da439cf37137f48d8"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.AndroidJNIModule.dll",
+      "mode": "0o644",
+      "bytes": 110592,
+      "sha256": "08c1b9aff53432b2a9fcaa85aae2f4fcf0ad0628408ca7d30419d9745957d45a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.AnimationModule.dll",
+      "mode": "0o644",
+      "bytes": 214528,
+      "sha256": "30064c36a639a95c999f9dc413d10a19e81164bc3aa51a23cd7668736c3d4a16"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.AssetBundleModule.dll",
+      "mode": "0o644",
+      "bytes": 31232,
+      "sha256": "b144bf6ad250bea99849e0768cd8eba163555264cb865c4c7c46aebd5c77ca27"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.AudioModule.dll",
+      "mode": "0o644",
+      "bytes": 131584,
+      "sha256": "0d45075df436f3a5756b9dc6d0d7f94d655f26e593abb5636281a777a3152e7d"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ClothModule.dll",
+      "mode": "0o644",
+      "bytes": 25600,
+      "sha256": "1e36e4f77a70b756f4bf26a94da51ceb043b4f468a7353b8bd8e82db87e2f364"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ClusterInputModule.dll",
+      "mode": "0o644",
+      "bytes": 16896,
+      "sha256": "5ae2512c3111999f76f2bda24705b89dc7e0845d29bc981541ac9683d4b54ef5"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ClusterRendererModule.dll",
+      "mode": "0o644",
+      "bytes": 15872,
+      "sha256": "06baedb02a185398141c0ce0371124660f8a2989014650fa0115e42623aedfff"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ContentLoadModule.dll",
+      "mode": "0o644",
+      "bytes": 21504,
+      "sha256": "f6d918ea2cefd9d4dbac365444b095e8ea9f60d646b3482318c7c3cbc89f390a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.CoreModule.dll",
+      "mode": "0o644",
+      "bytes": 1970688,
+      "sha256": "da9151c078acc4087960a9fac8a96e4909fd81bc4d6754de41d0e5d115b3a313"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.CrashReportingModule.dll",
+      "mode": "0o644",
+      "bytes": 15360,
+      "sha256": "78ac530c7970f5c8633381faa70dab244335955859cac8d3430fd5783f77abd1"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.DSPGraphModule.dll",
+      "mode": "0o644",
+      "bytes": 20480,
+      "sha256": "458c54132acfe2f83468de3812ef5e94326e76331affdecb4f6795a40e9e7007"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.DirectorModule.dll",
+      "mode": "0o644",
+      "bytes": 30720,
+      "sha256": "1654e670b39fa19fd90dc85c32df37c1b8faffc56acfa4a188154e33c8c98b93"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.GIModule.dll",
+      "mode": "0o644",
+      "bytes": 13312,
+      "sha256": "33c175d82fcb735ad4172d6685cab83ddd9a0ee566ff4668d757117b1ab490e4"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.GameCenterModule.dll",
+      "mode": "0o644",
+      "bytes": 34816,
+      "sha256": "c75a4bcd1bf9ad4e1f66865b5ab0598e65db0411eafb2ce413e5e9e69e33a41b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+      "mode": "0o644",
+      "bytes": 3584,
+      "sha256": "045afb1abc32847b0f20d7edf1a5b828a3f37e25cf884ec25ee74b5dcb038729"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.GridModule.dll",
+      "mode": "0o644",
+      "bytes": 19456,
+      "sha256": "9b5f519ecd21322bc8179bb166a713c64394f2628a734b122d9d79057ede8e74"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.HierarchyCoreModule.dll",
+      "mode": "0o644",
+      "bytes": 98816,
+      "sha256": "526013455135a74924f338932d3d1ce9e88c41a5fb562a0216c9807afbeaf94d"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.HierarchyModule.dll",
+      "mode": "0o644",
+      "bytes": 91648,
+      "sha256": "92272b82d5c60c8766d6835d7f84ba4fd98568df93c18014d745011d896d34db"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.HotReloadModule.dll",
+      "mode": "0o644",
+      "bytes": 13312,
+      "sha256": "965519e752ea6d8845739b632a2001151bf853b794d4388d7997df8312dcce20"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.IMGUIModule.dll",
+      "mode": "0o644",
+      "bytes": 181760,
+      "sha256": "881a610bc9bf164f2dc1d0afec6cdb43ccf6498124d3d897c1b150c334d4b751"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.IdentifiersModule.dll",
+      "mode": "0o644",
+      "bytes": 4096,
+      "sha256": "fde0ef1edaee3173ec997473c4e3ce3a3bc86e20e0e9aa2a0cc5d4ab07b3dc64"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ImageConversionModule.dll",
+      "mode": "0o644",
+      "bytes": 20480,
+      "sha256": "76b96da5e3934bec2033e667bbcec738570aa5196a119ee12e228933e3566acd"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.InputForUIModule.dll",
+      "mode": "0o644",
+      "bytes": 47104,
+      "sha256": "74625b3aad4eb2f7813658376506805eef98f9b89802172b9f34845cb66c066c"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.InputLegacyModule.dll",
+      "mode": "0o644",
+      "bytes": 34816,
+      "sha256": "8a42fc845782d6d334427262c47c069a959722657f60f85c06ed00310c826842"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.InputModule.dll",
+      "mode": "0o644",
+      "bytes": 17408,
+      "sha256": "c0dbe4513853356f24cce32a6a77ff8927fed6755623db76a9f924bc3ef38ff1"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.JSONSerializeModule.dll",
+      "mode": "0o644",
+      "bytes": 16384,
+      "sha256": "1ad16ebf2d481a6b5e00d7b4b290922de5b04068f43be65955c14b840396d9e8"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.LocalizationModule.dll",
+      "mode": "0o644",
+      "bytes": 15872,
+      "sha256": "8c0f3433935039fd7c2dea74df5c06371b7d6a7f01360f97d790241f872a4fe9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.MarshallingModule.dll",
+      "mode": "0o644",
+      "bytes": 72704,
+      "sha256": "a3a249986daff19467bd232db559ea562583eba547d12cf65b34768a02c873cf"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.MultiplayerModule.dll",
+      "mode": "0o644",
+      "bytes": 7680,
+      "sha256": "51b2077be04dfa2b40de563b3ef47f230d757b099639ff44808c3d6909c557d3"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ParticleSystemModule.dll",
+      "mode": "0o644",
+      "bytes": 160768,
+      "sha256": "868b382146396348b3b367b4a33f7f4d2bdb5731cfdf061ce55c785ea300bc1b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.PerformanceReportingModule.dll",
+      "mode": "0o644",
+      "bytes": 14336,
+      "sha256": "c85b5ca4c51a52fb22b1140053e88f0f8150a846d7a35741cea536eb447d6327"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.Physics2DModule.dll",
+      "mode": "0o644",
+      "bytes": 562688,
+      "sha256": "ac35dbd2c363c311eeec1abfddcbeb009ecdea18825118995007e5abd7cdf855"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.PhysicsBackendPhysXModule.dll",
+      "mode": "0o644",
+      "bytes": 3584,
+      "sha256": "89032ca001d872fa2eb3dd29ed041c8cbee527980a01631e27b306d8e0749fac"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.PhysicsModule.dll",
+      "mode": "0o644",
+      "bytes": 171008,
+      "sha256": "3f8fd55d7a3b492449533d7b58466aba48deb577dde5fdaeb6f5433080745c9b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.PropertiesModule.dll",
+      "mode": "0o644",
+      "bytes": 138752,
+      "sha256": "f2f39639de5b7ddb213b03d06ebb8b01f61c3e896d5f73fc536b59bfe8e375a0"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.RenderAs2DModule.dll",
+      "mode": "0o644",
+      "bytes": 14848,
+      "sha256": "74ca045b4b1eed9cd9c945b3ff9c264ba253228a66c585ad9a2f963f0a82ce7b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "mode": "0o644",
+      "bytes": 13824,
+      "sha256": "17881bd756a04ccb3fc0084772b3db35b589f41d96b34bcfa4f5138cfbfd092b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ScreenCaptureModule.dll",
+      "mode": "0o644",
+      "bytes": 15360,
+      "sha256": "eaad70f0f5116b949dccbd53e6650385182b8f9fddb01bf404ad45614f7b8f98"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ShaderRuntimeModule.dll",
+      "mode": "0o644",
+      "bytes": 14848,
+      "sha256": "ddc7b1d4b39a27f40c15dd6b9eadcdd8adbe5bd69dfebc30d91bec0a1864ccc5"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.ShaderVariantAnalyticsModule.dll",
+      "mode": "0o644",
+      "bytes": 13312,
+      "sha256": "9a16f70286f4fd4270c5cb6f9c2d1acddf6367607049003f6e3c7d469e623000"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.SharedInternalsModule.dll",
+      "mode": "0o644",
+      "bytes": 27136,
+      "sha256": "474fd8e2463ff545e43a990ead95c9c8e42e4c28c150e3b2529a1d58824eab1b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.SpriteMaskModule.dll",
+      "mode": "0o644",
+      "bytes": 17408,
+      "sha256": "bf0a2a2c42dffc0dcc7d65fdbf238ac6602062cc4df42e4f9da0e0444f738503"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.SpriteShapeModule.dll",
+      "mode": "0o644",
+      "bytes": 20992,
+      "sha256": "57fbdb132e27b71feef88e0405082652ad6ab64da883cd6d8ee3288402851323"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.StreamingModule.dll",
+      "mode": "0o644",
+      "bytes": 14848,
+      "sha256": "1a3cc82e99ff52b1f6d0a4d002da5ce6e0f0d03ec8c6e029712858fdf8771e89"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.SubstanceModule.dll",
+      "mode": "0o644",
+      "bytes": 18432,
+      "sha256": "ef05b81906ce0a0ee557f4b36ca4c77bd2a3504984207b8bcc6f5b4ad624b29d"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.SubsystemsModule.dll",
+      "mode": "0o644",
+      "bytes": 30720,
+      "sha256": "3c4ad6af02bfed10b784f9895df02ca1a9aa0a5cabc01ea819ccd29e5a257c3a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.TLSModule.dll",
+      "mode": "0o644",
+      "bytes": 20480,
+      "sha256": "7df3f858b4ce3e23f51ea02765ac72025ee1eca9bcb1aa04fbf7107ba26c6e61"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.TerrainModule.dll",
+      "mode": "0o644",
+      "bytes": 122368,
+      "sha256": "da626c2277f75ed84f9c2e764af72563d94ba50512bf68773b81d6105d4f9bee"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.TerrainPhysicsModule.dll",
+      "mode": "0o644",
+      "bytes": 14848,
+      "sha256": "17563bcad942e97b1afe5f9ebadb5db916c2dce1bb166bd47b1e7042a00230fb"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll",
+      "mode": "0o644",
+      "bytes": 71168,
+      "sha256": "d3e641e80868076962f60823403aa72d49bb8dcf60eb578b7e29cdc254637d55"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll",
+      "mode": "0o644",
+      "bytes": 336896,
+      "sha256": "15bfba7754568148b70841833cddaf2768c4951d2729eba9588515eca7eeda52"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.TextRenderingModule.dll",
+      "mode": "0o644",
+      "bytes": 28672,
+      "sha256": "5b639961187ecd7fbf64a42cac34095381868af148ec4c657421e1b61d5419ea"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.TilemapModule.dll",
+      "mode": "0o644",
+      "bytes": 47104,
+      "sha256": "ac57f57f06013ea7c2fd9d2a8f976a1fa54aa0e9fd01e0c892e847364247d67f"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UI.dll",
+      "mode": "0o644",
+      "bytes": 276480,
+      "sha256": "ff9e23be408e3c31038f660c960db5aecde0e6cc37c83d6e97abd49d6b40bb34"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UIElementsModule.dll",
+      "mode": "0o644",
+      "bytes": 2408960,
+      "sha256": "951aa74f4f8036c1a4c8f65c5214665f658b1d221a4d8cc5bef75e82aacf114b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UIModule.dll",
+      "mode": "0o644",
+      "bytes": 38912,
+      "sha256": "f1db8fa66fcd68133c233953ebe38ecd07493cd186d05592bfed2da7b99b1fb2"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UmbraModule.dll",
+      "mode": "0o644",
+      "bytes": 13312,
+      "sha256": "9c22d221d901952d5da6b6a7e0f12c619f507e6fb3e02c9065dc89179374dca9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityAnalyticsCommonModule.dll",
+      "mode": "0o644",
+      "bytes": 24576,
+      "sha256": "d539407b8d129c56443a49188185ac96e3cb68dc67307391d26721d127996fcb"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityAnalyticsModule.dll",
+      "mode": "0o644",
+      "bytes": 49664,
+      "sha256": "5c9871df64d22a6c36f353392d0ec6e7ef932656228320f1f6df2c3808fa4047"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityConnectModule.dll",
+      "mode": "0o644",
+      "bytes": 16384,
+      "sha256": "00902d25dd5e46c552a8aa734140ded3871fc92df3fce506b1e818881d1fc20a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityConsentModule.dll",
+      "mode": "0o644",
+      "bytes": 5632,
+      "sha256": "bffd52c4e411a8b87ef15c7111af86d40f801bab5bb1a5bdb7af01ff8dccf994"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityCurlModule.dll",
+      "mode": "0o644",
+      "bytes": 15360,
+      "sha256": "fa4e13381835bad7f83bd0d6dfa0d5a180a48fa51a82c190c13f8e70ed8089a2"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "mode": "0o644",
+      "bytes": 17920,
+      "sha256": "4b5bd241cd0889f9ed808468305eb75bce14304a479145e2b949cdb3401a5245"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll",
+      "mode": "0o644",
+      "bytes": 17408,
+      "sha256": "d2763f139a9e5ac104cf1d9574135c856014fbaa5bdfa6989c50d8e3e7633c60"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityWebRequestModule.dll",
+      "mode": "0o644",
+      "bytes": 58368,
+      "sha256": "380283e3093c47a506a30c022b5ee2015c6e84b579a6aa58bbd1b9a92aef1306"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll",
+      "mode": "0o644",
+      "bytes": 16896,
+      "sha256": "c4570ae8596aafc2c5b1ca7597a246bdfd18cee6f498fc1b1c2636646f1bcb77"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll",
+      "mode": "0o644",
+      "bytes": 25600,
+      "sha256": "353ff7f9e99ced0e8c0555c7c7fa428f4fb91ea228a8c66fe364e4d1551df2d8"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.VFXModule.dll",
+      "mode": "0o644",
+      "bytes": 67584,
+      "sha256": "17e7b9bc6f74f4f27d4e511b48f7f53343eed4ea868c205ea5382f3cd906eb44"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.VRModule.dll",
+      "mode": "0o644",
+      "bytes": 20992,
+      "sha256": "41933e373367e750cf9684d0d2404387ab0d405abbb41d5c3067a50237c56cd6"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.VectorGraphicsModule.dll",
+      "mode": "0o644",
+      "bytes": 242176,
+      "sha256": "5ada5223b00450420162109eae04701bc3030ab82d5c51d5ccb83fc71ccb7f44"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.VehiclesModule.dll",
+      "mode": "0o644",
+      "bytes": 20480,
+      "sha256": "936c983cf01eeb0496bbeca534a830e0d5f517be2781f0667eadfd1c5ba08432"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.VideoModule.dll",
+      "mode": "0o644",
+      "bytes": 38400,
+      "sha256": "3199e4da696e181e8aa908c0c89c44d4d50ea9f5038834dbe6103a107e93c52c"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.VirtualTexturingModule.dll",
+      "mode": "0o644",
+      "bytes": 32256,
+      "sha256": "f2a0fe879de095f0263fd595da053fb2650028b3963c338d94eb41cfc15c2bd9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.WindModule.dll",
+      "mode": "0o644",
+      "bytes": 15360,
+      "sha256": "89bca961c1ac375fe5e24293c4a5531ba36aedf8ad15d2a019e04c2af11d4b8b"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.XRModule.dll",
+      "mode": "0o644",
+      "bytes": 77312,
+      "sha256": "fd49eba2d2b7c9ebb692e130dc2907a3b05fcd293fc1cb40926b253dd6a86918"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/UnityEngine.dll",
+      "mode": "0o644",
+      "bytes": 184832,
+      "sha256": "3b9ab48f3eb909e85eff775524efffffc05261a247b512e5f59465855ae29dc7"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/mscorlib.dll",
+      "mode": "0o644",
+      "bytes": 4623360,
+      "sha256": "0ce00f2b618c510bf7b923270f784d9e23291bfbf8559eca62ce81ef2ecd76e9"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed/netstandard.dll",
+      "mode": "0o644",
+      "bytes": 90624,
+      "sha256": "bf0b7eac9010b75413e4ec1a07a3453bc6a68eeb8e916fbed7c1f2777841f7c7"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge/etc/mono/config",
+      "mode": "0o644",
+      "bytes": 3764,
+      "sha256": "b12f4e32436f1b417451eb5f69433433ae1f732b0c9e80b039073e1b6daa24da"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge/x86_64/libMonoPosixHelper.so",
+      "mode": "0o755",
+      "bytes": 264160,
+      "sha256": "2a1014074bbfdc0b151d0a0fa830a1fcdb281eb2660d68667e05e489c4516aed"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge/x86_64/libmono-native.so",
+      "mode": "0o755",
+      "bytes": 2303400,
+      "sha256": "291744dd9192ffb47e2f4f56037192787ba712c618be9144f58bee5831144276"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge/x86_64/libmonobdwgc-2.0.so",
+      "mode": "0o755",
+      "bytes": 3856176,
+      "sha256": "60bf98b369d3a48cd93fab678dc8c6d37f61adea00f942a59e418d1d9db6bf44"
+    },
+    {
+      "path": "CavesOfOoo_Data/Plugins/lib_burst_generated.so",
+      "mode": "0o755",
+      "bytes": 1312648,
+      "sha256": "cd0a7f1e1d44214fae410d403ec955e0f501acb2ad33a5e1ee50f221707c141a"
+    },
+    {
+      "path": "CavesOfOoo_Data/Resources/UnityPlayer.png",
+      "mode": "0o644",
+      "bytes": 58193,
+      "sha256": "7ea94a5d57a58d58c52618e592fd73d9f8487e6026b2531ae2e7b4ee440367b4"
+    },
+    {
+      "path": "CavesOfOoo_Data/Resources/unity default resources",
+      "mode": "0o644",
+      "bytes": 5883780,
+      "sha256": "776d63d5d172cc1903a8086214e540819ca487b790d81f85607755211d604948"
+    },
+    {
+      "path": "CavesOfOoo_Data/Resources/unity_builtin_extra",
+      "mode": "0o644",
+      "bytes": 560344,
+      "sha256": "26e6798fa8160c0991ca04159ada23b1cfc4290a475fd4bd002150222267ee36"
+    },
+    {
+      "path": "CavesOfOoo_Data/RuntimeInitializeOnLoads.json",
+      "mode": "0o644",
+      "bytes": 5623,
+      "sha256": "5c5cdea26f35b34312c1b73a841a2a5c7c1b00e6ca3e179d06b1a2a5803e3e9d"
+    },
+    {
+      "path": "CavesOfOoo_Data/ScriptingAssemblies.json",
+      "mode": "0o644",
+      "bytes": 4447,
+      "sha256": "b84cd63895aa32ce7428a9b7db922d05720b4d7ff0d2db47947ce5c176f69405"
+    },
+    {
+      "path": "CavesOfOoo_Data/app.info",
+      "mode": "0o644",
+      "bytes": 27,
+      "sha256": "a1acf8d909efd75a46b5c1e433b0a4cc205040c838fad2d66c4b699771b6d678"
+    },
+    {
+      "path": "CavesOfOoo_Data/boot.config",
+      "mode": "0o644",
+      "bytes": 185,
+      "sha256": "19c0ca0d262550d38c62131fa6c7f5919ebc520780e086781e974953b51c2200"
+    },
+    {
+      "path": "CavesOfOoo_Data/globalgamemanagers",
+      "mode": "0o644",
+      "bytes": 1668500,
+      "sha256": "3c08ef53b7de85f9e396a67e2d54f839fbd1b1accf94980e8e289156b7593977"
+    },
+    {
+      "path": "CavesOfOoo_Data/globalgamemanagers.assets",
+      "mode": "0o644",
+      "bytes": 3213156,
+      "sha256": "115b64a9be684fb49416462232367eed4b03621ea34564aae698636f74298c20"
+    },
+    {
+      "path": "CavesOfOoo_Data/globalgamemanagers.assets.resS",
+      "mode": "0o644",
+      "bytes": 5716192,
+      "sha256": "f2e891f1a2eca090fd71651b299b57c89b6f16599aee6dd338e290ba791e314b"
+    },
+    {
+      "path": "CavesOfOoo_Data/level0",
+      "mode": "0o644",
+      "bytes": 4216,
+      "sha256": "be86628abe4fcdb454d0f1fd2e17e8231232f6aae8200bb1cf53412147797f76"
+    },
+    {
+      "path": "CavesOfOoo_Data/resources.assets",
+      "mode": "0o644",
+      "bytes": 153492904,
+      "sha256": "498005858cd02a4d448bb95c3d3f818e88f557c11db807fa9233dea83ff4be08"
+    },
+    {
+      "path": "CavesOfOoo_Data/resources.assets.resS",
+      "mode": "0o644",
+      "bytes": 40550016,
+      "sha256": "7c19ccbfd9eaf8650e19b09cbd547a7f271c4793db478e6c07701e8a2e104a63"
+    },
+    {
+      "path": "CavesOfOoo_Data/resources.resource",
+      "mode": "0o644",
+      "bytes": 37265120,
+      "sha256": "8e5cbb2121133ba2d1f24c3cb019afa027b72c8176b812b67931cd8e62e26501"
+    },
+    {
+      "path": "CavesOfOoo_Data/sharedassets0.assets",
+      "mode": "0o644",
+      "bytes": 26376,
+      "sha256": "55f466d6a7b002cecac0543b2d9edb0851e56784c3e15d864952c10416b2dd0f"
+    },
+    {
+      "path": "DEFENSE-CREDITS.txt",
+      "mode": "0o644",
+      "bytes": 1111,
+      "sha256": "5817fe85dcfaf6e31dfa49f54a326e9f750c883b8cbe12199503c35912d62fa0"
+    },
+    {
+      "path": "Launch-CavesOfOoo.sh",
+      "mode": "0o755",
+      "bytes": 195,
+      "sha256": "26a439c7dc795834164c343ccd40e19eb1f3cee3800889044325578c39520590"
+    },
+    {
+      "path": "PLACES-CREDITS.txt",
+      "mode": "0o644",
+      "bytes": 11822,
+      "sha256": "1797faf197c1bdb4d8c5d54e5495226ae3a1c1222dcb8dca81304d751509281c"
+    },
+    {
+      "path": "README-Steam-Deck.md",
+      "mode": "0o644",
+      "bytes": 13324,
+      "sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2"
+    },
+    {
+      "path": "REGIONAL-MUSIC-CREDITS.txt",
+      "mode": "0o644",
+      "bytes": 2499,
+      "sha256": "195d633418f4e24772411feb6c546d8ca3f4e4d9aa6aa358384078fb1c2e5f40"
+    },
+    {
+      "path": "SHA256SUMS",
+      "mode": "0o644",
+      "bytes": 21793,
+      "sha256": "7079d0119b5c55731e801332af9e61a64b118de5ce1cfb3672b9d362745b9f61"
+    },
+    {
+      "path": "STARTER-SPELLS-SOURCES.md",
+      "mode": "0o644",
+      "bytes": 11396,
+      "sha256": "ea2cdfe2fb1af3862ce638e952c476ea09adab6b64b80774798f4248d1bec180"
+    },
+    {
+      "path": "UTILITY-CREDITS.txt",
+      "mode": "0o644",
+      "bytes": 4295,
+      "sha256": "197e1701dd31080f3f01b0a2793346655000a8e5e3fef97a3a08a798ed8bde6c"
+    },
+    {
+      "path": "UnityPlayer.so",
+      "mode": "0o755",
+      "bytes": 40824648,
+      "sha256": "f4a99a30c57d28fc67a5a81bb48efaff456907d6417737f628a2845444d2ac94"
+    },
+    {
+      "path": "audio-atmospheric-provenance.json",
+      "mode": "0o644",
+      "bytes": 23728,
+      "sha256": "6fd9ff8cdb9f229aa0d7d3c32300ef33edaaf1131b5620f6c756181858c4367d"
+    },
+    {
+      "path": "audio-places-provenance.json",
+      "mode": "0o644",
+      "bytes": 34287,
+      "sha256": "b9607393d0566e8f9115d444a6fa5df7867df7e1aaa14c818d3207afb4eebbc8"
+    },
+    {
+      "path": "audio-provenance.json",
+      "mode": "0o644",
+      "bytes": 23388,
+      "sha256": "820dfc7dc82c2577d84b641687583a8aea6e286d686945bb992f40b7777431ea"
+    },
+    {
+      "path": "audio-regional-music-provenance.json",
+      "mode": "0o644",
+      "bytes": 5912,
+      "sha256": "b3ab5ad97eb1c59547e5e1623c665345832a536342e780e0ec487b8f93d6209b"
+    },
+    {
+      "path": "audio-utility-provenance.json",
+      "mode": "0o644",
+      "bytes": 12062,
+      "sha256": "38ff009d89d03ea2a10a5d73900fc17bd570aabed68660be617d0d8ae490726d"
+    },
+    {
+      "path": "build-info.json",
+      "mode": "0o644",
+      "bytes": 15175,
+      "sha256": "879deea6cd9f63ad4b28548f003bcc15ee222a81f8f9a5fad98d15b49dd56f52"
+    },
+    {
+      "path": "build-report.json",
+      "mode": "0o644",
+      "bytes": 490,
+      "sha256": "03e512fb07a7635d5af214b49fa68c333d75f87ec87a517d8ed194b1bf16e281"
+    },
+    {
+      "path": "caves-of-ooo_BurstDebugInformation_DoNotShip/Data/Plugins/lib_burst_generated.txt",
+      "mode": "0o644",
+      "bytes": 235639,
+      "sha256": "7775c50c89bf5e54bbf26870b8aff2deee4af93d738b52833c42d32e87ad3d5c"
+    },
+    {
+      "path": "libdecor-0.so.0",
+      "mode": "0o644",
+      "bytes": 45536,
+      "sha256": "c624974348a9c91034a17430fa684119d8bb71d828cd8921e54198a7c9c57eef"
+    },
+    {
+      "path": "libdecor-cairo.so",
+      "mode": "0o644",
+      "bytes": 69664,
+      "sha256": "4a2c5bb1399eed40528e5d34049694d6409ec24e60b41f89264d423fa7058a3a"
+    },
+    {
+      "path": "mac-build-report.json",
+      "mode": "0o644",
+      "bytes": 467,
+      "sha256": "54834c8d7f6720e5de77a1d0d72bdf7f1dbac24e2e72444c81255ce135531998"
+    }
+  ],
+  "directory_manifest": [
+    {
+      "path": ".",
+      "mode": "0o755"
+    },
+    {
+      "path": "Audio-Licenses",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data/Managed",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge/etc",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge/etc/mono",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data/MonoBleedingEdge/x86_64",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data/Plugins",
+      "mode": "0o755"
+    },
+    {
+      "path": "CavesOfOoo_Data/Resources",
+      "mode": "0o755"
+    },
+    {
+      "path": "caves-of-ooo_BurstDebugInformation_DoNotShip",
+      "mode": "0o755"
+    },
+    {
+      "path": "caves-of-ooo_BurstDebugInformation_DoNotShip/Data",
+      "mode": "0o755"
+    },
+    {
+      "path": "caves-of-ooo_BurstDebugInformation_DoNotShip/Data/Plugins",
+      "mode": "0o755"
+    }
+  ]
+}

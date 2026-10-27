@@ -185,3 +185,40 @@ This review accepts only the shown shared bodies/portraits and ordinary
 Editor use/restart evidence. Actual final East actions, wider travel/profile,
 complete preservation receipts, packages and release commit verification
 remain root-owned follow-up evidence; no new Linux/Deck or performance claim.
+
+
+## Package-helper cold review before execution
+
+Independently cold-reviewed `shared-furniture-package-audit.py` SHA256
+`f70cf5426889f8a1acb58673e45e1438da7bb691ff97debedfbc32917edb15e9`
+against the reviewed shared-storage helper. No concrete adaptation blocker
+was found. AST comparison independently confirms nine generic functions are
+unchanged, including canonical-path, exclusive-create, build-receipt, complete
+tree-manifest and streamed archive verification guards. Main changes are
+phase/output labels and truthful coverage metadata; the mutation boundary and
+collision refusal remain intact.
+
+The new native parser separately pins both complete result files, actual job
+receipts, the source summary, three changed runtime files, focused fixture and
+borrowed atlas. All current pinned bytes match. Actual job progress is259/259
+and139/139, with ordered real timestamps; each must precede the caller's
+freeze boundary, and the binding summary itself must precede that boundary.
+Only the exact three known allocation-positive-control identities and their
+exact Inconclusive reason are permitted. It checks fixture counts, disjoint
+identities, all33focused passes and395Passed+3Inconclusive overall, with
+`all_cases_passed=false`; the initial2cases are not counted again.
+
+Fresh build receipts must match platform/output and follow the supplied
+freeze; full source SHA and phase-specific fresh directory names are required.
+The helper explicitly leaves final Git/source-to-binary provenance to root
+and does not imply that byte-pinning these selected files proves every input
+or reproducible binaries. Support/receipt/archive outputs refuse overwrite.
+The existing complete file/hash/size/mode/path checks and separate gzip
+CRC/ISIZE/footer drain to EOF are retained, as are original-build byte checks
+and no-cleanup behavior on failure. No Linux execution, Deck play or actual
+gameplay is inferred from packaging.
+
+This reviewer parsed source/AST and current receipt bytes only: did not import
+or execute the helper, run its main/dry-run, build, archive, mutate preferences
+or operate Unity/Git. Actual forthcoming archive and Mac review remain
+separate from this pre-execution approval.

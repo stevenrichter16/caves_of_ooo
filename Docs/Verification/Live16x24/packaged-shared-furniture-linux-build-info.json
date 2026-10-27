@@ -1,0 +1,235 @@
+{
+  "created_at_utc": "2026-10-27T23:09:04.023332+00:00",
+  "runtime_source_commit": "13178d5c0302bb655347a1daff20425d990b6c84",
+  "package_flavor": "shared-furniture-body-reuse",
+  "built_after_utc": "2026-10-27T23:05:31+00:00",
+  "slice_description": "Exact placed Bed and Chair identities reuse the unchanged approved East atlas cells 2 and 3 through one shared neutral-body catalog. Current graph, placement, selection, disclosure and authorized-reader rules remain required. Owner, reservation and occupant state do not invent alternate sprites; existing rest, sit/stand and NPC reservation mechanics retain their meaning. Borrowed constructor inputs and all four rendering entry points share the same refusal policy, and the existing painter supplies one Render-event color cue. No source pixels, generation, collision, saves, loot or camera behavior is changed by this presentation slice.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-furniture-mac-build.json",
+    "sha256": "54834c8d7f6720e5de77a1d0d72bdf7f1dbac24e2e72444c81255ce135531998",
+    "summary": {
+      "job_id": "build-2537e7018c",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-27-shared-furniture-13178d5c0-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T23:05:32.019361Z",
+      "duration_seconds": 69.074049,
+      "completed_at": "2026-10-27T23:06:41.09341Z",
+      "total_size_mb": 344.52,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-furniture-linux-build.json",
+    "sha256": "03e512fb07a7635d5af214b49fa68c333d75f87ec87a517d8ed194b1bf16e281",
+    "summary": {
+      "job_id": "build-532a744001",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-27-shared-furniture-13178d5c0-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T23:06:58.14828Z",
+      "duration_seconds": 62.116099,
+      "completed_at": "2026-10-27T23:08:00.264379Z",
+      "total_size_mb": 324.98,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-expanded-green.json",
+          "sha256": "02e9145c5368291640f1d7316d236033670a04e286bd24f42afacfad1338c0b6",
+          "mode": "EditMode",
+          "job_id": "b3381fb749de44799fa42ef162cee56e",
+          "raw_summary": {
+            "total": 256,
+            "passed": 256,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 23.7055357,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 259,
+          "derived_passed": 256,
+          "derived_inconclusive": 3,
+          "actual_job_metadata": {
+            "job_id": "b3381fb749de44799fa42ef162cee56e",
+            "status": "succeeded",
+            "mode": "EditMode",
+            "started_unix_ms": 1793141364928,
+            "finished_unix_ms": 1793141391006,
+            "last_update_unix_ms": 1793141391006,
+            "progress": {
+              "completed": 259,
+              "total": 259,
+              "current_test_full_name": null,
+              "current_test_started_unix_ms": 1793141390776,
+              "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+              "last_finished_unix_ms": 1793141390813,
+              "stuck_suspected": false,
+              "editor_is_focused": true,
+              "blocked_reason": null,
+              "failures_so_far": [],
+              "failures_capped": false
+            },
+            "error": null,
+            "result": {
+              "mode": "EditMode",
+              "summary": {
+                "total": 256,
+                "passed": 256,
+                "failed": 0,
+                "skipped": 0,
+                "durationSeconds": 23.7055357,
+                "resultState": "Passed"
+              },
+              "results": [
+                {
+                  "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+                  "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+                  "state": "Inconclusive",
+                  "durationSeconds": 0.0382936,
+                  "message": "Current-thread allocation counter did not detect the positive control.",
+                  "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:617\n",
+                  "output": ""
+                },
+                {
+                  "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+                  "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+                  "state": "Inconclusive",
+                  "durationSeconds": 0.0369299,
+                  "message": "Current-thread allocation counter did not detect the positive control.",
+                  "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:617\n",
+                  "output": ""
+                },
+                {
+                  "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+                  "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+                  "state": "Inconclusive",
+                  "durationSeconds": 0.0364416,
+                  "message": "Current-thread allocation counter did not detect the positive control.",
+                  "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:617\n",
+                  "output": ""
+                }
+              ]
+            }
+          },
+          "job_receipt": {
+            "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-expanded-job.json",
+            "sha256": "49e899d5cb2950fe91e3969cd53b42e8dd2295e2ed47b565d3d9b66d815f95ab"
+          },
+          "started_unix_ms": 1793141364928,
+          "finished_unix_ms": 1793141391006,
+          "scope": "Earlier completed native execution; this helper does not run tests.",
+          "overlap_with_preceding_receipts": 0
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-related-green.json",
+          "sha256": "1da24af254a5c19412d58a49bca17ac86037b25a7e97898e52a791b9e02cd538",
+          "mode": "EditMode",
+          "job_id": "8ef42e9dc4174c8996c77e07efb59c20",
+          "raw_summary": {
+            "total": 139,
+            "passed": 139,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 14.6964885,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 139,
+          "derived_passed": 139,
+          "derived_inconclusive": 0,
+          "actual_job_metadata": {
+            "job_id": "8ef42e9dc4174c8996c77e07efb59c20",
+            "status": "succeeded",
+            "mode": "EditMode",
+            "started_unix_ms": 1793141240590,
+            "finished_unix_ms": 1793141261199,
+            "last_update_unix_ms": 1793141261199,
+            "progress": {
+              "completed": 139,
+              "total": 139,
+              "current_test_full_name": null,
+              "current_test_started_unix_ms": 1793141260639,
+              "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(\"gone\")",
+              "last_finished_unix_ms": 1793141260729,
+              "stuck_suspected": false,
+              "editor_is_focused": true,
+              "blocked_reason": null,
+              "failures_so_far": [],
+              "failures_capped": false
+            },
+            "error": null,
+            "result": null
+          },
+          "job_receipt": {
+            "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-related-job.json",
+            "sha256": "0b06976ceb811045b7bd35ff5db94b7c18694f4166da181cbdff656473037664"
+          },
+          "started_unix_ms": 1793141240590,
+          "finished_unix_ms": 1793141261199,
+          "scope": "Earlier completed native execution; this helper does not run tests.",
+          "overlap_with_preceding_receipts": 0
+        }
+      ],
+      "source_binding_receipt": {
+        "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-furniture-native-summary.json",
+        "sha256": "6052b1eb389bb6ea66d88ac37eefc9c0f35b747328e294cb5ff07d6346bb3665",
+        "pins": {
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedFurnitureCatalog.cs": "5ebb088d74b5a0b31635694b72ae2e825bcb4494c6634dc85f49474968cf54b8",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "95a8d370879626fb133b72b042c99421fe0f7f7b5faebe4dc5b062d5a4bb207e",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelEastKitchenCatalog.cs": "823c1957396a2be45300e09ad3dbe5f115fcb8f5e255e986338d02a694bea099",
+          "Assets/Tests/EditMode/FlatPixelSharedFurnitureTests.cs": "1b0e291b60c799762503563201835cd579563919fd8c2bc198d994315b9be700",
+          "Docs/Verification/Live16x24/shared-furniture-expanded-green.json": "02e9145c5368291640f1d7316d236033670a04e286bd24f42afacfad1338c0b6",
+          "Docs/Verification/Live16x24/shared-furniture-related-green.json": "1da24af254a5c19412d58a49bca17ac86037b25a7e97898e52a791b9e02cd538",
+          "Docs/Verification/Live16x24/shared-furniture-expanded-job.json": "49e899d5cb2950fe91e3969cd53b42e8dd2295e2ed47b565d3d9b66d815f95ab",
+          "Docs/Verification/Live16x24/shared-furniture-related-job.json": "0b06976ceb811045b7bd35ff5db94b7c18694f4166da181cbdff656473037664",
+          "Assets/Resources/Sprites/Live16x24/east-kitchen.png": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Exact current runtime/test/evidence/borrowed-atlas bytes are checked. The final Git revision and source-to-binary provenance remain root operator assertions."
+      },
+      "execution_occurrences": 398,
+      "passed_execution_occurrences": 395,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 3,
+      "distinct_test_identities_across_listed_receipts": 398,
+      "distinct_passed_test_identities": 395,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 3,
+      "all_cases_passed": false,
+      "focused_furniture_passed": 33,
+      "skipped_identities": [],
+      "skipped_reason": null,
+      "inconclusive_identities": [
+        "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+        "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+        "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")"
+      ],
+      "inconclusive_reason": "Current-thread allocation counter did not detect the positive control.",
+      "limits": "The expanded receipt has 259 rows: 33 furniture cases and 223 related Passed, plus three existing Sodden allocation-counter Inconclusive cases. Another disjoint receipt has 139 related Passed. Total 395 Passed plus three Inconclusive; none is converted to a pass. The raw expanded summary omits those three from its total; complete result rows and actual job progress retain them. Initial two-case GREEN, RED, first-effect prerequisite runs and earlier aggregates are not added. This helper runs no tests and certifies neither whole-area graphics, actual gameplay, Linux execution, physical Deck behavior nor performance."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "This finite shared-owner integration covers exact ordinary Bed and Chair, not every furniture type, every site, every biome or whole-chunk graphics acceptance. Missing actors, hazards, deeper strata, room props and special sites remain separate work.",
+    "Native bodies and matching readers do not establish whole-scene fullness or area polish. Ordinary rest, sitting, reservations, movement and persistence evidence must be assessed separately.",
+    "The two complete native results contain 395 distinct Passed and 3 Inconclusive identities; all 33 focused furniture cases passed. The three existing Sodden allocation positive-control cases remain inconclusive, with zero failed or skipped cases. Earlier executions are not added. Actual native job receipts supply the time bounds; this is not allocation or device-performance proof.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Remaining worldwide static coverage stays queued; nuanced animation remains deferred."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

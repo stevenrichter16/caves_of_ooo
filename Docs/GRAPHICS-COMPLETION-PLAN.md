@@ -10,7 +10,43 @@ later biome-by-biome, area-by-area polish phase. Coverage is not polish acceptan
 Normal saves, approved art, current builds and unrelated work remain preserved.
 See [the parked study](GRAPHICS-SHALE-PARITY-TEST.md) and the shared-furniture plan.
 
-**Current continuation — shared furniture Editor checkpoint, 2026-10-27:**
+**Current continuation — fresh shared-furniture delivery, 2026-10-27:**
+Source `13178d5c0302bb655347a1daff20425d990b6c84` is verified on main. Both fresh
+Mac/Linux builds succeeded with zero errors and four warnings each. The retained
+native evidence remains395 distinct Passed plus three Inconclusive allocation
+probes, not a new run or zero-allocation proof. Bed/Chair pixels remain unchanged.
+
+Actual Mac evidence contains ten captures across two processes;06 is explicitly
+rejected loading. Normal seated Continue, Chair reader, Stand/Sit and F5fixture112
+at turn2520 are followed by full quit/fresh Continue with Sitting restored.
+Capture05→07 matches all564,000 pixels in the recorded world rectangle. Left
+movement releases seating; ordinary travel reaches Bed47,19, its native reader
+and real rest/time-passes. HP begins and ends at40; **no numerical healed amount
+is claimed**. Fixture113 saves turn2660. Linux archive integrity is verified:
+189 files/13 directories/202 members,128,810,632 bytes,
+SHA256 `777506410e6a2f70f9918a5e59869e1403741cfb3f497a90ad5a3285a69b3bd3`.
+Linux/Deck were not executed, and no sustained performance claim is made.
+
+Restoration at23:11:48UTC reports all51,879 tracked snapshot objects equal,
+including50 preexisting dirty paths, normal saves/preferences and prior builds
+preserved; four generated settings were backed up/restored and nothing deleted.
+Final independent package review passed its bounded archive/Mac checks.
+Shutdown thread-finalization/ComputeBuffer warnings remain; no clean-log claim.
+Delivery evidence publication is pending root. The current fresh build is furniture
+source13178d5c0; preceding shared-storage packages remain preserved.
+
+Next is [Slate7–8 preflight](GRAPHICS-SLATE-MATERIALS.md), with actual depth8 and
+wider baseline gates still open. Maintain the broader world queue; the cave
+parity prototype stays parked/default-off and straight walls remain default.
+Sodden-room/East-field sparsity and all55+5 polish states remain unchanged.
+Last actual hourly report22:28:31UTC; next23:28:31UTC. No new report is inferred.
+
+Evidence: [Mac actual play](Verification/Live16x24/packaged-shared-furniture-actual-play.json),
+[Linux archive](Verification/Live16x24/packaged-shared-furniture-linux-archive.json),
+[restoration](Verification/Live16x24/packaged-shared-furniture-restoration.json) and
+[independent package review](Verification/Live16x24/packaged-shared-furniture-independent-review.md).
+
+**Historical continuation — shared furniture Editor checkpoint, 2026-10-27:**
 Two unchanged native bodies, Bed/Chair from east-kitchen frames2/3, are integrated
 through the shared global identity path. Final receipts contain **395 distinct
 native passes, zero failures and three inconclusive existing Sodden allocation

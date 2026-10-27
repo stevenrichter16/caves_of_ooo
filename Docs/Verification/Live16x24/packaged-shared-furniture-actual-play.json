@@ -1,0 +1,102 @@
+{
+  "at_utc": "2026-10-27T23:10:42.398695+00:00",
+  "source_commit": "13178d5c0302bb655347a1daff20425d990b6c84",
+  "mac_build_receipt": "packaged-shared-furniture-mac-build.json",
+  "fixture_setup": "packaged-shared-furniture-fixture-setup.json",
+  "actual_process_runs": 2,
+  "actions": [
+    "Launch new Mac build; normal CContinue unchanged earned110 at55,19 HP40 with Sitting visible",
+    "Look/Examine wooden chair: native portrait; ordinary Stand removes Sitting, ordinary Sit restores it; F5turn2520",
+    "CmdQ; pgrep confirms no player; relaunch. First earlyC was during loading and did not Continue; capture06 rejected loading. Wait for actual launch observation then normalC",
+    "Fresh Continue112 restores55,19HP40Sitting; capture07world exactlymatches05",
+    "Ordinary Left moves to54,19 and removesSitting, revealing chair; sevenLeft to Bed47,19",
+    "Bed native reader, ordinary Sleep in bed at full40HP; visible rest/time-passes log; HP stays40; F5turn2660 and fullCmdQ"
+  ],
+  "captures": {
+    "packaged-shared-furniture-mac-01-launch.png": "f5cc944052729731ec028dd18a859e8940d63aaf945ad51ec041ba356c53d843",
+    "packaged-shared-furniture-mac-02-seated-continue.png": "1dcae2fe173d0e301442e7cf2c068df55e631a04efbf9c6ebd790b331c6a7cfd",
+    "packaged-shared-furniture-mac-03-chair-reader.png": "8eb284a9fe02c1154f045ffdcf8d74a21035b5978f1fb43b09df7c48989ae148",
+    "packaged-shared-furniture-mac-04-stand.png": "71d02579176f7ab455f6e49e25b76997f440bad407b38a89c92c600628398485",
+    "packaged-shared-furniture-mac-05-seated-save.png": "7ef7c03824264939c1a057080b2581c0759b1f55bca207d01e13c14c57f3e5fe",
+    "packaged-shared-furniture-mac-06-rejected-loading.png": "985ab82e7d316160b5b931c132a95c41bab06f23520d56cf42fe36efa7e721ea",
+    "packaged-shared-furniture-mac-07-fresh-seated-continue.png": "e2450ac121c464b5c25af8157ef640b72d86576f1edb37b2f2d5db3ecde6d18b",
+    "packaged-shared-furniture-mac-08-movement-release.png": "22cf86302aefff5c221cedc906e00b032b6fe892a8b940c3ddeb19a8265b147c",
+    "packaged-shared-furniture-mac-09-bed-reader.png": "802b33bfd73c9c5e95d8bc92c043f5f644cdf00c504cef413cde4d99082afe6b",
+    "packaged-shared-furniture-mac-10-bed-rest-save.png": "cb60fb24b0bc23fb34a0f4050edd49bf9e13cc6211a599862a866a8c998acd9b"
+  },
+  "rejected_capture": "packaged-shared-furniture-mac-06-rejected-loading.png",
+  "earned_fixtures": {
+    "shared-furniture-packaged-seated112": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.7.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.7.0",
+        "Turn": 2520,
+        "SaveTimestampUtc": "2026-10-27T23:08:01.9776090Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.sav.gz": "b811a218c78d88bc9f185b899ce121c77f98d6d8b924956e5b1dba3e432a5ac1",
+        "README.md": "a28f1b6574b3ac9efbc6ae2b810c2bba6e48321a42f75b2de3b38fa1220b1b26",
+        "Quick.json": "0dddafe9475c23f25b42d223384d3d597e4f4ab585a6263083e2b18a3dc4bd6c"
+      }
+    },
+    "shared-furniture-packaged-rest113": {
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.15.7.0",
+        "ActiveZoneDisplayLabel": "Overworld.15.7.0",
+        "Turn": 2660,
+        "SaveTimestampUtc": "2026-10-27T23:09:32.9041280Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "sha256": {
+        "Quick.sav.gz": "aa6c0a37bc9fab1f234e9a7253f4abae67516f59fe86393215bf2a9b002d8577",
+        "README.md": "6432febfcd355be2593af5ce89f8881c2f91b93223c8ed37e6c0174992fd7e1c",
+        "Quick.json": "654f1ae9e72757d6d9badfccabc5866672f7c4829fb24f2dcc8288e4b0978b4d"
+      }
+    }
+  },
+  "world_comparison": {
+    "rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "changed": 0,
+    "pixels": 564000
+  },
+  "logs": {
+    "packaged-shared-furniture-mac-initial.log": {
+      "sha256": "1456da3743fa6614db51f98bcdfef3b83b6509328753949f78ce9b23510b372d",
+      "error_exception_failed_matches": 0
+    },
+    "packaged-shared-furniture-mac-restart.log": {
+      "sha256": "69190f1061402e8558a9519779d53f759d7f2be5e7815df904514809ff3479c4",
+      "error_exception_failed_matches": 0
+    }
+  },
+  "limits": [
+    "Actual Mac only; Linuxarchive integrity verified separately, never executed; physicalDeck untested",
+    "No in-process standalone entity probe: UI status, portraits, positions, logs and save metadata support bounded observations; entityIDs established in Editor",
+    "Rooms remain sparse; broader room/biome polish not accepted",
+    "No sustained standaloneFPS benchmark or allocation proof",
+    "Bed use began and ended at full40HP; visible rest/time-passes log. No standalone diagnostic proves the healed quantity, and this is not a new healing proof"
+  ],
+  "restoration_receipt": "packaged-shared-furniture-restoration.json"
+}

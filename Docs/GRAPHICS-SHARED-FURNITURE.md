@@ -1,6 +1,6 @@
 # Shared ordinary furniture — Bed and Chair
 
-**Status, 2026-10-27 22:59 UTC: two-body integration verified in Editor; source push and fresh packages pending.**
+**Status, 2026-10-27 23:12 UTC: source on main; fresh Mac play and Linux archive verified; delivery evidence publication pending.**
 The user ended the cave detour and restored broad biome/area coverage with straight
 wall silhouettes. The two unchanged East kitchen Bed/Chair bodies now resolve
 for eligible ordinary owners globally. This bounded Editor slice has395 distinct
@@ -9,8 +9,8 @@ Bed Rest, Chair Sit/Stand, saved seating, fresh Continue and movement-release
 observations. The East kitchen remains the unchanged visual control. The earlier
 baseline and design contract below are preserved as historical preflight; the
 implemented result and limitations are recorded in the final continuation.
-Current packages still contain shared-storage source`d9f757841`; fresh furniture
-packages and their actual standalone checks are the next delivery step.
+Fresh Mac/Linux packages contain furniture source`13178d5c0`; actual standalone
+checks and archive integrity are recorded below. Broader visual polish remains open.
 
 Root owns Unity, gameplay, native tests, Git and packages. This is original
 Caves of Ooo presentation work, with no new Qud-parity claim.
@@ -360,3 +360,53 @@ Optional animation and parked cave work remain deferred.
 Files: new SharedFurnitureCatalog and33-case fixture plus required Unity metadata;
 modified Greybox/East borrowed routing; new concept provenance/actual evidence
 and same-commit coverage records. No native pixel/source/meta changes.
+
+## Fresh package delivery — 2026-10-27 23:12 UTC
+
+Source`13178d5c0302bb655347a1daff20425d990b6c84` was pushed and independently
+queried at`origin/main`. Mac job`build-2537e7018c` and Linux job`build-532a744001`
+succeeded with zero errors and four warnings each, built after23:05:31UTC into
+new source-named folders. Existing packages were retained. Native evidence was
+not rerun or added twice:395distinct Passed,3Inconclusive,0Failed,33focused included.
+
+The actual Mac player used unchanged earned fixture110 in a new standalone save
+root, with normal CContinue at55,19 HP40 and Sitting. Chair examine showed the
+same native identity; ordinary Stand/Sit and F5 earned fixture112 atturn2520.
+After CmdQ and confirmed process exit, the early C during loading did not Continue;
+capture06 is retained as rejected loading evidence. Normal C after the observed
+launch screen restored the seated save. The whole564,000-pixel world crop from
+05save to07restart matches exactly. Ordinary Left to54,19 removed Sitting and
+revealed the chair. Seven Left reached Bed47,19; its native reader and ordinary
+rest/time-passes action worked at full40HP. F5 earned113turn2660. The visible log
+does not report a numerical healing amount; no healing claim is inferred from
+this full-health action. Both player logs have no error/exception/failed matches. They retain7/5thread-finalization messages and one ComputeBuffer disposal warning each; this is not a warning-free claim.
+
+The Linux archive contains189regular files/202members and has SHA256
+`777506410e6a2f70f9918a5e59869e1403741cfb3f497a90ad5a3285a69b3bd3`.
+The reviewed packaging helper checked source/evidence pins, new build timestamps,
+all file contents/sizes/modes, directories, checksums and gzip EOF. It did not run
+Linux. Physical Steam Deck and sustained standalone performance remain untested.
+
+Restoration finished23:11:48UTC: all51,879tracked snapshot objects equal their
+prebuild states, including50already-dirty files (49foreign plus the owned review).
+Four reviewed Unity-generated settings were restored; the new standalone test
+save tree was archived, normal Editor saves/preferences and previous builds were
+preserved, and standalone preferences returned to their prior state. Storage
+inspection reports409,284,730,880free bytes. No cache or storage deletion occurred.
+
+Evidence: [actual play](Verification/Live16x24/packaged-shared-furniture-actual-play.json),
+[Mac build](Verification/Live16x24/packaged-shared-furniture-mac-build.json),
+[Linux archive](Verification/Live16x24/packaged-shared-furniture-linux-archive.json),
+[restoration](Verification/Live16x24/packaged-shared-furniture-restoration.json),
+[package review](Verification/Live16x24/packaged-shared-furniture-independent-review.md).
+The source and delivery helpers/evidence are owned;49foreign changes stay untouched.
+
+Self-review: no new runtime changes during packaging. 🧪Linux/Deck execution,
+sustained performance and broad room/world composition remain separate gates.
+⚪The full-health bed test proves the observed use/log/save path, not a healed
+quantity. No whole-area or polish status advances. Next is the source-corrected
+[Slate7–8 material slice](GRAPHICS-SLATE-MATERIALS.md), with real baseline and
+native source production before integration. Hourly clock remains22:28:31UTC;
+this delivery milestone is not a new hourly report.
+
+Independent final package review passed the bounded image/restart/archive checks with no concrete blocker. It independently decoded all10images, excluded loading06, rechecked the564,000-pixel save/restart equality, streamed all202archive members and verified188internal checksums plus licenses/ELF header. Warnings and full-area/Deck/performance limits remain explicit.

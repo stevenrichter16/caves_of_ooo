@@ -1,0 +1,1 @@
+Earned in Mac13178d5c0 after full-process Continue112 restored Sitting55,19. Ordinary Left released sitting54,19; sevenLeft reached Bed47,19; examine, Sleep in bed, F5, CmdQ. HP40 throughout; visible log says rest/time passes. Copied unchanged after processexit; no gameplay/save edits.
