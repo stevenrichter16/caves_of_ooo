@@ -2989,3 +2989,32 @@ nine owners are provisional; source counts do not establish acceptance. All
 remaining regional, underground, interior and special-site coverage stays open,
 including Beating/Sodden props, actors and fullness. Last actual hourly report:
 08:24 UTC; next due 09:24 UTC. This delivery note is not another hourly report.
+
+
+## Current continuation — 2026-10-27 13:11 UTC
+
+Stump material source `98e3e167b` is on origin/main. The eight-owner native kit,
+71 frames and unchanged vegetation reuses passed663 distinct native cases and
+actual five-formation Editor actions/readers/harvest/wet-to-dry traversal and
+fresh Continue. Fresh Mac/Linux builds now exist at the source-specific
+`2026-10-27-stump-materials-98e3e167b-current` paths. Actual Mac Continue,
+Tepuibone inventory/examine, Gorge→Grainfield travel, save and full-process
+restart passed the bounded image/state checks. Linux archive integrity passed
+independent review; Linux/physical Deck play remains unverified. See
+[Stump material delivery](GRAPHICS-STUMP-MATERIALS.md) and its indexed receipts.
+Normal saves,38 foreign edits and prior builds remain preserved; no cleanup.
+
+The later serious biome-by-biome and area-by-area polish pass requested by the
+user is now required in CLAUDE, the completion plan, world ledger and active
+recurring prompt. Keep polish acceptance independent from sprite integration.
+Review whole-chunk composition/fullness, palette/material/silhouette/readability,
+interiors and landmarks, hazards/services/routes, transitions, visibility and
+reader identity with actual before/after gameplay. Current Stump material
+integration does not pass that gate: subtle dome blocking cues, sparse Summit
+center and remaining glyph families stay open.
+
+Next coverage slice is the saved [Stump fauna preflight](GRAPHICS-STUMP-FAUNA.md),
+starting with the five existing crisp native species and their essential real
+combat/status feedback. Other registered biomes, underground, settlements,
+interiors and special sites remain in scope. Nuanced animation stays deferred.
+Last actual hourly report12:27UTC,next13:27UTC; this record is not a report.

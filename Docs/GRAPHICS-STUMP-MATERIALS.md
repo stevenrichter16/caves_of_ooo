@@ -1,7 +1,7 @@
 # Stump material kit: preflight and coverage contract
 
 Status: **bounded material integration verified in actual native Editor gameplay,
-2026-10-27 12:52 UTC; source push and package refresh pending**. The original
+2026-10-27 13:11 UTC; source pushed and fresh Mac/Linux packages verified within the bounds below**. The original
 preflight below was saved before production. Five formation views, real tank
 service, vein harvest/product readers, wet-to-dry traversal and fresh Continue
 are verified. Regional polish/fullness and complete Stump coverage remain open.
@@ -539,3 +539,53 @@ open. Existing Overwrit Mac/Linux archive remains the current delivered build.
 claim. Normal Editor/standalone saves and foreign38 paths remain byte-identical;
 Unity finishes in clean Edit mode with no save-root override. Storage inspection
 reports about428GB free; no cleanup/deletion performed.
+
+
+### Packaged delivery checkpoint — 2026-10-27 13:11 UTC
+
+Source commit `98e3e167b8789608f783701490822a024ffa9963` is verified on
+`origin/main`. Fresh source-specific Mac and Linux builds succeeded with zero
+errors and four warnings each. The current Mac app is
+`Builds/Verification/2026-10-27-stump-materials-98e3e167b-current/CavesOfOoo.app`.
+The Linux archive is
+`Builds/SteamDeck/2026-10-27-stump-materials-98e3e167b-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,
+128,791,153 bytes, SHA-256
+`429a9b9c30ba6ae47b4671c3d670b0a4933c9c98a8a3401acefe874e695956ef`.
+Independent archive inspection passed all 189 files/13 directories, internal
+checksums, permissions and safe paths. Linux and physical Deck execution remain
+unverified.
+
+Actual Mac gameplay used the exact new executable: Continue in CascadeGorge,
+Tepuibone inventory/examine, normal map travel to Grainfield, F5, full quit and
+fresh-process Continue. Earned `Fixtures/packaged-stump69` retains turn7460,
+Grainfield40,12 and HP38/40. The six `packaged-stump-01..06` captures and
+`packaged-stump-materials-mac-play-summary.json` record the bounded evidence.
+Independent image review found no new package visual regression. Saved/restarted
+world pixels match in decoded JPEG rectangle [0,96,940,696]; this is not a
+lossless renderer-buffer or Editor-to-package identity claim. Travel/restart
+images04/06 are byte-identical; their separate process provenance depends on
+root's verified executable/PID observations, not image bytes alone.
+
+An ambiguous name-only app lookup initially opened an older October25 app. It
+was closed, the exact new path was selected and Continue repeated before
+accepted evidence. Its retained `packaged-stump-interrupted-old-launch.jpg`
+is excluded. The first shared Player log also has mixed-launch provenance.
+The fresh restart log has zero Exception lines but retains six premature-thread
+finalization notices and one ComputeBuffer-disposal notice; no clean-log claim.
+
+The restoration receipt verifies all50,712 tracked source-snapshot files,
+including38 unrelated edits; normal Editor/standalone save state and preferences
+were restored. Earned package saves were archived separately. Prior builds and
+archives remain intact. Unity returned to clean Edit mode. Storage inspection
+found about426GB free; no cache or storage deletion occurred. The five formation
+Editor views and two packaged area views do not certify all18 eligible addresses,
+whole80×25chunks, remaining families or regional polish.
+
+Current next action: the saved Stump fauna preflight, starting with the five
+existing crisp16×24 species and preserving essential damage/status cues. Continue
+other missing world families. The user's newly required later area-by-area
+polish phase is separately tracked; subtle dome collision cues, sparse Summit
+center, remaining glyph owners and remembered presentation stay open. No
+runtime/art changes occurred after663 native passes; delivery records add no new
+runtime behavior. Current delivery-record commit is prepared for root's exact
+review and push. Last actual hourly report remains12:27UTC, next13:27UTC.

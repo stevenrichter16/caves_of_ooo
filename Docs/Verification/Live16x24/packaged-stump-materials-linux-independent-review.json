@@ -1,0 +1,54 @@
+{
+  "reviewedUtc": "2026-10-27T13:08:02.801558+00:00",
+  "status": "passed",
+  "reviewer": "build_comparison_plan; independent archive audit, packaging helper not imported or executed",
+  "runtimeSourceCommit": "98e3e167b8789608f783701490822a024ffa9963",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-stump-materials-98e3e167b-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archiveBytes": 128791153,
+  "archiveSha256": "429a9b9c30ba6ae47b4671c3d670b0a4933c9c98a8a3401acefe874e695956ef",
+  "archiveReceipt": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-stump-materials-linux-archive.json",
+  "archiveReceiptSha256": "b8d4cf5bc7bd09fbd252db11200968b80b9473f28c011eaad975be3a380fed5a",
+  "checks": {
+    "oneSafeTopLevel": "CavesOfOoo-current",
+    "members": 202,
+    "regularFiles": 189,
+    "directories": 13,
+    "fileBytes": 341082355,
+    "allArchiveFileHashesSizesModesMatchReceiptAndUnpackedBuild": true,
+    "allDirectorySetsModesMatch": true,
+    "duplicateNamesLinksTraversalDevices": false,
+    "gzipCrcIsizeFooterReadToEof": true,
+    "gzipDecodedStreamBytes": 341411840,
+    "archiveSidecarMatches": true,
+    "internalSHA256SUMSExactOtherFiles": 188,
+    "linuxHeader": "ELF64 little-endian x86-64; inspected only",
+    "launcherAndExecutableModes": "0755",
+    "internalExternalReceiptBuildInfoEqual": true,
+    "successfulFreshSourceNamedBuildReceipts": [
+      {
+        "platform": "StandaloneLinux64",
+        "jobId": "build-1d5a859452",
+        "errors": 0,
+        "warnings": 4,
+        "sha256": "be7f1ba3d880fdac7c34380292554179850be7790f2d87b2faf116f423c1368c"
+      },
+      {
+        "platform": "StandaloneOSX",
+        "jobId": "build-1161632ff0",
+        "errors": 0,
+        "warnings": 4,
+        "sha256": "269165242e72679627f369325236f98930264db314856ccf49e88483bdce402c"
+      }
+    ],
+    "nativeReceipt": "663 distinct passed:111 Stump+552 related; exact reviewed XML SHA matched; tests not rerun",
+    "sixCreditSectionsFiveLicenseTextsAndStarterSourcesPresent": true
+  },
+  "findings": [],
+  "limits": [
+    "No archive members were extracted or executed; only the requested audit JSON was written.",
+    "Linux execution and physical Steam Deck testing were not performed.",
+    "No gameplay, controls, GPU, sustained performance, full-biome or source-to-binary reproducibility certification follows from archive integrity.",
+    "The commit and freeze boundary are root assertions, cross-checked for consistency with names, embedded metadata and build receipt timing; this review does not query Git.",
+    "Current unpacked build equals every archived file and directory; no prior-build snapshot was supplied here, so preservation of all older packages is not independently inferred."
+  ]
+}

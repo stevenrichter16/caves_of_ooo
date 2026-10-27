@@ -647,3 +647,61 @@ Overwrit crop/soil/stair and centered Pilgrimage composition gaps remain open;
 its deliberately quiet aesthetic does not exempt it from polish review. These
 named defects must survive the coverage handoff into the dedicated polish pass.
 The current12:27UTC hourly report and13:27UTC next-report clock are unchanged.
+
+
+## 2026-10-27 Stump package checkpoint — source on main, delivery record push pending
+
+Source `98e3e167b8789608f783701490822a024ffa9963` is verified on origin/main by
+root. Both fresh builds succeeded with **zero errors and four warnings each**:
+Mac62.817728seconds, Linux56.168376seconds. The current package tag is
+`2026-10-27-stump-materials-98e3e167b-current`; prior packages are preserved.
+The later delivery/evidence commit has not yet been assigned or pushed.
+
+Actual Mac normal controls continued the earned Stump save, showed one native
+Tepuibone in inventory and its reader, traveled CascadeGorge→Grainfield, saved
+turn7460, fully quit and relaunched, then used fresh Continue. The result is
+Grainfield40,12,HP38 with native materials and the retained harvested-seam row.
+The earned fixture is `Docs/Verification/Live16x24/Fixtures/packaged-stump69`.
+Six JPEG capture files and process/input provenance are recorded in
+`Docs/Verification/Live16x24/packaged-stump-materials-mac-play-summary.json`;
+the independent image review is the matching `-mac-independent-review.md`.
+
+Saved05 versus Continue06 has identical decoded world RGB in `[0,96,940,696]`
+(564,000pixels). This is a JPEG window comparison, not a lossless render-buffer
+or Editor/package identity claim. Travel04 and Continue06 are byte-identical,
+so they are not two distinct visual states; root's independently recorded new
+process/path provenance supports the restart. A mistakenly launched older app
+and its screenshot are excluded. The first log overlaps that old launch and
+cannot support a sole-process clean-log claim. The restart log has zero
+exception lines but retains six premature-finalizer notices and one
+ComputeBuffer-disposal notice; no clean-log claim is made.
+
+The Linux archive is **128,791,153bytes**,189regular files/13directories/202members,
+SHA256 `429a9b9c30ba6ae47b4671c3d670b0a4933c9c98a8a3401acefe874e695956ef`.
+Independent verification passed the full archive/build file hashes, sizes,
+modes, safe paths, checksum manifests, gzip/footer and source/build/native-test
+bindings. Evidence is
+`Docs/Verification/Live16x24/packaged-stump-materials-linux-independent-review.json`
+and the corresponding `-linux-archive.json`. Linux was not executed; physical
+Deck and sustained FPS/GPU behavior were not tested.
+
+`Docs/Verification/Live16x24/packaged-stump-materials-restoration.json` confirms
+all50,712 tracked files match the source snapshot,38 foreign files are unchanged,
+normal Editor saves and standalone save absence/preferences are restored, ten
+build-serialization/owned-whitespace files were restored, and old builds/archives
+are preserved. Test saves were archived. No cache cleanup or deletion occurred.
+
+This completes a **bounded material package checkpoint**, following663 native
+passes and five Editor formation views. It does not accept all18eligible Stump
+addresses, whole80×25chunks, remaining actor/effect/crop/prop/site families or
+regional polish. The separate required polish phase, all55inventory-scope states
+and five concrete Stump area states remain **not_audited**. Sparse Summit,
+subtle dome blocking cues, glyph actors/effects and the other all-world defects
+remain open.
+
+Next: push the reviewed delivery/evidence records, then continue the saved
+nine-identity Stump fauna plan, beginning with the five existing crisp16×24 reuse
+candidates after real close baselines; retain the remaining adaptations/MawToad
+work, Grovelands actors and all-world coverage queue. Serious area-by-area polish
+follows broad coverage; nuanced animation does not move ahead of it.
+**Last actual hourly report12:27UTC; next due13:27UTC remain unchanged.**
