@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "artifact": "shambler.png",
+  "width": 16,
+  "height": 24,
+  "frame_count": 1,
+  "blueprint": "Shambler",
+  "state": "idle",
+  "sprite_rect": [
+    0,
+    0,
+    16,
+    24
+  ],
+  "pivot_normalized": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "mesh_type": "FullRect",
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,binary alpha; root owns integration",
+  "source": "shambler.blend",
+  "source_cells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_shambler.py",
+  "native_png_sha256": "e0d8be101e58460fb1a2e45503a2f7b1a729be838466a7468ec8d488a95e3287",
+  "contact": "shambler-contact.png",
+  "contact_scale": 8,
+  "contact_backings": [
+    "99887D",
+    "1E4433",
+    "10120E"
+  ],
+  "contact_placements_top_left": [
+    [
+      8,
+      14
+    ],
+    [
+      40,
+      14
+    ],
+    [
+      72,
+      14
+    ]
+  ],
+  "palette": {
+    "shadow": "3F3343",
+    "deep": "665164",
+    "mauve": "92768A",
+    "dust": "B39AA9",
+    "moss": "6B775F",
+    "sage": "92A283",
+    "eye": "282731"
+  },
+  "bounds_top_left": [
+    2,
+    5,
+    13,
+    23
+  ],
+  "baseline_row_top_left": 22,
+  "protected_input_count": 1656,
+  "concept_inputs": [
+    "shambler-scene-concept-v1.png",
+    "shambler-parts-reference-v1.png"
+  ],
+  "critique": "Keep small drooped head, crooked narrow torso, unequal grounded feet and ONE attached tapering tendril. Reject cane-like hook, oversized shoulders, high-resolution shading, soft alpha, glow and changed scene geometry. Seven original flat mauve/gray-moss colors; no hat, held tool, spore cloud or shadow.",
+  "self_review": "Native shape/material study only; actual green/stone body and reader comparison required after real integration. Tendril attachment, leg separation and small tilted head must survive normal zoom and actual status/damage/commitment cues. Existing Mosshulk, ChoirTendril, SporeShambler and all prior art remain unchanged.",
+  "runtime_acceptance": false,
+  "polish_acceptance": false
+}

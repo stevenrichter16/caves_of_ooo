@@ -1,6 +1,6 @@
 # Live 16×24 art direction and integration
 
-**Current delivery checkpoint —2026-10-27:** MawToad source751d9247c is verified on origin/main and delivered in fresh Mac/Linux builds (0 errors/4 warnings each).305 distinct native passes, actual Editor combat/chase/restart and bounded Mac body/reader/movement/save/full-process restart are recorded; Linux archive independently verified, not executed. Nine identified Stump living bodies now have native integration, not complete regional/area polish. New Grovelands three-actor BEFORE captures exist; their native work is pending. Last actual hourly report15:27UTC; next16:27UTC. Earlier checkpoints below are historical.
+**Current integration checkpoint — 2026-10-27:** Grovelands Shambler, Mosshulk and living merchant ChoirTendril have bounded native/world/reader integration: 407 distinct native passes and 13 distinct readable actual Editor acceptance views covering windup/evasion/recovery, Grove-to-Fen travel, talk/trade and fresh saved Continue. The later profiling walk ended in player death and is separately retained as capture15; it is not a quiet-route or FPS result. Source push and new packages remain pending; current delivered builds remain Maw source751d9247c, delivery6f85e167b verified on main. All-world coverage and separate serious area polish remain incomplete. Last actual hourly report15:27UTC; next16:27UTC. Earlier checkpoints below are historical.
 
 **Chunk composition requirement (2026-10-26 local):** The user also requires
 chunks not to feel too bare. Fill regions with coherent, biome-appropriate
@@ -3192,3 +3192,51 @@ chunks and subtle blocking cues remain explicit debt. All55inventory polish
 scopes and5Stump area-polish records stay unchanged; serious area-by-area polish
 remains required. Optional nuanced animation stays deferred. Actual hourly clock
 remains15:27UTC, next16:27UTC; this delivery update is not another report.
+
+
+### Grovelands three actors: native and ordinary Editor checkpoint — 2026-10-27
+
+Shambler, Mosshulk and living merchant ChoirTendril now have bounded native
+world/reader coverage. The original Shambler uses one editable 16×24 body;
+Mosshulk and ChoirTendril reuse their existing approved 16×16 cells unchanged.
+The exact 44 RED failures preceded production. Final focused 44 and disjoint
+related 363 cases all pass: **407 distinct, no failures/skips/inconclusive**.
+See [the actor phase](GRAPHICS-GROVELANDS-ACTORS.md), the three retained native
+XMLs and [the actual Editor receipt](Verification/Live16x24/grovelands-actors-after-receipt.json).
+
+Thirteen readable actual acceptance captures (01–10 and12–14) record the three bodies and readers, two real
+Shambler windups, a normal sidestep and recovery with player HP23 unchanged,
+and ordinary Grove4,7→Fen0,8 travel. ChoirTendril remains a living talkable
+merchant: Chat led to Trade; cancelling the first confirmation preserved purse
+and stock by root's direct controls/state observation, then a confirmed VenomGland
+purchase cost18 drams. Retained image11 is fully readable and byte-identical to image10: it shows the
+unchanged trade screen after cancellation, not another transaction or unique view. The player's
+real purse changed50→32 and the merchant's100→118. F5 retained earned fixture
+`Fixtures/grovelands-actors-after81`, turn10290. Fresh isolated Continue in
+capture14 restores player20,16 HP23, Choir51747 HP80 with118 drams/two stock
+items, and the player's32 drams. Saved13/restarted14 world rectangle
+`[0,0,940,680]` has639,200 exactly identical decoded RGB pixels. Actor hurt,
+Wet/death and hostile-Chat counters remain native-tested only; the Shambler
+lashes were evaded, not hits. Source push and new packaged delivery are pending.
+
+After the accepted restart, an extra ordinary 12-key profiling walk ended in
+Mosshulk dealing 23 damage and killing the player at turn 10398. Capture15 retains
+that actual counter-event; no mechanic was changed. The profile contains 15,990
+samples over 60.09 seconds, including the death transition and MCP capture overhead.
+It is an Editor observation, **not a quiet-route, FPS, optimization or device
+performance result**. The earned turn 10290 fixture remains preserved.
+
+Maw source751d9247c remains the current built package; its later delivery/evidence
+commit6f85e167b is verified on origin/main. This new actor integration is not yet
+claimed in those builds. No Linux/physical Deck execution or performance claim.
+No storage cleanup was performed; existing source, normal saves and foreign work
+remain protected by root's owned-session workflow.
+
+Whole-area polish remains open: the observed Grove center is quiet, Fen route
+composition needs a wider review, and capture09 shows clipped conversation text
+and a clipped faction label. These are bounded observations, not a density or
+full-region acceptance verdict. All55 inventory polish scopes and5 Stump area
+polish records remain unchanged. Finish this slice's source push and delivery,
+then continue uncovered biome/area sprite families from the ongoing preflight.
+Optional nuanced animation remains deferred. Last actual hourly report15:27UTC;
+next16:27UTC, unchanged. This saved continuation is not another hourly report.

@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "native_dimensions": [
+    16,
+    24
+  ],
+  "exact_native_rgba_matches_authored_cells": true,
+  "native_pixels_checked": 384,
+  "direct_integer8x_contact_pixels_checked": 73728,
+  "binary_alpha": true,
+  "maximum_palette_colors": 8,
+  "stats": {
+    "occupied_pixels": 95,
+    "palette_colors": 7,
+    "tendril_pixels": 12,
+    "bounds_top_left": [
+      2,
+      5,
+      13,
+      23
+    ],
+    "baseline_row_top_left": 22,
+    "single_connected_silhouette": true,
+    "tendril_lowest_row": 19
+  },
+  "source_png_sha256": "e0d8be101e58460fb1a2e45503a2f7b1a729be838466a7468ec8d488a95e3287",
+  "decoded_rgba_sha256": "27f3210842ae9fbcc38dcb1b7324b1ac27fd5093afc310e51a8d73cfc9d32dfb",
+  "source_cells_sha256": "84811c1e063ca516c1f0fc3954c7a9597729d90dcbb1662c450cc09339d461b9",
+  "editable_blend_sha256": "502a8a2da0f873d473b403ff58c414026ed1bc020eb93793360f3dcc0962f247",
+  "contact_sha256": "cd10c4c200720cccf040df3223e3ae4af1e882d9fc119a437e81103d22235105",
+  "protected_inputs_unchanged": 1656,
+  "corruption_counterchecks": [
+    {
+      "name": "partial alpha",
+      "rejected": true
+    },
+    {
+      "name": "wrong attached-tendril color",
+      "rejected": true
+    },
+    {
+      "name": "wrong canvas dimensions",
+      "rejected": true
+    },
+    {
+      "name": "missing baseline foot",
+      "rejected": true
+    },
+    {
+      "name": "source-cell color drift",
+      "rejected": true
+    }
+  ],
+  "image_mutations_by_verifier": false,
+  "limits": "Source/render verification only. No Unity import, runtime native tests, actual after gameplay, package, Linux/Deck execution or biome/polish acceptance."
+}

@@ -1,0 +1,469 @@
+// Three exact Grovelands living identities; reflection permits native RED
+// before the small companion catalog and current world/reader routing exist.
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using CavesOfOoo.Rendering;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Object = UnityEngine.Object;
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class FlatPixelGrovelandsActorsTests
+    {
+        const int X = 10, Y = 10;
+        static readonly string[] Species = { "Shambler", "Mosshulk", "ChoirTendril" };
+        static readonly string[] Paths = { "Sprites/Live16x24/shambler", "Sprites/Environment/mosshulk", "Sprites/Environment/choir_tendril" };
+        const BindingFlags I = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        const BindingFlags S = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+        DensityLootTestScope content;
+        OverworldZoneManager manager;
+        Zone zone;
+        FlatPixelGreyboxCatalog world;
+        IDisposable adapter;
+        readonly List<Texture2D> borrowed = new List<Texture2D>();
+        EntityDamageVisualHandler oldDamage;
+        EntityMovedVisualHandler oldMoved;
+        EntityFactory oldCorpseFactory;
+        Action<string> oldMessage;
+
+        [SetUp] public void Setup()
+        {
+            oldDamage = EntityVisualHooks.DamageCallback; oldMoved = EntityVisualHooks.MovedCallback; oldMessage = MessageLog.OnMessage;
+            oldCorpseFactory = CorpsePart.Factory;
+            EntityVisualHooks.DamageCallback = null; EntityVisualHooks.MovedCallback = null; MessageLog.OnMessage = null;
+            content = new DensityLootTestScope(); CorpsePart.Factory = content.Factory;
+            manager = OverworldZoneManager.CreateDetached(content.Factory, 65, true);
+            zone = Attach("Overworld.4.7.0"); world = new FlatPixelGreyboxCatalog();
+        }
+        [TearDown] public void Cleanup()
+        {
+            try { world?.Dispose(); adapter?.Dispose(); foreach (var texture in borrowed) if (texture != null) Object.DestroyImmediate(texture); borrowed.Clear(); content?.Dispose(); }
+            finally { CorpsePart.Factory = oldCorpseFactory; EntityVisualHooks.DamageCallback = oldDamage; EntityVisualHooks.MovedCallback = oldMoved; MessageLog.OnMessage = oldMessage; }
+        }
+        Zone Attach(string id)
+        { var graph = new Zone(id); manager.SetActiveZone(graph); foreach (var cell in graph.Cells) cell.Explored = cell.IsVisible = true; return graph; }
+        Entity Owner(string name = "Shambler") { var value = content.Factory.CreateEntity(name); Assert.NotNull(value, name); return value; }
+        Entity Add(string name = "Shambler", int x = X, int y = Y)
+        { var value = Owner(name); Assert.True(zone.AddEntity(value, x, y)); return value; }
+        FlatPixelGreyboxCell View(int x = X, int y = Y)
+        { Assert.True(world.TryResolvePresentation(zone, x, y, out var value)); return value; }
+        static Texture2D Resource(string name = "Shambler")
+        { int index = Array.IndexOf(Species, name); Assert.GreaterOrEqual(index, 0); var texture = Resources.Load<Texture2D>(Paths[index]); Assert.NotNull(texture, Paths[index]); return texture; }
+        static void Native(Tile tile, Texture2D texture)
+        {
+            Assert.NotNull(tile); Assert.NotNull(tile.sprite); Assert.AreSame(texture, tile.sprite.texture);
+            Assert.AreEqual(new Rect(0, 0, 16, texture.height), tile.sprite.rect);
+            Assert.AreEqual(new Vector2(8, texture.height / 2f), tile.sprite.pivot); Assert.AreEqual(16, tile.sprite.pixelsPerUnit);
+            Assert.AreEqual(new Vector2(1, texture.height / 16f), (Vector2)tile.sprite.bounds.size);
+            Assert.AreEqual(Tile.ColliderType.None, tile.colliderType);
+        }
+        static Type AdapterType()
+        { var type = typeof(ZoneRenderer).Assembly.GetType("CavesOfOoo.Rendering.FlatPixelGrovelandsActorsCatalog"); Assert.NotNull(type); return type; }
+        delegate bool Query(Entity owner, out Tile tile);
+        static IDisposable Construct(params Texture2D[] textures) => (IDisposable)Activator.CreateInstance(AdapterType(), Array.ConvertAll(textures, value => (object)value));
+        static Query Resolver(IDisposable art) => (Query)Delegate.CreateDelegate(typeof(Query), art, AdapterType().GetMethod("TryResolve", new[] { typeof(Entity), typeof(Tile).MakeByRefType() }));
+        Texture2D[] Textures()
+        { var result = new Texture2D[3]; for (int i = 0; i < result.Length; i++) { result[i] = new Texture2D(16, i == 0 ? 24 : 16); borrowed.Add(result[i]); } return result; }
+        static object Read(object target, string name) => target.GetType().GetField(name, I).GetValue(target);
+        static void Write(object target, string name, object value)
+        { var field = target.GetType().GetField(name, I); Assert.NotNull(field, name); field.SetValue(target, value); }
+        static ExaminePortraitRenderer Portraits() => (ExaminePortraitRenderer)Activator.CreateInstance(typeof(ExaminePortraitRenderer), I, null,
+            new object[] { (Action<Camera, RenderTexture>)((camera, target) => { }) }, null);
+        AnnouncementDocument Document(Entity owner, Entity viewer = null)
+        { var result = ExamineDocumentBuilder.BuildWorld(owner, zone, zone.GetEntityCell(owner), viewer); Assert.NotNull(result); Assert.True(ExamineDocumentBuilder.IsCurrentSubject(result)); return result; }
+
+        [TestCase("Shambler")] [TestCase("Mosshulk")] [TestCase("ChoirTendril")]
+        public void ExactBodyUsesOriginalGeometryInSubmittedWorldAndAuthorizedReader(string species)
+        {
+            var owner = Add(species); var player = Add("Player", X - 1, Y); var probe = new RenderProbe(); owner.AddPart(probe);
+            var texture = Resource(species); int expectedHeight = species == "Shambler" ? 24 : 16;
+            Assert.AreEqual(16, texture.width); Assert.AreEqual(expectedHeight, texture.height);
+            var view = View(); Assert.AreSame(owner, view.Owner); Assert.True(view.NativeForeground); Native(view.ForegroundTile, texture);
+            using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+            {
+                paint.Step(); Native(paint.At(X, Y), texture); Assert.AreEqual(Color.white, paint.Tint(X, Y)); Assert.AreEqual(Matrix4x4.identity, paint.Transform(X, Y));
+                int calls = probe.Renders; var image = portraits.GetPortrait(Document(owner, player), paint.Renderer);
+                Assert.AreSame(texture, image.Texture); Assert.AreEqual(new Rect(0, 0, 1, 1), image.Uv); Assert.False(image.IsModel);
+                var rect = AnnouncementUI.MeasurePortraitRect(new Rect(3, 5, 79, 95), image);
+                Assert.Greater(rect.width, 0); Assert.AreEqual(0, rect.width % 16); Assert.AreEqual(rect.width * expectedHeight / 16f, rect.height);
+                Assert.AreEqual(calls, probe.Renders, "Reader queries cannot dispatch Render or advance effects.");
+            }
+        }
+
+        [Test] public void TravelingDamagedRenamedAndPassiveOwnersRetainTheirExactSpecies()
+        {
+            zone = Attach("Overworld.13.10.0"); Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
+            for (int i = 0; i < Species.Length; i++)
+            {
+                var owner = Add(Species[i], X + i, Y); owner.GetStat("Hitpoints").BaseValue = 1;
+                owner.GetPart<RenderPart>().DisplayName = "an old traveler"; owner.GetPart<BrainPart>().Passive = true;
+                var view = View(X + i, Y); Assert.AreSame(owner, view.Owner); Assert.True(view.NativeForeground); Native(view.ForegroundTile, Resource(Species[i]));
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, owner, X + i, Y, out var sprite, out _)); Assert.AreSame(Resource(Species[i]), sprite.texture);
+            }
+        }
+
+        [TestCase("wrong-glyph")] [TestCase("variant")] [TestCase("visual-id")] [TestCase("foreign-body")]
+        [TestCase("duplicate-render")] [TestCase("foreign-physics")] [TestCase("dead")]
+        [TestCase("carried")] [TestCase("equipped")] [TestCase("takeable")]
+        public void UnsupportedCurrentBodyDoesNotKeepNativeArt(string fault)
+        {
+            var owner = Add(); Native(View().ForegroundTile, Resource());
+            switch (fault)
+            {
+                case "wrong-glyph": owner.GetPart<RenderPart>().RenderString = "f"; break;
+                case "variant": owner.GetPart<RenderPart>().VisualVariant = "other body"; break;
+                case "visual-id": owner.GetPart<RenderPart>().VisualID = "spore_shambler"; break;
+                case "foreign-body": owner.GetPart<Body>().ParentEntity = new Entity(); break;
+                case "duplicate-render": owner.AddPart(new RenderPart { RenderString = "z" }); break;
+                case "foreign-physics": owner.GetPart<PhysicsPart>().ParentEntity = new Entity(); break;
+                case "dead": owner.GetStat("Hitpoints").BaseValue = 0; break;
+                case "carried": owner.GetPart<PhysicsPart>().InInventory = new Entity(); break;
+                case "equipped": owner.GetPart<PhysicsPart>().Equipped = new Entity(); break;
+                case "takeable": owner.GetPart<PhysicsPart>().Takeable = true; break;
+                default: Assert.Fail(fault); break;
+            }
+            using (var art = Construct(Textures())) Assert.False(Resolver(art)(owner, out _));
+            var view = View(); Assert.False(view.NativeForeground);
+            if (fault == "carried" || fault == "equipped" || fault == "foreign-physics") { Assert.IsNull(view.Owner); Assert.IsNull(view.ForegroundTile); }
+            else { Assert.NotNull(view.ForegroundTile); Assert.AreNotSame(Resource(), view.ForegroundTile.sprite.texture); }
+        }
+
+        [TestCase("Shambler", "missing-commitment")] [TestCase("Shambler", "foreign-commitment")]
+        [TestCase("ChoirTendril", "missing-conversation")] [TestCase("ChoirTendril", "foreign-trader")]
+        [TestCase("ChoirTendril", "duplicate-inventory")] [TestCase("ChoirTendril", "missing-inventory")]
+        public void EssentialOwnedBehaviorAndServicesCannotBeBorrowedOrMissing(string species, string fault)
+        {
+            var owner = Add(species); Native(View().ForegroundTile, Resource(species));
+            switch (fault)
+            {
+                case "missing-commitment": owner.RemovePart(owner.GetPart<CommittedMeleePart>()); break;
+                case "foreign-commitment": owner.GetPart<CommittedMeleePart>().ParentEntity = new Entity(); break;
+                case "missing-conversation": owner.RemovePart(owner.GetPart<ConversationPart>()); break;
+                case "foreign-trader": owner.GetPart<TraderPart>().ParentEntity = new Entity(); break;
+                case "duplicate-inventory": owner.AddPart(new InventoryPart()); break;
+                case "missing-inventory": owner.RemovePart(owner.GetPart<InventoryPart>()); break;
+            }
+            using (var art = Construct(Textures())) Assert.False(Resolver(art)(owner, out _));
+            var view = View(); Assert.False(view.NativeForeground); Assert.NotNull(view.ForegroundTile);
+            Assert.AreNotSame(Resource(species), view.ForegroundTile.sprite.texture);
+        }
+
+        [TestCase("SporeShambler")] [TestCase("MycelialColumn")] [TestCase("CreatureCorpse")]
+        public void SharedNameGlyphAndProvenanceNeverAliasAnotherRegisteredOwner(string impostor)
+        {
+            using (var art = Construct(Textures()))
+            {
+                Assert.True(Resolver(art)(Owner(), out _)); var other = Owner(impostor);
+                other.GetPart<RenderPart>().DisplayName = "spore shambler"; other.GetPart<RenderPart>().RenderString = "z";
+                other.Properties["SourceBlueprint"] = "Shambler";
+                Assert.False((bool)AdapterType().GetMethod("HasKnownRole").Invoke(null, new object[] { other }));
+                Assert.False(Resolver(art)(other, out var tile)); Assert.IsNull(tile);
+            }
+        }
+
+        [Test] public void CurrentDisclosureAndSelectedOwnerRemainRequired()
+        {
+            var owner = Add("Mosshulk"); var cell = zone.GetCell(X, Y); Native(View().ForegroundTile, Resource("Mosshulk"));
+            using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+            {
+                paint.Step(); var document = Document(owner); Assert.AreSame(Resource("Mosshulk"), portraits.GetPortrait(document, paint.Renderer).Texture);
+                cell.IsVisible = false; paint.Dirty(X, Y); paint.Step(); Assert.IsNull(paint.At(X, Y)); Assert.IsNull(portraits.GetPortrait(document, paint.Renderer).Texture);
+                cell.Explored = false; Assert.False(world.TryResolvePresentation(zone, X, Y, out _));
+                cell.Explored = cell.IsVisible = true; owner.GetPart<RenderPart>().Visible = false; Assert.False(View().NativeForeground);
+                owner.GetPart<RenderPart>().Visible = true; Native(View().ForegroundTile, Resource("Mosshulk"));
+                var cover = Add("GoldCoin"); cover.GetPart<RenderPart>().RenderLayer = 99;
+                Assert.AreSame(cover, View().Owner); zone.RemoveEntity(cover); Native(View().ForegroundTile, Resource("Mosshulk"));
+            }
+        }
+
+        [Test] public void ActualMulticellBodyRefusesOneCellArtAndRestorationRecovers()
+        {
+            var owner = Add("Mosshulk"); Native(View().ForegroundTile, Resource("Mosshulk"));
+            owner.AddPart(new SpatialFootprintPart { CellsRaw = "0,0" });
+            Assert.True(zone.TryChangeFootprint(owner, "0,0;1,0;0,1;1,1")); Assert.AreEqual(4, zone.GetOccupiedCells(owner).Count);
+            Assert.False(View().NativeForeground); Assert.False(View(X + 1, Y + 1).NativeForeground);
+            Assert.True(zone.TryChangeFootprint(owner, "0,0")); Native(View().ForegroundTile, Resource("Mosshulk"));
+        }
+
+        [Test] public void StaleMembershipOrReplacementGraphCannotGrantWorldOrReaderAuthority()
+        {
+            var owner = Add(); Native(View().ForegroundTile, Resource()); var document = Document(owner);
+            Assert.True(zone.MoveEntity(owner, X + 1, Y)); Assert.False(ExamineDocumentBuilder.IsCurrentSubject(document));
+            zone.GetCell(X, Y).Objects.Add(owner); Assert.IsNull(View().Owner); Native(View(X + 1, Y).ForegroundTile, Resource());
+            manager.CachedZones[zone.ZoneID] = new Zone(zone.ZoneID);
+            Assert.False(world.TryResolvePresentation(zone, X + 1, Y, out _));
+            Assert.False(world.TryGetPresentationSubjectSprite(zone, owner, X + 1, Y, out _, out _));
+        }
+
+        [Test] public void ActualMovementAndRemovalClearSubmittedBodyButKeepRealGround()
+        {
+            Add("Grass"); Add("Grass", X + 1, Y); var owner = Add("Mosshulk");
+            using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+            {
+                paint.Step(); var body = paint.At(X, Y); Native(body, Resource("Mosshulk"));
+                var firstGround = paint.GroundAt(X, Y); var nextGround = paint.GroundAt(X + 1, Y);
+                Assert.NotNull(firstGround); Assert.NotNull(nextGround); long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+                var document = Document(owner); Assert.True(MovementSystem.TryMove(owner, zone, 1, 0)); paint.Step();
+                Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses); Assert.AreNotSame(body, paint.At(X, Y)); Native(paint.At(X + 1, Y), Resource("Mosshulk"));
+                Assert.AreSame(firstGround, paint.GroundAt(X, Y)); Assert.AreSame(nextGround, paint.GroundAt(X + 1, Y));
+                Assert.False(ExamineDocumentBuilder.IsCurrentSubject(document)); document = Document(owner);
+                Assert.True(zone.RemoveEntity(owner)); paint.Dirty(X + 1, Y); paint.Step(); Assert.AreNotSame(body, paint.At(X + 1, Y));
+                Assert.AreSame(nextGround, paint.GroundAt(X + 1, Y)); Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
+                Assert.IsNull(portraits.GetPortrait(document, paint.Renderer).Texture);
+            }
+        }
+
+        [Test] public void RealDamagePreservesOneRenderEventCueWithoutReaderOrNeighborConsumption()
+        {
+            var owner = Add(); var probe = new RenderProbe(); owner.AddPart(probe); int hp = owner.GetStatValue("Hitpoints");
+            using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+            {
+                paint.Step(); int before = probe.Renders; CombatSystem.ApplyDamage(owner, 1, null, zone);
+                Assert.AreEqual(hp - 1, owner.GetStatValue("Hitpoints")); Assert.AreEqual(1, probe.Damages); Assert.AreEqual(before, probe.Renders);
+                paint.Step(); Native(paint.At(X, Y), Resource()); Assert.AreEqual(QudColorParser.Parse("&R"), paint.Tint(X, Y)); Assert.AreEqual(before + 1, probe.Renders);
+                Assert.AreSame(Resource(), portraits.GetPortrait(Document(owner), paint.Renderer).Texture); View(); paint.Dirty(X + 1, Y); paint.Step();
+                Assert.AreEqual(before + 1, probe.Renders);
+                for (int i = 2; i <= 4; i++) { paint.Dirty(X, Y); paint.Step(); Assert.AreEqual(before + i, probe.Renders); Native(paint.At(X, Y), Resource()); Assert.AreEqual(i < 4 ? QudColorParser.Parse("&R") : Color.white, paint.Tint(X, Y)); }
+            }
+        }
+
+        [Test] public void SuccessfullyAppliedWetPreservesBodyAndNeutralRecovery()
+        {
+            var owner = Add("Mosshulk"); int hp = owner.GetStatValue("Hitpoints");
+            var effects = owner.GetPart<StatusEffectsPart>(); if (effects == null) owner.AddPart(effects = new StatusEffectsPart());
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); var wet = new WetEffect(); Assert.True(effects.ForceApplyEffect(wet, null, zone));
+                Assert.AreEqual("&B", effects.GetRenderColorOverride()); paint.Dirty(X, Y); paint.Step();
+                Native(paint.At(X, Y), Resource("Mosshulk")); Assert.AreEqual(QudColorParser.Parse("&B"), paint.Tint(X, Y));
+                Assert.True(effects.RemoveEffect(wet)); paint.Dirty(X, Y); paint.Step(); Native(paint.At(X, Y), Resource("Mosshulk"));
+                Assert.AreEqual(Color.white, paint.Tint(X, Y)); Assert.AreEqual(hp, owner.GetStatValue("Hitpoints"));
+            }
+        }
+
+        [TestCase("Shambler")] [TestCase("Mosshulk")] [TestCase("ChoirTendril")]
+        public void ActualDeathCreatesSeparateCorpseWithoutLivingBodyOrReader(string species)
+        {
+            var owner = Add(species); var corpsePart = owner.GetPart<CorpsePart>(); Assert.NotNull(corpsePart); Assert.AreEqual(100, corpsePart.CorpseChance); corpsePart.TestRng = new System.Random(65);
+            Native(View().ForegroundTile, Resource(species)); var document = Document(owner);
+            using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+            {
+                paint.Step(); CombatSystem.ApplyDamage(owner, owner.GetStatValue("Hitpoints"), null, zone); paint.Step();
+                Assert.IsNull(zone.GetEntityCell(owner)); var corpse = corpsePart.CreatedCorpse; Assert.NotNull(corpse);
+                Assert.AreEqual("CreatureCorpse", corpse.BlueprintName); Assert.AreEqual(species, corpse.GetProperty("SourceBlueprint"));
+                Assert.False(ExamineDocumentBuilder.IsCurrentSubject(document)); Assert.IsNull(portraits.GetPortrait(document, paint.Renderer).Texture);
+                using (var art = Construct(Textures())) Assert.False(Resolver(art)(corpse, out _));
+                var tile = paint.At(X, Y); if (tile != null) Assert.AreNotSame(Resource(species), tile.sprite.texture);
+            }
+        }
+
+        [TestCase(0, false)] [TestCase(0, true)] [TestCase(1, false)] [TestCase(1, true)] [TestCase(2, false)] [TestCase(2, true)]
+        public void MissingOrMalformedOneResourceKeepsOtherTwoAndTruthfulSubmittedFallback(int index, bool malformed)
+        {
+            var textures = Textures(); using (var valid = Construct(textures)) { Assert.True(Resolver(valid)(Owner(Species[index]), out var native)); Native(native, textures[index]); }
+            var invalid = malformed ? new Texture2D(17, 16) : null; if (invalid != null) borrowed.Add(invalid); textures[index] = invalid;
+            adapter = Construct(textures); var query = Resolver(adapter); Assert.False(query(Owner(Species[index]), out var absent)); Assert.IsNull(absent);
+            for (int i = 0; i < 3; i++) if (i != index) { Assert.True(query(Owner(Species[i]), out var tile)); Native(tile, textures[i]); }
+            world.Dispose(); world = new FlatPixelGreyboxCatalog((Texture2D)null); Write(world, "_grovelandsActorsArt", adapter); var owner = Add(Species[index]);
+            var view = View(); Assert.AreSame(owner, view.Owner); Assert.False(view.NativeForeground);
+            using (var paint = new Paint(world, zone)) { paint.Step(); Assert.NotNull(paint.At(X, Y)); Assert.AreNotSame(invalid, paint.At(X, Y).sprite.texture); }
+        }
+
+        [Test] public void ExplicitEmptyInjectionDoesNotReloadAnyDefaultResource()
+        {
+            foreach (var name in Species) Native(AddAndView(name), Resource(name));
+            using (var art = Construct(new Texture2D[3])) foreach (var name in Species) { Assert.False(Resolver(art)(Owner(name), out var tile)); Assert.IsNull(tile); }
+        }
+        Tile AddAndView(string species)
+        { var owner = Add(species); var tile = View().ForegroundTile; Assert.True(zone.RemoveEntity(owner)); return tile; }
+
+        [Test] public void DisposalDestroysOnlyOwnedPairsAndLeavesBorrowedTexturesAndPeerAlive()
+        {
+            var textures = Textures(); adapter = Construct(textures); var tiles = new Tile[3]; var sprites = new Sprite[3];
+            for (int i = 0; i < 3; i++) { Assert.True(Resolver(adapter)(Owner(Species[i]), out tiles[i])); sprites[i] = tiles[i].sprite; }
+            using (var peer = Construct(textures))
+            {
+                adapter.Dispose(); adapter.Dispose();
+                for (int i = 0; i < 3; i++)
+                {
+                    Assert.True(tiles[i] == null); Assert.True(sprites[i] == null); Assert.False(Resolver(adapter)(Owner(Species[i]), out _));
+                    Assert.True(Resolver(peer)(Owner(Species[i]), out var other)); Native(other, textures[i]);
+                    Assert.True(textures[i] != null); Assert.AreEqual(FilterMode.Bilinear, textures[i].filterMode); Assert.AreEqual(TextureWrapMode.Repeat, textures[i].wrapMode);
+                }
+            }
+        }
+
+        void HostileTarget(out Entity actor, out Entity target, out CommittedMeleePart intent)
+        {
+            actor = Add(); target = Add("Player", X + 2, Y); var brain = actor.GetPart<BrainPart>(); brain.CurrentZone = zone;
+            brain.SetPersonallyHostile(target, false); Assert.True(FactionManager.IsHostile(actor, target)); intent = actor.GetPart<CommittedMeleePart>(); Assert.NotNull(intent);
+            target.GetStat("Hitpoints").Max = target.GetStat("Hitpoints").BaseValue = 500;
+        }
+        [Test] public void RealCommitmentRetainsNativeBodyAndExistingChevronsThroughRecovery()
+        {
+            HostileTarget(out var actor, out var target, out var intent); Native(View().ForegroundTile, Resource()); int hp = target.GetStatValue("Hitpoints"), dv = CombatSystem.GetDV(actor);
+            using (var paint = new Paint(world, zone)) using (var cues = new CombatIntentRenderer(paint.RootTransform, paint.Main, 0)) using (var portraits = Portraits())
+            {
+                paint.Step(); cues.Refresh(target, zone, true); Assert.Zero(cues.VisibleCount); Assert.IsNull(CombatIntentReadout.ActorLine(actor, zone));
+                Assert.True(intent.TryBegin(target, zone)); paint.Step(); cues.Refresh(target, zone, true); Assert.AreEqual(2, cues.VisibleCount);
+                StringAssert.Contains("Drawing back", CombatIntentReadout.ActorLine(actor, zone)); Assert.NotNull(CombatIntentReadout.ThreatLine(zone, zone.GetCell(X + 2, Y)));
+                Native(paint.At(X, Y), Resource()); Assert.AreSame(Resource(), portraits.GetPortrait(Document(actor, target), paint.Renderer).Texture);
+                for (int i = 0; i < 5; i++) { View(); cues.Refresh(target, zone, true); }
+                Assert.True(intent.IsWindingUp); Assert.AreEqual(hp, target.GetStatValue("Hitpoints"));
+                Assert.True(intent.AdvancePendingAction(zone, new MeleeRandom())); Assert.True(intent.IsRecovering); Assert.Less(target.GetStatValue("Hitpoints"), hp);
+                Assert.AreEqual(dv - CommittedMeleePart.RecoveryDVPenalty, CombatSystem.GetDV(actor)); paint.Step(); Native(paint.At(X, Y), Resource());
+                cues.Refresh(target, zone, true); Assert.Zero(cues.VisibleCount); StringAssert.Contains("Recovering", CombatIntentReadout.ActorLine(actor, zone));
+                actor.FireEventAndRelease(GameEvent.New("EndTurn")); Assert.True(intent.IsRecovering);
+                actor.FireEventAndRelease(GameEvent.New("EndTurn")); Assert.AreEqual(CommittedMeleePart.AttackStage.Idle, intent.Stage); Assert.IsNull(CombatIntentReadout.ActorLine(actor, zone)); Native(View().ForegroundTile, Resource());
+            }
+        }
+
+        [Test] public void PhysicalBlockRejectsWindupAndRealDisplacementCancelsAnExistingRay()
+        {
+            HostileTarget(out var actor, out var target, out var intent); Native(View().ForegroundTile, Resource()); var wall = Add("StoneWall", X + 1, Y);
+            Assert.False(intent.TryBegin(target, zone)); Assert.AreEqual(CommittedMeleePart.AttackStage.Idle, intent.Stage); Assert.True(zone.RemoveEntity(wall));
+            Assert.True(intent.TryBegin(target, zone)); int hp = target.GetStatValue("Hitpoints"); Assert.True(MovementSystem.TryMove(actor, zone, 0, 1));
+            Assert.True(intent.IsRecovering); Assert.IsNull(CombatIntentReadout.ThreatLine(zone, zone.GetCell(X + 1, Y))); Native(View(X, Y + 1).ForegroundTile, Resource());
+            Assert.True(intent.AdvancePendingAction(zone, new MeleeRandom())); Assert.AreEqual(hp, target.GetStatValue("Hitpoints"));
+            actor.FireEventAndRelease(GameEvent.New("EndTurn")); Assert.AreEqual(CommittedMeleePart.AttackStage.Idle, intent.Stage);
+        }
+
+        [Test] public void HiddenIntermediateOrActorSuppressesIntentWithoutAdvancingNativeOwner()
+        {
+            HostileTarget(out var actor, out var target, out var intent); Native(View().ForegroundTile, Resource()); Assert.True(intent.TryBegin(target, zone));
+            using (var paint = new Paint(world, zone)) using (var cues = new CombatIntentRenderer(paint.RootTransform, paint.Main, 0))
+            {
+                paint.Step(); cues.Refresh(target, zone, true); Assert.AreEqual(2, cues.VisibleCount);
+                var middle = zone.GetCell(X + 1, Y); middle.IsVisible = false; cues.Refresh(target, zone, true); Assert.Zero(cues.VisibleCount);
+                Assert.IsNull(CombatIntentReadout.ThreatLine(zone, zone.GetCell(X + 2, Y))); Native(View().ForegroundTile, Resource());
+                middle.IsVisible = true; cues.Refresh(target, zone, true); Assert.AreEqual(2, cues.VisibleCount);
+                actor.GetPart<RenderPart>().Visible = false; cues.Refresh(target, zone, true); Assert.Zero(cues.VisibleCount); Assert.IsNull(CombatIntentReadout.ActorLine(actor, zone));
+                actor.GetPart<RenderPart>().Visible = true; Native(View().ForegroundTile, Resource()); Assert.True(intent.IsWindingUp);
+            }
+        }
+
+        [Test] public void RealChoirChatAndTradePreserveLivingIdentityAndQueriesNeverRestock()
+        {
+            using (var conversations = new ConversationScope())
+            {
+                var choir = Add("ChoirTendril"); var player = Add("Player", X - 1, Y); Native(View().ForegroundTile, Resource("ChoirTendril"));
+                var stock = choir.GetPart<InventoryPart>(); Assert.Greater(stock.Objects.Count, 0, "Real ChoirStock must be wired at ObjectCreated.");
+                Assert.AreEqual("ChoirStock", choir.GetPart<TraderPart>().StockTable); Assert.True(choir.HasTag("SpeaksToHostiles"));
+                choir.GetPart<BrainPart>().SetPersonallyHostile(player, false); Assert.True(FactionManager.IsHostile(choir, player));
+                var chat = GameEvent.New("InventoryAction"); chat.SetParameter("Command", "Chat"); chat.SetParameter("Actor", (object)player); choir.FireEventAndRelease(chat);
+                Assert.True(ConversationManager.IsActive); Assert.AreEqual("ChoirTendril_1", ConversationManager.CurrentConversation.ID); Assert.AreSame(choir, ConversationManager.Speaker);
+                Assert.True(choir.GetPart<BrainPart>().InConversation); Native(View().ForegroundTile, Resource("ChoirTendril"));
+                int index = ConversationManager.VisibleChoices.ToList().FindIndex(c => c.Actions != null && c.Actions.Any(a => a.Key == "StartTrade")); Assert.GreaterOrEqual(index, 0);
+                Assert.False(ConversationManager.SelectChoice(index)); Assert.AreSame(choir, ConversationManager.PendingTradePartner); Assert.False(choir.GetPart<BrainPart>().InConversation);
+                var item = TradeSystem.GetTraderStock(choir).First(); int price = TradeSystem.GetBuyPrice(item, TradeSystem.GetTradePerformance(player), choir);
+                TradeSystem.SetDrams(player, price + 10); int purse = TradeSystem.GetDrams(choir); int beforeCount = stock.Objects.Count;
+                Assert.True(TradeSystem.BuyFromTrader(player, choir, item, out var reason), reason);
+                Assert.AreEqual(purse + price, TradeSystem.GetDrams(choir)); Assert.AreEqual(10, TradeSystem.GetDrams(player)); Assert.AreEqual(beforeCount - 1, stock.Objects.Count);
+                var remaining = stock.Objects.ToArray(); int changedPurse = TradeSystem.GetDrams(choir);
+                using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+                {
+                    paint.Step(); Native(paint.At(X, Y), Resource("ChoirTendril"));
+                    for (int i = 0; i < 6; i++) { View(); Assert.AreSame(Resource("ChoirTendril"), portraits.GetPortrait(Document(choir, player), paint.Renderer).Texture); }
+                }
+                CollectionAssert.AreEqual(remaining, stock.Objects); Assert.AreEqual(changedPurse, TradeSystem.GetDrams(choir));
+                Assert.True(FactionManager.IsHostile(choir, player));
+                choir.Tags.Remove("SpeaksToHostiles"); Assert.False(ConversationManager.StartConversation(choir, player));
+            }
+        }
+
+        sealed class MeleeRandom : System.Random
+        { public override int Next(int maxValue) => maxValue - 1; public override int Next(int minValue, int maxValue) => maxValue == 11 ? 9 : maxValue - 1; }
+
+        // Only the merchant test loads/mutates these global registries. Preserve
+        // original objects and entries, rather than Reset leaving an empty cache.
+        sealed class ConversationScope : IDisposable
+        {
+            readonly List<(FieldInfo field, object value, DictionaryEntry[] entries)> saved = new List<(FieldInfo, object, DictionaryEntry[])>();
+            public ConversationScope()
+            {
+                foreach (var type in new[] { typeof(ConversationLoader), typeof(ConversationPredicates), typeof(ConversationActions), typeof(SpreadDiscoveryReports) })
+                    foreach (var f in type.GetFields(S))
+                    {
+                        if (f.IsLiteral) continue; var value = f.GetValue(null); DictionaryEntry[] entries = null;
+                        if (value is IDictionary dict) { entries = new DictionaryEntry[dict.Count]; dict.CopyTo(entries, 0); }
+                        if (!f.IsInitOnly || entries != null) saved.Add((f, value, entries));
+                    }
+                ConversationManager.EndConversation(); ConversationManager.PendingTradePartner = null;
+                var data = Resources.Load<TextAsset>("Content/Conversations/RotChoir"); Assert.NotNull(data);
+                ConversationLoader.LoadFromJson(data.text, "RotChoir fixture"); ConversationActions.Reset(); ConversationPredicates.Reset();
+            }
+            public void Dispose()
+            {
+                ConversationManager.EndConversation(); ConversationManager.PendingTradePartner = null;
+                for (int i = saved.Count - 1; i >= 0; i--)
+                {
+                    var entry = saved[i]; if (!entry.field.IsInitOnly) entry.field.SetValue(null, entry.value);
+                    if (entry.entries != null) { var dict = (IDictionary)entry.value; dict.Clear(); foreach (var row in entry.entries) dict.Add(row.Key, row.Value); }
+                }
+            }
+        }
+
+        sealed class RenderProbe : Part
+        {
+            public int Renders, Damages;
+            public override bool HandleEvent(GameEvent e) { if (e.ID == "Render") Renders++; if (e.ID == "TakeDamage") Damages++; return true; }
+        }
+        sealed class Paint : IDisposable
+        {
+            readonly HotbarSaveFixture saved;
+            readonly GameObject root;
+            readonly Tilemap overlay, main, ground;
+            public ZoneRenderer Renderer { get; }
+            public Transform RootTransform => root.transform;
+            public Tilemap Main => main;
+            readonly Action<int, int, string> oldCell = ZoneRenderHooks.CellDirtyCallback;
+            readonly Action<string> oldFull = ZoneRenderHooks.FullDirtyCallback;
+            readonly FieldInfo bound = typeof(ZoneTileStateSystem).GetField("_boundRenderZone", S);
+            readonly object oldBound; readonly Zone previous; readonly Action<int, int> oldChanged; readonly Action oldSight;
+            readonly Dictionary<FieldInfo, object> perf = new Dictionary<FieldInfo, object>();
+            public Paint(FlatPixelGreyboxCatalog catalog, Zone z)
+            {
+                oldBound = bound.GetValue(null);
+                if (oldBound is WeakReference<Zone> weak && weak.TryGetTarget(out previous)) { oldChanged = previous.TileState.OnCellChanged; oldSight = previous.TileState.OnSightChanged; }
+                try
+                {
+                    foreach (var field in typeof(EnvironmentSpriteRenderer.Perf).GetFields(BindingFlags.Public | BindingFlags.Static)) perf[field] = field.GetValue(null);
+                    saved = new HotbarSaveFixture(); root = new GameObject("Grovelands actor submitted grid", typeof(Grid)); saved.Root.transform.SetParent(root.transform, false);
+                    main = saved.Root.GetComponent<Tilemap>(); var bg = new GameObject("Background", typeof(Tilemap)); bg.transform.SetParent(root.transform, false); ground = bg.GetComponent<Tilemap>();
+                    var marks = new GameObject("Hazards", typeof(Tilemap)); marks.transform.SetParent(root.transform, false);
+                    Renderer = saved.Renderer; Write(Renderer, "_tilemap", main); Write(Renderer, "_bgTilemap", ground); Write(Renderer, "_tileStateTilemap", marks.GetComponent<Tilemap>());
+                    var camera = new GameObject("Camera", typeof(Camera)); camera.transform.SetParent(root.transform, false); camera.GetComponent<Camera>().orthographic = true; Write(Renderer, "_mainCamera", camera.GetComponent<Camera>());
+                    var env = saved.Root.AddComponent<EnvironmentSpriteRenderer>(); env.Init(root.transform, main, ground); env.RenderingEnabled = true; env.FlatPixelGreyboxEnabled = true;
+                    Write(env, "_flatPixelGreybox", catalog); overlay = (Tilemap)Read(env, "_overlayTilemap"); Write(Renderer, "_envSpriteRenderer", env); Write(Renderer, "_flatPixelModeEnabled", true); Renderer.SetZone(z);
+                    ZoneRenderHooks.CellDirtyCallback = Renderer.MarkCellDirty; ZoneRenderHooks.FullDirtyCallback = Renderer.MarkDirty;
+                }
+                catch { Dispose(); throw; }
+            }
+            static Vector3Int Position(int x, int y) => new Vector3Int(x, Zone.Height - 1 - y, 0);
+            public Tile At(int x, int y) { var at = Position(x, y); return overlay.GetTile<Tile>(at) ?? main.GetTile<Tile>(at); }
+            public Matrix4x4 Transform(int x, int y) { var at = Position(x, y); return overlay.HasTile(at) ? overlay.GetTransformMatrix(at) : main.GetTransformMatrix(at); }
+            public Color Tint(int x, int y) { var at = Position(x, y); return overlay.HasTile(at) ? overlay.GetColor(at) : main.GetColor(at); }
+            public Color Lit(Color color, int x, int y) { var light = (LightMap)Read(Renderer, "_lightMap"); return light == null ? color : light.ApplyToColor(color, x, y); }
+            public Tile GroundAt(int x, int y) => ground.GetTile<Tile>(Position(x, y));
+            public void Dirty(int x, int y) => Renderer.MarkCellDirty(x, y, "Grovelands actor fixture");
+            public void Step() { try { typeof(ZoneRenderer).GetMethod("LateUpdate", I).Invoke(Renderer, null); } catch (TargetInvocationException e) { throw e.InnerException ?? e; } }
+            public void Dispose()
+            {
+                try { saved?.Dispose(); if (root != null) Object.DestroyImmediate(root); }
+                finally
+                {
+                    ZoneRenderHooks.CellDirtyCallback = oldCell; ZoneRenderHooks.FullDirtyCallback = oldFull; bound.SetValue(null, oldBound);
+                    if (previous != null) { previous.TileState.OnCellChanged = oldChanged; previous.TileState.OnSightChanged = oldSight; }
+                    foreach (var entry in perf) entry.Key.SetValue(null, entry.Value);
+                }
+            }
+        }
+    }
+}

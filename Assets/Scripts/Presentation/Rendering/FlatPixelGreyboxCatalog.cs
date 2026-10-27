@@ -74,6 +74,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelCellarFloorCatalog _cellarFloorArt;
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private FlatPixelStumpFaunaCatalog _stumpFaunaArt;
+        private FlatPixelGrovelandsActorsCatalog _grovelandsActorsArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
         private FlatPixelHarvestProductsCatalog _harvestProductsArt;
         private readonly Texture2D _harvestItemsAtlas, _harvestWorksAtlas;
@@ -970,11 +971,16 @@ namespace CavesOfOoo.Rendering
             Tile faunaArt = null;
             bool faunaNative = fauna != null && fauna.TryResolve(owner, out faunaArt);
             if (faunaKnown) art = faunaArt;
+            bool groveActorKnown = FlatPixelGrovelandsActorsCatalog.HasKnownRole(owner);
+            var groveActors = !fallback.Remembered ? GrovelandsActorsArtFor(owner) : null;
+            Tile groveActorArt = null;
+            bool groveActorNative = groveActors != null && groveActors.TryResolve(owner, out groveActorArt);
+            if (groveActorKnown) art = groveActorArt;
             // Known-product refusal is authoritative: older local item groups
             // must not bypass current semantic or optional-resource guards.
             // The same applies to exact fauna; portable species do not admit
             // regional scenery or inherit another body's art after refusal.
-            bool native = faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative
+            bool native = groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -998,7 +1004,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater, brineNative || beatingBrineNative, mireNative, faunaNative);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative);
             return true;
         }
 
@@ -1008,6 +1014,13 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            if (FlatPixelGrovelandsActorsCatalog.HasKnownRole(subject))
+            {
+                var actors = GrovelandsActorsArtFor(subject);
+                if (actors != null && actors.TryResolve(subject, out var groveActorTile))
+                { sprite = groveActorTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             if (FlatPixelStumpFaunaCatalog.HasKnownRole(subject))
             {
                 var fauna = StumpFaunaArtFor(subject);
@@ -1159,6 +1172,14 @@ namespace CavesOfOoo.Rendering
             if (_stumpFaunaArt == null && _loadOptionalResources)
                 _stumpFaunaArt = new FlatPixelStumpFaunaCatalog();
             return _stumpFaunaArt;
+        }
+
+        private FlatPixelGrovelandsActorsCatalog GrovelandsActorsArtFor(Entity owner)
+        {
+            if (!FlatPixelGrovelandsActorsCatalog.HasKnownRole(owner)) return null;
+            if (_grovelandsActorsArt == null && _loadOptionalResources)
+                _grovelandsActorsArt = new FlatPixelGrovelandsActorsCatalog();
+            return _grovelandsActorsArt;
         }
 
         private FlatPixelHarvestProductsCatalog HarvestProductsArtFor(Entity owner)
@@ -1352,6 +1373,8 @@ namespace CavesOfOoo.Rendering
             _incidentalActorArt = null;
             _stumpFaunaArt?.Dispose();
             _stumpFaunaArt = null;
+            _grovelandsActorsArt?.Dispose();
+            _grovelandsActorsArt = null;
             _incidentalEquipmentArt?.Dispose();
             _incidentalEquipmentArt = null;
             _harvestProductsArt?.Dispose();

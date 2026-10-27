@@ -1,0 +1,530 @@
+{
+  "scope": "Three exact living actors; Editor ordinary-controls comparison, not regional/polish/package acceptance",
+  "source_base": "6f85e167b73b751a80874de7f3d260b48589d4e7",
+  "native": {
+    "red": 44,
+    "green": 44,
+    "related": 363,
+    "distinct_total": 407,
+    "failed": 0,
+    "skipped": 0
+  },
+  "grove_after": {
+    "zone": "Overworld.4.7.0",
+    "playerX": 40,
+    "playerY": 12,
+    "hp": 23,
+    "actors": [
+      {
+        "id": "46964",
+        "blueprint": "Shambler",
+        "x": 17,
+        "y": 9,
+        "visible": true,
+        "hp": 16,
+        "body": true,
+        "parts": [
+          "RenderPart",
+          "PhysicsPart",
+          "ExaminablePart",
+          "Body",
+          "ArmorPart",
+          "InventoryPart",
+          "BrainPart",
+          "GivesRepPart",
+          "DamageFlashPart",
+          "CorpsePart",
+          "MaterialPart",
+          "ThermalPart",
+          "CommittedMeleePart"
+        ]
+      },
+      {
+        "id": "46965",
+        "blueprint": "Shambler",
+        "x": 18,
+        "y": 6,
+        "visible": true,
+        "hp": 16,
+        "body": true,
+        "parts": [
+          "RenderPart",
+          "PhysicsPart",
+          "ExaminablePart",
+          "Body",
+          "ArmorPart",
+          "InventoryPart",
+          "BrainPart",
+          "GivesRepPart",
+          "DamageFlashPart",
+          "CorpsePart",
+          "MaterialPart",
+          "ThermalPart",
+          "CommittedMeleePart"
+        ]
+      }
+    ]
+  },
+  "windup": {
+    "playerX": 23,
+    "playerY": 9,
+    "hp": 23,
+    "actors": [
+      {
+        "id": "46964",
+        "x": 21,
+        "y": 11,
+        "hp": 16,
+        "stage": "Windup",
+        "ox": 21,
+        "oy": 11,
+        "dx": 1,
+        "dy": -1,
+        "target": true,
+        "threat": true
+      },
+      {
+        "id": "46965",
+        "x": 22,
+        "y": 9,
+        "hp": 16,
+        "stage": "Windup",
+        "ox": 22,
+        "oy": 9,
+        "dx": 1,
+        "dy": 0,
+        "target": true,
+        "threat": true
+      }
+    ]
+  },
+  "sidestep": {
+    "playerX": 23,
+    "playerY": 8,
+    "hp": 23,
+    "actors": [
+      {
+        "id": "46964",
+        "x": 21,
+        "y": 11,
+        "hp": 16,
+        "stage": "Recovery",
+        "ox": 21,
+        "oy": 11,
+        "dx": 1,
+        "dy": -1,
+        "target": true,
+        "threat": false
+      },
+      {
+        "id": "46965",
+        "x": 22,
+        "y": 9,
+        "hp": 16,
+        "stage": "Recovery",
+        "ox": 22,
+        "oy": 9,
+        "dx": 1,
+        "dy": 0,
+        "target": true,
+        "threat": false
+      }
+    ]
+  },
+  "fen_after": {
+    "zone": "Overworld.0.8.0",
+    "playerX": 40,
+    "playerY": 12,
+    "hp": 23,
+    "actors": [
+      {
+        "id": "51741",
+        "blueprint": "ChoirTendril",
+        "x": 9,
+        "y": 16,
+        "visible": true,
+        "hp": 80,
+        "body": true,
+        "parts": [
+          "RenderPart",
+          "PhysicsPart",
+          "ExaminablePart",
+          "Body",
+          "ArmorPart",
+          "InventoryPart",
+          "BrainPart",
+          "GivesRepPart",
+          "DamageFlashPart",
+          "CorpsePart",
+          "MaterialPart",
+          "ThermalPart",
+          "ConversationPart",
+          "TraderPart"
+        ]
+      },
+      {
+        "id": "51774",
+        "blueprint": "Mosshulk",
+        "x": 13,
+        "y": 2,
+        "visible": true,
+        "hp": 55,
+        "body": true,
+        "parts": [
+          "RenderPart",
+          "PhysicsPart",
+          "ExaminablePart",
+          "Body",
+          "ArmorPart",
+          "InventoryPart",
+          "BrainPart",
+          "GivesRepPart",
+          "DamageFlashPart",
+          "CorpsePart",
+          "MaterialPart",
+          "ThermalPart"
+        ]
+      },
+      {
+        "id": "51747",
+        "blueprint": "ChoirTendril",
+        "x": 19,
+        "y": 17,
+        "visible": true,
+        "hp": 80,
+        "body": true,
+        "parts": [
+          "RenderPart",
+          "PhysicsPart",
+          "ExaminablePart",
+          "Body",
+          "ArmorPart",
+          "InventoryPart",
+          "BrainPart",
+          "GivesRepPart",
+          "DamageFlashPart",
+          "CorpsePart",
+          "MaterialPart",
+          "ThermalPart",
+          "ConversationPart",
+          "TraderPart"
+        ]
+      }
+    ]
+  },
+  "merchant_before": {
+    "zone": "Overworld.0.8.0",
+    "owner": "51747",
+    "x": 19,
+    "y": 17,
+    "hp": 80,
+    "playerDrams": 50,
+    "merchantDrams": 100,
+    "stock": [
+      {
+        "id": "51748",
+        "bp": "VenomGland",
+        "count": 1
+      },
+      {
+        "id": "51749",
+        "bp": "InkVial",
+        "count": 1
+      },
+      {
+        "id": "51750",
+        "bp": "Codex11",
+        "count": 1
+      }
+    ],
+    "conversation": true
+  },
+  "merchant_after": {
+    "zone": "Overworld.0.8.0",
+    "owner": "51747",
+    "x": 19,
+    "y": 17,
+    "hp": 80,
+    "playerDrams": 32,
+    "merchantDrams": 118,
+    "stock": [
+      {
+        "id": "51749",
+        "bp": "InkVial",
+        "count": 1
+      },
+      {
+        "id": "51750",
+        "bp": "Codex11",
+        "count": 1
+      }
+    ],
+    "conversation": false
+  },
+  "controls": "Ordinary Continue/Look/reader/arrows/world-map travel/Interact/Chat/Trade/Y/F5. No gameplay injection, currency grants or faction edits.",
+  "fixture": "Fixtures/grovelands-actors-after81",
+  "saved_turn": 10290,
+  "setup_correction": "First Continue selected launcher empty marker cached before copied fixture; it correctly refused non-gzip. Preserved empty marker and put earned Grove79 in boot-cached isolated marker slot, then normal Continue succeeded. Normal saves never touched.",
+  "cancelled_purchase": "First Enter opened confirmation; Escape cancelled it through ordinary controls. Capture11 is fully readable and byte-identical to10, with unchanged50/100 purses and three stock entries. A second Enter thenY bought VenomGland18drams; image12 shows32/118 and transferred item. LaterEscape/F5 saved.",
+  "limits": [
+    "Three exact body identities observed; not all Grovelands owners/areas or polished-area acceptance.",
+    "Damage/Wet/hostile-Chat and actor corpse exclusion covered by native tests. Actual route observed two Shambler lashes evaded with HP23 unchanged, Mosshulk wandering and later fatal attack against player, and neutral Choir conversation/trade.",
+    "Conversation text and faction-label clipping, broad quiet patches and remaining glyph props are explicit polish/coverage debt.",
+    "Editor profiling includes combat/player-death transition, idle frames and MCP/CUA overhead; no same-route pre-change measurement, sustained packaged FPS, optimization, Linux execution or physical Deck claim.",
+    "New source push and fresh packages remain pending at this receipt. Prior Maw source751d9247c packages remain current until delivery."
+  ],
+  "restart": {
+    "zone": "Overworld.0.8.0",
+    "owner": "51747",
+    "x": 19,
+    "y": 17,
+    "hp": 80,
+    "playerDrams": 32,
+    "merchantDrams": 118,
+    "stock": [
+      {
+        "id": "51749",
+        "bp": "InkVial",
+        "count": 1
+      },
+      {
+        "id": "51750",
+        "bp": "Codex11",
+        "count": 1
+      }
+    ],
+    "conversation": false,
+    "player_cell": [
+      20,
+      16
+    ],
+    "player_hp": 23,
+    "world_comparison": {
+      "rectangle": [
+        0,
+        0,
+        940,
+        680
+      ],
+      "RGB_pixels": 639200,
+      "all_identical": true
+    }
+  },
+  "extra_route": {
+    "entries": [
+      {
+        "Text": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Tick": 10050,
+        "Serial": 779
+      },
+      {
+        "Text": "Interact \u2014 choose a direction, or . for underfoot.",
+        "Tick": 10290,
+        "Serial": 780
+      },
+      {
+        "Text": "You buy venom gland for 18 drams.",
+        "Tick": 10290,
+        "Serial": 781
+      },
+      {
+        "Text": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Tick": 10290,
+        "Serial": 782
+      },
+      {
+        "Text": "mosshulk [left hand: mossy fist] misses you!",
+        "Tick": 10398,
+        "Serial": 783
+      },
+      {
+        "Text": "You are killed by mosshulk!",
+        "Tick": 10398,
+        "Serial": 784
+      },
+      {
+        "Text": "Your long sword falls to the ground!",
+        "Tick": 10398,
+        "Serial": 785
+      },
+      {
+        "Text": "Your buckler falls to the ground!",
+        "Tick": 10398,
+        "Serial": 786
+      },
+      {
+        "Text": "mosshulk [right hand: mossy fist] hits you in the body for 23 damage!",
+        "Tick": 10398,
+        "Serial": 787
+      },
+      {
+        "Text": "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+        "Tick": 10398,
+        "Serial": 788
+      },
+      {
+        "Text": "You are dead. Press [L] to load last save, [R] to restart.",
+        "Tick": 10398,
+        "Serial": 789
+      },
+      {
+        "Text": "Controller: [A] load, [X] restart.",
+        "Tick": 10398,
+        "Serial": 790
+      }
+    ],
+    "now": "2026-10-27T16:16:53.143808Z",
+    "controls": "Right4, Up2, Down2, Left4 ordinary keys after successful fresh Continue; fatal Mosshulk right-hand mossy-fist23damage at turn10398, after left-hand miss. No gameplay or combat edits in this presentation slice.",
+    "saved_fixture_unchanged": "Fixtures/grovelands-actors-after81 turn10290 remains successful living trade/save checkpoint; fatal extra route did not overwrite it."
+  },
+  "isolated_roots_preserved": [
+    "fd162865a20f465fa5d73196dc521157-grove-baseline-preserved",
+    "e1e5b73cfb0541a681deb64ef86e252b-grove-after-preserved",
+    "c41577d91ce9470f9ae9fd5696ecbb73-grove-restart-death-preserved"
+  ],
+  "restoration": {
+    "playing": false,
+    "compiling": false,
+    "pending": false,
+    "isolation": false,
+    "save_root_override": null,
+    "scene_dirty": false,
+    "normal_editor_saves_unchanged": true,
+    "normal_standalone_saves_unchanged": true,
+    "older_38_foreign_files_unchanged": true,
+    "storage_cleanup": "none; inspection only",
+    "all_44_foreign_files_unchanged": true
+  },
+  "captures": [
+    {
+      "file": "grovelands-actors-after-01-grove.png",
+      "bytes": 90244,
+      "sha256": "09b795692d49daad68e8afe47e2f9e3963c12f1bc0990135b64f906501dd992f"
+    },
+    {
+      "file": "grovelands-actors-after-02-shambler-reader.png",
+      "bytes": 75725,
+      "sha256": "6a0370f921009a470402d29228cff769eedf03fe3a76e34cafd72288a21d4688"
+    },
+    {
+      "file": "grovelands-actors-after-03-windup.png",
+      "bytes": 87708,
+      "sha256": "2078d867657428c306e7cdbe335c4b2cbdedc60760af90184734bfa7eebb7f49"
+    },
+    {
+      "file": "grovelands-actors-after-04-sidestep.png",
+      "bytes": 87080,
+      "sha256": "57cdab2210032637012209c1db184fa4c017c5b11fac1281bac9abfde8c21db2"
+    },
+    {
+      "file": "grovelands-actors-after-05-recovery-reader.png",
+      "bytes": 69735,
+      "sha256": "a315a984711ff4d22deb6ec7e2a2bdc9e3eaf4dde1b4e7fca0262a355feca9bd"
+    },
+    {
+      "file": "grovelands-actors-after-06-fen.png",
+      "bytes": 84555,
+      "sha256": "abbd4637e5c38cce2537b24d5a70b65fa05f2ae8d87a253717ab3b1ddba7c243"
+    },
+    {
+      "file": "grovelands-actors-after-07-mosshulk-reader.png",
+      "bytes": 75304,
+      "sha256": "9f380fe28d7a84f10aea406891cd9931611bb2a7f4efec46244d7c636077b602"
+    },
+    {
+      "file": "grovelands-actors-after-08-choir-reader.png",
+      "bytes": 74973,
+      "sha256": "64c0530bae84cbedaa2076716245549613d8fe9a7059816c07df703ace37013f"
+    },
+    {
+      "file": "grovelands-actors-after-09-conversation.png",
+      "bytes": 92003,
+      "sha256": "61cc0b89241a20a29897013b6562b7a6ea303082c03f660739fa2c4fda612aeb"
+    },
+    {
+      "file": "grovelands-actors-after-10-trade.png",
+      "bytes": 114259,
+      "sha256": "78ea57b772b05701114fc392ff91034926ce9222f96db5a487065ad7a1e505d7"
+    },
+    {
+      "file": "grovelands-actors-after-11-cancelled-purchase.png",
+      "bytes": 114259,
+      "sha256": "78ea57b772b05701114fc392ff91034926ce9222f96db5a487065ad7a1e505d7"
+    },
+    {
+      "file": "grovelands-actors-after-12-purchased.png",
+      "bytes": 116016,
+      "sha256": "26a3704ae4758332cde9a3589ec795c5564457451a962331061b35a27c4ea2d8"
+    },
+    {
+      "file": "grovelands-actors-after-13-saved.png",
+      "bytes": 82387,
+      "sha256": "7ffe0792daff9d6c5e6bcd7d4dde4ccb4a7cea003108f4a1989705f275b6305e"
+    },
+    {
+      "file": "grovelands-actors-after-14-restarted.png",
+      "bytes": 82297,
+      "sha256": "2b95d3cedd136b4dc4b2c52e6871460e564d32c49692a387c74edd4424d0cf57"
+    },
+    {
+      "file": "grovelands-actors-after-15-extra-route-death.png",
+      "bytes": 85071,
+      "sha256": "85dae60129884203804230f2fa98283295bfb6c98b777e528336e668e71a7832"
+    }
+  ],
+  "recorded_utc": "2026-10-27T16:18:18.185401+00:00",
+  "capture_classification": {
+    "readable_acceptance": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "distinct_acceptance_views": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "12",
+      "13",
+      "14"
+    ],
+    "duplicate_unchanged_state": [
+      "11"
+    ],
+    "extra_fatal_route": [
+      "15"
+    ]
+  },
+  "final_console_read": {
+    "count": 2,
+    "messages": [
+      "Ignoring depth surface load action as it is memoryless",
+      "Ignoring depth surface store action as it is memoryless"
+    ],
+    "limit": "Bounded console query, not all runtime logs."
+  },
+  "review_correction": "A reviewer tool display initially appeared black for11. Root and reviewer reopened the literal file individually and verified fully readable trade UI. SHA256 is identical to10; erroneous unusable-capture finding withdrawn before commit.",
+  "importer_finalization": {
+    "path": "Assets/Resources/Sprites/Live16x24/shambler.png.meta",
+    "tested_Unity_emitted_sha256": "9b0dcb42d6614fb41467209ec1e9867cff25055901aba7a914e8ec4cd3fcb8dc",
+    "source_whitespace_canonical_sha256": "7b40a20334c0218be0e51b743a58d60a10daa8c7bf86711b02390fccbf74155b",
+    "only_change": "Removed six trailing spaces; token stream unchanged. Native importer settings/pixels/GUID unchanged."
+  }
+}

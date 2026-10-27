@@ -1,0 +1,61 @@
+{
+  "startedUtc": "2026-10-27T16:10:54.746954Z",
+  "endedUtc": "2026-10-27T16:11:54.838063Z",
+  "seconds": 60.091108999999996,
+  "context": "Editor extra Fen ordinary12-key route after successful fresh Continue. Includes Mosshulk combat and player death at turn10398, idle frames and MCP/CUA instrumentation overhead. No same-route before baseline, sustained package FPS, optimization, Linux or physical Deck claim.",
+  "results": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "count": 15990,
+      "mean": 151880.8349593496,
+      "max": 391946625,
+      "p95": 160959,
+      "unit": "TimeNanoseconds",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/grovelands-actors-profile-0.csv"
+    },
+    {
+      "name": "COO.Input.Update",
+      "count": 15990,
+      "mean": 10399.430644152595,
+      "max": 8601541,
+      "p95": 20542,
+      "unit": "TimeNanoseconds",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/grovelands-actors-profile-1.csv"
+    },
+    {
+      "name": "Main Thread",
+      "count": 15990,
+      "mean": 3753402.07811132,
+      "max": 1790855250,
+      "p95": 7067792,
+      "unit": "TimeNanoseconds",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/grovelands-actors-profile-2.csv"
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "count": 15990,
+      "mean": 70191.34490306441,
+      "max": 138663085,
+      "p95": 314183,
+      "unit": "Bytes",
+      "capacity": 16384,
+      "capacityReached": false,
+      "csv": "Docs/Verification/Live16x24/grovelands-actors-profile-3.csv"
+    }
+  ],
+  "combat_outcome": {
+    "attacker": "Mosshulk",
+    "left_hand": "miss",
+    "right_hand_damage": 23,
+    "player_hp_after": 0,
+    "tick": 10398,
+    "capture": "grovelands-actors-after-15-extra-route-death.png",
+    "saved_checkpoint_preserved": "grovelands-actors-after81 turn10290"
+  }
+}

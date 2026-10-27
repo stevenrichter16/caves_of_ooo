@@ -1,0 +1,42 @@
+[
+  {
+    "step": "scene",
+    "tool": "image_gen.imagegen",
+    "mode": "built-in",
+    "promptFile": "shambler-scene-prompt.txt",
+    "referencedImagePaths": [
+      "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/grovelands-actors-before-01-grove.jpg",
+      "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/grovelands-actors-before-02-shambler-reader.jpg",
+      "/Users/steven/caves-of-ooo/ArtSource/Live16x24/cast/opening-cast-contact.png"
+    ],
+    "transparentBackground": false,
+    "returnedKeys": [
+      "image_url",
+      "output_hint"
+    ],
+    "output_hint": "Generated images are saved to /Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df as /Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df/exec-13a20f37-12ab-4e54-9073-d3082cd8fe11.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "imageDataOmittedFromReceipt": "Exact original generated PNG copied byte-for-byte locally; see hash and tool original.",
+    "localFile": "shambler-scene-concept-v1.png",
+    "sha256": "268c0892963d483f97bff7d5d293b730e69bc76fa6180c97fcbe4d06b09457cb"
+  },
+  {
+    "step": "parts",
+    "tool": "image_gen.imagegen",
+    "mode": "built-in",
+    "promptFile": "shambler-parts-prompt.txt",
+    "referencedImagePaths": [
+      "/Users/steven/caves-of-ooo/ArtSource/Live16x24/grovelands-actors/shambler-scene-concept-v1.png",
+      "/Users/steven/caves-of-ooo/ArtSource/Live16x24/cast/opening-cast-contact.png",
+      "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/grovelands-actors-before-02-shambler-reader.jpg"
+    ],
+    "transparentBackground": true,
+    "returnedKeys": [
+      "image_url",
+      "output_hint"
+    ],
+    "output_hint": "Generated images are saved to /Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df as /Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df/exec-fb17c7bf-783c-4e75-9356-33c401b667d7.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "imageDataOmittedFromReceipt": "Exact original generated PNG copied byte-for-byte locally; see hash and tool original.",
+    "localFile": "shambler-parts-reference-v1.png",
+    "sha256": "65fa94e6f0899cde93416249806f629b46783775bc187ba55e05752688ef080e"
+  }
+]

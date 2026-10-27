@@ -1,0 +1,63 @@
+{
+  "status": "reference generation only; not production or actual gameplay",
+  "tool": "builtin image_gen.imagegen",
+  "intent": "full-scene reinterpretation then separate transparent parts reference",
+  "inputs": [
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-actors-before-01-grove.jpg",
+      "sha256": "174610bfdcec18d8fd99e319646da5331729f39d6d9c25dc4e6e679a47eebf92",
+      "role": "actual scene/layout target"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/grovelands-actors-before-02-shambler-reader.jpg",
+      "sha256": "440fb9d71ad40320fc3a5427a101425d2de57bb3b720acadf7157887dd17de7e",
+      "role": "actual reader/identity evidence"
+    },
+    {
+      "path": "ArtSource/Live16x24/cast/opening-cast-contact.png",
+      "sha256": "60a30dbe57b5d03ca1ee899d65ecab9b9cf9544e3e279c9d566bc57604611f0f",
+      "role": "approved native style reference"
+    }
+  ],
+  "scenePrompt": "shambler-scene-prompt.txt",
+  "inputPixelsModified": false,
+  "sceneOutput": {
+    "local": "shambler-scene-concept-v1.png",
+    "toolOriginal": "/Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df/exec-13a20f37-12ab-4e54-9073-d3082cd8fe11.png",
+    "sha256": "268c0892963d483f97bff7d5d293b730e69bc76fa6180c97fcbe4d06b09457cb",
+    "transparentBackground": false,
+    "conceptOnly": true,
+    "dimensions": [
+      1533,
+      1026
+    ],
+    "mode": "RGB",
+    "hasTransparentPixels": false,
+    "hasSemitransparentPixels": false,
+    "alphaValuesCount": 1,
+    "decodeOnly": true
+  },
+  "partsPrompt": "shambler-parts-prompt.txt",
+  "partsOutput": {
+    "local": "shambler-parts-reference-v1.png",
+    "toolOriginal": "/Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df/exec-fb17c7bf-783c-4e75-9356-33c401b667d7.png",
+    "sha256": "65fa94e6f0899cde93416249806f629b46783775bc187ba55e05752688ef080e",
+    "transparentBackgroundRequested": true,
+    "conceptOnly": true,
+    "dimensions": [
+      1774,
+      887
+    ],
+    "mode": "RGBA",
+    "hasTransparentPixels": true,
+    "hasSemitransparentPixels": true,
+    "alphaValuesCount": 256,
+    "decodeOnly": true
+  },
+  "inputsUnchangedAfterGeneration": true,
+  "scenePromptSha256": "3ec2fef3fbc0f48e8cae5fb2c6c20c4928e6306f642755e0fe73c7775dcfd4aa",
+  "partsPromptSha256": "a71a708abf0de334db2a36de7c98910fae701108f57fafe60e707644b6615a36",
+  "productionOutputsCreated": false,
+  "critique": "README.md",
+  "nextGate": "Root review, original editable native reconstruction, source verification and actual gameplay comparison."
+}
