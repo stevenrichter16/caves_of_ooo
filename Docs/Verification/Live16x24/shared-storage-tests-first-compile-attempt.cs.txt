@@ -1,0 +1,348 @@
+// Finite body-only storage contract. Reflection keeps pre-production RED compilable.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using CavesOfOoo.Rendering;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Object = UnityEngine.Object;
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class FlatPixelSharedStorageTests
+    {
+        const int X = 10, Y = 10;
+        const BindingFlags I = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        const BindingFlags S = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+        static readonly string[] Names = { "Chest", "LockedChest", "Crate", "StrongBox", "OreCache", "MimicChest" };
+        static readonly string[] Paths = { "Sprites/Live16x24/opening-anchors", "Sprites/Live16x24/opening-cellar", "Sprites/Environment/cont_strongbox", "Sprites/Environment/cont_ore_cache" };
+        DensityLootTestScope content;
+        OverworldZoneManager manager;
+        Zone zone;
+        FlatPixelGreyboxCatalog world;
+        IDisposable adapter;
+        readonly List<Texture2D> borrowed = new List<Texture2D>();
+        EntityDamageVisualHandler oldDamage; EntityMovedVisualHandler oldMoved;
+        EntityFactory oldCorpse, oldDestruction;
+        Action<string> oldMessage; Action<WorldAudioCombatReceipt> oldAudio;
+
+        [SetUp] public void Setup()
+        {
+            oldDamage = EntityVisualHooks.DamageCallback; oldMoved = EntityVisualHooks.MovedCallback;
+            oldMessage = MessageLog.OnMessage; oldAudio = WorldAudioCombat.Callback;
+            oldCorpse = CorpsePart.Factory; oldDestruction = DestructionSystem.EntityFactoryRef;
+            EntityVisualHooks.DamageCallback = null; EntityVisualHooks.MovedCallback = null;
+            MessageLog.OnMessage = null; WorldAudioCombat.Callback = null;
+            content = new DensityLootTestScope(); CorpsePart.Factory = DestructionSystem.EntityFactoryRef = content.Factory;
+            manager = OverworldZoneManager.CreateDetached(content.Factory, 65, true);
+            zone = Attach("Overworld.16.13.3"); world = new FlatPixelGreyboxCatalog();
+        }
+        [TearDown] public void Cleanup()
+        {
+            try { world?.Dispose(); adapter?.Dispose(); foreach (var t in borrowed) if (t != null) Object.DestroyImmediate(t); borrowed.Clear(); content?.Dispose(); }
+            finally { EntityVisualHooks.DamageCallback = oldDamage; EntityVisualHooks.MovedCallback = oldMoved; MessageLog.OnMessage = oldMessage; WorldAudioCombat.Callback = oldAudio; CorpsePart.Factory = oldCorpse; DestructionSystem.EntityFactoryRef = oldDestruction; }
+        }
+        Zone Attach(string id) { var z = new Zone(id); manager.SetActiveZone(z); foreach (var c in z.Cells) c.IsVisible = c.Explored = true; return z; }
+        Entity Owner(string name = "Chest") { var e = content.Factory.CreateEntity(name); Assert.NotNull(e, name); return e; }
+        Entity Add(string name = "Chest", int x = X, int y = Y) { var e = Owner(name); Assert.True(zone.AddEntity(e, x, y)); return e; }
+        FlatPixelGreyboxCell View(int x = X, int y = Y) { Assert.True(world.TryResolvePresentation(zone, x, y, out var v)); return v; }
+        static int Group(string name) => name == "Crate" ? 1 : name == "StrongBox" ? 2 : name == "OreCache" ? 3 : 0;
+        static Rect RectFor(string name) => Group(name) == 0 ? new Rect(96, 0, 16, 24) : Group(name) == 1 ? new Rect(16, 0, 16, 24) : new Rect(0, 0, 16, 16);
+        static Texture2D Resource(string name) { var t = Resources.Load<Texture2D>(Paths[Group(name)]); Assert.NotNull(t); return t; }
+        static void Native(Tile tile, string name, Texture2D texture = null)
+        {
+            var rect = RectFor(name); Assert.NotNull(tile); Assert.NotNull(tile.sprite); Assert.AreSame(texture ?? Resource(name), tile.sprite.texture);
+            Assert.AreEqual(rect, tile.sprite.rect); Assert.AreEqual(new Vector2(8, rect.height / 2), tile.sprite.pivot);
+            Assert.AreEqual(16, tile.sprite.pixelsPerUnit); Assert.AreEqual(new Vector2(1, rect.height / 16), (Vector2)tile.sprite.bounds.size);
+            Assert.AreEqual(Tile.ColliderType.None, tile.colliderType);
+        }
+        void NativeOwner(Entity e) { var cell = zone.GetEntityCell(e); Assert.NotNull(cell); var v = View(cell.X, cell.Y); Assert.AreSame(e, v.Owner); Assert.True(v.NativeForeground); Native(v.ForegroundTile, e.BlueprintName); }
+        static Type AdapterType() { var t = typeof(ZoneRenderer).Assembly.GetType("CavesOfOoo.Rendering.FlatPixelSharedStorageCatalog"); Assert.NotNull(t, "Shared storage companion must exist."); return t; }
+        delegate bool Query(Entity owner, out Tile tile);
+        static IDisposable Construct(params Texture2D[] textures) => (IDisposable)Activator.CreateInstance(AdapterType(), Array.ConvertAll(textures, v => (object)v));
+        static Query Resolver(IDisposable art) => (Query)Delegate.CreateDelegate(typeof(Query), art, AdapterType().GetMethod("TryResolve", new[] { typeof(Entity), typeof(Tile).MakeByRefType() }));
+        Texture2D[] Textures() { var a = new[] { new Texture2D(192,24), new Texture2D(144,24), new Texture2D(16,16), new Texture2D(16,16) }; borrowed.AddRange(a); return a; }
+        static object Read(object target, string name) => target.GetType().GetField(name, I).GetValue(target);
+        static void Write(object target, string name, object value) { var f = target.GetType().GetField(name,I); Assert.NotNull(f,name); f.SetValue(target,value); }
+        static ExaminePortraitRenderer Portraits() => (ExaminePortraitRenderer)Activator.CreateInstance(typeof(ExaminePortraitRenderer), I, null, new object[] { (Action<Camera, RenderTexture>)((camera,target) => { }) }, null);
+        AnnouncementDocument Document(Entity owner, Entity viewer = null) { var d = ExamineDocumentBuilder.BuildWorld(owner,zone,zone.GetEntityCell(owner),viewer); Assert.NotNull(d); Assert.True(ExamineDocumentBuilder.IsCurrentSubject(d)); return d; }
+        static void Action(Entity actor, Entity target, Zone z, string command) { var e=GameEvent.New("InventoryAction");e.SetParameter("Actor",(object)actor);e.SetParameter("Zone",(object)z);e.SetParameter("Command",command);target.FireEventAndRelease(e); }
+        Entity Key(Entity actor, string id) { var key = new Entity { BlueprintName = "StorageTestKey" };key.AddPart(new KeyPart { KeyId = id }); Assert.True(actor.GetPart<InventoryPart>().AddObject(key)); return key; }
+        static void SetInputState(InputHandler input,string name,string state) { var f=typeof(InputHandler).GetField(name,I);f.SetValue(input,Enum.Parse(f.FieldType,state)); }
+
+        [TestCase("Chest")] [TestCase("LockedChest")] [TestCase("Crate")]
+        [TestCase("StrongBox")] [TestCase("OreCache")] [TestCase("MimicChest")]
+        public void ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(string name)
+        {
+            foreach (string id in new[] { "Overworld.16.13.3", "Overworld.2.5.0" })
+            {
+                zone = Attach(id); var owner = Add(name); var player = Add("Player",X-1,Y); var probe = new RenderProbe(); owner.AddPart(probe);
+                NativeOwner(owner);
+                using (var paint = new Paint(world,zone)) using (var portraits = Portraits())
+                {
+                    paint.Step(); Native(paint.At(X,Y),name); Assert.AreEqual(Color.white,paint.Tint(X,Y)); Assert.AreEqual(Matrix4x4.identity,paint.Transform(X,Y));
+                    int calls=probe.Renders; var image=portraits.GetPortrait(Document(owner,player),paint.Renderer); var rect=RectFor(name); var texture=Resource(name);
+                    Assert.AreSame(texture,image.Texture); Assert.AreEqual(new Rect(rect.x/texture.width,rect.y/texture.height,rect.width/texture.width,rect.height/texture.height),image.Uv);
+                    var measured=AnnouncementUI.MeasurePortraitRect(new Rect(3,5,79,95),image); Assert.Greater(measured.width,0); Assert.AreEqual(0,measured.width%16); Assert.AreEqual(measured.width*rect.height/16,measured.height);
+                    Assert.AreEqual(calls,probe.Renders); Assert.False(image.IsModel);
+                }
+            }
+        }
+
+        [TestCase(false,false)] [TestCase(true,false)] [TestCase(false,true)] [TestCase(true,true)]
+        public void CombinedLocksChangeAccessButNeverTheBodyOrContents(bool keyLock,bool legacyLock)
+        {
+            var chest=Add("LockedChest");NativeOwner(chest);var player=Add("Player",X-1,Y);var item=Owner("Dagger");var c=chest.GetPart<ContainerPart>();Assert.True(c.AddItem(item));
+            var probe=new OpenProbe();player.AddPart(probe);var body=View().ForegroundTile;
+            chest.GetPart<LockPart>().IsLocked=keyLock;c.Locked=legacyLock;
+            Action(player,chest,zone,"OpenContainer");Assert.AreEqual(keyLock||legacyLock?0:1,probe.Opens);
+            Assert.AreSame(body,View().ForegroundTile);Assert.True(View().NativeForeground);
+            Assert.AreEqual(!keyLock&&!legacyLock,InventorySystem.TakeFromContainer(player,chest,item));
+            Assert.AreSame(keyLock||legacyLock?chest:player,item.GetPart<PhysicsPart>().InInventory);Assert.AreSame(body,View().ForegroundTile);
+        }
+
+        [TestCase("LockedChest",false)] [TestCase("LockedChest",true)]
+        [TestCase("StrongBox",false)] [TestCase("StrongBox",true)]
+        public void RealMenuOrBumpUnlockPreservesBodyAndPassableState(string name,bool bump)
+        {
+            var owner=Add(name);NativeOwner(owner);var player=Add("Player",X-1,Y);var lockPart=owner.GetPart<LockPart>();Assert.True(lockPart.IsLocked);
+            var wrong=Key(player,"wrong");
+            using(var paint=new Paint(world,zone)) using(var ui=new HotbarSaveFixture())
+            {
+                paint.Step();var body=paint.At(X,Y);ui.Input.PlayerEntity=player;ui.Input.CurrentZone=zone;ui.Input.ZoneRenderer=paint.Renderer;
+                Action invoke=()=>{
+                    if(bump) Assert.False(MovementSystem.TryMove(player,zone,1,0));
+                    else { SetInputState(ui.Input,"_worldActionMenuReturnState","Normal");SetInputState(ui.Input,"_inputState","WorldActionMenuOpen");var action=WorldInteractionSystem.GatherActions(owner,player).Single(a=>a.Command=="Unlock");typeof(InputHandler).GetMethod("ExecuteWorldActionSelection",I).Invoke(ui.Input,new object[]{action,owner,zone.GetEntityCell(owner),false}); }
+                };
+                invoke();Assert.True(lockPart.IsLocked);Assert.True(owner.GetPart<PhysicsPart>().Solid);
+                var key=Key(player,lockPart.KeyId);invoke();Assert.False(lockPart.IsLocked);Assert.False(owner.GetPart<PhysicsPart>().Solid);
+                Assert.Contains(key,player.GetPart<InventoryPart>().Objects);Assert.Contains(wrong,player.GetPart<InventoryPart>().Objects);
+                // Body-only policy needs no invented state repaint. Check the
+                // actual input path, then independently verify a later repaint.
+                paint.Step();Assert.AreSame(body,paint.At(X,Y));paint.Dirty(X,Y);paint.Step();Assert.AreSame(body,paint.At(X,Y));NativeOwner(owner);
+                Assert.True(MovementSystem.TryMove(player,zone,1,0));Assert.AreEqual((X,Y),zone.GetEntityPosition(player));
+            }
+        }
+
+        [Test] public void RealOpenTakePutAndTakeAllNeverInventLidOrFillFrames()
+        {
+            var owner=Add();NativeOwner(owner);var player=Add("Player",X-1,Y);player.GetPart<InventoryPart>().MaxWeight=-1;
+            var c=owner.GetPart<ContainerPart>();var item=Owner("Dagger");var body=View().ForegroundTile;var probe=new OpenProbe();player.AddPart(probe);
+            Action(player,owner,zone,"OpenContainer");Assert.AreEqual(1,probe.Opens);Assert.IsEmpty(c.Contents);Assert.AreSame(body,View().ForegroundTile);
+            Assert.True(c.AddItem(item));Action(player,owner,zone,"OpenContainer");Assert.AreEqual(2,probe.Opens);
+            Assert.True(InventorySystem.TakeFromContainer(player,owner,item));Assert.AreSame(player,item.GetPart<PhysicsPart>().InInventory);
+            Assert.True(InventorySystem.PutInContainer(player,owner,item));Assert.AreSame(owner,item.GetPart<PhysicsPart>().InInventory);
+            Assert.AreEqual(1,InventorySystem.TakeAllFromContainer(player,owner));Assert.IsEmpty(c.Contents);Assert.AreSame(body,View().ForegroundTile);
+        }
+
+        [TestCase("Chest")] [TestCase("LockedChest")] [TestCase("Crate")]
+        public void RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents(string name)
+        {
+            var owner=Add(name);NativeOwner(owner);var part=owner.GetPart<DestructiblePart>();Assert.NotNull(part);Assert.IsTrue(string.IsNullOrEmpty(part.WreckageBlueprint));
+            var item=Owner("Dagger");Assert.True(owner.GetPart<ContainerPart>().AddItem(item));var document=Document(owner);
+            using(var paint=new Paint(world,zone)) using(var portraits=Portraits())
+            {
+                paint.Step();var body=paint.At(X,Y);int hp=part.HP;
+                Assert.AreEqual(DestroyVerdict.Damaged,DestructionSystem.Damage(owner,part.Hardness+1,null,zone));Assert.AreEqual(hp-1,part.HP);NativeOwner(owner);Assert.AreSame(body,View().ForegroundTile);
+                Assert.AreEqual(DestroyVerdict.Destroyed,DestructionSystem.Damage(owner,part.HP+part.Hardness,null,zone));paint.Step();
+                Assert.True(part.Gone);Assert.IsNull(zone.GetEntityCell(owner));Assert.IsEmpty(owner.GetPart<ContainerPart>().Contents);Assert.IsNull(item.GetPart<PhysicsPart>().InInventory);
+                Assert.AreEqual((X,Y),zone.GetEntityPosition(item));Assert.AreNotSame(body,paint.At(X,Y));Assert.IsNull(portraits.GetPortrait(document,paint.Renderer).Texture);
+                Assert.False(zone.GetCell(X,Y).Objects.Any(e=>e.BlueprintName=="Rubble"));
+            }
+        }
+
+        [TestCase("StrongBox")] [TestCase("OreCache")]
+        public void AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic(string name)
+        {
+            var owner=Add(name);NativeOwner(owner);Assert.IsNull(owner.GetPart<DestructiblePart>());Assert.IsNull(owner.GetPart<MaterialPart>());Assert.IsNull(owner.GetPart<HarvestablePart>());
+            var body=View().ForegroundTile;Assert.AreEqual(DestroyVerdict.NotBreakable,DestructionSystem.Damage(owner,999,null,zone));Assert.AreSame(body,View().ForegroundTile);Assert.AreSame(zone,owner.SpatialZone);
+        }
+
+        [TestCase("glyph")] [TestCase("variant")] [TestCase("visual")] [TestCase("foreign-container")]
+        [TestCase("duplicate-render")] [TestCase("carried")] [TestCase("equipped")] [TestCase("gone")]
+        public void UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(string fault)
+        {
+            zone=Attach("Overworld.11.10.0");var owner=Add();NativeOwner(owner);
+            switch(fault){case "glyph":owner.GetPart<RenderPart>().RenderString="!";break;case "variant":owner.GetPart<RenderPart>().VisualVariant="custom";break;case "visual":owner.GetPart<RenderPart>().VisualID="other";break;case "foreign-container":owner.GetPart<ContainerPart>().ParentEntity=new Entity();break;case "duplicate-render":owner.AddPart(new RenderPart{RenderString="="});break;case "carried":owner.GetPart<PhysicsPart>().InInventory=new Entity();break;case "equipped":owner.GetPart<PhysicsPart>().Equipped=new Entity();break;case "gone":owner.GetPart<DestructiblePart>().Gone=true;break;}
+            using(var art=Construct(Textures()))Assert.False(Resolver(art)(owner,out _));Assert.False(View().NativeForeground);
+        }
+
+        [Test] public void ExactNamesDoNotAdmitOtherContainersCreaturesOrCorpses()
+        {
+            using(var art=Construct(Textures()))
+            {
+                Assert.True(Resolver(art)(Owner(),out _));
+                foreach(var name in new[]{"WoodenBarrel","CreatureCorpse","Mosshulk"}){var other=Owner(name);other.GetPart<RenderPart>().RenderString="=";other.Properties["SourceBlueprint"]="Chest";Assert.False((bool)AdapterType().GetMethod("HasKnownRole").Invoke(null,new object[]{other}));Assert.False(Resolver(art)(other,out _));}
+            }
+        }
+
+        [Test] public void MulticellStorageRefusesOneCellIdentityAndRestorationRecovers()
+        {
+            var owner=Add("Crate");NativeOwner(owner);owner.AddPart(new SpatialFootprintPart{CellsRaw="0,0"});
+            Assert.True(zone.TryChangeFootprint(owner,"0,0;1,0;0,1;1,1"));Assert.AreEqual(4,zone.GetOccupiedCells(owner).Count);Assert.False(View().NativeForeground);Assert.False(View(X+1,Y+1).NativeForeground);
+            Assert.True(zone.TryChangeFootprint(owner,"0,0"));NativeOwner(owner);
+        }
+
+        [Test] public void DisclosureSelectionMovementAndRetainedReaderStayAuthoritative()
+        {
+            var owner=Add("OreCache");NativeOwner(owner);var document=Document(owner);
+            using(var paint=new Paint(world,zone)) using(var portraits=Portraits())
+            {
+                paint.Step();var cell=zone.GetCell(X,Y);cell.IsVisible=false;paint.Dirty(X,Y);paint.Step();Assert.False(View().NativeForeground);Assert.IsNull(portraits.GetPortrait(document,paint.Renderer).Texture);
+                cell.Explored=false;Assert.False(world.TryResolvePresentation(zone,X,Y,out _));cell.Explored=cell.IsVisible=true;
+                var cover=Add("GoldCoin");cover.GetPart<RenderPart>().RenderLayer=99;Assert.AreSame(cover,View().Owner);Assert.True(zone.RemoveEntity(cover));NativeOwner(owner);
+                Assert.True(zone.MoveEntity(owner,X+1,Y));Assert.False(ExamineDocumentBuilder.IsCurrentSubject(document));document=Document(owner);
+                Assert.True(zone.RemoveEntity(owner));paint.Dirty(X,Y);paint.Dirty(X+1,Y);paint.Step();Assert.IsNull(portraits.GetPortrait(document,paint.Renderer).Texture);
+            }
+        }
+
+        [Test] public void StaleMembershipAndReplacedGraphDoNotGrantAuthority()
+        {
+            var owner=Add();NativeOwner(owner);Assert.True(zone.MoveEntity(owner,X+1,Y));zone.GetCell(X,Y).Objects.Add(owner);Assert.IsNull(View().Owner);NativeOwner(owner);
+            manager.CachedZones[zone.ZoneID]=new Zone(zone.ZoneID);Assert.False(world.TryResolvePresentation(zone,X+1,Y,out _));Assert.False(world.TryGetPresentationSubjectSprite(zone,owner,X+1,Y,out _,out _));
+        }
+
+        [TestCase(0)] [TestCase(1)] [TestCase(2)] [TestCase(3)]
+        public void OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(int group)
+        {
+            var inputs=Textures();using(var valid=Construct(inputs))foreach(var name in Names){Assert.True(Resolver(valid)(Owner(name),out var tile));Native(tile,name,inputs[Group(name)]);}
+            foreach(bool malformed in new[]{false,true})
+            {
+                var changed=(Texture2D[])inputs.Clone();if(malformed){changed[group]=new Texture2D(17,24);borrowed.Add(changed[group]);}else changed[group]=null;
+                using(var art=Construct(changed))foreach(var name in Names){bool ok=Resolver(art)(Owner(name),out var tile);Assert.AreEqual(Group(name)!=group,ok,name);if(ok)Native(tile,name,inputs[Group(name)]);else Assert.IsNull(tile);}
+            }
+        }
+
+        [TestCase("Overworld.11.10.0")] [TestCase("Overworld.16.13.3")]
+        public void MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback(string id)
+        {
+            zone=Attach(id);world.Dispose();world=new FlatPixelGreyboxCatalog();var inputs=Textures();inputs[0]=null;inputs[1]=null;adapter=Construct(inputs);Write(world,"_sharedStorageArt",adapter);
+            if(id=="Overworld.11.10.0")Assert.True(FlatPixelGreyboxCatalog.IsAdmitted(zone),"Opening fallback countercheck needs an actually admitted graph.");
+            for(int i=0;i<4;i++)
+            {
+                string name=new[]{"Chest","LockedChest","MimicChest","Crate"}[i];var owner=Add(name,X+i,Y);var v=View(X+i,Y);Assert.AreSame(owner,v.Owner);Assert.False(v.NativeForeground);Assert.NotNull(v.ForegroundTile);
+                Assert.True(world.TryGetSubjectSprite(owner,X+i,Y,out var semantic,out _));Assert.AreNotSame(Resource(name),semantic.texture,"Old semantic reader cannot bypass the missing group.");
+                if(id=="Overworld.11.10.0"){Assert.True(world.TryResolve(zone,X+i,Y,out var legacy));Assert.NotNull(legacy.ForegroundTile);Assert.AreNotSame(Resource(name),legacy.ForegroundTile.sprite.texture,"Old local resolver cannot bypass the missing group.");}
+            }
+            using(var paint=new Paint(world,zone))using(var portraits=Portraits()){paint.Step();foreach(var owner in zone.GetReadOnlyEntities().ToArray()){var c=zone.GetEntityCell(owner);Assert.AreNotSame(Resource(owner.BlueprintName),paint.At(c.X,c.Y).sprite.texture);Assert.AreNotSame(Resource(owner.BlueprintName),portraits.GetPortrait(Document(owner),paint.Renderer).Texture);}}
+        }
+
+        [Test] public void DormantMimicSharesChestAndQueriesCannotWakeOrRestockIt()
+        {
+            var chest=Add();var mimic=Add("MimicChest",X+2,Y);NativeOwner(chest);NativeOwner(mimic);Assert.AreSame(View().ForegroundTile,View(X+2,Y).ForegroundTile);
+            var brain=mimic.GetPart<BrainPart>();brain.CurrentZone=zone;brain.Rng=new System.Random(65);var sleep=brain.FindGoal<DormantGoal>();Assert.NotNull(sleep);Assert.False(sleep.Finished());Assert.False(sleep.HasDamageBaseline);Assert.AreEqual(0,sleep.SleepParticleInterval);Assert.False(sleep.WakeOnHostileInSight);
+            var player=Add("Player",X+1,Y);brain.SetPersonallyHostile(player,false);var probe=new RenderProbe();mimic.AddPart(probe);int goals=brain.GoalCount;var contents=mimic.GetPart<ContainerPart>().Contents.ToArray();
+            using(var paint=new Paint(world,zone))using(var portraits=Portraits())
+            {
+                paint.Step();int count=probe.Renders;for(int i=0;i<4;i++){NativeOwner(mimic);Assert.AreSame(Resource("Chest"),portraits.GetPortrait(Document(mimic,player),paint.Renderer).Texture);paint.Dirty(X+3,Y);paint.Step();}
+                Assert.AreEqual(count,probe.Renders);Assert.AreEqual(goals,brain.GoalCount);Assert.False(sleep.HasDamageBaseline);Assert.False(sleep.WakeRequested);CollectionAssert.AreEqual(contents,mimic.GetPart<ContainerPart>().Contents);
+                Assert.AreEqual(Color.white,paint.Tint(X,Y));Assert.AreEqual(paint.Tint(X,Y),paint.Tint(X+2,Y));
+                Action(player,mimic,zone,"OpenContainer");Assert.False(sleep.Finished());mimic.FireEventAndRelease(GameEvent.New("TakeTurn"));Assert.True(sleep.HasDamageBaseline);Assert.False(sleep.Finished());NativeOwner(mimic);
+            }
+        }
+
+        [Test] public void RealDamageWakePendingCleanupAndSaveKeepSameLivingBodyWithoutExtraRenderEvents()
+        {
+            var owner=Add("MimicChest");NativeOwner(owner);var player=Add("Player",2,2);var brain=owner.GetPart<BrainPart>();brain.CurrentZone=zone;brain.Rng=new System.Random(65);
+            owner.FireEventAndRelease(GameEvent.New("TakeTurn"));var sleep=brain.FindGoal<DormantGoal>();Assert.NotNull(sleep);Assert.True(sleep.HasDamageBaseline);var probe=new RenderProbe();owner.AddPart(probe);
+            using(var paint=new Paint(world,zone))using(var portraits=Portraits())
+            {
+                paint.Step();int renders=probe.Renders;int hp=owner.GetStatValue("Hitpoints");CombatSystem.ApplyDamage(owner,1,null,zone);Assert.AreEqual(hp-1,owner.GetStatValue("Hitpoints"));Assert.AreEqual(1,probe.Damages);
+                paint.Step();Native(paint.At(X,Y),"MimicChest");Assert.AreEqual(QudColorParser.Parse("&R"),paint.Tint(X,Y));Assert.AreEqual(renders+1,probe.Renders);
+                portraits.GetPortrait(Document(owner),paint.Renderer);paint.Dirty(X+1,Y);paint.Step();Assert.AreEqual(renders+1,probe.Renders);
+                for(int i=2;i<=4;i++){paint.Dirty(X,Y);paint.Step();Assert.AreEqual(renders+i,probe.Renders);Assert.AreEqual(i<4?QudColorParser.Parse("&R"):Color.white,paint.Tint(X,Y));}
+                owner.FireEventAndRelease(GameEvent.New("TakeTurn"));Assert.True(sleep.Finished());Assert.True(brain.HasGoal<DormantGoal>());NativeOwner(owner);
+            }
+            string id=owner.ID;var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("storage-native-test","storage-native-test",manager,new TurnManager(),player,0));
+            manager=loaded.ZoneManager;zone=manager.ActiveZone;owner=zone.GetReadOnlyEntities().Single(e=>e.ID==id);brain=owner.GetPart<BrainPart>();sleep=brain.FindGoal<DormantGoal>();Assert.NotNull(sleep);Assert.True(sleep.Finished());NativeOwner(owner);
+            owner.FireEventAndRelease(GameEvent.New("TakeTurn"));Assert.False(brain.HasGoal<DormantGoal>());Assert.True(owner.GetPart<AIAmbushPart>().DormantPushed);NativeOwner(owner);
+        }
+
+        [Test] public void MimicRequiresOwnedLiveActorPartsAndRealDeathPreservesCorpseSuppression()
+        {
+            var owner=Add("MimicChest");NativeOwner(owner);
+            using(var art=Construct(Textures()))
+            {
+                var brain=owner.GetPart<BrainPart>();brain.ParentEntity=new Entity();Assert.False(Resolver(art)(owner,out _));brain.ParentEntity=owner;
+                var ambush=owner.GetPart<AIAmbushPart>();ambush.ParentEntity=new Entity();Assert.False(Resolver(art)(owner,out _));ambush.ParentEntity=owner;
+                var c=owner.GetPart<ContainerPart>();c.ParentEntity=new Entity();Assert.False(Resolver(art)(owner,out _));c.ParentEntity=owner;Assert.True(Resolver(art)(owner,out _));
+            }
+            var corpse=owner.GetPart<CorpsePart>();Assert.NotNull(corpse);Assert.True(owner.HasTag("SuppressCorpseDrops"));var document=Document(owner);
+            using(var paint=new Paint(world,zone))using(var portraits=Portraits()){paint.Step();CombatSystem.ApplyDamage(owner,owner.GetStatValue("Hitpoints"),null,zone);paint.Step();Assert.IsNull(zone.GetEntityCell(owner));Assert.IsNull(corpse.CreatedCorpse);Assert.IsNull(portraits.GetPortrait(document,paint.Renderer).Texture);Assert.False(zone.GetCell(X,Y).Objects.Any(e=>e.BlueprintName=="CreatureCorpse"));}
+        }
+
+        [Test] public void RealWetContainerCueUsesOneRenderAndRecoversWithoutChangingBody()
+        {
+            var owner=Add();NativeOwner(owner);var effects=owner.GetPart<StatusEffectsPart>();if(effects==null)owner.AddPart(effects=new StatusEffectsPart());var probe=new RenderProbe();owner.AddPart(probe);
+            using(var paint=new Paint(world,zone))using(var portraits=Portraits())
+            {
+                paint.Step();var body=paint.At(X,Y);var wet=new WetEffect();Assert.True(effects.ForceApplyEffect(wet,null,zone));Assert.AreEqual("&B",effects.GetRenderColorOverride());
+                int before=probe.Renders;paint.Dirty(X,Y);paint.Step();Assert.AreSame(body,paint.At(X,Y));Assert.AreEqual(QudColorParser.Parse("&B"),paint.Tint(X,Y));Assert.AreEqual(before+1,probe.Renders);
+                portraits.GetPortrait(Document(owner),paint.Renderer);paint.Dirty(X+1,Y);paint.Step();Assert.AreEqual(before+1,probe.Renders);
+                Assert.True(effects.RemoveEffect(wet));paint.Dirty(X,Y);paint.Step();Assert.AreSame(body,paint.At(X,Y));Assert.AreEqual(Color.white,paint.Tint(X,Y));
+            }
+        }
+
+        [Test] public void DisposalKeepsBorrowedInputsAndIndependentPeerAlive()
+        {
+            var inputs=Textures();adapter=Construct(inputs);var tiles=new List<Tile>();foreach(var name in Names){Assert.True(Resolver(adapter)(Owner(name),out var tile));tiles.Add(tile);}
+            using(var peer=Construct(inputs)){adapter.Dispose();adapter.Dispose();foreach(var tile in tiles)Assert.True(tile==null);foreach(var name in Names){Assert.False(Resolver(adapter)(Owner(name),out _));Assert.True(Resolver(peer)(Owner(name),out var tile));Native(tile,name,inputs[Group(name)]);}foreach(var t in inputs){Assert.True(t!=null);Assert.AreEqual(FilterMode.Bilinear,t.filterMode);Assert.AreEqual(TextureWrapMode.Repeat,t.wrapMode);}}
+        }
+        sealed class OpenProbe : Part { public int Opens;public override bool HandleEvent(GameEvent e){if(e.ID=="OpenContainer")Opens++;return true;} }
+        sealed class RenderProbe : Part { public int Renders,Damages;public override bool HandleEvent(GameEvent e){if(e.ID=="Render")Renders++;if(e.ID=="TakeDamage")Damages++;return true;} }
+        sealed class Paint : IDisposable
+        {
+            readonly HotbarSaveFixture saved;
+            readonly GameObject root;
+            readonly Tilemap overlay, main, ground;
+            public ZoneRenderer Renderer { get; }
+            public Transform RootTransform => root.transform;
+            public Tilemap Main => main;
+            readonly Action<int, int, string> oldCell = ZoneRenderHooks.CellDirtyCallback;
+            readonly Action<string> oldFull = ZoneRenderHooks.FullDirtyCallback;
+            readonly FieldInfo bound = typeof(ZoneTileStateSystem).GetField("_boundRenderZone", S);
+            readonly object oldBound; readonly Zone previous; readonly Action<int, int> oldChanged; readonly Action oldSight;
+            readonly Dictionary<FieldInfo, object> perf = new Dictionary<FieldInfo, object>();
+            public Paint(FlatPixelGreyboxCatalog catalog, Zone z)
+            {
+                oldBound = bound.GetValue(null);
+                if (oldBound is WeakReference<Zone> weak && weak.TryGetTarget(out previous)) { oldChanged = previous.TileState.OnCellChanged; oldSight = previous.TileState.OnSightChanged; }
+                try
+                {
+                    foreach (var field in typeof(EnvironmentSpriteRenderer.Perf).GetFields(BindingFlags.Public | BindingFlags.Static)) perf[field] = field.GetValue(null);
+                    saved = new HotbarSaveFixture(); root = new GameObject("Shared storage submitted grid", typeof(Grid)); saved.Root.transform.SetParent(root.transform, false);
+                    main = saved.Root.GetComponent<Tilemap>(); var bg = new GameObject("Background", typeof(Tilemap)); bg.transform.SetParent(root.transform, false); ground = bg.GetComponent<Tilemap>();
+                    var marks = new GameObject("Hazards", typeof(Tilemap)); marks.transform.SetParent(root.transform, false);
+                    Renderer = saved.Renderer; Write(Renderer, "_tilemap", main); Write(Renderer, "_bgTilemap", ground); Write(Renderer, "_tileStateTilemap", marks.GetComponent<Tilemap>());
+                    var camera = new GameObject("Camera", typeof(Camera)); camera.transform.SetParent(root.transform, false); camera.GetComponent<Camera>().orthographic = true; Write(Renderer, "_mainCamera", camera.GetComponent<Camera>());
+                    var env = saved.Root.AddComponent<EnvironmentSpriteRenderer>(); env.Init(root.transform, main, ground); env.RenderingEnabled = true; env.FlatPixelGreyboxEnabled = true;
+                    Write(env, "_flatPixelGreybox", catalog); overlay = (Tilemap)Read(env, "_overlayTilemap"); Write(Renderer, "_envSpriteRenderer", env); Write(Renderer, "_flatPixelModeEnabled", true); Renderer.SetZone(z);
+                    ZoneRenderHooks.CellDirtyCallback = Renderer.MarkCellDirty; ZoneRenderHooks.FullDirtyCallback = Renderer.MarkDirty;
+                }
+                catch { Dispose(); throw; }
+            }
+            static Vector3Int Position(int x, int y) => new Vector3Int(x, Zone.Height - 1 - y, 0);
+            public Tile At(int x, int y) { var at = Position(x, y); return overlay.GetTile<Tile>(at) ?? main.GetTile<Tile>(at); }
+            public Matrix4x4 Transform(int x, int y) { var at = Position(x, y); return overlay.HasTile(at) ? overlay.GetTransformMatrix(at) : main.GetTransformMatrix(at); }
+            public Color Tint(int x, int y) { var at = Position(x, y); return overlay.HasTile(at) ? overlay.GetColor(at) : main.GetColor(at); }
+            public Color Lit(Color color, int x, int y) { var light = (LightMap)Read(Renderer, "_lightMap"); return light == null ? color : light.ApplyToColor(color, x, y); }
+            public Tile GroundAt(int x, int y) => ground.GetTile<Tile>(Position(x, y));
+            public void Dirty(int x, int y) => Renderer.MarkCellDirty(x, y, "Shared storage fixture");
+            public void Step() { try { typeof(ZoneRenderer).GetMethod("LateUpdate", I).Invoke(Renderer, null); } catch (TargetInvocationException e) { throw e.InnerException ?? e; } }
+            public void Dispose()
+            {
+                try { saved?.Dispose(); if (root != null) Object.DestroyImmediate(root); }
+                finally
+                {
+                    ZoneRenderHooks.CellDirtyCallback = oldCell; ZoneRenderHooks.FullDirtyCallback = oldFull; bound.SetValue(null, oldBound);
+                    if (previous != null) { previous.TileState.OnCellChanged = oldChanged; previous.TileState.OnSightChanged = oldSight; }
+                    foreach (var entry in perf) entry.Key.SetValue(null, entry.Value);
+                }
+            }
+        }
+    }
+}

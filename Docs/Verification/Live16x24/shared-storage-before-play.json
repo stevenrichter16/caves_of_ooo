@@ -1,0 +1,316 @@
+{
+  "source_commit": "51810153080c76253561919c88184761924130b1",
+  "runtime_source": "a10e1330098c68039e560740cde07137dadc2ff3",
+  "phase": "before only; no shared-storage runtime/art acceptance",
+  "trials": [
+    {
+      "area": "Sill Overworld.10.10.0",
+      "starting_fixture": "Fixtures/portable-equipment-sill65",
+      "starting_player": [
+        39,
+        12
+      ],
+      "starting_hp": 40,
+      "actions": [
+        "Continue earned fixture480HP40",
+        "InitialRight blocked by real Well40,12; no damage",
+        "Down1 Right4 reaches43,13 and ordinarily reveals Chest7483at43,11",
+        "Up43,12; Look/recenter/Up/actionmenu/examine shows actual glyph chest14/14Wood",
+        "Readerclose/reopenmenu/Open shows3grimoires; no items taken",
+        "Close toNormal;F5fixture99turn540HP40"
+      ],
+      "state": {
+        "zone": "Overworld.10.10.0",
+        "x": 43,
+        "y": 12,
+        "hp": 40,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/ffd602daf9f540e4bc3012ec34073693",
+        "chest": {
+          "id": "7483",
+          "x": 43,
+          "y": 11,
+          "visible": true,
+          "structure": 14,
+          "locked": false,
+          "contents": [
+            "PurifyWaterGrimoire",
+            "MendingRiteGrimoire",
+            "KindleRiteGrimoire"
+          ]
+        }
+      },
+      "captures": {
+        "shared-storage-before-01-sill-entry.png": "14404ebf14a4165997e02e51961e0e91b90b0de9e1eebd788f45c74f2a691ad4",
+        "shared-storage-before-02-sill-court.png": "6e7fcef56b08c8e394cd361ca0cce02510583889a216fd32bad2a90c78fed9e9",
+        "shared-storage-before-03-chest-menu.png": "d4a0523809cdad3528a7fd7d100cd33be952e5ce61d8d34aa4658c7c9b817ecd",
+        "shared-storage-before-04-chest-reader.png": "6dbcf0c628b76f22c8b56baadb53024e16795f1a3f8bd0adb41b13fa69ff5125",
+        "shared-storage-before-05-chest-contents.png": "2daa4fcd2cefda219bb9c89f80d22ed25a33975f5701cc5f787f6c0f971f28b1"
+      },
+      "earned_fixture": "Fixtures/shared-storage-chest99",
+      "fixture_metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.10.10.0",
+        "ActiveZoneDisplayLabel": "Overworld.10.10.0",
+        "Turn": 540,
+        "SaveTimestampUtc": "2026-10-27T19:51:42.1046140Z",
+        "HPSummary": "40/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "fixture_sha256": {
+        "Quick.json": "fab608544864ce62bdab125b152b859be1e0eeb43c91aa6291d4064b7187739c",
+        "Quick.sav.gz": "cbd58899508380abb69ce4605571feb9f8b0519a73e2d96c6a05d899f1a48845"
+      },
+      "save_copy_note": "Initial marker-path assertion caught unchanged480 metadata before any fixture write; actual new540save was copied from original GameID directory.",
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/ffd602daf9f540e4bc3012ec34073693-shared-storage-chest-preserved",
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      }
+    },
+    {
+      "area": "Stump Summit Overworld.3.4.0",
+      "starting_fixture": "Fixtures/stump-canopy-after74",
+      "starting_player": [
+        50,
+        2
+      ],
+      "starting_hp": 29,
+      "actions": [
+        "Continue earned9040HP29",
+        "Left5 reaches45,2 withHP29",
+        "Look/recenter/Up/menu/examine shows actual woodenCrate67305glyph at45,1,Woodstructure10/10",
+        "CloseNormal,F5fixture100turn9090HP29"
+      ],
+      "state": {
+        "zone": "Overworld.3.4.0",
+        "x": 45,
+        "y": 2,
+        "hp": 29,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/89910456a4244d939295211c8dfce126",
+        "owner": {
+          "id": "67305",
+          "x": 45,
+          "y": 1,
+          "visible": true,
+          "structure": 10,
+          "locked": false
+        }
+      },
+      "captures": {
+        "shared-storage-before-06-stump-entry.png": "4113fcace192ea503dbd69022e9d2bc5a86c8ede20360d5b06504878ab622961",
+        "shared-storage-before-07-stump-crate.png": "c2e154525a5cd9e27adfff3ecbb47f8cdc2e1cec64e4d220f072b68b71de3b61",
+        "shared-storage-before-08-crate-menu.png": "d4265325a3a1fd8fbe57d24a1528335654311a76c163803f2d8da38a0836abc1",
+        "shared-storage-before-09-crate-reader.png": "e9d207243edcc4b0d85c943794428dad80eacde10522391514877b614084d4f5"
+      },
+      "earned_fixture": "Fixtures/shared-storage-crate100",
+      "fixture_metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.3.4.0",
+        "ActiveZoneDisplayLabel": "Overworld.3.4.0",
+        "Turn": 9090,
+        "SaveTimestampUtc": "2026-10-27T19:54:45.1549580Z",
+        "HPSummary": "29/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "fixture_sha256": {
+        "Quick.json": "14e0d62ef17fb352a6cdf03cba067240df9c6ec477b43549cf51d728a8948ae9",
+        "Quick.sav.gz": "b3e146cb0c12ea465e6fdfc9de5b0bbdafdf341c924aa6f7de73d7e9b51a7bd1"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/89910456a4244d939295211c8dfce126-shared-storage-crate-preserved",
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      }
+    },
+    {
+      "area": "Ordinary sandstone Overworld.0.9.1",
+      "starting_fixture": "Fixtures/shallow-caves-entry83",
+      "starting_player": [
+        56,
+        7
+      ],
+      "starting_hp": 23,
+      "actions": [
+        "Continue10730HP23; actualStrongBox70,2currentlyvisible",
+        "Right14in7stepbatches,Up4reaches70,3HP23",
+        "Look/recenter/Up/menu/examine shows ironStrongBox72917glyph",
+        "RealUnlockaction returns lockedmessage; combinedlockandSolidityremaintrue; no key grant",
+        "EscNormal,F5fixture101turn10910HP23"
+      ],
+      "state": {
+        "zone": "Overworld.0.9.1",
+        "x": 70,
+        "y": 3,
+        "hp": 23,
+        "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/cb82c565a3144b6888b8e310173fce7e",
+        "owner": {
+          "id": "72917",
+          "x": 70,
+          "y": 2,
+          "visible": true,
+          "legacyLocked": false,
+          "hasLockPart": true,
+          "locked": true,
+          "solid": true
+        }
+      },
+      "captures": {
+        "shared-storage-before-10-shallow-entry.png": "0265c3cb8a438dcd1dc5422146555bdc9fdfd783e15072a109b48577b79389c7",
+        "shared-storage-before-11-strongbox.png": "525472d9d8ce2ee026ffe3a38eb0bd38a205fd924825f5c6ba566c636ca4997a",
+        "shared-storage-before-12-strongbox-menu.png": "bfbbb9a4ace51207b7fa3a139945f648fce9b0643e52c82b49593cc04cc1ea8f",
+        "shared-storage-before-13-strongbox-reader.png": "f204fe045f58038fba5969628caf49a71e6917470efe3364046b348bffee6804",
+        "shared-storage-before-14-strongbox-lock.png": "9c5f81c096b137f1baf9656e3a04a9dc65e45c03cf593ec0a21d436065e99716"
+      },
+      "earned_fixture": "Fixtures/shared-storage-strongbox101",
+      "fixture_metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.0.9.1",
+        "ActiveZoneDisplayLabel": "Overworld.0.9.1",
+        "Turn": 10910,
+        "SaveTimestampUtc": "2026-10-27T20:00:22.9704460Z",
+        "HPSummary": "23/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "fixture_sha256": {
+        "Quick.json": "37e5ca546580ffc6652d912f1f13d86e31070cac61c416c8ad7d4545b9bec9ec",
+        "Quick.sav.gz": "0b1ee8395fae4cca0b4b37ec029e4ef9f5b6947f4640feb75e5dc4b310f0d326"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/cb82c565a3144b6888b8e310173fce7e-shared-storage-strongbox-preserved",
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      }
+    },
+    {
+      "area": "Limestone Overworld.16.13.4",
+      "starting_fixture": "Fixtures/deeper-strata-limestone88",
+      "starting_player": [
+        44,
+        16
+      ],
+      "starting_hp": 33,
+      "actions": [
+        "Continue12090HP33; OreCache86894 at34,16 currentlyvisible",
+        "Ordinary Look/recenter/Left10/menu/Examine of disclosed OreCache; no approach/open or turn consumed",
+        "Normal Right4 key requests moved5cells to49,16; north wall stops route choice; no HP loss",
+        "F5 fixture102 turn12140 HP33"
+      ],
+      "state": {
+        "x": 49,
+        "y": 16,
+        "hp": 33,
+        "owner": {
+          "id": "86894",
+          "x": 34,
+          "y": 16,
+          "visible_at_reader": true
+        }
+      },
+      "captures": {
+        "shared-storage-before-15-limestone-entry.png": "f75785bbd2ddc99ed100486053e80849dc05e4c3abb5a08b213f84f321feb6c6",
+        "shared-storage-before-16-ore-cache-menu.png": "ae8ae47292ad24934f4ce657c933648aa527d28aa2b5606a5c92372555540c24",
+        "shared-storage-before-17-ore-cache-reader.png": "c7c1c31d0416b02c3965adb95d8dc9d21f8e757a7b469586a70c20d0891b6eb7"
+      },
+      "earned_fixture": "Fixtures/shared-storage-ore-cache102",
+      "fixture_metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.16.13.4",
+        "ActiveZoneDisplayLabel": "Overworld.16.13.4",
+        "Turn": 12140,
+        "SaveTimestampUtc": "2026-10-27T20:06:05.2052450Z",
+        "HPSummary": "33/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "fixture_sha256": {
+        "Quick.json": "691c5f95421467a53053d6e0bc8ee987d6a68851f5abf3daf5c037715c4c0f1f",
+        "Quick.sav.gz": "a1f6142c26dfb3a176d1e53e7129a62b5a56302e7921eab0ab6aadffb4d1a08c"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/a4b055161b9a4595b3dd3eefc16d565c-shared-storage-ore-cache-preserved",
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      }
+    },
+    {
+      "area": "Beating Overworld.19.13.0",
+      "starting_fixture": "Fixtures/harvest-products-road65",
+      "starting_player": [
+        59,
+        9
+      ],
+      "starting_hp": 38,
+      "actions": [
+        "Continue3540HP38",
+        "Right4 reaches63,9HP38",
+        "Up5 requests reaches63,5HP20: BrittleHound and Scorpion attacks/poison; chest still hidden",
+        "Left1 through disclosed doorway reaches62,5HP7: Hound/SkeletalSentry/poison/confused interruption; chest nowvisible",
+        "Look/recenter/Left1/Up2/menu/Examine actual LockedChest39340 at61,3,Wood18/18, combinedlockedtrue",
+        "CloseNormal,F5fixture103 turn3630HP7; no unlock/transfer/destruction attempt"
+      ],
+      "captures": {
+        "shared-storage-before-18-beating-entry.png": "53e09a6656be37b0d71b4ac506c3340a2d5736c676055c3b31c2364f7158788d",
+        "shared-storage-before-19-locked-chest-discovery.png": "934fb3decdd976e86ac2cda383adf817c06780fff0fa6a69ee98b79871b0f2e6",
+        "shared-storage-before-20-locked-chest-menu.png": "808c91edbc728e17029cfe5271b8c386376bbd94b54536823d3662569d787b8f",
+        "shared-storage-before-21-locked-chest-reader.png": "6e9ac0b98e4e6f2b32a61d3121ca0780d0da47a7a878af5bda6790ac4a002127"
+      },
+      "earned_fixture": "Fixtures/shared-storage-locked-chest-interruption103",
+      "fixture_metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.19.13.0",
+        "ActiveZoneDisplayLabel": "Overworld.19.13.0",
+        "Turn": 3630,
+        "SaveTimestampUtc": "2026-10-27T20:08:07.1193260Z",
+        "HPSummary": "7/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "fixture_sha256": {
+        "Quick.json": "14c0899b773faf8dfe6e9753e8e2d9435b9f8d72112b464f8a28d1f1d7fec320",
+        "Quick.sav.gz": "93a154656e93b0159b875325dde50480d18c6680b485440b791d542ffaa1707d"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/ae552219c0a7458fb46e2b1a3f63d373-shared-storage-locked-chest-interruption-preserved",
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      }
+    }
+  ],
+  "remaining_before": [
+    "dormantMimicChest"
+  ],
+  "limits": "Five genuine glyph-body baselines. OreCache and LockedChest only disclosed remote readers, no access/transfer claim; LockedChest actual approach interrupted38\u21927HP preserved103. No observedMimic, sharednative runtime or area-polish acceptance."
+}

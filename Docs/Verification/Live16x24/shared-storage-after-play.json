@@ -1,0 +1,282 @@
+{
+  "phase": "shared-storage-body-reuse",
+  "source_base": "51810153080c76253561919c88184761924130b1",
+  "native_evidence": "shared-storage-native-summary.json",
+  "trials": [
+    {
+      "area": "Stump SummitScrub Overworld.3.4.0",
+      "starting_fixture": "Fixtures/shared-storage-crate100",
+      "player": [
+        45,
+        2
+      ],
+      "hp": 29,
+      "owner": {
+        "id": "67305",
+        "bp": "Crate",
+        "cell": [
+          45,
+          1
+        ]
+      },
+      "actions": [
+        "Continue9090HP29 at45,2",
+        "Normal-zoom native crate and matching authorizedReader Wood10/10",
+        "RealOpen shows EmberFruit67306/HealingTonic67307/StunGasGrenade67308",
+        "ReturntakesEmberFruit67306, verifies actualplayercustody; two realitemsremain in crate",
+        "Close pickup then extraEscape openedPause; input enumNormal does not implyPauseUIclosed. F5earned104turn9100HP29 whilePausevisible."
+      ],
+      "captures": {
+        "shared-storage-after-01-stump-crate.png": "614f666416b21d5aabb1298c0804abd69d4c076523840532c6807ec83b71c838",
+        "shared-storage-after-02-crate-reader.png": "80e7f7ff855071fc7344b2ab87befb7e569518f7cb91ee61dcd2f0612287e268",
+        "shared-storage-after-03-crate-contents.png": "54c9809f1f8229f4382e7d84a3dabe80cf4d9d71232d5a242dcfbcf8ee93e41f",
+        "shared-storage-after-04-crate-transfer.png": "feb75a31bb7cccdb9a17a751e9709c5c17680077256229218be583290efcb23b",
+        "shared-storage-after-05-crate-saved.png": "294a79322867bbf02f425a9f96da7c6ad2007c8b98fee06bc5fbd7c33d31e09a"
+      },
+      "earned_fixture": "Fixtures/shared-storage-crate-after104",
+      "fixture_metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.3.4.0",
+        "ActiveZoneDisplayLabel": "Overworld.3.4.0",
+        "Turn": 9100,
+        "SaveTimestampUtc": "2026-10-27T20:26:22.1469780Z",
+        "HPSummary": "29/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "fixture_sha256": {
+        "Quick.json": "c1c9ba659bae66c5833fe883e2d31bed64ba17fe5fc00b1fba412962c6b856fe",
+        "Quick.sav.gz": "ffa6030a87b22f3292dc63fc87866a1db830caecb22fa9b0dd94cebc58e24d3c"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/c43ade36d50e415dbe0d74cc5fe131eb-shared-storage-crate-after-preserved",
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      },
+      "composition": "Broad sparsecenter and subtleblockingdome remain explicitpolishdebt. No newscenery/placement; visible mineralcache also nowhasnativebody but not independently inspected inthisview.",
+      "fresh_continue": {
+        "player": [
+          45,
+          2
+        ],
+        "hp": 29,
+        "remaining_ids": [
+          "67307",
+          "67308"
+        ],
+        "player_custody_of_67306": true,
+        "capture": "shared-storage-after-06-crate-fresh-continue.png",
+        "capture_sha256": "85139bcc2bf0b916d4dbb4d16094006fd5b4564bd8ea7b57ff2a54bf8a05a6ba",
+        "world_rect": [
+          0,
+          40,
+          940,
+          640
+        ],
+        "compared_pixels": 564000,
+        "changed_pixels": 561159,
+        "archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/fdfd960f2c2840688b6c8f80b8a2886b-shared-storage-crate-restart-preserved",
+        "comparison_accepted": false,
+        "comparison_note": "05 includes Pause UI while06 is clean world. Pixel mismatch retained; no clean equivalent-view equality claim or invented reason for all differing pixels. Functional player/HP/custody/remaining-content restoration verified directly.",
+        "finish_verified": {
+          "playing": false,
+          "root": null,
+          "scene_dirty": false
+        }
+      }
+    },
+    {
+      "area": "Sandstone caves Overworld.0.9.1",
+      "starting_fixture": "Fixtures/shared-storage-strongbox101",
+      "player": [
+        70,
+        3
+      ],
+      "hp": 23,
+      "owner": {
+        "id": "72917",
+        "bp": "StrongBox",
+        "cell": [
+          70,
+          2
+        ]
+      },
+      "actions": [
+        "Continue original earned10910HP23 position",
+        "Normal Look/Examine displays same iron strongbox full-rect native body",
+        "Real menu Unlock refusal retained locked=true, solid=true; no matching key. No item transfer or new save."
+      ],
+      "captures": {
+        "shared-storage-after-07-strongbox.png": "d4066c6de688849f7cad02853c6227b229ebc8215a48d1f633b4af591fbba4ea",
+        "shared-storage-after-08-strongbox-reader.png": "e122529c670d6d16e5eb8486150dc63ebe61454462d782fbabadc79f1feaf338",
+        "shared-storage-after-09-strongbox-refusal.png": "c1eb0927497e21cd07f477a871055e0b35fbe0e320b55aae847b6c1c18c67f3a"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/b6ce9afba4344a33b07a155f6613e0b1-shared-storage-strongbox-after-preserved",
+      "archive_files_verified": 3,
+      "composition": "Existing sandstone contours and sparse cave floor preserved; body distinction verified, no whole-area polish acceptance.",
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      }
+    },
+    {
+      "area": "Sill Overworld.10.10.0",
+      "starting_fixture": "Fixtures/shared-storage-chest99",
+      "player": [
+        43,
+        12
+      ],
+      "hp": 40,
+      "owner": {
+        "id": "7483",
+        "bp": "Chest",
+        "cell": [
+          43,
+          11
+        ]
+      },
+      "actions": [
+        "Normal Continue, Look and Examine Wood14/14 with matching native portrait",
+        "ActualOpen retains PurifyWaterGrimoire7484, MendingRiteGrimoire7485, KindleRiteGrimoire7486; no transfer"
+      ],
+      "captures": {
+        "shared-storage-after-10-sill-chest.png": "13de8c5ac2f996fc7c577722af0c55dd295fdfead79af0f82cf22317aa445b9a",
+        "shared-storage-after-11-chest-reader.png": "ec57f052d08fb252e20c797124ec939a58aaedaf2902e0eda98e37cec4440525",
+        "shared-storage-after-12-chest-contents.png": "62c6ef9b2dffad6c4b6012d82f35c0ce7f42ff517a0829e17a137c36f6cee9a0"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/61ff1520ef2b40b7825d0701f96234ed-shared-storage-chest-after-preserved",
+      "archive_files_verified": 3,
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      },
+      "composition": "This old earned Sill graph still has broad generic grass and glyph water coverage debt. The narrow owner body is verified; neither current opening geometry nor full Sill polish is accepted."
+    },
+    {
+      "area": "Limestone caves Overworld.16.13.4",
+      "starting_fixture": "Fixtures/deeper-strata-limestone88",
+      "player": [
+        44,
+        16
+      ],
+      "hp": 33,
+      "owner": {
+        "id": "86894",
+        "bp": "OreCache",
+        "cell": [
+          34,
+          16
+        ]
+      },
+      "actions": [
+        "Continue earned88 unchanged; same before viewpoint",
+        "Remote normal Look/Examine from44,16 selects34,16; no movement, no loot access or transfer"
+      ],
+      "captures": {
+        "shared-storage-after-13-limestone-cache.png": "e8fb389a7829b76b729eed43cfba35ef0e3d6fc08a01548f1018a5ee61c42ab6",
+        "shared-storage-after-14-cache-reader.png": "6cb0394b0b400607830615aa491dd34a5efba07f41a80ad4a6615bc8b414f066"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/a0ce2edf0a8f4836967f7708c6bc29fd-shared-storage-cache-after-preserved",
+      "archive_files_verified": 3,
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      },
+      "composition": "Broad natural cave chamber and south route retained. Mineral cache body remains compact and subtle at normal zoom; body identity/reader verified but contrast/readability polish remains open."
+    },
+    {
+      "area": "Beating Overworld.19.13.0",
+      "starting_fixture": "Fixtures/shared-storage-locked-chest-interruption103",
+      "player": [
+        62,
+        5
+      ],
+      "hp": 7,
+      "owner": {
+        "id": "39340",
+        "bp": "LockedChest",
+        "cell": [
+          61,
+          3
+        ]
+      },
+      "actions": [
+        "Continue preserved combat interruption with actualPoisoned/Confused, HP7 unchanged",
+        "Remote normal Look/Examine at61,3 showsWood18/18 and nativeChestbody; no turn or movement",
+        "No unlock, loot access, healing, or fabricated safe route"
+      ],
+      "captures": {
+        "shared-storage-after-15-locked-chest.png": "9388cd430b8714275a70b30a71fca65c76768b4c90cf4cec8503ee3882132902",
+        "shared-storage-after-16-locked-chest-reader.png": "d197de896bc4de4f213cef6545e3cc024764c023405763cb0d7726704f7b41af"
+      },
+      "whole_root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/7684457b28f34dca87dc9346d1612a35-shared-storage-locked-after-preserved",
+      "archive_files_verified": 3,
+      "finish_verified": {
+        "playing": false,
+        "root": null,
+        "scene_dirty": false
+      },
+      "composition": "Fortified room routes and enemy pressure preserved. Visible mixed glyph actors remain other-family coverage debt. Only the disclosed chest body/reader is accepted."
+    }
+  ],
+  "limits": [
+    "Five genuine storage families only; mimic actual remains unobserved",
+    "Body-only reuse, no new lock/open/empty/awake art",
+    "No whole-area polish acceptance"
+  ],
+  "after_observed_genuine_families": 5,
+  "actual_mimic_observed": false,
+  "travel_continuity_claim": "Actual ordinary strongbox cave70,3 to56,7 stairs up0.9.0 then down0.9.1 and return70,3; HP23 retained, fixture105. Independent earned-fixture Continue also observed in four regions.",
+  "travel_profile": {
+    "starting_fixture": "Fixtures/shared-storage-strongbox101",
+    "root_archive": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/0bd2fbb62d224b44a2a71c33ad9df908-shared-storage-travel-after-preserved",
+    "archive_files_verified": 7,
+    "route": [
+      "Overworld.0.9.1 (70,3) HP23",
+      "walk to (56,7) existingStairsUp",
+      "ordinary < to Overworld.0.9.0 (56,7) HP23",
+      "ordinary > to Overworld.0.9.1 (56,7) HP23",
+      "walk back to (70,3) HP23, originalStrongBox72917 visible"
+    ],
+    "captures": {
+      "shared-storage-after-17-surface-return.png": "5e4d2206058c50f7fd5f1ec933a158e64b3c4ddfa64c4d49813cf875b0bced4a",
+      "shared-storage-after-18-strongbox-travel-return.png": "adef5b82ae6d9a307a9623eea3c58d06d8aa426f8766237818a5fd1b5eff1b57"
+    },
+    "earned_fixture": "Fixtures/shared-storage-travel105",
+    "fixture_metadata": {
+      "SaveVersion": 8,
+      "GameVersion": "1.0",
+      "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+      "PlayerName": "Player",
+      "PlayerDisplayName": "you",
+      "PlayerLevel": 1,
+      "ActiveZoneID": "Overworld.0.9.1",
+      "ActiveZoneDisplayLabel": "Overworld.0.9.1",
+      "Turn": 11290,
+      "SaveTimestampUtc": "2026-10-27T20:42:47.7380220Z",
+      "HPSummary": "23/40",
+      "Glyph": "@",
+      "Color": "&Y"
+    },
+    "fixture_sha256": {
+      "Quick.json": "2bc553bd9ecab1a7fdbcb01149aecd6b396db9e49248f2a0b29d872e79c97b62",
+      "Quick.sav.gz": "620f5012a86765f8f79b7e16d491f9528e0c1075f1ef8f3b515d709738d41279"
+    },
+    "profile": "shared-storage-profile.json",
+    "finish_verified": {
+      "playing": false,
+      "root": null,
+      "scene_dirty": false
+    },
+    "new_polish_debt": "Surface0.9.0 has a broad sparse scraped-ground field; this is baseline only, no polished-area acceptance."
+  }
+}

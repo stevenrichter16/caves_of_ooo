@@ -1,0 +1,548 @@
+{
+  "schema_version": 1,
+  "kind": "immutable_body_reuse_parts_contract_not_runtime_acceptance",
+  "reviewed_on": "2026-10-27",
+  "runtime_source_revision": "a10e1330098c68039e560740cde07137dadc2ff3",
+  "delivery_revision": "51810153080c76253561919c88184761924130b1",
+  "status": "five genuine before bodies observed; concept critiqued; immutable source extraction only; native RED/runtime/after pending",
+  "scope_counts": {
+    "genuine_storage_families": 5,
+    "genuine_owner_ids": [
+      "Chest",
+      "LockedChest",
+      "StrongBox",
+      "Crate",
+      "OreCache"
+    ],
+    "additional_disguise_exception": "MimicChest, exact supported living actor; not a sixth genuine storage family",
+    "immutable_source_textures": 4,
+    "reused_body_frames": 4,
+    "new_production_pixels": 0,
+    "new_sprite_state_derivatives": 0
+  },
+  "concept": {
+    "path": "ArtSource/Live16x24/concepts/shared-storage/concept.png",
+    "sha256": "0cb06544aaa99f2d335c6a55bee9f655aede64bf3d468efeab36a370d5bf08e1",
+    "size": [
+      1586,
+      992
+    ],
+    "exact_prompt_path": "ArtSource/Live16x24/concepts/shared-storage/prompt.txt",
+    "prompt_sha256": "f2d769468c0f701d4fe227705d5e3064693cd5f85dcb375858e27c0189a923ce",
+    "original_generated_path": "/Users/steven/.codex/generated_images/01a0de55-1e2b-74d1-ba36-b52698cfe3e5/exec-6ea3d6df-3e11-4ad0-b847-7abb985dedd2.png",
+    "copied_bytes_match_generated": true,
+    "actual_tool_reference_count": 5,
+    "references": [
+      {
+        "path": "Docs/Verification/Live16x24/shared-storage-before-11-strongbox.png",
+        "sha256": "525472d9d8ce2ee026ffe3a38eb0bd38a205fd924825f5c6ba566c636ca4997a"
+      },
+      {
+        "path": "Docs/Verification/Live16x24/shared-storage-before-07-stump-crate.png",
+        "sha256": "c2e154525a5cd9e27adfff3ecbb47f8cdc2e1cec64e4d220f072b68b71de3b61"
+      },
+      {
+        "path": "Assets/Resources/Sprites/Live16x24/opening-anchors.png",
+        "sha256": "aacb70020e54fe9322d507c1f1fadbcf9004bb4f7f8715ad4cb7105cea8ff98f"
+      },
+      {
+        "path": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+        "sha256": "94a9dd85bee742f03543138e877b39adec2e7058b9c732911025ef976ec7cf77"
+      },
+      {
+        "path": "Assets/Resources/Sprites/Environment/cont_strongbox.png",
+        "sha256": "eeafc5515ded0031254e45963acd5ecbeca586aaf8b15d2051803d7a81b539e0"
+      }
+    ],
+    "omitted_from_actual_request": "Assets/Resources/Sprites/Environment/cont_ore_cache.png",
+    "approved_reference_direction": [
+      "distinguish reinforced wooden chest from braced cargo crate",
+      "compact iron box identity",
+      "mineral cache remains a separate identity, but generated mineral form is not an approved reference"
+    ],
+    "rejected": [
+      "invented lighting, gradients and ambient effects",
+      "resampled uneven pixel geometry",
+      "moved bodies and changed world composition",
+      "removed/altered gameplay UI",
+      "changed chest silhouette and colors",
+      "generated mineral shape without the actual ore-cache input",
+      "generated label sixth frame is ambiguous: production uses zero-based frame6, x96, the seventh atlas slot"
+    ],
+    "production_pixels_sampled_or_copied": false
+  },
+  "sources": [
+    {
+      "id": "opening-anchors",
+      "resource_path": "Sprites/Live16x24/opening-anchors",
+      "png_path": "Assets/Resources/Sprites/Live16x24/opening-anchors.png",
+      "png_sha256": "aacb70020e54fe9322d507c1f1fadbcf9004bb4f7f8715ad4cb7105cea8ff98f",
+      "atlas_size_pixels": [
+        192,
+        24
+      ],
+      "zero_based_frame_index": 6,
+      "unity_rect_pixels": [
+        96,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Chest",
+        "LockedChest",
+        "MimicChest"
+      ],
+      "geometry": {
+        "pivot_normalized": [
+          0.5,
+          0.5
+        ],
+        "pixels_per_unit": 16,
+        "mesh": "FullRect",
+        "sprite_bounds_units": [
+          1,
+          1.5
+        ],
+        "world_grid_cell_pixels": [
+          16,
+          24
+        ],
+        "stretch_or_resample": false,
+        "tile_collider": "None; real Physics retains collision"
+      },
+      "decoded_frame": {
+        "rgba_sha256": "e887a2f572d2da479d7d48cd1a5a9a216309e120adc54891f00970054b5116aa",
+        "opaque_pixels": 128,
+        "colors_opaque": 6,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_bounds_top_left_exclusive": [
+          2,
+          12,
+          14,
+          23
+        ]
+      },
+      "importer": {
+        "path": "Assets/Resources/Sprites/Live16x24/opening-anchors.png.meta",
+        "sha256_current": "f1f31849f6e53559f5435a223fe8fd72a930559640f34f57a3a2efcf5fee7c4a",
+        "sha256_at_HEAD_51810153080c76253561919c88184761924130b1_root_verified": "7bfb3ba3d1689209750c5cb05cf9a19bc7644427ae386bb489b220d4276d8f51",
+        "raw_matches_HEAD": false,
+        "difference_if_any": "trailing whitespace only, independently compared by root; current bytes preserved",
+        "HEAD_comparison_authority": "root supplied exact git-object comparison; this worker did not run Git",
+        "normalized_trailing_whitespace_sha256_current": "7bfb3ba3d1689209750c5cb05cf9a19bc7644427ae386bb489b220d4276d8f51",
+        "fields_current": {
+          "enableMipMap": 0,
+          "filterMode": 0,
+          "spritePixelsToUnits": 16,
+          "textureCompression": 0,
+          "wrapU": 1,
+          "wrapV": 1
+        }
+      },
+      "editable_sources": {
+        "kind": "existing original flat integer-cell Blender geometry and declarative source cells",
+        "blend": "ArtSource/Live16x24/anchors/opening-anchors.blend",
+        "generator": "Tools/Live16x24/build_opening_anchors.py",
+        "source_cells": "ArtSource/Live16x24/anchors/source-cells.json",
+        "existing_manifest": "ArtSource/Live16x24/anchors/manifest.json",
+        "existing_verification": "ArtSource/Live16x24/anchors/verification.json",
+        "source_frame_id": "chest",
+        "selected_manifest": {
+          "index": 6,
+          "id": "chest",
+          "rect": [
+            96,
+            0,
+            16,
+            24
+          ],
+          "owners": [
+            "Chest"
+          ],
+          "footprintCells": [
+            1,
+            1
+          ],
+          "description": "Closed reinforced wood box; no invented open state or visible contents.",
+          "occupiedPixels": 128,
+          "palette": [
+            "342E25",
+            "3C5148",
+            "5F4830",
+            "7D8E71",
+            "94713D",
+            "B5A47E"
+          ],
+          "alphaBoundsTopLeft": [
+            2,
+            12,
+            14,
+            23
+          ]
+        },
+        "read_only_checks": {
+          "source_raster_equals_runtime": true,
+          "manifest_hash_matches_runtime": true,
+          "all_atlas_source_cell_pixels_checked": 4608,
+          "source_cell_pixel_mismatches": 0,
+          "existing_verification_reports_pass": true,
+          "blend_present_and_hashed": true,
+          "blend_reopened_or_regenerated_this_task": false
+        }
+      }
+    },
+    {
+      "id": "opening-cellar",
+      "resource_path": "Sprites/Live16x24/opening-cellar",
+      "png_path": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+      "png_sha256": "94a9dd85bee742f03543138e877b39adec2e7058b9c732911025ef976ec7cf77",
+      "atlas_size_pixels": [
+        144,
+        24
+      ],
+      "zero_based_frame_index": 1,
+      "unity_rect_pixels": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owners": [
+        "Crate"
+      ],
+      "geometry": {
+        "pivot_normalized": [
+          0.5,
+          0.5
+        ],
+        "pixels_per_unit": 16,
+        "mesh": "FullRect",
+        "sprite_bounds_units": [
+          1,
+          1.5
+        ],
+        "world_grid_cell_pixels": [
+          16,
+          24
+        ],
+        "stretch_or_resample": false,
+        "tile_collider": "None; real Physics retains collision"
+      },
+      "decoded_frame": {
+        "rgba_sha256": "dfd1599461f89fa99925926571ddf1198fdb62d46f206272760b1e57f54f528f",
+        "opaque_pixels": 154,
+        "colors_opaque": 4,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_bounds_top_left_exclusive": [
+          2,
+          10,
+          14,
+          23
+        ]
+      },
+      "importer": {
+        "path": "Assets/Resources/Sprites/Live16x24/opening-cellar.png.meta",
+        "sha256_current": "0e6d0333601fce39da8d05d8e486963c79f7ccf32f36f3dd710575da8cd89d47",
+        "sha256_at_HEAD_51810153080c76253561919c88184761924130b1_root_verified": "0e78bd5616ab7d3ec1a83b89ecaf902c7bb8df130cb1f478adb348fb5d38e51e",
+        "raw_matches_HEAD": false,
+        "difference_if_any": "trailing whitespace only, independently compared by root; current bytes preserved",
+        "HEAD_comparison_authority": "root supplied exact git-object comparison; this worker did not run Git",
+        "normalized_trailing_whitespace_sha256_current": "0e78bd5616ab7d3ec1a83b89ecaf902c7bb8df130cb1f478adb348fb5d38e51e",
+        "fields_current": {
+          "enableMipMap": 0,
+          "filterMode": 0,
+          "spritePixelsToUnits": 16,
+          "textureCompression": 0,
+          "wrapU": 1,
+          "wrapV": 1
+        }
+      },
+      "editable_sources": {
+        "kind": "existing original flat integer-cell Blender geometry and declarative source cells",
+        "blend": "ArtSource/Live16x24/cellar/opening-cellar.blend",
+        "generator": "Tools/Live16x24/build_cellar.py",
+        "source_cells": "ArtSource/Live16x24/cellar/source-cells.json",
+        "existing_manifest": "ArtSource/Live16x24/cellar/manifest.json",
+        "existing_verification": "ArtSource/Live16x24/cellar/verification.json",
+        "source_frame_id": "crate",
+        "selected_manifest": {
+          "index": 1,
+          "id": "crate",
+          "blueprint": "Crate",
+          "stage": null,
+          "rect": [
+            16,
+            0,
+            16,
+            24
+          ],
+          "description": "Squat closed plank crate with broad corner braces, recessed central boards and a flat upper rail; no chest latch or arched lid.",
+          "actualUse": "Finite existing container; the actual crate carries clay, a seed-dependent equipment reward and a manual.",
+          "limits": "Contents and empty state do not change this frame. No persistent open-lid state exists; no supplies are painted onto the crate.",
+          "occupiedPixels": 154,
+          "palette": [
+            "342E25",
+            "5F4830",
+            "94713D",
+            "B5A47E"
+          ],
+          "alphaBoundsTopLeft": [
+            2,
+            10,
+            14,
+            23
+          ],
+          "baselineTopLeft": 23,
+          "footprintCells": [
+            1,
+            1
+          ],
+          "fullCellTerrain": false
+        },
+        "read_only_checks": {
+          "source_raster_equals_runtime": true,
+          "manifest_hash_matches_runtime": true,
+          "all_atlas_source_cell_pixels_checked": 3456,
+          "source_cell_pixel_mismatches": 0,
+          "existing_verification_reports_pass": true,
+          "blend_present_and_hashed": true,
+          "blend_reopened_or_regenerated_this_task": false
+        }
+      }
+    },
+    {
+      "id": "cont_strongbox",
+      "resource_path": "Sprites/Environment/cont_strongbox",
+      "png_path": "Assets/Resources/Sprites/Environment/cont_strongbox.png",
+      "png_sha256": "eeafc5515ded0031254e45963acd5ecbeca586aaf8b15d2051803d7a81b539e0",
+      "atlas_size_pixels": [
+        16,
+        16
+      ],
+      "zero_based_frame_index": 0,
+      "unity_rect_pixels": [
+        0,
+        0,
+        16,
+        16
+      ],
+      "owners": [
+        "StrongBox"
+      ],
+      "geometry": {
+        "pivot_normalized": [
+          0.5,
+          0.5
+        ],
+        "pixels_per_unit": 16,
+        "mesh": "FullRect",
+        "sprite_bounds_units": [
+          1,
+          1.0
+        ],
+        "world_grid_cell_pixels": [
+          16,
+          24
+        ],
+        "stretch_or_resample": false,
+        "tile_collider": "None; real Physics retains collision"
+      },
+      "decoded_frame": {
+        "rgba_sha256": "ce039f596af77674fd3aed716d509cc4907809f230f960bd5f066e8f4d6ea83e",
+        "opaque_pixels": 114,
+        "colors_opaque": 5,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_bounds_top_left_exclusive": [
+          1,
+          4,
+          15,
+          13
+        ]
+      },
+      "importer": {
+        "path": "Assets/Resources/Sprites/Environment/cont_strongbox.png.meta",
+        "sha256_current": "2e31d06f072b41c35c4ebfaf5efe924d5d1d076d0545dead6a62bd991cdc2e50",
+        "sha256_at_HEAD_51810153080c76253561919c88184761924130b1_root_verified": "2e31d06f072b41c35c4ebfaf5efe924d5d1d076d0545dead6a62bd991cdc2e50",
+        "raw_matches_HEAD": true,
+        "difference_if_any": "none",
+        "HEAD_comparison_authority": "root supplied exact git-object comparison; this worker did not run Git",
+        "normalized_trailing_whitespace_sha256_current": "bd44ed2353f1ae5d8a6dbf8abb7dbe0cfba305d30fa7bd44703030fef3cac1f7",
+        "fields_current": {
+          "enableMipMap": 0,
+          "filterMode": 0,
+          "spritePixelsToUnits": 16,
+          "textureCompression": 0,
+          "wrapU": 1,
+          "wrapV": 1
+        }
+      },
+      "editable_sources": {
+        "kind": "existing native raster and legacy editable authoring scripts; no dedicated blend found in bounded source search",
+        "generator": "ArtTools/coo_items.py",
+        "function": "strongbox()",
+        "outline_script": "ArtTools/coo_outline_pass.py",
+        "outline_list": "OUTLINE_4 includes exact sprite name",
+        "read_only_checks": {
+          "native_16_square_binary_alpha": true,
+          "scripts_read_and_hashed": true,
+          "script_regeneration_executed": false,
+          "historical_pipeline_reproduction_claimed": false
+        }
+      }
+    },
+    {
+      "id": "cont_ore_cache",
+      "resource_path": "Sprites/Environment/cont_ore_cache",
+      "png_path": "Assets/Resources/Sprites/Environment/cont_ore_cache.png",
+      "png_sha256": "673011057ee2b01346b8dd0339b5a816243e3e9ca5fa1f8dcd098011c4f902a8",
+      "atlas_size_pixels": [
+        16,
+        16
+      ],
+      "zero_based_frame_index": 0,
+      "unity_rect_pixels": [
+        0,
+        0,
+        16,
+        16
+      ],
+      "owners": [
+        "OreCache"
+      ],
+      "geometry": {
+        "pivot_normalized": [
+          0.5,
+          0.5
+        ],
+        "pixels_per_unit": 16,
+        "mesh": "FullRect",
+        "sprite_bounds_units": [
+          1,
+          1.0
+        ],
+        "world_grid_cell_pixels": [
+          16,
+          24
+        ],
+        "stretch_or_resample": false,
+        "tile_collider": "None; real Physics retains collision"
+      },
+      "decoded_frame": {
+        "rgba_sha256": "e8520821973bc4631c74005d0608ff9388981e6ea670408c49201d82b331f549",
+        "opaque_pixels": 82,
+        "colors_opaque": 5,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "alpha_bounds_top_left_exclusive": [
+          2,
+          5,
+          14,
+          13
+        ]
+      },
+      "importer": {
+        "path": "Assets/Resources/Sprites/Environment/cont_ore_cache.png.meta",
+        "sha256_current": "75a68e66535f006d74c36d7dcb3dfa190970851246aa2fff0218eaaf456ed5c4",
+        "sha256_at_HEAD_51810153080c76253561919c88184761924130b1_root_verified": "75a68e66535f006d74c36d7dcb3dfa190970851246aa2fff0218eaaf456ed5c4",
+        "raw_matches_HEAD": true,
+        "difference_if_any": "none",
+        "HEAD_comparison_authority": "root supplied exact git-object comparison; this worker did not run Git",
+        "normalized_trailing_whitespace_sha256_current": "6aec8071215ba2f50124a37167c85ae1e958ae68e89431f237f0860b90b8fdac",
+        "fields_current": {
+          "enableMipMap": 0,
+          "filterMode": 0,
+          "spritePixelsToUnits": 16,
+          "textureCompression": 0,
+          "wrapU": 1,
+          "wrapV": 1
+        }
+      },
+      "editable_sources": {
+        "kind": "existing native raster and legacy editable authoring scripts; no dedicated blend found in bounded source search",
+        "generator": "ArtTools/coo_items.py",
+        "function": "ore_cache()",
+        "outline_script": "ArtTools/coo_outline_pass.py",
+        "outline_list": "OUTLINE_4 includes exact sprite name",
+        "read_only_checks": {
+          "native_16_square_binary_alpha": true,
+          "scripts_read_and_hashed": true,
+          "script_regeneration_executed": false,
+          "historical_pipeline_reproduction_claimed": false
+        }
+      }
+    }
+  ],
+  "state_policy": {
+    "Chest_LockedChest_MimicChest": "Same unchanged frame6; live mimic uses it dormant/waking/awake. Preserve actual event/intent cues and owner-life guards. No render-time goal scan.",
+    "other_storage": "One invariant body per identity; no lock, open, contents, damaged or empty sprite state. Existing hardware/glints do not advertise lock state, contents or harvestability.",
+    "runtime_authority": "Existing current graph, selected disclosed owner, placement, custody and reader authorization; no new ground, hazard, biome or neighbor admission."
+  },
+  "before_evidence": {
+    "receipt": "Docs/Verification/Live16x24/shared-storage-before-play.json",
+    "genuine_observed": [
+      "Chest",
+      "Crate",
+      "StrongBox",
+      "OreCache",
+      "LockedChest"
+    ],
+    "ore_and_locked": "Remote Look/readers only; no opening/access/transfer claim",
+    "locked_interruption": "Ordinary Beating approach HP38\u21927, preserved fixture103; no new gameplay edit or successful unlock",
+    "mimic_observed": false
+  },
+  "protected_input_pins": {
+    "Assets/Resources/Sprites/Live16x24/opening-anchors.png": "aacb70020e54fe9322d507c1f1fadbcf9004bb4f7f8715ad4cb7105cea8ff98f",
+    "Assets/Resources/Sprites/Live16x24/opening-anchors.png.meta": "f1f31849f6e53559f5435a223fe8fd72a930559640f34f57a3a2efcf5fee7c4a",
+    "ArtSource/Live16x24/anchors/opening-anchors.png": "aacb70020e54fe9322d507c1f1fadbcf9004bb4f7f8715ad4cb7105cea8ff98f",
+    "ArtSource/Live16x24/anchors/opening-anchors.blend": "f9baa0d0ade4a58897932675b564e671dafbf9361f9f360bf06c8d6eec7ccff9",
+    "ArtSource/Live16x24/anchors/source-cells.json": "e5924c3040c22383d95f72b1bb0deeb854245c46d1cffa70bf3ec4f7e137df34",
+    "ArtSource/Live16x24/anchors/manifest.json": "acc28b8d69ea57d34396d6a679464792729858ef8c6be62d9e5066d646ca7ec0",
+    "ArtSource/Live16x24/anchors/verification.json": "916ff2752b408382d49a91e849df67ec09074476f5956f09f0c88136a239dc94",
+    "ArtSource/Live16x24/anchors/verify.py": "2579c7f74671962ef4af3578fdfc5618f188bf3aaade96dd2d7d0454654831f0",
+    "Tools/Live16x24/build_opening_anchors.py": "a34d3548f21704e21c94cc502aed60f1772e05148639f9f2ad74973d41b56074",
+    "Assets/Resources/Sprites/Live16x24/opening-cellar.png": "94a9dd85bee742f03543138e877b39adec2e7058b9c732911025ef976ec7cf77",
+    "Assets/Resources/Sprites/Live16x24/opening-cellar.png.meta": "0e6d0333601fce39da8d05d8e486963c79f7ccf32f36f3dd710575da8cd89d47",
+    "ArtSource/Live16x24/cellar/opening-cellar.png": "94a9dd85bee742f03543138e877b39adec2e7058b9c732911025ef976ec7cf77",
+    "ArtSource/Live16x24/cellar/opening-cellar.blend": "d34ab0004974558cb6dbd64159c1686151d77afb9f3c586b0fcad7848eba17c4",
+    "ArtSource/Live16x24/cellar/source-cells.json": "8d3fd335a31bc665ae5d0c364413a75fadbecf70f826fc1c0da9bf2b2f045a7e",
+    "ArtSource/Live16x24/cellar/manifest.json": "66344624a0b63589f70205dddea5a54fd55b1f15971b096d818a5413729ff0bb",
+    "ArtSource/Live16x24/cellar/verification.json": "36dfae72b3dd458ac680f08a41f982bad9403e098814d4ef473ba061f8ee314c",
+    "ArtSource/Live16x24/cellar/verify.py": "00deec9bb05b21ce5f0329fed9e9f0f8e4b54a167be9d44b0f0a5f79d1509fa2",
+    "Tools/Live16x24/build_cellar.py": "b7717461181d76a5792380d046cb82714eb108d3941c84465a9417aacfde4191",
+    "Assets/Resources/Sprites/Environment/cont_strongbox.png": "eeafc5515ded0031254e45963acd5ecbeca586aaf8b15d2051803d7a81b539e0",
+    "Assets/Resources/Sprites/Environment/cont_strongbox.png.meta": "2e31d06f072b41c35c4ebfaf5efe924d5d1d076d0545dead6a62bd991cdc2e50",
+    "ArtTools/coo_items.py": "144705e2d964dad073493e2abef638f8ca12fd0121346c0da15bc311e079dae5",
+    "ArtTools/coo_outline_pass.py": "2f78bfb49ad3632da7a0f04605956efde256d2a59373930b86a650e4112c180b",
+    "Assets/Resources/Sprites/Environment/cont_ore_cache.png": "673011057ee2b01346b8dd0339b5a816243e3e9ca5fa1f8dcd098011c4f902a8",
+    "Assets/Resources/Sprites/Environment/cont_ore_cache.png.meta": "75a68e66535f006d74c36d7dcb3dfa190970851246aa2fff0218eaaf456ed5c4",
+    "ArtSource/Live16x24/concepts/shared-storage/concept.png": "0cb06544aaa99f2d335c6a55bee9f655aede64bf3d468efeab36a370d5bf08e1",
+    "ArtSource/Live16x24/concepts/shared-storage/prompt.txt": "f2d769468c0f701d4fe227705d5e3064693cd5f85dcb375858e27c0189a923ce"
+  },
+  "checks": {
+    "four_current_pngs_and_metas_hashed": true,
+    "all_binary_alpha_and_point16PPU_no_mips_clamp_uncompressed": true,
+    "original_blend_and_scripts_preserved": true,
+    "all_source_inputs_unchanged_at_end": true,
+    "no_Unity_Git_or_authoring_execution": true
+  },
+  "limits": [
+    "Concept is neither gameplay evidence nor import-ready art.",
+    "Only direct cached Sprite/Tile reuse is proposed; no pixels, metadata or source geometry changed.",
+    "Blender files were hashed, not reopened or rebuilt here; stored cells were compared read-only against current PNGs.",
+    "Legacy strongbox/ore-cache authoring scripts were inspected, not executed; no fresh reproducibility claim.",
+    "Exact HEAD meta comparison is root-attributed; current hashes independently computed here.",
+    "Native integration, mimic gameplay, real after comparison, performance and all-area polish remain pending."
+  ]
+}

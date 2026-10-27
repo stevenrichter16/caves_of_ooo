@@ -37,7 +37,7 @@ namespace CavesOfOoo.Rendering
         public readonly bool RepresentedBrine;
         /// <summary>Submitted native MirePool body represents the sole live bog-mire layer; not brine/water.</summary>
         public readonly bool RepresentedMire;
-        /// <summary>Only opted-in native actors use the selected owner's existing
+        /// <summary>Opted-in native actors and storage use the selected owner's existing
         /// Render-event color override; their unchanged authored body stays white.</summary>
         public readonly bool PreserveRenderColorCue;
 
@@ -79,9 +79,11 @@ namespace CavesOfOoo.Rendering
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
         private FlatPixelStumpFaunaCatalog _stumpFaunaArt;
         private FlatPixelGrovelandsActorsCatalog _grovelandsActorsArt;
+        private FlatPixelSharedStorageCatalog _sharedStorageArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
         private FlatPixelHarvestProductsCatalog _harvestProductsArt;
         private readonly Texture2D _harvestItemsAtlas, _harvestWorksAtlas;
+        private readonly Texture2D _storageAnchorsAtlas, _storageCellarAtlas;
         private FlatPixelAftermathCatalog _aftermathArt;
         private FlatPixelOrchardCatalog _orchardArt;
         private FlatPixelRiverShrineCatalog _riverShrineArt;
@@ -198,6 +200,7 @@ namespace CavesOfOoo.Rendering
         {
             _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas, worksProductsAtlas, longSwordAtlas);
             _harvestItemsAtlas = itemsAtlas; _harvestWorksAtlas = worksProductsAtlas;
+            _storageAnchorsAtlas = anchorsAtlas; _storageCellarAtlas = cellarAtlas;
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
             _tiles = new Tile[count];
             _sprites = new Sprite[count];
@@ -243,7 +246,15 @@ namespace CavesOfOoo.Rendering
             Color foregroundColor = ForegroundColor(kind);
             Tile foreground = kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road
                 ? null : _tiles[(int)kind];
-            if (FlatPixelHarvestProductsCatalog.HasKnownRole(owner))
+            if (FlatPixelSharedStorageCatalog.HasKnownRole(owner))
+            {
+                var storage = SharedStorageArtFor(owner);
+                if (storage != null && storage.TryResolve(owner, out var storageTile))
+                { foreground = storageTile; foregroundColor = Color.white; }
+                else if (TryResolveFallback(zone, x, y, out var storageFallback))
+                { foreground = storageFallback.ForegroundTile; foregroundColor = storageFallback.ForegroundColor; }
+            }
+            else if (FlatPixelHarvestProductsCatalog.HasKnownRole(owner))
             {
                 var products = HarvestProductsArtFor(owner);
                 if (products != null && products.TryResolve(owner, out var productTile))
@@ -494,6 +505,13 @@ namespace CavesOfOoo.Rendering
             if (_disposed || owner == null) return false;
             var render = owner.GetPart<RenderPart>();
             if (render == null || render.ParentEntity != owner || !render.Visible) return false;
+            if (FlatPixelSharedStorageCatalog.HasKnownRole(owner))
+            {
+                var storage = SharedStorageArtFor(owner);
+                if (storage != null && storage.TryResolve(owner, out var storageTile))
+                { sprite = storageTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
+            }
             if (FlatPixelHarvestProductsCatalog.HasKnownRole(owner))
             {
                 var products = HarvestProductsArtFor(owner);
@@ -1039,11 +1057,16 @@ namespace CavesOfOoo.Rendering
             Tile groveActorArt = null;
             bool groveActorNative = groveActors != null && groveActors.TryResolve(owner, out groveActorArt);
             if (groveActorKnown) art = groveActorArt;
+            bool storageKnown = FlatPixelSharedStorageCatalog.HasKnownRole(owner);
+            var storage = !fallback.Remembered ? SharedStorageArtFor(owner) : null;
+            Tile storageArt = null;
+            bool storageNative = storage != null && storage.TryResolve(owner, out storageArt);
+            if (storageKnown) art = storageArt;
             // Known-product refusal is authoritative: older local item groups
             // must not bypass current semantic or optional-resource guards.
             // The same applies to exact fauna; portable species do not admit
             // regional scenery or inherit another body's art after refusal.
-            bool native = groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative
+            bool native = storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1069,7 +1092,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative, caveBackdrop || limestoneBackdrop || shaleBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative, caveBackdrop || limestoneBackdrop || shaleBackdrop);
             return true;
         }
 
@@ -1079,6 +1102,13 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            if (FlatPixelSharedStorageCatalog.HasKnownRole(subject))
+            {
+                var storage = SharedStorageArtFor(subject);
+                if (storage != null && storage.TryResolve(subject, out var storageTile))
+                { sprite = storageTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             if (FlatPixelGrovelandsActorsCatalog.HasKnownRole(subject))
             {
                 var actors = GrovelandsActorsArtFor(subject);
@@ -1276,6 +1306,18 @@ namespace CavesOfOoo.Rendering
             if (_stumpFaunaArt == null && _loadOptionalResources)
                 _stumpFaunaArt = new FlatPixelStumpFaunaCatalog();
             return _stumpFaunaArt;
+        }
+
+        private FlatPixelSharedStorageCatalog SharedStorageArtFor(Entity owner)
+        {
+            if (!FlatPixelSharedStorageCatalog.HasKnownRole(owner)) return null;
+            if (_sharedStorageArt == null)
+            {
+                if (_loadOptionalResources) _sharedStorageArt = new FlatPixelSharedStorageCatalog();
+                else if (_storageAnchorsAtlas != null || _storageCellarAtlas != null)
+                    _sharedStorageArt = new FlatPixelSharedStorageCatalog(_storageAnchorsAtlas, _storageCellarAtlas, null, null);
+            }
+            return _sharedStorageArt;
         }
 
         private FlatPixelGrovelandsActorsCatalog GrovelandsActorsArtFor(Entity owner)
@@ -1477,6 +1519,8 @@ namespace CavesOfOoo.Rendering
             _incidentalActorArt = null;
             _stumpFaunaArt?.Dispose();
             _stumpFaunaArt = null;
+            _sharedStorageArt?.Dispose();
+            _sharedStorageArt = null;
             _grovelandsActorsArt?.Dispose();
             _grovelandsActorsArt = null;
             _incidentalEquipmentArt?.Dispose();

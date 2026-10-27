@@ -1,0 +1,39 @@
+{
+  "focused": {
+    "total": 136,
+    "passed": 136,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 5.5558454,
+    "resultState": "Passed"
+  },
+  "related": {
+    "total": 470,
+    "passed": 470,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 37.5016037,
+    "resultState": "Passed"
+  },
+  "distinct_passed": 606,
+  "overlap": 0,
+  "red_failed": 43,
+  "source_sha256": {
+    "Assets/Tests/EditMode/FlatPixelSharedStorageTests.cs": "f4c4ab5ecf881e4ac45a1232dadaec9540eb7f4dad7aacbb184f5a400e5ca499",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelSharedStorageCatalog.cs": "2c3913eb439625c36f5df97d423f54f0daa396b2bc01b96b50750911799ef0dd",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "49ffcbb269b032de5b5d51635e0c7656e4e7adf0f2f0d71af6c72b0533d3a072"
+  },
+  "fixture_corrections": [
+    "inaccessible internal SpatialZone replaced by public cell membership before native RED",
+    "Paint test helper detaches borrowed catalog before disposal; same43 assertions retained"
+  ],
+  "independent_review_regression": "5 old anchor tests failed prior borrowed-constructor correction, all39 now pass",
+  "actual_play_pending": false,
+  "actual_play_receipt": "shared-storage-after-play.json",
+  "actual_play_limits": [
+    "Five genuine storage bodies/readers observed in four regions; ordinary mimic remains unobserved",
+    "Crate transfer and functional freshContinue; clean before/after image equality not claimed",
+    "Successful key unlock and destruction verified native-only in this slice",
+    "Source publication and fresh packaging pending"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "native_job": "ff95d32c5f6048f38c43bd845d2ccbc3",
+  "native_full_result": "Docs/Verification/Live16x24/shared-storage-native-red.json",
+  "sha256": "8ebf1d5a80be6fc70fedefb5532eab0182a36a929d3ae676c6bacb3c80aad603",
+  "test_source_at_red_sha256": "cc1567cd7601b3a8a1150bd2ff21928e4a46c0f26817c47fe2e4ce0cd2d3960e",
+  "native_before_production": true,
+  "attempts": [
+    {
+      "job": "73b84eb4eebe4f6d895011c726dcda77",
+      "cases": 0,
+      "valid_red": false,
+      "note": "Force refresh later exposed test-only inaccessible Entity.SpatialZone; fixed via public Cell.ParentZone."
+    },
+    {
+      "job": "dc5e0aa07993496399ea2daf38e18e9e",
+      "completed": 43,
+      "status": "failed",
+      "note": "XML exporter left prior zero-case result; raw capped MCP progress retained in session."
+    },
+    {
+      "job": "ff95d32c5f6048f38c43bd845d2ccbc3",
+      "failed": 43,
+      "passed": 0,
+      "skipped": 0,
+      "note": "Completed Job.Result exported directly, including all43 native leaf records. XML exporter remained stale after re-registration; precise callback failure cause not established. Both zero-case XMLs labelled invalid/stale and never acceptance."
+    }
+  ],
+  "fixture_review": "Paint lifetime review correction recorded separately; no runtime production existed at this native RED.",
+  "review_regression": {
+    "before_fix": "shared-storage-injected-anchors-red.json",
+    "cases": 39,
+    "passed": 34,
+    "failed": 5,
+    "cause": "Injected Greybox inputs were not retained for shared adapter; fixed borrowing anchors/cellar without resource reload."
+  }
+}

@@ -1,6 +1,8 @@
 # Graphics completion plan
 
-**Current shale delivery checkpoint — 2026-10-27:** Shale depths 5/6 are delivered from verified main source a10e13300: 467 retained distinct native passes, bounded Editor evidence, seven actual fresh Mac views, Rubble reader, ordinary 5→4→5→6→5 travel and full-process Continue at turn 12590, HP33. The 564,000-pixel Mac world rectangle matches exactly. Both builds have zero errors/four warnings; Linux archive integrity and scoped restoration passed independent review. Source is published; delivery-evidence commit remains pending. Whole-area polish, Linux/Deck gameplay and sustained performance are unaccepted. Next is shared storage with its mandatory mimic disguise guard; actual before views are pending. Slate7 remains a fallback baseline only. All55+5 polish states remain unchanged. Last actual hourly report19:28:00UTC; next20:28:00UTC.
+**Current shared-storage source-ready checkpoint — 2026-10-27:** Shared-storage body integration is independently reviewed as a bounded five-genuine-owner Editor pass:606 distinct native passes after43 RED failures, four immutable bodies and a separate living MimicChest guard. Eighteen actual captures retain five body/readers, Crate transfer and functional fresh Continue, plus ordinary StrongBox cave→surface→cave return to70,3,HP23 and F5fixture105turn11290. The05 Pause/06 clean image comparison remains invalid. Ordinary mimic, successful-key unlocking and destruction remain unobserved in actual play. Source publication and fresh shared-storage packages are pending; current main51810153080 and shale packagesa10e13300 remain verified. Profile peaks and sparse surface composition are retained without performance or polish acceptance; all55+5 polish states remain unchanged. Last actual hourly report20:28:11UTC; next21:28:11UTC.
+
+**Historical shale delivery checkpoint — 2026-10-27:** Shale depths 5/6 are delivered from verified main source a10e13300: 467 retained distinct native passes, bounded Editor evidence, seven actual fresh Mac views, Rubble reader, ordinary 5→4→5→6→5 travel and full-process Continue at turn 12590, HP33. The 564,000-pixel Mac world rectangle matches exactly. Both builds have zero errors/four warnings; Linux archive integrity and scoped restoration passed independent review. Source is published; delivery-evidence commit remains pending. Whole-area polish, Linux/Deck gameplay and sustained performance are unaccepted. Next is shared storage with its mandatory mimic disguise guard; actual before views are pending. Slate7 remains a fallback baseline only. All55+5 polish states remain unchanged. Last actual hourly report19:28:00UTC; next20:28:00UTC.
 
 **Historical shale Editor checkpoint —2026-10-27:** Shale depths5/6 reached a bounded actual Editor checkpoint with467 distinct native passes and17 captures. Root observed all six readers, real wall damage/destruction to traversable Rubble, fresh Continue persistence and ordinary5→4→5→6→5 travel. The depth6 bear interruption (HP33→8) is retained in fixture94; a separate trial from earlier earned92 completed the wall/restart journey at HP33, final fixture96 turn12730. Independent source/art/Editor review is complete with no new significant issue; source publication and fresh Mac/Linux delivery remain pending. Current delivered package remains limestone7f49fb700 with evidencecd5e9af1a verified. Profile includes large maxima and tool/idle overhead, with no improvement or Deck claim. Whole-area polish and remaining world coverage stay open. Last actual hourly report19:28:00UTC; next20:28:00UTC.
 
@@ -3857,3 +3859,98 @@ The two retained Mac logs contain five and six thread-finalization warnings resp
 Next is [shared storage](GRAPHICS-SHARED-STORAGE.md): five genuine storage families—Chest, LockedChest, StrongBox, Crate and OreCache—plus the mechanically required MimicChest disguise guard, counted separately. The source plan targets cross-biome/cave benefit; actual before capture, art/reuse decisions, RED/runtime and acceptance remain pending. Source candidates span five of six surface biomes plus caves, not every owner in every biome; retain Grovelands ecology. [Slate's separate baseline](Verification/Live16x24/slate-caves-before-play.json) records normal depth7 entry, F5 fixture98 at turn 12620/HP33, and return to6. It still uses fallback; depth8, slate material acceptance and full-area review are unobserved. Its source plan is queued behind shared storage.
 
 All 55+5 polish states remain unchanged. The last actually sent hourly report stays 19:28:00UTC, next due 20:28:00UTC; this delivery record does not count as another hourly report.
+
+
+## Shared storage continuation and actual hourly report — 2026-10-27 20:28:11 UTC
+
+Shared storage is in progress with606 distinct native passes (136 focused batch plus470 disjoint related; zero failures/skips) after43 genuine RED failures. Four immutable body frames cover five genuine storage identities plus a separately counted living MimicChest disguise guard. All five genuine before trials are retained. Actual Stump Crate world/reader, item67306 transfer and fixture104 fresh Continue functionally passed; image05 includes Pause and06 is clean gameplay, so the pixel comparison is invalid and no equality is claimed. Other after checks and ordinary mimic observation remain pending. Shared-storage source publication and packages are pending; current verified main/delivery is51810153080 with shale runtime/packagesa10e13300. All-world coverage and all55+5 polish statuses remain open and unchanged.
+
+The [native summary](Verification/Live16x24/shared-storage-native-summary.json)
+retains the43-case genuine RED,136-case focused batch and470 disjoint related
+passes. The inaccessible test-only SpatialZone assertion was corrected before
+RED. The Paint helper lifetime correction preserves all43 assertions; the old
+anchor injection regression was corrected and its39-case suite passes within
+the606 total. These are current native results, not606 new storage cases.
+
+The [before receipt](Verification/Live16x24/shared-storage-before-play.json)
+contains five genuine identities across Sill, Stump, shallow caves, limestone
+and Beating. OreCache/LockedChest use remote Look; the latter route's HP38→7
+combat interruption remains explicit. No ordinary mimic was observed. The
+[after receipt](Verification/Live16x24/shared-storage-after-play.json) currently
+proves the Crate67305 body/reader, real EmberFruit67306 transfer, remaining
+items67307/67308 and fresh fixture104 Continue at45,2,HP29,turn9100.
+Capture05 has Pause UI while06 shows clean gameplay: the retained pixel
+comparison is invalid as equality evidence, despite verified functional state.
+
+**Actual hourly report sent20:28:11UTC; next21:28:11UTC.** Completed: retained
+shale delivery,606 native checks and first functional Crate route/restart.
+In progress: remaining storage actual checks, source publication and packages.
+Goals for the coming session: Finish ordinary shared-storage after world/readers and real access/state checks using earned fixtures; preserve the unobserved ordinary mimic gap. Review actual evidence, then publish exact source and verify fresh Mac/Linux delivery. Continue remaining surface, underground and special-area sprite families, including queued slate/deeper strata, actors, hazards and props. Coverage is separate from later serious area-by-area polish; defer optional nuanced animation.
+
+All55 inventory-polish and5 Stump-area polish statuses stay unchanged. Sparse
+centers, subtle blocking cues and missing families remain named debt. No
+approved pixels were changed, no cleanup performed, and no shared-storage
+package, Linux/Deck execution, performance or whole-area acceptance is claimed.
+
+
+## Shared storage — final five-owner Editor checkpoint, 2026-10-27
+
+Shared-storage body integration has606 distinct native passes after43 genuine RED failures, with four immutable body frames for five genuine identities and a separate living MimicChest disguise guard. All five genuine bodies/readers are now observed through independent ordinary earned-fixture Continue in four regions: Stump Crate, shallow-cave StrongBox, Sill Chest, limestone OreCache and Beating LockedChest. Crate item67306 transfer and fixture104 fresh Continue functionally passed; image05 Pause versus06 clean gameplay cannot establish pixel equality. No ordinary mimic, successful key unlock or destruction was observed in this slice; the latter mechanics remain native-only. Root finished with Play false, save root null and scene clean. Independent actual review, shared-storage source publication and fresh packages remain pending. Main51810153080 and shale packagesa10e13300 remain current. All55+5 polish states are unchanged.
+
+The [updated actual receipt](Verification/Live16x24/shared-storage-after-play.json)
+retains16 captures and five separately restored earned trials. These are
+ordinary input observations in four regions, not one continuous inter-region
+journey. Native evidence remains606 passed, zero failed/skipped, with no rerun
+for this record update.
+
+- **Stump Crate67305:** world and Wood10/10 reader, real Open/EmberFruit67306
+  transfer, two retained items67307/67308, F5fixture104turn9100 and functional
+  fresh Continue at45,2,HP29. Pause image05 and clean image06 remain an invalid
+  equality comparison; no pixel-match claim.
+- **Shallow StrongBox72917:** world/reader and real no-key Unlock refusal retain
+  locked/solid state at70,2. No successful unlock or transfer.
+- **Sill Chest7483:** world/Wood14/14 reader and real Open retain its three
+  grimoires; no transfer. This is the old earned99 graph.
+- **Limestone OreCache86894:** world and remote Look/reader at34,16 from44,16,
+  HP33. No approach, opening or loot transfer.
+- **Beating LockedChest39340:** world and remote Wood18/18 reader preserve
+  fixture103's HP7/Poisoned/Confused interruption. No movement, healing, unlock
+  or access was manufactured.
+
+Named polish debt stays explicit: Stump's broad sparse center and subtle dome
+blocking cues; old Sill99's generic grass and glyph water; compact limestone
+OreCache contrast; Beating's remaining glyph actors. These are observations
+for later area review, not status promotions or a claim about newly generated
+Sill. All55 inventory and5 Stump-area polish states remain unchanged.
+
+Next: Complete independent actual review, publish the exact owned shared-storage source, then verify fresh Mac ordinary use/restart and Linux archive integrity. Preserve ordinary mimic, successful key and destruction gameplay limits. Continue remaining surface, underground and special-area sprite families rather than optional animation; queued slate/deeper strata, actors, hazards, props and separate serious biome/area polish remain open.
+
+Last actual hourly report remains **20:28:11UTC**, next **21:28:11UTC**. This
+checkpoint does not advance the report clock. Current verified source base is
+51810153080; current packages remain shalea10e13300. No cleanup occurred.
+
+
+### Shared storage source-ready checkpoint — review and ordinary return verified
+
+The [independent actual review](Verification/Live16x24/shared-storage-independent-review.md)
+now passes the bounded five body/reader pairs; it does not accept unseen mimic,
+successful-key/destruction gameplay or whole-area polish. The updated
+[actual receipt](Verification/Live16x24/shared-storage-after-play.json) adds
+captures17/18: from StrongBox101 at70,3,HP23, ordinary movement to56,7,
+ascent to0.9.0, descent to0.9.1 and return to the original StrongBox72917
+at70,3,HP23. F5fixture105 saves turn11290. Root verified stopped Play, null
+isolated root and clean scene. There are now18 captures; the earlier05/06
+Pause-versus-clean pixel comparison remains rejected.
+
+The [117.230491-second Editor profile](Verification/Live16x24/shared-storage-profile.json)
+retains45,131 valid samples per marker and raw CSVs. Main Thread peaks at
+1,798.074834ms; ZoneRenderer peaks at93.92225ms. Ordinary movement, idle and
+tool overhead are included, with no matched-before attribution, speedup,
+sustained packageFPS or physical Deck claim. Actual surface0.9.0 is a broad
+sparse scraped-ground field, added to the existing Stump/Sill/OreCache/Beating
+polish debt without advancing any55+5 polish status.
+
+Native606 remains unchanged. Review is complete for this bounded source
+checkpoint; **source publication and fresh packages remain pending**. Current
+main518 and shalepackagesa10 are preserved. Last actual hourly report remains
+20:28:11UTC, next21:28:11UTC; this is not another report.
