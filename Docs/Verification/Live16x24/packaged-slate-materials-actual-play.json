@@ -1,0 +1,414 @@
+{
+  "schema": "caves-of-ooo.packaged-actual-play.v1",
+  "recorded_at_utc": "2026-10-27T23:58:03.968957+00:00",
+  "source_commit": "702cb9d8096e6dd8eebfd93cdeb08b22d5aece27",
+  "status": "bounded packaged Mac delivery verified; restoration complete; broader acceptance remains open",
+  "provenance": {
+    "execution": "Root performed fresh builds and ordinary standalone Mac inputs; process exits confirmed by root before relaunch and after final run.",
+    "record_author": "Read receipts and earned Quick metadata, viewed all eight original PNGs, hashed files, decoded restart world rectangle, checked native row identities and log messages. No gameplay/build/Unity/Git or restoration execution by record author.",
+    "independent_review": "Docs/Verification/Live16x24/packaged-slate-materials-independent-review.md independently streamed the archive and reviewed all eight Mac captures/restoration bindings."
+  },
+  "builds": {
+    "mac": {
+      "job_id": "build-d887afe392",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-27-slate-materials-702cb9d80-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T23:45:06.244141Z",
+      "duration_seconds": 67.810062,
+      "completed_at": "2026-10-27T23:46:14.054203Z",
+      "total_size_mb": 344.54,
+      "errors": 0,
+      "warnings": 5
+    },
+    "linux": {
+      "job_id": "build-5bcb7441d6",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-27-slate-materials-702cb9d80-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T23:46:27.164792Z",
+      "duration_seconds": 64.697521,
+      "completed_at": "2026-10-27T23:47:31.862313Z",
+      "total_size_mb": 325,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "native_tests": {
+    "focused_passed": 36,
+    "related_passed": 234,
+    "distinct_passed": 270,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0,
+    "new_execution_for_this_record": false,
+    "metadata_limit": "Post-Play focused job result is null; related job result has empty case rows. Separately retained full raw results and actual job metadata remain byte-pinned; no fabricated job results or test times."
+  },
+  "capture_format": {
+    "dimensions": [
+      1280,
+      856
+    ],
+    "titlebar_height_pixels": 56,
+    "original_files_unchanged": true
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-01-launch.png",
+      "bytes": 205530,
+      "sha256": "f07f80025db290378a3061e3a81056e26d6077cc63ebf5ac0e43d8a09e64a6df",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "Launch screen offers ordinary Continue; its initial surface view is not a Slate gameplay view."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-02-continue8.png",
+      "bytes": 170301,
+      "sha256": "f38cffa34e87c74d2b7621895e7779836995fa92b611aadb23123127a622e692",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "Continue115 shows depth8, player44,10,HP33/40 and native Slate floor/wall bodies."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-03-rubble-reader.png",
+      "bytes": 195586,
+      "sha256": "2e293be2c79620476618e1979d2d0826cb15b6c0eccdf1c8b4664ff6e4939191",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "Authorized Rubble reader at44,7 shows the inherited rubble identity and portrait."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-04-wall-reader.png",
+      "bytes": 200245,
+      "sha256": "a719aa6c72facc121caee257af717efbbde73b28020388e8a97e6c6664eea126",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "Authorized SlateWall reader at45,7 shows Stone,38/38 structure and native wall portrait."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-05-rubble-traverse-save.png",
+      "bytes": 166094,
+      "sha256": "e1800abadfd79e44c0707bc5d90f1ac0dcce8efa9ff37b42dcc167993902069c",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "Player occupies passable Rubble44,7,HP33/40; log reports Game saved, fixture116."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-06-fresh-continue.png",
+      "bytes": 168064,
+      "sha256": "b97f04af8a48040e457e4d4b194ad6da5574890848ff1fd7a3844f8ec9bdd641",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "After full process quit/relaunch, Continue116 restores44,7,HP33/40 with Rubble in Focus."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-07-up7.png",
+      "bytes": 170153,
+      "sha256": "386b59297ae62842a4bbfabefcf55ad6a2532f14c6a967d30a339243a83c078d",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "Ordinary ascent reaches depth7 stairs at40,10 withHP25/40 and Charred after real ember/fire damage."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-08-return8-save.png",
+      "bytes": 175016,
+      "sha256": "a69374195ca28fd130711d2df839693f411c80131ca7bd643d96cd58253d0b8f",
+      "dimensions": [
+        1280,
+        856
+      ],
+      "observation": "Ordinary descent returns depth8 upstairs40,10,HP25/40,Charred; Game saved as fixture117."
+    }
+  ],
+  "ordinary_input_sequence": [
+    {
+      "process": 1,
+      "steps": "C Continue115; Up\u00d72; L,Up,Return,X reads Rubble44,7; Escape\u00d72; L,Up,Right,Return,X reads SlateWall45,7; Escape\u00d72; Up onto Rubble44,7; F5 earns116 turn13080 HP33; CmdQ, root confirms process absent."
+    },
+    {
+      "process": 2,
+      "steps": "Relaunch; C Continue116 restores44,7 HP33; Down\u00d73,Left\u00d74,< ascends to7 at40,10 after actual Charred Husk ember/fire reduces HP to25; > returns8 at40,10; F5 earns117 turn13170 HP25,Charred; root confirms final quit."
+    }
+  ],
+  "restart_world_comparison": {
+    "before": "Docs/Verification/Live16x24/packaged-slate-materials-mac-05-rubble-traverse-save.png",
+    "after": "Docs/Verification/Live16x24/packaged-slate-materials-mac-06-fresh-continue.png",
+    "decoded_mode": "RGB",
+    "rectangle_ltrb": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "pixels_compared": 564000,
+    "changed_pixels": 0,
+    "scope": "World rectangle only; not full-window/log equality or all saved-field equality."
+  },
+  "fixtures": [
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-wreckage115",
+      "role": "unchanged earned Editor starting fixture115",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.16.13.8",
+        "ActiveZoneDisplayLabel": "Overworld.16.13.8",
+        "Turn": 13050,
+        "SaveTimestampUtc": "2026-10-27T23:38:25.1576050Z",
+        "HPSummary": "33/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "observed_player_cell": [
+        44,
+        10
+      ],
+      "cell_evidence": "root ordinary-input report and original PNG Focus; no binary-save parser used by record author",
+      "files": [
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-wreckage115/Quick.json",
+          "bytes": 412,
+          "sha256": "56247f43b8081569f76986c4d0aa5eb6e3e3400acff09a833966f0e08583f648"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-wreckage115/Quick.sav.gz",
+          "bytes": 1768388,
+          "sha256": "39f806076ba6d06910a29148e88052263d632a5d3525c94575ce07c8e7db3e00"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-wreckage115/README.md",
+          "bytes": 316,
+          "sha256": "790b3fe16d4aaf0d07eb82c2fe1a0fdb110eb9fe124458441be92e824609c2a8"
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged116",
+      "role": "earned first Mac process save116; reused by fresh Continue",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.16.13.8",
+        "ActiveZoneDisplayLabel": "Overworld.16.13.8",
+        "Turn": 13080,
+        "SaveTimestampUtc": "2026-10-27T23:47:43.1758920Z",
+        "HPSummary": "33/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "observed_player_cell": [
+        44,
+        7
+      ],
+      "cell_evidence": "root ordinary-input report and original PNG Focus; no binary-save parser used by record author",
+      "files": [
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged116/Quick.json",
+          "bytes": 412,
+          "sha256": "9b73812bf96bff94f7ece74ae079b65369e4820514c8ca5006e8c3d7a46734b7"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged116/Quick.sav.gz",
+          "bytes": 1768393,
+          "sha256": "33f1ccd9c00d5b9bea641f61f3490b8c615145000461b7a499dc39e3c27e4b2f"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged116/README.md",
+          "bytes": 152,
+          "sha256": "23cceb60ce6f58f3fff149ce5554c317e10926f919f39e65382c9a8082732176"
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged117",
+      "role": "earned second Mac process save117 after ordinary8\u21927\u21928 and fire damage",
+      "metadata": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.16.13.8",
+        "ActiveZoneDisplayLabel": "Overworld.16.13.8",
+        "Turn": 13170,
+        "SaveTimestampUtc": "2026-10-27T23:51:42.5477150Z",
+        "HPSummary": "25/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "observed_player_cell": [
+        40,
+        10
+      ],
+      "cell_evidence": "root ordinary-input report and original PNG Focus; no binary-save parser used by record author",
+      "files": [
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged117/Quick.json",
+          "bytes": 412,
+          "sha256": "9840d0ea9d9669fc66528d0fffcb63eec5be08f09cc360e489c9e749ca956414"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged117/Quick.sav.gz",
+          "bytes": 1768678,
+          "sha256": "5c65e3ace98058a471419d905b0436c3431ca887cc3125faac8ce6c696d9a550"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/slate-materials-packaged117/README.md",
+          "bytes": 391,
+          "sha256": "2d2ccd26bb9dc8d7b039acefb121bb3f7a712e656b89cf5adc64b027b2c15cd8"
+        }
+      ]
+    }
+  ],
+  "logs": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-run1.log",
+      "bytes": 4048,
+      "sha256": "38824f3d9e31b126d7696c0431e94d1db7fdd15bb6ec7a6926c3c60eddab5e80",
+      "thread_finalization_messages": 6,
+      "compute_buffer_disposal_messages": 1,
+      "error_exception_failed_matching_lines": 0
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-run2.log",
+      "bytes": 4016,
+      "sha256": "6f50f3e4e15d94fdcfb3ce85d07cfdcca370162c494a8a8415e55d23268573fb",
+      "thread_finalization_messages": 6,
+      "compute_buffer_disposal_messages": 1,
+      "error_exception_failed_matching_lines": 0
+    }
+  ],
+  "archive": {
+    "path": "Builds/SteamDeck/2026-10-27-slate-materials-702cb9d80-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "bytes": 128812762,
+    "sha256": "805f5d7068c074cb0f42eb241889e93fee1782e0515ebb716dd447d6c222c352",
+    "members": 202,
+    "regular_files": 189,
+    "directories": 13,
+    "unpacked_file_bytes": 341281020,
+    "verification": "Package receipt and independent review verify safe complete member set, all hashes/sizes/modes,188 internal SHA256SUMS entries,sidecar,gzip EOF CRC/ISIZE/footer,build/native/source binding and credits/licenses. Record author did not repeat archive streaming.",
+    "linux_executed": false,
+    "physical_deck_tested": false
+  },
+  "restoration": {
+    "completed_at_utc": "2026-10-27T23:53:50.642393+00:00",
+    "receipt": "Docs/Verification/Live16x24/packaged-slate-materials-restoration.json",
+    "all_tracked_snapshot_objects_equal": true,
+    "snapshot_object_count": 52003,
+    "preexisting_dirty_paths_preserved": 49,
+    "generated_files_backed_up_and_restored": [
+      "Assets/Resources/Sprites/Live16x24/slate-caves.png.meta",
+      "Assets/Settings/UniversalRP.asset",
+      "Assets/UniversalRenderPipelineGlobalSettings.asset",
+      "ProjectSettings/ProjectSettings.asset",
+      "ProjectSettings/UnityConnectSettings.asset"
+    ],
+    "normal_saves_and_preferences_restored": true,
+    "normal_standalone_save_root_original_absence_restored": true,
+    "test_save_archive": "/private/tmp/coo-slate-build-restored-702cb9d80/standalone-session-Saves",
+    "prior_builds_preserved": true,
+    "cache_deletion": false,
+    "free_bytes_recorded": 408061194240,
+    "evidence_limit": "Read and hash-bound completed root receipt/input manifest; not a second execution of snapshot/prefs/save assertions."
+  },
+  "limits": [
+    "No Linux executable or physical Steam Deck execution or controller verification.",
+    "No FPS or performance improvement claim; no fresh performance measurement.",
+    "Rubble was earned by Editor wall destruction in fixture115; no new packaged wall destruction occurred.",
+    "No every-seed, every-layout, whole-biome fullness, visual parity or area-polish acceptance.",
+    "Paired wall-slab repetition, warm world grade, frequent olive rubble, quiet floor fields and remaining glyph actors/hazards remain visible.",
+    "Both logs retain six thread-finalization messages and one ComputeBuffer disposal message; zero error/exception/failed matches does not mean clean logs.",
+    "Source/main freeze and input/process actions are root execution evidence; this record author did not independently rebuild, run the application, invoke Unity/Git, or reprove source-to-binary reproducibility.",
+    "Restoration equality is at its completed snapshot boundary, before subsequent authorized living-record edits."
+  ],
+  "evidence_files": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-mac-build.json",
+      "bytes": 467,
+      "sha256": "25ab61e7cfb16575c7ce2bf17218321fd32ad70aa29286d374094ca89ad9816e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-linux-build.json",
+      "bytes": 487,
+      "sha256": "e6fa9806f543f7c9373f9e96daf092b89cdf6ce20af114fe73705ee6339a89ea"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-linux-archive.json",
+      "bytes": 54239,
+      "sha256": "ff8644fbc121bb947fe1bc76d4cb2f199962d95a019813d7168da2f56d8e420c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-linux-build-info.json",
+      "bytes": 11977,
+      "sha256": "7519565ac0db3c2fda35dc676fb9744ab513e0c8d929d5cc31bcb2c21d7b476d"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-fixture-setup.json",
+      "bytes": 1075,
+      "sha256": "d1c6482eabdd14888f4a76bf0e54e402feb85c52fff4f867bd97303a6a9892a9"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-restoration.json",
+      "bytes": 1149,
+      "sha256": "8d0573a46d4832f7110f9d2e898ad1b17b15b83d9a4569e1ec897f254c86dd2f"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-restoration-inputs.json",
+      "bytes": 1998,
+      "sha256": "27569bf630773e3401defdffcb6e1846f19f283a15ca6b94302cbad562cc02e5"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-slate-materials-independent-review.md",
+      "bytes": 7926,
+      "sha256": "f81bf504f097d591f7b60ccf067d0f658583772e7f589a178c54d08953ad3f7b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/slate-materials-green.json",
+      "bytes": 13628,
+      "sha256": "62345a63613d4e7e3dfd7e004784b42188bd784541548477de1f04fdb09059f0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/slate-materials-related-green.json",
+      "bytes": 87088,
+      "sha256": "bd09a5b47047236a27f1dadd24ee51e31e7b9ed0fb8c85ba699c962925562f77"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/slate-materials-green-job.json",
+      "bytes": 726,
+      "sha256": "a7fae7faa776216ef598ebed2862b4cb4b790068934a5fdb77247495d49762a7"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/slate-materials-related-job.json",
+      "bytes": 848,
+      "sha256": "932428b14b6aa8688ccc2075a878314bece778baabbac77efc39235f6ce89e2a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/slate-materials-native-summary.json",
+      "bytes": 1668,
+      "sha256": "57d068ece0b51f9d5ac81ee9f7641e28c652bc2451ac44e0534af759eddd8f6f"
+    }
+  ]
+}

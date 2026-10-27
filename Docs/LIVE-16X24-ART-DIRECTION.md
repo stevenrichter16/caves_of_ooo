@@ -3990,3 +3990,28 @@ Sourcepublication/freshSlatepackagespending; currentdeliveredpackage13178.
 Lastactuallysenthourlyreport23:28UTC,next2026-10-28 00:28UTC. No deletion.
 
 Slate finalindependentreview:zeroP1/P2 in270tests/15captures; restartdelta confinednearplayerlight(max2/255),notgeometryloss. Sourcepublicationandfreshpackagesnext. Nochangehourlyclockorpolishacceptance.
+
+
+## Slate source and fresh delivery verified — 2026-10-27 23:54 UTC
+
+Source702cb9d8096e6dd8eebfd93cdeb08b22d5aece27 is verified on origin/main.
+Fresh Mac and Linux builds succeeded with zero errors (five/four warnings).
+The actual Mac test spans two processes and eight captures: Continue115,
+Rubble/SlateWall readers, real rubble traversal, F5fixture116 and fresh
+Continue116. The saved/restarted game rectangle matches all564,000 pixels.
+The later ordinary8→7→8 route preserves a real Husk attack, HP33→25 and Charred,
+then saves fixture117. Retain shutdown finalization/ComputeBuffer warnings.
+
+Linux archive805f5d7068c074cb0f42eb241889e93fee1782e0515ebb716dd447d6c222c352
+passes full202-member integrity and license review; Linux/Deck execution remains
+unperformed. Current packages now contain Slate source702cb9d80; older furniture
+packages are preserved. Restoration verifies52,003 tracked snapshot objects,
+49 preexisting dirty files, normal saves/preferences and prior builds, with no
+storage deletion. Delivery records await their exact reviewed main push.
+
+Next is [ordinary Quartzite9–10](GRAPHICS-QUARTZITE-MATERIALS.md), currently
+unobserved. Keep broader remaining regional/actor/hazard/prop coverage open.
+Material integration does not resolve paired-slab repetition, mixed glyphs or
+whole-chunk composition. All55+5 polish states are unchanged; straight walls,
+quiet floors and the disabled Shale study remain current direction. Last actual
+hourly report23:28UTC; next2026-10-28 00:28UTC. This is not a new hourly report.

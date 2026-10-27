@@ -1,6 +1,44 @@
 # Worldwide native sprite coverage
 
-**Current continuation — Slate7/8 material checks, 2026-10-27:**
+**Current continuation — fresh Slate delivery, 2026-10-27:**
+Source `702cb9d8096e6dd8eebfd93cdeb08b22d5aece27` is verified on main by root.
+Fresh Mac and Linux builds succeeded with zero errors and five/four warnings
+respectively. The retained native evidence is270 distinct passes; it was not
+rerun for packaging. Current fresh packages now use the Slate source, while the
+preceding furniture package and its evidence remain preserved.
+
+Eight actual Mac captures across two processes show Continue115, native Rubble
+and wall readers, movement onto Rubble44,7 and F5fixture116 at turn13080HP33.
+Fresh Continue116 restores44,7HP33; the05/06 world rectangle matches all564,000
+pixels. Later ordinary8→7→8 travel incurs real Husk/fire damage: HP25 and Charred
+are retained in F5fixture117 at turn13170. This is not an unharmed route or new
+packaged wall-destruction proof; the Rubble was earned during Editor play.
+
+The independent archive/Mac review passed within those bounds. Linux archive
+SHA256 is `805f5d7068c074cb0f42eb241889e93fee1782e0515ebb716dd447d6c222c352`,
+128,812,762 bytes,189 files/13 directories/202 members. Integrity is verified;
+Linux and physical Deck were not run. Each Mac process retains six premature
+thread-finalization notices and one ComputeBuffer disposal notice; no clean-log
+or new performance claim follows. Root's separate23:53:50UTC restoration verifies
+all52,003 tracked snapshot objects,49 existing dirty paths, normal Editor saves/
+preferences and prior builds. Standalone test saves were archived and the normal
+original absence restored. Five generated files were backed up/restored; no
+cache deletion occurred. Delivery evidence publication remains pending root.
+
+Repeated slabs, frequent olive Rubble, broad quiet floor patches and mixed glyph
+actors/hazards remain visible polish debt. All55 inventory and five Stump area
+polish statuses remain unchanged. Next is the [Quartzite9/10 preflight](GRAPHICS-QUARTZITE-MATERIALS.md):
+both deeper baselines remain unobserved, with no new art or native acceptance.
+Obsidian and the remaining world actor/hazard/surface/service/area families stay
+queued. The cave parity study remains parked/default-off; straight walls remain
+the default. Last actual hourly report23:28UTC; next00:28UTC on2026-10-28.
+
+Evidence: [Mac build](Verification/Live16x24/packaged-slate-materials-mac-build.json),
+[Linux archive](Verification/Live16x24/packaged-slate-materials-linux-archive.json),
+[independent package review](Verification/Live16x24/packaged-slate-materials-independent-review.md)
+and [root restoration](Verification/Live16x24/packaged-slate-materials-restoration.json).
+
+**Historical continuation — Slate7/8 material checks, 2026-10-27:**
 Genuine36-case RED preceded implementation; retained36 focused plus234 disjoint
 related tests give **270 distinct passes**, with no failures, skips or inconclusives.
 Six native cells support two Slate material identities, with four unchanged borrowed

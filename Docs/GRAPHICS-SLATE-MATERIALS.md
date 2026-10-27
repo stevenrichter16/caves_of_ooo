@@ -231,3 +231,46 @@ AIreference,partgeometry,retainedv1,validator/reproducibility receipts; earned
 evidence; living artdirection,completion,worldcoverage and bothJSONledgers.
 
 Final independent review is saved atVerification/Live16x24/slate-materials-independent-review.md,zeroP1/P2. It independently reproduced270distinctpasses/all15capturehashes. Restart13,695pixels differ only withinx373–567/y194–389 nearplayerlight,max2/255/channel; a lighting-phase cause is an inference. No lostgeometry is visible. Root also checked all19 final sourcehandoff dependencies. Exactpublication andfreshpackages remain pending.
+
+
+## Fresh delivery and restored environment — 2026-10-27 23:54 UTC
+
+Source `702cb9d8096e6dd8eebfd93cdeb08b22d5aece27` is verified on
+`origin/main`. The frozen source produced fresh Mac and Linux builds with zero
+errors: Mac has five warnings, Linux four. The native evidence remains the same
+270 distinct passes; packaging is not another native test run.
+
+Eight actual Mac captures cover two processes. Normal Continue115, Rubble and
+SlateWall readers, movement onto the destroyed wall's real Rubble and F5 produce
+fixture116 at44,7 / HP33 / turn13080. Full quit, launch and Continue116 restore
+that state. Independent comparison of captures05→06 finds zero changed pixels
+in the 940×600 game rectangle. Ordinary stairs8→7→8 then retain real Charred Husk
+ember/fire damage: HP33→25 and Charred, saved as117 at40,10 / turn13170. This is
+not a damage-free route or a new packaged wall-destruction test.
+
+The Linux transfer archive is128,812,762 bytes with SHA256
+`805f5d7068c074cb0f42eb241889e93fee1782e0515ebb716dd447d6c222c352`.
+Independent full read verifies202 safe members,189 file hashes/sizes/modes,
+13 directory modes,188 internal checksums, credits/licenses, and gzip EOF.
+The ELF64 x86-64 header is checked; Linux and physical Steam Deck were not run.
+Both Mac logs retain six premature thread-finalization messages and one
+ComputeBuffer disposal message each. No clean-log or sustained-performance claim.
+
+The bounded restoration receipt at23:53:50UTC verifies all52,003 tracked snapshot
+objects equal, including49 preexisting dirty files. Four build-generated settings
+and the owned Slate importer whitespace were backed up and restored. Normal
+Editor saves/preferences and previous builds remain unchanged; the owned Mac
+test saves were archived and the previously absent standalone save root restored.
+No cache or drive cleanup occurred; available space is408,061,194,240 bytes.
+
+Independent actual review accepts these material and delivery checks. Repeated
+paired slabs, olive Rubble, broad quiet floors, glyph hazards/actors and whole
+chunk composition remain explicit coverage/polish debt. All55 inventory and five
+Stump polish statuses remain unchanged. The Shale study stays parked and disabled.
+Delivery evidence publication is the remaining administrative gate. Next source
+scope is [Quartzite9–10](GRAPHICS-QUARTZITE-MATERIALS.md); those depths are still
+unobserved. Last actual hourly report23:28UTC; next2026-10-28 00:28UTC.
+
+Evidence: `Verification/Live16x24/packaged-slate-materials-actual-play.json`,
+`packaged-slate-materials-independent-review.md`, `packaged-slate-materials-linux-archive.json`,
+`packaged-slate-materials-restoration.json` and the actual Mac PNGs in that folder.

@@ -2,8 +2,9 @@
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.
-Slate depth7–8 native materials now have bounded Editor verification; finish
-source publication and fresh packages, then continue the remaining world queue.
+Slate depth7–8 material source and fresh Mac/Linux delivery are verified.
+Next is ordinary Quartzite depth9–10 baseline and material coverage, followed
+by the remaining world queue; see Docs/GRAPHICS-QUARTZITE-MATERIALS.md.
 Keep straight wall silhouettes as the current default. The isolated shale parity
 prototype is parked, disabled and not accepted as reference parity; preserve its
 editable candidates and evidence reversibly, with no further automatic art
