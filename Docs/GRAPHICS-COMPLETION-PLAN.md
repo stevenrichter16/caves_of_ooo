@@ -2266,3 +2266,20 @@ continuing all-biome, settlement, underground and special-site inventory. Curren
 packages are Sill; Sodden package refresh is pending. No Linux/Deck claim. Normal
 saves and unrelated work stay protected; storage is inspection-only.
 Last hourly report05:25UTC;next06:25UTC.
+
+## Current continuation — 2026-10-27 06:13 UTC
+
+District source d48f623f5 is on main. Ordinary Sodden extension now covers all
+six natural formation samples with actual matched before/after screenshots.
+22new cases went RED→GREEN; combined186=183passed,0failed,3 existing allocation
+probes inconclusive. Real PeatBank reader, east-route combat/coating, walked
+15,5→16,5→15,5 boundary and F53120/freshContinueHP4 verified. No gameplay
+state repaired for screenshots. Fullness remains incomplete: plain-water blue
+waves, missing actual owners, grass stipple and wide-board repetition.
+
+See `GRAPHICS-SODDEN-TRAVEL.md` and
+`Verification/Live16x24/sodden-ordinary-play-summary.json`. Exact source push
+and fresh Mac/Linux packaging are next; current protected packages are still
+Sill246bda61e. Future static services plan is preserved; then Beating and all
+remaining areas. No nuanced animation or storage cleanup. Root owns Unity;
+isolation restored and roots archived. Last hourly report05:25UTC,next06:25UTC.

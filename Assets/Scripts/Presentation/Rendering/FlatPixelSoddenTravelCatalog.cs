@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -6,8 +7,8 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Visible static travel materials for the three actual Sodden
-    /// district graphs. Borrows immutable textures and the current-owner selector;
+    /// <summary>Visible static travel materials for current Sodden district and
+    /// ordinary wilderness graphs. Borrows immutable textures and the current-owner selector;
     /// owns cached tiles/sprites only. No generation, state writes or admission expansion.</summary>
     public sealed class FlatPixelSoddenTravelCatalog : IDisposable
     {
@@ -16,6 +17,21 @@ namespace CavesOfOoo.Rendering
         readonly FlatPixelFallbackCatalog selector;
         readonly Tile[] travel, reeds, grass, stoneFloor, masonry;
         bool disposed;
+        // Canonical authored addresses only: bounded metadata, never cached world
+        // approval. Mutable receiving-world authority is checked on every lookup.
+        static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
+        static Dictionary<string, Vector2Int> BuildCoordinates()
+        {
+            var result = new Dictionary<string, Vector2Int>(StringComparer.Ordinal);
+            for (int x = 0; x < WorldMap.Width; x++)
+                for (int y = 0; y < WorldMap.Height; y++)
+                {
+                    string id = WorldMap.ToZoneID(x, y);
+                    if (SoddenDistrictPlan.IsSupportedZone(id) || SoddenCompositionPlan.IsWildernessZone(id))
+                        result.Add(id, new Vector2Int(x, y));
+                }
+            return result;
+        }
 
         public FlatPixelSoddenTravelCatalog(FlatPixelFallbackCatalog borrowedSelector)
             : this(Resources.Load<Texture2D>(ResourcePath),
@@ -40,7 +56,7 @@ namespace CavesOfOoo.Rendering
 
         public static bool IsSupportedZone(Zone zone)
         {
-            if (zone == null || !SoddenDistrictPlan.IsSupportedZone(zone.ZoneID)) return false;
+            if (zone?.ZoneID == null || !coordinates.TryGetValue(zone.ZoneID, out var point)) return false;
             var manager = WorldLocationContext.For(zone);
             if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
                 || !ReferenceEquals(current, zone)) return false;
@@ -48,11 +64,11 @@ namespace CavesOfOoo.Rendering
             if (map?.Tiles == null || map.POIs == null
                 || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
                 || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
-            // The finite address whitelist is checked above. Read the current map
-            // without repeatedly splitting an address for each rendered cell.
-            int worldX = zone.ZoneID == SoddenDistrictPlan.StopZoneID ? 15
-                : zone.ZoneID == SoddenDistrictPlan.CrossingZoneID ? 16 : 17;
-            return map.GetBiome(worldX, 7) == BiomeType.Sodden && map.GetPOI(worldX, 7) == null;
+            // Saved lair identity outlives mutable map labels. This query neither
+            // creates a ledger nor generates or adopts a graph during rendering.
+            return map.GetBiome(point.x, point.y) == BiomeType.Sodden
+                && map.GetPOI(point.x, point.y) == null
+                && !LairStacks.HasSavedColumn(manager, zone.ZoneID);
         }
 
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)

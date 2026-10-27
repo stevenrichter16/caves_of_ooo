@@ -292,8 +292,9 @@ namespace CavesOfOoo.Tests
             Assert.False(View().LocalGround); Assert.AreNotSame(dry.GroundTile, View().GroundTile);
             Assert.AreEqual("Grass", View().Owner?.BlueprintName); Assert.True(zone.TileState.HasCoating(X, Y, "bog-mire"));
         }
-        [TestCase("Overworld.16.7.1")] [TestCase("Overworld.15.8.0")] [TestCase("Overworld.10.10.0")]
-        public void InitialDistrictKitDoesNotSilentlyAdmitOtherAreaFamilies(string id)
+        // 15,8 is intentionally covered by the ordinary-formation positives below.
+        [TestCase("Overworld.16.7.1")] [TestCase("Overworld.10.10.0")]
+        public void SoddenMaterialsDoNotSilentlyAdmitDepthOrOtherRegionalFamilies(string id)
         { zone = Attach(id); Add("Duckboard"); IdentityFallback(); }
         [Test] public void StaleCurrentGraphRejectsAnOtherwiseQualifiedOwner()
         {
@@ -772,6 +773,244 @@ namespace CavesOfOoo.Tests
             finally { if (bad != null) Object.DestroyImmediate(bad); }
         }
 
+        // Ordinary-area scope extension. Positive graphs use the real seed65
+        // map and complete pipeline, never FormationOverride or rewritten POIs.
+        string OrdinaryAddress(Formation formation)
+        {
+            // Exact seed65 addresses entered by ordinary travel in the six before captures.
+            string id = formation == Formation.BogFace ? "Overworld.15.8.0"
+                : formation == Formation.ReedMaze ? "Overworld.16.8.0"
+                : formation == Formation.DrownedCopse ? "Overworld.17.8.0"
+                : formation == Formation.OpenMire ? "Overworld.18.8.0"
+                : formation == Formation.Causeway ? "Overworld.19.7.0"
+                : formation == Formation.PeatCuts ? "Overworld.15.5.0" : null;
+            Assert.NotNull(id, "Expected one of the six ordinary Sodden formations.");
+            var point = WorldMap.FromZoneID(id);
+            Assert.False(SoddenDistrictPlan.IsSupportedZone(id)); Assert.True(SoddenCompositionPlan.IsWildernessZone(id));
+            Assert.AreEqual(BiomeType.Sodden, manager.WorldMap.GetBiome(point.x, point.y));
+            Assert.IsNull(manager.WorldMap.GetPOI(point.x, point.y));
+            Assert.AreEqual(formation, FormationSelector.For(BiomeType.Sodden, id));
+            return id;
+        }
+        void GenerateOrdinary(Formation formation)
+        {
+            string id = OrdinaryAddress(formation);
+            Assert.False(manager.CachedZones.ContainsKey(id), "The proving graph must come from the actual cold pipeline.");
+            zone = manager.GetZone(id); Assert.NotNull(zone, id); manager.SetActiveZone(zone); Reveal(zone);
+            Assert.AreEqual(formation, FormationSelector.For(BiomeType.Sodden, id));
+            Assert.AreSame(zone, manager.CachedZones[id]); Assert.AreSame(manager, WorldLocationContext.For(zone));
+        }
+        Entity SelectedGenerated(string blueprint, Func<Cell, bool> accepts = null)
+        {
+            foreach (var owner in zone.GetReadOnlyEntities())
+            {
+                if (owner.BlueprintName != blueprint) continue;
+                var cell = zone.GetEntityCell(owner);
+                if (cell == null || accepts != null && !accepts(cell)) continue;
+                if (world.TryResolveFallback(zone, cell.X, cell.Y, out var selected)
+                    && !selected.Remembered && ReferenceEquals(selected.Owner, owner)) return owner;
+            }
+            Assert.Fail(zone.ZoneID + " has no selected real " + blueprint + " for this assertion."); return null;
+        }
+        void AssertNativeGenerated(Entity owner)
+        {
+            var cell = zone.GetEntityCell(owner); Assert.NotNull(cell);
+            Native(owner, owner.BlueprintName == "Reeds" ? "Sprites/Live16x24/opening-base" : Atlas, cell.X, cell.Y);
+        }
+        static bool HasRuntimeLairLedger(OverworldZoneManager owner)
+        {
+            // Inspection only: Inspect/BindForSave would themselves create a ledger.
+            var field = typeof(LairStacks).GetField("Ledgers", Static); Assert.NotNull(field);
+            var ledgers = (System.Runtime.CompilerServices.ConditionalWeakTable<OverworldZoneManager, LairStackLedgerPart>)field.GetValue(null);
+            return ledgers.TryGetValue(owner, out _);
+        }
+
+        [TestCase(Formation.OpenMire)] [TestCase(Formation.PeatCuts)] [TestCase(Formation.ReedMaze)]
+        [TestCase(Formation.DrownedCopse)] [TestCase(Formation.Causeway)] [TestCase(Formation.BogFace)]
+        public void OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(Formation formation)
+        {
+            GenerateOrdinary(formation);
+            string signature = zone.TileState.ToSaveString(); int version = zone.EntityVersion;
+            string key = formation == Formation.Causeway ? "Duckboard" : formation == Formation.DrownedCopse ? "DeadTree"
+                : formation == Formation.PeatCuts || formation == Formation.BogFace ? "PeatBank"
+                : formation == Formation.ReedMaze ? "Reeds" : "MirePool";
+            var subject = SelectedGenerated(key); AssertNativeGenerated(subject);
+            if (formation != Formation.DrownedCopse) AssertNativeGenerated(SelectedGenerated("MirePool"));
+            var grass = SelectedGenerated("Grass", c => zone.TileState.Get(c.X, c.Y)?.IsEmpty != false
+                && !c.Objects.Any(e => e.HasPart<CultivatedSoilPart>()));
+            var at = zone.GetEntityCell(grass); var dry = View(at.X, at.Y);
+            Assert.True(dry.LocalGround); NativeTile(dry.GroundTile, GrassAtlas);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, grass, at.X, at.Y, out var portrait, out _));
+            Assert.AreSame(Resources.Load<Texture2D>(GrassAtlas), portrait.texture);
+            Assert.AreEqual(signature, zone.TileState.ToSaveString()); Assert.AreEqual(version, zone.EntityVersion);
+            var render = subject.GetPart<RenderPart>(); string original = render.VisualVariant;
+            try
+            {
+                render.VisualVariant = "foreign ordinary look"; var cell = zone.GetEntityCell(subject);
+                IdentityFallback(cell.X, cell.Y);
+            }
+            finally { render.VisualVariant = original; }
+            AssertNativeGenerated(subject);
+        }
+
+        [TestCase(Formation.OpenMire, "biome")] [TestCase(Formation.BogFace, "poi")]
+        [TestCase(Formation.ReedMaze, "map-shape")] [TestCase(Formation.Causeway, "poi-shape")]
+        public void OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(Formation formation, string fault)
+        {
+            string id = OrdinaryAddress(formation); var point = WorldMap.FromZoneID(id);
+            zone = Attach(id); var board = Add("Duckboard"); Native(board);
+            var map = manager.WorldMap; var tiles = map.Tiles; var pois = map.POIs;
+            var previousBiome = map.GetBiome(point.x, point.y); var previousPOI = map.GetPOI(point.x, point.y);
+            try
+            {
+                for (int i = 0; i < 4; i++) Assert.True(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone));
+                if (fault == "biome") map.Tiles[point.x, point.y] = BiomeType.Beating;
+                if (fault == "poi") map.SetPOI(point.x, point.y, new PointOfInterest(POIType.MerchantCamp, "ordinary counterexample"));
+                if (fault == "map-shape") map.Tiles = new BiomeType[1, 1];
+                if (fault == "poi-shape") map.POIs = new PointOfInterest[1, 1];
+                Assert.False(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone)); IdentityFallback();
+            }
+            finally
+            {
+                map.Tiles = tiles; map.POIs = pois;
+                map.Tiles[point.x, point.y] = previousBiome; map.SetPOI(point.x, point.y, previousPOI);
+            }
+            Native(board);
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void OrdinarySavedLairAuthorityOutlivesErasedMapLabels(bool legacy)
+        {
+            string id = OrdinaryAddress(Formation.OpenMire); var point = WorldMap.FromZoneID(id);
+            zone = Attach(id); var control = Add("Duckboard"); Native(control);
+            var ordinaryManager = manager; var ordinaryGraph = zone;
+            try
+            {
+                manager = OverworldZoneManager.CreateDetached(content.Factory, 65, true);
+                Assert.IsNull(manager.WorldMap.GetPOI(point.x, point.y));
+                manager.WorldMap.SetPOI(point.x, point.y, new PointOfInterest(POIType.Lair, "saved authority probe", null, 1, "MawToad"));
+                if (legacy) LairStacks.Restore(manager, null);
+                zone = manager.GetZone(id); Assert.NotNull(zone); manager.SetActiveZone(zone); Reveal(zone);
+                var claim = LairStacks.Inspect(manager, id); Assert.NotNull(claim); Assert.AreEqual(legacy, claim.Legacy);
+                manager.WorldMap.SetPOI(point.x, point.y, null);
+                Assert.AreEqual(BiomeType.Sodden, manager.WorldMap.GetBiome(point.x, point.y));
+                Assert.AreSame(zone, manager.CachedZones[id]);
+                Assert.False(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone), "The saved lair still owns this otherwise ordinary-looking column.");
+                var ground = SelectedGenerated("Grass"); var cell = zone.GetEntityCell(ground);
+                Add("Duckboard", cell.X, cell.Y); IdentityFallback(cell.X, cell.Y);
+                Assert.NotNull(LairStacks.Inspect(manager, id), "Presentation must not discard the saved authority.");
+            }
+            finally { manager = ordinaryManager; zone = ordinaryGraph; }
+            Native(control);
+        }
+
+        [TestCase("unbound")] [TestCase("replaced")]
+        public void OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph(string fault)
+        {
+            string id = OrdinaryAddress(Formation.ReedMaze); zone = Attach(id);
+            var owner = Add("Duckboard"); Native(owner);
+            if (fault == "unbound")
+            {
+                zone = new Zone(id); Reveal(zone); Assert.IsNull(WorldLocationContext.For(zone));
+                owner = Add("Duckboard"); IdentityFallback();
+            }
+            else
+            {
+                manager.SetActiveZone(new Zone(id));
+                Assert.False(world.TryResolvePresentation(zone, X, Y, out _));
+                Assert.False(world.TryGetPresentationSubjectSprite(zone, owner, X, Y, out _, out _));
+            }
+            Assert.False(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone));
+            manager.SetActiveZone(zone); Native(owner);
+        }
+
+        [TestCase("Overworld.16.1.0")] [TestCase("Overworld.16.4.0")]
+        [TestCase("Overworld.10.11.0")] [TestCase("Overworld.16.08.0")]
+        public void OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(string id)
+        {
+            string normalID = OrdinaryAddress(Formation.BogFace); zone = Attach(normalID); Native(Add("Duckboard"));
+            var point = WorldMap.FromZoneID(id); var map = manager.WorldMap;
+            var previousBiome = map.GetBiome(point.x, point.y); var previousPOI = map.GetPOI(point.x, point.y);
+            try
+            {
+                // Counterexample only: altered map labels cannot grant canonical ordinary-address authority.
+                map.Tiles[point.x, point.y] = BiomeType.Sodden; map.SetPOI(point.x, point.y, null);
+                zone = Attach(id); Add("Duckboard");
+                Assert.False(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone)); IdentityFallback();
+            }
+            finally { map.Tiles[point.x, point.y] = previousBiome; map.SetPOI(point.x, point.y, previousPOI); }
+            zone = Attach(normalID); Native(Add("Duckboard"));
+        }
+
+        [TestCase("Grass")] [TestCase("DeadTree")]
+        public void OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire(string blueprint)
+        {
+            GenerateOrdinary(Formation.DrownedCopse);
+            var owner = SelectedGenerated(blueprint, c =>
+            {
+                var s = zone.TileState.Get(c.X, c.Y);
+                return s != null && s.Coatings.Count == 1 && s.Coatings[0].Id == "water" && s.Coatings[0].Turns > 0
+                    && s.Residues.Count == 0 && s.Heat == 0 && s.Cold == 0 && s.Charge == 0 && string.IsNullOrEmpty(s.Cloud);
+            });
+            var cell = zone.GetEntityCell(owner); int x = cell.X, y = cell.Y;
+            Assert.True(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone));
+            string state = zone.TileState.ToSaveString();
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); var wet = View(x, y);
+                Assert.AreSame(owner, wet.Owner); Assert.False(wet.RepresentedMire); Assert.False(wet.RepresentedBrine); Assert.False(wet.LocalGround);
+                if (blueprint == "DeadTree") NativeTile(paint.At(x, y), Atlas);
+                Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.MarkAt(x, y));
+                Assert.AreEqual(state, zone.TileState.ToSaveString());
+                Assert.True(zone.TileState.RemoveCoating(x, y, "water")); paint.Dirty(x, y); paint.Step();
+                Assert.IsNull(paint.MarkAt(x, y)); Assert.True(View(x, y).LocalGround); NativeTile(paint.GroundAt(x, y), GrassAtlas);
+                zone.TileState.WriteCoating(x, y, "water", ZoneTileState.Permanent); paint.Dirty(x, y); paint.Step();
+                Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.MarkAt(x, y)); Assert.False(View(x, y).RepresentedMire);
+                Assert.True(zone.TileState.HasCoating(x, y, "water")); Assert.False(zone.TileState.HasCoating(x, y, "bog-mire"));
+            }
+        }
+
+        [Test] public void OrdinaryQueriesDoNotCreateLedgerGenerateGraphOrChangeMaterialState()
+        {
+            string id = OrdinaryAddress(Formation.Causeway); zone = Attach(id);
+            var grass = Add("Grass"); var board = Add("Duckboard");
+            Assert.False(HasRuntimeLairLedger(manager), "This test needs a genuinely uninitialized ledger.");
+            var owners = zone.GetReadOnlyEntities().ToArray(); int version = zone.EntityVersion, cached = manager.CachedZoneCount;
+            string state = zone.TileState.ToSaveString(); var map = manager.WorldMap;
+            for (int i = 0; i < 16; i++)
+            {
+                Native(board); Assert.True(View().LocalGround); NativeTile(View().GroundTile, GrassAtlas);
+                Assert.True(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone));
+            }
+            Assert.AreSame(map, manager.WorldMap); Assert.AreSame(zone, manager.CachedZones[id]);
+            Assert.AreEqual(cached, manager.CachedZoneCount); Assert.AreEqual(version, zone.EntityVersion);
+            Assert.AreEqual(state, zone.TileState.ToSaveString()); CollectionAssert.AreEquivalent(owners, zone.GetReadOnlyEntities());
+            Assert.AreSame(grass, zone.GetCell(X, Y).Objects.First(e => e.BlueprintName == "Grass"));
+            Assert.False(HasRuntimeLairLedger(manager), "Read-only scope must not call Inspect, TryPlan or other ledger initialization.");
+            // No allocation claim: the existing native allocation probes are inconclusive on this runtime.
+        }
+
+        [Test] public void OrdinaryNaturalCausewayDestructionRepaintsOnlyCurrentNeighborConnections()
+        {
+            GenerateOrdinary(Formation.Causeway);
+            var board = SelectedGenerated("Duckboard", c => c.X < Zone.Width - 1
+                && world.TryResolveFallback(zone, c.X + 1, c.Y, out var neighbor) && neighbor.Owner?.BlueprintName == "Duckboard");
+            var cell = zone.GetEntityCell(board); int x = cell.X, y = cell.Y;
+            Assert.True(world.TryResolveFallback(zone, x + 1, y, out var removedView)); var removed = removedView.Owner;
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); NativeTile(paint.At(x, y), Atlas);
+                int before = (int)paint.At(x, y).sprite.rect.x / 16; Assert.AreNotEqual(0, before & 2);
+                long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+                Assert.AreEqual(DestroyVerdict.Destroyed, DestructionSystem.Damage(removed, 999, null, zone));
+                Assert.IsNull(zone.GetEntityCell(removed)); Assert.False(paint.FullDirty); paint.Step();
+                NativeTile(paint.At(x, y), Atlas); int after = (int)paint.At(x, y).sprite.rect.x / 16;
+                Assert.AreEqual(before & ~2, after); Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
+                long resolved = EnvironmentSpriteRenderer.Perf.CellsResolved; paint.Step();
+                Assert.AreEqual(resolved, EnvironmentSpriteRenderer.Perf.CellsResolved);
+            }
+        }
+
         // Existing KitchenBrine submitted-paint pattern, kept local and small.
         // No alternative renderer, synthetic native selector or new test framework.
         sealed class Paint : IDisposable
@@ -809,6 +1048,7 @@ namespace CavesOfOoo.Tests
             public Tile At(int x, int y) => overlay.GetTile<Tile>(new Vector3Int(x, Zone.Height - 1 - y, 0));
             public Tile GroundAt(int x, int y) => ground.GetTile<Tile>(new Vector3Int(x, Zone.Height - 1 - y, 0));
             public TileBase Mark => marks.GetTile(new Vector3Int(X, Zone.Height - 1 - Y, 0));
+            public TileBase MarkAt(int x, int y) => marks.GetTile(new Vector3Int(x, Zone.Height - 1 - y, 0));
             public Color MarkTint => marks.GetColor(new Vector3Int(X, Zone.Height - 1 - Y, 0));
             public void Dirty(int x, int y) => Renderer.MarkCellDirty(x, y, "Sodden current material");
             public void Step()

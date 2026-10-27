@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "source_grounded_scope_and_coverage_plan_not_runtime_manifest",
-  "reviewed_at_utc": "2026-10-27T05:48:00Z",
+  "reviewed_at_utc": "2026-10-27T06:13:45.787684+00:00",
   "baseline_source_revision": "bf38cfd98 (root-provided audit baseline; no Git operation in this audit)",
   "priority": "Complete native16x24 sprite coverage across every biome and area before optional nuanced animation; ensure chunks feel intentionally composed rather than bare.",
   "bounds": [
@@ -238,9 +238,9 @@
       ],
       "coverage_axes": {
         "registered_scope": "source_inventoried",
-        "native_region_kit": "bounded_three_district_materials_28_frames_editor_verified",
-        "ordinary_scene_and_states": "not_yet_audited",
-        "chunk_composition_fullness": "reviewed_three_districts_incomplete",
+        "native_region_kit": "shared28_frame_materials_three_districts_six_natural_formations_editor_verified",
+        "ordinary_scene_and_states": "six_entry_pairs_reader_walked_boundary_and_restart_observed",
+        "chunk_composition_fullness": "six_formations_reviewed_incomplete",
         "packaged_area_acceptance": "not_yet_audited"
       },
       "source_refs": [
@@ -249,7 +249,7 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
         "Assets/Scripts/Data/Tables/PopulationTable.cs"
       ],
-      "note": "Shared materials verified only in15,7/16,7/17,7. Six ordinary formations are next; observed district service/crop/actor glyphs and regular grass composition remain open. No biome completion claim."
+      "note": "Three districts plus six natural samples and one walked neighbor observed. Material coverage extended; actual plain water, actors, flora, props and chunk polish remain incomplete. No63-cell biome-completion claim."
     },
     {
       "key": "Beating",
@@ -2329,14 +2329,14 @@
         "Hatchet",
         "Cudgel"
       ],
-      "status": "native_verified_editor_long_sword_observed_pushed_a0dbac413_package_pending",
+      "status": "pushed_a0dbac413_packaged_sill246bda61e_editor_and_actualMac_verified",
       "art": "reuse_approved_pixels_unchanged",
       "gate": "NativeRED then narrow global identity policy, ordinary carry/drop/examine travel/save/revisit; preserve regional ground/services and all disclosure guards."
     },
     {
       "id": "W2_first_nonopening_regional_scene",
-      "scope": "Sodden cutbank crossing16,7 and shelter15,7; reusable mire, duckboard, peat-bank and dead-tree static families",
-      "status": "baseline_route_and_capture_pending",
+      "scope": "Sodden three districts plus six ordinary formations; current28-frame material kit reused, remaining static owners and whole-chunk polish open",
+      "status": "district_and_ordinary_materials_editor_verified; remaining_owner_art_and_fullness_open; package_refresh_next",
       "art": "Select coherent missing material/flora/creature/prop family from real visible owners; imagegen/native production follows capture.",
       "gate": "Actual baseline, imagegen/extraction/native source, RED/GREEN current-owner/state routing, whole-scene fullness, real travel/interior/boundary captures, packages; no subtle animation."
     },
@@ -2517,5 +2517,120 @@
       "Screen fields in paint receipts describe tool Editor context; original PNGs are1280x800."
     ],
     "next": "Reuse exact material kit in all six ordinary Sodden formations; then regional functional owners and next biome."
+  },
+  "sodden_ordinary_delivery": {
+    "status": "integrated_native_verified_editor_six_formations_and_walked_neighbor; package_pending",
+    "baseline_source_commit": "d48f623f5e66f4c9f3bb3a3b47a880e9eb9a5ea5",
+    "new_frames": 0,
+    "reused_frames": 28,
+    "formation_samples": [
+      {
+        "formation": "bog-face",
+        "zone": "Overworld.15.8.0",
+        "seed": 65,
+        "tick": 2210,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "formation": "reed-maze",
+        "zone": "Overworld.16.8.0",
+        "seed": 65,
+        "tick": 2250,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "formation": "drowned-copse",
+        "zone": "Overworld.17.8.0",
+        "seed": 65,
+        "tick": 2290,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "formation": "open-mire",
+        "zone": "Overworld.18.8.0",
+        "seed": 65,
+        "tick": 2330,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "formation": "causeway",
+        "zone": "Overworld.19.7.0",
+        "seed": 65,
+        "tick": 2390,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "formation": "peat-cuts",
+        "zone": "Overworld.15.5.0",
+        "seed": 65,
+        "tick": 2590,
+        "player": [
+          40,
+          12
+        ]
+      }
+    ],
+    "native_tests": {
+      "red": {
+        "total": 22,
+        "failed": 22
+      },
+      "green": {
+        "total": 186,
+        "passed": 183,
+        "failed": 0,
+        "inconclusive": 3
+      },
+      "new_cases_passed": 22,
+      "limits": "Existing three allocation probes fail their positive control; no zero-allocation measurement claimed."
+    },
+    "actual_play": "Docs/Verification/Live16x24/sodden-ordinary-play-summary.json",
+    "fullness": "All six actual whole views independently inspected. Improved material legibility; no blanket density or biome completion. Quiet safe approaches and fog are not missing decoration. Open named issues: regular grass stipple, plain-water waves/black backing, broad causeway lattice repetition, missing actual actors/containers/plants/landmarks.",
+    "observed_fallbacks": [
+      "AcidPool",
+      "Bandfrog",
+      "BrinePool",
+      "CopperPipe",
+      "Crate",
+      "DryBrush",
+      "GinFrog",
+      "Grass",
+      "Greatdew",
+      "HollowLog",
+      "MawToad",
+      "Merchant",
+      "PeatBog",
+      "Reedfrog",
+      "Sack",
+      "StairsDown",
+      "SteamVent",
+      "VineWall",
+      "WovenBasket",
+      "plain water coating",
+      "BogSap",
+      "MendleafPlant",
+      "SumpsieveCrop"
+    ],
+    "bounds": [
+      "Six samples plus walked neighbor do not certify all63 Sodden authored surface cells or every owner/state.",
+      "No new art, world generation, subtle animation or global opening admission changes.",
+      "Sill package remains current until Sodden build refresh. No Linux or physical Deck execution."
+    ],
+    "next": "Refresh packages, then broad regional static coverage; prioritize actual water/actors/props and Beating without returning to nuanced animation."
   }
 }

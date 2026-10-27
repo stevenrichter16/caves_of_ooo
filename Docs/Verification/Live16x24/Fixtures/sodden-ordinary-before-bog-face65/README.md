@@ -1,0 +1,1 @@
+Ordinary earned seed65 baseline before ordinary-Sodden native scope extension. Reached via normal world-map travel from the works2110checkpoint. bog-face at Overworld.15.8.0, F5 tick 2210, HP 38/40. No teleport, forced reveal, regeneration, map alteration or placement. Actual-entry Game screenshot and paint receipt are in the parent verification directory.

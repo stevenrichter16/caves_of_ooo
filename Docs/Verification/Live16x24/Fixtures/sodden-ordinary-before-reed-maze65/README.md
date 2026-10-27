@@ -1,0 +1,1 @@
+Ordinary earned seed65 baseline before ordinary-Sodden native scope extension. Reached via normal world-map travel from the works2110checkpoint. reed-maze at Overworld.16.8.0, F5 tick 2250, HP 38/40. No teleport, forced reveal, regeneration, map alteration or placement. Actual-entry Game screenshot and paint receipt are in the parent verification directory.

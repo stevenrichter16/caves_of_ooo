@@ -3,7 +3,7 @@
 Status: the first integration has actual gameplay evidence. The revised 28-frame
 atlas, ground continuity and direct address lookup pass 304 native cases. Three
 allocation checks are inconclusive after their positive control returned zero.
-Final Editor gameplay, restart and profiling are verified. Main delivery is being finalized; the current packaged build remains the earlier Sill batch.
+District Editor gameplay, restart and profiling are verified and pushed as d48f623f5. Ordinary six-formation reuse is now also verified below; current packages remain the earlier Sill batch until the next delivery step.
 
 ## Purpose and scope
 
@@ -204,3 +204,79 @@ using `Verification/Live16x24/sodden-ordinary-next-plan.md`; then regional servi
 Beating and the remaining full-world queue. Last hourly report remains 05:25 UTC.
 
 Final protection: normal Editor save tree997 entries unchanged, standalone saves still absent, gameplay preferences unchanged in both domains,38 foreign tracked files unchanged. Earlier protected north-motion packages and current Sill Linux files/archive verify exactly. Current Sill Mac exists; its prior receipt lacks a tree digest, so historical byte identity is not claimed. Unity is outside Play/tests, clean SampleScene and null isolation root; owned test roots are archived. No cleanup performed.
+
+## Ordinary formation extension — started 2026-10-27 05:54 UTC
+
+District source d48f623f5e66f4c9f3bb3a3b47a880e9eb9a5ea5 is verified on origin/main.
+Reuse the frozen kit in six naturally generated ordinary Sodden formations. The
+preimplementation plan is `Verification/Live16x24/sodden-ordinary-next-plan.md`.
+Root is capturing real before views from the earned works checkpoint; the
+separate native cases will fail against the current district-only catalog before
+the scope change. Keep a bounded canonical coordinate table and current live
+map/POI/cached-graph/saved-lair checks. Copse uses plain water, not mire. No new
+asset, generation, animation or content admission framework is required.
+
+Ordinary baseline reached all six exact candidates through real world-map
+controls with unchanged HP38. Before captures and earned checkpoints cover
+15,8 BogFace tick2210;16,8 ReedMaze2250;17,8 DrownedCopse2290;18,8 OpenMire2330;
+19,7 Causeway2390;15,5 PeatCuts2590. Two input-route corrections are recorded,
+not hidden. The ordinary native scope is still unchanged at this baseline.
+All sources remain actual seed65 graphs; no POI erasure or forced reveal.
+
+Ordinary scope RED: all22 new native cases failed against the district-only
+implementation after a clean compile. Saved report: `sodden-ordinary-native-red.xml`.
+The runtime change is confined to the catalog scope: one bounded canonical
+coordinate table, the same live biome/POI/current-graph checks, and read-only
+saved-lair exclusion. Exact owner/state/material and resource handling are
+unchanged. The full Sodden plus global presentation suites are now running.
+
+Plan refinement: the proposed extra ordinary missing-atlas test is not duplicated.
+Existing district injection tests already exercise the unchanged constructor,
+optional-resource independence and truthful hazard fallback; the extension adds
+no separate resource branch. The complete Sodden fixture retains those checks.
+
+Ordinary extension native GREEN:186 cases total,183 passed,0 failed,3 pre-existing allocation probes inconclusive. All22 new ordinary cases pass. Full134-case Sodden fixture and52 global presentation cases include actual generated six-formation owners, plain-water submitted marks, legacy/current saved-lair exclusion and dirty board destruction.
+
+### Ordinary Editor acceptance — 2026-10-27 06:13 UTC
+
+All six natural formation entries now render the accepted material set. Twelve
+original before/after1280×800 captures preserve the same seed, coordinate, tick,
+view and selected-blueprint totals. Independent inspection found no changes in
+blueprint or serialized tile state at common detailed-cell coordinates. Ground-only
+Grass is omitted from after detail arrays by receipt design; numeric entity IDs
+differ after the first entry as later zones are independently reached/generated.
+No identical-ID or entire-world equality claim is made. See
+`sodden-ordinary-matched-summary.json` and the independent visual review.
+
+The real route includes2×causeway inspection, PeatCuts40,12→40,17 and a native
+PeatBank Examine10/10, then walking east and crossing15,5→16,5→15,5. A bandfrog
+encounter and mire coating caused actual HP loss38→4. That state was retained,
+not healed for a picture. F5 saved turn3120 at79,12; fresh Play Continue restored
+the exact zone/position/health and compared paint cells, ground and counts.
+Captures07–12 and the earned after-route fixture preserve these observations.
+This verifies ordinary gameplay rendering; it adds no combat mechanic.
+
+The80.45-second Editor profile covers BogFace→ReedMaze→Copse world travel plus
+idle/tool time, not all six scenes or the later walking/combat. Renderer mean
+0.103ms,p990.207ms,max63.20ms; main mean4.30ms,p9915.64ms,max920.00ms; batches
+and draws peak34. No controlled baseline, allocation, Linux execution, physical
+Deck or sustained-hardware performance claim. Native results remain183passes,
+0failures,3allocation-inconclusive; all22 additions passed after22 genuine RED.
+
+Fullness is **reviewed but incomplete** in every formation. Reed braids, peat
+faces and routes are legible; plain water remains blue-wave glyphs with black
+backing, regular grass repeats, and wide duckboard layouts repeat a lattice.
+Actual missing owner families include frogs/Greatdew/MawToad, containers, acid
+and brine, VineWall, SteamVent/StairsDown, Merchant/CopperPipe/PeatBog, plants
+and crops. Fog/memory and intentional tactical approaches are not bare-land
+evidence. No new scatter or generation was justified by these views.
+
+Self-review: 🟡 fixed the district-only coordinate restriction and retained live
+saved-lair exclusion; independent source review has no actionable defect. 🧪
+Allocation probes remain inconclusive. ⚪ Named visual residuals and all-region
+coverage remain open. The next source packet plan is
+`sodden-services-next-plan.md` (preimplementation plan only); broader Beating,
+settlements, underground and other regions remain in the world ledger. First
+refresh ordinary packaged delivery after exact source push. Approved pixels,
+normal saves, foreign edits and prior builds remain protected; no cleanup.
+Last hourly report05:25UTC; next06:25UTC.

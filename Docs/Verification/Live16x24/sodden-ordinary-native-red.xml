@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Failed(Child)" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 05:58:08Z" end-time="2026-10-27 05:58:17Z" duration="9.0181093">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32579" result="Failed" site="Child" start-time="2026-10-27 05:58:08Z" end-time="2026-10-27 05:58:17Z" duration="9.018109" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="40109" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32579" result="Failed" site="Child" start-time="2026-10-27 05:58:08Z" end-time="2026-10-27 05:58:17Z" duration="8.925621" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="40110" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32579" result="Failed" site="Child" start-time="2026-10-27 05:58:08Z" end-time="2026-10-27 05:58:17Z" duration="8.840450" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="40111" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32579" result="Failed" site="Child" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:17Z" duration="8.597912" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30723" name="FlatPixelSoddenTravelTests" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="134" result="Failed" site="Child" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:17Z" duration="8.336446" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="30864" name="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:09Z" duration="0.412677" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30860" name="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(OpenMire,&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(OpenMire,&quot;biome&quot;)" methodname="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1891531820" result="Failed" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:09Z" duration="0.122945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval (CavesOfOoo.Core.Formation formation, System.String fault) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:861
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30861" name="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(BogFace,&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(BogFace,&quot;poi&quot;)" methodname="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1643303679" result="Failed" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:09Z" duration="0.062196" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval (CavesOfOoo.Core.Formation formation, System.String fault) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:861
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30862" name="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(ReedMaze,&quot;map-shape&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(ReedMaze,&quot;map-shape&quot;)" methodname="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="836366783" result="Failed" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:09Z" duration="0.176897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval (CavesOfOoo.Core.Formation formation, System.String fault) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:861
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30863" name="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(Causeway,&quot;poi-shape&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval(Causeway,&quot;poi-shape&quot;)" methodname="OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="388104186" result="Failed" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:09Z" duration="0.047354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval (CavesOfOoo.Core.Formation formation, System.String fault) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:861
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30878" name="OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 05:58:09Z" end-time="2026-10-27 05:58:10Z" duration="0.731144" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30876" name="OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire(&quot;Grass&quot;)" methodname="OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="11353365" result="Failed" start-time="2026-10-27 05:58:10Z" end-time="2026-10-27 05:58:10Z" duration="0.149257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire (System.String blueprint) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:956
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30877" name="OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire(&quot;DeadTree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire(&quot;DeadTree&quot;)" methodname="OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="200222754" result="Failed" start-time="2026-10-27 05:58:10Z" end-time="2026-10-27 05:58:10Z" duration="0.103881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire (System.String blueprint) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:956
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30870" name="OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 05:58:10Z" end-time="2026-10-27 05:58:15Z" duration="5.541802" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30868" name="OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph(&quot;unbound&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph(&quot;unbound&quot;)" methodname="OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1713335121" result="Failed" start-time="2026-10-27 05:58:15Z" end-time="2026-10-27 05:58:15Z" duration="0.044300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph (System.String fault) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:911
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30869" name="OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph(&quot;replaced&quot;)" methodname="OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1815599222" result="Failed" start-time="2026-10-27 05:58:15Z" end-time="2026-10-27 05:58:15Z" duration="0.074127" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryMatchingAddressDoesNotAuthorizeUnboundOrReplacedGraph (System.String fault) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:911
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30880" name="OrdinaryNaturalCausewayDestructionRepaintsOnlyCurrentNeighborConnections" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalCausewayDestructionRepaintsOnlyCurrentNeighborConnections" methodname="OrdinaryNaturalCausewayDestructionRepaintsOnlyCurrentNeighborConnections" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1653556954" result="Failed" start-time="2026-10-27 05:58:15Z" end-time="2026-10-27 05:58:16Z" duration="0.421978" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sodden-travel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:85
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalCausewayDestructionRepaintsOnlyCurrentNeighborConnections () [0x00077] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:1002
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30859" name="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 05:58:16Z" end-time="2026-10-27 05:58:17Z" duration="0.729741" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30853" name="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(OpenMire)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(OpenMire)" methodname="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1780175995" result="Failed" start-time="2026-10-27 05:58:16Z" end-time="2026-10-27 05:58:16Z" duration="0.136768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.AssertNativeGenerated (CavesOfOoo.Core.Entity owner) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:818
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity (CavesOfOoo.Core.Formation formation) [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:837
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30854" name="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(PeatCuts)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(PeatCuts)" methodname="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="2082200376" result="Failed" start-time="2026-10-27 05:58:16Z" end-time="2026-10-27 05:58:16Z" duration="0.112957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.AssertNativeGenerated (CavesOfOoo.Core.Entity owner) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:818
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity (CavesOfOoo.Core.Formation formation) [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:837
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30855" name="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(ReedMaze)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(ReedMaze)" methodname="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="301847020" result="Failed" start-time="2026-10-27 05:58:16Z" end-time="2026-10-27 05:58:16Z" duration="0.124486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.AssertNativeGenerated (CavesOfOoo.Core.Entity owner) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:818
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity (CavesOfOoo.Core.Formation formation) [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:837
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30856" name="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(DrownedCopse)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(DrownedCopse)" methodname="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1891749114" result="Failed" start-time="2026-10-27 05:58:16Z" end-time="2026-10-27 05:58:16Z" duration="0.099884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.AssertNativeGenerated (CavesOfOoo.Core.Entity owner) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:818
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity (CavesOfOoo.Core.Formation formation) [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:837
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30857" name="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(Causeway)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(Causeway)" methodname="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="665253452" result="Failed" start-time="2026-10-27 05:58:16Z" end-time="2026-10-27 05:58:17Z" duration="0.129884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.AssertNativeGenerated (CavesOfOoo.Core.Entity owner) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:818
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity (CavesOfOoo.Core.Formation formation) [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:837
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30858" name="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(BogFace)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity(BogFace)" methodname="OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="480115756" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.101087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.AssertNativeGenerated (CavesOfOoo.Core.Entity owner) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:818
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryNaturalFormationUsesExistingMaterialOwnersAndRefusesCustomIdentity (CavesOfOoo.Core.Formation formation) [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:837
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="30879" name="OrdinaryQueriesDoNotCreateLedgerGenerateGraphOrChangeMaterialState" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryQueriesDoNotCreateLedgerGenerateGraphOrChangeMaterialState" methodname="OrdinaryQueriesDoNotCreateLedgerGenerateGraphOrChangeMaterialState" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1191772980" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.042870" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryQueriesDoNotCreateLedgerGenerateGraphOrChangeMaterialState () [0x000a1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:982
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30867" name="OrdinarySavedLairAuthorityOutlivesErasedMapLabels" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinarySavedLairAuthorityOutlivesErasedMapLabels" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.109537" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30865" name="OrdinarySavedLairAuthorityOutlivesErasedMapLabels(False)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinarySavedLairAuthorityOutlivesErasedMapLabels(False)" methodname="OrdinarySavedLairAuthorityOutlivesErasedMapLabels" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="897998107" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.043024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinarySavedLairAuthorityOutlivesErasedMapLabels (System.Boolean legacy) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:885
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30866" name="OrdinarySavedLairAuthorityOutlivesErasedMapLabels(True)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinarySavedLairAuthorityOutlivesErasedMapLabels(True)" methodname="OrdinarySavedLairAuthorityOutlivesErasedMapLabels" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="374210599" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.042695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinarySavedLairAuthorityOutlivesErasedMapLabels (System.Boolean legacy) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:885
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="30875" name="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.336819" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30871" name="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.16.1.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.16.1.0&quot;)" methodname="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="183148440" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.057696" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases (System.String id) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:931
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30872" name="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.16.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.16.4.0&quot;)" methodname="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1378044200" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.072011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases (System.String id) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:931
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30873" name="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.10.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.10.11.0&quot;)" methodname="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="1657326869" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.158108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases (System.String id) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:931
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30874" name="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.16.08.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases(&quot;Overworld.16.08.0&quot;)" methodname="OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases" classname="CavesOfOoo.Tests.FlatPixelSoddenTravelTests" runstate="Runnable" seed="899542511" result="Failed" start-time="2026-10-27 05:58:17Z" end-time="2026-10-27 05:58:17Z" duration="0.046173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.Native (CavesOfOoo.Core.Entity owner, System.String resource, System.Int32 x, System.Int32 y) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:92
+at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.OrdinaryScopeDoesNotAdmitAuthoredSitesWrongCountryOrNoncanonicalAliases (System.String id) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:931
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
