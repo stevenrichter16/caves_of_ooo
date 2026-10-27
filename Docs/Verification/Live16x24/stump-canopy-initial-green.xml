@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="19" result="Failed(Child)" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:24Z" duration="2.1056341">
+  <test-suite type="TestSuite" id="40814" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:24Z" duration="2.105634" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="40786" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:24Z" duration="2.060749" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="40787" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:24Z" duration="2.041102" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="40788" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:24Z" duration="2.020795" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1386" name="FlatPixelStumpSummitFaunaTests" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:24Z" duration="1.968974" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1390" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:23Z" duration="0.665313" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1387" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SummitSinger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SummitSinger&quot;)" methodname="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="374387628" result="Failed" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:22Z" duration="0.540102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader (System.String species) [0x0008d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1388" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;BrocchiniaSentinel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;BrocchiniaSentinel&quot;)" methodname="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1875919553" result="Failed" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:22Z" duration="0.050350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader (System.String species) [0x0008d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1389" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SkySari&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SkySari&quot;)" methodname="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1568099050" result="Failed" start-time="2026-10-27 14:18:22Z" end-time="2026-10-27 14:18:23Z" duration="0.045732" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader (System.String species) [0x0008d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1395" name="ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval" methodname="ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1420619478" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.226758" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval () [0x000ac] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1401" name="CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative" methodname="CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="924738697" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.053172" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:154
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1403" name="ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions" methodname="ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="526708846" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.044194" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions () [0x000ec] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:192
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1407" name="FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent" methodname="FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1877904709" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.040716" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent () [0x00133] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:229
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1409" name="NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog" methodname="NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="636627800" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.040344" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog () [0x00060] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:247
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1400" name="NewRoleCannotBypassSharedSemanticRefusal" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.265074" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1396" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;SummitSinger&quot;,&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;SummitSinger&quot;,&quot;variant&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1780670277" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.045672" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1397" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;BrocchiniaSentinel&quot;,&quot;wrong-glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;BrocchiniaSentinel&quot;,&quot;wrong-glyph&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1799621926" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.045744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1398" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;foreign-body&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;foreign-body&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="2101428120" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.045106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1399" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;dead&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="2070892218" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.044343" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1406" name="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.162941" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1404" name="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(False)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(False)" methodname="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1199489196" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.044403" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes (System.Boolean malformed) [0x00102] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:208
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1405" name="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(True)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(True)" methodname="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="156029669" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:23Z" duration="0.043261" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes (System.Boolean malformed) [0x00102] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:208
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1394" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:24Z" duration="0.301929" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1391" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SummitSinger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SummitSinger&quot;)" methodname="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1380911546" result="Failed" start-time="2026-10-27 14:18:23Z" end-time="2026-10-27 14:18:24Z" duration="0.082236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery (System.String species) [0x000df] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1392" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;BrocchiniaSentinel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;BrocchiniaSentinel&quot;)" methodname="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="156275847" result="Failed" start-time="2026-10-27 14:18:24Z" end-time="2026-10-27 14:18:24Z" duration="0.071551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery (System.String species) [0x000df] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1393" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SkySari&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SkySari&quot;)" methodname="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="206400396" result="Failed" start-time="2026-10-27 14:18:24Z" end-time="2026-10-27 14:18:24Z" duration="0.072397" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery (System.String species) [0x000df] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1402" name="SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank" methodname="SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1085975531" result="Failed" start-time="2026-10-27 14:18:24Z" end-time="2026-10-27 14:18:24Z" duration="0.097229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Square source must not stretch to fill the taller grid cell.
+  Expected: (1.00, 1.00, 0.00)
+  But was:  (1.00, 1.00, 0.20)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x0009a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:59
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank () [0x00136] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:174
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1408" name="SharedGlyphsAndCorpseProvenanceDoNotBorrowNewBodies" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.SharedGlyphsAndCorpseProvenanceDoNotBorrowNewBodies" methodname="SharedGlyphsAndCorpseProvenanceDoNotBorrowNewBodies" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="687025264" result="Passed" start-time="2026-10-27 14:18:24Z" end-time="2026-10-27 14:18:24Z" duration="0.052947" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

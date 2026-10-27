@@ -1,5 +1,18 @@
 # Graphics completion plan
 
+**Current next-three checkpoint —14:30UTC:** SummitSinger, BrocchiniaSentinel and SkySari use unchanged native sources in world/examine. Genuine RED19 preceded implementation; corrected focused19 and related266 all pass. Eleven actual Editor captures cover matching readers, Rim west/east walks, normal Summit travel, real Sentinel retreat onto its Tank, F5 and fresh Continue. Source push/fresh packages pending. Eight of nine identified Stump fauna bodies integrated and observed; MawToad, other world families and dedicated polish remain open. Last actual hourly report14:27UTC; next15:27UTC. The earlier baseline checkpoint below is historical.
+
+**Current coverage checkpoint — 2026-10-27:** First-five Stump fauna source
+`0ddd8b6abf89a22275db7c09dde39bbb47392c03` and delivery
+`d87669092c56d1f23bb99b7c33bbde8eff59ee69` are verified on main. Fresh Mac bounded
+play/restart and Linux archive/restoration are complete; Linux and Deck were not
+executed. Next: SummitSinger, BrocchiniaSentinel and SkySari, using unchanged
+16×16 fullrect cells centered at16PPU on the existing16×24 grid. One actual
+RimForest view and all three reader baselines are saved; native RED, integration
+and acceptance are pending. Broad coverage and every separate area-polish gate
+remain incomplete. See the latest continuation below and
+[the fauna phase](GRAPHICS-STUMP-FAUNA.md).
+
 **Chunk composition requirement (2026-10-26 local):** The user also requires
 chunks not to feel too bare. Fill regions with coherent, biome-appropriate
 terrain variation, flora, props and landmarks while preserving readable routes,
@@ -3146,9 +3159,9 @@ that restart. Both isolated roots are archived; root confirmed normal Editor/
 standalone state and38 foreign paths preserved. This record did not operate
 Unity or Git.
 
-Fauna source push and refreshed packages are **pending**. The current verified
+At this historical pre-delivery checkpoint, fauna source push and refreshed packages were **pending**. The then-current verified
 package remains Stump material source98e3e167b; its delivery/evidence16d98e625
-is verified on main. The new fauna is not yet claimed in that package.
+was verified on main. The new fauna was not claimed in that older package; see the later delivery/current continuation.
 
 Next: source/evidence review and delivery, then SummitSinger, BrocchiniaSentinel
 and SkySari native-cell adaptations, a crisp MawToad treatment, Grovelands
@@ -3177,3 +3190,56 @@ builds remain preserved; storage is inspection-only. No new runtime after the
 457 native passes/one skipped allocation control. Remaining four Stump fauna,
 Grovelands actors and all-world families remain queued; separate area-polish
 states remain unchanged. Last actual hourly report13:27UTC; next14:27UTC.
+
+## 2026-10-27 current continuation — delivered first five; next three at baseline
+
+Root verified first-five source `0ddd8b6abf89a22275db7c09dde39bbb47392c03` and
+subsequent delivery `d87669092c56d1f23bb99b7c33bbde8eff59ee69` on origin/main.
+The current fauna package replaces the older material-only package as the
+latest delivery pointer; earlier packages and their evidence remain preserved.
+Native evidence is **457 passed and one known allocation-counter skip across458
+distinct identities**, not all-passed and not zero-allocation proof. Bounded
+Mac evidence covers two areas/two actual readers, world travel, F5turn8200HP29
+and full process Continue; the Linux archive independently passes integrity
+checks with189files/13directories/202members. No Linux or physical Deck execution.
+Fauna restoration compares50772 tracked files, preserves44 dirty tracked paths,
+normal saves/preferences and previous builds, with the documented corrected
+snapshot sequence retained. No storage cleanup was performed.
+
+The next finite slice is **SummitSinger, BrocchiniaSentinel and SkySari**.
+[The saved BEFORE receipt](Verification/Live16x24/stump-canopy-before-receipt.json)
+records ordinary package72 Continue and Grainfield2,2→RimForest2,3 travel, actual
+readers69476/69477/69478, and four captures01–04. The earned
+`Fixtures/stump-canopy-before73` retains turn8240,player40,12HP29. Current bodies
+and readers are glyphs; passive authored AI does not imply friendly live
+relationship. One viewpoint/three readers do not establish full-area polish.
+
+Use each unchanged16×16 source as a cached centered FullRect Sprite at16PPU on
+the existing16×24 grid. This supersedes the older padded-PNG proposal: no new
+pixels, atlas or source metadata changes are needed absent a named actual
+failure. **Native RED, production integration, actual AFTER comparison,
+restart and package acceptance for these three are pending.** Do not reuse the
+first-five test totals as proof of this new slice. Root owns source/test execution
+and the current fauna phase; this record only reconciles status and saved evidence.
+
+After this finite reuse pass: MawToad's justified crisp treatment, Grovelands
+actors, Overwrit crop/soil/stair gaps, and remaining terrain/flora/creature/NPC/
+prop/service/state families across all registered biomes,17settlements,
+underground bands, sinkholes and special/interior/dungeon areas. Keep actual
+whole-chunk coherence/readable routes in each coverage gate. The separate
+mandatory serious biome-by-biome AND area-by-area polish phase remains open;
+all55inventory scopes and5Stump area records remain `not_audited`. Sparse Summit,
+subtle dome cues, wet frog palette compression, subdued Sari and black-backed
+glyph effects remain known debt. Optional nuanced animation stays deferred.
+
+**Last actual hourly report13:27UTC; next14:27UTC remain unchanged.** This
+continuation is not another hourly report and does not advance that clock.
+
+
+### Stump next-three native/Editor checkpoint —2026-10-27 14:30UTC
+
+SummitSinger, BrocchiniaSentinel and SkySari use unchanged native sources in world/examine. Genuine RED19 preceded implementation; corrected focused19 and related266 all pass. Eleven actual Editor captures cover matching readers, Rim west/east walks, normal Summit travel, real Sentinel retreat onto its Tank, F5 and fresh Continue. Source push/fresh packages pending. Eight of nine identified Stump fauna bodies integrated and observed; MawToad, other world families and dedicated polish remain open.
+
+See `Docs/Verification/Live16x24/stump-canopy-after-receipt.json`, native XMLs, runtime/visual reviews and `Docs/GRAPHICS-STUMP-FAUNA.md`. Saved turn9040, HP29/40, player50,2 and Sentinel54,5 survived fresh Continue. Normal saves and preexisting work are preserved. No storage deletion.
+
+Next: Push the reviewed next-three source, verify fresh Mac/Linux delivery, then crisp MawToad and Grovelands creature coverage. Continue remaining regional/shared sprites, settlements, interiors, underground and special sites. Keep sparse composition and area polish separate; optional animation deferred. Last actual hourly report14:27UTC; next15:27UTC.

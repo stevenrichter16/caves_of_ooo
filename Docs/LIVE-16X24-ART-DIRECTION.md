@@ -3085,3 +3085,8 @@ builds remain preserved; storage is inspection-only. No new runtime after the
 457 native passes/one skipped allocation control. Remaining four Stump fauna,
 Grovelands actors and all-world families remain queued; separate area-polish
 states remain unchanged. Last actual hourly report13:27UTC; next14:27UTC.
+
+
+### Stump next-three checkpoint — 2026-10-27 14:30 UTC
+
+SummitSinger, BrocchiniaSentinel and SkySari now reuse their approved16×16 sources, centered without stretching in native16×24 cells. Actual RimForest world/readers, western/eastern views, normal Summit travel, Sentinel retreat onto its real Tank and fresh saved Continue passed bounded review. All19 new and266 related native cases pass; the original19 RED failures and corrected Z-bounds test premise are retained. No PNG/meta, AI/combat or animation edits. Details: [phase](GRAPHICS-STUMP-FAUNA.md), `stump-canopy-after-receipt.json`, runtime/visual reviews and eleven actual after captures. Source push and fresh packages are pending; previous first-five packages remain preserved. Eight of nine identified Stump fauna bodies are integrated and observed. MawToad, remaining regional/world families, sparse composition and the separate area-polish phase remain open. Last actual hourly report14:27UTC; next15:27UTC.

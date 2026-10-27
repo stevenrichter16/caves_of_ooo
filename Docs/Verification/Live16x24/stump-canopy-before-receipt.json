@@ -1,0 +1,80 @@
+{
+  "time_utc": "2026-10-27T14:14:02Z",
+  "source_revision": "d87669092c56d1f23bb99b7c33bbde8eff59ee69",
+  "fixture_in": "Fixtures/packaged-stump-fauna72",
+  "fixture_out": "Fixtures/stump-canopy-before73",
+  "actions": [
+    "Normal Continue",
+    "World-map travel Grainfield2,2 to RimForest2,3",
+    "Look and examine SummitSinger69476, BrocchiniaSentinel69477, SkySari69478",
+    "F5 save turn8240 HP29/40",
+    "Archive isolatedroot, Finish restores normal saves"
+  ],
+  "census": {
+    "zone": "Overworld.2.3.0",
+    "x": 40,
+    "y": 12,
+    "hp": 29,
+    "actors": [
+      {
+        "id": "69476",
+        "name": "SummitSinger",
+        "x": 17,
+        "y": 8,
+        "visible": true,
+        "hp": 8
+      },
+      {
+        "id": "69477",
+        "name": "BrocchiniaSentinel",
+        "x": 19,
+        "y": 18,
+        "visible": true,
+        "hp": 10
+      },
+      {
+        "id": "69478",
+        "name": "SkySari",
+        "x": 63,
+        "y": 16,
+        "visible": true,
+        "hp": 58
+      },
+      {
+        "id": "69475",
+        "name": "SummitSinger",
+        "x": 70,
+        "y": 22,
+        "visible": true,
+        "hp": 8
+      }
+    ]
+  },
+  "images": [
+    "stump-canopy-before-01-rimforest.png",
+    "stump-canopy-before-02-singer-reader.png",
+    "stump-canopy-before-03-sentinel-reader.png",
+    "stump-canopy-before-04-sky-reader.png"
+  ],
+  "observed": "World letter bodies and generic glyph portraits for all three. Sparse center and unmapped black-backed effects/objects remain. Live relationship UI Hostile, despite authored passive defaults for Singer/Sentinel.",
+  "limits": "One real RimForest viewpoint and all three readers; no whole-area composition/polish, combat, package or performance acceptance.",
+  "isolated_archive": "/private/tmp/coo-stump-canopy-before-archived-3e37a4c0",
+  "immutable_source_sha256": {
+    "Assets/Resources/Sprites/Environment/summit_singer.png": "213c90da9ea8e5f2bcec28b48018067b0700d824c7cf38a911669de8cc1b883f",
+    "Assets/Resources/Sprites/Environment/summit_singer.png.meta": "7bf9dd44c800f460808cfb17b03618b031456cb9aacc731e80358167c7e54392",
+    "Assets/Resources/Sprites/Environment/brocchinia_sentinel.png": "94a26924ef7a5f6f2d19ebbcb75713b8445f21b3b7e20eded84864f3270ecf23",
+    "Assets/Resources/Sprites/Environment/brocchinia_sentinel.png.meta": "580cd5c529d99e4fd2d6f089c627bafbb86a89754157df83268e1ccb760f8c08",
+    "Assets/Resources/Sprites/Environment/sky_sari.png": "40134917391399812045cab63341d9c70df136180fbcbe11f0849abdcfca0561",
+    "Assets/Resources/Sprites/Environment/sky_sari.png.meta": "e5d2b18194c152ba4da1bcceefabf3240f98ae60ec8c0933e459a4ad731f184d"
+  },
+  "capture_sha256": {
+    "stump-canopy-before-01-rimforest.png": "43832f1f87fd36d13995bc60c77579bc6112118f08596659386cd680a9626853",
+    "stump-canopy-before-02-singer-reader.png": "b9164dd8bdafee4ab5211de61dcc2914852607871403e110e931324b1c61a400",
+    "stump-canopy-before-03-sentinel-reader.png": "a2d69048305d384b2f379af17067f350ff74ae31abe469196ecad68321b3daee",
+    "stump-canopy-before-04-sky-reader.png": "324f35a9fb03b3b62a797b4f58dc074ab17b4b03503984b3b13eb9fa2bff922e"
+  },
+  "fixture_sha256": {
+    "Quick.sav.gz": "cb78aa5305368b9dbe8cca61c239ad10ebe80486d4d0ddc7cfb2eb6afb7ad5ef",
+    "Quick.json": "98d296c164c79c98dd54c6115ec376b6eea2a769a2c7ec5ba7545917444819aa"
+  }
+}

@@ -1,8 +1,8 @@
 # Stump fauna — bounded static native coverage preflight
 
-2026-10-27 UTC. **Current status: first-five unchanged-sheet reuse preflight; actual close baselines underway. No new fauna runtime/art acceptance is claimed.** The Stump material source `98e3e167b8789608f783701490822a024ffa9963` and subsequent delivery/evidence `16d98e625` are verified on main by root. Its bounded native/Editor/Mac/archive gates are complete; whole-region polish remains open. This fauna plan does not promote that material checkpoint into polish acceptance.
+2026-10-27 UTC. **Current status: first five delivered; next three passed native and bounded Editor comparison, source push/package pending.** First-five source `0ddd8b6abf89a22275db7c09dde39bbb47392c03` and delivery `d87669092c56d1f23bb99b7c33bbde8eff59ee69` are verified on main. Their 457 native passes/one known allocation-counter skip, bounded Editor/Mac play and Linux archive integrity are complete; Linux/physical Deck play and regional polish are not accepted.
 
-The immediate finite slice is **five exact living identities: CascadeFather, GlasspaneFrog, YellowfootWayfarer, Wardline and SariSnake**, using unchanged existing South-idle pixels in the flat16×24 world and authorized examine view. The full nine-identity fauna queue remains: SummitSinger, BrocchiniaSentinel and SkySari native-cell adaptations, followed by MawToad's new crisp treatment, are later work. Preserve working animation and legacy sources; defer new nuanced animation. This is CoO-original visual integration, not a Qud parity claim. Worldwide sprite coverage and chunk fullness remain the larger objective; these nine actors do not close Stump, Sodden or any entire biome.
+The current finite slice is **SummitSinger, BrocchiniaSentinel and SkySari**, using unchanged existing 16×16 textures centered in the flat16×24 grid and authorized examine view. No padded raster is needed: a centered1×1world-unit sprite at16PPU occupies the same pixels as four transparent rows above/below within a1×1.5cell. Reader layout preserves square aspect and integer scaling; it may enlarge these differently from16×24 portraits. Existing five-species injection remains compatible. MawToad needs a separate crisp treatment; all-world sprite coverage and the later serious polish phase remain open. Historical proposals/checkpoints below are retained with their original scope.
 
 ## Evidence and scoped coverage
 
@@ -358,3 +358,39 @@ normalEditor saves and standalone absence/preferences. Previous packages and
 all saved test roots remain preserved. Free space~423.8GB; no cleanup performed.
 Current Unity state is clean Edit with no active test run. Delivery records
 are ready for their separate exact reviewed main push; runtime remains0ddd8b6ab.
+
+
+## Next-three pre-implementation correction record — 2026-10-27 14:13 UTC
+
+Current pass: actual ordinary RimForest baseline captured, native integration not yet written. Root normally Continued the earned packaged-fauna72 fixture, traveled Grainfield2,2→RimForest2,3 and opened all three real readers. No simulation injection, teleport or visibility change. Player40,12HP29; Singer69476at17,8HP8, Sentinel69477at19,18HP10, SkySari69478at63,16HP58. Current UI labels all three Hostile; authored passive defaults must not be substituted for observed relationship state. Four `stump-canopy-before-01..04`1280×800 captures retain the actual letter bodies and generic glyph portraits.
+
+| Preflight assumption | Saved source correction before runtime |
+|---|---|
+| Three16×16 bodies need three new paddedPNG adaptations | `FlatPixelWorldProjection.cs:66` uses1×1.5cells; centered fullrect16×16 at16PPU is lossless and unstretched. `AnnouncementUI.cs:291` preserves portrait aspect. Use unchanged source textures; no new imagegen/editable derivatives required for exact approved reuse. |
+| Imported sprite slices can be trusted | These three importers retain stale stalactite_0 names/rectangles. Load Texture2D and explicitly create fullrect sprites; preservePNG/meta bytes. |
+| Add the three to the five-input injection constructor implicitly | Keep the five-input constructor forwarding null for optional new slots. Default/eight-input constructors admit only independently valid16×16 sources; first five retain strict64×384 sheet checks. |
+| A Tank hides the Sentinel | `AIBromeliadRetreatPart` only moves toward cover. Layer10Sentinel remains selected above passable layer2Tank. No hide/tank/habitat/Urqu repaint gate. |
+| SkySari lore demands enlarged footprint | Current owner is one cell; preserve it. No invented multicell body or animation. |
+
+Sources: unchanged `Sprites/Environment/{summit_singer,brocchinia_sentinel,sky_sari}` (binary alpha,5/5/7colors, Point/Clamp, no mips). Exact glyphs f/l/E; owned Body/Brain/Render/Physics and existing live guards apply. Concepts/parts: immutable approved source reuse; no newly generated pixels. Review actual Singer dark back, Sentinel yellow eye versus Tank, SkySari wing silhouette before acceptance. Keep sparse Rim/Summit centers, subtle dome blockers, crop/hazard/prop gaps and corpse identities explicit.
+
+Plan: finite RED fixture first; minimal existing fauna catalog extension; GREEN/first-five/related counters; matched actual world/readers, movement/travel and save/Continue. Root owns Unity; test draft stays outside Assets during current Play. Independent review precedes exact owned push. No whole-biome polish advancement, no performance or packaged claim for these three yet. Last hourly report13:27UTC; next14:27UTC.
+
+
+Native next-three RED19/19 failed at14:17UTC before implementation, expected missing bodies/8-input constructor. Initial GREEN1pass/18fail at14:18UTC exposed a test-premise error: Unity Sprite.bounds includes0.2z thickness. The intended square-pixel invariant is the x/y1×1extent, not renderer culling thickness. Corrected only the assertion to project bounds intoVector2; runtime unchanged. Both original test source and initial result are retained.
+
+
+Hourly actual report14:27UTC sent: first-five main/package delivery complete; next-three native19+related266=285pass, actual matchingRimworld/readers and western/eastern movement views observed. Summit ordinary approach caused Sentinel67304from53,4to54,5 atop real Tank65605 (Well), remains visibleHP10. Final review/persistence/push pending. Goals finish/push/package next-three, then MawToad/Grovelands/all-world families; area polish separate and optional animation deferred. Next report15:27UTC.
+
+
+## Next-three integration and actual-play checkpoint — 2026-10-27 14:30 UTC
+
+Current pass: three more exact native bodies and portraits integrated and reviewed. All six PNG/meta files are unchanged. The only production change is the existing fauna catalog: an optional eight-input constructor with strict 16×16 new slots; the five-input constructor remains compatible. Three centered, cached FullRect sprites/tiles share the existing semantic guards and real event-color handling. No new renderer, scene decoration, AI, damage balance or animation. The first-five sheet mappings, previous presentation and approved sources remain intact.
+
+Genuine RED: 19 failures before runtime implementation. Initial GREEN: one pass, 18 failures exposed only an incorrect Z-bounds test premise. After correcting the X/Y invariant, all 19 passed. Seven related suites passed 266 cases, including all 44 original fauna cases. Final total: 285 distinct passes, zero failures or skips. Original RED source, all XMLs and independent review are retained; prior executions are not added to this total.
+
+Actual normal Continue loaded the exact before73 RimForest save with the same IDs, coordinates and HP. Four matched captures show the bodies and all three readers. Ordinary walking (20 west, one north, 33 east) produced normal-zoom western/eastern views spanning the chunk width; Singer and Sky Sari moved under their normal AI. Ordinary map travel reached SummitScrub3,4. Approaching via ten north and ten east steps moved Sentinel67304 from53,4 onto Tank54,5. Its native body remained visible and its reader showed the Tank among the cell contents. Tank65605 retains WellPart/layer2; Sentinel remains layer10, HP10. F5 saved earned after74 at turn9040, HP29/40. A fresh isolated Continue reproduced player50,2 and Sentinel54,5. Eleven after captures and owner receipts are retained. Test roots were archived; normal saves and38 foreign baseline files were verified unchanged. Storage inspection found about423.7GB free; nothing was deleted.
+
+Self-review: 🔵 Independent runtime and actual-image reviews found no blocking regression in this bounded slice. Singer's dark W, Sentinel's yellow eye/limbs and Sky Sari's pale wing outline are visible. ⚪ Sparse Rim/Summit spaces, subtle blocking domes and remaining glyph props, hazards and corpses remain coverage and polish debt; no polish state advanced. 🧪 One Editor reader sample recorded44 batches/draws,12299 triangles,24613 vertices and0.741197169s frame time. This tool-interrupted sample is not a comparative profile or sustained-performance claim. Hurt/Wet cues are native-tested, not captured visually for these three. Fresh packaged, Linux and Deck gameplay remain unverified at this source checkpoint.
+
+Files: modified FlatPixelStumpFaunaCatalog.cs; new FlatPixelStumpSummitFaunaTests.cs/.meta; matched captures, earned fixtures, receipts and reviews; package helper and same-commit living records. Next: reviewed source push, fresh Mac/Linux package gates, then crisp MawToad and Grovelands creatures plus remaining world families. The separate area-by-area polish phase remains required after broad coverage. Last actual hourly report14:27UTC; next15:27UTC.

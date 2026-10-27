@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="19" result="Failed(Child)" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:24Z" duration="3.707481">
+  <test-suite type="TestSuite" id="40814" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:24Z" duration="3.707481" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="40786" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:24Z" duration="3.654740" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="40787" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:24Z" duration="3.629740" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="40788" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33153" result="Failed" site="Child" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:24Z" duration="3.607243" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1386" name="FlatPixelStumpSummitFaunaTests" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:24Z" duration="3.550208" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1390" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:22Z" duration="0.886238" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1387" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SummitSinger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SummitSinger&quot;)" methodname="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="853323940" result="Failed" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:21Z" duration="0.376681" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The new species still falls back to its glyph.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader (System.String species) [0x00077] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1388" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;BrocchiniaSentinel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;BrocchiniaSentinel&quot;)" methodname="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1319496796" result="Failed" start-time="2026-10-27 14:17:21Z" end-time="2026-10-27 14:17:22Z" duration="0.201503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The new species still falls back to its glyph.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader (System.String species) [0x00077] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1389" name="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SkySari&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader(&quot;SkySari&quot;)" methodname="ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="277182952" result="Failed" start-time="2026-10-27 14:17:22Z" end-time="2026-10-27 14:17:22Z" duration="0.233421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The new species still falls back to its glyph.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualSquareSourceRemainsUnstretchedInWorldAndAuthorizedReader (System.String species) [0x00077] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1395" name="ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval" methodname="ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="694439085" result="Failed" start-time="2026-10-27 14:17:22Z" end-time="2026-10-27 14:17:22Z" duration="0.467634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <brocchinia_sentinel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ActualWetSentinelKeepsItsNativeBodyAndClearsTheCueOnRemoval () [0x000ac] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1401" name="CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative" methodname="CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="781749762" result="Failed" start-time="2026-10-27 14:17:22Z" end-time="2026-10-27 14:17:22Z" duration="0.221088" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <summit_singer (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.CurrentOwnershipFootprintAndReplacementGraphRemainAuthoritative () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:154
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1403" name="ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions" methodname="ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1674066705" result="Failed" start-time="2026-10-27 14:17:22Z" end-time="2026-10-27 14:17:23Z" duration="0.201462" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.ExistingBodiesRemainPortableOutsideHabitatAndUrquSpawnConditions () [0x000e1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:192
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1407" name="FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent" methodname="FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="329642471" result="Failed" label="Error" start-time="2026-10-27 14:17:23Z" end-time="2026-10-27 14:17:23Z" duration="0.211663" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.FlatPixelStumpFaunaCatalog' not found.]]></message>
+                <stack-trace><![CDATA[  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Object[] args) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Construct (UnityEngine.Texture2D[] textures) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:66 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.FiveArgumentCompatibilityDoesNotLoadNewResourcesAndEightArgumentInputsRemainIndependent () [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:226 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1409" name="NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog" methodname="NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1100869958" result="Failed" label="Error" start-time="2026-10-27 14:17:23Z" end-time="2026-10-27 14:17:23Z" duration="0.362397" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.FlatPixelStumpFaunaCatalog' not found.]]></message>
+                <stack-trace><![CDATA[  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Object[] args) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Construct (UnityEngine.Texture2D[] textures) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:66 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewCachedSpritesAreDisposedWithoutChangingBorrowedInputsOrPeerCatalog () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:245 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1400" name="NewRoleCannotBypassSharedSemanticRefusal" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 14:17:23Z" end-time="2026-10-27 14:17:24Z" duration="0.504779" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1396" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;SummitSinger&quot;,&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;SummitSinger&quot;,&quot;variant&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="747857051" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.048778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <summit_singer (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1397" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;BrocchiniaSentinel&quot;,&quot;wrong-glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;BrocchiniaSentinel&quot;,&quot;wrong-glyph&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="2133723220" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.045840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <brocchinia_sentinel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1398" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;foreign-body&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;foreign-body&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1652665011" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.046784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sky_sari (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1399" name="NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal(&quot;SkySari&quot;,&quot;dead&quot;)" methodname="NewRoleCannotBypassSharedSemanticRefusal" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="273556507" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.046467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sky_sari (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.NewRoleCannotBypassSharedSemanticRefusal (System.String species, System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:140
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1406" name="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.176607" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1404" name="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(False)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(False)" methodname="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1116958265" result="Failed" label="Error" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.042771" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.FlatPixelStumpFaunaCatalog' not found.]]></message>
+                  <stack-trace><![CDATA[  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Object[] args) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Construct (UnityEngine.Texture2D[] textures) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:66 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes (System.Boolean malformed) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:204 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1405" name="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(True)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes(True)" methodname="OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="477603239" result="Failed" label="Error" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.041455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.FlatPixelStumpFaunaCatalog' not found.]]></message>
+                  <stack-trace><![CDATA[  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Object[] args) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Construct (UnityEngine.Texture2D[] textures) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:66 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.OptionalSquareInputsFailIndependentlyAndNeverAcceptSheetOrPaddedShapes (System.Boolean malformed) [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:204 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1394" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.344890" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1391" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SummitSinger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SummitSinger&quot;)" methodname="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1611601458" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.083579" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <summit_singer (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery (System.String species) [0x000df] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1392" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;BrocchiniaSentinel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;BrocchiniaSentinel&quot;)" methodname="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1912825554" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.073004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <brocchinia_sentinel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery (System.String species) [0x000df] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1393" name="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SkySari&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery(&quot;SkySari&quot;)" methodname="RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="726384704" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.103332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sky_sari (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.RealNonlethalDamageKeepsOneEventThreeHurtPaintsAndNeutralRecovery (System.String species) [0x000df] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:109
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1402" name="SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank" methodname="SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="1939351174" result="Failed" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.108244" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <brocchinia_sentinel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Native (UnityEngine.Tilemaps.Tile tile, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:56
+at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.SentinelMovesOntoRealTankWithoutHidingItselfThenRevealsTheUnchangedTank () [0x00136] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:174
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1408" name="SharedGlyphsAndCorpseProvenanceDoNotBorrowNewBodies" fullname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.SharedGlyphsAndCorpseProvenanceDoNotBorrowNewBodies" methodname="SharedGlyphsAndCorpseProvenanceDoNotBorrowNewBodies" classname="CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests" runstate="Runnable" seed="286520406" result="Failed" label="Error" start-time="2026-10-27 14:17:24Z" end-time="2026-10-27 14:17:24Z" duration="0.044778" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.FlatPixelStumpFaunaCatalog' not found.]]></message>
+                <stack-trace><![CDATA[  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Object[] args) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.Construct (UnityEngine.Texture2D[] textures) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:66 
+  at CavesOfOoo.Tests.FlatPixelStumpSummitFaunaTests.SharedGlyphsAndCorpseProvenanceDoNotBorrowNewBodies () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpSummitFaunaTests.cs:235 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

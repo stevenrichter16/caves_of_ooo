@@ -6,8 +6,8 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Five exact living species, using unchanged south-idle sheet cells.
-    /// Owns five cached sprite/tile pairs; borrows textures. Current graph,
+    /// <summary>Eight exact living species, using unchanged sheet cells or square sources.
+    /// Owns eight cached sprite/tile pairs; borrows textures. Current graph,
     /// disclosure, selection and reader authority remain with presentation callers.</summary>
     public sealed class FlatPixelStumpFaunaCatalog : IDisposable
     {
@@ -16,24 +16,36 @@ namespace CavesOfOoo.Rendering
         public const string YellowfootWayfarerResourcePath = "Sprites/Actors/yellowfoot_wayfarer_sheet";
         public const string WardlineResourcePath = "Sprites/Actors/wardline_sheet";
         public const string SariSnakeResourcePath = "Sprites/Actors/sari_snake_sheet";
+        public const string SummitSingerResourcePath = "Sprites/Environment/summit_singer";
+        public const string BrocchiniaSentinelResourcePath = "Sprites/Environment/brocchinia_sentinel";
+        public const string SkySariResourcePath = "Sprites/Environment/sky_sari";
         readonly Tile cascadeFather, glasspaneFrog, yellowfootWayfarer, wardline, sariSnake;
+        readonly Tile summitSinger, brocchiniaSentinel, skySari;
         bool disposed;
 
         public FlatPixelStumpFaunaCatalog()
             : this(Resources.Load<Texture2D>(CascadeFatherResourcePath), Resources.Load<Texture2D>(GlasspaneFrogResourcePath),
                 Resources.Load<Texture2D>(YellowfootWayfarerResourcePath), Resources.Load<Texture2D>(WardlineResourcePath),
-                Resources.Load<Texture2D>(SariSnakeResourcePath)) { }
+                Resources.Load<Texture2D>(SariSnakeResourcePath), Resources.Load<Texture2D>(SummitSingerResourcePath),
+                Resources.Load<Texture2D>(BrocchiniaSentinelResourcePath), Resources.Load<Texture2D>(SkySariResourcePath)) { }
 
         /// <summary>Optional sheets fail independently. Explicit null/malformed
         /// injection never reloads resources or changes a borrowed texture.</summary>
         public FlatPixelStumpFaunaCatalog(Texture2D cascade, Texture2D glasspane, Texture2D yellowfoot,
             Texture2D wardlineSheet, Texture2D sari)
+            : this(cascade, glasspane, yellowfoot, wardlineSheet, sari, null, null, null) { }
+
+        public FlatPixelStumpFaunaCatalog(Texture2D cascade, Texture2D glasspane, Texture2D yellowfoot,
+            Texture2D wardlineSheet, Texture2D sari, Texture2D singer, Texture2D sentinel, Texture2D sky)
         {
             cascadeFather = Build(cascade, "CascadeFather");
             glasspaneFrog = Build(glasspane, "GlasspaneFrog");
             yellowfootWayfarer = Build(yellowfoot, "YellowfootWayfarer");
             wardline = Build(wardlineSheet, "Wardline");
             sariSnake = Build(sari, "SariSnake");
+            summitSinger = BuildSquare(singer, "SummitSinger");
+            brocchiniaSentinel = BuildSquare(sentinel, "BrocchiniaSentinel");
+            skySari = BuildSquare(sky, "SkySari");
         }
 
         /// <summary>Exact blueprint recognition only; does not grant visibility
@@ -41,7 +53,8 @@ namespace CavesOfOoo.Rendering
         public static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "CascadeFather" || owner?.BlueprintName == "GlasspaneFrog"
                 || owner?.BlueprintName == "YellowfootWayfarer" || owner?.BlueprintName == "Wardline"
-                || owner?.BlueprintName == "SariSnake";
+                || owner?.BlueprintName == "SariSnake" || owner?.BlueprintName == "SummitSinger"
+                || owner?.BlueprintName == "BrocchiniaSentinel" || owner?.BlueprintName == "SkySari";
 
         /// <summary>Pure semantic body lookup. Surviving damage, relationships,
         /// authored base color and status effects do not change species identity.
@@ -68,6 +81,9 @@ namespace CavesOfOoo.Rendering
                 case "YellowfootWayfarer": if (render.RenderString == "t") tile = yellowfootWayfarer; break;
                 case "Wardline": if (render.RenderString == "s") tile = wardline; break;
                 case "SariSnake": if (render.RenderString == "s") tile = sariSnake; break;
+                case "SummitSinger": if (render.RenderString == "f") tile = summitSinger; break;
+                case "BrocchiniaSentinel": if (render.RenderString == "l") tile = brocchiniaSentinel; break;
+                case "SkySari": if (render.RenderString == "E") tile = skySari; break;
             }
             return tile != null;
         }
@@ -92,7 +108,18 @@ namespace CavesOfOoo.Rendering
             // The existing four-column/sixteen-row sheets place South idle0 at
             // top-left. Center this separate tile sprite; do not borrow the
             // legacy bottom-pivot motion sprites or instantiate their full sets.
-            var sprite = Sprite.Create(texture, new Rect(0, 360, 16, 24), new Vector2(.5f, .5f), 16, 0, SpriteMeshType.FullRect);
+            return BuildFrame(texture, new Rect(0, 360, 16, 24), identity);
+        }
+        static Tile BuildSquare(Texture2D texture, string identity)
+        {
+            if (texture == null || texture.width != 16 || texture.height != 16) return null;
+            // Keep the original pixels square, centered inside the taller cell.
+            // Explicit texture slicing also avoids unrelated legacy importer rectangles.
+            return BuildFrame(texture, new Rect(0, 0, 16, 16), identity);
+        }
+        static Tile BuildFrame(Texture2D texture, Rect rect, string identity)
+        {
+            var sprite = Sprite.Create(texture, rect, new Vector2(.5f, .5f), 16, 0, SpriteMeshType.FullRect);
             sprite.name = "Live16x24 static " + identity; sprite.hideFlags = HideFlags.HideAndDontSave;
             var tile = ScriptableObject.CreateInstance<Tile>(); tile.name = sprite.name;
             tile.hideFlags = HideFlags.HideAndDontSave; tile.sprite = sprite;
@@ -104,6 +131,7 @@ namespace CavesOfOoo.Rendering
             if (disposed) return; disposed = true;
             DestroyFrame(cascadeFather); DestroyFrame(glasspaneFrog); DestroyFrame(yellowfootWayfarer);
             DestroyFrame(wardline); DestroyFrame(sariSnake);
+            DestroyFrame(summitSinger); DestroyFrame(brocchiniaSentinel); DestroyFrame(skySari);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }
