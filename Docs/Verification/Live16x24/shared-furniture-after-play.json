@@ -1,0 +1,205 @@
+{
+  "kind": "actual_editor_ordinary_play",
+  "utc": "2026-10-27T22:58:42.559657+00:00",
+  "source_base": "39d03b26b742511f0e6f172706c79ce08ad18b7c plus exact pending shared-furniture diff",
+  "no_gameplay_or_save_edits": true,
+  "cave_study_enabled": false,
+  "flat_native_16x24": true,
+  "sodden": {
+    "fixture": "shared-furniture-before107",
+    "zone": "Overworld.15.7.0",
+    "initial": {
+      "player": "2695",
+      "cell": [
+        50,
+        17
+      ],
+      "hp": 38,
+      "turn": 2250
+    },
+    "bed": {
+      "id": "12657",
+      "cell": [
+        47,
+        19
+      ],
+      "reader": "03",
+      "rest": {
+        "hp_before": 38,
+        "hp_after": 40,
+        "clock_advanced": 60,
+        "turn": 2370,
+        "occupied_after": false
+      }
+    },
+    "chair": {
+      "id": "12666",
+      "cell": [
+        55,
+        19
+      ],
+      "reader": "06",
+      "adjacent_refusal": {
+        "player_cell": [
+          56,
+          19
+        ],
+        "reason": "not_on_seat",
+        "turn": 2460
+      },
+      "sit_turn": 2470,
+      "stand_turn": 2480,
+      "resit_turn": 2490,
+      "saved_fixture": "shared-furniture-seated110",
+      "saved_turn": 2500,
+      "fresh_continue": {
+        "player_cell": [
+          55,
+          19
+        ],
+        "hp": 40,
+        "turn": 2500,
+        "occupied": true,
+        "occupant": "2695",
+        "sitting_effect_furniture": "12666"
+      },
+      "ordinary_left_move": {
+        "player_cell": [
+          54,
+          19
+        ],
+        "occupied": false,
+        "occupant": null,
+        "saved_fixture": "shared-furniture-released111",
+        "turn": 2510
+      }
+    }
+  },
+  "east_control": {
+    "fixture": "packaged-glade-east-earned-kitchen",
+    "zone": "Overworld.12.11.0",
+    "player_cell": [
+      23,
+      9
+    ],
+    "hp": 30,
+    "bed": {
+      "id": "13760",
+      "cell": [
+        25,
+        8
+      ],
+      "reader": "15",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ]
+    },
+    "chair": {
+      "id": "13761",
+      "cell": [
+        25,
+        7
+      ],
+      "reader": "14",
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ]
+    },
+    "texture": "east-kitchen",
+    "capture": "13",
+    "bounded": "Unchanged earned second-region checkpoint; no new cross-region travel claim."
+  },
+  "input_corrections": [
+    "Initial batched L/Return did not enter Look reliably: Return cast En Garde and X opened Skills. Capture02 is rejected and preserves this honest detour; no simulation correction made.",
+    "Repeated Right input moved one cell farther to56,19. Capture05 is actual stone-floor reader control; cursor then selected real chair55,19 for06.",
+    "80ms individual keys with AX observation between menu transitions used thereafter."
+  ],
+  "captures": {
+    "shared-furniture-after-01-south-room.png": {
+      "sha256": "b62104b2fa18496ad8315f4471fc84593ea93d515e1fdba4cc4c44647e6d6f79",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-02-rejected-skills-panel.png": {
+      "sha256": "b1e607121b1d966286db1abcb3722942f208e26121af88db9267ac7a17decb34",
+      "accepted_as_furniture_evidence": false
+    },
+    "shared-furniture-after-03-bed-reader.png": {
+      "sha256": "74416e713f783c8de2b89fc4a3799e954dde83c712b90008ce3706656cffa3c8",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-04-bed-rest.png": {
+      "sha256": "57e774ecc4494b9f0e19502c261a04699ec8145866bed87b18b5a51960903a1f",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-05-floor-reader-control.png": {
+      "sha256": "3b7ef1150072517d6784741afa21be9d936d842d731ef1daeefd07a1e1fbd40e",
+      "accepted_as_furniture_evidence": false
+    },
+    "shared-furniture-after-06-chair-reader.png": {
+      "sha256": "af4207d27c5c7be579f32c7171cd6f4455a36d2683aa19f49e0250abf4aa7038",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-07-chair-adjacent-refusal.png": {
+      "sha256": "55f252462fac294b8c92dd7ab35172a051eb90db6a4c8b05f507c09f7cd50cf5",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-08-chair-sat.png": {
+      "sha256": "906bd465925d59da0092bbd14c638f50913f57194fc13085c7323fa36e3a674b",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-09-chair-stood.png": {
+      "sha256": "c2dabac4fc6ccd7e06d35262583b2cf4fbbf9c4f5dfd354da8e1ea424310bc51",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-10-seated-save.png": {
+      "sha256": "c7bc8ff4540ff949a0db2c6a772b6f361f8acaca1069c8cf1738a82584fe15ab",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-11-seated-continue.png": {
+      "sha256": "b5644b96b4b80d4453441d37fdf9ce336c73a9dc39bbddc856e9e846f74b321e",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-12-movement-release.png": {
+      "sha256": "a8100583949835fb07192f435cf970d4127a46d3206e3dd7d7a6cd943493eb20",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-13-east-control.png": {
+      "sha256": "a3d74498fdc33e4877f31e2c6f3f6dbaa4797bd79144332962ee33aa7db279d0",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-14-east-chair-reader.png": {
+      "sha256": "11b21ce1ae7b535723fab4cbdeb5fac9a145ae2569ca93c4fe92557aa92cd519",
+      "accepted_as_furniture_evidence": true
+    },
+    "shared-furniture-after-15-east-bed-reader.png": {
+      "sha256": "45bd1ae6c301ec6c93bbef21a829512d65da4091f681d51774843f323bff3b3a",
+      "accepted_as_furniture_evidence": true
+    }
+  },
+  "native": {
+    "red": 2,
+    "distinct_passed": 395,
+    "inconclusive": 3,
+    "failed": 0,
+    "focused_passed": 33,
+    "bounds": "Initial2GREEN overlaps focused33; native3inconclusive are existing Sodden allocation positive controls, not counted as passes."
+  },
+  "composition": [
+    "Sodden south room remains broad and sparse, nighttime contrast weak.",
+    "East original kitchen bodies retain same identity; surrounding broad fields and mixed coverage remain later polish debt."
+  ],
+  "limits": [
+    "No area-polish/whole-world acceptance.",
+    "Before02/after01 same camera/player/HP but3274worldpixels differ beyond2bodycells; no exactpixel-only-change claim.",
+    "After10/11 seated restart worldrectangle564000pixels matches exactly.",
+    "Profile wall window138s with rolling last10000samples may omit early movement; includes tools/idle/readers. No before-comparator, sustainedFPS, speedup or Deck acceptance.",
+    "Current packages still shared-storage d9f; furniture/39d03chairfix not yet packaged.",
+    "No storage cleanup."
+  ]
+}

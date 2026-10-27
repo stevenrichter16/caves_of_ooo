@@ -1,0 +1,1 @@
+Earned by ordinary Continue107, movement, Bed rest, adjacent Chair refusal, Sit/Stand/Sit and F5. Seated player2695 at55,19, HP40, turn2500, chair12666 occupied by2695. Exact save bytes copied; no save or gameplay edits. Batched early input also cast En Garde and opened Skills; preserved honestly as rejected capture02. Root source includes pending shared-furniture integration.

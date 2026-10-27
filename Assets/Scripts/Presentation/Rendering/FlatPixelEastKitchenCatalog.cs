@@ -16,7 +16,12 @@ namespace CavesOfOoo.Rendering
         public const string ServiceResourcePath = "Sprites/Live16x24/kitchen-service";
         private const int Width = 16, Height = 24, Frames = 18;
         private readonly Tile[] _tiles, _cookTiles, _serviceTiles;
+        private readonly Texture2D _borrowedAtlas;
         private bool _disposed;
+
+        // Preserve explicit East-atlas injection when shared furniture is selected.
+        // No old semantic resolver or hidden Resources reload is involved.
+        internal Texture2D BorrowedFurnitureAtlas => _disposed ? null : _borrowedAtlas;
 
         public FlatPixelEastKitchenCatalog()
             : this(Resources.Load<Texture2D>(ResourcePath), Resources.Load<Texture2D>(CookResourcePath),
@@ -31,6 +36,7 @@ namespace CavesOfOoo.Rendering
         /// injected constructors deliberately retain neutral service artwork.</summary>
         public FlatPixelEastKitchenCatalog(Texture2D borrowedAtlas, Texture2D borrowedCook, Texture2D borrowedService)
         {
+            _borrowedAtlas = borrowedAtlas;
             _tiles = Build(borrowedAtlas, Frames, "East kitchen");
             _cookTiles = Build(borrowedCook, 1, "Approved wayside cook");
             _serviceTiles = Build(borrowedService, 2, "Kitchen commission");

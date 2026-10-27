@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "status": "concept_reinterpretation_and_immutable_reuse_provenance_only;no_new_integration_or_polish_acceptance",
+  "plan": "Docs/GRAPHICS-SHARED-FURNITURE.md",
+  "generation": {
+    "tool": "built-in imagegen; executed by root",
+    "original_output": {
+      "path": "/Users/steven/.codex/generated_images/01a0de55-1e2b-74d1-ba36-b52698cfe3e5/exec-72ffe3fc-f4be-4c37-a206-3f216c26b98d.png",
+      "bytes": 1313491,
+      "sha256": "82a8a34a4a53d2932acdc4ffd47f7120a6a4aa386b874c3b33b4c1610f4327ec",
+      "dimensions": [
+        1586,
+        992
+      ]
+    },
+    "preserved_output": {
+      "path": "ArtSource/Live16x24/shared-furniture/scene-reference-01.png",
+      "bytes": 1313491,
+      "sha256": "82a8a34a4a53d2932acdc4ffd47f7120a6a4aa386b874c3b33b4c1610f4327ec",
+      "dimensions": [
+        1586,
+        992
+      ]
+    },
+    "byte_identical_copy": true,
+    "prompt": {
+      "path": "ArtSource/Live16x24/shared-furniture/prompt-01.txt",
+      "bytes": 1515,
+      "sha256": "c38051ea143d91c3f19309145327a2bed410244961016e66f84ef2307ce0a8c8"
+    },
+    "actual_inputs": [
+      {
+        "path": "Docs/Verification/Live16x24/shared-furniture-before-02-south-room.png",
+        "bytes": 50447,
+        "sha256": "e5872bc0729c42a49eed7e9ddfd56b12154f67990d1e234bac46416b77d9a0cd",
+        "dimensions": [
+          1280,
+          800
+        ]
+      },
+      {
+        "path": "Assets/Resources/Sprites/Live16x24/east-kitchen.png",
+        "bytes": 2503,
+        "sha256": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+        "dimensions": [
+          288,
+          24
+        ]
+      }
+    ],
+    "runtime_pixels_from_generation": false
+  },
+  "critique": {
+    "accepted_direction": [
+      "Distinct small vertical Bed and separate Chair bodies broadly at the two actual south-room locations.",
+      "Legibility of already-approved body identities; no additional production parts are extracted."
+    ],
+    "rejected_as_production": [
+      "Image dimensions changed from actual1280x800 to generated1586x992; generated pixel sizes are not the native game grid.",
+      "Subtle lighting, material and UI redraw/drift; apparent furniture body scale increases.",
+      "Generated furniture contours/colors are not exact approved atlas pixels and cannot replace them."
+    ],
+    "no_exact_pixel_or_layout_acceptance": true,
+    "not_actual_gameplay": true
+  },
+  "immutable_reuse": {
+    "resource": {
+      "path": "Assets/Resources/Sprites/Live16x24/east-kitchen.png",
+      "bytes": 2503,
+      "sha256": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+      "dimensions": [
+        288,
+        24
+      ]
+    },
+    "resource_metadata_current": {
+      "path": "Assets/Resources/Sprites/Live16x24/east-kitchen.png.meta",
+      "bytes": 2324,
+      "sha256": "ccfb13792373e3272af8f764367984d40ad22bd435bece234f0317230bf0f1ee"
+    },
+    "source_png": {
+      "path": "ArtSource/Live16x24/east-kitchen/east-kitchen.png",
+      "bytes": 2503,
+      "sha256": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+      "dimensions": [
+        288,
+        24
+      ]
+    },
+    "frames": [
+      {
+        "blueprint": "Bed",
+        "source_frame_id": "vertical-cot",
+        "atlas_frame": 2,
+        "rect_xywh": [
+          32,
+          0,
+          16,
+          24
+        ],
+        "pixels_per_unit": 16,
+        "pivot_normalized": [
+          0.5,
+          0.5
+        ],
+        "mesh": "FullRect",
+        "logical_grid": [
+          16,
+          24
+        ],
+        "opaque_pixels": 184,
+        "opaque_colors": 4,
+        "alpha_bounds_top_left_exclusive": [
+          3,
+          4,
+          13,
+          23
+        ],
+        "decoded_rgba_sha256": "d60d5ff7adcd08bee3265fac1670c1474a0416fbba49344ee34679241eccd09e",
+        "source_cells_match_384_pixels": true,
+        "binary_alpha": true,
+        "last_row_transparent": true,
+        "state": "neutral static body; ownership, reservation and occupancy do not select a new sprite",
+        "production_action": "Reuse exact existing atlas rectangle; no crop file, repack, redraw, generated pixels or resampling."
+      },
+      {
+        "blueprint": "Chair",
+        "source_frame_id": "chair",
+        "atlas_frame": 3,
+        "rect_xywh": [
+          48,
+          0,
+          16,
+          24
+        ],
+        "pixels_per_unit": 16,
+        "pivot_normalized": [
+          0.5,
+          0.5
+        ],
+        "mesh": "FullRect",
+        "logical_grid": [
+          16,
+          24
+        ],
+        "opaque_pixels": 113,
+        "opaque_colors": 3,
+        "alpha_bounds_top_left_exclusive": [
+          3,
+          5,
+          12,
+          23
+        ],
+        "decoded_rgba_sha256": "35e520f61915cba979512518e318a81ed1112b2d9d4ecc2086d267cd1876d87a",
+        "source_cells_match_384_pixels": true,
+        "binary_alpha": true,
+        "last_row_transparent": true,
+        "state": "neutral static body; ownership, reservation and occupancy do not select a new sprite",
+        "production_action": "Reuse exact existing atlas rectangle; no crop file, repack, redraw, generated pixels or resampling."
+      }
+    ],
+    "editable_source_files": [
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/README.md",
+        "bytes": 6755,
+        "sha256": "07c014dffafe8b8622535b6b528edd13c6820be3a0960e8f92f4139cb75bbc38"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/build.log",
+        "bytes": 420,
+        "sha256": "08216ce478bf5f8268a2f79339bb02e6abfe25c877cbaca0ecf5d8142bb419ee"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/east-kitchen-contact.png",
+        "bytes": 42785,
+        "sha256": "7559a2ef06a610fef27c2f926a341f78883944f382679bcc200877a05944f732",
+        "dimensions": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/east-kitchen.blend",
+        "bytes": 191856,
+        "sha256": "f45e8a930f870c1e29023bf51b045e2617ff079ae92c9c3d6010dcc020266b56"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/east-kitchen.png",
+        "bytes": 2503,
+        "sha256": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+        "dimensions": [
+          288,
+          24
+        ]
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/manifest.json",
+        "bytes": 14151,
+        "sha256": "f158b84015a30f913c130a17f9b120d4242156c11d3bb92f8ac2e5e38d56397d"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/source-cells.json",
+        "bytes": 215284,
+        "sha256": "b3e6cdbdcb0a2e4240bf6307e01382900f92a5e0ac518b08168e7e5f1efe33df"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/source-first-pass-findings.txt",
+        "bytes": 345,
+        "sha256": "602cb12004ef7837b70262768f965fef20ffc00678f8360300a6eee3e5bb2d4c"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/source-green.txt",
+        "bytes": 7773,
+        "sha256": "db44aab86021fd35c0f0ef55625d5252771da2393d36975af51a73871029ded9"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/source-red.txt",
+        "bytes": 411,
+        "sha256": "2a5883a1b018a2a18d02f783f47a2fcb29a11b15bd186ea48a549867a45fe6fa"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/verification.json",
+        "bytes": 7773,
+        "sha256": "db44aab86021fd35c0f0ef55625d5252771da2393d36975af51a73871029ded9"
+      },
+      {
+        "path": "ArtSource/Live16x24/east-kitchen/verify.py",
+        "bytes": 6151,
+        "sha256": "b423657ed941583f38fdce9e6d0164a3668cfae21afeb4e0aa80bbf366bc9f73"
+      }
+    ],
+    "builder": {
+      "path": "Tools/Live16x24/build_east_kitchen.py",
+      "bytes": 19070,
+      "sha256": "7b3d6f5967b5b7011eb8a2e6052360b2fc64337677f5b1f4c04509b50f86f8ab"
+    },
+    "current_hashes_only_no_git_head_claim": true,
+    "source_blend_not_reopened_or_rerendered": true,
+    "all_east_kitchen_inputs_preserved": true
+  },
+  "service_boundary": "Bed/Chair body identity is neutral for owned, reserved and occupied furniture. Sleep, Sit, Stand, IdleQuery reservations, movement and access remain real gameplay mechanics. No generated sleeping actor, availability cue, service state, contents or new body state is introduced.",
+  "checks": {
+    "protected_file_count": 18,
+    "protected_files_unchanged": true,
+    "exact_source_resource_png_bytes": true,
+    "selected_source_cells_checked": 768,
+    "no_unity_git_runtime_art_or_shared_ledger_mutation": true,
+    "no_claim_of_native_test_execution": true
+  },
+  "limits": [
+    "Before screenshot and imagegen study only; no after-gameplay acceptance.",
+    "No new native art or expanded biome/area/polish count.",
+    "Concept body-scale/material drift is explicitly rejected; existing pixels stay immutable."
+  ]
+}

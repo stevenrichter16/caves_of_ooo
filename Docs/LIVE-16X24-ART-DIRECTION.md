@@ -3881,3 +3881,44 @@ after-state/restart,secondregion and package checks remain pending. Broader
 coverage and all55+5polish states remain open. Current packages are storage
 d9f, not this narrow correction. Last hourlyreport22:28:31,next23:28:31UTC.
 Read-only storage inspection found383.32GiBfree; no cleanup performed.
+
+## Continuation — shared furniture native and actual Editor checkpoint
+
+**Current continuation — shared furniture Editor checkpoint, 2026-10-27:**
+Two unchanged native bodies, Bed/Chair from east-kitchen frames2/3, are integrated
+through the shared global identity path. Final receipts contain **395 distinct
+native passes, zero failures and three inconclusive existing Sodden allocation
+probes**:139 related passes plus256 expanded passes, with259 expanded entries.
+The33 focused furniture cases and initial2 RED→GREEN cases are included, not
+additional totals. Inconclusive allocation controls do not prove zero allocation.
+
+Actual Sodden evidence includes matched south-room view50,17 HP38, Bed/Chair
+readers, real Bed Rest raising HP38→40 over60 ticks, adjacent Chair refusal
+`not_on_seat`, Sit/Stand/Sit and F5fixture110 at turn2500. Fresh Continue restored
+Chair12666 with occupant2695; ordinary Left to54,19 released seating and saved
+fixture111 at turn2510. The original East kitchen control retains its approved
+Chair25,7/Bed25,8 bodies/readers with player23,9 HP30. Capture02 is a rejected
+Skills panel and05 is a floor control, not furniture proof. The matched
+before02/after01 world comparison has3274 changed pixels extending beyond the
+body cells; no pixel-isolated claim is made. Seated save10/restart11 match across
+the recorded564,000-pixel world crop. All approved sources and49 foreign paths
+are preserved. The approximately138-second Editor profile retains only the last
+10,000 ring samples; no sustained FPS, improvement or allocation claim follows.
+
+Furniture source publication and fresh Mac/Linux delivery remain pending root;
+current packages remain shared-storage source`d9f757841`. Next finish delivery,
+then the queued Slate7–8 material slice, while preserving the wider biome/area
+coverage queue. The cave prototype remains parked/default-off with straight
+wall silhouettes. Sodden-room and East-field sparsity remain polish debt; all55
+inventory polish scopes and five Stump area statuses stay unchanged. Last actual
+hourly report22:28:31UTC; next23:28:31UTC. This update sends no new hourly report.
+
+Evidence: [expanded native receipt](Verification/Live16x24/shared-furniture-expanded-green.json),
+[related native receipt](Verification/Live16x24/shared-furniture-related-green.json),
+[matched comparisons](Verification/Live16x24/shared-furniture-matched-comparison.json),
+[Editor profile](Verification/Live16x24/shared-furniture-editor-profile.json),
+[phase plan](GRAPHICS-SHARED-FURNITURE.md),
+[actual-play receipt](Verification/Live16x24/shared-furniture-after-play.json) and
+[independent review](Verification/Live16x24/shared-furniture-independent-review.md).
+Bounded source/native and shown Editor review is complete; root owns publication
+and fresh package verification.

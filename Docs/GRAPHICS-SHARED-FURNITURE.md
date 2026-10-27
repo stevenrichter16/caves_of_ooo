@@ -1,17 +1,16 @@
 # Shared ordinary furniture — Bed and Chair
 
-**Status, 2026-10-27: resumed next coverage slice; ordinary before evidence in progress.**
+**Status, 2026-10-27 22:59 UTC: two-body integration verified in Editor; source push and fresh packages pending.**
 The user ended the cave detour and restored broad biome/area coverage with straight
-wall silhouettes. Shared-storage source `d9f757841d7809b69ec859d0924bd0fba62016ca`
-is verified on `origin/main`; fresh Mac transfer/restart and Linux archive integrity
-have bounded independent acceptance, with delivery-evidence publication pending root.
-Root resumed unchanged healthy `room65`: actual north-room view at34,8 HP38,
-then normal Down movement to34,12 HP38. Root later reached south room50,17 HP38,
-examined the actual Bed glyph and saved fixture `shared-furniture-before107`,
-turn2250. These are before observations only. See
-`Verification/Live16x24/shared-furniture-before-01-north-room.png`; root owns the
-forthcoming baseline receipt. No new furniture runtime, tests, pixels or after
-acceptance is claimed. Reuse the two immutable bodies under the contract below.
+wall silhouettes. The two unchanged East kitchen Bed/Chair bodies now resolve
+for eligible ordinary owners globally. This bounded Editor slice has395 distinct
+native passes and three inconclusive existing allocation probes, plus real
+Bed Rest, Chair Sit/Stand, saved seating, fresh Continue and movement-release
+observations. The East kitchen remains the unchanged visual control. The earlier
+baseline and design contract below are preserved as historical preflight; the
+implemented result and limitations are recorded in the final continuation.
+Current packages still contain shared-storage source`d9f757841`; fresh furniture
+packages and their actual standalone checks are the next delivery step.
 
 Root owns Unity, gameplay, native tests, Git and packages. This is original
 Caves of Ooo presentation work, with no new Qud-parity claim.
@@ -115,6 +114,32 @@ ordinary travel or an unchanged earned checkpoint; no fixed count of covered
 biomes or all settlements is asserted from these examples.
 
 ## Minimal implementation proposition — not yet code
+
+### Frozen API and source correction, 22:42 UTC
+
+Freeze `FlatPixelSharedFurnitureCatalog : IDisposable`, default and borrowed
+`Texture2D` constructors, public `HasKnownRole(Entity)` and
+`TryResolve(Entity,out Tile)`, and Greybox's `_sharedFurnitureArt` field.
+The default loads the existing East atlas; explicit null/malformed injection
+never reloads it. Existing East tests inject only `_eastKitchenArt` into a
+no-Resources Greybox, including valid Bed/Chair. Preserve this deliberate
+contract with a narrow disposed-aware borrowed-atlas accessor and run the
+same stronger semantic checks; do not fall through to the old weak resolver.
+Known refusal dominates all four world/reader entry points. Native rendering
+retains the existing single Render-event cue and fallback authority.
+
+The actual baseline and approved atlas were reinterpreted with the built-in
+imagegen tool. The generated reference preserves the broad two-body placement
+and suggests readable small furniture, but changes image resolution, lighting,
+UI details and apparent scale. Those deviations are rejected. Extract only
+the existing approved bed/chair identities and use their exact source frames;
+no generated pixels enter runtime. Prompt, image, input hashes and critique
+are retained in `ArtSource/Live16x24/shared-furniture/`. This is a concept
+review, not gameplay acceptance or completed area polish.
+
+First-effect chair prerequisite `39d03b26b742511f0e6f172706c79ce08ad18b7c`
+and preservation `77c8bfbe9` are verified on origin/main. Current packages
+still identify d9f757841; they do not contain the later chair fix.
 
 Follow the bounded shared-storage companion pattern: a default constructor
 loads only the existing East texture; an injected constructor accepts that
@@ -253,3 +278,85 @@ Next: actual baseline/concept parts review and immutable two-frame integration
 through world/examine, paired refusal tests, after/restart and other-region
 controls. Keep straight walls; layered shaded walls/quiet floors guide later
 biome design. Shared-storage/cave preservation77c8bfbe9 is verified onmain.
+
+## Implemented coverage and ordinary comparison — 22:59 UTC
+
+The shared companion now reuses Bed frame2 and Chair frame3 from the unchanged
+East atlas in current world graphs. All four Greybox world/subject entry points
+honor known-role refusal. The narrow East borrowed-atlas accessor preserves
+explicit injection without calling the old weaker resolver. Two cached views,
+no new art/resources, no service calls, no terrain or collision changes and no
+regional admission expansion. The existing painter supplies one Render cue.
+
+Native RED `69541e08e01145eda0a93c42a13c4b34` failed both new public body cases
+before production. They passed after integration. Final expanded evidence has
+33 focused passes and 395 distinct passes across focused/related suites;
+three existing Sodden allocation probes are inconclusive because their positive
+counter did not detect allocations. They are not passes. Zero failed tests.
+Initial two GREEN cases overlap the final33 and are not added twice. Tests cover
+submitted world/authorized reader, semantic/refusal/resource counters, actual
+NPC reservation and cleanup, disclosure, changed Render cue, removal and lifetime.
+The standalone-named fixture is manager-attached, so it does not independently
+establish the manager-null case. Existing source authority is unchanged.
+
+Actual ordinary Play used unchanged earned107, then saved seated110 and released111:
+
+- Sodden15.7.0: same50,17/HP38 viewpoint; real Bed12657 at47,19 and
+  Chair12666 at55,19 use native bodies. Both real readers match those bodies.
+- Real bed rest healed2HP and advanced60 ticks, releasing its reservation.
+  Adjacent chair use rejected `not_on_seat`; same-cell Sit/Stand/Sit succeeded.
+- F5 saved chair12666 occupied by player2695 at55,19/HP40/turn2500.
+  Fresh Continue restored the same SittingEffect/furniture/occupant identity;
+  a real Left move to54,19 released it. F5 saved earned111 atturn2510.
+- Unchanged earned East kitchen12.11.0 control shows Bed13760 at25,8 and
+  Chair13761 at25,7 with the same source rectangles and both actual readers.
+  This is a second-region checkpoint control, not a new cross-region journey.
+- All three isolated sessions were preserved byte-for-byte before Finish.
+  Root verified Playfalse, save-root null and scene clean after restoration.
+
+See `shared-furniture-after-play.json`, diagnostics, session preservation,
+matched comparison, profile and independent review in `Verification/Live16x24`.
+Fifteen actual captures include rejected02(Skills) and05(stone-floor control),
+which are not furniture evidence. Early batched input also cast En Garde;
+its real consequence was retained instead of editing state. Individual key/menu
+observations resolved the test-control issue. Actual03/06 are the real readers.
+
+### Comparison, performance and acceptance limits
+
+Before02/after01 share camera/player position andHP, but differ in3274 of564000
+world pixels, including subtle changes beyond the two furniture cells. They
+are not an exact tick/animation freeze; no furniture-only pixel claim follows.
+Actual seated save10/fresh Continue11 match all564000 world pixels exactly.
+The approved source/resource/editable/native metadata pins remain unchanged.
+
+An Editor recorder ran22:50:36–22:52:53 over movement, readers/rest and tool/idle
+intervals. Its rolling10000samples can omit earlier activity: retained LateUpdate
+max2.573ms and Sidebar max2.430ms do not establish sustainedFPS or an improvement.
+RenderZone recorded zero in that retained window, not a claim of free redraws.
+The three inconclusive allocation probes also prohibit an allocation guarantee.
+
+Independent source/test/actual review found no significant furniture regression.
+The Sodden room remains broad/sparse with weak nighttime contrast; East fields
+also retain sparse/mixed coverage. No layout, biome or area-polish acceptance
+advances. All55 world inventory and five Stump polish states stay unchanged.
+Current packages still contain shared-storage d9f; fresh furniture packages,
+Mac playback/restart and Linux archive checks remain the next delivery gate.
+Optional animation and parked cave work remain deferred.
+
+### In-phase self-review
+
+- 🔵 Confirmed API correction: ProfilerRecorder has no Description property in
+  this Unity version; the read-only export uses its already-known marker names.
+- ⚪ Explicit source reuse instead of new generated pixels is intentional and
+  reviewed; the concept's lighting/resolution/UI/scale drift was rejected.
+- ⚪ Catalog rejects altered role/shape/custody and conflicting services; it does
+  not repair owners or promise availability. No new gameplay/diag event is added
+  for pure per-cell presentation; existing paint/service receipts remain intact.
+- 🧪 Whole-world coverage, area polish, sustained performance and physical Deck
+  acceptance remain open. No cleanup or unrelated files were changed.
+- Cold-eye symmetry/consistency/countercheck/doc pass and independent review
+  complete for this bounded source slice. No significant unresolved finding.
+
+Files: new SharedFurnitureCatalog and33-case fixture plus required Unity metadata;
+modified Greybox/East borrowed routing; new concept provenance/actual evidence
+and same-commit coverage records. No native pixel/source/meta changes.
