@@ -1,0 +1,84 @@
+{
+  "at_utc": "2026-10-27T15:40:26.823206+00:00",
+  "runtime_source_commit": "751d9247cf05f55e0baf8f8f8cb02ded0eb931ae",
+  "source_push_verified": true,
+  "mac_app": "Builds/Verification/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo.app",
+  "first_process_pid": 6617,
+  "restart_process_pid": 6949,
+  "presentation": "Flat16x24",
+  "capture_dimensions": [
+    1280,
+    856
+  ],
+  "game_dimensions": [
+    1280,
+    800
+  ],
+  "starting_fixture": "Fixtures/maw-toad-after77",
+  "actions": [
+    "Normal Continue: Grainfield2,2 player35,1 HP23/40 and adjacent nativeMaw.",
+    "Look/examine Maw34,1 HP15/22 Hostile: matching native portrait/body; no turn reading.",
+    "One Right move to36,1 withMaw35,1; F5turn9540HP23.",
+    "Full process quit confirmed absent, exactapp freshlaunch and ordinaryContinue."
+  ],
+  "earned_fixture": "Fixtures/packaged-maw-toad78",
+  "fixture_sha256": {
+    "Quick.sav.gz": "540964742019963ae74ce7309905d980ff526b4a2290e1dbdd9ef52e918cf401",
+    "Quick.json": "d539c6886a68097166049ff8baee08598408ebe860d836e35f96fb17a0a29c2f"
+  },
+  "captures": {
+    "packaged-maw-toad-01-continue.jpg": "4318176acd1fa0a132a8a18ddfbc2225a92603814554be3ee85986d476a72ee8",
+    "packaged-maw-toad-02-reader.jpg": "f08efe7c82b0f5b3f64d23a400ed6dc3c86e6428238fcc58c3664781995e7f73",
+    "packaged-maw-toad-03-saved.jpg": "4d3bb7cc67d30536d45bcc273fbbe73dd432ba642dbde310d800094f4ba67af1",
+    "packaged-maw-toad-04-restarted.jpg": "1bee0a873bcc33602c992b5cfa18b4d84fa11bf0869f8ae98955cfeef40e70a8"
+  },
+  "saved_restart_world_comparison": {
+    "before": "packaged-maw-toad-03-saved.jpg",
+    "after": "packaged-maw-toad-04-restarted.jpg",
+    "decoded_rgb_rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "compared_pixels": 564000,
+    "changed_pixels": 0,
+    "scope": "world rectangle only; titlebar/log/footer excluded"
+  },
+  "logs": {
+    "packaged-maw-toad-Player.log": {
+      "bytes": 4281,
+      "sha256": "0b6ed23a2c86eb9eb7378c3c7158a60a9734e7b5d24acd7860f265bda726354a"
+    },
+    "packaged-maw-toad-Player-prev.log": {
+      "bytes": 3860,
+      "sha256": "2e9318051cf68bbf1393cce889c8576ef6b47086ae8f785e55b75666dd8ab68e"
+    }
+  },
+  "native_evidence": "20focused+285disjointrelated=305distinctpasses; notrerunduringpackaging.",
+  "archive_receipt": "packaged-maw-toad-linux-archive.json",
+  "restoration_receipt": "packaged-maw-toad-restoration.json",
+  "independent_review": "packaged-maw-toad-review.md",
+  "limits": [
+    "Combat log inherited from fixture; no new packagehit/Wet/death trial. Editor actualcombat recorded separately.",
+    "No standalone runtimeIDquery; actualUI positions/HP/labels.",
+    "No Linux or physical Deck execution.",
+    "No sustained performance or whole-area polish acceptance.",
+    "Subsequent Grove/Fen travel is next-actor baseline, not newly integratedcoverage."
+  ],
+  "log_review": {
+    "case_sensitive_terms": [
+      "Exception",
+      "Error",
+      "Warning",
+      "NullReference",
+      "Failed",
+      "fatal"
+    ],
+    "matches": {
+      "packaged-maw-toad-Player.log": [],
+      "packaged-maw-toad-Player-prev.log": []
+    },
+    "limits": "Bounded log search, not proof of all failures."
+  }
+}

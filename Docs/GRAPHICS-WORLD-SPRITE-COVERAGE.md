@@ -1,6 +1,6 @@
 # Worldwide native sprite coverage
 
-**Current integration checkpoint —2026-10-27:** MawToad now has one original editable native16x24 body with305 distinct native passes and bounded actual Editor world/reader, chase, combat damage cue, F5 and fresh Continue evidence. All nine identified Stump fauna bodies are integrated/observed, not whole-biome or area-polish acceptance. Maw source push and fresh packages are pending; current delivered package remains canopy source3bafb1ee3. Last actual hourly report15:27UTC; next16:27UTC. Earlier checkpoints below are historical.
+**Current delivery checkpoint —2026-10-27:** MawToad source751d9247c is verified on origin/main and delivered in fresh Mac/Linux builds (0 errors/4 warnings each).305 distinct native passes, actual Editor combat/chase/restart and bounded Mac body/reader/movement/save/full-process restart are recorded; Linux archive independently verified, not executed. Nine identified Stump living bodies now have native integration, not complete regional/area polish. New Grovelands three-actor BEFORE captures exist; their native work is pending. Last actual hourly report15:27UTC; next16:27UTC. Earlier checkpoints below are historical.
 
 **Historical coverage checkpoint — 2026-10-27:** First-five Stump fauna source
 `0ddd8b6abf89a22275db7c09dde39bbb47392c03` and delivery
@@ -1194,7 +1194,7 @@ SummitSinger, BrocchiniaSentinel and SkySari are delivered from source `3bafb1ee
 Complete crisp MawToad from its retained actual baseline and imagegen references, then Grovelands Shambler/Mosshulk/ChoirTendril and other uncovered regional/shared families. Optional animation remains deferred. No area-polish status advances. The actual next baseline is Grainfield24,0 MawToad HP22; fixture76turn9140player29/40. Broad sparse centers, subtle stone blockers, missing props/corpses and other regional families remain open.
 
 
-### MawToad native and actual Editor checkpoint —2026-10-27
+### Historical pre-package MawToad native and actual Editor checkpoint —2026-10-27
 
 MawToad now has one original editable native16x24 body with305 distinct native passes and bounded actual Editor world/reader, chase, combat damage cue, F5 and fresh Continue evidence. All nine identified Stump fauna bodies are integrated/observed, not whole-biome or area-polish acceptance. Maw source push and fresh packages are pending; current delivered package remains canopy source3bafb1ee3.
 
@@ -1239,3 +1239,51 @@ native/Editor verification, marked Maw push/packages in progress, and set next
 goals to Grovelands Shambler/Mosshulk/living ChoirTendril and remaining regional
 families. Sparse chunks, subtle stone blockers and glyph props remain polish
 debt. Optional animation remains deferred. Next hourly report16:27UTC.
+
+
+### MawToad packaged delivery and next actual baseline —2026-10-27
+
+Maw source `751d9247cf05f55e0baf8f8f8cb02ded0eb931ae` is pushed and verified
+on origin/main. Both fresh builds succeeded with0errors/4warnings each
+(Mac57.83s, Linux45.73s). The retained final native evidence remains20focused
+plus285disjoint related passes:305distinct, no failure/skip/inconclusive.
+Neither packaging nor this update reran or adds to those native counts.
+
+Actual source-labelled Mac process6617 continued fixture77 at player35,1HP23
+and showed the authorized Maw reader at34,1,15/22HP. One normal Right step
+and F5 retained fixture `packaged-maw-toad78`,turn9540,player36,1HP23 with
+Maw35,1. After full quit and confirmed old-process absence, fresh process6949
+Continued that earned state. Four actual1280×856JPEGs and the independent
+review verify body/reader and bounded movement/save/restart. Saved03/restarted04
+world rectangle[0,96,940,696] is exactly564,000 decoded RGB pixels equal.
+The displayed7-damage hit/6-damage bite log is inherited Editor history:
+**no new packaged combat, damage flash, Wet or death is claimed.**
+
+The independently checked Linux archive contains189files/13directories/202members,
+128,791,022bytes, SHA256
+`517541b827fce5397700ae39b940a55ed26b0ab85072d9563a70c11f84242ac1`.
+Linux and physical Deck were not executed. Restoration verifies50,883tracked
+files including44foreign paths, normal saves, both preference domains and prior
+builds/archive; five build-generated files were backed up and restored, and the
+test session was archived. No cleanup was performed. This package restoration
+is distinct from the earlier Editor-run metadata exceptions recorded above.
+See [Mac play](Verification/Live16x24/packaged-maw-toad-mac-play.json),
+[package review](Verification/Live16x24/packaged-maw-toad-review.md),
+[archive receipt](Verification/Live16x24/packaged-maw-toad-linux-archive.json)
+and [restoration](Verification/Live16x24/packaged-maw-toad-restoration.json).
+The later delivery/evidence commit is still pending root's push.
+
+Next Grovelands baseline is now actual: Grove4,7 Shambler18,6HP16 (`z`,Flesh,
+Hostile), and Fen0,8 Mosshulk13,2HP55 (`M`,Hostile) plus ChoirTendril19,17HP80
+(`F`,Neutral). Five new BEFORE JPEGs and earned Grove79turn9700/Fen80turn9820
+fixtures retain playerHP23. These are baseline observations, not new native
+actor acceptance. Follow [the Grovelands actor plan](GRAPHICS-GROVELANDS-ACTORS.md):
+one original Shambler and two unchanged resource reuses, preserving committed
+intent and living talk/trade. Root owns that phase's next implementation.
+
+All nine identified Stump living bodies now have native coverage; whole regions,
+other fauna/outcomes/props/crops and world coverage remain incomplete. Sparse
+chunks and subtle blocking cues remain explicit debt. All55inventory polish
+scopes and5Stump area-polish records stay unchanged; serious area-by-area polish
+remains required. Optional nuanced animation stays deferred. Actual hourly clock
+remains15:27UTC, next16:27UTC; this delivery update is not another report.

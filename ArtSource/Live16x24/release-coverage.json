@@ -864,12 +864,13 @@
     "separate_world_polish_pass": "Explicitly required after broad sprite coverage: systematic biome-by-biome/area-by-area actual gameplay polish. Coverage integration is not polish acceptance; optional nuanced animation does not displace this pass."
   },
   "latest_observation": {
-    "at_utc": "2026-10-27T15:27:34.861343+00:00",
-    "summary": "MawToad now has one original editable native16x24 body with305 distinct native passes and bounded actual Editor world/reader, chase, combat damage cue, F5 and fresh Continue evidence. All nine identified Stump fauna bodies are integrated/observed, not whole-biome or area-polish acceptance. Maw source push and fresh packages are pending; current delivered package remains canopy source3bafb1ee3.",
-    "evidence": "Docs/Verification/Live16x24/maw-toad-after-receipt.json",
-    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-after77",
+    "at_utc": "2026-10-27T15:40:46.613742+00:00",
+    "summary": "MawToad source751d9247c is verified on origin/main and delivered in fresh Mac/Linux builds (0 errors/4 warnings each).305 distinct native passes, actual Editor combat/chase/restart and bounded Mac body/reader/movement/save/full-process restart are recorded; Linux archive independently verified, not executed. Nine identified Stump living bodies now have native integration, not complete regional/area polish. New Grovelands three-actor BEFORE captures exist; their native work is pending.",
+    "evidence": "Docs/Verification/Live16x24/packaged-maw-toad-mac-play.json",
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-maw-toad78",
     "current_record": "maw_toad",
-    "preceding_delivered_record": "stump_fauna_next_three"
+    "preceding_delivered_record": "stump_fauna_next_three",
+    "next_baseline_record": "grovelands_actor_baseline"
   },
   "current_environment_blocker": {
     "status": "no_current_tooling_blocker;source_push_and_package_pending",
@@ -882,79 +883,177 @@
     ]
   },
   "packaged_delivery": {
-    "status": "bounded_canopy_Mac_play_and_restart_pass;Linux_archive_verified_not_executed",
-    "source_commit": "3bafb1ee3445fdbf777a9ac3f51f831d407c4d0c",
+    "status": "bounded_Maw_Mac_body_reader_movement_restart_pass;Linux_archive_independent_PASS_not_executed",
+    "source_commit": "751d9247cf05f55e0baf8f8f8cb02ded0eb931ae",
     "source_push_verified": true,
-    "mac_app": "Builds/Verification/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo.app",
-    "linux_archive": "Builds/SteamDeck/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "linux_archive_sha256": "ed1fefa8d88d2837746f57443444a64c61dd04985596d9a25091605eebe37ab7",
-    "linux_archive_bytes": 128790824,
+    "source_push_verification_basis": "Root fetched/pushed and verified exact source on origin/main; ledger editor performed no Git.",
+    "mac_app": "Builds/Verification/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo.app",
+    "linux_archive": "Builds/SteamDeck/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "linux_archive_sha256": "517541b827fce5397700ae39b940a55ed26b0ab85072d9563a70c11f84242ac1",
+    "linux_archive_bytes": 128791022,
     "regular_files": 189,
     "directories": 13,
     "archive_members": 202,
     "mac_build": {
-      "job_id": "build-91085afcf4",
+      "job_id": "build-57fd800310",
       "result": "succeeded",
       "platform": "StandaloneOSX",
-      "output_path": "Builds/Verification/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo.app",
-      "started_at": "2026-10-27T14:40:49.559712Z",
-      "duration_seconds": 56.207012999999996,
-      "completed_at": "2026-10-27T14:41:45.766725Z",
+      "output_path": "Builds/Verification/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T15:30:03.465014Z",
+      "duration_seconds": 57.826589,
+      "completed_at": "2026-10-27T15:31:01.291603Z",
       "total_size_mb": 344.36,
       "errors": 0,
       "warnings": 4
     },
     "linux_build": {
-      "job_id": "build-8a4f0dc7f8",
+      "job_id": "build-da1f463de2",
       "result": "succeeded",
       "platform": "StandaloneLinux64",
-      "output_path": "Builds/SteamDeck/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo-current/CavesOfOoo.x86_64",
-      "started_at": "2026-10-27T14:41:56.073673Z",
-      "duration_seconds": 44.341063,
-      "completed_at": "2026-10-27T14:42:40.414736Z",
+      "output_path": "Builds/SteamDeck/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T15:31:10.966834Z",
+      "duration_seconds": 45.734702,
+      "completed_at": "2026-10-27T15:31:56.701536Z",
       "total_size_mb": 324.82,
       "errors": 0,
       "warnings": 4
     },
-    "mac_gameplay": "Docs/Verification/Live16x24/packaged-stump-canopy-mac-play.json",
-    "archive_receipt": "Docs/Verification/Live16x24/packaged-stump-canopy-linux-archive.json",
-    "independent_review": "Docs/Verification/Live16x24/packaged-stump-canopy-review.md",
-    "restoration": "Docs/Verification/Live16x24/packaged-stump-canopy-restoration.json",
-    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-stump-canopy75",
+    "archive_receipt": "Docs/Verification/Live16x24/packaged-maw-toad-linux-archive.json",
+    "independent_review": "Docs/Verification/Live16x24/packaged-maw-toad-review.md",
+    "mac_gameplay": "Docs/Verification/Live16x24/packaged-maw-toad-mac-play.json",
+    "actual_mac": {
+      "receipt": "Docs/Verification/Live16x24/packaged-maw-toad-mac-play.json",
+      "basis": "Root actual normal controls/process report plus independent four-image review.",
+      "starting_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-after77",
+      "first_process_pid": 6617,
+      "restart_process_pid": 6949,
+      "old_process_absent_after_full_quit": true,
+      "captures": [
+        "Docs/Verification/Live16x24/packaged-maw-toad-01-continue.jpg",
+        "Docs/Verification/Live16x24/packaged-maw-toad-02-reader.jpg",
+        "Docs/Verification/Live16x24/packaged-maw-toad-03-saved.jpg",
+        "Docs/Verification/Live16x24/packaged-maw-toad-04-restarted.jpg"
+      ],
+      "capture_count": 4,
+      "capture_dimensions": [
+        1280,
+        856
+      ],
+      "continued_player_cell": [
+        35,
+        1
+      ],
+      "continued_player_hp": 23,
+      "reader": {
+        "name": "MawToad",
+        "cell": [
+          34,
+          1
+        ],
+        "hp": 15,
+        "max_hp": 22
+      },
+      "normal_actions": [
+        "Continue",
+        "authorized reader",
+        "one Right movement",
+        "F5",
+        "full quit",
+        "fresh exact-path process",
+        "Continue"
+      ],
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-maw-toad78",
+      "turn": 9540,
+      "player_cell": [
+        36,
+        1
+      ],
+      "player_hp": 23,
+      "maw_cell": [
+        35,
+        1
+      ],
+      "maw_hp": 15,
+      "restart_world_pixels": {
+        "rectangle": [
+          0,
+          96,
+          940,
+          696
+        ],
+        "pixels": 564000,
+        "decoded_rgb_equal": true,
+        "captures": [
+          "03-saved",
+          "04-restarted"
+        ],
+        "scope": "World rectangle only; titlebar/sidebar/footer excluded."
+      },
+      "new_combat_in_package": false,
+      "combat_log_is_inherited_Editor_history": true,
+      "limits": "No new packaged damage flash, Wet, death/corpse, performance, Linux or physical Deck observation."
+    },
+    "restoration_receipt": "Docs/Verification/Live16x24/packaged-maw-toad-restoration.json",
+    "restoration": {
+      "at_utc": "2026-10-27T15:37:51.208193+00:00",
+      "source_commit": "751d9247cf05f55e0baf8f8f8cb02ded0eb931ae",
+      "all_tracked_files_match_source_snapshot": true,
+      "tracked_files": 50883,
+      "dirty_tracked_files_preserved": 44,
+      "normal_editor_saves_unchanged": true,
+      "normal_standalone_saves_absence_restored": true,
+      "standalone_preferences_logically_restored": true,
+      "editor_preferences_changed_keys": [],
+      "test_saves_archived": "/private/tmp/coo-maw-build-restored-751d9247c/standalone-session-Saves",
+      "build_serialization_restored": [
+        "Assets/Resources/Sprites/Live16x24/maw-toad.png.meta",
+        "Assets/Settings/UniversalRP.asset",
+        "Assets/UniversalRenderPipelineGlobalSettings.asset",
+        "ProjectSettings/ProjectSettings.asset",
+        "ProjectSettings/UnityConnectSettings.asset"
+      ],
+      "backup_root": "/private/tmp/coo-maw-build-restored-751d9247c",
+      "previous_mac_linux_builds_and_archive_preserved": true,
+      "cache_deletion": false,
+      "free_bytes": 421435031552
+    },
     "bounded_mac_accepted": true,
     "linux_executed": false,
     "physical_deck_tested": false,
-    "coverage_limits": "Eight exact Stump bodies in this package; Maw remains source/Editor-only pending a new package. Full area/polish/performance acceptance remains open.",
-    "delivery_evidence_commit": "a6add4a20",
-    "delivery_evidence_push_verified_by_root": true
+    "sustained_performance_verified": false,
+    "delivery_evidence_commit": null,
+    "delivery_evidence_push_status": "pending_root_commit",
+    "coverage_limits": "One Maw static body delivered; prior eight identities and art preserved. Nine identified Stump bodies do not imply entire areas, species lifecycles, whole-world coverage or serious polish acceptance."
   },
   "next_scoped_work": {
     "priority": "Broad static sprite coverage across every biome/area, with coherent whole-chunk composition",
-    "next": "Finish the reviewed MawToad source push and fresh Mac/Linux delivery, then Grovelands Shambler, Mosshulk and living merchant ChoirTendril. Continue remaining native terrain/flora/actors/props/services/crops and essential states across every biome, settlement, underground and special area. Separate serious area polish remains required after broad coverage; optional nuanced animation is deferred.",
-    "plan": "Docs/GRAPHICS-MAW-TOAD.md",
-    "status": "Maw_native_and_Editor_restart_pass;source_push_and_package_pending",
-    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-before76",
+    "next": "Continue Grovelands Shambler, Mosshulk and living merchant ChoirTendril from the new actual Grove/Fen baselines: one original Shambler body plus two unchanged square-source reuses, preserving committed-melee intent and talk/trade. Native RED/integration remain pending. Then continue missing terrain/flora/actors/props/services/crops and essential states across every biome/area. Separate serious area polish remains required; optional nuanced animation stays deferred.",
+    "plan": "Docs/GRAPHICS-GROVELANDS-ACTORS.md",
+    "status": "Grovelands_three_actual_baselines_captured;native_RED_and_integration_pending",
+    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/grovelands-actors-fen80",
     "source_candidate_counts": {
       "ordinary_Overwrit_addresses": 22,
       "ordinary_Stump_addresses": 18,
       "basis": "source authoring tables only"
     },
-    "breadth_rule": "After bounded Maw delivery, continue Grovelands three and remaining all-world coverage; nine Stump bodies do not advance separate area polish.",
-    "baseline_record": "maw_toad/actual_editor",
-    "previous_integration_record": "stump_fauna_next_three",
+    "breadth_rule": "Maw delivered. Continue the three Grovelands living identities, then all-world families; no separate area-polish status advances.",
+    "baseline_record": "grovelands_actor_baseline",
+    "previous_integration_record": "maw_toad",
     "current_integration_record": "maw_toad",
-    "next_fauna_plan": "Docs/GRAPHICS-STUMP-FAUNA.md",
-    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-after77",
+    "next_fauna_plan": "Docs/GRAPHICS-GROVELANDS-ACTORS.md",
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/grovelands-actors-fen80",
     "post_coverage_polish_phase": "world_polish_phase; current coverage/delivery order unchanged",
     "active_identity_scope": [
-      "MawToad"
+      "Shambler",
+      "Mosshulk",
+      "ChoirTendril"
     ],
     "next_fauna_scope": [
       "Shambler",
       "Mosshulk",
       "ChoirTendril"
     ],
-    "scope": "Finish the reviewed MawToad source push and fresh Mac/Linux delivery, then Grovelands Shambler, Mosshulk and living merchant ChoirTendril. Continue remaining native terrain/flora/actors/props/services/crops and essential states across every biome, settlement, underground and special area. Separate serious area polish remains required after broad coverage; optional nuanced animation is deferred."
+    "scope": "Continue Grovelands Shambler, Mosshulk and living merchant ChoirTendril from the new actual Grove/Fen baselines: one original Shambler body plus two unchanged square-source reuses, preserving committed-melee intent and talk/trade. Native RED/integration remain pending. Then continue missing terrain/flora/actors/props/services/crops and essential states across every biome/area. Separate serious area polish remains required; optional nuanced animation stays deferred."
   },
   "popup_raster_continuation": {
     "date": "2026-10-26",
@@ -1460,6 +1559,14 @@
       "earned_fixture": "Docs/Verification/Live16x24/Fixtures/stump-canopy-after74",
       "current_record": "stump_fauna_next_three",
       "preceding_delivered_record": "stump_fauna_first_five"
+    },
+    {
+      "at_utc": "2026-10-27T15:27:34.861343+00:00",
+      "summary": "MawToad now has one original editable native16x24 body with305 distinct native passes and bounded actual Editor world/reader, chase, combat damage cue, F5 and fresh Continue evidence. All nine identified Stump fauna bodies are integrated/observed, not whole-biome or area-polish acceptance. Maw source push and fresh packages are pending; current delivered package remains canopy source3bafb1ee3.",
+      "evidence": "Docs/Verification/Live16x24/maw-toad-after-receipt.json",
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-after77",
+      "current_record": "maw_toad",
+      "preceding_delivered_record": "stump_fauna_next_three"
     }
   ],
   "packaged_delivery_history": [
@@ -2379,6 +2486,53 @@
           "receipt": "Docs/Verification/Live16x24/packaged-stump-fauna-linux-build.json"
         }
       }
+    },
+    {
+      "status": "bounded_canopy_Mac_play_and_restart_pass;Linux_archive_verified_not_executed",
+      "source_commit": "3bafb1ee3445fdbf777a9ac3f51f831d407c4d0c",
+      "source_push_verified": true,
+      "mac_app": "Builds/Verification/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo.app",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "linux_archive_sha256": "ed1fefa8d88d2837746f57443444a64c61dd04985596d9a25091605eebe37ab7",
+      "linux_archive_bytes": 128790824,
+      "regular_files": 189,
+      "directories": 13,
+      "archive_members": 202,
+      "mac_build": {
+        "job_id": "build-91085afcf4",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo.app",
+        "started_at": "2026-10-27T14:40:49.559712Z",
+        "duration_seconds": 56.207012999999996,
+        "completed_at": "2026-10-27T14:41:45.766725Z",
+        "total_size_mb": 344.36,
+        "errors": 0,
+        "warnings": 4
+      },
+      "linux_build": {
+        "job_id": "build-8a4f0dc7f8",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+        "started_at": "2026-10-27T14:41:56.073673Z",
+        "duration_seconds": 44.341063,
+        "completed_at": "2026-10-27T14:42:40.414736Z",
+        "total_size_mb": 324.82,
+        "errors": 0,
+        "warnings": 4
+      },
+      "mac_gameplay": "Docs/Verification/Live16x24/packaged-stump-canopy-mac-play.json",
+      "archive_receipt": "Docs/Verification/Live16x24/packaged-stump-canopy-linux-archive.json",
+      "independent_review": "Docs/Verification/Live16x24/packaged-stump-canopy-review.md",
+      "restoration": "Docs/Verification/Live16x24/packaged-stump-canopy-restoration.json",
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-stump-canopy75",
+      "bounded_mac_accepted": true,
+      "linux_executed": false,
+      "physical_deck_tested": false,
+      "coverage_limits": "Eight exact Stump bodies in this package; Maw remains source/Editor-only pending a new package. Full area/polish/performance acceptance remains open.",
+      "delivery_evidence_commit": "a6add4a20",
+      "delivery_evidence_push_verified_by_root": true
     }
   ],
   "scoped_work_history": [
@@ -2714,6 +2868,34 @@
         "SkySari"
       ],
       "scope": "Push the reviewed next-three source, verify fresh Mac/Linux delivery, then crisp MawToad and Grovelands creature coverage. Continue remaining regional/shared sprites, settlements, interiors, underground and special sites. Keep sparse composition and area polish separate; optional animation deferred."
+    },
+    {
+      "priority": "Broad static sprite coverage across every biome/area, with coherent whole-chunk composition",
+      "next": "Finish the reviewed MawToad source push and fresh Mac/Linux delivery, then Grovelands Shambler, Mosshulk and living merchant ChoirTendril. Continue remaining native terrain/flora/actors/props/services/crops and essential states across every biome, settlement, underground and special area. Separate serious area polish remains required after broad coverage; optional nuanced animation is deferred.",
+      "plan": "Docs/GRAPHICS-MAW-TOAD.md",
+      "status": "Maw_native_and_Editor_restart_pass;source_push_and_package_pending",
+      "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-before76",
+      "source_candidate_counts": {
+        "ordinary_Overwrit_addresses": 22,
+        "ordinary_Stump_addresses": 18,
+        "basis": "source authoring tables only"
+      },
+      "breadth_rule": "After bounded Maw delivery, continue Grovelands three and remaining all-world coverage; nine Stump bodies do not advance separate area polish.",
+      "baseline_record": "maw_toad/actual_editor",
+      "previous_integration_record": "stump_fauna_next_three",
+      "current_integration_record": "maw_toad",
+      "next_fauna_plan": "Docs/GRAPHICS-STUMP-FAUNA.md",
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-after77",
+      "post_coverage_polish_phase": "world_polish_phase; current coverage/delivery order unchanged",
+      "active_identity_scope": [
+        "MawToad"
+      ],
+      "next_fauna_scope": [
+        "Shambler",
+        "Mosshulk",
+        "ChoirTendril"
+      ],
+      "scope": "Finish the reviewed MawToad source push and fresh Mac/Linux delivery, then Grovelands Shambler, Mosshulk and living merchant ChoirTendril. Continue remaining native terrain/flora/actors/props/services/crops and essential states across every biome, settlement, underground and special area. Separate serious area polish remains required after broad coverage; optional nuanced animation is deferred."
     }
   ],
   "hourly_reporting": {
@@ -2826,9 +3008,9 @@
     "plan": "Docs/GRAPHICS-WORLD-SPRITE-COVERAGE.md",
     "status": "initial_source_scope_audit_not_complete_runtime_census",
     "chunk_composition": "Every area requires actual whole-scene fullness/composition review: biome-appropriate terrain, vegetation, props, architecture and landmarks with readable traversal/hazards. No density percentages or artificial clutter.",
-    "latest_delivered_source_slice": "Canopy source3bafb1ee3445fdbf777a9ac3f51f831d407c4d0c: three unchanged square sources,285 native passes, bounded Editor/Mac restart and Linux archive verification. Maw is not in that package.",
-    "next": "Finish the reviewed MawToad source push and fresh Mac/Linux delivery, then Grovelands Shambler, Mosshulk and living merchant ChoirTendril. Continue remaining native terrain/flora/actors/props/services/crops and essential states across every biome, settlement, underground and special area. Separate serious area polish remains required after broad coverage; optional nuanced animation is deferred.",
-    "latest_integrated_source_slice": "MawToad now has one original editable native16x24 body with305 distinct native passes and bounded actual Editor world/reader, chase, combat damage cue, F5 and fresh Continue evidence. All nine identified Stump fauna bodies are integrated/observed, not whole-biome or area-polish acceptance. Maw source push and fresh packages are pending; current delivered package remains canopy source3bafb1ee3.",
+    "latest_delivered_source_slice": "MawToad source751d9247c is verified on origin/main and delivered in fresh Mac/Linux builds (0 errors/4 warnings each).305 distinct native passes, actual Editor combat/chase/restart and bounded Mac body/reader/movement/save/full-process restart are recorded; Linux archive independently verified, not executed. Nine identified Stump living bodies now have native integration, not complete regional/area polish. New Grovelands three-actor BEFORE captures exist; their native work is pending.",
+    "next": "Continue Grovelands Shambler, Mosshulk and living merchant ChoirTendril from the new actual Grove/Fen baselines: one original Shambler body plus two unchanged square-source reuses, preserving committed-melee intent and talk/trade. Native RED/integration remain pending. Then continue missing terrain/flora/actors/props/services/crops and essential states across every biome/area. Separate serious area polish remains required; optional nuanced animation stays deferred.",
+    "latest_integrated_source_slice": "MawToad source751d9247c is verified on origin/main and delivered in fresh Mac/Linux builds (0 errors/4 warnings each).305 distinct native passes, actual Editor combat/chase/restart and bounded Mac body/reader/movement/save/full-process restart are recorded; Linux archive independently verified, not executed. Nine identified Stump living bodies now have native integration, not complete regional/area polish. New Grovelands three-actor BEFORE captures exist; their native work is pending.",
     "polish_phase": "Separate required world_polish_phase after broad sprite coverage; every biome and concrete area keeps its own status and defects."
   },
   "sill_envelope": {
@@ -5599,13 +5781,13 @@
     "maw_toad_baseline": "Docs/Verification/Live16x24/maw-toad-before-receipt.json"
   },
   "maw_toad": {
-    "status": "bounded_native_and_actual_Editor_restart_pass;source_push_and_packages_pending",
-    "recorded_at_utc": "2026-10-27T15:27:34.861343+00:00",
+    "status": "source_verified_main;bounded_native_Editor_and_Mac_delivered;Linux_archive_verified;regional_polish_open",
+    "recorded_at_utc": "2026-10-27T15:40:46.613742+00:00",
     "plan": "Docs/GRAPHICS-MAW-TOAD.md",
     "identity": "MawToad",
-    "source_commit": null,
-    "source_push_verified": false,
-    "package_status": "pending;current_delivered_canopy_source3bafb1ee3_unchanged",
+    "source_commit": "751d9247cf05f55e0baf8f8f8cb02ded0eb931ae",
+    "source_push_verified": true,
+    "package_status": "fresh_Mac_bounded_play_restart_and_Linux_archive_verified",
     "art": {
       "new_frames": 1,
       "native_pixels": [
@@ -5751,10 +5933,210 @@
       "missing resource and stale/custody/fog counters"
     ],
     "limits": [
-      "No new Maw package, Linux execution, physical Deck or sustained performance claim.",
+      "No Linux execution, physical Deck or sustained performance claim; Mac package verifies body/reader/movement/save/restart only, not new combat.",
       "Other regional fauna, corpse/outcome art, props, crops, services and special areas remain incomplete.",
       "Sparse Summit, subtle dome blocking cues and other named composition/readability debts remain; existing polish records are unchanged."
     ],
-    "next": "Finish the reviewed MawToad source push and fresh Mac/Linux delivery, then Grovelands Shambler, Mosshulk and living merchant ChoirTendril. Continue remaining native terrain/flora/actors/props/services/crops and essential states across every biome, settlement, underground and special area. Separate serious area polish remains required after broad coverage; optional nuanced animation is deferred."
+    "next": "Continue Grovelands Shambler, Mosshulk and living merchant ChoirTendril from the new actual Grove/Fen baselines: one original Shambler body plus two unchanged square-source reuses, preserving committed-melee intent and talk/trade. Native RED/integration remain pending. Then continue missing terrain/flora/actors/props/services/crops and essential states across every biome/area. Separate serious area polish remains required; optional nuanced animation stays deferred.",
+    "packaged_delivery": {
+      "status": "bounded_Maw_Mac_body_reader_movement_restart_pass;Linux_archive_independent_PASS_not_executed",
+      "source_commit": "751d9247cf05f55e0baf8f8f8cb02ded0eb931ae",
+      "source_push_verified": true,
+      "source_push_verification_basis": "Root fetched/pushed and verified exact source on origin/main; ledger editor performed no Git.",
+      "mac_app": "Builds/Verification/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo.app",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "linux_archive_sha256": "517541b827fce5397700ae39b940a55ed26b0ab85072d9563a70c11f84242ac1",
+      "linux_archive_bytes": 128791022,
+      "regular_files": 189,
+      "directories": 13,
+      "archive_members": 202,
+      "mac_build": {
+        "job_id": "build-57fd800310",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo.app",
+        "started_at": "2026-10-27T15:30:03.465014Z",
+        "duration_seconds": 57.826589,
+        "completed_at": "2026-10-27T15:31:01.291603Z",
+        "total_size_mb": 344.36,
+        "errors": 0,
+        "warnings": 4
+      },
+      "linux_build": {
+        "job_id": "build-da1f463de2",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-10-27-maw-toad-751d9247c-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+        "started_at": "2026-10-27T15:31:10.966834Z",
+        "duration_seconds": 45.734702,
+        "completed_at": "2026-10-27T15:31:56.701536Z",
+        "total_size_mb": 324.82,
+        "errors": 0,
+        "warnings": 4
+      },
+      "archive_receipt": "Docs/Verification/Live16x24/packaged-maw-toad-linux-archive.json",
+      "independent_review": "Docs/Verification/Live16x24/packaged-maw-toad-review.md",
+      "mac_gameplay": "Docs/Verification/Live16x24/packaged-maw-toad-mac-play.json",
+      "actual_mac": {
+        "receipt": "Docs/Verification/Live16x24/packaged-maw-toad-mac-play.json",
+        "basis": "Root actual normal controls/process report plus independent four-image review.",
+        "starting_fixture": "Docs/Verification/Live16x24/Fixtures/maw-toad-after77",
+        "first_process_pid": 6617,
+        "restart_process_pid": 6949,
+        "old_process_absent_after_full_quit": true,
+        "captures": [
+          "Docs/Verification/Live16x24/packaged-maw-toad-01-continue.jpg",
+          "Docs/Verification/Live16x24/packaged-maw-toad-02-reader.jpg",
+          "Docs/Verification/Live16x24/packaged-maw-toad-03-saved.jpg",
+          "Docs/Verification/Live16x24/packaged-maw-toad-04-restarted.jpg"
+        ],
+        "capture_count": 4,
+        "capture_dimensions": [
+          1280,
+          856
+        ],
+        "continued_player_cell": [
+          35,
+          1
+        ],
+        "continued_player_hp": 23,
+        "reader": {
+          "name": "MawToad",
+          "cell": [
+            34,
+            1
+          ],
+          "hp": 15,
+          "max_hp": 22
+        },
+        "normal_actions": [
+          "Continue",
+          "authorized reader",
+          "one Right movement",
+          "F5",
+          "full quit",
+          "fresh exact-path process",
+          "Continue"
+        ],
+        "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-maw-toad78",
+        "turn": 9540,
+        "player_cell": [
+          36,
+          1
+        ],
+        "player_hp": 23,
+        "maw_cell": [
+          35,
+          1
+        ],
+        "maw_hp": 15,
+        "restart_world_pixels": {
+          "rectangle": [
+            0,
+            96,
+            940,
+            696
+          ],
+          "pixels": 564000,
+          "decoded_rgb_equal": true,
+          "captures": [
+            "03-saved",
+            "04-restarted"
+          ],
+          "scope": "World rectangle only; titlebar/sidebar/footer excluded."
+        },
+        "new_combat_in_package": false,
+        "combat_log_is_inherited_Editor_history": true,
+        "limits": "No new packaged damage flash, Wet, death/corpse, performance, Linux or physical Deck observation."
+      },
+      "restoration_receipt": "Docs/Verification/Live16x24/packaged-maw-toad-restoration.json",
+      "restoration": {
+        "at_utc": "2026-10-27T15:37:51.208193+00:00",
+        "source_commit": "751d9247cf05f55e0baf8f8f8cb02ded0eb931ae",
+        "all_tracked_files_match_source_snapshot": true,
+        "tracked_files": 50883,
+        "dirty_tracked_files_preserved": 44,
+        "normal_editor_saves_unchanged": true,
+        "normal_standalone_saves_absence_restored": true,
+        "standalone_preferences_logically_restored": true,
+        "editor_preferences_changed_keys": [],
+        "test_saves_archived": "/private/tmp/coo-maw-build-restored-751d9247c/standalone-session-Saves",
+        "build_serialization_restored": [
+          "Assets/Resources/Sprites/Live16x24/maw-toad.png.meta",
+          "Assets/Settings/UniversalRP.asset",
+          "Assets/UniversalRenderPipelineGlobalSettings.asset",
+          "ProjectSettings/ProjectSettings.asset",
+          "ProjectSettings/UnityConnectSettings.asset"
+        ],
+        "backup_root": "/private/tmp/coo-maw-build-restored-751d9247c",
+        "previous_mac_linux_builds_and_archive_preserved": true,
+        "cache_deletion": false,
+        "free_bytes": 421435031552
+      },
+      "bounded_mac_accepted": true,
+      "linux_executed": false,
+      "physical_deck_tested": false,
+      "sustained_performance_verified": false,
+      "delivery_evidence_commit": null,
+      "delivery_evidence_push_status": "pending_root_commit",
+      "coverage_limits": "One Maw static body delivered; prior eight identities and art preserved. Nine identified Stump bodies do not imply entire areas, species lifecycles, whole-world coverage or serious polish acceptance."
+    }
+  },
+  "grovelands_actor_baseline": {
+    "status": "actual_Grove_and_Fen_before_captured;native_RED_art_integration_acceptance_pending",
+    "plan": "Docs/GRAPHICS-GROVELANDS-ACTORS.md",
+    "source_package": "751d9247cf05f55e0baf8f8f8cb02ded0eb931ae",
+    "capture_count": 5,
+    "captures": [
+      "Docs/Verification/Live16x24/grovelands-actors-before-01-grove.jpg",
+      "Docs/Verification/Live16x24/grovelands-actors-before-02-shambler-reader.jpg",
+      "Docs/Verification/Live16x24/grovelands-actors-before-03-fen.jpg",
+      "Docs/Verification/Live16x24/grovelands-actors-before-04-mosshulk-reader.jpg",
+      "Docs/Verification/Live16x24/grovelands-actors-before-05-choir-reader.jpg"
+    ],
+    "Grove": {
+      "zone": "Overworld.4.7.0",
+      "fixture": "Docs/Verification/Live16x24/Fixtures/grovelands-actors-grove79",
+      "turn": 9700,
+      "player_hp": 23,
+      "owner": "Shambler",
+      "cell": [
+        18,
+        6
+      ],
+      "hp": 16,
+      "glyph": "z",
+      "material": "Flesh",
+      "relationship": "Hostile"
+    },
+    "Fen": {
+      "zone": "Overworld.0.8.0",
+      "fixture": "Docs/Verification/Live16x24/Fixtures/grovelands-actors-fen80",
+      "turn": 9820,
+      "player_hp": 23,
+      "owners": [
+        {
+          "name": "Mosshulk",
+          "cell": [
+            13,
+            2
+          ],
+          "hp": 55,
+          "glyph": "M",
+          "relationship": "Hostile"
+        },
+        {
+          "name": "ChoirTendril",
+          "cell": [
+            19,
+            17
+          ],
+          "hp": 80,
+          "glyph": "F",
+          "relationship": "Neutral"
+        }
+      ]
+    },
+    "limits": "Fresh baseline only. No actor native mapping, combat-intent/trade, after comparison or area-polish acceptance claimed."
   }
 }
