@@ -1,0 +1,139 @@
+{
+  "at_utc": "2026-10-27T13:36:43.351480+00:00",
+  "source_commit": "16d98e625736e23b9f3a80be3e3d8a94f743e0df",
+  "runtime_source": "98e3e167b8789608f783701490822a024ffa9963",
+  "stage": "actual_before_glyph_presentation;native_fauna_not_yet_integrated",
+  "roots": {
+    "first": "/private/tmp/coo-stump-fauna-before-archived-1a734e64",
+    "second": "/private/tmp/coo-stump-fauna-baseline-archived-edbda97d"
+  },
+  "controls": "Earned fixture Continue; normal walking/swimming, L Look/period recenter/arrows/Return/x examine; normal world-map travel Grainfield2,2 to Buttress4,5; F5. No teleport/reveal/injected entities.",
+  "readers": [
+    {
+      "species": "CascadeFather",
+      "id": "60394",
+      "zone": "Overworld.2.5.0",
+      "cell": [
+        34,
+        3
+      ],
+      "hp": 3,
+      "image": "stump-fauna-before-04-cascade-reader.png"
+    },
+    {
+      "species": "GlasspaneFrog",
+      "id": "60396",
+      "zone": "Overworld.2.5.0",
+      "cell": [
+        19,
+        7
+      ],
+      "hp": 3,
+      "image": "stump-fauna-before-06-glasspane-reader.png"
+    },
+    {
+      "species": "YellowfootWayfarer",
+      "id": "62803",
+      "zone": "Overworld.2.2.0",
+      "cell": [
+        37,
+        2
+      ],
+      "hp": 26,
+      "image": "stump-fauna-before-08-wayfarer-reader.png"
+    },
+    {
+      "species": "Wardline",
+      "id": "62802",
+      "zone": "Overworld.2.2.0",
+      "cell": [
+        65,
+        24
+      ],
+      "hp": 16,
+      "image": "stump-fauna-before-09-wardline-reader.png"
+    },
+    {
+      "species": "SariSnake",
+      "id": "65085",
+      "zone": "Overworld.4.5.0",
+      "cell": [
+        21,
+        12
+      ],
+      "hp": 14,
+      "image": "stump-fauna-before-11-sari-reader.png"
+    }
+  ],
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-01-gorge-approach.png",
+      "sha256": "5a6069d266823c4f6fe9377d72fc8371452328c5e56d3176e5f98e9ad734f80e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-02-gorge-habitat.png",
+      "sha256": "e3df39a6371562eb8d7f1c40f22f0c73c0b7d6e9d26121f3ea3f7e0153ac537c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-03-cascade-menu.png",
+      "sha256": "369be6995bf19e425d4866149e6f7a513996a5bac4b79a46b4e179ddc3c9ec08"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-04-cascade-reader.png",
+      "sha256": "a072c16675b0c7bfebd9f111c067bdfbc8758ff4097b567ecce8ae3aff8abbec"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-06-glasspane-reader.png",
+      "sha256": "4562c6cf3568859f59f111fc887465cadad2b346ba74c84a1b5950b84f4f90ec"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-07-grainfield.png",
+      "sha256": "b2f2ebad1db8a7b3996821ad0e02f9eea023201c560c5739af521f9683dca459"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-08-wayfarer-reader.png",
+      "sha256": "d82be0a94b467de511f30261caf0a976750f8e9770f6cda57c272c5bc363c56e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-09-wardline-reader.png",
+      "sha256": "f7380434ef508d2033266e7c52821f8007b20719e54c75099877b981f999cd0b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-10-buttress.png",
+      "sha256": "45dc8d4b75d8f726699cfabba30df0a3b33959d5c3791ab9624f4a1b22c50e23"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/stump-fauna-before-11-sari-reader.png",
+      "sha256": "195f91cad17ab5f15326ee2b5f7c17972f4accff263bbddce826ff3d583a43bb"
+    }
+  ],
+  "earned_fixture": "Fixtures/stump-fauna-before70",
+  "earned_meta": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.4.5.0",
+    "ActiveZoneDisplayLabel": "Overworld.4.5.0",
+    "Turn": 7580,
+    "SaveTimestampUtc": "2026-10-27T13:35:14.4046980Z",
+    "HPSummary": "38/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "operator_events": [
+    "Initial empty isolation marker was selected before active save selection refresh. Earned save then loaded successfully; not a real-save corruption.",
+    "First capture01 follows blocked left inputs into real TepuiWall; no walking success attributed to those inputs.",
+    "Two Escapes after first reader exited Look, subsequent keys performed normal movement and opened Skills. Interim05 image excluded from reader acceptance.",
+    "Test-file import caused Play domain reload after frog baselines, nulling live graph. First isolated files archived; second session used earned package69 for remaining three species. Source runtime and art unchanged across before captures."
+  ],
+  "protection": "Both roots archived before Finish; normal Editor/standalone saves and38foreignfiles verified unchanged after session. No storage cleanup.",
+  "limits": [
+    "Before glyph presentation only; no native fauna acceptance",
+    "Three viewport formations and five species readers, not entire chunks/areas/world",
+    "No density/generation/AI/loot/combat changes",
+    "Not performance or packaged fauna evidence"
+  ]
+}

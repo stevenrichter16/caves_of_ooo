@@ -1,8 +1,8 @@
 # Stump fauna — bounded static native coverage preflight
 
-2026-10-27 UTC. **Status: source/image review and plan only. No fauna production art, runtime integration, tests or acceptance have been produced by this phase.** Root is completing the Stump solid-perimeter correction first. This plan does not alter that work or its delivery status.
+2026-10-27 UTC. **Current status: first-five unchanged-sheet reuse preflight; actual close baselines underway. No new fauna runtime/art acceptance is claimed.** The Stump material source `98e3e167b8789608f783701490822a024ffa9963` and subsequent delivery/evidence `16d98e625` are verified on main by root. Its bounded native/Editor/Mac/archive gates are complete; whole-region polish remains open. This fauna plan does not promote that material checkpoint into polish acceptance.
 
-The next finite slice is nine exact living fauna identities, with readable static bodies in the flat 16×24 world and authorized examine view. Preserve working animation and legacy sources; defer new nuanced animation. This is CoO-original visual integration, not a Qud parity claim. Worldwide sprite coverage and chunk fullness remain the larger objective; these nine actors do not close Stump, Sodden or any entire biome.
+The immediate finite slice is **five exact living identities: CascadeFather, GlasspaneFrog, YellowfootWayfarer, Wardline and SariSnake**, using unchanged existing South-idle pixels in the flat16×24 world and authorized examine view. The full nine-identity fauna queue remains: SummitSinger, BrocchiniaSentinel and SkySari native-cell adaptations, followed by MawToad's new crisp treatment, are later work. Preserve working animation and legacy sources; defer new nuanced animation. This is CoO-original visual integration, not a Qud parity claim. Worldwide sprite coverage and chunk fullness remain the larger objective; these nine actors do not close Stump, Sodden or any entire biome.
 
 ## Evidence and scoped coverage
 
@@ -42,7 +42,7 @@ The reviewer opened all nine source images and the approved [opening cast contac
 
 The chosen top row is confirmed as South by `Assets/Scripts/Gameplay/Entities/EntityVisualFacing.cs:9`; West/East/North follow. This verifies the proposed extraction coordinate, not in-game acceptance of that pose.
 
-A small nine-cell derivative atlas (provisionally 144×24) is sufficient if the five reuse candidates and three padding candidates pass actual comparison. Five cells would preserve existing source pixels, three would preserve their original 16×16 pixels with transparent padding, and MawToad would be new native art. This is a proposed production scope, not an authored asset or fixed acceptance decision. An individual failed silhouette/contrast check may justify a named derivative correction without redrawing the rest.
+The earlier provisional nine-cell144×24 derivative atlas is **not the current implementation choice**. The first five will borrow their existing sheet textures and create only five cached static Sprite/Tile pairs; no PNG extraction or new atlas is needed. The three16×16 adaptations and MawToad remain separate later source work. A named failure in an actual silhouette/contrast comparison may justify a separately reviewed derivative, while preserving all prior sources.
 
 ## Verification sweep — corrections before implementation
 
@@ -79,17 +79,17 @@ Essential state behavior:
 
 Use existing public renderer and examine fixtures. Keep tests finite and meaningful; do not create another general framework.
 
-1. Nine exact positive bodies and authorized world/examine equality; paired same-glyph wrong species/explicit reskin refusal. Test the current physical owner, not a synthetic texture-only selector.
-2. Current graph/disclosure/selection, covering-owner changes, custody, invalid footprint and optional resource/disposal counters. Missing fauna atlas must keep glyph identity and leave accepted terrain/portable items intact.
+1. Five exact positive bodies and authorized world/examine equality; paired same-glyph wrong species/explicit reskin refusal. Test the current physical owner, not a synthetic texture-only selector. The other four identities are explicitly outside this implementation.
+2. Current graph/disclosure/selection, covering-owner changes, custody, invalid footprint and optional resource/disposal counters. A missing/malformed one-species sheet must keep that species' glyph while the other four resources and accepted terrain/portable items remain intact; borrowed textures survive disposal.
 3. Submitted full-to-dirty movement and death/removal clear the previous cell and preserve real ground/hazard layers. A real death's corpse owner must not resolve as a living animal; preserve the Corpse factory hook in the fixture.
 4. Actual TakeDamage followed by the real single Render event produces a visible essential cue; paired quiet repaint settles correctly. Test a valid applied color-changing status with an explicit successful-application precondition; do not assume every material permits every effect. Portrait queries and neighbor reclaim must not consume additional Render events or flash frames.
-5. Exact species portability in a non-Stump current graph; no broad opening/terrain admission. An actual or source-grounded MawToad Sodden fixture is the highest-value shared-world case.
+5. Exact species portability in a non-Stump current graph; no broad opening/terrain admission. First-five source-grounded controls are GlasspaneFrog/YellowfootWayfarer in Felling or Morrowfast, including legitimate renamed/peaceful resident variants. MawToad/Sodden is deferred with that species.
 
 Run genuine native RED before runtime edits, implement the smallest necessary route, run the bounded GREEN and related reader/fog/actor regressions, then independent review. Record actual results only after root executes them. No test count or pass is claimed here.
 
 ## Playable production and acceptance sequence
 
-1. Finish the solid-perimeter material correction. Reuse the actual five-area baseline geometry while unchanged; preserve old captures.
+1. The material source/delivery gates are complete within their bounds. Preserve those captures and the unchanged current geometry; root now captures close first-five fauna baselines with normal controls.
 2. Approach and examine the real fauna owners needed for identity review via normal gameplay, with current zone/owner receipts. Use the reviewed five formation views as context, not proof of all nine close-up identities.
 3. For any new or corrected body, use actual gameplay plus the approved cast as imagegen inputs; preserve exact prompts, references, outputs and critique. No concept output is itself production art.
 4. Extract the finite source/state list. Freeze native cells, baselines and source-pixel reuse hashes; preserve all prior sheets and static sprites. Produce editable source and Point/no-mipmap imports.
@@ -99,10 +99,221 @@ Run genuine native RED before runtime edits, implement the smallest necessary ro
 
 ## Performance, self-review and continuation
 
-Use a fixed nine-identity lookup and constructor-time cached Tile/Sprite resources; no hot-path LINQ, per-owner texture generation, Render-event redispatch or new per-frame component. Reuse dirty-cell and current-owner mechanisms. Profile actual submitted gameplay after integration; source review does not prove allocation/frame-time/device performance.
+Use a fixed first-five identity lookup and constructor-time cached Tile/Sprite resources; no hot-path LINQ, per-owner texture generation, Render-event redispatch or new per-frame component. Reuse dirty-cell and current-owner mechanisms. Profile actual submitted gameplay after integration; source review does not prove allocation/frame-time/device performance.
 
 - **🟡 Planned blocker:** preserve the existing damage/status cue when replacing a glyph with a static native body; do not merge a cue-swallowing implementation.
 - **🧪 Pending visual acceptance:** five exact reuse candidates, three native-cell adaptations and the new MawToad treatment need actual game comparison. No native fauna is accepted by this plan.
 - **⚪ Explicit limits:** no nuanced animation, new AI/spawning/combat, corpse art expansion, multicell-pilot art, whole-region completion or Linux/Deck execution claim. All remaining biomes and areas remain in the coverage queue.
 
-Implementation log: source blueprints, populations/habitats, death/corpse flow, static/animated native admission, reader authority and actual existing art were reviewed. Only this plan was authored; no runtime, tests or images changed. Current phase is **preflight complete, production not started**. Next action is root's material correction/delivery followed by the actual fauna baseline and finite reuse/concept trial. Future implementation must update this document and the coverage records in the same reviewed commit.
+Implementation log: source blueprints, populations/habitats, death/corpse flow, static/animated native admission, reader authority and actual existing art were reviewed. Only this plan was authored; no runtime, tests or images changed. Current phase is **first-five preflight complete, actual close baseline underway; no fauna acceptance claimed**. The material source and delivery gates are already complete. Next action is baseline review, genuine native RED and the minimal direct-sheet integration; source-only reuse requires no new concept or PNG unless an actual named visual defect demands a correction. Future implementation must update this document and the coverage records in the same reviewed commit.
+
+
+## First-five unchanged native reuse contract — 2026-10-27
+
+Root explicitly selected CascadeFather, GlasspaneFrog, YellowfootWayfarer,
+Wardline and SariSnake as the next slice. The earlier census contains eight
+owners across these five identities, not eight close-up interactions. Actual
+close baselines are being captured by root now; none are inferred from this
+source inspection. This documentation pass writes only this phase document.
+No new PNG, metadata, runtime or tests were authored or accepted here.
+
+### Direct cached sprites selected; extraction is unnecessary
+
+`build_comparison_plan` independently agreed to direct borrowed sheet textures,
+with one constructor-cached Sprite and Tile per species. Every actual source
+PNG was opened in this pass: the frog pair has pale versus green compact bodies,
+the tortoise has a recognizable shell and feet, and the two snakes retain their
+distinct olive versus wet-stone palettes. They remain candidates for actual
+water/stone contrast review; recognizable source art is not gameplay acceptance.
+
+All five files are64×384, with Point filtering, no mipmaps, sRGB and uncompressed
+imports; `isReadable` isfalse and need not change. Use the South-idle first frame:
+Unity rectangle **`(0,360,16,24)`**, equivalent to decoded PNG top-left
+`(0,0)-(16,24)`. Create a **centered(.5,.5),PPU16,FullRect** Sprite for the static
+tile path, matching `FlatPixelIncidentalActorCatalog.cs:90–96`. Do not directly
+reuse a legacy `GetFrame` Sprite: `EntityVisualCatalog.cs:43–47` uses default
+pivotY=0 for its animated placement, and `:146–175` slices the full64-frame sheet.
+The five cached static sprites need the same pixels, not that placement contract
+or320 generated legacy frame objects.
+
+The ordinary examine path already derives normalized UV from `sprite.rect`
+(`ExaminePortraitRenderer.cs:197–204`), so a sheet subrect does not require a
+separate portrait image. Runtime `Sprite.Create` reads the texture asset without
+CPU pixel extraction. The adapter owns only its five created Tiles/Sprites and
+must leave all borrowed textures, PNGs, metadata and motion definitions intact.
+Each optional resource is independent: one absent/malformed sheet refuses only
+that body's native art, with no implicit fallback resource load.
+
+A five-cell80×24 derivative could reduce loaded source texels, but is not needed
+for correctness. Five64×384RGBA sheets represent about480KiB of theoretical raw
+texels versus7.5KiB for such a derivative; these are arithmetic source sizes,
+not measured Unity/GPU memory or a performance claim. Avoid adding extraction,
+new import state and duplicate editable pixels without an actual need. Revisit
+only for a named measured resource or visual defect after gameplay comparison.
+
+### Exact resource and state mapping
+
+| Exact living owner | Borrowed Resources path | Canonical glyph | Native state in this slice | Required actual comparison |
+|---|---|---|---|---|
+| CascadeFather | `Sprites/Actors/cascade_father_sheet` | `f` | South-idle0, pale compact body | On real SprayPool, distinct from GlasspaneFrog; juveniles are not promised readable without inspection. |
+| GlasspaneFrog | `Sprites/Actors/glasspane_frog_sheet` | `f` | South-idle0, green compact body | Actual water contrast and small-body visibility. |
+| YellowfootWayfarer | `Sprites/Actors/yellowfoot_wayfarer_sheet` | `t` | South-idle0, shell and yellow feet | Actual Grainfield scale/readability, distinct from toad glyph siblings. |
+| Wardline | `Sprites/Actors/wardline_sheet` | `s` | South-idle0, olive snake | Same-view distinction from SariSnake against stone/vegetation. |
+| SariSnake | `Sprites/Actors/sari_snake_sheet` | `s` | South-idle0, wet-stone snake | Distinct identity and essential damage cue against the current graded ground. |
+
+Idle/walking/attacking display this same selected static body in this first
+coverage slice. Existing original motion assets remain unchanged and available
+to their prior presentation. This does not claim new animation or replace AI,
+habitat/spawn rules, facing data, health or combat mechanics. Hurt/status
+**feedback must remain visible**, even though no new hurt frames are authored.
+Dead/removed owners cannot resolve as living bodies; their separate corpse/loot
+owners retain truthful existing fallback. World and authorized examine use the
+same source rectangle, with no fabricated living-creature inventory feature.
+
+### Essential Render-color control
+
+Current `ZoneRenderer.FlatPixelPaint.cs:35–42` dispatches one real Render event
+but chooses `flat.ForegroundColor` for native foreground. The environment
+reclaim path at `EnvironmentSpriteRenderer.cs:351–359` similarly bypasses the
+computed receipt tint. `DamageFlashPart.cs:33–59` sets three red Render-event
+frames after TakeDamage. Simply adding white native bodies would consume those
+frames while hiding their cue, a blocking regression.
+
+The runtime/test agent's planned narrow opt-in is
+`FlatPixelGreyboxCell.PreserveRenderColorCue`, defaultfalse. For these first-five
+bodies, a changed valid current Render-event color supplies the cue; an unchanged
+semantic glyph color leaves the native pixel palette white/untinted. Carry the
+same one-event result through the existing paint receipt for neighbor reclaim;
+never redispatch from catalog, portrait or reclaim. This is a proposed contract,
+not an implemented or tested result. Preserve all existing native material and
+non-opted-in actor behavior. Native full/dirty/neighbor/quiet controls must verify
+actual event count, visible damage cue and return to neutral; the existing
+`FlatPixelGlobalPresentationTests.cs:82–98` is the prior glyph reference control.
+A color-changing status test must prove that the real effect applied before
+asserting its presentation. Neutral damage/renaming/faction changes alone do not
+make the actor a different species.
+
+### Current source pins
+
+The following full PNG and metadata hashes were read without changing files.
+The South-idle hash is SHA256 of decoded top-down16×24RGBA bytes, including
+transparency. It records unchanged source pixels for later comparison; it is not
+a Unity render or imported-texture hash.
+
+| Owner | PNG SHA256 | South-idle RGBA SHA256 | Metadata SHA256 |
+|---|---|---|---|
+| CascadeFather | `0ed8191e5cd474bd4638e222845ad9512798b02eb36dbe31c40d793e1b7c40b3` | `f69f497608ae2386e28ef8139537a7ee4e777f9c9d704768a7f2029b286289a9` | `d1c9bb1fe74ac76e000e533f08c779a2718e24a5111442d91b19f102985e5725` |
+| GlasspaneFrog | `62c2f930270156a86cd1a6566b855c5a255e4e0100e6deef4d2b9481df45f55e` | `0baf1b37a1566b5d073d240ba19d011c69407a6deaa99d798cd0216d025ac261` | `5b90d7c121322de0f3c5eed0ee76e5a242d04505a39f75f736b28ba669dcee85` |
+| YellowfootWayfarer | `8f40e10710db5e0c920a23651bda03f3cd564a2ea8a4d2353a6864fe74926941` | `273c0e8d33dbf17cef414649a6bb309c90fb53845eb7ed7646ff4c1eaf8102fa` | `aeac1ea22d4da3027798f9a7c43eeb7c563c38d27505bfa3dedfa51a08e0d593` |
+| Wardline | `298efe125ede340e1bba522818d7d4154afd9f0b04478a46cb02a051fdc74150` | `cc69dfc0d473701c1fc6fb917a9e3762a6890fc53ad4d301899b1a26b77523c2` | `36bf26a352d5f319b95139446e0731fa397191c5842b76d3db0d5977a60ca394` |
+| SariSnake | `f23f498efe3b472febc8788c5a9553e279f55e7806e72d78ad9333e9a3f806ca` | `40af85e31ca8184e73cc2536bdc1e8bae1913d5e15273cf4eff1ebe7ded94aca` | `0a5677dc97fba5f3447f1e0edb113257486f8d8f5b58620e00b525dd8bb6529b` |
+
+### Later scope remains explicit
+
+SummitSinger, BrocchiniaSentinel and SkySari retain their existing16×16 sources
+and await separate reviewed lossless native-cell adaptations. MawToad needs a
+new crisp native treatment and its Sodden/multicell/corpse boundaries remain
+separate. This first-five route does not silently admit any of those four.
+Keep their10census owners and the full nine-identity queue visible; no species,
+Stump, Sodden or all-world completion is claimed by this sub-slice.
+
+Material delivery/evidence `16d98e625` is verified on main by root, following
+source `98e3e167b8789608f783701490822a024ffa9963`; this task did not operate Git.
+The separate mandatory all-world area polish phase remains required and its
+`not_audited` records are not advanced by this plan. No hourly-report timestamp
+is advanced here. Baseline/control captures, genuine native RED, minimal runtime,
+GREEN/related regressions, independent review, real after/restart and package
+checks still gate first-five acceptance.
+
+
+### Active continuation and hourly report — 2026-10-27 13:27 UTC
+
+Root sent the requested itemized hourly update: completed Stump material source
+98e3e167b and delivery16d98e625 on main,663 native passes and bounded Mac
+travel/readers/save/restart, Linux archive-only verification; first-five fauna
+baselines/tests in progress; next goals unchanged native-cell integration and
+real world/reader/damage/status comparison. Other species/props/crops/hazards and
+all-world coverage remain open. Dedicated area polish remains separate and
+optional animation deferred. **Last actual hourly report13:27UTC; next14:27UTC.**
+
+Root owns isolated Play token1a734e64020d4141a5e5a8ca8b1d4afc, using the earned
+stump-final68 fixture. Initial Continue attempted the launcher marker before
+active save selection was refreshed; the resulting empty-marker gzip error is
+an operator setup issue, not an earned-save corruption. The real fixture then
+loaded normally. Actual Gorge approach and cascade-father world menu/reader are
+captured as stump-fauna-before-01..04. A two-Escape batch left Look and performed
+ordinary movement/opened Skills; that interim image is explicitly retained as
+stump-fauna-interim-05-skills, not a frog reader. Refreshed Look selection then
+opened the real visible GlasspaneFrog60396 at19,7, captured06. No source art or
+production runtime changed at this boundary; tests are being authored for RED.
+
+
+## First-five integration checkpoint — 2026-10-27 13:51 UTC
+
+**Current pass: integrated and observed in bounded ordinary Editor play; source
+push and fresh package delivery pending.** Five unchanged South-idle cells now
+replace glyph bodies for CascadeFather, GlasspaneFrog, YellowfootWayfarer,
+Wardline and SariSnake. They use the same art in authorized examine portraits.
+No new PNG or animation was produced: the approved exact cells are reused,
+centered in the native grid, with all ten original PNG/meta hashes unchanged.
+This is the documented reuse path, not an omitted new-art pipeline.
+
+The narrow catalog creates five cached Sprite/Tile pairs, borrows original
+textures and rejects malformed/repurposed/dead/custodied/multicell bodies.
+Current-graph, selected-owner, visibility and authorized-reader gates remain
+upstream. A native-body opt-in preserves the real one-event damage/status color
+cue and carries it in the same cell receipt as the independently retained lit
+glyph tint; reader queries and neighbor reclaims consume no extra Render events.
+The original legacy presentation, source motion and other native kits remain.
+
+### Verification and corrections
+
+- Genuine pre-implementation RED:44/44failed, native runtime absent; retained
+  XML, raw receipt and the exact original test source. Two stale-reader assertions
+  were then corrected to exercise the authorized document boundary rather than
+  an intentionally semantic helper; no runtime behavior was loosened.
+- An initial GREEN retry still used the pre-import assembly:44failed again.
+  Retained separately in `stump-fauna-preimport-retest.xml`. Explicit asset refresh
+  loaded the frozen scripts; the next native run passed44/44 at13:41:38–42UTC.
+- Ten related native suites:413passed,0failed,1skipped. Combined457distinct
+  passes and1skip. The skip is an unsupported allocation-counter check; it is
+  not a passing zero-allocation proof. XMLs and both independent reviews retained.
+- Actual1280×800 before readers for all five plus after01–11 inspected. Ordinary
+  Buttress→Grainfield→Gorge travel, selection/readers, actual combat/death and
+  fresh-session Continue verified. No entity injection/teleport/reveal used.
+- Sari65085 died through ordinary combat and became separate corpse69511 at24,10.
+  Player38→29HP with bleeding then stopping; Wardline retained its native body
+  and actual Witnessed state. A blocked approach struck a tree repeatedly before
+  routing around it; this is not successful fauna damage evidence.
+- Actual wet frogs remain native with a blue body cue; neutral reader portraits
+  retain their pale/green identity. The transient three-frame hurt cue is tested
+  natively, not claimed as captured in live screenshots.
+- F5 earned save after71:turn8120,HP29/40,Overworld.2.5.0. A new isolatedPlay
+  normally Continued the same save with identical player/visible frog state,
+  inspected in after11. Normal saves/38foreign baseline files verified unchanged.
+  Four isolated session roots remain archived outside the project, not deleted.
+
+### Self-review and limits
+
+🔵 Independent source/runtime and actual before/after reviews found no blocking
+identity/contrast defect for this bounded five-body slice. Wet frogs converge
+in dark-blue coloring and Sari is subdued; these are named later polish debts.
+🧪 A single stationary Editor sample recorded34batches/34draws,9810triangles,
+19640vertices and UnityStats.frameTime0.001712375seconds. This is neither a
+comparative profile nor packaged/Deck performance evidence. No allocation claim.
+⚪ Existing Metal/depth and finalizer warnings and the excluded setup/test-import
+attempts remain in evidence; no clean-log claim.
+
+Remaining: SummitSinger, BrocchiniaSentinel and SkySari native-cell adaptations,
+MawToad treatment, other regional actors/props/crops/hazards, all other biomes,
+settlements, interiors, underground and special sites. Broad sparse centers,
+subtle blockers and black-backed unmapped objects remain coverage/polish debt.
+No area polish state advances from not_audited and no nuanced animation is added.
+Next: exact owned source/evidence push, fresh package checks, then the remaining
+regional sprite families. Hourlyreport13:27→14:27UTC remains current.
+
+Files: NEW FlatPixelStumpFaunaCatalog.cs/.meta, FlatPixelStumpFaunaTests.cs/.meta;
+MOD FlatPixelGreyboxCatalog, ZoneRenderer.FlatPixelPaint, EnvironmentSpriteRenderer;
+verification captures/fixtures/receipts/reviews and the same-commit living records.
+See `Docs/Verification/Live16x24/stump-fauna-after-receipt.json` for exact source
+and image hashes, route/actions, operator corrections and limits.

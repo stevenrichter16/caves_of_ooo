@@ -33,13 +33,15 @@ namespace CavesOfOoo.Rendering
             PaintTileStateMarkWithLiquids(x, y, position, cell,
                 flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water,
                 flat.RepresentedBrine, flat.RepresentedMire);
+            Color nativeColorCue = Color.white;
             var tint = !flat.Remembered && flat.Owner != null
-                ? ResolveRenderColor(flat.Owner, flat.Owner.GetPart<RenderPart>(), x, y)
+                ? ResolveRenderColor(flat.Owner, flat.Owner.GetPart<RenderPart>(), x, y, out nativeColorCue)
                 : ApplyFlatLighting(flat.ForegroundColor, x, y);
-            _envSpriteRenderer.RecordFlatPaint(CurrentZone, x, y, flat, tint);
+            _envSpriteRenderer.RecordFlatPaint(CurrentZone, x, y, flat, tint, nativeColorCue);
             _tilemap.SetTile(position, flat.ForegroundTile);
             _tilemap.SetTileFlags(position, TileFlags.None);
-            _tilemap.SetColor(position, flat.NativeForeground ? flat.ForegroundColor : tint);
+            _tilemap.SetColor(position, flat.NativeForeground
+                ? (flat.PreserveRenderColorCue ? nativeColorCue : flat.ForegroundColor) : tint);
             _tilemap.SetTransformMatrix(position, Matrix4x4.identity);
             if (_bgTilemap != null)
             {
@@ -53,9 +55,13 @@ namespace CavesOfOoo.Rendering
         // Both presentation modes dispatch one pooled event for the selected
         // visible owner. Catalogs, portraits and neighbor reclaims never do so.
         private Color ResolveRenderColor(Entity owner, RenderPart render, int x, int y)
+            => ResolveRenderColor(owner, render, x, y, out _);
+
+        private Color ResolveRenderColor(Entity owner, RenderPart render, int x, int y, out Color nativeColorCue)
         {
             string colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string issue);
             LogRenderIssueOnce(owner, issue);
+            Color authoredColor = QudColorParser.Parse(colorString);
             var renderEvent = GameEvent.New("Render");
             try
             {
@@ -69,7 +75,12 @@ namespace CavesOfOoo.Rendering
                     ? eventColor : AsciiWorldRenderPolicy.FallbackColorString;
             }
             finally { renderEvent.Release(); }
-            return ApplyFlatLighting(QudColorParser.Parse(colorString), x, y);
+            Color eventColorValue = QudColorParser.Parse(colorString);
+            // Native pixels already contain the species' palette. Only an
+            // actual change from its authored semantic color is a tint cue;
+            // unchanged cyan/green/red glyph colors must not recolor the body.
+            nativeColorCue = eventColorValue == authoredColor ? Color.white : eventColorValue;
+            return ApplyFlatLighting(eventColorValue, x, y);
         }
     }
 }

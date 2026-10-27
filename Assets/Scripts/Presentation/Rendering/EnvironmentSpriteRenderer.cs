@@ -317,7 +317,7 @@ namespace CavesOfOoo.Rendering
         private struct FlatPaintReceipt
         {
             internal Zone Zone; internal Cell Cell; internal Entity Owner; internal RenderPart Render;
-            internal Color Tint;
+            internal Color Tint, NativeColorCue;
         }
         private readonly FlatPaintReceipt[] _flatPaintReceipts = new FlatPaintReceipt[Zone.Width * Zone.Height];
 
@@ -342,20 +342,23 @@ namespace CavesOfOoo.Rendering
             return _flatPixelGreybox.TryResolvePresentation(zone, x, y, out result);
         }
 
-        internal void RecordFlatPaint(Zone zone, int x, int y, in FlatPixelGreyboxCell result, Color tint)
+        internal void RecordFlatPaint(Zone zone, int x, int y, in FlatPixelGreyboxCell result, Color tint, Color nativeColorCue)
         {
             _flatPaintReceipts[y * Zone.Width + x] = new FlatPaintReceipt
-            { Zone = zone, Cell = zone.GetCell(x, y), Owner = result.Owner, Render = result.Owner?.GetPart<RenderPart>(), Tint = tint };
+            { Zone = zone, Cell = zone.GetCell(x, y), Owner = result.Owner, Render = result.Owner?.GetPart<RenderPart>(), Tint = tint, NativeColorCue = nativeColorCue };
         }
 
         private Color FlatForegroundTint(Zone zone, int x, int y, in FlatPixelGreyboxCell flat)
         {
-            if (flat.NativeForeground) return flat.ForegroundColor;
+            if (flat.NativeForeground && !flat.PreserveRenderColorCue) return flat.ForegroundColor;
             var receipt = _flatPaintReceipts[y * Zone.Width + x];
             var render = flat.Owner?.GetPart<RenderPart>();
             if (!flat.Remembered && receipt.Zone == zone && receipt.Cell == zone.GetCell(x, y)
                 && receipt.Owner == flat.Owner && receipt.Render == render && flat.Owner != null)
-                return receipt.Tint;
+                return flat.NativeForeground ? receipt.NativeColorCue : receipt.Tint;
+            // A neighbor reclaim has no authority to dispatch another Render
+            // event. Without its matching receipt, retain the neutral body.
+            if (flat.NativeForeground) return flat.ForegroundColor;
             return FlatLight(zone, flat.ForegroundColor, x, y);
         }
 

@@ -34,11 +34,15 @@ namespace CavesOfOoo.Rendering
         public readonly bool RepresentedBrine;
         /// <summary>Submitted native MirePool body represents the sole live bog-mire layer; not brine/water.</summary>
         public readonly bool RepresentedMire;
+        /// <summary>Only opted-in native actors use the selected owner's existing
+        /// Render-event color override; their unchanged authored body stays white.</summary>
+        public readonly bool PreserveRenderColorCue;
 
         internal FlatPixelGreyboxCell(Tile ground, Tile foreground, Color groundColor,
             Color foregroundColor, Entity owner, FlatPixelGreyboxKind kind,
             FlatPixelGreyboxGround groundKind, bool remembered, bool blocksMovement, Tile groundDecoration = null,
-            bool nativeForeground = false, bool localGround = false, bool representedBrine = false, bool representedMire = false)
+            bool nativeForeground = false, bool localGround = false, bool representedBrine = false, bool representedMire = false,
+            bool preserveRenderColorCue = false)
         {
             GroundTile = ground; ForegroundTile = foreground; GroundDecorationTile = groundDecoration;
             GroundColor = groundColor; ForegroundColor = foregroundColor;
@@ -46,6 +50,7 @@ namespace CavesOfOoo.Rendering
             Remembered = remembered; BlocksMovement = blocksMovement;
             NativeForeground = nativeForeground; LocalGround = localGround; RepresentedBrine = representedBrine;
             RepresentedMire = representedMire;
+            PreserveRenderColorCue = preserveRenderColorCue;
         }
     }
 
@@ -68,6 +73,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelWorkingCourtCatalog _workingCourtArt;
         private FlatPixelCellarFloorCatalog _cellarFloorArt;
         private FlatPixelIncidentalActorCatalog _incidentalActorArt;
+        private FlatPixelStumpFaunaCatalog _stumpFaunaArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
         private FlatPixelHarvestProductsCatalog _harvestProductsArt;
         private readonly Texture2D _harvestItemsAtlas, _harvestWorksAtlas;
@@ -959,9 +965,16 @@ namespace CavesOfOoo.Rendering
             Tile productArt = null;
             bool productNative = products != null && products.TryResolve(owner, out productArt);
             if (productKnown) art = productArt;
+            bool faunaKnown = FlatPixelStumpFaunaCatalog.HasKnownRole(owner);
+            var fauna = !fallback.Remembered ? StumpFaunaArtFor(owner) : null;
+            Tile faunaArt = null;
+            bool faunaNative = fauna != null && fauna.TryResolve(owner, out faunaArt);
+            if (faunaKnown) art = faunaArt;
             // Known-product refusal is authoritative: older local item groups
             // must not bypass current semantic or optional-resource guards.
-            bool native = productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative
+            // The same applies to exact fauna; portable species do not admit
+            // regional scenery or inherit another body's art after refusal.
+            bool native = faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -985,7 +998,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater, brineNative || beatingBrineNative, mireNative);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater, brineNative || beatingBrineNative, mireNative, faunaNative);
             return true;
         }
 
@@ -995,6 +1008,13 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            if (FlatPixelStumpFaunaCatalog.HasKnownRole(subject))
+            {
+                var fauna = StumpFaunaArtFor(subject);
+                if (fauna != null && fauna.TryResolve(subject, out var faunaTile))
+                { sprite = faunaTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             if (FlatPixelHarvestProductsCatalog.HasKnownRole(subject))
             {
                 var products = HarvestProductsArtFor(subject);
@@ -1131,6 +1151,14 @@ namespace CavesOfOoo.Rendering
             if (_incidentalActorArt == null && _loadOptionalResources)
                 _incidentalActorArt = new FlatPixelIncidentalActorCatalog();
             return _incidentalActorArt;
+        }
+
+        private FlatPixelStumpFaunaCatalog StumpFaunaArtFor(Entity owner)
+        {
+            if (!FlatPixelStumpFaunaCatalog.HasKnownRole(owner)) return null;
+            if (_stumpFaunaArt == null && _loadOptionalResources)
+                _stumpFaunaArt = new FlatPixelStumpFaunaCatalog();
+            return _stumpFaunaArt;
         }
 
         private FlatPixelHarvestProductsCatalog HarvestProductsArtFor(Entity owner)
@@ -1322,6 +1350,8 @@ namespace CavesOfOoo.Rendering
             _cellarFloorArt = null;
             _incidentalActorArt?.Dispose();
             _incidentalActorArt = null;
+            _stumpFaunaArt?.Dispose();
+            _stumpFaunaArt = null;
             _incidentalEquipmentArt?.Dispose();
             _incidentalEquipmentArt = null;
             _harvestProductsArt?.Dispose();

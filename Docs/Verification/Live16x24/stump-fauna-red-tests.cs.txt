@@ -1,0 +1,369 @@
+// First-five static reuse contract. Reflection allows genuine RED before the
+// optional catalog exists; public world, submitted paint and reader paths lead.
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Object = UnityEngine.Object;
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class FlatPixelStumpFaunaTests
+    {
+        const int X = 10, Y = 10;
+        const BindingFlags I = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        const BindingFlags S = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+        static readonly string[] Species = { "CascadeFather", "GlasspaneFrog", "YellowfootWayfarer", "Wardline", "SariSnake" };
+        static readonly string[] Sheets = { "cascade_father_sheet", "glasspane_frog_sheet", "yellowfoot_wayfarer_sheet", "wardline_sheet", "sari_snake_sheet" };
+        DensityLootTestScope content;
+        OverworldZoneManager manager;
+        Zone zone;
+        FlatPixelGreyboxCatalog world;
+        IDisposable adapter;
+        readonly List<Texture2D> borrowed = new List<Texture2D>();
+        EntityDamageVisualHandler oldDamage;
+        EntityMovedVisualHandler oldMoved;
+        Action<string> oldMessage;
+
+        [SetUp] public void Setup()
+        {
+            oldDamage = EntityVisualHooks.DamageCallback; oldMoved = EntityVisualHooks.MovedCallback; oldMessage = MessageLog.OnMessage;
+            EntityVisualHooks.DamageCallback = null; EntityVisualHooks.MovedCallback = null; MessageLog.OnMessage = null;
+            content = new DensityLootTestScope(); manager = OverworldZoneManager.CreateDetached(content.Factory, 65, true);
+            zone = Attach("Overworld.2.5.0"); world = new FlatPixelGreyboxCatalog();
+        }
+        [TearDown] public void Cleanup()
+        {
+            try { world?.Dispose(); adapter?.Dispose(); foreach (var texture in borrowed) if (texture != null) Object.DestroyImmediate(texture); borrowed.Clear(); content?.Dispose(); }
+            finally { EntityVisualHooks.DamageCallback = oldDamage; EntityVisualHooks.MovedCallback = oldMoved; MessageLog.OnMessage = oldMessage; }
+        }
+        Zone Attach(string id)
+        { var graph = new Zone(id); manager.SetActiveZone(graph); foreach (var cell in graph.Cells) cell.Explored = cell.IsVisible = true; return graph; }
+        Entity Owner(string name) { var value = content.Factory.CreateEntity(name); Assert.NotNull(value, name); return value; }
+        Entity Add(string name, int x = X, int y = Y)
+        { var value = Owner(name); Assert.True(zone.AddEntity(value, x, y)); return value; }
+        FlatPixelGreyboxCell View(int x = X, int y = Y)
+        { Assert.True(world.TryResolvePresentation(zone, x, y, out var value)); return value; }
+        static Texture2D Resource(string species)
+        { int index = Array.IndexOf(Species, species); Assert.GreaterOrEqual(index, 0); var texture = Resources.Load<Texture2D>("Sprites/Actors/" + Sheets[index]); Assert.NotNull(texture); return texture; }
+        static void Native(Tile tile, Texture2D texture)
+        {
+            Assert.NotNull(tile); Assert.NotNull(tile.sprite); Assert.AreSame(texture, tile.sprite.texture);
+            Assert.AreEqual(new Rect(0, 360, 16, 24), tile.sprite.rect);
+            Assert.AreEqual(new Vector2(8, 12), tile.sprite.pivot); Assert.AreEqual(16, tile.sprite.pixelsPerUnit);
+            Assert.AreEqual(Tile.ColliderType.None, tile.colliderType);
+        }
+        static void White(Color value) => Assert.AreEqual(Color.white, value);
+        static Type AdapterType()
+        { var type = typeof(ZoneRenderer).Assembly.GetType("CavesOfOoo.Rendering.FlatPixelStumpFaunaCatalog"); Assert.NotNull(type, "First-five static fauna catalog has not been implemented."); return type; }
+        delegate bool Query(Entity owner, out Tile tile);
+        static IDisposable Construct(params Texture2D[] textures) => (IDisposable)Activator.CreateInstance(AdapterType(), Array.ConvertAll(textures, value => (object)value));
+        static Query Resolver(IDisposable art) => (Query)Delegate.CreateDelegate(typeof(Query), art, AdapterType().GetMethod("TryResolve", new[] { typeof(Entity), typeof(Tile).MakeByRefType() }));
+        Texture2D[] Textures()
+        { var result = new Texture2D[5]; for (int i = 0; i < result.Length; i++) { result[i] = new Texture2D(64, 384); borrowed.Add(result[i]); } return result; }
+        static object Read(object target, string name) => target.GetType().GetField(name, I).GetValue(target);
+        static void Write(object target, string name, object value)
+        { var field = target.GetType().GetField(name, I); Assert.NotNull(field, name); field.SetValue(target, value); }
+        void Inject(IDisposable art)
+        { world.Dispose(); world = new FlatPixelGreyboxCatalog((Texture2D)null); adapter = art; Write(world, "_stumpFaunaArt", art); }
+        static ExaminePortraitRenderer Portraits() => (ExaminePortraitRenderer)Activator.CreateInstance(typeof(ExaminePortraitRenderer), I, null,
+            new object[] { (Action<Camera, RenderTexture>)((camera, target) => { }) }, null);
+        AnnouncementDocument Document(Entity owner, Entity viewer)
+        { var result = ExamineDocumentBuilder.BuildWorld(owner, zone, zone.GetEntityCell(owner), viewer); Assert.NotNull(result); Assert.True(ExamineDocumentBuilder.IsCurrentSubject(result)); return result; }
+
+        [TestCase("CascadeFather")] [TestCase("GlasspaneFrog")] [TestCase("YellowfootWayfarer")] [TestCase("Wardline")] [TestCase("SariSnake")]
+        public void ActualWorldAndAuthorizedReaderShareTheExactApprovedSouthIdleCell(string species)
+        {
+            var owner = Add(species); var viewer = Add("Player", X - 1, Y); var events = new RenderProbe(); owner.AddPart(events);
+            var texture = Resource(species); Assert.AreEqual(64, texture.width); Assert.AreEqual(384, texture.height);
+            var view = View(); Assert.AreSame(owner, view.Owner); Assert.True(view.NativeForeground, "The actual body is still a glyph."); Native(view.ForegroundTile, texture); White(view.ForegroundColor);
+            using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+            {
+                paint.Step(); Native(paint.At(X, Y), texture); White(paint.Tint(X, Y)); int count = events.Renders;
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, owner, X, Y, out var sprite, out var tint));
+                Assert.AreSame(view.ForegroundTile.sprite, sprite); White(tint);
+                var document = Document(owner, viewer); var image = portraits.GetPortrait(document, paint.Renderer);
+                Assert.AreSame(texture, image.Texture); Assert.AreEqual(new Rect(0, .9375f, .25f, .0625f), image.Uv); Assert.False(image.IsModel);
+                Assert.AreEqual(count, events.Renders, "Readers must not dispatch a Render event.");
+                zone.GetCell(X, Y).IsVisible = false; paint.Dirty(X, Y); paint.Step();
+                Assert.IsNull(paint.At(X, Y)); Assert.IsNull(portraits.GetPortrait(document, paint.Renderer).Texture);
+            }
+        }
+
+        [TestCase("CascadeFather")] [TestCase("GlasspaneFrog")] [TestCase("YellowfootWayfarer")] [TestCase("Wardline")] [TestCase("SariSnake")]
+        public void AppliedDamageKeepsOneRenderEventAndThreeNativeHurtPaintsWithoutReaderOrNeighborConsumption(string species)
+        {
+            var owner = Add(species); var viewer = Add("Player", X - 1, Y); var events = new RenderProbe(); owner.AddPart(events);
+            Assert.NotNull(owner.GetPart<DamageFlashPart>()); var hp = owner.GetStat("Hitpoints"); int beforeHP = hp.BaseValue;
+            using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
+            {
+                paint.Step(); int beforeRender = events.Renders; Assert.Greater(beforeRender, 0);
+                CombatSystem.ApplyDamage(owner, 0, null, zone); Assert.AreEqual(beforeHP, hp.BaseValue); Assert.Zero(events.Damages);
+                CombatSystem.ApplyDamage(owner, 1, null, zone);
+                Assert.AreEqual(beforeHP - 1, hp.BaseValue); Assert.Greater(hp.BaseValue, 0); Assert.AreEqual(1, events.Damages);
+                Assert.AreEqual(beforeRender, events.Renders, "TakeDamage alone is not a Render event.");
+                paint.Step(); Assert.AreEqual(beforeRender + 1, events.Renders, "Actual damage marks the selected cell dirty once.");
+                Native(paint.At(X, Y), Resource(species)); Assert.AreEqual(QudColorParser.Parse("&R"), paint.Tint(X, Y));
+                var document = Document(owner, viewer);
+                for (int i = 0; i < 3; i++) { View(); Assert.AreSame(Resource(species), portraits.GetPortrait(document, paint.Renderer).Texture); }
+                paint.Dirty(X + 1, Y); paint.Step(); paint.Step();
+                Assert.AreEqual(beforeRender + 1, events.Renders, "Neighbor reclaim/quiet frames/readers must not spend hurt frames.");
+                Assert.AreEqual(QudColorParser.Parse("&R"), paint.Tint(X, Y));
+                for (int frame = 2; frame <= 4; frame++)
+                {
+                    paint.Dirty(X, Y); paint.Step(); Assert.AreEqual(beforeRender + frame, events.Renders);
+                    Native(paint.At(X, Y), Resource(species)); Assert.AreEqual(frame <= 3 ? QudColorParser.Parse("&R") : Color.white, paint.Tint(X, Y));
+                }
+                Assert.AreEqual(beforeHP - 1, hp.BaseValue); Assert.AreEqual(1, events.Damages);
+            }
+        }
+
+        [Test] public void AppliedWetCueUsesTheSameNativeBodyThenClearsWithoutChangingHealth()
+        {
+            var owner = Add("GlasspaneFrog"); var events = new RenderProbe(); owner.AddPart(events);
+            var effects = owner.GetPart<StatusEffectsPart>(); if (effects == null) { effects = new StatusEffectsPart(); owner.AddPart(effects); }
+            var wet = new WetEffect(); int health = owner.GetStat("Hitpoints").BaseValue;
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); int initial = events.Renders;
+                Assert.True(effects.ForceApplyEffect(wet, null, zone), "Flesh must genuinely accept the selected status.");
+                Assert.AreEqual("&B", effects.GetRenderColorOverride()); paint.Dirty(X, Y); paint.Step();
+                Assert.AreEqual(initial + 1, events.Renders); Native(paint.At(X, Y), Resource("GlasspaneFrog")); Assert.AreEqual(QudColorParser.Parse("&B"), paint.Tint(X, Y));
+                Assert.True(effects.RemoveEffect(wet)); paint.Dirty(X, Y); paint.Step();
+                Assert.AreEqual(initial + 2, events.Renders); Native(paint.At(X, Y), Resource("GlasspaneFrog")); White(paint.Tint(X, Y)); Assert.AreEqual(health, owner.GetStat("Hitpoints").BaseValue);
+            }
+        }
+
+        [Test] public void NativeAndGlyphNeighborReclaimsKeepSeparateTintsWithoutAnotherRenderEvent()
+        {
+            var owner = Add("Wardline"); var events = new RenderProbe(); owner.AddPart(events);
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); CombatSystem.ApplyDamage(owner, 1, null, zone); paint.Step();
+                int count = events.Renders; Native(paint.At(X, Y), Resource("Wardline")); Assert.AreEqual(QudColorParser.Parse("&R"), paint.Tint(X, Y));
+                owner.GetPart<RenderPart>().VisualVariant = "foreign costume";
+                paint.Dirty(X + 1, Y); paint.Step(); Assert.False(View().NativeForeground);
+                Assert.AreEqual(count, events.Renders); Assert.AreNotSame(Resource("Wardline"), paint.At(X, Y).sprite.texture);
+                Assert.AreEqual(paint.Lit(QudColorParser.Parse("&R"), X, Y), paint.Tint(X, Y));
+                owner.GetPart<RenderPart>().VisualVariant = null;
+                paint.Dirty(X + 1, Y); paint.Step(); Assert.AreEqual(count, events.Renders);
+                Native(paint.At(X, Y), Resource("Wardline")); Assert.AreEqual(QudColorParser.Parse("&R"), paint.Tint(X, Y));
+            }
+        }
+
+        [TestCase("visual-id")] [TestCase("variant")] [TestCase("glyph-variants")] [TestCase("glyph")]
+        [TestCase("foreign-render")] [TestCase("duplicate-render")] [TestCase("foreign-physics")] [TestCase("missing-physics")]
+        [TestCase("foreign-body")] [TestCase("missing-body")] [TestCase("foreign-brain")] [TestCase("duplicate-brain")]
+        [TestCase("hidden")] [TestCase("creature-tag")] [TestCase("item-tag")] [TestCase("player-tag")]
+        [TestCase("carried")] [TestCase("equipped")] [TestCase("takeable")] [TestCase("footprint")]
+        [TestCase("dead")] [TestCase("empty-stack")] [TestCase("foreign-stack")]
+        public void MalformedOrRepurposedKnownOwnerCannotBorrowTheLivingBody(string fault)
+        {
+            var textures = Textures(); using (var art = Construct(textures))
+            {
+                var query = Resolver(art); var owner = Owner("GlasspaneFrog"); Assert.True(query(owner, out var initial)); Native(initial, textures[1]);
+                var render = owner.GetPart<RenderPart>(); var physics = owner.GetPart<PhysicsPart>();
+                switch (fault)
+                {
+                    case "visual-id": render.VisualID = "custom"; break;
+                    case "variant": render.VisualVariant = "custom"; break;
+                    case "glyph-variants": render.GlyphVariants = "fx"; break;
+                    case "glyph": render.RenderString = "Q"; break;
+                    case "foreign-render": render.ParentEntity = new Entity(); break;
+                    case "duplicate-render": owner.AddPart(new RenderPart { RenderString = "f" }); break;
+                    case "foreign-physics": physics.ParentEntity = new Entity(); break;
+                    case "missing-physics": Assert.True(owner.RemovePart(physics)); break;
+                    case "foreign-body": owner.GetPart<Body>().ParentEntity = new Entity(); break;
+                    case "missing-body": Assert.True(owner.RemovePart(owner.GetPart<Body>())); break;
+                    case "foreign-brain": owner.GetPart<BrainPart>().ParentEntity = new Entity(); break;
+                    case "duplicate-brain": owner.AddPart(new BrainPart()); break;
+                    case "hidden": render.Visible = false; break;
+                    case "creature-tag": owner.Tags.Remove("Creature"); break;
+                    case "item-tag": owner.SetTag("Item"); break;
+                    case "player-tag": owner.SetTag("Player"); break;
+                    case "carried": physics.InInventory = new Entity(); break;
+                    case "equipped": physics.Equipped = new Entity(); break;
+                    case "takeable": physics.Takeable = true; break;
+                    case "footprint": owner.AddPart(new SpatialFootprintPart { CellsRaw = "0,0;1,0" }); break;
+                    case "dead": owner.GetStat("Hitpoints").BaseValue = 0; break;
+                    case "empty-stack": owner.AddPart(new StackerPart { StackCount = 0 }); break;
+                    case "foreign-stack": var stack = new StackerPart(); owner.AddPart(stack); stack.ParentEntity = new Entity(); break;
+                    default: Assert.Fail(fault); break;
+                }
+                Assert.False(query(owner, out var refused), fault); Assert.IsNull(refused);
+            }
+        }
+
+        [Test] public void SameGlyphDeferredSpeciesAndCorpseProvenanceNeverSelectTheseFiveBodies()
+        {
+            var textures = Textures(); using (var art = Construct(textures))
+            {
+                var query = Resolver(art);
+                foreach (var species in Species) Assert.True(query(Owner(species), out _));
+                foreach (var other in new[] { "MawToad", "SummitSinger", "BrocchiniaSentinel", "SkySari", "Viper", "CreatureCorpse" })
+                { var owner = Owner(other); owner.Properties["SourceBlueprint"] = "SariSnake"; Assert.False(query(owner, out _), other); }
+                var spoof = Owner("Wardline"); spoof.BlueprintName = "NotWardline"; Assert.False(query(spoof, out _));
+            }
+        }
+
+        [Test] public void SurvivingDamageAndChangedAttitudeNameOrAuthoredColorDoNotEraseSpeciesIdentity()
+        {
+            var textures = Textures(); using (var art = Construct(textures))
+            {
+                var query = Resolver(art);
+                for (int i = 0; i < Species.Length; i++)
+                {
+                    var owner = Owner(Species[i]); Assert.True(query(owner, out var before)); owner.GetStat("Hitpoints").BaseValue = 1;
+                    owner.GetPart<BrainPart>().Passive = !owner.GetPart<BrainPart>().Passive;
+                    owner.GetPart<RenderPart>().DisplayName = "Resident " + Species[i]; owner.GetPart<RenderPart>().ColorString = "&Y";
+                    Assert.True(query(owner, out var after)); Assert.AreSame(before, after); Native(after, textures[i]);
+                }
+            }
+        }
+
+        [Test] public void PortableCurrentGraphDoesNotExpandRegionalAdmissionAndRejectsReplacementOrStalePlacement()
+        {
+            var outside = Attach("Overworld.13.10.0"); zone = outside; bool admittedBefore = FlatPixelGreyboxCatalog.IsAdmitted(zone);
+            Assert.False(admittedBefore, "Portable bodies must not admit this graph to the six local opening art graphs.");
+            var owner = Add("YellowfootWayfarer"); var view = View(); Assert.True(view.NativeForeground); Native(view.ForegroundTile, Resource(owner.BlueprintName));
+            Assert.AreEqual(admittedBefore, FlatPixelGreyboxCatalog.IsAdmitted(zone));
+            Assert.True(zone.MoveEntity(owner, X + 1, Y)); zone.GetCell(X, Y).Objects.Add(owner);
+            Assert.IsNull(View().Owner); Native(View(X + 1, Y).ForegroundTile, Resource(owner.BlueprintName));
+            Assert.False(world.TryGetPresentationSubjectSprite(zone, owner, X, Y, out _, out _));
+            manager.CachedZones[zone.ZoneID] = new Zone(zone.ZoneID);
+            Assert.False(world.TryResolvePresentation(zone, X + 1, Y, out _));
+            Assert.False(world.TryGetPresentationSubjectSprite(zone, owner, X + 1, Y, out _, out _));
+        }
+
+        [Test] public void CoverFogCustodyAndRegisteredFootprintChangesRetireTheWorldBody()
+        {
+            var owner = Add("CascadeFather"); Native(View().ForegroundTile, Resource(owner.BlueprintName));
+            var cover = Add("Player"); cover.GetPart<RenderPart>().RenderLayer = 100;
+            Assert.AreSame(cover, View().Owner); Assert.AreNotSame(Resource(owner.BlueprintName), View().ForegroundTile.sprite.texture);
+            Assert.True(zone.RemoveEntity(cover)); Native(View().ForegroundTile, Resource(owner.BlueprintName));
+            zone.GetCell(X, Y).Explored = false; Assert.False(world.TryResolvePresentation(zone, X, Y, out _));
+            zone.GetCell(X, Y).Explored = true; zone.GetCell(X, Y).IsVisible = false; Assert.IsNull(View().Owner);
+            zone.GetCell(X, Y).IsVisible = true; owner.GetPart<PhysicsPart>().InInventory = new Entity(); Assert.False(View().NativeForeground);
+            owner.GetPart<PhysicsPart>().InInventory = null;
+            owner.AddPart(new SpatialFootprintPart { CellsRaw = "0,0" });
+            Assert.True(zone.TryChangeFootprint(owner, "0,0;1,0")); Assert.False(View().NativeForeground);
+            Assert.True(zone.TryChangeFootprint(owner, "0,0")); Native(View().ForegroundTile, Resource(owner.BlueprintName));
+        }
+
+        [Test] public void NormalMovementAndRemovalRestoreTheRealNativeSubstrateWithoutAFullPass()
+        {
+            var floor = Add("TepuiStone"); Add("TepuiStone", X + 1, Y); var owner = Add("Wardline");
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); Native(paint.At(X, Y), Resource(owner.BlueprintName)); var ground = paint.GroundAt(X, Y); Assert.NotNull(ground);
+                Assert.AreSame(Resources.Load<Texture2D>("Sprites/Live16x24/stump-materials"), ground.sprite.texture);
+                long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+                Assert.True(MovementSystem.TryMove(owner, zone, 1, 0)); paint.Step();
+                Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses); Assert.IsNull(paint.At(X, Y));
+                Assert.AreSame(ground, paint.GroundAt(X, Y)); Native(paint.At(X + 1, Y), Resource(owner.BlueprintName));
+                Assert.AreSame(zone.GetCell(X, Y), zone.GetEntityCell(floor)); Assert.False(zone.GetCell(X, Y).BlocksMovement());
+                Assert.True(zone.RemoveEntity(owner)); paint.Dirty(X + 1, Y); paint.Step();
+                Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses); Assert.IsNull(paint.At(X + 1, Y)); Assert.NotNull(paint.GroundAt(X + 1, Y));
+                Assert.False(world.TryGetPresentationSubjectSprite(zone, owner, X + 1, Y, out _, out _));
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void EachOptionalSheetFailsIndependentlyWithoutImplicitResourceLoading(bool malformed)
+        {
+            var textures = Textures(); var bad = malformed ? new Texture2D(64, 24) : null; if (bad != null) borrowed.Add(bad);
+            for (int missing = 0; missing < textures.Length; missing++)
+            {
+                var candidate = (Texture2D[])textures.Clone(); candidate[missing] = bad;
+                using (var art = Construct(candidate))
+                {
+                    var query = Resolver(art);
+                    for (int i = 0; i < Species.Length; i++)
+                    { bool ok = query(Owner(Species[i]), out var tile); Assert.AreEqual(i != missing, ok); if (ok) Native(tile, textures[i]); else Assert.IsNull(tile); }
+                }
+            }
+            using (var absent = Construct(new Texture2D[5]))
+                foreach (var species in Species) Assert.False(Resolver(absent)(Owner(species), out _));
+        }
+
+        [Test] public void InjectedBodyAndItsDisposalDoNotOwnTexturesOrEnableOtherOptionalArt()
+        {
+            var textures = Textures(); Inject(Construct(textures)); var owner = Add("Wardline");
+            var selected = View(); Assert.True(selected.NativeForeground); Native(selected.ForegroundTile, textures[3]);
+            var tile = selected.ForegroundTile; var sprite = tile.sprite;
+            using (var peer = Construct(textures))
+            {
+                var query = Resolver(peer); Assert.True(query(owner, out var other)); Assert.AreNotSame(tile, other);
+                world.Dispose(); world.Dispose(); Assert.True(tile == null); Assert.True(sprite == null); Assert.False(Resolver(adapter)(owner, out _));
+                Assert.True(query(owner, out _)); foreach (var texture in textures) { Assert.True(texture != null); Assert.AreEqual(FilterMode.Bilinear, texture.filterMode); }
+            }
+        }
+
+        [Test] public void LegacyNullInjectionKeepsGlyphsWhileDefaultFaunaFailureLeavesNativeMaterialsIndependent()
+        {
+            var owner = Add("GlasspaneFrog"); using (var legacy = new FlatPixelGreyboxCatalog((Texture2D)null))
+            { Assert.True(legacy.TryResolvePresentation(zone, X, Y, out var value)); Assert.False(value.NativeForeground); }
+            // Keep the real default material resources, but explicitly remove only fauna art.
+            adapter = Construct(new Texture2D[5]); Write(world, "_stumpFaunaArt", adapter);
+            Add("TepuiStone"); var fallback = View(); Assert.False(fallback.NativeForeground); Assert.AreSame(owner, fallback.Owner);
+            Assert.True(fallback.LocalGround); Assert.AreSame(Resources.Load<Texture2D>("Sprites/Live16x24/stump-materials"), fallback.GroundTile.sprite.texture);
+        }
+
+        sealed class RenderProbe : Part
+        {
+            public int Renders, Damages;
+            public override bool HandleEvent(GameEvent e) { if (e.ID == "Render") Renders++; if (e.ID == "TakeDamage") Damages++; return true; }
+        }
+        sealed class Paint : IDisposable
+        {
+            readonly HotbarSaveFixture saved;
+            readonly GameObject root;
+            readonly Tilemap overlay, main, ground;
+            public ZoneRenderer Renderer { get; }
+            readonly Action<int, int, string> oldCell = ZoneRenderHooks.CellDirtyCallback;
+            readonly Action<string> oldFull = ZoneRenderHooks.FullDirtyCallback;
+            readonly FieldInfo bound = typeof(ZoneTileStateSystem).GetField("_boundRenderZone", S);
+            readonly object oldBound; readonly Zone previous; readonly Action<int, int> oldChanged; readonly Action oldSight;
+            readonly Dictionary<FieldInfo, object> perf = new Dictionary<FieldInfo, object>();
+            public Paint(FlatPixelGreyboxCatalog catalog, Zone z)
+            {
+                oldBound = bound.GetValue(null);
+                if (oldBound is WeakReference<Zone> weak && weak.TryGetTarget(out previous)) { oldChanged = previous.TileState.OnCellChanged; oldSight = previous.TileState.OnSightChanged; }
+                try
+                {
+                    foreach (var field in typeof(EnvironmentSpriteRenderer.Perf).GetFields(BindingFlags.Public | BindingFlags.Static)) perf[field] = field.GetValue(null);
+                    saved = new HotbarSaveFixture(); root = new GameObject("Stump fauna submitted grid", typeof(Grid)); saved.Root.transform.SetParent(root.transform, false);
+                    main = saved.Root.GetComponent<Tilemap>(); var bg = new GameObject("Background", typeof(Tilemap)); bg.transform.SetParent(root.transform, false); ground = bg.GetComponent<Tilemap>();
+                    var marks = new GameObject("Hazards", typeof(Tilemap)); marks.transform.SetParent(root.transform, false);
+                    Renderer = saved.Renderer; Write(Renderer, "_tilemap", main); Write(Renderer, "_bgTilemap", ground); Write(Renderer, "_tileStateTilemap", marks.GetComponent<Tilemap>());
+                    var camera = new GameObject("Camera", typeof(Camera)); camera.transform.SetParent(root.transform, false); camera.GetComponent<Camera>().orthographic = true; Write(Renderer, "_mainCamera", camera.GetComponent<Camera>());
+                    var env = saved.Root.AddComponent<EnvironmentSpriteRenderer>(); env.Init(root.transform, main, ground); env.RenderingEnabled = true; env.FlatPixelGreyboxEnabled = true;
+                    Write(env, "_flatPixelGreybox", catalog); overlay = (Tilemap)Read(env, "_overlayTilemap"); Write(Renderer, "_envSpriteRenderer", env); Write(Renderer, "_flatPixelModeEnabled", true); Renderer.SetZone(z);
+                    ZoneRenderHooks.CellDirtyCallback = Renderer.MarkCellDirty; ZoneRenderHooks.FullDirtyCallback = Renderer.MarkDirty;
+                }
+                catch { Dispose(); throw; }
+            }
+            static Vector3Int Position(int x, int y) => new Vector3Int(x, Zone.Height - 1 - y, 0);
+            public Tile At(int x, int y) { var at = Position(x, y); return overlay.GetTile<Tile>(at) ?? main.GetTile<Tile>(at); }
+            public Color Tint(int x, int y) { var at = Position(x, y); return overlay.HasTile(at) ? overlay.GetColor(at) : main.GetColor(at); }
+            public Color Lit(Color color, int x, int y) { var light = (LightMap)Read(Renderer, "_lightMap"); return light == null ? color : light.ApplyToColor(color, x, y); }
+            public Tile GroundAt(int x, int y) => ground.GetTile<Tile>(Position(x, y));
+            public void Dirty(int x, int y) => Renderer.MarkCellDirty(x, y, "Stump fauna fixture");
+            public void Step() { try { typeof(ZoneRenderer).GetMethod("LateUpdate", I).Invoke(Renderer, null); } catch (TargetInvocationException e) { throw e.InnerException ?? e; } }
+            public void Dispose()
+            {
+                try { saved?.Dispose(); if (root != null) Object.DestroyImmediate(root); }
+                finally
+                {
+                    ZoneRenderHooks.CellDirtyCallback = oldCell; ZoneRenderHooks.FullDirtyCallback = oldFull; bound.SetValue(null, oldBound);
+                    if (previous != null) { previous.TileState.OnCellChanged = oldChanged; previous.TileState.OnSightChanged = oldSight; }
+                    foreach (var entry in perf) entry.Key.SetValue(null, entry.Value);
+                }
+            }
+        }
+    }
+}

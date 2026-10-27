@@ -3018,3 +3018,54 @@ starting with the five existing crisp native species and their essential real
 combat/status feedback. Other registered biomes, underground, settlements,
 interiors and special sites remain in scope. Nuanced animation stays deferred.
 Last actual hourly report12:27UTC,next13:27UTC; this record is not a report.
+
+
+## First-five Stump fauna integration — 2026-10-27
+
+CascadeFather, GlasspaneFrog, YellowfootWayfarer, Wardline and SariSnake now use
+five unchanged approved South-idle cells in native world and authorized reader
+paths. All ten original sheet PNG/metadata inputs remain unchanged. Direct
+cached sprites reuse exact 16×24 pixels; no new atlas, imagegen or art production
+was needed. The existing single Render event preserves opted-in damage/status
+color cues without changing other native material tint behavior.
+
+Native evidence is **44 focused passes plus 413 related passes and one skipped
+allocation-counter control: 457 passed, one skipped across 458 distinct cases**.
+The skipped control cannot observe a known allocation, so these results do not
+prove allocation or device performance. The exact XML receipts are
+`stump-fauna-green.xml` and `stump-fauna-related-green.xml` under
+`Docs/Verification/Live16x24`.
+
+Eleven actual after captures cover Buttress Ridge, Grainfield and Cascade Gorge.
+Ordinary readers show SariSnake65085 at21,12, Wardline65086 at23,9,
+YellowfootWayfarer62803 at37,2, CascadeFather60394 at34,9 (99% wet), and
+GlasspaneFrog60396 at22,5 (94% wet). Real combat killed SariSnake and left
+separate CreatureCorpse69511, SourceBlueprint SariSnake, at24,10; player health
+fell from38 to29. This establishes death/removal and separate corpse identity,
+**not a captured transient hurt-flash visual proof**. Wet blue body cues are
+observed, with frog palettes compressing toward similar dark blue; the Sari
+body remains subdued. Those readability limits stay visible in the polish queue.
+
+F5 retained turn8120,29HP in Overworld.2.5.0 in
+`Docs/Verification/Live16x24/Fixtures/stump-fauna-after71`. A new isolated Play
+session and normal Continue returned to39,11 with29HP and both frogs at their
+same cells and health. Capture11 and `stump-fauna-after-receipt.json` record
+that restart. Both isolated roots are archived; root confirmed normal Editor/
+standalone state and38 foreign paths preserved. This record did not operate
+Unity or Git.
+
+Fauna source push and refreshed packages are **pending**. The current verified
+package remains Stump material source98e3e167b; its delivery/evidence16d98e625
+is verified on main. The new fauna is not yet claimed in that package.
+
+Next: source/evidence review and delivery, then SummitSinger, BrocchiniaSentinel
+and SkySari native-cell adaptations, a crisp MawToad treatment, Grovelands
+actors and remaining families across every biome/area. Other fauna, corpses,
+props, crops, effects and full-chunk composition remain open. No separate
+area-polish state advances; serious all-world polish still follows broad sprite
+coverage. Nuanced animation remains deferred.
+
+**Last actual hourly report13:27UTC; next due14:27UTC.** Root confirmed that
+report; this integration record is not another report. Earlier dated entries
+remain historical. See [the fauna phase record](GRAPHICS-STUMP-FAUNA.md) and
+the two JSON ledgers for the bounded checkpoint and remaining gaps.
