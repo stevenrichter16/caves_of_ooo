@@ -15,10 +15,11 @@ namespace CavesOfOoo.Core
                 return Reject(actor, furniture, "actor_dead", "You cannot sit while dead.");
             var chair = furniture?.GetPart<ChairPart>();
             var effects = actor?.GetPart<StatusEffectsPart>();
-            if (actor?.HasTag("Player") != true || chair == null || effects == null || zone == null
+            if (actor?.HasTag("Player") != true || chair == null || zone == null
                 || zone.GetEntityCell(actor) == null || zone.GetEntityCell(furniture) == null)
                 return Reject(actor, furniture, "invalid_context", "That chair cannot be used right now.");
-            var seated = effects.GetEffect<SittingEffect>();
+            // ApplyEffect creates the container for a player's first status.
+            var seated = effects?.GetEffect<SittingEffect>();
             bool standing = command == StandCommand;
             if (command != SitCommand && !standing) return false;
             if (standing)
@@ -54,7 +55,7 @@ namespace CavesOfOoo.Core
                     restored = true;
                     try
                     {
-                        if (created != null) effects.RemoveEffect(effect => ReferenceEquals(effect, created));
+                        if (created != null) actor.RemoveEffect(effect => ReferenceEquals(effect, created));
                         if (seated != null) effects.RestoreRemovedEffectForInventoryUndo(seated, index);
                     }
                     finally { chair.Occupied = beforeOccupied; chair.Occupant = beforeOccupant; }

@@ -1,0 +1,125 @@
+{
+  "input_fixture": "shared-furniture-use108",
+  "initial": {
+    "zone": "Overworld.15.7.0",
+    "player": "2695",
+    "cell": [
+      55,
+      19
+    ],
+    "hp": 40,
+    "effects": false,
+    "study": false
+  },
+  "sat": {
+    "zone": "Overworld.15.7.0",
+    "hp": 40,
+    "cell": [
+      55,
+      19
+    ],
+    "bed": [
+      {
+        "id": "12657",
+        "owner": "",
+        "occupied": false
+      }
+    ],
+    "chair": [
+      {
+        "id": "12666",
+        "owner": "",
+        "occupied": true,
+        "occupant": "2695"
+      }
+    ],
+    "study": false
+  },
+  "stood": {
+    "zone": "Overworld.15.7.0",
+    "hp": 40,
+    "cell": [
+      55,
+      19
+    ],
+    "bed": [
+      {
+        "id": "12657",
+        "owner": "",
+        "occupied": false
+      }
+    ],
+    "chair": [
+      {
+        "id": "12666",
+        "owner": "",
+        "occupied": false,
+        "occupant": null
+      }
+    ],
+    "study": false
+  },
+  "diagnostics": {
+    "Records": [
+      {
+        "TraceId": "9d9b8d1c",
+        "Category": "furniture",
+        "Kind": "PlayerSat",
+        "TimestampUnixMs": 1793140452908,
+        "Turn": 2440,
+        "ActorId": "2695",
+        "TargetId": "12666",
+        "CauseTraceId": null,
+        "PayloadJson": "{\"owner\":\"\"}"
+      },
+      {
+        "TraceId": "4b3135c4",
+        "Category": "furniture",
+        "Kind": "PlayerStood",
+        "TimestampUnixMs": 1793140490149,
+        "Turn": 2450,
+        "ActorId": "2695",
+        "TargetId": "12666",
+        "CauseTraceId": null,
+        "PayloadJson": "{\"owner\":\"\"}"
+      }
+    ],
+    "TotalScanned": 168
+  },
+  "actions": [
+    "OrdinaryContinue unchanged108",
+    "Look/Return then actual s Sit",
+    "Return then actual s Stand",
+    "Escape and F5"
+  ],
+  "new_sprite_coverage": false,
+  "packaged_run": false,
+  "final_fixture": "Docs/Verification/Live16x24/Fixtures/shared-furniture-use-fixed109",
+  "final_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.15.7.0",
+    "ActiveZoneDisplayLabel": "Overworld.15.7.0",
+    "Turn": 2460,
+    "SaveTimestampUtc": "2026-10-27T22:35:12.8763770Z",
+    "HPSummary": "40/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "archive": "/private/tmp/coo-shared-furniture-first-effect-preserved-a5686642",
+  "archive_hashes": {
+    "empty-launch-Quick.sav.gz": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "FlatPixelGreyboxMarker/Quick.sav.gz": "a1d53d8ca2e7454b2bfd8acd998cfbd8ea65cfaf69f87a4b7a626921ff75fa40",
+    "FlatPixelGreyboxMarker/Quick.json": "131d55556848dca9c4b4be71d32a32b9614d3db8ca2855f1b2bb54575b66ea6d",
+    "50e670c30b6d48feb82756df64bd1cbc/Quick.sav.gz": "856172af7f2b5ddada77d0a3463c1d0a2f10c8234dafa6287d9b2d25cd53c7a7",
+    "50e670c30b6d48feb82756df64bd1cbc/Quick.json": "7c369b120312c1c818c68fb29f844cef062e6c011b8af9634d24083a12666df1"
+  },
+  "captures": {
+    "shared-furniture-first-effect-01-sat.png": "a322dc393ecc1f649ef691b74c46c6333eadd865df8b85e00d9aa04f61a01980",
+    "shared-furniture-first-effect-02-stood.png": "b83b7056e20f27861f319e1998dfd13e6ab85fda6a41226316462f1d0591d44e"
+  }
+}

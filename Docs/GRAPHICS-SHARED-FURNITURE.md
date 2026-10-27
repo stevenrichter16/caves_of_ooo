@@ -240,3 +240,16 @@ A focused RED/source correction precedes the furniture adapter. Native body
 integration, concept/parts review, second-region control, after/restart and
 packaging remain pending. The broad sparse south room and weak night contrast
 remain explicit later composition/polish debt; no area acceptance advances.
+
+### First-effect prerequisite corrected
+
+The chair refusal was a service bug: normal players legitimately gain their
+status container on the first effect. The focused fix now has70 native passes
+and ordinary unchanged108 Sit/Stand replay, captured with actual reservations
+and PlayerSat/PlayerStood diagnostics. See
+[the scoped correction](GRAPHICS-FURNITURE-FIRST-EFFECT-FIX.md). Saved109 and
+the isolated session are preserved; no new furniture sprite/area acceptance.
+Next: actual baseline/concept parts review and immutable two-frame integration
+through world/examine, paired refusal tests, after/restart and other-region
+controls. Keep straight walls; layered shaded walls/quiet floors guide later
+biome design. Shared-storage/cave preservation77c8bfbe9 is verified onmain.

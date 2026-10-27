@@ -3858,3 +3858,26 @@ Owned preservation and prior shared-storage package evidence are staged for
 main; push not yet verified at this report. Broad coverage and all area polish
 remain incomplete; nuanced animation remains deferred.
 Next hourly report due23:28:31UTC. No cleanup performed.
+
+## Continuation — 2026-10-27 22:35UTC: coverage resumed, chair prerequisite fixed
+
+User direction and all cave-study sources/evidence are preserved onmain
+77c8bfbe953b00a7d5d43a47d048170b382cd0f7. The isolated cave study is parked,
+straight wall defaults remain, and no full parity is claimed. Layered/shaded
+2D wall relief with quieter flat floors is retained as future design guidance.
+
+The resumed Sodden before route captured eightactual frames and earned107/108.
+Bed rest worked; Chair Sit exposed the normal first-effect missing-container
+service bug. A narrow3-line correction passed70 native cases after genuineRED,
+including actual-created-effect rollback. Ordinary unchanged108 replay now
+verified Sit/Stand, unchangedHP40/location55,19 and released reservation.
+Two actual images/diagnostics and F5earned109 preserve results. Root archived
+the isolated session then verified stoppedPlay/nullroot/cleanScene.
+
+Next is the bounded shared Bed/Chair native identity adapter using unchanged
+East frames2/3, followed by remaining shared/regional families. Its baseline
+and service prerequisite are ready, but concept/parts review, sprite runtime,
+after-state/restart,secondregion and package checks remain pending. Broader
+coverage and all55+5polish states remain open. Current packages are storage
+d9f, not this narrow correction. Last hourlyreport22:28:31,next23:28:31UTC.
+Read-only storage inspection found383.32GiBfree; no cleanup performed.

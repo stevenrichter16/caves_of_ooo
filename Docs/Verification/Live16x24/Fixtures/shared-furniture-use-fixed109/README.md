@@ -1,0 +1,1 @@
+Earned ordinary Continue from unchanged108, player2695 at55,19HP40 without status container. Real Look/action Sit created SittingEffect and reserved Chair12666; Stand released both. F5 saved turn2460HP40. No simulation/save edits. This verifies first-effect gameplay correction, not new furniture pixels.
