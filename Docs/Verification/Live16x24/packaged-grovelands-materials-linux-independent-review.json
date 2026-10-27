@@ -1,0 +1,66 @@
+{
+  "at_utc": "2026-10-27T10:10:59.851368+00:00",
+  "passed": true,
+  "runtime_source_commit": "ab26e270cb376253c971a41c3449ecbbf4171444",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-grovelands-materials-ab26e270c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_bytes": 128773591,
+  "archive_sha256": "e201376c18d3370e4e52ccbb7d9104881b6c577dd29180bbef88060b09268a3c",
+  "receipt_sha256": "e9d1fa47460b6cb970ad548170a5141a962c1ee037e5ac384ebb7a24d1dac18e",
+  "verification_method": "Independent standard-library stream reader; did not import or call package/helper routines. Every member read and hashed, plus gzip wrapper explicitly drained to EOF. No extraction or game execution.",
+  "archive_members": 202,
+  "regular_files": 189,
+  "directories": 13,
+  "unpacked_file_bytes": 340944961,
+  "checks": {
+    "every_member_hash_size_mode": true,
+    "exact_file_and_directory_sets": true,
+    "safe_single_top_level_no_links_duplicates_traversal_or_devices": true,
+    "gzip_crc_isize_footer_to_eof": true,
+    "sidecar_sha256": true,
+    "internal_sha256sums_covers_all_188_other_files": true,
+    "current_output_tree_matches_archive": true,
+    "build_info_internal_external_and_archive_receipt_equal": true,
+    "source_binding_and_fresh_successful_build_reports": true,
+    "linux_elf64_x86_64_header_only": true,
+    "launcher_and_linux_executable_0755": true,
+    "mac_macho_header_only": true,
+    "native_600_distinct_passed_zero_fail_skip_inconclusive": true,
+    "six_credit_sections_source_exact": true,
+    "five_license_texts_source_exact": true,
+    "starter_sources_and_audio_provenance_source_exact": true
+  },
+  "build_reports": [
+    {
+      "kind": "linux",
+      "sha256": "3acd560b9fa99aef2e0cec0ae41a739c0e911bebc8c1b3692c4328eb5ed21675",
+      "job_id": "build-d58ffe7b36",
+      "warnings": 4,
+      "errors": 0
+    },
+    {
+      "kind": "mac",
+      "sha256": "34b8363ab285d8e90d27648e1fb7b73ce648e730cffcb17bc06791fc800e0bed",
+      "job_id": "build-6c20f5a5e6",
+      "warnings": 4,
+      "errors": 0
+    }
+  ],
+  "native_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/grovelands-water-native-green.xml",
+    "sha256": "a0e3e2f23dc1fa9f34dc46c4be0000bbc183183a2a4573f5b55f5058743f5094",
+    "distinct_passed": 600,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "blockers": [],
+  "linux_executed": false,
+  "physical_steam_deck_tested": false,
+  "performance_certified": false,
+  "limitations": [
+    "Full source revision and build boundary are operator assertions cross-checked across saved records, not independent source-to-binary reproduction.",
+    "This audit checks delivery integrity, not every region, water state, gameplay journey, controls or audio quality.",
+    "Actual Mac smoke has a separate parent-authored record; no new game action occurred during this audit.",
+    "Prior build preservation and normal-save/preference restoration remain the separate snapshot/restoration audit."
+  ]
+}

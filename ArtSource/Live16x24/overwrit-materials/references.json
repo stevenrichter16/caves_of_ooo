@@ -1,0 +1,61 @@
+{
+  "mode": "built-in imagegen",
+  "purpose": "concept reference only; no reference pixels in production runtime",
+  "reference_page": "https://www.nps.gov/whsa/learn/nature/plant-survival-strategies.htm",
+  "image_url": "https://www.nps.gov/whsa/learn/nature/images/WHSA_Grass_Thumbnails.jpg?autorotate=false&maxwidth=650",
+  "credit": "NPS Photo as credited by source page",
+  "borrow": "upright low shoots / restrained plant-to-pale-ground contrast; not species, dunes, tall seedheads or new world objects",
+  "source_file": {
+    "path": "ArtSource/Live16x24/overwrit-materials/concepts/references/white-sands-grass-nps.jpg",
+    "bytes": 11620,
+    "sha256": "d8fc04d7f4213386c6d53a86af8a241c4fa80d51da04f393c1c056a9a4561267"
+  },
+  "v1_inputs": [
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-06-bench-approach.png",
+      "bytes": 34743,
+      "sha256": "642e86ff51f10ba255c1119bbcdf41c554d07ba734b97fd1fdb9cdb2a49c0c83"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-09-restart-fen.jpg",
+      "bytes": 233282,
+      "sha256": "2cba121e4873c0c2be4de079daed571a9cdf3e22d03ee0eb8b00587d6f205c4e"
+    },
+    {
+      "path": "ArtSource/Live16x24/overwrit-materials/concepts/references/white-sands-grass-nps.jpg",
+      "bytes": 11620,
+      "sha256": "d8fc04d7f4213386c6d53a86af8a241c4fa80d51da04f393c1c056a9a4561267"
+    }
+  ],
+  "prompts": [
+    {
+      "path": "ArtSource/Live16x24/overwrit-materials/concepts/prompt-v1.txt",
+      "bytes": 2257,
+      "sha256": "88eee07e24bfefc62b77b195e37d15af0fada37b6755b1501268d207a5e4e3a6"
+    },
+    {
+      "path": "ArtSource/Live16x24/overwrit-materials/concepts/prompt-v2.txt",
+      "bytes": 773,
+      "sha256": "91cdd86e6c35077c439ebf682b485def5527b2ff529cf2e37787fba21d59b3db"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "ArtSource/Live16x24/overwrit-materials/concepts/overwrit-v1.png",
+      "bytes": 1733605,
+      "sha256": "f743d886f52089af50a41aba4e40ef95f553704ebe4c5eaf0c68838c6165f083"
+    },
+    {
+      "path": "ArtSource/Live16x24/overwrit-materials/concepts/overwrit-v2.png",
+      "bytes": 1502343,
+      "sha256": "5b1459b3193aa5c44d550a6574a56fe72058c368f89814245e9924d3263bc868"
+    }
+  ],
+  "chosen_direction": "v2 quiet ground, v1/v2 shoot silhouettes; native reconstruction still required",
+  "rejections": [
+    "v1 floor mottling is far too dense; bench is overscale.",
+    "v2 retains generated gradients, enlarged bench, resampled player/UI and imperfect object placement. Reject these for production.",
+    "Neither image is a real gameplay screenshot or usable native sheet.",
+    "Independent review: generated uneven/flowering-looking tips violate equal-height NewGrowth identity. Native variants must retain a common clipped top line, with no flowers or seed beads."
+  ]
+}

@@ -465,3 +465,121 @@ free space is 437.228 GB in the receipt, with **zero cleanup deletion**. No new
 standalone, Linux-execution, Deck or sustained-performance claim. Last actual
 hourly report remains **09:27 UTC; next due 10:27 UTC**. This record is not a new
 hourly report.
+
+## Combined Grovelands delivery — 2026-10-27 10:13 UTC
+
+**Source `ab26e270cb376253c971a41c3449ecbbf4171444` is pushed and remotely
+verified; the combined material/Fen-water Mac and Linux builds are now delivered.**
+The prior harvest packages remain preserved. Native verification remains
+**600/600**; this delivery adds packaged evidence, not more native test cases.
+Mac built in **54.155144 s**, Linux in **48.001903 s**, each with **0 errors and
+4 warnings**. See the [Mac play receipt](Verification/Live16x24/packaged-grovelands-materials-mac-play-summary.json)
+and [independent visual review](Verification/Live16x24/packaged-grovelands-materials-mac-independent-review.md).
+
+Eleven actual native Mac window captures verify ordinary flat startup, Continue
+of earned Fen turn **4510** at **40,15**, HP **38/40**, adjacent grass/water
+Examine, the native player on water at **40,17**, dry opposite bank **40,19**,
+return and F5 **4590**, then full process quit/relaunch/Continue. GroveRed's native
+inventory and full reader remain consistent; restart inventory shows GroveRed
+**1**, GoldCoin **3**, PaleSalt **1**. These are carried products earned in earlier
+play; this package pass does not claim fresh harvesting. Exact entity IDs remain
+separate Editor evidence. The earned checkpoint is
+`Verification/Live16x24/Fixtures/packaged-grovelands-water65`.
+
+The [Linux archive verification](Verification/Live16x24/packaged-grovelands-materials-linux-independent-review.json)
+passed: **128,773,591 bytes, 189 regular files, 202 members**, SHA-256
+`e201376c18d3370e4e52ccbb7d9104881b6c577dd29180bbef88060b09268a3c`.
+This is archive integrity, not Linux execution. Both Mac logs contain no
+Error/Exception lines but retain six thread-finalizer notices and one
+ComputeBuffer-disposal notice each, also present in the prior harvest log.
+There is no clean-log, leak-free, physical Deck or sustained-performance claim.
+
+[Restoration](Verification/Live16x24/packaged-grovelands-materials-restoration.json)
+passed across **50,411 tracked objects**. Nine reviewed generated files were
+restored; **38 foreign files**, normal saves/preferences and prior packages
+remain preserved. No storage cleanup occurred. Packaged evidence/living-record
+commit is the next root-owned push; the source push is already verified.
+
+**Next: ordinary Overwrit's four owners, Stump's eight owners, then observed
+Grovelands Shambler/Mosshulk/ChoirTendril bodies**, following the
+[source audit](Verification/Live16x24/world-next-static-kit-audit.md). The **22
+ordinary Overwrit /18 ordinary Stump** addresses are source candidates, not
+visited or accepted scenes in this record. Root's next actual baseline must
+establish current authority, owner/state semantics, readable routes and whole
+chunk composition before authoring. Remaining biomes, settlements/interiors,
+underground and special sites stay in scope. Full Grovelands/37-area/fullness
+acceptance is still open; nuanced animation remains deferred.
+
+Last actual hourly report remains **09:27 UTC; next due 10:27 UTC**. This delivery
+record does not claim a new hourly report.
+
+## Overwrit playable baseline — 2026-10-27 10:24 UTC
+
+The next regional pass has **actual before evidence, not native acceptance**.
+Normal keyboard travel from the packaged Grovelands turn-4590 checkpoint reached
+these eight ordinary areas, all on their actual current cached graphs with no
+saved lair and HP **38/40** throughout:
+
+| Area | Formation |
+| --- | --- |
+| 0,9 | GreenRim |
+| 0,10 | Blank |
+| 3,10; 4,11; 4,12; 3,13; 3,14 | PilgrimageRim |
+| 0,13 | DryRim |
+
+The [actual owner census](Verification/Live16x24/overwrit-before-owner-census.json)
+and eight original `Verification/Live16x24/overwrit-before-01..08` PNGs record
+all four composition roles. Each capture is **1280×800** with approximately
+**59 visible world columns**; these are not full80×25 panoramas or one complete
+screenshot for each visited zone. Ground, growth and bench still use fallback.
+
+At **4,12**, normal walking reached **75,18** beside bench **76,18**;
+C/Right/X opened its real reader: **inward-facing bench, Wood, Structure12/12**.
+A second bench at **3,14, cell75,5** is in the census only and was not visually
+approached. **No waymarker appeared in any of the five natural PilgrimageRim
+candidates.** Its live observation remains missing; no complete four-owner kit
+is claimed. Crops and other non-kit owners remain separate coverage obligations.
+
+Earned checkpoints are `Fixtures/overwrit-blank-baseline65` (**4660**),
+`Fixtures/overwrit-bench-baseline65` (**5260**) and
+`Fixtures/overwrit-dry-baseline65` (**5460**), all under
+`Verification/Live16x24/`. The owned session was archived at
+`/private/tmp/coo-overwrit-baseline-archived-bdcde668` before Finish. Unity is
+idle/clean; normal saves and **38 foreign files** remain unchanged.
+
+Next use these real views and the [source preflight](Verification/Live16x24/world-next-static-kit-audit.md)
+for concept/reinterpretation, native source and tested integration, then compare
+actual whole gameplay views for material consistency and intentional fullness.
+No completed concept, native Overwrit art, runtime integration or after acceptance
+is asserted in this record. Stump's eight owners, then observed Grovelands actors
+and the remaining world stay next in order; nuanced animation remains deferred.
+The combined Grovelands package remains current, and its evidence/living-record
+push is still root-owned and pending. Last actual hourly report remains
+**09:27 UTC; next due10:27 UTC**, unchanged by this baseline record.
+
+### Latest report and Overwrit concept checkpoint — 2026-10-27 10:27 UTC
+
+**The requested hourly report was sent at10:27 UTC; next due11:27 UTC.** It
+itemized completed600-case Grovelands material/water source delivery, fresh
+Mac/Linux packages and11 actual Mac captures; in-progress Overwrit eight-area
+baseline plus two concepts; and next exact delivery/evidence push, native
+Overwrit integration, then Stump. Earlier report timestamps above are historical.
+
+The [actual before play receipt](Verification/Live16x24/overwrit-before-play-summary.json)
+now records the normal-input route, census, captures and earned fixtures.
+Built-in imagegen produced
+`ArtSource/Live16x24/overwrit-materials/concepts/overwrit-v1.png` and `overwrit-v2.png`;
+exact prompts and pinned references are retained in
+`ArtSource/Live16x24/overwrit-materials/references.json`.
+**v1's noisy ground and overscale bench were rejected. v2's quiet ground and
+low-shoot direction alone were selected.** Its gradients, resampled player/UI,
+bench scale and imperfect placement remain invalid production content.
+Neither concept is an in-game screenshot or a usable native sprite sheet.
+
+Current phase is **playable before + concept/preflight, pending native art and
+runtime integration**. Ground/growth/bench still use fallback; the waymarker
+remains unobserved. Next reconstruct the bounded exact-owner native kit, confirm
+RED before implementation, and compare actual after views for consistency and
+whole-chunk fullness. Stump eight-owner materials, then observed Grovelands
+actors and the remaining world follow. The current combined Grovelands package
+is unchanged; root will push the reviewed delivery/evidence records.

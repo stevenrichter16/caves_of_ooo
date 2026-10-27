@@ -1,0 +1,126 @@
+{
+  "source_commit": "ab26e270cb376253c971a41c3449ecbbf4171444",
+  "platform": "native macOS standalone",
+  "captureDimensions": "1280x856 native window including56pixel titlebar;800pixel game content, original CUA bytes",
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-00-startup.jpg",
+      "bytes": 206828,
+      "sha256": "7c02eabb40d876f0c8b9751c0e7f5bdfc7330dbe907bb15b8f413096fa4ab2df",
+      "observation": "Normal flat startup/save detected"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-01-fen-continue.jpg",
+      "bytes": 231210,
+      "sha256": "0e19685fec40274f93b3f659d79cff265f96450439b6b90fbf8f2de8d998c966",
+      "observation": "Continue earned4510Fen40,15HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-02-water-reader.jpg",
+      "bytes": 243839,
+      "sha256": "abac4b3f899975c18718a83a13f4d630ccf5686024c694634fffa6638f03808e",
+      "observation": "Adjacent Grass/water fullreader from40,16"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-03-player-on-water.jpg",
+      "bytes": 233661,
+      "sha256": "8d543290d9ac315895282f73f05f3dfd72bb6da0f4e44e167237aba2c02fb9a5",
+      "observation": "Native player body at40,17onwater"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-04-opposite-bank.jpg",
+      "bytes": 229235,
+      "sha256": "5590dd64103f9cd417cb1fa63c7fc0db603471884406186c92a9a277da81b5f3",
+      "observation": "Opposite dry bank40,19"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-05-return-saved.jpg",
+      "bytes": 232324,
+      "sha256": "5e0ff136fbf77cfca3855b49187692dcee66173cb8d4839e371cf7334c7720d0",
+      "observation": "Return40,15F5turn4590HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-06-inventory.jpg",
+      "bytes": 201498,
+      "sha256": "65a93f728b2e0efc479b2f294774da673c04d0ca5cd3d474a215bd909ccaac54",
+      "observation": "Initial inventory withdamage/defense/equipped labels"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-07-grove-red-inventory.jpg",
+      "bytes": 190202,
+      "sha256": "adb8bf47dd1930a5ccb590067a13f1660a598a59b24df76feec3511d9b26961d",
+      "observation": "Earned GroveRed quantity1native inventory"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-08-grove-red-reader.jpg",
+      "bytes": 118450,
+      "sha256": "5bd58e5fbd700a7b08e3f83d211ae71c0650d0ff46af87b55ec5dd5e3b877424",
+      "observation": "GroveRed native fullreader"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-09-restart-fen.jpg",
+      "bytes": 233282,
+      "sha256": "2cba121e4873c0c2be4de079daed571a9cdf3e22d03ee0eb8b00587d6f205c4e",
+      "observation": "Full process restart Continue Fen40,15HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-10-restart-grove-red.jpg",
+      "bytes": 190202,
+      "sha256": "adb8bf47dd1930a5ccb590067a13f1660a598a59b24df76feec3511d9b26961d",
+      "observation": "Same GroveRed1 GoldCoin3 PaleSalt1 afterrestart"
+    }
+  ],
+  "inputFixture": "Fixtures/grovelands-water-crossed65",
+  "inputTurn": 4510,
+  "savedTurn": 4590,
+  "zone": "Overworld.0.8.0",
+  "playerPosition": [
+    40,
+    15
+  ],
+  "hp": "38/40",
+  "route": "Down4 from40,15 across40,17\u201318water to40,19;Up4return;F5;fullprocessquit/relaunch/Continue",
+  "fixture": [
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/packaged-grovelands-water65/Quick.json",
+      "bytes": 407,
+      "sha256": "0a8b77d36c48aeb32916afdbf3a7de1624226ae28b6c6bdf4054fb2d6144fabe"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/Fixtures/packaged-grovelands-water65/Quick.sav.gz",
+      "bytes": 1122919,
+      "sha256": "685f063f7e09ecd5ce735749fac45102785e9ff2f8d42d298a69199268407243"
+    }
+  ],
+  "logs": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-player.log",
+      "bytes": 4006,
+      "sha256": "c97c4de5a578f28dcdff4555f910f3222973ea2ef2c0c5f47f04530c1380bc21"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-restart-player.log",
+      "bytes": 3949,
+      "sha256": "34c3870a2dd3bf0e73376f0e62ba775585df401b67fc038390a1078580ab7086"
+    }
+  ],
+  "logErrorOrExceptionLines": {
+    "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-player.log": [],
+    "Docs/Verification/Live16x24/packaged-grovelands-materials-mac-restart-player.log": []
+  },
+  "input": "Only ordinary CUA Continue, walking, context/Examine, inventory/details,F5 and processquit. No injected game entities, state, teleport or health changes.",
+  "limits": [
+    "Bounded Fen sample and carriedproduct, not everyformation/all37ordinarysites/fullbiome.",
+    "UI confirmsitems/counts; exactruntimeIDs separatelyverifiedinEditor.",
+    "Source waves, actor/prop/crop/specialsitefallbacksremain.",
+    "No Linuxexecution,physicalSteamDeck or sustainedperformanceacceptance."
+  ],
+  "shutdownNotices": {
+    "perProcess": {
+      "threadPrematureFinalizer": 6,
+      "ComputeBufferFinalizerDisposal": 1
+    },
+    "alsoPresentInPriorHarvestLog": true,
+    "limits": "Retained pre-existing shutdown notices; no Error/Exception log lines in either new process. This is not a clean-log or global leak-free claim."
+  }
+}

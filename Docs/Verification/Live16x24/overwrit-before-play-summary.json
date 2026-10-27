@@ -1,0 +1,202 @@
+{
+  "kind": "actual_editor_playable_before_only_not_native_acceptance",
+  "recorded_at_utc": "2026-10-27T10:26:00Z",
+  "runtime_source": "ab26e270cb376253c971a41c3449ecbbf4171444",
+  "seed": 65,
+  "entry_fixture": "Fixtures/packaged-grovelands-water65",
+  "entry_turn": 4590,
+  "method": "Normal isolated Launch/Continue, keyboard world-map ascent/movement/descent and local movement/context/examine/F5. Read-only owner census; no teleports, entity injection, inventory grants, or save-state edits.",
+  "route": [
+    "Fen0,8 -> GreenRim0,9 -> Blank0,10 -> PilgrimageRim3,10 ->4,11 ->4,12",
+    "At4,12 walk Right35 Down6 from40,12 to75,18; C/Right/X examines real bench76,18; Return/F5",
+    "World-map Left/Down to3,13, Down to3,14, Left3/Up toDryRim0,13; F5"
+  ],
+  "bench": {
+    "zone": "Overworld.4.12.0",
+    "position": [
+      76,
+      18
+    ],
+    "player": [
+      75,
+      18
+    ],
+    "reader": "inward-facing bench / Object / Wood / Structure12/12",
+    "service_claim": false
+  },
+  "second_bench": {
+    "zone": "Overworld.3.14.0",
+    "position": [
+      75,
+      5
+    ],
+    "evidence": "census only; not visually approached"
+  },
+  "waymarker": {
+    "source_registered": true,
+    "observed_count": 0,
+    "bound": "No marker in five actual pilgrimage candidates; owner still requires native fixture checks plus a future natural observation."
+  },
+  "census": {
+    "path": "Docs/Verification/Live16x24/overwrit-before-owner-census.json",
+    "bytes": 29612,
+    "sha256": "03f5a15081152d5f16d7ab06e2fd2eeb78de6dbc3698ed46c485879021317a79"
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-01-green-rim.png",
+      "bytes": 36725,
+      "sha256": "eea4232e01f34e57c91c1bc13084b7f4c17023d9191d17517006471d7c3d8f57"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-02-blank.png",
+      "bytes": 35919,
+      "sha256": "3a13546ef1f64c0b74d3084e197f95af9aaefdecfc3d49e45de3bb25550c4869"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-03-pilgrimage-rim.png",
+      "bytes": 35397,
+      "sha256": "8b3fb4da321a88464bf34d34b5785b57bfb375dbea0577b709a148cf10b3e3c0"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-04-pilgrimage-rim.png",
+      "bytes": 34771,
+      "sha256": "f258927a213f6bf751bd77a867b3a7159aaad0827028996703b42b96f7c1dc4e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-05-pilgrimage-rim.png",
+      "bytes": 34651,
+      "sha256": "bcceeacd7c993b62a7cae7e6d441105a0ea6a8d7c7c16added15e34eed31a4aa"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-06-bench-approach.png",
+      "bytes": 34743,
+      "sha256": "642e86ff51f10ba255c1119bbcdf41c554d07ba734b97fd1fdb9cdb2a49c0c83"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-07-bench-reader.png",
+      "bytes": 39413,
+      "sha256": "3f563764abfa86dcee17c59432a36d2fe85b67273f2e7a67243accaefad47d12"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/overwrit-before-08-dry-rim.png",
+      "bytes": 35299,
+      "sha256": "72b1e0ea3e861f5c31991c86e3a4cf361845b427c98245786f1797e75d9f7d4f"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "overwrit-blank-baseline65",
+      "header": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.0.10.0",
+        "ActiveZoneDisplayLabel": "Overworld.0.10.0",
+        "Turn": 4660,
+        "SaveTimestampUtc": "2026-10-27T10:14:40.5655220Z",
+        "HPSummary": "38/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": [
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/overwrit-blank-baseline65/Quick.json",
+          "bytes": 409,
+          "sha256": "084a1743177956670be9b017428cf2eb2b07891d2c7915c07ba16b571ee082e6"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/overwrit-blank-baseline65/Quick.sav.gz",
+          "bytes": 1174555,
+          "sha256": "d3dd9dd1760a6f32f92e951bc2f5ad8eab654c4a9dead70a84669ba747eed228"
+        }
+      ]
+    },
+    {
+      "name": "overwrit-bench-baseline65",
+      "header": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.4.12.0",
+        "ActiveZoneDisplayLabel": "Overworld.4.12.0",
+        "Turn": 5260,
+        "SaveTimestampUtc": "2026-10-27T10:20:58.4399510Z",
+        "HPSummary": "38/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": [
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/overwrit-bench-baseline65/Quick.json",
+          "bytes": 409,
+          "sha256": "a1e122fe34ab259ab70d55541bd59fe1898749e770a062cf497dbf1de844e986"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/overwrit-bench-baseline65/Quick.sav.gz",
+          "bytes": 1246502,
+          "sha256": "2f7c7b4260ba49e4a18e9173c972db7fbb87b43f2ff4dfca8abadff52532d9a4"
+        }
+      ]
+    },
+    {
+      "name": "overwrit-dry-baseline65",
+      "header": {
+        "SaveVersion": 8,
+        "GameVersion": "1.0",
+        "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+        "PlayerName": "Player",
+        "PlayerDisplayName": "you",
+        "PlayerLevel": 1,
+        "ActiveZoneID": "Overworld.0.13.0",
+        "ActiveZoneDisplayLabel": "Overworld.0.13.0",
+        "Turn": 5460,
+        "SaveTimestampUtc": "2026-10-27T10:22:18.1173460Z",
+        "HPSummary": "38/40",
+        "Glyph": "@",
+        "Color": "&Y"
+      },
+      "files": [
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/overwrit-dry-baseline65/Quick.json",
+          "bytes": 409,
+          "sha256": "4f93603d44f6fe78044e2d7da6fd9e3f3ec9a0f3f4224e9b40df0d7ccc22469e"
+        },
+        {
+          "path": "Docs/Verification/Live16x24/Fixtures/overwrit-dry-baseline65/Quick.sav.gz",
+          "bytes": 1319927,
+          "sha256": "c929145af82eec29928ed24f361ec5ab3c8d216a77cc070dad60fc8192ef3586"
+        }
+      ]
+    }
+  ],
+  "composition_findings": [
+    "All4formation roles have actual normal-zoom before captures;8zones visited, not8native accepted.",
+    "Repeated yellow floor glyphs overwhelm sparse green growth; current floor, growth and bench have no dedicated native kit.",
+    "The centered gameplay viewport is59columns of80, not a full80x25 panorama. East-rim furniture/growth is outside center view until walked toward.",
+    "Blank retains intentional quiet physical topology; material/cluster/landmark fullness remains unaccepted. Do not manufacture clutter.",
+    "Ordinary crop beds modify OverwritGround with CultivatedSoilPart and Plantable; preserve existing soil/crop presentation."
+  ],
+  "finished_session": {
+    "archived_root": "/private/tmp/coo-overwrit-baseline-archived-bdcde668",
+    "playing": false,
+    "compiling": false,
+    "save_override": null,
+    "scene_dirty": false,
+    "normal_editor_and_standalone_saves_unchanged": true,
+    "foreign_files_unchanged": 38,
+    "free_bytes": 436176056320,
+    "storage_cleanup_deleted_bytes": 0
+  },
+  "limits": [
+    "NoOverwritruntime/artimplementation or native test change in this baseline.",
+    "No new whole-chunk fullness or global biome completion.",
+    "Current delivered runtime remainsab26; concepts and before captures cannot substitute for after-gameplay evidence."
+  ]
+}
