@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "source_grounded_scope_and_coverage_plan_not_runtime_manifest",
-  "reviewed_at_utc": "2026-10-27T06:13:45.787684+00:00",
+  "reviewed_at_utc": "2026-10-27T07:15:00Z",
   "baseline_source_revision": "bf38cfd98 (root-provided audit baseline; no Git operation in this audit)",
   "priority": "Complete native16x24 sprite coverage across every biome and area before optional nuanced animation; ensure chunks feel intentionally composed rather than bare.",
   "bounds": [
@@ -2670,5 +2670,137 @@
     "physical_deck_verified": false,
     "sustained_hardware_performance_verified": false,
     "limits": "Seven actual Mac window captures verify normal flat boot, earned Causeway2390 Continue, real Duckboard reader8/8, four walked steps, F52430 and full process restart40,16HP38, then normal world travel to district16,7 at20,12/F52510HP38. Whole Sodden coverage/fullness, plain water, service/creature/plant/prop families and other regions remain incomplete. Existing shutdown notices persist. Both final native reports overlap;328 distinct passed identities and3inconclusive allocation probes, not331passes."
+  },
+  "beating_materials_delivery": {
+    "status": "authored-integrated-observed; ordinary surface material slice only",
+    "plan": "Docs/GRAPHICS-BEATING-MATERIALS.md",
+    "actual_play": "Docs/Verification/Live16x24/beating-final-play-summary.json",
+    "source": "ArtSource/Live16x24/beating-materials",
+    "frame_count": 34,
+    "native_families": [
+      "Sand",
+      "SaltCrust",
+      "DuneCrest",
+      "SandstoneFloor",
+      "SandstoneWall",
+      "Rock",
+      "BrinePool filled/depleted wet",
+      "PaleSaltVein",
+      "Bones",
+      "Saltbriar",
+      "RoadStone"
+    ],
+    "reused_families": [
+      "DryBrush",
+      "Signpost"
+    ],
+    "samples": [
+      {
+        "zone": "Overworld.16.13.0",
+        "tick": 2650,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "zone": "Overworld.15.13.0",
+        "tick": 2690,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "zone": "Overworld.17.13.0",
+        "tick": 2750,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "zone": "Overworld.19.12.0",
+        "tick": 2830,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "zone": "Overworld.19.13.0",
+        "tick": 2870,
+        "player": [
+          40,
+          12
+        ]
+      },
+      {
+        "zone": "Overworld.19.14.0",
+        "tick": 2910,
+        "player": [
+          40,
+          12
+        ]
+      }
+    ],
+    "remaining_sampled_fallbacks": [
+      "AshBed",
+      "BoneCache",
+      "BrittleHound",
+      "Crate",
+      "GlassblownDrifter",
+      "GuestClothPole",
+      "Merchant",
+      "OilSlick",
+      "Pillar",
+      "Sack",
+      "Sand",
+      "Scorpion",
+      "StairsDown",
+      "StoneCoffer",
+      "StoneWall",
+      "TentRightHost",
+      "TentWall",
+      "Urn",
+      "Well",
+      "PaleSalt harvested inventory product"
+    ],
+    "tests": {
+      "original_red": {
+        "total": 92,
+        "failed": 92
+      },
+      "corrected_initial_green": {
+        "total": 92,
+        "passed": 92
+      },
+      "revision_red": {
+        "total": 95,
+        "passed": 87,
+        "failed": 8
+      },
+      "final_green": {
+        "total": 95,
+        "passed": 95
+      },
+      "separate_regressions": {
+        "total": 225,
+        "passed": 222,
+        "failed": 0,
+        "inconclusive": 3
+      },
+      "limits": "Runs overlap; do not sum as unique tests. Allocationpositivecontrols wereinconclusive."
+    },
+    "fullness": {
+      "accepted_scope": "Material contrast, vegetation clusters, connected liquids, warm roads and quiet solid dunes improve existing real formations. Actual whole views inspected. No fake services, newloot, randomscatter or generationchanges.",
+      "corrected": [
+        "Grassy green road reuse replaced with actualRoadStone warmgravel frames32/33.",
+        "Dune8\u201311 continuous stripes replaced with subtle short internalmarks; same505solidcells and traversal unchanged."
+      ],
+      "not_complete": "Tents,wells,residents,creatures,containers and hazard/other owners stillfallback; broader sites,interiors,underground and biomes remainopen. Intentionaldesert quiet patches do not excuse these gaps."
+    },
+    "package_status": "pending current frozen source build; previous Sodden packages preserved",
+    "next": "Fresh packaged validation, then cross-biome resource/items and actual regional props/actors; do not focus on nuanced animation."
   }
 }

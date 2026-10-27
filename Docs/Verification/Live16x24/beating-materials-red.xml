@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="92" result="Failed(Child)" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:45Z" duration="12.7346188">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32671" result="Failed" site="Child" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:45Z" duration="12.734619" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="40218" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32671" result="Failed" site="Child" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:45Z" duration="12.712846" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="40219" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32671" result="Failed" site="Child" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:45Z" duration="12.701249" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="40220" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32671" result="Failed" site="Child" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:45Z" duration="12.691101" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="28688" name="FlatPixelBeatingMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:45Z" duration="12.650917" total="92" passed="0" failed="92" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="28752" name="ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:33Z" duration="0.526972" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28750" name="ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor(False)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor(False)" methodname="ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="171001612" result="Failed" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:33Z" duration="0.469265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  _beatingMaterialsArt
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Read (System.Object owner, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:135
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Adapter () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:137
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Ground (UnityEngine.Tilemaps.Tile& tile, CavesOfOoo.Core.Entity& floor) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:141
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor (System.Boolean reversed) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:330
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28751" name="ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor(True)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor(True)" methodname="ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="270476443" result="Failed" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:33Z" duration="0.054212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  _beatingMaterialsArt
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Read (System.Object owner, System.String name) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:135
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Adapter () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:137
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Ground (UnityEngine.Tilemaps.Tile& tile, CavesOfOoo.Core.Entity& floor) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:141
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ActualSaltCrustOutranksSandInEitherInsertionOrderWithoutHidingAnActor (System.Boolean reversed) [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:330
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28781" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:34Z" duration="0.794457" total="10" passed="0" failed="10" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28771" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;mixture&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;mixture&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="536065665" result="Failed" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:33Z" duration="0.071535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28772" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;plain-water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;plain-water&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1735796746" result="Failed" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:33Z" duration="0.055480" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28773" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;ice&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1480007154" result="Failed" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:33Z" duration="0.053808" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28774" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;expired&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;expired&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="702133977" result="Failed" start-time="2026-10-27 06:49:33Z" end-time="2026-10-27 06:49:34Z" duration="0.054449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28775" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;wrong-liquid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;wrong-liquid&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2000779388" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.059489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28776" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;foreign-source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;foreign-source&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1126734481" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.057404" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28777" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;duplicate-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;duplicate-pool&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="650669229" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.053742" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28778" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;negative-stock&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;negative-stock&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1013940865" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.082537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28779" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;frozen&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1773608622" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.219841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28780" name="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;wet-effect&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth(&quot;wet-effect&quot;)" methodname="BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2038184815" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.058728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BrineCannotAcquireNeutralNativeBodyForUnsupportedTruth (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:424
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28731" name="CoveredRemovedOrStaleFootprintOwnerCannotKeepItsReaderImage" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.CoveredRemovedOrStaleFootprintOwnerCannotKeepItsReaderImage" methodname="CoveredRemovedOrStaleFootprintOwnerCannotKeepItsReaderImage" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1790032958" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.062864" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.CoveredRemovedOrStaleFootprintOwnerCannotKeepItsReaderImage () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:274
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28726" name="CurrentGraphIdentityAndReadOnlyLedgerAbsenceAreBothRequired" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.CurrentGraphIdentityAndReadOnlyLedgerAbsenceAreBothRequired" methodname="CurrentGraphIdentityAndReadOnlyLedgerAbsenceAreBothRequired" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="809646532" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.055558" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.CurrentGraphIdentityAndReadOnlyLedgerAbsenceAreBothRequired () [0x00072] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:252
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28755" name="DistinctEngineeredBasesOrCrustOnThemAreAmbiguous" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DistinctEngineeredBasesOrCrustOnThemAreAmbiguous" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.143472" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28753" name="DistinctEngineeredBasesOrCrustOnThemAreAmbiguous(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DistinctEngineeredBasesOrCrustOnThemAreAmbiguous(&quot;SandstoneFloor&quot;)" methodname="DistinctEngineeredBasesOrCrustOnThemAreAmbiguous" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="505457698" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.055736" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DistinctEngineeredBasesOrCrustOnThemAreAmbiguous (System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:342
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28754" name="DistinctEngineeredBasesOrCrustOnThemAreAmbiguous(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DistinctEngineeredBasesOrCrustOnThemAreAmbiguous(&quot;RoadStone&quot;)" methodname="DistinctEngineeredBasesOrCrustOnThemAreAmbiguous" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="47649706" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.056142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DistinctEngineeredBasesOrCrustOnThemAreAmbiguous (System.String blueprint) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:342
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28765" name="DryNativeFloorCannotConcealIndependentStateOrUnknownGround" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:35Z" duration="0.231905" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28761" name="DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;coating&quot;)" methodname="DryNativeFloorCannotConcealIndependentStateOrUnknownGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="299944102" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.054635" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:376
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28762" name="DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;residue&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;residue&quot;)" methodname="DryNativeFloorCannotConcealIndependentStateOrUnknownGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="141633249" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.052089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:376
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28763" name="DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;heat&quot;)" methodname="DryNativeFloorCannotConcealIndependentStateOrUnknownGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1107500960" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:34Z" duration="0.053119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:376
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28764" name="DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;unknown-terrain&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround(&quot;unknown-terrain&quot;)" methodname="DryNativeFloorCannotConcealIndependentStateOrUnknownGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="591329558" result="Failed" start-time="2026-10-27 06:49:34Z" end-time="2026-10-27 06:49:35Z" duration="0.069149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DryNativeFloorCannotConcealIndependentStateOrUnknownGround (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:376
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28759" name="ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.296292" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28756" name="ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay(&quot;DuneCrest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay(&quot;DuneCrest&quot;)" methodname="ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1916493229" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.161494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay (System.String blueprint) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:349
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28757" name="ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay(&quot;DryBrush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay(&quot;DryBrush&quot;)" methodname="ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2112898760" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.054812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay (System.String blueprint) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:349
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28758" name="ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay(&quot;Bones&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay(&quot;Bones&quot;)" methodname="ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1358762261" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.052146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactNeutralDryOverlayRetainsOnlyItsActualSandUnderlay (System.String blueprint) [0x0001e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:349
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28702" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.581793" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28689" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Sand&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Sand&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1315455180" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.047420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28690" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;SaltCrust&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;SaltCrust&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="133823934" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.042354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28691" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;DuneCrest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;DuneCrest&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="681173550" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.042360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28692" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;SandstoneFloor&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="325240529" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.042693" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28693" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;SandstoneWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;SandstoneWall&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1900095675" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.041341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28694" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Rock&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Rock&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1477883155" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.043680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28695" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;BrinePool&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1426778619" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.043151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28696" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;RoadStone&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="885564301" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.042382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28697" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;DryBrush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;DryBrush&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="235589380" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.040747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28698" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Signpost&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Signpost&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="225862826" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.042546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28699" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;PaleSaltVein&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;PaleSaltVein&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="94542093" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.042973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28700" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Bones&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Bones&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="207430753" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.041680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28701" name="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Saltbriar&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot(&quot;Saltbriar&quot;)" methodname="ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2002742314" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.041581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ExactShippedOwnerUsesItsOwnMaterialButCustomIdentityDoesNot (System.String blueprint) [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28787" name="FrozenAtlasUsesNativePointSampledCellsAndStableCachedMaterials" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.FrozenAtlasUsesNativePointSampledCellsAndStableCachedMaterials" methodname="FrozenAtlasUsesNativePointSampledCellsAndStableCachedMaterials" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="520713725" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:35Z" duration="0.039465" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.FrozenAtlasUsesNativePointSampledCellsAndStableCachedMaterials () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:469
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28760" name="HiddenForeignAndCustodiedFloorOrCultivationCannotEraseVisibleSand" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.HiddenForeignAndCustodiedFloorOrCultivationCannotEraseVisibleSand" methodname="HiddenForeignAndCustodiedFloorOrCultivationCannotEraseVisibleSand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2035307116" result="Failed" start-time="2026-10-27 06:49:35Z" end-time="2026-10-27 06:49:36Z" duration="0.057845" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.HiddenForeignAndCustodiedFloorOrCultivationCannotEraseVisibleSand () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:357
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28782" name="HiddenPoolCannotSuppressItsIndependentLiveCoatingOrEraseUnrelatedDryGround" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.HiddenPoolCannotSuppressItsIndependentLiveCoatingOrEraseUnrelatedDryGround" methodname="HiddenPoolCannotSuppressItsIndependentLiveCoatingOrEraseUnrelatedDryGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1561077917" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.174033" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:91
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.HiddenPoolCannotSuppressItsIndependentLiveCoatingOrEraseUnrelatedDryGround () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:438
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28744" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.770147" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28732" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Rock&quot;,&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Rock&quot;,&quot;foreign-render&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="546435766" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.042814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28733" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DuneCrest&quot;,&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DuneCrest&quot;,&quot;foreign-physics&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="49132077" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.041205" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28734" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;SandstoneWall&quot;,&quot;duplicate-material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;SandstoneWall&quot;,&quot;duplicate-material&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1691129509" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.041345" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28735" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Rock&quot;,&quot;duplicate-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Rock&quot;,&quot;duplicate-render&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1689513568" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.041549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28736" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Bones&quot;,&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Bones&quot;,&quot;carried&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1051092678" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.041785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28737" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Signpost&quot;,&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Signpost&quot;,&quot;takeable&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1414053552" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.040753" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28738" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;PaleSaltVein&quot;,&quot;foreign-harvest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;PaleSaltVein&quot;,&quot;foreign-harvest&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1362092260" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.042927" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28739" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Saltbriar&quot;,&quot;wrong-yield&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Saltbriar&quot;,&quot;wrong-yield&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="701916845" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.042081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28740" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DuneCrest&quot;,&quot;non-solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DuneCrest&quot;,&quot;non-solid&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1823532035" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.041520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28741" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DryBrush&quot;,&quot;zero-hp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DryBrush&quot;,&quot;zero-hp&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1879002598" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.041919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28742" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Rock&quot;,&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;Rock&quot;,&quot;wrong-blueprint&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="574063386" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.041026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28743" name="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DryBrush&quot;,&quot;foreign-state-meaning&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback(&quot;DryBrush&quot;,&quot;foreign-state-meaning&quot;)" methodname="MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1665156979" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.040712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MalformedRepurposedAndCustodiedOwnersRetainTruthfulFallback (System.String blueprint, System.String fault) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:293
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28786" name="MissingBorrowedGroupDoesNotDisableTheMainAtlasAndDisposalOwnsOnlyGeneratedFrames" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MissingBorrowedGroupDoesNotDisableTheMainAtlasAndDisposalOwnsOnlyGeneratedFrames" methodname="MissingBorrowedGroupDoesNotDisableTheMainAtlasAndDisposalOwnsOnlyGeneratedFrames" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="378172499" result="Failed" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:36Z" duration="0.039063" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MissingBorrowedGroupDoesNotDisableTheMainAtlasAndDisposalOwnsOnlyGeneratedFrames () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:460
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28785" name="MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 06:49:36Z" end-time="2026-10-27 06:49:43Z" duration="6.053537" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28783" name="MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups(False)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups(False)" methodname="MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1614886837" result="Failed" start-time="2026-10-27 06:49:42Z" end-time="2026-10-27 06:49:43Z" duration="0.042794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups (System.Boolean malformed) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:451
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28784" name="MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups(True)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups(True)" methodname="MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1705991062" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.041463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MissingOrMalformedMainAtlasCannotReloadResourcesOrDisableValidBorrowedGroups (System.Boolean malformed) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:451
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28722" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.322164" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28715" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.15.15.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.15.15.0&quot;)" methodname="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1372321722" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.045711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:227
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28716" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.2.19.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.2.19.0&quot;)" methodname="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1736139090" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.042101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:227
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28717" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.19.18.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.19.18.0&quot;)" methodname="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="94341180" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.042244" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:227
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28718" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.19.19.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.19.19.0&quot;)" methodname="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1228349736" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.042151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:227
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28719" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.16.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.16.7.0&quot;)" methodname="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1710851149" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.041106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:227
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28720" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.16.13.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.16.13.1&quot;)" methodname="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="101915402" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.041162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:227
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28721" name="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.16.013.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases(&quot;Overworld.16.013.0&quot;)" methodname="MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1215550671" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.042051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.MutableLabelsCannotAdmitSitesDepthOtherCountryOrAliases (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:227
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28730" name="NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.151686" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28727" name="NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials(&quot;hidden&quot;)" methodname="NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="123746628" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.044305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:264
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28728" name="NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials(&quot;remembered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials(&quot;remembered&quot;)" methodname="NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1856857268" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.040287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:264
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28729" name="NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials(&quot;unexplored&quot;)" methodname="NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="515791065" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.041582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeReaderAndWorldCannotDiscloseHiddenOrRememberedLiveMaterials (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:264
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28749" name="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.189985" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28745" name="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;DryBrush&quot;,&quot;burning&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;DryBrush&quot;,&quot;burning&quot;)" methodname="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="203335020" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.042036" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState (System.String blueprint, System.String state) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:316
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28746" name="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;Saltbriar&quot;,&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;Saltbriar&quot;,&quot;frozen&quot;)" methodname="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="566835190" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.041681" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState (System.String blueprint, System.String state) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:316
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28747" name="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;Rock&quot;,&quot;electrified&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;Rock&quot;,&quot;electrified&quot;)" methodname="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="74607223" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.040581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState (System.String blueprint, System.String state) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:316
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28748" name="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;DryBrush&quot;,&quot;nan&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState(&quot;DryBrush&quot;,&quot;nan&quot;)" methodname="NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1552222237" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.041380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralPixelsCannotReplaceCurrentOwnerTintOrInvalidThermalState (System.String blueprint, System.String state) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:316
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28770" name="RealBrineProjectionAndDepletedStockKeepSeparateWetMaterialStates" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealBrineProjectionAndDepletedStockKeepSeparateWetMaterialStates" methodname="RealBrineProjectionAndDepletedStockKeepSeparateWetMaterialStates" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="949502182" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.042326" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealBrineProjectionAndDepletedStockKeepSeparateWetMaterialStates () [0x0007e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:410
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28769" name="RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:44Z" duration="0.306646" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28766" name="RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear(&quot;PaleSaltVein&quot;,&quot;PaleSalt&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear(&quot;PaleSaltVein&quot;,&quot;PaleSalt&quot;)" methodname="RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2119481027" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:43Z" duration="0.097741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear (System.String blueprint, System.String product) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:389
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28767" name="RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear(&quot;Bones&quot;,&quot;Bone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear(&quot;Bones&quot;,&quot;Bone&quot;)" methodname="RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1724053539" result="Failed" start-time="2026-10-27 06:49:43Z" end-time="2026-10-27 06:49:44Z" duration="0.141872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear (System.String blueprint, System.String product) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:389
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28768" name="RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear(&quot;Saltbriar&quot;,&quot;SaltbriarSprig&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear(&quot;Saltbriar&quot;,&quot;SaltbriarSprig&quot;)" methodname="RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1389394595" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.042061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.RealHarvestRemovesNativeActivityAndRetainedSpentReferenceCannotReappear (System.String blueprint, System.String product) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:389
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28725" name="SavedModernOrLegacyLairAuthoritySurvivesErasedLabels" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SavedModernOrLegacyLairAuthoritySurvivesErasedLabels" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.109641" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28723" name="SavedModernOrLegacyLairAuthoritySurvivesErasedLabels(False)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SavedModernOrLegacyLairAuthoritySurvivesErasedLabels(False)" methodname="SavedModernOrLegacyLairAuthoritySurvivesErasedLabels" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2090481010" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.042188" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SavedModernOrLegacyLairAuthoritySurvivesErasedLabels (System.Boolean legacy) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:239
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28724" name="SavedModernOrLegacyLairAuthoritySurvivesErasedLabels(True)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SavedModernOrLegacyLairAuthoritySurvivesErasedLabels(True)" methodname="SavedModernOrLegacyLairAuthoritySurvivesErasedLabels" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="91823481" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.042390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SavedModernOrLegacyLairAuthoritySurvivesErasedLabels (System.Boolean legacy) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:239
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28709" name="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.639935" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28703" name="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(WindBarrens,&quot;Overworld.16.13.0&quot;,&quot;Rock&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(WindBarrens,&quot;Overworld.16.13.0&quot;,&quot;Rock&quot;)" methodname="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1207740053" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.146712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The Beating material adapter has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:129
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:131
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay (CavesOfOoo.Core.Formation formation, System.String id, System.String signature) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28704" name="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(SaltPan,&quot;Overworld.15.13.0&quot;,&quot;SaltCrust&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(SaltPan,&quot;Overworld.15.13.0&quot;,&quot;SaltCrust&quot;)" methodname="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1806065476" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.095149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The Beating material adapter has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:129
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:131
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay (CavesOfOoo.Core.Formation formation, System.String id, System.String signature) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28705" name="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(BrineLens,&quot;Overworld.17.13.0&quot;,&quot;BrinePool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(BrineLens,&quot;Overworld.17.13.0&quot;,&quot;BrinePool&quot;)" methodname="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1445184339" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.108043" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The Beating material adapter has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:129
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:131
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay (CavesOfOoo.Core.Formation formation, System.String id, System.String signature) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28706" name="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(RuinField,&quot;Overworld.19.12.0&quot;,&quot;SandstoneWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(RuinField,&quot;Overworld.19.12.0&quot;,&quot;SandstoneWall&quot;)" methodname="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="187340264" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.092795" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The Beating material adapter has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:129
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:131
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay (CavesOfOoo.Core.Formation formation, System.String id, System.String signature) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28707" name="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(CaravanRoad,&quot;Overworld.19.13.0&quot;,&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(CaravanRoad,&quot;Overworld.19.13.0&quot;,&quot;RoadStone&quot;)" methodname="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="998524781" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.094960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The Beating material adapter has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:129
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:131
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay (CavesOfOoo.Core.Formation formation, System.String id, System.String signature) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28708" name="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(DuneBelt,&quot;Overworld.19.14.0&quot;,&quot;DuneCrest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay(DuneBelt,&quot;Overworld.19.14.0&quot;,&quot;DuneCrest&quot;)" methodname="SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1979739489" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:44Z" duration="0.099050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The Beating material adapter has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.AdapterType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:129
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Supported (CavesOfOoo.Core.Zone graph) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:131
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SixNaturalFormationGraphsSupplyRealOwnersWithoutPlanReplay (CavesOfOoo.Core.Formation formation, System.String id, System.String signature) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="28794" name="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:45Z" duration="0.726868" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28788" name="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(90,&quot;none&quot;,'\0')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(90,&quot;none&quot;,'\0')" methodname="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="992336756" result="Failed" start-time="2026-10-27 06:49:44Z" end-time="2026-10-27 06:49:45Z" duration="0.192589" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks (System.Int32 stock, System.String hazard, System.Char expected) [0x000d8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:489
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28789" name="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(0,&quot;none&quot;,'\0')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(0,&quot;none&quot;,'\0')" methodname="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="387017635" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.064217" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks (System.Int32 stock, System.String hazard, System.Char expected) [0x000d8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:489
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28790" name="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(90,&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(90,&quot;charge&quot;,'*')" methodname="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="341202563" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.063338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks (System.Int32 stock, System.String hazard, System.Char expected) [0x000d8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:489
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28791" name="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(0,&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(0,&quot;heat&quot;,'^')" methodname="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1689571340" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.071216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks (System.Int32 stock, System.String hazard, System.Char expected) [0x000d8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:489
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28792" name="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(90,&quot;embers&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(90,&quot;embers&quot;,'&quot;')" methodname="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1138121835" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.089637" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks (System.Int32 stock, System.String hazard, System.Char expected) [0x000d8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:489
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28793" name="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(0,&quot;veil-mist&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks(0,&quot;veil-mist&quot;,'\'')" methodname="SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1616270056" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.219253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedBrineSuppressesOnlyItsRepresentedWaveAndKeepsIndependentMarks (System.Int32 stock, System.String hazard, System.Char expected) [0x000d8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:489
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="28795" name="SubmittedCoverAndMissingBodyCannotSuppressTheBrineWave" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedCoverAndMissingBodyCannotSuppressTheBrineWave" methodname="SubmittedCoverAndMissingBodyCannotSuppressTheBrineWave" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2044666147" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.065524" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedCoverAndMissingBodyCannotSuppressTheBrineWave () [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:501
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="28796" name="SubmittedWallDestructionRemovesOnlyTheActualWallAndRetainsNeighborMaterial" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedWallDestructionRemovesOnlyTheActualWallAndRetainsNeighborMaterial" methodname="SubmittedWallDestructionRemovesOnlyTheActualWallAndRetainsNeighborMaterial" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2073158313" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.064706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Sprites/Live16x24/beating-materials
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:81
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.SubmittedWallDestructionRemovesOnlyTheActualWallAndRetainsNeighborMaterial () [0x0004b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:514
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="28714" name="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.192940" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="28710" name="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;biome&quot;)" methodname="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1512958466" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.042129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:208
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28711" name="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;poi&quot;)" methodname="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="991502635" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.041293" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:208
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28712" name="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;tile-shape&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;tile-shape&quot;)" methodname="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="417237061" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.040844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:208
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="28713" name="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;poi-shape&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval(&quot;poi-shape&quot;)" methodname="WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="5833477" result="Failed" start-time="2026-10-27 06:49:45Z" end-time="2026-10-27 06:49:45Z" duration="0.041210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:92
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:208
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

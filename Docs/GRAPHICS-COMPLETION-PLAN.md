@@ -2302,3 +2302,33 @@ Unity; currently outsidePlay, cleanSampleScene/nullroot, Linuxactiveplatform.
 Last actual hourly report06:25UTC,next07:25UTC. Activeheartbeatcontinues.
 
 Beating preflight is saved at `Verification/Live16x24/beating-first-kit-plan.md`. It identifies six natural candidate addresses and actual source families; saved-map evidence is not gameplay acceptance. Next action is the real baseline route and imagegen.
+
+## Current continuation — 2026-10-27 07:15 UTC
+
+The Beating's ordinary surface materials now have 34 editable native frames.
+The workflow covered real greyboxes, two imagegen passes, original source art,
+integration and iteration in actual gameplay. Six formations were captured
+before implementation, during the first trial and after the final revision.
+Visual review rejected the green road reuse and regular dune stripes; both are
+fixed. The final native suite passed 95/95. Related regressions recorded 222
+passes, 3 inconclusive cases and 0 failures; these suites overlap.
+
+Actual harvesting, movement into the cleared cell, inventory identity, F5 at
+turn 3140 and a fresh Continue were verified. Existing source, normal saves and
+all 38 unrelated tracked files were protected. No storage cleanup occurred.
+Detailed evidence is in `GRAPHICS-BEATING-MATERIALS.md` and
+`Verification/Live16x24/beating-final-play-summary.json`.
+
+Still open: Beating tents, wells, containers, residents, creatures, hazards and
+special owners; PaleSalt, Bone and SaltbriarSprig inventory products; Sodden
+plain water, props, actors and plants; and all remaining biome, special-site,
+interior and underground kits. This does not complete a biome or the whole world.
+
+Next: freeze and push the source, then verify fresh Mac and Linux packages.
+Continue with resource-item families used across biomes and remaining regional
+coverage. Nuanced animation remains deferred. Root owns Unity, which is outside
+Play with a clean SampleScene and null save-root override.
+
+The last actual hourly report was at 06:25 UTC; the next is due at 07:25 UTC.
+This is a continuation record, not a sent hourly report. Current packaged source
+`eafc02a22` remains protected pending the refresh.

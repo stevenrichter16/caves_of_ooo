@@ -78,6 +78,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelHedgeCatalog _hedgeArt;
         private FlatPixelSillEnvelopeCatalog _sillEnvelopeArt;
         private FlatPixelSoddenTravelCatalog _soddenTravelArt;
+        private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -817,6 +818,19 @@ namespace CavesOfOoo.Rendering
                 ground = soddenFloor.BlueprintName == "StoneFloor" ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground;
                 if (owner == soddenFloor) kind = FlatPixelGreyboxKind.Ground;
             }
+            var beating = !fallback.Remembered ? BeatingMaterialsArtFor(zone) : null;
+            Tile beatingGroundTile = null;
+            Entity beatingFloor = null;
+            bool beatingGround = beating != null && beating.TryResolveGround(zone, x, y, out beatingGroundTile, out beatingFloor);
+            bool beatingGroundOwner = beatingGround && (owner == beatingFloor
+                || beatingFloor.BlueprintName == "SaltCrust" && owner?.BlueprintName == "Sand"
+                    && beating.IsRepresentedGroundOwner(zone, x, y, owner));
+            if (beatingGround)
+            {
+                groundTile = beatingGroundTile; groundColor = Color.white;
+                ground = beatingFloor.BlueprintName == "SandstoneFloor" ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground;
+                if (beatingGroundOwner) kind = FlatPixelGreyboxKind.Ground;
+            }
             var foreground = fallback.ForegroundTile;
             var foregroundColor = fallback.ForegroundColor;
             Tile art = null;
@@ -860,15 +874,19 @@ namespace CavesOfOoo.Rendering
             Tile soddenArt = null;
             bool soddenNative = sodden != null && sodden.TryResolveForeground(zone, x, y, owner, out soddenArt);
             if (soddenNative) art = soddenArt;
+            Tile beatingArt = null;
+            bool beatingNative = beating != null && beating.TryResolveForeground(zone, x, y, owner, out beatingArt);
+            if (beatingNative) art = beatingArt;
+            bool beatingBrineNative = beatingNative && owner.BlueprintName == "BrinePool";
             bool mireNative = soddenNative && owner.BlueprintName == "MirePool";
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                             && _openingArt.TryResolve(owner, x, y, out art));
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
-                || sillGround && owner == sillFloor || soddenGround && owner == soddenFloor) foreground = null;
+                || sillGround && owner == sillFloor || soddenGround && owner == soddenFloor || beatingGroundOwner) foreground = null;
             if (fallback.Remembered)
             {
                 if (local) { groundColor *= .35f; groundColor.a = 1; }
@@ -882,7 +900,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround, brineNative, mireNative);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround, brineNative || beatingBrineNative, mireNative);
             return true;
         }
 
@@ -897,6 +915,8 @@ namespace CavesOfOoo.Rendering
             if (sill != null && sill.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var sodden = SoddenTravelArtFor(zone);
             if (sodden != null && sodden.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+            var beating = BeatingMaterialsArtFor(zone);
+            if (beating != null && beating.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var boundaries = BoundaryArtFor(zone, subject, false, out bool allowNativeFallback);
             if (!allowNativeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             if (boundaries != null && boundaries.TryGetSubjectSprite(subject, out sprite, out tint)) return true;
@@ -961,6 +981,17 @@ namespace CavesOfOoo.Rendering
                 _soddenTravelArt = new FlatPixelSoddenTravelCatalog(_glyphFallback);
             }
             return _soddenTravelArt;
+        }
+
+        private FlatPixelBeatingMaterialsCatalog BeatingMaterialsArtFor(Zone zone)
+        {
+            if (!FlatPixelBeatingMaterialsCatalog.IsSupportedZone(zone)) return null;
+            if (_beatingMaterialsArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _beatingMaterialsArt = new FlatPixelBeatingMaterialsCatalog(_glyphFallback);
+            }
+            return _beatingMaterialsArt;
         }
 
         private FlatPixelIncidentalActorCatalog IncidentalActorArtFor(Entity owner)
@@ -1168,6 +1199,8 @@ namespace CavesOfOoo.Rendering
             _sillEnvelopeArt = null;
             _soddenTravelArt?.Dispose();
             _soddenTravelArt = null;
+            _beatingMaterialsArt?.Dispose();
+            _beatingMaterialsArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);
