@@ -1,0 +1,75 @@
+{
+  "recorded_at_utc": "2026-10-27T00:22:57.786549+00:00",
+  "source_commit": "447e82c4f54b63b56c049ed1cf225a9d68604c13",
+  "platform": "Actual macOS standalone,Unity6000.3.4f1",
+  "build_receipt": "packaged-kitchen-brine-mac-build.json",
+  "capture_provenance": "Seven original CUA JPEG screenshots1280x856 including56px Mac title chrome and1280x800 game; no crop,repaint,generation or compositing.",
+  "input": "Ordinary keyboard; no teleport,reveal,grant,scenario or presentation override. Initial unchanged earned fixture copied into prebuild-absent standalone save root.",
+  "initial_fixture": "Docs/Verification/Live16x24/Fixtures/kitchen-brine-uncovered64",
+  "initial_save_sha256": "81cb37948d95e6b9d208952934ae3d13fd73bd824db059d100c360d6c0cd296d",
+  "final_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-kitchen-brine-return64",
+  "final_save_sha256": "d18a56ef82ede19da775863941ceb14228ce801258ec44a9932e2dfbbf46ab39",
+  "final_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "7149edb751014f1c8ef55c71dd7d5548",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.12.11.0",
+    "ActiveZoneDisplayLabel": "Overworld.12.11.0",
+    "Turn": 3070,
+    "SaveTimestampUtc": "2026-10-27T00:19:37.1810120Z",
+    "HPSummary": "28/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-kitchen-brine-01-continue-1x.jpg",
+      "bytes": 158620,
+      "sha256": "ded1a57a990c00b7fbbc15b179285676af565cb8662ca09af17f4539700691e3",
+      "action_and_observation": "C Continue from unchanged earned kitchen-brine-uncovered64; kitchen35,13,HP28/40,turn3050; both native pools visible."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-kitchen-brine-02-world-2x.jpg",
+      "bytes": 157530,
+      "sha256": "8d951718fde3419ae3fcb186359c11789728cfdf2dd00d9740674a16fbb303ae",
+      "action_and_observation": "PageUp once to2x; no game turn consumed by zoom."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-kitchen-brine-03-reader.jpg",
+      "bytes": 232011,
+      "sha256": "8b27203ab1d4efe6cc497dc5a2e185e1dd8e433cf543a0700d4353b466443e47",
+      "action_and_observation": "L,Right,Return,Return,Return; first batched Return did not open the menu, so repeated after observation. Exact BrinePool36,13 reader with native portrait and salt-water semantics."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-kitchen-brine-04-player-cover.jpg",
+      "bytes": 158655,
+      "sha256": "e61e5937369783db2ff09af06f593b4ece837dfe04388c1bab53cec6f8d4ddc8",
+      "action_and_observation": "Return closes reader; Escape exits Look; Right moves onto36,13. Actor remains foreground; blue coating cue and briny state retained."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-kitchen-brine-05-saved-uncovered.jpg",
+      "bytes": 155689,
+      "sha256": "f2e9a1753bbb7e964831544b2b3661e3a66b90e8278ebb63850388a5b36815a3",
+      "action_and_observation": "Left moves back35,13; native pool restored. F5 saves at3070,HP28/40. Briny status wears off through ordinary turns."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-kitchen-brine-06-restarted-1x.jpg",
+      "bytes": 158075,
+      "sha256": "d47c1f305281392b6ef5353a2e2e833b7bd3be3a96c3b9eb581f177aa9730c9f",
+      "action_and_observation": "Command-Q closed player; process absence verified. Relaunch same app, C Continue; saved kitchen35,13,HP28/40 and native pools restored. Default zoom1x."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-kitchen-brine-07-restarted-2x.jpg",
+      "bytes": 151015,
+      "sha256": "a04cc36920782d1e31a60252d07d0a4e98a20f889e8e31a9c9e7fc26821cd6ac",
+      "action_and_observation": "PageUp to2x after restart. Native pool appearance persists. No movement after reload. Command-Q closes owned player."
+    }
+  ],
+  "can_verify": "Actual boot/Continue,world and reader art,overlap/uncover,state cue,F5 and full quit/relaunch/Continue in exact Kitchen scope.",
+  "cannot_verify": "Linux execution,physical Deck controls or performance,full journey regression,all thermal reactions visually,whole opening or regional completion. Native192-case reaction tests are separate.",
+  "logs": "Both player logs retained; no observed gameplay exception. Known Mono thread-finalization/ComputeBuffer disposal shutdown notices remain,not a clean-shutdown claim.",
+  "packaging_difference": "Build invoked options detailed_report only,omitting prior compression. New Mac loose assets replace old UnityFS bundle;344.004MiB vs234.064MiB. Linux also uses loose assets;tar.gz remains128763088bytes. No source/art bloat claim; use explicit compress_lz4 on subsequent delivery."
+}

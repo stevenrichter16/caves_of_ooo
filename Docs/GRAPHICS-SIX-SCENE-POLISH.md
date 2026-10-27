@@ -215,3 +215,22 @@ no storage cleanup. Current delivery still source6b1032459 pending new package
 verification. Next: push current source, fresh Mac/Linux builds, normal kitchen
 Continue/restart capture, then six-site actor-motion/incidental identity review.
 Whole opening and remaining regions remain unfinished.
+
+
+## Kitchen package milestone and next scene defect — 2026-10-27 00:25 UTC
+
+Completed: native kitchen brine identity and shared reader,192/192 native tests,
+actual Editor and seven fresh Mac captures including save/full restart. Source
+447e82c4f verified on origin/main before builds; exact delivery receipts and
+screenshots are the follow-up push. Fresh Mac/Linux builds0errors4warnings each;
+all188 archived Linux files independently checked. Current package paths, hashes,
+preservation and footprint correction are in [Kitchen brine](GRAPHICS-KITCHEN-BRINE.md).
+Normal saves/preferences,34 foreign edits and prior packages preserved; no cleanup.
+
+In progress: six-scene consistency/whole-opening acceptance. Next hourly goals:
+return through ordinary input to East Cudgel9357 at29,6; capture the exact pile
+and reader; use that baseline for imagegen/native wooden-club art, then verify
+world/carried/reader, pickup/drop and save-return. Preserve accepted art. Do not
+call static motion captures an animation defect. Physical Deck/Linux execution
+and sustained performance remain unverified. Use explicit compress_lz4 for the
+next fresh delivery. Last user-report checkpoint:2026-10-27 00:25UTC.

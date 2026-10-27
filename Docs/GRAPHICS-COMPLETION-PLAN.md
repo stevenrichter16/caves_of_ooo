@@ -1,24 +1,18 @@
 # Graphics completion plan
 
-Current status, 2026-10-26: the En / Garde hotbar correction now ships in fresh
-Mac/Linux packages from `3aca7c18e`. Ten actual Mac captures verify mouse
-activation/cooldown refusal, keyboard AIM/cancel, inventory and full restart.
-The earned Nella resin→North still→East forge route also passed:32 actual
-captures and26/26 independent saved-state checks, including full restart.
-The same equipped sword has one Burning temper; one resin remains. See
-[package delivery](GRAPHICS-G3-HOTBAR-DELIVERY.md) and
-[earned route](GRAPHICS-G3-EARNED-RESIN-TEMPER.md).
-The suspected coating portrait gap was resolved by audit: it is the approved
-shared native flask, correctly mapped. Keep it stable and continue whole-scene
-acceptance. Full opening/regions, Linux execution, physical Deck and sustained
-performance remain open. Normal saves/preferences, prior builds and34 foreign
-edits are preserved; storage remains inspection-only.
+Current status, 2026-10-27 00:25 UTC: Kitchen brine joins the consistent native
+16×24 presentation in fresh Mac/Linux packages from447e82c4f.192 native tests
+and seven actual Mac screenshots cover world/reader/overlap and full restart.
+The six connected scenes have been reviewed; whole-scene polish and the complete
+opening release remain unfinished. Next confirmed gap is a dropped Cudgel in the
+east connector. See [Kitchen brine](GRAPHICS-KITCHEN-BRINE.md) and
+[six-scene continuation](GRAPHICS-SIX-SCENE-POLISH.md). Physical Deck/Linux
+execution and sustained hardware performance remain unverified. Normal saves,
+preferences, previous packages and34 foreign edits preserved; storage read-only.
 
-Hourly report checkpoint: 2026-10-26 22:40 UTC. The active automation now requires
-itemized completed/in-progress/blocked work and coming-session goals once an
-hour. Intermediate ten-minute storage checks remain quiet/read-only. The
-[complete run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md) distinguishes
-new graphics/gameplay fixes from existing mechanics merely exercised.
+Hourly report checkpoint:2026-10-27 00:25UTC. Continue itemized results and
+concrete coming-session goals. The [run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md)
+distinguishes new graphics/gameplay fixes from existing mechanics exercised.
 
 Initial status, 2026-10-24, retained as historical context: **G1 delivery
 implemented and accepted in bounded ordinary Unity Play; opening/region art
@@ -2071,3 +2065,22 @@ no storage cleanup. Current delivery still source6b1032459 pending new package
 verification. Next: push current source, fresh Mac/Linux builds, normal kitchen
 Continue/restart capture, then six-site actor-motion/incidental identity review.
 Whole opening and remaining regions remain unfinished.
+
+
+## Kitchen package milestone and next scene defect — 2026-10-27 00:25 UTC
+
+Completed: native kitchen brine identity and shared reader,192/192 native tests,
+actual Editor and seven fresh Mac captures including save/full restart. Source
+447e82c4f verified on origin/main before builds; exact delivery receipts and
+screenshots are the follow-up push. Fresh Mac/Linux builds0errors4warnings each;
+all188 archived Linux files independently checked. Current package paths, hashes,
+preservation and footprint correction are in [Kitchen brine](GRAPHICS-KITCHEN-BRINE.md).
+Normal saves/preferences,34 foreign edits and prior packages preserved; no cleanup.
+
+In progress: six-scene consistency/whole-opening acceptance. Next hourly goals:
+return through ordinary input to East Cudgel9357 at29,6; capture the exact pile
+and reader; use that baseline for imagegen/native wooden-club art, then verify
+world/carried/reader, pickup/drop and save-return. Preserve accepted art. Do not
+call static motion captures an animation defect. Physical Deck/Linux execution
+and sustained performance remain unverified. Use explicit compress_lz4 for the
+next fresh delivery. Last user-report checkpoint:2026-10-27 00:25UTC.

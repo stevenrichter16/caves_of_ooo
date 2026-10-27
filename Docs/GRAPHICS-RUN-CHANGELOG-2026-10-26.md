@@ -496,3 +496,21 @@ not independent proof of acceptance; the current scope and limits above govern.
     eight actual Mac captures verify Continue, exact reader, actor overlap,
     genuine restart and North/glade return. Zero-error Linux retry independently
     archived; physical Deck/Linux execution and whole-opening release remain open.
+
+
+## Continuation through 2026-10-27: six-scene consistency
+
+- `6b1032459`: connected copper pipes now reuse the native kit across North
+  and East with exact owner/reader/disclosure guards.105/105 targeted native
+  tests,40 real six-site Editor captures and8 actual Mac delivery captures.
+- `447e82c4f`: Kitchen brine has one original editable16×24 salt-edged identity
+  shared by world and Examine. Duplicate wave removed only when that exact
+  neutral brine coating is represented; mixed/frozen/charged/missing-art
+  fallback and other hazard cues preserved.192/192 native tests,6 Editor and
+  7 actual Mac captures including full restart. No brine gameplay rule changed.
+- Current Mac/Linux source447e82c4f supersedes the earlier delivered packages
+  listed above. Earlier builds/art/saves remain preserved. Linux archive checks
+  pass; Linux execution/physical Deck/performance and full opening remain open.
+- Next named gap is East's dropped Cudgel, not yet implemented. Details and
+  actual evidence: [six scenes](GRAPHICS-SIX-SCENE-POLISH.md),
+  [kitchen brine](GRAPHICS-KITCHEN-BRINE.md).

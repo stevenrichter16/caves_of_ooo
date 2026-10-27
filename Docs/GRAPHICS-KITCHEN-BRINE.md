@@ -1,8 +1,9 @@
 # Kitchen brine: native material identity
 
 2026-10-26. Source slice accepted in native Editor play: capture, concept, editable source,
-runtime RED/GREEN and actual integration complete. Packaged delivery next. Whole opening is still unfinished. Source baseline
-74399570d; current delivered game6b1032459. Root owns Unity. No storage cleanup.
+runtime RED/GREEN, actual integration and Mac Continue/restart complete. Fresh
+Mac/Linux delivery uses447e82c4f. Whole opening is still unfinished. Source baseline
+74399570d; previous delivered game6b1032459. Root owns Unity. No storage cleanup.
 
 ## Named defect and plan
 
@@ -131,3 +132,58 @@ Next: push this exact source/evidence, produce fresh Mac/Linux deliveries from
 that source, replay ordinary Continue/restart with the earned kitchen save and
 capture. Then continue the six-site actor-motion/incidental-identity consistency
 review. Preserve all previous builds and sources; storage remains read-only.
+
+## Packaged delivery — 2026-10-27 00:25 UTC
+
+Source447e82c4f was pushed and remotely verified before building. Fresh Mac and
+Linux builds succeeded with zero errors/four warnings each. Mac path:
+`Builds/Verification/2026-10-27-kitchen-brine-447e82c4f-current/CavesOfOoo.app`.
+Linux archive: `Builds/SteamDeck/2026-10-27-kitchen-brine-447e82c4f-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+SHA256 `f52472d8f399c15be3c0b193482f3541c80d5e0715023cd780a839cb81a0e86c`,
+128,763,088 bytes. Independent streamed verification matches all188 files,
+sizes, modes and license/support files. Binaries remain local ignored outputs;
+source and relevant verification evidence are preserved in Git.
+
+Seven original1280×856 CUA JPEGs include56px Mac title chrome plus1280×800 game.
+Ordinary C Continue from unchanged3050 earned save, PageUp2×, Look/Examine,
+cover/uncover, F5 at3070, full Command-Q/relaunch/C Continue and2× recheck all
+passed. Final location35,13,Kitchen12.11,HP28/40. New earned checkpoint:
+`Fixtures/packaged-kitchen-brine-return64`. No teleport/reveal/grant/scenario.
+The initial batched Return was not consumed; a separately observed Return
+opened the action menu. Quit's post-close AX request reported process-not-found;
+process absence and relaunch confirmed a genuine restart. No runtime defect
+was inferred from either tool timing issue. Exact action/hash records are in
+`packaged-kitchen-brine-mac-play-summary.json`.
+
+Can verify: actual native world/reader identity, player-priority and retained
+brine cue, successful save/restart and no 3D fallback in this sampled scope.
+Cannot verify: Linux execution, physical Deck, sustained hardware performance,
+whole journey regression or every live thermal reaction. Both raw player logs
+retain known Mono thread-finalization/ComputeBuffer-disposal shutdown notices;
+no clean-shutdown claim.
+
+🟡 Packaging footprint correction: this call supplied detailed_report without
+compress_lz4. Mac loose assets now occupy344.004MiB versus234.064MiB previously;
+DLL grew only3,072 bytes and engine/Burst are byte-identical. Linux also has loose
+assets; compressed tar remains approximately123MiB. Preserve these verified
+packages; explicitly request compress_lz4 for the next fresh delivery. No art
+bloat or source regression was found. No rebuild merely to erase this receipt.
+
+Guarded restoration compared48,892 tracked objects and restored exactly five
+reviewed generated files: one metadata whitespace change, URP prefilters/runtime
+settings, PlayerSettings preload/batching, and UnityConnect's m_Enabled toggle.
+All34 foreign edits, normal saves, complete logical Editor/standalone preference
+maps and prior builds/archive are preserved. Test-only standalone saves were
+archived by rename. The mistakenly introduced unused LastGameID key and actual
+CavesOfOoo.LastGameID test key were restored to prebuild absence after review.
+No storage/cache cleanup.414GiB available. Editor idle, no player running.
+
+Next verified defect: dropped Cudgel9357 in East12.10,(29,6),HP12/12 still uses
+a legacy glyph over native pipe9351. Six-scene32/34 and independent census89
+confirm the gap; it is not an inferred animation defect. Reuse incidental-item
+routing/palette, author one native wooden-club identity through the full pipeline.
+Keep mutable damage/repair state, pile priority and exact carried/reader authority.
+Proposed ordinary route from this same-game kitchen fixture:35,13→30,13→30,0→
+East30,24→30,9→28,9→28,6; inspectRight. Recheck each waypoint and live threats;
+this route is receipt-derived, not yet executed. No blanket acceptance of the six
+scenes, opening release, remaining regions or actor animation.

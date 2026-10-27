@@ -1,0 +1,27 @@
+{
+  "reviewer": "/root/inventory_stat_review",
+  "source": "447e82c4f54b63b56c049ed1cf225a9d68604c13",
+  "material_findings": [],
+  "builds": "Both succeeded,0errors4warnings each.",
+  "linux_independent_stream_check": {
+    "regular_files": 188,
+    "hash_size_mode_all_match": true,
+    "archive_sha256": "f52472d8f399c15be3c0b193482f3541c80d5e0715023cd780a839cb81a0e86c"
+  },
+  "mac_size_audit": {
+    "old_mib": 234.064,
+    "new_mib": 344.004,
+    "increase_bytes": 115280749,
+    "old_unityfs_data_bytes": 87979665,
+    "new_loose_asset_bytes": 203255324,
+    "managed_dll_increase_bytes": 3072,
+    "engine_and_burst_byte_identical": true,
+    "both_architectures": [
+      "x86_64",
+      "arm64"
+    ],
+    "cause": "Asset packaging compression/layout drift; no sprite bloat. Reviewer did not independently prove initiating tool options; root call recorded detailed_report only."
+  },
+  "helper_review": "Frozen source/receipt/output,ELF64,licenses,exclusive outputs,digests; source provenance honestly operator assertion,not reproducibility.",
+  "limits": "Root separately performs actual Mac smoke. No Linux execution/physicalDeck/benchmark acceptance."
+}
