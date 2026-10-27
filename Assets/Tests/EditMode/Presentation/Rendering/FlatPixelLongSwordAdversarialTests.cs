@@ -184,7 +184,7 @@ namespace CavesOfOoo.Tests
             Assert.True(world.TryResolvePresentation(zone, 11, 10, out var moved)); Assert.AreSame(blade, moved.Owner); Frame(moved.ForegroundTile);
         }
 
-        [Test] public void FogAndDifferentRegionDoNotGainNewSwordDisclosure()
+        [Test] public void FogStillRejectsWhileCurrentDifferentRegionKeepsSwordIdentity()
         {
             Create(); var blade = Add(); Assert.True(Resolve().NativeForeground);
             zone.GetCell(10, 10).IsVisible = false; Assert.IsNull(Resolve().Owner); Assert.False(Resolve().NativeForeground);
@@ -192,10 +192,10 @@ namespace CavesOfOoo.Tests
             Assert.True(zone.RemoveEntity(blade));
             var other = new Zone("Overworld.20.20.0"); other.GetCell(10, 10).Explored = other.GetCell(10, 10).IsVisible = true;
             Assert.True(other.AddEntity(blade, 10, 10));
-            Assert.True(world.TryResolvePresentation(other, 10, 10, out var fallback));
-            Assert.AreSame(blade, fallback.Owner); Assert.False(fallback.NativeForeground); Assert.False(fallback.LocalGround);
+            Assert.True(world.TryResolvePresentation(other, 10, 10, out var portable));
+            Assert.AreSame(blade, portable.Owner); Assert.True(portable.NativeForeground); Assert.False(portable.LocalGround);
             Assert.True(world.TryGetPresentationSubjectSprite(other, blade, 10, 10, out var subject, out _));
-            Assert.AreSame(fallback.ForegroundTile.sprite, subject); Assert.AreNotSame(bladeArt, subject.texture);
+            Assert.AreSame(portable.ForegroundTile.sprite, subject); Assert.AreSame(bladeArt, subject.texture);
         }
 
         [Test] public void ActualDropPickupAndEquipRevokeOldDocumentsWithoutAWorldPhantom()

@@ -106,9 +106,10 @@ Assets. Do not resume that optional motion ahead of worldwide sprite coverage.
 
 Completed: priority persisted in scheduled prompt and repository; source-only
 motion work stopped and preserved; first global identity gating issue found.
-In progress: bounded registered-scope matrix and test design for the four approved
-equipment identities. Pending: native RED, production change, actual after
-screenshots and regional sprite kits. No new runtime/gameplay result is claimed
+Completed: registered-scope matrix and actual Sill before captures. In progress:
+portable equipment integration,222nativeGREEN and actual LongSword travel/reader/
+save-restart checks completed. Sill static envelope is next; regional coverage
+and packaged delivery remain pending. No new runtime/gameplay result is claimed
 by this plan. Normal saves, existing builds and unrelated work are preserved;
 storage remains inspection-only.
 
@@ -132,3 +133,60 @@ and a transition to adjacent terrain where applicable. Name any bare stretches,
 repetition or obstructed paths and address the highest-impact issue. This is a
 visual acceptance requirement; no fixed prop density or untested generation
 change is authorized as an automatic solution.
+
+## Portable equipment integration record — 2026-10-27 UTC
+
+- Baseline: ordinary world-map travel from earned seed65 glade to Sill,
+  Overworld.10.10.0; player39,12 HP40. Inventory/F1 shows LongSword as a
+  fallback slash. Drop, south step and F5 preserve a comparable ground checkpoint.
+- Actual captures: `portable-equipment-before-01-sill.png` through
+  `portable-equipment-before-04-sword-ground.png` under the verification folder.
+  Finite onscreen receipt identifies120 disclosed cells: one native Player,
+  fallback Grass80, StoneWall15, VineWall17 and seven other owners. This is
+  observed local coverage, not the full Sill census. The receipt is later at39,13
+  with a2321×1139 editor viewport; the earlier screenshot is39,12 at1280×800.
+  Do not use these as an exact numerical before/after pair. Capture a fresh
+  aligned receipt/frame for later comparison. Fog is not a bare terrain defect.
+- Native RED:48 cases,31 passed/17 failed. Sixteen failures demonstrate the
+  approved item travel/portrait identity gap. The remaining test reused a stale
+  AlchemyStill tile when checking HealingTonic; explicit dirtying between changed
+  owners corrects that fixture while retaining the regional exclusion invariant.
+  Raw RED XML is retained.
+- Fixture correction: the first import used an internal runtime API unavailable
+  to the test assembly; replaced with public graph reference assertions. A
+  premature run executed the previously compiled29 cases and is excluded from
+  new-change acceptance. The48-case RED ran after successful compilation.
+- Scope: four existing approved item images unchanged; no new regional art,
+  animation, combat balance, save-schema or generation changes.
+
+- First GREEN:133/133 (Global50, IncidentalEquipment48, LongSwordAdversarial35).
+  Portrait/opening regression87/87. MCP startup watchdog timed out while the
+  native runner continued; retained completed Unity XML, not failed job metadata,
+  establishes these results.
+- Independent review identified a malformed enlarged/stale LongSword footprint
+  gap in the new nonlocal helper. Add two genuine RED world/carried/reader
+  counters before applying the single-cell/current-registration guard. Do not
+  broaden local artwork behavior while correcting this new route.
+
+- Final native GREEN222/222 after the footprint correction. The exact changed
+  behavior and existing equipment/opening/reader suites are retained in
+  `portable-equipment-native-final.xml`. Independent review closed the guard
+  finding; no remaining significant issue in this bounded route.
+- Ordinary Play: load earned Sill490 checkpoint, actual LongSword on39,12 now
+  paints native; step north and G pickup auto-equips it. Inventory/F1 shows the
+  same approved portrait. Travel via world map to glade and back, F5 at590,
+  restart isolated launcher with unchanged saved pair and inspect again.
+  The first reload screenshot captured an incomplete UI frame; retain it as
+  transition evidence, not acceptance. Fresh settled UI inspection showed the
+  proper sword and text; named settled capture follows.
+- Actual LongSword gameplay was exercised; LeatherArmor/Hatchet/Cudgel
+  portability is covered by native tests here, not newly observed acquisitions.
+  Existing packaged current builds remain unchanged; new packaged verification
+  will follow the Sill envelope batch. No whole-world art completion claimed.
+
+- Restoration verified:38pre-existing tracked differences byte-preserved, normal
+  editor/standalone save trees and gameplay preferences unchanged, currentMac
+  build andLinuxarchive unchanged.412GiB free; storage inspection only.
+- Actual settled restart reader accepted in
+  `portable-equipment-after-07-reloaded-reader-settled.png`; incomplete earlier
+  capture06 is explicitly not an acceptance image.

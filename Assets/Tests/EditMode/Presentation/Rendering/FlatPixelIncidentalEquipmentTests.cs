@@ -347,7 +347,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("LeatherArmor")] [TestCase("Hatchet")] [TestCase("Cudgel")]
-        public void FogMovedEntriesReplacedGraphsAndOtherRegionsCannotGainNativeDisclosure(string blueprint)
+        public void FogMovedEntriesAndReplacedGraphsRejectWhileCurrentOtherRegionsKeepEquipmentArt(string blueprint)
         {
             Create(); var owner = Add(blueprint); Assert.True(Resolve().NativeForeground);
             var old = zone.GetCell(10, 10); old.IsVisible = false;
@@ -364,10 +364,10 @@ namespace CavesOfOoo.Tests
                 Assert.True(zone.RemoveEntity(owner));
                 var outside = new Zone("Overworld.20.20.0"); Reveal(outside); manager.SetActiveZone(outside);
                 Assert.True(outside.AddEntity(owner, 10, 10));
-                Assert.True(world.TryResolvePresentation(outside, 10, 10, out var fallback));
-                Assert.AreSame(owner, fallback.Owner); Assert.False(fallback.NativeForeground);
+                Assert.True(world.TryResolvePresentation(outside, 10, 10, out var portable));
+                Assert.AreSame(owner, portable.Owner); Assert.True(portable.NativeForeground); Assert.False(portable.LocalGround);
                 Assert.True(world.TryGetPresentationSubjectSprite(outside, owner, 10, 10, out var subject, out _));
-                Assert.AreSame(fallback.ForegroundTile.sprite, subject); Assert.AreNotSame(TextureFor(owner), subject.texture);
+                Assert.AreSame(portable.ForegroundTile.sprite, subject); Assert.AreSame(TextureFor(owner), subject.texture);
             }
         }
 

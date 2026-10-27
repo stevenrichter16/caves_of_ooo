@@ -804,7 +804,7 @@ namespace CavesOfOoo.Rendering
                 ? eastern.TryResolve(owner, out art) : eastern.TryResolvePresentation(zone, owner, out art));
             var incidental = local ? IncidentalActorArtFor(owner) : null;
             bool incidentalNative = incidental != null && incidental.TryResolve(owner, out art);
-            var equipment = local ? IncidentalEquipmentArtFor(owner) : null;
+            var equipment = IncidentalEquipmentArtFor(owner);
             bool equipmentNative = equipment != null && equipment.TryResolve(owner, out art);
             var aftermath = local ? AftermathArtFor(owner) : null;
             bool aftermathNative = aftermath != null && aftermath.TryResolve(owner, out art);
@@ -827,8 +827,11 @@ namespace CavesOfOoo.Rendering
             bool allowHedgeFallback = true;
             var hedges = local ? HedgeArtFor(owner, fallback.Remembered, out allowHedgeFallback) : null;
             bool hedgeNative = hedges != null && hedges.TryResolve(zone, x, y, out art);
-            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || allowNativeFallback && allowHedgeFallback && (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
-                && _openingArt.TryResolve(owner, x, y, out art);
+            bool native = boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative
+                || allowNativeFallback && allowHedgeFallback
+                    && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
+                        || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
+                            && _openingArt.TryResolve(owner, x, y, out art));
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)) foreground = null;
             if (fallback.Remembered)
@@ -868,7 +871,7 @@ namespace CavesOfOoo.Rendering
             var incidental = local ? IncidentalActorArtFor(subject) : null;
             if (incidental != null && incidental.TryResolve(subject, out var actorTile))
             { sprite = actorTile.sprite; return sprite != null; }
-            var equipment = local ? IncidentalEquipmentArtFor(subject) : null;
+            var equipment = IncidentalEquipmentArtFor(subject);
             if (equipment != null && equipment.TryResolve(subject, out var equipmentTile))
             { sprite = equipmentTile.sprite; return sprite != null; }
             var aftermath = local ? AftermathArtFor(subject) : null;
@@ -889,6 +892,8 @@ namespace CavesOfOoo.Rendering
             var eastern = local ? EastKitchenArtFor(zone, subject) : null;
             if (eastern != null && eastern.TryResolvePresentation(zone, subject, out var easternTile))
             { sprite = easternTile.sprite; return sprite != null; }
+            if (!local && _openingArt.TryResolvePortableLongSword(subject, out var portableSwordTile))
+            { sprite = portableSwordTile.sprite; return sprite != null; }
             if ((local || FlatPixelActorMotionCatalog.IsPortableActor(subject)) && _openingArt.TryResolve(subject, x, y, out var tile))
             { sprite = tile.sprite; return sprite != null; }
             var kind = Classify(subject);

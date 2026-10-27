@@ -239,6 +239,28 @@ namespace CavesOfOoo.Rendering
             return TryResolvePlot(owner, render, out tile);
         }
 
+        // Nonlocal callers admit this exact portable identity without opening
+        // the regional terrain, service or product selectors in TryResolve.
+        internal bool TryResolvePortableLongSword(Entity owner, out Tile tile)
+        {
+            tile = null;
+            if (_disposed || owner == null) return false;
+            var render = Owned<RenderPart>(owner);
+            if (render == null || !render.Visible || !LongSwordOwner(owner, render)) return false;
+            var footprint = owner.GetPart<SpatialFootprintPart>();
+            if (footprint != null)
+            {
+                // The approved portable image represents one current cell.
+                // Carried items legitimately have no spatial registration.
+                if (footprint.ParentEntity != owner
+                    || owner.SpatialZone != null && !owner.SpatialZone.IsFootprintCurrent(owner)) return false;
+                var offsets = footprint.Offsets;
+                if (offsets.Length != 1 || offsets[0] != Vector2Int.zero) return false;
+            }
+            tile = _longSwordTiles == null ? null : _longSwordTiles[0];
+            return tile != null;
+        }
+
         private static bool LongSwordOwner(Entity owner, RenderPart render)
         {
             // A real quench changes specs, name and condition, not base geometry.

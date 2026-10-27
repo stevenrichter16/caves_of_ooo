@@ -313,6 +313,295 @@ namespace CavesOfOoo.Tests
         static Vector3Int Position(int x, int y) => new Vector3Int(x, Zone.Height - 1 - y, 0);
         static object Read(object owner, string name) => owner.GetType().GetField(name, I).GetValue(owner);
         static void Write(object owner, string name, object value) => owner.GetType().GetField(name, I).SetValue(owner, value);
+        static readonly string[] EquipmentZones = {
+            ReferenceGladePlan.ZoneID, Outside, "Overworld.12.12.0", "Overworld.12.12.1"
+        };
+        static string EquipmentResource(string blueprint)
+        {
+            switch (blueprint)
+            {
+                case "LongSword": return FlatPixelOpeningArtCatalog.LongSwordResourcePath;
+                case "LeatherArmor": return FlatPixelIncidentalEquipmentCatalog.LeatherArmorResourcePath;
+                case "Hatchet": return FlatPixelIncidentalEquipmentCatalog.HatchetResourcePath;
+                case "Cudgel": return FlatPixelIncidentalEquipmentCatalog.CudgelResourcePath;
+                default: throw new ArgumentException(blueprint);
+            }
+        }
+        static void AssertEquipmentFrame(Sprite sprite, string blueprint)
+        {
+            Assert.NotNull(sprite);
+            Assert.AreSame(Resources.Load<Texture2D>(EquipmentResource(blueprint)), sprite.texture,
+                "The same approved equipment identity must survive travel: " + blueprint);
+            Assert.AreEqual(new Rect(0, 0, 16, 24), sprite.rect);
+            Assert.AreEqual(new Vector2(8, 12), sprite.pivot);
+            Assert.AreEqual(16, sprite.pixelsPerUnit);
+        }
+
+        [TestCase("LongSword")] [TestCase("LeatherArmor")] [TestCase("Hatchet")] [TestCase("Cudgel")]
+        public void ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(string blueprint)
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var item = factory.CreateEntity(blueprint); Assert.NotNull(item);
+                Texture originalTexture = null;
+                foreach (string id in EquipmentZones)
+                {
+                    if (f.Zone.GetEntityCell(item) != null) Assert.True(f.Zone.RemoveEntity(item));
+                    f.Show(id);
+                    f.Manager.WorldMap.Tiles[12, 12] = BiomeType.Sodden;
+                    Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
+                    var sprite = f.Foreground()?.sprite; AssertEquipmentFrame(sprite, blueprint);
+                    if (originalTexture == null) originalTexture = sprite.texture;
+                    else Assert.AreSame(originalTexture, sprite.texture);
+                    AssertPortrait(portraits.GetPortrait(f.Document(item), f.Renderer), sprite);
+                    AssertNoPreview(portraits); Assert.Zero(f.Actors.ActiveViewCount);
+                    Assert.AreEqual(id == ReferenceGladePlan.ZoneID, FlatPixelGreyboxCatalog.IsAdmitted(f.Zone),
+                        "Portable equipment must not admit regional terrain or services.");
+                    Assert.AreEqual(new Vector3(1, 1.5f, f.OriginalCellSize.z), f.Grid.cellSize);
+                }
+            }
+        }
+
+        [TestCase("LongSword")] [TestCase("LeatherArmor")] [TestCase("Hatchet")] [TestCase("Cudgel")]
+        public void CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(string blueprint)
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                // The existing body-backed equipment fixture covers actual body-slot equip;
+                // this counter uses the supported legacy inventory API to isolate custody.
+                var viewer = f.Add("EquipmentViewer", "v", X - 1, Y); viewer.SetTag("Player");
+                var inventory = new InventoryPart(); viewer.AddPart(inventory);
+                var item = factory.CreateEntity(blueprint); Assert.NotNull(item); Assert.True(inventory.AddObject(item));
+                string slot = blueprint == "LeatherArmor" ? "Body" : "Hand";
+                foreach (string id in EquipmentZones)
+                {
+                    Assert.True(f.Zone.RemoveEntity(viewer)); f.Show(id);
+                    f.Manager.WorldMap.Tiles[12, 12] = BiomeType.Sodden;
+                    Assert.True(f.Zone.AddEntity(viewer, X - 1, Y)); f.Frame();
+                    f.Renderer.Paused = true;
+                    var carried = ExamineDocumentBuilder.BuildInventory(item, viewer);
+                    Assert.NotNull(carried); Assert.True(ExamineDocumentBuilder.IsCurrentSubject(carried));
+                    var image = portraits.GetPortrait(carried, f.Renderer);
+                    Assert.AreSame(Resources.Load<Texture2D>(EquipmentResource(blueprint)), image.Texture);
+                    Assert.AreEqual(new Rect(0, 0, 1, 1), image.Uv); Assert.False(image.IsModel); AssertNoPreview(portraits);
+                    Assert.True(inventory.Equip(item, slot));
+                    var equipped = ExamineDocumentBuilder.BuildInventory(item, viewer);
+                    Assert.NotNull(equipped); Assert.True(ExamineDocumentBuilder.IsCurrentSubject(equipped));
+                    Assert.AreSame(image.Texture, portraits.GetPortrait(equipped, f.Renderer).Texture);
+                    Assert.AreSame(viewer, item.GetPart<PhysicsPart>().Equipped); Assert.IsNull(f.Zone.GetEntityCell(item));
+                    Assert.True(inventory.Unequip(slot)); f.Renderer.Paused = false; f.Frame();
+                    Assert.IsNull(f.Foreground(), "Carried/equipped art must not create a world body at the old cell.");
+                }
+            }
+        }
+
+        [TestCase("Dagger")] [TestCase("ChainMail")]
+        public void UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening(string blueprint)
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var item = factory.CreateEntity(blueprint); Assert.NotNull(item);
+                Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
+                var sprite = f.Foreground()?.sprite; Assert.NotNull(sprite);
+                Assert.AreEqual(408, sprite.texture.height);
+                AssertPortrait(portraits.GetPortrait(f.Document(item), f.Renderer), sprite);
+                AssertNoPreview(portraits);
+            }
+        }
+
+        [TestCase("LongSword", "visual")] [TestCase("Cudgel", "visual")]
+        [TestCase("LongSword", "foreign-weapon")] [TestCase("LeatherArmor", "foreign-armor")]
+        [TestCase("LongSword", "terrain")] [TestCase("LongSword", "terrain-visual")]
+        public void PortableEquipmentStillRejectsExplicitReskinsTerrainTagsAndForeignFunctionalParts(string blueprint, string fault)
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var item = factory.CreateEntity(blueprint); Assert.NotNull(item);
+                Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
+                AssertEquipmentFrame(f.Foreground()?.sprite, blueprint);
+                if (fault == "visual") item.GetPart<RenderPart>().VisualID = "unrelated-custom-art";
+                else if (fault == "foreign-weapon") item.GetPart<MeleeWeaponPart>().ParentEntity = new Entity();
+                else if (fault == "foreign-armor") item.GetPart<ArmorPart>().ParentEntity = new Entity();
+                else
+                {
+                    item.SetTag("Terrain");
+                    if (fault == "terrain-visual") item.GetPart<RenderPart>().VisualID = "reference-glade-dark-ruin";
+                }
+                f.Renderer.MarkCellDirty(X, Y, "changed actual equipment contract"); f.Frame();
+                var fallback = f.Foreground()?.sprite; Assert.NotNull(fallback); Assert.AreEqual(408, fallback.texture.height);
+                AssertPortrait(portraits.GetPortrait(f.Document(item), f.Renderer), fallback); AssertNoPreview(portraits);
+            }
+        }
+
+        [TestCase("LongSword")] [TestCase("Cudgel")]
+        public void PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells(string blueprint)
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var item = factory.CreateEntity(blueprint); Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
+                AssertEquipmentFrame(f.Foreground()?.sprite, blueprint); var document = f.Document(item);
+                var cell = f.Zone.GetCell(X, Y); cell.IsVisible = false;
+                f.Renderer.MarkCellDirty(X, Y, "equipment hidden"); f.Frame();
+                Assert.IsNull(f.Foreground()); Assert.IsNull(portraits.GetPortrait(document, f.Renderer).Texture);
+                cell.Explored = false; f.Renderer.MarkCellDirty(X, Y, "equipment unexplored"); f.Frame();
+                Assert.IsNull(f.Foreground()); Assert.IsNull(portraits.GetPortrait(document, f.Renderer).Texture);
+                cell.Explored = cell.IsVisible = true; f.Renderer.MarkCellDirty(X, Y, "equipment revealed"); f.Frame();
+                AssertEquipmentFrame(f.Foreground()?.sprite, blueprint);
+                AssertPortrait(portraits.GetPortrait(f.Document(item), f.Renderer), f.Foreground().sprite);
+            }
+        }
+
+        [Test]
+        public void ReplacementGraphAndSameIdItemCannotReusePreviousEquipmentDocument()
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var item = factory.CreateEntity("LongSword"); Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
+                AssertEquipmentFrame(f.Foreground()?.sprite, "LongSword"); var document = f.Document(item);
+                var oldZone = f.Zone; f.Show(Outside);
+                var replacement = factory.CreateEntity("LongSword"); replacement.ID = item.ID;
+                Assert.True(f.Zone.AddEntity(replacement, X, Y)); f.Frame();
+                Assert.AreNotSame(oldZone, f.Zone);
+                Assert.AreSame(f.Zone, f.Renderer.CurrentZone);
+                Assert.IsNull(portraits.GetPortrait(document, f.Renderer).Texture);
+                AssertEquipmentFrame(f.Foreground()?.sprite, "LongSword");
+                AssertPortrait(portraits.GetPortrait(f.Document(replacement), f.Renderer), f.Foreground().sprite);
+                Assert.AreSame(item, oldZone.GetCell(X, Y).GetTopVisibleObject());
+            }
+        }
+
+        [Test]
+        public void TransferredEquipmentAndSameIdForgedCustodyCannotReuseOldInventoryPortrait()
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var viewer = f.Add("FirstEquipmentViewer", "a", X - 1, Y); var first = new InventoryPart(); viewer.AddPart(first);
+                var recipient = f.Add("SecondEquipmentViewer", "b", X - 2, Y); var second = new InventoryPart(); recipient.AddPart(second);
+                var item = factory.CreateEntity("Cudgel"); Assert.True(first.AddObject(item));
+                var document = ExamineDocumentBuilder.BuildInventory(item, viewer);
+                Assert.NotNull(document); Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
+                var expected = Resources.Load<Texture2D>(EquipmentResource("Cudgel"));
+                Assert.AreSame(expected, portraits.GetPortrait(document, f.Renderer).Texture);
+                Assert.True(first.RemoveObject(item)); Assert.True(second.AddObject(item));
+                Assert.IsNull(portraits.GetPortrait(document, f.Renderer).Texture);
+                var current = ExamineDocumentBuilder.BuildInventory(item, recipient);
+                Assert.NotNull(current); Assert.AreSame(expected, portraits.GetPortrait(current, f.Renderer).Texture);
+                first.Objects.Add(item); item.GetPart<PhysicsPart>().InInventory = new Entity { ID = viewer.ID };
+                Assert.IsNull(ExamineDocumentBuilder.BuildInventory(item, viewer));
+                Assert.IsNull(portraits.GetPortrait(document, f.Renderer).Texture);
+                first.Objects.Remove(item); item.GetPart<PhysicsPart>().InInventory = recipient;
+                Assert.AreSame(expected, portraits.GetPortrait(current, f.Renderer).Texture);
+                Assert.IsNull(portraits.GetPortrait(document, f.Renderer).Texture);
+            }
+        }
+
+        [Test]
+        public void PortableLongSwordRequiresSingleCellFootprintInWorldAndCarriedPortraits()
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var item = factory.CreateEntity("LongSword");
+                var footprint = new SpatialFootprintPart { CellsRaw = "0,0" }; item.AddPart(footprint);
+                Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
+                Assert.True(EquipmentFootprintCurrent(f.Zone, item));
+                AssertEquipmentFrame(f.Foreground()?.sprite, "LongSword");
+                var document = f.Document(item);
+                AssertPortrait(portraits.GetPortrait(document, f.Renderer), f.Foreground().sprite);
+
+                Assert.True(f.Zone.TryChangeFootprint(item, "0,0;1,0"));
+                Assert.True(EquipmentFootprintCurrent(f.Zone, item));
+                f.Renderer.MarkCellDirty(X, Y, "registered multi-cell sword");
+                f.Renderer.MarkCellDirty(X + 1, Y, "registered multi-cell sword"); f.Frame();
+                var fallback = f.Foreground()?.sprite; Assert.NotNull(fallback);
+                Assert.AreEqual(408, fallback.texture.height,
+                    "A one-cell approved sprite must not masquerade as a multi-cell sword body.");
+                Assert.AreEqual(408, f.Foreground(X + 1, Y).sprite.texture.height);
+                AssertPortrait(portraits.GetPortrait(document, f.Renderer), fallback);
+
+                // Unplaced/carried subjects do not have a registration, but the
+                // same exact one-cell geometry contract still applies.
+                Assert.True(f.Zone.RemoveEntity(item));
+                var viewer = f.Add("FootprintEquipmentViewer", "v", X - 1, Y);
+                var inventory = new InventoryPart(); viewer.AddPart(inventory);
+                Assert.True(inventory.AddObject(item));
+                var carried = ExamineDocumentBuilder.BuildInventory(item, viewer); Assert.NotNull(carried);
+                Assert.AreEqual(408, portraits.GetPortrait(carried, f.Renderer).Texture.height);
+                footprint.CellsRaw = "0,0";
+                var native = Resources.Load<Texture2D>(EquipmentResource("LongSword"));
+                Assert.AreSame(native, portraits.GetPortrait(carried, f.Renderer).Texture);
+                footprint.ParentEntity = new Entity();
+                Assert.AreNotSame(native, portraits.GetPortrait(carried, f.Renderer).Texture);
+                footprint.ParentEntity = item;
+                Assert.AreSame(native, portraits.GetPortrait(carried, f.Renderer).Texture);
+                AssertNoPreview(portraits);
+            }
+        }
+
+        [Test]
+        public void PortableLongSwordStaleFootprintCannotKeepNativePortraitUntilRegistrationRepair()
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            {
+                var item = factory.CreateEntity("LongSword");
+                var footprint = new SpatialFootprintPart { CellsRaw = "0,0" }; item.AddPart(footprint);
+                Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
+                Assert.True(EquipmentFootprintCurrent(f.Zone, item));
+                AssertEquipmentFrame(f.Foreground()?.sprite, "LongSword");
+                var native = f.Foreground().sprite; var document = f.Document(item);
+                AssertPortrait(portraits.GetPortrait(document, f.Renderer), native);
+
+                Assert.True(f.Zone.TryChangeFootprint(item, "0,0;1,0"));
+                Assert.True(EquipmentFootprintCurrent(f.Zone, item));
+                footprint.CellsRaw = "0,0";
+                Assert.False(EquipmentFootprintCurrent(f.Zone, item), "Counter requires an actually stale index.");
+                f.Renderer.MarkCellDirty(X, Y, "stale footprint");
+                f.Renderer.MarkCellDirty(X + 1, Y, "stale footprint"); f.Frame();
+                Assert.IsNull(f.Foreground()); Assert.IsNull(f.Foreground(X + 1, Y));
+                Assert.AreNotSame(native.texture, portraits.GetPortrait(document, f.Renderer).Texture,
+                    "The exact reader must not retain native art after world registration refuses the body.");
+                Assert.False(EquipmentFootprintCurrent(f.Zone, item), "Reading must not repair gameplay registration.");
+
+                Assert.True(f.Zone.TryChangeFootprint(item, "0,0"));
+                Assert.True(EquipmentFootprintCurrent(f.Zone, item));
+                f.Renderer.MarkCellDirty(X, Y, "canonical footprint repair"); f.Frame();
+                AssertEquipmentFrame(f.Foreground()?.sprite, "LongSword");
+                AssertPortrait(portraits.GetPortrait(document, f.Renderer), native);
+                AssertNoPreview(portraits);
+            }
+        }
+
+        static bool EquipmentFootprintCurrent(Zone zone, Entity owner)
+        {
+            var method = typeof(Zone).GetMethod("IsFootprintCurrent", I);
+            Assert.NotNull(method); return (bool)method.Invoke(zone, new object[] { owner });
+        }
+
+        [Test]
+        public void EquipmentPortabilityDoesNotAdmitRegionalGroundServicesOrMedicine()
+        {
+            using (var f = new Fixture(factory)) using (var portraits = Portraits())
+            using (var fallbackPolicy = new FlatPixelFallbackCatalog())
+            {
+                foreach (string blueprint in new[] { "AlchemyStill", "HealingTonic", "MarlbackPatchbearer" })
+                {
+                    var owner = factory.CreateEntity(blueprint); Assert.NotNull(owner);
+                    Assert.True(f.Zone.AddEntity(owner, X, Y));
+                    // Raw fixture Add/Remove do not repaint this reused cell.
+                    // The original counter compared the still's stale '&' with
+                    // the next tonic's current '!'; that was not an art leak.
+                    f.Renderer.MarkCellDirty(X, Y, "regional counter owner replaced"); f.Frame();
+                    Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(f.Zone));
+                    var fallback = f.Foreground()?.sprite; Assert.NotNull(fallback); Assert.AreEqual(408, fallback.texture.height);
+                    Assert.True(fallbackPolicy.TryResolve(f.Zone, X, Y, out var expected));
+                    Assert.AreSame(owner, expected.Owner);
+                    Assert.AreEqual(expected.ForegroundTile.sprite.rect, fallback.rect);
+                    CollectionAssert.AreEqual(SpritePixels(expected.ForegroundTile.sprite), SpritePixels(fallback));
+                    AssertPortrait(portraits.GetPortrait(f.Document(owner), f.Renderer), fallback);
+                    Assert.Zero(f.Actors.ActiveViewCount); Assert.True(f.Zone.RemoveEntity(owner));
+                }
+            }
+        }
+
         static void Call(object owner, string name, params object[] args)
         { try { owner.GetType().GetMethod(name, I).Invoke(owner, args); } catch (TargetInvocationException e) { throw e.InnerException ?? e; } }
         static void AssertColor(Color expected, Color actual)
@@ -359,6 +648,7 @@ namespace CavesOfOoo.Tests
             public List<Vector2Int> WaterCache => (List<Vector2Int>)Read(Renderer, "_waterTilePositions");
             public Fixture(EntityFactory factory, string zone = Outside, bool motion = true, bool nativeIdle = true)
             {
+                int equipmentVersion = EquipmentChangeBus.GlobalVersion;
                 var moved = EntityVisualHooks.MovedCallback; var attack = EntityVisualHooks.AttackCallback; var damage = EntityVisualHooks.DamageCallback;
                 var cast = EntityVisualHooks.CastCallback; var death = EntityVisualHooks.DeathCallback;
                 var interaction = EntityVisualHooks.InteractionCallback; var selfUse = EntityVisualHooks.SelfUseCallback;
@@ -367,6 +657,7 @@ namespace CavesOfOoo.Tests
                 Zone previous = null; Action<int, int> oldChanged = null; Action oldSight = null;
                 if (oldBound is WeakReference<Zone> weak && weak.TryGetTarget(out previous)) { oldChanged = previous.TileState.OnCellChanged; oldSight = previous.TileState.OnSightChanged; }
                 restore = () => {
+                    typeof(EquipmentChangeBus).GetProperty("GlobalVersion").SetValue(null, equipmentVersion);
                     EntityVisualHooks.MovedCallback = moved; EntityVisualHooks.AttackCallback = attack; EntityVisualHooks.DamageCallback = damage;
                     EntityVisualHooks.CastCallback = cast; EntityVisualHooks.DeathCallback = death; EntityVisualHooks.InteractionCallback = interaction; EntityVisualHooks.SelfUseCallback = selfUse;
                     ZoneRenderHooks.CellDirtyCallback = cell; ZoneRenderHooks.FullDirtyCallback = full; bound.SetValue(null, oldBound);

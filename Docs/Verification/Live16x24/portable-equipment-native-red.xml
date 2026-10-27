@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="48" result="Failed(Child)" total="48" passed="31" failed="17" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 04:02:57Z" end-time="2026-10-27 04:03:05Z" duration="7.8552731">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32388" result="Failed" site="Child" start-time="2026-10-27 04:02:57Z" end-time="2026-10-27 04:03:05Z" duration="7.855273" total="48" passed="31" failed="17" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39882" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32388" result="Failed" site="Child" start-time="2026-10-27 04:02:57Z" end-time="2026-10-27 04:03:05Z" duration="7.790778" total="48" passed="31" failed="17" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39883" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32388" result="Failed" site="Child" start-time="2026-10-27 04:02:57Z" end-time="2026-10-27 04:03:05Z" duration="7.727479" total="48" passed="31" failed="17" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39884" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32388" result="Failed" site="Child" start-time="2026-10-27 04:02:57Z" end-time="2026-10-27 04:03:05Z" duration="7.661989" total="48" passed="31" failed="17" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29179" name="FlatPixelGlobalPresentationTests" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="48" result="Failed" site="Child" start-time="2026-10-27 04:02:58Z" end-time="2026-10-27 04:03:05Z" duration="6.985973" total="48" passed="31" failed="17" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="29214" name="ActiveFlatWorldRetiresFineWaterAndDoesNotRebuildUnusedLegacyCache" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ActiveFlatWorldRetiresFineWaterAndDoesNotRebuildUnusedLegacyCache" methodname="ActiveFlatWorldRetiresFineWaterAndDoesNotRebuildUnusedLegacyCache" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1373033156" result="Passed" start-time="2026-10-27 04:02:58Z" end-time="2026-10-27 04:03:00Z" duration="2.310005" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29219" name="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 04:03:00Z" end-time="2026-10-27 04:03:01Z" duration="0.245250" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29215" name="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;LongSword&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;LongSword&quot;)" methodname="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="520494275" result="Failed" start-time="2026-10-27 04:03:00Z" end-time="2026-10-27 04:03:00Z" duration="0.069640" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: LongSword
+  Expected: same as <long-sword (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth (System.String blueprint) [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:353
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29216" name="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;LeatherArmor&quot;)" methodname="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="436945209" result="Failed" start-time="2026-10-27 04:03:00Z" end-time="2026-10-27 04:03:00Z" duration="0.046804" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: LeatherArmor
+  Expected: same as <leather-armor (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth (System.String blueprint) [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:353
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29217" name="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;Hatchet&quot;)" methodname="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1202715754" result="Failed" start-time="2026-10-27 04:03:00Z" end-time="2026-10-27 04:03:00Z" duration="0.042874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: Hatchet
+  Expected: same as <hatchet (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth (System.String blueprint) [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:353
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29218" name="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;Cudgel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth(&quot;Cudgel&quot;)" methodname="ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1518246967" result="Failed" start-time="2026-10-27 04:03:00Z" end-time="2026-10-27 04:03:01Z" duration="0.045138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: Cudgel
+  Expected: same as <cudgel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ApprovedEquipmentUsesIdenticalWorldAndExactReaderArtAcrossLocalSpreadSoddenAndDepth (System.String blueprint) [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:353
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29191" name="CanonicalRenderOnlyOwnerIsNotMistakenForAMalformedCreature" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CanonicalRenderOnlyOwnerIsNotMistakenForAMalformedCreature" methodname="CanonicalRenderOnlyOwnerIsNotMistakenForAMalformedCreature" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1974934496" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.035335" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29224" name="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.417563" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29220" name="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;LongSword&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;LongSword&quot;)" methodname="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="2006121290" result="Failed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.098129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <long-sword (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels (System.String blueprint) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:385
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29221" name="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;LeatherArmor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;LeatherArmor&quot;)" methodname="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="2129870848" result="Failed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.054359" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <leather-armor (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels (System.String blueprint) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:385
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29222" name="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;Hatchet&quot;)" methodname="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1845913573" result="Failed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.058033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <hatchet (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels (System.String blueprint) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:385
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29223" name="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;Cudgel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels(&quot;Cudgel&quot;)" methodname="CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="270687677" result="Failed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.055513" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <cudgel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedAndLegacyEquippedEquipmentKeepsNativeReaderWhileViewerTravels (System.String blueprint) [0x00127] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:385
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29207" name="CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas" methodname="CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="446555593" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.036599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29196" name="CoordinateVariantsAndReplacedRenderPartCannotReuseOldGlyphOrEventTint" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.CoordinateVariantsAndReplacedRenderPartCannotReuseOldGlyphOrEventTint" methodname="CoordinateVariantsAndReplacedRenderPartCannotReuseOldGlyphOrEventTint" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1112425892" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.040918" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29238" name="EquipmentPortabilityDoesNotAdmitRegionalGroundServicesOrMedicine" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.EquipmentPortabilityDoesNotAdmitRegionalGroundServicesOrMedicine" methodname="EquipmentPortabilityDoesNotAdmitRegionalGroundServicesOrMedicine" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="2124484110" result="Failed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.036039" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (x:0.38, y:0.12, width:0.06, height:0.06)
+  But was:  (x:0.06, y:0.12, width:0.06, height:0.06)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertPortrait (CavesOfOoo.Rendering.ExaminePortrait image, UnityEngine.Sprite sprite) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:532
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.EquipmentPortabilityDoesNotAdmitRegionalGroundServicesOrMedicine () [0x000c5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:503
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29194" name="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.081592" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29192" name="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(False)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(False)" methodname="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1976727341" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.035603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29193" name="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(True)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner(True)" methodname="FogNeverDispatchesRenderOrDisclosesALowLayerLiveOwner" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1078082733" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.035734" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29201" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.145799" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29197" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;Player&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;Player&quot;,0)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="813849861" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.034741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29198" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;PetDog&quot;,1)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;PetDog&quot;,1)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="440757515" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.037158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29199" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackScrabbler&quot;,2)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackScrabbler&quot;,2)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1056491073" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.035932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29200" name="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackGleaner&quot;,3)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening(&quot;MarlbackGleaner&quot;,3)" methodname="FourPortableActorsHaveMatchingNativeWorldAndIdlePortraitOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1345842640" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.034829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29185" name="FullDirtyAndNeighborClaimPathsPreserveOneDamageRenderEventAndLighting" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FullDirtyAndNeighborClaimPathsPreserveOneDamageRenderEventAndLighting" methodname="FullDirtyAndNeighborClaimPathsPreserveOneDamageRenderEventAndLighting" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="352197136" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:01Z" duration="0.044446" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29181" name="FullscreenAndExplicitOffRoundTripsRestoreWorldWithoutOverwritingUiTwice" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.FullscreenAndExplicitOffRoundTripsRestoreWorldWithoutOverwritingUiTwice" methodname="FullscreenAndExplicitOffRoundTripsRestoreWorldWithoutOverwritingUiTwice" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="132441821" result="Passed" start-time="2026-10-27 04:03:01Z" end-time="2026-10-27 04:03:02Z" duration="1.115112" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29190" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-27 04:03:02Z" end-time="2026-10-27 04:03:03Z" duration="0.147441" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29187" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-render&quot;)" methodname="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1015142494" result="Passed" start-time="2026-10-27 04:03:02Z" end-time="2026-10-27 04:03:03Z" duration="0.059824" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29188" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;foreign-physics&quot;)" methodname="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1747560205" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.036915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29189" name="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent(&quot;carried&quot;)" methodname="InvalidTopOwnerCannotDonateItsGlyphColorOrRenderEvent" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1043696688" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.039045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29203" name="MissingIdleKeepsTruthfulGlyphAndDoesNotLetMotionSuppressIt" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.MissingIdleKeepsTruthfulGlyphAndDoesNotLetMotionSuppressIt" methodname="MissingIdleKeepsTruthfulGlyphAndDoesNotLetMotionSuppressIt" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="2096328429" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.034843" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29202" name="MissingMotionUsesAvailablePortableStaticIdleInsteadOfLosingBody" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.MissingMotionUsesAvailablePortableStaticIdleInsteadOfLosingBody" methodname="MissingMotionUsesAvailablePortableStaticIdleInsteadOfLosingBody" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1870743306" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.036229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29235" name="PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.272268" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29233" name="PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells(&quot;LongSword&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells(&quot;LongSword&quot;)" methodname="PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="931615628" result="Failed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.073625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: LongSword
+  Expected: same as <long-sword (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells (System.String blueprint) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:436
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29234" name="PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells(&quot;Cudgel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells(&quot;Cudgel&quot;)" methodname="PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="63091012" result="Failed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.035329" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: Cudgel
+  Expected: same as <cudgel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentDoesNotRemainPaintedOrReadableThroughRememberedOrUnexploredCells (System.String blueprint) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:436
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29232" name="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.148124" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29228" name="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;LongSword&quot;,&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;LongSword&quot;,&quot;visual&quot;)" methodname="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="576529512" result="Failed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.034695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: LongSword
+  Expected: same as <long-sword (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts (System.String blueprint, System.String fault) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:420
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29229" name="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;Cudgel&quot;,&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;Cudgel&quot;,&quot;visual&quot;)" methodname="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="984010812" result="Failed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.035897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: Cudgel
+  Expected: same as <cudgel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts (System.String blueprint, System.String fault) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:420
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29230" name="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;LongSword&quot;,&quot;foreign-weapon&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;LongSword&quot;,&quot;foreign-weapon&quot;)" methodname="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="995101201" result="Failed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.035326" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: LongSword
+  Expected: same as <long-sword (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts (System.String blueprint, System.String fault) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:420
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29231" name="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;LeatherArmor&quot;,&quot;foreign-armor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts(&quot;LeatherArmor&quot;,&quot;foreign-armor&quot;)" methodname="PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1611075557" result="Failed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.034042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The same approved equipment identity must survive travel: LeatherArmor
+  Expected: same as <leather-armor (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.PortableEquipmentStillRejectsExplicitReskinsAndForeignFunctionalParts (System.String blueprint, System.String fault) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:420
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29208" name="QuietManagerReplacementDropsPortableBodyAndRejectsOldPortraitWithoutLegacyFallback" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.QuietManagerReplacementDropsPortableBodyAndRejectsOldPortraitWithoutLegacyFallback" methodname="QuietManagerReplacementDropsPortableBodyAndRejectsOldPortraitWithoutLegacyFallback" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="326252897" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.045799" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29206" name="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.210040" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29204" name="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;HealingTonic&quot;)" methodname="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="54192625" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.046687" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29205" name="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;MarlbackPatchbearer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(&quot;MarlbackPatchbearer&quot;)" methodname="RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1412746001" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.153776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29236" name="ReplacementGraphAndSameIdItemCannotReusePreviousEquipmentDocument" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ReplacementGraphAndSameIdItemCannotReusePreviousEquipmentDocument" methodname="ReplacementGraphAndSameIdItemCannotReusePreviousEquipmentDocument" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1740288291" result="Failed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:03Z" duration="0.033954" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The same approved equipment identity must survive travel: LongSword
+  Expected: same as <long-sword (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.AssertEquipmentFrame (UnityEngine.Sprite sprite, System.String blueprint) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:333
+at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ReplacementGraphAndSameIdItemCannotReusePreviousEquipmentDocument () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:454
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29180" name="RequestedModeKeepsProjectionAcrossLocalOtherBiomeAndUndergroundGraphs" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.RequestedModeKeepsProjectionAcrossLocalOtherBiomeAndUndergroundGraphs" methodname="RequestedModeKeepsProjectionAcrossLocalOtherBiomeAndUndergroundGraphs" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1224506952" result="Passed" start-time="2026-10-27 04:03:03Z" end-time="2026-10-27 04:03:04Z" duration="0.882598" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29237" name="TransferredEquipmentAndSameIdForgedCustodyCannotReuseOldInventoryPortrait" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.TransferredEquipmentAndSameIdForgedCustodyCannotReuseOldInventoryPortrait" methodname="TransferredEquipmentAndSameIdForgedCustodyCannotReuseOldInventoryPortrait" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="961927378" result="Failed" start-time="2026-10-27 04:03:04Z" end-time="2026-10-27 04:03:04Z" duration="0.029186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <cudgel (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.TransferredEquipmentAndSameIdForgedCustodyCannotReuseOldInventoryPortrait () [0x000af] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs:478
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29184" name="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-27 04:03:04Z" end-time="2026-10-27 04:03:04Z" duration="0.106680" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29182" name="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.13.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.13.10.0&quot;)" methodname="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="221085791" result="Passed" start-time="2026-10-27 04:03:04Z" end-time="2026-10-27 04:03:04Z" duration="0.057888" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29183" name="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope(&quot;Overworld.11.10.0&quot;)" methodname="UncoveredIdentitiesKeepDifferentRealGlyphsWithinAndOutsideNativeScope" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="25411629" result="Passed" start-time="2026-10-27 04:03:04Z" end-time="2026-10-27 04:03:04Z" duration="0.038701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29227" name="UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-27 04:03:04Z" end-time="2026-10-27 04:03:05Z" duration="0.256379" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29225" name="UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening(&quot;Dagger&quot;)" methodname="UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="303994598" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.072399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29226" name="UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening(&quot;ChainMail&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening(&quot;ChainMail&quot;)" methodname="UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1358878681" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.033380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29195" name="UnsupportedUnicodeThroughActualRendererDoesNotRebuildSharedWorldOrUiBanks" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.UnsupportedUnicodeThroughActualRendererDoesNotRebuildSharedWorldOrUiBanks" methodname="UnsupportedUnicodeThroughActualRendererDoesNotRebuildSharedWorldOrUiBanks" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1626091538" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.034261" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29186" name="ValidLowerBackgroundFillsAllTwentyFourRowsAndReceivesLightingOnce" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.ValidLowerBackgroundFillsAllTwentyFourRowsAndReceivesLightingOnce" methodname="ValidLowerBackgroundFillsAllTwentyFourRowsAndReceivesLightingOnce" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="454134816" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.035488" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29213" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.164941" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29209" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.13.10.0&quot;,False,'~')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.13.10.0&quot;,False,'~')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="1943510808" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.037726" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29210" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.13.10.0&quot;,True,'~')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.13.10.0&quot;,True,'~')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="2137046398" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.036704" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29211" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,False,'\0')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,False,'\0')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="2106399284" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.040549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29212" name="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,True,'*')" fullname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests.WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater(&quot;Overworld.11.10.0&quot;,True,'*')" methodname="WaterMarkIsSuppressedOnlyWhenSelectedLocalGroundActuallyRepresentsWater" classname="CavesOfOoo.Tests.FlatPixelGlobalPresentationTests" runstate="Runnable" seed="415597181" result="Passed" start-time="2026-10-27 04:03:05Z" end-time="2026-10-27 04:03:05Z" duration="0.039854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
