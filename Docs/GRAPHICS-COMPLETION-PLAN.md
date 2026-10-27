@@ -1,14 +1,14 @@
 # Graphics completion plan
 
-Current status, 2026-10-27 00:25 UTC: Kitchen brine joins the consistent native
-16×24 presentation in fresh Mac/Linux packages from447e82c4f.192 native tests
-and seven actual Mac screenshots cover world/reader/overlap and full restart.
-The six connected scenes have been reviewed; whole-scene polish and the complete
-opening release remain unfinished. Next confirmed gap is a dropped Cudgel in the
-east connector. See [Kitchen brine](GRAPHICS-KITCHEN-BRINE.md) and
-[six-scene continuation](GRAPHICS-SIX-SCENE-POLISH.md). Physical Deck/Linux
-execution and sustained hardware performance remain unverified. Normal saves,
-preferences, previous packages and34 foreign edits preserved; storage read-only.
+Current status, 2026-10-27 01:04 UTC: East cudgels now share native wood art
+across world, inventory and Examine. Source0545aa9a2 is delivered in fresh Mac
+and Linux packages; actual Mac pickup/save/full restart passed.177 native cases
+and source checks pass. The six connected scenes remain under polish; the whole
+opening release and remaining regions are unfinished. Next is the confirmed legacy steam tile-cloud
+mark above East's already-native vent grates. See
+[Cudgel delivery](GRAPHICS-EAST-CUDGEL.md). Physical Deck/Linux execution and
+sustained hardware performance remain unverified. Saves/preferences,34foreign
+edits and previous packages preserved; storage inspection-only.
 
 Hourly report checkpoint:2026-10-27 00:25UTC. Continue itemized results and
 concrete coming-session goals. The [run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md)
@@ -2103,3 +2103,20 @@ Fixtures/cudgel-after64 (3500,East26,6,28HP,club27,6). Existing current447e82c4f
 packages predate this item. Whole six-scene opening/regional/physical Deck gates
 remain open. Next named scene candidate is the visible East steam-vent glyph;
 audit exact owner/state before authoring. Last hourly report remains00:25UTC.
+
+
+## Packaged cudgel delivery — 2026-10-27 01:04 UTC
+
+Native cudgel art is verified in the actual Mac build from source `0545aa9a2`:
+world at 1x/2x, Examine, pickup, inventory, save and full quit/restart/Continue.
+The matching compressed Linux archive passed independent checksum, size, mode
+and contents checks. Native tests: 48 targeted plus 129 regression cases passed.
+See [full delivery record](GRAPHICS-EAST-CUDGEL.md) for builds, seven original
+screenshots, earned turn-3510 fixture and restoration evidence. Linux execution,
+physical Deck, sustained performance and whole-opening acceptance remain open.
+
+Next: [East steam tile cue](GRAPHICS-EAST-STEAM-PLAN.md). Exact saved-state review
+confirms the pale marks are the generic tile-cloud apostrophe, not missing vent
+body art. Preserve the approved grates and existing gameplay. Normal saves,
+preferences, 34 unrelated tracked changes and previous builds are preserved;
+no storage cleanup was performed. Last hourly report remains 00:25 UTC.

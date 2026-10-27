@@ -253,3 +253,20 @@ Fixtures/cudgel-after64 (3500,East26,6,28HP,club27,6). Existing current447e82c4f
 packages predate this item. Whole six-scene opening/regional/physical Deck gates
 remain open. Next named scene candidate is the visible East steam-vent glyph;
 audit exact owner/state before authoring. Last hourly report remains00:25UTC.
+
+
+## Packaged cudgel delivery — 2026-10-27 01:04 UTC
+
+Native cudgel art is verified in the actual Mac build from source `0545aa9a2`:
+world at 1x/2x, Examine, pickup, inventory, save and full quit/restart/Continue.
+The matching compressed Linux archive passed independent checksum, size, mode
+and contents checks. Native tests: 48 targeted plus 129 regression cases passed.
+See [full delivery record](GRAPHICS-EAST-CUDGEL.md) for builds, seven original
+screenshots, earned turn-3510 fixture and restoration evidence. Linux execution,
+physical Deck, sustained performance and whole-opening acceptance remain open.
+
+Next: [East steam tile cue](GRAPHICS-EAST-STEAM-PLAN.md). Exact saved-state review
+confirms the pale marks are the generic tile-cloud apostrophe, not missing vent
+body art. Preserve the approved grates and existing gameplay. Normal saves,
+preferences, 34 unrelated tracked changes and previous builds are preserved;
+no storage cleanup was performed. Last hourly report remains 00:25 UTC.

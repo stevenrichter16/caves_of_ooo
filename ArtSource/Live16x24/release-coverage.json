@@ -867,24 +867,28 @@
     ]
   },
   "packaged_delivery": {
-    "source_commit": "447e82c4f54b63b56c049ed1cf225a9d68604c13",
-    "mac_app": "Builds/Verification/2026-10-27-kitchen-brine-447e82c4f-current/CavesOfOoo.app",
-    "linux_archive": "Builds/SteamDeck/2026-10-27-kitchen-brine-447e82c4f-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "sha256": "f52472d8f399c15be3c0b193482f3541c80d5e0715023cd780a839cb81a0e86c",
-    "archive_bytes": 128763088,
-    "regular_files": 188,
-    "mac_smoke": "Seven original actual captures;earned Continue,world1x/2x,exact reader,player cover/uncover,F5 and full process restart/Continue.",
+    "source_commit": "0545aa9a22060ab8aaff51330817c0a15d654605",
+    "linux_archive": "Builds/SteamDeck/2026-10-27-cudgel-0545aa9a2-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "mac_actual_play": "Docs/Verification/Live16x24/packaged-cudgel-mac-play-summary.json",
+    "archive_verification": "Docs/Verification/Live16x24/packaged-cudgel-independent-review.json",
+    "physical_deck_verified": false,
+    "linux_execution_verified": false,
+    "mac_app": "Builds/Verification/2026-10-27-cudgel-0545aa9a2-current/CavesOfOoo.app",
+    "sha256": "90e49748f9961d9a5e9e6595c32d502d1f4bd572684df4d0bdb082f86b2309a4",
+    "archive_bytes": 128686345,
+    "regular_files": 181,
     "linux_execution": "unverified",
     "physical_deck": "unverified",
-    "limits": "192/192 native tests. Each build0errors4warnings. Mac shutdown notices persist;no whole-opening/performance claim. Loose asset packaging is larger;next build explicitly compress_lz4.",
+    "mac_smoke": "Seven original actual captures: earned Continue, world 1x/2x, exact reader, pickup, inventory, F5 and full process restart/Continue.",
+    "limits": "177 native tests; each build has 0 errors and 4 warnings. Explicit LZ4 compression. Known Mac shutdown notice persists; whole-opening and sustained-performance acceptance remain open.",
     "refs": [
-      "Docs/GRAPHICS-KITCHEN-BRINE.md",
-      "Docs/Verification/Live16x24/packaged-kitchen-brine-mac-play-summary.json",
-      "Docs/Verification/Live16x24/packaged-kitchen-brine-linux-archive.json",
-      "Docs/Verification/Live16x24/packaged-kitchen-brine-project-restored.json"
+      "Docs/GRAPHICS-EAST-CUDGEL.md",
+      "Docs/Verification/Live16x24/packaged-cudgel-mac-play-summary.json",
+      "Docs/Verification/Live16x24/packaged-cudgel-independent-review.json",
+      "Docs/Verification/Live16x24/packaged-cudgel-restoration.json"
     ]
   },
-  "next_scoped_work": "Push Cudgel source, build compressed fresh Mac/Linux packages, actual Continue/restart; then audit East SteamVent glyph from real owner/state.",
+  "next_scoped_work": "Replace the confirmed legacy steam tile-cloud mark above already-native East SteamVent grates, following Docs/GRAPHICS-EAST-STEAM-PLAN.md; start with actual capture from the unchanged earned packaged-cudgel-return64 fixture. Preserve accepted vent art and all state semantics.",
   "popup_raster_continuation": {
     "date": "2026-10-26",
     "status": "bounded_native_and_ordinary_editor_verified",
@@ -1432,6 +1436,24 @@
         "Docs/Verification/Live16x24/packaged-connected-pipes-mac-play-summary.json",
         "Docs/Verification/Live16x24/packaged-connected-pipes-project-restored.json"
       ]
+    },
+    {
+      "source_commit": "447e82c4f54b63b56c049ed1cf225a9d68604c13",
+      "mac_app": "Builds/Verification/2026-10-27-kitchen-brine-447e82c4f-current/CavesOfOoo.app",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-kitchen-brine-447e82c4f-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "sha256": "f52472d8f399c15be3c0b193482f3541c80d5e0715023cd780a839cb81a0e86c",
+      "archive_bytes": 128763088,
+      "regular_files": 188,
+      "mac_smoke": "Seven original actual captures;earned Continue,world1x/2x,exact reader,player cover/uncover,F5 and full process restart/Continue.",
+      "linux_execution": "unverified",
+      "physical_deck": "unverified",
+      "limits": "192/192 native tests. Each build0errors4warnings. Mac shutdown notices persist;no whole-opening/performance claim. Loose asset packaging is larger;next build explicitly compress_lz4.",
+      "refs": [
+        "Docs/GRAPHICS-KITCHEN-BRINE.md",
+        "Docs/Verification/Live16x24/packaged-kitchen-brine-mac-play-summary.json",
+        "Docs/Verification/Live16x24/packaged-kitchen-brine-linux-archive.json",
+        "Docs/Verification/Live16x24/packaged-kitchen-brine-project-restored.json"
+      ]
     }
   ],
   "scoped_work_history": [
@@ -1692,7 +1714,7 @@
     "limits": "Not whole opening,physicalDeck,Linux execution,live spell-reaction screenshots or hardware performance acceptance."
   },
   "cudgel_consistency": {
-    "status": "implemented_editor_verified_packaged_pending",
+    "status": "implemented_editor_and_mac_verified_linux_packaged",
     "source_record": "Docs/GRAPHICS-EAST-CUDGEL.md",
     "native_tests": {
       "red": {
@@ -1709,7 +1731,9 @@
       "Docs/Verification/Live16x24/cudgel-10-after-drop.png"
     ],
     "source": "ArtSource/Live16x24/cudgel",
-    "earned_checkpoint": "Docs/Verification/Live16x24/Fixtures/cudgel-after64",
-    "limits": "Editor world/reader/pickup/equip/drop only; packaged restart pending, whole opening and remaining regions unfinished."
+    "earned_checkpoint": "Docs/Verification/Live16x24/Fixtures/packaged-cudgel-return64",
+    "limits": "World, reader and inventory verified in Editor and Mac; Editor pickup/equip/drop; Mac pickup/save/full restart. Whole opening, remaining regions, Linux execution, physical Deck and sustained profiling remain incomplete.",
+    "source_commit": "0545aa9a22060ab8aaff51330817c0a15d654605",
+    "packaged_evidence": "Docs/Verification/Live16x24/packaged-cudgel-mac-play-summary.json"
   }
 }

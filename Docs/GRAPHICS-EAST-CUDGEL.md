@@ -105,3 +105,37 @@ restart from3500; continue six-scene review using a named visible remaining
 defect (the East steam vents still retain legacy glyphs). Do not claim all
 graphics or the six-scene opening complete. Storage inspection413GiBfree;
 no cleanup/deletion performed. Existing packages remain intact.
+
+
+## Packaged cudgel delivery — 2026-10-27 01:04 UTC
+
+Source `0545aa9a2` was pushed and remotely verified. New compressed Mac and Linux
+builds succeeded with zero errors and four warnings each. Seven actual Mac
+screenshots verify ordinary Continue at1x/2x, exact Examine, pickup, inventory,
+F5 and full quit/relaunch/Continue. Native cudgel art survives the restart.
+Earned fixture `Fixtures/packaged-cudgel-return64`: turn3510, East26,6, HP28/40,
+Cudgel9357 carried, sword and buckler equipped. No teleport/reveal/grant.
+
+Mac: `Builds/Verification/2026-10-27-cudgel-0545aa9a2-current/CavesOfOoo.app`.
+Linux: `Builds/SteamDeck/2026-10-27-cudgel-0545aa9a2-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+Archive SHA256 `90e49748f9961d9a5e9e6595c32d502d1f4bd572684df4d0bdb082f86b2309a4`;
+128,686,345 bytes. Independent streaming check verifies all181 files, hashes,
+sizes, modes, internal checksums and license/support files. No Linux execution
+or physical Deck acceptance. Native177 cases and8 metadata counter groups are
+separate from actual Mac play evidence. Known ComputeBuffer shutdown notice
+remains; no clean-shutdown claim.
+
+Normal saves, full logical preferences,34 foreign tracked changes and previous
+builds are preserved. Test saves archived by rename; six reviewed Unity-generated
+metadata/settings files restored from frozen source. Explicitly removed only the
+new test LastGameID key after defaults import retained it. Editor idle, clean
+SampleScene, target restored to Mac, save override/isolation off. No storage
+cleanup; about413GiB free.
+
+Next scene audit correction: the East SteamVent grate already has approved
+native art. Saved-state inspection confirms that the pale marks are tile steam clouds,
+not SteamCloud entities. See [next scoped plan](GRAPHICS-EAST-STEAM-PLAN.md);
+preserve the accepted grate artwork.
+Continue from the earned packaged fixture. Whole six-scene opening acceptance,
+remaining regions and device/performance work remain open. Last hourly report
+checkpoint remains00:25UTC; this is a visible delivery milestone.

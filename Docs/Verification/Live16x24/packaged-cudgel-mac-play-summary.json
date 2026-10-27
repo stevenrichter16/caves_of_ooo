@@ -1,0 +1,79 @@
+{
+  "recorded_at_utc": "2026-10-27T01:03:38.499671+00:00",
+  "source_commit": "0545aa9a22060ab8aaff51330817c0a15d654605",
+  "platform": "Actual macOS standalone Unity6000.3.4f1",
+  "build_receipt": "packaged-cudgel-mac-build.json",
+  "capture_provenance": "Seven original CUA JPEGs1280x856 include56px Mac titlechrome +1280x800game; no crop/repaint/composite/generation.",
+  "input": "Ordinary keyboard, unchanged earnedfixture in previously absent standalone save root; no teleport,reveal,grant,scenario or presentation override.",
+  "initial_fixture": "Docs/Verification/Live16x24/Fixtures/cudgel-after64",
+  "initial_save_sha256": "d9c7c194b856863d454e83a6c353d5b169bd81179d9a74d6d86bc4b8582d26ad",
+  "final_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-cudgel-return64",
+  "final_save_sha256": "69b214bd644c433d14d88d51840dfec01301a91a49d31963f6cc7f29b9d2b3cc",
+  "final_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "7149edb751014f1c8ef55c71dd7d5548",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.12.10.0",
+    "ActiveZoneDisplayLabel": "Overworld.12.10.0",
+    "Turn": 3510,
+    "SaveTimestampUtc": "2026-10-27T00:59:28.6493750Z",
+    "HPSummary": "28/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-cudgel-01-continue-1x.jpg",
+      "bytes": 170044,
+      "sha256": "b80532f5e91b4e5edfc2bd80ce55b4edaa25e0a612afa3e1aa15712cf9a9eeb0",
+      "action_and_observation": "Normal C Continue from unchanged earned3500,East26,6,HP28; loose club27,6 shown atdefault1x."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-cudgel-02-world-2x.jpg",
+      "bytes": 166163,
+      "sha256": "c3ed0d7d0808c1112617b0c0e8762402efa64ca906b85749d522fbdd65e074a4",
+      "action_and_observation": "Prior once to2x; club and surrounding scene remain native."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-cudgel-03-reader.jpg",
+      "bytes": 263998,
+      "sha256": "984031158193d4bd4d1a080f517090b5545a7b589246df57a44cc2ec76b30f9a",
+      "action_and_observation": "L,Right,Return,x opens exact Cudgel27,6 reader withnativeportrait and sound/damage semantics."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-cudgel-04-inventory.jpg",
+      "bytes": 199245,
+      "sha256": "78e7a8741409f6634746afdcf63196b16d1011c551e24b912411823eb94962b6",
+      "action_and_observation": "Escape,Return,g takesexactclub; Escape,i,Tab,Down selects native inventoryportrait and1d4+2."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-cudgel-05-saved.jpg",
+      "bytes": 163209,
+      "sha256": "1eda4084f706511c62605fe9ff053b36633ff35d92e05dae54f56358d959b210",
+      "action_and_observation": "Escape,F5 saved3510; clubcarried,HP28,position26,6 unchanged. Command-Q;processabsence verified."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-cudgel-06-restarted.jpg",
+      "bytes": 166747,
+      "sha256": "483dedd3e8128e83318a3b879626a008f90a96184e48fbea9aa7fd42517c4917",
+      "action_and_observation": "Relaunch sameapp,C Continue restores3510save at26,6,HP28."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-cudgel-07-restarted-inventory.jpg",
+      "bytes": 199245,
+      "sha256": "78e7a8741409f6634746afdcf63196b16d1011c551e24b912411823eb94962b6",
+      "action_and_observation": "i,Tab,Down shows retainednativeCudgel afterfullrestart. Command-Q closesownedplayer."
+    }
+  ],
+  "can_verify": "Actual Mac Continue,world1x/2x,reader,pickup,inventory,F5,fullquit/relaunch/Continue,nativeportrait retained.",
+  "cannot_verify": "Linuxexecution,physicalDeck,hardwareperformance,wholeopening/regions,allconditions;native177cases are separate.",
+  "logs": "Both retained; known ComputeBuffer-disposal shutdown notice,not a clean-shutdownclaim.",
+  "build_options": [
+    "compress_lz4",
+    "detailed_report"
+  ],
+  "compression": "Mac234.07MiB andLinux214.49MiB; explicitcompressionrestored forfreshoutputs;previouspackagespreserved."
+}
