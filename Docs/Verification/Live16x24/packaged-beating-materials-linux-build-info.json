@@ -1,0 +1,125 @@
+{
+  "created_at_utc": "2026-10-27T07:30:23.600621+00:00",
+  "runtime_source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+  "package_flavor": "beating-static-materials-road34",
+  "built_after_utc": "2026-10-27T07:24:30+00:00",
+  "slice_description": "Original 34-frame static Beating material kit: quiet sand, flat salt crust, solid low dune masses, sandstone floor and walls, rounded rocks, full brine and depleted-but-still-wet film, pale salt veins, bones, saltbriar and warm packed-gravel RoadStone. Existing DryBrush and Signpost art is reused. Eligible ordinary Beating surface graphs retain current map, POI, saved-lair, cached-graph, owner and state checks; six observed formations are samples, not whole-biome acceptance. No generation, gameplay or optional animation was added. Previously approved regional and portable art remains inherited.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-beating-materials-mac-build.json",
+    "sha256": "9da45c405da12684ab1f202022baab24f7d7ec0ac0fb3bea5244fe091c2b296b",
+    "summary": {
+      "job_id": "build-11c5c0a35a",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T07:24:38.001081Z",
+      "duration_seconds": 40.005505,
+      "completed_at": "2026-10-27T07:25:18.006586Z",
+      "total_size_mb": 234.12,
+      "errors": 0,
+      "warnings": 5
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-beating-materials-linux-build.json",
+    "sha256": "078ee68ca659bc32aa97112134ac59c1f99c353fa33aeb13f73358ef2738ab7a",
+    "summary": {
+      "job_id": "build-11e299a6c2",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T07:29:30.188896Z",
+      "duration_seconds": 21.215808,
+      "completed_at": "2026-10-27T07:29:51.404704Z",
+      "total_size_mb": 214.5,
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/beating-materials-road34-green.xml",
+          "sha256": "9ce75727659a0cfc24fff3b6195da6f52abdb35e31eb6c6da87b628afa56ae69",
+          "mode": "EditMode",
+          "summary": {
+            "id": "2",
+            "testcasecount": "95",
+            "result": "Passed",
+            "total": "95",
+            "passed": "95",
+            "failed": "0",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-27 07:07:00Z",
+            "end-time": "2026-10-27 07:07:07Z",
+            "duration": "7.1738592"
+          },
+          "overlap_with_preceding_receipts": 0,
+          "inconclusive_identities": [],
+          "inconclusive_reason": null,
+          "scope": "Final 34-frame Beating suite: all 95 passed, zero failed or inconclusive. Already recorded; this helper does not run tests."
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/beating-materials-regressions.xml",
+          "sha256": "73e40c811697bdde1572d3fadd38e87ab982a7b749fbeb2de5f57a76f53c92b4",
+          "mode": "EditMode",
+          "summary": {
+            "id": "2",
+            "testcasecount": "225",
+            "result": "Passed",
+            "total": "225",
+            "passed": "222",
+            "failed": "0",
+            "inconclusive": "3",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-27 06:57:59Z",
+            "end-time": "2026-10-27 06:58:20Z",
+            "duration": "21.0632514"
+          },
+          "overlap_with_preceding_receipts": 0,
+          "inconclusive_identities": [
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")"
+          ],
+          "inconclusive_reason": "Current-thread allocation counter did not detect the positive control.",
+          "scope": "Earlier related presentation regression receipt, recorded before the final road/dune correction: 222 passed, zero failed, three existing allocation probes inconclusive. This is retained evidence, not a new run after the final correction. Already recorded; this helper does not run tests."
+        }
+      ],
+      "execution_occurrences": 320,
+      "passed_execution_occurrences": 317,
+      "failed_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 3,
+      "distinct_test_identities_across_listed_receipts": 320,
+      "distinct_passed_test_identities": 317,
+      "distinct_inconclusive_test_identities": 3,
+      "all_cases_passed": false,
+      "limits": "Counts are deduplicated by full test identity. The earlier regression receipt contains three inconclusive allocation probes; they are not passes or proof of allocation behavior. The final Beating receipt has no inconclusive cases. This packaging process executes no tests."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "This bounded Beating material slice is not a complete biome or worldwide graphical acceptance; tents, wells, containers, residents, creatures, special owners and inventory product identities remain unfinished.",
+    "Unimplemented identities retain truthful glyphs/colors. Other regions and whole-scene fullness remain incomplete; nuanced new animation remains deferred.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality or device performance."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

@@ -1,0 +1,1 @@
+Earned seed65 Beating packaged fixture, source2e5a0ca4c. Continue3140 at SaltPan31,13 HP38; walk east to32,13, examine uncovered ground, F53150, full quit/relaunch Continue; ordinary map two east and descent to BrineLens17,13 at40,12; F53210 HP38. PaleSalt quantity1 persists. No teleport, spawning, healing or save mutation. Copied only after closed standalone.

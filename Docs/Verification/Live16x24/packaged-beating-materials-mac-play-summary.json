@@ -1,0 +1,74 @@
+{
+  "source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+  "at_utc": "2026-10-27T07:33:13.840259+00:00",
+  "platform": "native macOS standalone",
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-00-startup.jpg",
+      "sha256": "fc0d60ae224fc7a389e694efd4d6b880985d0da114bbe53d7ea0cd4c640fc7d3",
+      "bytes": 214805,
+      "observation": "Normal flat startup with Save detected"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-01-continue.jpg",
+      "sha256": "41b3ccc59a5240318296f0888c1ed3e7479be983f2d85efff3ea53586f1ca76f",
+      "bytes": 174970,
+      "observation": "Continue3140: SaltPan31,13 HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-02-sand-reader.jpg",
+      "sha256": "ba2fd57a94ee468cec98dbe62e7ee528a0f2e580afeed24a136d2efb07ad248b",
+      "bytes": 209037,
+      "observation": "Underfoot Sand: glyph fallback while player is selected world owner"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-03-uncovered-sand-reader.jpg",
+      "sha256": "d30558adc53ce07a76eb7dcf3ab2df173da82695991d2f86b07ba5c0cb9a03de",
+      "bytes": 208271,
+      "observation": "Walk east32,13 and inspect uncovered Sand31,13: native portrait"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-04-walk-saved.jpg",
+      "sha256": "5c77ccfbfb058980266959659ceabf77de949050929caac96929e661e843430f",
+      "bytes": 169439,
+      "observation": "Zoom and F5 turn3150 at32,13 HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-05-restart-continue.jpg",
+      "sha256": "6bec3104c00367b380512e6b9a9b6f33141d2afe2264459dad50a484d2bd7837",
+      "bytes": 180174,
+      "observation": "Full quit/relaunch Continue:32,13 HP38"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-06-brine-lens.jpg",
+      "sha256": "fe51777dfdd69d3ffd630aa392efb5fc3f25b8a529f9779ed0b989bf311bb128",
+      "bytes": 176267,
+      "observation": "Normal world-map two east and descent toBrineLens17,13 at40,12"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-beating-materials-07-resource-inventory.jpg",
+      "sha256": "a053fbf2a84c117d8a766bdf68689c98962aadcfafff7bee3b50a3bae1b1a2e6",
+      "bytes": 204857,
+      "observation": "Inventory after travel: PaleSalt quantity1 still glyph"
+    }
+  ],
+  "fixture_in": "Docs/Verification/Live16x24/Fixtures/beating-final-harvest65",
+  "fixture_out": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65",
+  "saved_turn": 3210,
+  "zone": "Overworld.17.13.0",
+  "player_position": [
+    40,
+    12
+  ],
+  "hp": "38/40",
+  "fixture_out_sha256": "850b81a21601e3b545aef6b8bf88a77259aae9701e2b27be7b3a8be90e288e57",
+  "input": "Actual CUA key input, ordinary Continue, walking, context menu, F5, full process quit/relaunch, world-map travel and descent. No injected game-state or item spawning.",
+  "portrait_bounds": "Native Sand succeeds when uncovered and selected. Underfoot player coverage conservatively retains Sand glyph; this is the existing selected-owner guard, not full world/examine parity.",
+  "inventory_gap": "PaleSalt1 persists after harvest, native Editor reload, packaged reload and travel but portrait remains fallback. Harvest products17 are next planned scope, not accepted art.",
+  "whole_chunk_fullness": "Sand, salt plates, brine basins and minerals read coherently; camps/wells/containers/plants/actors/hazards retain observed glyph gaps. This is material coverage only.",
+  "logs": "packaged-beating-materials-player.log: no gameplay exception, existing shutdown thread-finalization and ComputeBuffer disposal notices remain.",
+  "protection": "packaged-beating-materials-restoration.json",
+  "linux_executed": false,
+  "physical_steam_deck_tested": false,
+  "hardware_performance_accepted": false
+}

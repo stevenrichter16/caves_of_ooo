@@ -862,9 +862,9 @@
     }
   },
   "latest_observation": {
-    "at_utc": "2026-10-27T06:13:45.787684+00:00",
-    "summary": "Ordinary Sodden materials verified in six natural entries plus walked neighbor/restart.183 native passed;22 additions all pass;3 existing allocation inconclusive. Whole-chunk fullness and missing owners remain open.",
-    "evidence": "Docs/Verification/Live16x24/sodden-ordinary-play-summary.json"
+    "at_utc": "2026-10-27T07:33:13.840259+00:00",
+    "summary": "Beating34-frame ordinary materials verified in six Editor formations and two actual Mac area samples. Saved turn3210 at BrineLens with HP38 and persistent PaleSalt1 glyph. Whole-area fullness and other biome families remain incomplete.",
+    "evidence": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json"
   },
   "current_environment_blocker": {
     "status": "no_current_blocker_recheck_ownership_before_play",
@@ -874,39 +874,45 @@
     ]
   },
   "packaged_delivery": {
-    "source_commit": "eafc02a228136ded429f0999ed01a2c29459382e",
-    "linux_archive": "Builds/SteamDeck/2026-10-27-sodden-travel-eafc02a22-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "mac_app": "Builds/Verification/2026-10-27-sodden-travel-eafc02a22-current/CavesOfOoo.app",
-    "sha256": "4b5904f483870d473c2eef59bb9f33581019afffb40903341b5157cfc76c0e4b",
-    "archive_bytes": 128693449,
-    "regular_files": 182,
-    "mac_actual_play": "Docs/Verification/Live16x24/packaged-sodden-travel-mac-play-summary.json",
-    "archive_verification": "Docs/Verification/Live16x24/packaged-sodden-travel-independent-review.md",
-    "archive_receipt": "Docs/Verification/Live16x24/packaged-sodden-travel-linux-archive.json",
-    "restoration_receipt": "Docs/Verification/Live16x24/packaged-sodden-travel-restoration.json",
+    "source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+    "linux_archive": "Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "mac_app": "Builds/Verification/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo.app",
+    "sha256": "09354fd2e13f73cd3e7cf7e33a12c63ac32dd988bb745902dc1fbc3bb12d87e7",
+    "archive_bytes": 128681400,
+    "regular_files": 181,
+    "archive_members": 191,
+    "mac_actual_play": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json",
+    "archive_verification": "Docs/Verification/Live16x24/packaged-beating-materials-independent-review.md",
+    "archive_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-linux-archive.json",
+    "restoration_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-restoration.json",
     "builds": {
       "mac": {
         "result": "succeeded",
         "errors": 0,
-        "warnings": 4,
-        "duration_seconds": 38.766726999999996
+        "warnings": 5,
+        "duration_seconds": 40.005505
       },
       "linux": {
         "result": "succeeded",
         "errors": 0,
-        "warnings": 4,
-        "duration_seconds": 30.464067999999997
+        "warnings": 0,
+        "duration_seconds": 21.215808
       }
     },
     "source_push_verified": true,
+    "release_evidence_push_status": "included in this delivery commit; verify remote ancestry on resume",
     "linux_execution_verified": false,
     "physical_deck_verified": false,
     "sustained_hardware_performance_verified": false,
-    "limits": "Seven actual Mac window captures verify normal flat boot, earned Causeway2390 Continue, real Duckboard reader8/8, four walked steps, F52430 and full process restart40,16HP38, then normal world travel to district16,7 at20,12/F52510HP38. Whole Sodden coverage/fullness, plain water, service/creature/plant/prop families and other regions remain incomplete. Existing shutdown notices persist. Both final native reports overlap;328 distinct passed identities and3inconclusive allocation probes, not331passes."
+    "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65",
+    "limits": "Eight actual Mac captures verify ordinary flat boot, earned SaltPan Continue3140 at31,13 HP38, one east step and uncovered Sand native reader, F53150/full process restart at32,13, then normal world-map travel to BrineLens17,13 at40,12 and F53210 HP38. Underfoot Sand retains the selected-owner fallback while the player covers it. PaleSalt quantity1 persists but still uses a glyph. This verifies a bounded material slice in two packaged area samples, not whole-Beating/full-scene acceptance. Props, services, residents, creatures, hazards, products, other biomes, interiors and underground remain incomplete. Existing shutdown notices persist. Final95 and earlier related225 have zero identity overlap:320 distinct cases,317 passed,3 inconclusive; the related suite predates the final road revision."
   },
   "next_scoped_work": {
     "priority": "Broad static sprite coverage across every biome/area",
-    "next": "Freeze/push/build current Beating materials, then portable resource-items and uncovered regional props/creatures. Keep all named remaining biome/site coverage and fullness gaps open."
+    "next": "Implement the planned17 exact portable harvest products (eight new native sprites, nine immutable frame reuses) from real inventory/world/examine baselines. Then continue Grovelands, Overwrit and Stump native area kits, followed by remaining registered biomes, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps; defer nuanced animation.",
+    "plan": "Docs/GRAPHICS-HARVEST-PRODUCTS.md",
+    "status": "planned; new product art and portable implementation not yet authored or accepted",
+    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65"
   },
   "popup_raster_continuation": {
     "date": "2026-10-26",
@@ -1560,6 +1566,37 @@
       "physical_deck_verified": false,
       "sustained_hardware_performance_verified": false,
       "limits": "Final Sill136/136 and portable equipment222/222 native receipts share52 case identities; earlier224 regression is nonadditive. Twelve actual Mac window captures verify ordinary flat boot, earned Continue1070, door close/reader/bump/threshold, native LongSword inventory with1d8 and right-edge E, F5/full process restart Continue1170 atSill67,10 HP38. Whole-Sill fullness, river, furniture/services/NPCs, all-biome coverage, Linux execution, physical Deck and sustained hardware performance remain unfinished. Known shutdown notices persist; prior packages preserved."
+    },
+    {
+      "source_commit": "eafc02a228136ded429f0999ed01a2c29459382e",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-sodden-travel-eafc02a22-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "mac_app": "Builds/Verification/2026-10-27-sodden-travel-eafc02a22-current/CavesOfOoo.app",
+      "sha256": "4b5904f483870d473c2eef59bb9f33581019afffb40903341b5157cfc76c0e4b",
+      "archive_bytes": 128693449,
+      "regular_files": 182,
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-sodden-travel-mac-play-summary.json",
+      "archive_verification": "Docs/Verification/Live16x24/packaged-sodden-travel-independent-review.md",
+      "archive_receipt": "Docs/Verification/Live16x24/packaged-sodden-travel-linux-archive.json",
+      "restoration_receipt": "Docs/Verification/Live16x24/packaged-sodden-travel-restoration.json",
+      "builds": {
+        "mac": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 4,
+          "duration_seconds": 38.766726999999996
+        },
+        "linux": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 4,
+          "duration_seconds": 30.464067999999997
+        }
+      },
+      "source_push_verified": true,
+      "linux_execution_verified": false,
+      "physical_deck_verified": false,
+      "sustained_hardware_performance_verified": false,
+      "limits": "Seven actual Mac window captures verify normal flat boot, earned Causeway2390 Continue, real Duckboard reader8/8, four walked steps, F52430 and full process restart40,16HP38, then normal world travel to district16,7 at20,12/F52510HP38. Whole Sodden coverage/fullness, plain water, service/creature/plant/prop families and other regions remain incomplete. Existing shutdown notices persist. Both final native reports overlap;328 distinct passed identities and3inconclusive allocation probes, not331passes."
     }
   ],
   "scoped_work_history": [
@@ -1793,23 +1830,22 @@
   ],
   "hourly_reporting": {
     "requested_on": "2026-10-26",
-    "last_report_at_utc": "2026-10-27T06:25:00+00:00",
+    "last_report_at_utc": "2026-10-27T07:24:00+00:00",
     "automation_id": "overnight-clearing-art-pipeline",
     "items": "Completed/in-progress/blocked items; biome/area and sprite families addressed; verified missing gaps closed and remaining missing/unaudited coverage; test/capture/main-push status; concrete next coverage goals. Deferred animation listed separately. Intermediate10minute storage checks remain quiet/read-only.",
-    "report": "Docs/GRAPHICS-SODDEN-TRAVEL.md",
+    "report": "Docs/GRAPHICS-BEATING-MATERIALS.md",
     "completed": [
-      "District28-frame material kit and ordinary scope pushed d48f623f5/eafc02a22; six actual before/after layouts, real reader/walkedboundary/save/restart",
-      "Ordinary186cases183pass0fail3inconclusive; all22newpass. Existingallocationprobesnotpassed.",
-      "Fresh Mac/Linuxsourceeafc02a22 built; actualMacCauseway/reader/walk/F5/restart/crossing verified;Linuxarchivefullyverified; nohardwareclaim",
-      "RestorednormalSaves/preferences andall50031trackedprebuildobjects including38foreignfiles; priorbuildspreserved; no cleanup"
+      "Beating34-frame material source pushed2e5a0ca4c; six actual final Editor formations plus harvested-source removal, inventory identity and Continue3140 verified.",
+      "Final native suite95/95 passed; earlier related225 yielded222 passed and3 inconclusive. Zero case-identity overlap,320 distinct; related suite predates final road revision."
     ],
     "next_goals": [
-      "Finish release-evidence mainpush",
-      "ActualBeatinglayoutbaseline, capture-driven imagegen, cohesive native material/flora kit across ordinary formations",
-      "Review wholeviewsforlandmarks/clusters/routes/fullness; retainplainwater/creatures/props/uncoveredregionsopen; defernuancedanimation"
+      "Complete fresh Mac/Linux package verification and preserve normal state, then push release evidence.",
+      "Start the planned17 portable harvest products with actual world/inventory/examine captures; eight new sprites and nine immutable reuse candidates.",
+      "Continue Grovelands/Overwrit/Stump and remaining region, interior and underground kits; keep Beating/Sodden props and whole-scene fullness open."
     ],
     "priority_update_at_utc": "2026-10-27T03:40:00+00:00",
-    "last_report_summary": "Sodden source/editor/sixformations andfreshMac/Linuxdeliveryverified. NextbroaderBeatingstaticcoveragewithwholechunkfullness; graphicsnotcomplete."
+    "last_report_summary": "At07:24UTC, Beating source/editor material acceptance was pushed and packaging was next. Later package receipts are recorded separately; updating this ledger is not a new hourly report.",
+    "next_report_due_at_utc": "2026-10-27T08:24:00+00:00"
   },
   "kitchen_brine_consistency": {
     "status": "native_editor_and_mac_restart_accepted_linux_archive_verified",
@@ -2076,7 +2112,7 @@
     "next": "Beating actual natural-layout baseline, imagegen and native material/flora kit; retain Sodden water, actors, services, props and whole-chunk polish. Current Sodden packages are delivered."
   },
   "beating_materials": {
-    "status": "authored-integrated-observed; ordinary surface material slice only",
+    "status": "source pushed; ordinary material slice verified in Editor and actual Mac package; Linux archive verified",
     "plan": "Docs/GRAPHICS-BEATING-MATERIALS.md",
     "actual_play": "Docs/Verification/Live16x24/beating-final-play-summary.json",
     "source": "ArtSource/Live16x24/beating-materials",
@@ -2194,7 +2230,13 @@
         "failed": 0,
         "inconclusive": 3
       },
-      "limits": "Runs overlap; do not sum as unique tests. Allocationpositivecontrols wereinconclusive."
+      "limits": "Final95 and earlier related225 have zero case-identity overlap:320 distinct cases,317 passed and3 inconclusive. Related225 ran06:57:59\u201306:58:20UTC before the final road/dune revision; final95 ran07:07:00\u201307:07:07UTC. Allocation positive controls were inconclusive, not passing allocation evidence.",
+      "distinct_across_saved_receipts": {
+        "total": 320,
+        "passed": 317,
+        "inconclusive": 3,
+        "overlap": 0
+      }
     },
     "fullness": {
       "accepted_scope": "Material contrast, vegetation clusters, connected liquids, warm roads and quiet solid dunes improve existing real formations. Actual whole views inspected. No fake services, newloot, randomscatter or generationchanges.",
@@ -2202,9 +2244,54 @@
         "Grassy green road reuse replaced with actualRoadStone warmgravel frames32/33.",
         "Dune8\u201311 continuous stripes replaced with subtle short internalmarks; same505solidcells and traversal unchanged."
       ],
-      "not_complete": "Tents,wells,residents,creatures,containers and hazard/other owners stillfallback; broader sites,interiors,underground and biomes remainopen. Intentionaldesert quiet patches do not excuse these gaps."
+      "not_complete": "Actual six Editor and two Mac area samples show partial material coherence, not complete scenes or biome-wide fullness. Tents, wells, containers, service props, residents, creatures, hazards and other owners retain glyph gaps; harvested products remain unfinished. Beating and Sodden remaining owners plus Grovelands, Overwrit, Stump, other registered biomes, settlements, interiors, underground and special sites remain queued. Deliberately sparse terrain still requires whole-view quality review."
     },
-    "package_status": "pending current frozen source build; previous Sodden packages preserved",
-    "next": "Fresh packaged validation, then cross-biome resource/items and actual regional props/actors; do not focus on nuanced animation."
+    "package_status": "Mac actual play and corrected Linux build/archive verified for2e5a0ca4c; no Linux execution, physical Deck or sustained hardware performance acceptance",
+    "next": "Implement the planned17 exact portable harvest products (eight new native sprites, nine immutable frame reuses) from real inventory/world/examine baselines. Then continue Grovelands, Overwrit and Stump native area kits, followed by remaining registered biomes, underground and special owners. Retain Beating/Sodden props, services, actors and whole-chunk fullness gaps; defer nuanced animation.",
+    "source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+    "package_delivery": {
+      "source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "mac_app": "Builds/Verification/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo.app",
+      "sha256": "09354fd2e13f73cd3e7cf7e33a12c63ac32dd988bb745902dc1fbc3bb12d87e7",
+      "archive_bytes": 128681400,
+      "regular_files": 181,
+      "archive_members": 191,
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-beating-materials-mac-play-summary.json",
+      "archive_verification": "Docs/Verification/Live16x24/packaged-beating-materials-independent-review.md",
+      "archive_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-linux-archive.json",
+      "restoration_receipt": "Docs/Verification/Live16x24/packaged-beating-materials-restoration.json",
+      "builds": {
+        "mac": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 5,
+          "duration_seconds": 40.005505
+        },
+        "linux": {
+          "result": "succeeded",
+          "errors": 0,
+          "warnings": 0,
+          "duration_seconds": 21.215808
+        }
+      },
+      "source_push_verified": true,
+      "release_evidence_push_status": "included in this delivery commit; verify remote ancestry on resume",
+      "linux_execution_verified": false,
+      "physical_deck_verified": false,
+      "sustained_hardware_performance_verified": false,
+      "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-beating-brine65",
+      "limits": "Eight actual Mac captures verify ordinary flat boot, earned SaltPan Continue3140 at31,13 HP38, one east step and uncovered Sand native reader, F53150/full process restart at32,13, then normal world-map travel to BrineLens17,13 at40,12 and F53210 HP38. Underfoot Sand retains the selected-owner fallback while the player covers it. PaleSalt quantity1 persists but still uses a glyph. This verifies a bounded material slice in two packaged area samples, not whole-Beating/full-scene acceptance. Props, services, residents, creatures, hazards, products, other biomes, interiors and underground remain incomplete. Existing shutdown notices persist. Final95 and earlier related225 have zero identity overlap:320 distinct cases,317 passed,3 inconclusive; the related suite predates the final road revision."
+    },
+    "restoration": {
+      "receipt": "Docs/Verification/Live16x24/packaged-beating-materials-restoration.json",
+      "tracked_objects_compared": 50177,
+      "foreign_dirty_files_preserved": 38,
+      "comparison": "baseline plus reviewed living-record updates; not all prebuild bytes unchanged",
+      "reviewed_generated_files_restored": 6,
+      "normal_saves_and_logical_preferences_restored": true,
+      "prior_sodden_packages_preserved": true,
+      "storage_cleanup_performed": false
+    }
   }
 }

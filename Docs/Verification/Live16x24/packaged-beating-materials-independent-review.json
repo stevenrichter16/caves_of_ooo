@@ -1,0 +1,92 @@
+{
+  "at_utc": "2026-10-27T07:36:37.267378+00:00",
+  "result": "passed",
+  "findings": [],
+  "source_commit": "2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_sha256": "09354fd2e13f73cd3e7cf7e33a12c63ac32dd988bb745902dc1fbc3bb12d87e7",
+  "archive_bytes": 128681400,
+  "members": 191,
+  "regular_files": 181,
+  "directories": 10,
+  "unpacked_file_bytes": 225171771,
+  "gzip_uncompressed_stream_bytes": 225484800,
+  "independent_member_stream_validation": true,
+  "gzip_eof_crc_isize_footer": true,
+  "gzip_in_memory_counters": {
+    "valid": "accepted",
+    "corrupt_crc": "rejected",
+    "truncated_footer": "rejected"
+  },
+  "internal_checksums": 180,
+  "accepted_builds": {
+    "linux": {
+      "job_id": "build-11e299a6c2",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T07:29:30.188896Z",
+      "duration_seconds": 21.215808,
+      "completed_at": "2026-10-27T07:29:51.404704Z",
+      "total_size_mb": 214.5,
+      "errors": 0,
+      "warnings": 0
+    },
+    "mac": {
+      "job_id": "build-11c5c0a35a",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-27-beating-materials-2e5a0ca4c-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T07:24:38.001081Z",
+      "duration_seconds": 40.005505,
+      "completed_at": "2026-10-27T07:25:18.006586Z",
+      "total_size_mb": 234.12,
+      "errors": 0,
+      "warnings": 5
+    }
+  },
+  "native_receipts": [
+    {
+      "path": "Docs/Verification/Live16x24/beating-materials-road34-green.xml",
+      "total": 95,
+      "passed": 95,
+      "failed": 0,
+      "inconclusive": 0,
+      "scope": "Final 34-frame Beating suite: all 95 passed, zero failed or inconclusive. Already recorded; this helper does not run tests."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/beating-materials-regressions.xml",
+      "total": 225,
+      "passed": 222,
+      "failed": 0,
+      "inconclusive": 3,
+      "scope": "Earlier related presentation regression receipt, recorded before the final road/dune correction: 222 passed, zero failed, three existing allocation probes inconclusive. This is retained evidence, not a new run after the final correction. Already recorded; this helper does not run tests."
+    }
+  ],
+  "native_distinct": {
+    "total": 320,
+    "passed": 317,
+    "inconclusive": 3,
+    "failed": 0
+  },
+  "mac_captures_all_eight_visually_reviewed": true,
+  "mac_evidence_limits": "Screenshots corroborate bounded root-recorded Continue, one-step move, save/reload, sand inspection and BrineLens travel. Underfoot sand remains glyph while player covers selected owner; uncovered sand uses native portrait. PaleSalt1 remains inventory glyph. Screenshots alone do not independently prove process control or complete journeys.",
+  "previous_archives_byte_verified": [
+    {
+      "slice": "sodden-travel",
+      "sha256": "4b5904f483870d473c2eef59bb9f33581019afffb40903341b5157cfc76c0e4b",
+      "bytes": 128693449
+    },
+    {
+      "slice": "sill-envelope",
+      "sha256": "6994a7ebbc92f6521a3ea1192c6cf72c32a22b24cf5b3dac64dbbec7f1a918dc",
+      "bytes": 128678885
+    }
+  ],
+  "checks_passed": 2217,
+  "no_game_or_linux_execution": true,
+  "no_deck_test": true,
+  "no_performance_certification": true,
+  "no_extraction_or_package_mutation": true,
+  "source_provenance_limit": "Frozen revision and build boundary are root operator assertions tied to exact successful build receipts, not independent reproducible-build proof."
+}

@@ -1,0 +1,13 @@
+# Beating package verification notes
+
+Runtime source: `2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc`, verified on origin/main before building. Normal `Assets/Scenes/Main/SampleScene.unity`, non-development player, LZ4 and detailed report. No source/runtime change during builds. Protected38 unrelated tracked files were present; this is a controlled dirty working tree with preservation receipts, not a clean-clone reproduction.
+
+Mac `build-11c5c0a35a`: succeeded40.006s,0errors,5warnings. Actual ordinary startup, Continue, walking, ground reader, F5, full-process restart, world travel and inventory were exercised; eight unchanged window captures and the earned final save are retained. See mac-play-summary for exact bounds. One additional Mac warning beyond the familiar four compile warnings was not classified before the next report replaced it; zero-warning compilation is not claimed.
+
+First Linux `build-500e66f755`: succeeded31.967s,0errors,4warnings, but root supplied the product directory name as the executable path. Packaging dry-run rejected that shape before writing anything. The original complete output is preserved in `Builds/SteamDeck/2026-10-27-beating-materials-2e5a0ca4c-current-raw-misnamed`; the original receipt is retained as `packaged-beating-materials-linux-misnamed-build.json`. It is not the deliverable archive. No source fix was needed.
+
+Corrected Linux `build-11e299a6c2`: succeeded21.216s,0errors,0warnings, exact expected `CavesOfOoo-current/CavesOfOoo.x86_64` path. The archive contains181 regular files/191 members and is128681400bytes, SHA256 `09354fd2e13f73cd3e7cf7e33a12c63ac32dd988bb745902dc1fbc3bb12d87e7`. Packaging verifies ELF format, every member hash/size/mode, all directories, exact internal checksums, credits/licenses and full gzip CRC/footer/EOF. Linux execution and physical Deck performance were not tested.
+
+Native evidence: final Beating95/95 passes plus earlier related225 cases (222passes,3inconclusive allocation positive controls). Fullname comparison shows zero overlap and320 distinct identities. The earlier regression predates the final road revision. No existing raw XML was rewritten; its whitespace and failure output remain evidence.
+
+The readonly preflight and successful restoration compare50177 tracked objects, preserve38 unrelated edits and the six reviewed living records, restore3 generated build-settings files and3 owned metadata whitespace changes, preserve all previous current builds/archive, restore normal save/preference state and archive owned test Saves. No cache or drive cleanup was performed. The standalone log retains existing shutdown thread-finalization/ComputeBuffer disposal notices; no gameplay exception was observed.

@@ -4,8 +4,10 @@ Current pass: six actual playable baselines and a native trial across all six
 areas were captured. Screenshot reinterpretation, editable source and the
 original 92-case native GREEN are complete. Actual gameplay rejected green road
 reuse and regular dune stripes. The 34-frame correction now passes 95 cases and
-actual gameplay/reload checks. Package refresh is next. This is a material and
-flora slice, not acceptance of the Beating or the whole world.
+actual gameplay/reload checks. Fresh Mac actual play and corrected Linux
+build/archive verification are complete for source `2e5a0ca4c`; release evidence
+is included in this delivery record. This is a material and flora slice, not acceptance
+of the Beating or the whole world.
 
 Graphics coverage across every biome remains the priority. Preserve existing
 animations and defer nuanced new motion. The Beating's intentional sparse
@@ -88,12 +90,13 @@ brine waves only after the corresponding native pool body is actually submitted.
 
 Native RED→GREEN, counterchecks, source inspection, six actual after views,
 world/reader/harvest continuity, save/restart, a rendering profile and independent
-source review passed within the bounds below. Fresh packaged verification is
-pending. The baseline shows many remaining creatures, residents, tents, wells,
-urns, containers and special owners. Those remain missing native families, along
-with settlements, underground/special sites and other biomes. Asset counts and
-six sampled screenshots do not complete a region. Current packaged builds remain
-the verified Sodden source `eafc02a22`.
+source review passed within the bounds below. Eight actual Mac package captures
+now verify the bounded delivery in SaltPan and BrineLens. The baseline shows many
+remaining creatures, residents, tents, wells, urns, containers, services and
+special owners. Those remain missing native families, along with settlements,
+underground/special sites and other biomes. Six Editor formation samples and two
+Mac area samples do not complete a region or whole-scene fullness. Current Beating
+packages use source `2e5a0ca4c`; previous Sodden packages remain preserved.
 
 ## First native trial and saved corrections — 2026-10-27 07:04 UTC
 
@@ -179,6 +182,70 @@ Self-review:
 - 🧪 Three existing allocation probes remain inconclusive.
 - ⚪ Products, props, actors and all other regions remain open.
 
-This is CoO-original material art, with no Qud-parity claim. Current packaged
-Sodden builds are preserved while fresh Beating packaging is prepared after
-the source push.
+This is CoO-original material art, with no Qud-parity claim. The final 95-case
+receipt and earlier 225-case related receipt have zero test-identity overlap:
+320 distinct cases, 317 passed and 3 inconclusive. The related receipt ran at
+06:57:59–06:58:20 UTC, before the final road/dune revision; the final 95 cases
+ran at 07:07 UTC. Do not describe all 320 as a post-revision run or the three
+inconclusive allocation probes as passes.
+
+
+## Packaged material delivery — 2026-10-27 07:33 UTC
+
+Pushed source `2e5a0ca4cb08d225cbf07b7db0bf28da53d264dc` built successfully for
+Mac in 40.005505 seconds with 0 errors / 5 warnings, and for the corrected Linux
+output in 21.215808 seconds with 0 errors / 0 warnings. The Linux archive contains
+181 regular files and 191 members, totals 128,681,400 bytes, and has SHA256
+`09354fd2e13f73cd3e7cf7e33a12c63ac32dd988bb745902dc1fbc3bb12d87e7`.
+File hashes, sizes and modes, directory modes, safe paths and the gzip footer
+were verified. This establishes archive integrity, not Linux execution or
+physical Steam Deck performance.
+
+Root operated the actual Mac standalone with ordinary controls, without injected
+state or item spawning. Eight captures record flat boot; Continue at SaltPan
+31,13 / turn 3140 / HP 38; an underfoot Sand reader that correctly retains the
+selected-owner fallback; a step east to 32,13 and the now-uncovered Sand native
+portrait; F5 at turn 3150; full quit/relaunch and Continue at 32,13 / HP 38;
+normal world-map travel two cells east and descent to BrineLens 17,13 at 40,12;
+and inventory with PaleSalt quantity 1 still using a glyph. F5 saved turn 3210
+with HP 38. The earned final checkpoint is
+`Verification/Live16x24/Fixtures/packaged-beating-brine65`.
+
+The package review confirms coherent sand, salt plates, brine basins and mineral
+bodies within these samples. Camps, wells, containers, services, plants, actors,
+hazards and other owners still expose missing native families. No generation
+density change or complete area/fullness acceptance follows from this delivery.
+The PaleSalt inventory gap is verified after harvest, Editor reload, packaged
+reload and travel; the product's existence does not make its graphics complete.
+
+Restoration compared 50,177 tracked objects to the baseline plus reviewed
+living-record changes. It restored exactly three build-serialization files and
+three owned metadata whitespace changes; all 38 foreign edits and the three
+changed living records were preserved. Normal Editor and standalone saves and
+logical preferences were restored, owned test saves archived, and both previous
+Sodden packages and the current Beating outputs preserved. This is not a claim
+that every prebuild byte stayed unchanged or that physical plist bytes match.
+No storage reclamation occurred. Known shutdown thread-finalization and
+ComputeBuffer disposal notices remain; no gameplay exception was observed in
+the retained log. Linux execution, physical Deck and sustained performance
+acceptance remain unverified.
+
+Receipts: `Verification/Live16x24/packaged-beating-materials-mac-play-summary.json`,
+`packaged-beating-materials-mac-build.json`,
+`packaged-beating-materials-linux-build.json`,
+`packaged-beating-materials-linux-archive.json`, and
+`packaged-beating-materials-restoration.json` in the same verification folder.
+`packaged-beating-materials-independent-review.md` records an independent archive
+integrity PASS and review of all eight original Mac captures, with the same
+bounded coverage and reader-parity limits. The source is on main; this release
+evidence is included in the delivery commit. Verify its remote ancestry on resume.
+
+Next is [the planned 17 harvest-product slice](GRAPHICS-HARVEST-PRODUCTS.md):
+eight new native sprites and nine immutable existing-frame reuses across world,
+inventory and examine. These new products are not authored, integrated or
+accepted yet. Use the earned PaleSalt baseline, then obtain the other real
+product views. Return directly to Grovelands, Overwrit and Stump native area
+kits, then remaining registered biomes, underground and special owners. Retain
+Beating/Sodden props, services, actors and whole-scene fullness in that queue;
+this bounded shared-item slice must not displace regional breadth. Nuanced
+animation remains deferred. Last actual hourly report: 07:24 UTC; next: 08:24 UTC.

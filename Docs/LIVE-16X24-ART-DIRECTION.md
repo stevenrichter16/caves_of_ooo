@@ -2881,26 +2881,54 @@ The Beating's ordinary surface materials now have 34 editable native frames.
 The workflow covered real greyboxes, two imagegen passes, original source art,
 integration and iteration in actual gameplay. Six formations were captured
 before implementation, during the first trial and after the final revision.
-Visual review rejected the green road reuse and regular dune stripes; both are
-fixed. The final native suite passed 95/95. Related regressions recorded 222
-passes, 3 inconclusive cases and 0 failures; these suites overlap.
+Visual review rejected green road reuse and regular dune stripes; both are
+fixed. The final native suite passed 95/95 at 07:07 UTC. The earlier related
+regression run at 06:57:59–06:58:20 UTC recorded 222 passes, 3 inconclusive
+cases and 0 failures. The two saved XML case-name sets have zero overlap:
+320 distinct cases, 317 passed and 3 inconclusive. The earlier regression run
+is not a post-road-revision rerun; inconclusive allocation probes remain unproven.
 
-Actual harvesting, movement into the cleared cell, inventory identity, F5 at
-turn 3140 and a fresh Continue were verified. Existing source, normal saves and
-all 38 unrelated tracked files were protected. No storage cleanup occurred.
-Detailed evidence is in `GRAPHICS-BEATING-MATERIALS.md` and
-`Verification/Live16x24/beating-final-play-summary.json`.
+Source `2e5a0ca4c` is pushed to main. Fresh Mac and corrected Linux builds
+succeeded with zero errors: Mac 40.006 seconds / 5 warnings; Linux 21.216
+seconds / 0 warnings. The Linux archive is 128,681,400 bytes with 181 files
+and 191 members, verified against its receipt. No Linux execution, physical
+Deck or sustained hardware-performance acceptance is claimed.
 
-Still open: Beating tents, wells, containers, residents, creatures, hazards and
-special owners; PaleSalt, Bone and SaltbriarSprig inventory products; Sodden
-plain water, props, actors and plants; and all remaining biome, special-site,
-interior and underground kits. This does not complete a biome or the whole world.
+Eight actual Mac screenshots verify ordinary flat boot, earned Continue at
+SaltPan 31,13 / turn 3140 / HP 38, walking east and the uncovered Sand native
+reader, F5 at turn 3150, full process quit/relaunch at 32,13, and normal
+world-map travel to BrineLens 17,13 at 40,12. F5 earned turn 3210 with HP 38.
+Underfoot Sand conservatively keeps a glyph while the player is the selected
+world owner. PaleSalt quantity 1 survives reload and travel but remains a glyph
+in inventory. Use the earned `Fixtures/packaged-beating-brine65` checkpoint for
+the next real baseline. Evidence is in `GRAPHICS-BEATING-MATERIALS.md` and
+`Verification/Live16x24/packaged-beating-materials-mac-play-summary.json`.
 
-Next: freeze and push the source, then verify fresh Mac and Linux packages.
-Continue with resource-item families used across biomes and remaining regional
-coverage. Nuanced animation remains deferred. Root owns Unity, which is outside
-Play with a clean SampleScene and null save-root override.
+Restoration compared 50,177 tracked objects against the snapshot plus reviewed
+living-record updates. Six reviewed generated files were restored; all 38
+unrelated edits, normal Editor/standalone saves and logical preferences, current
+deliverables and previous Sodden packages were preserved. Owned test saves were
+archived. No storage cleanup occurred. The exact comparison and limits are in
+`Verification/Live16x24/packaged-beating-materials-restoration.json`. Release
+evidence and these living-record changes are included in this delivery commit;
+verify its remote ancestry on resume.
 
-The last actual hourly report was at 06:25 UTC; the next is due at 07:25 UTC.
-This is a continuation record, not a sent hourly report. Current packaged source
-`eafc02a22` remains protected pending the refresh.
+Actual six Editor formations and two Mac area samples show partial material
+coherence, not complete scene fullness. Beating tents, wells, containers,
+services, residents, creatures, hazards and other owners remain unfinished.
+Sodden plain water, props, actors and plants remain open, along with all remaining
+biome, special-site, settlement/interior and underground kits. Quiet desert
+areas still require deliberate composition; this does not complete a biome.
+
+Next, follow [the planned harvest-product slice](GRAPHICS-HARVEST-PRODUCTS.md):
+17 exact products, eight new native sprites and nine immutable frame reuses,
+shared by world, inventory and examine across biomes. The new art and portable
+implementation are not authored or accepted. Start with the earned PaleSalt
+inventory baseline; other product captures remain pending. Then continue
+Grovelands, Overwrit and Stump area kits, followed by remaining registered biomes,
+underground and special owners. The product slice does not replace regional
+breadth or Beating/Sodden remaining-owner and fullness work. Nuanced animation
+remains deferred. Root owns Unity.
+
+The last actual hourly report was at 07:24 UTC; the next is due at 08:24 UTC.
+This continuation update does not itself count as another report.
