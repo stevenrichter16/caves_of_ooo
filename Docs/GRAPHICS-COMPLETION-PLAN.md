@@ -1,6 +1,6 @@
 # Graphics completion plan
 
-**Current next-three checkpoint —14:30UTC:** SummitSinger, BrocchiniaSentinel and SkySari use unchanged native sources in world/examine. Genuine RED19 preceded implementation; corrected focused19 and related266 all pass. Eleven actual Editor captures cover matching readers, Rim west/east walks, normal Summit travel, real Sentinel retreat onto its Tank, F5 and fresh Continue. Source push/fresh packages pending. Eight of nine identified Stump fauna bodies integrated and observed; MawToad, other world families and dedicated polish remain open. Last actual hourly report14:27UTC; next15:27UTC. The earlier baseline checkpoint below is historical.
+**Current delivery checkpoint —14:56UTC:** SummitSinger, BrocchiniaSentinel and SkySari are delivered from source `3bafb1ee3` with 285 current native passes, bounded Editor/Mac world-reader/travel/restart checks, and verified Linux archive (not executed). Eight of nine identified Stump fauna bodies are integrated/observed. MawToad is the next missing body; its actual Grainfield world/reader baseline is now saved. All-world coverage and serious area polish remain open. Last actual hourly report14:27UTC; next15:27UTC. Earlier checkpoints below are historical.
 
 **Current coverage checkpoint — 2026-10-27:** First-five Stump fauna source
 `0ddd8b6abf89a22275db7c09dde39bbb47392c03` and delivery
@@ -3243,3 +3243,10 @@ SummitSinger, BrocchiniaSentinel and SkySari use unchanged native sources in wor
 See `Docs/Verification/Live16x24/stump-canopy-after-receipt.json`, native XMLs, runtime/visual reviews and `Docs/GRAPHICS-STUMP-FAUNA.md`. Saved turn9040, HP29/40, player50,2 and Sentinel54,5 survived fresh Continue. Normal saves and preexisting work are preserved. No storage deletion.
 
 Next: Push the reviewed next-three source, verify fresh Mac/Linux delivery, then crisp MawToad and Grovelands creature coverage. Continue remaining regional/shared sprites, settlements, interiors, underground and special sites. Keep sparse composition and area polish separate; optional animation deferred. Last actual hourly report14:27UTC; next15:27UTC.
+
+
+### Stump next-three packaged delivery —2026-10-27 14:56UTC
+
+SummitSinger, BrocchiniaSentinel and SkySari are delivered from source `3bafb1ee3` with 285 current native passes, bounded Editor/Mac world-reader/travel/restart checks, and verified Linux archive (not executed). Eight of nine identified Stump fauna bodies are integrated/observed. MawToad is the next missing body; its actual Grainfield world/reader baseline is now saved. All-world coverage and serious area polish remain open. Both builds had zero errors/four warnings. The Linux archive is128,790,824bytes with independently verified contents/checksums. Mac saved/restarted world rectangle564,000pixels is identical. Normal saves/preferences, all50,825tracked files including44pre-existing dirty files and previous builds were restored/verified; test sessions archived, no storage deletion. See [Mac play receipt](Verification/Live16x24/packaged-stump-canopy-mac-play.json) and [independent review](Verification/Live16x24/packaged-stump-canopy-review.md).
+
+Complete crisp MawToad from its retained actual baseline and imagegen references, then Grovelands Shambler/Mosshulk/ChoirTendril and other uncovered regional/shared families. Optional animation remains deferred. No area-polish status advances. The actual next baseline is Grainfield24,0 MawToad HP22; fixture76turn9140player29/40. Broad sparse centers, subtle stone blockers, missing props/corpses and other regional families remain open.

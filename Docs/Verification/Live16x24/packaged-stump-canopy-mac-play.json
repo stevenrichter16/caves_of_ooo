@@ -1,0 +1,74 @@
+{
+  "at_utc": "2026-10-27T14:57:44.853529+00:00",
+  "runtime_source_commit": "3bafb1ee3445fdbf777a9ac3f51f831d407c4d0c",
+  "source_push_verified": true,
+  "mac_app": "Builds/Verification/2026-10-27-stump-canopy-3bafb1ee3-current/CavesOfOoo.app",
+  "first_process_pid": 97709,
+  "presentation": "Flat16x24",
+  "capture_dimensions": [
+    1280,
+    856
+  ],
+  "game_dimensions": [
+    1280,
+    800
+  ],
+  "starting_fixture": "Docs/Verification/Live16x24/Fixtures/stump-canopy-after74",
+  "actions": [
+    "Normal Continue in fresh packaged Mac: SummitScrub3,4 player50,2 HP29/40.",
+    "Look/examine Sentinel54,5 HP10 over actual Tank: correct native body and portrait. No turn passes reading.",
+    "Ordinary map travel Summit3,4 to Rim2,3, player40,12.",
+    "Look/examine SummitSinger25,13 HP8 and SkySari64,16 HP58: correct distinct native world/portrait identities.",
+    "F5 save turn9100 HP29/40; full process quit and exact-path fresh launch; ordinary Continue restores Rim."
+  ],
+  "earned_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-stump-canopy75",
+  "fixture_sha256": {
+    "Quick.sav.gz": "758a4023c5ad2301180c852d16249fbacdca924091f0ee18b69d66e32305c3a7",
+    "Quick.json": "865eb37371067b14d7e14ae77678b47c0a49875e23d4d8dd8e32b3172d94fc8f"
+  },
+  "captures": {
+    "packaged-stump-canopy-01-continue.jpg": "ca2c3b05f6590890ae96ada5e8cf8560888361c08dba23388de43afbe3937240",
+    "packaged-stump-canopy-02-sheltered-sentinel.jpg": "368a49add7897d10932cacfa2362bd544410a7aa79bf6c2ac997002c845a2649",
+    "packaged-stump-canopy-03-rim-travel.jpg": "96b21d437a6e46e6ecc8d6e698e3ba26028a23c7c9177d914eb1193e558917ce",
+    "packaged-stump-canopy-04-singer-reader.jpg": "c8268fd9a4c69bdbcf1c3332780467b3c1b5b523b8c1c0543ce23bb6a8664422",
+    "packaged-stump-canopy-05-sky-reader.jpg": "b15daeac1777a0e31131a37a51a289c2e387a48e0242c9a9baa61ab8c97fb02f",
+    "packaged-stump-canopy-06-saved.jpg": "7f345af77174c14d19fdd5e9565b9c4b9545a7eb254a32ffb702317c51cf5593",
+    "packaged-stump-canopy-07-restarted.jpg": "53618a50e894c834a8fbc6df392832d0bca8707f71917e11c9c7653393c568d5"
+  },
+  "saved_restart_world_comparison": {
+    "before": "packaged-stump-canopy-06-saved.jpg",
+    "after": "packaged-stump-canopy-07-restarted.jpg",
+    "decoded_rgb_rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "compared_pixels": 564000,
+    "changed_pixels": 0,
+    "scope": "world rectangle only; title bar, log and footer excluded"
+  },
+  "logs": {
+    "packaged-stump-canopy-Player.log": {
+      "bytes": 4053,
+      "sha256": "2aeb0d58551b0a21d6a46d99e3a9e95395ad57f8644fb0600bd884b4bcd3ec27"
+    },
+    "packaged-stump-canopy-Player-prev.log": {
+      "bytes": 4112,
+      "sha256": "9ab7ed002574b08a26531a1a127a04d24855322b17af79c0080e8002173ed66e"
+    }
+  },
+  "log_review": "No Exception/Error/Warning/NullReference/Failed/fatal case-sensitive matches in either retained Player log; not proof of every possible failure.",
+  "native_evidence": "19 focused plus266 disjoint related native passes,285distinct. Not rerun during packaging.",
+  "archive_receipt": "Docs/Verification/Live16x24/packaged-stump-canopy-linux-archive.json",
+  "restoration_receipt": "Docs/Verification/Live16x24/packaged-stump-canopy-restoration.json",
+  "independent_review": "Docs/Verification/Live16x24/packaged-stump-canopy-review.md",
+  "limits": [
+    "No new actual damage/Wet/death test: native regression only for those states.",
+    "No runtime owner-ID query into standalone; positions/HP/labels observed through actual UI.",
+    "No Linux execution or physical Steam Deck play.",
+    "No comparative sustained-performance acceptance.",
+    "No whole-area polish or complete Stump/world coverage.",
+    "Later restart session traveled to Grainfield2,2 for separate MawToad baseline76; not counted as new native species coverage."
+  ]
+}
