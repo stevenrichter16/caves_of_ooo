@@ -1,6 +1,6 @@
 # East steam-mark audit — read-only, 2026-10-27
 
-Status: native211/211 and actual Editor before/after/play accepted for this scoped steam cue. Fresh packages remain pending. Initial audit used read-only inspection. Root owns capture, imagegen, implementation and ordinary play. This plan follows CLAUDE and the live brief's capture → reinterpret → editable native source → integration → play/counter-check loop.
+Status: native211/211 and actual Editor before/after/play accepted for this scoped steam cue. Fresh compressed Mac/Linux packages completed; actual Mac restart verified. Initial audit used read-only inspection. Root owns capture, imagegen, implementation and ordinary play. This plan follows CLAUDE and the live brief's capture → reinterpret → editable native source → integration → play/counter-check loop.
 
 ## Correct the named defect before authoring
 
@@ -156,3 +156,27 @@ change needed. 🔵 approved neutral grate and all higher-priority states preser
 🧪 Linux execution/physical Deck and whole-opening motion acceptance remain open.
 Next: main source push, compressed Mac/Linux delivery and actual Mac Continue.
 Then North Patchbearer encounter motion/readability, preserving its medicine idles.
+
+### Packaged steam delivery — 2026-10-27 01:52 UTC
+
+Runtime source`be1c52ca375bab35c202eb976a04449e8ef72991` is verified on
+origin/main. Fresh compressed Mac and Linux builds each report0errors4warnings.
+Linux archive181files,128688319bytes, SHA
+`d27fbe7aef2e5e5dec524902966c4741c5909caffd897585ff2a972da48d3675`;
+all payload hashes/sizes/modes and credits independently checked.
+
+Six accepted actual Mac captures show ordinaryContinue3540,default/2×world,
+a neighboring grass counter,exact vent29,7reader,wait/save3550 and full
+quit/relaunch/Continue. An off-screen window capture was rejected and redone
+after native Zoom; no screenshot was repainted or cropped. Known ComputeBuffer
+shutdown notice persists. Linuxexecution/Deck and full scene/motion/performance
+acceptance are unverified. Evidence:`packaged-east-steam-mac-play-summary.json`,
+`packaged-east-steam-independent-review.json`,`packaged-east-steam-restoration.json`
+under`Docs/Verification/Live16x24`. Normal saves/gameplay preferences,34foreign
+tracked files and prior build/archive match protection; test saves archived,
+reviewed Unity build serialization restored. No storage cleanup.
+
+Next: ordinary pre-fight North capture and Patchbearer encounter motion/readability
+according to`Docs/GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md`. Current steam is stable.
+Last hourly report01:25UTC; this delivery is a visible milestone, not a duplicate
+hourly report. Keep the continuation active.

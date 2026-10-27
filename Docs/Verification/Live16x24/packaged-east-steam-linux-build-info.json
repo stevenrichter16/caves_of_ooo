@@ -1,0 +1,68 @@
+{
+  "created_at_utc": "2026-10-27T01:45:41.065981+00:00",
+  "runtime_source_commit": "be1c52ca375bab35c202eb976a04449e8ef72991",
+  "package_flavor": "east-steam",
+  "build_folder_date": "2026-10-27",
+  "slice_description": "One original native 16x24 live steam tile-state cue in the exact admitted East surface graph, selected only after higher-priority marks. Existing neutral vent artwork, actor selection, readers, visibility and cloud mechanics remain intact. Other regions and missing artwork retain the prior glyph. No gameplay, stock, save, topology, other regional cloud or performance change is claimed.",
+  "source_provenance": "Frozen build-source revision supplied and remotely verified by the root build operator; this delegated helper pins that asserted SHA and verifies the matching successful output receipt. It does not query Git or independently prove source-to-binary reproducibility.",
+  "unity": "6000.3.4f1",
+  "platform": "Linux x86_64",
+  "scripting_backend": "Mono",
+  "graphics_api_configuration": "Vulkan",
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "development": false,
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "build_report": {
+    "job_id": "build-76b6d8c082",
+    "result": "succeeded",
+    "platform": "StandaloneLinux64",
+    "output_path": "Builds/SteamDeck/2026-10-27-east-steam-be1c52ca3-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "started_at": "2026-10-27T01:43:37.841657Z",
+    "duration_seconds": 26.391966999999998,
+    "completed_at": "2026-10-27T01:44:04.233624Z",
+    "total_size_mb": 214.49,
+    "errors": 0,
+    "warnings": 4
+  },
+  "build_generated_settings": "Unity may serialize URP prefilters/runtime settings, InputSystem preload and Standalone settings. The root build audit must review and restore only generated differences; packaging does not perform that restoration.",
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "linux_build": "Successful receipt with zero reported errors; warnings retained in build_report.",
+    "native_test_results": "Existing east-steam-green.xml records 211/211 passed with zero failed/skipped/inconclusive; this helper validates that receipt but does not run tests or prove executable behavior.",
+    "native_test_receipts": [
+      {
+        "path": "Docs/Verification/Live16x24/east-steam-green.xml",
+        "sha256": "201cb7558a35073ae60e2af27c582ecc4e88472a314b9db917ad8597108b2e69",
+        "mode": "EditMode",
+        "summary": {
+          "id": "2",
+          "testcasecount": "211",
+          "result": "Passed",
+          "total": "211",
+          "passed": "211",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-27 01:34:23Z",
+          "end-time": "2026-10-27 01:34:40Z",
+          "duration": "17.0009483"
+        },
+        "scope": "211 native East steam, adversarial, cloud, ground and neighboring presentation regression cases. Previously recorded native Unity EditMode run; not tests executed by this packaging helper."
+      }
+    ],
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate fresh standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "No performance or target-device benchmark claimed."
+  },
+  "coverage_limits": [
+    "Native kits cover named opening owners and connected sites, not all objects, states or biomes.",
+    "Unknown artwork retains truthful glyphs/colors on the flat grid.",
+    "Build completion and archive integrity do not certify Linux execution, physical controls, full journeys or device performance."
+  ]
+}

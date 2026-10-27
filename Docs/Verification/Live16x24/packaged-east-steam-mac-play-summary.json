@@ -1,0 +1,73 @@
+{
+  "recorded_at_utc": "2026-10-27T01:51:43.065042+00:00",
+  "source_commit": "be1c52ca375bab35c202eb976a04449e8ef72991",
+  "platform": "Actual macOS standalone Unity6000.3.4f1",
+  "build_receipt": "packaged-east-steam-mac-build.json",
+  "capture_provenance": "Six original CUA JPEGs1280x856,56px title chrome+1280x800 game. No cropping,repainting,compositing or image generation. One incomplete off-screen window capture rejected; native window Zoom brought it fully onscreen for capture06.",
+  "input": "Ordinary Continue from unchanged earned3540 fixture, PageUp once, Look and Examine, wait,F5,full process quit/relaunch/Continue; no teleport,reveal,grant,presentation override or simulation writes.",
+  "initial_fixture": "Docs/Verification/Live16x24/Fixtures/east-steam-after64",
+  "final_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-east-steam-return64",
+  "final_save_sha256": "cdaca4cb24e15c01d0cf1e9c7622b61328c0c1ee158c732c47f8e3321fc2cb45",
+  "final_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "7149edb751014f1c8ef55c71dd7d5548",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.12.10.0",
+    "ActiveZoneDisplayLabel": "Overworld.12.10.0",
+    "Turn": 3550,
+    "SaveTimestampUtc": "2026-10-27T01:46:11.6793850Z",
+    "HPSummary": "28/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-east-steam-01-continue.jpg",
+      "bytes": 166177,
+      "sha256": "ce1d22289f33363eda370139c57303e87e07874ea409899ff76912bbb6f1bcf1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-east-steam-02-zoomed.jpg",
+      "bytes": 162629,
+      "sha256": "7d6274ac74c1e5ea8e5ffa34099401fd4858b1324190028c7dc26f6b9a9d79e4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-east-steam-03-neighbor-grass-control.jpg",
+      "bytes": 189554,
+      "sha256": "7f1eb2b7e5c86f05bca02cf12abd21ad15ed9a83030888e8b5ef33fd4172eea4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-east-steam-04-vent-reader.jpg",
+      "bytes": 208492,
+      "sha256": "666a18dc59e6d9a962e2e19b4255680a6cfcd3331f3e0afea5d346e2b9f54503"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-east-steam-05-saved.jpg",
+      "bytes": 157501,
+      "sha256": "fb1ccb74074f5eed75f60b97c78eb33d30961d1a8c7f7b2cf7d0e8ae619174db"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-east-steam-06-restarted.jpg",
+      "bytes": 159799,
+      "sha256": "a51366a7038428c914f31ab1da58f9198e67c62ff452ed491ad4d94af99291f0"
+    }
+  ],
+  "actions": [
+    "01CContinue3540East28,6HP28/40 default native view",
+    "02onePageUp:2x integer scale and five live steam wisps",
+    "03neighboring grass28,7 Examine correctly lacks steam; captured after first Look direction was missed",
+    "04Right to29,7 in Look; exact SteamVent reader retains approved grille portrait and steam1turn",
+    "05Escape twice; ordinary wait advances3550;F5saved",
+    "06fullquit/processabsence/relaunch/Continue retains scene,HPandwisps;window brought onscreen before accepted capture"
+  ],
+  "can_verify": "Actual Mac default presentation,live steam cues,adjacent non-steam counter,exact vent reader,ordinary renewal,F5/fullrestart/Continue.211native tests are separate.",
+  "cannot_verify": "Linuxexecution,physicalDeck,whole-opening release,all regional/states coverage or sustained player hardware frame budget.",
+  "logs": "First and restart logs retain known ComputeBuffer-disposal shutdown notice; no clean-shutdown claim.",
+  "build_options": [
+    "compress_lz4",
+    "detailed_report"
+  ]
+}

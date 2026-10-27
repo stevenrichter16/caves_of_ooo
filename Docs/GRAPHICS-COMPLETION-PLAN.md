@@ -1,13 +1,14 @@
 # Graphics completion plan
 
-Current status, 2026-10-27 01:04 UTC: East cudgels now share native wood art
-across world, inventory and Examine. Source0545aa9a2 is delivered in fresh Mac
-and Linux packages; actual Mac pickup/save/full restart passed.177 native cases
-and source checks pass. The six connected scenes remain under polish; the whole
-opening release and remaining regions are unfinished. Next is the confirmed legacy steam tile-cloud
-mark above East's already-native vent grates. See
-[Cudgel delivery](GRAPHICS-EAST-CUDGEL.md). Physical Deck/Linux execution and
-sustained hardware performance remain unverified. Saves/preferences,34foreign
+Current status, 2026-10-27 01:52 UTC: native East steam cues are delivered
+in source`be1c52ca3` and fresh compressed Mac/Linux packages.211native tests,
+actual Editor ordinary play and Mac Continue/reader/wait/full restart passed.
+Connected copper, kitchen brine and cudgel corrections remain included.
+Next is North Patchbearer encounter motion/readability, preserving its approved
+medicine-state idles. See[steam delivery](GRAPHICS-EAST-STEAM-PLAN.md) and
+[North plan](GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md). The whole six-scene
+opening, remaining regions, Linux execution, physical Deck and sustained
+hardware performance remain unverified. Saves/gameplay preferences,34foreign
 edits and previous packages preserved; storage inspection-only.
 
 Hourly report checkpoint:2026-10-27 01:25UTC. Continue itemized results and
