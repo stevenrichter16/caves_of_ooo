@@ -1,0 +1,57 @@
+{
+  "at_utc": "2026-10-27T18:02:56.174450+00:00",
+  "environment": "Actual current Mac package, ordinary controls",
+  "runtime_source_commit": "1ae80a3555e13ce77ff440a6054b732f00888dca",
+  "capture_dimensions": [
+    1280,
+    856
+  ],
+  "game_dimensions": [
+    1280,
+    800
+  ],
+  "baseline_only": true,
+  "start": "Continued from packaged-shallow-caves86 at42,12HP33 depth2; three ordinary Left commands to real down-stair39,12, then >",
+  "entry": {
+    "zone": "Overworld.16.13.3",
+    "cell": [
+      39,
+      12
+    ],
+    "hp": 33,
+    "surface_column": "Wind Barrens16,13",
+    "visible_material": "limestone floor, glyph fallback",
+    "screenshot": "deeper-strata-before-01-limestone-entry.jpg"
+  },
+  "save": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.16.13.3",
+    "ActiveZoneDisplayLabel": "Overworld.16.13.3",
+    "Turn": 11990,
+    "SaveTimestampUtc": "2026-10-27T18:00:47.3349980Z",
+    "HPSummary": "33/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "fixture_sha256": {
+    "Quick.sav.gz": "c02c5f1c1b3a8bf3b8808dc13810b1579ff0fcca3c63c33ac559034b6ab01ff1",
+    "Quick.json": "10c5c9d09028585c80c415c43b98319e4cd7d40fd21b3ed5ccc9f042ad981b8c"
+  },
+  "return": "Normal < returned to sandstone depth2; captured deeper-strata-before-02-sandstone-return.jpg",
+  "captures": {
+    "deeper-strata-before-02-sandstone-return.jpg": "a400058f3cb6ae4786b9024830c9ce70cc4663c3c6533c89205b051b7c7782fc",
+    "deeper-strata-before-01-limestone-entry.jpg": "0e6b111c0a3c973278dce4bf0344105612789af46f54de577ebd7f71ae9e0118"
+  },
+  "limits": [
+    "No native limestone/shale implementation or acceptance.",
+    "Entry viewport and stair return only; no whole-chunk or roomed-status audit.",
+    "No new runtime simulation or renderer query in standalone.",
+    "No deeper depth4/5 observation yet.",
+    "Health/inventory/AI/world state unchanged except normal movement, turns and saved progression."
+  ]
+}

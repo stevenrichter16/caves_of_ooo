@@ -1,6 +1,6 @@
 # Worldwide native sprite coverage
 
-**Current shallow-cave checkpoint — 2026-10-27 17:53 UTC:** The six-owner shallow-cave foundation has395 distinct current native passes and bounded Editor verification in two ordinary columns: the accidental pit-like backing is fixed; readers, real wall destruction into Rubble, movement onto it, surface/depth1 and depth1/depth2 roundtrips, and fresh Continue at both earned checkpoints were observed. Final fixture85 restores Overworld.16.13.2 at40,12,HP33; the adjacent down-stair menu and native reader are verified. Source commit/push and new packages remain pending; current delivery remains Grovelands source4dbdc9be9/evidence83b455e41. Whole-cave, biome, chunk-fullness and serious polish acceptance remain open. Last actual hourly report17:27:22UTC; next18:27:22UTC.
+**Current shallow-cave delivery checkpoint — 2026-10-27:** The bounded shallow-cave foundation is now delivered from source1ae80a3555e13ce77ff440a6054b732f00888dca, verified on origin/main by root.395 distinct native passes, actual Editor material/state/travel/restarts and seven fresh Mac package captures support the finite six-owner kit. Mac ordinary down-reader,depth1 return/depth2 reentry,F5turn11950 and full-process fresh Continue at42,12,HP33 passed; the Linux archive independently passed integrity review without execution. Restoration preserved the snapshot,normal saves/preferences and prior builds. Delivery-evidence commit remains pending. Limestone depth3 is an actual uncovered baseline only; whole-area polish and remaining world coverage remain open. Last actual hourly report17:27:22UTC; next18:27:22UTC.
 
 **Historical delivered checkpoint — 2026-10-27:** Grovelands Shambler, Mosshulk and living merchant ChoirTendril are delivered from source4dbdc9be9 verified on origin/main: 407 retained distinct native passes, bounded Editor intent/trade/restart and nine actual Mac views covering bodies/readers, restored services, Fen-to-Grove travel and full-process restart. Both fresh builds have0errors/4warnings; Linux archive independently verified, not executed. All-world coverage and separate area polish remain open. Next: actual ordinary shallow-cave baseline for six material/travel owners; source preflight only so far. Last actual hourly report16:27:02UTC; next17:27:02UTC. Earlier checkpoints below are historical.
 
@@ -1561,3 +1561,41 @@ Next: Review and push the bounded cave source/evidence, then build and verify fr
 
 All55+5 polish states remain unchanged. Last actual hourly17:27:22UTC and next
 18:27:22UTC remain unchanged; no extra hourly report or cleanup occurred.
+
+## Continuation — 2026-10-27: shallow-cave package delivered, limestone baseline open
+
+The bounded shallow-cave foundation is now delivered from source1ae80a3555e13ce77ff440a6054b732f00888dca, verified on origin/main by root.395 distinct native passes, actual Editor material/state/travel/restarts and seven fresh Mac package captures support the finite six-owner kit. Mac ordinary down-reader,depth1 return/depth2 reentry,F5turn11950 and full-process fresh Continue at42,12,HP33 passed; the Linux archive independently passed integrity review without execution. Restoration preserved the snapshot,normal saves/preferences and prior builds. Delivery-evidence commit remains pending. Limestone depth3 is an actual uncovered baseline only; whole-area polish and remaining world coverage remain open.
+
+Both fresh source-bound builds succeeded with0errors/4warnings each: Mac
+65.794023s,344.38MB; Linux77.111269s,324.84MB. The Linux archive is128,797,392bytes,
+189files/13directories/202members,SHA256
+`da967f63f6ce3980aa4e9453978a4c87c106b24efb86dc45c9394b8e9cd7de05`.
+The independent package review and retained receipts cover integrity separately
+from actual Mac controls. No Linux or physical Steam Deck execution is claimed.
+
+Mac ordinary Continue85 restores depth2,HP33; down-stair reader and normal
+up/down return are verified. Right held150ms moved two cells to42,12,then
+F5turn11950 preserved fixture86. PID34272 fully quit before fresh34541 restored
+42,12,HP33. Saved05/restarted07 share the same image hash; root's separately
+recorded process/control evidence supplies the restart claim. Their decoded
+world rectangle[0,96,940,696] has0/564,000changed RGBpixels. Inherited combat log
+is not new package combat. The two retained logs contain5/6 thread-finalization
+notices respectively plus one ComputeBuffer-disposal notice each; no clean-log
+or new-regression attribution is invented.
+
+Restoration at18:04:02UTC verified all51,086 snapshot objects,46 preserved dirty
+tracked paths,normal saves/preferences and prior builds/archive. Four generated
+files were backed up and restored; isolated test saves were archived. No caches
+were deleted;415,445,479,424free bytes were reported. The prior Grovelands package
+and its history remain retained.395 native passes were not rerun for packaging.
+
+Additional ordinary package travel reached limestone16.13.3 at39,12,HP33,
+F5turn11990 fixture87,then returned to sandstone depth2. That new BEFORE viewport
+and subsequent Editor owner census are uncovered-baseline evidence only. The
+[new limestone phase](GRAPHICS-LIMESTONE-CAVES.md) targets exact floor/wall depths
+3–4 with shared scenery as candidates; it retains landmark,hazard,actor,container
+and room-prop gaps. No new limestone native/runtime/test or area acceptance is
+claimed. Next: Push exact delivery evidence, then continue the limestone3–4 phase from actual fixture87 with closer Editor views/source-corrected owner semantics before imagegen/native production and genuine RED. Shared rubble/stalagmite/stairs are candidates, not accepted deeper coverage. Continue shale/deeper bands and separate actors,hazards,containers,room props/specialsites; finish broad world coverage before the required serious biome/area polish. Optional nuanced animation remains deferred.
+
+All55+5 polish statuses and actual hourly17:27:22UTC→18:27:22UTC are unchanged.
+The later exact delivery-evidence commit is pending root push.

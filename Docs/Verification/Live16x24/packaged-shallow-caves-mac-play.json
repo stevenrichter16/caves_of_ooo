@@ -1,0 +1,99 @@
+{
+  "at_utc": "2026-10-27T18:02:19.672074+00:00",
+  "runtime_source_commit": "1ae80a3555e13ce77ff440a6054b732f00888dca",
+  "source_push_verified": true,
+  "mac_app": "Builds/Verification/2026-10-27-shallow-caves-1ae80a355-current/CavesOfOoo.app",
+  "first_process_pid": 34272,
+  "restart_process_pid": 34541,
+  "old_process_absent_after_full_quit": true,
+  "both_owned_processes_closed": true,
+  "presentation": "Flat16x24 default; no presentation preference introduced",
+  "capture_dimensions": [
+    1280,
+    856
+  ],
+  "game_dimensions": [
+    1280,
+    800
+  ],
+  "starting_fixture": "Fixtures/shallow-caves-depth2-85",
+  "actions": [
+    "Ordinary Continue restores depth2 player40,12 HP33.",
+    "Normal Look/action-menu/examine down stair39,12 shows shared native portrait.",
+    "Normal < returns depth1 at40,12 and > reenters depth2.",
+    "Held Right150ms moved two cells to42,12; F5 saved turn11950HP33. Separate F5 confirmed Game saved message.",
+    "Full quit PID34272 absent; exactappfreshPID34541 normalContinue restores42,12HP33.",
+    "Additional next-gap baseline: three Left commands to39,12, ordinary > reaches limestone Overworld16.13.3 at39,12HP33. F5 preserves fixture87 turn11990. Normal < returns to sandstone depth2."
+  ],
+  "earned_fixture": "Fixtures/packaged-shallow-caves86",
+  "saved_turn": 11950,
+  "player_cell": [
+    42,
+    12
+  ],
+  "player_hp": 33,
+  "captures": {
+    "packaged-shallow-caves-01-depth2.jpg": "d3dae94350f69e6b13e61eca06cf4edbe1cbfcd4006c53e61346e7fc43eae04c",
+    "packaged-shallow-caves-02-down-reader.jpg": "aad492d15b459a4056ddd3fe15f1806bb8e3d5d2a49fbfc573b29a5d8937c74a",
+    "packaged-shallow-caves-03-return-depth1.jpg": "d8d9c8423fa3de20fd056092a4932fe4f583edddfeb240a5ee9a0f0df4dd1f9a",
+    "packaged-shallow-caves-04-reentry-depth2.jpg": "97823f8e8036721cf8176cd271ba98df620d75ea9ea074b65d86427151fb0511",
+    "packaged-shallow-caves-05-saved.jpg": "55d1f70932a6acd1ffa8f8566b7b85f19daa15f2b1ad70c46f26b16f87a31f8a",
+    "packaged-shallow-caves-06-f5-confirmed.jpg": "ef65b825986e08d324b9cd6b5f4f5e967ad5eb632fb3fb47c6f4ad4d6f3181e2",
+    "packaged-shallow-caves-07-fresh-restart.jpg": "55d1f70932a6acd1ffa8f8566b7b85f19daa15f2b1ad70c46f26b16f87a31f8a"
+  },
+  "fixture_sha256": {
+    "Quick.sav.gz": "9d79682101935e50357efad72fa4eb132bbb9163e59410ff322f335faaa170e9",
+    "Quick.json": "a2646f2bec229d592b0445f1dde672ce8ec8800119327c52529c1b02e5aa11e6"
+  },
+  "saved_restart_world_comparison": {
+    "decoded_rgb_rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "compared_pixels": 564000,
+    "changed_pixels": 0,
+    "scope": "worldrectangleonly; header/sidebar/log/footer excluded"
+  },
+  "native_evidence": "56focused+339disjointrelated=395passed; notrerunduringpackaging",
+  "archive_receipt": "packaged-shallow-caves-linux-archive.json",
+  "restoration_receipt": "packaged-shallow-caves-restoration.json",
+  "logs": {
+    "packaged-shallow-caves-Player.log": {
+      "bytes": 3955,
+      "sha256": "20e3358a2c728551ae4c56f064a4f7cb513273f405b86c423de6eccfd39d2806"
+    },
+    "packaged-shallow-caves-Player-prev.log": {
+      "bytes": 4067,
+      "sha256": "5d31eb72cfbe2b8f426bf50a8aae6dec96cb2059887ff3a6617c0724fb6129b4"
+    }
+  },
+  "log_review": {
+    "packaged-shallow-caves-Player.log": [
+      "Thread 0x16cbaf000 may have been prematurely finalized",
+      "Thread 0x16b8cb000 may have been prematurely finalized",
+      "Thread 0x16b9e3000 may have been prematurely finalized",
+      "Thread 0x16ba6f000 may have been prematurely finalized",
+      "Thread 0x16b957000 may have been prematurely finalized",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ],
+    "packaged-shallow-caves-Player-prev.log": [
+      "Thread 0x16eb57000 may have been prematurely finalized",
+      "Thread 0x16d8ff000 may have been prematurely finalized",
+      "Thread 0x16daa3000 may have been prematurely finalized",
+      "Thread 0x16db2f000 may have been prematurely finalized",
+      "Thread 0x16da17000 may have been prematurely finalized",
+      "Thread 0x16d98b000 may have been prematurely finalized",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ]
+  },
+  "limits": [
+    "No packaged destruction/combat/hazard application trial; Editor evidence retained separately.",
+    "Inherited combat log is not new packaged combat.",
+    "No standalone script owner-ID query; actualUI labels/cells/health plus save metadata.",
+    "No Linux or physicalDeck execution, sustainedFPS or whole-area polish acceptance.",
+    "Mac/Editor captures are separate environments; no pixel-identical color claim between environments.",
+    "Limestone remains fallback; two next-gap baselineimages do not accept deeper coverage."
+  ]
+}

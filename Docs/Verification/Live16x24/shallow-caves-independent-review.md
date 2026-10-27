@@ -1,11 +1,12 @@
 # Shallow-cave foundation — bounded source and native review
 
-Current checkpoint: 2026-10-27 17:53 UTC. **395 distinct current native passes
-and a bounded Editor material/readability/state/travel checkpoint, including
-fresh depth1 and depth2 Continue, are verified.** Source commit/push and new
-packages remain pending. This is not whole-cave, whole-underground or serious
-visual-polish acceptance. Earlier checkpoints below are retained historical
-findings; the latest actual addendum supersedes their then-pending outcomes.
+Current checkpoint: 2026-10-27. **395 distinct native passes, bounded Editor
+material/state/travel/restarts, fresh Mac readers/stair travel/save/full-process
+restart and independently reviewed Linux archive integrity are verified for
+source1ae80a3555e13ce77ff440a6054b732f00888dca on main.** The later delivery-evidence
+commit is pending. No Linux/Deck execution or whole-area polish is accepted.
+Earlier checkpoints are retained historical findings; the latest delivery
+addendum supersedes their then-pending outcomes.
 
 ## Reviewer roles and independence
 
@@ -294,3 +295,35 @@ finished; finalPlayfalse/rootnull/clean scene was confirmed. No broader preferen
 identity is inferred.395 native passes remain unchanged; source commit/push,
 new packages, Linux execution and physical Deck verification remain pending.
 All55+5 polish states and17:27:22/18:27:22 hourly clocks remain unchanged.
+
+
+## Bounded package delivery and next uncovered baseline
+
+Root's `packaged-shallow-caves-mac-play.json` records seven actual Mac views,
+source1ae80a3555e13ce77ff440a6054b732f00888dca,ordinary down-stair reader,depth1
+return/depth2 reentry,Right-held movement to42,12,F5turn11950 and full-process
+quit34272/fresh34541 Continue at42,12,HP33. The ledger reviewer directly viewed
+reader02 and restart07, checked all seven saved image hashes and fixture86
+hashes, and read the receipts; it did not operate the player. Saved05/restart07
+have identical JPEG hashes and0/564,000decoded world pixels changed; process
+restart is established by root's separate recorded controls, not file identity.
+No new packaged combat/destruction/hazard application is claimed. Logs retain
+5/6 thread-finalization notices plus a ComputeBuffer notice in each process.
+
+The source-bound Mac/Linux builds have0errors/4warnings each. Linux integrity
+passed the separate independent review: Docs/Verification/Live16x24/packaged-shallow-caves-review.md.
+Archive128,797,392bytes,189files/13directories/202members,SHA256
+`da967f63f6ce3980aa4e9453978a4c87c106b24efb86dc45c9394b8e9cd7de05`.
+This ledger reviewer read the archive receipt and independent result; it did not
+rerun the packager/archive audit or execute Linux.395 native passes are retained,
+not rerun during packaging. Restoration receipt confirms51,086 snapshot objects,
+46 preserved dirty paths,normal saves/preferences,prior builds and four backed-up
+restored generated files. No cache cleanup occurred.
+
+Additional ordinary package continuation yielded the separate limestone BEFORE
+entry/return and fixture87,depth3/39,12/HP33/turn11990. The ledger reviewer viewed
+that entry and read its metadata. It remains fallback coverage, not an accepted
+native deeper scene. The new limestone plan preserves current exact semantics
+and requires closer real captures,concept/native art,genuine RED and later
+verification. All55+5 polish states and17:27:22/18:27:22 hourly clocks remain
+unchanged; source is on main but the later delivery-evidence commit is pending.

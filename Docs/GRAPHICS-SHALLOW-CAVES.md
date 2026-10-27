@@ -1,15 +1,17 @@
 # Ordinary shallow caves — materials, obstacles and return routes
 
-2026-10-27. **The corrected backdrop and six-owner cave integration now have
-bounded ordinary Editor evidence: matched entry, readers, surface return,
-real wall destruction/wreckage, two cave columns, depth2 round trip and fresh
-Continue.** The unchanged native total is 395 distinct passes: 56 focused +
-339 rerun related cases, zero failures/skips/inconclusive. The final earned
-fixture85 is depth2 at turn11910 with HP33; a fresh isolated Continue restores
-that state. Root's final protection check passed for both normal save locations
-and all44 unrelated tracked baseline paths. Isolated Play is finished and the
-scene is clean; current-source packaging remains pending. This does not accept whole-cave
-polish or all underground coverage.
+2026-10-27. **The ordinary depth1/2 six-owner foundation and ambient-backdrop
+correction are delivered from runtime source
+`1ae80a3555e13ce77ff440a6054b732f00888dca`, verified remotely by root.**
+The unchanged native total is 395 distinct passes (56 focused + 339 related,
+zero failures/skips/inconclusive). Bounded Editor travel, destruction/readers
+and restart are retained; fresh Mac and Linux builds succeeded, and the Mac
+package passed ordinary stair/read/save/full-process-Continue checks.
+The Linux archive passed independent integrity verification without execution.
+Final build/smoke restoration passed; prior builds, normal saves/preferences
+and unrelated work remain preserved. See §13 for exact delivery paths,
+shutdown warnings and limits. Whole-cave polish, deeper native coverage,
+Linux gameplay and physical Steam Deck acceptance remain open.
 
 The first actual AFTER exposed a release-blocking presentation
 defect: black backgrounds behind empty cells and transparent rubble read as
@@ -732,6 +734,120 @@ and area-polish pass remains open. Do not add arbitrary filler to inflate
 apparent density or count dark fog as empty generated terrain.
 
 Native evidence remains **395 distinct passes**, unchanged by this replay.
-Root's final protection check is complete; source publication and fresh
-Mac/Linux package work remain pending. The final visual review is separate, and no
+At this Editor checkpoint root's protection check was complete while source
+publication and fresh Mac/Linux package work remained pending; §13 records
+their later delivery. The final visual review is separate, and no
 Steam Deck/performance or completed-underground claim is promoted.
+
+## 13. Published source and fresh packaged delivery — 18:04UTC checkpoint
+
+Root pushed and remotely verified runtime source
+`1ae80a3555e13ce77ff440a6054b732f00888dca`. Source freeze was recorded at
+17:55:55UTC. The retained [Mac build report](Verification/Live16x24/packaged-shallow-caves-mac-build.json)
+and [Linux build report](Verification/Live16x24/packaged-shallow-caves-linux-build.json)
+both bind to that source and start after the freeze. Mac completed in
+65.794 seconds and Linux in 77.111 seconds, each with **0 errors and 4 warnings**.
+These build results do not erase the separate runtime warnings below.
+
+Fresh outputs, preserving previous deliveries:
+
+- Mac: [CavesOfOoo.app](../Builds/Verification/2026-10-27-shallow-caves-1ae80a355-current/CavesOfOoo.app).
+- Steam Deck/Linux archive: [CavesOfOoo-SteamDeck-flat16x24-current.tar.gz](../Builds/SteamDeck/2026-10-27-shallow-caves-1ae80a355-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz).
+- Unpacked Linux player: `Builds/SteamDeck/2026-10-27-shallow-caves-1ae80a355-current/CavesOfOoo-current/CavesOfOoo.x86_64`.
+
+### Package integrity and native evidence
+
+The [archive receipt](Verification/Live16x24/packaged-shallow-caves-linux-archive.json)
+records 128,797,392 compressed bytes, SHA256
+`da967f63f6ce3980aa4e9453978a4c87c106b24efb86dc45c9394b8e9cd7de05`.
+An [independent delivery review](Verification/Live16x24/packaged-shallow-caves-review.md)
+streamed all 202 members: 189 regular files and 13 directories, totaling
+341,107,533 unpacked file bytes. Paths, contents, sizes and modes match the
+fresh tree; all 188 internal checksum entries, the archive sidecar and full
+gzip CRC/ISIZE/footer check agree. Source/build/native pins, launch support,
+six credit files and five license texts were checked. The previously delivered
+Grovelands archive still matches its recorded hash. The Linux ELF header was
+inspected; its executable was **not run**.
+
+The package binds the existing 56 focused + 339 disjoint related native passes,
+**395 distinct**, with no failures/skips/inconclusive cases. Packaging ran no
+new tests and adds no earlier overlapping execution totals. The initial
+scratch-before-RED timing deviation in §9 and the strict backdrop RED sequence
+in §11 remain explicit historical evidence.
+
+The phase author independently cold-reviewed the packaging/restoration helper
+adaptations without importing or executing them: ten generic package guard
+functions were unchanged, exact XML pins and disjoint sets matched, and the
+restoration scope stayed bound to reviewed hashes and precise owned paths.
+The delivery reviewer authored those helper adaptations, so their helper-source
+review is self-review; their separately implemented archive stream check and
+actual image inspection are documented as distinct evidence. This phase author
+does not claim to have repeated that full archive audit.
+
+### Actual current Mac package
+
+[The Mac play receipt](Verification/Live16x24/packaged-shallow-caves-mac-play.json)
+and seven actual JPGs record normal Continue from earned depth2 fixture85,
+native down-stair examine, `<` return to depth1 and `>` reentry, movement to
+42,12 and a real F5 save at turn11950, HP33. The earned
+[packaged fixture86](Verification/Live16x24/Fixtures/packaged-shallow-caves86/Quick.json)
+and unchanged save stream are retained. Full quit ended PID34272; a fresh
+launch of the exact app used PID34541, and ordinary Continue restored42,12
+at HP33. Both owned processes were subsequently closed.
+
+The captures are 1280×856 including the 56-pixel titlebar, with 1280×800 game
+content. The independent reviewer viewed all seven files and compared decoded
+RGB in rectangle `[0,96,940,696]` between the F5-confirmation06 and restart07:
+**zero changed pixels across 564,000 world pixels**. Header/sidebar/log/footer
+are outside that comparison. There are seven files but six unique byte
+sequences:05 and07 are byte-identical. Actual process/Continue observations
+establish the restart; identical screenshots alone do not.
+
+The reviewed views show the corrected neutral backdrop, differentiated floor,
+wall/rubble/stalagmite vocabulary and matching stair reader. They also retain
+repeated formations, uncovered glyph owners and the conservative memory/fog
+transition. No packaged destruction, new combat or hazard-application trial was
+performed; inherited combat log text is not new packaged combat. Editor and
+Mac evidence remain separate, with no cross-environment pixel-color claim.
+
+Both retained player logs have their recorded hashes. Current/previous logs
+contain respectively **5/6 premature-thread-finalization warnings**, plus one
+ComputeBuffer disposal warning in each. The bounded review found no line
+containing `Exception`; this is **not** a clean-log or warning-free runtime
+claim. Shutdown/resource-lifetime warnings remain recorded for follow-up,
+without attributing them to the cave change absent evidence.
+
+### Final restoration and next baseline
+
+[Restoration completed at 18:04:02UTC](Verification/Live16x24/packaged-shallow-caves-restoration.json):
+all 51,086 tracked snapshot objects match, 46 pre-existing dirty tracked paths
+are preserved, normal Editor saves/preferences are unchanged, and standalone
+saves/preferences are restored to their original state. The previously absent
+standalone test-save root was archived rather than deleted. Exactly four
+reviewed generated files were backed up and restored: shallow-caves PNG
+metadata, URP settings, URP global settings and ProjectSettings. One introduced
+preference key was handled within the exact reviewed alias allowlist. Earlier
+builds/archives remain intact; no caches or other storage were cleaned up.
+The 46-path build baseline is separate from the earlier 44-path Editor protection
+checkpoint, not an expansion of the restored file set.
+
+During the package smoke, before final restoration, root also retained a
+separate **next-gap baseline** using this same current Mac package: normal
+movement from depth2 to its actual down stair39,12 and
+ordinary `>` reached Overworld.16.13.3, HP33. The
+[limestone entry](Verification/Live16x24/deeper-strata-before-01-limestone-entry.jpg)
+still uses glyph fallback. F5 saved
+[fixture87](Verification/Live16x24/Fixtures/deeper-strata-limestone87/Quick.json)
+at turn11990, HP33; normal `<` returned to the native sandstone depth2 view in
+[the return capture](Verification/Live16x24/deeper-strata-before-02-sandstone-return.jpg).
+[The baseline receipt](Verification/Live16x24/deeper-strata-before-play.json)
+records exact hashes and limits. This establishes an earned starting point
+and safe observed return for the next audit, **not native limestone/shale
+implementation or acceptance**. Depth4/5, whole-chunk layout and roomed status
+have not been observed by that baseline.
+
+This delivery closes the bounded six-owner depth1/2 integration and its named
+backdrop defect. All-column coverage, cave actors/containers/hazards, deeper
+bands, authored sites, serious area polish, Linux gameplay and physical Steam
+Deck verification remain open. Neither native counts, archive integrity nor
+the Editor profile establishes sustained FPS or a performance improvement.
