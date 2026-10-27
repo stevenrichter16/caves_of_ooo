@@ -1,0 +1,108 @@
+{
+  "runtime_source_commit": "246bda61e67d58d147e87e781737f32c54d25aa2",
+  "kind": "actual_mac_standalone_play",
+  "input_fixture": "Docs/Verification/Live16x24/Fixtures/sill-envelope-after65",
+  "final_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-sill-envelope65",
+  "actions": [
+    "ordinary default flat launch",
+    "Continue1070 Sill67,18 HP38",
+    "PageUp2x",
+    "seven north moves to67,11; resident opens door naturally",
+    "C Up O closes67,10",
+    "C Up X native door Examine",
+    "Escape; Up opens without move; second Up enters67,10",
+    "I Tab inventory native sword,1d8 and right-edge equipped E",
+    "Escape F5 saves1170",
+    "full process quit confirmed; relaunch Continue1170 at67,10HP38",
+    "PageUp2x then quit"
+  ],
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-00-startup.jpg",
+      "sha256": "2d86a4b510852c72a49add78a2b66637b1af3a2f5a989e7673bef1b69b4bcf4c",
+      "bytes": 210221
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-01-continue.jpg",
+      "sha256": "e074c6d22eb45ddebcd3529b7f75a2e90b81e0fd14408d0d0cfb60c16045797e",
+      "bytes": 238143
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-02-zoom.jpg",
+      "sha256": "3c0a33601227cd6c43ae9724d6f502d3c8d960ebcf0797687a082a24d7afb846",
+      "bytes": 206613
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-03-door-open.jpg",
+      "sha256": "b3a7960b2ea468801fb1e8011e26abdf2432972385d112fd5d188ba76f17d5f9",
+      "bytes": 201913
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-04-door-closed.jpg",
+      "sha256": "16cdeb5f239b6322b6fa9eb0256b713e9fc3d41d9417970f5bc36ae8572b321d",
+      "bytes": 197959
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-05-door-reader.jpg",
+      "sha256": "6576fa2b73768689d7dd4e6b4d8573a0749ea9b848760bf555411afaa88af00d",
+      "bytes": 209503
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-06-door-bump.jpg",
+      "sha256": "1634735a7eb4905da20da7e9f312a0affb3c145305649e85ca7b1df356ffc724",
+      "bytes": 198036
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-07-threshold.jpg",
+      "sha256": "4a5548d9e50db6e9cf7ebb37d9cb8c7021743a24873b5278061a4ec369cbe386",
+      "bytes": 188738
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-08-inventory.jpg",
+      "sha256": "83766a87d78556e5143d26632de9a5fe62b35ab241fbf139a3efd2da308bf318",
+      "bytes": 201472
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-09-saved.jpg",
+      "sha256": "cadc289cfe7a0a9eaf6b9d7464345c3b0d35d892acc5edb7cad28d04e14ea321",
+      "bytes": 187250
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-10-reload.jpg",
+      "sha256": "0e1aa239f6258ba26fc34ed5659a02236aaaca932e4e5fff2bec5e10425953fe",
+      "bytes": 204182
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-sill-envelope-11-reload-zoom.jpg",
+      "sha256": "4a5548d9e50db6e9cf7ebb37d9cb8c7021743a24873b5278061a4ec369cbe386",
+      "bytes": 188738
+    }
+  ],
+  "capture_geometry": "Unedited native1280x856 window JPEGs include1280x800 game plus56px titlebar. Reload defaults1x, matching zoom11 follows.",
+  "main_push_source_verified": true,
+  "can_verify": [
+    "actual ordinary startup flat presentation",
+    "Sill native woven walls/grass/doors and door portrait",
+    "portable sword portrait and inventory stats",
+    "closed/open/threshold behavior",
+    "save/fullrestart position/HP/state continuity"
+  ],
+  "cannot_verify": [
+    "whole Sill or biome sprite coverage/composition completion",
+    "all individual animations",
+    "Linux execution",
+    "physical Steam Deck",
+    "sustained hardware performance"
+  ],
+  "known_gaps": [
+    "river blue-wave glyph rows",
+    "service,furniture,resident glyph families",
+    "repetitive sparse disclosed grass lanes; fullness gate unfinished"
+  ],
+  "log_limits": [
+    "premature-thread-finalization shutdown notices",
+    "ComputeBuffer disposal shutdown warning"
+  ],
+  "storage_cleanup_performed": false,
+  "restoration_receipt": "Docs/Verification/Live16x24/packaged-sill-envelope-restoration.json"
+}

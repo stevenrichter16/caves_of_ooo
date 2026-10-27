@@ -1463,7 +1463,7 @@
       "id": "lair_stacks",
       "name": "Finite generated lair columns",
       "zone_ids": [],
-      "note": "Fresh placement targets3\u20135lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal.",
+      "note": "Fresh placement targets3–5lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal.",
       "coverage_axes": {
         "registered_scope": "source_inventoried",
         "native_region_kit": "not_yet_audited",
@@ -1479,7 +1479,7 @@
       "id": "merchant_camps",
       "name": "Generated merchant camps",
       "zone_ids": [],
-      "note": "Fresh placement targets2\u20133camps with bounded attempts; excludes Overwrit/Stump.",
+      "note": "Fresh placement targets2–3camps with bounded attempts; excludes Overwrit/Stump.",
       "coverage_axes": {
         "registered_scope": "source_inventoried",
         "native_region_kit": "not_yet_audited",
@@ -2388,7 +2388,7 @@
       "Hatchet",
       "Cudgel"
     ],
-    "status": "integrated_native_verified_editor_observed_long_sword_package_pending",
+    "status": "integrated_native_verified_editor_and_mac_observed_long_sword",
     "art": "Existing approved native PNGs unchanged",
     "native_tests": {
       "final": 222,
@@ -2396,12 +2396,20 @@
       "failed": 0,
       "receipt": "Docs/Verification/Live16x24/portable-equipment-native-final.xml"
     },
-    "observed": "Seed65 ordinary Sill drop/pickup/auto-equip, exact inventory reader, glade-return travel and F5/restart; LongSword only. Other three identities native tested.",
+    "observed": "Seed65 ordinary Editor Sill drop/pickup/auto-equip, exact inventory reader, glade-return travel and F5/restart; LongSword only. Current Mac package additionally verifies native LongSword inventory portrait,1d8 and right-edge equipped E, plus save/full process restart. Other three identities remain native-tested, not individually exercised in this Mac run.",
     "actual_capture": "Docs/Verification/Live16x24/portable-equipment-after-07-reloaded-reader-settled.png",
-    "scope_limit": "Does not admit region terrain/services or close any biome kit; old current packages unchanged."
+    "scope_limit": "Does not admit regional terrain/services or close any biome kit. Current Sill package includes the four portable mappings; only LongSword received this Mac gameplay check. Earlier current packages are preserved.",
+    "packaged_delivery": {
+      "source_commit": "246bda61e67d58d147e87e781737f32c54d25aa2",
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-sill-envelope-mac-play-summary.json",
+      "actual_capture": "Docs/Verification/Live16x24/packaged-sill-envelope-08-inventory.jpg",
+      "linux_archive_receipt": "Docs/Verification/Live16x24/packaged-sill-envelope-linux-archive.json",
+      "linux_execution_verified": false,
+      "physical_deck_verified": false
+    }
   },
   "sill_envelope_delivery": {
-    "status": "integrated_native_verified_editor_play_and_reload_observed_package_pending",
+    "status": "integrated_native_verified_editor_and_mac_play_and_reload_observed_linux_archive_checked",
     "identities": [
       "Grass",
       "StoneFloor",
@@ -2434,6 +2442,30 @@
     "ordinary_checkpoint": "Docs/Verification/Live16x24/Fixtures/sill-envelope-after65",
     "fullness": "Partial improvement only. Entry/building shells cohesive and routes open; grass lanes repetitive and underfurnished, river still120 selected WaterPuddle glyph cells in matched2x view. Furniture, actors, services and banks still pending. Fog is not bare terrain. No generation changed.",
     "profile": "Docs/Verification/Live16x24/sill-envelope-profile.json",
-    "limits": "Exact current Sill graph only; visible-only materials, existing fog/memory fallback preserved. Current packages still prior North source. No whole-Sill, Spread, world or physical-Deck acceptance."
+    "limits": "Exact current Sill graph only; visible-only materials, existing fog/memory fallback preserved. Current Mac ordinary boot/Continue, north-door close/reader/bump/threshold and F5/full restart observed atHP38, saved tick1170 position67,10. Linux build/archive checked but not executed. Whole Sill fullness, river/furniture/services/NPCs, Spread/world coverage, physical Deck and sustained hardware performance remain unaccepted.",
+    "packaged_delivery": {
+      "source_commit": "246bda61e67d58d147e87e781737f32c54d25aa2",
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-sill-envelope-mac-play-summary.json",
+      "archive_verification": "Docs/Verification/Live16x24/packaged-sill-envelope-independent-review.md",
+      "restoration_receipt": "Docs/Verification/Live16x24/packaged-sill-envelope-restoration.json",
+      "captures": [
+        "Docs/Verification/Live16x24/packaged-sill-envelope-00-startup.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-01-continue.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-02-zoom.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-03-door-open.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-04-door-closed.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-05-door-reader.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-06-door-bump.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-07-threshold.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-08-inventory.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-09-saved.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-10-reload.jpg",
+        "Docs/Verification/Live16x24/packaged-sill-envelope-11-reload-zoom.jpg"
+      ],
+      "linux_execution_verified": false,
+      "physical_deck_verified": false,
+      "sustained_hardware_performance_verified": false
+    },
+    "packaged_checkpoint": "Docs/Verification/Live16x24/Fixtures/packaged-sill-envelope65"
   }
 }

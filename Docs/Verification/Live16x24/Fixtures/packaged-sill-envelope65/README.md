@@ -1,0 +1,1 @@
+Earned standalone checkpoint from runtime246bda61e. Ordinary Continue from sill-envelope-after65, seven north steps, actual close/examine/open/threshold, inventory and F5. Sill67,10; turn1170; HP38. Full process restart/Continue verified. No gameplay mutation. Normal saves/preferences restored; whole-region fullness and remaining glyph coverage unfinished.

@@ -1,0 +1,32 @@
+{
+  "helper": "/tmp/coo-package-sill-envelope.py",
+  "helper_sha256": "e3ab1d48d475006a61d22c0517e89d8a07ec89cf9e024e952c0e9592e900013b",
+  "scratch_directory": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-sill-package-counters-s18dovtd",
+  "checks": [
+    {
+      "case": "valid",
+      "expected": "accept",
+      "actual": "accepted",
+      "members": 4,
+      "passed": true
+    },
+    {
+      "case": "corrupt-crc",
+      "expected": "reject",
+      "actual": "rejected",
+      "exception": "BadGzipFile",
+      "message": "CRC check failed 0x901412e2 != 0x901412e3",
+      "passed": true
+    },
+    {
+      "case": "truncated-footer",
+      "expected": "reject",
+      "actual": "rejected",
+      "exception": "EOFError",
+      "message": "Compressed file ended before the end-of-stream marker was reached",
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "scope": "Only temporary synthetic archive fixtures and the verifier function; packaging main not called, no actual build outputs read or written."
+}

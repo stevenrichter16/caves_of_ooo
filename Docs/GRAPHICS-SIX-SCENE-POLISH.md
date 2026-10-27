@@ -430,3 +430,39 @@ Normal saves/preferences,38foreigndiffs and currentbuilds preserved;411GiBfree,
 no storage cleanup. Fullness remains incomplete, especially river/service/furniture/
 actor families and monotonous grass lanes. Freeze/push/package this source, then
 Soddencrossing16,7+shelter15,7 staticmaterial coverage. Next hourlyreport05:25UTC.
+
+
+### Sill package delivered — 2026-10-27 04:55 UTC
+
+Source `246bda61e67d58d147e87e781737f32c54d25aa2` is root-verified on
+origin/main. Fresh Mac build:0 errors,5 warnings,34.18s; Linux:0 errors,
+4 warnings,28.70s. Current outputs use `2026-10-27-sill-envelope-246bda61e-current`.
+Linux archive128,678,885 bytes/182 files, SHA256
+`6994a7ebbc92f6521a3ea1192c6cf72c32a22b24cf5b3dac64dbbec7f1a918dc`;
+independent full gzip/tar/hash/size/mode/credits checks pass. Linux execution
+and physical Deck remain unverified.
+
+Twelve actual unedited Mac window captures00..11 show ordinary flat boot,
+Continue1070 at Sill67,18/HP38,2× zoom and seven north steps. A resident opens
+the real door; close at67,10, native Examine, bump-open without movement and
+threshold entry are verified. Inventory shows the native LongSword portrait,
+1d8 and right-edge `[E]`. F5 saves1170; full process quit/relaunch/Continue
+restores67,10/HP38, initially1× then matched2×. The earned checkpoint is in
+`Verification/Live16x24/Fixtures/packaged-sill-envelope65`. Final Sill136/136
+and equipment222/222 native suites share52 identities; earlier224 regression
+is nonadditive. This delivery does not imply tests were newly rerun.
+
+Evidence: `Verification/Live16x24/packaged-sill-envelope-mac-play-summary.json`,
+`packaged-sill-envelope-linux-archive.json`, `packaged-sill-envelope-independent-review.md`
+and `packaged-sill-envelope-restoration.json` in that same directory. All49,791
+tracked snapshot objects match after reviewed build restoration;38 foreign
+dirty files, normal Editor saves/preferences, standalone preference map/Saves
+absence and earlier packages remain preserved. No storage cleanup. Known
+shutdown notices remain; no sustained-performance claim.
+
+Whole Sill fullness, river/furniture/services/NPCs and repetitive disclosed lanes
+remain unfinished. [Sill record](GRAPHICS-SILL-ENVELOPE.md) preserves those limits.
+Next: actual Sodden crossing16,7 and shelter15,7 greybox captures, imagegen
+reinterpretation and bounded wetland material sprites, then the remaining
+all-biome/area queue. Nuanced animation remains deferred. Last hourly report
+04:25UTC; next05:25UTC unchanged. Continue without another approval request.

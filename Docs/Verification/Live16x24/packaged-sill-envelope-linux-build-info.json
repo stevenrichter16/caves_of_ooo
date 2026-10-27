@@ -1,0 +1,135 @@
+{
+  "created_at_utc": "2026-10-27T04:52:45.257284+00:00",
+  "runtime_source_commit": "246bda61e67d58d147e87e781737f32c54d25aa2",
+  "package_flavor": "sill-envelope-and-portable-equipment",
+  "built_after_utc": "2026-10-27T04:46:49+00:00",
+  "slice_description": "Bounded static Sill envelope: woven VineWall connections, ordinary door axis/open/closed states and quiet ground, with borrowed approved StoneWall/AlchemyStill/StoneFloor art; approved LongSword, Hatchet, Cudgel and LeatherArmor identities travel with their real equipment owners. Pending Sill services, uncovered regions and optional animation remain unfinished.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-sill-envelope-mac-build.json",
+    "sha256": "0b3bb54f727919b9cb47723dc26b33f4ba57a809ae95aa18e259d95d3f681d9a",
+    "summary": {
+      "job_id": "build-649d17a2ee",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-27-sill-envelope-246bda61e-current/CavesOfOoo.app",
+      "started_at": "2026-10-27T04:47:26.56313Z",
+      "duration_seconds": 34.182989,
+      "completed_at": "2026-10-27T04:48:00.746119Z",
+      "total_size_mb": 234.1,
+      "errors": 0,
+      "warnings": 5
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-sill-envelope-linux-build.json",
+    "sha256": "fa9bf374c933ab51cbde923cf5244f2af45fb4eb055d12768c29b1cd2e248a1b",
+    "summary": {
+      "job_id": "build-ef21d32718",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-27-sill-envelope-246bda61e-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-27T04:48:24.338598Z",
+      "duration_seconds": 28.70074,
+      "completed_at": "2026-10-27T04:48:53.039338Z",
+      "total_size_mb": 214.48,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/sill-envelope-final-native-green.xml",
+          "sha256": "b4248837602d943417129c0c0bb67efa3c949651d5138422c0af012af18b4a26",
+          "mode": "EditMode",
+          "summary": {
+            "id": "2",
+            "testcasecount": "136",
+            "result": "Passed",
+            "total": "136",
+            "passed": "136",
+            "failed": "0",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-27 04:30:57Z",
+            "end-time": "2026-10-27 04:31:11Z",
+            "duration": "14.5716101"
+          },
+          "overlap_with_preceding_receipts": 0,
+          "scope": "Final Sill envelope plus hedge and global presentation cases. Already recorded; this helper does not run tests."
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/portable-equipment-native-final.xml",
+          "sha256": "aeb0f9adece8935abb6fb10a640663d250d4a81d971d1599889ebf2de64e21d1",
+          "mode": "EditMode",
+          "summary": {
+            "id": "2",
+            "testcasecount": "222",
+            "result": "Passed",
+            "total": "222",
+            "passed": "222",
+            "failed": "0",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-27 04:14:02Z",
+            "end-time": "2026-10-27 04:14:50Z",
+            "duration": "47.9371632"
+          },
+          "overlap_with_preceding_receipts": 52,
+          "scope": "Final portable equipment cases after the LongSword footprint correction, plus related presentation cases. Already recorded; this helper does not run tests."
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/sill-envelope-native-regression.xml",
+          "sha256": "9d95446ed6e664e96b11ff3cf3b67ce41390feb4a51e8f22f3c821b36fd257dd",
+          "mode": "EditMode",
+          "summary": {
+            "id": "2",
+            "testcasecount": "224",
+            "result": "Passed",
+            "total": "224",
+            "passed": "224",
+            "failed": "0",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-27 04:26:05Z",
+            "end-time": "2026-10-27 04:26:23Z",
+            "duration": "17.8088507"
+          },
+          "overlap_with_preceding_receipts": 94,
+          "scope": "Additional earlier related regression receipt; overlaps final suites and is not an additive distinct-test claim. Already recorded; this helper does not run tests."
+        }
+      ],
+      "execution_occurrences": 582,
+      "distinct_test_identities_across_all_receipts": 436,
+      "distinct_test_identities_across_two_final_receipts": 306,
+      "limits": "Overlapping receipts are not added as distinct tests. Earlier regression evidence is historical; this packaging process executes no tests."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "This static envelope is not complete Sill, a whole biome or worldwide graphical acceptance.",
+    "Other unimplemented identities retain truthful glyphs/colors; nuanced East caster motion remains deferred.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality or device performance."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

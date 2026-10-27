@@ -875,19 +875,37 @@
     ]
   },
   "packaged_delivery": {
-    "source_commit": "2375284dd94fc5614f9d676457fe4a921dd931ac",
-    "linux_archive": "Builds/SteamDeck/2026-10-27-north-motion-2375284dd-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "mac_app": "Builds/Verification/2026-10-27-north-motion-2375284dd-current/CavesOfOoo.app",
-    "sha256": "c33ba3283ba1717f74c5738fa1bb1391d307c5a3d25f456f12b0c9f3006a60b4",
-    "archive_bytes": 128684199,
-    "regular_files": 181,
-    "mac_actual_play": "Docs/Verification/Live16x24/packaged-north-motion-mac-play-summary.json",
-    "archive_verification": "Docs/Verification/Live16x24/packaged-north-motion-linux-independent-review.json",
+    "source_commit": "246bda61e67d58d147e87e781737f32c54d25aa2",
+    "linux_archive": "Builds/SteamDeck/2026-10-27-sill-envelope-246bda61e-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "mac_app": "Builds/Verification/2026-10-27-sill-envelope-246bda61e-current/CavesOfOoo.app",
+    "sha256": "6994a7ebbc92f6521a3ea1192c6cf72c32a22b24cf5b3dac64dbbec7f1a918dc",
+    "archive_bytes": 128678885,
+    "regular_files": 182,
+    "mac_actual_play": "Docs/Verification/Live16x24/packaged-sill-envelope-mac-play-summary.json",
+    "archive_verification": "Docs/Verification/Live16x24/packaged-sill-envelope-independent-review.md",
+    "archive_receipt": "Docs/Verification/Live16x24/packaged-sill-envelope-linux-archive.json",
+    "restoration_receipt": "Docs/Verification/Live16x24/packaged-sill-envelope-restoration.json",
+    "builds": {
+      "mac": {
+        "result": "succeeded",
+        "errors": 0,
+        "warnings": 5,
+        "duration_seconds": 34.182989
+      },
+      "linux": {
+        "result": "succeeded",
+        "errors": 0,
+        "warnings": 4,
+        "duration_seconds": 28.70074
+      }
+    },
+    "source_push_verified": true,
     "linux_execution_verified": false,
     "physical_deck_verified": false,
-    "limits": "278native passes/1allocation skip; ordinaryEditor motion/tonic/death/revisit and Maccombat/tonic/reader/save/fullrestart. Build0errors4warnings each. No continuousvideo/Linuxrun/physicalDeck/sustainedperformance/wholeopening acceptance."
+    "sustained_hardware_performance_verified": false,
+    "limits": "Final Sill136/136 and portable equipment222/222 native receipts share52 case identities; earlier224 regression is nonadditive. Twelve actual Mac window captures verify ordinary flat boot, earned Continue1070, door close/reader/bump/threshold, native LongSword inventory with1d8 and right-edge E, F5/full process restart Continue1170 atSill67,10 HP38. Whole-Sill fullness, river, furniture/services/NPCs, all-biome coverage, Linux execution, physical Deck and sustained hardware performance remain unfinished. Known shutdown notices persist; prior packages preserved."
   },
-  "next_scoped_work": "Freeze/push Sill envelope, package with portableequipment, then actual Sodden16,7/15,7 static-material baseline and production. Preserve accepted opening art and defer nuance animations.",
+  "next_scoped_work": "Actual Sodden crossing16,7 and shelter15,7 static-material baseline, imagegen and native production; current Sill+portable-equipment package delivered. Preserve accepted opening/Sill art, retain unfinished Sill river/furniture/services/NPC/fullness gates, and defer nuanced animation while worldwide sprite coverage continues.",
   "popup_raster_continuation": {
     "date": "2026-10-26",
     "status": "bounded_native_and_ordinary_editor_verified",
@@ -1488,6 +1506,22 @@
       "linux_execution_verified": false,
       "physical_deck_verified": false,
       "limits": "211native cases;actual MacContinue,reader,wait,save/fullrestart. Builds0errors4warnings each.Whole opening/motion,Linuxexecution,physicalDeck and sustainedhardwareperformance remain incomplete."
+    },
+    {
+      "superseded_on": "2026-10-27",
+      "record": {
+        "source_commit": "2375284dd94fc5614f9d676457fe4a921dd931ac",
+        "linux_archive": "Builds/SteamDeck/2026-10-27-north-motion-2375284dd-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+        "mac_app": "Builds/Verification/2026-10-27-north-motion-2375284dd-current/CavesOfOoo.app",
+        "sha256": "c33ba3283ba1717f74c5738fa1bb1391d307c5a3d25f456f12b0c9f3006a60b4",
+        "archive_bytes": 128684199,
+        "regular_files": 181,
+        "mac_actual_play": "Docs/Verification/Live16x24/packaged-north-motion-mac-play-summary.json",
+        "archive_verification": "Docs/Verification/Live16x24/packaged-north-motion-linux-independent-review.json",
+        "linux_execution_verified": false,
+        "physical_deck_verified": false,
+        "limits": "278native passes/1allocation skip; ordinaryEditor motion/tonic/death/revisit and Maccombat/tonic/reader/save/fullrestart. Build0errors4warnings each. No continuousvideo/Linuxrun/physicalDeck/sustainedperformance/wholeopening acceptance."
+      }
     }
   ],
   "scoped_work_history": [
@@ -1825,13 +1859,16 @@
     "status": "initial_source_scope_audit_not_complete_runtime_census",
     "chunk_composition": "Every area requires actual whole-scene fullness/composition review: biome-appropriate terrain, vegetation, props, architecture and landmarks with readable traversal/hazards. No density percentages or artificial clutter.",
     "latest_delivered_source_slice": "Four approved portable equipment identities;222native pass; ordinary LongSword Sill/glade/reader/save-restart verified; packagepending.",
-    "next": "Integrate the reviewed24frame Sill ground/wall/door source candidate, then actual scene fullness review and remaining world sprite families."
+    "next": "Continue actual Sodden crossing/shelter static material coverage after delivered Sill package; all-biome and chunk-fullness gates remain open."
   },
   "sill_envelope": {
-    "status": "source_integrated_native_and_actual_editor_verified_package_pending",
+    "status": "source_integrated_native_editor_and_mac_standalone_verified_linux_archive_checked",
     "world_scope_record": "ArtSource/Live16x24/world-sprite-coverage.json",
     "plan": "Docs/GRAPHICS-SILL-ENVELOPE.md",
     "actual_capture": "Docs/Verification/Live16x24/sill-envelope-after-11-door-reader.png",
-    "remaining": "River, furniture, actors, services and chunk composition still incomplete. Next coherent regional static coverage is Sodden; all other biome/area rows remain open."
+    "remaining": "River, furniture, actors, services and chunk composition still incomplete. Next coherent regional static coverage is Sodden; all other biome/area rows remain open.",
+    "packaged_actual_play": "Docs/Verification/Live16x24/packaged-sill-envelope-mac-play-summary.json",
+    "packaged_capture": "Docs/Verification/Live16x24/packaged-sill-envelope-05-door-reader.jpg",
+    "source_commit": "246bda61e67d58d147e87e781737f32c54d25aa2"
   }
 }
