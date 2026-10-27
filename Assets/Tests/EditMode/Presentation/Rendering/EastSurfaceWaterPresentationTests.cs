@@ -286,7 +286,17 @@ namespace CavesOfOoo.Tests
                 if (hazard == "charge") zone.TileState.AddCharge(X, Y, 1);
                 else if (hazard == "embers") zone.TileState.WriteResidue(X, Y, "embers", 1);
                 else zone.TileState.WriteCloud(X, Y, "steam", 1);
-                paint.Frame(); paint.AssertNative(X, Y, 15); Assert.AreSame(CP437TilesetGenerator.GetTile(glyph), paint.MarkAt(X, Y));
+                paint.Frame(); paint.AssertNative(X, Y, 15);
+                if (hazard == "steam")
+                {
+                    // The actual lazy/default route must use the optional East
+                    // cue while preserving the already represented water bank.
+                    var resource = Resources.Load<Texture2D>(FlatPixelEastSteamCatalog.ResourcePath);
+                    Assert.NotNull(resource); Assert.AreEqual(16, resource.width); Assert.AreEqual(24, resource.height);
+                    var mark = paint.MarkAt(X, Y) as Tile; Assert.NotNull(mark); Assert.NotNull(mark.sprite);
+                    Assert.AreSame(resource, mark.sprite.texture); Assert.AreEqual(Color.white, paint.MarkTint(X, Y));
+                }
+                else Assert.AreSame(CP437TilesetGenerator.GetTile(glyph), paint.MarkAt(X, Y));
                 zone.TileState.Tick(); paint.Frame(); Assert.IsNull(paint.MarkAt(X, Y)); paint.AssertNative(X, Y, 15);
             }
         }

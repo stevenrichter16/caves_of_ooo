@@ -1681,19 +1681,18 @@
   ],
   "hourly_reporting": {
     "requested_on": "2026-10-26",
-    "last_report_at_utc": "2026-10-27T00:25:00+00:00",
+    "last_report_at_utc": "2026-10-27T01:25:00+00:00",
     "automation_id": "overnight-clearing-art-pipeline",
     "items": "Completed/in-progress/blocked work since previous hourly report,tests/captures/main-push status,and concrete goals for coming hourly session. Intermediate10minute storage checks quiet/read-only.",
     "report": "Docs/GRAPHICS-SIX-SCENE-POLISH.md",
     "completed": [
-      "Native kitchen brine world/reader identity;192/192 native tests",
-      "Actual Editor plus7 Mac captures;full quit/Continue verified",
-      "Source447e82c4f on main;fresh Mac/Linux;188 archive files independently verified"
+      "Cudgel source0545aa9a2 and deliveryc709e7a63 verified on main;177 native tests and Mac restart",
+      "Actual East steam baseline and exact-reader captures; imagegen concept, editable16x24 native source"
     ],
     "next_goals": [
-      "Finish delivery evidence push",
-      "Ordinary East Cudgel pile/reader return capture",
-      "Native Cudgel art and exact integration through full pipeline"
+      "Finish native steam tests and regressions",
+      "Compare actual before/after world and reader; ordinary turn renewal and profiling",
+      "Push reviewed source and refresh packaged delivery"
     ]
   },
   "kitchen_brine_consistency": {
@@ -1735,5 +1734,19 @@
     "limits": "World, reader and inventory verified in Editor and Mac; Editor pickup/equip/drop; Mac pickup/save/full restart. Whole opening, remaining regions, Linux execution, physical Deck and sustained profiling remain incomplete.",
     "source_commit": "0545aa9a22060ab8aaff51330817c0a15d654605",
     "packaged_evidence": "Docs/Verification/Live16x24/packaged-cudgel-mac-play-summary.json"
+  },
+  "east_steam_consistency": {
+    "status": "native_and_editor_verified_packages_pending",
+    "source_record": "Docs/GRAPHICS-EAST-STEAM-PLAN.md",
+    "source": "ArtSource/Live16x24/east-steam",
+    "baseline_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-cudgel-return64",
+    "runtime_scope": "Exact current disclosed East steam tile-state cloud only; accepted vent grille and state semantics preserved.",
+    "native_red": {
+      "passed": 1,
+      "failed": 35
+    },
+    "limits": "Fresh packages pending; whole-opening motion/composition, physical Deck and Linux execution unverified.",
+    "native_green": 211,
+    "editor_evidence": "Docs/Verification/Live16x24/east-steam-editor-play-summary.json"
   }
 }

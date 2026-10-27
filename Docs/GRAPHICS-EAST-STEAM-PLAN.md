@@ -1,6 +1,6 @@
 # East steam-mark audit — read-only, 2026-10-27
 
-Status: source, current saved bytes and actual packaged screenshot inspected. This audit used read-only inspection. Native tests and new visual acceptance are pending. Root owns capture, imagegen, implementation and ordinary play. This plan follows CLAUDE and the live brief's capture → reinterpret → editable native source → integration → play/counter-check loop.
+Status: native211/211 and actual Editor before/after/play accepted for this scoped steam cue. Fresh packages remain pending. Initial audit used read-only inspection. Root owns capture, imagegen, implementation and ordinary play. This plan follows CLAUDE and the live brief's capture → reinterpret → editable native source → integration → play/counter-check loop.
 
 ## Correct the named defect before authoring
 
@@ -64,3 +64,95 @@ The current26,6 checkpoint already sees all five native grates and marks; **no m
 If a closer framing is needed, two observed Right presses reach28,6 through27,6, without entering any vent cell. The packaged checkpoint has the cudgel in inventory;27,6 is now clear. From28,6, L→Right→Down targets29,7. Stop at28,6; do not traverse29,7/30,7/31,6/31,7/32,6 or infer safety merely because they are non-solid. Inspect HP/status after each segment. Two ordinary waits from26,6 can show source renewal safely at distance3 from the nearest vent; inspect live state before using closer waits. No spells, cooling experiments, source removal or hazard-entry demonstration are required for this graphics acceptance.
 
 Independent source review agrees that the white marks are tile-state overlays and that existing dirty-cell hooks suffice. Root must still capture exact live mark/owner observations before imagegen, author editable native source, record native RED/GREEN and inspect real1×/2× paint. Whole-opening, actor animation, other regional clouds, physical Deck and sustained performance remain outside this slice.
+
+## Production continuation — 2026-10-27 01:20 UTC
+
+Current pass: actual baseline captured; concept reinterpreted; native source and
+RED tests in progress. Continue from unchanged packaged-cudgel-return64, turn3510,
+East26,6, HP28. No movement or simulation mutation was needed for this baseline.
+Ordinary C Continue, PageUp, L→Right×3→Down→Return→x confirmed SteamVent9346
+and the reader's steam-cloud1-turn text. `east-steam-01/02-before-world` and
+`03-before-reader` are original1280×800 Unity captures with read-only receipts.
+Each of the five observed cells has only Cloud=steam, CloudTurns=1 and zero
+heat/cold/charge. Full isolated save root was archived before the helper finish.
+
+Built-in imagegen used actual capture02, with the prompt and output preserved in
+`ArtSource/Live16x24/east-steam`. Selected: a narrow muted broken wisp. Rejected:
+the generated extra sixth plume replacing a nearby item, altered grate edges,
+scene/UI repaint and soft enlarged pixels. Production is original editable
+native geometry; no crop/resampling of the concept. Exact part mapping remains
+one live tile-state overlay; accepted vent frame16 and its portrait stay intact.
+
+No new native tests or post-integration acceptance claimed yet. The current
+shipped packages remain cudgel source0545aa9a2. Normal saves/preferences and
+34 unrelated tracked edits were snapshotted; storage inspection found about
+412GiB free and performed no storage cleanup. Root alone controls Unity.
+
+## Hourly checkpoint — 2026-10-27 01:25 UTC
+
+Reported: cudgel delivery complete and pushed through c709e7a63; 177 native
+cases and actual Mac restart passed. Steam baseline and concept are captured;
+original editable source approved for in-game trial. Native steam RED: 36 cases,
+35 failed/1 passed, including two actual-paint failures on the old apostrophe.
+Initial class-name exact filter selected zero tests and is not counted as evidence;
+correct group_names run produced the retained east-steam-red.xml.
+
+Coming-session goals: finish minimal tile-state routing, pass focused and neighbor
+regressions, compare actual1x/2x gameplay and renewal/save-restart, inspect render
+cost, review and push exact changes. Full six-scene opening and regional coverage
+remain unfinished. Storage inspection-only. Last hourly report:01:25UTC.
+
+## Native integration and review — 2026-10-27 01:34 UTC
+
+`FlatPixelEastSteamCatalog` observes exact live `steam` on disclosed canonical
+current East cells. It borrows a16×24 texture, owns one cached sprite/tile, and
+is called only in the existing final cloud slot after all higher-priority
+marks. Production changes are limited to that optional adapter and
+`ZoneRenderer` lazy cache/disposal. Accepted grate art, actor/reader ownership,
+simulation and save formats are unchanged.
+
+Initial native RED:36cases,35expected failures/1passed. A first implemented
+run exposed one test-fixture lifecycle premise: Unity does not dispatch
+OnDestroy automatically on the never-active EditMode harness. The corrected
+fixture explicitly invokes the saved callback and labels this as function-level
+cleanup verification. Production was unchanged. The separate20-case adversarial
+sweep covers exact cloud names, loaded tile-state leases, corners, stale graphs,
+read-only callbacks and partial resource loss. TileState JSON checks are not
+full-session reload claims. Two independent source/test reviews found no
+material issue. Authoritative final native results and actual play are pending.
+
+Source validation passed:21opaque pixels,3colors, binary alpha, clear bottom
+nine rows, zero overlap with the unchanged grate. The editor import copy has
+the same native PNG SHA02703f7b4db68f73c7b50e6cc48fba7a92eb3ee115d50dc8178fe52d89c50aa5.
+The imagegen concept's extra plume over the tonic was rejected; only the five
+actual saved clouds are eligible.
+
+## Verified Editor acceptance — 2026-10-27 01:42 UTC
+
+Final native run: **211/211 passed, zero skipped**, authoritative XML
+`Verification/Live16x24/east-steam-green.xml`.36focused+20adversarial+35East
+water+26EastKitchen+58KitchenBrine+20flat ground+16native ground. The MCP job
+falsely timed out before Unity started; native XML01:34:23–01:34:40 is evidence.
+
+Actual captures04–10 show the unchanged earned3510 checkpoint at26,6, five
+native marks, exact vent9346 Examine, ordinary walk to28,6 and wait through
+tick3540, HP28/40. Both default and zoomed views were visually inspected.
+Filenames2x mean two PageUp inputs, not a verified2× pixel scale. The approved
+grate portrait and tonic remain intact. All five clouds renew to1turn through
+real vent reactions; no teleport, grants, reveal or thermal mutation was used.
+Full isolated saves were archived before ending the helper; earned after-state
+is retained as`Fixtures/east-steam-after64`. Normal saves/gameplay preferences,
+34foreign tracked files and prior Mac build match the protection snapshot.
+Editor session/test-run bookkeeping changed normally and is listed in the receipt.
+
+A76.5s,1554sample Editor window measured renderer avg0.123ms/max0.489ms and
+40drawcalls. MainThread p993.927ms but max847.7ms: this mixed Editor/tool window
+does not establish sustained hardware acceptance or attribute that external spike.
+See`east-steam-editor-profile.json` and explicit can/cannot verify fields in
+`east-steam-editor-play-summary.json`. No cache/storage deletion.
+
+Self-review: 🟡 inactive test-harness callback premise corrected, no production
+change needed. 🔵 approved neutral grate and all higher-priority states preserved.
+🧪 Linux execution/physical Deck and whole-opening motion acceptance remain open.
+Next: main source push, compressed Mac/Linux delivery and actual Mac Continue.
+Then North Patchbearer encounter motion/readability, preserving its medicine idles.

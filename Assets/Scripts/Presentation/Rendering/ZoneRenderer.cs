@@ -588,6 +588,7 @@ namespace CavesOfOoo.Rendering
             _spawnRing3DPresenter?.Bind(null, _mainCamera);
             _flatProjection?.Dispose();
             _flatProjection = null;
+            _eastSteamArt?.Dispose(); _eastSteamArt = null;
             _worldFxCoordinator?.Dispose();
             DestroyOwnedMaterial(ref _sidebarUiMaterial);
             DestroyOwnedMaterial(ref _hotbarUiMaterial);
@@ -1246,6 +1247,7 @@ namespace CavesOfOoo.Rendering
         /// <summary>Tile-state marks live here (sortingOrder 4), above
         /// the environment sprite pass so they are never covered.</summary>
         private Tilemap _tileStateTilemap;
+        private FlatPixelEastSteamCatalog _eastSteamArt;
         private bool _tileStateNativeVisible;
         private static readonly Matrix4x4 NativeGroundMarkTransform = Matrix4x4.TRS(
             new Vector3(.28f, .28f, 0f), Quaternion.identity, new Vector3(.35f, .35f, 1f));
@@ -1347,6 +1349,20 @@ namespace CavesOfOoo.Rendering
             }
             else if (!string.IsNullOrEmpty(state.Cloud))
             {
+                // Only this final cloud slot changes. Higher-priority hazards,
+                // other regions and legacy modes retain their existing marks.
+                if (FlatPixelModeActive && FlatPixelEastSteamCatalog.HasVisibleSteam(CurrentZone, cell))
+                {
+                    if (_eastSteamArt == null) _eastSteamArt = new FlatPixelEastSteamCatalog();
+                    if (_eastSteamArt.TryResolve(CurrentZone, cell, out var steam))
+                    {
+                        _tileStateTilemap.SetTile(tilePos, steam);
+                        _tileStateTilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tileStateTilemap.SetColor(tilePos, Color.white);
+                        _tileStateTilemap.SetTransformMatrix(tilePos, Matrix4x4.identity);
+                        return;
+                    }
+                }
                 glyph = '\''; color = new Color(0.80f, 0.80f, 0.85f);
             }
             else

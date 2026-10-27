@@ -2744,3 +2744,13 @@ confirms the pale marks are the generic tile-cloud apostrophe, not missing vent
 body art. Preserve the approved grates and existing gameplay. Normal saves,
 preferences, 34 unrelated tracked changes and previous builds are preserved;
 no storage cleanup was performed. Last hourly report remains 00:25 UTC.
+
+### East steam continuation — 2026-10-27 01:42 UTC
+
+Scoped native steam tile-cloud cue now passes211native tests and actual Editor
+before/after, exact-reader, movement/wait and F5 checks. Five real clouds;
+approved grate/tonic preserved. Source and editable art in
+`ArtSource/Live16x24/east-steam`; full acceptance/limits in
+`Docs/GRAPHICS-EAST-STEAM-PLAN.md`. Refresh packages after source push.
+Next scene-level pass is North Patchbearer encounter motion/readability, not
+whole-opening acceptance. Last hourly report01:25UTC. Storage inspection-only.

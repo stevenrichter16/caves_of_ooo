@@ -1,0 +1,70 @@
+{
+  "scope": "Exact current disclosed East steam tile cloud, neutral cue; no simulation or accepted vent edit",
+  "native_tests": {
+    "red": {
+      "passed": 1,
+      "failed": 35
+    },
+    "green_total": 211,
+    "green_failed": 0,
+    "artifact": "east-steam-green.xml",
+    "runner_transport_limit": "MCP falsely timed out initialization; actual Unity XML completed211/211 from01:34:23 to01:34:40UTC."
+  },
+  "start": {
+    "fixture": "Fixtures/packaged-cudgel-return64",
+    "tick": 3510,
+    "player": [
+      26,
+      6
+    ],
+    "hp": "28/40"
+  },
+  "end": {
+    "fixture": "Fixtures/east-steam-after64",
+    "tick": 3540,
+    "player": [
+      28,
+      6
+    ],
+    "hp": "28/40"
+  },
+  "actions": [
+    "C Continue immutable earned fixture",
+    "PageUp twice (filename2x denotes two zoom inputs, not pixel scale)",
+    "L,Right3,Down,Return,Examine: exact vent9346 at29,7",
+    "Close reader and Look; walk east two clear cells; wait one turn; F5"
+  ],
+  "actual_marks": {
+    "count": 5,
+    "tile": "Live16x24 East live steam",
+    "states": "Each actual saved and renewed cloud was steam with1turn remaining. Neighboring tonic did not gain mark."
+  },
+  "captures": [
+    "east-steam-01-before-world-1x.png",
+    "east-steam-02-before-world-2x.png",
+    "east-steam-03-before-reader.png",
+    "east-steam-04-after-world-1x.png",
+    "east-steam-05-after-world-2x.png",
+    "east-steam-06-after-reader.png",
+    "east-steam-07-after-examine.png",
+    "east-steam-08-ordinary-approach.png",
+    "east-steam-09-ordinary-approach-28.png",
+    "east-steam-10-ordinary-wait.png"
+  ],
+  "can_verify": [
+    "Same earned start owner IDs and state before/after",
+    "Native world at default and zoomed views",
+    "Exact vent reader retained approved grate portrait and1turn text",
+    "Ordinary movement/wait renewed clouds and preservedHP",
+    "211 native checks and independent review"
+  ],
+  "cannot_verify": [
+    "Whole six-scene motion/composition acceptance",
+    "Damaging SteamEffect behavior outside scope",
+    "Physical Deck/Linux execution",
+    "Standalone package acceptance before refresh",
+    "Sustained player hardware performance"
+  ],
+  "profile": "east-steam-editor-profile.json",
+  "profile_limit": "76.5s Editor window1554samples. Renderer avg0.123ms max0.489ms,40drawcalls. MainThread max847.7ms was outside renderer; mixed tool/Editor capture does not establish a steady hardware frame budget. MainThread p993.927ms. No causality claim."
+}

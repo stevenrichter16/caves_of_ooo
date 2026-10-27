@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "frameWidth": 16,
+  "frameHeight": 24,
+  "frameCount": 1,
+  "ownerKind": "tile-state",
+  "cloud": "steam",
+  "state": "Cloud=steam and positive CloudTurns; runtime admission belongs to root.",
+  "footprintCells": [
+    1,
+    1
+  ],
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "pixelsPerUnit": 16,
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "alpha": "Binary0/255",
+  "palette": {
+    "muted": "3C5148",
+    "body": "526657",
+    "edge": "7D8E71"
+  },
+  "source": "native.blend",
+  "editableCells": "source-cells.json",
+  "generator": "Tools/Live16x24/build_east_steam.py",
+  "native": "native.png",
+  "importMetadata": "native.png.meta",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "resource": "Sprites/Live16x24/east-steam",
+  "unityExportDeferred": true,
+  "boundsTopLeftExclusive": [
+    5,
+    3,
+    12,
+    14
+  ],
+  "opaquePixels": 21,
+  "bottomNineRowsTransparent": true,
+  "nativeSHA256": "02703f7b4db68f73c7b50e6cc48fba7a92eb3ee115d50dc8178fe52d89c50aa5",
+  "decodedPixelSHA256": "d539adde13a92fcbdcc8bde7180cafc4763d86ce00d56a8c63f364d50d32a535",
+  "referenceSHA256": {
+    "ArtSource/Live16x24/east-steam/concept.png": "1133026313cead62b8fbddfabcac03e52a1c6722559023eda52dd82f6245635c",
+    "ArtSource/Live16x24/east-steam/prompt.txt": "5fc9ef0322ae69b253abe15154fdd7eb45e9db006a0f8c1b9df153fdfd29c9dd",
+    "ArtSource/Live16x24/east-steam/references.json": "e42d7cc8b30eac2a5d4b47f808eaeaf5b7a264c8d8d3e30faf90d01f86ae7581",
+    "Docs/Verification/Live16x24/east-steam-02-before-world-2x.png": "60c11298f86db5dc8ac81d2b6e986a53a7166827a0bcecadbf60166f9a2e87f2",
+    "ArtSource/Live16x24/east-kitchen/source-cells.json": "b3e6cdbdcb0a2e4240bf6307e01382900f92a5e0ac518b08168e7e5f1efe33df",
+    "ArtSource/Live16x24/east-kitchen/east-kitchen.png": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+    "Tools/Live16x24/build_opening_base.py": "4f3081f15b0ab14a2a5d8170c64d9b55b37330248decfe5713f6d1df5583abce",
+    "Tools/Live16x24/build_cindercaller.py": "d977c9b2fb0dd2c37c8d293ed756306001ffa7e744ec960e907439699afbe38e",
+    "Tools/Live16x24/build_north_plot.py": "ed3144a94b95a4211d13e803b0d2667b84b7944cb2c0d1c1da4dc874cc261bb3",
+    "Tools/Live16x24/build_east_kitchen.py": "7b3d6f5967b5b7011eb8a2e6052360b2fc64337677f5b1f4c04509b50f86f8ab",
+    "ArtSource/Live16x24/cudgel/metadata_contract.py": "2aa157af110a1823dbde74b43c90b2d9a505ac8cecfd29fb491c3a182ee1cf54"
+  },
+  "parts": [
+    "upper-tail",
+    "middle-curl",
+    "lower-thread"
+  ],
+  "contactContext": {
+    "source": "ArtSource/Live16x24/east-kitchen/source-cells.json",
+    "frame": 16,
+    "meaning": "Unchanged approved grille shown only in contacts, absent from new runtime sprite."
+  },
+  "paletteProvenance": "Existing approved east-kitchen stone_dark3C5148, stone526657, stone_light7D8E71; explicit constants, never raster sampled.",
+  "rejected": [
+    "sixth invented wisp",
+    "tonic replacement",
+    "grate repaint",
+    "bevel",
+    "background or UI changes",
+    "soft alpha",
+    "glow",
+    "smoke blanket",
+    "heat/damage or source provenance promise"
+  ],
+  "limits": "One static tile-state cue, not SteamVent or SteamCloud entity art. No heat, damage, obscured sight, emission timer, inventory subject or quantity promise. Source only; root owns live state/priority/visibility, import and gameplay acceptance."
+}

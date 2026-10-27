@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="36" result="Failed(Child)" total="36" passed="1" failed="35" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-27 01:24:56Z" end-time="2026-10-27 01:24:59Z" duration="2.8730844">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="32304" result="Failed" site="Child" start-time="2026-10-27 01:24:56Z" end-time="2026-10-27 01:24:59Z" duration="2.873084" total="36" passed="1" failed="35" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="39776" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="32304" result="Failed" site="Child" start-time="2026-10-27 01:24:56Z" end-time="2026-10-27 01:24:59Z" duration="2.764716" total="36" passed="1" failed="35" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="39777" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32304" result="Failed" site="Child" start-time="2026-10-27 01:24:56Z" end-time="2026-10-27 01:24:59Z" duration="2.575245" total="36" passed="1" failed="35" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="39778" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32304" result="Failed" site="Child" start-time="2026-10-27 01:24:56Z" end-time="2026-10-27 01:24:59Z" duration="2.510976" total="36" passed="1" failed="35" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="29000" name="FlatPixelEastSteamTests" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:59Z" duration="2.120255" total="36" passed="1" failed="35" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="29040" name="ActorCoverKeepsExactVentReaderAndTileCueWithoutReplacingSelectedOwner" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ActorCoverKeepsExactVentReaderAndTileCueWithoutReplacingSelectedOwner" methodname="ActorCoverKeepsExactVentReaderAndTileCueWithoutReplacingSelectedOwner" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1807153144" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.110735" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ActorCoverKeepsExactVentReaderAndTileCueWithoutReplacingSelectedOwner () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:280
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29001" name="ActualVentReactionKeepsTheApprovedGrateAndUsesNativeLiveSteam" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ActualVentReactionKeepsTheApprovedGrateAndUsesNativeLiveSteam" methodname="ActualVentReactionKeepsTheApprovedGrateAndUsesNativeLiveSteam" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="294945796" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.229279" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The actual live steam over the native vent still uses a legacy apostrophe.
+  Expected: not same as <CP437_27 (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_27 (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ActualVentReactionKeepsTheApprovedGrateAndUsesNativeLiveSteam () [0x00104] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29042" name="ActualWriteAndExpiryHooksRepaintTheMarkWithoutAnotherFullPassOrInactiveLeak" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ActualWriteAndExpiryHooksRepaintTheMarkWithoutAnotherFullPassOrInactiveLeak" methodname="ActualWriteAndExpiryHooksRepaintTheMarkWithoutAnotherFullPassOrInactiveLeak" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="56369022" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.041161" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ActualWriteAndExpiryHooksRepaintTheMarkWithoutAnotherFullPassOrInactiveLeak () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:313
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29039" name="CachedNativeObjectsAreIndependentAndRendererDestructionNeverDestroysTheTexture" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.CachedNativeObjectsAreIndependentAndRendererDestructionNeverDestroysTheTexture" methodname="CachedNativeObjectsAreIndependentAndRendererDestructionNeverDestroysTheTexture" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="764851396" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.041793" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.CachedNativeObjectsAreIndependentAndRendererDestructionNeverDestroysTheTexture () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:258
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="29003" name="ColdVentBodyWithoutCloudDoesNotInventSteamOrChangeItsAcceptedIdentity" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ColdVentBodyWithoutCloudDoesNotInventSteamOrChangeItsAcceptedIdentity" methodname="ColdVentBodyWithoutCloudDoesNotInventSteamOrChangeItsAcceptedIdentity" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="671233343" result="Passed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.061479" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29012" name="ExactCanonicalCurrentVisibleEastStateIsRequired" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:58Z" duration="0.485230" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29004" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;hidden&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="2032261018" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.048086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29005" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;unexplored&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="409627605" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.048923" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29006" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;foreign-cell&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="2122468488" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.040074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29007" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;stale-graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;stale-graph&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="626463513" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:57Z" duration="0.049019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29008" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;unmanaged&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;unmanaged&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="762285442" result="Failed" start-time="2026-10-27 01:24:57Z" end-time="2026-10-27 01:24:58Z" duration="0.074956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29009" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;foreign-poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;foreign-poi&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1453224759" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.128879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29010" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;foreign-biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;foreign-biome&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="891309607" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.043565" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29011" name="ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;null-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired(&quot;null-cell&quot;)" methodname="ExactCanonicalCurrentVisibleEastStateIsRequired" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="129453228" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.047171" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExactCanonicalCurrentVisibleEastStateIsRequired (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29031" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.299012" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29024" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;veil-mist&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;veil-mist&quot;,'\'')" methodname="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="414215157" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.040912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns (System.String hazard, System.Char glyph) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29025" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;residue&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;residue&quot;,'&quot;')" methodname="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="400611273" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.041560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns (System.String hazard, System.Char glyph) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29026" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;oil&quot;,'~')" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;oil&quot;,'~')" methodname="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1252432488" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.040614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns (System.String hazard, System.Char glyph) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29027" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;ice&quot;,'~')" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;ice&quot;,'~')" methodname="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1654416796" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.040086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns (System.String hazard, System.Char glyph) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29028" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;charge&quot;,'*')" methodname="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1905333336" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.040016" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns (System.String hazard, System.Char glyph) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29029" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;heat&quot;,'^')" methodname="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="692026760" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.040392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns (System.String hazard, System.Char glyph) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29030" name="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;cold&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns(&quot;cold&quot;,'^')" methodname="ExistingHigherPriorityMarksWinAndSurvivingSteamReturns" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1482620363" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.051930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ExistingHigherPriorityMarksWinAndSurvivingSteamReturns (System.String hazard, System.Char glyph) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29002" name="IndependentSteamOverNativeWaterUsesTheSameCueWithoutAnUnderlyingVent" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.IndependentSteamOverNativeWaterUsesTheSameCueWithoutAnUnderlyingVent" methodname="IndependentSteamOverNativeWaterUsesTheSameCueWithoutAnUnderlyingVent" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1836609096" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.068845" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Represented water must still expose the current steam cue.
+  Expected: not same as <CP437_27 (UnityEngine.Tilemaps.Tile)>
+  But was:  <CP437_27 (UnityEngine.Tilemaps.Tile)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.IndependentSteamOverNativeWaterUsesTheSameCueWithoutAnUnderlyingVent () [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:132
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29038" name="MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.126525" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29035" name="MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources(0,0)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources(0,0)" methodname="MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="666104529" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.043275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources (System.Int32 width, System.Int32 height) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:244
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29036" name="MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources(16,23)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources(16,23)" methodname="MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1533054123" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.039082" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources (System.Int32 width, System.Int32 height) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:244
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29037" name="MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources(32,24)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources(32,24)" methodname="MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1808336311" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.039791" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.MissingOrMalformedOptionalTexturePreservesGlyphAndBorrowedResources (System.Int32 width, System.Int32 height) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:244
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29034" name="NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.082365" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29032" name="NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark(False)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark(False)" methodname="NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="998545640" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.039495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark (System.Boolean spriteLoss) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:225
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29033" name="NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark(True)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark(True)" methodname="NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1542330474" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.039925" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.NativeCueDoesNotLeakThroughFogAndModeLossKeepsLegacyMark (System.Boolean spriteLoss) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:225
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29023" name="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:59Z" duration="0.349164" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29018" name="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;smoke&quot;,3)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;smoke&quot;,3)" methodname="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="986100861" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.045841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful (System.String cloud, System.Int32 turns) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29019" name="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;unknown&quot;,3)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;unknown&quot;,3)" methodname="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="25798334" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:58Z" duration="0.099052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful (System.String cloud, System.Int32 turns) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29020" name="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;Steam&quot;,3)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;Steam&quot;,3)" methodname="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1445583812" result="Failed" start-time="2026-10-27 01:24:58Z" end-time="2026-10-27 01:24:59Z" duration="0.100816" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful (System.String cloud, System.Int32 turns) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29021" name="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;steam&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;steam&quot;,0)" methodname="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1526989561" result="Failed" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.043426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful (System.String cloud, System.Int32 turns) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29022" name="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;steam&quot;,-1)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful(&quot;steam&quot;,-1)" methodname="OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1141675161" result="Failed" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.055914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OnlyExactLiveSteamReceivesNewArtWhileOtherCloudFallbackStaysTruthful (System.String cloud, System.Int32 turns) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:191
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29017" name="OtherGraphsKeepTheirExistingCloudGlyph" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.176598" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="29013" name="OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.11.10.0&quot;)" methodname="OtherGraphsKeepTheirExistingCloudGlyph" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="10094181" result="Failed" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.042988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph (System.String address) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29014" name="OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.11.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.11.9.0&quot;)" methodname="OtherGraphsKeepTheirExistingCloudGlyph" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="2061225951" result="Failed" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.044408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph (System.String address) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29015" name="OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.12.11.0&quot;)" methodname="OtherGraphsKeepTheirExistingCloudGlyph" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1690617114" result="Failed" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.046035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph (System.String address) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="29016" name="OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.12.10.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph(&quot;Overworld.12.10.1&quot;)" methodname="OtherGraphsKeepTheirExistingCloudGlyph" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="726552085" result="Failed" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.039643" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.OtherGraphsKeepTheirExistingCloudGlyph (System.String address) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="29041" name="ReplacedGraphClearsPreviouslySubmittedNativeMarkThroughActualRenderPath" fullname="CavesOfOoo.Tests.FlatPixelEastSteamTests.ReplacedGraphClearsPreviouslySubmittedNativeMarkThroughActualRenderPath" methodname="ReplacedGraphClearsPreviouslySubmittedNativeMarkThroughActualRenderPath" classname="CavesOfOoo.Tests.FlatPixelEastSteamTests" runstate="Runnable" seed="1844447161" result="Failed" start-time="2026-10-27 01:24:59Z" end-time="2026-10-27 01:24:59Z" duration="0.040011" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  No optional native East steam tile cue exists yet.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelEastSteamTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:68
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.Create (UnityEngine.Texture2D texture) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:71
+at CavesOfOoo.Tests.FlatPixelEastSteamTests.ReplacedGraphClearsPreviouslySubmittedNativeMarkThroughActualRenderPath () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelEastSteamTests.cs:300
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

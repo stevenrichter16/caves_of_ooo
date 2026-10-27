@@ -270,3 +270,27 @@ confirms the pale marks are the generic tile-cloud apostrophe, not missing vent
 body art. Preserve the approved grates and existing gameplay. Normal saves,
 preferences, 34 unrelated tracked changes and previous builds are preserved;
 no storage cleanup was performed. Last hourly report remains 00:25 UTC.
+
+## Hourly checkpoint — 2026-10-27 01:25 UTC
+
+Reported: cudgel delivery complete and pushed through c709e7a63; 177 native
+cases and actual Mac restart passed. Steam baseline and concept are captured;
+original editable source approved for in-game trial. Native steam RED: 36 cases,
+35 failed/1 passed, including two actual-paint failures on the old apostrophe.
+Initial class-name exact filter selected zero tests and is not counted as evidence;
+correct group_names run produced the retained east-steam-red.xml.
+
+Coming-session goals: finish minimal tile-state routing, pass focused and neighbor
+regressions, compare actual1x/2x gameplay and renewal/save-restart, inspect render
+cost, review and push exact changes. Full six-scene opening and regional coverage
+remain unfinished. Storage inspection-only. Last hourly report:01:25UTC.
+
+### East steam continuation — 2026-10-27 01:42 UTC
+
+Scoped native steam tile-cloud cue now passes211native tests and actual Editor
+before/after, exact-reader, movement/wait and F5 checks. Five real clouds;
+approved grate/tonic preserved. Source and editable art in
+`ArtSource/Live16x24/east-steam`; full acceptance/limits in
+`Docs/GRAPHICS-EAST-STEAM-PLAN.md`. Refresh packages after source push.
+Next scene-level pass is North Patchbearer encounter motion/readability, not
+whole-opening acceptance. Last hourly report01:25UTC. Storage inspection-only.
