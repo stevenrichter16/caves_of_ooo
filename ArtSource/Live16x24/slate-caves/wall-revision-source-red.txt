@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_slate_caves.py", line 353, in <module>
+    elif args.verify:verify()
+                     ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_slate_caves.py", line 187, in verify
+    assert im.mode=='RGBA';rgba=im.tobytes();stats=validate(source['frames'],im.size,rgba)
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_slate_caves.py", line 145, in validate
+    assert frames==source_cells(),'Authored part/color source drift'
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Authored part/color source drift

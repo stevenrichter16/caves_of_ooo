@@ -1,0 +1,1 @@
+Earned ordinary Editor play from unchanged114. Actual fourteen normal Up wall strikes destroyed SlateWall98277at44,7 into Rubble100658; normal movement traversed it. Wall/floor/rubble/stalagmite readers;8→7→6→7→8normalstairs; Right4andF5at44,10HP33. No teleport,heal,reveal,gameplay injection or save edits.

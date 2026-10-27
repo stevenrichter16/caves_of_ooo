@@ -1,6 +1,47 @@
 # Worldwide native sprite coverage
 
-**Current continuation — fresh shared-furniture delivery, 2026-10-27:**
+**Current continuation — Slate7/8 material checks, 2026-10-27:**
+Genuine36-case RED preceded implementation; retained36 focused plus234 disjoint
+related tests give **270 distinct passes**, with no failures, skips or inconclusives.
+Six native cells support two Slate material identities, with four unchanged borrowed
+Rubble/Stalagmite/stair controls. This is scoped integration, not six completed areas.
+The frozen v2PNG is `e3fe86854fb139721f42058585bd5d000f266fde58f2b426451dff6ad1dfb1ff`.
+
+Seven ordinary before views establish one earned7/8column and fixture114,
+turn12690HP33. Actual after01 matches the wider8view;02reads the38/38wall.
+The first ordinary strike leaves37HP;14Upstrikes total remove owner98277at44,7
+and produce realRubble100658. Normal entry onto44,7, Rubble/floor and Stalagmite
+readers, plus ordinary8→7→6→7→8 travel are observed. Fifteen actual after captures
+retain F5fixture115 at8/44,10,turn13050HP33 and fresh Continue restoring the same
+position, HP, current visible census and exact passableRubble100658at44,7.
+The save/Continue world crop differs in13,695of564,000pixels: **not pixel-identical**.
+Independent final actual review found no P1/P2 blocker; the restart differences are confined to the player-light area and at most2/255 per channel. The74.793-second Editor profile
+includes UI, idle and tool time; it supports no speedup, sustained FPS or Deck claim.
+Two memoryless depth load/store console messages remain; no clean-log claim.
+Root verified Unity stopped, save-root null and scene clean after archiving and
+verifying seven plus three isolated-session files. No cleanup was performed.
+
+Repeated slabs, frequent olive Rubble and mixed glyph hazards remain named
+polish debt. Visible IceSheet/BrinePool/SteamVent/TarSeep,CharredHusk and ordinary
+ChoirIronVein are separate gaps or scoped controls; already-shared OreCache/Crate
+are not new gaps. Quartzite/Obsidian, remaining surface actors/crops/services,
+settlements and special areas remain in the wider coverage queue. All55inventory
+polish scopes and five Stump area statuses remain unchanged.
+
+Furniture delivery evidence `dc6ed52c1c254a35d9f619a595c6c2a6c4f525fb` is verified
+on main by root; current fresh packages remain furniture source`13178d5c0`.
+Slate source publication and new packages are pending. The cave parity study
+stays parked/default-off with straight wall silhouettes. Actual hourly report
+sent23:28UTC; next00:28UTC on2026-10-28. No later report is inferred.
+
+Evidence: [phase](GRAPHICS-SLATE-MATERIALS.md),
+[before play](Verification/Live16x24/slate-materials-before-play.json),
+[final Editor play](Verification/Live16x24/slate-materials-after-play.json),
+[focused GREEN](Verification/Live16x24/slate-materials-green.json),
+[related GREEN](Verification/Live16x24/slate-materials-related-green.json) and
+[bounded profile](Verification/Live16x24/slate-materials-editor-profile.json).
+
+**Historical continuation — fresh shared-furniture delivery, 2026-10-27:**
 Source `13178d5c0302bb655347a1daff20425d990b6c84` is verified on main. Both fresh
 Mac/Linux builds succeeded with zero errors and four warnings each. The retained
 native evidence remains395 distinct Passed plus three Inconclusive allocation

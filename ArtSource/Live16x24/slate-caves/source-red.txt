@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_slate_caves.py", line 352, in <module>
+    elif args.verify:verify()
+                     ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_slate_caves.py", line 181, in verify
+    assert (OUT/'slate-caves.png').exists(),'Native slate atlas missing: render required before GREEN'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Native slate atlas missing: render required before GREEN

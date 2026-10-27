@@ -1,0 +1,306 @@
+{
+  "schema": 1,
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "owner": "SlateFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owner": "SlateFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 2,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "owner": "SlateFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 3,
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "owner": "SlateFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 4,
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "owner": "SlateWall",
+      "state": "Surviving structural HP1..38/max38/hardness3; actual destruction removes owner and places existing Rubble"
+    },
+    {
+      "index": 5,
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "owner": "SlateWall",
+      "state": "Surviving structural HP1..38/max38/hardness3; actual destruction removes owner and places existing Rubble"
+    }
+  ],
+  "atlas": "slate-caves.png",
+  "width": 96,
+  "height": 24,
+  "palette": {
+    "floor": "4E5260",
+    "fleck": "565A68",
+    "dust": "444856",
+    "mass": "536174",
+    "shadow": "303A49",
+    "seam": "445164",
+    "plane": "65758A",
+    "highlight": "8190A1"
+  },
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,FullRect.",
+  "opaque": true,
+  "edge_masks": false,
+  "blend": "slate-caves.blend",
+  "source_cells": "source-cells.json",
+  "shade_style": "Original flat internal color planes; no geometry or alpha silhouette change.",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 16
+    },
+    {
+      "frame": 1,
+      "left": 36,
+      "top": 16
+    },
+    {
+      "frame": 2,
+      "left": 64,
+      "top": 16
+    },
+    {
+      "frame": 3,
+      "left": 92,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 120,
+      "top": 16
+    },
+    {
+      "frame": 5,
+      "left": 148,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 60
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 60
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 60
+    },
+    {
+      "frame": 3,
+      "left": 88,
+      "top": 60
+    },
+    {
+      "frame": 2,
+      "left": 104,
+      "top": 60
+    },
+    {
+      "frame": 1,
+      "left": 120,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 8,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 24,
+      "top": 84
+    },
+    {
+      "frame": 5,
+      "left": 40,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 56,
+      "top": 84
+    },
+    {
+      "frame": 1,
+      "left": 72,
+      "top": 84
+    },
+    {
+      "frame": 0,
+      "left": 88,
+      "top": 84
+    },
+    {
+      "frame": 3,
+      "left": 104,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 120,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 108
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 108
+    },
+    {
+      "frame": 2,
+      "left": 72,
+      "top": 108
+    },
+    {
+      "frame": 1,
+      "left": 88,
+      "top": 108
+    },
+    {
+      "frame": 0,
+      "left": 104,
+      "top": 108
+    },
+    {
+      "frame": 3,
+      "left": 120,
+      "top": 108
+    }
+  ],
+  "contact_size_native": [
+    192,
+    140
+  ],
+  "ambient_base_rgb": [
+    78,
+    82,
+    96
+  ],
+  "ambient_limit": "Optional owner-free backing belongs to separately guarded runtime; not a floor owner or reader.",
+  "references": [
+    "scene-reference-01.png",
+    "prompt-01.txt",
+    "SOURCE-DIRECTION.md"
+  ],
+  "named_revision": "WALL-REVISION-01.md; first trial retained in draft-v1/",
+  "extraction": "Accept cool material separation and internal layered shading only. Reject invented boundary walls, changed fog/camera/UI/scale, overscaled floor cracks, extrusion, gradients, image sampling and nonuniform pixels.",
+  "protected_input_counts": [
+    26,
+    9
+  ],
+  "png_nonpixel_timing_normalization": {
+    "slate-caves.png": {
+      "raw_sha256": "268c8015be5d2641b7614d17b7fe71600ad8bde53fbf08018f1c324230d84958",
+      "canonical_sha256": "e3fe86854fb139721f42058585bd5d000f266fde58f2b426451dff6ad1dfb1ff",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact-native.png": {
+      "raw_sha256": "7a73e7211a33e91ffa6e3876325bf5e3470e3891ff89638e23a231b2df78f3b7",
+      "canonical_sha256": "114bb805084abf2906515997d6525b876a0a0561fa95f8bdcc6a1d51c4718378",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact.png": {
+      "raw_sha256": "be038a619e69dab22cdd89c1e99e5dd209eecf9ad4899a1a7141806e5abd28d3",
+      "canonical_sha256": "0dd4a6e12cc473d645f43a139893a54bc4052172756941b786a3209c99392cfc",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    }
+  },
+  "runtime_acceptance": false,
+  "area_polish_acceptance": false
+}

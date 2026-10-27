@@ -1,11 +1,12 @@
 # Slate depths 7–8 — next bounded material coverage slice
 
-**Status, 2026-10-27: source-corrected preflight only.** Shared furniture source
-`13178d5c0302bb655347a1daff20425d990b6c84` is verified on main by root; its fresh
-packages are underway. Slate is the next queued slice after that delivery.
+**Status, 2026-10-27: native integration under gameplay verification.** Shared
+furniture source and fresh package evidence are verified on main atdc6ed52.
+Slate7–8 baseline, original six-frame source, runtime and36 RED→GREEN cases
+are observed; related tests and actual postintegration gates remain pending.
 This updates the work-order context of [the earlier slate audit](GRAPHICS-SLATE-CAVES.md),
-without rewriting its history. No Slate native art, runtime, tests or after
-acceptance is created here. Root owns Unity, normal gameplay and Git.
+without rewriting its history. The initial preflight below is retained with later evidence sections. Root owns
+Unity, normal gameplay and Git; no completed area-polish claim follows.
 
 The cave reference experiment remains parked/default-off. Keep **straight wall
 silhouettes**, flat native16×24 and the normal lighting/grade. The retained
@@ -43,7 +44,7 @@ original native16×24 production; stretching those squares or repurposing their
 macro indices is not the proposed work. Root must judge collision contrast and
 repetition under the actual normal Cave grade, not compensate from a concept.
 
-## Earned baseline and least additional travel
+## Initial earned baseline and planned additional travel (historical preflight)
 
 The retained [actual package receipt](Verification/Live16x24/slate-caves-before-play.json)
 and directly inspected [entry image](Verification/Live16x24/slate-caves-before-01-packaged-entry.jpg)
@@ -121,3 +122,112 @@ remaining surface biome/settlement/interior families stay in the broader queue.
 Already shared storage/furniture can retain their own valid global body contracts;
 this slice must not reimplement them. Whole-chunk fullness and later serious
 area polish require separate actual evidence, not atlas or owner counts.
+
+## Actual baseline and concept extraction — 2026-10-27 23:21 UTC
+
+Root resumed unchanged earned98 in the normal scene under isolated native16×24
+presentation, study disabled. Actual before01 shows7at40,12HP33; reader02
+confirms SlateWall39,12 at38/38/Stone;03reads SlateFloor40,11. Up2 reached visible
+StairsDown40,10; ordinary>reached8at40,10HP33. Right4 disclosed the wider8view
+at44,10 and F5earned114turn12690. Left4/<returned normally to7at40,10HP33.
+Captured01–07 and archived all7 sessionfiles before normal isolation Finish;
+Play false/rootnull/scene clean verified. No teleport, reveal, heal or save edits.
+Current visible census is disclosure-limited, not an entire-chunk census.
+
+Imagegen prompt01 uses actualbefore06 plus the approved shaleatlas as craft
+reference. Outputscene-reference01 is an AI concept, not actual gameplay.
+Its compact layeredbluegray wall planes and quieter floor are useful cues;
+new boundarywall geometry, fog reinterpretation, oversized floor cracks,
+1586×992 output versus1280×800 baseline and UI/scale drift are rejected.
+Production extracts fourquiet original floorvariants andtwowallbodies only,
+with straight opaque16×24boundaries. Generatedpixels are not copied/resampled.
+Floorbase78,82,96 is frozen for backing continuity, with86,90,104/68,72,86
+accents in atmost5%ofeachfloor. Wall internal planes will be authored separately;
+actual normal-grade contrast remains a postintegration gate. Allpixels are
+original integer-cell editable geometry, retaining the existing sharedcontrols.
+
+The36-case reflection-only native fixture is copied from the reviewed scratch
+draft before production. Native RED is pending; there is no Slate runtime or
+resource atlas yet. Optionalmotion and the parkedShalestudy stay excluded.
+
+Native RED observed before production: job58a7b38979104f1ba354229c3a8d9e36 completed36/36 with36Failed,0Passed. The missing adapter/native resource route fails explicitly, including the actual8 vertical path falling back to glyph instead of opening-anchors. Full rawreceipt slate-materials-red.json retained. No production implementation existed at that run. Independent cold fixture review found no concrete API/setup blocker. Floor anchor78,82,96 is confirmed.
+
+Hourly report actually sent2026-10-27 23:28UTC; next00:28UTC. Current source
+production is in progress after genuine RED36. v1 wall contact rejected as
+three detached rounded chips repeated per cell; bounded wall-only revision to
+continuous open-ended cleavage planes authorized, with floors/palette/straight
+opaque boundaries retained and draft-v1 saved. No actual postintegration or
+GREEN claim yet. Shared-furniture publication is verified atdc6ed52.
+
+## Native integration checkpoint — 2026-10-27 23:32UTC
+
+Original v2 native atlas e3fe86854fb139721f42058585bd5d000f266fde58f2b426451dff6ad1dfb1ff
+is installed as96×24 Point/16PPU/Clamp/uncompressed. v1 detached-chip design
+remains preserved; v2 has two unequal open-ended cleavage planes. Independent
+contact review allows an actual trial but notes repeated paired slabs as a
+remaining polish watch. Floor1536pixels, palette and opaque straight edges
+are unchanged by that wall-only correction.
+
+Minimal companion plus Greybox hooks preserve exact Slate7/8 semantics, real
+floor versus ambient backing, selected foreground/authorized readers, hazards,
+memory/refusal and borrowed-resource lifetime. Independent source review found
+no actionable defect. First scripts-only refresh lacked the new file import
+and produced CS0246; full AssetDatabase refresh imported it and cleared all
+compiler errors, without changing production source. Native jobbf36ca1384e94f3fb135b8874457135b
+then passed36/36 after genuine RED36/36. Related tests and actual screenshots
+remain separate gates; no allocation, performance, package or parity claim.
+
+## Actual integration checkpoint and self-review — 2026-10-27
+
+Native focused36 and related234 are270 distinct Passed,zeroFailed/Skipped.
+The focused fixture includes non-vacuous identity, wrong-depth/reserved-column,
+current-graph/POI/lair, disclosure/custody/duplicate-parts, partial damage, actual
+destruction, dirty submitted layer, hazard, missing-resource and lifetime
+counterchecks. Related fixtures cover neighboring Limestone/Shale/Shallow,
+Greybox/fallback and shared furniture. No new gameplay mechanic or Qud-parity
+claim: this is CoO-original presentation of existing owner semantics.
+
+Actualafter01 resumes earned114atdepth8/44,10HP33 for the matched baseline.
+02reads SlateWall44,7 asStone38/38; a normalUp keeps the player44,8 and reduces
+structure38→37. Fourteen ordinary strikes in total destroy wall98277 into real
+Rubble100658; Up then enters44,7. 06/07show rubble/floor readers;13shows the
+borrowed Stalagmite portrait. Normal stairs8→7→6→7→8 preserve health33 and
+straight-wall settings. Depth6 is a Shale control, not new Slate coverage.
+
+F5earned115saves8/44,10turn13050HP33. After archive/Finish and a fresh isolated
+Continue,15restores position,HP,currentvisible census and exactpassable
+Rubble100658at44,7. The saved14→continued15world rectangle differs in13695
+of564000pixels; no exactvisualidentity claim. Before06→after01 changes273850
+pixels in the same crop and is an actual material comparison, not proof of
+isolated pixel changes. Rawreceipts and all15aftercaptures are retained.
+
+The74.793-second Editor profile contains27822samples without wrapping.
+ZoneRenderer mean0.1118ms,p990.2375ms,max34.1552ms; MainThreadmean2.6801ms,
+max1658.9924ms; draws/batchesmax42. It includes Look/reader, walking, wall
+strikes and tool/idle time. No zone travel occurred during that window. No
+controlled speedup,FPS,allocation or physicalDeck claim follows. Unity reports
+two memoryless depth load/store messages; no clean-console claim.
+
+- 🟡 Fixed before integration: three detached stacked stone shapes in first
+  contact. v1 retained; v2 uses unequal open-ended planes and unchanged floors.
+- 🔵 Independent source review found no actionable routing/state/lifetime issue.
+- 🧪 Actual review accepts only bounded material readability: normalCavegrade
+  warms the blue-gray source; repeated paired wall slabs, frequent olive Rubble
+  and generic/glyph owners remain concrete polish/coverage debt.
+- ⚪ This column is not an entirechunk/biome polish review. No all-layout,
+  special-site,actor/mineral/hazard or freshpackaged acceptance is implied.
+
+Both owned sessions were archived with matching hashes (7files then3files),
+then normal isolationFinish completed. Root verifiedPlayfalse,SaveRootnull,
+scene clean. Normal saves,currentbuilds,approvedart and49foreignpaths remain
+preserved; no storage reclamation. Final independent review, exactmainpush and
+freshSlatepackages are the next gates. Last actual hourlyreport23:28UTC;
+next2026-10-28 00:28UTC.
+
+Files: new Slate catalog andmetadata; minimalGreyboxhooks;36-casefixture andmeta;
+96×24Resourcesatlas/importmeta; original sourcebuilder/editablepacket including
+AIreference,partgeometry,retainedv1,validator/reproducibility receipts; earned
+114/115fixtures,baseline/aftercaptures,test/profile/comparison/preservation
+evidence; living artdirection,completion,worldcoverage and bothJSONledgers.
+
+Final independent review is saved atVerification/Live16x24/slate-materials-independent-review.md,zeroP1/P2. It independently reproduced270distinctpasses/all15capturehashes. Restart13,695pixels differ only withinx373–567/y194–389 nearplayerlight,max2/255/channel; a lighting-phase cause is an inference. No lostgeometry is visible. Root also checked all19 final sourcehandoff dependencies. Exactpublication andfreshpackages remain pending.

@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "dimensions": [
+    96,
+    24
+  ],
+  "frames": 6,
+  "palette": {
+    "floor": "4E5260",
+    "fleck": "565A68",
+    "dust": "444856",
+    "mass": "536174",
+    "shadow": "303A49",
+    "seam": "445164",
+    "plane": "65758A",
+    "highlight": "8190A1"
+  },
+  "exact_native_pixels_checked": 2304,
+  "direct_contact_pixels_checked": 748800,
+  "fully_opaque": true,
+  "identical_family_base_edges": true,
+  "frame_stats": [
+    {
+      "frame": 0,
+      "owner": "SlateFloor",
+      "base_pixels": 379,
+      "detail_pixels": 5,
+      "base_fraction": 0.9869791666666666,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 1,
+      "owner": "SlateFloor",
+      "base_pixels": 378,
+      "detail_pixels": 6,
+      "base_fraction": 0.984375,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 2,
+      "owner": "SlateFloor",
+      "base_pixels": 378,
+      "detail_pixels": 6,
+      "base_fraction": 0.984375,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 3,
+      "owner": "SlateFloor",
+      "base_pixels": 378,
+      "detail_pixels": 6,
+      "base_fraction": 0.984375,
+      "minimum_base_fraction": 0.95
+    },
+    {
+      "frame": 4,
+      "owner": "SlateWall",
+      "base_pixels": 245,
+      "detail_pixels": 139,
+      "base_fraction": 0.6380208333333334,
+      "minimum_base_fraction": 0.5
+    },
+    {
+      "frame": 5,
+      "owner": "SlateWall",
+      "base_pixels": 243,
+      "detail_pixels": 141,
+      "base_fraction": 0.6328125,
+      "minimum_base_fraction": 0.5
+    }
+  ],
+  "atlas_sha256": "e3fe86854fb139721f42058585bd5d000f266fde58f2b426451dff6ad1dfb1ff",
+  "decoded_rgba_sha256": "4107c8637259a49c6d8e63021ba5f3163c76624519415e2b60468ef8a21dda90",
+  "source_cells_sha256": "11e9c3e6e88c48bb3f744fc5d84af9cad364480f4ea2692392e313c8fb80eab9",
+  "blend_sha256": "8cf7d698bf96ba8499458a90876016acccdbf430d3f0271f48b9e2ad69a02868",
+  "protected_exact_inputs": 26,
+  "protected_normalized_metas": 9,
+  "counterchecks_rejected": [
+    "incorrect canvas",
+    "transparent hole",
+    "partial alpha",
+    "altered floor base edge",
+    "altered wall base edge",
+    "altered original chip",
+    "swapped floor variant pixels",
+    "duplicate source",
+    "named part drift",
+    "changed importer rejected despite whitespace tolerance"
+  ],
+  "metadata_whitespace_counter_accepted": true,
+  "gameplay_acceptance": false,
+  "limits": "Original geometry/render validation only; contacts are ungraded static source studies. Runtime,actual Cave grading,readers,states,travel,fullness and packaged gates are separate.",
+  "runtime_png_present": true,
+  "runtime_png_sha256": "e3fe86854fb139721f42058585bd5d000f266fde58f2b426451dff6ad1dfb1ff"
+}

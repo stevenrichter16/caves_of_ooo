@@ -1,0 +1,1 @@
+Earned normal Editor route from unchanged slate-caves-entry98, native presentation and study disabled. Continue depth7(40,12), wall/floor readers, Up2to40,10, ordinary>to8(40,10), Right4to44,10 and F5. HP33 throughout. No entity/scene/save edits or teleport; root actualbefore06.

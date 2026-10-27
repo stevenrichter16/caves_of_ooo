@@ -1,8 +1,9 @@
 # Caves of Ooo — Project Rules for Claude
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
-coverage across every biome and area. Shared Bed/Chair delivery is verified;
-continue the queued Slate depth7–8 material slice next.
+coverage across every biome and area. Shared Bed/Chair delivery is verified.
+Slate depth7–8 native materials now have bounded Editor verification; finish
+source publication and fresh packages, then continue the remaining world queue.
 Keep straight wall silhouettes as the current default. The isolated shale parity
 prototype is parked, disabled and not accepted as reference parity; preserve its
 editable candidates and evidence reversibly, with no further automatic art

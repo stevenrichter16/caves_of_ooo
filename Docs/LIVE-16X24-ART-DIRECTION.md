@@ -3960,3 +3960,33 @@ Evidence: [Mac actual play](Verification/Live16x24/packaged-shared-furniture-act
 [Linux archive](Verification/Live16x24/packaged-shared-furniture-linux-archive.json),
 [restoration](Verification/Live16x24/packaged-shared-furniture-restoration.json) and
 [independent package review](Verification/Live16x24/packaged-shared-furniture-independent-review.md).
+
+## Actual hourly report — 2026-10-27 23:28 UTC
+
+Sent to the user: shared Bed/Chair source and package verification completed on
+main dc6ed52; Mac ordinary sitting/standing/rest/save/Continue observed, Linux
+archive verified but physical Deck untested. Slate7–8 baseline ordinary travel
+and earned114 checkpoint completed. Slate native materials are in progress:
+first two-wall contact has a named detached-stone defect under correction, with
+straight boundaries and quiet floors retained. Next-hour goals: integrate, run
+native GREEN/related checks, actual collision/rubble/readers/travel comparison,
+then reviewed main publication. Other regional gaps and later area polish remain
+open; optional motion deferred and no storage deletion. This is an actual report,
+not a prospective timestamp. Next report due2026-10-28 00:28UTC.
+
+## Slate7–8 native materials — actual continuation,2026-10-27
+
+Shared furniture delivery is remotely verified atdc6ed52. Slate material source
+now follows actualearned7/8baseline→AIreference→original editable six-cell
+production→native36RED→36GREEN+234related→15actualaftercaptures. See
+Docs/GRAPHICS-SLATE-MATERIALS.md for exact source corrections and evidence.
+Wall/floor/rubble/stalagmite readers,realwallbreak→Rubble/traversal,ordinary
+8→7→6→7→8travel andearned115save/freshContinue are observed atHP33.
+270distinct nativepasses;74.793s boundedEditorprofile is notspeedup/Deck proof.
+Straight walls andquietfloor remain; parkedstudyfalse. Remaining repetition,
+Cavegradecolorcast,genericglyphhazards/actors andfullchunkcomposition are
+explicit laterwork,notpolish acceptance. All55+5polishstates unchanged.
+Sourcepublication/freshSlatepackagespending; currentdeliveredpackage13178.
+Lastactuallysenthourlyreport23:28UTC,next2026-10-28 00:28UTC. No deletion.
+
+Slate finalindependentreview:zeroP1/P2 in270tests/15captures; restartdelta confinednearplayerlight(max2/255),notgeometryloss. Sourcepublicationandfreshpackagesnext. Nochangehourlyclockorpolishacceptance.
