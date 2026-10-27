@@ -855,9 +855,9 @@
   },
   "latest_observation": {
     "date": "2026-10-27",
-    "status": "east_steam_bounded_source_editor_mac_delivery_accepted",
-    "evidence": "Docs/GRAPHICS-EAST-STEAM-PLAN.md",
-    "actual": "Five real East tile-cloud steam marks use native wisps;211tests,actualEditor+MacContinue/reader/turnrenewal/restart. Connected copper,kitchenbrine andcudgel prior corrections retained. North encounter motion and complete scene-level release acceptance remain open."
+    "status": "north_motion_bounded_source_editor_mac_delivery_accepted",
+    "evidence": "Docs/GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md",
+    "actual": "Both medicine states have native walk/attack/hurt with reaction continuity; real tonic use,death,return and saves verified. Caster and whole-scene release gates remain open."
   },
   "current_environment_blocker": {
     "status": "no_current_blocker_recheck_ownership_before_play",
@@ -867,19 +867,19 @@
     ]
   },
   "packaged_delivery": {
-    "source_commit": "be1c52ca375bab35c202eb976a04449e8ef72991",
-    "linux_archive": "Builds/SteamDeck/2026-10-27-east-steam-be1c52ca3-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
-    "mac_app": "Builds/Verification/2026-10-27-east-steam-be1c52ca3-current/CavesOfOoo.app",
-    "sha256": "d27fbe7aef2e5e5dec524902966c4741c5909caffd897585ff2a972da48d3675",
-    "archive_bytes": 128688319,
+    "source_commit": "2375284dd94fc5614f9d676457fe4a921dd931ac",
+    "linux_archive": "Builds/SteamDeck/2026-10-27-north-motion-2375284dd-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+    "mac_app": "Builds/Verification/2026-10-27-north-motion-2375284dd-current/CavesOfOoo.app",
+    "sha256": "c33ba3283ba1717f74c5738fa1bb1391d307c5a3d25f456f12b0c9f3006a60b4",
+    "archive_bytes": 128684199,
     "regular_files": 181,
-    "mac_actual_play": "Docs/Verification/Live16x24/packaged-east-steam-mac-play-summary.json",
-    "archive_verification": "Docs/Verification/Live16x24/packaged-east-steam-independent-review.json",
+    "mac_actual_play": "Docs/Verification/Live16x24/packaged-north-motion-mac-play-summary.json",
+    "archive_verification": "Docs/Verification/Live16x24/packaged-north-motion-linux-independent-review.json",
     "linux_execution_verified": false,
     "physical_deck_verified": false,
-    "limits": "211native cases;actual MacContinue,reader,wait,save/fullrestart. Builds0errors4warnings each.Whole opening/motion,Linuxexecution,physicalDeck and sustainedhardwareperformance remain incomplete."
+    "limits": "278native passes/1allocation skip; ordinaryEditor motion/tonic/death/revisit and Maccombat/tonic/reader/save/fullrestart. Build0errors4warnings each. No continuousvideo/Linuxrun/physicalDeck/sustainedperformance/wholeopening acceptance."
   },
-  "next_scoped_work": "North Patchbearer encounter motion is in progress: actual ordinary baseline and design/native art captured, genuine RED verified; finish local state-preserving integration then actual same-checkpoint after and delivery. See Docs/GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md.",
+  "next_scoped_work": "East Cindercaller movement/cast attribution in the ordinary encounter. Follow Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md; capture first, preserve working spell FX/audio and neutral approved identity. FireMoss is not spell ammo.",
   "popup_raster_continuation": {
     "date": "2026-10-26",
     "status": "bounded_native_and_ordinary_editor_verified",
@@ -1467,6 +1467,19 @@
         "Docs/Verification/Live16x24/packaged-cudgel-independent-review.json",
         "Docs/Verification/Live16x24/packaged-cudgel-restoration.json"
       ]
+    },
+    {
+      "source_commit": "be1c52ca375bab35c202eb976a04449e8ef72991",
+      "linux_archive": "Builds/SteamDeck/2026-10-27-east-steam-be1c52ca3-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+      "mac_app": "Builds/Verification/2026-10-27-east-steam-be1c52ca3-current/CavesOfOoo.app",
+      "sha256": "d27fbe7aef2e5e5dec524902966c4741c5909caffd897585ff2a972da48d3675",
+      "archive_bytes": 128688319,
+      "regular_files": 181,
+      "mac_actual_play": "Docs/Verification/Live16x24/packaged-east-steam-mac-play-summary.json",
+      "archive_verification": "Docs/Verification/Live16x24/packaged-east-steam-independent-review.json",
+      "linux_execution_verified": false,
+      "physical_deck_verified": false,
+      "limits": "211native cases;actual MacContinue,reader,wait,save/fullrestart. Builds0errors4warnings each.Whole opening/motion,Linuxexecution,physicalDeck and sustainedhardwareperformance remain incomplete."
     }
   ],
   "scoped_work_history": [
@@ -1766,7 +1779,7 @@
     "packaged_evidence": "Docs/Verification/Live16x24/packaged-east-steam-mac-play-summary.json"
   },
   "north_patchbearer_motion": {
-    "status": "native_editor_accepted_package_next",
+    "status": "native_editor_and_mac_verified_linux_archive_verified",
     "plan": "Docs/GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md",
     "source": "ArtSource/Live16x24/north-patchbearer-motion",
     "native_tests": {
@@ -1775,6 +1788,8 @@
       "failed": 0
     },
     "editor_evidence": "Docs/Verification/Live16x24/north-motion-editor-play-summary.json",
-    "limits": "Sampled full/empty poses; ordinary tonic use/death/travel/save. Package next. No continuous-video, Guarded/Parried, allocation, Linux execution, Deck, sustained performance or whole-opening acceptance."
+    "limits": "278native passes/1allocation skip; ordinaryEditor motion/tonic/death/revisit and Maccombat/tonic/reader/save/fullrestart. Build0errors4warnings each. No continuousvideo/Linuxrun/physicalDeck/sustainedperformance/wholeopening acceptance.",
+    "source_commit": "2375284dd94fc5614f9d676457fe4a921dd931ac",
+    "packaged_evidence": "Docs/Verification/Live16x24/packaged-north-motion-mac-play-summary.json"
   }
 }

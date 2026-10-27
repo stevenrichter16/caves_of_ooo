@@ -1,13 +1,12 @@
 # G1 — Packaged flat 16×24 delivery
 
-**Latest delivery: 2026-10-26 12:02 UTC**, source
-`e49047200f28708d4bfd77fb7007d2c7843ba2ab`. The
-[current aftermath/North delivery](Verification/Live16x24/packaged-aftermath-north-report.md)
-includes native aftermath sprites and North water banks. Both builds succeeded;
-14actual Mac captures verify crossing/restart/return and corpse pickup/portrait/
-drop/restart. All181Linux archive files independently verified. Linux execution,
-physical Deck and whole-opening/regional acceptance remain open. Earlier
-sections below retain their historical source/limits.
+**Latest delivery:2026-10-27 03:01UTC**, source`2375284dd94fc5614f9d676457fe4a921dd931ac`.
+[North encounter delivery](GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md) includes
+native Patchbearer full/empty motion and prior six-site corrections. Eight actual
+Mac captures verify combat/tonic/reader/save/restart; matching181-file Linux
+archive verified. Native278passed/1allocation-control skip. Linux execution,
+physical Deck, sustained performance and whole-opening acceptance remain open.
+Earlier dated sections retain their historical source and limits.
 
 **Status, 2026-10-25 UTC:** current-source Linux and macOS packages built successfully. An ordinary macOS standalone launch, Continue, crop Examine and movement were observed. The Linux archive is verified and ready for transfer; Linux execution, physical Steam Deck acceptance and fresh performance measurements remain open.
 
@@ -273,3 +272,36 @@ All181files independently verified. Earlier outputs and normal saves remain
 intact;32generated build files restored,47580prebuild tracked hashes checked.
 No cache deletion. Fullopening/regional and physicalDeck/Linuxexecution gates
 remain open; next is current-package Nella state/frontage review.
+
+
+### North encounter delivered — 2026-10-27 03:01 UTC
+
+Source`2375284dd94fc5614f9d676457fe4a921dd931ac` is verified on origin/main. Fresh compressed Mac/Linux
+builds each succeeded with0errors/4warnings. Mac ordinaryContinue600 from the
+earned close-approach checkpoint shows the full Patchbearer. Real combat triggered
+healing16HP and consumed its tonic at640; exact Examine shows the empty cradle
+and separate Antidote. Continued combat, retreat, F5 at660, full process quit,
+relaunch andContinue preserve player6,19/22HP and Patchbearer6,22/6HP/empty.
+Eight original1280x856 native-window screenshots include1280x800 game output.
+These Mac stills validate state and presentation, not every animation interval;
+the separate Editor60sampled frames provide motion evidence. No debug gameplay
+changes or picture editing. Native278passed/1allocation-counter skip.
+
+Current Mac: `Builds/Verification/2026-10-27-north-motion-2375284dd-current/CavesOfOoo.app`.
+Current Linux archive: `Builds/SteamDeck/2026-10-27-north-motion-2375284dd-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+Archive181files,128684199bytes,SHA256`c33ba3283ba1717f74c5738fa1bb1391d307c5a3d25f456f12b0c9f3006a60b4`. Launcher,credits,
+licenses and checksum list included; byte/size/mode/path integrity checked.
+No Linux execution or physical Deck claim. Known premature-thread-finalization
+and ComputeBuffer shutdown notices remain. Normal save trees, gameplay
+preferences, entire standalone preference map,34foreign tracked changes and
+previous delivered Mac/archive match protection. Owned test saves archived,
+reviewed generated settings restored. Storage inspection only;~410GiBfree.
+
+Evidence:`Verification/Live16x24/packaged-north-motion-mac-play-summary.json`,
+`packaged-north-motion-independent-review.json`,`packaged-north-motion-linux-archive.json`
+and`packaged-north-motion-restoration.json`. Whole six-scene opening, regional
+kits, Guarded/Parried timing and sustained hardware performance remain open.
+Next is the East Cindercaller ordinary movement/cast baseline, as planned in
+`Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md`. Preserve existing spell FX/audio and
+approved neutral body; carried FireMoss is not spell fuel. No new caster graphics
+are claimed yet. Keep continuation active. Last hourly report02:25UTC,next03:25UTC.

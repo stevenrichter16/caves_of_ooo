@@ -1,17 +1,18 @@
 # Graphics completion plan
 
-Current status, 2026-10-27 01:52 UTC: native East steam cues are delivered
-in source`be1c52ca3` and fresh compressed Mac/Linux packages.211native tests,
-actual Editor ordinary play and Mac Continue/reader/wait/full restart passed.
-Connected copper, kitchen brine and cudgel corrections remain included.
-Next is North Patchbearer encounter motion/readability, preserving its approved
-medicine-state idles. See[steam delivery](GRAPHICS-EAST-STEAM-PLAN.md) and
-[North plan](GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md). The whole six-scene
-opening, remaining regions, Linux execution, physical Deck and sustained
-hardware performance remain unverified. Saves/gameplay preferences,34foreign
-edits and previous packages preserved; storage inspection-only.
+Current status,2026-10-27 03:01 UTC: North Patchbearer encounter motion is
+verified in source2375284dd and fresh Mac/Linux packages.278native tests pass,
+1allocation-counter control skips; actual Editor full/empty motion/death/revisit
+and Maccombat/tonic/reader/save/fullrestart accepted. Earlier copper, brine,
+cudgel and steam corrections remain included. The next scene-level pass is
+East Cindercaller movement/cast attribution; capture ordinary gameplay first.
+See[North delivery](GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md) and
+[East plan](GRAPHICS-EAST-CASTER-MOTION-PLAN.md). Whole opening, remaining regions,
+Linux execution, physical Deck and sustained performance remain unverified.
+Normal saves/preferences,34foreign edits and previous builds preserved;
+storage inspection-only.
 
-Hourly report checkpoint:2026-10-27 01:25UTC. Continue itemized results and
+Hourly report checkpoint:2026-10-27 02:25UTC; next03:25UTC. Continue itemized results and
 concrete coming-session goals. The [run inventory](GRAPHICS-RUN-CHANGELOG-2026-10-26.md)
 distinguishes new graphics/gameplay fixes from existing mechanics exercised.
 
@@ -2164,3 +2165,36 @@ Ember Spit FX/audio is functional. All six scenes have bounded evidence; whole
 opening, remaining actors/services/regional kits, Linux execution and physical
 Deck remain open. Normal saves/gameplay preferences and34foreign tracked edits
 preserved. Storage inspection only. Last hourly report02:25UTC,next03:25UTC.
+
+
+### North encounter delivered — 2026-10-27 03:01 UTC
+
+Source`2375284dd94fc5614f9d676457fe4a921dd931ac` is verified on origin/main. Fresh compressed Mac/Linux
+builds each succeeded with0errors/4warnings. Mac ordinaryContinue600 from the
+earned close-approach checkpoint shows the full Patchbearer. Real combat triggered
+healing16HP and consumed its tonic at640; exact Examine shows the empty cradle
+and separate Antidote. Continued combat, retreat, F5 at660, full process quit,
+relaunch andContinue preserve player6,19/22HP and Patchbearer6,22/6HP/empty.
+Eight original1280x856 native-window screenshots include1280x800 game output.
+These Mac stills validate state and presentation, not every animation interval;
+the separate Editor60sampled frames provide motion evidence. No debug gameplay
+changes or picture editing. Native278passed/1allocation-counter skip.
+
+Current Mac: `Builds/Verification/2026-10-27-north-motion-2375284dd-current/CavesOfOoo.app`.
+Current Linux archive: `Builds/SteamDeck/2026-10-27-north-motion-2375284dd-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`.
+Archive181files,128684199bytes,SHA256`c33ba3283ba1717f74c5738fa1bb1391d307c5a3d25f456f12b0c9f3006a60b4`. Launcher,credits,
+licenses and checksum list included; byte/size/mode/path integrity checked.
+No Linux execution or physical Deck claim. Known premature-thread-finalization
+and ComputeBuffer shutdown notices remain. Normal save trees, gameplay
+preferences, entire standalone preference map,34foreign tracked changes and
+previous delivered Mac/archive match protection. Owned test saves archived,
+reviewed generated settings restored. Storage inspection only;~410GiBfree.
+
+Evidence:`Verification/Live16x24/packaged-north-motion-mac-play-summary.json`,
+`packaged-north-motion-independent-review.json`,`packaged-north-motion-linux-archive.json`
+and`packaged-north-motion-restoration.json`. Whole six-scene opening, regional
+kits, Guarded/Parried timing and sustained hardware performance remain open.
+Next is the East Cindercaller ordinary movement/cast baseline, as planned in
+`Docs/GRAPHICS-EAST-CASTER-MOTION-PLAN.md`. Preserve existing spell FX/audio and
+approved neutral body; carried FireMoss is not spell fuel. No new caster graphics
+are claimed yet. Keep continuation active. Last hourly report02:25UTC,next03:25UTC.

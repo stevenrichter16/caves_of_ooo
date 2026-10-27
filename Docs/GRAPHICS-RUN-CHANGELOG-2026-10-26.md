@@ -514,3 +514,27 @@ not independent proof of acceptance; the current scope and limits above govern.
 - Next named gap is East's dropped Cudgel, not yet implemented. Details and
   actual evidence: [six scenes](GRAPHICS-SIX-SCENE-POLISH.md),
   [kitchen brine](GRAPHICS-KITCHEN-BRINE.md).
+
+
+### Further delivered source — 2026-10-27
+
+- `0545aa9a2`: original native Cudgel replaces its glyph in world, inventory
+  and Examine.48targeted+129neighbor tests; ordinary pickup/equip/drop and
+  packaged pickup/save/restart. Editable source and prior sprites preserved.
+- `be1c52ca3`: original native East steam wisps replace generic tile-cloud
+  apostrophes, scoped to actual disclosed East steam and existing priorities.
+  Approved vent grille and steam rules remain unchanged.211native tests;
+  actual Editor and Macreader/wait/save/fullrestart.
+- `2375284dd`: North Patchbearer gains eight native walk/attack/hurt derivatives
+  with approved full/empty idles. Real tonic consumption switches pose sources
+  without resetting reactions. Hidden/foreign owners and unrelated actor identity
+  changes remain guarded; the four global portable identities stay unchanged.
+  Native278passed/1allocation-counter skip. Actual ordinary tonic use, combat,
+  death, glade return/North revisit and save; MacContinue/combat/medicine/reader/
+  fullrestart verified. No AI, damage, equipment, medicine or turn-cost rules changed.
+
+Latest package pointer and outstanding scope are maintained in
+[packaged delivery](GRAPHICS-G1-PACKAGED-DELIVERY.md) and
+[coverage](../ArtSource/Live16x24/release-coverage.json); earlier dated bullets
+above are historical. Whole six-scene release, remaining regional graphics,
+Linux execution and physical Deck acceptance remain unfinished.

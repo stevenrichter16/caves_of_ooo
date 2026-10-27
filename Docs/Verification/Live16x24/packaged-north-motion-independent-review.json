@@ -1,0 +1,101 @@
+{
+  "schema": "coo.packaged-north-motion-independent-review.v1",
+  "reviewed_utc": "2026-10-27T03:00:29.640003+00:00",
+  "reviewer": "seed65_route_audit",
+  "source_runtime_sha": "2375284dd94fc5614f9d676457fe4a921dd931ac",
+  "scope": "Independent visual inspection of all eight actual Mac packaged-run JPEGs; no Unity, player input, save changes or Git operations performed by reviewer.",
+  "decision": "No must-fix visual issue found in this bounded packaged encounter, medicine-state reader and restart evidence.",
+  "capture_bounds": {
+    "all_images": [
+      1280,
+      856
+    ],
+    "visible_application_header_height_px": 56,
+    "game_content_bounds_xywh": [
+      0,
+      56,
+      1280,
+      800
+    ],
+    "assessment": "All captures include the application header and the full visible 1280x800 game area. World panel, sidebar and ten-slot hotbar remain within the capture. Both reader panels are wholly contained with readable title, portrait, text, controls and page count."
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-01-continue.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "3ca6b6782958609941b905a11202f825d50a56be8126625cff81fbb2ee92716a",
+      "observation": "Default overview shows the full world panel, sidebar and all ten hotbar slots. Vitals show 36/40 HP and Focus [7,19] You. The native player and distant Patchbearer remain distinct, with no duplicate actor body visible."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-02-full-zoom.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "f1464b1417491b7d560702804eebc5e7a86789618bd09638ce90a9a9fcf203e1",
+      "observation": "Closer view preserves the same 36/40 HP and [7,19] focus. The Patchbearer silhouette, straps and full cradle are easier to distinguish. Existing worksite, vegetation and HUD retain their established appearance."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-03-exchange.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "77fee397e4c3822dde1219d4ad82e232a7efcbe79b9e81f2085ea15f9de26f7a",
+      "observation": "Player is visibly [6,20] with 22/40 HP. Combat log reports the Patchbearer at 13 HP after the player hit, followed by its 8-damage return hit. One Patchbearer body remains below the player; the red damage number is separated from the body and does not obscure the sidebar."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-04-tonic-used.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "895910eef24773a5a8dd78ad45e65b9fad4b69ab70f6275d43f9443faa1863ab",
+      "observation": "Visible log records 6 damage to the Patchbearer (7 HP remaining), 3 bleed damage, healing 16 HP, drinking healing tonic and bleeding ending. Player remains 22/40 HP. The actor remains at the same local encounter, with no duplicate or stranded prior body visible."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-05-empty-reader.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "49f607cae18c30b184f00b6e62770c9e3bf8c0a73e9a75133d8993ed534ee2cb",
+      "observation": "The complete Examine panel fits within the world panel. Its native portrait shows the open cradle; description and mechanics explicitly retain antidote and no longer list a healing tonic. Focus identifies the Patchbearer at [6,21], 20/20 HP. Title, portrait, paragraphs, controls and 1/1 footer are readable and non-overlapping."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-06-empty-saved.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "523c9026e4b973b3d611b0bf020c060a0c8e8dcbc861d33e737b8f7e49657d5b",
+      "observation": "Reader closes cleanly. Player Focus is [6,19], HP 22/40. Log records an 11-damage hit, 3 bleed damage and Game saved. A single empty-cradle Patchbearer remains below the player without stale modal text or portrait."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-07-restarted.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "fce458972a7a57f974cb4b6a06a92c83a6b33af63e8050c1b5ddd6333aa2a565",
+      "observation": "The restarted overview shows player [6,19], 22/40 HP and the same encountered worksite and surviving Patchbearer. The overview is wider than image06, so this is not a pixel-identical framing comparison. HUD and hotbar remain fully present."
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-08-restarted-empty-reader.jpg",
+      "width": 1280,
+      "height": 856,
+      "sha256": "55cff35d8a4244b7987ca50e4bf88b5424f6d3e47f408ce7b6d077fd4d4f0217",
+      "observation": "After restart, the complete reader again shows the native open-cradle portrait and antidote-only medicine text. Focus identifies [6,22] Patchbearer with 6/20 HP; player vitals remain 22/40. No replenished healing-tonic claim, broken portrait, overlap or clipped modal control is visible."
+    }
+  ],
+  "provenance_from_root": {
+    "input_method": "Ordinary packaged application inputs, without forced gameplay or capture injection. These process/input facts are supplied by the root run record, not inferred from JPEG pixels.",
+    "start": "Continue at tick600, player7,19 HP36.",
+    "encounter": "Left and Down contact tick620 HP30; Down tick630 HP22/Patch13; Down tick640 produces 6 damage plus 3 bleed, then actual tonic healing16 to20; read Patchbearer6,21. Down tick650 produces 11 damage plus 3 bleed to6; Up tick660 player6,19 then F5.",
+    "restart": "Actual process quit and relaunch Continue at tick660, playerHP22, Patchbearer6,22 HP6, healing-tonic cradle empty and antidote retained."
+  },
+  "findings": [
+    "Native Patchbearer identity is legible at the closer view and remains compatible with the established muted palette and grid. No double body, wrong baseline, ghost body or unrelated art replacement was visible.",
+    "The actual tonic-use log and both complete readers make the full-to-empty medicine change understandable. Empty means healing tonic absent; the reader correctly retains the independently carried antidote.",
+    "Save and restarted reader evidence is visually consistent with the surviving empty actor and reduced HP. The reader is cleanly removed before the save and cleanly restored after restart.",
+    "Default overview renders actors small; closer framing provides the clearer medicine and silhouette inspection. The sampled images do not establish legibility of every transient motion pose at the default scale."
+  ],
+  "must_fix_findings": [],
+  "limits": [
+    "These are eight still images, not continuous video or proof of motion duration, smoothness, timing, per-frame allocation or performance.",
+    "The visual reviewer did not independently observe the application process quit/relaunch, source compilation or input execution; those are root-provided run provenance.",
+    "The review confirms visible encounter and reader facts, not equality of every serialized owner or field across save/restart.",
+    "The source SHA is supplied by root delivery provenance; screenshots alone cannot identify compiled source.",
+    "No Linux execution, physical Steam Deck, controller or whole-world graphics acceptance is claimed.",
+    "The wider restarted overview differs in zoom/framing from the pre-restart saved close view; no pixel-identical before/after assertion is made."
+  ]
+}

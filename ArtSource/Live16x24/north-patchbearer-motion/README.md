@@ -3,8 +3,8 @@
 Status: source, runtime import and bounded ordinary Editor encounter accepted,
 2026-10-27. Eight original native motion frames extend the existing Patchbearer.
 Actual full/empty walk, attack, hurt, recovery, death, return and save evidence
-is recorded in Docs/GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md. Packaged playback
-and whole-scene acceptance remain separate gates.
+is recorded in Docs/GRAPHICS-NORTH-ENCOUNTER-MOTION-PLAN.md. Actual Mac combat/medicine/save/restart is now accepted; Linux archive verified.
+Whole-scene and physical target-device acceptance remain separate gates.
 
 The approved full/empty idle pair stays in `north-works.png` at7/8. This
 packet never overwrites that atlas or any previous generator. The original
@@ -157,3 +157,5 @@ physical Steam Deck performance. No Assets files, Unity state or Git state
 were modified by this source task.
 
 Root integration acceptance: see the encounter plan and `north-motion-editor-play-summary.json`;278native passes,1allocation-counter skip. Source-task limits above describe source-author work; root separately imported and playtested the actual unchanged-checkpoint encounter. Package/Deck/whole-opening gates remain open.
+
+Delivery update2026-10-27: source2375284dd is onmain, actualMaccombat/tonic/reader/save/fullrestart accepted; matching Linux archive verified. Whole-scene, Linux execution, physical Deck and sustained-performance gates remain open. See the encounter plan for precise bounds.

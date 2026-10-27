@@ -1,0 +1,28 @@
+{
+  "reviewed_utc": "2026-10-27T03:01:40.639177+00:00",
+  "reviewer": "seed65_route_audit",
+  "method": "Independent tar streaming read and SHA256/size/mode comparison against final manifest; no extraction, binary execution, Unity or Git.",
+  "source_sha": "2375284dd94fc5614f9d676457fe4a921dd931ac",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-27-north-motion-2375284dd-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_sha256": "c33ba3283ba1717f74c5738fa1bb1391d307c5a3d25f456f12b0c9f3006a60b4",
+  "archive_bytes": 128684199,
+  "regular_files": 181,
+  "members": 194,
+  "directories": 13,
+  "license_texts": 5,
+  "checks": {
+    "every_member_safe_unique": true,
+    "every_file_hash_size_mode_matches": true,
+    "embedded_sha256sums_covers_all_180_other_files": true,
+    "packaged_build_info_matches_external_receipts": true,
+    "required_support_files_present": true,
+    "launcher_executable": true,
+    "player_is_elf64_x86_64": true,
+    "original_incomplete_archive_and_receipt_preserved": true,
+    "linux_and_physical_deck_limits_explicit": true
+  },
+  "limits": [
+    "Packaging integrity only; no Linux or physical Steam Deck execution.",
+    "Runtime source provenance supplied by root successful frozen build and matching receipt, not independently reproduced."
+  ]
+}

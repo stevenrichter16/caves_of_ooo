@@ -1,0 +1,97 @@
+{
+  "created_at_utc": "2026-10-27T03:00:39.278862+00:00",
+  "runtime_source_commit": "2375284dd94fc5614f9d676457fe4a921dd931ac",
+  "package_flavor": "north-motion",
+  "build_folder_date": "2026-10-27",
+  "slice_description": "Eight native 16x24 local Patchbearer motion derivatives for full/empty healing-slot states, borrowing approved north-works idle frames 7/8. Real medicine changes preserve the current walk/reaction and pending hurt. Existing global four portable identities, combat, AI, medicine, stock, turn costs, saves, generation and old presentation remain unchanged. No self-use pose or whole-world motion coverage is claimed.",
+  "source_provenance": "Frozen build-source revision supplied and remotely verified by the root build operator; this delegated helper pins that asserted SHA and verifies the matching successful output receipt. It does not query Git or independently prove source-to-binary reproducibility.",
+  "unity": "6000.3.4f1",
+  "platform": "Linux x86_64",
+  "scripting_backend": "Mono",
+  "graphics_api_configuration": "Vulkan",
+  "scene": "Assets/Scenes/Main/SampleScene.unity",
+  "development": false,
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "build_report": {
+    "job_id": "build-44e7d61f78",
+    "result": "succeeded",
+    "platform": "StandaloneLinux64",
+    "output_path": "Builds/SteamDeck/2026-10-27-north-motion-2375284dd-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "started_at": "2026-10-27T02:52:07.487612Z",
+    "duration_seconds": 29.036606,
+    "completed_at": "2026-10-27T02:52:36.524218Z",
+    "total_size_mb": 214.49,
+    "errors": 0,
+    "warnings": 4
+  },
+  "build_generated_settings": "Unity may serialize URP prefilters/runtime settings, InputSystem preload and Standalone settings. The root build audit must review and restore only generated differences; packaging does not perform that restoration.",
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "linux_build": "Successful receipt with zero reported errors; warnings retained in build_report.",
+    "native_test_results": "Existing north-motion-green-regressions.xml records 272 passed, 0 failed, 1 skipped allocation-counter test; the positive allocation control was invalid, so there is no zero-allocation claim. Separate north-motion-adversarial-green.xml records 6/6 passed. This helper validates both receipts without running tests or proving executable behavior.",
+    "native_test_receipts": [
+      {
+        "path": "Docs/Verification/Live16x24/north-motion-green-regressions.xml",
+        "sha256": "fd90eee3ee80ea91d6490eaa089055bad1f498dfeba3c4f47f79ea2f4d062ed3",
+        "mode": "EditMode",
+        "summary": {
+          "id": "2",
+          "testcasecount": "273",
+          "result": "Skipped:Ignored",
+          "total": "273",
+          "passed": "272",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "1",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-27 02:31:48Z",
+          "end-time": "2026-10-27 02:32:34Z",
+          "duration": "45.7602371"
+        },
+        "scope": "39 focused local Patchbearer cases and neighboring motion, supply and presentation regressions: 272 passed, 1 allocation-counter test skipped because its positive control is invalid. Previously recorded native Unity EditMode run; not tests executed by this packaging helper.",
+        "skipped_cases": [
+          {
+            "fullname": "CavesOfOoo.Tests.FlatPixelActorMotionTests.WarmMovingBodyReadoutQueriesAllocateNothingWhenTheRuntimeCounterWorks",
+            "reason": "This runtime allocation counter does not observe a known allocation; zero cannot prove the query allocates nothing."
+          }
+        ]
+      },
+      {
+        "path": "Docs/Verification/Live16x24/north-motion-adversarial-green.xml",
+        "sha256": "77b5f7bf32e16791336faaab9e75338997c365969570963fc3830b3fca28229b",
+        "mode": "EditMode",
+        "summary": {
+          "id": "2",
+          "testcasecount": "6",
+          "result": "Passed",
+          "total": "6",
+          "passed": "6",
+          "failed": "0",
+          "inconclusive": "0",
+          "skipped": "0",
+          "asserts": "0",
+          "engine-version": "3.5.0.0",
+          "clr-version": "4.0.30319.42000",
+          "start-time": "2026-10-27 02:33:41Z",
+          "end-time": "2026-10-27 02:33:42Z",
+          "duration": "0.8262621"
+        },
+        "scope": "6 dedicated catalog adversarial cases passed. Previously recorded native Unity EditMode run; not tests executed by this packaging helper.",
+        "skipped_cases": []
+      }
+    ],
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate fresh standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "No performance or target-device benchmark claimed."
+  },
+  "coverage_limits": [
+    "Native kits cover named opening owners and connected sites, not all objects, states or biomes.",
+    "Unknown artwork retains truthful glyphs/colors on the flat grid.",
+    "Build completion and archive integrity do not certify Linux execution, physical controls, full journeys or device performance."
+  ]
+}

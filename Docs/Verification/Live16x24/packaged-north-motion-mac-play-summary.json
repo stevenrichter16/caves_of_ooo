@@ -1,0 +1,86 @@
+{
+  "recorded_at_utc": "2026-10-27T02:57:08.050846+00:00",
+  "source_commit": "2375284dd94fc5614f9d676457fe4a921dd931ac",
+  "platform": "Actual macOS standalone Unity6000.3.4f1",
+  "build_receipt": "packaged-north-motion-mac-build.json",
+  "capture_provenance": "Eight original CUA JPEGs;1280x856 window includes56px title chrome and1280x800 game. No cropping,repainting,compositing or image generation.",
+  "input": "Ordinary Continue from unchanged earned600 close-approach fixture, PageUp, arrows/bump attacks, Look/Examine,F5,full process quit/relaunch/Continue. No teleport,reveal,grant,presentation override or simulation writes.",
+  "initial_fixture": "Docs/Verification/Live16x24/Fixtures/north-motion-close-approach224401440",
+  "final_fixture": "Docs/Verification/Live16x24/Fixtures/packaged-north-motion-return224401440",
+  "final_save_sha256": "c1ff83db216e46fa6fbd4c477ce5c32014f3b26d6fd4215339dfae6170328629",
+  "final_metadata": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "b343f331bf5d40a189c86e4aaba9aa47",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.11.9.0",
+    "ActiveZoneDisplayLabel": "Overworld.11.9.0",
+    "Turn": 660,
+    "SaveTimestampUtc": "2026-10-27T02:53:36.4986380Z",
+    "HPSummary": "22/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-01-continue.jpg",
+      "bytes": 176566,
+      "sha256": "3ca6b6782958609941b905a11202f825d50a56be8126625cff81fbb2ee92716a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-02-full-zoom.jpg",
+      "bytes": 174484,
+      "sha256": "f1464b1417491b7d560702804eebc5e7a86789618bd09638ce90a9a9fcf203e1"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-03-exchange.jpg",
+      "bytes": 178849,
+      "sha256": "77fee397e4c3822dde1219d4ad82e232a7efcbe79b9e81f2085ea15f9de26f7a"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-04-tonic-used.jpg",
+      "bytes": 170869,
+      "sha256": "895910eef24773a5a8dd78ad45e65b9fad4b69ab70f6275d43f9443faa1863ab"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-05-empty-reader.jpg",
+      "bytes": 271451,
+      "sha256": "49f607cae18c30b184f00b6e62770c9e3bf8c0a73e9a75133d8993ed534ee2cb"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-06-empty-saved.jpg",
+      "bytes": 176068,
+      "sha256": "523c9026e4b973b3d611b0bf020c060a0c8e8dcbc861d33e737b8f7e49657d5b"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-07-restarted.jpg",
+      "bytes": 178364,
+      "sha256": "fce458972a7a57f974cb4b6a06a92c83a6b33af63e8050c1b5ddd6333aa2a565"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/packaged-north-motion-08-restarted-empty-reader.jpg",
+      "bytes": 272308,
+      "sha256": "55cff35d8a4244b7987ca50e4bf88b5424f6d3e47f408ce7b6d077fd4d4f0217"
+    }
+  ],
+  "actions": [
+    "01 Continue600North7,19,36HP,full Patchbearer5,22; default native presentation",
+    "02 PageUp2x full identity",
+    "03 Left+Down620player6,20,30HP; Down630hits7 and takes8,player22HP,Patch13HP",
+    "04 Down640hits6 and bleed3 leaves4HP,Patch genuinely heals16HP to20 and consumes tonic; bottle absent",
+    "05 ExactLookDownEnterX reader6,21 shows open cradle and carried Antidote",
+    "06 Escape twice;Down650hits11 thenbleed3 leaves6HP;Up660retreat6,19;F5",
+    "07 Fullquit,processabsence,relaunch,Continue660 retainsNorth6,19,22HP andPatch6,22",
+    "08 PageUp,LookDown3,EnterX: exactPatch6,22,6HP,opencradle,Antidote; no turn spent"
+  ],
+  "can_verify": "Actual Mac default view, zoom, real pursuit/combat and finite tonic consumption, empty reader consistency, retreat,F5,fullrestart/Continue and persistent actor position/HP/stock. Editor sampled60frames separately verifies pose sequence.",
+  "cannot_verify": "These Mac stills do not certify timing or every pose. No Linuxexecution,physicalDeck,whole-opening release,allregionalstates,sustainedplayerperformance or Guarded/Parried acceptance.",
+  "logs": "Both actual Mac logs retain premature-thread-finalization notices and known ComputeBuffer-disposal shutdown notice; no clean-shutdown claim.",
+  "build_options": [
+    "compress_lz4",
+    "detailed_report"
+  ],
+  "restoration": "packaged-north-motion-restoration.json"
+}
