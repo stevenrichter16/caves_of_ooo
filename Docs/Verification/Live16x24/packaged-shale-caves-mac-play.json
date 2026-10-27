@@ -1,0 +1,100 @@
+{
+  "at_utc": "2026-10-27T19:44:27.484846+00:00",
+  "runtime_source_commit": "a10e1330098c68039e560740cde07137dadc2ff3",
+  "source_push_verified": true,
+  "mac_app": "Builds/Verification/2026-10-27-shale-caves-a10e13300-current/CavesOfOoo.app",
+  "first_process_pid": 58078,
+  "restart_process_pid": 58510,
+  "old_process_absent_after_full_quit": true,
+  "both_owned_processes_closed": true,
+  "presentation": "Flat16x24 default; no presentation preference introduced",
+  "capture_dimensions": [
+    1280,
+    856
+  ],
+  "game_dimensions": [
+    1280,
+    800
+  ],
+  "starting_fixture": "Fixtures/shale-caves-wreckage95",
+  "actions": [
+    "Normal Continue95 restores depth5at39,12HP33 on rubble. Existing destruction log is inherited; no new packaged destruction.",
+    "First combined Down/Look/recenter/Up/Return did not enter the intended Look/menu path and ended back39,12; no health loss. Separate Down then Look followed by cursor keys and examine succeeded.",
+    "Actual rubble39,12 reader captured after standing39,13. Close then < returnslimestone4; > reentersshale5.",
+    "NormalRight40,13 and > reachesdepth6, < returnsdepth5HP33.",
+    "NormalF5 preserves fixture97turn12590HP33at40,13.",
+    "Fullquit58078 absent; sameapp freshPID58510Continue restoresdepth5at40,13HP33.",
+    "Separate next-gap baseline: normal > enters6, Up40,12 then > entersslate7HP33. F5fixture98turn12620; < returns6HP33. No8entry or slate art acceptance."
+  ],
+  "earned_fixture": "Fixtures/packaged-shale-caves97",
+  "saved_turn": 12590,
+  "player_cell": [
+    40,
+    13
+  ],
+  "player_hp": 33,
+  "captures": {
+    "packaged-shale-caves-01-restored-wreckage.jpg": "25285e21022192b8bf46506d3c11e3b5159c6ed45959d73f34bcb6810496d94e",
+    "packaged-shale-caves-02-rubble-reader.jpg": "8830494f0f7e3913257171f1422a80c1bd426ff9d026766d82d5ea21b7926ce1",
+    "packaged-shale-caves-03-limestone-return.jpg": "62dec69fb3b5b65916396b4724d67b3fe7c350b71a9cd182fbf4adccbc7f95b4",
+    "packaged-shale-caves-04-shale-reentry.jpg": "a41c6f490799ac9eaeb016fef9625cb259a771efd2b3022631496a1afa9b889a",
+    "packaged-shale-caves-05-depth6-entry.jpg": "78032a11b51a48001a0d99927815402878645260b1031cb7b8f89507af3695d0",
+    "packaged-shale-caves-06-saved.jpg": "cc04024a0391ea176e0b11ddc47af9a7ef8d6e6e8c5d2903781e8021c69c3285",
+    "packaged-shale-caves-07-fresh-restart.jpg": "9e07829860f0ef24012c6737a8d1376150f180c86c7bc93f91896b78fbc452f2"
+  },
+  "fixture_sha256": {
+    "Quick.json": "3ab695fdfbe1a1a3fecb5c4aae2233c7e0baf53ee4be84f2ccc30a9a1910c563",
+    "Quick.sav.gz": "199ddaddc0fe847f78699bfa0a39088d5d0f05513902034463c2d202ac406a11"
+  },
+  "saved_restart_world_comparison": {
+    "decoded_rgb_rect": [
+      0,
+      96,
+      940,
+      696
+    ],
+    "compared_pixels": 564000,
+    "changed_pixels": 0,
+    "scope": "World rectangle only; excludes header/sidebar/log/footer."
+  },
+  "native_evidence": "36focused+431disjointrelated=467Passed; not rerun in package",
+  "archive_receipt": "packaged-shale-caves-linux-archive.json",
+  "restoration_receipt": "packaged-shale-caves-restoration.json",
+  "logs": {
+    "packaged-shale-caves-Player.log": {
+      "bytes": 4045,
+      "sha256": "e537a27fc5bbf4051616ff794578279a1fd9bec6702114c65f719f3a06b3f127"
+    },
+    "packaged-shale-caves-Player-prev.log": {
+      "bytes": 4088,
+      "sha256": "f2652e39d41c0f7e5409ad1702d980c756f58f75ae05c7ba3896669bc0c7702f"
+    }
+  },
+  "log_review": {
+    "packaged-shale-caves-Player.log": [
+      "Thread 0x171787000 may have been prematurely finalized",
+      "Thread 0x1704a3000 may have been prematurely finalized",
+      "Thread 0x17052f000 may have been prematurely finalized",
+      "Thread 0x170647000 may have been prematurely finalized",
+      "Thread 0x1705bb000 may have been prematurely finalized",
+      "Thread 0x1706d3000 may have been prematurely finalized",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ],
+    "packaged-shale-caves-Player-prev.log": [
+      "Thread 0x16efa3000 may have been prematurely finalized",
+      "Thread 0x16dd4b000 may have been prematurely finalized",
+      "Thread 0x16deef000 may have been prematurely finalized",
+      "Thread 0x16ddd7000 may have been prematurely finalized",
+      "Thread 0x16de63000 may have been prematurely finalized",
+      "GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer."
+    ]
+  },
+  "limits": [
+    "No new packaged destruction/combat/hazard application; separate Editor evidence retained.",
+    "No standalone script owner-ID query; actual labels/cells/health and save metadata only.",
+    "No Linux/physicalDeck execution, sustainedFPS or whole-area fullness/polish acceptance.",
+    "Editor and Mac grading differ; cross-environment pixel identity not claimed.",
+    "Slate7 still uses fallback; entry/return and fixture98 are next-phase baseline only.",
+    "Shutdown includes threadfinalization and ComputeBuffer disposal warnings; no warningfreeclaim."
+  ]
+}

@@ -1,17 +1,8 @@
 # Ordinary shale caves — finite material coverage plan
 
-**Status:467 distinct native passes and a bounded actual Editor checkpoint.**
-Root completed17 captures, all six owner readers, real wall damage/destruction,
-Rubble traversal/fresh Continue and ordinary5→4→5→6→5 travel. The separate
-depth6 combat interruption is preserved. Independent source/art/Editor review
-is complete; source publication and fresh packages remain pending; no whole-area polish or device
-performance acceptance is claimed. Earlier preimplementation and pending-GREEN
-sections below are historical; the latest checkpoint records current state.
-The preceding limestone source
-`7f49fb70054b7b29957dacd17c999ae4b521c9fd` is verified on main with bounded fresh
-Mac play and Linux archive integrity; this separate shale phase does not
-inherit that material or area acceptance. Root owns Unity, further ordinary
-play and Git. The five shared living records now reflect this bounded checkpoint.
+**Current shale delivery checkpoint — 2026-10-27:** Shale depths 5/6 are delivered from verified main source a10e13300: 467 retained distinct native passes, bounded Editor evidence, seven actual fresh Mac views, Rubble reader, ordinary 5→4→5→6→5 travel and full-process Continue at turn 12590, HP33. The 564,000-pixel Mac world rectangle matches exactly. Both builds have zero errors/four warnings; Linux archive integrity and scoped restoration passed independent review. Source is published; delivery-evidence commit remains pending. Whole-area polish, Linux/Deck gameplay and sustained performance are unaccepted. Next is shared storage with its mandatory mimic disguise guard; actual before views are pending. Slate7 remains a fallback baseline only. All55+5 polish states remain unchanged. Last actual hourly report19:28:00UTC; next20:28:00UTC.
+
+Earlier preimplementation, RED/GREEN and Editor checkpoints below remain historical evidence. Root completed the source push, fresh builds, ordinary packaged checks and scoped restoration; the final delivery section records their precise bounds. No whole-area polish or device performance acceptance is claimed.
 
 First proposed scope is exact `ShaleFloor` and `ShaleWall` in conservatively
 eligible current ordinary depths5–6, with unchanged Rubble, Stalagmite,
@@ -520,3 +511,19 @@ Only Editor telemetry keys `unity.player_session_count`, `unity.player_sessionid
 `PT_Run` and `unity_connect.session_id` differ. Full Editor plist byte identity
 is not claimed; the fresh prebuild snapshot will retain current telemetry, with
 no session-ID restoration needed.
+
+## Shale delivery checkpoint — 2026-10-27, after 19:44 UTC restoration
+
+Source `a10e1330098c68039e560740cde07137dadc2ff3` is verified on main by root. The [fresh Mac build](Verification/Live16x24/packaged-shale-caves-mac-build.json) and [Linux build](Verification/Live16x24/packaged-shale-caves-linux-build.json) each succeeded with zero errors and four warnings. The retained **467 distinct native passes** (36 focused + 431 disjoint related) were not rerun during packaging or this record update.
+
+The [actual Mac receipt](Verification/Live16x24/packaged-shale-caves-mac-play.json) and [final independent review](Verification/Live16x24/packaged-shale-caves-review.md) cover seven actual views: normal Continue from earned wreckage95, the Rubble reader, ordinary **5→4→5→6→5**, F5 fixture97 at turn 12590, HP33, cell 40,13, then full quit and fresh-process Continue. The first combined Look sequence missed; separated controls reached the reader. Destruction in the restored log is inherited from Editor play, not newly performed by this package. Saved/restarted Mac images match across the exact `[0,96,940,696]` world rectangle: **564,000 RGB pixels, zero differences**. This does not erase the earlier Editor comparison's 8,729 changed pixels or assert cross-environment equality.
+
+The [Linux archive receipt](Verification/Live16x24/packaged-shale-caves-linux-archive.json) records **128,807,783 bytes**, **202 members = 189 regular files + 13 directories**, SHA-256 `a5af2a83280e7e891667d7e9117c947f058d314b39abb1efe7d23be96f35c9f7`. Independent review checked the full member sets, payload hashes/sizes/modes, internal checksums, credits and gzip CRC/size/footer through EOF. The new paths are `Builds/Verification/2026-10-27-shale-caves-a10e13300-current/CavesOfOoo.app` and `Builds/SteamDeck/2026-10-27-shale-caves-a10e13300-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`. Linux and physical Deck execution remain untested.
+
+[Restoration](Verification/Live16x24/packaged-shale-caves-restoration.json) completed at 19:44:55UTC: all 51,317 snapshot objects matched at that boundary, and all 48 prebuild dirty files were preserved—46 foreign files plus two older shallow/limestone importer whitespace changes. Five exact generated files were backed up/restored; both normal save trees/preferences and prior builds remain preserved, and isolated test saves were archived. The [held shared-storage plan](Verification/Live16x24/packaged-shale-caves-owned-plan-preservation.json) was then reapplied byte-for-byte and independently checked; full-snapshot equality is not claimed after that authorized plan edit. No cache or storage cleanup occurred.
+
+The two retained Mac logs contain five and six thread-finalization warnings respectively and one ComputeBuffer disposal warning each. No warning-free or performance-improvement claim is made. This is bounded material/reader/travel/restart delivery, not whole 80×25, every-column, world-polish, Linux or Deck acceptance. Repeated rubble/laminae, broad sparse chambers and missing storage, actors, hazards and props remain visible coverage/composition debt. **Delivery-evidence commit is pending.**
+
+Next is [shared storage](GRAPHICS-SHARED-STORAGE.md): five genuine storage families—Chest, LockedChest, StrongBox, Crate and OreCache—plus the mechanically required MimicChest disguise guard, counted separately. The source plan targets cross-biome/cave benefit; actual before capture, art/reuse decisions, RED/runtime and acceptance remain pending. Source candidates span five of six surface biomes plus caves, not every owner in every biome; retain Grovelands ecology. [Slate's separate baseline](Verification/Live16x24/slate-caves-before-play.json) records normal depth7 entry, F5 fixture98 at turn 12620/HP33, and return to6. It still uses fallback; depth8, slate material acceptance and full-area review are unobserved. Its source plan is queued behind shared storage.
+
+All 55+5 polish states remain unchanged. The last actually sent hourly report stays 19:28:00UTC, next due 20:28:00UTC; this delivery record does not count as another hourly report.

@@ -1,11 +1,14 @@
 # Shared storage — source preflight and implementation plan
 
-**Status, 2026-10-27:** planning only, against limestone source
-`7f49fb70054b7b29957dacd17c999ae4b521c9fd`, reported pushed and remotely verified
-by root. Root is separately refreshing that delivery. This document introduces
-no runtime, tests, art, generation changes or new gameplay acceptance.
-Actual storage before captures, concept/parts review, native RED, integration,
-after comparison and packaging are **pending**.
+**Current status, 2026-10-27:** shared storage is the chosen next coverage
+family after shale delivery. Shale source
+`a10e1330098c68039e560740cde07137dadc2ff3` is on main, as verified by root;
+fresh shale packages are currently in progress. This storage phase remains
+**source-only planning**: actual storage before sites/captures, concept/parts
+review, native RED, integration, after comparison and packaging are pending.
+No runtime, tests, art, generation changes or storage gameplay acceptance are
+introduced by this update. The original preflight was recorded against
+limestone source `7f49fb70054b7b29957dacd17c999ae4b521c9fd`.
 
 The next slice covers **five genuine storage owners: Chest, LockedChest,
 StrongBox, Crate and OreCache**, plus an essential **MimicChest disguise
@@ -231,3 +234,38 @@ composition, unseen special-site reskins and whole-area polish remain open.
 
 Implementation log: source-only plan saved; no implementation snippet or
 passing-test claim. Files changed by this task: **this document only**.
+
+
+### Chosen next-phase continuation — 2026-10-27
+
+After the current shale delivery, prioritize these five storage identities and
+the mandatory mimic disguise guard before another cave-only material band.
+The source-verified [placement pools and mapping](../Assets/Scripts/Gameplay/World/Generation/ContainerPlacementService.cs:49)
+contain at least one proposed family in **five of the six authored surface
+biomes**: Spread, Sodden, Beating, Overwrit and Stump. They also occur in the
+underground and village/camp pools, with additional registered Cave, Desert and
+Ruins mappings. This is family presence in real placement sources, not five
+completed regions or a promise that every zone contains every box. Grovelands
+surface ecology deliberately excludes manufactured boxes; preserve that rule.
+
+The retained depth3/4 censuses contain nine real objects across all five
+identities: Chest1, LockedChest2, StrongBox1, Crate2 and OreCache3. All were
+hidden at those census moments. **Actual disclosed before sites remain to be
+selected and captured through ordinary play.** Start with a preserved earned
+cave checkpoint and a surface crate/storage route, recording real menus,
+authorized readers and access states; a reachable dormant-mimic comparison
+must preserve the existing information policy. Counts do not establish visual
+acceptance, safe approach routes, or permission to reveal hidden owners.
+
+Keep approved Chest/Crate art and the existing square StrongBox/OreCache
+sources immutable unless an actual named defect requires a scoped derivative.
+World/reader identity, combined lock authority, genuine destruction/loot and
+mimic disguise remain the essential implementation gates above. No new open,
+empty, harvest or merchant service may be implied by the image. Full biome/
+area composition and later serious polish remain separate and unaccepted.
+
+The [slate preflight](GRAPHICS-SLATE-CAVES.md) stays source-only in the future
+material queue; its depth7/8 baseline and acceptance are still pending. Shared
+storage broadens useful coverage while surface, underground and special-area
+gaps remain explicit. This continuation changes only this phase document and
+does not advance any shared ledger, polish status or hourly-report clock.
