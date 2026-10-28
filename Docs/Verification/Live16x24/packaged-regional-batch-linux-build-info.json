@@ -1,0 +1,103 @@
+{
+  "source_commit": "aa92e274664c3501badbe2cd18944689ac61cfc6",
+  "runtime_source_commit": "3705cb241f99821eca9156e7e4719b4f5576f6f7",
+  "built_after_utc": "2026-10-28T23:25:37.078834+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-28-regional-batch-aa92e2746-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-10-28-regional-batch-aa92e2746-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-28-regional-batch-aa92e2746-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "planned_new_files": 30,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-regional-batch-mac-build.json",
+      "sha256": "0a18d4c2a415198da35a178fe581cd57ed1539cfa797989df76983b1741b798e",
+      "summary": {
+        "job_id": "build-aa27cba792",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-10-28-regional-batch-aa92e2746-current/CavesOfOoo.app",
+        "started_at": "2026-10-28T23:27:09.156328Z",
+        "duration_seconds": 29.399613,
+        "completed_at": "2026-10-28T23:27:38.555941Z",
+        "total_size_mb": 344.7,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-regional-batch-linux-build.json",
+      "sha256": "1b80fd7d00e632b2b10c9627ba5aa0597ecc2da42728abbadffcec53ee514f49",
+      "summary": {
+        "job_id": "build-f9a19dbd21",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-10-28-regional-batch-aa92e2746-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-10-28T23:28:13.427731Z",
+        "duration_seconds": 20.420332,
+        "completed_at": "2026-10-28T23:28:33.848063Z",
+        "total_size_mb": 325.16,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/Live16x24/regional-fixtures-green.xml",
+        "sha256": "dd51754349109040a0b8a6ce6177baaf35fba2029389bf10f214e323750529a1",
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-10-28T22:53:09+00:00",
+        "completed_at_utc": "2026-10-28T22:53:10+00:00",
+        "skips": []
+      },
+      {
+        "path": "Docs/Verification/Live16x24/beating-population-green.xml",
+        "sha256": "d64a4247560289c61fee08d3e4bc0515387b061c4cfd415c280bd39faaa415ed",
+        "passed": 79,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-10-28T23:07:45+00:00",
+        "completed_at_utc": "2026-10-28T23:08:14+00:00",
+        "skips": []
+      },
+      {
+        "path": "Docs/Verification/Live16x24/beating-brush-reader-green.xml",
+        "sha256": "507f855ebab55e3d2206bd3fe68219dccd39ee1936d3346053608f86f8bedf0c",
+        "passed": 112,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-10-28T23:17:24+00:00",
+        "completed_at_utc": "2026-10-28T23:17:39+00:00",
+        "skips": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained regional-fixture, ruin-composition and brush-reader checkpoints; no additive all-source test total. This helper runs no tests."
+  },
+  "created_at_utc": "2026-10-28T23:29:14.866113+00:00",
+  "package_flavor": "reviewed-regional-continuity-beating-shadows-ruin-shelters",
+  "scope": "Reviewed ordinary Spread terrain and fixtures, regional fixture continuity, Beating masonry shading and fresh ruin shelter composition; approved existing art and gameplay retained.",
+  "source_provenance": "Frozen build HEAD includes docs after the separately recorded runtime revision; root asserts provenance, exact output/job/time receipts checked, not source-to-binary reproducibility.",
+  "canonical_executable_copy": {
+    "source_commit": "aa92e274664c3501badbe2cd18944689ac61cfc6",
+    "at_utc": "2026-10-28T23:29:14.865744+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-10-28-regional-batch-aa92e2746-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-10-28-regional-batch-aa92e2746-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4472,
+    "both_sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing built-in controls documented in unchanged README-Steam-Deck.md; no new controller mapping or physical verification.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "whole_area_polish_accepted": false,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}
