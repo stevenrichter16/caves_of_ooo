@@ -46,15 +46,18 @@ namespace CavesOfOoo.Rendering
         internal static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "CopperPipe" || owner?.BlueprintName == "PeatBog";
 
-        // Opening behavior stays exact-site scoped; ordinary Spread reuses the same
-        // real neutral identities under its independent world authority.
+        // Opening behavior stays exact-site scoped; audited ordinary regions reuse
+        // the same neutral identities under their independent world authority.
+        static bool OrdinaryFixtureZone(Zone zone)
+            => FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone)
+                || FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone);
         internal static bool SupportsRole(Zone zone, Entity owner)
-            => HasKnownRole(owner) && (FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone) || zone?.ZoneID == Plot
+            => HasKnownRole(owner) && (OrdinaryFixtureZone(zone) || zone?.ZoneID == Plot
                 || owner.BlueprintName == "CopperPipe"
                     && (zone?.ZoneID == "Overworld.11.9.0" || zone?.ZoneID == "Overworld.12.10.0"));
 
         bool Available(Zone zone) => !disposed && tiles != null
-            && (FlatPixelGreyboxCatalog.IsAdmitted(zone) || FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone))
+            && (FlatPixelGreyboxCatalog.IsAdmitted(zone) || OrdinaryFixtureZone(zone))
             && FlatPixelFallbackCatalog.IsCurrentGraph(zone);
 
         /// <summary>Only the selected live foreground owner can occupy this
@@ -75,7 +78,7 @@ namespace CavesOfOoo.Rendering
             sprite = null;
             if (!Available(zone) || !SupportsRole(zone, subject) || !Disclosed(zone, x, y) || !Eligible(subject)
                 || !ReferenceEquals(subject.SpatialZone, zone)
-                || FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone) && !FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(subject)) return false;
+                || OrdinaryFixtureZone(zone) && !FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(subject)) return false;
             var cell = zone.GetCell(x, y);
             if (!ReferenceEquals(zone.GetEntityCell(subject), cell) || !cell.Objects.Contains(subject)) return false;
             if (subject.HasPart<SpatialFootprintPart>() && !zone.IsFootprintCurrent(subject)) return false;
@@ -101,7 +104,7 @@ namespace CavesOfOoo.Rendering
             owner = null;
             if (!Disclosed(zone, x, y) || !selector.TryResolve(zone, x, y, out var selected)
                 || selected.Remembered || !SupportsRole(zone, selected.Owner) || !Eligible(selected.Owner)
-                || FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone) && !FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(selected.Owner)) return false;
+                || OrdinaryFixtureZone(zone) && !FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(selected.Owner)) return false;
             owner = selected.Owner; return true;
         }
 

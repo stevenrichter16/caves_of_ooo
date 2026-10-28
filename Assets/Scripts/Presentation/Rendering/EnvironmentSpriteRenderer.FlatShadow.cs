@@ -13,7 +13,7 @@ namespace CavesOfOoo.Rendering
         private static readonly Matrix4x4 WallShadowOffset = Matrix4x4.Translate(new Vector3(0f, -2f / 16f, 0f));
         private static readonly Color WallShadowColor = new Color(0f, 0f, 0f, .16f);
 
-        /// <summary>Reversible Sill masonry trial; no saved gameplay state.
+        /// <summary>Reversible Sill/Beating masonry trials; no saved gameplay state.
         /// Fixed screen-north light convention, not simulated solar/torch lighting.</summary>
         public bool FlatWallShadowEnabled
         {
@@ -52,9 +52,13 @@ namespace CavesOfOoo.Rendering
         private void PaintFlatWallShadow(Zone zone, int x, int y, Vector3Int pos, in FlatPixelGreyboxCell flat)
         {
             if (!_flatWallShadowEnabled || _flatGroundShadowTilemap == null || _flatGroundShadowMaterial == null
-                || flat.Remembered || !flat.NativeForeground || flat.Owner?.BlueprintName != "StoneWall"
-                || !FlatPixelSillEnvelopeCatalog.IsSupportedZone(zone)
-                || !FlatPixelSillEnvelopeCatalog.CanReceiveContactShadow(zone, x, y + 1, null)) return;
+                || flat.Remembered || !flat.NativeForeground) return;
+            bool receiver = flat.Owner?.BlueprintName == "StoneWall"
+                ? FlatPixelSillEnvelopeCatalog.IsSupportedZone(zone)
+                    && FlatPixelSillEnvelopeCatalog.CanReceiveContactShadow(zone, x, y + 1, null)
+                : flat.Owner?.BlueprintName == "SandstoneWall"
+                    && FlatPixelBeatingMaterialsCatalog.CanReceiveWallShadow(zone, x, y + 1);
+            if (!receiver) return;
             var tile = flat.ForegroundTile;
             var sprite = tile == null ? null : tile.sprite;
             if (sprite == null || sprite.texture == null || sprite.rect.size != new Vector2(16, 24)

@@ -29,3 +29,5 @@ A prior eastward walking attempt encountered the actual MarlbackScrabbler and di
 70.505s Editor profile includes walking, combat death and toolidle:18571samples, ZoneRenderer mean.123ms/p99.227ms/max56.595ms, MainThreadmax733.669ms,40maxbatches/draws. Not a controlled speedup, allocation claim or Deck measurement.
 
 Remaining: tiny subdued peat fragments beneath cyan wetness glyph, repeating vent stamps, missing object contact shade, broad sparse lawn parcels and repeated roadmarks. No new shadow, density or whole-area acceptance. Next compare actual Grovelands/Sodden fixture gaps, then a bounded regional shadow/composition slice. Crop/animation remain deferred.
+
+Source `5414800d58d508e0e1b62f14c8dbc2c8315d3146` pushed and remotely verified. See spread-fixtures-preservation.json:1005normal entries/settings,49foreignpaths and approvedart/currentpackages preserved. Ten import-whitespace rewrites backed up/restored,0bytesdeleted.

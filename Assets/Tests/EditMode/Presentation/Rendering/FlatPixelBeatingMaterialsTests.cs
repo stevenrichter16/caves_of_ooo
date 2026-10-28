@@ -281,6 +281,51 @@ namespace CavesOfOoo.Tests
             owner.GetPart<SpatialFootprintPart>().CellsRaw = "0,0"; Native(owner);
             Assert.True(zone.RemoveEntity(owner)); Assert.False(Subject(owner)); Assert.AreNotSame(owner, View().Owner);
         }
+        [Test] public void UnderfootBrushBorrowsItsOwnFrameWithoutReplacingTheCoveringPlayer()
+        {
+            Add("SandstoneFloor"); var brush = Add("DryBrush"); Native(brush);
+            var expected = View().ForegroundTile.sprite;
+            var player = Add("Player"); player.GetPart<RenderPart>().RenderLayer = 100;
+            Assert.AreSame(player, View().Owner);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, brush, X, Y, out var sprite, out var tint));
+            Assert.AreSame(expected, sprite); Assert.AreEqual(Color.white, tint);
+            var document = ExamineDocumentBuilder.BuildWorld(brush, zone, zone.GetCell(X, Y), player);
+            Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
+            using (var paint = new Paint(world, zone))
+            {
+                paint.Step(); Assert.AreSame(View().ForegroundTile, paint.At(X, Y));
+                Assert.True(paint.Renderer.TryGetFlatExaminePortrait(document, out var portrait));
+                Assert.AreSame(expected.texture, portrait.Texture);
+                Assert.AreEqual(new Rect(.75f, 0, .25f, 1), portrait.Uv);
+                Assert.AreEqual(Color.white, portrait.Tint); Assert.False(portrait.IsModel);
+                Assert.AreSame(player, View().Owner);
+            }
+        }
+        [TestCase("hidden")] [TestCase("moved")] [TestCase("carried")]
+        [TestCase("foreign-identity")] [TestCase("burning")] [TestCase("missing-vegetation")]
+        public void UnderfootBrushRefusesStaleChangedOrUnavailableArt(string fault)
+        {
+            Add("SandstoneFloor"); var brush = Add("DryBrush"); Native(brush);
+            var resource = Resources.Load<Texture2D>(Vegetation);
+            var player = Add("Player"); player.GetPart<RenderPart>().RenderLayer = 100;
+            var document = ExamineDocumentBuilder.BuildWorld(brush, zone, zone.GetCell(X, Y), player);
+            Assert.True(ExamineDocumentBuilder.IsCurrentSubject(document));
+            if (fault == "hidden") zone.GetCell(X, Y).IsVisible = false;
+            else if (fault == "moved") Assert.True(zone.MoveEntity(brush, X + 1, Y));
+            else if (fault == "carried") brush.GetPart<PhysicsPart>().InInventory = player;
+            else if (fault == "foreign-identity") brush.GetPart<RenderPart>().VisualVariant = "unmapped brush";
+            else if (fault == "burning") brush.GetPart<ThermalPart>().Temperature = brush.GetPart<ThermalPart>().FlameTemperature + 1;
+            else Inject(Resources.Load<Texture2D>(Atlas), missingVegetation: true);
+            Assert.False(Subject(brush), "The regional adapter must not supply the ordinary brush image");
+            Assert.True(!world.TryGetPresentationSubjectSprite(zone, brush, X, Y, out var sprite, out _) || sprite.texture != resource);
+            using (var paint = new Paint(world, zone))
+            {
+                Assert.True(paint.Renderer.TryGetFlatExaminePortrait(document, out var portrait));
+                Assert.AreNotSame(resource, portrait.Texture);
+                if (fault == "hidden" || fault == "moved" || fault == "carried")
+                { Assert.False(ExamineDocumentBuilder.IsCurrentSubject(document)); Assert.IsNull(portrait.Texture); }
+            }
+        }
         [TestCase("Rock", "foreign-render")] [TestCase("DuneCrest", "foreign-physics")]
         [TestCase("SandstoneWall", "duplicate-material")] [TestCase("Rock", "duplicate-render")]
         [TestCase("Bones", "carried")] [TestCase("Signpost", "takeable")]

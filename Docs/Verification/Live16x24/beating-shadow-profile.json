@@ -1,0 +1,71 @@
+{
+  "label": "beating-shadow-profile",
+  "start": "2026-10-28T22:57:41.141098Z",
+  "end": "2026-10-28T22:59:34.441417Z",
+  "elapsedSeconds": 113.30032,
+  "frames": 80216,
+  "zone": "Overworld.19.12.0",
+  "player": [
+    30,
+    16
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 65536,
+      "capacity": 65536,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 91585.171249389648,
+      "max": 51525250,
+      "p99": 175583
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 65536,
+      "capacity": 65536,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1401992.8435821533,
+      "max": 719333416,
+      "p99": 2367333
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 65536,
+      "capacity": 65536,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 37.684432983398438,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 65536,
+      "capacity": 65536,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 37.684432983398438,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 65536,
+      "capacity": 65536,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9227.5671539306641,
+      "max": 11923,
+      "p99": 11923
+    }
+  ],
+  "bounds": "Editor Beating ruin walking/Look/readers and actual input plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

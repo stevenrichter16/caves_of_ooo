@@ -102,6 +102,60 @@ namespace CavesOfOoo.Core
             }
             RepairOpenPockets();
             PlaceActivity(rng);
+            PlaceRuinShelterBrush();
+        }
+        // Generation-only ecological detail, after all existing layout decisions.
+        // No RNG draws, routes, reservations or surviving structures are changed.
+        private void PlaceRuinShelterBrush()
+        {
+            if(Formation!=Formation.RuinField)return;
+            for(int i=0;i<ruins.Length;i++)
+            {
+                var r=ruins[i];var candidates=new HashSet<(int x,int y)>();
+                for(int y=r.Y-2;y<r.Y+r.Height+2;y++)for(int x=r.X-2;x<r.X+r.Width+2;x++)
+                    if(RuinBrushCell(r,x,y))candidates.Add((x,y));
+                var best=new List<(int x,int y)>();
+                // Stable row order keeps disconnected shelter selection deterministic.
+                for(int y=r.Y-2;y<r.Y+r.Height+2;y++)for(int x=r.X-2;x<r.X+r.Width+2;x++)
+                {
+                    if(!candidates.Remove((x,y)))continue;
+                    var component=new List<(int x,int y)>{(x,y)};
+                    for(int at=0;at<component.Count;at++)
+                    {
+                        var c=component[at];
+                        for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
+                            if(candidates.Remove((c.x+dx,c.y+dy)))component.Add((c.x+dx,c.y+dy));
+                    }
+                    if(component.Count>best.Count)best=component;
+                }
+                if(best.Count<3)continue;
+                int anchorX=i%2==0?r.X+1:r.X+r.Width-2,anchorY=i%2==0?r.Y+1:r.Y+r.Height-2;
+                var placed=new List<(int x,int y)>();int target=9-i*2;
+                while(placed.Count<target&&best.Count>0)
+                {
+                    int pick=-1,score=int.MaxValue;
+                    for(int n=0;n<best.Count;n++)
+                    {
+                        var c=best[n];bool connected=placed.Count==0;
+                        foreach(var p in placed)if(Math.Abs(c.x-p.x)<=1&&Math.Abs(c.y-p.y)<=1){connected=true;break;}
+                        if(!connected)continue;
+                        int value=Math.Abs(c.x-anchorX)*3+Math.Abs(c.y-anchorY)*4;
+                        if(value<score){score=value;pick=n;}
+                    }
+                    if(pick<0)break;
+                    var selected=best[pick];best.RemoveAt(pick);placed.Add(selected);objects[selected.x,selected.y]="DryBrush";
+                }
+            }
+        }
+        private bool RuinBrushCell(Ruin r,int x,int y)
+        {
+            if(x<2||x>77||y<2||y>22||objects[x,y]!=null||road[x,y])return false;
+            // Both authored three-cell gates and their immediate approaches stay quiet.
+            if(Math.Abs(x-(r.X+r.Width/2))<=1&&(Math.Abs(y-r.Y)<=1||Math.Abs(y-(r.Y+r.Height-1))<=1))return false;
+            for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)if(IsApproach(x+dx,y+dy))return false;
+            for(int dy=-3;dy<=3;dy++)for(int dx=-3;dx<=3;dx++)
+                if(ObjectAt(x+dx,y+dy)=="SandstoneWall")return true;
+            return false;
         }
         private bool IsFocalClearing(int x,int y)=>Math.Pow((x-FocalX)/6.0,2)+Math.Pow((y-FocalY)/2.5,2)<1;
         private double RoadCentre(int along)

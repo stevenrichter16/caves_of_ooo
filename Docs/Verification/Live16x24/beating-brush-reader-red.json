@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "8e1fb7b4c579460888f0e4139351d4de",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1793229399178,
+    "finished_unix_ms": 1793229408506,
+    "last_update_unix_ms": 1793229408506,
+    "progress": {
+      "completed": 7,
+      "total": 7,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1793229408323,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.UnderfootBrushRefusesStaleChangedOrUnavailableArt(\"missing-vegetation\")",
+      "last_finished_unix_ms": 1793229408397,
+      "stuck_suspected": false,
+      "editor_is_focused": true,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.UnderfootBrushBorrowsItsOwnFrameWithoutReplacingTheCoveringPlayer",
+          "message": "  Expected: same as <Live16x24 Beating vegetation 3 (UnityEngine.Sprite)>\n  But was:  <Flat world glyph 34 (UnityEngine.Sprite)>\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

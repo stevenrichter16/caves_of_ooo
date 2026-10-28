@@ -119,6 +119,28 @@ namespace CavesOfOoo.Rendering
             floor = null; return false;
         }
 
+        /// <summary>Small sandstone-wall shade pilot: one disclosed dry sand or
+        /// paving owner, with no other visible physical occupant. Hidden owners
+        /// cannot disclose themselves by suppressing the presentation layer.</summary>
+        internal static bool CanReceiveWallShadow(Zone zone, int x, int y)
+        {
+            if (!IsSupportedZone(zone)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || !cell.IsVisible) return false;
+            var state = zone.TileState.Get(x, y);
+            if (state != null && !state.IsEmpty) return false;
+            Entity floor = null;
+            foreach (var owner in cell.Occupants)
+            {
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (floor != null || (owner.BlueprintName != "Sand" && owner.BlueprintName != "SandstoneFloor")
+                    || !OrdinaryGround(owner)) return false;
+                floor = owner;
+            }
+            return floor != null;
+        }
+
         /// <summary>Only suppress a selected literal ground glyph whose material
         /// is represented by the successful ground query. A reverse Sand/Crust
         /// layer tie does not disclose sand dots through a real crust surface.
@@ -131,11 +153,16 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>Caller authorizes the examine document; native portrait still
-        /// requires the same selected current visible world subject.</summary>
+        /// requires the current visible world subject. Passable brush may be
+        /// examined beneath the player without replacing that foreground.</summary>
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
+            if (!ReadyCell(zone, x, y, out var cell)) return false;
+            if (owner?.BlueprintName == "DryBrush" && Placed(zone, cell, owner)
+                && ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) >= 0 && vegetation != null)
+            { sprite = vegetation[3].sprite; return sprite != null; }
+            if (!Selected(zone, x, y, owner)) return false;
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && ReferenceEquals(floor, owner))

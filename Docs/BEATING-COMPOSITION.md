@@ -1,3 +1,5 @@
+**RuinField shelter growth — 2026-10-28:** `PlaceRuinShelterBrush` runs after existing activity placement, consumes no RNG and adds up to9/7/5 real DryBrush owners in unequal compact groups beside surviving masonry. It rejects roads, occupied cells, gate approaches and a one-cell reservation margin; it changes neither existing grounds/structures nor encounter placement. Only fresh ordinary RuinField generation changes; cached/player-edited zones retain their saved layout. See [visual and gameplay evidence](GRAPHICS-BEATING-RUIN-COMPOSITION.md):79/79 native composition controls, three matched actual views, passable underfoot interaction and Continue196. This modest ecological addition does not constitute full-area population/polish acceptance.
+
 # The Beating: exposure and passage
 
 Status: implemented, verified and installed, 2026-09-12. CoO-original spatial grammar and

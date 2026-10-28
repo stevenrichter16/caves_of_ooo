@@ -100,22 +100,26 @@ namespace CavesOfOoo.Rendering
             return tile != null;
         }
         /// <summary>Only actual disclosed Grass supplies opaque ground. Exact
-        /// neutral foreground plants retain it; state, cultivation and ambiguous
-        /// terrain remain visible through the existing semantic fallback.</summary>
+        /// neutral foreground plants and audited fixtures retain it. Fixture
+        /// hazard marks remain on the independent tile-state layer.</summary>
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
-            if (state != null && !state.IsEmpty) return false;
+            bool fixture = false;
             Entity grass = null;
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
                 if (owner.BlueprintName == "Grass")
                 { if (grass != null || !OrdinaryGrass(owner)) return false; grass = owner; }
+                else if (FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(owner)) fixture = true;
                 else if (CompetingGround(owner, zone, cell, x, y)) return false;
             }
+            // Represent actual Grass, never Water: live hazard/disclosure marks
+            // stay independent, and residual state refuses after source removal.
+            if (state != null && !state.IsEmpty && !fixture) return false;
             if (grass == null || forest == null && sill == null) return false;
             floor = grass; tile = forest != null ? forest[VariantAt(x, y)] : sill[20 + VariantAt(x, y)]; return true;
         }

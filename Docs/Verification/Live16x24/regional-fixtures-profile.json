@@ -1,0 +1,71 @@
+{
+  "label": "regional-fixtures-profile",
+  "start": "2026-10-28T22:49:54.393924Z",
+  "end": "2026-10-28T22:51:27.742676Z",
+  "elapsedSeconds": 93.34875199999999,
+  "frames": 67197,
+  "zone": "Overworld.4.7.0",
+  "player": [
+    53,
+    18
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 117700.18716430664,
+      "max": 57883166,
+      "p99": 189666
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1490232.4528808594,
+      "max": 707966250,
+      "p99": 2823958
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 40.225250244140625,
+      "max": 45,
+      "p99": 45
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 40.225250244140625,
+      "max": 45,
+      "p99": 45
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9900.9261474609375,
+      "max": 14001,
+      "p99": 14001
+    }
+  ],
+  "bounds": "Editor Grovelands walking/Look/readers and actual input plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}
