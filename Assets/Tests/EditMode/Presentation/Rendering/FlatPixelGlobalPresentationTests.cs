@@ -218,13 +218,18 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("HealingTonic")] [TestCase("MarlbackPatchbearer")]
-        public void RegionalPropAndFiniteSupplyActorUseMatchingGlyphOutsideThenNativeInside(string blueprint)
+        public void PortableMedicineAndRegionalFiniteActorKeepTheirDeliberateZonePolicies(string blueprint)
         {
             using (var f = new Fixture(factory)) using (var portraits = Portraits())
             {
                 var owner = factory.CreateEntity(blueprint); Assert.NotNull(owner); Assert.True(f.Zone.AddEntity(owner, X, Y)); f.Frame();
                 var sprite = f.Foreground()?.sprite; Assert.NotNull(sprite); Assert.AreEqual(new Vector2(16, 24), sprite.rect.size);
-                Assert.AreEqual(408, sprite.texture.height, "Outside native scope uses the identity-preserving glyph bank.");
+                if (blueprint == "HealingTonic")
+                {
+                    Assert.AreSame(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ItemsResourcePath), sprite.texture);
+                    Assert.AreEqual(new Rect(112, 0, 16, 24), sprite.rect, "The exact portable tonic keeps approved frame7 outside the opening.");
+                }
+                else Assert.AreEqual(408, sprite.texture.height, "The finite-supply regional actor still uses its identity-preserving glyph outside scope.");
                 AssertPortrait(portraits.GetPortrait(f.Document(owner), f.Renderer), sprite); AssertNoPreview(portraits);
                 Assert.True(f.Zone.RemoveEntity(owner)); f.Show(ReferenceGladePlan.ZoneID); Assert.True(f.Zone.AddEntity(owner, X, Y)); f.Frame();
                 Sprite native;
@@ -245,7 +250,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void CarriedRegionalItemUsesViewerZonePolicyWhileInventoryOwnsSquareCanvas()
+        public void CarriedPortableMedicineKeepsWorldIdentityWhileInventoryOwnsSquareCanvas()
         {
             using (var f = new Fixture(factory)) using (var portraits = Portraits())
             {
@@ -579,18 +584,18 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void EquipmentPortabilityDoesNotAdmitRegionalGroundServicesOrMedicine()
+        public void PortableItemsDoNotAdmitRegionalGroundServicesOrFiniteSupplyActors()
         {
             using (var f = new Fixture(factory)) using (var portraits = Portraits())
             using (var fallbackPolicy = new FlatPixelFallbackCatalog())
             {
-                foreach (string blueprint in new[] { "AlchemyStill", "HealingTonic", "MarlbackPatchbearer" })
+                foreach (string blueprint in new[] { "AlchemyStill", "MarlbackPatchbearer" })
                 {
                     var owner = factory.CreateEntity(blueprint); Assert.NotNull(owner);
                     Assert.True(f.Zone.AddEntity(owner, X, Y));
                     // Raw fixture Add/Remove do not repaint this reused cell.
-                    // The original counter compared the still's stale '&' with
-                    // the next tonic's current '!'; that was not an art leak.
+                    // Every assertion must observe this actual current owner,
+                    // never the preceding owner's cached tile.
                     f.Renderer.MarkCellDirty(X, Y, "regional counter owner replaced"); f.Frame();
                     Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(f.Zone));
                     var fallback = f.Foreground()?.sprite; Assert.NotNull(fallback); Assert.AreEqual(408, fallback.texture.height);

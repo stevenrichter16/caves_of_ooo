@@ -2682,16 +2682,19 @@
     },
     {
       "id": "knowledge_documents",
-      "state": "known_uncovered_examples_and_unclassified_remainder",
+      "state": "exact_WateringGrimoire_bounded_Editor_accepted;other_documents_unclassified_or_uncovered",
       "known_uncovered_examples": [
-        "DitchkeepersFootwork",
+        "DitchkeepersFootwork"
+      ],
+      "note": "Exact WateringGrimoire now uses approved complete square item_book in world/authorized readers; ordinary Read learns ConjureRain and preserves the book. Other manuals, maps, notices and unique documents remain open; no broad arbitrary book alias. Current packages exclude this new slice.",
+      "bounded_covered_identities": [
         "WateringGrimoire"
       ],
-      "note": "Manuals, maps, notices and unique documents require actual identity mapping; no broad arbitrary book alias."
+      "evidence": "expedition_essentials"
     },
     {
       "id": "food_medicine_materials",
-      "state": "17_exact_portable_harvest_products_source_and_package_integrated_native399_pass_two_actual_products; remainder_not_audited",
+      "state": "17_exact_harvest_products_delivered;HealingTonic_and_DriedMeat_bounded_Editor_accepted_package_pending;remainder_not_audited",
       "required_roles": [
         "raw_cooked_food",
         "tonics_and_finite_stock",
@@ -2699,8 +2702,13 @@
         "seeds_products_ore",
         "repair_and_quest_materials"
       ],
-      "note": "Eight new frames and nine immutable existing-frame reuses serve world, carried and authorized examine readers for17 exact identities. Actual PaleSalt and Bone Editor/standalone evidence is bounded: Bone has no clean uncovered standalone ground capture; PaleSalt quiet branch verifies full process restart. Other15 not yet ordinarily observed. Preserve the established neutral flask contract; other foods, tonics, ingredients, seeds and quest materials remain open.",
-      "evidence": "harvest_products_delivery"
+      "note": "Eight new frames and nine immutable existing-frame reuses serve world, carried and authorized examine readers for17 exact identities. Actual PaleSalt and Bone Editor/standalone evidence is bounded: Bone has no clean uncovered standalone ground capture; PaleSalt quiet branch verifies full process restart. Other15 not yet ordinarily observed. Preserve the established neutral flask contract; other foods, tonics, ingredients, seeds and quest materials remain open. Separate exact HealingTonic/DriedMeat portability now has actual inventory readers, exposed ground bodies, real use and freshContinue163 evidence; separate ground reader parity is native-only; package delivery pending. Other medicines and foods keep their existing mappings/refusals.",
+      "evidence": "harvest_products_delivery",
+      "additional_bounded_covered_identities": [
+        "HealingTonic",
+        "DriedMeat"
+      ],
+      "additional_evidence": "expedition_essentials"
     },
     {
       "id": "furniture_services_multicell",
@@ -11401,14 +11409,16 @@
     "area_polish_advanced": false
   },
   "next_scoped_work": {
-    "status": "greatdew_baseline_next",
+    "status": "expedition_essentials_editor_accepted_publication_and_coherent_delivery_pending",
     "scope": [
-      "exact Greatdew snare plant in ordinary surface play"
+      "HealingTonic",
+      "DriedMeat",
+      "WateringGrimoire"
     ],
-    "evidence": "OpenMire18.8.0,owner25501 at24,21 remains cyan glyph in shared-surface-after-01-open-mire.png; healthy earned sodden-frogs-after157 player40,12HP38.",
-    "reason": "Actual missing dangerous surface body with immediate world/readability impact and no exact approved resource. Battleaxe disclosed109drams vs22purse/noexactart; Buckler and Armorer/Apothecary actualbaseline pending. TarSeep/Husk reusable but avoid returning to caves; mire already-native material is separate polish debt.",
-    "gates": "Actual reader/baseline; imagegen reinterpretation; editable native body; real owner/custody/disclosure/state RED/GREEN; passability/snare/removal and fresh persistence, independent review. Root ownsUnity/Git.",
-    "limits": "Greatdew non-solid Plant10HP, repeatable55percent step snare, Rooted4/Acidic1. Do not invent aura/harvest/guaranteed proc or use another sundew species. All55+5polish scopes open."
+    "evidence": "Five actual before and13 after views; earned157 inventory -> ground162 -> actual use/F5/freshContinue163. See expedition_essentials record.",
+    "reason": "Common carried supplies retain their approved body outside the opening without a blind owner search or more original art.",
+    "gates": "Root final preservation/publication and package grouping. Next shared/surface family requires disclosed actual baseline; no optional animation or cave detour.",
+    "limits": "Three exact identities only; alternate foods/tonics/grimoires and all55+5 area-polish scopes remain open. Currentfa553ca36 packages exclude this slice."
   },
   "sodden_frogs": {
     "status": "bounded_Editor_verified_source_pushed_packages_pending",
@@ -11581,5 +11591,110 @@
     "limits": "Player covers body after contact; exposed-world restart unverified. Expiry/destruction native-only. No fresh package/Deck or area polish acceptance.",
     "polish_advanced": false,
     "independent_review": "Docs/Verification/Live16x24/greatdew-independent-review.md"
-  }
+  },
+  "expedition_essentials": {
+    "status": "bounded_editor_accepted_source_publication_and_package_pending",
+    "scope": [
+      "HealingTonic",
+      "DriedMeat",
+      "WateringGrimoire"
+    ],
+    "plan": "Docs/GRAPHICS-EXPEDITION-ESSENTIALS.md",
+    "art": {
+      "kind": "unchanged_approved_resource_reuse",
+      "resources": [
+        "Sprites/Live16x24/opening-items",
+        "Sprites/Environment/item_book"
+      ],
+      "frames": {
+        "HealingTonic": [
+          112,
+          0,
+          16,
+          24
+        ],
+        "DriedMeat": [
+          128,
+          0,
+          16,
+          24
+        ],
+        "WateringGrimoire": [
+          0,
+          0,
+          16,
+          16
+        ]
+      },
+      "pixels_per_unit": 16,
+      "asset_or_import_bytes_changed": false,
+      "bounds": "Complete frames, square book preserved without stretching. Exact identities only; no broad food/tonic/grimoire alias."
+    },
+    "native": {
+      "red_failed": 20,
+      "red_receipt": "Docs/Verification/Live16x24/expedition-essentials-native-red.json",
+      "red_bounds": "Full uncapped progress; result null, no XML claim. Prior fixture CS1061/empty discovery excluded.",
+      "passed": 139,
+      "failed": 0,
+      "skipped": 0,
+      "distinct": 139,
+      "included_cases": {
+        "FlatPixelExpeditionEssentialsTests": 20,
+        "FlatPixelGlobalPresentationTests": 52,
+        "FlatPixelGreatdewTests": 21,
+        "FlatPixelOpeningItemsTests": 46
+      },
+      "receipt": "Docs/Verification/Live16x24/expedition-essentials-native-green.json"
+    },
+    "actual_editor": {
+      "area": "Overworld.18.8.0 OpenMire",
+      "source_fixture": "sodden-frogs-after157",
+      "ground_fixture": "expedition-essentials-ground162",
+      "used_fixture": "expedition-essentials-used163",
+      "before_captures": 5,
+      "after_captures": 13,
+      "owners": {
+        "HealingTonic": "2701",
+        "DriedMeat": "2702",
+        "WateringGrimoire": "2696"
+      },
+      "ordinary_actions": "Deliberate drop/step aside, exact inventory readers and exposed ground bodies, pickup all three, Read, Drink, Eat, F5 and fresh Continue. Real Bandfrog attacks retained.",
+      "read": "Conjure Rain learned; same book retained at count1.",
+      "drink": "Tonic2->1 and HP36->40.",
+      "eat": "Meat2->1; healing capped at full HP, then actual Bandfrog attack left HP36.",
+      "saved_turn": 2460,
+      "restart_player": [
+        40,
+        10
+      ],
+      "restart_hp": 36,
+      "restart_counts": {
+        "HealingTonic": 1,
+        "DriedMeat": 1,
+        "WateringGrimoire": 1
+      },
+      "restart_rain_learned": true,
+      "restart_state_verified": true,
+      "restart_pixel_equality": "not_claimed",
+      "restart_receipt": "Docs/Verification/Live16x24/expedition-essentials-restart.json",
+      "ground_reader_bounds": "World/ground reader parity is native-tested only; no separate ordinary ground F1 reader was captured in this slice."
+    },
+    "independent_review": "Docs/Verification/Live16x24/expedition-essentials-independent-review.md",
+    "current_packaged_source": "fa553ca36",
+    "new_packages": "pending_coherent_batch_current_packages_exclude_essentials",
+    "area_polish_advanced": false,
+    "bounds": "Three exact portable bodies with bounded actual Editor use/state persistence. No new gameplay, stock, approved-art edits, worldwide visual acceptance, standalone/Linux/Deck execution, sustained performance or full-area polish. All55+5 polish scopes unchanged."
+  },
+  "scoped_work_history": [
+    {
+      "status": "greatdew_baseline_next",
+      "scope": [
+        "exact Greatdew snare plant in ordinary surface play"
+      ],
+      "evidence": "OpenMire18.8.0,owner25501 at24,21 remains cyan glyph in shared-surface-after-01-open-mire.png; healthy earned sodden-frogs-after157 player40,12HP38.",
+      "reason": "Actual missing dangerous surface body with immediate world/readability impact and no exact approved resource. Battleaxe disclosed109drams vs22purse/noexactart; Buckler and Armorer/Apothecary actualbaseline pending. TarSeep/Husk reusable but avoid returning to caves; mire already-native material is separate polish debt.",
+      "gates": "Actual reader/baseline; imagegen reinterpretation; editable native body; real owner/custody/disclosure/state RED/GREEN; passability/snare/removal and fresh persistence, independent review. Root ownsUnity/Git.",
+      "limits": "Greatdew non-solid Plant10HP, repeatable55percent step snare, Rooted4/Acidic1. Do not invent aura/harvest/guaranteed proc or use another sundew species. All55+5polish scopes open."
+    }
+  ]
 }

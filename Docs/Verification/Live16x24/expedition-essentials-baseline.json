@@ -1,0 +1,36 @@
+{
+  "at_utc": "2026-10-28T11:27:03.375987+00:00",
+  "source_commit": "8eeace53460976ae72216a00e3b68f5ee31a75d0",
+  "input": "Fixtures/sodden-frogs-after157",
+  "output": "Docs/Verification/Live16x24/Fixtures/expedition-essentials-ground162",
+  "output_header": {
+    "SaveVersion": 8,
+    "GameVersion": "1.0",
+    "GameID": "50e670c30b6d48feb82756df64bd1cbc",
+    "PlayerName": "Player",
+    "PlayerDisplayName": "you",
+    "PlayerLevel": 1,
+    "ActiveZoneID": "Overworld.18.8.0",
+    "ActiveZoneDisplayLabel": "Overworld.18.8.0",
+    "Turn": 2380,
+    "SaveTimestampUtc": "2026-10-28T11:24:22.0306160Z",
+    "HPSummary": "38/40",
+    "Glyph": "@",
+    "Color": "&Y"
+  },
+  "output_sha256": {
+    "Quick.json": "583189e2ff3e02cbcf8cf93f4e67a4cfd50847544721725968fdd184524337f1",
+    "Quick.sav.gz": "a7870520306f4022a8cfae53644339106232fe7de82ffd572b05432b9c784c78"
+  },
+  "actions": "ordinaryContinue157; inventory/F1 each owner; dropgrimoire40,10; east; dropmeat41,10; east; droptonic42,10; east43,10; F5. Counts1/2/2, HP38unchanged. Actual loaded GameID save copied, not launch marker.",
+  "captures": [
+    "expedition-essentials-before-01-inventory.png",
+    "expedition-essentials-before-02-meat-reader.png",
+    "expedition-essentials-before-03-tonic-reader.png",
+    "expedition-essentials-before-04-grimoire-reader.png",
+    "expedition-essentials-before-05-ground.png"
+  ],
+  "isolation_root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/d109cc572a0e42e18a80c38abdbcf96a",
+  "finished": true,
+  "claim": "Actual current glyph inventory/readers and deliberate dropped world baseline only; no new art/runtime acceptance or consumption/Read performed."
+}

@@ -86,6 +86,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelBeatingActorsCatalog _beatingActorsArt;
         private FlatPixelSoddenFrogsCatalog _soddenFrogsArt;
         private FlatPixelGreatdewCatalog _greatdewArt;
+        private FlatPixelExpeditionEssentialsCatalog _expeditionEssentialsArt;
         private FlatPixelSharedVineWallCatalog _sharedVineWallArt;
         private FlatPixelSharedCampPropsCatalog _sharedCampPropsArt;
         private FlatPixelSharedCampClothCatalog _sharedCampClothArt;
@@ -262,6 +263,7 @@ namespace CavesOfOoo.Rendering
             Tile foreground = kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road
                 ? null : _tiles[(int)kind];
             bool greatdewNative = false;
+            bool essentialsNative = false;
             bool sharedVineNative = false;
             if (!remembered && SharedVineRole(zone, owner))
             {
@@ -286,6 +288,14 @@ namespace CavesOfOoo.Rendering
                 { foreground = campTile; foregroundColor = Color.white; }
                 else if (TryResolveFallback(zone, x, y, out var campFallback))
                 { foreground = campFallback.ForegroundTile; foregroundColor = campFallback.ForegroundColor; }
+            }
+            else if (FlatPixelExpeditionEssentialsCatalog.HasKnownRole(owner))
+            {
+                var supplies = ExpeditionEssentialsArtFor(owner);
+                if (supplies != null && supplies.TryResolve(owner, out var supplyTile))
+                { foreground = supplyTile; foregroundColor = Color.white; essentialsNative = true; }
+                else if (TryResolveFallback(zone, x, y, out var supplyFallback))
+                { foreground = supplyFallback.ForegroundTile; foregroundColor = supplyFallback.ForegroundColor; }
             }
             else if (FlatPixelGreatdewCatalog.HasKnownRole(owner))
             {
@@ -376,7 +386,7 @@ namespace CavesOfOoo.Rendering
             result = new FlatPixelGreyboxCell(_tiles[(int)FlatPixelGreyboxKind.Ground], foreground,
                 groundColor, foregroundColor, owner, kind, ground, remembered,
                 !remembered && cell.BlocksMovement(), remembered ? null : ReserveCord(zone, cell, out _),
-                nativeForeground: sharedVineNative || greatdewNative, preserveRenderColorCue: sharedVineNative || greatdewNative);
+                nativeForeground: sharedVineNative || greatdewNative || essentialsNative, preserveRenderColorCue: sharedVineNative || greatdewNative || essentialsNative);
             return true;
         }
 
@@ -621,6 +631,13 @@ namespace CavesOfOoo.Rendering
                 var camp = SharedCampPropsArtFor(owner);
                 if (camp != null && camp.TryResolve(owner, out var campTile))
                 { sprite = campTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
+            }
+            if (FlatPixelExpeditionEssentialsCatalog.HasKnownRole(owner))
+            {
+                var supplies = ExpeditionEssentialsArtFor(owner);
+                if (supplies != null && supplies.TryResolve(owner, out var supplyTile))
+                { sprite = supplyTile.sprite; return sprite != null; }
                 return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
             }
             if (FlatPixelGreatdewCatalog.HasKnownRole(owner))
@@ -1343,6 +1360,11 @@ namespace CavesOfOoo.Rendering
             Tile greatdewArt = null;
             bool greatdewNative = greatdew != null && greatdew.TryResolve(owner, out greatdewArt);
             if (greatdewKnown) art = greatdewArt;
+            bool essentialsKnown = FlatPixelExpeditionEssentialsCatalog.HasKnownRole(owner);
+            var essentials = !fallback.Remembered ? ExpeditionEssentialsArtFor(owner) : null;
+            Tile essentialsArt = null;
+            bool essentialsNative = essentials != null && essentials.TryResolve(owner, out essentialsArt);
+            if (essentialsKnown) art = essentialsArt;
             bool soddenFrogKnown = FlatPixelSoddenFrogsCatalog.HasKnownRole(owner);
             var soddenFrogs = !fallback.Remembered ? SoddenFrogsArtFor(owner) : null;
             Tile soddenFrogArt = null;
@@ -1355,7 +1377,7 @@ namespace CavesOfOoo.Rendering
             bool sidearmKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner);
             if (sidearmKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1382,7 +1404,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || campNative || clothNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1427,6 +1449,13 @@ namespace CavesOfOoo.Rendering
                 var camp = SharedCampPropsArtFor(subject);
                 if (camp != null && camp.TryResolve(subject, out var campTile))
                 { sprite = campTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
+            if (FlatPixelExpeditionEssentialsCatalog.HasKnownRole(subject))
+            {
+                var supplies = ExpeditionEssentialsArtFor(subject);
+                if (supplies != null && supplies.TryResolve(subject, out var supplyTile))
+                { sprite = supplyTile.sprite; return sprite != null; }
                 return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             }
             if (FlatPixelGreatdewCatalog.HasKnownRole(subject))
@@ -1761,6 +1790,15 @@ namespace CavesOfOoo.Rendering
             return _beatingActorsArt;
         }
 
+        private FlatPixelExpeditionEssentialsCatalog ExpeditionEssentialsArtFor(Entity owner)
+        {
+            if (!FlatPixelExpeditionEssentialsCatalog.HasKnownRole(owner)) return null;
+            if (_expeditionEssentialsArt == null)
+                _expeditionEssentialsArt = new FlatPixelExpeditionEssentialsCatalog(_harvestItemsAtlas,
+                    _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelExpeditionEssentialsCatalog.BookResourcePath) : null);
+            return _expeditionEssentialsArt;
+        }
+
         private FlatPixelGreatdewCatalog GreatdewArtFor(Entity owner)
         {
             if (!FlatPixelGreatdewCatalog.HasKnownRole(owner)) return null;
@@ -2048,6 +2086,8 @@ namespace CavesOfOoo.Rendering
             _sharedCampPropsArt = null;
             _greatdewArt?.Dispose();
             _greatdewArt = null;
+            _expeditionEssentialsArt?.Dispose();
+            _expeditionEssentialsArt = null;
             _soddenFrogsArt?.Dispose();
             _soddenFrogsArt = null;
             _sharedVineWallArt?.Dispose();

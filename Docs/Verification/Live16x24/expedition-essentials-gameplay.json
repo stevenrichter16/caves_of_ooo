@@ -1,0 +1,32 @@
+{
+  "source_base": "8eeace53460976ae72216a00e3b68f5ee31a75d0",
+  "native_green": "expedition-essentials-native-green.json",
+  "native_cases": 139,
+  "new_cases": 20,
+  "before_fixture": "expedition-essentials-ground162",
+  "after_fixture": "expedition-essentials-used163",
+  "actions": [
+    "Continue162",
+    "a,g,a,g,a,g",
+    "inventory/F1 for all three",
+    "Read grimoire normally: Rain false\u2192true, book1 retained",
+    "drink tonic:2\u21921, HP36\u219240",
+    "eat dried meat:2\u21921; full HP cap; actual bandfrog attack leaves36",
+    "F5 turn2460",
+    "Finish, fresh Launch/Continue163",
+    "verify owners/counts/skill and remaining tonic reader"
+  ],
+  "before_captures": 5,
+  "after_captures": 13,
+  "read_only_query_correction": "SkillsPart is CavesOfOoo.Skills, not Core; failed eval corrected without production edits",
+  "limits": [
+    "Actual source Editor execution; no packaged or physical Deck claim yet",
+    "No exact pixel parity: real actions and combat alter state",
+    "No whole-area fullness or polish acceptance",
+    "No additional FPS/performance-improvement claim; three views cached once, borrowed textures preserved"
+  ],
+  "isolated_after_archive": "IsolatedRuns/expedition-after-524f6ea904a94034b211bf71e425993f",
+  "restart_root": "dfc621d9439c403d941d06bd69c93231",
+  "restart_archive_note": "Finish retired copied-input-only root before attempted archival; input163 and read-only/capture receipts retained",
+  "utc": "2026-10-28T11:52:28.388261+00:00"
+}
