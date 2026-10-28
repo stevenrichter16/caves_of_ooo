@@ -18,13 +18,15 @@ namespace CavesOfOoo.Rendering
         public const string DaggerResourcePath = "Sprites/Environment/item_dagger";
         public const string ShortSwordResourcePath = "Sprites/Environment/item_sword";
         public const string MaceResourcePath = "Sprites/Environment/item_mace";
-        private readonly Tile _leatherArmor, _hatchet, _cudgel, _dagger, _shortSword, _mace;
+        public const string BucklerResourcePath = "Sprites/Live16x24/buckler";
+        private readonly Tile _leatherArmor, _hatchet, _cudgel, _dagger, _shortSword, _mace, _buckler;
         private bool _disposed;
 
         public FlatPixelIncidentalEquipmentCatalog()
             : this(Resources.Load<Texture2D>(LeatherArmorResourcePath), Resources.Load<Texture2D>(HatchetResourcePath),
                    Resources.Load<Texture2D>(CudgelResourcePath), Resources.Load<Texture2D>(DaggerResourcePath),
-                   Resources.Load<Texture2D>(ShortSwordResourcePath), Resources.Load<Texture2D>(MaceResourcePath)) { }
+                   Resources.Load<Texture2D>(ShortSwordResourcePath), Resources.Load<Texture2D>(MaceResourcePath),
+                   Resources.Load<Texture2D>(BucklerResourcePath)) { }
 
         /// <summary>Independent optional resources. Null or malformed injected
         /// textures stay unavailable without an implicit Resources lookup.</summary>
@@ -39,6 +41,11 @@ namespace CavesOfOoo.Rendering
         /// Injected null/malformed inputs never reload a resource implicitly.</summary>
         public FlatPixelIncidentalEquipmentCatalog(Texture2D leatherArmor, Texture2D hatchet, Texture2D cudgel,
             Texture2D dagger, Texture2D shortSword, Texture2D mace)
+            : this(leatherArmor, hatchet, cudgel, dagger, shortSword, mace, null) { }
+
+        /// <summary>Exact Buckler is independent of the existing equipment inputs.</summary>
+        public FlatPixelIncidentalEquipmentCatalog(Texture2D leatherArmor, Texture2D hatchet, Texture2D cudgel,
+            Texture2D dagger, Texture2D shortSword, Texture2D mace, Texture2D buckler)
         {
             _leatherArmor = Build(leatherArmor, "Leather armor");
             _hatchet = Build(hatchet, "Hatchet");
@@ -46,11 +53,12 @@ namespace CavesOfOoo.Rendering
             _dagger = Build(dagger, "Dagger", 16);
             _shortSword = Build(shortSword, "Short sword", 16);
             _mace = Build(mace, "Mace", 16);
+            _buckler = Build(buckler, "Buckler");
         }
 
         internal static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "LeatherArmor" || owner?.BlueprintName == "Hatchet"
-                || owner?.BlueprintName == "Cudgel" || IsSidearm(owner);
+                || owner?.BlueprintName == "Cudgel" || owner?.BlueprintName == "Buckler" || IsSidearm(owner);
 
         internal static bool IsSidearm(Entity owner)
             => owner?.BlueprintName == "Dagger" || owner?.BlueprintName == "ShortSword" || owner?.BlueprintName == "Mace";
@@ -64,9 +72,14 @@ namespace CavesOfOoo.Rendering
                 || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Terrain")
                 || owner.HasTag("Crop") || owner.HasPart<CropPart>()) return false;
             bool sidearm = IsSidearm(owner);
+            bool buckler = owner.BlueprintName == "Buckler";
             if (sidearm && (!UniqueOwned<RenderPart>(owner) || !UniqueOwned<PhysicsPart>(owner)
                 || !UniqueOwned<MeleeWeaponPart>(owner) || !UniqueOwned<EquippablePart>(owner)
                 || !UniqueOwned<ExaminablePart>(owner) || ForeignSidearmMeaning(owner))) return false;
+            if (buckler && (owner.HasTag("Corpse") || !UniqueOwned<RenderPart>(owner) || !UniqueOwned<PhysicsPart>(owner)
+                || !UniqueOwned<ArmorPart>(owner) || !UniqueOwned<EquippablePart>(owner) || !UniqueOwned<ExaminablePart>(owner)
+                || !OptionalUniqueOwned<StackerPart>(owner) || !OptionalUniqueOwned<StatusEffectsPart>(owner)
+                || !OptionalUniqueOwned<SpatialFootprintPart>(owner) || ForeignBucklerMeaning(owner))) return false;
             var render = Owned<RenderPart>(owner);
             var physics = Owned<PhysicsPart>(owner);
             if (render == null || !render.Visible || physics == null || !physics.Takeable || physics.Solid
@@ -76,7 +89,12 @@ namespace CavesOfOoo.Rendering
             if (stack != null && (stack.ParentEntity != owner || stack.StackCount <= 0
                 || stack.StackCount > stack.MaxStack)) return false;
             var equipment = Owned<EquippablePart>(owner);
-            if (owner.BlueprintName == "LeatherArmor")
+            if (buckler)
+            {
+                if (equipment?.Slot != "Hand") return false;
+                tile = _buckler;
+            }
+            else if (owner.BlueprintName == "LeatherArmor")
             {
                 if (Owned<ArmorPart>(owner) == null || equipment?.Slot != "Body") return false;
                 tile = _leatherArmor;
@@ -99,6 +117,9 @@ namespace CavesOfOoo.Rendering
         private static T Owned<T>(Entity owner) where T : Part
         { var part = owner.GetPart<T>(); return part?.ParentEntity == owner ? part : null; }
 
+        private static bool OptionalUniqueOwned<T>(Entity owner) where T : Part
+            => !owner.HasPart<T>() || UniqueOwned<T>(owner);
+
         private static bool UniqueOwned<T>(Entity owner) where T : Part
         {
             T found = null;
@@ -116,6 +137,15 @@ namespace CavesOfOoo.Rendering
             => owner.HasPart<ArmorPart>() || owner.HasPart<ContainerPart>() || owner.HasPart<ForgePart>()
                 || owner.HasPart<WellPart>() || owner.HasPart<WellSitePart>() || owner.HasPart<CorpsePart>()
                 || owner.HasPart<Body>() || owner.HasPart<BrainPart>() || owner.HasPart<DoorPart>();
+
+        // Hand armor has no weapon, actor or world-service meaning. Condition,
+        // armor values and price remain mutable and are not encoded in its art.
+        private static bool ForeignBucklerMeaning(Entity owner)
+            => owner.HasPart<MeleeWeaponPart>() || owner.HasPart<ContainerPart>() || owner.HasPart<ForgePart>()
+                || owner.HasPart<WellPart>() || owner.HasPart<WellSitePart>() || owner.HasPart<AlchemyStillPart>()
+                || owner.HasPart<CorpsePart>() || owner.HasPart<Body>() || owner.HasPart<BrainPart>()
+                || owner.HasPart<DoorPart>() || owner.HasPart<TraderPart>() || owner.HasPart<ConversationPart>()
+                || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>();
 
         private static bool SingleCell(Entity owner)
         {
@@ -146,6 +176,7 @@ namespace CavesOfOoo.Rendering
             _disposed = true;
             DestroyFrame(_leatherArmor); DestroyFrame(_hatchet); DestroyFrame(_cudgel);
             DestroyFrame(_dagger); DestroyFrame(_shortSword); DestroyFrame(_mace);
+            DestroyFrame(_buckler);
         }
         private static void DestroyFrame(Tile tile)
         {

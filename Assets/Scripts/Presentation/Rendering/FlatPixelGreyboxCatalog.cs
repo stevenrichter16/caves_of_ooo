@@ -265,6 +265,7 @@ namespace CavesOfOoo.Rendering
             bool greatdewNative = false;
             bool essentialsNative = false;
             bool sharedVineNative = false;
+            bool bucklerNative = false;
             if (!remembered && SharedVineRole(zone, owner))
             {
                 var vines = SharedVineWallArtFor(zone, owner);
@@ -272,6 +273,14 @@ namespace CavesOfOoo.Rendering
                 { foreground = vineTile; foregroundColor = Color.white; sharedVineNative = true; }
                 else if (TryResolveFallback(zone, x, y, out var vineFallback))
                 { foreground = vineFallback.ForegroundTile; foregroundColor = vineFallback.ForegroundColor; }
+            }
+            else if (owner?.BlueprintName == "Buckler")
+            {
+                var equipment = IncidentalEquipmentArtFor(owner);
+                if (equipment != null && equipment.TryResolve(owner, out var equipmentTile))
+                { foreground = equipmentTile; foregroundColor = Color.white; bucklerNative = true; }
+                else if (TryResolveFallback(zone, x, y, out var equipmentFallback))
+                { foreground = equipmentFallback.ForegroundTile; foregroundColor = equipmentFallback.ForegroundColor; }
             }
             else if (FlatPixelSharedCampClothCatalog.HasKnownRole(owner))
             {
@@ -386,7 +395,8 @@ namespace CavesOfOoo.Rendering
             result = new FlatPixelGreyboxCell(_tiles[(int)FlatPixelGreyboxKind.Ground], foreground,
                 groundColor, foregroundColor, owner, kind, ground, remembered,
                 !remembered && cell.BlocksMovement(), remembered ? null : ReserveCord(zone, cell, out _),
-                nativeForeground: sharedVineNative || greatdewNative || essentialsNative, preserveRenderColorCue: sharedVineNative || greatdewNative || essentialsNative);
+                nativeForeground: sharedVineNative || greatdewNative || essentialsNative || bucklerNative,
+                preserveRenderColorCue: sharedVineNative || greatdewNative || essentialsNative || bucklerNative);
             return true;
         }
 
@@ -613,6 +623,13 @@ namespace CavesOfOoo.Rendering
             if (_disposed || owner == null) return false;
             var render = owner.GetPart<RenderPart>();
             if (render == null || render.ParentEntity != owner || !render.Visible) return false;
+            if (owner.BlueprintName == "Buckler")
+            {
+                var equipment = IncidentalEquipmentArtFor(owner);
+                if (equipment != null && equipment.TryResolve(owner, out var equipmentTile))
+                { sprite = equipmentTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
+            }
             if (SharedVineRole(owner.SpatialZone, owner))
             {
                 var vines = SharedVineWallArtFor(owner.SpatialZone, owner);
@@ -1374,10 +1391,10 @@ namespace CavesOfOoo.Rendering
             // must not bypass current semantic or optional-resource guards.
             // The same applies to exact fauna; portable species do not admit
             // regional scenery or inherit another body's art after refusal.
-            bool sidearmKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner);
-            if (sidearmKnown) art = equipmentArt;
+            bool portableEquipmentKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner) || owner?.BlueprintName == "Buckler";
+            if (portableEquipmentKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1404,7 +1421,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1429,8 +1446,8 @@ namespace CavesOfOoo.Rendering
                 { sprite = farmerTile.sprite; return sprite != null; }
                 return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             }
-            // Exact sidearm refusal must not fall through to unrelated local art.
-            if (FlatPixelIncidentalEquipmentCatalog.IsSidearm(subject))
+            // Exact portable equipment refusal must not fall through to unrelated local art.
+            if (FlatPixelIncidentalEquipmentCatalog.IsSidearm(subject) || subject?.BlueprintName == "Buckler")
             {
                 var sidearms = IncidentalEquipmentArtFor(subject);
                 if (sidearms != null && sidearms.TryResolve(subject, out var sidearmTile))

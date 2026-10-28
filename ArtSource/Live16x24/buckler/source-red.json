@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "expected_missing_output_red": true,
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/steven/caves-of-ooo/Tools/Live16x24/build_buckler.py\", line 163, in <module>\n    elif opt.verify:verify()\n                    ^^^^^^^^\n  File \"/Users/steven/caves-of-ooo/Tools/Live16x24/build_buckler.py\", line 83, in verify\n    guard();s=json.loads((OUT/'source-cells.json').read_text());assert s['palette']==P\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py\", line 1027, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/Live16x24/buckler/source-cells.json'\n"
+}

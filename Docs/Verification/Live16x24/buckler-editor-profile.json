@@ -1,0 +1,71 @@
+{
+  "label": "buckler-editor-profile",
+  "start": "2026-10-28T12:57:03.402091Z",
+  "end": "2026-10-28T12:59:37.859148Z",
+  "elapsedSeconds": 154.457057,
+  "frames": 37515,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    61,
+    3
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 7001.09765625,
+      "max": 72541,
+      "p99": 18250
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 3805833.0517578125,
+      "max": 2292475459,
+      "p99": 15388083
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 24.0,
+      "max": 24,
+      "p99": 24
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 24.0,
+      "max": 24,
+      "p99": 24
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 5661.0,
+      "max": 5661,
+      "p99": 5661
+    }
+  ],
+  "bounds": "Editor Sill Buckler world/Look/inventory/equipment readers and actual pickup/re-equip input plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}
