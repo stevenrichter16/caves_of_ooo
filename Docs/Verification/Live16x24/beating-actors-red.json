@@ -1,0 +1,193 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 20,
+    "passed": 0,
+    "failed": 20,
+    "skipped": 0,
+    "durationSeconds": 2.021772,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity(\"Scorpion\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity(\"Scorpion\")",
+      "state": "Failed",
+      "durationSeconds": 0.5353713,
+      "message": "  Expected: same as <scorpion (UnityEngine.Texture2D)>\n  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Native (UnityEngine.Tilemaps.Tile tile, System.String name, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:50\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity (System.String name) [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:197\n",
+      "output": ""
+    },
+    {
+      "name": "ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity(\"BrittleHound\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity(\"BrittleHound\")",
+      "state": "Failed",
+      "durationSeconds": 0.0707608,
+      "message": "  Expected: same as <brittle_hound (UnityEngine.Texture2D)>\n  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Native (UnityEngine.Tilemaps.Tile tile, System.String name, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:50\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity (System.String name) [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:197\n",
+      "output": ""
+    },
+    {
+      "name": "ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity(\"GlassblownDrifter\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity(\"GlassblownDrifter\")",
+      "state": "Failed",
+      "durationSeconds": 0.0695657,
+      "message": "  Expected: same as <glassblown_drifter (UnityEngine.Texture2D)>\n  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Native (UnityEngine.Tilemaps.Tile tile, System.String name, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:50\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualDamageKeepsLiveBodyAndDeathProducesSeparateCorpseIdentity (System.String name) [0x00075] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:197\n",
+      "output": ""
+    },
+    {
+      "name": "ActualWetCueUsesOneRenderEventAndDoesNotTintPortraitOrEraseBody",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualWetCueUsesOneRenderEventAndDoesNotTintPortraitOrEraseBody",
+      "state": "Failed",
+      "durationSeconds": 0.0444193,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ActualWetCueUsesOneRenderEventAndDoesNotTintPortraitOrEraseBody () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:169\n",
+      "output": ""
+    },
+    {
+      "name": "CachedViewsDisposeWithoutDestroyingBorrowedInputsOrIndependentPeer",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.CachedViewsDisposeWithoutDestroyingBorrowedInputsOrIndependentPeer",
+      "state": "Failed",
+      "durationSeconds": 0.0417017,
+      "message": "  Missing Beating actors adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:56\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Construct (UnityEngine.Texture2D scorpion, UnityEngine.Texture2D hound, UnityEngine.Texture2D drifter) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:58\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.CachedViewsDisposeWithoutDestroyingBorrowedInputsOrIndependentPeer () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:215\n",
+      "output": ""
+    },
+    {
+      "name": "CurrentDisclosureSelectionDirtyCoverAndStaleGraphsControlWorldAndReaders",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.CurrentDisclosureSelectionDirtyCoverAndStaleGraphsControlWorldAndReaders",
+      "state": "Failed",
+      "durationSeconds": 0.0444786,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.CurrentDisclosureSelectionDirtyCoverAndStaleGraphsControlWorldAndReaders () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:181\n",
+      "output": ""
+    },
+    {
+      "name": "DrifterChatAndRealPurchaseKeepLiveIdentityWithoutQueryRestock",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.DrifterChatAndRealPurchaseKeepLiveIdentityWithoutQueryRestock",
+      "state": "Failed",
+      "durationSeconds": 0.0612085,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.DrifterChatAndRealPurchaseKeepLiveIdentityWithoutQueryRestock () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:225\n",
+      "output": ""
+    },
+    {
+      "name": "EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned(\"missing\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned(\"missing\")",
+      "state": "Failed",
+      "durationSeconds": 0.0986613,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned (System.String fault) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned(\"foreign\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned(\"foreign\")",
+      "state": "Failed",
+      "durationSeconds": 0.0533762,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned (System.String fault) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned(\"duplicate\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned(\"duplicate\")",
+      "state": "Failed",
+      "durationSeconds": 0.0472997,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.EssentialActorAndDrifterServicePartsMustBeUniqueAndOwned (System.String fault) [0x000e4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(\"Scorpion\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(\"Scorpion\")",
+      "state": "Failed",
+      "durationSeconds": 0.0478847,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:80\n",
+      "output": ""
+    },
+    {
+      "name": "ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(\"BrittleHound\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(\"BrittleHound\")",
+      "state": "Failed",
+      "durationSeconds": 0.0444803,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:80\n",
+      "output": ""
+    },
+    {
+      "name": "ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(\"GlassblownDrifter\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts(\"GlassblownDrifter\")",
+      "state": "Failed",
+      "durationSeconds": 0.0462897,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReaderAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:80\n",
+      "output": ""
+    },
+    {
+      "name": "LivingStateNamesMaterialTemperatureEquipmentAndAiDoNotChangeSpeciesArtwork",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.LivingStateNamesMaterialTemperatureEquipmentAndAiDoNotChangeSpeciesArtwork",
+      "state": "Failed",
+      "durationSeconds": 0.0463085,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.LivingStateNamesMaterialTemperatureEquipmentAndAiDoNotChangeSpeciesArtwork () [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:92\n",
+      "output": ""
+    },
+    {
+      "name": "MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute(0)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute(0)",
+      "state": "Failed",
+      "durationSeconds": 0.0438119,
+      "message": "  Missing Beating actors adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:56\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Construct (UnityEngine.Texture2D scorpion, UnityEngine.Texture2D hound, UnityEngine.Texture2D drifter) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:58\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:154\n",
+      "output": ""
+    },
+    {
+      "name": "MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute(1)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute(1)",
+      "state": "Failed",
+      "durationSeconds": 0.0412677,
+      "message": "  Missing Beating actors adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:56\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Construct (UnityEngine.Texture2D scorpion, UnityEngine.Texture2D hound, UnityEngine.Texture2D drifter) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:58\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:154\n",
+      "output": ""
+    },
+    {
+      "name": "MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute(2)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute(2)",
+      "state": "Failed",
+      "durationSeconds": 0.0409053,
+      "message": "  Missing Beating actors adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:56\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Construct (UnityEngine.Texture2D scorpion, UnityEngine.Texture2D hound, UnityEngine.Texture2D drifter) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:58\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.MissingAndMalformedInputsAreIndependentAndCannotReloadThroughLocalRoute (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:154\n",
+      "output": ""
+    },
+    {
+      "name": "PositiveCurrentHitpointsMustBelongToLivingOwner",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.PositiveCurrentHitpointsMustBelongToLivingOwner",
+      "state": "Failed",
+      "durationSeconds": 0.0436352,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.PositiveCurrentHitpointsMustBelongToLivingOwner () [0x0006e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:144\n",
+      "output": ""
+    },
+    {
+      "name": "ReskinsCustodyFootprintsAndForeignServicesRemainTruthfulFallback",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ReskinsCustodyFootprintsAndForeignServicesRemainTruthfulFallback",
+      "state": "Failed",
+      "durationSeconds": 0.0444995,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:55\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ReskinsCustodyFootprintsAndForeignServicesRemainTruthfulFallback () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "SimilarGlyphsOtherSpeciesAndCorpseSourceAliasesNeverAcquireTheseBodies",
+      "fullName": "CavesOfOoo.Tests.FlatPixelBeatingActorsTests.SimilarGlyphsOtherSpeciesAndCorpseSourceAliasesNeverAcquireTheseBodies",
+      "state": "Failed",
+      "durationSeconds": 0.041314,
+      "message": "  Missing Beating actors adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelBeatingActorsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:56\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.Construct (UnityEngine.Texture2D scorpion, UnityEngine.Texture2D hound, UnityEngine.Texture2D drifter) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:58\nat CavesOfOoo.Tests.FlatPixelBeatingActorsTests.SimilarGlyphsOtherSpeciesAndCorpseSourceAliasesNeverAcquireTheseBodies () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs:206\n",
+      "output": ""
+    }
+  ]
+}

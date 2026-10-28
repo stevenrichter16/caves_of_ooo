@@ -1,0 +1,31 @@
+# Beating actors — independent bounded source review
+
+**No concrete P1/P2 found.** Read-only review covers `Assets/Scripts/Presentation/Rendering/FlatPixelBeatingActorsCatalog.cs`, its four `FlatPixelGreyboxCatalog.cs` routing seams, and `Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs`. Root and the fixture author performed implementation/test authoring; this reviewer did not edit production/tests, run Unity, execute tests or use Git.
+
+The catalog admits only exact neutral Scorpion (`x/&W`), BrittleHound (`b/&W`) and GlassblownDrifter (`@/&R`). Unique owned actor parts, living owner-bound HP, one-cell/custody and custom-identity checks remain conservative. Conversation/Trader are required only for Drifter. Initial health, material, temperature, names, equipment, AI, faction and mutable service contents are not pinned. Scorpion's 75% corpse-harvest chance is separate from inherited CreatureCorpse creation; no guaranteed venom yield is invented. Existing poison/bleed mechanics are untouched.
+
+Reviewed legacy world lookup, legacy semantic subject art, modern selected-world presentation and current-graph semantic subject art. Every known-role refusal terminates before weaker local art; all nullable optional-catalog calls are guarded. The modern route clears prior candidate art and opts into the existing single Render-event color cue only on successful native resolution. Document authorization remains with existing reader callers. No regional admission, floor identity, collision or simulation state is changed.
+
+Three independent 16×16 inputs produce cached centered FullRect sprites at16PPU without stretching. Explicit injected null/malformed inputs cannot reload Resources through the shared field. Disposal destroys owned sprite/tile views, not textures or peer catalogs. Queries do not fire render/service events or restock. The sole later compiler correction renames the modern reader local `actorTile` to `beatingBodyTile` to avoid CS0136; the guarded lookup and returned sprite are unchanged.
+
+The 20-case fixture uses real factory owners, authorized readers/submitted paint, live Drifter purchase, real Wet application and damage/death/corpse handling. It includes source-corrected Data import, callback/equipment-version restoration and borrowed catalog detachment. Its positive and refusal premises match the inspected blueprints/APIs. At the initial source-review stage, combined native GREEN was still running; the final evidence below supersedes that pending status.
+
+Current SHA-256: catalog `6969393677d17fa5efb58667504e5df5867083ba9763cf6bead192ad324322e0`; Greybox `a8eefa30a32daea0f601bbf826063e872cb9a029b16954381b156f6041d12762`; fixture `05c1a605a7d7e05b2853706154db56708eac9f13f1c2735133db7d9d441d5846`.
+
+Actual image/gameplay acceptance is separate from source review. Full Beating coverage, chunk composition/polish, packages and performance remain separate gates. No additional art or animation is warranted solely from this code review.
+
+## Final native and actual image review
+
+Independently parsed the retained RED (20 failed/0 passed) and `beating-actors-final-139.json` (SHA-256 `d6a6931e8170becaf30a801c51dcea1306ae105616fe16959fd391b26d104b15`): **139 distinct Passed**, comprising 20 actor, 24 resident and 95 Beating material cases; zero failed/skipped/inconclusive. Earlier overlapping executions are not added.
+
+Opened the actual CaravanRoad before05/after01 and BrineLens before01/after06 pairs. The same road/shore setting and player framing remain recognizable while `b`, `x` and red `@` become a pale compact hound, pincer-like Scorpion and red upright Drifter. The creatures are small but distinct from the yellow player and readable against warm sand. These are unchanged legacy **16×16 square bodies**, centered without stretching: a bounded missing-glyph improvement, not cohesive native16×24 reauthoring or new animation.
+
+Opened after02 Hound, after03 Scorpion and after07 Drifter readers. Portraits match their world bodies and preserve actual identity/material: Hound Glass20HP, Scorpion Flesh10HP, Drifter Flesh45HP. After08 dialogue retains the Drifter portrait/options; its narrow left faction label is visibly truncated, a remaining UI polish limit. After09 trade is readable with actual stock and purse100. The later completed-purchase gate below establishes an ordinary actual transaction as well as service access.
+
+Also opened after04 combat-save and after05 restart. The actual log records the Hound's glass-fang hit for5, player HP38→33 and Confused. The retained before/after restart observation objects are independently equal after removing only timestamp: player59,9HP33, Hound39380 and Scorpions39379/39378 at the same coordinates/health/native selections. Root's normal save3550/fresh Continue135 is consistent with those captures. No new poison, bleed, corpse yield or actor death was demonstrated by this ordinary encounter.
+
+**Bounded integration pass; no new P1/P2 from these views.** Broad bare sand patches, repeated floor marks, mixed glyph props and sparse surface composition remain plainly visible. The small old square silhouettes have limited detail/style consistency with the taller approved cast; body replacement alone does not solve fullness. BrineLens and CaravanRoad were separate retained-fixture branches, not a verified cross-zone journey. No fresh package, full-region polish, parity, performance or all-species claim follows.
+
+### Completed purchase and second fresh Continue
+
+Opened after10 through13. After10 is only the **Confirm Buy** prompt; after11 is the completed transaction: ember-fruit moves to the player list, Drifter stock4→3/purse100→118 and player purse50→32. After12 is a clean saved world with the native Drifter still present and the ordinary purchase log. After13 is the subsequent fresh Editor Continue136, retaining the native body and world setting. Independently compared `after-11-purchased.json` and `after-13-restart136.json`: they match after removing only timestamp, with player45,9HP38, Drifter35219at45,8HP45stock3/purse118 and Scorpion35226at60,18HP10, both selected native bodies. This supersedes the earlier no-actual-purchase limitation. It adds no fresh package, cross-zone route, poison/bleed or corpse-yield claim; no pixel-identity assertion was needed or inferred.

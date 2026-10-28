@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** The user explicitly says not to concentrate the remaining credits on caves. Recent cave/shared-prop work is batched in fresh Mac/Linux source7e2ed7a30, with bounded Mac play and Linux archive verification. Shared neutral Villager/Merchant bodies now have154 native passes and actual Sill world/readers/services/restart. Next: missing Beating wildlife (Scorpion/BrittleHound/GlassblownDrifter). See Docs/GRAPHICS-SHARED-RESIDENTS.md and current completion continuation. Choose the largest visible gaps across all areas; preserve approved art and defer optional animation. Native coverage is not full-area polish. Storage remains inspection-only.
+**Whole-game credit priority (2026-10-28):** Residents and three Beating bodies now have native/actual Editor evidence, including dialogue/trade and persistence. Current packages remain source7e2ed7a30; batch surface delivery next. Select further work by whole-game visible impact; shared surface props are the next finite candidate audit. See Docs/GRAPHICS-BEATING-WILDLIFE.md and current completion continuation. Preserve approved art; coverage is not area polish. Storage is inspection-only.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.
