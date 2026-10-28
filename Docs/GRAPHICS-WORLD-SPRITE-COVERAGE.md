@@ -1,5 +1,7 @@
 # Worldwide native sprite coverage
 
+**Current body coverage — 2026-10-28 11:19 UTC:** Original Greatdew16×24 body now appears in actual OpenMire world/examine; real contact, held movement and saved state verified.243native passes/3inconclusive controls; one body gap closed, no area-polish scope advanced. Restart world differs408/564000pixels; exposed plant is covered by player. See [bounded evidence](GRAPHICS-GREATDEW.md). Packages remainfa553ca36; next compare shared portable expedition essentials using earned inventories.
+
 **Current delivery — 2026-10-28 10:45 UTC:** Frog and shared VineWall/HollowLog sourcefa553ca36 now has fresh Mac/Linux packages.336native passes,9actual Mac views/3processes and exact restart match; Linux archive verified without execution. Five bounded body/reader identities do not advance any55+5polish scope. See [delivery](Verification/Live16x24/packaged-shared-surface-delivery.md). Whole-game next choice remains required; quiet patches, Greatdew and mire salience remain open.
 
 **Current surface coverage — 2026-10-28 10:24 UTC:** Shared ordinary VineWall/HollowLog reuse is boundedEditor-verified with336native passes,9actual aftercaptures and exactrestart match. Frog source0f24f4942 is verified main; currentpackages remain0b888da80. See [surface record](GRAPHICS-SHARED-VINEWALL.md). Broad quiet patches, remaining Greatdew glyph and darkmire hazard salience remain distinct polish/coverage debt; no55+5scope advanced.
