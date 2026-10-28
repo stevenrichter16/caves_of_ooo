@@ -1,0 +1,70 @@
+{
+  "utc": "2026-10-28T17:46:17.553542+00:00",
+  "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+  "plan": "Docs/GRAPHICS-OVERWRIT-ENVIRONMENT.md",
+  "scope": [
+    "Existing Overwrit scraped-ground family0\u20133; only variants1\u20133 change"
+  ],
+  "changed_pixels_by_frame": [
+    0,
+    43,
+    42,
+    45,
+    0,
+    0,
+    0,
+    0
+  ],
+  "source_png_sha256": "1d142ccd9757d601997642d8154c41ade3a6b0e3b4402fb6ee4d68b5a253cf0b",
+  "runtime_catalog_unchanged": true,
+  "source_verification": "Two identical exports; both saved blends reopen1782unitquads/38groups;16immutable inputs;4corruption controls;30filehandoff",
+  "native": {
+    "passed": 70,
+    "failed": 0,
+    "skipped": 0,
+    "job": "c9403fa8a66c4d92b1e41341d7dde8da",
+    "receipt": "Docs/Verification/Live16x24/overwrit-environment-native.json",
+    "red_bounds": "Source missing-output RED; no runtime behavior edits or new runtime RED claim"
+  },
+  "before_captures": [
+    "Docs/Verification/Live16x24/overwrit-environment-before-01-rim.png",
+    "Docs/Verification/Live16x24/overwrit-environment-before-02-blank.png"
+  ],
+  "actual_captures": [
+    "Docs/Verification/Live16x24/overwrit-environment-after-01-rim.png",
+    "Docs/Verification/Live16x24/overwrit-environment-after-02-blank.png",
+    "Docs/Verification/Live16x24/overwrit-environment-after-03-bench-reader.png",
+    "Docs/Verification/Live16x24/overwrit-environment-after-04-ground-reader.png",
+    "Docs/Verification/Live16x24/overwrit-environment-after-05-return.png",
+    "Docs/Verification/Live16x24/overwrit-environment-after-06-fresh-continue.png"
+  ],
+  "actual_route": "Ordinary Continue earned rim4.12 at75,18HP38; Left twice to73,18, Right twice back; actual bench76,18/ground74,18 Examine; F5. Separate ordinary Continue earned Blank0.10 at40,12HP38. No current cross-zone travel claim.",
+  "restart": {
+    "fixture": "Docs/Verification/Live16x24/Fixtures/overwrit-environment-return179",
+    "turn": 6270,
+    "player": [
+      75,
+      18
+    ],
+    "hp": 38,
+    "different_world_pixels": 0,
+    "world_pixels": 564000,
+    "fresh_editor_continue": true
+  },
+  "profile": "Docs/Verification/Live16x24/overwrit-environment-editor-profile.json",
+  "profile_bounds": "27.45s ordinary two-cell out/back walk plus idle/UI/tool time;4161samples,nonewrapped;renderermean.199ms,p99.324ms,max83.9ms;mainmax2.89s,31batches. No speedup/allocation/Deck claim.",
+  "independent_review": "Docs/Verification/Live16x24/overwrit-environment-review.md",
+  "whole_area_accepted": false,
+  "remaining": [
+    "Repeated short abrasion clusters",
+    "Other formations, special sites, full-chunk visibility/composition review",
+    "Concept broad multi-cell wear not reproduced",
+    "Packaged and physical Deck execution"
+  ],
+  "package_bounds": "Current43a151ddb packages unchanged, exclude seeds/Buckler/crop reuse and six latest environment passes",
+  "preservation": "Docs/Verification/Live16x24/overwrit-environment-preservation.json",
+  "population_work": "Sill well-and-shop court planned separately; placement not started",
+  "publication": {
+    "status": "reviewed_source_ready_for_exact_main_push"
+  }
+}

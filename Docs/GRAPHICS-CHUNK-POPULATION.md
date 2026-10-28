@@ -11,3 +11,7 @@ For each selected area, record the baseline and intended density, owner/generati
 First comparison candidates are ordinary Spread approaches and Sill's larger yards, against the spawn area. Existing captures show sparse stretches; inspect full chunks and their current owners before choosing placements. Overwrit's intentionally scraped emptiness must not be treated as a mandatory building/NPC target. No new NPC, object or building placement has been implemented by this prompt update.
 
 Keep the environmental material queue active. Report population work and next density goals in the requested hourly updates, separately from tile coverage and broader polish acceptance.
+
+## First selected pilot
+
+The source comparison selects [Sill’s well-and-shop court](GRAPHICS-CHUNK-POPULATION-PILOT.md): arrange the existing smithy and provisioner around an open approach to the real well. Keep all five shops and their actual owners, stock and services. This is planned only; fresh-generation checks and ordinary before/after gameplay remain required. Existing saved towns must not be forcibly regenerated.
