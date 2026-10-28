@@ -1,6 +1,6 @@
 # Chunk population pilot: Sill's well-and-shop court
 
-**Bounded Editor population/counter acceptance, 2026-10-28; publication pending.** Existing facing shops and their actual approaches are verified in fresh64/65; approved MarketStall pixels replace the counter glyph. Generation83/83 and counter152/152 native suites passed independently. Cached towns remain unchanged. This is one composition pilot with shared counter coverage, not full Sill polish, a new merchant service or a population-count increase. Root owns Unity, actual capture and publication.
+**Bounded Editor population/counter acceptance, 2026-10-28; source published.** Existing facing shops and their actual approaches are verified in fresh64/65; approved MarketStall pixels replace the counter glyph. Generation83/83 and counter152/152 native suites passed independently. Cached towns remain unchanged. This is one composition pilot with shared counter coverage, not full Sill polish, a new merchant service or a population-count increase. Root owns Unity, actual capture and publication.
 
 ## Choose a populated place, not more scattered objects
 
@@ -63,7 +63,7 @@ Additional stalls come from the existing random village-decor path, not duplicat
 
 **Actual fresh64 after:** normal travel/walking39,11→39,7→39,6→33,6 entered the west smithy through its open threshold. [Center](Verification/Live16x24/sill-court-after64-center-glyph.png) and [north approach](Verification/Live16x24/sill-court-after64-north-glyph.png) show the actual generated court with natural fog. Smith7287 later stood32,9 with5 stock entries; provisioner7312 later stood37,7 with10 stock entries during ordinary combat. Both were alive; their movement is real and was not overridden. Root captured [counter7298 in the world](Verification/Live16x24/sill-court-counter-before-world.png) and [its reader](Verification/Live16x24/sill-court-counter-before-reader.png), still using its old glyph. F5 preserved `Fixtures/sill-court-counter-before181`, turn160,HP40. These observations do not yet prove both trades, forge use, full return/Continue or a second seed.
 
-**The first checkpoint above preceded the final counter and route checks below.** Its remaining-gate statements are historical; publication is still pending.
+**The first checkpoint above preceded the final counter and route checks below.** Its remaining-gate statements are historical; source publication is now verified.
 
 ## Final bounded Editor checkpoint
 
@@ -77,4 +77,4 @@ Counter RED recorded16 intended failures plus one old-constructor control; final
 
 [Independent source/actual review](Verification/Live16x24/sill-court-independent-source-review.md) reports0 actionable P1/P2 within the bounded court/counter scope. [Editor profile](Verification/Live16x24/sill-court-editor-profile.json):41.735 seconds,8857 samples without wrap, renderer mean0.175ms/p990.233ms/max157.7ms; main-thread maximum2.684seconds. This includes walking, idle/UI/tool time and has no controlled baseline, speedup or physical Deck claim. [Preservation](Verification/Live16x24/sill-court-preservation.json) verifies49 foreign hashes, normal saves/preferences and unchanged builds; only backed-up generated whitespace metadata was restored,0 bytes deleted.
 
-**Handoff:** source publication and remote verification remain root's next step. Existing`43a151ddb`packages exclude this court/counter change. Assess river/shoreline and fog-memory visual gaps against the Spread environmental pass before selecting the next high-impact scope; wider population work remains a separate recurring task. Broader lawns/house separation, provisioner/forge glyphs and full-area polish remain open. Actual hourly report was sent2026-10-28 18:43:41UTC; next19:43:41UTC. This checkpoint does not reset that clock.
+**Handoff:** source `7448a7d2d26125691304e43840829acd7002395e` is pushed and verified on origin/main. Existing`43a151ddb`packages exclude this court/counter change. Assess river/shoreline and fog-memory visual gaps against the Spread environmental pass before selecting the next high-impact scope; wider population work remains a separate recurring task. Broader lawns/house separation, provisioner/forge glyphs and full-area polish remain open. Actual hourly report was sent2026-10-28 18:43:41UTC; next19:43:41UTC. This checkpoint does not reset that clock.
