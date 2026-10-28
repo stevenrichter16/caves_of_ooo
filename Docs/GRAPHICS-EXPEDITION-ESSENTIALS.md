@@ -1,6 +1,6 @@
 # Shared portable expedition essentials
 
-**Status — 2026-10-28:** implemented and bounded Editor-accepted:139/139 native passes, five actual before captures and13 after captures, including normal pickup/Read/Drink/Eat and fresh Continue163. Exact HealingTonic, DriedMeat and WateringGrimoire now retain their existing approved bodies outside the opening. Source publication and coherent package delivery are root's remaining gates; current packages remain `fa553ca36`. This is three-item coverage, not whole-area or worldwide visual acceptance. Initial preflight/RED notes below remain chronological evidence.
+**Status — 2026-10-28:** implemented and bounded Editor-accepted:139/139 native passes, five actual before captures and13 after captures, including normal pickup/Read/Drink/Eat and fresh Continue163. Exact HealingTonic, DriedMeat and WateringGrimoire now retain their existing approved bodies outside the opening. Source is remotely verified as `43a151ddbd714d1bf1a786084e88bc2cfcd5106b`; the combined Greatdew/essentials Mac build is observed and the Linux archive verified. See `Docs/Verification/Live16x24/packaged-expedition-batch-delivery.md`. This is three-item coverage, not whole-area or worldwide visual acceptance. Initial preflight/RED notes below remain chronological evidence.
 
 ## Purpose and boundary
 

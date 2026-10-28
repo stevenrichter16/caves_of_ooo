@@ -1,0 +1,148 @@
+{
+  "created_at_utc": "2026-10-28T12:03:37.467653+00:00",
+  "runtime_source_commit": "43a151ddbd714d1bf1a786084e88bc2cfcd5106b",
+  "package_flavor": "expedition-greatdew-and-portable-supplies",
+  "built_after_utc": "2026-10-28T11:55:27.183502+00:00",
+  "slice_description": "Original native 16-by-24 Greatdew plant body plus existing approved HealingTonic and DriedMeat complete opening-items frames and the complete square WateringGrimoire book body. Exact owner, current graph, disclosure, custody, semantic-part, optional-resource and existing Render-cue guards preserve the real repeatable step snare, consumable uses and skill-teaching Read. No item stock, mechanics, generation, collision, save-format, camera or global grading change.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-expedition-batch-mac-build.json",
+    "sha256": "08376b6fe040636ec746082ef20ac74b11f8a27a619ce3b98509f523f450abf6",
+    "summary": {
+      "job_id": "build-8598cebf58",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-28-expedition-batch-43a151ddb-current/CavesOfOoo.app",
+      "started_at": "2026-10-28T11:57:30.514472Z",
+      "duration_seconds": 80.263301,
+      "completed_at": "2026-10-28T11:58:50.777773Z",
+      "total_size_mb": 344.62,
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-expedition-batch-linux-build.json",
+    "sha256": "1b8377b86094a469a51b949d6a49d77756df4e74a17ad1de3ec96d955095a45f",
+    "summary": {
+      "job_id": "build-1b42eb4cdd",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-28-expedition-batch-43a151ddb-current/CavesOfOoo-current/CavesOfOoo",
+      "started_at": "2026-10-28T11:59:12.520603Z",
+      "duration_seconds": 86.592173,
+      "completed_at": "2026-10-28T12:00:39.112776Z",
+      "total_size_mb": 325.08,
+      "errors": 0,
+      "warnings": 4
+    },
+    "canonical_executable_copy": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-expedition-batch-linux-executable-copy.json",
+      "sha256": "9ecbaadb6612d95b03cf9952b1d8bc462dbd788defd4af87d2fe9e2a629f7aa1",
+      "provenance": {
+        "at": "2026-10-28T12:01:45.219893+00:00",
+        "source_commit": "43a151ddbd714d1bf1a786084e88bc2cfcd5106b",
+        "raw_build_report": "Docs/Verification/Live16x24/packaged-expedition-batch-linux-build.json",
+        "source": "Builds/SteamDeck/2026-10-28-expedition-batch-43a151ddb-current/CavesOfOoo-current/CavesOfOoo",
+        "destination": "Builds/SteamDeck/2026-10-28-expedition-batch-43a151ddb-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+        "bytes": 4472,
+        "sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+        "source_retained": true,
+        "byte_identical": true,
+        "destination_mode": "0755",
+        "raw_build_executable": "Builds/SteamDeck/2026-10-28-expedition-batch-43a151ddb-current/CavesOfOoo-current/CavesOfOoo",
+        "canonical_archive_executable": "Builds/SteamDeck/2026-10-28-expedition-batch-43a151ddb-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+        "action": "copy2; raw build executable preserved",
+        "both_sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+        "mode": "0o755"
+      },
+      "both_current_files_hash_size_mode_verified": true,
+      "limits": "Raw build receipt/executable unchanged; launcher uses identical canonical copy. Linux not executed."
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/expedition-essentials-native-green.json",
+          "sha256": "8197074b67f3758d7fd264feee148ed47da6daa9694af2b52c191f4c1de262ff",
+          "summary": {
+            "total": 139,
+            "passed": 139,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 14.9541644,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 139,
+          "mode": "EditMode",
+          "job_id": "5dcaf42cc8e74b929a7bf0007b67658a",
+          "started_unix_ms": 1793187876386,
+          "finished_unix_ms": 1793187894939,
+          "started_at_utc": "2026-10-28T11:44:36.386000+00:00",
+          "finished_at_utc": "2026-10-28T11:44:54.939000+00:00"
+        }
+      ],
+      "current_source_binding": {
+        "source_commit": "43a151ddbd714d1bf1a786084e88bc2cfcd5106b",
+        "pins": {
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "ee39e4e07c9e7a2b6162246ef49b815acaebe5cdff2fd3f6e9daf56a7ba94721",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelExpeditionEssentialsCatalog.cs": "b5fd381ef94b44a8e6c4589f25e0bc7a1edbe1e721674bcd547c1ac71bd7ccc8",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreatdewCatalog.cs": "84babaf20c591fc0995082a12dcebc4578883c42eeefcd10f7f8cbac4ae70e00",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelOpeningArtCatalog.cs": "18d3f179d9341bc1458b534eaf93dd6d434cb7bee60b582e8c6bc48b2705eca5",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelExpeditionEssentialsTests.cs": "19e3b8f1436cf3ac0795deda7fb9a765d91d8275347818e2acfab4b0611c224d",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGreatdewTests.cs": "2f654be9b0a1a6c4485cd1b91361f57920c0be199900c9d7d503613f36b6e2cb",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs": "2e52b955f08d9d3596edebcd42c626ccb798e80aa09f8cf5d33fa699af668f71",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningItemsTests.cs": "66834469907190618fea16ba1f3f54796571fbc54777a9db07af4b0042227eac",
+          "Assets/Resources/Sprites/Live16x24/greatdew.png": "3dab2ae235b74ef5ea648348705ff9aa73f576c2e09a2cfb372879bfece7ec33",
+          "Assets/Resources/Sprites/Live16x24/opening-items.png": "1ead2618c2d82d2ca7cae8765ab09f690255998ad0bb5b36027d7835fc292394",
+          "Assets/Resources/Sprites/Environment/item_book.png": "5a15f96a509ada25d3400f023ce63fb7072f4671d1091bd5e5a17474d260cbec",
+          "ArtSource/Live16x24/greatdew/source-cells.json": "b57800e458f0c00113dcd4422a33fd731a0c857291d44773233a200dac852444",
+          "ArtSource/Live16x24/greatdew/editable.blend": "8f86abdcff21d67aa348c77daa60c3dd5008de6d2c9d5d2f4fc8d6cd1ac7f33f",
+          "Docs/Verification/Live16x24/expedition-essentials-native-green.json": "8197074b67f3758d7fd264feee148ed47da6daa9694af2b52c191f4c1de262ff"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Root asserts source/build provenance; selected bytes are independently pinned, not binary reproducibility."
+      },
+      "execution_occurrences": 139,
+      "passed_execution_occurrences": 139,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "repeated_identity_occurrences": 0,
+      "distinct_test_identities_across_listed_receipts": 139,
+      "distinct_passed_test_identities": 139,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "fixture_passed_counts": {
+        "CavesOfOoo.Tests.FlatPixelExpeditionEssentialsTests": 20,
+        "CavesOfOoo.Tests.FlatPixelGreatdewTests": 21,
+        "CavesOfOoo.Tests.FlatPixelOpeningItemsTests": 46,
+        "CavesOfOoo.Tests.FlatPixelGlobalPresentationTests": 52
+      },
+      "native_job_times_verified": true,
+      "native_xml_times_verified": false,
+      "skipped_identities": [],
+      "inconclusive_identities": [],
+      "limits": "One actual final139-case checkpoint only. Earlier243-Passed/3-Inconclusive Greatdew run is not added. No gameplay, Linux/Deck execution or performance claim."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "Scope is exact Greatdew, HealingTonic, DriedMeat and WateringGrimoire identities. Other flora, hazards, supplies, equipment and world families remain open. Greatdew has no invented harvesting, aura or disabled state. The approved book remains square, not stretched or animated. Actual Editor and standalone observations have separate receipts.",
+    "Body coverage and reader identity do not establish whole-scene fullness, reference parity or area polish. Broad sparse mire terrain, remaining glyph props and restrained hazard salience remain separate work. Existing approved sprites and other presentation remain preserved.",
+    "One complete retained native JSON job contains 139 distinct Passed identities in one 139-case checkpoint: 20 expedition essentials, 21 Greatdew, 46 opening items and 52 global presentation. Earlier subset runs and the earlier 243-Passed/3-Inconclusive Greatdew checkpoint are not added. Actual timestamps come from this complete job; no XML, gameplay or performance certification is invented.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Worldwide static coverage and later area polish remain open."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}
