@@ -1,5 +1,9 @@
 # SummitScrub shelter groups
 
+**Current packaged delivery — 2026-10-28 21:27 UTC:** Reviewed environmental materials, Sill contact/wall shading and SummitScrub composition are now in fresh Mac/Linux packages from source `7f73b6a784e3c8016c057ff77177e130128e13d7`. Nine actual Mac captures across four processes verify Sill/glade travel, wall/Bush readers and fresh Continues. Summit restart matches all 564,000 world pixels; Sill differs by 1,121 local pixels with cause unproven. Both builds succeeded (0 errors, 4 warnings each); Linux archive integrity is verified, Linux/physical Deck execution is not. Prior43a151ddb builds, normal saves/preferences and49 unrelated changes are preserved; no cleanup. See [delivery record](Verification/Live16x24/packaged-environment-batch-delivery.md).
+
+Next: an earned ordinary Spread road/hedge baseline outside the six opening graphs, then one coherent environmental material pass selected from actual scene/owner evidence. This is planned, not accepted coverage. Broader shadow families, meaningful population and all full-area polish remain open; crops/nuanced animation stay deferred. **Last actual hourly report remains20:44:12.183742 UTC; next21:44:12 UTC.** Source is already remote; exact delivery evidence publication follows this commit.
+
 2026-10-28 — bounded native and actual Editor composition verified; source `98ac4d64b9e01ce43375087c9b3b24beb4f6c8c8` is published and remotely verified. This changes fresh SummitScrub generation only. Whole-area polish remains open; no PNG, sprite-coverage or package advancement is claimed.
 
 ## Choice and actual baseline

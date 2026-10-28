@@ -1,0 +1,98 @@
+{
+  "source_commit": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+  "built_after_utc": "2026-10-28T21:16:52.910533+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-28-environment-batch-7f73b6a78-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-10-28-environment-batch-7f73b6a78-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-28-environment-batch-7f73b6a78-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "planned_new_files": 30,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-environment-batch-mac-build.json",
+      "sha256": "254aa9e74146312423e9c1208fbbef03d7e68c5432f07e23e08a4930d3039760",
+      "summary": {
+        "job_id": "build-b1481dd08c",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-10-28-environment-batch-7f73b6a78-current/CavesOfOoo.app",
+        "started_at": "2026-10-28T21:17:13.193745Z",
+        "duration_seconds": 95.81342599999999,
+        "completed_at": "2026-10-28T21:18:49.007171Z",
+        "total_size_mb": 344.69,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-environment-batch-linux-build.json",
+      "sha256": "ffdc53ddcc7ab41a213a9fc50d48323e21de5326bcc744e805b8610e27585bbe",
+      "summary": {
+        "job_id": "build-d4089926df",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-10-28-environment-batch-7f73b6a78-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-10-28T21:20:45.345994Z",
+        "duration_seconds": 85.42782799999999,
+        "completed_at": "2026-10-28T21:22:10.773822Z",
+        "total_size_mb": 325.15,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/Live16x24/summit-scrub-native-green.xml",
+        "sha256": "752c1ad5e58f5b2e8ccfc2ce2e062f68a8f893408637c711ba05012085df7346",
+        "passed": 213,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-10-28T20:59:40+00:00",
+        "completed_at_utc": "2026-10-28T21:00:37+00:00",
+        "skips": []
+      },
+      {
+        "path": "Docs/Verification/Live16x24/wall-shadow-native-green.xml",
+        "sha256": "de31167cf484f2f961b5fffa21df24ae6e25966cb6e8d05e83bd6b5f56de4437",
+        "passed": 224,
+        "failed": 0,
+        "skipped": 1,
+        "started_at_utc": "2026-10-28T20:17:28+00:00",
+        "completed_at_utc": "2026-10-28T20:18:00+00:00",
+        "skips": [
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelActorMotionTests.WarmMovingBodyReadoutQueriesAllocateNothingWhenTheRuntimeCounterWorks",
+            "reason": "This runtime allocation counter does not observe a known allocation; zero cannot prove the query allocates nothing."
+          }
+        ]
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained Summit and wall checkpoints; no additive all-source test total. Wall allocation-counter skip is not a zero-allocation claim. This helper runs no tests."
+  },
+  "created_at_utc": "2026-10-28T21:24:00.094632+00:00",
+  "runtime_source_commit": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+  "package_flavor": "reviewed-environments-sill-shadows-summit-scrub",
+  "scope": "Reviewed environmental materials, Sill continuity/contact/wall shading and fresh SummitScrub composition; approved existing art and gameplay retained.",
+  "source_provenance": "Root asserts frozen source/build provenance; exact output/job/time receipts checked, not source-to-binary reproducibility.",
+  "canonical_executable_copy": {
+    "source_commit": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "at_utc": "2026-10-28T21:24:00.094159+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-10-28-environment-batch-7f73b6a78-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-10-28-environment-batch-7f73b6a78-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4472,
+    "both_sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing built-in controls documented in unchanged README-Steam-Deck.md; no new controller mapping or physical verification.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "whole_area_polish_accepted": false,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}

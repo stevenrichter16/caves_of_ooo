@@ -865,14 +865,9 @@
     "separate_world_polish_pass": "Explicitly required after broad sprite coverage: systematic biome-by-biome/area-by-area actual gameplay polish. Coverage integration is not polish acceptance; optional nuanced animation does not displace this pass."
   },
   "latest_observation": {
-    "at_utc": "2026-10-28T21:08:13.648738+00:00",
-    "summary": "Fresh SummitScrub 64 bounded composition verified: 21 Bush in 9/7/5 separated drifts, 213 native passes, three actual pairs, reader/walkthrough and Continue 188. All Bush IDs/positions persist; 173 other local world pixels differ with cause unproven. No art/coverage or whole-area advancement.",
-    "evidence": "Docs/Verification/Live16x24/summit-scrub-final-receipt.json",
-    "publication": {
-      "status": "source_remote_verified",
-      "source_commit": "98ac4d64b9e01ce43375087c9b3b24beb4f6c8c8",
-      "origin_main_verified": true
-    }
+    "at_utc": "2026-10-28T21:27:37.918835+00:00",
+    "summary": "Reviewed regional environment/shadow/composition source delivered in fresh Mac/Linux packages; nine actual Mac captures/four processes, Sill/glade travel/readers and two fresh Continues. Sill1121 local changed world pixels unproven; Summit exact. No whole-area advance.",
+    "evidence": "Docs/Verification/Live16x24/packaged-environment-batch-final-receipt.json"
   },
   "current_environment_blocker": {
     "status": "no_new_environment_blocker;delivery_evidence_push_pending",
@@ -884,35 +879,53 @@
   },
   "packaged_delivery": {
     "status": "bounded_mac_verified_linux_archive_verified",
-    "source_commit": "fa553ca364a092a515e4837aca7859066c7a426d",
+    "source_commit": "7f73b6a784e3c8016c057ff77177e130128e13d7",
     "source_remote_verified": true,
-    "identities": [
-      "Reedfrog",
-      "Bandfrog",
-      "GinFrog",
-      "VineWall",
-      "HollowLog"
+    "scope": [
+      "Sodden",
+      "Stump",
+      "Grovelands",
+      "Beating",
+      "Sill",
+      "Overwrit",
+      "Sill contact/wall shadows",
+      "fresh SummitScrub composition"
     ],
-    "native_distinct_passed": 336,
-    "native_basis": "One complete final JSON run; no additive subset counts.",
     "mac_actual_captures": 9,
-    "mac_processes": 3,
-    "restart_changed_pixels": 0,
+    "mac_processes": 4,
+    "sill_restart_changed_pixels": 1121,
+    "summit_restart_changed_pixels": 0,
     "restart_world_pixels": 564000,
-    "linux_archive_sha256": "6384bf00b5e20d33e1e21f20b929c1f83441256882403ce981fc2710ad4cba68",
+    "restart_limits": "Sill local differences remain unproven; only Summit world crop is exact.",
+    "native_checkpoints": [
+      {
+        "name": "SummitScrub",
+        "passed": 213,
+        "skipped": 0
+      },
+      {
+        "name": "wall shadows",
+        "passed": 224,
+        "skipped": 1
+      }
+    ],
+    "native_tests_rerun": false,
+    "linux_archive_sha256": "135131319d80e56bb887021672e3433dda335b3e01f0525cfa70aea3ca2d648a",
     "linux_executed": false,
     "physical_steam_deck_executed": false,
-    "review": "Docs/Verification/Live16x24/packaged-shared-surface-independent-review.md",
-    "actual": "Docs/Verification/Live16x24/packaged-shared-surface-delivery.md",
-    "restoration": "Docs/Verification/Live16x24/packaged-shared-surface-restoration.json",
-    "preservation": "52905tracked objects,49foreignchanges,normalstate/priorpackages;10generateddeltas backed/restored;no cleanup.",
-    "area_polish_advanced": false
+    "whole_area_polish_accepted": false,
+    "review": "Docs/Verification/Live16x24/packaged-environment-batch-independent-review.md",
+    "actual": "Docs/Verification/Live16x24/packaged-environment-batch-delivery.md",
+    "restoration": "Docs/Verification/Live16x24/packaged-environment-batch-restoration.json",
+    "plan": "Docs/GRAPHICS-ENVIRONMENT-BATCH-DELIVERY.md",
+    "publication": "source_remote_verified;delivery_evidence_commit_pending"
   },
   "next_scoped_work": {
-    "status": "planned_package_delivery;source_published",
-    "work": "Batch-package the reviewed environment, Sill shadow and fresh SummitScrub composition source, then verify normal launch/travel",
-    "plan": "Docs/GRAPHICS-COMPLETION-PLAN.md",
-    "remaining_scope": "Broader environmental and area polish, purposeful population and other shadow families remain open; crops and nuanced animation deferred",
+    "status": "planned_baseline_not_accepted",
+    "work": "Compare an ordinary Spread road/hedge approach outside opening graphs using earned travel and exact terrain/parcel-edge owners; select one coherent environmental pass",
+    "reason": "Ledger retains only six opening-anchor graphs; reviewed six-regional materials and local Sill/Summit passes are now packaged",
+    "plan": "Docs/GRAPHICS-ENVIRONMENT-POLISH.md",
+    "remaining_scope": "All-area environmental polish, meaningful population and wider restrained shadows remain open; crops and nuanced animation deferred",
     "last_hourly_report_utc": "2026-10-28T20:44:12.183742+00:00",
     "next_hourly_report_utc": "2026-10-28T21:44:12.183742+00:00"
   },
@@ -1673,6 +1686,16 @@
       "at_utc": "2026-10-28T15:41:25.279881+00:00",
       "summary": "Stump21-frame material revision bounded Editor-verified:111nativepass,matchedSummit/Gorge,realblock/ledge/reader/Continue172; no wholearea/package claim. Source ab45624ed7580a60ab0090a481b3f23e56e6cc9d verified on origin/main.",
       "evidence": "Docs/Verification/Live16x24/stump-environment-final-receipt.json"
+    },
+    {
+      "at_utc": "2026-10-28T21:08:13.648738+00:00",
+      "summary": "Fresh SummitScrub 64 bounded composition verified: 21 Bush in 9/7/5 separated drifts, 213 native passes, three actual pairs, reader/walkthrough and Continue 188. All Bush IDs/positions persist; 173 other local world pixels differ with cause unproven. No art/coverage or whole-area advancement.",
+      "evidence": "Docs/Verification/Live16x24/summit-scrub-final-receipt.json",
+      "publication": {
+        "status": "source_remote_verified",
+        "source_commit": "98ac4d64b9e01ce43375087c9b3b24beb4f6c8c8",
+        "origin_main_verified": true
+      }
     }
   ],
   "packaged_delivery_history": [
@@ -3911,6 +3934,32 @@
         "storage_deletion": false
       },
       "area_polish_advanced": false
+    },
+    {
+      "status": "bounded_mac_verified_linux_archive_verified",
+      "source_commit": "fa553ca364a092a515e4837aca7859066c7a426d",
+      "source_remote_verified": true,
+      "identities": [
+        "Reedfrog",
+        "Bandfrog",
+        "GinFrog",
+        "VineWall",
+        "HollowLog"
+      ],
+      "native_distinct_passed": 336,
+      "native_basis": "One complete final JSON run; no additive subset counts.",
+      "mac_actual_captures": 9,
+      "mac_processes": 3,
+      "restart_changed_pixels": 0,
+      "restart_world_pixels": 564000,
+      "linux_archive_sha256": "6384bf00b5e20d33e1e21f20b929c1f83441256882403ce981fc2710ad4cba68",
+      "linux_executed": false,
+      "physical_steam_deck_executed": false,
+      "review": "Docs/Verification/Live16x24/packaged-shared-surface-independent-review.md",
+      "actual": "Docs/Verification/Live16x24/packaged-shared-surface-delivery.md",
+      "restoration": "Docs/Verification/Live16x24/packaged-shared-surface-restoration.json",
+      "preservation": "52905tracked objects,49foreignchanges,normalstate/priorpackages;10generateddeltas backed/restored;no cleanup.",
+      "area_polish_advanced": false
     }
   ],
   "scoped_work_history": [
@@ -4359,6 +4408,14 @@
       "bounds": "New generation only; never force cached-town regeneration. Keep accepted materials and real roles/services. No new loot or decorative fake services.",
       "package_bounds": "Current43a151ddb packages unchanged, exclude seeds/Buckler/crop reuse and six latest environment passes",
       "deferred": "Crops/cultivation,smallitempackets,nuancedanimation"
+    },
+    {
+      "status": "planned_package_delivery;source_published",
+      "work": "Batch-package the reviewed environment, Sill shadow and fresh SummitScrub composition source, then verify normal launch/travel",
+      "plan": "Docs/GRAPHICS-COMPLETION-PLAN.md",
+      "remaining_scope": "Broader environmental and area polish, purposeful population and other shadow families remain open; crops and nuanced animation deferred",
+      "last_hourly_report_utc": "2026-10-28T20:44:12.183742+00:00",
+      "next_hourly_report_utc": "2026-10-28T21:44:12.183742+00:00"
     }
   ],
   "hourly_reporting": {
@@ -12057,7 +12114,9 @@
       "Docs/Verification/Live16x24/sodden-environment-after-18-v6-examine.png"
     ],
     "source_commit": "550ed6e0bea74e287e3bab10cdaa95350b49819e",
-    "publication_receipt": "Docs/Verification/Live16x24/sodden-environment-publication.json"
+    "publication_receipt": "Docs/Verification/Live16x24/sodden-environment-publication.json",
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "stump_environment": {
     "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
@@ -12082,9 +12141,11 @@
       "Sparse whole-chunk composition",
       "Other formations/sites and world environmental polish"
     ],
-    "package_bounds": "Existing43a151ddb packages unchanged; new art not packaged.",
+    "package_bounds": "Included in source7f73b6a78 fresh Mac/Linux delivery; prior43a151ddb preserved. Actual Mac smoke limited to Sill/glade/Summit; no Linux/physical Deck execution.",
     "source_commit": "ab45624ed7580a60ab0090a481b3f23e56e6cc9d",
-    "source_remote_verified": true
+    "source_remote_verified": true,
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "grovelands_environment": {
     "utc": "2026-10-28T16:18:56.097991+00:00",
@@ -12166,11 +12227,13 @@
       "Other Grovelands formations,sites,interiors and all-area audit",
       "Package delivery/physicalDeck"
     ],
-    "package_bounds": "Current43a151ddb unchanged and excludes this slice",
+    "package_bounds": "Included in source7f73b6a78 fresh Mac/Linux delivery; prior43a151ddb preserved. Actual Mac smoke limited to Sill/glade/Summit; no Linux/physical Deck execution.",
     "next_plan": "Docs/GRAPHICS-BEATING-ENVIRONMENT.md",
     "preservation": "Docs/Verification/Live16x24/grovelands-environment-preservation.json",
     "source_commit": "a1662dc8b6b172c7b3d1e4627ab4a3dc93105d5b",
-    "source_push_verified": true
+    "source_push_verified": true,
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "beating_environment": {
     "utc": "2026-10-28T16:42:00.488364+00:00",
@@ -12244,11 +12307,13 @@
       "Packaged delivery and physicalDeck"
     ],
     "whole_area_accepted": false,
-    "package_bounds": "Current43a151ddb unchanged and excludes environmentalpasses",
+    "package_bounds": "Included in source7f73b6a78 fresh Mac/Linux delivery; prior43a151ddb preserved. Actual Mac smoke limited to Sill/glade/Summit; no Linux/physical Deck execution.",
     "preservation": "Docs/Verification/Live16x24/beating-environment-preservation.json",
     "independent_review": "Docs/Verification/Live16x24/beating-environment-independent-review.md",
     "source_commit": "fb0c906ae1a58a847b2bd25dc589ace5355a8402",
-    "source_push_verified": true
+    "source_push_verified": true,
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "sill_environment": {
     "utc": "2026-10-28T17:19:22.143287+00:00",
@@ -12323,13 +12388,15 @@
       "Unvisited rooms, approaches, otherbiomes/sites",
       "Stable closed-door capture and packaged/Deck execution"
     ],
-    "package_bounds": "Current43a151ddb unchanged, excludes seeds/Buckler/crop reuse and five latest environment passes",
+    "package_bounds": "Included in source7f73b6a78 fresh Mac/Linux delivery; prior43a151ddb preserved. Actual Mac smoke limited to Sill/glade/Summit; no Linux/physical Deck execution.",
     "preservation": "Docs/Verification/Live16x24/sill-environment-preservation.json",
     "publication": {
       "source_commit": "c7b50b7819afedfd3ad60327d05c0c21b7b7d6fb",
       "origin_main_verified": true,
       "verified_utc": "2026-10-28T17:24:17.827002+00:00"
-    }
+    },
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "periodic_chunk_population": {
     "user_direction_date": "2026-10-28",
@@ -12418,14 +12485,16 @@
       "Concept broad multi-cell wear not reproduced",
       "Packaged and physical Deck execution"
     ],
-    "package_bounds": "Current43a151ddb packages unchanged, exclude seeds/Buckler/crop reuse and six latest environment passes",
+    "package_bounds": "Included in source7f73b6a78 fresh Mac/Linux delivery; prior43a151ddb preserved. Actual Mac smoke limited to Sill/glade/Summit; no Linux/physical Deck execution.",
     "preservation": "Docs/Verification/Live16x24/overwrit-environment-preservation.json",
     "population_work": "Sill court pilot now bounded Editor-verified; see sill_court_population. Wider recurring population work remains open.",
     "publication": {
       "source_commit": "83ebfec320e6fb389b73f68cc39a22941683b480",
       "origin_main_verified": true,
       "verified_utc": "2026-10-28T17:48:35.635805+00:00"
-    }
+    },
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "sill_court_population": {
     "status": "bounded_editor_population_composition_verified;source_pushed_verified;whole_area_open",
@@ -12575,7 +12644,9 @@
     "continue_fixture": "sill-continuity-return185",
     "restart_changed_pixels": 1892,
     "new_art_frames": 0,
-    "source_commit": "dfbcaa008897e0365d4d077d62af7d2e2c225b7b"
+    "source_commit": "dfbcaa008897e0365d4d077d62af7d2e2c225b7b",
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "light_shadow_pilot": {
     "status": "bounded_editor_pilot_verified;source_published",
@@ -12591,9 +12662,11 @@
       "Ambient/source-light response not integrated",
       "Whole-area/environment/population polish open",
       "Opacity intentionally subtle; stronger matched comparison optional later",
-      "Packaged builds remain43a151ddb; no physical Deck"
+      "Included in environment batch7f73b6a78; no physical Deck execution"
     ],
-    "source_commit": "e71858ddfe9d2df76f00ba6e6623e6499284b55d"
+    "source_commit": "e71858ddfe9d2df76f00ba6e6623e6499284b55d",
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "wall_shadow_pilot": {
     "status": "bounded_editor_pilot_verified;source_published",
@@ -12612,7 +12685,9 @@
       "Packaged runs and physical Deck not repeated"
     ],
     "next": "Batch-package alongside reviewed environment and SummitScrub composition; keep the bounded Sill shading stable before broader material/population work.",
-    "source_commit": "ac908484831ef0929f1fed882511856d3e0dd71c"
+    "source_commit": "ac908484831ef0929f1fed882511856d3e0dd71c",
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
   },
   "summit_scrub_composition": {
     "status": "bounded_editor_composition_verified;source_remote_verified;whole_area_polish_open",
@@ -12661,11 +12736,56 @@
       "Repeated short aligned Bush silhouettes",
       "Existing black-backed glyph props and pipes",
       "Other Stump formations and world areas",
-      "Latest materials/shadows/composition not yet in current 43a151ddb packages; no physical Deck execution"
+      "Included in environment batch7f73b6a78; no physical Deck execution"
     ],
     "source_revision_before": "4f3674cd19baf85429bf318ab6ac662ea8d768d4",
     "source_commit": "98ac4d64b9e01ce43375087c9b3b24beb4f6c8c8",
     "source_remote_verified": true,
-    "package_bounds": "Current 43a151ddb packages unchanged; reviewed latest source awaits batch delivery; no physical Deck execution"
+    "package_bounds": "Included in source7f73b6a78 fresh Mac/Linux delivery; prior43a151ddb preserved. Actual Mac smoke limited to Sill/glade/Summit; no Linux/physical Deck execution.",
+    "packaged_in_source": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "packaged_scope_note": "Included in environment batch; bounded actual Mac smoke only Sill/glade/Summit, not fresh acceptance of every included area."
+  },
+  "environment_batch_delivery": {
+    "status": "bounded_mac_verified_linux_archive_verified",
+    "source_commit": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+    "source_remote_verified": true,
+    "scope": [
+      "Sodden",
+      "Stump",
+      "Grovelands",
+      "Beating",
+      "Sill",
+      "Overwrit",
+      "Sill contact/wall shadows",
+      "fresh SummitScrub composition"
+    ],
+    "mac_actual_captures": 9,
+    "mac_processes": 4,
+    "sill_restart_changed_pixels": 1121,
+    "summit_restart_changed_pixels": 0,
+    "restart_world_pixels": 564000,
+    "restart_limits": "Sill local differences remain unproven; only Summit world crop is exact.",
+    "native_checkpoints": [
+      {
+        "name": "SummitScrub",
+        "passed": 213,
+        "skipped": 0
+      },
+      {
+        "name": "wall shadows",
+        "passed": 224,
+        "skipped": 1
+      }
+    ],
+    "native_tests_rerun": false,
+    "linux_archive_sha256": "135131319d80e56bb887021672e3433dda335b3e01f0525cfa70aea3ca2d648a",
+    "linux_executed": false,
+    "physical_steam_deck_executed": false,
+    "whole_area_polish_accepted": false,
+    "review": "Docs/Verification/Live16x24/packaged-environment-batch-independent-review.md",
+    "actual": "Docs/Verification/Live16x24/packaged-environment-batch-delivery.md",
+    "restoration": "Docs/Verification/Live16x24/packaged-environment-batch-restoration.json",
+    "plan": "Docs/GRAPHICS-ENVIRONMENT-BATCH-DELIVERY.md",
+    "publication": "source_remote_verified;delivery_evidence_commit_pending"
   }
 }

@@ -1,0 +1,47 @@
+{
+  "status": "bounded_mac_verified_linux_archive_verified",
+  "source_commit": "7f73b6a784e3c8016c057ff77177e130128e13d7",
+  "source_remote_verified": true,
+  "scope": [
+    "Sodden",
+    "Stump",
+    "Grovelands",
+    "Beating",
+    "Sill",
+    "Overwrit",
+    "Sill contact/wall shadows",
+    "fresh SummitScrub composition"
+  ],
+  "mac_actual_captures": 9,
+  "mac_processes": 4,
+  "sill_restart_changed_pixels": 1121,
+  "summit_restart_changed_pixels": 0,
+  "restart_world_pixels": 564000,
+  "restart_limits": "Sill local differences remain unproven; only Summit world crop is exact.",
+  "native_checkpoints": [
+    {
+      "name": "SummitScrub",
+      "passed": 213,
+      "skipped": 0
+    },
+    {
+      "name": "wall shadows",
+      "passed": 224,
+      "skipped": 1
+    }
+  ],
+  "native_tests_rerun": false,
+  "linux_archive_sha256": "135131319d80e56bb887021672e3433dda335b3e01f0525cfa70aea3ca2d648a",
+  "linux_executed": false,
+  "physical_steam_deck_executed": false,
+  "whole_area_polish_accepted": false,
+  "review": "Docs/Verification/Live16x24/packaged-environment-batch-independent-review.md",
+  "actual": "Docs/Verification/Live16x24/packaged-environment-batch-delivery.md",
+  "restoration": "Docs/Verification/Live16x24/packaged-environment-batch-restoration.json",
+  "plan": "Docs/GRAPHICS-ENVIRONMENT-BATCH-DELIVERY.md",
+  "publication": "source_remote_verified;delivery_evidence_commit_pending",
+  "at_utc": "2026-10-28T21:27:37.918835+00:00",
+  "independent_delivery_consistency_review": "0 actionable findings: jobs/archive/fixtures/process logs/JSON current entries and restoration agree; read-only, no rerun tests",
+  "post_exit_preservation": "Docs/Verification/Live16x24/packaged-environment-batch-post-exit-preservation.json",
+  "editor_running_at_handoff": false
+}
