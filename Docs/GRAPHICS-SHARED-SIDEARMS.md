@@ -1,6 +1,6 @@
 # Shared Dagger, Short Sword and Mace coverage
 
-Status: source integrated;108 native cases pass; bounded actual Editor verification complete; exact source publication pending. Specialist source83e1e568f and delivery7f38536a4 are verified on main; current packages remain that verified batch until a later coherent delivery. Current packages exclude this pending source batch.
+Status: source integrated;108 native cases pass; bounded actual Editor verification complete; source a15ae3a95 published and remotely verified. Specialist source83e1e568f and delivery7f38536a4 are verified on main; current packages remain that verified batch until a later coherent delivery. Current packages exclude this pending source batch.
 
 ## Why this family
 
@@ -56,3 +56,5 @@ Post-play console retained two memoryless-depth capture messages, with no compil
 Storage inspection at08:16UTC showed364GiB available on the project volume. Zero bytes removed; caches and build outputs preserved.
 
 Independent final review found no P1/P2 blocker in source or nine actual item/body-reader views; independently rechecked108 distinct passes,23-case RED, six source pins and0/564000restart differences. This is bounded source/Editor acceptance only.
+
+Publication receipt: `a15ae3a95608aa8114d8d71ab112743957d92d26` equals origin/main at 2026-10-28T08:18:55.155297+00:00. Fetch found no divergence; no rebase was needed.56 reviewed owned files were staged; all49foreign hashes remain preserved. Current packages exclude sidearms. Next compare actual surface terrain/vegetation and shared settlement-role gaps against remaining equipment, favoring the largest ordinary-scene benefit rather than extending the convenient shop queue indefinitely.
