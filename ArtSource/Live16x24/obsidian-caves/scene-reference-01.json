@@ -1,0 +1,53 @@
+{
+  "at_utc": "2026-10-28T00:25:14.164099+00:00",
+  "method": "Exactly one built-in image_gen__imagegen call; reference reinterpretation with two actual inputs, transparent_background=false.",
+  "status": "AI reference only, not actual gameplay or native art",
+  "inputs": [
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-before-01-entry11.png",
+      "bytes": 42432,
+      "sha256": "c5a82c8afd163fc40d9e5b2e61a1862d4a2fcc19a75c60b787d4e9eebbfff7a4",
+      "dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-before-05-entry12.png",
+      "bytes": 42446,
+      "sha256": "e827d184775102111869a2adc8f73e796d572ab2a746c461b406d45b648466c3",
+      "dimensions": [
+        1280,
+        800
+      ]
+    }
+  ],
+  "prompt": {
+    "path": "ArtSource/Live16x24/obsidian-caves/scene-prompt-01.txt",
+    "bytes": 2238,
+    "sha256": "7c9913afcbeef92cbc095d3676e7e3ca907479148ac4a4ba783ee38e8098ecac"
+  },
+  "output": {
+    "path": "ArtSource/Live16x24/obsidian-caves/scene-reference-01.png",
+    "bytes": 1487249,
+    "sha256": "b018e199b0e66015b077b0411fa2aa5119b017991347f66b3226639413fe5824",
+    "dimensions": [
+      1586,
+      992
+    ]
+  },
+  "generated_original": "/Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df/exec-b386c5dc-c323-4076-bcd6-783de3278316.png",
+  "copy": "Byte-for-byte unedited copy; original retained. No crop, tracing, resampling or pixel extraction.",
+  "accepted_direction": [
+    "Quiet dark violet-gray floor.",
+    "Angular glassy internal fracture shading distinctly different from granular Quartzite."
+  ],
+  "rejected": [
+    "1586x992 output rescaling, text/player/UI drift.",
+    "Complete decorative perimeter inferred at fog/unknown boundaries.",
+    "Dense subpixel ground texture.",
+    "Repeated sharp pyramid/star bevels and outside shadows.",
+    "Uniform relighting and any invented owners."
+  ],
+  "production_scope": "Original editable six16x24 integer-plane cells only; no optional animation or new gameplay mechanic."
+}

@@ -1,4 +1,8 @@
-# Ordinary Obsidian: source-only next-scope preflight
+# Ordinary Obsidian: bounded native integration
+
+Current: six native cells/two material identities with four unchanged controls;183 distinct native passes and eight actual11/12 Editor views. Canonical admission is11+, but observed samples remain11/12. Earned123 fresh Continue is verified; source publication is pending and packages are batched. Shipped runtime remains Slate702cb9d80. No area-polish acceptance.
+
+## Historical preflight
 
 Status: preparation while Quartzite is being completed. No Obsidian gameplay baseline, new art, native RED/GREEN, runtime implementation, package or area acceptance is claimed. Only source, existing image pixels and the supplied disclosed approach were inspected; no save body or hidden route/owners were read.
 
@@ -46,3 +50,16 @@ Root reread the cited blueprint, material, map, generation and population contra
 Freeze quiet floor base56/50/66 and existing64/58/76,46/42/56 accents; original wall art uses broad dark glass fracture planes and restrained edge relief, straight opaque cells. One actual-capture imagegen study is in progress. No production adapter exists yet. Genuine41-case RED is next after the frozen contract review.
 
 Root normal Continue120 reaches depth11/40,12 by disclosed Up5Right5 then>; exact wall37,12 reads Stone70/70. Normal11→10→11 returns; Right reaches Down41,12, F5earns121turn13480HP28. Depth12 arrives41,12 with real visible Scrabbler42,8; normal12→11→12 works, F5earns122turn13510HP28. No added owners, heal, reveal or save rewrite. Seven owned session files are preserved under /private/tmp/coo-obsidian-before-preserved-e4e5112f before normal Finish. Seven actual captures and bounded owner census are in obsidian-caves-before-play/observations.json. Remaining hazard/actor/area-polish coverage is unchanged.
+
+Genuine native RED before production:41Failed/0Passed, job7a262ca7a91740ada0a6eeb2bbcb9a1a, rawobsidian-materials-red.json. Exact-ID/liveness negativecases anddeeper13/37 syntheticcountercases areincluded. Root inspected the AIreference; onlymaterialcues accepted, noUI/fog/geometryorstar/pyramidbevel copying.
+
+Hourly report actually sent2026-10-28 00:28UTC: Slate delivery and Quartzite source verified on main; Obsidian baseline/reference/native draft and41-case RED complete, integration/play/push next. Packaging batched; all broader coverage and area-polish debt remains. Next report01:28UTC.
+
+
+## Bounded native and Editor checkpoint — 2026-10-28
+
+RED job`7a262ca7a91740ada0a6eeb2bbcb9a1a`:41Failed before production. GREEN job`cc7aa032be3a402b920bdce01540706e`, retained in `Verification/Live16x24/obsidian-materials-green-related.json`: **183 distinct Passed =41 new+142 related**, no failed or skipped cases; not347. Six original cells cover two exact identities; four existing controls stay unchanged. Single last-ID/address caching retains no Zone/manager and rechecks mutable authority on every lookup.
+
+Actual after01–07 show native11/12 scenes, Stone70/70 wall and Terrain floor readers. One normal strike at37,12 leaves69HP and solid collision, player38,12HP28. Ordinary11→10→11→12→11 travel succeeds; F5 earns `Fixtures/obsidian-materials-damage123`, turn13590HP28 at41,12. Fresh Continue after08 restores41,12HP28Charred, visible wall107377 at37,12 with69HP, and identical visible census. The restart comparison records4689/564000 changed world pixels, maximum channel delta1 localized to player light; this is not pixel-identical. Play observations, restart comparison and restart-preservation receipts are retained. No actual wall destruction or wider depth acceptance is claimed.
+
+`obsidian-materials-editor-profile.json` records67.373165 seconds of readers/movement/one strike plus UI/tool time, not sustained FPS, a controlled improvement or Deck performance. Repeated triangular wall motif, warm grade/low contrast and sparse composition remain polish debt. All55 inventory and five Stump-area polish statuses remain unchanged. Quartzite sourcef1d15fc0a is pushed; current shipped package is Slate702cb9d80, with fresh packages batched under the user credit/visual-output priority. Next proposed family is shared Pillar/BrokenColumn reuse (`/tmp/coo-shared-stone-props-preflight.md`), still preparation. Last actual hourly00:28UTC; next01:28UTC.

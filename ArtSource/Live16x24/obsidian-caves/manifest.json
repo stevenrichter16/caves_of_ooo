@@ -1,0 +1,306 @@
+{
+  "schema": 1,
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "owner": "ObsidianFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owner": "ObsidianFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 2,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "owner": "ObsidianFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 3,
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "owner": "ObsidianFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 4,
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "owner": "ObsidianWall",
+      "state": "Surviving structural HP1..70/max70/hardness6; actual destruction removes owner and places existing Rubble"
+    },
+    {
+      "index": 5,
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "owner": "ObsidianWall",
+      "state": "Surviving structural HP1..70/max70/hardness6; actual destruction removes owner and places existing Rubble"
+    }
+  ],
+  "atlas": "obsidian-caves.png",
+  "width": 96,
+  "height": 24,
+  "palette": {
+    "floor": "383242",
+    "fleck": "403A4C",
+    "dust": "2E2A38",
+    "mass": "504A61",
+    "shadow": "2C2B3C",
+    "seam": "403C52",
+    "plane": "666178",
+    "highlight": "9693AB"
+  },
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,FullRect.",
+  "opaque": true,
+  "edge_masks": false,
+  "blend": "obsidian-caves.blend",
+  "source_cells": "source-cells.json",
+  "shade_style": "Original flat internal color planes; no geometry or alpha silhouette change.",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 16
+    },
+    {
+      "frame": 1,
+      "left": 36,
+      "top": 16
+    },
+    {
+      "frame": 2,
+      "left": 64,
+      "top": 16
+    },
+    {
+      "frame": 3,
+      "left": 92,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 120,
+      "top": 16
+    },
+    {
+      "frame": 5,
+      "left": 148,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 60
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 60
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 60
+    },
+    {
+      "frame": 3,
+      "left": 88,
+      "top": 60
+    },
+    {
+      "frame": 2,
+      "left": 104,
+      "top": 60
+    },
+    {
+      "frame": 1,
+      "left": 120,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 8,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 24,
+      "top": 84
+    },
+    {
+      "frame": 5,
+      "left": 40,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 56,
+      "top": 84
+    },
+    {
+      "frame": 1,
+      "left": 72,
+      "top": 84
+    },
+    {
+      "frame": 0,
+      "left": 88,
+      "top": 84
+    },
+    {
+      "frame": 3,
+      "left": 104,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 120,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 108
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 108
+    },
+    {
+      "frame": 2,
+      "left": 72,
+      "top": 108
+    },
+    {
+      "frame": 1,
+      "left": 88,
+      "top": 108
+    },
+    {
+      "frame": 0,
+      "left": 104,
+      "top": 108
+    },
+    {
+      "frame": 3,
+      "left": 120,
+      "top": 108
+    }
+  ],
+  "contact_size_native": [
+    192,
+    140
+  ],
+  "ambient_base_rgb": [
+    56,
+    50,
+    66
+  ],
+  "ambient_limit": "Optional owner-free backing belongs to separately guarded runtime; not a floor owner or reader.",
+  "references": [
+    "scene-reference-01.png",
+    "scene-prompt-01.txt",
+    "PARTS-AND-CONSTRAINTS.md"
+  ],
+  "named_revision": "Initial original Obsidian candidate after root scene-reference direction approval",
+  "extraction": "Accept dark volcanic-glass mass, broad angular internal fracture faces, sparse pale edges and quiet floor. Reject pyramid/star bevels, noise carpeting, invented boundary walls, changed fog/camera/UI/scale, relighting, extrusion, image sampling and nonuniform pixels.",
+  "protected_input_counts": [
+    34,
+    11
+  ],
+  "png_nonpixel_timing_normalization": {
+    "obsidian-caves.png": {
+      "raw_sha256": "53662fac3be3de8507876ef0430537ab96c4486e53da452235b5c1c8aac42358",
+      "canonical_sha256": "b1d09491679b24cfac5aac4f39f63cd2d47d1dacba04ead64149541205f09d81",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact-native.png": {
+      "raw_sha256": "db54ceb4215381d33ca1e30662780db83715f2c1f3f929c4a27fda6e6a020441",
+      "canonical_sha256": "39e763f4b284b1e1562c762572568719563ab22e55a4a829c5fc7ca3200bef8e",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact.png": {
+      "raw_sha256": "62f635738389838c0566882a0e77fbacb4c63b8d6bb8eadde6f108c245ae53be",
+      "canonical_sha256": "c86747a0e4311b6ce0e2c67a63eae39e511bb5d1b2f0ea4006cb436e9ba3e5e6",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    }
+  },
+  "runtime_acceptance": false,
+  "area_polish_acceptance": false
+}

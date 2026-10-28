@@ -1,6 +1,6 @@
 # Worldwide native sprite coverage
 
-**Credit-prioritized continuation (2026-10-28):** Maximize visible coverage with compact prompts, batched work/packages and reused evidence; preserve meaningful acceptance gates and concise thorough records. Quartzite9/10 now has bounded native Editor evidence; Obsidian11/12 is the next actual baseline. See Docs/GRAPHICS-COMPLETION-PLAN.md for current state. Shipped packages still use Slate702cb9d80; no world-polish completion claim.
+**Credit-prioritized continuation (2026-10-28):** Maximize visible coverage with compact prompts, batched work/packages and reused evidence; preserve meaningful acceptance gates and concise thorough records. Quartzite9/10 and Obsidian11/12 now have bounded native Editor evidence; shared Pillar/BrokenColumn reuse is next. See Docs/GRAPHICS-COMPLETION-PLAN.md for current state. Shipped packages still use Slate702cb9d80; no world-polish completion claim.
 
 **Current continuation — fresh Slate delivery, 2026-10-27:**
 Source `702cb9d8096e6dd8eebfd93cdeb08b22d5aece27` is verified on main by root.

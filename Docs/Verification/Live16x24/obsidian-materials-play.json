@@ -1,0 +1,56 @@
+{
+  "status": "bounded native Editor material coverage; packages pending batched delivery",
+  "captures": [
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-01-entry11.png",
+      "sha256": "d38da6f8a6571aace1926178cb493ddb110dfb9552e00011a2a99f21ce9462da"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-02-wall-reader.png",
+      "sha256": "4605de8ef52585c78dfaf232cf24914fcd07d3438fb3fbdbd77bab913a0a2e9c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-03-damaged-wall.png",
+      "sha256": "5d02778dc728e180c5a9dd6f0db8f26af0e5641a40262762ec36d380d667d55e"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-04-floor-reader.png",
+      "sha256": "677d8a4b1ed7cf38d659d5fbf6f270d4e797342ebc686082d261c8b9f60516cf"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-05-return10.png",
+      "sha256": "f250bc69936379d82b4a43ecbe5eb37b9cf93f16a2672dbf8ae3779d07410869"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-06-entry12.png",
+      "sha256": "fc4fbe562accb20174a13d533cfbc40286b217939d79e333acce3bcd2c48d75c"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-07-save123.png",
+      "sha256": "77bdb3245169921316578f95b5729457902d2d48354a8cbc602ccb513d7576b4"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/obsidian-caves-after-08-fresh-continue.png",
+      "sha256": "679d23201d296a012d91a254404aff6f85c6a055fe20a8d530113fbf09987a4e"
+    }
+  ],
+  "test_job": "cc7aa032be3a402b920bdce01540706e",
+  "distinct_passed": 183,
+  "focused_included": 41,
+  "related": 142,
+  "route": "Continue121 at11/41,12HP28; read wall37,12 Stone70/70; Left3+onebump stays38,12 and damageswall70\u219269; readfloor39,12 Terrain; Right2<10;>11 Right>12;<11; F5earns123turn13590HP28; freshContinue restores41,12HP28 andwall69.",
+  "bounds": [
+    "Canonical ordinary11+ supported, actualsamples11/12 only; deeper13/37 are synthetic tests.",
+    "After12 regenerated normally from121, not a byte-identical replay of baseline122; visible actor ID differs.",
+    "No actual complete wall destruction; native test covers destruction/Rubble.",
+    "67.373s Editor profile includes tool/UI spikes; noFPS/Deck/speedup claim.",
+    "Packages batched, shippedSlate remains702cb9d80.",
+    "One immediate re-launch met normal exitingPlay guard; retried after both playing/changing false. No bypass."
+  ],
+  "polish_debt": [
+    "triangular wall repetition",
+    "warm grade and dark material contrast",
+    "olive Rubble and mixed glyph hazards",
+    "whole-area composition not accepted"
+  ]
+}

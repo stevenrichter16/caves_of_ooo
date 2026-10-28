@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_obsidian_caves.py", line 342, in <module>
+    elif args.verify:verify()
+                     ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_obsidian_caves.py", line 171, in verify
+    assert (OUT/'obsidian-caves.png').exists(),'Native obsidian atlas missing: render required before GREEN'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Native obsidian atlas missing: render required before GREEN
