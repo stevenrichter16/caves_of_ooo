@@ -1,5 +1,7 @@
 # Shared Dagger, Short Sword and Mace coverage
 
+**Delivery update — 2026-10-28:** Source0b888da80 is verified on origin/main. Fresh Mac/Linux packages include this family. Actual Mac identity captures, restart comparison, archive verification and preservation are recorded in [the delivery report](Verification/Live16x24/packaged-village-roles-delivery.md). Earlier pending-package statements below are historical.
+
 Status: source integrated;108 native cases pass; bounded actual Editor verification complete; source a15ae3a95 published and remotely verified. Specialist source83e1e568f and delivery7f38536a4 are verified on main; current packages remain that verified batch until a later coherent delivery. Current packages exclude this pending source batch.
 
 ## Why this family

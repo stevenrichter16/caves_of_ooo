@@ -1,5 +1,7 @@
 # Shared Farmer, Elder and VillageChild coverage
 
+**Delivery update — 2026-10-28:** Source0b888da80 is verified on origin/main. Fresh Mac/Linux packages include this family. Actual Mac identity captures, restart comparison, archive verification and preservation are recorded in [the delivery report](Verification/Live16x24/packaged-village-roles-delivery.md). Earlier pending-package statements below are historical.
+
 Status: three-role runtime integration and146nativeGREEN complete; bounded actual after/restart verified; independent final review/publication in progress. Sourcebase0f69ec5c1, current packages83e1e568f. Root owns Unity/Git; foreign49paths and normal saves/builds preserved.
 
 ## Choice and corrections

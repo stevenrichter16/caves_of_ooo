@@ -1,0 +1,130 @@
+{
+  "created_at_utc": "2026-10-28T09:06:40.090217+00:00",
+  "runtime_source_commit": "0b888da80571bf35ab4f5348ff6e600d289340e7",
+  "package_flavor": "shared-village-roles-and-sidearms",
+  "built_after_utc": "2026-10-28T09:00:23.035189+00:00",
+  "slice_description": "Batched shared Farmer, Elder and VillageChild bodies and exact Dagger, ShortSword and Mace item bodies. Six approved PNGs are reused unchanged: Farmer remains a native 16-by-24 body; Elder, Child and the three sidearms use their complete 16-by-16 square cells. Exact owner, current graph, disclosure, custody and independent resource guards preserve health, equipment, AI, conversation, trade, damage and item mechanics. Farmer damage and wet cues use the existing single Render event. Child has no invented conversation or trader service. No new art, blueprint, save format, world geometry, grading or camera behavior; isolated Shale study remains default-off.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-village-roles-mac-build.json",
+    "sha256": "7179f5b5723343f0f78172afba7555c18b42fef54d0ce1a4f06b1ca210ceda64",
+    "summary": {
+      "job_id": "build-e4e5b6d46c",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-28-village-roles-0b888da80-current/CavesOfOoo.app",
+      "started_at": "2026-10-28T09:00:23.177844Z",
+      "duration_seconds": 88.55086999999999,
+      "completed_at": "2026-10-28T09:01:51.728714Z",
+      "total_size_mb": 234.33,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-village-roles-linux-build.json",
+    "sha256": "95fd312638cc162f145e14ad1038f10f2b485b98cbc3217689be3c4ce8d9fcb4",
+    "summary": {
+      "job_id": "build-039cfbfa21",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-28-village-roles-0b888da80-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-28T09:02:07.533574Z",
+      "duration_seconds": 86.228922,
+      "completed_at": "2026-10-28T09:03:33.762496Z",
+      "total_size_mb": 214.65,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-village-roles-native-green.json",
+          "sha256": "a2fc42ff0ef686e52a5ac87facd8a7261c22c46de6b5a1cfe3e8624ecd0afc43",
+          "summary": {
+            "total": 146,
+            "passed": 146,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 22.24689,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 146,
+          "mode": "EditMode",
+          "job_id": "c5ab6ba713ec4d97a5d9cd835ae4ad8f",
+          "started_unix_ms": 1793177352497,
+          "finished_unix_ms": 1793177378961,
+          "started_at_utc": "2026-10-28T08:49:12.497000+00:00",
+          "finished_at_utc": "2026-10-28T08:49:38.961000+00:00",
+          "timestamp_source": "Actual complete native JSON job envelope; no inferred XML or times."
+        }
+      ],
+      "current_source_binding": {
+        "source_commit": "0b888da80571bf35ab4f5348ff6e600d289340e7",
+        "pins": {
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "4f24f8736cda86dd0d9d94f698dc416b1235fd765faf28e41db645076e173d50",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedResidentsCatalog.cs": "e499b78d96994e16972dc90a574cc2428aacc5b340a474bbd329e3878f5729d2",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelIncidentalActorCatalog.cs": "e8b34461e80f5fbdabe3aca7827e00c0b79d3f3635679b94fdd55311ab6ee071",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelIncidentalEquipmentCatalog.cs": "0e6d9c4994ee2260a02b20414dc0dc7c2ea0f8c0d4e1816fecfb83b5028891c5",
+          "Assets/Tests/EditMode/FlatPixelSharedVillageRolesTests.cs": "e430a8b00b4acddb896e6b8372d06d44917ab86b832f0220d6d7021eb733c7f6",
+          "Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs": "66b429744e8a6030d432fd91486587b1eb470d3e41a4d428443a1bea1e77b6ad",
+          "Assets/Tests/EditMode/FlatPixelSharedResidentsTests.cs": "ac3dd19686223cd93a9a2f949b23c22630029732bd1006744c427ead6e9acc53",
+          "Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs": "07749008e2f2a1dc76da594b645e310a9f7b851c577ea1a05ade5246d21ed448",
+          "Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs": "459052551b2236a8c9843874b7bcc3ab7956aa4977c459cadaad2491742ad842",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalActorTests.cs": "d6e6cfc758e4f8bf01768ea25d12930c15109b495d981565500ced1947f03929",
+          "Assets/Resources/Sprites/Live16x24/farmer.png": "4981b3cb861d30a3c8db4b426237f2a751dd48eca584034dac43d78acb63bfc0",
+          "Assets/Resources/Sprites/Environment/elder.png": "5d4403f377001ad77e0dfb3f8cd0943c7382d9e366094df7a9f6fcd367ede61e",
+          "Assets/Resources/Sprites/Environment/village_child.png": "836bdc9f82e46d120ed7a7a7d41e0e4c74738caef7db201fe884ba2d382188db",
+          "Assets/Resources/Sprites/Environment/item_dagger.png": "065019eb5627ff8ac6cc2b7dc6b2ce65d3bb44c0737568de97950e2c6c61ba61",
+          "Assets/Resources/Sprites/Environment/item_sword.png": "08860df5fbf7a8f395890756b7fab96f38326fdfed9a3c70238ae5ad73f4c8ee",
+          "Assets/Resources/Sprites/Environment/item_mace.png": "fc6c68c6d4895bb9cf6a4385e6b410447058125cd537138d82d6973a4adca215",
+          "ArtSource/Live16x24/incidental-actors/farmer.png": "4981b3cb861d30a3c8db4b426237f2a751dd48eca584034dac43d78acb63bfc0",
+          "ArtSource/Live16x24/incidental-actors/source-cells.json": "2451a596b8fb0bc59e287db81c40d83e2fd7bf1d82a840cc384a376d37d83636",
+          "ArtSource/Live16x24/incidental-actors/incidental-actors.blend": "d893df02c96c512061e424f70a4b999e91ebca09bb208ed2faf1359d4ae3034b",
+          "ArtSource/Live16x24/incidental-actors/manifest.json": "3e9e8b5b11d570542e7860bcc2c85d3116a24e9155de49ba4852812f711b01b5",
+          "Docs/Verification/Live16x24/shared-village-roles-native-green.json": "a2fc42ff0ef686e52a5ac87facd8a7261c22c46de6b5a1cfe3e8624ecd0afc43"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Selected current source, resource and fixture bytes are pinned separately. Root asserts source/build provenance; actual gameplay and package acceptance have separate evidence."
+      },
+      "execution_occurrences": 146,
+      "passed_execution_occurrences": 146,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "repeated_identity_occurrences": 0,
+      "distinct_test_identities_across_listed_receipts": 146,
+      "distinct_passed_test_identities": 146,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "village_roles_focused_passed": 24,
+      "sidearms_passed": 23,
+      "other_related_passed": 99,
+      "native_job_times_verified": true,
+      "native_xml_times_verified": false,
+      "skipped_identities": [],
+      "inconclusive_identities": [],
+      "limits": "One complete 146-case JSON job only; earlier subset executions are not added. No test rerun, gameplay, Linux/Deck execution or performance certification is invented."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "Scope is three living village roles and three sidearm identities. Farmer portability extends only its modern world and reader routes; Grazer and Cindercaller remain local. Other actors, equipment, service props, areas and world families remain outside this slice. Actual Sill movement, selected-pile readers, available services, item custody and persistence have separate evidence.",
+    "Body coverage and reader identity do not establish whole-scene fullness, reference parity or area polish. The static Elder body does not encode Sitting; existing status text does. Mixed cast scale, remaining glyphs and settlement composition remain separate polish work. No new animation or broad world completion is claimed.",
+    "One complete retained native JSON job contains 146 distinct Passed identities in one 146-case checkpoint: 24 village roles, 23 sidearms, 24 residents, 17 Weaponsmith, 19 specialists and 39 incidental-actor cases. Earlier subset runs are not added. Actual start/finish timestamps are read from the complete successful job envelope; no XML, test rerun, gameplay or performance certification is invented.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Worldwide static coverage and later area polish remain open."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

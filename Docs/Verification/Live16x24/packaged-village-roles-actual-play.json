@@ -1,0 +1,68 @@
+{
+  "at_utc": "2026-10-28T09:15:31.751714+00:00",
+  "source_commit": "0b888da80571bf35ab4f5348ff6e600d289340e7",
+  "capture_kind": "Actual macOS standalone window captures, unretouched, 1280x856 including 56px title bar",
+  "processes": [
+    {
+      "pid": 13739,
+      "fixture_in": 154,
+      "fixture_out": 156,
+      "actions": "Continue, Farmer/Child/Elder world and readers; six ordinary steps through door to20,10; F5"
+    },
+    {
+      "pid": 14187,
+      "fixture_in": 156,
+      "actions": "CUA getter auto-relaunched after process1 quit; ordinary Continue; fresh process restart world comparison"
+    },
+    {
+      "pid": 14491,
+      "fixture_in": 152,
+      "actions": "Independent preserved Mace purchase branch; inventory and F1 reader"
+    },
+    {
+      "pid": 15122,
+      "fixture_in": 153,
+      "actions": "Independent preserved ShortSword purchase branch; inventory and F1 reader"
+    },
+    {
+      "pid": 15291,
+      "fixture_in": 151,
+      "actions": "Dagger ground branch; ordinary Look selection and examine"
+    }
+  ],
+  "branches_not_merged": true,
+  "hp_all": 38,
+  "restart": {
+    "player": [
+      20,
+      10
+    ],
+    "turn": 2140,
+    "changed_pixels": 0,
+    "compared_pixels": 564000,
+    "receipt": "Docs/Verification/Live16x24/packaged-village-roles-restart-comparison.json"
+  },
+  "capture_files": [
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-01-world.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-02-farmer-reader.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-03-child-reader.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-04-elder-reader.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-05-saved-world.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-06-fresh-continue.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-07-mace-inventory.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-08-mace-reader.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-09-shortsword-inventory.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-10-shortsword-reader.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-11-dagger-ground.png",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-12-dagger-reader.png"
+  ],
+  "logs": [
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-run1.log",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-run2.log",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-run3.log",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-run4.log",
+    "Docs/Verification/Live16x24/packaged-village-roles-mac-run5.log"
+  ],
+  "log_limits": "Premature-thread notices 7/6/6/6/7 and one ComputeBuffer disposal warning per process; no clean-log or performance claim.",
+  "limits": "No new packaged combat, purchase, Farmer services, Linux or physical Deck execution. Editor actions and native tests remain separately identified."
+}

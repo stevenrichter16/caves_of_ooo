@@ -1,5 +1,7 @@
 # Worldwide native sprite coverage
 
+**Current delivery — 2026-10-28:** Farmer/Elder/VillageChild and three sidearms now ship in source0b888da80 packages:146 native passes,12 actual Mac views/five processes and exact restart match; Linux archive verified without execution. Next observed surface gap is Reedfrog/Bandfrog/GinFrog in ordinary Sodden areas. Coverage does not advance any of55+5 area-polish scopes. See [delivery record](Verification/Live16x24/packaged-village-roles-delivery.md).
+
 **Current continuation — 2026-10-28 08:56 UTC:** Shared Farmer/Elder/VillageChild now use unchanged approved nativebody art in normal flat world/examine; Farmer portability retains damage/Wetcue.146distinct nativechecks pass after23initialRED and one realpaintercueRED. ActualSill154→155 verifies all3sameIDs/world/readers, Elderchat/trade(noexchange), normaldoorwalk and freshEditorContinue20,10HP38turn2140;0/564000worldpixels differ. Farmeractualchat/trade notnewlyobserved. See [village-role record](GRAPHICS-SHARED-VILLAGE-ROLES.md). Independentreview/publication inprogress; currentmain0f69ec5c1 includes sidearms, currentpackages83e1e568f exclude bothnewbatches. Next publishexactreviewedsource then batchpackages, followed by largest actualwhole-gamegap. All55+5polishscopes and missingregional/sharedfamilies remainopen. No cleanup;49foreignpaths andsources/saves/builds preserved. Lastactualhourlyreport08:38:26UTC,next09:38:26UTC.
 
 
