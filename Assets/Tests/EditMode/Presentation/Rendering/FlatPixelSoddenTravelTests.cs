@@ -1,6 +1,7 @@
 // Regression coverage for native Sodden material ownership and submitted rendering.
-// Approved packet contract:28 frames; board0..15, mire bases16/17, peat18/19, tree20/21.
-// Filled mire variations22..24 and depleted wet-film variations25..27 remain static.
+// Existing travel packet:28 frames; board0..15, old mire16/17, peat18/19, tree20/21.
+// Default ground/mire now use the separate36-frame Sodden environment atlas.
+// Explicit six-input injection retains all original28-frame compatibility pins.
 // Public presentation/submitted drawing paths are primary; adapter injection uses
 // the explicitly agreed constructor via reflection so preimplementation compiles.
 using System;
@@ -21,6 +22,7 @@ namespace CavesOfOoo.Tests
         const string Crossing = "Overworld.16.7.0";
         const string Atlas = "Sprites/Live16x24/sodden-travel";
         const string GrassAtlas = "Sprites/Live16x24/sill-envelope";
+        const string FenAtlas = "Sprites/Live16x24/sodden-ground";
         const int X = 10, Y = 10;
         const BindingFlags I = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
         const BindingFlags Static = BindingFlags.Static | BindingFlags.NonPublic;
@@ -32,9 +34,13 @@ namespace CavesOfOoo.Tests
         bool previouslyInitialized;
         FlatPixelFallbackCatalog injectedSelector;
         IDisposable injectedAdapter;
+        bool legacyInjection;
+        string CurrentGroundAtlas => legacyInjection ? GrassAtlas : FenAtlas;
+        string CurrentMireAtlas => legacyInjection ? Atlas : FenAtlas;
 
         [SetUp] public void Setup()
         {
+            legacyInjection = false;
             // Match the existing KitchenBrine borrowing/restoration pattern.
             liquids = (Dictionary<string, LiquidDefinition>)typeof(LiquidRegistry).GetField("_byId", Static).GetValue(null);
             previousLiquids = new Dictionary<string, LiquidDefinition>(liquids);
@@ -89,12 +95,15 @@ namespace CavesOfOoo.Tests
         }
         void Native(Entity owner, string resource = Atlas, int x = X, int y = Y)
         {
+            if (owner.BlueprintName == "MirePool") resource = CurrentMireAtlas;
             var view = View(x, y); Assert.AreSame(owner, view.Owner); Assert.True(view.NativeForeground);
             NativeTile(view.ForegroundTile, resource); Assert.AreEqual(Color.white, view.ForegroundColor);
             Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone), "This kit must not widen opening admission.");
             Assert.True(world.TryGetPresentationSubjectSprite(zone, owner, x, y, out var sprite, out var tint));
             Assert.AreSame(Resources.Load<Texture2D>(resource), sprite.texture);
             if (owner.BlueprintName == "Duckboard") Assert.AreEqual(new Rect(0, 0, 16, 24), sprite.rect);
+            else if (owner.BlueprintName == "MirePool" && !legacyInjection)
+                Assert.AreEqual(new Rect((owner.GetPart<LiquidPoolPart>().Volume == 0 ? 20 : 4) * 16, 0, 16, 24), sprite.rect);
             else Assert.AreEqual(view.ForegroundTile.sprite.rect, sprite.rect);
             Assert.AreEqual(Color.white, tint);
         }
@@ -119,10 +128,11 @@ namespace CavesOfOoo.Tests
             var view = View();
             if (view.Owner == subject) Assert.False(view.NativeForeground);
             if (world.TryGetPresentationSubjectSprite(zone, subject, X, Y, out var sprite, out _))
-                Assert.AreNotSame(Resources.Load<Texture2D>(Atlas), sprite.texture);
+                { Assert.AreNotSame(Resources.Load<Texture2D>(Atlas), sprite.texture); Assert.AreNotSame(Resources.Load<Texture2D>(FenAtlas), sprite.texture); }
         }
         void Inject(Texture2D packet)
         {
+            legacyInjection = true;
             world.Dispose(); world = new FlatPixelGreyboxCatalog((Texture2D)null);
             injectedSelector = new FlatPixelFallbackCatalog();
             var type = typeof(ZoneRenderer).Assembly.GetType("CavesOfOoo.Rendering.FlatPixelSoddenTravelCatalog");
@@ -137,17 +147,20 @@ namespace CavesOfOoo.Tests
         static void BoardTile(Tile tile, int mask)
         { NativeTile(tile, Atlas); Assert.AreEqual(new Rect(mask * 16, 0, 16, 24), tile.sprite.rect); }
 
-        static int MireFrame(Tile tile, bool depleted)
+        int MireFrame(Tile tile, bool depleted)
         {
-            NativeTile(tile, Atlas);
+            NativeTile(tile, CurrentMireAtlas);
             int frame = (int)tile.sprite.rect.x / 16;
-            CollectionAssert.Contains(depleted ? new[] { 17, 25, 26, 27 } : new[] { 16, 22, 23, 24 }, frame,
-                "Mire stock may select only its own approved static material family.");
+            if (legacyInjection)
+                CollectionAssert.Contains(depleted ? new[] { 17, 25, 26, 27 } : new[] { 16, 22, 23, 24 }, frame,
+                    "Legacy injected mire stock retains its approved static material family.");
+            else Assert.That(frame, Is.InRange(depleted ? 20 : 4, depleted ? 35 : 19));
             return frame;
         }
 
-        [Test] public void MireAreaUsesStableSparseVariationsWithoutChangingStockOrHazards()
+        [Test] public void LegacyInjectedMireAreaRetainsSparseVariationsWithoutChangingStockOrHazards()
         {
+            Inject(Resources.Load<Texture2D>(Atlas));
             // Exercise real current owners over an area, not a copy of the coordinate hash.
             var owners = new List<Entity>();
             for (int y = 4; y < 12; y++) for (int x = 4; x < 36; x++) owners.Add(Add("MirePool", x, y));
@@ -271,7 +284,7 @@ namespace CavesOfOoo.Tests
         [Test] public void DryGroundRemainsBelowActorButNeverUnderLiveWaterOrMire()
         {
             var grass = Add("Grass"); var actor = Add("Player"); actor.GetPart<RenderPart>().RenderLayer = 100;
-            var dry = View(); Assert.AreSame(actor, dry.Owner); Assert.True(dry.LocalGround); NativeTile(dry.GroundTile, GrassAtlas);
+            var dry = View(); Assert.AreSame(actor, dry.Owner); Assert.True(dry.LocalGround); NativeTile(dry.GroundTile, CurrentGroundAtlas);
             foreach (string coating in new[] { "water", "bog-mire", "ice", "oil" })
             {
                 zone.TileState.WriteCoating(X, Y, coating, 3); var wet = View(); Assert.AreSame(actor, wet.Owner);
@@ -282,7 +295,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void HiddenOwnerCannotChangeSubstrateButIndependentLiveCoatingCan()
         {
-            Add("Grass"); var dry = View(); Assert.True(dry.LocalGround); NativeTile(dry.GroundTile, GrassAtlas);
+            Add("Grass"); var dry = View(); Assert.True(dry.LocalGround); NativeTile(dry.GroundTile, CurrentGroundAtlas);
             var mire = Add("MirePool", seed: false); mire.GetPart<RenderPart>().Visible = false;
             Assert.True(zone.TileState.HasCoating(X, Y, "bog-mire"), "AddEntity projects a real pool even without source.Seed.");
             Assert.False(View().LocalGround, "Hiding the source cannot erase its actual projected coating.");
@@ -307,7 +320,7 @@ namespace CavesOfOoo.Tests
             var mire = Add("MirePool"); Native(mire); zone.GetCell(X, Y).IsVisible = false; zone.GetCell(X, Y).Explored = explored;
             if (world.TryResolvePresentation(zone, X, Y, out var view)) Assert.False(view.NativeForeground);
             if (world.TryGetPresentationSubjectSprite(zone, mire, X, Y, out var sprite, out _))
-                Assert.AreNotSame(Resources.Load<Texture2D>(Atlas), sprite.texture);
+                { Assert.AreNotSame(Resources.Load<Texture2D>(Atlas), sprite.texture); Assert.AreNotSame(Resources.Load<Texture2D>(FenAtlas), sprite.texture); }
         }
         [Test] public void ActualFreshShelterGenerationSuppliesTheMaterialsWithoutFixtureReskins()
         {
@@ -470,7 +483,7 @@ namespace CavesOfOoo.Tests
             Assert.True(zone.RemoveEntity(board)); Assert.AreNotSame(board, View().Owner); NotSoddenNative(board);
         }
         [TestCase("StoneFloor", "Sprites/Live16x24/cellar-floor", 0, 3)]
-        [TestCase("Grass", GrassAtlas, 20, 23)]
+        [TestCase("Grass", FenAtlas, 0, 3)]
         public void ExactGroundUsesTheBorrowedRangeAndForeignVariantsStayFallback(string blueprint, string resource, int low, int high)
         {
             var e = Add(blueprint); var normal = View(); Assert.True(normal.LocalGround); NativeTile(normal.GroundTile, resource);
@@ -482,7 +495,7 @@ namespace CavesOfOoo.Tests
         [TestCase("Reeds")] [TestCase("DeadTree")] [TestCase("Duckboard")]
         public void SubmittedExactDryOverlayRetainsOnlyItsActualOrdinaryGrass(string blueprint)
         {
-            var grass = Add("Grass"); var baseline = View(); NativeTile(baseline.GroundTile, GrassAtlas);
+            var grass = Add("Grass"); var baseline = View(); NativeTile(baseline.GroundTile, CurrentGroundAtlas);
             var overlay = Add(blueprint);
             string atlas = blueprint == "Reeds" ? "Sprites/Live16x24/opening-base" : Atlas;
             Native(overlay, atlas); Assert.True(View().LocalGround);
@@ -499,7 +512,7 @@ namespace CavesOfOoo.Tests
                 Assert.True(zone.RemoveEntity(grass)); paint.Dirty(X, Y); paint.Step();
                 Assert.AreSame(overlay, View().Owner); Assert.False(View().LocalGround);
                 var absent = paint.GroundAt(X, Y);
-                Assert.True(absent == null || absent.sprite.texture != Resources.Load<Texture2D>(GrassAtlas),
+                Assert.True(absent == null || absent.sprite.texture != Resources.Load<Texture2D>(CurrentGroundAtlas),
                     "An approved overlay cannot invent a Grass owner beneath itself.");
                 var replacement = Add("Grass"); paint.Dirty(X, Y); paint.Step();
                 Assert.AreSame(zone.GetCell(X, Y), zone.GetEntityCell(replacement));
@@ -525,7 +538,7 @@ namespace CavesOfOoo.Tests
             if (condition == "coating") zone.TileState.Clear(X, Y);
             if (soil != null) Assert.True(board.RemovePart(soil));
             if (condition == "custom-variant") board.GetPart<RenderPart>().VisualVariant = "";
-            Native(board); Assert.True(View().LocalGround); NativeTile(View().GroundTile, GrassAtlas);
+            Native(board); Assert.True(View().LocalGround); NativeTile(View().GroundTile, CurrentGroundAtlas);
         }
 
         [Test] public void StoneFloorWinsOverGrassAndDuplicateFloorsRemainConservativeUnderNeutralBoards()
@@ -538,13 +551,13 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(board, View().Owner, "The actual dry overlay remains selected above its lower floor.");
             Assert.True(zone.RemoveEntity(board)); Assert.AreSame(stone, View().Owner);
         }
-        [TestCase("Overworld.16.7.0")] [TestCase("Overworld.10.10.0")]
-        public void HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround(string id)
+        [TestCase("Overworld.16.7.0", FenAtlas)] [TestCase("Overworld.10.10.0", GrassAtlas)]
+        public void HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround(string id, string expectedAtlas)
         {
             zone = Attach(id);
             var grass = Add("Grass");
             var baseline = View();
-            Assert.True(baseline.LocalGround); NativeTile(baseline.GroundTile, GrassAtlas);
+            Assert.True(baseline.LocalGround); NativeTile(baseline.GroundTile, expectedAtlas);
             var cell = zone.GetCell(X, Y);
 
             // Repurpose an actual non-floor terrain owner using public parts/tags.
@@ -641,7 +654,7 @@ namespace CavesOfOoo.Tests
             {
                 var board = Add("Duckboard"); Native(board); Inject(bad); IdentityFallback();
                 Assert.True(zone.RemoveEntity(board)); var reeds = Add("Reeds"); Native(reeds, "Sprites/Live16x24/opening-base");
-                Assert.True(zone.RemoveEntity(reeds)); Add("Grass"); NativeTile(View().GroundTile, GrassAtlas);
+                Assert.True(zone.RemoveEntity(reeds)); Add("Grass"); NativeTile(View().GroundTile, CurrentGroundAtlas);
                 var wall = Add("StoneWall"); Native(wall, "Sprites/Live16x24/opening-cellar");
                 Assert.AreEqual(new Rect(8 * 16, 0, 16, 24), View().ForegroundTile.sprite.rect);
             }
@@ -714,7 +727,7 @@ namespace CavesOfOoo.Tests
             string state = zone.TileState.ToSaveString();
             using (var paint = new Paint(world, zone))
             {
-                paint.Step(); NativeTile(paint.At(X, Y), Atlas);
+                paint.Step(); NativeTile(paint.At(X, Y), CurrentMireAtlas);
                 MireFrame(paint.At(X, Y), stock == 0);
                 if (expected == '\0') Assert.IsNull(paint.Mark);
                 else Assert.AreSame(CP437TilesetGenerator.GetTile(expected), paint.Mark);
@@ -730,7 +743,7 @@ namespace CavesOfOoo.Tests
             var mire = Add("MirePool");
             using (var paint = new Paint(world, zone))
             {
-                paint.Step(); NativeTile(paint.At(X, Y), Atlas); Assert.IsNull(paint.Mark);
+                paint.Step(); NativeTile(paint.At(X, Y), CurrentMireAtlas); Assert.IsNull(paint.Mark);
                 long full = EnvironmentSpriteRenderer.Perf.FullPasses;
                 var actor = Add("Player"); actor.GetPart<RenderPart>().RenderLayer = 100;
                 paint.Dirty(X, Y); paint.Step(); Assert.AreSame(actor, View().Owner);
@@ -738,7 +751,7 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(new Color(.30f, .55f, .95f), paint.MarkTint);
                 NotSoddenNative(mire);
                 Assert.True(zone.MoveEntity(actor, X - 1, Y)); paint.Dirty(X, Y); paint.Step();
-                NativeTile(paint.At(X, Y), Atlas); Assert.IsNull(paint.Mark);
+                NativeTile(paint.At(X, Y), CurrentMireAtlas); Assert.IsNull(paint.Mark);
                 Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
                 Assert.True(zone.TileState.HasCoating(X, Y, "bog-mire"));
             }
@@ -762,7 +775,7 @@ namespace CavesOfOoo.Tests
                 {
                     paint.Step(); Assert.False(View().NativeForeground);
                     var submitted = paint.At(X, Y);
-                    Assert.True(submitted == null || submitted.sprite.texture != Resources.Load<Texture2D>(Atlas));
+                    Assert.True(submitted == null || submitted.sprite.texture != Resources.Load<Texture2D>(CurrentMireAtlas));
                     Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.Mark);
                     Color expected = refusal == "oil" ? new Color(.35f, .25f, .45f)
                         : refusal == "ice" ? new Color(.85f, .95f, 1) : new Color(.30f, .55f, .95f);
@@ -839,9 +852,9 @@ namespace CavesOfOoo.Tests
             var grass = SelectedGenerated("Grass", c => zone.TileState.Get(c.X, c.Y)?.IsEmpty != false
                 && !c.Objects.Any(e => e.HasPart<CultivatedSoilPart>()));
             var at = zone.GetEntityCell(grass); var dry = View(at.X, at.Y);
-            Assert.True(dry.LocalGround); NativeTile(dry.GroundTile, GrassAtlas);
+            Assert.True(dry.LocalGround); NativeTile(dry.GroundTile, CurrentGroundAtlas);
             Assert.True(world.TryGetPresentationSubjectSprite(zone, grass, at.X, at.Y, out var portrait, out _));
-            Assert.AreSame(Resources.Load<Texture2D>(GrassAtlas), portrait.texture);
+            Assert.AreSame(Resources.Load<Texture2D>(CurrentGroundAtlas), portrait.texture);
             Assert.AreEqual(signature, zone.TileState.ToSaveString()); Assert.AreEqual(version, zone.EntityVersion);
             var render = subject.GetPart<RenderPart>(); string original = render.VisualVariant;
             try
@@ -963,7 +976,7 @@ namespace CavesOfOoo.Tests
                 Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.MarkAt(x, y));
                 Assert.AreEqual(state, zone.TileState.ToSaveString());
                 Assert.True(zone.TileState.RemoveCoating(x, y, "water")); paint.Dirty(x, y); paint.Step();
-                Assert.IsNull(paint.MarkAt(x, y)); Assert.True(View(x, y).LocalGround); NativeTile(paint.GroundAt(x, y), GrassAtlas);
+                Assert.IsNull(paint.MarkAt(x, y)); Assert.True(View(x, y).LocalGround); NativeTile(paint.GroundAt(x, y), CurrentGroundAtlas);
                 zone.TileState.WriteCoating(x, y, "water", ZoneTileState.Permanent); paint.Dirty(x, y); paint.Step();
                 Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.MarkAt(x, y)); Assert.False(View(x, y).RepresentedMire);
                 Assert.True(zone.TileState.HasCoating(x, y, "water")); Assert.False(zone.TileState.HasCoating(x, y, "bog-mire"));
@@ -979,7 +992,7 @@ namespace CavesOfOoo.Tests
             string state = zone.TileState.ToSaveString(); var map = manager.WorldMap;
             for (int i = 0; i < 16; i++)
             {
-                Native(board); Assert.True(View().LocalGround); NativeTile(View().GroundTile, GrassAtlas);
+                Native(board); Assert.True(View().LocalGround); NativeTile(View().GroundTile, CurrentGroundAtlas);
                 Assert.True(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone));
             }
             Assert.AreSame(map, manager.WorldMap); Assert.AreSame(zone, manager.CachedZones[id]);

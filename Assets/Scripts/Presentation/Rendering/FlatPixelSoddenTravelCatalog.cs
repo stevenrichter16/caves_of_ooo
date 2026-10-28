@@ -13,9 +13,10 @@ namespace CavesOfOoo.Rendering
     public sealed class FlatPixelSoddenTravelCatalog : IDisposable
     {
         public const string ResourcePath = "Sprites/Live16x24/sodden-travel";
+        public const string GroundResourcePath = "Sprites/Live16x24/sodden-ground";
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] travel, reeds, grass, stoneFloor, masonry;
+        readonly Tile[] travel, reeds, grass, stoneFloor, masonry, fenGround;
         bool disposed;
         // Canonical authored addresses only: bounded metadata, never cached world
         // approval. Mutable receiving-world authority is checked on every lookup.
@@ -38,12 +39,18 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelCellarFloorCatalog.ResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath), borrowedSelector,
+                Resources.Load<Texture2D>(GroundResourcePath)) { }
 
         /// <summary>Each injected group is independent. Null/wrong-size groups
         /// never reload Resources. Borrowed dependencies are not changed or disposed.</summary>
         public FlatPixelSoddenTravelCatalog(Texture2D atlas28, Texture2D opening10,
             Texture2D sill24, Texture2D floors4, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas28, opening10, sill24, floors4, cellar9, borrowedSelector, null) { }
+
+        public FlatPixelSoddenTravelCatalog(Texture2D atlas28, Texture2D opening10,
+            Texture2D sill24, Texture2D floors4, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D ground36)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -52,6 +59,7 @@ namespace CavesOfOoo.Rendering
             grass = Frames(sill24, 24, "grass");
             stoneFloor = Frames(floors4, 4, "floor");
             masonry = Frames(cellar9, 9, "stone");
+            fenGround = Frames(ground36, 36, "fen ground");
         }
 
         public static bool IsSupportedZone(Zone zone)
@@ -79,6 +87,15 @@ namespace CavesOfOoo.Rendering
             if (frame < 0) return false;
             if (owner.BlueprintName == "Reeds") tile = reeds == null ? null : reeds[frame];
             else if (owner.BlueprintName == "StoneWall") tile = masonry == null ? null : masonry[8];
+            else if (owner.BlueprintName == "MirePool" && fenGround != null)
+            {
+                int mask = 0;
+                if (MireAt(zone, x, y - 1)) mask |= 1;
+                if (MireAt(zone, x + 1, y)) mask |= 2;
+                if (MireAt(zone, x, y + 1)) mask |= 4;
+                if (MireAt(zone, x - 1, y)) mask |= 8;
+                tile = fenGround[(Owned<LiquidPoolPart>(owner).Volume == 0 ? 20 : 4) + mask];
+            }
             else if (travel != null)
             {
                 if (owner.BlueprintName == "Duckboard")
@@ -125,7 +142,11 @@ namespace CavesOfOoo.Rendering
             if (stoneOwner != null)
             { floor = stoneOwner; tile = stoneFloor == null ? null : stoneFloor[GroundVariantAt(x, y)]; }
             else if (grassOwner != null)
-            { floor = grassOwner; tile = grass == null ? null : grass[20 + GroundVariantAt(x, y)]; }
+            {
+                floor = grassOwner;
+                tile = fenGround != null ? fenGround[FenGroundVariantAt(zone, x, y)]
+                    : grass == null ? null : grass[20 + GroundVariantAt(x, y)];
+            }
             if (tile != null) return true;
             floor = null; return false;
         }
@@ -141,6 +162,12 @@ namespace CavesOfOoo.Rendering
             {
                 if (travel == null || ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) < 0) return false;
                 sprite = travel[0].sprite; return sprite != null;
+            }
+            if (owner.BlueprintName == "MirePool" && fenGround != null)
+            {
+                if (ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) < 0) return false;
+                sprite = fenGround[Owned<LiquidPoolPart>(owner).Volume == 0 ? 20 : 4].sprite;
+                return sprite != null;
             }
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
@@ -173,6 +200,24 @@ namespace CavesOfOoo.Rendering
                 && selector.TryResolve(zone, x, y, out var selected) && !selected.Remembered
                 && selected.Owner?.BlueprintName == "Duckboard"
                 && ForegroundFrame(selected.Owner, zone.TileState.Get(x, y), x, y) == 0;
+        }
+
+        static bool MireAt(Zone zone, int x, int y)
+        {
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || !cell.IsVisible) return false;
+            // A real actor standing in water does not turn it into shore. Only
+            // current disclosed physical pool owners count; no hidden-owner probe.
+            Entity pool = null;
+            foreach (var owner in cell.Occupants)
+            {
+                if (owner.BlueprintName != "MirePool" || !Placed(zone, cell, owner)
+                    || !VisiblePhysicalOwner(owner)) continue;
+                if (pool != null || ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) < 0) return false;
+                pool = owner;
+            }
+            return pool != null;
         }
 
         static int ForegroundFrame(Entity owner, ZoneTileState.TileState state, int x, int y)
@@ -315,6 +360,24 @@ namespace CavesOfOoo.Rendering
             value ^= value >> 16; value = unchecked(value * 0x7feb352du); value ^= value >> 15;
             return (value & 15u) < 12u ? 0 : 1 + (int)((value >> 4) % 3u);
         }
+        static int FenGroundVariantAt(Zone zone, int x, int y)
+        {
+            // Shared edge colors keep the coarse density patches from becoming
+            // checkerboard paving. Preserve the old per-cell stone variant hash.
+            var point = coordinates[zone.ZoneID];
+            uint seed = unchecked((uint)WorldLocationContext.For(zone).WorldSeed);
+            uint value = unchecked((uint)((point.x * Zone.Width + x) / 7) * 0x9e3779b1u
+                ^ (uint)((point.y * Zone.Height + y) / 5) * 0x85ebca77u
+                ^ seed);
+            value ^= value >> 16; value = unchecked(value * 0x7feb352du); value ^= value >> 15;
+            if ((value & 7u) < 4u) return 0;
+            // Fine gaps and mixed detail shapes break stamp lattices inside
+            // detailed patches. Quiet patches remain quiet; no runtime RNG.
+            uint fine = unchecked((uint)(point.x * Zone.Width + x) * 0x85ebca6bu
+                ^ (uint)(point.y * Zone.Height + y) * 0xc2b2ae35u ^ seed * 0x9e3779b9u);
+            fine ^= fine >> 16; fine = unchecked(fine * 0x7feb352du); fine ^= fine >> 15;
+            return fine % 3u == 0u ? 0 : 1 + (int)((fine >> 8) % 3u);
+        }
         static Tile[] Frames(Texture2D texture, int count, string group)
         {
             if (texture == null || texture.width != count * Width || texture.height != Height) return null;
@@ -334,6 +397,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             DestroyFrames(travel); DestroyFrames(reeds); DestroyFrames(grass); DestroyFrames(stoneFloor); DestroyFrames(masonry);
+            DestroyFrames(fenGround);
         }
         static void DestroyFrames(Tile[] tiles)
         {

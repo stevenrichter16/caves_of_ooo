@@ -1,0 +1,4 @@
+{
+  "issue": "First-build receipt was copied before background Blender exit and retained the prior build hash; hash guard rejected it.",
+  "correction": "Reopen retained first file explicitly; bind verification SHA to bpy.data.filepath, then reopen final file. No geometry or pixel change."
+}

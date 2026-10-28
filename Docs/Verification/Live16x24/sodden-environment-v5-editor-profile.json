@@ -1,0 +1,71 @@
+{
+  "label": "sodden-environment-v5-editor-profile",
+  "start": "2026-10-28T14:51:05.598923Z",
+  "end": "2026-10-28T14:52:10.848031Z",
+  "elapsedSeconds": 65.24910899999999,
+  "frames": 15735,
+  "zone": "Overworld.18.8.0",
+  "player": [
+    41,
+    11
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 159415.90698242188,
+      "max": 139274291,
+      "p99": 223416
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 4998720.11328125,
+      "max": 2552327000,
+      "p99": 22074709
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 40.0,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 40.0,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9992.99658203125,
+      "max": 10000,
+      "p99": 9994
+    }
+  ],
+  "bounds": "Final v5 Editor OpenMire world and two ordinary moves plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

@@ -1,0 +1,71 @@
+{
+  "label": "sodden-environment-editor-profile",
+  "start": "2026-10-28T14:18:33.035414Z",
+  "end": "2026-10-28T14:21:26.138805Z",
+  "elapsedSeconds": 173.10339199999999,
+  "frames": 41805,
+  "zone": "Overworld.18.8.0",
+  "player": [
+    42,
+    11
+  ],
+  "hp": 37,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 79790.28955078125,
+      "max": 2364959,
+      "p99": 219584
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 5124634.36328125,
+      "max": 2561690458,
+      "p99": 15371167
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 41.0,
+      "max": 41,
+      "p99": 41
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 41.0,
+      "max": 41,
+      "p99": 41
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 10072.7890625,
+      "max": 10084,
+      "p99": 10084
+    }
+  ],
+  "bounds": "V2 Editor OpenMire world, ordinary movement, Look/inspection attempts and idle/UI/tool time. Actual Examine image07 was captured after this profile ended. Not a controlled baseline speedup, final-art profile or physical Deck measurement; samples wrap as reported. Later art keeps atlas size/topology. The subsequent fine grass hash was not profiled here."
+}

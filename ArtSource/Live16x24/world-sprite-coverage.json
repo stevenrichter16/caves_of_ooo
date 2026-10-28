@@ -283,10 +283,31 @@
       ],
       "note": "Three districts plus six natural samples and one walked neighbor observed. Material coverage extended; actual plain water, actors, flora, props and chunk polish remain incomplete. No63-cell biome-completion claim.",
       "polish_review": {
-        "status": "not_audited",
-        "known_defects_audit": "not_complete",
-        "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
-        "acceptance_record": null
+        "status": "in_progress",
+        "known_defects_audit": "Ground repetition/wet edge improved in two finalv6 matched views; broad sparse composition, daylight/depleted film and wholechunk review remain open.",
+        "concrete_area_instances": [
+          {
+            "zone": "Overworld.18.8.0",
+            "formation": "OpenMire",
+            "status": "in_progress",
+            "baseline": "Docs/Verification/Live16x24/sodden-environment-before-01.png",
+            "fixture": "sodden-frogs-after157",
+            "limits": "Disclosed center viewport, not full80x25.",
+            "material_pass": "bounded_editor_verified",
+            "after": "Docs/Verification/Live16x24/sodden-environment-after-15-v6-matched.png"
+          },
+          {
+            "zone": "Overworld.16.8.0",
+            "formation": "ReedMaze",
+            "status": "in_progress",
+            "baseline": "Docs/Verification/Live16x24/sodden-environment-before-02-reed-maze.png",
+            "fixture": "sodden-ordinary-before-reed-maze65",
+            "limits": "Disclosed center viewport, not full80x25.",
+            "material_pass": "bounded_editor_verified",
+            "after": "Docs/Verification/Live16x24/sodden-environment-after-16-v6-reed-maze.png"
+          }
+        ],
+        "acceptance_record": "Docs/Verification/Live16x24/sodden-environment-acceptance.md"
       }
     },
     {
@@ -4596,10 +4617,10 @@
     "release_evidence_push_verified": true
   },
   "hourly_reporting": {
-    "last_report_at_utc": "2026-10-28T13:42:30.048067+00:00",
-    "next_report_due_at_utc": "2026-10-28T14:42:30.048067+00:00",
-    "report": "Docs/GRAPHICS-COMPLETION-PLAN.md",
-    "basis": "Actual explicit hourly update: Buckler completed/pushed, crop state deferred, worldwide environment focus and next Sodden ground/edge goals."
+    "last_report_at_utc": "2026-10-28T14:42:35+00:00",
+    "next_report_due_at_utc": "2026-10-28T15:42:35+00:00",
+    "report": "Sodden ground/mirev4 imported; final native143Passed/3Inconclusive. Final actual comparison/review/main publication in progress, then Stump and Grovelands. All full-area polish scopes open; crops/animation deferred.",
+    "basis": "Actual itemized user-facing hourly report"
   },
   "stump_baseline": {
     "status": "five_formation_actual_before_survey_and_concept_critique_complete;native_source_and_red_tests_underway;no_native_integration_or_acceptance",
@@ -5175,7 +5196,7 @@
   },
   "world_polish_phase": {
     "requested_on": "2026-10-27",
-    "status": "required_not_complete;environment_priority_active_first_scope_selected;no_area_accepted",
+    "status": "required_not_complete;sodden_bounded_material_pass_verified;no_whole_area_accepted",
     "order": "Direct user override2026-10-28: environmental biome-by-biome/area-by-area polish is the current priority; do not wait for complete sprite coverage. Defer plants/crop systems and nuanced animation.",
     "scope": "All registered biomes and actual areas: ordinary formations, settlements and their real interiors, opening journey, underground/depth/layout roles, lairs and other special sites. Deliberately sparse areas require review too.",
     "separation_rule": "Sprite coverage/integration and package delivery are separate from polish acceptance. No atlas frame count, owner count, test total, single viewport or material checkpoint implies an area is polished.",
@@ -11415,17 +11436,16 @@
     "area_polish_advanced": false
   },
   "next_scoped_work": {
-    "status": "environment_polish_priority_active_first_scope_selected",
-    "plan": "Docs/GRAPHICS-ENVIRONMENT-POLISH.md",
+    "status": "planned_actual_baseline_next",
+    "plan": "Docs/GRAPHICS-STUMP-ENVIRONMENT.md",
     "scope": [
-      "Sodden firm ground variation",
-      "mire edge salience",
-      "biome-specific floor/ground-cover composition"
+      "Stump TepuiStonefloor",
+      "solid StoneDome material hierarchy"
     ],
-    "reason": "Actual OpenMire shows repeated grass and broad sparse areas; avoid changing shared Sill/Grovelands grass accidentally. Healthy earned157 is available.",
-    "scope_horizon": "Every biome/area including settlements/interiors/underground/special sites; compare actual needs after bounded first pass.",
-    "deferred": "Plant/crop systems, additional crop-state work, small item packets, nuanced animation.",
-    "publication_commit": "491372b7f262a4fd951ecff10991acb3ff67a7fe"
+    "reason": "Actual SummitScrub has repetitive pinkfloor and subtle blocker faces; environmental polish across allbiomes is userpriority. Reuse editable71-frameatlas and earned68/74.",
+    "following": "Grovelands forestfloor, then remaining settlements/interiors/underground/specialsites perarea ledger.",
+    "deferred": "Crop systems/states,smallitempackets,nuancedanimation",
+    "package_bounds": "Current43a151ddb packages unchanged; batchlaterenvironmental delivery."
   },
   "sodden_frogs": {
     "status": "bounded_Editor_verified_source_pushed_packages_pending",
@@ -11743,8 +11763,10 @@
     "limits": "Actual Mac branch ends HP26 after real Bandfrog attacks; Editor branch163 is separate. Initial incorrect-scene build and Look-mode trial retained. No new regional/worldwide polish, sustained performance or clean-log claim."
   },
   "latest_observation": {
-    "current_record": "portable_crops",
-    "summary": "Native240/dry mark observed only; user redirected to worldwide environment polish. Buckler41af2dff0 and seedsc0548d1eb verified main; currentpackages43a unchanged."
+    "at_utc": "2026-10-28T15:05:17Z",
+    "scope": "Sodden bounded environmental material pass",
+    "evidence": "Docs/Verification/Live16x24/sodden-environment-final-receipt.json",
+    "bounds": "Whole-area polish open; finalsource notyetpackaged; nextStump environmentalfloor/blockers."
   },
   "portable_seeds": {
     "status": "source_pushed_and_bounded_editor_verified",
@@ -11899,6 +11921,10 @@
     {
       "current_record": "expedition_batch_delivery",
       "summary": "Four exact identities delivered;139nativepasses,7actualMaccaptures/twoprocesses, exactworldrestart. Linux archive verified, not executed. No area-polish advancement."
+    },
+    {
+      "current_record": "portable_crops",
+      "summary": "Native240/dry mark observed only; user redirected to worldwide environment polish. Buckler41af2dff0 and seedsc0548d1eb verified main; currentpackages43a unchanged."
     }
   ],
   "buckler": {
@@ -11978,5 +12004,34 @@
     "bounds": "No complete crop/area polish/package/device claim; do not resume automatically.",
     "source_commit": "491372b7f262a4fd951ecff10991acb3ff67a7fe",
     "source_remote_verified": true
+  },
+  "sodden_environment": {
+    "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+    "plan": "Docs/GRAPHICS-SODDEN-ENVIRONMENT.md",
+    "evidence": "Docs/Verification/Live16x24/sodden-environment-final-receipt.json",
+    "scope": [
+      "Ordinary Sodden Grass",
+      "Disclosed valid MirePool full/depleted connected shores"
+    ],
+    "actual_views": [
+      "seed65 Overworld.18.8.0 OpenMire",
+      "seed65 Overworld.16.8.0 ReedMaze"
+    ],
+    "native_final": {
+      "Passed": 143,
+      "Inconclusive": 3,
+      "Failed": 0,
+      "receipt": "Docs/Verification/Live16x24/sodden-environment-native-v6-final.json",
+      "job": "53b5f4864cf441adb6655ae5c4d05d36"
+    },
+    "bounds": "No full80x25area or biome acceptance; no final package or physicalDeck claim. Crops and nuanced animation deferred. All other regional/environmental scopes remain open.",
+    "source_atlas_sha256": "8cdc575283d951a7f02d106c01906bcce59085b75107f3f8b7674cb323d7d938",
+    "runtime_sha256": "df26299afe0f1142fe195e3e089563d585911d2e14edb464c1bbff954de3d0a0",
+    "actual_final_images": [
+      "Docs/Verification/Live16x24/sodden-environment-after-15-v6-matched.png",
+      "Docs/Verification/Live16x24/sodden-environment-after-16-v6-reed-maze.png",
+      "Docs/Verification/Live16x24/sodden-environment-after-17-v6-continue171.png",
+      "Docs/Verification/Live16x24/sodden-environment-after-18-v6-examine.png"
+    ]
   }
 }
