@@ -33,7 +33,7 @@ namespace CavesOfOoo.Rendering
     ///
     /// <para>Plan: <c>Docs/GRAPHICS-PASS7.md</c></para>
     /// </summary>
-    public class EnvironmentSpriteRenderer : MonoBehaviour
+    public partial class EnvironmentSpriteRenderer : MonoBehaviour
     {
         // Render between AnimatedEnvironment (2) and FX (4). Reuses
         // GlyphGhostRenderer's slot at 3 — they share sortingOrder
@@ -367,6 +367,7 @@ namespace CavesOfOoo.Rendering
                 ? _flatStateOwner.ApplyFlatLighting(color, x, y) : color;
         private void OnDestroy()
         {
+            DisposeFlatWallShadow();
             _flatPixelGreybox?.Dispose(); _flatPixelGreybox = null;
             if (_flatGroundDecorationTilemap != null)
             {
@@ -382,6 +383,7 @@ namespace CavesOfOoo.Rendering
         public void ReconcileFlatOwnerStates(Zone zone, ZoneRenderer owner)
         {
             if (owner == null || !owner.OwnsEnvironmentRenderer(this) || owner.CurrentZone != zone) return;
+            SyncFlatWallShadowOption(owner);
             if (!RenderingEnabled || !FlatPixelGreyboxEnabled || owner.Paused || !owner.FlatPixelModeActive)
             {
                 _flatPixelGreybox?.ClearObservedOwners();
@@ -660,6 +662,7 @@ namespace CavesOfOoo.Rendering
             var decorationRenderer = decoration.AddComponent<TilemapRenderer>();
             decorationRenderer.sortingOrder = 1;
             decorationRenderer.sharedMaterial = renderer.sharedMaterial;
+            InitFlatWallShadow(gridParent);
 
             LoadSprites();
             BuildTiles();
@@ -1060,6 +1063,7 @@ namespace CavesOfOoo.Rendering
             ClearFlatPaintReceipts();
             _flatPixelGreybox?.ClearObservedOwners();
             _flatGroundDecorationTilemap?.ClearAllTiles();
+            _flatGroundShadowTilemap?.ClearAllTiles();
             if (!IsInitialized) return;
             foreach (var kvp in _claims)
                 _overlayTilemap.SetTile(kvp.Key, null);
@@ -1164,6 +1168,7 @@ namespace CavesOfOoo.Rendering
                     if (!actorAccepted && flat.ForegroundTile != null) ClaimCell(pos, flat.ForegroundTile, FlatForegroundTint(zone, x, zoneY, flat));
                     else ClaimMainCellWithoutOverlay(pos);
                     PaintBackgroundClaim(pos, flat.GroundTile, flat.LocalGround || flat.AmbientBackdrop ? flat.GroundColor : FlatLight(zone, flat.GroundColor, x, zoneY));
+                    PaintFlatWallShadow(zone, x, zoneY, pos, flat);
                     if (flat.GroundDecorationTile != null && _flatGroundDecorationTilemap != null)
                     {
                         _flatGroundDecorationTilemap.SetTile(pos, flat.GroundDecorationTile);
@@ -1406,6 +1411,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void ReleaseClaims()
         {
+            _flatGroundShadowTilemap?.ClearAllTiles();
             foreach (var kvp in _claims)
                 RestoreMainClaim(kvp.Value);
             _claims.Clear();
@@ -1434,6 +1440,7 @@ namespace CavesOfOoo.Rendering
 
         private void RestoreMainClaim(in Claim claim)
         {
+            ClearFlatWallShadow(claim.Pos);
             if (_flatGroundDecorationTilemap != null && _flatGroundDecorationTilemap.HasTile(claim.Pos))
             {
                 _flatGroundDecorationTilemap.SetTile(claim.Pos, null);

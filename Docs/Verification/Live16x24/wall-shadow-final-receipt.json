@@ -1,0 +1,58 @@
+{
+  "utc": "2026-10-28T20:26:37.358085+00:00",
+  "status": "bounded_editor_pilot_verified;publication_pending",
+  "scope": "Current Sill exact native StoneWall over disclosed clear ordinary dry Grass/StoneFloor. Actual matched sample contains Grass receivers only.",
+  "art_rule": {
+    "direction": "fixed screen-north artistic light convention; no solar/torch simulation",
+    "offset_native_pixels": [
+      0,
+      2
+    ],
+    "black_alpha": 0.16,
+    "shadow_order": 0,
+    "ground_order": -1,
+    "wall_order": 3,
+    "resource": "borrow existing accepted opaque masonry tile; no PNG or import-semantic change"
+  },
+  "native": {
+    "red_failed": 25,
+    "green_total": 225,
+    "green_passed": 224,
+    "green_failed": 0,
+    "green_skipped": 1,
+    "skip": "Existing runtime allocation counter cannot observe a known allocation; no zero-allocation claim",
+    "red": "wall-shadow-native-red.xml",
+    "green": "wall-shadow-native-green.xml"
+  },
+  "actual": {
+    "baseline": "Fixtures/light-shadow-return186",
+    "after": "wall-shadow-after186.png",
+    "matched_changed_pixels": 640,
+    "matched_change": "Exactly20 strips of16x2 pixels; no other pixel changed",
+    "route": [
+      "Ordinary Up3 Left3 to36,8: southern receiver occupied, wall36,7 shadow absent",
+      "Boundary input invoked existing wall strikes, wall7361 remains38/40 and solid; player stayed36,8 HP40",
+      "Actual stone-wall reader preserves identity/portrait/condition",
+      "Right37,8 and inventory: UI has0shades, return restores current20/15 eligible owners by current visibility",
+      "Worldmap to glade11.10:0shades; ordinary return to Sill:20shades",
+      "F5 and immutable wall-shadow-return187 (turn1300 HP40), fresh isolated Continue187:20same wall sources/receivers"
+    ],
+    "restart_world_changed_pixels": 372,
+    "restart_world_pixels": 564000,
+    "restart_original_shadow_pixels_changed": 0,
+    "restart_limit": "Other localized world changes at115,270\u2013266,348 remain unattributed; no full-world exact-restart claim"
+  },
+  "independent_review": "wall-shadow-independent-review.md",
+  "profile": "wall-shadow-editor-profile.json",
+  "preservation": "wall-shadow-preservation.json",
+  "borrowed_art_verification": "wall-shadow-borrowed-art-verification.json",
+  "current_package_source": "43a151ddbd714d1bf1a786084e88bc2cfcd5106b",
+  "limitations": [
+    "No whole-area polish acceptance",
+    "Actual wall sample is Grass only; StoneFloor verified natively",
+    "Fixed shallow shading only; no ambient/time/torch response",
+    "No other wall families, props, NPCs or biomes covered by this wall layer",
+    "Packaged runs and physical Deck not repeated"
+  ],
+  "next": "Compare Stump SummitScrub sparse-center and Sodden OpenMire captures for one bounded ground-cover/composition improvement. Keep shadow expansion biome-specific and evidence-led; do not keep extending Sill."
+}

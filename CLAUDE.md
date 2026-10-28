@@ -1,5 +1,10 @@
 # Caves of Ooo — Project Rules for Claude
 
+**Current wall-shadow checkpoint — 2026-10-28 20:26 UTC:** Sill StoneWall now casts a restrained two-native-pixel southward shade on disclosed dry clear ground.25 new RED cases preceded224 related passes and1 existing allocation-counter skip. Actual matched186 changes exactly640pixels beneath20walls; movement/reader/inventory/travel and freshContinue187 verified. Independent review found0 actionable P1/P2. Original shadow pixels survive restart exactly;372 other world pixels differ with cause unproven. Source publication pending. See [shadow pilot](Docs/GRAPHICS-LIGHT-SHADOW-PILOT.md).
+
+Next compare Stump SummitScrub and Sodden OpenMire for one bounded ground-cover/composition improvement; broader shadows and full-area polish remain open. Packages remain43a151ddb; no Deck claim. Crops/nuanced animation deferred. **Last actual hourly report19:44UTC; next20:44UTC.**
+
+
 **Current light/shadow pilot — 2026-10-28 19:58 UTC:** The current Sill player now has a subtle18% contact mask on disclosed dry grass/stone, reusing unchanged art and the pooled renderer. Matched actual185 images differ only16pixels beneath boots; actual court/stone/inventory/well-marker/water/reader/dry recovery/travel/freshContinue186 verified. Native281passed,0failed,1existing unreliable allocation-counter skip;18new cases. Independent review0P1/P2, deliberately faint at normal zoom. Full restart has482other local changed pixels; player crop exact, broader cause unproven. Source `e71858ddfe9d2df76f00ba6e6623e6499284b55d` is pushed and verified on origin/main. See [pilot and evidence](Docs/GRAPHICS-LIGHT-SHADOW-PILOT.md).
 
 Next: one bounded masonry/counter shade trial with explicit disclosed receiver/rendering rules, then compare another biome. Walls, props, other actors/areas and wider lighting remain planned. Environment material polish and periodic chunk population continue; crops/optional animation deferred. Packages remain43a151ddb; no Deck claim. **Last actual hourly report19:44UTC; next20:44UTC.**

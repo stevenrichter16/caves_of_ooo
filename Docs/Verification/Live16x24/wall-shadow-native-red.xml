@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="0" failed="25" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:17Z" duration="4.3506838">
+  <test-suite type="TestSuite" id="41972" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34103" result="Failed" site="Child" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:17Z" duration="4.350684" total="25" passed="0" failed="25" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41944" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34103" result="Failed" site="Child" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:17Z" duration="4.082660" total="25" passed="0" failed="25" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41945" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34103" result="Failed" site="Child" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:17Z" duration="4.043881" total="25" passed="0" failed="25" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41946" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34103" result="Failed" site="Child" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:17Z" duration="4.038070" total="25" passed="0" failed="25" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32491" name="FlatPixelSillWallShadowTests" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:17Z" duration="4.018093" total="25" passed="0" failed="25" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32494" name="ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:14Z" duration="0.997643" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32492" name="ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry(&quot;Grass&quot;)" methodname="ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1359977921" result="Failed" start-time="2026-10-28 20:15:13Z" end-time="2026-10-28 20:15:14Z" duration="0.838626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry (System.String floor) [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32493" name="ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry(&quot;StoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry(&quot;StoneFloor&quot;)" methodname="ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1784535408" result="Failed" start-time="2026-10-28 20:15:14Z" end-time="2026-10-28 20:15:14Z" duration="0.092225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ActualPainterUsesSeparateUnlitLayerAndTwoPixelSouthOffsetWithoutChangingGeometry (System.String floor) [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32513" name="ActualWallDestructionClearsShadeWithoutManualNorthDirtyAndMatchesFullPass" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ActualWallDestructionClearsShadeWithoutManualNorthDirtyAndMatchesFullPass" methodname="ActualWallDestructionClearsShadeWithoutManualNorthDirtyAndMatchesFullPass" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1659221164" result="Failed" start-time="2026-10-28 20:15:14Z" end-time="2026-10-28 20:15:15Z" duration="0.089705" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ActualWallDestructionClearsShadeWithoutManualNorthDirtyAndMatchesFullPass () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:172
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32519" name="CurrentSillAuthorityCannotBeBorrowedByRenamedOrReplacedGraphs" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.CurrentSillAuthorityCannotBeBorrowedByRenamedOrReplacedGraphs" methodname="CurrentSillAuthorityCannotBeBorrowedByRenamedOrReplacedGraphs" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1950890247" result="Failed" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:15Z" duration="0.087931" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.CurrentSillAuthorityCannotBeBorrowedByRenamedOrReplacedGraphs () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:215
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32520" name="MissingNativeWallResourceRetainsFallbackBodyWithoutShade" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.MissingNativeWallResourceRetainsFallbackBodyWithoutShade" methodname="MissingNativeWallResourceRetainsFallbackBodyWithoutShade" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="646013064" result="Failed" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:15Z" duration="0.086617" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.MissingNativeWallResourceRetainsFallbackBodyWithoutShade () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:227
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32518" name="PresentationExitClearsShadeAndReturnRestoresCurrentOwners" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.PresentationExitClearsShadeAndReturnRestoresCurrentOwners" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:15Z" duration="0.427179" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32515" name="PresentationExitClearsShadeAndReturnRestoresCurrentOwners(&quot;pause&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.PresentationExitClearsShadeAndReturnRestoresCurrentOwners(&quot;pause&quot;)" methodname="PresentationExitClearsShadeAndReturnRestoresCurrentOwners" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1050540599" result="Failed" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:15Z" duration="0.102719" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.PresentationExitClearsShadeAndReturnRestoresCurrentOwners (System.String exit) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:199
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32516" name="PresentationExitClearsShadeAndReturnRestoresCurrentOwners(&quot;travel&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.PresentationExitClearsShadeAndReturnRestoresCurrentOwners(&quot;travel&quot;)" methodname="PresentationExitClearsShadeAndReturnRestoresCurrentOwners" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="2014595530" result="Failed" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:15Z" duration="0.092559" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.PresentationExitClearsShadeAndReturnRestoresCurrentOwners (System.String exit) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:199
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32517" name="PresentationExitClearsShadeAndReturnRestoresCurrentOwners(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.PresentationExitClearsShadeAndReturnRestoresCurrentOwners(&quot;legacy&quot;)" methodname="PresentationExitClearsShadeAndReturnRestoresCurrentOwners" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1144113927" result="Failed" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:15Z" duration="0.085588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.PresentationExitClearsShadeAndReturnRestoresCurrentOwners (System.String exit) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:199
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32503" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:16Z" duration="1.014050" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32495" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;memory&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="2145490335" result="Failed" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:15Z" duration="0.166457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32496" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;unexplored&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="2083125610" result="Failed" start-time="2026-10-28 20:15:15Z" end-time="2026-10-28 20:15:16Z" duration="0.116522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32497" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;render-hidden&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="600545313" result="Failed" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:16Z" duration="0.098514" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32498" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;custom&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;custom&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="217105193" result="Failed" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:16Z" duration="0.098556" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32499" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;zero-hp&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;zero-hp&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="875853770" result="Failed" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:16Z" duration="0.100258" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32500" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;removed&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="132738805" result="Failed" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:16Z" duration="0.089638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32501" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;covered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;covered&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1642032788" result="Failed" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:16Z" duration="0.101122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32502" name="SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall(&quot;foreign-render&quot;)" methodname="SourceMustRemainCurrentVisibleSelectedNativeStoneWall" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="2099622419" result="Failed" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:16Z" duration="0.093137" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SourceMustRemainCurrentVisibleSelectedNativeStoneWall (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:116
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32512" name="SouthOnlyDirtyAddRemoveRepaintsNorthShadeAndMatchesFullPass" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthOnlyDirtyAddRemoveRepaintsNorthShadeAndMatchesFullPass" methodname="SouthOnlyDirtyAddRemoveRepaintsNorthShadeAndMatchesFullPass" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1857524966" result="Failed" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:16Z" duration="0.105740" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthOnlyDirtyAddRemoveRepaintsNorthShadeAndMatchesFullPass () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:156
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32511" name="SouthReceiverMustBeDisclosedDryAndClear" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-28 20:15:16Z" end-time="2026-10-28 20:15:17Z" duration="0.973906" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32504" name="SouthReceiverMustBeDisclosedDryAndClear(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear(&quot;memory&quot;)" methodname="SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="563313559" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.099646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32505" name="SouthReceiverMustBeDisclosedDryAndClear(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear(&quot;unexplored&quot;)" methodname="SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="540355434" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.110622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32506" name="SouthReceiverMustBeDisclosedDryAndClear(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear(&quot;water&quot;)" methodname="SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1506864155" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.117442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32507" name="SouthReceiverMustBeDisclosedDryAndClear(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear(&quot;oil&quot;)" methodname="SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="887255961" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.119705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32508" name="SouthReceiverMustBeDisclosedDryAndClear(&quot;prop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear(&quot;prop&quot;)" methodname="SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="1343474812" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.130065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32509" name="SouthReceiverMustBeDisclosedDryAndClear(&quot;item&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear(&quot;item&quot;)" methodname="SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="75106247" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.098151" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32510" name="SouthReceiverMustBeDisclosedDryAndClear(&quot;player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear(&quot;player&quot;)" methodname="SouthReceiverMustBeDisclosedDryAndClear" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="649075506" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.095486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.SouthReceiverMustBeDisclosedDryAndClear (System.String fault) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32514" name="ToggleClearsOnlyWallShadeImmediatelyAndSchedulesItsReturn" fullname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ToggleClearsOnlyWallShadeImmediatelyAndSchedulesItsReturn" methodname="ToggleClearsOnlyWallShadeImmediatelyAndSchedulesItsReturn" classname="CavesOfOoo.Tests.FlatPixelSillWallShadowTests" runstate="Runnable" seed="923057587" result="Failed" start-time="2026-10-28 20:15:17Z" end-time="2026-10-28 20:15:17Z" duration="0.092384" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A separate FlatGroundShadowTilemap has not been implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint.get_Shade () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:253
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.Submitted (CavesOfOoo.Tests.FlatPixelSillWallShadowTests+Paint p) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:59
+at CavesOfOoo.Tests.FlatPixelSillWallShadowTests.ToggleClearsOnlyWallShadeImmediatelyAndSchedulesItsReturn () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillWallShadowTests.cs:184
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

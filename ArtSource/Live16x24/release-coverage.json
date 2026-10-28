@@ -12591,5 +12591,23 @@
       "Packaged builds remain43a151ddb; no physical Deck"
     ],
     "source_commit": "e71858ddfe9d2df76f00ba6e6623e6499284b55d"
+  },
+  "wall_shadow_pilot": {
+    "status": "bounded_editor_pilot_verified;publication_pending",
+    "plan": "Docs/GRAPHICS-LIGHT-SHADOW-PILOT.md",
+    "evidence": "Docs/Verification/Live16x24/wall-shadow-final-receipt.json",
+    "scope": "Current Sill exact native StoneWall over disclosed clear ordinary dry Grass/StoneFloor. Actual matched sample contains Grass receivers only.",
+    "native_passed": 224,
+    "native_skipped": 1,
+    "actual_changed_pixels": 640,
+    "fresh_continue": "wall-shadow-return187",
+    "limitations": [
+      "No whole-area polish acceptance",
+      "Actual wall sample is Grass only; StoneFloor verified natively",
+      "Fixed shallow shading only; no ambient/time/torch response",
+      "No other wall families, props, NPCs or biomes covered by this wall layer",
+      "Packaged runs and physical Deck not repeated"
+    ],
+    "next": "Compare Stump SummitScrub sparse-center and Sodden OpenMire captures for one bounded ground-cover/composition improvement. Keep shadow expansion biome-specific and evidence-led; do not keep extending Sill."
   }
 }
