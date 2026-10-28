@@ -1,5 +1,7 @@
 # Environmental polish: start with the Sodden fen floor
 
+**Current continuation,15:40UTC:** Sodden and Stump now have bounded Editor material improvements. Stump21frames improve floor/blocker distinction;111nativepass and actualSummit/Gorge/Continue172 verified. Exact publication next. Full-area composition and platform-like dome tops remain open. Next Grovelands forestfloor/groundcover; plan follows source preflight. Current43a151ddb packages unchanged.
+
 **Status,2026-10-28: first scoped Sodden material pass bounded Editor-verified; nextStump.** The user's direct override prioritizes environmental tiles, walls, floors, ground and ground cover **across all biomes/areas**. Stop extending cultivation/lifecycle work; preserve the tested crop integration with bounded dry-appearance acceptance. Root owns its closing records and Unity/Git. The Sodden pass now has original native tiles, guarded integration and native/actual evidence; see [bounded record](GRAPHICS-SODDEN-ENVIRONMENT.md). All full-area acceptance remains open.
 
 ## Choice grounded in actual scenes

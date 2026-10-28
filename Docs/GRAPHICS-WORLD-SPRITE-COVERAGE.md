@@ -1,5 +1,7 @@
 # Worldwide native sprite coverage
 
+**Environment update,2026-10-28:** Stump21-frame floor/dome material pass is bounded Editor-verified;111nativepass, actualSummit/Gorge, block/passableledge and Continue172. Source publication pending. No full-area acceptance; broad sparse composition/platform-like dome tops remain. Next Grovelands environmental floor/cover. See [Stump](GRAPHICS-STUMP-ENVIRONMENT.md).
+
 **Current environment checkpoint — 2026-10-28 15:05UTC:** Sodden original36-frame fen floor/connected mire pass is bounded Editor-verified. Final143Passed/3Inconclusive allocation controls; actual matched OpenMire/ReedMaze, final Continue171 and Examine pass; independent source/visual review has0P1/P2. Repetition and wet-edge defects improved; all full-area scopes remain open. Source/art/evidence publication is this change; current43a151ddb packages exclude it. Next [Stump floor/solid-dome polish](GRAPHICS-STUMP-ENVIRONMENT.md), then Grovelands forest floor. Crops/animation deferred. Last actual hourly report14:42:35UTC; next15:42:35UTC. Storage inspection only.
 
 

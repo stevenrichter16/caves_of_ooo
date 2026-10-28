@@ -1,8 +1,6 @@
 # Stump environmental polish: worn floor and raised stone
 
-**Planned only,2026-10-28.** The user's current priority is environmental
-materials/composition across all biomes. This follows the Sodden pass; no
-runtime, art, tests, Unity state or gameplay changes accompany this plan.
+**Bounded Editor material pass verified,2026-10-28.** Original21-frame floor/dome revision improves named material/readability defects. Whole-area polish remains open; publication pending. See [actual acceptance](Verification/Live16x24/stump-environment-acceptance.md).
 
 ## Actual defect and preferred first slice
 
@@ -83,3 +81,23 @@ do not repeat an entire framework. Preserve cached views and no render-time
 world mutation. Whole-view hierarchy, repetitive stamp runs and blocker clarity
 need actual visual review; native counts cannot accept them. All other Stump
 addresses, special sites, biome polish, packages and physical Deck remain open.
+
+## Pre-implementation corrections,15:16UTC
+
+Baseline actual01 confirms Summit50,2HP29, currentordinary3.4. Original71-frame atlas exactlymatches27264sourcepixels (fd33497368615b60f09ccc2d16efe25dd0033370034c95ce93fe0445bb2af7f1). Only21frames0–3/20–21/56–70change; protectother50frames/19200pixels and sharedpalettekeys. Existingbuilder writes Assets and oldverifier assumesfirst26unchanged/one-pixelrims; use a narrow source-only wrapper withtarget-specificpalettekeys, originalquads andexactprotected-framechecks. Do not executeoldbuilder unchanged.
+
+Floor0dominates75% and localcoordinatepatternrepeatsbetweenzones; keepitquiet, withno stampedmotif. Domeinterior20/21 similarlymustformonecoherentmass. ExposedbitsN1/E2/S4/W8 are oppositeSodden connectionbits; world/reader currentlyshareselectedperimeterframe. No runtime/testchange isneeded forpixel-only revision. Existing FlatPixelStumpMaterialsTests plus non-targetpixelidentity willverify selection/lifetime/dirty/fog contracts. Native111 is historicalonly untilrootrunsfinal.
+
+Actual baseline controls: from Summit74, Down moves50,2→50,3HP29; anotherDown is blocked by exactStoneDome65504at50,4. L/Down/Return/X opens its ordinary reader. Captures01/02/03 and read-onlystate receipts preserve this. No invented collision/no gameplay edits. Correct native test file is Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs (not the newer Presentation/Rendering test subfolder); initial pin script failed beforewriting and then used the verifiedpath.
+
+## Final bounded result,2026-10-28
+
+The21-frame pixel-only pass is Editor-verified. Source atlas00d7f0c1ac90bd8dab781e257048c5a94e8555eb139eee61f0533a723438d46a;50 non-target frames/19,200pixels unchanged. Approved baseline and rejected first loop-like marks stay preserved. Two exports match; both editable Blender files reopen with25,750exactquads/300groups. The labeled imagegen study informed color/relief only; original native art contains no imagegen raster extraction.
+
+111/111 existing native Stump cases pass. No runtime behavior changed and no new runtime RED claim is made. Real Summit movement, blocked dome, reader, side approach, F5 and fresh Continue172 pass;0/564,000worldpixels differ on restart. Gorge's matched before/after retains walls/pool/ledge identity; an ordinaryRight crosses43,12→44,12HP38 on the passable ledge. No fresh inter-zone travel was performed. Actual captures and read-only owner receipts are linked by stump-environment-final-receipt.json.
+
+Independent source and actual review:0P1/P2. The floor now has restrained fossil wear instead of a blank pink plane, and domes have a darker connected cap with inside-cell relief instead of repetitive hatch. Their tops still look like flat cut-stone platforms, and broad empty scene composition is unresolved. This accepts the named material/readability improvement only, not whole-area polish, naturalistic domes or reference parity.
+
+A39.79s Editor profile retained the last4096samples and wrapped: renderermean0.092745ms/p990.180833ms. It covers Summitworld/readerexit/idle/tool time; rapid arrow attempts during profiling did not move the player, so no movement/Gorge-profile claim. The later sustained east input moved two cells; subsequentDown moved one before the solid corner. Capture05 is a no-movement attempt,06 the verified side approach. Console query returned memoryless depth load/store messages; no managed exception observed. No packaged/Deck performance claim.
+
+Preservation:49foreignhashes and1000normalEditor-saveentries/0standaloneentries unchanged; only four Unity bookkeeping preference keys changed. Eight generated metadata whitespace rewrites were backed up/restored. Source/current/prior builds preserved; storage deletion0. Packages remain43a151ddb and exclude this art. Next: Grovelands forestfloor/groundcover, with wider environmental polish still required.

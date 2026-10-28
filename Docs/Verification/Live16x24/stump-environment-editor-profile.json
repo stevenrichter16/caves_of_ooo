@@ -1,0 +1,71 @@
+{
+  "label": "stump-environment-editor-profile",
+  "start": "2026-10-28T15:34:47.829513Z",
+  "end": "2026-10-28T15:35:27.624125Z",
+  "elapsedSeconds": 39.794612,
+  "frames": 10179,
+  "zone": "Overworld.3.4.0",
+  "player": [
+    50,
+    3
+  ],
+  "hp": 29,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 92744.74536132812,
+      "max": 2583167,
+      "p99": 180833
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 4954662.926269531,
+      "max": 2556177250,
+      "p99": 8299625
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 37.478759765625,
+      "max": 38,
+      "p99": 38
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 37.478759765625,
+      "max": 38,
+      "p99": 38
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 4096,
+      "capacity": 4096,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 8987.46728515625,
+      "max": 8998,
+      "p99": 8998
+    }
+  ],
+  "bounds": "Editor Summit world/reader exit and idle/UI/tool time only; rapid right-input attempts did not move the player during this sample. No Gorge sample. Last4096 retained samples wrapped; not controlled before/after performance or physical Deck."
+}
