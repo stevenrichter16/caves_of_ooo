@@ -52,7 +52,17 @@ namespace CavesOfOoo.Tests
             Assert.That(result.ForegroundColor, Is.EqualTo(Color.white));
             Assert.That(Resolve().ForegroundTile, Is.SameAs(result.ForegroundTile));
             owner.GetPart<RenderPart>().VisualID = "reference-glade-low-wall";
-            AssertCast(Resolve(), frame, "A terrain VisualID cannot turn a creature into masonry.");
+            if (blueprint == "Villager")
+            {
+                // Portable neutral residents reject reskins before the older
+                // opening route; the other three local cast contracts persist.
+                var reskinned = Resolve();
+                Assert.That(reskinned.ForegroundTile.sprite.texture, Is.Not.SameAs(_castAtlas));
+                Assert.That(reskinned.ForegroundTile.sprite.texture, Is.Not.SameAs(_baseAtlas));
+                owner.GetPart<RenderPart>().VisualID = null;
+                AssertCast(Resolve(), frame);
+            }
+            else AssertCast(Resolve(), frame, "A terrain VisualID cannot turn a creature into masonry.");
         }
 
         [TestCase("Villager")]

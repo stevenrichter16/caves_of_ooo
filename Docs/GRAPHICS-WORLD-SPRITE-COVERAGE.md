@@ -1,5 +1,7 @@
 # Worldwide native sprite coverage
 
+**Latest resident slice — 2026-10-28 02:22UTC:** Neutral Villager/Merchant are integrated and observed in actual Sill world/examine/dialogue/trade;154 final native checks and Continue134 verified. This closes two global body gaps, not all resident coverage or an accepted area. Next higher-impact surface family: Scorpion/BrittleHound/GlassblownDrifter; see `GRAPHICS-BEATING-WILDLIFE.md`. Resident packages pending a surface batch; previous source7e2ed7a30 builds remain preserved.
+
 **Whole-game credit priority (2026-10-28):** The user explicitly says not to concentrate the remaining credits on caves. Recent cave/shared-prop work is batched in fresh Mac/Linux source7e2ed7a30, with bounded Mac play and Linux archive verification. Next: shared neutral Villager/Merchant residents for settlement/interior readability, then missing Beating wildlife. See Docs/GRAPHICS-SHARED-RESIDENTS.md and current completion continuation. Choose the largest visible gaps across all areas; preserve approved art and defer optional animation. Native coverage is not full-area polish. Storage remains inspection-only.
 
 **Historical continuation — fresh Slate delivery, 2026-10-27:**

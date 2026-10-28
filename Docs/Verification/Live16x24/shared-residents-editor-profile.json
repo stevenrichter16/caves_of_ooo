@@ -1,0 +1,71 @@
+{
+  "label": "shared-residents-editor-profile",
+  "start": "2026-10-28T02:14:02.621811Z",
+  "end": "2026-10-28T02:15:24.192775Z",
+  "elapsedSeconds": 81.570965,
+  "frames": 32152,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    65,
+    12
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 32153,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 81233.8959039592,
+      "max": 9610583,
+      "p99": 226625
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 32153,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 2529235.4739215625,
+      "max": 2036862292,
+      "p99": 6303791
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 32153,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 36.54772494013,
+      "max": 43,
+      "p99": 43
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 32153,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 36.54772494013,
+      "max": 43,
+      "p99": 43
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 32153,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 10590.41818803844,
+      "max": 13633,
+      "p99": 13633
+    }
+  ],
+  "bounds": "Editor Sill residents world, Look, examine, dialogue and trade input plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

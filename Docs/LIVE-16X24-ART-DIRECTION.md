@@ -1,5 +1,7 @@
 # Live 16×24 art direction and integration
 
+**Latest coverage slice (2026-10-28):** Shared neutral Villager/Merchant approved bodies now reach ordinary Sill world and exact readers/dialogue;154 final native checks and actual Continue134. Next: Beating surface wildlife, not caves; use `Docs/GRAPHICS-BEATING-WILDLIFE.md`. Coverage and later coherent cast/area polish remain distinct.
+
 **Whole-game credit priority (2026-10-28):** The user explicitly says not to concentrate the remaining credits on caves. Recent cave/shared-prop work is batched in fresh Mac/Linux source7e2ed7a30, with bounded Mac play and Linux archive verification. Next: shared neutral Villager/Merchant residents for settlement/interior readability, then missing Beating wildlife. See Docs/GRAPHICS-SHARED-RESIDENTS.md and current completion continuation. Choose the largest visible gaps across all areas; preserve approved art and defer optional animation. Native coverage is not full-area polish. Storage remains inspection-only.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
