@@ -1,6 +1,6 @@
 # Beating environmental polish: sand, road and ruined masonry
 
-Planned after the Grovelands floor pass; no implementation or acceptance yet.
+Current16:41UTC: twelve target frames integrated and actual Editor controls verified.151/151native pass; independent final source/actual review0P1/P2; exact publication pending. Original approved editable packet remains in place;22non-targetframes exact. No full-area or packaged acceptance.
 
 Root and a separate reviewer inspected actual `Verification/Live16x24/beating-final-04-ruin-field.png`. Regular diagonal marks cover broad sand and sandstone planes; solid brick remnants have weak depth beside walkable paving. The caravan-road capture also shows broad repetition. Compared with Overwrit's lore-sensitive empty center and Sill's repeated lawn, this offers a cohesive next improvement to ground and blocking architecture. The older green-road defect is already fixed; do not reopen it.
 
@@ -9,3 +9,19 @@ Start pixel-only: existing34-frame `Sprites/Live16x24/beating-materials`, change
 Reuse `ArtSource/Live16x24/beating-materials/{source-cells.json,beating-materials.blend}` and `Tools/Live16x24/build_beating_materials.py` helpers without overwriting approved sources. Root owns Unity/Git. Healthy earned `Fixtures/beating-baseline-dune65`:19.14,turn2930,HP38/40; ordinary world-map travel two north reaches RuinField19.12. Reconfirm fresh state and use ordinary controls, no teleport/reveal. Freeze matched real views, generate one labeled imagegen material reference, critique parts, author original editable native cells, compare actual sand/ruin/road and blocker/reader behavior.
 
 Relevant existing test class: `CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests`. Pixel-only work needs source identity and current regression checks; changed selection/behavior requires focused RED first. Record known sparse composition separately. Full Beating, other sites, packaged execution and physical Deck stay open until actually checked.
+
+## Preimplementation correction,16:23UTC
+
+Shared floor12–15 is also borrowed by FlatPixelShallowCavesCatalog for ordinary shallow SandstoneFloor depth1/2. Include earned shallow-caves-depth2-85 (16.13.2,turn11910HP33) as before/after counterview. Preserve floor base #806A4C because shallow ambient backing uses RGB128,106,76; revise only detail. Original approved source/builder remain in place; new beating-environment source branch provides reversible12-frame revision. Current actualDune19.14 and ordinary two-north Ruin19.12 baselines captured; playerHP38, real sand/road/floor owners confirmed.
+
+## Actual baseline and acceptance limits
+
+Current capture01Dune19.14 at40,14HP38; ordinary mapUp2→Ruin19.12 at40,12HP38, F5turn2990 and immutable174 preserved before anypixelchanges. Capture03 uses healthy earned shallowdepth2-85 at40,12HP33, confirming the shared floor under ordinary stairs, exposed floor and ambient fill. No gameplay/schema/runtime behavior edits are planned. Native regression uses exact BeatingMaterials and ShallowCaves test classes after art import. The new importer must retain current texture settings/GUID and preserve the pre-existing foreign metadata bytes; no new import-setting changes are required. Compare actual wall blocking, walkable floor/road, reader and freshContinue before acceptance. V1 imagegen raised entire walkablefloor rectangles and sand mottle are explicitly rejected in partscritique.
+
+## Final actual controls and limitations
+
+Three matched before/after views cover DuneField19.14, RuinField19.12 and shared shallow-floor16.13.2. Floors now omit the diagonal slash carpet; shaded masonry remains inside straight solid footprints. Original dune/salt/brine/body pixels stay exact. Real road→floor walking, wall bump strike and Examine preserve mechanics/owner36592 (Structure23/30). Read the acceptance record for the excluded pause-menu175 trial and raw actor-health query correction. Clean returned176 at40,12HP38turn3060 and fresh Continue differ0/564000worldpixels. This is a bounded material improvement, not full80×25composition or otherformation acceptance.
+
+No runtime/selector/generation/collision/fog code changed; source missing-art RED and fourcorruptioncounterchecks validate the art export. Existing Beating+Shallow native151 passed. No new hotpath allocation/draw layer: same34frameatlas/layout/palette, fourflatmaterialfamilies changed. Editor50.44s approachsample8912framesnonewrapped,renderermean.134ms/p99.230ms,max37batches; longtool/editorstalls remain in max values. No controlled before/after speedup or physicalDeckclaim. Source/actual/profile/preservation evidence is indexed in `Verification/Live16x24/beating-environment-final-receipt.json`.
+
+Known laterpolish: broad openchunkcomposition, repeatedsoftroadmarks and masonryhighlights, otherformations/settlements/interiors/dungeons/sites, wholechunkroutes/disclosure review. Current43a151ddb packages are unchanged; batchenvironmentdeliverylater. Crop/item/subtleanimationqueues staydeferred. Storageinspectiononly;49foreignpaths andnormalsaves/gameprefs preserved.

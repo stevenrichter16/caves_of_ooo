@@ -904,17 +904,16 @@
     "area_polish_advanced": false
   },
   "next_scoped_work": {
-    "status": "actual_beating_baseline_in_progress",
-    "plan": "Docs/GRAPHICS-BEATING-ENVIRONMENT.md",
+    "status": "planned_scoped_consumer_review",
+    "plan": "Docs/GRAPHICS-SILL-ENVIRONMENT.md",
     "scope": [
-      "Sand0\u20133",
-      "SandstoneFloor12\u201315",
-      "SandstoneWall16\u201317",
-      "RoadStone32\u201333"
+      "Sill settlement ground repetition",
+      "Masonry versus flat interior-floor hierarchy"
     ],
-    "reason": "Actual RuinField shows pervasive diagonal sand/paving repetition and weak masonry relief; coherent ground+wall improvement continues surface rotation after Sodden/Stump/Grovelands. Confirm current healthy earned baseline before changes.",
-    "deferred": "Crop systems/states,smallitempackets,nuancedanimation",
-    "package_bounds": "Current43a151ddb unchanged; batch environmental delivery later."
+    "reason": "Actual shared-village-roles-after-01-world and sill-envelope-after-08-interior show repeated sprinkle lawn and weak room/approach material distinction; clearer actionable material debt than intentional Overwrit blankness.",
+    "fixture": "Docs/Verification/Live16x24/Fixtures/sill-envelope-after65",
+    "deferred": "Crop systems/states, small item packets, nuanced animation",
+    "package_bounds": "Current43a151ddb unchanged; environmental packages remain pending"
   },
   "popup_raster_continuation": {
     "date": "2026-10-26",
@@ -12148,5 +12147,81 @@
     "preservation": "Docs/Verification/Live16x24/grovelands-environment-preservation.json",
     "source_commit": "a1662dc8b6b172c7b3d1e4627ab4a3dc93105d5b",
     "source_push_verified": true
+  },
+  "beating_environment": {
+    "utc": "2026-10-28T16:42:00.488364+00:00",
+    "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+    "plan": "Docs/GRAPHICS-BEATING-ENVIRONMENT.md",
+    "scope": [
+      "Sand0\u20133",
+      "SandstoneFloor12\u201315 including ordinary shallow depth1/2 reuse",
+      "SandstoneWall16\u201317",
+      "RoadStone32\u201333"
+    ],
+    "changed_frames": 12,
+    "protected_frames": 22,
+    "protected_native_pixels": 8448,
+    "source_png_sha256": "d458ef1c7b9aa7340fff6672f9bfad4dd51f92cba27c7ab91facfafa2291681e",
+    "runtime_changes": false,
+    "approved_editable_sources_preserved": true,
+    "native": {
+      "passed": 151,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "Docs/Verification/Live16x24/beating-environment-native-green.json",
+      "initial_attempt": "014a7 timed out initializing with0reportedcases; excluded, retriedonlyafterinactive"
+    },
+    "actual_before": [
+      "Docs/Verification/Live16x24/beating-environment-before-01-dune.png",
+      "Docs/Verification/Live16x24/beating-environment-before-02-ruin.png",
+      "Docs/Verification/Live16x24/beating-environment-before-03-shallow-floor.png"
+    ],
+    "actual_after": [
+      "Docs/Verification/Live16x24/beating-environment-after-01-ruin.png",
+      "Docs/Verification/Live16x24/beating-environment-after-02-wall-approach.png",
+      "Docs/Verification/Live16x24/beating-environment-after-03-wall-reader.png",
+      "Docs/Verification/Live16x24/beating-environment-after-04-clean-return-saved.png",
+      "Docs/Verification/Live16x24/beating-environment-after-05-fresh-continue.png",
+      "Docs/Verification/Live16x24/beating-environment-after-06-dune.png",
+      "Docs/Verification/Live16x24/beating-environment-after-07-shallow-floor.png"
+    ],
+    "matched_areas": [
+      "Overworld.19.12.0 RuinField",
+      "Overworld.19.14.0 DuneField",
+      "Overworld.16.13.2 shared shallow floor"
+    ],
+    "gameplay": "Ordinary beforetravelDune\u2192mapUp2\u2192Ruin; after road40,12\u2192floor40,15; Downbump normalstrike wall36592, remainsblocking, actualStructure23/30; world/reader consistent; cleanUp3return40,12HP38",
+    "checkpoint": {
+      "baseline": 174,
+      "excluded_pause_branch": 175,
+      "final": 176,
+      "turn": 3060,
+      "hp": 38,
+      "player": [
+        40,
+        12
+      ],
+      "fresh_continue": true,
+      "different_world_pixels": 0,
+      "compared_world_pixels": 564000
+    },
+    "corrections": [
+      "Shallow floor shared consumer discoveredbeforeediting; preservebase#806A4C",
+      "DoubleEscapeopenedPause, Up3selectedmenu;175isnotreturnedposition; excluded04retained;176cleanreturnverified",
+      "Actor Hitpoints query0 is not wall structuraldurability; reader23/30 is authoritative",
+      "Launchguards correctly refused testcleanup and briefFinishrootcleanup; no bypass"
+    ],
+    "profile": "Docs/Verification/Live16x24/beating-environment-editor-profile.json",
+    "profile_bounds": "50.44s Editor approach/idle/tooltime;8912samplesnonewrapped;renderermean.134msp99.230ms/max159.59ms;37maxbatches;mainthreadmax3.10s includes tool/editorstalls,not controlledspeedup/Deck",
+    "remaining": [
+      "Broad sparsechunk composition and landmarks",
+      "Soft repeating road/ground marks and wallhighlights",
+      "Other formations/sites and full-area visibility/routes audit",
+      "Packaged delivery and physicalDeck"
+    ],
+    "whole_area_accepted": false,
+    "package_bounds": "Current43a151ddb unchanged and excludes environmentalpasses",
+    "preservation": "Docs/Verification/Live16x24/beating-environment-preservation.json",
+    "independent_review": "Docs/Verification/Live16x24/beating-environment-independent-review.md"
   }
 }
