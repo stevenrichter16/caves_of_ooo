@@ -1,6 +1,10 @@
-# Shared stone props: bounded next-family preflight
+# Shared stone props: bounded native integration
 
-**Recommendation:** one shared neutral-body policy for exact `Pillar` and `BrokenColumn`, with two borrowed image groups, after Obsidian. No regional duplicate catalogs, new entities, placement/density changes or new art are presently justified. This is source preparation, not acceptance. No hidden save contents were read.
+Current: approved Pillar/BrokenColumn bodies are integrated globally; the six-cave floor-backing defect is repaired. Final419 distinct native cases pass. Actual readers/traversal, surviving Pillar damage and9/10 travel are observed; earned125 fresh Continue is verified. Source publication is pending, packages remain batched and no area-polish acceptance is claimed.
+
+## Historical source preflight
+
+**Initial source preflight recommendation:** one shared neutral-body policy for exact `Pillar` and `BrokenColumn`, with two borrowed image groups, after Obsidian. No regional duplicate catalogs, new entities, placement/density changes or new art are presently justified. At preflight this was source preparation, not acceptance. Final bounded results and remaining limits are recorded below. No hidden save contents were read.
 
 ## Correct identities
 
@@ -28,3 +32,27 @@ RED pairs: exact two bodies/world/readers versus reskin/foreign/duplicate parts,
 
 ## Actual baseline — 2026-10-28
 Root reread exact blueprint/furniture contracts and continued unedited118 through real GameBootstrap. Zone9/35,17HP28Charred reveals existing Pillars28,17;31,17;56,16 and BrokenColumns29,14;32,16;44,18. Before01 is an actual overview; before02 verifies Pillar31,17 Stone50/50 solid glyphI. The attempted third reader captured QuartziteFloor28,11 instead of BrokenColumn and is retained as `shared-stone-props-rejected-03-floor-reader.png`; it is not column evidence. Subsequent normal look-cursor attempts did not reach the intended cell reliably. The close BrokenColumn reader, routes, damage and restart remain pending. Corrected the premature draft reader claim before publication. No full-chunk acceptance or new sprite integration is claimed. The owned isolated session was archived byte-for-byte before ending it. Reusable art requires genuine native RED and subsequent actual-play checks. No image generation is needed unless approved reuse fails a named identity defect.
+
+## Test contract corrections before production
+The23-case fixture treats the selected owner and an authorized explicit reader separately: a still-disclosed prop may retain an explicit reader portrait beneath an actor, while the world paints the selected actor. Equal-layer floor/column insertion order retains the existing selector; the art integration does not reorder entities. These corrections were saved before RED. Approved native input groups remain immutable; source hashes above are reused. Obsidian source is remotely verified at9edfa4b5297ea098f326ed3ae57b2634160034d7; packages remain batched.
+
+Initial fixture import lacked `using CavesOfOoo.Data` for EntityFactory; corrected before any production change. The first tool job reported zero discovered tests and is rejected as RED evidence. Native compilation and nonzero discovery are required.
+
+
+## Named backing defect and source correction before repair
+
+Actual integration trial exposed black backing beneath the transparent native BrokenColumn. Its real non-solid `Terrain` identity is valid, but each of the six ordinary cave catalogs' `CompetingGround` predicates treats a Terrain owner outside that catalog's local foreground list as competing ground. BrokenColumn is newly handled by the shared body catalog, so this currently rejects an otherwise valid real material floor below it. The body sprite is not the defect; no floor entity, placement or gameplay change is warranted.
+
+Before production repair, six parameterized cases were added to `FlatPixelSharedStonePropsTests`: ordinary depths1/3/5/7/9/11 with their actual Sandstone/Limestone/Shale/Slate/Quartzite/Obsidian floor resources (Sandstone borrows Beating frames12–15). Each first verifies the real floor alone, then the selected neutral fragment above that same floor and submitted ground tile. Added material, harvest service or live water coating must retain refusal; removing the unsupported part restores the positive. Owner-free ambient backing is not a substitute for this real floor. Native RED for this correction is pending root; no repair or GREEN is claimed here.
+
+
+## Bounded integration checkpoint — 2026-10-28
+
+Genuine initial RED:23 failures. The first related run passed135 cases (23stone+33furniture+43storage+36quartzite); Greybox/Fallback name filters missed, so those suites were not counted. The backing regression then produced29 total:23Passed/6Failed. Final `shared-stone-props-final-green.json` contains **419 distinct Passed**:29stone,33furniture,43storage,40fallback,33greybox,56shallow,36limestone,36shale,36slate,36quartzite,41obsidian. Earlier runs overlap the final set and are not added to419.
+
+The runtime borrows the exact approved16×16 Pillar and opening-base frame6, with no new art. A validated neutral BrokenColumn can retain the actual native floor below it across all six cave material adapters; unsupported material/service/coating still refuses. Trial02 verifies the fragment reader32,16, followed by ordinary movement onto it. Pillar31,17 ID102840 takes a normal bump50→48HP and remains solid; playerHP28Charred. Complete destruction→Rubble is native-test evidence only. F5 earns124turn13300. Corrected after01 fixes floor backing, after02 shows the reader, and ordinary9→10→9 travel earns125turn13400 at32,17HP28. Fresh Continue after05 restores32,17HP28Charred, pillar102840 at48HP/solid and fragment102849/passable. Five corrected final views and five trial views are retained. Restart comparison:14901/564000 changed pixels, maximum channel delta2/255 in player-light bounds[372,362,568,549]; not pixel-identical. Both final session archives are preserved and root called Finish. Independent actual review remains pending. The earlier wrong baseline03 remains explicitly rejected.
+
+`shared-stone-props-editor-profile.json` spans67.858111 seconds including UI/tool time, without a sustained FPS, improvement or Deck claim. Source publication is pending; current main is Obsidian9edfa4b52 and shipped packages remain Slate702cb9d80, batched for credit/visual-output priority. All55 inventory and five Stump-area polish states are unchanged. Recommend a finite shared SteamVent/FrostVent source/reuse audit next, not an already-audited or accepted family. Last actual hourly00:28UTC; next01:28UTC unchanged.
+
+## Final independent review and preservation
+The final independent code/visual review found no remaining P1/P2 issue and closed the floor-backing defect. It viewed the five final captures plus trial01/04/05 and independently checked419distinct native passes, identical saved/restored observation objects and the bounded pixel difference. Low fragment contrast, sparse visible composition and broad area polish remain debt. Root ended the owned Editor isolation; scene clean and normal save-root restored.49pre-existing dirty paths remain byte-identical. Only owned importer whitespace was backed up/restored. Storage inspected;0files removed and0bytes reclaimed. See `shared-stone-props-independent-review.md` and `shared-stone-props-preservation-audit.json` under Verification/Live16x24.

@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Credit-prioritized continuation (2026-10-28):** Maximize visible coverage with compact prompts, batched work/packages and reused evidence; preserve meaningful acceptance gates and concise thorough records. Quartzite9/10 and Obsidian11/12 now have bounded native Editor evidence; shared Pillar/BrokenColumn reuse is next. See Docs/GRAPHICS-COMPLETION-PLAN.md for current state. Shipped packages still use Slate702cb9d80; no world-polish completion claim.
+**Credit-prioritized continuation (2026-10-28):** Maximize visible coverage with compact prompts, batched work/packages and reused evidence; preserve meaningful acceptance gates and concise thorough records. Quartzite9/10, Obsidian11/12 and shared Pillar/BrokenColumn now have bounded native Editor evidence. The shared props retain real floor under fragments across six cave bands; final419native checks pass. Next is a finite shared SteamVent/FrostVent source/reuse audit, with no new acceptance yet. See Docs/GRAPHICS-COMPLETION-PLAN.md for current state. Shipped packages still use Slate702cb9d80; no world-polish completion claim.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.

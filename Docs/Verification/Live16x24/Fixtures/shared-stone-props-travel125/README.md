@@ -1,0 +1,1 @@
+Earned normal Continue124, fragment traversal and cave9→10→9 travel, return32,17 and F5. Pillar102840at31,17 remains48HPsolid; BrokenColumn102849at32,16 remainspassable; playerHP28Charred. Finalsharedbody/floorintegration. Uneditedsave; actual restart verification recorded separately.

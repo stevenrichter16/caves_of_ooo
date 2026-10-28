@@ -1,8 +1,8 @@
 # Worldwide native sprite coverage
 
-**Credit-prioritized continuation (2026-10-28):** Maximize visible coverage with compact prompts, batched work/packages and reused evidence; preserve meaningful acceptance gates and concise thorough records. Quartzite9/10 and Obsidian11/12 now have bounded native Editor evidence; shared Pillar/BrokenColumn reuse is next. See Docs/GRAPHICS-COMPLETION-PLAN.md for current state. Shipped packages still use Slate702cb9d80; no world-polish completion claim.
+**Credit-prioritized continuation (2026-10-28):** Maximize visible coverage with compact prompts, batched work/packages and reused evidence; preserve meaningful acceptance gates and concise thorough records. Quartzite9/10, Obsidian11/12 and shared Pillar/BrokenColumn now have bounded native Editor evidence. The shared props retain real floor under fragments across six cave bands; final419native checks pass. Next is a finite shared SteamVent/FrostVent source/reuse audit, with no new acceptance yet. See Docs/GRAPHICS-COMPLETION-PLAN.md for current state. Shipped packages still use Slate702cb9d80; no world-polish completion claim.
 
-**Current continuation — fresh Slate delivery, 2026-10-27:**
+**Historical continuation — fresh Slate delivery, 2026-10-27:**
 Source `702cb9d8096e6dd8eebfd93cdeb08b22d5aece27` is verified on main by root.
 Fresh Mac and Linux builds succeeded with zero errors and five/four warnings
 respectively. The retained native evidence is270 distinct passes; it was not

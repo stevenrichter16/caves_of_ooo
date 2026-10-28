@@ -1,0 +1,1 @@
+Earned by normal Continue118, walking onto BrokenColumn32,16, then standing32,17 and bumping Pillar31,17: structural50→48, stillsolid, playerHP28Charred. F5 checkpoint124; no save editing. Trial shared art contains a known black floor-backing defect; this fixture preserves mechanics before its rendering-only correction.

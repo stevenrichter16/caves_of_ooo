@@ -1,0 +1,220 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 23,
+    "passed": 0,
+    "failed": 23,
+    "skipped": 0,
+    "durationSeconds": 3.1281684,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "AcceptedExplicitGladeBrokenColumnRemainsOnOriginalFrameEvenWithoutSharedResources",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.AcceptedExplicitGladeBrokenColumnRemainsOnOriginalFrameEvenWithoutSharedResources",
+      "state": "Failed",
+      "durationSeconds": 0.3275901,
+      "message": "  Missing shared stone-prop adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:54\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.Construct (UnityEngine.Texture2D pillar, UnityEngine.Texture2D opening) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:57\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.AcceptedExplicitGladeBrokenColumnRemainsOnOriginalFrameEvenWithoutSharedResources () [0x00063] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:155\n",
+      "output": ""
+    },
+    {
+      "name": "ActualRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt(\"Pillar\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ActualRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt(\"Pillar\")",
+      "state": "Failed",
+      "durationSeconds": 0.164843,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ActualRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt (System.String name) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:199\n",
+      "output": ""
+    },
+    {
+      "name": "ActualRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt(\"BrokenColumn\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ActualRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt(\"BrokenColumn\")",
+      "state": "Failed",
+      "durationSeconds": 0.0832055,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ActualRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt (System.String name) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:199\n",
+      "output": ""
+    },
+    {
+      "name": "BrokenColumnIsPassableNotBreakableAndDoesNotInventAnInteraction",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.BrokenColumnIsPassableNotBreakableAndDoesNotInventAnInteraction",
+      "state": "Failed",
+      "durationSeconds": 0.0746245,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.BrokenColumnIsPassableNotBreakableAndDoesNotInventAnInteraction () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:99\n",
+      "output": ""
+    },
+    {
+      "name": "CachedViewsAndDisposalLeaveBothBorrowedSourcesAndPeerAlive",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.CachedViewsAndDisposalLeaveBothBorrowedSourcesAndPeerAlive",
+      "state": "Failed",
+      "durationSeconds": 0.0574982,
+      "message": "  Missing shared stone-prop adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:54\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.Construct (UnityEngine.Texture2D pillar, UnityEngine.Texture2D opening) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:57\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.CachedViewsAndDisposalLeaveBothBorrowedSourcesAndPeerAlive () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:209\n",
+      "output": ""
+    },
+    {
+      "name": "CurrentDisclosureAndCoverRetireReadersWithoutChangingUnderlyingProps",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.CurrentDisclosureAndCoverRetireReadersWithoutChangingUnderlyingProps",
+      "state": "Failed",
+      "durationSeconds": 0.0597716,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.CurrentDisclosureAndCoverRetireReadersWithoutChangingUnderlyingProps () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:162\n",
+      "output": ""
+    },
+    {
+      "name": "CurrentPhysicalMembershipAndCachedGraphStayAuthoritative",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.CurrentPhysicalMembershipAndCachedGraphStayAuthoritative",
+      "state": "Failed",
+      "durationSeconds": 0.0675846,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.CurrentPhysicalMembershipAndCachedGraphStayAuthoritative () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:193\n",
+      "output": ""
+    },
+    {
+      "name": "ExactWorldAndAuthorizedReadersReuseBodiesAcrossRegions(\"Pillar\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ExactWorldAndAuthorizedReadersReuseBodiesAcrossRegions(\"Pillar\")",
+      "state": "Failed",
+      "durationSeconds": 0.0826834,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ExactWorldAndAuthorizedReadersReuseBodiesAcrossRegions (System.String name) [0x00054] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:68\n",
+      "output": ""
+    },
+    {
+      "name": "ExactWorldAndAuthorizedReadersReuseBodiesAcrossRegions(\"BrokenColumn\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ExactWorldAndAuthorizedReadersReuseBodiesAcrossRegions(\"BrokenColumn\")",
+      "state": "Failed",
+      "durationSeconds": 0.0851294,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ExactWorldAndAuthorizedReadersReuseBodiesAcrossRegions (System.String name) [0x00054] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:68\n",
+      "output": ""
+    },
+    {
+      "name": "OptionalInputGroupsFailIndependentlyWithoutImplicitReload(0,False)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload(0,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0687807,
+      "message": "  Missing shared stone-prop adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:54\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.Construct (UnityEngine.Texture2D pillar, UnityEngine.Texture2D opening) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:57\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload (System.Int32 missing, System.Boolean malformed) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:144\n",
+      "output": ""
+    },
+    {
+      "name": "OptionalInputGroupsFailIndependentlyWithoutImplicitReload(0,True)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload(0,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0676813,
+      "message": "  Missing shared stone-prop adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:54\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.Construct (UnityEngine.Texture2D pillar, UnityEngine.Texture2D opening) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:57\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload (System.Int32 missing, System.Boolean malformed) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:144\n",
+      "output": ""
+    },
+    {
+      "name": "OptionalInputGroupsFailIndependentlyWithoutImplicitReload(1,False)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload(1,False)",
+      "state": "Failed",
+      "durationSeconds": 0.07799,
+      "message": "  Missing shared stone-prop adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:54\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.Construct (UnityEngine.Texture2D pillar, UnityEngine.Texture2D opening) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:57\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload (System.Int32 missing, System.Boolean malformed) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:144\n",
+      "output": ""
+    },
+    {
+      "name": "OptionalInputGroupsFailIndependentlyWithoutImplicitReload(1,True)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload(1,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0764185,
+      "message": "  Missing shared stone-prop adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:54\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.Construct (UnityEngine.Texture2D pillar, UnityEngine.Texture2D opening) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:57\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OptionalInputGroupsFailIndependentlyWithoutImplicitReload (System.Int32 missing, System.Boolean malformed) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:144\n",
+      "output": ""
+    },
+    {
+      "name": "OtherStoneNamesAndSpoofedSourcePropertiesDoNotAcquireEitherBody",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OtherStoneNamesAndSpoofedSourcePropertiesDoNotAcquireEitherBody",
+      "state": "Failed",
+      "durationSeconds": 0.0707526,
+      "message": "  Missing shared stone-prop adapter\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:54\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.Construct (UnityEngine.Texture2D pillar, UnityEngine.Texture2D opening) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:57\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.OtherStoneNamesAndSpoofedSourcePropertiesDoNotAcquireEitherBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:220\n",
+      "output": ""
+    },
+    {
+      "name": "PillarAndBrokenColumnCannotBorrowEachOthersMechanicsOrFakeServices",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.PillarAndBrokenColumnCannotBorrowEachOthersMechanicsOrFakeServices",
+      "state": "Failed",
+      "durationSeconds": 0.0898058,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.PillarAndBrokenColumnCannotBorrowEachOthersMechanicsOrFakeServices () [0x00062] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:130\n",
+      "output": ""
+    },
+    {
+      "name": "RealPillarDamageAndDestructionProduceRubbleNotBrokenColumn",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RealPillarDamageAndDestructionProduceRubbleNotBrokenColumn",
+      "state": "Failed",
+      "durationSeconds": 0.0806204,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RealPillarDamageAndDestructionProduceRubbleNotBrokenColumn () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:88\n",
+      "output": ""
+    },
+    {
+      "name": "RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"identity\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"identity\")",
+      "state": "Failed",
+      "durationSeconds": 0.0705936,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader (System.String group) [0x000f8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:113\n",
+      "output": ""
+    },
+    {
+      "name": "RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"ownership\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"ownership\")",
+      "state": "Failed",
+      "durationSeconds": 0.0807532,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader (System.String group) [0x000f8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:113\n",
+      "output": ""
+    },
+    {
+      "name": "RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"custody\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"custody\")",
+      "state": "Failed",
+      "durationSeconds": 0.0780804,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader (System.String group) [0x000f8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:113\n",
+      "output": ""
+    },
+    {
+      "name": "RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"footprint\")",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader(\"footprint\")",
+      "state": "Failed",
+      "durationSeconds": 0.0613622,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.RefusedNeutralOwnersStayRefusedThroughPublicWorldAndReader (System.String group) [0x000f8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:113\n",
+      "output": ""
+    },
+    {
+      "name": "SameLayerFloorOrderRetainsRealSelectionAndDirtyActorCover(True)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.SameLayerFloorOrderRetainsRealSelectionAndDirtyActorCover(True)",
+      "state": "Failed",
+      "durationSeconds": 0.102635,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.SameLayerFloorOrderRetainsRealSelectionAndDirtyActorCover (System.Boolean floorFirst) [0x000c2] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:181\n",
+      "output": ""
+    },
+    {
+      "name": "SameLayerFloorOrderRetainsRealSelectionAndDirtyActorCover(False)",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.SameLayerFloorOrderRetainsRealSelectionAndDirtyActorCover(False)",
+      "state": "Failed",
+      "durationSeconds": 0.2821144,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.SameLayerFloorOrderRetainsRealSelectionAndDirtyActorCover (System.Boolean floorFirst) [0x001b7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:187\n",
+      "output": ""
+    },
+    {
+      "name": "StructuralAndTerrainContractsRemainDifferent",
+      "fullName": "CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.StructuralAndTerrainContractsRemainDifferent",
+      "state": "Failed",
+      "durationSeconds": 0.0772734,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D expected) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:53\nat CavesOfOoo.Tests.FlatPixelSharedStonePropsTests.StructuralAndTerrainContractsRemainDifferent () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs:79\n",
+      "output": ""
+    }
+  ]
+}

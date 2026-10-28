@@ -273,7 +273,8 @@ namespace CavesOfOoo.Rendering
                 || owner.HasPart<LiquidPoolPart>() || owner.HasPart<GasPoolPart>() || owner.HasPart<TileStateSourcePart>()
                 || owner.HasPart<TriggerOnStepPart>() || owner.HasPart<FiniteLiquidFilmPart>()
                 || owner.HasTag("WellGroundMarker") || owner.HasTag("OvenGroundMarker") || owner.HasTag("LanternGroundMarker")
-                || owner.HasTag("Terrain") && !OrdinaryForeground(owner);
+                || owner.HasTag("Terrain") && !OrdinaryForeground(owner)
+                    && !FlatPixelSharedStonePropsCatalog.IsNeutralFloorOverlay(owner);
         static bool Placed(Zone zone, Cell cell, Entity owner)
         {
             if (owner == null || owner.SpatialZone != zone) return false;

@@ -1,15 +1,17 @@
 # Graphics completion plan
 
-**Current continuation — 2026-10-28 00:39UTC:** Quartzite source `f1d15fc0aecd4a25a4a68e505236bef851bd76cd` is verified on main. Obsidian now has an original six-cell atlas, exact canonical ordinary11+ policy,41-case genuine RED and183 distinct focused/related passes; actual11/12 views/readers,70→69 solid-wall damage,10↔11↔12 travel and freshContinue123 are verified. [Obsidian evidence/limits](GRAPHICS-OBSIDIAN-MATERIALS.md). Source publication is pending this commit. Packages remain batched under the credit priority; current shipped package is Slate702cb9d80. This does not accept every deep area or whole-world polish.
+**Current continuation — 2026-10-28 01:07UTC:** Quartzite source `f1d15fc0aecd4a25a4a68e505236bef851bd76cd` and Obsidian `9edfa4b5297ea098f326ed3ae57b2634160034d7` were verified on main. This checkpoint adds shared neutral Pillar/BrokenColumn bodies using unchanged approved textures, plus the named black-backing correction beneath valid fragments across all six cave material bands. Genuine23-case RED preceded the body integration; six further backing cases failed before repair; final419distinct native tests pass. [Shared stone records](GRAPHICS-SHARED-STONE-PROPS.md) preserve corrections, exact reuse, five trial and five final actual images, reader/traversal/damage/travel, restart, profile and independent review. No remaining P1/P2 finding. Source publication is the remaining root action for this checkpoint.
 
-Next: [shared Pillar/BrokenColumn reuse](GRAPHICS-SHARED-STONE-PROPS.md). Actual Quartzite9 overview and the Pillar reader verify its Stone50/50 identity. The attempted BrokenColumn reader captured a floor and was rejected; its close reader remains pending. Reuse existing appropriate approved sprites before new image generation; native RED/integration/play acceptance is still pending. Continue broad missing family coverage across all biomes/areas. Last actual hourly report2026-10-28 00:28UTC; next01:28UTC.
+Actual ordinary Quartzite9 play confirms standing Pillar31,17 remains solid at48/50after one bump, BrokenColumn32,16 is passable, and both readers use their matching sprite. Normal9↔10travel and fresh isolated Editor Continue125 restore32,17HP28Charred and the same prop identities/damage. World comparison differs14,901/564,000pixels by at most2/255 in the player-light region; it is not pixel identical or a standalone process test. The67.858sEditor profile includes UI/tooltime and supports no FPS/speedup/Deck claim.
+
+Next: audit existing shared SteamVent/FrostVent identity and reusable source art, then the required actual before→integration→actual after gates. This is a proposed finite next family, not audited coverage. Continue the whole-world queue; low-contrast fragments, sparse composition, mixed glyphs, remaining regional owners and all55+5area-polish entries remain open. Packages are batched under the credit priority; the current shipped package remains Slate702cb9d80. No cache/storage deletion. Last actual hourly report2026-10-28 00:28UTC; next01:28UTC.
 
 **User credit priority — 2026-10-27:** About8k credits remain; maximize visible sprite output. Batch independent work and package verification, keep prompts/tool output and reviews compact, reuse valid evidence, and avoid redundant testing/investigation or optional animation/tooling. Preserve concise but thorough reproducible decisions, corrections, evidence, limitations and next steps. Keep required meaningful native/actual-play gates; do not convert preparation into acceptance.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is complete within
-its recorded bounds. Slate7/8 delivery is bounded and verified; the next finite
-preflight is ordinary Quartzite9/10, whose actual integration is recorded below.
+its recorded bounds. Slate7/8 delivery is bounded and verified; newer Quartzite, Obsidian and shared
+stone-prop source/Editor checkpoints are recorded above.
 Keep straight wall silhouettes as the current default. The isolated shale parity
 prototype is parked, disabled and not accepted as reference parity; preserve its
 editable candidates and evidence reversibly, with no further automatic art
