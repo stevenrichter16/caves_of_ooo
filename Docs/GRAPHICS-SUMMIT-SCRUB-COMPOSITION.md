@@ -1,6 +1,6 @@
 # SummitScrub shelter groups
 
-2026-10-28 — bounded native and actual Editor composition verified; source publication pending. This changes fresh SummitScrub generation only. Whole-area polish remains open; no PNG, sprite-coverage or package advancement is claimed.
+2026-10-28 — bounded native and actual Editor composition verified; source `98ac4d64b9e01ce43375087c9b3b24beb4f6c8c8` is published and remotely verified. This changes fresh SummitScrub generation only. Whole-area polish remains open; no PNG, sprite-coverage or package advancement is claimed.
 
 ## Choice and actual baseline
 
@@ -42,4 +42,4 @@ The full-generation recorder represented an absent PhysicsPart as false before a
 
 §5 self-review: 0 outstanding actionable P1/P2 within this bounded generation change. Tests precede both initial implementation and the actual-driven spacing correction; the native, full-generation census, ordinary movement/reader and save evidence agree. Remaining broad central/lower emptiness, flat platform-like domes, repeated aligned scrub stems, glyph props/pipes, other formations and whole-area polish stay open. No new artwork, runtime rendering, shadow expansion or coverage count is claimed.
 
-Root preservation checks retain 49 foreign paths, 1000 normal Editor save entries, settings and prior/current builds. Ten whitespace-only Unity meta rewrites were backed up and restored; zero bytes deleted. Source is locally verified, publication pending. Next batch-package the reviewed environment/shadow/composition source and verify ordinary launch/travel; 43a151ddb packages remain current and physical Deck execution remains unverified. Last actual hourly report 20:44:12.183742 UTC; next 21:44:12 UTC, unchanged by this checkpoint.
+Root preservation checks retain 49 foreign paths, 1000 normal Editor save entries, settings and prior/current builds. Ten whitespace-only Unity meta rewrites were backed up and restored; zero bytes deleted. Source `98ac4d64b9e01ce43375087c9b3b24beb4f6c8c8` is pushed and verified on origin/main. Next batch-package the reviewed environment/shadow/composition source and verify ordinary launch/travel; 43a151ddb packages remain current and physical Deck execution remains unverified. Last actual hourly report 20:44:12.183742 UTC; next 21:44:12 UTC, unchanged by this checkpoint.
