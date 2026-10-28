@@ -1,6 +1,6 @@
 # Worldwide native sprite coverage
 
-**Environment update,2026-10-28:** Stump21-frame floor/dome material pass is bounded Editor-verified;111nativepass, actualSummit/Gorge, block/passableledge and Continue172. Source publication pending. No full-area acceptance; broad sparse composition/platform-like dome tops remain. Next Grovelands environmental floor/cover. See [Stump](GRAPHICS-STUMP-ENVIRONMENT.md).
+**Environment update,2026-10-28:** Stump21-frame floor/dome material pass is bounded Editor-verified;111nativepass, actualSummit/Gorge, block/passableledge and Continue172. Source source `ab45624ed7580a60ab0090a481b3f23e56e6cc9d` verified on origin/main. No full-area acceptance; broad sparse composition/platform-like dome tops remain. Next Grovelands environmental floor/cover. See [Stump](GRAPHICS-STUMP-ENVIRONMENT.md).
 
 **Current environment checkpoint — 2026-10-28 15:05UTC:** Sodden original36-frame fen floor/connected mire pass is bounded Editor-verified. Final143Passed/3Inconclusive allocation controls; actual matched OpenMire/ReedMaze, final Continue171 and Examine pass; independent source/visual review has0P1/P2. Repetition and wet-edge defects improved; all full-area scopes remain open. Source/art/evidence publication is this change; current43a151ddb packages exclude it. Next [Stump floor/solid-dome polish](GRAPHICS-STUMP-ENVIRONMENT.md), then Grovelands forest floor. Crops/animation deferred. Last actual hourly report14:42:35UTC; next15:42:35UTC. Storage inspection only.
 
@@ -25,7 +25,7 @@ Packages remain source`43a151ddb` and exclude seeds. Five approved art/source/im
 
 **Current surface coverage — 2026-10-28 10:24 UTC:** Shared ordinary VineWall/HollowLog reuse is boundedEditor-verified with336native passes,9actual aftercaptures and exactrestart match. Frog source0f24f4942 is verified main; currentpackages remain0b888da80. See [surface record](GRAPHICS-SHARED-VINEWALL.md). Broad quiet patches, remaining Greatdew glyph and darkmire hazard salience remain distinct polish/coverage debt; no55+5scope advanced.
 
-**Current creature coverage — 2026-10-28:** Reedfrog/Bandfrog original native bodies and approved GinFrog reuse are integrated and observed in bounded OpenMire/ReedMaze Editor play. Native140-job success, seven after captures and exact save/restart comparison are recorded in [the frog report](GRAPHICS-SODDEN-FROGS.md). Source publication pending; packages remain0b888da80. No area-polish scope advances.
+**Current creature coverage — 2026-10-28:** Reedfrog/Bandfrog original native bodies and approved GinFrog reuse are integrated and observed in bounded OpenMire/ReedMaze Editor play. Native140-job success, seven after captures and exact save/restart comparison are recorded in [the frog report](GRAPHICS-SODDEN-FROGS.md). Source `ab45624ed7580a60ab0090a481b3f23e56e6cc9d` verified on origin/main; packages remain0b888da80. No area-polish scope advances.
 
 **Current delivery — 2026-10-28:** Farmer/Elder/VillageChild and three sidearms now ship in source0b888da80 packages:146 native passes,12 actual Mac views/five processes and exact restart match; Linux archive verified without execution. Next observed surface gap is Reedfrog/Bandfrog/GinFrog in ordinary Sodden areas. Coverage does not advance any of55+5 area-polish scopes. See [delivery record](Verification/Live16x24/packaged-village-roles-delivery.md).
 

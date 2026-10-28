@@ -1,6 +1,6 @@
 # Stump environmental polish: worn floor and raised stone
 
-**Bounded Editor material pass verified,2026-10-28.** Original21-frame floor/dome revision improves named material/readability defects. Whole-area polish remains open; publication pending. See [actual acceptance](Verification/Live16x24/stump-environment-acceptance.md).
+**Bounded Editor material pass verified,2026-10-28.** Original21-frame floor/dome revision improves named material/readability defects. Whole-area polish remains open; source `ab45624ed7580a60ab0090a481b3f23e56e6cc9d` verified on origin/main. See [actual acceptance](Verification/Live16x24/stump-environment-acceptance.md).
 
 ## Actual defect and preferred first slice
 
