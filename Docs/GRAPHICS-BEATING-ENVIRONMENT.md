@@ -1,6 +1,6 @@
 # Beating environmental polish: sand, road and ruined masonry
 
-Current16:41UTC: twelve target frames integrated and actual Editor controls verified.151/151native pass; independent final source/actual review0P1/P2; exact publication pending. Original approved editable packet remains in place;22non-targetframes exact. No full-area or packaged acceptance.
+Current16:41UTC: twelve target frames integrated and actual Editor controls verified.151/151native pass; independent final source/actual review0P1/P2; source `fb0c906ae1a58a847b2bd25dc589ace5355a8402` is verified on origin/main. Original approved editable packet remains in place;22non-targetframes exact. No full-area or packaged acceptance.
 
 Root and a separate reviewer inspected actual `Verification/Live16x24/beating-final-04-ruin-field.png`. Regular diagonal marks cover broad sand and sandstone planes; solid brick remnants have weak depth beside walkable paving. The caravan-road capture also shows broad repetition. Compared with Overwrit's lore-sensitive empty center and Sill's repeated lawn, this offers a cohesive next improvement to ground and blocking architecture. The older green-road defect is already fixed; do not reopen it.
 
