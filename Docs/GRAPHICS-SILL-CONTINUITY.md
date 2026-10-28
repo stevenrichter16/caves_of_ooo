@@ -59,3 +59,5 @@ Confirmed updated native19-case RED19:16:01–05UTC:18passed, only `InitializedO
 - Next direct-user scope: [light/contact-shadow pilot](GRAPHICS-LIGHT-SHADOW-PILOT.md), small and reversible, actual before/after first. Recurring prompt updated; no shadow implementation is claimed by this continuity commit.
 
 Files: Greybox routing/lifetime; SillEnvelope selected-static-memory API; new SillRiver adapter;16memory/19river tests and narrowed old fog assertion; plan, coverage/polish records, checkpoints and verification evidence. Reproduce from immutable before184 in owned isolated native launcher, ordinary C Continue at1280×800, then the route above; never use normal save roots or mutate game state to stage the view.
+
+Publication: source `dfbcaa008897e0365d4d077d62af7d2e2c225b7b` verified on origin/main at 2026-10-28T19:37:39.443519+00:00. See `Verification/Live16x24/sill-continuity-publication.json`.
