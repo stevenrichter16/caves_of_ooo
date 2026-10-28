@@ -1,6 +1,6 @@
 # Light, shadow and shading: small Sill pilot
 
-2026-10-28 — phase 1 now has bounded native and actual Editor verification; source publication pending. Phase 2/3 remain design only. The Sill river/memory continuity pass is published. The user's direction is to begin small, inspect actual play and iterate. Preserve the approved flat16x24 presentation, quieter floors, straight layered walls and existing gameplay. The first implementation is limited to the current Sill player.
+2026-10-28 — phase 1 now has bounded native and actual Editor verification; source `e71858ddfe9d2df76f00ba6e6623e6499284b55d` is pushed and verified on origin/main. Phase 2/3 remain design only. The Sill river/memory continuity pass is published. The user's direction is to begin small, inspect actual play and iterate. Preserve the approved flat16x24 presentation, quieter floors, straight layered walls and existing gameplay. The first implementation is limited to the current Sill player.
 
 ## Source audit and reuse limits
 
@@ -74,3 +74,5 @@ Reproduce with the established isolated native launcher, copying immutable `Fixt
 Next: choose **one Sill masonry wall or counter** for a short coherent directional shade pilot, with an explicit disclosed receiver/rendering-channel contract and matched normal-zoom before/after. Do not reuse the reserve-bed twine channel by assumption. Then compare the result with another biome before expanding. Other NPCs, props, walls, ambient lighting response and all other biomes remain unimplemented for this shadow layer. Environmental materials/population work stays active; no full-area polish or new population acceptance. Crops and optional animation stay deferred. Last actual hourly report19:44UTC; next20:44UTC.
 
 Self-review: native/actual/scope/legacy symmetry checked. No outstanding actionable source-review P1/P2; visual subtlety, restart-local differences, profile peak attribution and broader lighting/area acceptance remain explicit limitations.
+
+Publication receipt: source `e71858ddfe9d2df76f00ba6e6623e6499284b55d` verified on origin/main at 2026-10-28T20:02:26.778971+00:00; see `Verification/Live16x24/light-shadow-publication.json`.
