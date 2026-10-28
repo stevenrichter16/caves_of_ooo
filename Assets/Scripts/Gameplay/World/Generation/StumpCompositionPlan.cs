@@ -80,6 +80,7 @@ namespace CavesOfOoo.Core
             if (Band == StumpBand.Slopes) Veins(rng);
             RepairOpenPockets();
             MarkHabitats();
+            if (Formation == Formation.SummitScrub) ShelterScrub();
         }
 
         private void Gorge(Random rng)
@@ -200,6 +201,50 @@ namespace CavesOfOoo.Core
             {
                 int pick=rng.Next(candidates.Count);var c=candidates[pick];candidates.RemoveAt(pick);
                 Put(c.x,c.y,"TankBrocchinia");
+            }
+        }
+
+        // Add low, passable cover inside existing protected pockets. No RNG
+        // draws, new habitat, route changes, or displacement of old owners.
+        private void ShelterScrub()
+        {
+            var candidates = new List<(int x, int y)>();
+            for (int y = 2; y < 23; y++) for (int x = 2; x < 78; x++)
+                if (habitat[x,y] && objects[x,y] == null && !NearApproach(x,y,1)
+                    && (Near(x,y,"Tree",3) || Near(x,y,"StoneDome",3)))
+                    candidates.Add((x,y));
+            candidates.Sort((a,b) => {
+                int order = Hash(a.x,a.y,71).CompareTo(Hash(b.x,b.y,71));
+                return order != 0 ? order : (a.y*Zone.Width+a.x).CompareTo(b.y*Zone.Width+b.x);
+            });
+            var eligible = new HashSet<(int x, int y)>(candidates);
+            foreach (int size in new[] { 9, 7, 5 })
+            {
+                foreach (var anchor in candidates)
+                {
+                    if (Near(anchor.x,anchor.y,"Bush",8)) continue;
+                    var drift = new List<(int x, int y)>();
+                    var seen = new HashSet<(int x, int y)>();
+                    var queue = new Queue<(int x, int y)>();
+                    queue.Enqueue(anchor); seen.Add(anchor);
+                    while (queue.Count > 0 && drift.Count < size)
+                    {
+                        var c = queue.Dequeue();
+                        if (!eligible.Contains(c) || Near(c.x,c.y,"Bush",8)
+                            || Math.Abs(c.x-anchor.x)>4 || Math.Abs(c.y-anchor.y)>3) continue;
+                        drift.Add(c);
+                        // Coordinate-ranked neighbours grow irregular connected
+                        // drifts; broad stone gaps separate the unequal groups.
+                        var neighbours = new List<(int x, int y)>();
+                        for (int dy=-1;dy<=1;dy++) for (int dx=-1;dx<=1;dx++)
+                            if (dx!=0 || dy!=0) neighbours.Add((c.x+dx,c.y+dy));
+                        neighbours.Sort((a,b) => Hash(a.x,a.y,73).CompareTo(Hash(b.x,b.y,73)));
+                        foreach (var n in neighbours) if (seen.Add(n)) queue.Enqueue(n);
+                    }
+                    if (drift.Count < size) continue;
+                    foreach (var c in drift) objects[c.x,c.y] = "Bush";
+                    break;
+                }
             }
         }
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 20:55:59Z" end-time="2026-10-28 20:56:00Z" duration="0.9912974">
+  <test-suite type="TestSuite" id="42011" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34135" result="Failed" site="Child" start-time="2026-10-28 20:55:59Z" end-time="2026-10-28 20:56:00Z" duration="0.991297" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41983" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34135" result="Failed" site="Child" start-time="2026-10-28 20:55:59Z" end-time="2026-10-28 20:56:00Z" duration="0.702951" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41984" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34135" result="Failed" site="Child" start-time="2026-10-28 20:55:59Z" end-time="2026-10-28 20:56:00Z" duration="0.661335" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41985" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34135" result="Failed" site="Child" start-time="2026-10-28 20:55:59Z" end-time="2026-10-28 20:56:00Z" duration="0.650649" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26518" name="StumpSummitScrubPopulationTests" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-28 20:55:59Z" end-time="2026-10-28 20:56:00Z" duration="0.637977" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="26539" name="Seed64DriftsReachThreeSeparatedShelterNeighborhoods" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.Seed64DriftsReachThreeSeparatedShelterNeighborhoods" methodname="Seed64DriftsReachThreeSeparatedShelterNeighborhoods" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1733322363" result="Failed" start-time="2026-10-28 20:55:59Z" end-time="2026-10-28 20:56:00Z" duration="0.413200" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Nearby drifts spend density on the same shelter: (11.7777777777778, 3.11111111111111) and (17, 2.4)
+  Expected: greater than or equal to 144.0d
+  But was:  27.777283950617278d
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.Seed64DriftsReachThreeSeparatedShelterNeighborhoods () [0x000ae] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:89
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

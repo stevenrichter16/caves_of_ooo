@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="31" result="Failed(Child)" total="31" passed="17" failed="14" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 20:45:59Z" end-time="2026-10-28 20:46:03Z" duration="3.9549915">
+  <test-suite type="TestSuite" id="42010" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34134" result="Failed" site="Child" start-time="2026-10-28 20:45:59Z" end-time="2026-10-28 20:46:03Z" duration="3.954992" total="31" passed="17" failed="14" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41982" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34134" result="Failed" site="Child" start-time="2026-10-28 20:45:59Z" end-time="2026-10-28 20:46:03Z" duration="3.672833" total="31" passed="17" failed="14" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41983" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34134" result="Failed" site="Child" start-time="2026-10-28 20:45:59Z" end-time="2026-10-28 20:46:03Z" duration="3.659007" total="31" passed="17" failed="14" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41984" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34134" result="Failed" site="Child" start-time="2026-10-28 20:45:59Z" end-time="2026-10-28 20:46:03Z" duration="3.610494" total="31" passed="17" failed="14" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="26518" name="StumpSummitScrubPopulationTests" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-10-28 20:45:59Z" end-time="2026-10-28 20:46:03Z" duration="3.597350" total="31" passed="17" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="26551" name="DestroyedBushLeavesNoLootAndCannotBeRegrownByRejectedRebuild" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.DestroyedBushLeavesNoLootAndCannotBeRegrownByRejectedRebuild" methodname="DestroyedBushLeavesNoLootAndCannotBeRegrownByRejectedRebuild" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1922942147" result="Failed" start-time="2026-10-28 20:46:00Z" end-time="2026-10-28 20:46:00Z" duration="0.417557" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.DestroyedBushLeavesNoLootAndCannotBeRegrownByRejectedRebuild () [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:173
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26541" name="EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 20:46:00Z" end-time="2026-10-28 20:46:00Z" duration="0.306586" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26539" name="EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo(&quot;Overworld.3.4.0&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo(&quot;Overworld.3.4.0&quot;)" methodname="EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="2028394491" result="Failed" start-time="2026-10-28 20:46:00Z" end-time="2026-10-28 20:46:00Z" duration="0.053317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo (System.String id) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26540" name="EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo(&quot;Overworld.3.2.0&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo(&quot;Overworld.3.2.0&quot;)" methodname="EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1491356765" result="Failed" start-time="2026-10-28 20:46:00Z" end-time="2026-10-28 20:46:00Z" duration="0.039492" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.EveryBushStaysInExistingShelteredHabitatOutsideTheApproachHalo (System.String id) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26555" name="MissingBushBlueprintRejectsFreshScrubBeforeAnyGroundOrReservationIsPlaced" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.MissingBushBlueprintRejectsFreshScrubBeforeAnyGroundOrReservationIsPlaced" methodname="MissingBushBlueprintRejectsFreshScrubBeforeAnyGroundOrReservationIsPlaced" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1970286300" result="Failed" start-time="2026-10-28 20:46:00Z" end-time="2026-10-28 20:46:00Z" duration="0.081643" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.MissingBushBlueprintRejectsFreshScrubBeforeAnyGroundOrReservationIsPlaced () [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:224
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26550" name="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-28 20:46:00Z" end-time="2026-10-28 20:46:01Z" duration="0.458996" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26546" name="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(64,1)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(64,1)" methodname="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="585339220" result="Failed" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:01Z" duration="0.084307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved (System.Int32 seed, System.Int32 populationSeed) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:150
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26547" name="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(64,17)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(64,17)" methodname="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1409382257" result="Failed" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:01Z" duration="0.077180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved (System.Int32 seed, System.Int32 populationSeed) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:150
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26548" name="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(65,1)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(65,1)" methodname="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1049890623" result="Failed" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:01Z" duration="0.082621" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved (System.Int32 seed, System.Int32 populationSeed) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:150
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26549" name="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(65,17)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved(65,17)" methodname="OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1245665636" result="Failed" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:01Z" duration="0.077682" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.OrdinaryPopulationHasIdenticalSpeciesAndLocationsWithBushesPresentOrRemoved (System.Int32 seed, System.Int32 populationSeed) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:150
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26544" name="RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:01Z" duration="0.243489" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26542" name="RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable(64)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable(64)" methodname="RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1464202275" result="Failed" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:01Z" duration="0.060134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable (System.Int32 seed) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26543" name="RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable(65)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable(65)" methodname="RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="169910685" result="Failed" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:01Z" duration="0.058061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.RealBuilderProducesUniquePassablePlantOwnersAndKeepsRoutesReachable (System.Int32 seed) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26554" name="SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:02Z" duration="0.556476" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26552" name="SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration(False)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration(False)" methodname="SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="722276831" result="Passed" start-time="2026-10-28 20:46:01Z" end-time="2026-10-28 20:46:02Z" duration="0.353801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26553" name="SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration(True)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration(True)" methodname="SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="966727386" result="Failed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.074246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.SaveReloadKeepsOldBareAndPlayerEditedScrubZonesWithoutGeneration (System.Boolean keepRemainingScrub) [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:194
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="26538" name="ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.274666" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="26536" name="ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts(&quot;Overworld.3.4.0&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts(&quot;Overworld.3.4.0&quot;)" methodname="ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="2043506376" result="Failed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.069613" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.3.4.0 seed 0
+  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts (System.String id) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="26537" name="ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts(&quot;Overworld.3.2.0&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts(&quot;Overworld.3.2.0&quot;)" methodname="ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1663635320" result="Failed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.043429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.3.2.0 seed 0
+  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubHasTwelveToTwentyFourBushesInTwoOrThreeUnequalShortDrifts (System.String id) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="26545" name="ScrubIsRepeatableAndDoesNotConsumeThePipelineRandomStream" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubIsRepeatableAndDoesNotConsumeThePipelineRandomStream" methodname="ScrubIsRepeatableAndDoesNotConsumeThePipelineRandomStream" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="440428029" result="Failed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.069432" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: in range (12,24)
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubIsRepeatableAndDoesNotConsumeThePipelineRandomStream () [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitScrubPopulationTests.cs:135
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="26535" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:03Z" duration="0.961334" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="26519" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,0,&quot;255d8a7c40e2614d1c72126fb641073459ee9a7c945d61967f00cfacf3530a7f&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,0,&quot;255d8a7c40e2614d1c72126fb641073459ee9a7c945d61967f00cfacf3530a7f&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="201385814" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.049253" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26520" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,1,&quot;22f668d41b75663ade6c44c14079a3fef612f90337ae5ca22eb67dd98a6cf8ee&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,1,&quot;22f668d41b75663ade6c44c14079a3fef612f90337ae5ca22eb67dd98a6cf8ee&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1513446400" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.055792" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26521" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,17,&quot;0709febd518aed5404c1c758025f49b4f35d89d1850ba4e9c35d9e1b2920e30e&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,17,&quot;0709febd518aed5404c1c758025f49b4f35d89d1850ba4e9c35d9e1b2920e30e&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="16343071" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.062202" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26522" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,64,&quot;8e0f479c85219c58f02e15c97a27d94f04bdce22d5a81027b8eadc008ca2cc24&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,64,&quot;8e0f479c85219c58f02e15c97a27d94f04bdce22d5a81027b8eadc008ca2cc24&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1413955088" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.045728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26523" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,65,&quot;4ffc87e9c9d0d491aec14b18a59140938ae7a4aa72718632b05a0ec35130f5fe&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,65,&quot;4ffc87e9c9d0d491aec14b18a59140938ae7a4aa72718632b05a0ec35130f5fe&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="20400588" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.046031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26524" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,12345,&quot;e87de18dd3aff5e706048afc6cd861d71a8d6bf5bfe50d1730bd002e66ddb038&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,12345,&quot;e87de18dd3aff5e706048afc6cd861d71a8d6bf5bfe50d1730bd002e66ddb038&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1394694710" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:02Z" duration="0.044468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26525" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,int.MaxValue,&quot;6e9ca7e884502e01845880e81cce7f4fe8ecf541a9b83dab9a158208893bab2a&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,int.MaxValue,&quot;6e9ca7e884502e01845880e81cce7f4fe8ecf541a9b83dab9a158208893bab2a&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="474242150" result="Passed" start-time="2026-10-28 20:46:02Z" end-time="2026-10-28 20:46:03Z" duration="0.051890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26526" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,int.MinValue,&quot;f27b7ab6ceabee954523f258ccd8ebbdd333e5829f07c3f1ff12b816c6b87ba7&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.4.0&quot;,int.MinValue,&quot;f27b7ab6ceabee954523f258ccd8ebbdd333e5829f07c3f1ff12b816c6b87ba7&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="273028270" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.061876" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26527" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,0,&quot;0b22731e6d03e25d0bf0cc4cff32ed160d322623484e850a207b172a464231e0&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,0,&quot;0b22731e6d03e25d0bf0cc4cff32ed160d322623484e850a207b172a464231e0&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1624715881" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.046831" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26528" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,1,&quot;ef49e645d806e8c1a3a03f0e6912dcac8e68807d90a668283e880824eb97d355&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,1,&quot;ef49e645d806e8c1a3a03f0e6912dcac8e68807d90a668283e880824eb97d355&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="970025799" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.051178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26529" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,17,&quot;3f8c7feff50c8bf5d6f937cee4e8e260cb1c6d65ea9ae0d24b28aa9d3425a2d6&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,17,&quot;3f8c7feff50c8bf5d6f937cee4e8e260cb1c6d65ea9ae0d24b28aa9d3425a2d6&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="314339437" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.051283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26530" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,64,&quot;6c63f4a20a40dbec00cdae02eea01a1f8624d927f4c2532fa7780e51ab5e100c&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,64,&quot;6c63f4a20a40dbec00cdae02eea01a1f8624d927f4c2532fa7780e51ab5e100c&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="654760141" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.048384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26531" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,65,&quot;83b26c6d799c6076f4e16cf3645606ef3ff29e5f830179b5fb05352d52734dba&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,65,&quot;83b26c6d799c6076f4e16cf3645606ef3ff29e5f830179b5fb05352d52734dba&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="714783368" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.055474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26532" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,12345,&quot;38e7ef255f10c21679fb9a017f9345e4e33d02ad754c5b815158ef5e5f0aba5b&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,12345,&quot;38e7ef255f10c21679fb9a017f9345e4e33d02ad754c5b815158ef5e5f0aba5b&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="1700723467" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.046702" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26533" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,int.MaxValue,&quot;ec206ef67a351ab0dc2fa5f3d38912ab5dabf5b2e0eca77f6a95b6d1397c0e67&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,int.MaxValue,&quot;ec206ef67a351ab0dc2fa5f3d38912ab5dabf5b2e0eca77f6a95b6d1397c0e67&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="385566102" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.052775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="26534" name="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,int.MinValue,&quot;3116468040a919e01a60c4857ce21ea407d825c2c2e586351ddc5e53c7ee8ed9&quot;)" fullname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests.ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells(&quot;Overworld.3.2.0&quot;,int.MinValue,&quot;3116468040a919e01a60c4857ce21ea407d825c2c2e586351ddc5e53c7ee8ed9&quot;)" methodname="ScrubOnlyAddsBushToPreviouslyEmptyProtectedCells" classname="CavesOfOoo.Tests.StumpSummitScrubPopulationTests" runstate="Runnable" seed="94560870" result="Passed" start-time="2026-10-28 20:46:03Z" end-time="2026-10-28 20:46:03Z" duration="0.060185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

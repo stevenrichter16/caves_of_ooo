@@ -1,0 +1,71 @@
+{
+  "label": "summit-scrub-editor-profile",
+  "start": "2026-10-28T21:03:25.37867Z",
+  "end": "2026-10-28T21:04:39.609134Z",
+  "elapsedSeconds": 74.230465,
+  "frames": 15898,
+  "zone": "Overworld.3.4.0",
+  "player": [
+    60,
+    12
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 15899,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 324757.68073463743,
+      "max": 107437958,
+      "p99": 274458
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 15899,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 4656784.9031385621,
+      "max": 3124986084,
+      "p99": 15530250
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 15899,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 39.981571167997984,
+      "max": 41,
+      "p99": 41
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 15899,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 39.981571167997984,
+      "max": 41,
+      "p99": 41
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 15899,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 8759.42398893012,
+      "max": 9248,
+      "p99": 9248
+    }
+  ],
+  "bounds": "Editor SummitScrub normal west-to-east traversal/captures plus idle/UI/tool time. Reader and save/restart happen after this window. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}
