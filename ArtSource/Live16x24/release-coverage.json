@@ -11003,7 +11003,7 @@
     "restoration_bounds": "52397trackedobjects,49foreignpaths,normalEditorstateandpriorbuildsverified;7generatedfilesrestored;ownedtestbranchesarchived;no cachecleanup"
   },
   "shared_camp_props": {
-    "status": "bounded_native_and_Editor_verified;source_publication_in_this_commit",
+    "status": "bounded_native_and_Editor_verified;source_verified_origin_main",
     "plan": "Docs/GRAPHICS-SHARED-CAMP-PROPS.md",
     "scope": [
       "Sack",
@@ -11020,15 +11020,66 @@
     "actual": "Brine world/Well+Sack readers/drink/transfer/passable traversal/F5+Continue138; Road Urn world+reader",
     "packaging": "pending batch with cloth; current source8c0c72e11 preserved",
     "bounds": "not allarea coverage/polish; no actualUrntransfer/Parchedcure/finitewell/physicalDeck",
-    "next": "TentWall and GuestClothPole original native kit"
+    "next": "TentWall and GuestClothPole original native kit",
+    "source_revision": "6c08899a012a04db329a77fdf92ba3768ec8e147"
   },
   "shared_camp_cloth": {
-    "status": "actual_baseline_and_imagegen_reference;native_art_in_progress_not_integrated",
+    "status": "bounded_native_and_actual_Editor_verified;source_publication_in_this_commit",
     "plan": "Docs/GRAPHICS-SHARED-CAMP-CLOTH.md",
     "scope": [
       "TentWall",
       "GuestClothPole"
     ],
-    "reference": "ArtSource/Live16x24/shared-camp-cloth/reference-manifest.json"
+    "reference": "ArtSource/Live16x24/shared-camp-cloth/reference-manifest.json",
+    "art": {
+      "cells": 3,
+      "native_dimensions": [
+        16,
+        24
+      ],
+      "atlas_sha256": "3deb52ac4c4be95f6d5b738ca06176dfc5722a2ce564dfb9e11cfc00770ef6a8",
+      "editable": "ArtSource/Live16x24/shared-camp-cloth/editable.blend",
+      "v1_preserved": true
+    },
+    "native": {
+      "passed": 114,
+      "failed": 0,
+      "distinct": true,
+      "new_cloth": 12,
+      "related": 102,
+      "job": "f86ba58217054bb7984051b49d940449",
+      "evidence": "Docs/Verification/Live16x24/shared-camp-cloth-green.xml",
+      "bounds": "Before v2 art-only revision; runtime unchanged. Do not add earlier102."
+    },
+    "actual": {
+      "zone": "Overworld.17.13.0",
+      "seed": 65,
+      "captures": "Docs/Verification/Live16x24/shared-camp-cloth-after-*",
+      "verified": [
+        "matched world and exact readers",
+        "wall8-to1-to-removal and opened-cell passage",
+        "passable pole and actor coverage",
+        "F5fixture139 and fresh Editor Continue"
+      ],
+      "fixture": "Docs/Verification/Live16x24/Fixtures/shared-camp-cloth139",
+      "turn": 3500,
+      "player": [
+        54,
+        7
+      ],
+      "hp": 38,
+      "restart_world_pixels": 564000,
+      "restart_changed_pixels": 0
+    },
+    "review": "Docs/Verification/Live16x24/shared-camp-cloth-independent-review.md",
+    "packaging": "pending batch with shared props; preserve current8c0c72e11",
+    "remaining": [
+      "repeated panel rhythm",
+      "sparse camp composition",
+      "other registered sites not actually revisited",
+      "thermal/burning native-only",
+      "remaining world families and all55+5polish scopes"
+    ],
+    "bounds": "Two exact bodies, not whole-area polish, all-world coverage or physical Deck execution."
   }
 }

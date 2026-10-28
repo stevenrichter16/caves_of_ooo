@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:46Z" duration="1.3749591">
+  <test-suite type="TestSuite" id="41550" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33762" result="Failed" site="Child" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:46Z" duration="1.374959" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41522" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33762" result="Failed" site="Child" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:46Z" duration="1.262784" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41523" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33762" result="Failed" site="Child" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:46Z" duration="1.224169" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41524" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33762" result="Failed" site="Child" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:46Z" duration="1.218650" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1663" name="FlatPixelSharedCampClothTests" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:46Z" duration="1.202969" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1673" name="ActualHeatAndBurningCueKeepBodyAndUseOnlyOneRenderEvent" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ActualHeatAndBurningCueKeepBodyAndUseOnlyOneRenderEvent" methodname="ActualHeatAndBurningCueKeepBodyAndUseOnlyOneRenderEvent" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="1964818546" result="Failed" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:45Z" duration="0.268738" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1676" name="CachedViewsDisposeIdempotentlyWithoutDestroyingInputOrPeer" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.CachedViewsDisposeIdempotentlyWithoutDestroyingInputOrPeer" methodname="CachedViewsDisposeIdempotentlyWithoutDestroyingInputOrPeer" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="1570542217" result="Failed" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:45Z" duration="0.080033" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1670" name="CustodyFootprintAndOptionalOwnedStateRemainAuthoritative" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.CustodyFootprintAndOptionalOwnedStateRemainAuthoritative" methodname="CustodyFootprintAndOptionalOwnedStateRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="583832416" result="Failed" start-time="2026-10-28 03:39:45Z" end-time="2026-10-28 03:39:46Z" duration="0.065015" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1675" name="DisclosureSelectionMovementRemovalAndCurrentGraphRetireWorldAndReader" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.DisclosureSelectionMovementRemovalAndCurrentGraphRetireWorldAndReader" methodname="DisclosureSelectionMovementRemovalAndCurrentGraphRetireWorldAndReader" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="953837849" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.062560" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1666" name="ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.239063" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1664" name="ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell(&quot;TentWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell(&quot;TentWall&quot;)" methodname="ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="1820081315" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.069323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1665" name="ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell(&quot;GuestClothPole&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell(&quot;GuestClothPole&quot;)" methodname="ExactWorldAndAuthorizedPortraitUseOneUnstretchedNativeCell" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="1952200161" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.063765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1674" name="GuestPoleStaysPassableUnbreakableAndDoesNotAcquireAService" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.GuestPoleStaysPassableUnbreakableAndDoesNotAcquireAService" methodname="GuestPoleStaysPassableUnbreakableAndDoesNotAcquireAService" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="629886912" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.064122" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1671" name="MissingOrMalformedAtlasRefusesBothBodiesWithoutResourceReload" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.MissingOrMalformedAtlasRefusesBothBodiesWithoutResourceReload" methodname="MissingOrMalformedAtlasRefusesBothBodiesWithoutResourceReload" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="50635999" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.058726" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1672" name="RealWallDamageAndDestructionKeepFloorHazardsAndPlayerPhysiology" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.RealWallDamageAndDestructionKeepFloorHazardsAndPlayerPhysiology" methodname="RealWallDamageAndDestructionKeepFloorHazardsAndPlayerPhysiology" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="928470254" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.057407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1669" name="RequiredPartsAreUniqueAndOwnedIncludingWallMaterialStructureAndThermal" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.RequiredPartsAreUniqueAndOwnedIncludingWallMaterialStructureAndThermal" methodname="RequiredPartsAreUniqueAndOwnedIncludingWallMaterialStructureAndThermal" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="1651113699" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.077225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1668" name="ReskinsWrongMaterialAndForeignRolesCannotReachWeakerLocalArt" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ReskinsWrongMaterialAndForeignRolesCannotReachWeakerLocalArt" methodname="ReskinsWrongMaterialAndForeignRolesCannotReachWeakerLocalArt" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="1516843338" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.060341" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1667" name="WallVariantsAreStableAcrossQueriesAndPoleNeverBorrowsThem" fullname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests.WallVariantsAreStableAcrossQueriesAndPoleNeverBorrowsThem" methodname="WallVariantsAreStableAcrossQueriesAndPoleNeverBorrowsThem" classname="CavesOfOoo.Tests.FlatPixelSharedCampClothTests" runstate="Runnable" seed="713082432" result="Failed" start-time="2026-10-28 03:39:46Z" end-time="2026-10-28 03:39:46Z" duration="0.064535" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   Missing shared camp cloth adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:46
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Construct (UnityEngine.Texture2D input) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:48
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Inject (UnityEngine.Texture2D input) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:51
+at CavesOfOoo.Tests.FlatPixelSharedCampClothTests.Setup () [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs:34
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

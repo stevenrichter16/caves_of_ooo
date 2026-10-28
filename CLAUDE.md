@@ -1,12 +1,12 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** Shared Sack/Urn/ordinaryWell source and bounded Editor verification complete (102native passes); see Docs/GRAPHICS-SHARED-CAMP-PROPS.md. Next original cloth kit: TentWall/GuestClothPole, exact actual readers and imagegen study saved in Docs/GRAPHICS-SHARED-CAMP-CLOTH.md. Native art in progress, integration pending. Current required Mac/Linux packages remain8c0c72e11; batch camp props+cloth before rebuilding. Root owns Unity/Git. Preserve approved sources, unrelated work and saves; storage inspection-only. Coverage is not area polish.
+**Whole-game credit priority (2026-10-28):** Shared camp props source6c08899a0 is verified on main. Original TentWall/GuestClothPole v2 has114 distinct native passes and bounded actual damage, passage, readers and save/restart evidence; source publication in this commit. See Docs/GRAPHICS-SHARED-CAMP-CLOTH.md. Next batch props+cloth into fresh Mac/Linux packages; preserve current8c0c72e11 outputs. Continue highest-impact missing surface/settlement families afterward. Root owns Unity/Git; approved sources, unrelated work and saves preserved; storage inspection-only. Coverage is not area polish.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.
-Slate depth7–8 material source and fresh Mac/Linux delivery are verified.
-Next is ordinary Quartzite depth9–10 baseline and material coverage, followed
-by the remaining world queue; see Docs/GRAPHICS-QUARTZITE-MATERIALS.md.
+Slate, Quartzite and Obsidian material delivery are verified.
+Follow the current continuation at the top of this file and in
+Docs/GRAPHICS-COMPLETION-PLAN.md for the active surface coverage queue.
 Keep straight wall silhouettes as the current default. The isolated shale parity
 prototype is parked, disabled and not accepted as reference parity; preserve its
 editable candidates and evidence reversibly, with no further automatic art

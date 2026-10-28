@@ -1,0 +1,121 @@
+{
+  "atlas": "shared-camp-cloth.png",
+  "dimensions": [
+    48,
+    24
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "owner": "TentWall",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "opaque": true,
+      "meaning": "Surviving Cloth wall; mechanics retain8HP,thermal andcollision"
+    },
+    {
+      "index": 1,
+      "owner": "TentWall",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "opaque": true,
+      "meaning": "Surviving Cloth wall; mechanics retain8HP,thermal andcollision"
+    },
+    {
+      "index": 2,
+      "owner": "GuestClothPole",
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "opaque": false,
+      "meaning": "Passable pole with no invented timer/service"
+    }
+  ],
+  "blend": "editable.blend",
+  "source": "source-cells.json",
+  "palette": "palette.json",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": 0,
+      "x": 8,
+      "y": 8
+    },
+    {
+      "frame": 1,
+      "x": 34,
+      "y": 8
+    },
+    {
+      "frame": 2,
+      "x": 60,
+      "y": 8
+    },
+    {
+      "frame": 0,
+      "x": 8,
+      "y": 52
+    },
+    {
+      "frame": 1,
+      "x": 24,
+      "y": 52
+    },
+    {
+      "frame": 0,
+      "x": 40,
+      "y": 52
+    },
+    {
+      "frame": 1,
+      "x": 56,
+      "y": 52
+    },
+    {
+      "frame": 1,
+      "x": 8,
+      "y": 76
+    },
+    {
+      "frame": 0,
+      "x": 24,
+      "y": 76
+    },
+    {
+      "frame": 1,
+      "x": 40,
+      "y": 76
+    },
+    {
+      "frame": 0,
+      "x": 56,
+      "y": 76
+    },
+    {
+      "frame": 2,
+      "x": 94,
+      "y": 64
+    },
+    {
+      "frame": 2,
+      "x": 118,
+      "y": 64
+    }
+  ],
+  "source_only": true,
+  "gameplay_acceptance": false
+}
