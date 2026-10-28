@@ -1901,10 +1901,12 @@ namespace CavesOfOoo.Rendering
             if (!FlatPixelSharedFurnitureCatalog.HasKnownRole(owner)) return null;
             if (_sharedFurnitureArt == null)
             {
-                // An explicitly injected East companion is authoritative, even
-                // if its borrowed texture is null, malformed or disposed.
+                // Keep the borrowed East group authoritative. A default world
+                // may already have warmed it during travel, so load the independent
+                // counter group only when optional resources were enabled.
                 if (_eastKitchenArt != null)
-                    _sharedFurnitureArt = new FlatPixelSharedFurnitureCatalog(_eastKitchenArt.BorrowedFurnitureAtlas);
+                    _sharedFurnitureArt = new FlatPixelSharedFurnitureCatalog(_eastKitchenArt.BorrowedFurnitureAtlas,
+                        _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelSharedFurnitureCatalog.MarketStallResourcePath) : null);
                 else if (_loadOptionalResources)
                     _sharedFurnitureArt = new FlatPixelSharedFurnitureCatalog();
             }

@@ -103,7 +103,8 @@ namespace CavesOfOoo.Tests
             owner.GetPart<RenderPart>().VisualID = ""; NativeForeground(resource, frame);
         }
 
-        [TestCase("MarketStall")] [TestCase("WellGroundMarker")]
+        // Exact MarketStall coverage is independently pinned by FlatPixelMarketStallTests.
+        [TestCase("WellGroundMarker")]
         [TestCase("Apothecary")] [TestCase("Hedge")] [TestCase("RepairLinedWell")]
         public void PendingFamiliesDoNotAcquireAnOpeningAlias(string blueprint)
         { Add(blueprint); IdentityFallback(); Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone)); }

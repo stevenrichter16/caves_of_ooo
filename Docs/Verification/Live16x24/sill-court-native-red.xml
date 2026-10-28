@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Failed(Child)" total="17" passed="6" failed="11" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 18:02:59Z" end-time="2026-10-28 18:03:03Z" duration="3.9547576">
+  <test-suite type="TestSuite" id="41856" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34008" result="Failed" site="Child" start-time="2026-10-28 18:02:59Z" end-time="2026-10-28 18:03:03Z" duration="3.954758" total="17" passed="6" failed="11" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41828" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34008" result="Failed" site="Child" start-time="2026-10-28 18:03:00Z" end-time="2026-10-28 18:03:03Z" duration="3.718260" total="17" passed="6" failed="11" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41829" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34008" result="Failed" site="Child" start-time="2026-10-28 18:03:00Z" end-time="2026-10-28 18:03:03Z" duration="3.678253" total="17" passed="6" failed="11" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41830" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34008" result="Failed" site="Child" start-time="2026-10-28 18:03:00Z" end-time="2026-10-28 18:03:03Z" duration="3.669190" total="17" passed="6" failed="11" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="40864" name="SillCourtPopulationTests" fullname="CavesOfOoo.Tests.SillCourtPopulationTests" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-28 18:03:00Z" end-time="2026-10-28 18:03:03Z" duration="3.657039" total="17" passed="6" failed="11" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="40884" name="CachedTownIsReattachedWithoutRegenerationOrNewCourtOwners" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CachedTownIsReattachedWithoutRegenerationOrNewCourtOwners" methodname="CachedTownIsReattachedWithoutRegenerationOrNewCourtOwners" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="142407413" result="Passed" start-time="2026-10-28 18:03:00Z" end-time="2026-10-28 18:03:00Z" duration="0.473000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="40874" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-28 18:03:00Z" end-time="2026-10-28 18:03:02Z" duration="1.108729" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="40869" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;other-village&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;other-village&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="483937390" result="Passed" start-time="2026-10-28 18:03:01Z" end-time="2026-10-28 18:03:01Z" duration="0.214339" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40870" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;alias&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="2125651399" result="Passed" start-time="2026-10-28 18:03:01Z" end-time="2026-10-28 18:03:01Z" duration="0.280313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40871" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;name&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;name&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1994528161" result="Passed" start-time="2026-10-28 18:03:01Z" end-time="2026-10-28 18:03:01Z" duration="0.182160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40872" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;biome&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1375045684" result="Passed" start-time="2026-10-28 18:03:01Z" end-time="2026-10-28 18:03:01Z" duration="0.164814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40873" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;profile&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1858022647" result="Passed" start-time="2026-10-28 18:03:01Z" end-time="2026-10-28 18:03:02Z" duration="0.147760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="40868" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 18:03:02Z" end-time="2026-10-28 18:03:02Z" duration="0.561788" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="40865" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(64)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(64)" methodname="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1928052309" result="Failed" start-time="2026-10-28 18:03:02Z" end-time="2026-10-28 18:03:02Z" duration="0.144364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable (System.Int32 seed) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40866" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(65)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(65)" methodname="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="2072250525" result="Failed" start-time="2026-10-28 18:03:02Z" end-time="2026-10-28 18:03:02Z" duration="0.151936" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable (System.Int32 seed) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40867" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(777)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(777)" methodname="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1568239229" result="Failed" start-time="2026-10-28 18:03:02Z" end-time="2026-10-28 18:03:02Z" duration="0.149810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable (System.Int32 seed) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:70
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="40883" name="MissingPairedShopContentDoesNotLeaveAHalfBuiltCourt" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.MissingPairedShopContentDoesNotLeaveAHalfBuiltCourt" methodname="MissingPairedShopContentDoesNotLeaveAHalfBuiltCourt" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="827023242" result="Failed" start-time="2026-10-28 18:03:02Z" end-time="2026-10-28 18:03:02Z" duration="0.159340" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.MissingPairedShopContentDoesNotLeaveAHalfBuiltCourt () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:157
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="40882" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-28 18:03:02Z" end-time="2026-10-28 18:03:03Z" duration="1.176058" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="40875" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;reserved&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="710921200" result="Failed" start-time="2026-10-28 18:03:02Z" end-time="2026-10-28 18:03:03Z" duration="0.153489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40876" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;second-reserved&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;second-reserved&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="649782305" result="Failed" start-time="2026-10-28 18:03:03Z" end-time="2026-10-28 18:03:03Z" duration="0.156916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40877" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;coating&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="326172499" result="Failed" start-time="2026-10-28 18:03:03Z" end-time="2026-10-28 18:03:03Z" duration="0.159726" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40878" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;liquid&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1430257166" result="Failed" start-time="2026-10-28 18:03:03Z" end-time="2026-10-28 18:03:03Z" duration="0.144833" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40879" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;stairs&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;stairs&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1758131266" result="Failed" start-time="2026-10-28 18:03:03Z" end-time="2026-10-28 18:03:03Z" duration="0.136823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40880" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;resident&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;resident&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1068656811" result="Failed" start-time="2026-10-28 18:03:03Z" end-time="2026-10-28 18:03:03Z" duration="0.148818" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="40881" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;loose-prop&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;loose-prop&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="276474257" result="Failed" start-time="2026-10-28 18:03:03Z" end-time="2026-10-28 18:03:03Z" duration="0.159388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real smith must tend the court's west workshop.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.FacingPair (CavesOfOoo.Core.Zone zone) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:33
+at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:141
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,71 @@
+{
+  "label": "sill-court-editor-profile",
+  "start": "2026-10-28T18:33:47.453912Z",
+  "end": "2026-10-28T18:34:29.188874Z",
+  "elapsedSeconds": 41.734961999999996,
+  "frames": 8856,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    39,
+    7
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 8857,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 175213.83414248616,
+      "max": 157674625,
+      "p99": 232916
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 8857,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 4689237.9095630571,
+      "max": 2683867334,
+      "p99": 15428167
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 8857,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 37.745737834481204,
+      "max": 45,
+      "p99": 44
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 8857,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 37.745737834481204,
+      "max": 45,
+      "p99": 44
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 8857,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 10702.856271875353,
+      "max": 10998,
+      "p99": 10998
+    }
+  ],
+  "bounds": "Editor Sill ordinary walk from smithy through court into provisioner shop and return, plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

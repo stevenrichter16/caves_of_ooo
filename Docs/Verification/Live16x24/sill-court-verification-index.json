@@ -1,0 +1,68 @@
+{
+  "recorded_utc": "2026-10-28T18:45:39.923124+00:00",
+  "scope": "Fresh ordinary Sill well-and-shop arrangement and exact shared MarketStall art reuse; bounded Editor verification, not all-area polish",
+  "test_evidence": {
+    "court_red": "sill-court-native-red.xml:17 cases,11 intended placement failures,6 controls passed",
+    "footprint_red_and_counter_red": "sill-court-and-counter-native-red.xml:18 court cases17passed/1footprint failed;17 counter cases1passed/16integration failures",
+    "court_green": "sill-court-native-green.xml:83passed/83, including all18 court cases",
+    "counter_green": "sill-court-counter-native-green.xml:152passed/152, including all17 counter cases",
+    "runner_bounds": "Some MCP jobs timed out at initialization although native Unity subsequently ran. Timestamped XML and inactive runner confirmation used; empty discovery excluded."
+  },
+  "actual": {
+    "seed64": "Normal N/world-map travel from glade; matched center39,11/north39,7 before/after. Both shop entrances walked, counter7298 world/reader, real forge menu at35,5 and well menu40,12, glade11.10 return; HP40. Natural combat/roaming preserved.",
+    "seed65": "Owned launcher then RequestedSeed65 + ordinary scene reload BEFORE N. Read-only live manager confirmed65. Normal travel and both open entrances; real weaponsmith7341 stock8 and provisioner7369 stock10 dialogue/trade UI without purchase. Saved183 turn390 HP40 at39,7.",
+    "cached_old_town": "Fixture180 remains original geometry, same wall7354 at39,6.250/564000 world pixels changed only bbox453,199,487,237; no pixel-exact claim.",
+    "fresh_continue": "Earned182 turn580 HP40 loaded in fresh Play; same39,11 and owner identities.64/564000 pixels changed at bbox34,270,58,300; no exact-image claim.",
+    "profiles": "41.735seconds ordinary smithy-to-provisioner walk/return plus UI/tool/idle.8857samples,no wrap; renderer mean0.175ms,p99 0.233ms,max157.7ms; main-thread max2684ms. No baseline speedup or physical Deck claim."
+  },
+  "capture_files": [
+    "sill-court-after64-center-glyph.png",
+    "sill-court-after64-north-glyph.png",
+    "sill-court-after64-north.png",
+    "sill-court-after64-return.png",
+    "sill-court-after65-center.png",
+    "sill-court-after65-north.png",
+    "sill-court-after65-provisioner-dialogue.png",
+    "sill-court-after65-provisioner-trade.png",
+    "sill-court-after65-smith-dialogue.png",
+    "sill-court-after65-smith-menu.png",
+    "sill-court-after65-smith-trade.png",
+    "sill-court-before64-center.png",
+    "sill-court-before64-north.png",
+    "sill-court-before64-worldmap.png",
+    "sill-court-cached180-control.png",
+    "sill-court-counter-after-reader.png",
+    "sill-court-counter-after-world.png",
+    "sill-court-counter-before-reader.png",
+    "sill-court-counter-before-world.png",
+    "sill-court-forge-menu.png",
+    "sill-court-fresh-continue182.png",
+    "sill-court-fresh64-choice.png",
+    "sill-court-glade-travel.png",
+    "sill-court-provisioner-interior.png",
+    "sill-court-well-access.png"
+  ],
+  "source_sha256": {
+    "Assets/Scripts/Gameplay/World/Generation/SillCourtComposition.cs": "9fbdc164199cf7ef166bd6777b39655e881cc230f435bef8ba680c11ec1a6320",
+    "Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs": "1a64e6753fcc3448dbefad577abee9b7eb50b7cfdfb7e8676314880f757de76f",
+    "Assets/Scripts/Gameplay/World/Generation/Builders/LandmarkBuilder.cs": "f89bd3134416547f16b299f74dadcf8b4abb8813cf723825117371629c60c325",
+    "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs": "dcf2216fc5e05921b20e9e166d132884cef474deab1ffb668ff6b5dfeb73c2b2",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelSharedFurnitureCatalog.cs": "49b1412970e3fad2dc077f8d2ae909107bf544ea51aadc930bc57444d82a6eea",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "efd7bcf40cb2212923e54a47d5df5b83223d8c075f0d4c39e97d32f24a7f124c",
+    "Assets/Tests/EditMode/SillCourtPopulationTests.cs": "b9d7699077b5898ec08a68e7ffed9b887cd5a0b3d8eade551d22ecebe59e5d90",
+    "Assets/Tests/EditMode/FlatPixelMarketStallTests.cs": "b20e850d4da5b9afb6807c5c4b8861114385f2cd9bc35b2ac7c07b23a28e8ed0",
+    "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs": "cd809deb01a26ac805ba1ed1b929bccc09fb2b34d9cfb2c6747b5306ba416358",
+    "Assets/Resources/Sprites/Environment/market_stall.png": "31d04cd09bf4056d24ffa8aa9691a6ec1a86b09569d8398695ae680e38701a8c",
+    "Assets/Resources/Sprites/Environment/market_stall.png.meta": "e681ed01707dc460af55603fc9b0a65fa2303325caca3f490a8a63458337c4e5"
+  },
+  "art_process": "Reused exact approved market_stall16x16 PNG and importer, unchanged; no new raster generation or editable source replacement. Existing Sill material art retained.",
+  "remaining": [
+    "No full Sill/chunk/biome polish acceptance. Broader lawns and repeated isolated houses remain.",
+    "Fresh layout only; no forced migration of cached towns.",
+    "NPCs can leave shops during normal reactions. No continuously staffed or increased total NPC count claim.",
+    "Provisioner smiley fallback, forge glyph and fog-memory glyphs remain visible debt; approved counter reuse does not close those families.",
+    "No new packaged build or Linux/Deck execution; current required packages43a151ddb retained.",
+    "No purchases, material changes, crops or optional animation refinements."
+  ],
+  "publication": "Exact reviewed owned source/evidence and living records pending main push at record creation."
+}

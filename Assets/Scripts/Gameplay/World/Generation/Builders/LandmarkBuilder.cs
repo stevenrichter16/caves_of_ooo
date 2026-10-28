@@ -1223,6 +1223,7 @@ namespace CavesOfOoo.Core
         /// regression on the B1 end-to-end test).
         /// </param>
         private readonly int _maxStructures;
+        internal SillCourtComposition Court { get; set; }
 
         public LandmarkBuilder(BiomeType biome, int tier,
             IReadOnlyList<StructureStamp> catalogOverride = null, int priority = 3800,
@@ -1237,11 +1238,13 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
-            int placed = 0;
+            bool courtPlaced = Court != null && _maxStructures >= 2 && Court.TryPlace(zone, factory, rng);
+            int placed = courtPlaced ? 2 : 0;
             foreach (var stamp in _catalog)
             {
                 if (placed >= _maxStructures) break;
                 if (stamp == null || stamp.Height == 0) continue;
+                if (courtPlaced && (stamp.Name == "TheSmithy" || stamp.Name == "TheLarder")) continue;
                 if (_tier < stamp.MinTier) continue;
                 if (stamp.Chance < 100 && rng.Next(100) >= stamp.Chance) continue;
                 if (!AllBlueprintsKnown(stamp, factory)) continue;
@@ -1416,26 +1419,7 @@ namespace CavesOfOoo.Core
                             if (shopkeeper != null)
                             {
                                 zone.AddEntity(shopkeeper, wx, wy);
-                                shopkeeper.Properties["ShopStockTable"] = parts[2];
-                                var inv = shopkeeper.GetPart<InventoryPart>();
-                                // Only stock a BARE shelf. CreateEntity
-                                // above fires ObjectCreated, so a keeper
-                                // carrying a TraderPart has already
-                                // rolled — and the markers name the very
-                                // same table (shop:Weaponsmith:Weapon-
-                                // smithStock), so re-rolling here would
-                                // silently double every town shop's
-                                // opening stock. Keepers without a
-                                // TraderPart still get filled here.
-                                if (inv != null && inv.Objects.Count == 0)
-                                {
-                                    foreach (var bpName in LootTableRegistry.Roll(parts[2], rng))
-                                    {
-                                        if (!factory.Blueprints.ContainsKey(bpName)) continue;
-                                        var item = factory.CreateEntity(bpName);
-                                        if (item != null) inv.AddObject(item);
-                                    }
-                                }
+                                StockShopkeeper(shopkeeper, parts[2], factory, rng);
                             }
                         }
                         continue;
@@ -1448,6 +1432,21 @@ namespace CavesOfOoo.Core
                     if (entity != null)
                         zone.AddEntity(entity, wx, wy);
                 }
+            }
+        }
+
+        // CreateEntity already fires ObjectCreated and can stock a Trader.
+        // Share the original empty-shelf rule with the staged Sill pair.
+        internal static void StockShopkeeper(Entity shopkeeper, string table, EntityFactory factory, System.Random rng)
+        {
+            shopkeeper.Properties["ShopStockTable"] = table;
+            var inventory = shopkeeper.GetPart<InventoryPart>();
+            if (inventory == null || inventory.Objects.Count != 0) return;
+            foreach (var blueprint in LootTableRegistry.Roll(table, rng))
+            {
+                if (!factory.Blueprints.ContainsKey(blueprint)) continue;
+                var item = factory.CreateEntity(blueprint);
+                if (item != null) inventory.AddObject(item);
             }
         }
 

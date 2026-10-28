@@ -1,0 +1,31 @@
+# Sill court counter: source corrections before integration
+
+2026-10-28. Test-only preflight. Root owns the fresh generated-court glyph baseline, native RED runner and later runtime authorization. This note does not claim native execution, actual integrated appearance, full Sill composition acceptance or a new service.
+
+| Source fact | Corrected integration/test contract |
+| --- | --- |
+| `Objects.json` MarketStall inherits PhysicalObject, with `=` / `&y` / layer1, visible Render, solid Physics, Examinable and Solid tag. It has no Furniture tag. | Use an exact MarketStall branch, not Bed's shared `=` glyph or the Bed/Chair Furniture predicate. Preserve real solidity; sprite Tile collider remains None because gameplay Physics owns collision. |
+| MarketStall has no Container, Trader, Inventory, Bed/Chair service, Material, Thermal, Destructible or Hitpoints. Its description explicitly assigns trading to its keeper. | Do not add stock, Open, trade, health/damage, material or fire mechanics to the counter. Added foreign services/material meanings refuse this neutral body. No successful destruction or counter-use claim is warranted. |
+| `LandmarkBuilder.cs` existing ShopStamp legend uses MarketStall separately from its keeper and optional work station. | Root's court relocation reuses real owners/services. Sprite integration is only the prop body and does not define shop generation or stock. |
+| Legacy EnvironmentSpriteRenderer loads `Sprites/Environment/market_stall`; its modern flat-pixel branch returns through Greybox before the old fixture tier. No existing FlatPixel catalog knows MarketStall. | Existing legacy art mapping is not modern native coverage. Test actual submitted modern world and authorized reader, plus existing admitted legacy world/reader routes. |
+| Approved `market_stall.png` is exact16×16, binary alpha, Point/Clamp, no mipmaps, sRGB, uncompressed, centered16PPU; opaque bounds are x0..15/y0..14. | Borrow unchanged pixels/importer. Use full Rect(0,0,16,16), pivot(8,8), bounds1×1 and reader UV(0,0,1,1). It sits within a1×1.5 cell; do not stretch or claim newly authored16×24 art. Actual awning/counter size and contrast remain a Play gate. |
+| SharedFurniture currently has default and one-texture East288×24 constructors, cached Bed/Chair frames2/3 and idempotent view disposal. | Proposed minimal extension: default loads the independent stall resource; new `(Texture2D eastKitchen18, Texture2D marketStall16)` overload; old one-texture forwards null for stall and never reloads. Null/malformed inputs affect only their own group. Dispose owned views, never borrowed textures. |
+| `SharedFurnitureArtFor` currently prioritizes any warmed `_eastKitchenArt` before `_loadOptionalResources`. | Ordinary default travel that already loaded East art must still obtain the new counter resource. Explicit resources-disabled East injection must retain its old null-stall behavior. A paired warm-default/explicit-injection test pins this distinction. |
+| Bed/Chair permit authored ColorString and consume an existing single Render-event cue in the painter. | Preserve that policy; record MarketStall's canonical `&y` but do not create a new global color restriction. Explicit VisualID, VisualVariant, GlyphVariants, background or changed glyph/layer are separate meanings. Reader queries must not consume Render or invent service queries. |
+| Floor is a separate existing StoneFloor owner under the solid counter. | Compare exact ground Tile before/add/remove and actual painted ground; retain floor identity and selection precedence. Counter must not erase backing or become terrain. |
+| `FlatPixelSillEnvelopeTests.PendingFamiliesDoNotAcquireAnOpeningAlias` currently includes MarketStall. | This old global fallback expectation becomes obsolete only after exact shared coverage is authorized. Root should narrow that one case while retaining its other pending families; this task does not edit the old fixture. |
+
+Exact approved input pins (read before tests; no resource edits):
+
+- `Assets/Resources/Sprites/Environment/market_stall.png`: SHA256 `31d04cd09bf4056d24ffa8aa9691a6ec1a86b09569d8398695ae680e38701a8c`.
+- Same `.meta`: SHA256 `e681ed01707dc460af55603fc9b0a65fa2303325caca3f490a8a63458337c4e5`; GUID `e7184421586a4e578270845d6fa18298`.
+
+The finite new fixture uses existing shared-furniture setup/reader/paint helpers. It covers exact body and floor, old constructor/Bed/Chair compatibility, independent optional textures, warm-default versus explicit injection, unique owned parts, custody/custom visuals/foreign meanings, footprint and stack validity, disclosure/selection/replaced graph, one Render cue, cached views and borrowed-input lifetime. It does not simulate trade, invent damage states, test every shop layout or establish visual polish. Expected RED is missing exact-role integration/new overload; root must record the actual native outcome before production changes.
+
+## Authorized integration after native RED and actual glyph baseline
+
+Root retained native job `912232e34b054c77b4486112d697c5f7`: **17 counter cases, 16 expected failures and one old-constructor control pass**, in `sill-court-and-counter-native-red.xml`. Root then observed actual fresh-court MarketStall7298 at32,6 with player33,6/HP40, captured world and reader glyph baselines. These are root-run evidence, not execution by this source author.
+
+The minimal implementation now adds the independent square texture and exact solid counter branch to SharedFurniture. Existing Bed/Chair predicates and borrowed atlas frames remain unchanged. Existing four Greybox role routes become authoritative through the extended `HasKnownRole`; only the lazy constructor seam changes to distinguish warmed default East resources from explicit resource-disabled injection. Counter queries do not dispatch service events or change gameplay. The one obsolete Sill pending-family MarketStall case is removed; the other four pending families stay unchanged, and the new fixture covers exact counter positives and refusals.
+
+No resource/image/import bytes changed. New counter tests remain byte-identical to the native RED fixture. Native GREEN and integrated actual appearance remain pending root verification; this source implementation is not scene-polish or shop-service acceptance.

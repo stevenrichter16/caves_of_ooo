@@ -6,28 +6,38 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Exact ordinary bed/chair bodies shared across current world graphs.
-    /// Borrows the approved East atlas, owns only two cached views. Callers retain
+    /// <summary>Exact ordinary bed/chair and market-counter bodies shared across current world graphs.
+    /// Borrows approved textures, owns only cached views. Callers retain
     /// placement, selection and document/disclosure authority.</summary>
     public sealed class FlatPixelSharedFurnitureCatalog : IDisposable
     {
-        readonly Tile bed, chair;
+        public const string MarketStallResourcePath = "Sprites/Environment/market_stall";
+        readonly Tile bed, chair, marketStall;
         bool disposed;
 
         public FlatPixelSharedFurnitureCatalog()
-            : this(Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.ResourcePath)) { }
+            : this(Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.ResourcePath),
+                Resources.Load<Texture2D>(MarketStallResourcePath)) { }
 
         /// <summary>Explicit null/malformed input remains unavailable; never loads
         /// a replacement. The original 288x24 texture is borrowed without edits.</summary>
         public FlatPixelSharedFurnitureCatalog(Texture2D eastKitchen18)
+            : this(eastKitchen18, null) { }
+
+        /// <summary>Independent borrowed inputs: 288x24 Bed/Chair atlas and full
+        /// 16x16 counter. Null/malformed inputs stay unavailable without resource
+        /// reload; this catalog owns only the resulting sprite/tile views.</summary>
+        public FlatPixelSharedFurnitureCatalog(Texture2D eastKitchen18, Texture2D marketStall16)
         {
             bed = Build(eastKitchen18, 2, "bed");
             chair = Build(eastKitchen18, 3, "chair");
+            if (marketStall16 != null && marketStall16.width == 16 && marketStall16.height == 16)
+                marketStall = BuildFrame(marketStall16, new Rect(0, 0, 16, 16), "market stall");
         }
 
         /// <summary>Identity only, not permission to reveal, render or use a body.</summary>
         public static bool HasKnownRole(Entity owner)
-            => owner?.BlueprintName == "Bed" || owner?.BlueprintName == "Chair";
+            => owner?.BlueprintName == "Bed" || owner?.BlueprintName == "Chair" || owner?.BlueprintName == "MarketStall";
 
         /// <summary>Pure neutral body lookup. Owner, Occupied and Occupant never
         /// select artwork. In particular, do not dispatch IdleQuery: it reserves
@@ -35,18 +45,27 @@ namespace CavesOfOoo.Rendering
         public bool TryResolve(Entity owner, out Tile tile)
         {
             tile = null;
-            if (disposed || !HasKnownRole(owner) || !owner.HasTag("Furniture")
+            if (disposed || !HasKnownRole(owner)
                 || owner.HasTag("Player") || owner.HasTag("Creature") || owner.HasTag("Item")
                 || owner.HasTag("Terrain") || owner.HasTag("Crop") || ForeignMeaning(owner)) return false;
+            bool counter = owner.BlueprintName == "MarketStall";
+            if (counter ? !owner.HasTag("Solid") : !owner.HasTag("Furniture")) return false;
             var render = Owned<RenderPart>(owner); var physics = Owned<PhysicsPart>(owner);
-            if (render == null || !render.Visible || render.RenderLayer != 5 || physics == null
-                || physics.Solid || physics.Takeable || physics.InInventory != null || physics.Equipped != null
+            if (render == null || !render.Visible || render.RenderLayer != (counter ? 1 : 5) || physics == null
+                || physics.Solid != counter || physics.Takeable || physics.InInventory != null || physics.Equipped != null
                 || Owned<ExaminablePart>(owner) == null || !string.IsNullOrEmpty(render.VisualID)
                 || !string.IsNullOrEmpty(render.VisualVariant) || !string.IsNullOrEmpty(render.GlyphVariants)
                 || !SingleCell(owner) || !OptionalOwned<StatusEffectsPart>(owner)) return false;
             if (owner.HasPart<StackerPart>())
             { var stack = Owned<StackerPart>(owner); if (stack == null || stack.StackCount <= 0) return false; }
-            if (owner.BlueprintName == "Bed")
+            if (counter)
+            {
+                // A solid counter is not a bed, container, merchant or terrain.
+                // Existing single Render-event color cues remain painter-owned.
+                if (render.RenderString == "=" && string.IsNullOrEmpty(render.BackgroundColor)
+                    && !owner.HasPart<BedPart>() && !owner.HasPart<ChairPart>() && !owner.HasPart<InventoryPart>()) tile = marketStall;
+            }
+            else if (owner.BlueprintName == "Bed")
             {
                 if (render.RenderString == "=" && Owned<BedPart>(owner) != null && !owner.HasPart<ChairPart>()) tile = bed;
             }
@@ -86,7 +105,11 @@ namespace CavesOfOoo.Rendering
         static Tile Build(Texture2D texture, int frame, string label)
         {
             if (texture == null || texture.width != 288 || texture.height != 24) return null;
-            var sprite = Sprite.Create(texture, new Rect(frame * 16, 0, 16, 24), new Vector2(.5f, .5f), 16, 0, SpriteMeshType.FullRect);
+            return BuildFrame(texture, new Rect(frame * 16, 0, 16, 24), label);
+        }
+        static Tile BuildFrame(Texture2D texture, Rect rect, string label)
+        {
+            var sprite = Sprite.Create(texture, rect, new Vector2(.5f, .5f), 16, 0, SpriteMeshType.FullRect);
             sprite.name = "Live16x24 shared " + label; sprite.hideFlags = HideFlags.HideAndDontSave;
             var tile = ScriptableObject.CreateInstance<Tile>(); tile.name = sprite.name;
             tile.hideFlags = HideFlags.HideAndDontSave; tile.sprite = sprite;
@@ -96,7 +119,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrame(bed); DestroyFrame(chair);
+            DestroyFrame(bed); DestroyFrame(chair); DestroyFrame(marketStall);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }

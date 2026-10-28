@@ -968,7 +968,8 @@ namespace CavesOfOoo.Core
             var tineBase=tine?new TineCompositionBuilder(WorldSeed):null;
             var quillholdBase=quillhold?new QuillholdCompositionBuilder(WorldSeed):null;
             var tallyBase=tally?new TallyCompositionBuilder(WorldSeed):null;
-            var ordinaryVillage=composed?null:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown);
+            var court=composed?null:SillCourtComposition.Create(this,zoneID);
+            var ordinaryVillage=composed?null:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown){Court=court};
             pipeline.AddBuilder(gantry?(IZoneBuilder)gantryBase:tine?tineBase:quillhold?quillholdBase:tally?tallyBase:firstTent?first:lastCounter?last:wellmeet?camp:cinderhold?post:sumphold?yard:drownedLedger?ledger:marrowstye?intake:ordinaryVillage);
             if(ordinaryVillage!=null)pipeline.AddBuilder(new VillageDoorPlacementBuilder(ordinaryVillage));
 
@@ -1061,10 +1062,11 @@ namespace CavesOfOoo.Core
             if (isStartingTown)
             {
                 pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
-                    StampCatalog.Town(), priority: 3860, maxStructures: 5));
+                    StampCatalog.Town(), priority: 3860, maxStructures: 5){Court=court});
             }
             pipeline.AddBuilder(new ConnectivityBuilder{FloorBlueprint=(wellmeet||firstTent)?"Sand":"Floor"});
             var entrance=new CaveEntranceBuilder(this);
+            if(court!=null)entrance.PlacementFilter=(zone,cell)=>!court.Protects(zone,cell.X,cell.Y);
             if(composed)entrance.PlacementFilter=(zone,cell)=>!cell.IsInterior&&!zone.GenReservedCells.Contains((cell.X,cell.Y));
             if(drownedLedger)entrance.PlacementFilter=ledger.CanPlaceCaveEntrance;
             if(marrowstye)entrance.PlacementFilter=intake.CanPlaceCaveEntrance;

@@ -38,6 +38,7 @@ namespace CavesOfOoo.Core
         // STARTING TOWN: the starting village builds large — more
         // organic houses for the shop stamps to scatter among.
         private readonly bool _largeTown;
+        internal SillCourtComposition Court { get; set; }
 
         public VillageBuilder(BiomeType biome, PointOfInterest poi, SettlementManager settlementManager = null, bool largeTown = false)
         {
@@ -118,6 +119,7 @@ namespace CavesOfOoo.Core
             ApertureSourceZone=zone;
             ApertureRevision++;
             _doorApertures.Clear();
+            Court?.BeginAttempt(zone);
             // 1. Fill the zone with biome-appropriate floor
             FillWithFloor(zone, factory);
 
@@ -138,6 +140,8 @@ namespace CavesOfOoo.Core
                 int ry = rng.Next(2, Zone.Height - h - 2);
 
                 var room = new Room { X = rx, Y = ry, W = w, H = h };
+
+                if (Court != null && Court.ExcludesHouse(rx, ry, w, h)) continue;
 
                 // Don't overlap square
                 if (Overlaps(room, sqX - 1, sqY - 1, sqW + 2, sqH + 2)) continue;

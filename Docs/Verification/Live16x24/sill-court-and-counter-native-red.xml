@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="18" failed="17" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 18:21:35Z" end-time="2026-10-28 18:21:44Z" duration="8.3802748">
+  <test-suite type="TestSuite" id="41878" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34026" result="Failed" site="Child" start-time="2026-10-28 18:21:35Z" end-time="2026-10-28 18:21:44Z" duration="8.380275" total="35" passed="18" failed="17" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41850" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34026" result="Failed" site="Child" start-time="2026-10-28 18:21:35Z" end-time="2026-10-28 18:21:44Z" duration="8.125990" total="35" passed="18" failed="17" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41851" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34026" result="Failed" site="Child" start-time="2026-10-28 18:21:35Z" end-time="2026-10-28 18:21:44Z" duration="8.075633" total="35" passed="18" failed="17" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41852" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34026" result="Failed" site="Child" start-time="2026-10-28 18:21:35Z" end-time="2026-10-28 18:21:44Z" duration="8.066177" total="35" passed="18" failed="17" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1253" name="FlatPixelMarketStallTests" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-28 18:21:36Z" end-time="2026-10-28 18:21:38Z" duration="2.662456" total="17" passed="1" failed="16" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1269" name="AddedServicesOrTerrainMeaningAndSameGlyphAliasesRemainDistinct" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.AddedServicesOrTerrainMeaningAndSameGlyphAliasesRemainDistinct" methodname="AddedServicesOrTerrainMeaningAndSameGlyphAliasesRemainDistinct" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="666788302" result="Failed" start-time="2026-10-28 18:21:36Z" end-time="2026-10-28 18:21:36Z" duration="0.508957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.AddedServicesOrTerrainMeaningAndSameGlyphAliasesRemainDistinct () [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:217
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1273" name="CachedCounterViewsDisposeWithoutDestroyingOrEditingBorrowedInputs" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.CachedCounterViewsDisposeWithoutDestroyingOrEditingBorrowedInputs" methodname="CachedCounterViewsDisposeWithoutDestroyingOrEditingBorrowedInputs" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="2145678304" result="Failed" start-time="2026-10-28 18:21:36Z" end-time="2026-10-28 18:21:36Z" duration="0.067494" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent optional MarketStall texture overload is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.Art (UnityEngine.Texture2D east, UnityEngine.Texture2D stall) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:57
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.CachedCounterViewsDisposeWithoutDestroyingOrEditingBorrowedInputs () [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:275
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1263" name="CounterInputWorksIndependentlyOfAbsentFurnitureAtlas" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.CounterInputWorksIndependentlyOfAbsentFurnitureAtlas" methodname="CounterInputWorksIndependentlyOfAbsentFurnitureAtlas" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1914727896" result="Failed" start-time="2026-10-28 18:21:36Z" end-time="2026-10-28 18:21:36Z" duration="0.065421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Independent optional MarketStall texture overload is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.Art (UnityEngine.Texture2D east, UnityEngine.Texture2D stall) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:57
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.CounterInputWorksIndependentlyOfAbsentFurnitureAtlas () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:165
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1270" name="CurrentSingleCellAndOptionalOwnedStackRemainRequired" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.CurrentSingleCellAndOptionalOwnedStackRemainRequired" methodname="CurrentSingleCellAndOptionalOwnedStackRemainRequired" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1635430022" result="Failed" start-time="2026-10-28 18:21:36Z" end-time="2026-10-28 18:21:37Z" duration="0.194467" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.CurrentSingleCellAndOptionalOwnedStackRemainRequired () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:231
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1268" name="CustodyReskinAndChangedPhysicalMeaningCannotAcquireCounterArt" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.CustodyReskinAndChangedPhysicalMeaningCannotAcquireCounterArt" methodname="CustodyReskinAndChangedPhysicalMeaningCannotAcquireCounterArt" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="38606855" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.052956" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.CustodyReskinAndChangedPhysicalMeaningCannotAcquireCounterArt () [0x0008e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:193
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1256" name="DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.324558" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1254" name="DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor(&quot;Overworld.10.10.0&quot;)" methodname="DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1756086161" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.060263" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor (System.String id) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1255" name="DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor(&quot;Overworld.12.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor(&quot;Overworld.12.11.0&quot;)" methodname="DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1355468125" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.054847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.DefaultCounterIsSolidSquareInWorldAndAuthorizedReaderWithoutReplacingFloor (System.String id) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1258" name="DefaultTravelAfterWarmingEastStillLoadsCounterWhileExplicitEastRemainsIndependent" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.DefaultTravelAfterWarmingEastStillLoadsCounterWhileExplicitEastRemainsIndependent" methodname="DefaultTravelAfterWarmingEastStillLoadsCounterWhileExplicitEastRemainsIndependent" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1647075706" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.174085" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.DefaultTravelAfterWarmingEastStillLoadsCounterWhileExplicitEastRemainsIndependent () [0x00099] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:140
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1271" name="DisclosureCoverRemovalAndReplacedGraphRetireWorldAndPortraitAuthority" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.DisclosureCoverRemovalAndReplacedGraphRetireWorldAndPortraitAuthority" methodname="DisclosureCoverRemovalAndReplacedGraphRetireWorldAndPortraitAuthority" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1270156540" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.056033" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.DisclosureCoverRemovalAndReplacedGraphRetireWorldAndPortraitAuthority () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:242
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1272" name="ExistingSingleRenderCueIsRetainedWithoutQueriesInventingCounterServices" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.ExistingSingleRenderCueIsRetainedWithoutQueriesInventingCounterServices" methodname="ExistingSingleRenderCueIsRetainedWithoutQueriesInventingCounterServices" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="946743830" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.066502" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.ExistingSingleRenderCueIsRetainedWithoutQueriesInventingCounterServices () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:260
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1262" name="ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:38Z" duration="0.300240" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1259" name="ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture(0)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture(0)" methodname="ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="690039723" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.053764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent optional MarketStall texture overload is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.Art (UnityEngine.Texture2D east, UnityEngine.Texture2D stall) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:57
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture (System.Int32 fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1260" name="ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture(1)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture(1)" methodname="ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1782671816" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:37Z" duration="0.067380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent optional MarketStall texture overload is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.Art (UnityEngine.Texture2D east, UnityEngine.Texture2D stall) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:57
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture (System.Int32 fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1261" name="ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture(2)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture(2)" methodname="ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="530074377" result="Failed" start-time="2026-10-28 18:21:37Z" end-time="2026-10-28 18:21:38Z" duration="0.061071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Independent optional MarketStall texture overload is required.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.Art (UnityEngine.Texture2D east, UnityEngine.Texture2D stall) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:57
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.ExplicitMissingOrWrongCounterTextureStaysFallbackWithoutBreakingFurniture (System.Int32 fault) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:153
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1257" name="OldOneInputRetainsBedChairAndDoesNotReloadNewCounterGroup" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.OldOneInputRetainsBedChairAndDoesNotReloadNewCounterGroup" methodname="OldOneInputRetainsBedChairAndDoesNotReloadNewCounterGroup" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="731594470" result="Passed" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:38Z" duration="0.314801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1267" name="RequiredPartsAreUniqueAndOwned" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.RequiredPartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:38Z" duration="0.321784" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1264" name="RequiredPartsAreUniqueAndOwned(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.RequiredPartsAreUniqueAndOwned(&quot;missing&quot;)" methodname="RequiredPartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1886888230" result="Failed" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:38Z" duration="0.062713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.RequiredPartsAreUniqueAndOwned (System.String fault) [0x00065] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:180
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1265" name="RequiredPartsAreUniqueAndOwned(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.RequiredPartsAreUniqueAndOwned(&quot;foreign&quot;)" methodname="RequiredPartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="1640954681" result="Failed" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:38Z" duration="0.073926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.RequiredPartsAreUniqueAndOwned (System.String fault) [0x00065] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:180
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1266" name="RequiredPartsAreUniqueAndOwned(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarketStallTests.RequiredPartsAreUniqueAndOwned(&quot;duplicate&quot;)" methodname="RequiredPartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelMarketStallTests" runstate="Runnable" seed="460613322" result="Failed" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:38Z" duration="0.059276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarketStallTests.NativeOwner (CavesOfOoo.Core.Entity owner, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:74
+at CavesOfOoo.Tests.FlatPixelMarketStallTests.RequiredPartsAreUniqueAndOwned (System.String fault) [0x00065] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMarketStallTests.cs:180
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="40885" name="SillCourtPopulationTests" fullname="CavesOfOoo.Tests.SillCourtPopulationTests" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:44Z" duration="5.377918" total="18" passed="17" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="40906" name="CachedTownIsReattachedWithoutRegenerationOrNewCourtOwners" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CachedTownIsReattachedWithoutRegenerationOrNewCourtOwners" methodname="CachedTownIsReattachedWithoutRegenerationOrNewCourtOwners" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1486763001" result="Passed" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:38Z" duration="0.066562" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="40895" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:39Z" duration="1.087738" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="40890" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;other-village&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;other-village&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1714793440" result="Passed" start-time="2026-10-28 18:21:38Z" end-time="2026-10-28 18:21:39Z" duration="0.199671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40891" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;alias&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1500025220" result="Passed" start-time="2026-10-28 18:21:39Z" end-time="2026-10-28 18:21:39Z" duration="0.268092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40892" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;name&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;name&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1189257899" result="Passed" start-time="2026-10-28 18:21:39Z" end-time="2026-10-28 18:21:39Z" duration="0.190892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40893" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;biome&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="87167139" result="Passed" start-time="2026-10-28 18:21:39Z" end-time="2026-10-28 18:21:39Z" duration="0.161425" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40894" name="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning(&quot;profile&quot;)" methodname="CourtDoesNotLeakIntoAnotherAddressOrChangedSillMeaning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1712655960" result="Passed" start-time="2026-10-28 18:21:39Z" end-time="2026-10-28 18:21:39Z" duration="0.148881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="40889" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-28 18:21:39Z" end-time="2026-10-28 18:21:40Z" duration="0.569204" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="40886" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(64)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(64)" methodname="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="418202521" result="Passed" start-time="2026-10-28 18:21:40Z" end-time="2026-10-28 18:21:40Z" duration="0.152730" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40887" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(65)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(65)" methodname="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1282472885" result="Passed" start-time="2026-10-28 18:21:40Z" end-time="2026-10-28 18:21:40Z" duration="0.152159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40888" name="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(777)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable(777)" methodname="FreshFullTownGroupsExistingStockedShopsAndKeepsTheirRealServicesReachable" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="723868957" result="Passed" start-time="2026-10-28 18:21:40Z" end-time="2026-10-28 18:21:40Z" duration="0.137785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="40905" name="MissingPairedShopContentDoesNotLeaveAHalfBuiltCourt" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.MissingPairedShopContentDoesNotLeaveAHalfBuiltCourt" methodname="MissingPairedShopContentDoesNotLeaveAHalfBuiltCourt" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="769605575" result="Passed" start-time="2026-10-28 18:21:40Z" end-time="2026-10-28 18:21:40Z" duration="0.230960" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="40904" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-28 18:21:40Z" end-time="2026-10-28 18:21:44Z" duration="3.309591" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="40896" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;reserved&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="732374113" result="Passed" start-time="2026-10-28 18:21:40Z" end-time="2026-10-28 18:21:41Z" duration="0.199152" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40897" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;second-reserved&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;second-reserved&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="2121628452" result="Passed" start-time="2026-10-28 18:21:41Z" end-time="2026-10-28 18:21:41Z" duration="0.277474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40898" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;coating&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="2057436512" result="Passed" start-time="2026-10-28 18:21:41Z" end-time="2026-10-28 18:21:41Z" duration="0.317108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40899" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;liquid&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1838849059" result="Passed" start-time="2026-10-28 18:21:41Z" end-time="2026-10-28 18:21:41Z" duration="0.286473" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40900" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;stairs&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;stairs&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="1210702974" result="Passed" start-time="2026-10-28 18:21:41Z" end-time="2026-10-28 18:21:42Z" duration="0.783960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40901" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;resident&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;resident&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="865527047" result="Passed" start-time="2026-10-28 18:21:42Z" end-time="2026-10-28 18:21:43Z" duration="0.892679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40902" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;loose-prop&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;loose-prop&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="789452657" result="Passed" start-time="2026-10-28 18:21:43Z" end-time="2026-10-28 18:21:43Z" duration="0.217623" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="40903" name="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning(&quot;footprint&quot;)" methodname="OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning" classname="CavesOfOoo.Tests.SillCourtPopulationTests" runstate="Runnable" seed="292935748" result="Failed" start-time="2026-10-28 18:21:43Z" end-time="2026-10-28 18:21:44Z" duration="0.209398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An invalid preferred workshop must use ordinary placement.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SillCourtPopulationTests.OccupiedPreferredWorkshopFallsBackWithoutClearingOrCloning (System.String obstruction) [0x0008d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/SillCourtPopulationTests.cs:155
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
