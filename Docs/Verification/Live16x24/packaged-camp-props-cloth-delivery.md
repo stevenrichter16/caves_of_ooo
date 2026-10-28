@@ -1,0 +1,15 @@
+# Shared camp props and cloth delivery
+
+Runtime source `9a23718527e10e4ba7d24df203b8170bd12ba33e` was pushed and remotely verified. Fresh Mac and Linux builds succeeded with zero errors and four warnings each. The batch adds exact Sack, Urn and ordinary Well bodies from unchanged approved square sprites, plus original TentWall/GuestClothPole native16×24 art. The v2 cloth corrects overly bright ladder-like supports; reversible v1, editable Blender, source cells and palette remain preserved.
+
+Native evidence is one114-case passing run:12cloth plus102related props/storage/furniture. It predates the v2 art-only correction; runtime did not change afterward. Do not add earlier subset counts or interpret these tests as visual acceptance.
+
+Ten actual Mac captures across two processes show the earned139 checkpoint, guest-pole traversal and exact reader, exact Cloth8/8 wall reader, F5fixture140 and full-process Continue140. All564000 compared world pixels match across restart. The second process verifies the ordinary well reader and actual drinking, then the Sack reader and Open2items menu. No packaged inventory transfer, Urn reader, wall destruction or fire is claimed. Real Scorpion pursuit, attacks and poison reduced playerHP38→21 on the storage route; the unsanitized F5fixture141 preserves the outcome. This confirms normal gameplay remained active, not a staged display.
+
+Linux archive:128819912bytes, SHA256 `95e6bafe7f6ec836ea22e23d276570e4054c5c724f452ab8f4cc333a21da4a73`. All archived file bytes, sizes, modes, directory modes, internal checksums and gzip stream are verified. Linux and physical Steam Deck were not executed. The two Mac logs each retain six premature-thread-finalization notices and one ComputeBuffer-disposal message; no clean-log or sustained-performance claim.
+
+Preservation/restoration and independent review are recorded in the sibling phase receipts when completed. Current/previous required builds and normal saves are preserved; storage cleanup remains forbidden. Broad camp emptiness, repeated cloth panels, other site instances and all55+5area-polish scopes remain open. This batch closes five body identities, not five polished areas.
+
+Next candidate: shared Farmer portability using the approved native body and editable incidental-actor sources. Registered main-well settlement placement makes it a broad actor gap; outside-opening disclosed actual baseline is still required before implementation. Do not return to cave studies or optional motion.
+
+Final preservation: the reviewed restoration verified52,522 tracked snapshot objects,49 preexisting dirty files, normal Editor saves/preferences, original standalone preferences and prior packages. Seven generated changes were backed up/restored; all owned standalone test saves were archived before restoring the original absent save-root state. No source or save deletion and no cache reclamation. Independent review passed within these bounds. Delivery evidence belongs to this commit; source9a2371852 was already remotely verified.

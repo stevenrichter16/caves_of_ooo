@@ -64,3 +64,7 @@ Independent source+actual visual review found no P1/P2 within this scope (`share
 All five isolated roots (before,road-before,after,restart,road-after) copied and SHA-verified under `/private/tmp/coo-camp-*-preserved` before Finish. Pending view restoration after the test import needed the existing Restore method once while idle; normal scene clean/Playfalse/rootnull verified.49foreignpaths retain their hashes. Three owned cave metadata whitespace changes from Unity import are preserved outside the project then restored toHEAD. No storage data removed; read-only disk check370GiBfree.
 
 Files: NEW adapter+meta, tests+meta; MOD Greyboxfourroutes; phase/coverage/continuation records; actualcaptures, XML, JSON receipts/profile, fixture138. No existing raster edit. Next: original native TentWall/GuestClothPole kit; source/exact readers and imagegen critique retained in GRAPHICS-SHARED-CAMP-CLOTH.md. Animation deferred.
+
+## Packaged delivery — 2026-10-28 04:10UTC
+
+Source9a2371852 is verified on origin/main and included in fresh Mac/Linux builds. See [batched delivery](Verification/Live16x24/packaged-camp-props-cloth-delivery.md):10actual Mac captures across2processes, world/readers, pole traversal, well drinking, Sack Open2items and exact564000-pixel save/restart comparison. Real Scorpion damage is preserved in fixture141. Linux archive verified, Linux/physicalDeck not executed. Earlier pending-package statements are superseded within these bounded observations; no full-area polish claim. Normal state, prior builds and49foreign paths preserved.

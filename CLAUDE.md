@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** Shared camp props source6c08899a0 is verified on main. Original TentWall/GuestClothPole v2 has114 distinct native passes and bounded actual damage, passage, readers and save/restart evidence; source publication in this commit. See Docs/GRAPHICS-SHARED-CAMP-CLOTH.md. Next batch props+cloth into fresh Mac/Linux packages; preserve current8c0c72e11 outputs. Continue highest-impact missing surface/settlement families afterward. Root owns Unity/Git; approved sources, unrelated work and saves preserved; storage inspection-only. Coverage is not area polish.
+**Whole-game credit priority (2026-10-28):** Shared camp props+cloth source9a2371852 is verified main and delivered in fresh Mac/Linux builds.114 native passes;10actual Mac captures and exact restart match. Linux archive integrity verified, no Linux/physicalDeck run. See Docs/Verification/Live16x24/packaged-camp-props-cloth-delivery.md. Next candidate: shared Farmer portability; acquire actual outside-opening baseline first. Broad families and serious area polish remain open. Root owns Unity/Git; normal saves, approved art, prior builds and49foreign changes preserved. Storage inspection-only.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.

@@ -55,3 +55,7 @@ Independent review: `Verification/Live16x24/shared-camp-cloth-independent-review
 Next: publish exact owned source/evidence, verify origin/main, then one batched props+cloth Mac/Linux delivery. Preserve current8c0c72e11 packages and normal preferences/saves. Broader specialist residents and regional gaps remain open; no optional motion work.
 
 Next-family evidence (finite audit): shared Farmer portability, approved `Sprites/Live16x24/farmer.png` plus editable `ArtSource/Live16x24/incidental-actors/`. VillagePopulationBuilder places Farmers at main-well settlements, while current body routes remain local-only. Prior actual control is incidental-actors-65-farmer-1x.png, earned kitchen224401440. No current disclosed Farmer outside the opening is established: acquire that baseline before extending or claiming global coverage. This is the candidate after batched delivery, not work completed.
+
+## Packaged delivery — 2026-10-28 04:10UTC
+
+Source9a2371852 is verified on origin/main and included in fresh Mac/Linux builds. See [batched delivery](Verification/Live16x24/packaged-camp-props-cloth-delivery.md):10actual Mac captures across2processes, world/readers, pole traversal, well drinking, Sack Open2items and exact564000-pixel save/restart comparison. Real Scorpion damage is preserved in fixture141. Linux archive verified, Linux/physicalDeck not executed. Earlier pending-package statements are superseded within these bounded observations; no full-area polish claim. Normal state, prior builds and49foreign paths preserved.

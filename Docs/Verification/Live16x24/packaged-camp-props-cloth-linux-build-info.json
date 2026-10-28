@@ -1,0 +1,126 @@
+{
+  "created_at_utc": "2026-10-28T04:06:21.219900+00:00",
+  "runtime_source_commit": "9a23718527e10e4ba7d24df203b8170bd12ba33e",
+  "package_flavor": "shared-camp-props-cloth",
+  "built_after_utc": "2026-10-28T04:00:23.182277+00:00",
+  "slice_description": "Batched exact Sack/Urn/ordinary Well bodies, plus TentWall and GuestClothPole. Three approved square props are borrowed unchanged; a new original three-cell cloth atlas uses straight wall bodies and a passable guest pole. Current owner/disclosure/resource guards retain existing container, well, material, heat, burning, damage and collision behavior. No new service, blueprint, save-format, world geometry, global grading or camera behavior; isolated Shale study remains default-off.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-camp-props-cloth-mac-build.json",
+    "sha256": "16bf92175bed2093a802621d2ab26964f6a6bb33c54be571a7169fe7aba9d458",
+    "summary": {
+      "job_id": "build-fd2db296e7",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "/Users/steven/caves-of-ooo/Builds/Verification/2026-10-28-camp-props-cloth-9a2371852-current/CavesOfOoo.app",
+      "started_at": "2026-10-28T04:00:29.649479Z",
+      "duration_seconds": 90.86511999999999,
+      "completed_at": "2026-10-28T04:02:00.514599Z",
+      "total_size_mb": 344.59,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-camp-props-cloth-linux-build.json",
+    "sha256": "83dc4c2679847733a21d4670ad6d5978216795ce9ded6d9894daccec2a202d55",
+    "summary": {
+      "job_id": "build-5665d093b2",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-10-28-camp-props-cloth-9a2371852-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-28T04:02:18.658764Z",
+      "duration_seconds": 95.637985,
+      "completed_at": "2026-10-28T04:03:54.296749Z",
+      "total_size_mb": 325.05,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-camp-cloth-green.xml",
+          "sha256": "342ad77a3d8252d5d13a41db142635b4bc941e4ac2f6951e4dad53cb9874f71f",
+          "summary": {
+            "id": "2",
+            "testcasecount": "114",
+            "result": "Passed",
+            "total": "114",
+            "passed": "114",
+            "failed": "0",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-28 03:42:34Z",
+            "end-time": "2026-10-28 03:43:00Z",
+            "duration": "26.8679305"
+          },
+          "actual_case_rows": 114,
+          "mode": "EditMode",
+          "timestamp_source": "Actual native XML; no separate job metadata is inferred."
+        }
+      ],
+      "current_source_binding": {
+        "source_commit": "9a23718527e10e4ba7d24df203b8170bd12ba33e",
+        "pins": {
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "34e5ddbfba4112219d2107c03c4ff67c62d27b53b99ec0f8b4a1db0dc4c8b458",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedCampPropsCatalog.cs": "94c6f370dbcdc90f47fec323948960d64dd2322b60ae77963cf50b4f0d770ccf",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedCampClothCatalog.cs": "349281e5b3aa82b0389834ef717f1dddb84aa7e2887e7b1f25b2ce9c83728e09",
+          "Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs": "7b8b465ad70a72c9e4579f42dfd54efefc128dae72d627f83bd42ed6df3cd5d2",
+          "Assets/Tests/EditMode/FlatPixelSharedCampClothTests.cs": "ca54c53e7b71ff2553c6df6c516261cb9c76cb1724e235ba9bbf0ea8129efdc7",
+          "Assets/Resources/Sprites/Environment/cont_sack.png": "d1a4c73c85a9aa5d115456cbb37fa106746d9a2cfcb6298fc6911d912488c9b4",
+          "Assets/Resources/Sprites/Environment/cont_urn.png": "02c6e0906e1789fbd070edb6267a6303585cc045d86f4e70220befe559d15690",
+          "Assets/Resources/Sprites/Environment/well.png": "4d8a33eced838078f84360ecd8d04a9d4921b06ee8ca1c4ec4a22c72406940c4",
+          "Assets/Resources/Sprites/Live16x24/shared-camp-cloth.png": "3deb52ac4c4be95f6d5b738ca06176dfc5722a2ce564dfb9e11cfc00770ef6a8",
+          "ArtSource/Live16x24/shared-camp-cloth/shared-camp-cloth.png": "3deb52ac4c4be95f6d5b738ca06176dfc5722a2ce564dfb9e11cfc00770ef6a8",
+          "ArtSource/Live16x24/shared-camp-cloth/source-cells.json": "4a1b85848ff13396f2617bdf087850e3b0925de1b6831325464d06c97fc63ac3",
+          "ArtSource/Live16x24/shared-camp-cloth/editable.blend": "14103467eeec7362b1a18ecaa096a10ed80ced75cd298802a674da6c6c2341e9",
+          "ArtSource/Live16x24/shared-camp-cloth/manifest.json": "799bf4daa4ba9b1656310f2e510681ffd2af31963adf111051c4561f6d202c36",
+          "Tools/Live16x24/build_shared_camp_cloth.py": "1fd7555f4cb3d7cc3b33f9ea0a32c1216ff9a8023f3adcb746dadfaaa57a54fc",
+          "Docs/Verification/Live16x24/shared-camp-cloth-green.xml": "342ad77a3d8252d5d13a41db142635b4bc941e4ac2f6951e4dad53cb9874f71f"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Final selected bytes are pinned separately from the retained runtime test checkpoint. Root asserts source/build provenance; later art revision and gameplay acceptance need their own evidence."
+      },
+      "execution_occurrences": 114,
+      "passed_execution_occurrences": 114,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "repeated_identity_occurrences": 0,
+      "distinct_test_identities_across_listed_receipts": 114,
+      "distinct_passed_test_identities": 114,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "cloth_focused_passed": 12,
+      "related_passed": 102,
+      "native_job_times_verified": false,
+      "native_xml_times_verified": true,
+      "skipped_identities": [],
+      "inconclusive_identities": [],
+      "limits": "One 114-case XML only; no earlier props/cloth subset counts added. No test rerun, final-art timing, gameplay, Linux/Deck or performance certification is invented."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "Scope is five exact eligible bodies: Sack, Urn, ordinary Well, TentWall and GuestClothPole. Special WellSite/Repairable variants, unrelated containers, dwellings, hazards and world families remain outside this slice. Actual camp observations and normal interactions have separate evidence.",
+    "Body coverage and reader identity do not establish whole-scene fullness, reference parity or area polish. Cloth repetition, surrounding glyphs and sparse camp composition remain later scene-review concerns. No new animation or broad world completion is claimed.",
+    "One complete retained native XML contains 114 distinct Passed identities in one 114-case cloth checkpoint: 12 cloth plus 102 related camp-prop/storage/furniture cases. Earlier subset executions are not added. Native timestamps come directly from this pinned XML; no job metadata or final-art run is invented. No performance claim follows.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Worldwide static coverage and later area polish remain open."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}
