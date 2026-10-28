@@ -137,6 +137,24 @@ namespace CavesOfOoo.Rendering
         {
             tile = null; floor = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
+            if (!TryGetDisclosedDryFloor(zone, x, y, out floor)) return false;
+            bool stone = floor.BlueprintName == "StoneFloor";
+            tile = environment != null ? environment[(stone ? 4 : 0) + VariantAt(x, y)]
+                : stone ? stoneFloor == null ? null : stoneFloor[VariantAt(x, y)]
+                : envelope == null ? null : envelope[20 + VariantAt(x, y)];
+            if (tile != null) return true;
+            floor = null; return false;
+        }
+
+        // Shared material admission for the bounded contact-shadow pilot. Reads
+        // only a disclosed current receiver; no art allocation or hidden neighbor.
+        internal static bool TryGetDisclosedDryFloor(Zone zone, int x, int y, out Entity floor)
+        {
+            floor = null;
+            if (!IsSupportedZone(zone)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || !cell.IsVisible) return false;
             var state = zone.TileState.Get(x, y);
             if (state != null && !state.IsEmpty) return false;
             // Owner-local cultivation is checked below with disclosed owned parts.
@@ -160,14 +178,18 @@ namespace CavesOfOoo.Rendering
                     stone = owner;
                 }
             }
-            if (stone != null)
-            { floor = stone; tile = environment != null ? environment[4 + VariantAt(x, y)]
-                : stoneFloor == null ? null : stoneFloor[VariantAt(x, y)]; }
-            else if (grass != null)
-            { floor = grass; tile = environment != null ? environment[VariantAt(x, y)]
-                : envelope == null ? null : envelope[20 + VariantAt(x, y)]; }
-            if (tile != null) return true;
-            floor = null; return false;
+            floor = stone ?? grass;
+            return floor != null;
+        }
+
+        internal static bool CanReceiveContactShadow(Zone zone, int x, int y, Entity actor)
+        {
+            if (!TryGetDisclosedDryFloor(zone, x, y, out _)) return false;
+            var cell = zone.GetCell(x, y);
+            foreach (var owner in cell.Occupants)
+                if (owner != actor && Placed(zone, cell, owner) && VisiblePhysicalOwner(owner)
+                    && owner.BlueprintName != "Grass" && owner.BlueprintName != "StoneFloor") return false;
+            return true;
         }
 
         /// <summary>Only the same currently selected visible world subject may

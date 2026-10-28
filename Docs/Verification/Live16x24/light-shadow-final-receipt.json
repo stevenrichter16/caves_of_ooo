@@ -1,0 +1,57 @@
+{
+  "status": "bounded_editor_pilot_verified;publication_pending",
+  "scope": "Current Sill Player only; ordinary disclosed dry Grass/StoneFloor; borrowed10x4contact mask at .18alpha,1px right/2px up,unlit; no wall/prop/general-light implementation",
+  "native": {
+    "total": 282,
+    "passed": 281,
+    "failed": 0,
+    "skipped": 1,
+    "new_cases": 18,
+    "skip": "Existing moving-body query allocation counter cannot observe known allocation; no zero-allocation claim",
+    "red": "light-shadow-native-red.xml",
+    "green": "light-shadow-native-green.xml"
+  },
+  "actual": {
+    "baseline_fixture": "sill-continuity-return185",
+    "matched_pair": [
+      "light-shadow-before185.png",
+      "light-shadow-after185.png"
+    ],
+    "pair_changed_pixels": 16,
+    "pair_difference_bounds": [
+      468,
+      324,
+      476,
+      328
+    ],
+    "observed": [
+      "Sill39,11 dry grass",
+      "StoneFloor40,7",
+      "inventory hides world view",
+      "WellGroundMarker40,11 refuses shade; solid Well40,12 still blocks",
+      "WaterPuddle39,20 refuses shade",
+      "water reader retains native identity",
+      "dry39,19 restores shade",
+      "glade11.10 remains unshaded",
+      "Sill travel return",
+      "fresh Continue186:turn1130,HP40,39,11,contact shadow enabled"
+    ],
+    "fresh_continue_fixture": "light-shadow-return186",
+    "fresh_continue_world_difference_pixels": 482,
+    "fresh_continue_player_crop_exact": true,
+    "restart_limit": "Other local repaint differences x11-266 left of player; cause unproven, no exact whole-scene restart claim"
+  },
+  "independent_review": "No actionable source/actual P1/P2; intentionally faint at normal zoom, bounded grounding pilot only",
+  "profile": "light-shadow-editor-profile.json;181.861s,35971frames,32768retained wrapped;renderer mean.150ms,p99.312ms,max184.731ms,Mainmax5670.977ms,87maxbatches;UI/tool/idle included,no controlled performance claim",
+  "preservation": "light-shadow-preservation.json;49foreign paths/1000normal Editor entries/preferences/current-prior builds retained;borrowedshadowPNG/meta exact;zero deletion",
+  "remaining": [
+    "Walls/props and other actors/biomes not shaded",
+    "Ambient/source-light response not integrated",
+    "Whole-area/environment/population polish open",
+    "Opacity intentionally subtle; stronger matched comparison optional later",
+    "Packaged builds remain43a151ddb; no physical Deck"
+  ],
+  "next": "Define one Sill masonry/counter directional shade receiver/channel contract; actual bounded iteration before broader regions. Continue materials and periodic chunk composition, defer crops and optional animations",
+  "last_hourly_report_utc": "2026-10-28T19:44:00Z",
+  "next_hourly_report_utc": "2026-10-28T20:44:00Z"
+}

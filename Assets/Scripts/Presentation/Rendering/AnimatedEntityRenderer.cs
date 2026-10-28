@@ -350,6 +350,7 @@ namespace CavesOfOoo.Rendering
             view.HasPendingReaction = false;
             view.Body.flipX = false;
             view.Body.sharedMaterial = view.Flat ? _flatMaterial : _sharedMaterial;
+            ConfigureShadow(view);
             view.BodyTransform.localPosition = Vector3.zero;
             view.RootTransform.position = CellAnchor(x, y);
             view.Root.name = "Visual_" + (entity?.BlueprintName ?? "Entity");
@@ -532,6 +533,7 @@ namespace CavesOfOoo.Rendering
                 flatView.HasPendingReaction = false;
                 BeginState(flatView, EntityVisualState.Hurt, DeathDuration);
                 flatView.Dying = true;
+                flatView.Shadow.enabled = false;
                 UpdateSortingDepth(flatView);
                 return;
             }
@@ -547,14 +549,15 @@ namespace CavesOfOoo.Rendering
             UpdateSortingDepth(view);
         }
 
-        private static void BeginState(EntityView view, EntityVisualState state, float duration)
+        private void BeginState(EntityView view, EntityVisualState state, float duration)
         {
             view.State = state;
             view.StateTime = 0f;
             view.StateDuration = duration;
             view.BodyTransform.localPosition = Vector3.zero;
             view.Body.enabled = true;
-            view.Shadow.enabled = !view.Flat;
+            if (view.Flat) UpdateFlatContactShadow(view);
+            else view.Shadow.enabled = _shadowSprite != null;
             if (view.Flat)
             {
                 view.ForcedIdle = false;
@@ -590,7 +593,8 @@ namespace CavesOfOoo.Rendering
             view.Root.SetActive(visible);
             if (!visible) return;
             view.Body.enabled = true;
-            view.Shadow.enabled = !view.Flat && _shadowSprite != null;
+            if (view.Flat) UpdateFlatContactShadow(view);
+            else view.Shadow.enabled = _shadowSprite != null;
         }
 
         private Vector3 CellAnchor(int x, int zoneY)

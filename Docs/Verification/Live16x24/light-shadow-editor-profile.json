@@ -1,0 +1,71 @@
+{
+  "label": "light-shadow-editor-profile",
+  "start": "2026-10-28T19:51:49.865505Z",
+  "end": "2026-10-28T19:54:51.726825Z",
+  "elapsedSeconds": 181.86131999999998,
+  "frames": 35971,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    39,
+    19
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 149796.05453491211,
+      "max": 184730666,
+      "p99": 311958
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 5166440.178894043,
+      "max": 5670976500,
+      "p99": 15485792
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 40.0054931640625,
+      "max": 87,
+      "p99": 45
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 40.0054931640625,
+      "max": 87,
+      "p99": 45
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 8483.6525268554688,
+      "max": 18122,
+      "p99": 13697
+    }
+  ],
+  "bounds": "Editor Sill contact-shadow ordinary walking, menus, river approach and dry return, plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

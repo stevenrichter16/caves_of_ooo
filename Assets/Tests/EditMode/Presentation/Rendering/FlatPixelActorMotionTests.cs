@@ -494,6 +494,202 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        // Contact-shadow RED uses the actual SpriteRenderer already owned by
+        // the accepted native view. The ordinary Glade fixture remains unchanged.
+        static bool Renders(SpriteRenderer sprite) => sprite != null && sprite.enabled
+            && sprite.gameObject.activeInHierarchy && sprite.sprite != null && sprite.color.a > 0;
+        static bool ContactShadowOption(AnimatedEntityRenderer renderer, bool? enabled = null)
+        {
+            var option = typeof(AnimatedEntityRenderer).GetProperty("FlatContactShadowEnabled", I);
+            Assert.NotNull(option, "The reversible native contact-shadow option is absent.");
+            Assert.True(option.CanRead && option.CanWrite); Assert.AreEqual(typeof(bool), option.PropertyType);
+            if (enabled.HasValue) option.SetValue(renderer, enabled.Value);
+            return (bool)option.GetValue(renderer);
+        }
+        static void ContactShadow(Fixture f)
+        {
+            Assert.True(Renders(f.Shadow), "A disclosed Sill player's existing view must submit its contact shadow.");
+            Assert.AreSame(Resources.Load<Sprite>("Sprites/Actors/actor_shadow"), f.Shadow.sprite);
+            Assert.AreEqual(new Vector2(10, 4), f.Shadow.sprite.rect.size);
+            Assert.AreEqual(new Vector2(5, 2), f.Shadow.sprite.pivot);
+            Assert.AreEqual(16, f.Shadow.sprite.pixelsPerUnit);
+            Assert.AreEqual(FilterMode.Point, f.Shadow.sprite.texture.filterMode);
+            Assert.AreEqual(new Color(0, 0, 0, .18f), f.Shadow.color);
+            Assert.AreEqual(new Vector3(1f / 16, 2f / 16, 0), f.Shadow.transform.localPosition);
+            Assert.AreEqual(Vector3.one, f.Shadow.transform.localScale);
+            Assert.AreSame(f.Body.sharedMaterial, f.Shadow.sharedMaterial);
+            Assert.That(f.Shadow.sharedMaterial.shader.name, Does.Not.Contain("Lit-Default"));
+            Assert.Less(f.Shadow.sortingOrder, f.Body.sortingOrder);
+        }
+        static void Inside(Bounds actual, Bounds cell)
+        {
+            Assert.GreaterOrEqual(actual.min.x, cell.min.x - .0001f);
+            Assert.GreaterOrEqual(actual.min.y, cell.min.y - .0001f);
+            Assert.LessOrEqual(actual.max.x, cell.max.x + .0001f);
+            Assert.LessOrEqual(actual.max.y, cell.max.y + .0001f);
+        }
+
+        [TestCase("Grass")] [TestCase("StoneFloor")]
+        public void ContactShadow_ActualSillSubmissionFitsDryFootprintWithoutChangingBody(string ground)
+        {
+            using (var f = new Fixture(sill: true, ground: ground))
+            {
+                ContactShadow(f); Assert.True(ContactShadowOption(f.Actors)); Inside(f.Shadow.bounds, f.CellBounds(8, 9));
+                var view = f.View; var body = f.Body.sprite; var substrate = f.Background(8, 9);
+                int count = f.ActorRoot.transform.childCount, version = f.Zone.EntityVersion;
+                int hp = f.Actor.GetStatValue("Hitpoints"); string state = f.Zone.TileState.ToSaveString();
+                for (int i = 0; i < 8; i++) { f.Tick(.02f); ContactShadow(f); }
+                Assert.AreSame(view, f.View); Assert.AreSame(body, f.Body.sprite);
+                Assert.AreSame(substrate, f.Background(8, 9)); Assert.IsNull(f.Foreground(8, 9));
+                Assert.AreEqual(Color.white, f.Body.color); Assert.AreEqual(count, f.ActorRoot.transform.childCount);
+                Assert.AreEqual(1, f.Actors.ActiveViewCount); Assert.AreEqual(version, f.Zone.EntityVersion);
+                Assert.AreEqual(hp, f.Actor.GetStatValue("Hitpoints")); Assert.AreEqual(state, f.Zone.TileState.ToSaveString());
+                Assert.AreEqual((8, 9), f.Zone.GetEntityPosition(f.Actor));
+            }
+        }
+
+        [Test] public void ContactShadow_OptionDisablesAndRestoresSameViewAcrossReactions()
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                Assert.True(ContactShadowOption(f.Actors)); ContactShadow(f);
+                var view = f.View; var body = f.Body.sprite;
+                Assert.False(ContactShadowOption(f.Actors, false)); f.Tick(0); Assert.False(Renders(f.Shadow));
+                Assert.AreSame(view, f.View); Assert.AreSame(body, f.Body.sprite); Assert.True(Renders(f.Body));
+                Assert.True(ContactShadowOption(f.Actors, true)); f.Tick(0); ContactShadow(f);
+                EntityVisualHooks.EmitAttack(f.Actor, null, f.Zone); ContactShadow(f); f.Pose(2);
+                f.Tick(.13f); ContactShadow(f); f.Idle();
+                CombatSystem.ApplyDamage(f.Actor, 1, null, f.Zone); f.Tick(.01f); ContactShadow(f); f.Pose(3);
+                f.Tick(.11f); ContactShadow(f); f.Idle(); Assert.AreSame(view, f.View);
+            }
+        }
+
+        [TestCase("memory")] [TestCase("unexplored")] [TestCase("render-hidden")]
+        [TestCase("removed")] [TestCase("death")] [TestCase("presentation-hidden")]
+        public void ContactShadow_QuietRevocationNeverLeavesAVisibleOrphan(string fault)
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                ContactShadow(f); var shadow = f.Shadow; var cell = f.Zone.GetCell(8, 9);
+                f.ClearDirty();
+                if (fault == "memory") cell.IsVisible = false;
+                if (fault == "unexplored") cell.Explored = false;
+                if (fault == "render-hidden") f.Actor.GetPart<RenderPart>().Visible = false;
+                if (fault == "removed") Assert.True(f.Zone.RemoveEntity(f.Actor));
+                if (fault == "death") CombatSystem.ApplyDamage(f.Actor, 100, null, f.Zone);
+                if (fault == "presentation-hidden") f.Actors.SetPresentationVisible(false);
+                f.Tick(.01f); Assert.False(Renders(shadow), "No full repaint is needed to retire a shadow.");
+            }
+        }
+
+        [TestCase("water-pool")] [TestCase("oil")] [TestCase("heat")]
+        public void ContactShadow_RealWetOrHazardStateSuppressesOnlyShadeAndDryRecoveryRestoresIt(string state)
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                ContactShadow(f); var view = f.View; var body = f.Body.sprite; Entity pool = null;
+                if (state == "water-pool") pool = f.AddActual("WaterPuddle", 8, 9);
+                if (state == "oil") f.Zone.TileState.WriteCoating(8, 9, "oil", 5);
+                if (state == "heat") f.Zone.TileState.AddHeat(8, 9, 20);
+                f.Frame(); f.Tick(0); Assert.False(Renders(f.Shadow));
+                Assert.True(Renders(f.Body)); Assert.AreSame(view, f.View); Assert.AreSame(body, f.Body.sprite);
+                Assert.AreEqual(1, f.Actors.ActiveViewCount); Assert.AreEqual((8, 9), f.Zone.GetEntityPosition(f.Actor));
+                if (pool != null)
+                {
+                    Assert.True(f.Zone.TileState.HasCoating(8, 9, "water"));
+                    Assert.AreEqual(120, pool.GetPart<LiquidPoolPart>().Volume);
+                    Assert.True(f.Zone.RemoveEntity(pool));
+                }
+                else Assert.NotNull(f.Hazard(8, 9), "The shade refusal must not remove the independent hazard mark.");
+                f.Zone.TileState.Clear(8, 9); f.Frame(); f.Tick(0); ContactShadow(f);
+                Assert.AreSame(view, f.View); Assert.AreSame(body, f.Body.sprite);
+            }
+        }
+
+        [TestCase("hidden")] [TestCase("water")]
+        public void ContactShadow_MovingFootprintCannotSpillOntoUndisclosedOrUnsafeDeparture(string fault)
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                ContactShadow(f); Assert.True(MovementSystem.TryMove(f.Actor, f.Zone, 1, 0)); f.Frame();
+                f.Tick(.04f); ContactShadow(f);
+                Assert.AreEqual((9, 9), f.Zone.GetEntityPosition(f.Actor));
+                Assert.True(f.Zone.GetCell(9, 9).IsVisible);
+                Assert.Less(f.Shadow.bounds.min.x, f.CellBounds(9, 9).min.x,
+                    "The real interpolated mask must overlap the departing cell, not merely its logical destination.");
+                Entity pool = null;
+                if (fault == "hidden") f.Zone.GetCell(8, 9).IsVisible = false;
+                else pool = f.AddActual("WaterPuddle", 8, 9);
+                f.Tick(0); Assert.False(Renders(f.Shadow)); Assert.True(Renders(f.Body));
+                f.Tick(.06f); f.Idle(); ContactShadow(f); Inside(f.Shadow.bounds, f.CellBounds(9, 9));
+                Assert.AreEqual((9, 9), f.Zone.GetEntityPosition(f.Actor));
+                if (pool != null) Assert.AreEqual(120, pool.GetPart<LiquidPoolPart>().Volume);
+            }
+        }
+
+        [Test] public void ContactShadow_DisclosedWallReceiverRefusesShadeButHiddenWallCannotRevealItself()
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                ContactShadow(f); var body = f.Body.sprite;
+                var wall = f.AddActual("StoneWall", 8, 9);
+                Assert.AreSame(f.Actor, f.Zone.GetCell(8, 9).GetTopVisibleObject());
+                f.Frame(); f.Tick(0); Assert.False(Renders(f.Shadow));
+                Assert.True(Renders(f.Body)); Assert.AreSame(body, f.Body.sprite);
+                wall.GetPart<RenderPart>().Visible = false;
+                f.Tick(0); ContactShadow(f);
+                wall.GetPart<RenderPart>().Visible = true;
+                f.Tick(0); Assert.False(Renders(f.Shadow));
+                Assert.True(f.Zone.RemoveEntity(wall)); f.Tick(0); ContactShadow(f);
+                Assert.AreSame(body, f.Body.sprite);
+            }
+        }
+
+        [Test] public void ContactShadow_PauseAndActualLegacyPoolReuseRestoreEachModesOwnSettings()
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                ContactShadow(f); var shadow = f.Shadow;
+                f.Renderer.Paused = true; Assert.False(Renders(shadow)); Assert.Zero(f.Actors.ActiveViewCount);
+                f.Renderer.Paused = false; f.Frame(); f.Tick(0); ContactShadow(f); Assert.AreSame(shadow, f.Shadow);
+                f.Actors.SetFlatPixelMode(false); f.Actors.SyncZone(f.Zone);
+                Assert.AreSame(shadow, f.Shadow, "Exercise the recycled view, not an untouched new legacy renderer.");
+                Assert.True(Renders(f.Shadow));
+                Assert.AreEqual(new Color(.10f, .13f, .11f, .55f), f.Shadow.color);
+                Assert.AreEqual(new Vector3(0, .10f, 0), f.Shadow.transform.localPosition);
+                Assert.AreEqual(Vector3.one, f.Shadow.transform.localScale);
+                Assert.AreSame(f.Body.sharedMaterial, f.Shadow.sharedMaterial);
+                f.Actors.SetFlatPixelMode(true); f.Renderer.MarkCellDirty(8, 9, "shadow mode return"); f.Frame(); f.Tick(0);
+                ContactShadow(f); Assert.AreSame(shadow, f.Shadow); Assert.AreEqual(1, f.Actors.ActiveViewCount);
+            }
+        }
+
+        [Test] public void ContactShadow_CurrentSillAndPlayerAdmissionDoesNotExtendToOtherNativeActors()
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                ContactShadow(f); var dog = Actor("shadow-dog", "PetDog"); Assert.True(f.Zone.AddEntity(dog, 10, 9));
+                f.Renderer.MarkCellDirty(10, 9, "native dog control"); f.Frame(); f.Tick(0);
+                var dogView = f.ActorRoot.transform.Find("Visual_PetDog"); Assert.NotNull(dogView);
+                Assert.True(Renders(dogView.Find("Body").GetComponent<SpriteRenderer>()));
+                Assert.False(Renders(dogView.Find("Shadow").GetComponent<SpriteRenderer>()));
+                var shadow = f.Shadow;
+                f.Manager.WorldMap.GetPOI(10, 10).Name = "Other village";
+                f.Tick(0); Assert.False(Renders(shadow)); Assert.True(Renders(f.Body));
+            }
+        }
+
+        [Test] public void ContactShadow_MissingBorrowedSpriteKeepsAcceptedBodyAndExistingView()
+        {
+            using (var f = new Fixture(sill: true))
+            {
+                ContactShadow(f); var view = f.View; var body = f.Body.sprite;
+                typeof(AnimatedEntityRenderer).GetField("_shadowSprite", I).SetValue(f.Actors, null);
+                f.Tick(0); Assert.False(Renders(f.Shadow)); Assert.AreSame(view, f.View);
+                Assert.True(Renders(f.Body)); Assert.AreSame(body, f.Body.sprite); Assert.AreEqual(1, f.Actors.ActiveViewCount);
+            }
+        }
+
         static Entity DamageReadoutOwner(Fixture f, int hp, string id = "tween-readout-victim")
         {
             var victim = Actor(id, "MarlbackScrabbler");
@@ -536,6 +732,8 @@ namespace CavesOfOoo.Tests
         sealed class Fixture:IDisposable
         {
             readonly NativeGraph graph;readonly Tilemap overlay,bg;readonly HotbarSaveFixture globals;readonly Action restore;
+            readonly DensityLootTestScope content;
+            public readonly OverworldZoneManager Manager;
             public readonly GameObject ActorRoot;public readonly AnimatedEntityRenderer Actors;public readonly ZoneRenderer Renderer;
             public readonly Zone Zone;public readonly Entity Actor;public readonly Texture2D Motion;
             public bool FullDirty=>(bool)Field("_fullDirty").GetValue(Renderer);
@@ -545,7 +743,7 @@ namespace CavesOfOoo.Tests
             public Tilemap FxTiles=>(Tilemap)Field("_fxTilemap").GetValue(Renderer);
             public AsciiFxRenderer Readouts=>(AsciiFxRenderer)Field("_asciiFxRenderer").GetValue(Renderer);
             public WorldFxCoordinator Fx=>(WorldFxCoordinator)Field("_worldFxCoordinator").GetValue(Renderer);
-            public Fixture(bool motion=true)
+            public Fixture(bool motion=true, bool sill=false, string ground="Grass")
             {
                 var moved=EntityVisualHooks.MovedCallback;var attack=EntityVisualHooks.AttackCallback;var damage=EntityVisualHooks.DamageCallback;
                 var cast=EntityVisualHooks.CastCallback;var death=EntityVisualHooks.DeathCallback;
@@ -560,8 +758,20 @@ namespace CavesOfOoo.Tests
                     bound.SetValue(null,oldBound);if(previous!=null){previous.TileState.OnCellChanged=oldChanged;previous.TileState.OnSightChanged=oldSight;}};
                 try
                 {
-                    globals=new HotbarSaveFixture(true,false);EntityVisualHooks.Reset();Zone=new Zone(ReferenceGladePlan.ZoneID);Actor=FlatPixelActorMotionTests.Actor("motion-player","Player");Zone.AddEntity(Actor,8,9);
-                    for(int y=7;y<12;y++)for(int x=6;x<14;x++)Zone.GetCell(x,y).Explored=Zone.GetCell(x,y).IsVisible=true;
+                    if(sill)content=new DensityLootTestScope();
+                    globals=new HotbarSaveFixture(true,false);EntityVisualHooks.Reset();
+                    Zone=new Zone(sill?FlatPixelSillEnvelopeCatalog.ZoneID:ReferenceGladePlan.ZoneID);
+                    if(sill)
+                    {
+                        Manager=OverworldZoneManager.CreateDetached(content.Factory,64,true);Manager.SetActiveZone(Zone);
+                        Assert.True(FlatPixelSillEnvelopeCatalog.IsSupportedZone(Zone));
+                    }
+                    for(int y=7;y<12;y++)for(int x=6;x<14;x++)
+                    {
+                        Zone.GetCell(x,y).Explored=Zone.GetCell(x,y).IsVisible=true;
+                        if(sill)AddActual(ground,x,y);
+                    }
+                    Actor=FlatPixelActorMotionTests.Actor("motion-player","Player");Zone.AddEntity(Actor,8,9);
                     graph=new NativeGraph();graph.SetupCameraCleanup();Renderer=graph.ZoneRenderer;
                     var env=graph.Environment;overlay=graph.Overlay;bg=graph.Background;
                     Actors=graph.Actors;ActorRoot=Actors.gameObject;
@@ -590,10 +800,19 @@ namespace CavesOfOoo.Tests
             public void Idle(){Assert.NotNull(Body.sprite);Assert.AreNotSame(Motion,Body.sprite.texture);Assert.AreEqual(new Rect(0,0,16,24),Body.sprite.rect);}
             public Tile Foreground(int x,int y)=>overlay.GetTile<Tile>(new Vector3Int(x,CavesOfOoo.Core.Zone.Height-1-y,0));
             public TileBase Background(int x,int y)=>bg.GetTile(new Vector3Int(x,CavesOfOoo.Core.Zone.Height-1-y,0));
+            public TileBase Hazard(int x,int y)=>((Tilemap)Field("_tileStateTilemap").GetValue(Renderer)).GetTile(new Vector3Int(x,CavesOfOoo.Core.Zone.Height-1-y,0));
+            public Entity AddActual(string blueprint,int x,int y)
+            {Assert.NotNull(content);var owner=content.Factory.CreateEntity(blueprint);Assert.NotNull(owner);Assert.True(Zone.AddEntity(owner,x,y));return owner;}
+            public Bounds CellBounds(int x,int y)
+            {
+                var low=bg.CellToWorld(new Vector3Int(x,CavesOfOoo.Core.Zone.Height-1-y,0));
+                var high=bg.CellToWorld(new Vector3Int(x+1,CavesOfOoo.Core.Zone.Height-y,0));
+                return new Bounds((low+high)*.5f,high-low);
+            }
             public void Quiet(){Assert.False(FullDirty);Assert.Zero(((HashSet<int>)Field("_dirtyCells").GetValue(Renderer)).Count);}
             public void ClearDirty(){Field("_fullDirty").SetValue(Renderer,false);((HashSet<int>)Field("_dirtyCells").GetValue(Renderer)).Clear();}
             static FieldInfo Field(string name)=>typeof(ZoneRenderer).GetField(name,I);
-            public void Dispose(){try{graph?.CleanupCameraFixture();if(Motion!=null)Object.DestroyImmediate(Motion);}finally{globals?.Dispose();restore?.Invoke();}}
+            public void Dispose(){try{graph?.CleanupCameraFixture();if(Motion!=null)Object.DestroyImmediate(Motion);}finally{try{globals?.Dispose();}finally{try{content?.Dispose();}finally{restore?.Invoke();}}}}
         }
     }
 }

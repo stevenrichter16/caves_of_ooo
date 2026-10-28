@@ -141,7 +141,10 @@ namespace CavesOfOoo.Rendering
             if (!_flatPixelMode) return;
             _releaseScratch.Clear();
             foreach (var pair in _views)
+            {
                 if (!ValidFlatView(pair.Value)) _releaseScratch.Add(pair.Key);
+                else UpdateFlatContactShadow(pair.Value);
+            }
             for (int i = 0; i < _releaseScratch.Count; i++) ReleaseView(_releaseScratch[i]);
             if (flushRepaints) FlushFlatRepaints();
         }
@@ -233,6 +236,7 @@ namespace CavesOfOoo.Rendering
                 view.Body.sprite = view.Asset.GetFrame(forced ? EntityVisualState.Idle : EntityVisualState.Walk, view.Facing, 0);
             }
             SetFlatFacing(view); UpdateSortingDepth(view);
+            UpdateFlatContactShadow(view);
         }
 
         private void RequestFlatReaction(EntityView view, EntityVisualState state)
@@ -287,6 +291,7 @@ namespace CavesOfOoo.Rendering
                 if (view.StateTime >= view.StateDuration) BeginState(view, EntityVisualState.Idle, 0f);
             }
             else TickIdle(view);
+            UpdateFlatContactShadow(view);
         }
 
         private static void SetFlatFacing(EntityView view)
