@@ -1,0 +1,66 @@
+{
+  "utc": "2026-10-28T22:16:37.751445+00:00",
+  "status": "bounded_editor_verified_five_owner_coverage_and_corrected_underfoot_readers",
+  "source_parent": "226ec129c84638d6c8705a84e1409c45adccd731",
+  "source_sha256": {
+    "Assets/Scripts/Presentation/Rendering/FlatPixelSpreadEnvironmentCatalog.cs": "a506e29bc0c939e979e9218997381e83500e1fc19ce134a633fab2e30a3f733c",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "e6d4a1b600b92fbe150f142b8f09c191f3566921ce75cc46a8aa3ca6e7eb1608",
+    "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs": "22c489c29337a77ea2274f621b5e215eef155628c41a148d82601bee31047bbe"
+  },
+  "unchanged_borrowed_art": "spread-borrowed-art-sha256.json",
+  "native": {
+    "red": "spread-native-red.json",
+    "green_focused": "spread-native-green-focused.json",
+    "green_affected": "spread-native-green-228.json",
+    "passed": 230,
+    "failed": 0,
+    "skipped": 0,
+    "reader_red": "spread-reader-red.json",
+    "final_green": "spread-reader-green-230.json",
+    "final_job_bounds": "Job succeeded,230completed,0failures in progress; tool final result object null; earlier228full summary retained."
+  },
+  "captures": {
+    "spread-before-02-oldroad-actual.png": "af68fcd0faca57a936b67e36ed0c05b59e343ab1cfc4e9859a474f3be22d2315",
+    "spread-after-01-oldroad191.png": "a32df84d0d51848caed1371dc6c1db7ad7457e400f7642b3274e666a125fc8d0",
+    "spread-after-03-road-reader-actual.png": "da6f4c14303820882b61bb83aee5160084b6bf9464ac34680b65eb28f5945f9e",
+    "spread-after-04-grass-transition.png": "de816174b1abfb5e455325bdc8e64bbb5aae2023a84e800aee4378f7d038547a",
+    "spread-after-05-close-zoom.png": "a4d001a842cae6e25d1714c16de13a45d32186edab630d8012c468f39b655650",
+    "spread-after-06-grass-reader.png": "c3ff79c715c0619e66e9b158fa0951d6c46f763d2e34f492643db25290f492eb",
+    "spread-after-07-hedgerow.png": "0bde286e731687e0bf63b9419cbd923597db083e97068cddc7a9a5acb53b1f82",
+    "spread-after-08-hedge-reader.png": "63fce543a60d009a7856111357814110b89cd482e5dc9d0ab8728d8120515435",
+    "spread-after-09-save192.png": "875c74c89f3ca35213d5e49c361687d4b358e7b1b648aa6460be322d3e2870c8",
+    "spread-after-10-restart192.png": "cd76abedc37f72377b5259979d0cbb182b12c14c5ea8f97b3c405290df46fcce",
+    "spread-reader-fixed-01-road-underfoot.png": "9c1f324a5ff100e77d5dff40405c5f5f5d93416a868a49fb5426c626d4113859",
+    "spread-reader-fixed-02-grass-underfoot.png": "dd1d9d69d352152b89d78152010b8245aeb2c83a67e6c6cdee98054730fe8202"
+  },
+  "actual": [
+    "OldRoad10.11 at40,12HP40 and matching real owners",
+    "RoadStone and Grass readers; ordinary walk to40,8",
+    "PageUp2x world readability and PageDown1x, HUD unchanged",
+    "ordinary worldmap Up1Left2 freshHedgerow8.10 noPOI; after-only sample",
+    "gap traversal40,8; Hedge39,8 reader; real bump hit10to8HP, stillsolid, playerHP40",
+    "earnedF5 and freshContinue192 turn1650 preserves player40,8HP40 and Hedge10603 solid8HP",
+    "After correction, freshContinue191 real underfootRoad40,12 and Grass40,8 show matching native portraits; no new gameplay/state change"
+  ],
+  "restart": "spread-restart192-comparison.json;252/564000worldpixels differ near interaction, cause unproven",
+  "profile": "spread-editor-profile.json; wrapped mixed Editor samples, no controlled performance/Deck claim",
+  "independent_review": {
+    "source": "annex_final_review:0 actionableP1/P2",
+    "actual": "annex_final_review confirmed both corrected native portraits; no actionable issue; whole-scene remaining defects retained"
+  },
+  "remaining": [
+    "weak packed-road/turf value separation",
+    "repeating road and hedge/vegetation motifs",
+    "actual disclosed PeatBog, SteamVent and CopperPipe interruptions; other owner/site/state coverage remains unaudited",
+    "broad sparse lawn parcels; no population added",
+    "memory and unvisited Spread formations/states not accepted",
+    "wider shadow expansion and all full-area polish open"
+  ],
+  "preservation": "spread-resume-preservation.json; fresh1005post-user-play entries preserved",
+  "package_source_unchanged": "7f73b6a784e3c8016c057ff77177e130128e13d7; these packages do not contain Spread reuse",
+  "publication": "ready for exact commit and remote verification",
+  "ownership_hold": {
+    "status": "resolved",
+    "basis": "Human confirmed no longer playing and authorized continuation; no active user session interrupted"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "f2646d42e15f45cf868419c8f4e208e0",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793225445453,
+      "finished_unix_ms": 1793225448763,
+      "last_update_unix_ms": 1793225448763,
+      "progress": {
+        "completed": 18,
+        "total": 18,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793225448629,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.UndisclosedForeignOrCarriedCompetingOwnersDoNotRevealThemselvesThroughGround",
+        "last_finished_unix_ms": 1793225448668,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection(\"Grass\")",
+            "message": "  An authorized underfoot floor must use the same native material actually painted beneath the player.\n  Expected: same as <Live16x24 Spread sill-environment 0 (UnityEngine.Sprite)>\n  But was:  <Flat world glyph 96 (UnityEngine.Sprite)>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection(\"RoadStone\")",
+            "message": "  An authorized underfoot floor must use the same native material actually painted beneath the player.\n  Expected: same as <Live16x24 Spread opening-ground 16 (UnityEngine.Sprite)>\n  But was:  <Flat world glyph 61 (UnityEngine.Sprite)>\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

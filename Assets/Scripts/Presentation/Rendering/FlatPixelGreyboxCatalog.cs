@@ -104,6 +104,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelKitchenBrineCatalog _kitchenBrineArt;
         private FlatPixelHedgeCatalog _hedgeArt;
         private FlatPixelSillEnvelopeCatalog _sillEnvelopeArt;
+        private FlatPixelSpreadEnvironmentCatalog _spreadEnvironmentArt;
         private FlatPixelSillRiverCatalog _sillRiverArt;
         private FlatPixelSoddenTravelCatalog _soddenTravelArt;
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
@@ -1052,6 +1053,17 @@ namespace CavesOfOoo.Rendering
                     groundColor = groundTint;
                 }
             }
+            var spread = SpreadEnvironmentArtFor(zone);
+            Tile spreadGroundTile = null;
+            Entity spreadFloor = null;
+            bool spreadGround = !fallback.Remembered && spread != null
+                && spread.TryResolveGround(zone, x, y, out spreadGroundTile, out spreadFloor);
+            if (spreadGround)
+            {
+                groundTile = spreadGroundTile; groundColor = Color.white;
+                ground = spreadFloor.BlueprintName == "RoadStone" ? FlatPixelGreyboxGround.Road : FlatPixelGreyboxGround.Ground;
+                if (owner == spreadFloor) kind = spreadFloor.BlueprintName == "RoadStone" ? FlatPixelGreyboxKind.Road : FlatPixelGreyboxKind.Ground;
+            }
             var cellarFloor = local && !fallback.Remembered && ground == FlatPixelGreyboxGround.StoneFloor
                 ? CellarFloorArtFor(zone) : null;
             if (cellarFloor != null && cellarFloor.TryResolve(zone, x, y, out var floorTile, out _))
@@ -1290,6 +1302,10 @@ namespace CavesOfOoo.Rendering
             bool allowHedgeFallback = true;
             var hedges = local ? HedgeArtFor(owner, fallback.Remembered, out allowHedgeFallback) : null;
             bool hedgeNative = hedges != null && hedges.TryResolve(zone, x, y, out art);
+            Tile spreadArt = null;
+            bool spreadNative = !fallback.Remembered && spread != null
+                && spread.TryResolveForeground(zone, x, y, owner, out spreadArt);
+            if (spreadNative) art = spreadArt;
             Tile sillArt = null;
             bool sillNative = sill != null && sill.TryResolveForeground(zone, x, y, owner, out sillArt);
             if (sillNative) art = sillArt;
@@ -1424,13 +1440,14 @@ namespace CavesOfOoo.Rendering
             bool portableEquipmentKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner) || owner?.BlueprintName == "Buckler";
             if (portableEquipmentKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || spreadNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
                             && _openingArt.TryResolve(owner, x, y, out art));
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
+                || spreadGround && owner == spreadFloor
                 || sillGround && owner == sillFloor || soddenGround && owner == soddenFloor || beatingGroundOwner
                 || sillWater && owner == sillWaterSource
                 || grovelandsGround && owner == grovelandsFloor || overwritGround && owner == overwritFloor
@@ -1477,7 +1494,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1615,6 +1632,8 @@ namespace CavesOfOoo.Rendering
                 return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             }
             bool local = IsAdmitted(zone);
+            var spread = SpreadEnvironmentArtFor(zone);
+            if (spread != null && spread.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var sill = SillEnvelopeArtFor(zone);
             if (sill != null && sill.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var sillRiver = SillRiverArtFor(zone);
@@ -1683,6 +1702,17 @@ namespace CavesOfOoo.Rendering
             if (local && subject != null && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road))
                 return TryGetSubjectSprite(subject, x, y, out sprite, out tint);
             return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+        }
+
+        private FlatPixelSpreadEnvironmentCatalog SpreadEnvironmentArtFor(Zone zone)
+        {
+            if (!FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone)) return null;
+            if (_spreadEnvironmentArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _spreadEnvironmentArt = new FlatPixelSpreadEnvironmentCatalog(_glyphFallback);
+            }
+            return _spreadEnvironmentArt;
         }
 
         private FlatPixelSillEnvelopeCatalog SillEnvelopeArtFor(Zone zone)
@@ -2219,6 +2249,7 @@ namespace CavesOfOoo.Rendering
             _hedgeArt?.Dispose();
             _hedgeArt = null;
             _sillEnvelopeArt?.Dispose();
+            _spreadEnvironmentArt?.Dispose();
             _sillEnvelopeArt = null;
             _sillRiverArt?.Dispose();
             _sillRiverArt = null;

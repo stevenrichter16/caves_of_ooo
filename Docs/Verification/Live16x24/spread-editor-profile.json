@@ -1,0 +1,71 @@
+{
+  "label": "spread-editor-profile",
+  "start": "2026-10-28T21:56:10.140209Z",
+  "end": "2026-10-28T21:58:28.717367Z",
+  "elapsedSeconds": 138.577158,
+  "frames": 34014,
+  "zone": "Overworld.8.10.0",
+  "player": [
+    40,
+    8
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 112909.27310180664,
+      "max": 113446667,
+      "p99": 202042
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 4077890.4141845703,
+      "max": 1053693542,
+      "p99": 15522125
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 36.8299560546875,
+      "max": 43,
+      "p99": 43
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 36.8299560546875,
+      "max": 43,
+      "p99": 43
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9650.8064270019531,
+      "max": 12493,
+      "p99": 12493
+    }
+  ],
+  "bounds": "Editor ordinary Spread OldRoad grass/road walking/readers, 1x/2x zoom, normal worldmap travel, Hedgerow opening and boundary collision/readers, plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}
