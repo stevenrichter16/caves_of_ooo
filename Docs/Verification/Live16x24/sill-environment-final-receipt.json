@@ -1,0 +1,77 @@
+{
+  "utc": "2026-10-28T17:19:22.143287+00:00",
+  "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+  "plan": "Docs/GRAPHICS-SILL-ENVIRONMENT.md",
+  "scope": [
+    "Nine original native16x24 Sill material frames:4Grass,4StoneFloor,1intactStoneWall"
+  ],
+  "source_png_sha256": "94b965ad31c0cb9aa6b65f4a496af06640febcbc2b987402e11fd515bcc47662",
+  "runtime_sha256": "3f34b617dfed62c9495e52a9e47423793a36093e896d2aaf2568de0ab4400fd3",
+  "native": {
+    "red_failed": 7,
+    "executed": 218,
+    "passed": 215,
+    "failed": 0,
+    "inconclusive": 3,
+    "green": "Docs/Verification/Live16x24/sill-environment-native-green.json",
+    "bounds": "Three existing Sodden allocation probes failed their positive control; no allocation claim. Initial old-assembly218 run and initialization timeout are retained separately, not acceptance."
+  },
+  "actual_captures": [
+    "Docs/Verification/Live16x24/sill-environment-after-01-exterior.png",
+    "Docs/Verification/Live16x24/sill-environment-after-02-approach.png",
+    "Docs/Verification/Live16x24/sill-environment-after-03-interior.png",
+    "Docs/Verification/Live16x24/sill-environment-after-04-floor-reader.png",
+    "Docs/Verification/Live16x24/sill-environment-after-05-grass-reader.png",
+    "Docs/Verification/Live16x24/sill-environment-after-06-door-npc-reopened.png",
+    "Docs/Verification/Live16x24/sill-environment-after-07-door-npc-reopened.png",
+    "Docs/Verification/Live16x24/sill-environment-after-08-opening-travel.png",
+    "Docs/Verification/Live16x24/sill-environment-after-09-return.png",
+    "Docs/Verification/Live16x24/sill-environment-after-10-wall-reader.png",
+    "Docs/Verification/Live16x24/sill-environment-after-11-fresh-continue.png"
+  ],
+  "before_captures": [
+    "Docs/Verification/Live16x24/sill-environment-before-01-exterior.png",
+    "Docs/Verification/Live16x24/sill-environment-before-02-approach.png",
+    "Docs/Verification/Live16x24/sill-environment-before-03-interior.png"
+  ],
+  "readers": [
+    "Grass66,11",
+    "StoneFloor66,9",
+    "StoneWall39,11 owner7401 Structure40/40"
+  ],
+  "route": "earned65 67,18\u219267,11\u219267,9 via open door, ordinary return67,11; worldmap10.10\u219211.10\u219210.10",
+  "door_bounds": "Player close twice, Perret Lowbark immediately reopened each time; no closed-state screenshot acceptance, no actor manipulation",
+  "restart": {
+    "fixture": "Docs/Verification/Live16x24/Fixtures/sill-environment-return178",
+    "turn": 1280,
+    "player": [
+      39,
+      12
+    ],
+    "hp": 38,
+    "different_world_pixels": 0,
+    "world_pixels": 564000,
+    "fresh_editor_continue": true
+  },
+  "source_reference": "ArtSource/Live16x24/sill-environment/scene-reference-01.png",
+  "concept_rejections": [
+    "Woven walls replaced by stone",
+    "Invented exterior paving",
+    "Changed occupants and silhouettes"
+  ],
+  "source_verification": "Original unitquad native source;two identical exports;two saved blends reopen3456quads24groups;16protectedinputs;4corruptionchecks;30filehandoff",
+  "integration": "Optional sixth atlas input; default Sill opts in, old explicit five-input behavior and malformed/null fallback preserved; no selector,simulation,geometry,collision orfog changes",
+  "profile": "Docs/Verification/Live16x24/sill-environment-editor-profile.json",
+  "profile_bounds": "29.56s stationaryroom/Look/actionmenu/idle/tooltime,5227samplesnonewrapped;renderermean.126ms,p99.359ms,max3.66ms;max40batches. Walking preceded recorderstart;no movement/performanceimprovement/Deck claim.",
+  "independent_review": "Docs/Verification/Live16x24/sill-environment-review.md",
+  "whole_area_accepted": false,
+  "remaining": [
+    "Whole-chunk composition and broad sparse yards",
+    "Subtle ground and wall-course repetition",
+    "Unvisited rooms, approaches, otherbiomes/sites",
+    "Stable closed-door capture and packaged/Deck execution"
+  ],
+  "package_bounds": "Current43a151ddb unchanged, excludes seeds/Buckler/crop reuse and five latest environment passes",
+  "preservation": "Docs/Verification/Live16x24/sill-environment-preservation.json",
+  "publication": "pending exact reviewed main push"
+}

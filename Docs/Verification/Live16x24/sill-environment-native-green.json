@@ -1,0 +1,70 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "d1a53e2c3bbd4d04badbea3b36ff24ff",
+      "status": "succeeded",
+      "mode": "EditMode",
+      "started_unix_ms": 1793207230148,
+      "finished_unix_ms": 1793207263058,
+      "last_update_unix_ms": 1793207263058,
+      "progress": {
+        "completed": 218,
+        "total": 218,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793207262688,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+        "last_finished_unix_ms": 1793207262738,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": {
+        "mode": "EditMode",
+        "summary": {
+          "total": 215,
+          "passed": 215,
+          "failed": 0,
+          "skipped": 0,
+          "durationSeconds": 26.8875326,
+          "resultState": "Passed"
+        },
+        "results": [
+          {
+            "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "state": "Inconclusive",
+            "durationSeconds": 0.0503275,
+            "message": "Current-thread allocation counter did not detect the positive control.",
+            "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:630\n",
+            "output": ""
+          },
+          {
+            "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "state": "Inconclusive",
+            "durationSeconds": 0.0486758,
+            "message": "Current-thread allocation counter did not detect the positive control.",
+            "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:630\n",
+            "output": ""
+          },
+          {
+            "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+            "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+            "state": "Inconclusive",
+            "durationSeconds": 0.0496873,
+            "message": "Current-thread allocation counter did not detect the positive control.",
+            "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:630\n",
+            "output": ""
+          }
+        ]
+      }
+    },
+    "hint": null
+  }
+}

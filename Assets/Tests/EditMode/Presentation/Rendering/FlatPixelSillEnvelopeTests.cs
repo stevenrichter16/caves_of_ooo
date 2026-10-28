@@ -1,5 +1,7 @@
 // Native RED baseline imported before runtime integration.
 // Public-renderer fixture reused from FlatPixelHedgeContinuityTests / FlatPixelWorkingCourtTests.
+using System.Collections.Generic;
+using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 using NUnit.Framework;
@@ -13,10 +15,13 @@ namespace CavesOfOoo.Tests
         const string Sill = "Overworld.10.10.0";
         const string Envelope = "Sprites/Live16x24/sill-envelope";
         const string Stone = "Sprites/Live16x24/cellar-floor";
+        const string Environment = "Sprites/Live16x24/sill-environment";
         const int X = 10, Y = 10;
         DensityLootTestScope content;
         OverworldZoneManager manager;
         FlatPixelGreyboxCatalog world;
+        FlatPixelSillEnvelopeCatalog injectedArt;
+        FlatPixelFallbackCatalog injectedSelector;
         Zone zone;
 
         [SetUp] public void Setup()
@@ -30,7 +35,8 @@ namespace CavesOfOoo.Tests
             Assert.True(string.IsNullOrEmpty(poi.Profile));
             Assert.AreEqual(BiomeType.Spread, manager.WorldMap.GetBiome(10, 10));
         }
-        [TearDown] public void Cleanup() { world?.Dispose(); content?.Dispose(); }
+        [TearDown] public void Cleanup()
+        { world?.Dispose(); injectedArt?.Dispose(); injectedSelector?.Dispose(); content?.Dispose(); }
         Zone Attach(string id)
         {
             var next = new Zone(id); manager.SetActiveZone(next);
@@ -77,6 +83,7 @@ namespace CavesOfOoo.Tests
             var texture = Resolve().GroundTile.sprite.texture;
             Assert.AreNotSame(Resources.Load<Texture2D>(Envelope), texture);
             Assert.AreNotSame(Resources.Load<Texture2D>(Stone), texture);
+            Assert.AreNotSame(Resources.Load<Texture2D>(Environment), texture);
         }
         void Neighbors(int mask)
         {
@@ -86,9 +93,9 @@ namespace CavesOfOoo.Tests
             if ((mask & 8) != 0) Add("VineWall", X - 1, Y);
         }
 
-        [TestCase("StoneWall", "Sprites/Live16x24/opening-cellar", 8)]
+        [TestCase("StoneWall", Environment, 8)]
         [TestCase("AlchemyStill", "Sprites/Live16x24/north-works", 0)]
-        public void ExactSillOwnersBorrowAcceptedPixelsWithoutAdmittingOpening(string blueprint, string resource, int frame)
+        public void ExactSillOwnersUseApprovedPixelsWithoutAdmittingOpening(string blueprint, string resource, int frame)
         {
             var owner = Add(blueprint); NativeForeground(resource, frame);
             Assert.AreSame(owner, Resolve().Owner); Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
@@ -166,7 +173,7 @@ namespace CavesOfOoo.Tests
             keyhole.IsLocked = false; Assert.False(door.IsClosed); NativeForeground(Envelope, 17);
         }
 
-        [TestCase("Grass", Envelope)] [TestCase("StoneFloor", Stone)]
+        [TestCase("Grass", Environment)] [TestCase("StoneFloor", Environment)]
         public void ActualFloorMaterialStaysBelowARealCoveringOwner(string blueprint, string material)
         {
             var floor = Add(blueprint); NativeGround(material); Assert.IsNull(Resolve().ForegroundTile);
@@ -180,7 +187,7 @@ namespace CavesOfOoo.Tests
         [TestCase("crop")] [TestCase("well-marker")] [TestCase("road")]
         public void HazardsAndSpecificGroundOwnersOutrankTheGrassMaterial(string reason)
         {
-            var grass = Add("Grass"); NativeGround(Envelope);
+            var grass = Add("Grass"); NativeGround(Environment);
             if (reason == "water" || reason == "oil") zone.TileState.WriteCoating(X, Y, reason, 4);
             if (reason == "cultivation") grass.AddPart(new CultivatedSoilPart());
             if (reason == "crop") Add("ClaspbeanCrop");
@@ -192,33 +199,33 @@ namespace CavesOfOoo.Tests
         [TestCase("WellGroundMarker")] [TestCase("SpikeTrap")]
         public void HiddenOrInvalidCompetingOwnerCannotDisclosePresenceByErasingGround(string blueprint)
         {
-            Add("Grass"); NativeGround(Envelope);
+            Add("Grass"); NativeGround(Environment);
             var baseline = Resolve().GroundTile; var baselineColor = Resolve().GroundColor;
             var marker = Add(blueprint); var render = marker.GetPart<RenderPart>();
             var physics = marker.GetPart<PhysicsPart>(); Assert.NotNull(render); Assert.NotNull(physics);
             if (blueprint == "SpikeTrap") Assert.True(marker.HasPart<TriggerOnStepPart>());
             render.Visible = false;
-            NativeGround(Envelope); Assert.AreSame(baseline, Resolve().GroundTile);
+            NativeGround(Environment); Assert.AreSame(baseline, Resolve().GroundTile);
             Assert.AreEqual(baselineColor, Resolve().GroundColor,
                 "An undisclosed occupant must not change the visible floor material.");
 
             render.Visible = true; NotEnvelopeGround();
             physics.ParentEntity = new Entity();
-            NativeGround(Envelope); Assert.AreSame(baseline, Resolve().GroundTile);
+            NativeGround(Environment); Assert.AreSame(baseline, Resolve().GroundTile);
             physics.ParentEntity = marker; NotEnvelopeGround();
 
             physics.InInventory = new Entity();
-            NativeGround(Envelope); Assert.AreSame(baseline, Resolve().GroundTile);
+            NativeGround(Environment); Assert.AreSame(baseline, Resolve().GroundTile);
             physics.InInventory = null; NotEnvelopeGround();
             physics.Equipped = new Entity();
-            NativeGround(Envelope); Assert.AreSame(baseline, Resolve().GroundTile);
+            NativeGround(Environment); Assert.AreSame(baseline, Resolve().GroundTile);
             physics.Equipped = null; NotEnvelopeGround();
 
             render.ParentEntity = new Entity();
-            NativeGround(Envelope); Assert.AreSame(baseline, Resolve().GroundTile);
+            NativeGround(Environment); Assert.AreSame(baseline, Resolve().GroundTile);
             render.ParentEntity = marker; NotEnvelopeGround();
             Assert.True(zone.RemoveEntity(marker));
-            NativeGround(Envelope); Assert.AreSame(baseline, Resolve().GroundTile);
+            NativeGround(Environment); Assert.AreSame(baseline, Resolve().GroundTile);
         }
 
         [TestCase("poi-missing")] [TestCase("poi-type")] [TestCase("poi-name")]
@@ -252,7 +259,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void HiddenCellsDoNotRevealLiveEnvelopeState()
         {
-            Add("Grass"); Add("VineWall"); NativeForeground(Envelope, 0); NativeGround(Envelope);
+            Add("Grass"); Add("VineWall"); NativeForeground(Envelope, 0); NativeGround(Environment);
             zone.GetCell(X, Y).IsVisible = false; var remembered = Resolve();
             Assert.True(remembered.Remembered); Assert.False(remembered.NativeForeground); NotEnvelopeGround();
             zone.GetCell(X, Y).Explored = false; Assert.False(world.TryResolvePresentation(zone, X, Y, out _));
@@ -351,12 +358,177 @@ namespace CavesOfOoo.Tests
             owner.GetPart<DoorPart>().QuarterTurns = turns; IdentityFallback();
         }
 
+        // Optional settlement materials: only default construction loads the new resource.
+        void InjectEnvironment(Texture2D source, bool includeOldGroups = true, bool legacy = false)
+        {
+            world.Dispose(); injectedArt?.Dispose(); injectedSelector?.Dispose();
+            world = new FlatPixelGreyboxCatalog((Texture2D)null);
+            injectedSelector = new FlatPixelFallbackCatalog();
+            var envelope = includeOldGroups ? Resources.Load<Texture2D>(Envelope) : null;
+            var cellar = includeOldGroups ? Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath) : null;
+            var works = includeOldGroups ? Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath) : null;
+            var floors = includeOldGroups ? Resources.Load<Texture2D>(Stone) : null;
+            if (legacy)
+                injectedArt = new FlatPixelSillEnvelopeCatalog(envelope, cellar, works, floors, injectedSelector);
+            else
+            {
+                var ctor = typeof(FlatPixelSillEnvelopeCatalog).GetConstructor(new[] {
+                    typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D),
+                    typeof(FlatPixelFallbackCatalog), typeof(Texture2D) });
+                Assert.NotNull(ctor, "Sill environment must be an independently optional sixth atlas input.");
+                injectedArt = (FlatPixelSillEnvelopeCatalog)ctor.Invoke(new object[] {
+                    envelope, cellar, works, floors, injectedSelector, source });
+            }
+            var field = typeof(FlatPixelGreyboxCatalog).GetField("_sillEnvelopeArt", BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.NotNull(field); field.SetValue(world, injectedArt);
+        }
+        static int EnvironmentFrame(Tile tile, Texture2D source, int first, int last)
+        {
+            Assert.NotNull(tile); Assert.NotNull(tile.sprite); Assert.AreSame(source, tile.sprite.texture);
+            int frame = (int)tile.sprite.rect.x / 16;
+            Assert.That(frame, Is.InRange(first, last));
+            Assert.AreEqual(new Rect(frame * 16, 0, 16, 24), tile.sprite.rect);
+            Assert.AreEqual(new Vector2(8, 12), tile.sprite.pivot); Assert.AreEqual(16, tile.sprite.pixelsPerUnit);
+            Assert.AreEqual(TileFlags.None, tile.flags); Assert.AreEqual(Tile.ColliderType.None, tile.colliderType);
+            return frame;
+        }
+        Tile MaterialTile(string blueprint) => blueprint == "StoneWall" ? Resolve().ForegroundTile : Resolve().GroundTile;
+
+        [TestCase("Grass", 0, 3)] [TestCase("StoneFloor", 4, 7)] [TestCase("StoneWall", 8, 8)]
+        public void Environment_DefaultWorldAndExactReaderUseSettlementMaterials(string blueprint, int first, int last)
+        {
+            var owner = Add(blueprint); var view = Resolve();
+            var tile = MaterialTile(blueprint); Assert.NotNull(tile); Assert.NotNull(tile.sprite);
+            Assert.AreEqual("sill-environment", tile.sprite.texture.name,
+                "Ordinary Sill still borrows the old shared material rather than its settlement atlas.");
+            var source = Resources.Load<Texture2D>(Environment); Assert.NotNull(source);
+            Assert.AreEqual(144, source.width); Assert.AreEqual(24, source.height);
+            EnvironmentFrame(tile, source, first, last); Assert.AreSame(owner, view.Owner);
+            if (blueprint == "StoneWall")
+            { Assert.True(view.NativeForeground); Assert.True(view.BlocksMovement); Assert.AreEqual(Color.white, view.ForegroundColor); }
+            else
+            { Assert.True(view.LocalGround); Assert.IsNull(view.ForegroundTile); Assert.AreEqual(Color.white, view.GroundColor); }
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, owner, X, Y, out var portrait, out var tint));
+            Assert.AreSame(tile.sprite, portrait); Assert.AreEqual(Color.white, tint);
+        }
+
+        [Test] public void Environment_OptionalAtlasPreservesLegacyFallbackAndIndependentGroups()
+        {
+            var source = new Texture2D(144, 24); var wrong = new Texture2D(143, 24);
+            try
+            {
+                foreach (var blueprint in new[] { "Grass", "StoneFloor", "StoneWall" })
+                {
+                    zone = Attach(Sill); Add(blueprint); InjectEnvironment(null, legacy: true);
+                    var oldTile = MaterialTile(blueprint); var oldTexture = oldTile.sprite.texture; var oldRect = oldTile.sprite.rect;
+                    foreach (var optional in new Texture2D[] { null, wrong })
+                    {
+                        InjectEnvironment(optional); var fallback = MaterialTile(blueprint);
+                        Assert.AreSame(oldTexture, fallback.sprite.texture); Assert.AreEqual(oldRect, fallback.sprite.rect);
+                    }
+                    int expected = blueprint == "Grass" ? (int)oldRect.x / 16 - 20
+                        : blueprint == "StoneFloor" ? (int)oldRect.x / 16 + 4 : 8;
+                    InjectEnvironment(source); EnvironmentFrame(MaterialTile(blueprint), source, expected, expected);
+                    InjectEnvironment(source, false); EnvironmentFrame(MaterialTile(blueprint), source, expected, expected);
+                }
+                zone = Attach(Sill); var door = Add("VillageDoor"); InjectEnvironment(source, false);
+                Assert.False(injectedArt.TryResolveForeground(zone, X, Y, door, out _), "Material art cannot invent an omitted door group.");
+                Assert.False(Resolve().NativeForeground);
+                InjectEnvironment(source); NativeForeground(Envelope, 17);
+                Assert.True(zone.RemoveEntity(door)); Add("VineWall"); NativeForeground(Envelope, 0);
+            }
+            finally { world.Dispose(); UnityEngine.Object.DestroyImmediate(source); UnityEngine.Object.DestroyImmediate(wrong); }
+        }
+
+        [Test] public void Environment_ActorWaterAndActualStonePriorityRemainTruthful()
+        {
+            var source = new Texture2D(144, 24);
+            try
+            {
+                InjectEnvironment(source); var grass = Add("Grass"); EnvironmentFrame(Resolve().GroundTile, source, 0, 3);
+                var floor = Add("StoneFloor"); var baseline = Resolve().GroundTile; EnvironmentFrame(baseline, source, 4, 7);
+                var actor = Add("Player"); actor.GetPart<RenderPart>().RenderLayer = 100;
+                var body = Resolve().ForegroundTile; Assert.NotNull(body); Assert.AreSame(actor, Resolve().Owner);
+                Assert.AreSame(baseline, Resolve().GroundTile);
+                zone.TileState.WriteCoating(X, Y, "water", 4);
+                Assert.False(injectedArt.TryResolveGround(zone, X, Y, out _, out _));
+                Assert.AreNotSame(source, Resolve().GroundTile.sprite.texture);
+                Assert.AreSame(actor, Resolve().Owner); Assert.AreSame(body, Resolve().ForegroundTile);
+                Assert.True(zone.TileState.RemoveCoating(X, Y, "water")); Assert.AreSame(baseline, Resolve().GroundTile);
+                Assert.True(zone.RemoveEntity(actor)); Assert.True(zone.RemoveEntity(floor));
+                EnvironmentFrame(Resolve().GroundTile, source, 0, 3); Assert.AreSame(grass, Resolve().Owner);
+            }
+            finally { world.Dispose(); UnityEngine.Object.DestroyImmediate(source); }
+        }
+
+        [Test] public void Environment_CurrentOwnerDisclosureAndRegionalGuardsRemainAuthoritative()
+        {
+            var source = new Texture2D(144, 24);
+            try
+            {
+                InjectEnvironment(source); var grass = Add("Grass"); EnvironmentFrame(Resolve().GroundTile, source, 0, 3);
+                var render = grass.GetPart<RenderPart>(); var physics = grass.GetPart<PhysicsPart>();
+                render.Visible = false; Assert.False(injectedArt.TryResolveGround(zone, X, Y, out _, out _)); render.Visible = true;
+                render.ParentEntity = new Entity(); Assert.False(injectedArt.TryResolveGround(zone, X, Y, out _, out _)); render.ParentEntity = grass;
+                physics.InInventory = new Entity(); Assert.False(injectedArt.TryResolveGround(zone, X, Y, out _, out _)); physics.InInventory = null;
+                var soil = new CultivatedSoilPart(); grass.AddPart(soil);
+                Assert.False(injectedArt.TryResolveGround(zone, X, Y, out _, out _)); grass.RemovePart(soil);
+                var cell = zone.GetCell(X, Y); cell.IsVisible = false;
+                Assert.False(injectedArt.TryResolveGround(zone, X, Y, out _, out _));
+                Assert.False(injectedArt.TryGetSubjectSprite(zone, grass, X, Y, out _));
+                cell.IsVisible = true; EnvironmentFrame(Resolve().GroundTile, source, 0, 3);
+                manager.CachedZones[Sill] = new Zone(Sill);
+                Assert.False(injectedArt.TryResolveGround(zone, X, Y, out _, out _));
+                Assert.False(injectedArt.TryGetSubjectSprite(zone, grass, X, Y, out _));
+                manager.CachedZones[Sill] = zone; EnvironmentFrame(Resolve().GroundTile, source, 0, 3);
+                Assert.True(zone.RemoveEntity(grass)); var wall = Add("StoneWall"); EnvironmentFrame(Resolve().ForegroundTile, source, 8, 8);
+                var structure = wall.GetPart<DestructiblePart>(); int hp = structure.HP;
+                structure.HP = 0; Assert.False(injectedArt.TryResolveForeground(zone, X, Y, wall, out _));
+                structure.HP = hp; EnvironmentFrame(Resolve().ForegroundTile, source, 8, 8);
+                wall.GetPart<RenderPart>().VisualVariant = "custom";
+                Assert.False(injectedArt.TryResolveForeground(zone, X, Y, wall, out _));
+            }
+            finally { world.Dispose(); UnityEngine.Object.DestroyImmediate(source); }
+        }
+
+        [Test] public void Environment_AllNineViewsAreCachedWithoutMutatingOrOwningBorrowedInputs()
+        {
+            var source = new Texture2D(144, 24);
+            try
+            {
+                InjectEnvironment(source);
+                for (int y = 2; y < 8; y++) for (int x = 2; x < 18; x++) Add("Grass", x, y);
+                for (int y = 12; y < 18; y++) for (int x = 2; x < 18; x++) Add("StoneFloor", x, y);
+                var wall = Add("StoneWall"); int hp = wall.GetPart<DestructiblePart>().HP;
+                string state = zone.TileState.ToSaveString(); int version = zone.EntityVersion;
+                var frames = new HashSet<int>(); var tiles = new HashSet<Tile>(); var sprites = new List<Sprite>();
+                for (int y = 2; y < 18; y++) for (int x = 2; x < 18; x++)
+                {
+                    if (y >= 8 && y < 12) continue;
+                    var value = Resolve(x, y); int first = y < 8 ? 0 : 4;
+                    frames.Add(EnvironmentFrame(value.GroundTile, source, first, first + 3)); tiles.Add(value.GroundTile);
+                    Assert.AreSame(value.GroundTile, Resolve(x, y).GroundTile);
+                }
+                var wallTile = Resolve().ForegroundTile; frames.Add(EnvironmentFrame(wallTile, source, 8, 8)); tiles.Add(wallTile);
+                CollectionAssert.AreEquivalent(new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 }, frames); Assert.AreEqual(9, tiles.Count);
+                Assert.AreEqual(state, zone.TileState.ToSaveString()); Assert.AreEqual(version, zone.EntityVersion);
+                Assert.AreEqual(hp, wall.GetPart<DestructiblePart>().HP);
+                Assert.AreEqual(FilterMode.Bilinear, source.filterMode, "Borrowed texture settings stay untouched.");
+                foreach (var tile in tiles) sprites.Add(tile.sprite);
+                world.Dispose(); world.Dispose();
+                foreach (var tile in tiles) Assert.True(tile == null);
+                foreach (var sprite in sprites) Assert.True(sprite == null);
+                Assert.True(source != null); Assert.True(injectedSelector.TryResolve(zone, X, Y, out var fallback)); Assert.AreSame(wall, fallback.Owner);
+            }
+            finally { world.Dispose(); UnityEngine.Object.DestroyImmediate(source); }
+        }
+
         [Test] public void RealStoneFloorWinsOverLowerGrassButDuplicateStoneDoesNotInventMaterialAuthority()
         {
-            Add("Grass"); var stone = Add("StoneFloor"); NativeGround(Stone);
+            Add("Grass"); var stone = Add("StoneFloor"); NativeGround(Environment);
             Assert.AreSame(stone, Resolve().Owner); Assert.IsNull(Resolve().ForegroundTile);
             var duplicate = Add("StoneFloor"); NotEnvelopeGround();
-            Assert.True(zone.RemoveEntity(duplicate)); NativeGround(Stone);
+            Assert.True(zone.RemoveEntity(duplicate)); NativeGround(Environment);
         }
     }
 }

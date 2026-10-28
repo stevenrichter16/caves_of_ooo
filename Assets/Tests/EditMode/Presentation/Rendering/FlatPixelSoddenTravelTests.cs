@@ -551,7 +551,7 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(board, View().Owner, "The actual dry overlay remains selected above its lower floor.");
             Assert.True(zone.RemoveEntity(board)); Assert.AreSame(stone, View().Owner);
         }
-        [TestCase("Overworld.16.7.0", FenAtlas)] [TestCase("Overworld.10.10.0", GrassAtlas)]
+        [TestCase("Overworld.16.7.0", FenAtlas)] [TestCase("Overworld.10.10.0", "Sprites/Live16x24/sill-environment")]
         public void HiddenOrForeignRenderCultivationOwnerCannotEraseVisibleDryGround(string id, string expectedAtlas)
         {
             zone = Attach(id);

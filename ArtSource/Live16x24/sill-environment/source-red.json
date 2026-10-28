@@ -1,0 +1,6 @@
+{
+  "return_code": 1,
+  "expected_missing_source_failure": true,
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/steven/caves-of-ooo/Tools/Live16x24/build_sill_environment.py\", line 178, in <module>\n    elif o.verify:verify()\n                  ^^^^^^^^\n  File \"/Users/steven/caves-of-ooo/Tools/Live16x24/build_sill_environment.py\", line 130, in verify\n    count=guard();s=json.loads((OUT/'source-cells.json').read_text())\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py\", line 1027, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/Live16x24/sill-environment/source-cells.json'\n",
+  "runtime_test_claim": false
+}

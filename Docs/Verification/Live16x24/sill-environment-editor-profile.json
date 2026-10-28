@@ -1,0 +1,71 @@
+{
+  "label": "sill-environment-editor-profile",
+  "start": "2026-10-28T17:09:25.197996Z",
+  "end": "2026-10-28T17:09:54.759574Z",
+  "elapsedSeconds": 29.561577999999997,
+  "frames": 5226,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    67,
+    9
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 5227,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 126249.05509852688,
+      "max": 3659625,
+      "p99": 358792
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 5227,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 5578474.208723933,
+      "max": 3864695750,
+      "p99": 14564583
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 5227,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 38.50774823034245,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 5227,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 37.923856896881574,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 5227,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 11581.893246604172,
+      "max": 12321,
+      "p99": 12321
+    }
+  ],
+  "bounds": "Editor Sill stationary room, Look/action-menu, idle and tool time. Walking occurred before recorder start, so no movement-profile claim. Not a controlled baseline speedup or physical Deck measurement; no recorder wrapped."
+}

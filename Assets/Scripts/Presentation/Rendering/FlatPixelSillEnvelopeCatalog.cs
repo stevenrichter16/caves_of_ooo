@@ -12,22 +12,32 @@ namespace CavesOfOoo.Rendering
     public sealed class FlatPixelSillEnvelopeCatalog : IDisposable
     {
         public const string ResourcePath = "Sprites/Live16x24/sill-envelope";
+        public const string EnvironmentResourcePath = "Sprites/Live16x24/sill-environment";
         public const string ZoneID = "Overworld.10.10.0";
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] envelope, masonry, works, stoneFloor;
+        readonly Tile[] envelope, masonry, works, stoneFloor, environment;
         bool disposed;
 
         public FlatPixelSillEnvelopeCatalog(FlatPixelFallbackCatalog borrowedSelector)
             : this(Resources.Load<Texture2D>(ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath),
-                Resources.Load<Texture2D>(FlatPixelCellarFloorCatalog.ResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelCellarFloorCatalog.ResourcePath), borrowedSelector,
+                Resources.Load<Texture2D>(EnvironmentResourcePath)) { }
 
         /// <summary>Each injected group is independent. Missing/malformed
         /// injection never reloads Resources or modifies a borrowed dependency.</summary>
         public FlatPixelSillEnvelopeCatalog(Texture2D source, Texture2D cellar,
             Texture2D northWorks, Texture2D floors, FlatPixelFallbackCatalog borrowedSelector)
+            : this(source, cellar, northWorks, floors, borrowedSelector, null) { }
+
+        /// <summary>Optional 144x24 atlas: Grass 0–3, StoneFloor 4–7, StoneWall 8.
+        /// Null or malformed art preserves each legacy group. Textures and selector
+        /// remain borrowed; only cached tile/sprite views are owned here.</summary>
+        public FlatPixelSillEnvelopeCatalog(Texture2D source, Texture2D cellar,
+            Texture2D northWorks, Texture2D floors, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D settlementMaterials)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -35,6 +45,7 @@ namespace CavesOfOoo.Rendering
             masonry = Frames(cellar, 9, "stone");
             works = Frames(northWorks, 9, "still");
             stoneFloor = Frames(floors, 4, "floor");
+            environment = Frames(settlementMaterials, 9, "environment");
         }
 
         public static bool IsSupportedZone(Zone zone)
@@ -59,7 +70,8 @@ namespace CavesOfOoo.Rendering
             if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
             int frame = ForegroundFrame(owner);
             if (frame < 0) return false;
-            if (owner.BlueprintName == "StoneWall") tile = masonry == null ? null : masonry[8];
+            if (owner.BlueprintName == "StoneWall")
+                tile = environment != null ? environment[8] : masonry == null ? null : masonry[8];
             else if (owner.BlueprintName == "AlchemyStill") tile = works == null ? null : works[0];
             else if (envelope != null)
             {
@@ -106,9 +118,11 @@ namespace CavesOfOoo.Rendering
                 }
             }
             if (stone != null)
-            { floor = stone; tile = stoneFloor == null ? null : stoneFloor[VariantAt(x, y)]; }
+            { floor = stone; tile = environment != null ? environment[4 + VariantAt(x, y)]
+                : stoneFloor == null ? null : stoneFloor[VariantAt(x, y)]; }
             else if (grass != null)
-            { floor = grass; tile = envelope == null ? null : envelope[20 + VariantAt(x, y)]; }
+            { floor = grass; tile = environment != null ? environment[VariantAt(x, y)]
+                : envelope == null ? null : envelope[20 + VariantAt(x, y)]; }
             if (tile != null) return true;
             floor = null; return false;
         }
@@ -257,6 +271,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             DestroyFrames(envelope); DestroyFrames(masonry); DestroyFrames(works); DestroyFrames(stoneFloor);
+            DestroyFrames(environment);
         }
         static void DestroyFrames(Tile[] tiles)
         {

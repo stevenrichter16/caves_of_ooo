@@ -1,6 +1,6 @@
 # Sill environmental polish: ground, masonry and room floors
 
-Planned after the bounded Beating material pass. No new Sill art, integration or polish acceptance yet. Root owns Unity/Git; preserve approved shared sources, saves and unrelated work.
+Bounded material pass Editor-verified; full settlement polish remains open. Nine new native frames integrate ordinary Sill with preserved legacy/shared sources. Root owns Unity/Git; preserve approved shared sources, saves and unrelated work.
 
 ## Evidence and choice
 
@@ -25,3 +25,13 @@ Write focused RED before the optional-resource runtime change: default world/rea
 ## Performance and bounds
 
 Cache nine views once, dispose only owned views, retain borrowed resources/selector. No per-frame allocations, new layers or generation. Use one bounded Editor walk/UI profile and report stalls honestly; native tests and source contacts do not establish visual quality or physical Deck execution. Current43a151ddb packages exclude recent environment passes; batch delivery later. Crop states, small items and subtle animation remain deferred. No storage cleanup.
+
+## Current baseline and source correction
+
+Current actual before01 exterior67,18, before02 approach67,11 and before03 interior67,9, allHP38, are saved under Verification/Live16x24/sill-environment-before-*. Normal nine Up from earned65 passes through its already-open VillageDoor; F5 produced preserved177, turn1160. The room enclosure is VineWall, not StoneWall. The new masonry must not replace it. Imagegen incorrectly converted woven walls and invented exterior paving: those changes are explicitly rejected in the source critique. Original grass, floor and stone-wall mappings remain as audited; no generation or selector change.
+
+## Bounded outcome — 2026-10-28 17:18 UTC
+
+Nine-frame independent atlas integrated. Seven intended RED failures preceded runtime; final218executed gave215passed/0failed/3inconclusive existingSodden allocation positive-control probes. Three matched actual pairs show quieter turf, flat distinct room floor and shaded straight masonry; all three readers, ordinary opening travel/return and freshContinue178 verified. Saved/fresh world rectangle matches0/564000pixels at39,12HP38turn1280. Doorclose is exercised but resident Perret immediately reopens both times; no closed-state visual acceptance. Source/actual independent review0P1/P2. Full-chunk yards/composition, repetition, unvisited rooms/otherareas and packages/Deck remain open.
+
+Reproduction and frozen source: ArtSource/Live16x24/sill-environment/README.md. Evidence index: Verification/Live16x24/sill-environment-final-receipt.json. Source-correction, stale-assembly and initialization attempts remain documented rather than counted as passing tests. No shared resource, simulation, geometry or owner-guard edits. Profile is stationaryUI/idle/tooltime, not movement or controlledspeedup. Exactmainpublicationpending; last actualhourlyreport16:42:59UTC, next17:42:59UTC unchanged.

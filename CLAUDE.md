@@ -1,5 +1,8 @@
 # Caves of Ooo — Project Rules for Claude
 
+**Current environment checkpoint — 2026-10-28 17:18 UTC:** Sill now has nine original native material frames: quieter lawn, distinct flat room floors and shaded straight masonry. Three matched actual pairs, all three readers, opening travel/return and exact freshContinue178 support the bounded material pass. Final native:215passed,0failed,3existingSodden allocation probes inconclusive; no allocation claim. Independent source/actual review0P1/P2. Exact main publication pending. Whole-settlement composition, repetition and other areas remain open; current43a151ddb packages unchanged. Crops/smallitems/animation deferred. Last actual hourly report16:42:59UTC; next17:42:59UTC. See [Sill record](Docs/GRAPHICS-SILL-ENVIRONMENT.md).
+
+
 **Current environment checkpoint — 2026-10-28 16:45 UTC:** Beating’s 12 sand, paving, road and masonry frames are bounded Editor-verified. The other 22 frames and original editable sources remain intact. All 151 native cases passed; seven actual captures cover ruins, dunes, the shared shallow floor, wall interaction/reader and clean Continue176 (0/564000 world pixels differ). Independent source/visual review found 0 actionable P1/P2 issues. Source `fb0c906ae1a58a847b2bd25dc589ace5355a8402` is pushed and verified on origin/main. Broad sparse composition and subtle material repetition remain open; current43a151ddb packages exclude this pass. Next: Sill settlement lawn, masonry and interior material hierarchy after scoped consumer review. Crop work and subtle animation stay deferred. Last actual hourly report16:42:59 UTC; next17:42:59 UTC. Storage inspection only. See [Beating record](Docs/GRAPHICS-BEATING-ENVIRONMENT.md).
 
 

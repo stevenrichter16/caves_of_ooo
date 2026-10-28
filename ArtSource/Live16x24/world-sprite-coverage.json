@@ -5657,6 +5657,26 @@
         ],
         "defect_audit_complete": false,
         "polish_acceptance_evidence": null
+      },
+      {
+        "biome": "Spread",
+        "area_key": "seed65/Overworld.10.10.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.10.10.0",
+        "formation_POI_depth_interior_role": "Sill settlement and woven-wall room",
+        "status": "in_progress",
+        "environment_material_pass": {
+          "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+          "evidence": "Docs/Verification/Live16x24/sill-environment-final-receipt.json"
+        },
+        "known_defects": [
+          "Whole-chunk composition and broad sparse yards",
+          "Subtle ground and wall-course repetition",
+          "Unvisited rooms, approaches, otherbiomes/sites",
+          "Stable closed-door capture and packaged/Deck execution"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null
       }
     ],
     "area_inventory_bounds": "The five initial concrete records are observed Stump examples, not the entire area census or accepted polish. All current10biome,17settlement,6sinkhole,6ordinary-underground-material and16other-family inventory entries also have separate not_audited polish states; concrete areas/depths/interiors in every scope still require individual expansion and review. Open-ended generated/depth spaces require explicitly bounded representative variants and retained unknowns, never a claim that every possible seed was visited."
@@ -11766,15 +11786,15 @@
   },
   "next_scoped_work": {
     "status": "source_preflight_complete;current_actual_baseline_pending",
-    "plan": "Docs/GRAPHICS-SILL-ENVIRONMENT.md",
+    "plan": "Docs/GRAPHICS-OVERWRIT-ENVIRONMENT.md",
     "scope": [
-      "Sill settlement ground repetition",
-      "Masonry versus flat interior-floor hierarchy"
+      "Overwrit scraped-ground frames0\u20133 only"
     ],
-    "reason": "Actual shared-village-roles-after-01-world and sill-envelope-after-08-interior show repeated sprinkle lawn and weak room/approach material distinction; clearer actionable material debt than intentional Overwrit blankness.",
-    "fixture": "Docs/Verification/Live16x24/Fixtures/sill-envelope-after65",
-    "deferred": "Crop systems/states, small item packets, nuanced animation",
-    "package_bounds": "Current43a151ddb unchanged; environmental packages remain pending"
+    "reason": "Corrected actual gray rim view is almost featureless fine speckling; improve flat abrasion while preserving intentional empty composition. This extends the regional rotation beyond five completed bounded passes.",
+    "fixture": "Docs/Verification/Live16x24/Fixtures/overwrit-grading-return65",
+    "counter_fixture": "Docs/Verification/Live16x24/Fixtures/overwrit-blank-baseline65",
+    "deferred": "Crop systems/states,smallinventorypackets,nuancedanimation",
+    "package_bounds": "Current43a151ddb unchanged; accumulated environment batch delivery pending"
   },
   "sodden_frogs": {
     "status": "bounded_Editor_verified_source_pushed_packages_pending",
@@ -12572,5 +12592,82 @@
     "independent_review": "Docs/Verification/Live16x24/beating-environment-independent-review.md",
     "source_commit": "fb0c906ae1a58a847b2bd25dc589ace5355a8402",
     "source_push_verified": true
+  },
+  "sill_environment": {
+    "utc": "2026-10-28T17:19:22.143287+00:00",
+    "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+    "plan": "Docs/GRAPHICS-SILL-ENVIRONMENT.md",
+    "scope": [
+      "Nine original native16x24 Sill material frames:4Grass,4StoneFloor,1intactStoneWall"
+    ],
+    "source_png_sha256": "94b965ad31c0cb9aa6b65f4a496af06640febcbc2b987402e11fd515bcc47662",
+    "runtime_sha256": "3f34b617dfed62c9495e52a9e47423793a36093e896d2aaf2568de0ab4400fd3",
+    "native": {
+      "red_failed": 7,
+      "executed": 218,
+      "passed": 215,
+      "failed": 0,
+      "inconclusive": 3,
+      "green": "Docs/Verification/Live16x24/sill-environment-native-green.json",
+      "bounds": "Three existing Sodden allocation probes failed their positive control; no allocation claim. Initial old-assembly218 run and initialization timeout are retained separately, not acceptance."
+    },
+    "actual_captures": [
+      "Docs/Verification/Live16x24/sill-environment-after-01-exterior.png",
+      "Docs/Verification/Live16x24/sill-environment-after-02-approach.png",
+      "Docs/Verification/Live16x24/sill-environment-after-03-interior.png",
+      "Docs/Verification/Live16x24/sill-environment-after-04-floor-reader.png",
+      "Docs/Verification/Live16x24/sill-environment-after-05-grass-reader.png",
+      "Docs/Verification/Live16x24/sill-environment-after-06-door-npc-reopened.png",
+      "Docs/Verification/Live16x24/sill-environment-after-07-door-npc-reopened.png",
+      "Docs/Verification/Live16x24/sill-environment-after-08-opening-travel.png",
+      "Docs/Verification/Live16x24/sill-environment-after-09-return.png",
+      "Docs/Verification/Live16x24/sill-environment-after-10-wall-reader.png",
+      "Docs/Verification/Live16x24/sill-environment-after-11-fresh-continue.png"
+    ],
+    "before_captures": [
+      "Docs/Verification/Live16x24/sill-environment-before-01-exterior.png",
+      "Docs/Verification/Live16x24/sill-environment-before-02-approach.png",
+      "Docs/Verification/Live16x24/sill-environment-before-03-interior.png"
+    ],
+    "readers": [
+      "Grass66,11",
+      "StoneFloor66,9",
+      "StoneWall39,11 owner7401 Structure40/40"
+    ],
+    "route": "earned65 67,18\u219267,11\u219267,9 via open door, ordinary return67,11; worldmap10.10\u219211.10\u219210.10",
+    "door_bounds": "Player close twice, Perret Lowbark immediately reopened each time; no closed-state screenshot acceptance, no actor manipulation",
+    "restart": {
+      "fixture": "Docs/Verification/Live16x24/Fixtures/sill-environment-return178",
+      "turn": 1280,
+      "player": [
+        39,
+        12
+      ],
+      "hp": 38,
+      "different_world_pixels": 0,
+      "world_pixels": 564000,
+      "fresh_editor_continue": true
+    },
+    "source_reference": "ArtSource/Live16x24/sill-environment/scene-reference-01.png",
+    "concept_rejections": [
+      "Woven walls replaced by stone",
+      "Invented exterior paving",
+      "Changed occupants and silhouettes"
+    ],
+    "source_verification": "Original unitquad native source;two identical exports;two saved blends reopen3456quads24groups;16protectedinputs;4corruptionchecks;30filehandoff",
+    "integration": "Optional sixth atlas input; default Sill opts in, old explicit five-input behavior and malformed/null fallback preserved; no selector,simulation,geometry,collision orfog changes",
+    "profile": "Docs/Verification/Live16x24/sill-environment-editor-profile.json",
+    "profile_bounds": "29.56s stationaryroom/Look/actionmenu/idle/tooltime,5227samplesnonewrapped;renderermean.126ms,p99.359ms,max3.66ms;max40batches. Walking preceded recorderstart;no movement/performanceimprovement/Deck claim.",
+    "independent_review": "Docs/Verification/Live16x24/sill-environment-review.md",
+    "whole_area_accepted": false,
+    "remaining": [
+      "Whole-chunk composition and broad sparse yards",
+      "Subtle ground and wall-course repetition",
+      "Unvisited rooms, approaches, otherbiomes/sites",
+      "Stable closed-door capture and packaged/Deck execution"
+    ],
+    "package_bounds": "Current43a151ddb unchanged, excludes seeds/Buckler/crop reuse and five latest environment passes",
+    "preservation": "Docs/Verification/Live16x24/sill-environment-preservation.json",
+    "publication": "pending exact reviewed main push"
   }
 }
