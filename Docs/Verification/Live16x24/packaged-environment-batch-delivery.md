@@ -41,4 +41,4 @@ Protection snapshot `/private/tmp/coo-environment-batch-build-protection-7f73b6a
 
 Next candidate: an ordinary Spread road/hedge approach outside the six opening graphs. The ledger records only opening-anchor integration there, whereas the six regional material passes now have bounded evidence. Start with an earned normal-travel baseline and real Grass/RoadStone/parcel-edge owner audit; no nonopening Spread defect, checkpoint or acceptance is invented. Use that comparison to choose one coherent environmental pass, with restrained shading and periodic meaningful population still considered. Crops and nuanced animation remain deferred.
 
-Last actual hourly report remains 20:44:12.183742 UTC; next due21:44:12 UTC. This package milestone does not reset it. Exact delivery evidence publication is the next step; source7f73b6a78 is already remote.
+Last actual hourly report remains 20:44:12.183742 UTC; next due21:44:12 UTC. This package milestone does not reset it. Delivery commit `35d524a8c283c6ff122f06bc2ce81f9171479647` and runtime source7f73b6a78 are pushed and verified on origin/main.
