@@ -5677,6 +5677,46 @@
         ],
         "defect_audit_complete": false,
         "polish_acceptance_evidence": null
+      },
+      {
+        "biome": "Overwrit",
+        "area_key": "seed65/Overworld.4.12.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.4.12.0",
+        "formation_POI_depth_interior_role": "ordinary PilgrimageRim",
+        "status": "in_progress",
+        "known_defects": [
+          "Repeated short scrape clusters",
+          "Whole-chunk composition/visibility and other formations remain unreviewed"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null,
+        "environment_material_pass": {
+          "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+          "evidence": "Docs/Verification/Live16x24/overwrit-environment-final-receipt.json",
+          "source_commit": "83ebfec320e6fb389b73f68cc39a22941683b480",
+          "whole_area_accepted": false
+        }
+      },
+      {
+        "biome": "Overwrit",
+        "area_key": "seed65/Overworld.0.10.0",
+        "seed": 65,
+        "zone_id_or_unresolved": "Overworld.0.10.0",
+        "formation_POI_depth_interior_role": "ordinary Blank",
+        "status": "in_progress",
+        "known_defects": [
+          "Repeated short scrape clusters",
+          "Whole-chunk composition/visibility and other formations remain unreviewed"
+        ],
+        "defect_audit_complete": false,
+        "polish_acceptance_evidence": null,
+        "environment_material_pass": {
+          "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+          "evidence": "Docs/Verification/Live16x24/overwrit-environment-final-receipt.json",
+          "source_commit": "83ebfec320e6fb389b73f68cc39a22941683b480",
+          "whole_area_accepted": false
+        }
       }
     ],
     "area_inventory_bounds": "The five initial concrete records are observed Stump examples, not the entire area census or accepted polish. All current10biome,17settlement,6sinkhole,6ordinary-underground-material and16other-family inventory entries also have separate not_audited polish states; concrete areas/depths/interiors in every scope still require individual expansion and review. Open-ended generated/depth spaces require explicitly bounded representative variants and retained unknowns, never a claim that every possible seed was visited."
@@ -12760,7 +12800,9 @@
     "preservation": "Docs/Verification/Live16x24/overwrit-environment-preservation.json",
     "population_work": "Sill well-and-shop court planned separately; placement not started",
     "publication": {
-      "status": "reviewed_source_ready_for_exact_main_push"
+      "source_commit": "83ebfec320e6fb389b73f68cc39a22941683b480",
+      "origin_main_verified": true,
+      "verified_utc": "2026-10-28T17:48:35.635805+00:00"
     }
   }
 }

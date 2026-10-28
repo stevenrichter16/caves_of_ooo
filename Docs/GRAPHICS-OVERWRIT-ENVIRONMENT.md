@@ -1,6 +1,6 @@
 # Overwrit environmental material pass
 
-**Current checkpoint:** bounded Editor material pass verified; exact source publication pending. Only three detail variants changed. Whole-area polish and concept parity remain open.
+**Current checkpoint:** bounded Editor material pass verified; source `83ebfec320e6fb389b73f68cc39a22941683b480` pushed and verified on origin/main. Only three detail variants changed. Whole-area polish and concept parity remain open.
 
 Planned after Sill; no new Overwrit art or acceptance yet. Root owns Unity and Git. Preserve the intentional empty composition, approved sources, normal saves and unrelated work.
 
