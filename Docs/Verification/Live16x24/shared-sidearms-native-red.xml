@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 07:50:03Z" end-time="2026-10-28 07:50:07Z" duration="3.1656162">
+  <test-suite type="TestSuite" id="41624" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33821" result="Failed" site="Child" start-time="2026-10-28 07:50:03Z" end-time="2026-10-28 07:50:07Z" duration="3.165616" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41596" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33821" result="Failed" site="Child" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:07Z" duration="3.053860" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41597" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33821" result="Failed" site="Child" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:07Z" duration="3.050082" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41598" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33821" result="Failed" site="Child" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:07Z" duration="3.047958" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1782" name="FlatPixelSharedSidearmsTests" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:07Z" duration="3.039997" total="23" passed="1" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1806" name="CoveredSidearmHasItsOwnReaderWithoutReplacingSelectedCoin" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.CoveredSidearmHasItsOwnReaderWithoutReplacingSelectedCoin" methodname="CoveredSidearmHasItsOwnReaderWithoutReplacingSelectedCoin" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1276743476" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.200811" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.CoveredSidearmHasItsOwnReaderWithoutReplacingSelectedCoin () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:244
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1807" name="CurrentFootprintIsRequiredAndRawMutationDoesNotRepairItsSpatialIndex" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.CurrentFootprintIsRequiredAndRawMutationDoesNotRepairItsSpatialIndex" methodname="CurrentFootprintIsRequiredAndRawMutationDoesNotRepairItsSpatialIndex" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1453908872" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.040262" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.CurrentFootprintIsRequiredAndRawMutationDoesNotRepairItsSpatialIndex () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:259
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1786" name="DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.350176" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1783" name="DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions(&quot;Dagger&quot;)" methodname="DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1437767827" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.181718" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing glyph fallback must fail before resource checks.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions (System.String name) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1784" name="DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions(&quot;ShortSword&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions(&quot;ShortSword&quot;)" methodname="DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="808311198" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.045883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing glyph fallback must fail before resource checks.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions (System.String name) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1785" name="DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions(&quot;Mace&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions(&quot;Mace&quot;)" methodname="DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="312883125" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.042133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Existing glyph fallback must fail before resource checks.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DefaultResourceIsACompleteSquareInCurrentWorldAndAuthorizedReaderAcrossRegions (System.String name) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1810" name="DisposalOwnsCachedFramesOnlyAndIndependentPeerKeepsUnmodifiedBorrowedTextures" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DisposalOwnsCachedFramesOnlyAndIndependentPeerKeepsUnmodifiedBorrowedTextures" methodname="DisposalOwnsCachedFramesOnlyAndIndependentPeerKeepsUnmodifiedBorrowedTextures" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1300794093" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.037593" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.DisposalOwnsCachedFramesOnlyAndIndependentPeerKeepsUnmodifiedBorrowedTextures () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:315
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1799" name="ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:05Z" duration="0.200453" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1796" name="ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts(&quot;missing&quot;)" methodname="ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="2047623161" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.041470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1797" name="ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts(&quot;foreign&quot;)" methodname="ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1514391041" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:04Z" duration="0.038847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1798" name="ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts(&quot;duplicate&quot;)" methodname="ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1034103175" result="Failed" start-time="2026-10-28 07:50:04Z" end-time="2026-10-28 07:50:05Z" duration="0.038554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExactSidearmsRequireUniqueOwnedRenderPhysicsWeaponEquipmentAndExamineParts (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:167
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1800" name="ExplicitReskinsIdentityAliasesInvalidStacksAndNonPortableStateStayFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExplicitReskinsIdentityAliasesInvalidStacksAndNonPortableStateStayFallback" methodname="ExplicitReskinsIdentityAliasesInvalidStacksAndNonPortableStateStayFallback" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="810897693" result="Failed" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:05Z" duration="0.040417" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ExplicitReskinsIdentityAliasesInvalidStacksAndNonPortableStateStayFallback () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:178
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1809" name="FogCustodyAndReplacedGraphsCannotKeepAStaleWorldOrReaderBody" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.FogCustodyAndReplacedGraphsCannotKeepAStaleWorldOrReaderBody" methodname="FogCustodyAndReplacedGraphsCannotKeepAStaleWorldOrReaderBody" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1662382301" result="Failed" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:05Z" duration="0.037469" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.FogCustodyAndReplacedGraphsCannotKeepAStaleWorldOrReaderBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:296
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1801" name="ForeignActorTerrainArmorAndServiceMeaningsCannotBorrowWeaponFrames" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ForeignActorTerrainArmorAndServiceMeaningsCannotBorrowWeaponFrames" methodname="ForeignActorTerrainArmorAndServiceMeaningsCannotBorrowWeaponFrames" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1522144226" result="Failed" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:05Z" duration="0.040211" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.ForeignActorTerrainArmorAndServiceMeaningsCannotBorrowWeaponFrames () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:196
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1808" name="InventoryTransferAndSameIdImpostorCannotKeepTheOldReadersAuthority" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.InventoryTransferAndSameIdImpostorCannotKeepTheOldReadersAuthority" methodname="InventoryTransferAndSameIdImpostorCannotKeepTheOldReadersAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="727920712" result="Failed" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:05Z" duration="0.042481" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.InventoryTransferAndSameIdImpostorCannotKeepTheOldReadersAuthority () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:277
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1795" name="LegacyConstructorsAndResourceDisabledWorldKeepAllThreeNewInputsAbsent" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.LegacyConstructorsAndResourceDisabledWorldKeepAllThreeNewInputsAbsent" methodname="LegacyConstructorsAndResourceDisabledWorldKeepAllThreeNewInputsAbsent" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1091978176" result="Passed" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:05Z" duration="0.157431" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1794" name="MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:06Z" duration="1.379932" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1791" name="MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer(0)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer(0)" methodname="MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1237276896" result="Failed" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:05Z" duration="0.082500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer (System.Int32 missing) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:136
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1792" name="MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer(1)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer(1)" methodname="MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="489268422" result="Failed" start-time="2026-10-28 07:50:05Z" end-time="2026-10-28 07:50:06Z" duration="1.157874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer (System.Int32 missing) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:136
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1793" name="MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer(2)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer(2)" methodname="MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="532328699" result="Failed" start-time="2026-10-28 07:50:06Z" end-time="2026-10-28 07:50:06Z" duration="0.049312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.MissingOrMalformedSidearmInputCannotReloadResourcesAndPreservesEveryPeer (System.Int32 missing) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:136
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1802" name="NamesColorCombatHealthHeatAndOptionalRepairMetadataAreMutableWithoutPresentationSideEffects" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.NamesColorCombatHealthHeatAndOptionalRepairMetadataAreMutableWithoutPresentationSideEffects" methodname="NamesColorCombatHealthHeatAndOptionalRepairMetadataAreMutableWithoutPresentationSideEffects" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="379018137" result="Failed" start-time="2026-10-28 07:50:06Z" end-time="2026-10-28 07:50:06Z" duration="0.042674" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.NamesColorCombatHealthHeatAndOptionalRepairMetadataAreMutableWithoutPresentationSideEffects () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:208
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1805" name="RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 07:50:06Z" end-time="2026-10-28 07:50:06Z" duration="0.173773" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1803" name="RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply(&quot;Dagger&quot;)" methodname="RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="284891434" result="Failed" start-time="2026-10-28 07:50:06Z" end-time="2026-10-28 07:50:06Z" duration="0.044232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1804" name="RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply(&quot;Mace&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply(&quot;Mace&quot;)" methodname="RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="201180172" result="Failed" start-time="2026-10-28 07:50:06Z" end-time="2026-10-28 07:50:06Z" duration="0.044163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealBrokenAndRepairedEquipmentRetainsNeutralFrameAndConsumesOnlyActualRepairSupply (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1790" name="RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 07:50:06Z" end-time="2026-10-28 07:50:07Z" duration="0.214073" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1787" name="RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody(&quot;Dagger&quot;)" methodname="RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="116263852" result="Failed" start-time="2026-10-28 07:50:07Z" end-time="2026-10-28 07:50:07Z" duration="0.047421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:115
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1788" name="RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody(&quot;ShortSword&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody(&quot;ShortSword&quot;)" methodname="RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1438691334" result="Failed" start-time="2026-10-28 07:50:07Z" end-time="2026-10-28 07:50:07Z" duration="0.041100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:115
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1789" name="RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody(&quot;Mace&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody(&quot;Mace&quot;)" methodname="RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody" classname="CavesOfOoo.Tests.FlatPixelSharedSidearmsTests" runstate="Runnable" seed="1475196680" result="Failed" start-time="2026-10-28 07:50:07Z" end-time="2026-10-28 07:50:07Z" duration="0.042167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing independent 6-texture equipment constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Construct (UnityEngine.Texture2D[] textures) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:63
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.Install (UnityEngine.Texture2D[] textures) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:68
+at CavesOfOoo.Tests.FlatPixelSharedSidearmsTests.RealPickupEquipAndDropKeepIdentityAndRevokeStaleReaderCustody (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSidearmsTests.cs:115
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

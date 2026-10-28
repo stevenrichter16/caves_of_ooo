@@ -496,7 +496,7 @@ namespace CavesOfOoo.Tests
                 Assert.IsNull(field.GetValue(old));
             }
             using (var normal = new FlatPixelGreyboxCatalog())
-            { Add("Dagger"); Assert.True(normal.TryResolvePresentation(zone, 10, 10, out _)); Assert.IsNull(field.GetValue(normal)); }
+            { Add("Spear"); Assert.True(normal.TryResolvePresentation(zone, 10, 10, out _)); Assert.IsNull(field.GetValue(normal)); }
         }
 
         [Test]

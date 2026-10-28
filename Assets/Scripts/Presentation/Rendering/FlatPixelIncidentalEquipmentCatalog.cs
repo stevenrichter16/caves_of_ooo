@@ -1,5 +1,6 @@
 using System;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Anatomy;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
@@ -14,12 +15,16 @@ namespace CavesOfOoo.Rendering
         public const string LeatherArmorResourcePath = "Sprites/Live16x24/leather-armor";
         public const string HatchetResourcePath = "Sprites/Live16x24/hatchet";
         public const string CudgelResourcePath = "Sprites/Live16x24/cudgel";
-        private readonly Tile _leatherArmor, _hatchet, _cudgel;
+        public const string DaggerResourcePath = "Sprites/Environment/item_dagger";
+        public const string ShortSwordResourcePath = "Sprites/Environment/item_sword";
+        public const string MaceResourcePath = "Sprites/Environment/item_mace";
+        private readonly Tile _leatherArmor, _hatchet, _cudgel, _dagger, _shortSword, _mace;
         private bool _disposed;
 
         public FlatPixelIncidentalEquipmentCatalog()
             : this(Resources.Load<Texture2D>(LeatherArmorResourcePath), Resources.Load<Texture2D>(HatchetResourcePath),
-                   Resources.Load<Texture2D>(CudgelResourcePath)) { }
+                   Resources.Load<Texture2D>(CudgelResourcePath), Resources.Load<Texture2D>(DaggerResourcePath),
+                   Resources.Load<Texture2D>(ShortSwordResourcePath), Resources.Load<Texture2D>(MaceResourcePath)) { }
 
         /// <summary>Independent optional resources. Null or malformed injected
         /// textures stay unavailable without an implicit Resources lookup.</summary>
@@ -28,15 +33,27 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>Independent optional identities; missing injected art stays unavailable.</summary>
         public FlatPixelIncidentalEquipmentCatalog(Texture2D leatherArmor, Texture2D hatchet, Texture2D cudgel)
+            : this(leatherArmor, hatchet, cudgel, null, null, null) { }
+
+        /// <summary>Existing tall equipment and independent complete square sidearms.
+        /// Injected null/malformed inputs never reload a resource implicitly.</summary>
+        public FlatPixelIncidentalEquipmentCatalog(Texture2D leatherArmor, Texture2D hatchet, Texture2D cudgel,
+            Texture2D dagger, Texture2D shortSword, Texture2D mace)
         {
             _leatherArmor = Build(leatherArmor, "Leather armor");
             _hatchet = Build(hatchet, "Hatchet");
             _cudgel = Build(cudgel, "Cudgel");
+            _dagger = Build(dagger, "Dagger", 16);
+            _shortSword = Build(shortSword, "Short sword", 16);
+            _mace = Build(mace, "Mace", 16);
         }
 
         internal static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "LeatherArmor" || owner?.BlueprintName == "Hatchet"
-                || owner?.BlueprintName == "Cudgel";
+                || owner?.BlueprintName == "Cudgel" || IsSidearm(owner);
+
+        internal static bool IsSidearm(Entity owner)
+            => owner?.BlueprintName == "Dagger" || owner?.BlueprintName == "ShortSword" || owner?.BlueprintName == "Mace";
 
         /// <summary>Resolve semantic art without authorizing world or inventory
         /// disclosure. Neutral frames do not encode condition, stats or provenance.</summary>
@@ -46,6 +63,10 @@ namespace CavesOfOoo.Rendering
             if (_disposed || !HasKnownRole(owner) || !owner.HasTag("Item")
                 || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Terrain")
                 || owner.HasTag("Crop") || owner.HasPart<CropPart>()) return false;
+            bool sidearm = IsSidearm(owner);
+            if (sidearm && (!UniqueOwned<RenderPart>(owner) || !UniqueOwned<PhysicsPart>(owner)
+                || !UniqueOwned<MeleeWeaponPart>(owner) || !UniqueOwned<EquippablePart>(owner)
+                || !UniqueOwned<ExaminablePart>(owner) || ForeignSidearmMeaning(owner))) return false;
             var render = Owned<RenderPart>(owner);
             var physics = Owned<PhysicsPart>(owner);
             if (render == null || !render.Visible || physics == null || !physics.Takeable || physics.Solid
@@ -63,13 +84,38 @@ namespace CavesOfOoo.Rendering
             else
             {
                 if (Owned<MeleeWeaponPart>(owner) == null || equipment?.Slot != "Hand") return false;
-                tile = owner.BlueprintName == "Cudgel" ? _cudgel : _hatchet;
+                switch (owner.BlueprintName)
+                {
+                    case "Dagger": tile = _dagger; break;
+                    case "ShortSword": tile = _shortSword; break;
+                    case "Mace": tile = _mace; break;
+                    case "Cudgel": tile = _cudgel; break;
+                    default: tile = _hatchet; break;
+                }
             }
             return tile != null;
         }
 
         private static T Owned<T>(Entity owner) where T : Part
         { var part = owner.GetPart<T>(); return part?.ParentEntity == owner ? part : null; }
+
+        private static bool UniqueOwned<T>(Entity owner) where T : Part
+        {
+            T found = null;
+            foreach (var part in owner.Parts)
+                if (part is T typed)
+                {
+                    if (found != null || typed.ParentEntity != owner) return false;
+                    found = typed;
+                }
+            return found != null;
+        }
+
+        // These roles are portable weapons, never substitute service/actor bodies.
+        private static bool ForeignSidearmMeaning(Entity owner)
+            => owner.HasPart<ArmorPart>() || owner.HasPart<ContainerPart>() || owner.HasPart<ForgePart>()
+                || owner.HasPart<WellPart>() || owner.HasPart<WellSitePart>() || owner.HasPart<CorpsePart>()
+                || owner.HasPart<Body>() || owner.HasPart<BrainPart>() || owner.HasPart<DoorPart>();
 
         private static bool SingleCell(Entity owner)
         {
@@ -84,10 +130,10 @@ namespace CavesOfOoo.Rendering
             return offsets.Length == 1 && offsets[0] == Vector2Int.zero;
         }
 
-        private static Tile Build(Texture2D texture, string name)
+        private static Tile Build(Texture2D texture, string name, int height = 24)
         {
-            if (texture == null || texture.width != 16 || texture.height != 24) return null;
-            var sprite = Sprite.Create(texture, new Rect(0, 0, 16, 24), new Vector2(.5f, .5f), 16, 0, SpriteMeshType.FullRect);
+            if (texture == null || texture.width != 16 || texture.height != height) return null;
+            var sprite = Sprite.Create(texture, new Rect(0, 0, 16, height), new Vector2(.5f, .5f), 16, 0, SpriteMeshType.FullRect);
             sprite.name = "Live16x24 " + name; sprite.hideFlags = HideFlags.HideAndDontSave;
             var tile = ScriptableObject.CreateInstance<Tile>(); tile.name = sprite.name; tile.hideFlags = HideFlags.HideAndDontSave;
             tile.sprite = sprite; tile.flags = TileFlags.None; tile.colliderType = Tile.ColliderType.None;
@@ -99,6 +145,7 @@ namespace CavesOfOoo.Rendering
             if (_disposed) return;
             _disposed = true;
             DestroyFrame(_leatherArmor); DestroyFrame(_hatchet); DestroyFrame(_cudgel);
+            DestroyFrame(_dagger); DestroyFrame(_shortSword); DestroyFrame(_mace);
         }
         private static void DestroyFrame(Tile tile)
         {

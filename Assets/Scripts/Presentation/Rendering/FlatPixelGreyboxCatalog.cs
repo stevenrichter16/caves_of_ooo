@@ -1154,7 +1154,9 @@ namespace CavesOfOoo.Rendering
             var incidental = local ? IncidentalActorArtFor(owner) : null;
             bool incidentalNative = incidental != null && incidental.TryResolve(owner, out art);
             var equipment = IncidentalEquipmentArtFor(owner);
-            bool equipmentNative = equipment != null && equipment.TryResolve(owner, out art);
+            Tile equipmentArt = null;
+            bool equipmentNative = equipment != null && equipment.TryResolve(owner, out equipmentArt);
+            if (equipmentNative) art = equipmentArt;
             var aftermath = local ? AftermathArtFor(owner) : null;
             bool aftermathNative = aftermath != null && aftermath.TryResolve(owner, out art);
             var orchard = local ? OrchardArtFor(owner) : null;
@@ -1282,7 +1284,9 @@ namespace CavesOfOoo.Rendering
             // must not bypass current semantic or optional-resource guards.
             // The same applies to exact fauna; portable species do not admit
             // regional scenery or inherit another body's art after refusal.
-            bool native = clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool sidearmKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner);
+            if (sidearmKnown) art = equipmentArt;
+            bool native = sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1319,6 +1323,14 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            // Exact sidearm refusal must not fall through to unrelated local art.
+            if (FlatPixelIncidentalEquipmentCatalog.IsSidearm(subject))
+            {
+                var sidearms = IncidentalEquipmentArtFor(subject);
+                if (sidearms != null && sidearms.TryResolve(subject, out var sidearmTile))
+                { sprite = sidearmTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             if (FlatPixelSharedCampClothCatalog.HasKnownRole(subject))
             {
                 var cloth = SharedCampClothArtFor(subject);

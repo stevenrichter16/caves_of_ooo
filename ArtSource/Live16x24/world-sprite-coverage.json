@@ -4587,10 +4587,10 @@
     "release_evidence_push_verified": true
   },
   "hourly_reporting": {
-    "last_report_at_utc": "2026-10-28T06:37:13.545847+00:00",
-    "next_report_due_at_utc": "2026-10-28T07:37:13.545847+00:00",
-    "report": "Docs/GRAPHICS-SHARED-WEAPONSMITH.md",
-    "basis": "Explicit hourly report sent: camp props/cloth package/main complete; Weaponsmith baseline and16RED+1control verified, minimal runtime local and GREEN running. Nextactualcomparison/save/reload/main; Farmer/specialists/widercoverage and separatepolish remain."
+    "last_report_at_utc": "2026-10-28T07:38:36.591791+00:00",
+    "next_report_due_at_utc": "2026-10-28T08:38:36.591791+00:00",
+    "report": "Docs/GRAPHICS-COMPLETION-PLAN.md",
+    "basis": "Explicit hourly report sent: three specialist bodies/source/package delivery complete;99native passes and14actualMac captures, freshContinue and Linuxintegrity. NextDagger/ShortSword/Maceactualbaseline/integration; broadcoverage and all55+5polish remainopen."
   },
   "stump_baseline": {
     "status": "five_formation_actual_before_survey_and_concept_critique_complete;native_source_and_red_tests_underway;no_native_integration_or_acceptance",
@@ -11215,5 +11215,85 @@
     },
     "area_polish_advanced": false,
     "remaining": "Broad remaining item/NPC/creature/regional families and all55+5polish scopes remain open; choose next missing shared family from actual play."
+  },
+  "shared_sidearms": {
+    "status": "native_integrated_all_three_bounded_Editor_verified_source_push_pending",
+    "scope": [
+      "Dagger",
+      "ShortSword",
+      "Mace"
+    ],
+    "plan": "Docs/GRAPHICS-SHARED-SIDEARMS.md",
+    "art": {
+      "kind": "unchanged_legacy_resource_reuse",
+      "resources": [
+        "Sprites/Environment/item_dagger",
+        "Sprites/Environment/item_sword",
+        "Sprites/Environment/item_mace"
+      ],
+      "frame_size": [
+        16,
+        16
+      ],
+      "pixels_per_unit": 16,
+      "asset_or_import_bytes_changed": false,
+      "bounds": "Complete square runtime views; no new artwork or stretch to16x24. Existing LongSword route remains separate."
+    },
+    "native_red": {
+      "total": 23,
+      "failed": 22,
+      "passed_control": 1,
+      "started_at_utc": "2026-10-28T07:50:03Z",
+      "receipt": "Docs/Verification/Live16x24/shared-sidearms-native-red.xml"
+    },
+    "native_green": {
+      "total": 108,
+      "passed": 108,
+      "failed": 0,
+      "includes_new_sidearm_cases": 23,
+      "includes": "Existing incidental-equipment and LongSword positive/adversarial controls",
+      "receipt": "Docs/Verification/Live16x24/shared-sidearms-native-green.xml"
+    },
+    "actual_editor": {
+      "Dagger": {
+        "status": "bounded_world_inventory_and_ground_reader_verified",
+        "fixture": 151,
+        "fresh_continue_verified": true,
+        "restart_world_pixels": 564000,
+        "restart_changed_pixels": 0,
+        "comparison": "Docs/Verification/Live16x24/shared-sidearms-restart-comparison.json"
+      },
+      "Mace": {
+        "status": "bounded_purchase_world_inventory_ground_reader_and_pickup_verified",
+        "grimoire_sale_drams": 11,
+        "purchase_drams": 55,
+        "saved_fixture": 152,
+        "receipt": "Docs/Verification/Live16x24/shared-sidearms-mace-ground-receipt.json"
+      },
+      "ShortSword": {
+        "status": "bounded_purchase_world_inventory_ground_reader_and_pickup_verified",
+        "source_fixture": 142,
+        "owner_id": "7360",
+        "purchase_drams": 41,
+        "player_drams_before": 50,
+        "player_drams_after": 9,
+        "saved_fixture": 153,
+        "saved_turn": 1530,
+        "saved_hitpoints": 38,
+        "actual_captures": [
+          "Docs/Verification/Live16x24/shared-sidearms-after-13-shortsword-inventory-reader.png",
+          "Docs/Verification/Live16x24/shared-sidearms-after-14-shortsword-ground.png",
+          "Docs/Verification/Live16x24/shared-sidearms-after-15-shortsword-ground-reader.png"
+        ],
+        "bounds": "Separate earned branch from Mace; normal drop60,3, step61,3, pickup and F5. Bounded Editor observation only."
+      }
+    },
+    "source_publication": "pending_root_push_and_remote_verification",
+    "current_packaged_source": "83e1e568fa4e3e2c9d4883fdcaf88be85fea9049",
+    "new_packages": "pending_coherent_batch;current_specialist_packages_exclude_sidearms",
+    "area_polish_advanced": false,
+    "bounds": "Three exact item identities; bounded Editor verification is not worldwide observation, package execution, whole-area acceptance or performance proof. All55 inventory and five Stump area-polish statuses remain unchanged.",
+    "next": "Complete independent review, publish exact source and batch package delivery. Continue high-impact disclosed missing equipment/props/actors and regional families across the whole game; broad coverage and later area polish remain open, optional animation deferred.",
+    "independent_review": "Docs/Verification/Live16x24/shared-sidearms-independent-review.md"
   }
 }
