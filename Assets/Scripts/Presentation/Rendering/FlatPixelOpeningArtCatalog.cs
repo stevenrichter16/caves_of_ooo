@@ -169,6 +169,7 @@ namespace CavesOfOoo.Rendering
         {
             tile = null;
             if (_disposed || owner == null) return false;
+            if (HasPortableCropRole(owner)) return TryResolvePortableCrop(owner, out tile);
             var render = owner.GetPart<RenderPart>();
             if (render == null || render.ParentEntity != owner || !render.Visible) return false;
             int frame = FrameOf(owner, render.VisualID, x, y);
@@ -237,6 +238,56 @@ namespace CavesOfOoo.Rendering
                 return tile != null;
             }
             return TryResolvePlot(owner, render, out tile);
+        }
+
+        internal static bool HasPortableCropRole(Entity owner)
+            => owner?.BlueprintName == "CandyCarrotCrop" || owner?.BlueprintName == "EmberwheatCrop";
+
+        // These two automatic-yield crops can be planted outside the opening.
+        // Reuse the existing state/plot frames without admitting reserve crops,
+        // regional services or soil. Frame selection never reconciles growth.
+        internal bool TryResolvePortableCrop(Entity owner, out Tile tile)
+        {
+            tile = null;
+            if (_disposed || !HasPortableCropRole(owner) || !owner.HasTag("Crop")
+                || owner.HasTag("Player") || owner.HasTag("Creature") || owner.HasTag("Item")
+                || owner.HasTag("Terrain") || owner.HasTag("Corpse") || ForeignCropMeaning(owner)) return false;
+            var render = UniqueCropPart<RenderPart>(owner);
+            var physics = UniqueCropPart<PhysicsPart>(owner);
+            var crop = UniqueCropPart<CropPart>(owner);
+            if (render == null || !render.Visible || physics == null || crop == null
+                || UniqueCropPart<ExaminablePart>(owner) == null
+                || physics.Solid || physics.Takeable || physics.InInventory != null || physics.Equipped != null
+                || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)
+                || !string.IsNullOrEmpty(render.GlyphVariants)
+                || owner.HasPart<StatusEffectsPart>() && UniqueCropPart<StatusEffectsPart>(owner) == null) return false;
+            if (owner.HasPart<SpatialFootprintPart>())
+            {
+                var footprint = UniqueCropPart<SpatialFootprintPart>(owner);
+                if (footprint == null || footprint.Offsets.Length != 1 || footprint.Offsets[0] != Vector2Int.zero
+                    || owner.SpatialZone != null && !owner.SpatialZone.IsFootprintCurrent(owner)) return false;
+            }
+            // The shared plot selector already owns exact automatic-yield,
+            // bounded count and standing-stage semantics. Moisture, composted
+            // timing and the unused legacy seed fields do not alter this body.
+            return TryResolvePlot(owner, render, out tile);
+        }
+
+        private static bool ForeignCropMeaning(Entity owner)
+            => owner.HasPart<Body>() || owner.HasPart<BrainPart>() || owner.HasPart<TraderPart>()
+                || owner.HasPart<ConversationPart>() || owner.HasPart<ContainerPart>() || owner.HasPart<DoorPart>()
+                || owner.HasPart<ForgePart>() || owner.HasPart<WellPart>() || owner.HasPart<WellSitePart>()
+                || owner.HasPart<AlchemyStillPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<HarvestablePart>()
+                || owner.HasPart<CultivatedSoilPart>() || owner.HasPart<CorpsePart>() || owner.HasPart<SeedPart>()
+                || owner.HasPart<EquippablePart>() || owner.HasPart<MeleeWeaponPart>() || owner.HasPart<ArmorPart>();
+
+        private static T UniqueCropPart<T>(Entity owner) where T : Part
+        {
+            T found = null;
+            for (int i = 0; i < owner.Parts.Count; i++)
+                if (owner.Parts[i] is T part)
+                { if (found != null || part.ParentEntity != owner) return null; found = part; }
+            return found;
         }
 
         // Nonlocal callers admit this exact portable identity without opening

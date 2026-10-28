@@ -266,6 +266,7 @@ namespace CavesOfOoo.Rendering
             bool essentialsNative = false;
             bool sharedVineNative = false;
             bool bucklerNative = false;
+            bool portableCropNative = false;
             if (!remembered && SharedVineRole(zone, owner))
             {
                 var vines = SharedVineWallArtFor(zone, owner);
@@ -273,6 +274,13 @@ namespace CavesOfOoo.Rendering
                 { foreground = vineTile; foregroundColor = Color.white; sharedVineNative = true; }
                 else if (TryResolveFallback(zone, x, y, out var vineFallback))
                 { foreground = vineFallback.ForegroundTile; foregroundColor = vineFallback.ForegroundColor; }
+            }
+            else if (FlatPixelOpeningArtCatalog.HasPortableCropRole(owner))
+            {
+                if (_openingArt.TryResolvePortableCrop(owner, out var cropTile))
+                { foreground = cropTile; foregroundColor = Color.white; portableCropNative = true; }
+                else if (TryResolveFallback(zone, x, y, out var cropFallback))
+                { foreground = cropFallback.ForegroundTile; foregroundColor = cropFallback.ForegroundColor; }
             }
             else if (owner?.BlueprintName == "Buckler")
             {
@@ -395,7 +403,7 @@ namespace CavesOfOoo.Rendering
             result = new FlatPixelGreyboxCell(_tiles[(int)FlatPixelGreyboxKind.Ground], foreground,
                 groundColor, foregroundColor, owner, kind, ground, remembered,
                 !remembered && cell.BlocksMovement(), remembered ? null : ReserveCord(zone, cell, out _),
-                nativeForeground: sharedVineNative || greatdewNative || essentialsNative || bucklerNative,
+                nativeForeground: sharedVineNative || greatdewNative || essentialsNative || bucklerNative || portableCropNative,
                 preserveRenderColorCue: sharedVineNative || greatdewNative || essentialsNative || bucklerNative);
             return true;
         }
@@ -623,6 +631,12 @@ namespace CavesOfOoo.Rendering
             if (_disposed || owner == null) return false;
             var render = owner.GetPart<RenderPart>();
             if (render == null || render.ParentEntity != owner || !render.Visible) return false;
+            if (FlatPixelOpeningArtCatalog.HasPortableCropRole(owner))
+            {
+                if (_openingArt.TryResolvePortableCrop(owner, out var cropTile))
+                { sprite = cropTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
+            }
             if (owner.BlueprintName == "Buckler")
             {
                 var equipment = IncidentalEquipmentArtFor(owner);
@@ -1387,6 +1401,11 @@ namespace CavesOfOoo.Rendering
             Tile soddenFrogArt = null;
             bool soddenFrogNative = soddenFrogs != null && soddenFrogs.TryResolve(owner, out soddenFrogArt);
             if (soddenFrogKnown) art = soddenFrogArt;
+            bool portableCropKnown = FlatPixelOpeningArtCatalog.HasPortableCropRole(owner);
+            Tile portableCropArt = null;
+            bool portableCropNative = portableCropKnown && !fallback.Remembered
+                && _openingArt.TryResolvePortableCrop(owner, out portableCropArt);
+            if (portableCropKnown) art = portableCropArt;
             // Known-product refusal is authoritative: older local item groups
             // must not bypass current semantic or optional-resource guards.
             // The same applies to exact fauna; portable species do not admit
@@ -1394,7 +1413,7 @@ namespace CavesOfOoo.Rendering
             bool portableEquipmentKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner) || owner?.BlueprintName == "Buckler";
             if (portableEquipmentKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1431,6 +1450,12 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            if (FlatPixelOpeningArtCatalog.HasPortableCropRole(subject))
+            {
+                if (_openingArt.TryResolvePortableCrop(subject, out var cropTile))
+                { sprite = cropTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             if (SharedVineRole(zone, subject))
             {
                 var vines = SharedVineWallArtFor(zone, subject);

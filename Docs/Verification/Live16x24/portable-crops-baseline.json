@@ -1,0 +1,47 @@
+{
+  "fixture": "portable-crops-exposed169",
+  "player": [
+    39,
+    10
+  ],
+  "hp": 18,
+  "turn": 2540,
+  "known_owners": [
+    {
+      "id": "25521",
+      "bp": "CandyCarrotCrop",
+      "cell": [
+        42,
+        10
+      ]
+    },
+    {
+      "id": "25522",
+      "bp": "EmberwheatCrop",
+      "cell": [
+        41,
+        10
+      ]
+    }
+  ],
+  "state": "Both stage0,progress0,moisture0; dry growth paused.",
+  "baseline_images": [
+    "Docs/Verification/Live16x24/portable-crops-before-01-covered.png",
+    "Docs/Verification/Live16x24/portable-crops-before-02-exposed-look.png",
+    "Docs/Verification/Live16x24/portable-crops-before-03-emberwheat-actions.png",
+    "Docs/Verification/Live16x24/portable-crops-before-04-emberwheat-reader.png",
+    "Docs/Verification/Live16x24/portable-crops-before-05-gladroot-reader.png",
+    "Docs/Verification/Live16x24/portable-crops-before-06-direct-examine.png",
+    "Docs/Verification/Live16x24/portable-crops-before-07-look.png",
+    "Docs/Verification/Live16x24/portable-crops-before-08-emberwheat-examine.png",
+    "Docs/Verification/Live16x24/portable-crops-before-09-saved-world.png"
+  ],
+  "direct_examine": [
+    "portable-crops-before-06-direct-examine.png",
+    "portable-crops-before-08-emberwheat-examine.png"
+  ],
+  "excluded": "portable-crops-trial-skills.png",
+  "navigation_correction": "Direct Examine closes its action list. A second Escape left Look; Left then moved player and Enter cast En Garde before x opened Skills. Retained unsanitized169 HP18; no object/state injection. F1 field-note images04/05 are not portrait evidence.",
+  "pipeline": "Reuse approved unchanged planted/sprout sources and their existing concept/critique; no regeneration needed for a routing gap.",
+  "native_red": "portable-crops-native-red.json"
+}
