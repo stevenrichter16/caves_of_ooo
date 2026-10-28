@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="102" result="Failed(Child)" total="102" passed="76" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 03:17:26Z" end-time="2026-10-28 03:17:39Z" duration="13.0369987">
+  <test-suite type="TestSuite" id="41537" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:17:26Z" end-time="2026-10-28 03:17:39Z" duration="13.036999" total="102" passed="76" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41508" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:17:26Z" end-time="2026-10-28 03:17:39Z" duration="12.938194" total="102" passed="76" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41509" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:17:26Z" end-time="2026-10-28 03:17:39Z" duration="12.738055" total="102" passed="76" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41510" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:17:26Z" end-time="2026-10-28 03:17:39Z" duration="12.638026" total="102" passed="76" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1663" name="FlatPixelSharedCampPropsTests" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-28 03:17:27Z" end-time="2026-10-28 03:17:30Z" duration="3.494040" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1685" name="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 03:17:27Z" end-time="2026-10-28 03:17:28Z" duration="0.736334" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1683" name="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Sack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Sack&quot;)" methodname="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1927941801" result="Failed" start-time="2026-10-28 03:17:27Z" end-time="2026-10-28 03:17:27Z" duration="0.187676" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates (System.String name) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1684" name="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Urn&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Urn&quot;)" methodname="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="583448461" result="Failed" start-time="2026-10-28 03:17:27Z" end-time="2026-10-28 03:17:28Z" duration="0.311874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates (System.String name) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1677" name="AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock" methodname="AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1777583052" result="Failed" start-time="2026-10-28 03:17:28Z" end-time="2026-10-28 03:17:28Z" duration="0.408000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1695" name="CachedViewsDisposeWithoutDestroyingInputsOrPeer" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CachedViewsDisposeWithoutDestroyingInputsOrPeer" methodname="CachedViewsDisposeWithoutDestroyingInputsOrPeer" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="705372784" result="Failed" start-time="2026-10-28 03:17:28Z" end-time="2026-10-28 03:17:28Z" duration="0.486538" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CachedViewsDisposeWithoutDestroyingInputsOrPeer () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:246
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1674" name="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 03:17:28Z" end-time="2026-10-28 03:17:29Z" duration="0.174593" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1672" name="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;visual&quot;)" methodname="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1902902478" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.057550" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute (System.String group) [0x000ad] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1673" name="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;custody&quot;)" methodname="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1400452166" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.050680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute (System.String group) [0x000ad] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1671" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.262101" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1668" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;missing&quot;)" methodname="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="904723608" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.065239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback (System.String fault) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1669" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;foreign&quot;)" methodname="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="660020447" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.048044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback (System.String fault) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1670" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;duplicate&quot;)" methodname="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1218175120" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.049506" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback (System.String fault) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1667" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.318581" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1664" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Sack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Sack&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="708251666" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.073982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1665" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Urn&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Urn&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1510752912" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.063007" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1666" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Well&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Well&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1703121602" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.052626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1682" name="ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources" methodname="ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="329424583" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.052676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:167
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1676" name="ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies" methodname="ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="938996232" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.054676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies () [0x000a8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1692" name="LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure" methodname="LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="48915312" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.055862" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:214
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1681" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:30Z" duration="0.192366" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1678" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(0)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(0)" methodname="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="594868352" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:29Z" duration="0.048699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1679" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(1)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(1)" methodname="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="617469030" result="Failed" start-time="2026-10-28 03:17:29Z" end-time="2026-10-28 03:17:30Z" duration="0.051256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1680" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(2)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(2)" methodname="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="179326514" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.046149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1675" name="OptionalStackAndFootprintRequireLiveOwnedSingleCellData" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OptionalStackAndFootprintRequireLiveOwnedSingleCellData" methodname="OptionalStackAndFootprintRequireLiveOwnedSingleCellData" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="400489028" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.049123" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OptionalStackAndFootprintRequireLiveOwnedSingleCellData () [0x00084] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:116
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1686" name="OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation" methodname="OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1078969501" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.053607" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:186
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1694" name="SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision" methodname="SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="395546147" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.049623" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:239
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1691" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.327208" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1687" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;site&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;site&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1394401294" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.056986" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1688" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;broken&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="977877204" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.057825" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1689" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;repaired&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;repaired&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="516829231" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.055805" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1690" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;pool&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="684897383" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.055125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1693" name="VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader" methodname="VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="907199102" result="Failed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:30Z" duration="0.067460" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:225
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1696" name="FlatPixelSharedFurnitureTests" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" testcasecount="33" result="Passed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:34Z" duration="3.603854" total="33" passed="33" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1734" name="ActualChangedRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ActualChangedRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt" methodname="ActualChangedRenderCueIsDispatchedOnceAndReaderNeighborQueriesDoNotConsumeIt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="2126369388" result="Passed" start-time="2026-10-28 03:17:30Z" end-time="2026-10-28 03:17:31Z" duration="0.484256" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1735" name="CachedViewsDisposeIndependentlyWithoutChangingBorrowedAtlas" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.CachedViewsDisposeIndependentlyWithoutChangingBorrowedAtlas" methodname="CachedViewsDisposeIndependentlyWithoutChangingBorrowedAtlas" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="25784133" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.049988" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1699" name="DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.399755" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1697" name="DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions(&quot;Bed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions(&quot;Bed&quot;)" methodname="DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="137508993" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.188614" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1698" name="DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions(&quot;Chair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions(&quot;Chair&quot;)" methodname="DefaultPublicWorldAndAuthorizedReaderReuseFurnitureAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="94480438" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.144966" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1732" name="DisclosureCoverMoveAndRemovalRetireTheAuthorizedReader" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.DisclosureCoverMoveAndRemovalRetireTheAuthorizedReader" methodname="DisclosureCoverMoveAndRemovalRetireTheAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="891790681" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.085754" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1729" name="ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.200881" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1727" name="ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources(&quot;Bed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources(&quot;Bed&quot;)" methodname="ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1933192263" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.066998" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1728" name="ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources(&quot;Chair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources(&quot;Chair&quot;)" methodname="ExistingInjectedEastAtlasSuppliesFurnitureWithoutImplicitResources" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1358704517" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:31Z" duration="0.054262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1726" name="ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-28 03:17:31Z" end-time="2026-10-28 03:17:32Z" duration="0.338055" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1723" name="ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback(0)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback(0)" methodname="ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1292488481" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.091618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1724" name="ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback(1)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback(1)" methodname="ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="61572061" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.086578" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1725" name="ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback(2)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback(2)" methodname="ExplicitMissingOrMalformedSharedInputCannotUseValidOldEastFallback" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="903404445" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.081030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1731" name="MulticellRefusesOneCellBodyAndRestoringFootprintRecovers" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.MulticellRefusesOneCellBodyAndRestoringFootprintRecovers" methodname="MulticellRefusesOneCellBodyAndRestoringFootprintRecovers" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1786275546" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.063048" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1730" name="OtherFurnitureAndSpoofedNamesDoNotAcquireTheseExactBodies" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.OtherFurnitureAndSpoofedNamesDoNotAcquireTheseExactBodies" methodname="OtherFurnitureAndSpoofedNamesDoNotAcquireTheseExactBodies" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="840223893" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.058783" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1702" name="OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.307488" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1700" name="OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries(&quot;Bed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries(&quot;Bed&quot;)" methodname="OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="458217383" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.100815" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1701" name="OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries(&quot;Chair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries(&quot;Chair&quot;)" methodname="OwnerReservationAndOccupantDoNotInventDifferentBodyOrServiceQueries" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="2544464" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:32Z" duration="0.087410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1705" name="RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:33Z" duration="0.405175" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1703" name="RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation(&quot;Bed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation(&quot;Bed&quot;)" methodname="RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1588396263" result="Passed" start-time="2026-10-28 03:17:32Z" end-time="2026-10-28 03:17:33Z" duration="0.183478" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1704" name="RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation(&quot;Chair&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation(&quot;Chair&quot;)" methodname="RealNpcIdleOfferAndCleanupRemainSeparateFromPresentation" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1376636113" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.110576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1733" name="StaleMembershipAndReplacementGraphCannotGrantFurnitureAuthority" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.StaleMembershipAndReplacementGraphCannotGrantFurnitureAuthority" methodname="StaleMembershipAndReplacementGraphCannotGrantFurnitureAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="2013931240" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.082658" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1722" name="UnsupportedOwnerCannotBypassThroughOldEastArt" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:34Z" duration="1.020693" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1706" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;missing-service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;missing-service&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1148987222" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.063739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1707" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;foreign-service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;foreign-service&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1038387379" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.061797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1708" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;duplicate-service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;duplicate-service&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="121456951" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.055810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1709" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;cross-role&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;cross-role&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1131302878" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.053256" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1710" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;foreign-render&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1081837886" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.053393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1711" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;duplicate-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;duplicate-render&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="411173030" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.055397" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1712" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;foreign-physics&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="672865720" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.055827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1713" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;solid&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1179488846" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.053037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1714" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;takeable&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1776319961" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.055307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1715" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;carried&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1133829142" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.054010" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1716" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;equipped&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="2054176562" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:33Z" duration="0.054725" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1717" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;glyph&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1468233328" result="Passed" start-time="2026-10-28 03:17:33Z" end-time="2026-10-28 03:17:34Z" duration="0.053547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1718" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;variant&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1683724477" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.051560" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1719" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;visual&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="630048352" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.055621" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1720" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;layer&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="1028528871" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.058229" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1721" name="UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests.UnsupportedOwnerCannotBypassThroughOldEastArt(&quot;actor&quot;)" methodname="UnsupportedOwnerCannotBypassThroughOldEastArt" classname="CavesOfOoo.Tests.FlatPixelSharedFurnitureTests" runstate="Runnable" seed="915668126" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.055275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1828" name="FlatPixelSharedStorageTests" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="43" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:39Z" duration="5.340080" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1853" name="AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.319716" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1851" name="AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic(&quot;StrongBox&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic(&quot;StrongBox&quot;)" methodname="AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1575647742" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.160139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1852" name="AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic(&quot;OreCache&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic(&quot;OreCache&quot;)" methodname="AuthoredUnbreakableStorageNeedsNoInventedMaterialOrHarvestMechanic" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="660684391" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.058597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1840" name="CombinedLocksChangeAccessButNeverTheBodyOrContents" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.CombinedLocksChangeAccessButNeverTheBodyOrContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.317968" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1836" name="CombinedLocksChangeAccessButNeverTheBodyOrContents(False,False)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.CombinedLocksChangeAccessButNeverTheBodyOrContents(False,False)" methodname="CombinedLocksChangeAccessButNeverTheBodyOrContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="463104271" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.066508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1837" name="CombinedLocksChangeAccessButNeverTheBodyOrContents(True,False)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.CombinedLocksChangeAccessButNeverTheBodyOrContents(True,False)" methodname="CombinedLocksChangeAccessButNeverTheBodyOrContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="741305896" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.057270" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1838" name="CombinedLocksChangeAccessButNeverTheBodyOrContents(False,True)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.CombinedLocksChangeAccessButNeverTheBodyOrContents(False,True)" methodname="CombinedLocksChangeAccessButNeverTheBodyOrContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1122099941" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.055496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1839" name="CombinedLocksChangeAccessButNeverTheBodyOrContents(True,True)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.CombinedLocksChangeAccessButNeverTheBodyOrContents(True,True)" methodname="CombinedLocksChangeAccessButNeverTheBodyOrContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1252598993" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:34Z" duration="0.056583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1865" name="DisclosureSelectionMovementAndRetainedReaderStayAuthoritative" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.DisclosureSelectionMovementAndRetainedReaderStayAuthoritative" methodname="DisclosureSelectionMovementAndRetainedReaderStayAuthoritative" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="316445323" result="Passed" start-time="2026-10-28 03:17:34Z" end-time="2026-10-28 03:17:35Z" duration="0.134562" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1879" name="DisposalKeepsBorrowedInputsAndIndependentPeerAlive" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.DisposalKeepsBorrowedInputsAndIndependentPeerAlive" methodname="DisposalKeepsBorrowedInputsAndIndependentPeerAlive" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="2124469812" result="Passed" start-time="2026-10-28 03:17:35Z" end-time="2026-10-28 03:17:35Z" duration="0.059777" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1875" name="DormantMimicSharesChestAndQueriesCannotWakeOrRestockIt" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.DormantMimicSharesChestAndQueriesCannotWakeOrRestockIt" methodname="DormantMimicSharesChestAndQueriesCannotWakeOrRestockIt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="353111124" result="Passed" start-time="2026-10-28 03:17:35Z" end-time="2026-10-28 03:17:35Z" duration="0.162573" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1835" name="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-28 03:17:35Z" end-time="2026-10-28 03:17:36Z" duration="0.911809" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1829" name="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;Chest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;Chest&quot;)" methodname="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="872007156" result="Passed" start-time="2026-10-28 03:17:35Z" end-time="2026-10-28 03:17:35Z" duration="0.182986" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1830" name="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;LockedChest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;LockedChest&quot;)" methodname="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="934059497" result="Passed" start-time="2026-10-28 03:17:35Z" end-time="2026-10-28 03:17:35Z" duration="0.127453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1831" name="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;Crate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;Crate&quot;)" methodname="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="855747195" result="Passed" start-time="2026-10-28 03:17:35Z" end-time="2026-10-28 03:17:35Z" duration="0.121236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1832" name="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;StrongBox&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;StrongBox&quot;)" methodname="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="2019045048" result="Passed" start-time="2026-10-28 03:17:35Z" end-time="2026-10-28 03:17:36Z" duration="0.124392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1833" name="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;OreCache&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;OreCache&quot;)" methodname="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="258717802" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.124312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1834" name="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;MimicChest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions(&quot;MimicChest&quot;)" methodname="ExactIdentityUsesBorrowedCellInSubmittedWorldAndAuthorizedReaderAcrossRegions" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="143372379" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.124833" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1863" name="ExactNamesDoNotAdmitOtherContainersCreaturesOrCorpses" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.ExactNamesDoNotAdmitOtherContainersCreaturesOrCorpses" methodname="ExactNamesDoNotAdmitOtherContainersCreaturesOrCorpses" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="116731824" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.059221" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1877" name="MimicRequiresOwnedLiveActorPartsAndRealDeathPreservesCorpseSuppression" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.MimicRequiresOwnedLiveActorPartsAndRealDeathPreservesCorpseSuppression" methodname="MimicRequiresOwnedLiveActorPartsAndRealDeathPreservesCorpseSuppression" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1666460986" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.096168" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1874" name="MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.220847" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1872" name="MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback(&quot;Overworld.11.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback(&quot;Overworld.11.10.0&quot;)" methodname="MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="675154515" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.093219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1873" name="MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback(&quot;Overworld.16.13.3&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback(&quot;Overworld.16.13.3&quot;)" methodname="MissingSharedChestOrCrateCannotRevealMimicViaLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="242665606" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.091418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1864" name="MulticellStorageRefusesOneCellIdentityAndRestorationRecovers" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.MulticellStorageRefusesOneCellIdentityAndRestorationRecovers" methodname="MulticellStorageRefusesOneCellIdentityAndRestorationRecovers" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="913588199" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.058510" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1871" name="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.OptionalResourceGroupsRefuseNullOrWrongShapeIndependently" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.288124" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1867" name="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(0)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(0)" methodname="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="442589890" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.057662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1868" name="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(1)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(1)" methodname="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1510158848" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.056840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1869" name="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(2)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(2)" methodname="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="932093372" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.061116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1870" name="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(3)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.OptionalResourceGroupsRefuseNullOrWrongShapeIndependently(3)" methodname="OptionalResourceGroupsRefuseNullOrWrongShapeIndependently" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="319293849" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:36Z" duration="0.054863" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1876" name="RealDamageWakePendingCleanupAndSaveKeepSameLivingBodyWithoutExtraRenderEvents" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealDamageWakePendingCleanupAndSaveKeepSameLivingBodyWithoutExtraRenderEvents" methodname="RealDamageWakePendingCleanupAndSaveKeepSameLivingBodyWithoutExtraRenderEvents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="309450693" result="Passed" start-time="2026-10-28 03:17:36Z" end-time="2026-10-28 03:17:37Z" duration="0.123152" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1845" name="RealMenuOrBumpUnlockPreservesBodyAndPassableState" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealMenuOrBumpUnlockPreservesBodyAndPassableState" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:37Z" duration="0.590460" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1841" name="RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;LockedChest&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;LockedChest&quot;,False)" methodname="RealMenuOrBumpUnlockPreservesBodyAndPassableState" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1375393517" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:37Z" duration="0.151425" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1842" name="RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;LockedChest&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;LockedChest&quot;,True)" methodname="RealMenuOrBumpUnlockPreservesBodyAndPassableState" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1494289604" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:37Z" duration="0.117850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1843" name="RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;StrongBox&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;StrongBox&quot;,False)" methodname="RealMenuOrBumpUnlockPreservesBodyAndPassableState" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1543590011" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:37Z" duration="0.144282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1844" name="RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;StrongBox&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealMenuOrBumpUnlockPreservesBodyAndPassableState(&quot;StrongBox&quot;,True)" methodname="RealMenuOrBumpUnlockPreservesBodyAndPassableState" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1610726338" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:37Z" duration="0.131351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1846" name="RealOpenTakePutAndTakeAllNeverInventLidOrFillFrames" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealOpenTakePutAndTakeAllNeverInventLidOrFillFrames" methodname="RealOpenTakePutAndTakeAllNeverInventLidOrFillFrames" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="2110397507" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:37Z" duration="0.061478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1850" name="RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:39Z" duration="1.336520" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1847" name="RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents(&quot;Chest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents(&quot;Chest&quot;)" methodname="RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1499509330" result="Passed" start-time="2026-10-28 03:17:37Z" end-time="2026-10-28 03:17:38Z" duration="0.179196" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1848" name="RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents(&quot;LockedChest&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents(&quot;LockedChest&quot;)" methodname="RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="26877547" result="Passed" start-time="2026-10-28 03:17:38Z" end-time="2026-10-28 03:17:38Z" duration="0.335688" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1849" name="RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents(&quot;Crate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents(&quot;Crate&quot;)" methodname="RealStructuralDamageAndDestructionPreserveThenRetireBodyAndSpillContents" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="352590843" result="Passed" start-time="2026-10-28 03:17:38Z" end-time="2026-10-28 03:17:39Z" duration="0.725178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1878" name="RealWetContainerCueUsesOneRenderAndRecoversWithoutChangingBody" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.RealWetContainerCueUsesOneRenderAndRecoversWithoutChangingBody" methodname="RealWetContainerCueUsesOneRenderAndRecoversWithoutChangingBody" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="544050248" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.076261" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1866" name="StaleMembershipAndReplacedGraphDoNotGrantAuthority" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.StaleMembershipAndReplacedGraphDoNotGrantAuthority" methodname="StaleMembershipAndReplacedGraphDoNotGrantAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="416980652" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.042873" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1862" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.375148" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1854" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;glyph&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="892417347" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.041722" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1855" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;variant&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1849738912" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.041597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1856" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;visual&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="2091515625" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.040660" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1857" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;foreign-container&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;foreign-container&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="355260199" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.042318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1858" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;duplicate-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;duplicate-render&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="2043981341" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.042238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1859" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;carried&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1113838366" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.042507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1860" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;equipped&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="763209129" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.044149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1861" name="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedStorageTests.UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt(&quot;gone&quot;)" methodname="UnsupportedCurrentStorageCannotBypassThroughOldOpeningArt" classname="CavesOfOoo.Tests.FlatPixelSharedStorageTests" runstate="Runnable" seed="1436724571" result="Passed" start-time="2026-10-28 03:17:39Z" end-time="2026-10-28 03:17:39Z" duration="0.042377" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

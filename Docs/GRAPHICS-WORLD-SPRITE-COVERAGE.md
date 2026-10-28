@@ -2089,3 +2089,7 @@ Native606 remains unchanged. Review is complete for this bounded source
 checkpoint; **source publication and fresh packages remain pending**. Current
 main518 and shalepackagesa10 are preserved. Last actual hourly report remains
 20:28:11UTC, next21:28:11UTC; this is not another report.
+
+## 2026-10-28 shared camp props
+
+Three exactbody gaps closed in source/Editor: Sack,Urn,ordinaryWell.102native tests; actualBrine andRoad samples, Well draw/Sacktransfer+traversal/Continue138. No whole-biome or area-polish promotion. Unchanged16square rasters, repair/site/finitewells excluded. Currentpackages8c0c72e11 unchanged; nextclothkit willbatchbuild. See GRAPHICS-SHARED-CAMP-PROPS.md. TentWall/GuestClothPole currentreaders+imagegen study retained; originalnativeart inprogress, notintegrated.

@@ -1,0 +1,18 @@
+{
+  "kind": "AI-generated reinterpretation; not gameplay",
+  "tool": "built-in imagegen",
+  "input": "Docs/Verification/Live16x24/shared-camp-props-before-01-brine.png",
+  "input_sha256": "17aa591083c92f4dcd81fcb72a7f035664411df7aa1221f9469340838ad31de1",
+  "prompt": "scene-prompt-01.txt",
+  "output": "scene-reference-01.png",
+  "output_sha256": "eb833cb2841238b7f3509dcab62adfd189443b43c1f80b0bcb5f62460955fded",
+  "critique": [
+    "Useful dark cloth panels, tied ochre supports and quiet broad folds.",
+    "Output enlarges/rearranges object footprints and merges wall cells. Do not copy geometry, counts or occlusion.",
+    "Ground/UI are not pixel-identical; HUD HP text changed. Preserve actual game, never use this image as evidence.",
+    "Original editable production sprites must fit16x24 with straight cell boundaries. Two restrained wall variants plus passable slender guest pole; no roof spanning open cells.",
+    "TentWall is Cloth8HP/thermal; any damage cue remains realRender-owned. GuestClothPole has no authored service/timer.",
+    "SharedWell/Sack reuse existing unchanged16square approvedrasters; concept does not authorize replacement."
+  ],
+  "status": "reference only; original native art and integration pending"
+}

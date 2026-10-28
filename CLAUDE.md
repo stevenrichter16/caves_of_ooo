@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** Residents and three Beating bodies are published in source8c0c72e11, with combined fresh Mac/Linux builds, bounded actual Mac play and preservation verified. Next finite candidate: shared Sack, Urn and ordinary Well; read Docs/GRAPHICS-SHARED-CAMP-PROPS.md and current completion continuation. Root must verify source triage/current owners before implementation. Maximize whole-game visible coverage, preserve approved art and defer optional animation. Coverage is not area polish; storage remains inspection-only.
+**Whole-game credit priority (2026-10-28):** Shared Sack/Urn/ordinaryWell source and bounded Editor verification complete (102native passes); see Docs/GRAPHICS-SHARED-CAMP-PROPS.md. Next original cloth kit: TentWall/GuestClothPole, exact actual readers and imagegen study saved in Docs/GRAPHICS-SHARED-CAMP-CLOTH.md. Native art in progress, integration pending. Current required Mac/Linux packages remain8c0c72e11; batch camp props+cloth before rebuilding. Root owns Unity/Git. Preserve approved sources, unrelated work and saves; storage inspection-only. Coverage is not area polish.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.

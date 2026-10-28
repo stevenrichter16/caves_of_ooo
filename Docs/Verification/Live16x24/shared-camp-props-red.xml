@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Failed(Child)" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 03:14:02Z" end-time="2026-10-28 03:14:06Z" duration="4.5516296">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:14:02Z" end-time="2026-10-28 03:14:06Z" duration="4.551630" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41508" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:14:02Z" end-time="2026-10-28 03:14:06Z" duration="4.318612" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41509" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:14:02Z" end-time="2026-10-28 03:14:06Z" duration="4.165851" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41510" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33750" result="Failed" site="Child" start-time="2026-10-28 03:14:02Z" end-time="2026-10-28 03:14:06Z" duration="3.966252" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1663" name="FlatPixelSharedCampPropsTests" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-28 03:14:02Z" end-time="2026-10-28 03:14:06Z" duration="3.865197" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1685" name="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.552602" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1683" name="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Sack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Sack&quot;)" methodname="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1927941801" result="Failed" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.380516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates (System.String name) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1684" name="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Urn&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates(&quot;Urn&quot;)" methodname="ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="583448461" result="Failed" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.067577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ActualContainerOpenTakePutAndLockedRefusalNeverInventBodyStates (System.String name) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:178
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1677" name="AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock" methodname="AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1777583052" result="Failed" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.070561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.AuthoredBodiesNeedNoInventedMaterialHealthOrDefaultStock () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1695" name="CachedViewsDisposeWithoutDestroyingInputsOrPeer" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CachedViewsDisposeWithoutDestroyingInputsOrPeer" methodname="CachedViewsDisposeWithoutDestroyingInputsOrPeer" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="705372784" result="Failed" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.067691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CachedViewsDisposeWithoutDestroyingInputsOrPeer () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:246
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1674" name="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.215286" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1672" name="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;visual&quot;)" methodname="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1902902478" result="Failed" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.129311" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute (System.String group) [0x000ad] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1673" name="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute(&quot;custody&quot;)" methodname="CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1400452166" result="Failed" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:03Z" duration="0.078995" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.CustomIdentityAndCustodyRefuseEveryWorldAndReaderRoute (System.String group) [0x000ad] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:107
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1671" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 03:14:03Z" end-time="2026-10-28 03:14:04Z" duration="0.319680" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1668" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;missing&quot;)" methodname="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="904723608" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.068191" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback (System.String fault) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1669" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;foreign&quot;)" methodname="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="660020447" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.082006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback (System.String fault) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1670" name="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback(&quot;duplicate&quot;)" methodname="EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1218175120" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.077332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.EssentialPartsMustBeUniqueAndOwnedBeforeLocalFallback (System.String fault) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1667" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.317682" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1664" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Sack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Sack&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="708251666" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.087417" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1665" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Urn&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Urn&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1510752912" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.080773" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1666" name="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Well&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts(&quot;Well&quot;)" methodname="ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1703121602" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.076685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExactBodiesMatchSubmittedWorldAndAuthorizedReadersAcrossContexts (System.String name) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1682" name="ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources" methodname="ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="329424583" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.083970" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ExplicitEmptyGreyboxAndCompanionInputsDoNotConsultResources () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:167
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1676" name="ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies" methodname="ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="938996232" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.080287" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ForeignRolesAndSimilarNamesCannotBorrowCampPropBodies () [0x000a8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1692" name="LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure" methodname="LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="48915312" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.085905" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.LiveRenderCueFiresOnceWhileReadersAndOtherCellsRemainPure () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:214
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1681" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:05Z" duration="0.231735" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1678" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(0)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(0)" methodname="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="594868352" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.080966" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1679" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(1)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(1)" methodname="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="617469030" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:04Z" duration="0.073156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1680" name="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(2)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback(2)" methodname="MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="179326514" result="Failed" start-time="2026-10-28 03:14:04Z" end-time="2026-10-28 03:14:05Z" duration="0.074249" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing shared camp props adapter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.ArtType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:56
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.Construct (UnityEngine.Texture2D sack, UnityEngine.Texture2D urn, UnityEngine.Texture2D well) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.MissingOrMalformedInputsAreIndependentAndCannotReloadThroughLocalFallback (System.Int32 group) [0x00051] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:154
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1675" name="OptionalStackAndFootprintRequireLiveOwnedSingleCellData" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OptionalStackAndFootprintRequireLiveOwnedSingleCellData" methodname="OptionalStackAndFootprintRequireLiveOwnedSingleCellData" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="400489028" result="Failed" start-time="2026-10-28 03:14:05Z" end-time="2026-10-28 03:14:05Z" duration="0.074826" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OptionalStackAndFootprintRequireLiveOwnedSingleCellData () [0x00084] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:116
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1686" name="OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation" methodname="OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1078969501" result="Failed" start-time="2026-10-28 03:14:05Z" end-time="2026-10-28 03:14:05Z" duration="0.060527" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.OrdinaryWellDrawCuresActualParchedWithoutHealingRefillingOrQueryMutation () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:186
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1694" name="SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision" methodname="SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="395546147" result="Failed" start-time="2026-10-28 03:14:05Z" end-time="2026-10-28 03:14:05Z" duration="0.060215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SackRemainsPassableAndUrnWellRemainBlockingWithoutSpriteCollision () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:239
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1691" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-28 03:14:05Z" end-time="2026-10-28 03:14:06Z" duration="1.344645" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1687" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;site&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;site&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="1394401294" result="Failed" start-time="2026-10-28 03:14:06Z" end-time="2026-10-28 03:14:06Z" duration="0.069588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1688" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;broken&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;broken&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="977877204" result="Failed" start-time="2026-10-28 03:14:06Z" end-time="2026-10-28 03:14:06Z" duration="0.065257" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1689" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;repaired&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;repaired&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="516829231" result="Failed" start-time="2026-10-28 03:14:06Z" end-time="2026-10-28 03:14:06Z" duration="0.053679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1690" name="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract(&quot;pool&quot;)" methodname="SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="684897383" result="Failed" start-time="2026-10-28 03:14:06Z" end-time="2026-10-28 03:14:06Z" duration="0.079318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.SettlementRepairAndFinitePoolWellsStayOutsideOrdinaryBodyContract (System.String fault) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:200
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1693" name="VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader" fullname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader" methodname="VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader" classname="CavesOfOoo.Tests.FlatPixelSharedCampPropsTests" runstate="Runnable" seed="907199102" result="Failed" start-time="2026-10-28 03:14:06Z" end-time="2026-10-28 03:14:06Z" duration="0.096342" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedCampPropsTests.VisibilityCurrentGraphAndDirtyCoverControlWorldAndAuthorizedReader () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs:225
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
