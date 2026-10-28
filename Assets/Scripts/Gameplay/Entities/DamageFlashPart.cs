@@ -56,6 +56,10 @@ namespace CavesOfOoo.Core
             if (e.ID == "Render" && _flashFramesRemaining > 0)
             {
                 e.SetParameter("ColorString", FlashColor);
+                // Red species still need a transient cue on native-colored
+                // sprites. Mark this same Render event; never consume a
+                // second frame merely to discover whether a flash is active.
+                e.SetParameter("NativeColorCue", 1);
                 _flashFramesRemaining--;
                 return true;
             }

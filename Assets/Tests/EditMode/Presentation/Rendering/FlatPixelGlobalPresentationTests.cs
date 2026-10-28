@@ -395,7 +395,9 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("Dagger")] [TestCase("ChainMail")]
+        // Dagger now has approved shared art; keep this fallback invariant on
+        // genuinely unsupported equipment (sidearm coverage tests pin Dagger).
+        [TestCase("Battleaxe")] [TestCase("ChainMail")]
         public void UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening(string blueprint)
         {
             using (var f = new Fixture(factory)) using (var portraits = Portraits())

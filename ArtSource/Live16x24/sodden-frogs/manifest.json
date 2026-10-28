@@ -1,0 +1,62 @@
+{
+  "atlas": "sodden-frogs.png",
+  "dimensions": [
+    32,
+    24
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "owner": "Reedfrog",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "occupied_bounds": [
+        1,
+        12,
+        15,
+        23
+      ],
+      "baseline_y": 22
+    },
+    {
+      "index": 1,
+      "owner": "Bandfrog",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "occupied_bounds": [
+        1,
+        12,
+        15,
+        23
+      ],
+      "baseline_y": 22
+    }
+  ],
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "filter": "Point",
+  "compression": "None",
+  "mipmaps": false,
+  "separate_exports": [
+    "reedfrog.png",
+    "bandfrog.png"
+  ],
+  "source": "source-cells.json",
+  "blend": "editable.blend",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "scope": "Two neutral living bodies only. Existing GinFrog unchanged; source-only, root owns runtime publication and gameplay acceptance."
+}

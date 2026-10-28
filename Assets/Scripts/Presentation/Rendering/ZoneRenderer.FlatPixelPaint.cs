@@ -62,6 +62,7 @@ namespace CavesOfOoo.Rendering
             string colorString = AsciiWorldRenderPolicy.GetColorOrFallback(render, out string issue);
             LogRenderIssueOnce(owner, issue);
             Color authoredColor = QudColorParser.Parse(colorString);
+            bool explicitNativeCue = false;
             var renderEvent = GameEvent.New("Render");
             try
             {
@@ -70,6 +71,7 @@ namespace CavesOfOoo.Rendering
                 renderEvent.SetParameter("ColorString", colorString ?? "");
                 renderEvent.SetParameter("DetailColor", render.DetailColor ?? "");
                 owner.FireEvent(renderEvent);
+                explicitNativeCue = renderEvent.GetIntParameter("NativeColorCue", 0) != 0;
                 string eventColor = renderEvent.GetStringParameter("ColorString", colorString);
                 colorString = AsciiWorldRenderPolicy.IsValidColorString(eventColor)
                     ? eventColor : AsciiWorldRenderPolicy.FallbackColorString;
@@ -77,9 +79,10 @@ namespace CavesOfOoo.Rendering
             finally { renderEvent.Release(); }
             Color eventColorValue = QudColorParser.Parse(colorString);
             // Native pixels already contain the species' palette. Only an
-            // actual change from its authored semantic color is a tint cue;
-            // unchanged cyan/green/red glyph colors must not recolor the body.
-            nativeColorCue = eventColorValue == authoredColor ? Color.white : eventColorValue;
+            // actual color change or explicit transient Render cue tints it.
+            // A red species can flash red without changing its glyph color;
+            // ordinary unmodified glyph colors must still leave pixels neutral.
+            nativeColorCue = !explicitNativeCue && eventColorValue == authoredColor ? Color.white : eventColorValue;
             return ApplyFlatLighting(eventColorValue, x, y);
         }
     }

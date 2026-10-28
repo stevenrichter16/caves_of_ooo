@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Current graphics scope (2026-10-28):** Shared village roles and sidearms delivered from source0b888da80;146 native passes,12 Mac captures/five processes, verified Linux archive and complete scoped restoration. Next ordinary Sodden frogs, selected from observed surface gaps. Follow current completion continuation. Root owns Unity/Git;49 foreign paths preserved; storage inspection only.
+**Current graphics scope (2026-10-28):** Sodden frogs bounded Editor coverage complete: two original bodies plus approved GinFrog reuse,140-case native job success, seven after captures and exact restart comparison. Independent source review passed; source publication is this commit. Next close disclosed ordinary VineWall gaps using approved art; packages remain0b888da80 with deliveryb32e46fc8 verified main. Follow completion continuation. Root owns Unity/Git;49 foreign paths preserved; storage inspection only.
 
 **Whole-game credit priority (2026-10-28):** Three shared specialists are delivered from source83e1e568f: Weaponsmith plus original Tinker/Well Keeper. Native99 passes, actual Mac14 captures/three processes and exact restart comparison; Linux archive verified, no Linux/Deck execution. Finish delivery evidence publication, then select the largest observed shared equipment/prop or regional sprite gap. See the current completion continuation. All55+5 polish scopes remain open. Root owns Unity/Git; preserve49 foreign changes, saves/art/builds. Storage inspection only.
 
