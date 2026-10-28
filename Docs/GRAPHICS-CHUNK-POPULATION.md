@@ -1,0 +1,13 @@
+# Recurring chunk population and composition
+
+**Recurring chunk population — direct user direction, 2026-10-28:** More chunks should approach the spawn area's richness, with purposeful groups of NPCs, environmental objects, buildings, ruins and landmarks. Consider population during every hourly planning pass and regularly implement a bounded composition improvement alongside material polish. Use biome and area character to decide where density belongs; retain deliberately empty places. Planned additions through real generation/placement systems are authorized, including actual NPC roles and building/object owners. Verify paths, entrances, sightlines, interactions, collision, encounter balance, fog, save compatibility and performance. Avoid uniform clutter or fake services/loot. Compare whole-chunk before/after gameplay and track population separately from material coverage. Do not defer this work until every sprite is polished.
+
+The spawn area is the benchmark for coherent richness, not a template to copy into every biome. Settlements can have inhabited buildings and activity clusters; wilderness can have ecological groups, landmarks and occasional habitation; ruins and dungeons can have purposeful structures, occupants and environmental detail. Quiet stretches should make sense in context rather than look unfinished.
+
+During each hourly planning pass, compare the largest visible material defect with the largest population/composition gap. Regularly choose a finite chunk or connected group for implementation. Prefer existing NPC roles, structures and object families where identity and mechanics fit. This direction expands the earlier material-only scope: intentional, reviewed placement and layout changes are allowed. Material-only passes should still preserve geometry.
+
+For each selected area, record the baseline and intended density, owner/generation changes, ordinary traversal and interaction checks, encounter and save implications, performance observations, actual before/after captures, independent review and remaining gaps. Populate the existing area ledger with these results; asset counts alone do not establish a populated scene.
+
+First comparison candidates are ordinary Spread approaches and Sill's larger yards, against the spawn area. Existing captures show sparse stretches; inspect full chunks and their current owners before choosing placements. Overwrit's intentionally scraped emptiness must not be treated as a mandatory building/NPC target. No new NPC, object or building placement has been implemented by this prompt update.
+
+Keep the environmental material queue active. Report population work and next density goals in the requested hourly updates, separately from tile coverage and broader polish acceptance.
