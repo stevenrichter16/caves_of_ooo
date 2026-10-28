@@ -1,6 +1,6 @@
 # Ordinary Spread environmental reuse
 
-Status: bounded world coverage and corrected underfoot readers verified; exact publication pending. This is a bounded environmental coverage pass, not whole-biome polish. Last hourly report is recorded at the top of GRAPHICS-COMPLETION-PLAN.md.
+Status: bounded world coverage and corrected underfoot readers verified; source published and remotely verified. This is a bounded environmental coverage pass, not whole-biome polish. Last hourly report is recorded at the top of GRAPHICS-COMPLETION-PLAN.md.
 
 ## Evidence and choice
 
@@ -75,3 +75,5 @@ Actual freshContinue191 underfootRoad40,12 and ordinaryUp4 to underfootGrass40,8
 The user resumed play between checks, then explicitly authorized continuation; root did not interrupt that session. Fresh post-user-play1005normal save entries/settings are preserved. Current/prior builds and10borrowed resource hashes remain unchanged;49foreign paths are intact. Ten whitespace import edits backed up/restored after final Editor close.0bytesdeleted, storage inspection only. See spread-resume-preservation.json.
 
 Read-only disclosed-owner audit identifies actual OldRoad PeatBog(2), SteamVent(6), CopperPipe(7), plus MillStone/Crate and other separate families. The cyan marks are not assumed to be water. Next investigate those exact environmental owners and their ground interactions, with mechanics/fog/hazard continuity intact. This evidence narrows the next choice; it does not accept new coverage or population. User zoom feedback is retained: judge1×overview composition and closer2×native readability.
+
+Publication receipt: source `1e6bbe211c4ec03eb20201f28b0406d7384b836f` verified on origin/main at2026-10-28T22:18:28.557666+00:00; see Verification/Live16x24/spread-publication.json. The actual user-session hold is resolved. Next owner audit and all wider acceptance limits remain as above.
