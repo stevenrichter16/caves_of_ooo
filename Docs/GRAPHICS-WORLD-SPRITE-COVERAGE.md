@@ -1,5 +1,7 @@
 # Worldwide native sprite coverage
 
+**Current delivery — 2026-10-28 10:45 UTC:** Frog and shared VineWall/HollowLog sourcefa553ca36 now has fresh Mac/Linux packages.336native passes,9actual Mac views/3processes and exact restart match; Linux archive verified without execution. Five bounded body/reader identities do not advance any55+5polish scope. See [delivery](Verification/Live16x24/packaged-shared-surface-delivery.md). Whole-game next choice remains required; quiet patches, Greatdew and mire salience remain open.
+
 **Current surface coverage — 2026-10-28 10:24 UTC:** Shared ordinary VineWall/HollowLog reuse is boundedEditor-verified with336native passes,9actual aftercaptures and exactrestart match. Frog source0f24f4942 is verified main; currentpackages remain0b888da80. See [surface record](GRAPHICS-SHARED-VINEWALL.md). Broad quiet patches, remaining Greatdew glyph and darkmire hazard salience remain distinct polish/coverage debt; no55+5scope advanced.
 
 **Current creature coverage — 2026-10-28:** Reedfrog/Bandfrog original native bodies and approved GinFrog reuse are integrated and observed in bounded OpenMire/ReedMaze Editor play. Native140-job success, seven after captures and exact save/restart comparison are recorded in [the frog report](GRAPHICS-SODDEN-FROGS.md). Source publication pending; packages remain0b888da80. No area-polish scope advances.

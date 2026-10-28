@@ -1,0 +1,153 @@
+{
+  "created_at_utc": "2026-10-28T10:41:34.449570+00:00",
+  "runtime_source_commit": "fa553ca364a092a515e4837aca7859066c7a426d",
+  "package_flavor": "shared-surface-frogs-vines-and-hollow-log",
+  "built_after_utc": "2026-10-28T10:29:01.737362+00:00",
+  "slice_description": "Two original neutral 16-by-24 Reedfrog and Bandfrog bodies plus unchanged approved 16-by-16 GinFrog reuse. Canonical surface VineWalls borrow the approved Sill connected atlas while Sill and authored Grovelands addresses retain their existing authority, including refusals. HollowLog borrows its approved full 16-by-16 container image. Exact owner, disclosure, custody, thermal, graph and optional-resource guards retain simulation and existing service meanings. A same-event native color cue preserves the real Bandfrog damage flash when its original glyph color already equals the flash color. No world generation, collision, saved-gameplay, camera or global grading change.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-surface-mac-build.json",
+    "sha256": "44d460ca3897af8631eb2ec0b71ae0ef4ab95c6be9f0c4c225feeee0a0b9a05b",
+    "summary": {
+      "job_id": "build-c43956d046",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-28-shared-surface-fa553ca36-current/CavesOfOoo.app",
+      "started_at": "2026-10-28T10:29:24.472001Z",
+      "duration_seconds": 79.745179,
+      "completed_at": "2026-10-28T10:30:44.21718Z",
+      "total_size_mb": 344.61,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-surface-linux-build.json",
+    "sha256": "880dff9060826cf2ee47a819f8eef2e39511ef083a3712b3b7c5857073c3f343",
+    "summary": {
+      "job_id": "build-ada86ac4fb",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-28-shared-surface-fa553ca36-current/CavesOfOoo-current/CavesOfOoo",
+      "started_at": "2026-10-28T10:32:07.233007Z",
+      "duration_seconds": 79.831465,
+      "completed_at": "2026-10-28T10:33:27.064472Z",
+      "total_size_mb": 325.07,
+      "errors": 0,
+      "warnings": 4
+    },
+    "canonical_executable_copy": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-shared-surface-linux-executable-copy.json",
+      "sha256": "7d5b98d38f1dd28208f02e1568dbe941a9d994d7f242f6cf2f3c727d4dfc0c57",
+      "provenance": {
+        "at": "2026-10-28T10:34:33.394051+00:00",
+        "raw_build_executable": "Builds/SteamDeck/2026-10-28-shared-surface-fa553ca36-current/CavesOfOoo-current/CavesOfOoo",
+        "canonical_archive_executable": "Builds/SteamDeck/2026-10-28-shared-surface-fa553ca36-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+        "action": "copy2; raw build executable preserved",
+        "bytes": 4472,
+        "both_sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+        "mode": "0o755",
+        "limits": "No Linux execution. Actual build receipt retains original unextended output path."
+      },
+      "both_current_files_hash_size_mode_verified": true,
+      "limits": "Raw build receipt and unextended executable remain unchanged. The launcher uses the identical canonical-name copy. No Linux execution is claimed."
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-surface-native-green.json",
+          "sha256": "28d11add7160001c0a28d56b3e95472792a60abc70ac256d858e0a29842e9adf",
+          "summary": {
+            "total": 336,
+            "passed": 336,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 46.5761613,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 336,
+          "mode": "EditMode",
+          "job_id": "93f3a4257a444aa7b4a69fab0a7e48b0",
+          "started_unix_ms": 1793182349753,
+          "finished_unix_ms": 1793182400490,
+          "started_at_utc": "2026-10-28T10:12:29.753000+00:00",
+          "finished_at_utc": "2026-10-28T10:13:20.490000+00:00",
+          "timestamp_source": "Actual complete native JSON job envelope; no inferred XML or times."
+        }
+      ],
+      "current_source_binding": {
+        "source_commit": "fa553ca364a092a515e4837aca7859066c7a426d",
+        "pins": {
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "00d00b43599ef7b521fd00648fec9506cba8ff85b88fee35e3ed13b6e72d3f9d",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedVineWallCatalog.cs": "46c5ec5c2aa7846fb34710c1c130a38dc1a8ba101d9f227cc96a505355436fa7",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedStorageCatalog.cs": "c36b5f901509f9e6aedbcfbc30c265df273a6f354ba8f2733b25b3bd01cc6428",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSoddenFrogsCatalog.cs": "e7b5ad266b103d6d16eecd411570391966d5e5f037449326c93799655e16bcf9",
+          "Assets/Scripts/Presentation/Rendering/ZoneRenderer.FlatPixelPaint.cs": "4b987371355c345dba277386ccf76ebf98607cea01c057ca9cea3cfd0ae32583",
+          "Assets/Scripts/Gameplay/Entities/DamageFlashPart.cs": "b446503e976d8c39fe16e45afbae0a2a9d5c1d23e5a2e007019d855e2e804d69",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSillEnvelopeCatalog.cs": "e39d3b4bdbb44d604ebe708ae52108369f6368180680fd04d09c3e39d20220fa",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGrovelandsMaterialsCatalog.cs": "3e7e92852bf7ea8e5cbd3b215830f0d53e7ee27778730ea311e9bf7f97fa07a1",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGlobalPresentationTests.cs": "f3ea58230878bf91bf93819b53a605032331dc6b5a8b752aa56f8c36a28e6d8e",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs": "b8575bfb9eafd9220b51bcddb2b1e2b66dc3d1d871a431927ca75c5f0f17bbc0",
+          "Assets/Tests/EditMode/FlatPixelHollowLogTests.cs": "0458f73967520b9dc0903bb31d4b15118b32b9a804fabc9aef4c23e5446fc261",
+          "Assets/Tests/EditMode/FlatPixelSharedCampPropsTests.cs": "7b8b465ad70a72c9e4579f42dfd54efefc128dae72d627f83bd42ed6df3cd5d2",
+          "Assets/Tests/EditMode/FlatPixelSharedStorageTests.cs": "f4c4ab5ecf881e4ac45a1232dadaec9540eb7f4dad7aacbb184f5a400e5ca499",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSharedVineWallTests.cs": "c880265d51a16a1d1380efa23dee3c117c72248476fa0f173f1132cefa549d91",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillEnvelopeTests.cs": "b013f15cc121d5373a64162d2f3005d3448d946b3e2d216d60b3488e72ba4ba5",
+          "Assets/Tests/EditMode/FlatPixelSoddenFrogsTests.cs": "356db5470d3722b2c68dcc686f1cfe765c97adaa2f98ba5c5b97a27c29c071cd",
+          "Assets/Resources/Sprites/Live16x24/reedfrog.png": "6ad06ba141ad458f6c4beda1f1ea15a547e5f9e8d3e5fa730f1589b66a392355",
+          "Assets/Resources/Sprites/Live16x24/bandfrog.png": "492a0628a74c1291100f6b807ee851396a61d23ab8c3f09e4793f2a72e6568e9",
+          "Assets/Resources/Sprites/Environment/gin_frog.png": "ffee061c71076206872aee9a4bea0e55bc8252fde63afce1857b7dec8cfe99eb",
+          "Assets/Resources/Sprites/Live16x24/sill-envelope.png": "bde729b96032b623093f430f8929bbb5e61a9f2649f85311aa3d6c36cfbe253f",
+          "Assets/Resources/Sprites/Environment/cont_hollow_log.png": "0cb5fbd52a7fd91c0f5266254073f2a31b6ab5184a8201129558acf26a4e5783",
+          "ArtSource/Live16x24/sodden-frogs/source-cells.json": "def7ad45a123e7e3345252cc6d7d58aa5db93fa4668c756ac99cbd9519f74fd5",
+          "ArtSource/Live16x24/sodden-frogs/palette.json": "d6c2566d1da20c1583727d788df4b27fe70848ef879a2725b851520e9fb079ad",
+          "ArtSource/Live16x24/sodden-frogs/editable.blend": "366661b90430b201762ae541f04b79e27ca05bf2ea45d9c8fdd74fc68873507f",
+          "ArtSource/Live16x24/sodden-frogs/manifest.json": "17b2542a7e2880d7f7138e07ccdd8862aaec6755157b6c3e0cbf43ee40a73ea9",
+          "Tools/Live16x24/build_sodden_frogs.py": "c6f6d90b3ad72b0b8635603e433f181de6114748f3c6795cb1631afc3ec21eef",
+          "Docs/Verification/Live16x24/shared-surface-native-green.json": "28d11add7160001c0a28d56b3e95472792a60abc70ac256d858e0a29842e9adf"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Selected current source, resource and fixture bytes are pinned separately. Root asserts source/build provenance; actual gameplay and package acceptance have separate evidence."
+      },
+      "execution_occurrences": 336,
+      "passed_execution_occurrences": 336,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "repeated_identity_occurrences": 0,
+      "distinct_test_identities_across_listed_receipts": 336,
+      "distinct_passed_test_identities": 336,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "shared_vines_passed": 26,
+      "hollow_log_passed": 14,
+      "sodden_frogs_passed": 21,
+      "other_related_passed": 275,
+      "native_job_times_verified": true,
+      "native_xml_times_verified": false,
+      "skipped_identities": [],
+      "inconclusive_identities": [],
+      "limits": "One complete 336-case JSON job only; earlier subset executions are not added. No test rerun, gameplay, Linux/Deck execution or performance certification is invented."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "Scope is three exact frog species, canonical eligible surface VineWalls outside already reserved Sill/Grovelands policies, and exact HollowLog storage identity. Underground/special VineWall coverage is not added. HollowLog has no invented structural health or heat state. Other flora, hazards, actors, equipment and world families remain open. Actual ordinary Editor and standalone observations have separate receipts.",
+    "Body coverage, connected wall selection and reader identity do not establish whole-scene fullness, reference parity or area polish. Mixed frog baselines, remaining Greatdew glyphs, broad sparse terrain and settlement composition remain separate work. Existing sprites and optional animation remain preserved.",
+    "One complete retained native JSON job contains 336 distinct Passed identities in one 336-case checkpoint: 26 shared-vine, 14 HollowLog, 21 frog and 275 related cases. Earlier subset runs are not added. Actual start/finish timestamps come from the successful complete job envelope; no XML, test rerun, gameplay or performance certification is invented.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Worldwide static coverage and later area polish remain open."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

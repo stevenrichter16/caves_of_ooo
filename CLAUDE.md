@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Current graphics scope (2026-10-28):** Frogs verified main0f24f4942; shared surface VineWall/HollowLog bounded Editor pass complete with336distinct native passes,9after captures and exactrestart match. Source publication then one coherent package batch next. Read current completion continuation. Root ownsUnity/Git;49foreign paths/saves/art/builds preserved; storage inspection only.
+**Current graphics scope (2026-10-28):** Frogs plus ordinary VineWall/HollowLog sourcefa553ca36 verified main, now packaged Mac/Linux with336native passes,9actual Mac captures and exactrestart. Delivery evidence publication then largest whole-game visible gap next. Read current completion continuation. Root ownsUnity/Git;49foreign paths/saves/art/builds preserved; storage inspection only.
 
 **Whole-game credit priority (2026-10-28):** Three shared specialists are delivered from source83e1e568f: Weaponsmith plus original Tinker/Well Keeper. Native99 passes, actual Mac14 captures/three processes and exact restart comparison; Linux archive verified, no Linux/Deck execution. Finish delivery evidence publication, then select the largest observed shared equipment/prop or regional sprite gap. See the current completion continuation. All55+5 polish scopes remain open. Root owns Unity/Git; preserve49 foreign changes, saves/art/builds. Storage inspection only.
 

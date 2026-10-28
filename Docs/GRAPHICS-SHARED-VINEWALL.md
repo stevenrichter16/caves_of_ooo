@@ -1,5 +1,7 @@
 # Ordinary VineWall sprite coverage
 
+**Packaged delivery — 2026-10-28:** sourcefa553ca36 includes this slice;336combined native passes,9actual Mac captures/3processes, exact Continue world comparison and verified Linux archive. See [delivery](Verification/Live16x24/packaged-shared-surface-delivery.md). No Linux/physicalDeck execution or area-polish acceptance.
+
 Status: native and bounded actual Editor verification complete; independent final evidence review passed; exact source publication is this commit. Root owns Unity/Git. Frog source0f24f4942d0ff18616ccdcb94d5d62607ad05252 is verified on origin/main. Delivered packages remain0b888da80; no frog/VineWall package yet.
 
 ## Selection and production pipeline

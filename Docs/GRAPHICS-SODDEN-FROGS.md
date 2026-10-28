@@ -1,5 +1,7 @@
 # Ordinary Sodden frogs
 
+**Packaged delivery — 2026-10-28:** sourcefa553ca36 includes this slice;336combined native passes,9actual Mac captures/3processes, exact Continue world comparison and verified Linux archive. See [delivery](Verification/Live16x24/packaged-shared-surface-delivery.md). No Linux/physicalDeck execution or area-polish acceptance.
+
 Status: original art, runtime integration and bounded actual Editor verification complete; independent final review passed; exact source publication is this commit. Root owns Unity/Git. Previous village/sidearm source0b888da80 and deliveryb32e46fc8 are verified on origin/main. All three species now have bounded observed body/reader coverage; whole-area polish remains open.
 
 ## Choice, evidence and corrections
