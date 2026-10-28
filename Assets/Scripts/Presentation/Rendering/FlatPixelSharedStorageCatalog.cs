@@ -6,36 +6,45 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Five exact storage bodies and the live chest mimic's identical
-    /// disguise. Borrows four immutable textures; owns only cached views.
+    /// <summary>Six exact storage bodies and the live chest mimic's identical
+    /// disguise. Borrows five immutable textures; owns only cached views.
     /// Callers retain current graph, placement, selection and disclosure authority.</summary>
     public sealed class FlatPixelSharedStorageCatalog : IDisposable
     {
-        readonly Tile chest, crate, strongBox, oreCache;
+        readonly Tile chest, crate, strongBox, oreCache, hollowLog;
         bool disposed;
 
         public FlatPixelSharedStorageCatalog()
             : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath),
                 Resources.Load<Texture2D>("Sprites/Environment/cont_strongbox"),
-                Resources.Load<Texture2D>("Sprites/Environment/cont_ore_cache")) { }
+                Resources.Load<Texture2D>("Sprites/Environment/cont_ore_cache"),
+                Resources.Load<Texture2D>("Sprites/Environment/cont_hollow_log")) { }
 
         /// <summary>Independent optional resources. Explicit null does not reload.
         /// Square sources use their full original 16x16 bounds at 16 PPU.</summary>
         public FlatPixelSharedStorageCatalog(Texture2D openingAnchors, Texture2D openingCellar,
             Texture2D strongBoxTexture, Texture2D oreCacheTexture)
+            : this(openingAnchors, openingCellar, strongBoxTexture, oreCacheTexture, null) { }
+
+        /// <summary>Five independent borrowed inputs. Null or malformed groups
+        /// remain unavailable without loading replacements from Resources.</summary>
+        public FlatPixelSharedStorageCatalog(Texture2D openingAnchors, Texture2D openingCellar,
+            Texture2D strongBoxTexture, Texture2D oreCacheTexture, Texture2D hollowLogTexture)
         {
             chest = Build(openingAnchors, 192, 24, 96, "chest");
             crate = Build(openingCellar, 144, 24, 16, "crate");
             strongBox = Build(strongBoxTexture, 16, 16, 0, "strongbox");
             oreCache = Build(oreCacheTexture, 16, 16, 0, "ore cache");
+            hollowLog = Build(hollowLogTexture, 16, 16, 0, "hollow log");
         }
 
         /// <summary>Identity only, not permission to reveal or render an owner.</summary>
         public static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "Chest" || owner?.BlueprintName == "LockedChest"
                 || owner?.BlueprintName == "Crate" || owner?.BlueprintName == "StrongBox"
-                || owner?.BlueprintName == "OreCache" || owner?.BlueprintName == "MimicChest";
+                || owner?.BlueprintName == "OreCache" || owner?.BlueprintName == "MimicChest"
+                || owner?.BlueprintName == "HollowLog";
 
         /// <summary>Pure invariant body lookup. Locks, contents, damage and mimic
         /// goals never select a new frame or mutate gameplay. Existing Render
@@ -84,6 +93,18 @@ namespace CavesOfOoo.Rendering
                     break;
                 case "OreCache":
                     if (render.RenderString == "*" && NoStructure(owner)) tile = oreCache;
+                    break;
+                case "HollowLog":
+                    // This authored wooden container has no structural health
+                    // or thermal part. Contents and locks do not change its body.
+                    // Like existing storage roles, glyph colors remain semantic
+                    // metadata; the painter preserves transient Render cues.
+                    var material = Owned<MaterialPart>(owner);
+                    if (render.RenderString == "=" && material != null && material.MaterialID == "Wood"
+                        && !owner.HasPart<DestructiblePart>() && !owner.HasPart<ThermalPart>()
+                        && (!owner.HasPart<SpatialFootprintPart>() || owner.SpatialZone == null
+                            || owner.SpatialZone.IsFootprintCurrent(owner)))
+                        tile = hollowLog;
                     break;
             }
             return tile != null;
@@ -138,7 +159,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrame(chest); DestroyFrame(crate); DestroyFrame(strongBox); DestroyFrame(oreCache);
+            DestroyFrame(chest); DestroyFrame(crate); DestroyFrame(strongBox); DestroyFrame(oreCache); DestroyFrame(hollowLog);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }

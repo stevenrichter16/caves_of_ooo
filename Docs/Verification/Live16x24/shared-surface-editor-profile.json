@@ -1,0 +1,71 @@
+{
+  "label": "shared-surface-editor-profile",
+  "start": "2026-10-28T10:14:06.484017Z",
+  "end": "2026-10-28T10:15:36.437826Z",
+  "elapsedSeconds": 89.953808999999993,
+  "frames": 16868,
+  "zone": "Overworld.18.9.0",
+  "player": [
+    33,
+    2
+  ],
+  "hp": 23,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 16869,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 196634.68800758789,
+      "max": 75360333,
+      "p99": 271375
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 16869,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 5321925.1263856776,
+      "max": 4573109500,
+      "p99": 15252334
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 16869,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 39.01363447744383,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 16869,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 38.513486276602052,
+      "max": 40,
+      "p99": 40
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 16869,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 9179.96051929575,
+      "max": 10200,
+      "p99": 10040
+    }
+  ],
+  "bounds": "Editor OpenMire native scene and actual keyboard movement accidentally held/repeated into southern zone; HP loss retained. Includes idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

@@ -1,5 +1,7 @@
 # Worldwide native sprite coverage
 
+**Current surface coverage — 2026-10-28 10:24 UTC:** Shared ordinary VineWall/HollowLog reuse is boundedEditor-verified with336native passes,9actual aftercaptures and exactrestart match. Frog source0f24f4942 is verified main; currentpackages remain0b888da80. See [surface record](GRAPHICS-SHARED-VINEWALL.md). Broad quiet patches, remaining Greatdew glyph and darkmire hazard salience remain distinct polish/coverage debt; no55+5scope advanced.
+
 **Current creature coverage — 2026-10-28:** Reedfrog/Bandfrog original native bodies and approved GinFrog reuse are integrated and observed in bounded OpenMire/ReedMaze Editor play. Native140-job success, seven after captures and exact save/restart comparison are recorded in [the frog report](GRAPHICS-SODDEN-FROGS.md). Source publication pending; packages remain0b888da80. No area-polish scope advances.
 
 **Current delivery — 2026-10-28:** Farmer/Elder/VillageChild and three sidearms now ship in source0b888da80 packages:146 native passes,12 actual Mac views/five processes and exact restart match; Linux archive verified without execution. Next observed surface gap is Reedfrog/Bandfrog/GinFrog in ordinary Sodden areas. Coverage does not advance any of55+5 area-polish scopes. See [delivery record](Verification/Live16x24/packaged-village-roles-delivery.md).

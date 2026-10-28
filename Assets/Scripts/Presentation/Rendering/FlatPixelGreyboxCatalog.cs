@@ -85,6 +85,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSharedResidentsCatalog _sharedResidentsArt;
         private FlatPixelBeatingActorsCatalog _beatingActorsArt;
         private FlatPixelSoddenFrogsCatalog _soddenFrogsArt;
+        private FlatPixelSharedVineWallCatalog _sharedVineWallArt;
         private FlatPixelSharedCampPropsCatalog _sharedCampPropsArt;
         private FlatPixelSharedCampClothCatalog _sharedCampClothArt;
         private readonly Texture2D _residentsCastAtlas;
@@ -259,7 +260,16 @@ namespace CavesOfOoo.Rendering
             Color foregroundColor = ForegroundColor(kind);
             Tile foreground = kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road
                 ? null : _tiles[(int)kind];
-            if (FlatPixelSharedCampClothCatalog.HasKnownRole(owner))
+            bool sharedVineNative = false;
+            if (!remembered && SharedVineRole(zone, owner))
+            {
+                var vines = SharedVineWallArtFor(zone, owner);
+                if (vines != null && vines.TryResolve(zone, x, y, out var vineTile))
+                { foreground = vineTile; foregroundColor = Color.white; sharedVineNative = true; }
+                else if (TryResolveFallback(zone, x, y, out var vineFallback))
+                { foreground = vineFallback.ForegroundTile; foregroundColor = vineFallback.ForegroundColor; }
+            }
+            else if (FlatPixelSharedCampClothCatalog.HasKnownRole(owner))
             {
                 var cloth = SharedCampClothArtFor(owner);
                 if (cloth != null && cloth.TryResolve(owner, x, y, out var clothTile))
@@ -355,7 +365,8 @@ namespace CavesOfOoo.Rendering
             }
             result = new FlatPixelGreyboxCell(_tiles[(int)FlatPixelGreyboxKind.Ground], foreground,
                 groundColor, foregroundColor, owner, kind, ground, remembered,
-                !remembered && cell.BlocksMovement(), remembered ? null : ReserveCord(zone, cell, out _));
+                !remembered && cell.BlocksMovement(), remembered ? null : ReserveCord(zone, cell, out _),
+                nativeForeground: sharedVineNative, preserveRenderColorCue: sharedVineNative);
             return true;
         }
 
@@ -582,6 +593,12 @@ namespace CavesOfOoo.Rendering
             if (_disposed || owner == null) return false;
             var render = owner.GetPart<RenderPart>();
             if (render == null || render.ParentEntity != owner || !render.Visible) return false;
+            if (SharedVineRole(owner.SpatialZone, owner))
+            {
+                var vines = SharedVineWallArtFor(owner.SpatialZone, owner);
+                if (vines != null && vines.TryGetSubjectSprite(owner.SpatialZone, owner, x, y, out sprite)) return true;
+                return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
+            }
             if (FlatPixelSharedCampClothCatalog.HasKnownRole(owner))
             {
                 var cloth = SharedCampClothArtFor(owner);
@@ -1299,6 +1316,11 @@ namespace CavesOfOoo.Rendering
             Tile beatingActorArt = null;
             bool beatingActorNative = beatingActors != null && beatingActors.TryResolve(owner, out beatingActorArt);
             if (beatingActorKnown) art = beatingActorArt;
+            bool sharedVineKnown = SharedVineRole(zone, owner);
+            var vines = sharedVineKnown && !fallback.Remembered ? SharedVineWallArtFor(zone, owner) : null;
+            Tile sharedVineArt = null;
+            bool sharedVineNative = vines != null && vines.TryResolve(zone, x, y, out sharedVineArt);
+            if (sharedVineKnown) art = sharedVineArt;
             bool soddenFrogKnown = FlatPixelSoddenFrogsCatalog.HasKnownRole(owner);
             var soddenFrogs = !fallback.Remembered ? SoddenFrogsArtFor(owner) : null;
             Tile soddenFrogArt = null;
@@ -1311,7 +1333,7 @@ namespace CavesOfOoo.Rendering
             bool sidearmKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner);
             if (sidearmKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1338,7 +1360,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || campNative || clothNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || campNative || clothNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1348,6 +1370,12 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            if (SharedVineRole(zone, subject))
+            {
+                var vines = SharedVineWallArtFor(zone, subject);
+                if (vines != null && vines.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             // Farmer stays in its existing optional catalog, portable on the
             // modern routes. Refusal cannot borrow unrelated opening body art.
             if (subject?.BlueprintName == "Farmer")
@@ -1666,6 +1694,20 @@ namespace CavesOfOoo.Rendering
             return _stumpFaunaArt;
         }
 
+        private static bool SharedVineRole(Zone zone, Entity owner)
+            => FlatPixelSharedVineWallCatalog.HasKnownRole(owner) && FlatPixelSharedVineWallCatalog.IsSupportedZone(zone);
+
+        private FlatPixelSharedVineWallCatalog SharedVineWallArtFor(Zone zone, Entity owner)
+        {
+            if (!SharedVineRole(zone, owner)) return null;
+            if (_sharedVineWallArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _sharedVineWallArt = new FlatPixelSharedVineWallCatalog(_glyphFallback);
+            }
+            return _sharedVineWallArt;
+        }
+
         private FlatPixelSharedCampClothCatalog SharedCampClothArtFor(Entity owner)
         {
             if (!FlatPixelSharedCampClothCatalog.HasKnownRole(owner)) return null;
@@ -1969,6 +2011,8 @@ namespace CavesOfOoo.Rendering
             _sharedCampPropsArt = null;
             _soddenFrogsArt?.Dispose();
             _soddenFrogsArt = null;
+            _sharedVineWallArt?.Dispose();
+            _sharedVineWallArt = null;
             _beatingActorsArt?.Dispose();
             _beatingActorsArt = null;
             _sharedResidentsArt?.Dispose();

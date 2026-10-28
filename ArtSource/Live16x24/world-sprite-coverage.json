@@ -5221,6 +5221,12 @@
         "area": "Observed ordinary formations, including PilgrimageRim",
         "defect": "Crop/soil/stair presentation and centered Pilgrimage composition remain open; quiet intent does not exempt review.",
         "evidence": "Docs/GRAPHICS-OVERWRIT-MATERIALS.md"
+      },
+      {
+        "biome": "Sodden",
+        "area": "OpenMire Overworld.18.8.0 and southern18.9.0,seed65",
+        "defect": "Dark flat mire patches blend with quiet ground; review hazard salience/status onset. Actual20single east steps caused20HP loss with ongoingbogmire, but damage alone is not proof of a renderer bug. Broad quiet patches and small low log remain composition debt.",
+        "evidence": "Docs/GRAPHICS-SHARED-VINEWALL.md; shared-surface-after-02/08/09 captures"
       }
     ],
     "world_complete": false,
@@ -11395,15 +11401,16 @@
     "area_polish_advanced": false
   },
   "next_scoped_work": {
-    "status": "selected_after_frog_publication",
+    "status": "batch_delivery_next",
     "scope": [
-      "ordinary surface VineWall"
+      "published frogs and VineWall/HollowLog package delivery",
+      "whole-game impact selection after delivery"
     ],
-    "reason": "Current OpenMire right-edge green # enclosure and earlier seven on-screen VineWalls in OpenMire/DrownedCopse show a visible gap. Reuse approved sill-envelope frames0\u201315 with exact owners and disclosed connectivity.",
-    "limits": "No new family acceptance yet; HollowLog solid container and Greatdew snare follow actual-owner gates."
+    "reason": "Batch five identities once; avoid repeated acceptance tooling. Compare demonstrated mire hazard salience and uncovered Greatdew/shared equipment with other regions before choosing next visuals.",
+    "limits": "No full-area acceptance; no new family beyond reviewed evidence."
   },
   "sodden_frogs": {
-    "status": "bounded_Editor_verified_source_publication_pending_packages_pending",
+    "status": "bounded_Editor_verified_source_pushed_packages_pending",
     "scope": [
       "Reedfrog",
       "Bandfrog",
@@ -11445,6 +11452,59 @@
     "rendering_correction": "Transient same-Render-event NativeColorCue preserves red species damage flash without another Render dispatch.",
     "limits": "No frog standalone/Linux/physical Deck run; coverage is not whole-chunk fullness or area-polish acceptance.",
     "polish_advanced": false,
-    "independent_review": "Docs/Verification/Live16x24/sodden-frogs-independent-review.md"
+    "independent_review": "Docs/Verification/Live16x24/sodden-frogs-independent-review.md",
+    "source_commit": "0f24f4942d0ff18616ccdcb94d5d62607ad05252",
+    "remote_verified": true
+  },
+  "shared_surface_reuse": {
+    "status": "bounded_Editor_verified_source_publication_pending_packages_pending",
+    "plan": "Docs/GRAPHICS-SHARED-VINEWALL.md",
+    "scope": [
+      "exact ordinary surface VineWall outside existing specialized addresses",
+      "exact shared HollowLog"
+    ],
+    "new_art": false,
+    "reused_art": [
+      "Sprites/Live16x24/sill-envelope frames0\u201315",
+      "Sprites/Environment/cont_hollow_log full16x16"
+    ],
+    "native": {
+      "initial_vine_red": {
+        "total": 23,
+        "failed": 21
+      },
+      "initial_log_red": {
+        "total": 14,
+        "failed": 14
+      },
+      "first_combined": {
+        "total": 308,
+        "failed": 7
+      },
+      "final": {
+        "distinct": 336,
+        "passed": 336,
+        "failed": 0,
+        "skipped": 0,
+        "receipt": "Docs/Verification/Live16x24/shared-surface-native-green.json"
+      }
+    },
+    "actual_editor": {
+      "after_captures": 9,
+      "areas": [
+        "Overworld.18.8.0",
+        "Overworld.18.9.0"
+      ],
+      "journey": "ordinary south border travel; held-key route deviation and bogmire damage retained",
+      "HollowLog": "normal reader/Open/existing bogsap Take; one existing GoldCoin stack remains",
+      "fixtures": [
+        "shared-surface-after158",
+        "shared-vine-approach159"
+      ],
+      "restart_changed_pixels": 0,
+      "restart_compared_pixels": 564000
+    },
+    "limits": "Actual Put/locked refusal and wall destruction are native-only. No new Mac/Linux package or physical Deck execution; whole-chunk polish remains open.",
+    "polish_advanced": false
   }
 }

@@ -96,7 +96,7 @@ namespace CavesOfOoo.Tests
             owner.GetPart<RenderPart>().VisualID = ""; NativeForeground(resource, frame);
         }
 
-        [TestCase("MarketStall")] [TestCase("Well")] [TestCase("WellGroundMarker")]
+        [TestCase("MarketStall")] [TestCase("WellGroundMarker")]
         [TestCase("Apothecary")] [TestCase("Hedge")] [TestCase("RepairLinedWell")]
         public void PendingFamiliesDoNotAcquireAnOpeningAlias(string blueprint)
         { Add(blueprint); IdentityFallback(); Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone)); }
@@ -239,12 +239,15 @@ namespace CavesOfOoo.Tests
             manager.CachedZones[Sill] = zone; NativeForeground(Envelope, 0);
         }
 
-        [Test] public void SameNamedManagerlessZoneAndOtherSettlementCannotAdoptTheKit()
+        [Test] public void ManagerlessZoneCannotAdoptSillAndOtherSettlementOnlySharesVines()
         {
             Add("VineWall"); NativeForeground(Envelope, 0);
             zone = new Zone(Sill); zone.GetCell(X, Y).Explored = zone.GetCell(X, Y).IsVisible = true;
             Add("VineWall"); IdentityFallback();
-            zone = Attach("Overworld.7.8.0"); Add("VineWall"); IdentityFallback();
+            zone = Attach("Overworld.7.8.0"); Add("Grass"); var sharedWall = Add("VineWall");
+            NativeForeground(Envelope, 0); NotEnvelopeGround();
+            Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
+            Assert.True(zone.RemoveEntity(sharedWall)); Add("VillageDoor"); IdentityFallback();
         }
 
         [Test] public void HiddenCellsDoNotRevealLiveEnvelopeState()
