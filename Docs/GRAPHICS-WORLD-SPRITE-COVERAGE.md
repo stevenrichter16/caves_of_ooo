@@ -1,6 +1,6 @@
 # Worldwide native sprite coverage
 
-**Credit-prioritized continuation (2026-10-28):** Shared natural SteamVent body is integrated outside the two admitted East kitchens, whose grille and fallback remain unchanged.208 distinct native checks pass; actual Quartzite9 body/reader, vent traversal,9↔10travel and fresh Continue128 are verified. Approved source pixels are unchanged; no new animation. Frost and other regional families, and all55+5polish scopes, remain open. Packages remain Slate702cb9d80 pending a batched build. See Docs/GRAPHICS-COMPLETION-PLAN.md and Docs/GRAPHICS-SHARED-STEAM-VENTS.md for exact evidence and next actions.
+**Whole-game credit priority (2026-10-28):** The user explicitly says not to concentrate the remaining credits on caves. Recent cave/shared-prop work is batched in fresh Mac/Linux source7e2ed7a30, with bounded Mac play and Linux archive verification. Next: shared neutral Villager/Merchant residents for settlement/interior readability, then missing Beating wildlife. See Docs/GRAPHICS-SHARED-RESIDENTS.md and current completion continuation. Choose the largest visible gaps across all areas; preserve approved art and defer optional animation. Native coverage is not full-area polish. Storage remains inspection-only.
 
 **Historical continuation — fresh Slate delivery, 2026-10-27:**
 Source `702cb9d8096e6dd8eebfd93cdeb08b22d5aece27` is verified on main by root.

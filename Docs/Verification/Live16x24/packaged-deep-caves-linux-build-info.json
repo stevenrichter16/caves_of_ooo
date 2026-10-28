@@ -1,0 +1,267 @@
+{
+  "created_at_utc": "2026-10-28T01:45:54.601717+00:00",
+  "runtime_source_commit": "7e2ed7a30dbd363331480321933b36fc67c58659",
+  "package_flavor": "deep-caves-materials-shared-stone-steam",
+  "built_after_utc": "2026-10-28T01:37:19+00:00",
+  "slice_description": "Batched ordinary Quartzite depths 9\u201310 and Obsidian depths above 10 material coverage, shared neutral Pillar/BrokenColumn bodies and neutral natural SteamVent bodies. Twelve original opaque 16\u00d724 floor/wall cells retain straight boundaries; approved stone-prop and vent bodies are borrowed unchanged. Guarded real-floor/backdrop handling, current graph/disclosure, owner/reader authority and existing damage/source mechanics remain required. Authored East SteamVent grille and independent East steam overlay remain separate; FrostVent is not covered. No generation, collision, saved-gameplay, global grading or camera change; isolated Shale study remains default-off.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-deep-caves-mac-build.json",
+    "sha256": "4cdee3dcb3ff9eedb2a394f46481065c761663556d43b982b2d53f9aae148c91",
+    "summary": {
+      "job_id": "build-ba060f8511",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-28-deep-caves-7e2ed7a30-current/CavesOfOoo.app",
+      "started_at": "2026-10-28T01:37:20.074476Z",
+      "duration_seconds": 87.92433799999999,
+      "completed_at": "2026-10-28T01:38:47.998814Z",
+      "total_size_mb": 344.57,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-deep-caves-linux-build.json",
+    "sha256": "c3ee597d67eced55e1b5b2f02f7d5a0a24e75cf63b8dbba2a1672b74796690a9",
+    "summary": {
+      "job_id": "build-f6293c4b1c",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-28-deep-caves-7e2ed7a30-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-28T01:38:58.8524Z",
+      "duration_seconds": 99.381405,
+      "completed_at": "2026-10-28T01:40:38.233805Z",
+      "total_size_mb": 325.03,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-stone-props-final-green.json",
+          "sha256": "d15f9cade4bdffe9ebfcf7610f63a1b8f56078d706d937ac91207a390130002e",
+          "mode": "EditMode",
+          "job_id": "7a7951072dde42ee88a3816f40de5b1b",
+          "summary": {
+            "total": 419,
+            "passed": 419,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 57.8109901,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 419,
+          "actual_job_metadata": {
+            "job_id": "7a7951072dde42ee88a3816f40de5b1b",
+            "status": "succeeded",
+            "mode": "EditMode",
+            "started_unix_ms": 1793149172005,
+            "finished_unix_ms": 1793149234335,
+            "last_update_unix_ms": 1793149234335,
+            "progress": {
+              "completed": 419,
+              "total": 419,
+              "current_test_full_name": null,
+              "current_test_started_unix_ms": 1793149234012,
+              "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSlateCavesTests.VisibleCompetingMeaningAndExplicitBlackBackgroundOutrankAmbientWithoutHidingOwner",
+              "last_finished_unix_ms": 1793149234068,
+              "stuck_suspected": false,
+              "editor_is_focused": true,
+              "blocked_reason": null,
+              "failures_so_far": [],
+              "failures_capped": false
+            },
+            "error": null,
+            "result": null
+          },
+          "job_receipt": {
+            "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-stone-props-final-job.json",
+            "sha256": "8e62fb9ab380316e95482b98eec4df29c022f086c4ce1791a224cc0077cee676"
+          },
+          "started_unix_ms": 1793149172005,
+          "finished_unix_ms": 1793149234335,
+          "scope": "Earlier completed native execution; full Result exported before Play and paired with actual retained job metadata. This helper does not run tests.",
+          "overlap_with_preceding_receipts": 0
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-steam-vent-native-green.json",
+          "sha256": "eae1097e38f0cb46159b7fa92ad5b9f7ffeec382e283eb862bdd40ddd8b8e835",
+          "mode": "EditMode",
+          "job_id": "1c6f8b1094d7482e854fa0e2dc98fc56",
+          "summary": {
+            "total": 19,
+            "passed": 19,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 5.6695053,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 19,
+          "actual_job_metadata": {
+            "job_id": "1c6f8b1094d7482e854fa0e2dc98fc56",
+            "status": "succeeded",
+            "mode": "EditMode",
+            "started_unix_ms": 1793150766469,
+            "finished_unix_ms": 1793150777528,
+            "last_update_unix_ms": 1793150777528,
+            "progress": {
+              "completed": 19,
+              "total": 19,
+              "current_test_full_name": null,
+              "current_test_started_unix_ms": 1793150777053,
+              "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSharedSteamVentTests.SubmittedHazardsKeepExistingPriorityAndDoNotRequireSterileGround",
+              "last_finished_unix_ms": 1793150777178,
+              "stuck_suspected": false,
+              "editor_is_focused": true,
+              "blocked_reason": null,
+              "failures_so_far": [],
+              "failures_capped": false
+            },
+            "error": null,
+            "result": null
+          },
+          "job_receipt": {
+            "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-steam-vent-native-job.json",
+            "sha256": "37e70a699402e7d7c501fd956f3dfd1566f83e27ca0c0ada6247171ab02f0a8e"
+          },
+          "started_unix_ms": 1793150766469,
+          "finished_unix_ms": 1793150777528,
+          "scope": "Earlier completed native execution; full Result exported before Play and paired with actual retained job metadata. This helper does not run tests.",
+          "overlap_with_preceding_receipts": 0
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-steam-vent-related-green.json",
+          "sha256": "00ea601ec8088948d3f6a7aaf364f2ba4ab8d8b9d8ed7b0ebc43429ea4ad715e",
+          "mode": "EditMode",
+          "job_id": "6d16cd2688d14ac5a66f5cc5e43a03ed",
+          "summary": {
+            "total": 189,
+            "passed": 189,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 22.5056112,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 189,
+          "actual_job_metadata": {
+            "job_id": "6d16cd2688d14ac5a66f5cc5e43a03ed",
+            "status": "succeeded",
+            "mode": "EditMode",
+            "started_unix_ms": 1793150830331,
+            "finished_unix_ms": 1793150861377,
+            "last_update_unix_ms": 1793150861377,
+            "progress": {
+              "completed": 189,
+              "total": 189,
+              "current_test_full_name": null,
+              "current_test_started_unix_ms": 1793150861249,
+              "last_finished_test_full_name": "CavesOfOoo.Tests.TileStateSourcePartTests.Seed_WithResidueTurnsZero_WritesNothing",
+              "last_finished_unix_ms": 1793150861249,
+              "stuck_suspected": false,
+              "editor_is_focused": true,
+              "blocked_reason": null,
+              "failures_so_far": [],
+              "failures_capped": false
+            },
+            "error": null,
+            "result": {
+              "mode": "EditMode",
+              "summary": {
+                "total": 189,
+                "passed": 189,
+                "failed": 0,
+                "skipped": 0,
+                "durationSeconds": 22.5056112,
+                "resultState": "Passed"
+              },
+              "results": null
+            }
+          },
+          "job_receipt": {
+            "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-steam-vent-related-job.json",
+            "sha256": "a2c949d45c909a74a3074534333aae8081bd61703618349139f92de77186b4f3"
+          },
+          "started_unix_ms": 1793150830331,
+          "finished_unix_ms": 1793150861377,
+          "scope": "Earlier completed native execution; full Result exported before Play and paired with actual retained job metadata. This helper does not run tests.",
+          "overlap_with_preceding_receipts": 102
+        }
+      ],
+      "current_source_binding": {
+        "source_commit": "7e2ed7a30dbd363331480321933b36fc67c58659",
+        "pins": {
+          "ArtSource/Live16x24/obsidian-caves/obsidian-caves.png": "b1d09491679b24cfac5aac4f39f63cd2d47d1dacba04ead64149541205f09d81",
+          "ArtSource/Live16x24/quartzite-caves/quartzite-caves.png": "47b8a6984d02da33b000628e61daee9cd21a22fd5d4160293267a902204340eb",
+          "Assets/Resources/Sprites/Environment/pillar.png": "ae67290b62c6534b11f933397d5e6ce44bb53a84602d38e5d4a52749622d23a1",
+          "Assets/Resources/Sprites/Environment/steam_vent.png": "c381fbc440337013e30cf47c68c76944ab624038b1232819bd923fcb1628821d",
+          "Assets/Resources/Sprites/Live16x24/east-kitchen.png": "594079f4dbfe9d17f0b58f8fcb6adc647d63dae9cfd385ce32fd8b6e31413c56",
+          "Assets/Resources/Sprites/Live16x24/obsidian-caves.png": "b1d09491679b24cfac5aac4f39f63cd2d47d1dacba04ead64149541205f09d81",
+          "Assets/Resources/Sprites/Live16x24/opening-base.png": "71ce34419f0e5b1a9a494dd4abd2b29efa8c5866dab97e2aaa57b1e2fb42df2e",
+          "Assets/Resources/Sprites/Live16x24/quartzite-caves.png": "47b8a6984d02da33b000628e61daee9cd21a22fd5d4160293267a902204340eb",
+          "Assets/Resources/Sprites/Live16x24/slate-caves.png": "e3fe86854fb139721f42058585bd5d000f266fde58f2b426451dff6ad1dfb1ff",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "76c7cce4367f3d85fd3e874b44b597a768f420be63c280fc329ab38590abd98c",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelLimestoneCavesCatalog.cs": "87c156c5867d21f9d856788732ea03a715329adf36c2e6778e7ea96bacc72a07",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelObsidianCavesCatalog.cs": "fe9946014bfed03771b46bb383f7572d025fdd79fbe6654846d054bb694193c6",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelQuartziteCavesCatalog.cs": "734d1cec031c0f00ad6aeeadf300ee6270cd4b616a88bb26e83b7542d5478bb8",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelShaleCavesCatalog.cs": "f7311b85c44ce550a10e62ba1ea5cc83d968d8eac37916af7a9ea32c40dabca6",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelShallowCavesCatalog.cs": "f06eabc4b6c263a05660bf19cbacbc6eb59a6c4b09f3d85f4aa628a5466ca88d",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedSteamVentCatalog.cs": "d8086aefc4c8de74a603e519a38d69ba08dcbeb3983a69989d094524cef3274a",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedStonePropsCatalog.cs": "b2098dd328edec732fe1b663a302714e3ba4288009afff7cdb8b4e446f382908",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSlateCavesCatalog.cs": "e59940798d370e58c3d9f3051c3864cd5cf0d788e32189558e2753be944b0969",
+          "Assets/Tests/EditMode/FlatPixelObsidianCavesTests.cs": "f7424f35f70846cd9c5455c7d99c8dafed329a31406930dc7f67d31616e42c71",
+          "Assets/Tests/EditMode/FlatPixelQuartziteCavesTests.cs": "9600bab89a89571cc766f6fab2b3fa6520706e620f0fcde4ab2c7b8fe78413fd",
+          "Assets/Tests/EditMode/FlatPixelSharedSteamVentTests.cs": "799fd830370a37aaf9be2e09c2c49923164012a5ac3e4406383762e4d641a676",
+          "Assets/Tests/EditMode/FlatPixelSharedStonePropsTests.cs": "0330b193061852229d09f78b824805e4e25849abdfcfd97907bb994668408ede",
+          "Docs/Verification/Live16x24/shared-steam-vent-native-green.json": "eae1097e38f0cb46159b7fa92ad5b9f7ffeec382e283eb862bdd40ddd8b8e835",
+          "Docs/Verification/Live16x24/shared-steam-vent-native-job.json": "37e70a699402e7d7c501fd956f3dfd1566f83e27ca0c0ada6247171ab02f0a8e",
+          "Docs/Verification/Live16x24/shared-steam-vent-related-green.json": "00ea601ec8088948d3f6a7aaf364f2ba4ab8d8b9d8ed7b0ebc43429ea4ad715e",
+          "Docs/Verification/Live16x24/shared-steam-vent-related-job.json": "a2c949d45c909a74a3074534333aae8081bd61703618349139f92de77186b4f3",
+          "Docs/Verification/Live16x24/shared-stone-props-final-green.json": "d15f9cade4bdffe9ebfcf7610f63a1b8f56078d706d937ac91207a390130002e",
+          "Docs/Verification/Live16x24/shared-stone-props-final-job.json": "8e62fb9ab380316e95482b98eec4df29c022f086c4ce1791a224cc0077cee676"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Selected current runtime/test/resource bytes and retained evidence are pinned in this reviewed helper. The 419-case stone checkpoint predates Steam integration; these are sequential checkpoints, not a combined final-source run. Root asserts the source revision/freeze and build provenance; binary reproducibility is not independently proved."
+      },
+      "execution_occurrences": 627,
+      "passed_execution_occurrences": 627,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "repeated_identity_occurrences": 102,
+      "distinct_test_identities_across_listed_receipts": 525,
+      "distinct_passed_test_identities": 525,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "combined_final_source_execution": false,
+      "stone_checkpoint_passed": 419,
+      "steam_focused_passed": 19,
+      "steam_related_passed": 189,
+      "skipped_identities": [],
+      "skipped_reason": null,
+      "inconclusive_identities": [],
+      "inconclusive_reason": null,
+      "limits": "419 stone plus 19 focused/189 related Steam occurrences, with 102 repeated identities, give 525 distinct retained Passed identities. Earlier Quartzite/Obsidian receipts are subsets and are not added. No failed/skipped/inconclusive rows. These are successive source checkpoints, not one 525-case final-source execution. Actual job metadata and separately retained complete raw Results supply counts/times without fabrication. This helper runs no tests and certifies neither whole-area graphics, gameplay, Linux/Deck execution nor performance."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "Scope is exact eligible ordinary Quartzite/Obsidian materials plus conservative shared Pillar/BrokenColumn/SteamVent identities. Other room props, actors, hazards, authored areas and world families remain open. Actual Obsidian depths 11/12 samples do not certify every deeper address.",
+    "Material/body coverage and reader identity do not establish whole-scene fullness, reference parity or area polish. Repeated faces, dark internal facets, low-contrast fragments, sparse composition and mixed glyphs remain separate concerns. Actual journeys and persistence have separate records.",
+    "Three complete retained native Results contain 525 distinct Passed identities across 627 occurrences with 102 repeats: 419 stone plus 19/189 Steam. These are sequential checkpoints, not one final-source combined run. No earlier subset execution is added, no actual job results/times fabricated, and no performance claim follows.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Worldwide static coverage and later area polish remain open."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}
