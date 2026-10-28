@@ -9,18 +9,22 @@ namespace CavesOfOoo.Rendering
     /// Names, relationships, services and belongings remain simulation-owned.</summary>
     public sealed class FlatPixelSharedResidentsCatalog : IDisposable
     {
-        readonly Tile villager, merchant;
+        readonly Tile villager, merchant, weaponsmith;
         bool disposed;
         public FlatPixelSharedResidentsCatalog()
             : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
-                Resources.Load<Texture2D>("Sprites/Environment/merchant")) { }
+                Resources.Load<Texture2D>("Sprites/Environment/merchant"),
+                Resources.Load<Texture2D>("Sprites/Environment/weaponsmith")) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16)
+            : this(cast64, merchant16, null) { }
+        public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16)
         {
             villager = Build(cast64, 64, 24, 0, "villager");
             merchant = Build(merchant16, 16, 16, 0, "merchant");
+            weaponsmith = Build(weaponsmith16, 16, 16, 0, "weaponsmith");
         }
         public static bool HasKnownRole(Entity owner)
-            => owner?.BlueprintName == "Villager" || owner?.BlueprintName == "Merchant";
+            => owner?.BlueprintName == "Villager" || owner?.BlueprintName == "Merchant" || owner?.BlueprintName == "Weaponsmith";
         public bool TryResolve(Entity owner, out Tile tile)
         {
             tile = null;
@@ -30,7 +34,7 @@ namespace CavesOfOoo.Rendering
             var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
             var hp = owner.GetStat("Hitpoints");
             if (r == null || !r.Visible || r.RenderLayer != 10 || r.RenderString != "@"
-                || r.ColorString != (owner.BlueprintName == "Villager" ? "&g" : "&W")
+                || r.ColorString != (owner.BlueprintName == "Villager" ? "&g" : owner.BlueprintName == "Merchant" ? "&W" : "&r")
                 || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID)
                 || !string.IsNullOrEmpty(r.VisualVariant) || !string.IsNullOrEmpty(r.GlyphVariants)
                 || p == null || p.Takeable || p.InInventory != null || p.Equipped != null
@@ -41,7 +45,7 @@ namespace CavesOfOoo.Rendering
                 || !OptionalOwned<StatusEffectsPart>(owner)) return false;
             if (owner.HasPart<StackerPart>())
             { var stack = Owned<StackerPart>(owner); if (stack == null || stack.StackCount <= 0) return false; }
-            tile = owner.BlueprintName == "Villager" ? villager : merchant;
+            tile = owner.BlueprintName == "Villager" ? villager : owner.BlueprintName == "Merchant" ? merchant : weaponsmith;
             return tile != null;
         }
         static bool ForeignMeaning(Entity owner)
@@ -81,7 +85,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrame(villager); DestroyFrame(merchant);
+            DestroyFrame(villager); DestroyFrame(merchant); DestroyFrame(weaponsmith);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }

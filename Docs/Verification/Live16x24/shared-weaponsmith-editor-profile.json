@@ -1,0 +1,71 @@
+{
+  "label": "shared-weaponsmith-editor-profile",
+  "start": "2026-10-28T06:38:42.624403Z",
+  "end": "2026-10-28T06:41:05.277277Z",
+  "elapsedSeconds": 142.652875,
+  "frames": 58084,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    60,
+    3
+  ],
+  "hp": 38,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 58085,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 70281.196023069642,
+      "max": 29367042,
+      "p99": 259375
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 58085,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 2449495.2632004819,
+      "max": 2224078625,
+      "p99": 6062583
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 58085,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 27.801187914263579,
+      "max": 38,
+      "p99": 38
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 58085,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 27.801187914263579,
+      "max": 38,
+      "p99": 38
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 58085,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 7158.6711543427737,
+      "max": 14201,
+      "p99": 14201
+    }
+  ],
+  "bounds": "Editor Weaponsmith world/examine/chat/trade, actual dagger purchase and four-cell walk plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

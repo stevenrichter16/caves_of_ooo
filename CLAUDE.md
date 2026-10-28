@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** Shared camp props+cloth source9a2371852 is verified main and delivered in fresh Mac/Linux builds.114 native passes;10actual Mac captures and exact restart match. Linux archive integrity verified, no Linux/physicalDeck run. See Docs/Verification/Live16x24/packaged-camp-props-cloth-delivery.md. Next candidate: shared Farmer portability; acquire actual outside-opening baseline first. Broad families and serious area polish remain open. Root owns Unity/Git; normal saves, approved art, prior builds and49foreign changes preserved. Storage inspection-only.
+**Whole-game credit priority (2026-10-28):** Shared Weaponsmith body is locally source/Editor verified (80nativepasses, actual world/examine/chat/trade/purchase and freshContinue143, exact restart image). Publication pending root; see Docs/GRAPHICS-SHARED-WEAPONSMITH.md and current completion continuation. Prior camp-props-clothsource9a2371852/delivery4544dc815 main and packages preserved. Next audit cohesive common settlement services versus remaining whole-game visual gaps; Farmer outsideopening still lacks baseline. Broad coverage and serious area polish remain open. Root owns Unity/Git; preserve49foreign changes, saves/art/builds. Storage inspection-only.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.

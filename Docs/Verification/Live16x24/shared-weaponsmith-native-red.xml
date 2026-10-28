@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Failed(Child)" total="17" passed="1" failed="16" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 04:24:58Z" end-time="2026-10-28 04:25:00Z" duration="2.3237504">
+  <test-suite type="TestSuite" id="41570" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33779" result="Failed" site="Child" start-time="2026-10-28 04:24:58Z" end-time="2026-10-28 04:25:00Z" duration="2.323750" total="17" passed="1" failed="16" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41542" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33779" result="Failed" site="Child" start-time="2026-10-28 04:24:58Z" end-time="2026-10-28 04:25:00Z" duration="2.214819" total="17" passed="1" failed="16" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41543" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33779" result="Failed" site="Child" start-time="2026-10-28 04:24:58Z" end-time="2026-10-28 04:25:00Z" duration="2.209170" total="17" passed="1" failed="16" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41544" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33779" result="Failed" site="Child" start-time="2026-10-28 04:24:58Z" end-time="2026-10-28 04:25:00Z" duration="2.204171" total="17" passed="1" failed="16" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1894" name="FlatPixelSharedWeaponsmithTests" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-28 04:24:58Z" end-time="2026-10-28 04:25:00Z" duration="2.159014" total="17" passed="1" failed="16" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1904" name="ActualWetUsesOneRenderEventAndQueriesDoNotConsumeTheCue" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ActualWetUsesOneRenderEventAndQueriesDoNotConsumeTheCue" methodname="ActualWetUsesOneRenderEventAndQueriesDoNotConsumeTheCue" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="653498438" result="Failed" start-time="2026-10-28 04:24:58Z" end-time="2026-10-28 04:24:59Z" duration="0.438026" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ActualWetUsesOneRenderEventAndQueriesDoNotConsumeTheCue () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:142
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1912" name="CachedSmithViewDisposesWithoutDestroyingInputsOrIndependentPeer" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.CachedSmithViewDisposesWithoutDestroyingInputsOrIndependentPeer" methodname="CachedSmithViewDisposesWithoutDestroyingInputsOrIndependentPeer" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="343377973" result="Failed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.051273" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing three-texture resident constructor
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.Construct (UnityEngine.Texture2D cast, UnityEngine.Texture2D merchant, UnityEngine.Texture2D smith) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.CachedSmithViewDisposesWithoutDestroyingInputsOrIndependentPeer () [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:197
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1902" name="CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody" methodname="CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="2021365059" result="Failed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.115885" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:128
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1905" name="DisclosureCoverMovementRemovalAndStaleGraphRetireOnlyTheCurrentOwner" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.DisclosureCoverMovementRemovalAndStaleGraphRetireOnlyTheCurrentOwner" methodname="DisclosureCoverMovementRemovalAndStaleGraphRetireOnlyTheCurrentOwner" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1550651446" result="Failed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.052295" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.DisclosureCoverMovementRemovalAndStaleGraphRetireOnlyTheCurrentOwner () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:153
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1900" name="EssentialResidentAndServicePartsAreUniqueAndOwned" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.EssentialResidentAndServicePartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.263368" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1897" name="EssentialResidentAndServicePartsAreUniqueAndOwned(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.EssentialResidentAndServicePartsAreUniqueAndOwned(&quot;missing&quot;)" methodname="EssentialResidentAndServicePartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="135499046" result="Failed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.051600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.EssentialResidentAndServicePartsAreUniqueAndOwned (System.String fault) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1898" name="EssentialResidentAndServicePartsAreUniqueAndOwned(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.EssentialResidentAndServicePartsAreUniqueAndOwned(&quot;foreign&quot;)" methodname="EssentialResidentAndServicePartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1532581343" result="Failed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.058355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.EssentialResidentAndServicePartsAreUniqueAndOwned (System.String fault) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1899" name="EssentialResidentAndServicePartsAreUniqueAndOwned(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.EssentialResidentAndServicePartsAreUniqueAndOwned(&quot;duplicate&quot;)" methodname="EssentialResidentAndServicePartsAreUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1025457007" result="Failed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.053885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.EssentialResidentAndServicePartsAreUniqueAndOwned (System.String fault) [0x000a6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:111
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1895" name="ExactWeaponsmithMatchesAllFourRoutesSubmittedWorldAndAuthorizedSquarePortrait" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ExactWeaponsmithMatchesAllFourRoutesSubmittedWorldAndAuthorizedSquarePortrait" methodname="ExactWeaponsmithMatchesAllFourRoutesSubmittedWorldAndAuthorizedSquarePortrait" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1951831542" result="Failed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:24:59Z" duration="0.050823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ExactWeaponsmithMatchesAllFourRoutesSubmittedWorldAndAuthorizedSquarePortrait () [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:79
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1910" name="ExistingResourcesDisabledLocalCastDoesNotLoadNewWeaponsmithArt" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ExistingResourcesDisabledLocalCastDoesNotLoadNewWeaponsmithArt" methodname="ExistingResourcesDisabledLocalCastDoesNotLoadNewWeaponsmithArt" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1663091772" result="Passed" start-time="2026-10-28 04:24:59Z" end-time="2026-10-28 04:25:00Z" duration="0.520600" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1903" name="LiveHitpointsRemainMutableButMissingForeignAndDeadStatsRefuse" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.LiveHitpointsRemainMutableButMissingForeignAndDeadStatsRefuse" methodname="LiveHitpointsRemainMutableButMissingForeignAndDeadStatsRefuse" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="785144328" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.068679" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.LiveHitpointsRemainMutableButMissingForeignAndDeadStatsRefuse () [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:136
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1908" name="MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.211744" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1906" name="MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt(False)" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt(False)" methodname="MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1613590946" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.051922" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing three-texture resident constructor
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.Construct (UnityEngine.Texture2D cast, UnityEngine.Texture2D merchant, UnityEngine.Texture2D smith) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt (System.Boolean malformed) [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:169
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1907" name="MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt(True)" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt(True)" methodname="MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="470116967" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.050172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing three-texture resident constructor
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.Construct (UnityEngine.Texture2D cast, UnityEngine.Texture2D merchant, UnityEngine.Texture2D smith) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.MissingOrMalformedWeaponsmithInputPreservesPeersAndCannotReloadThroughOldLocalArt (System.Boolean malformed) [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:169
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1911" name="OtherShopkeepersAndSourceBlueprintAliasesRemainOutsideThisExtension" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.OtherShopkeepersAndSourceBlueprintAliasesRemainOutsideThisExtension" methodname="OtherShopkeepersAndSourceBlueprintAliasesRemainOutsideThisExtension" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="553616041" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.049396" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing three-texture resident constructor
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.Construct (UnityEngine.Texture2D cast, UnityEngine.Texture2D merchant, UnityEngine.Texture2D smith) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.OtherShopkeepersAndSourceBlueprintAliasesRemainOutsideThisExtension () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:189
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1913" name="RealDamageKeepsLivingIdentityAndDeathRetiresItForTheActualCorpse" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.RealDamageKeepsLivingIdentityAndDeathRetiresItForTheActualCorpse" methodname="RealDamageKeepsLivingIdentityAndDeathRetiresItForTheActualCorpse" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1576365173" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.088385" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <weaponsmith (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.Native (UnityEngine.Tilemaps.Tile tile, System.String name, UnityEngine.Texture2D texture) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:50
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.RealDamageKeepsLivingIdentityAndDeathRetiresItForTheActualCorpse () [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:207
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1896" name="RealTradeAndChatRemainMutableAndPresentationNeverRestocksOrQueriesServices" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.RealTradeAndChatRemainMutableAndPresentationNeverRestocksOrQueriesServices" methodname="RealTradeAndChatRemainMutableAndPresentationNeverRestocksOrQueriesServices" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1672671060" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.055189" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.RealTradeAndChatRemainMutableAndPresentationNeverRestocksOrQueriesServices () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:94
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1901" name="ReskinsAndNonActorMeaningsDoNotFallThroughTheLocalOpeningResolver" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ReskinsAndNonActorMeaningsDoNotFallThroughTheLocalOpeningResolver" methodname="ReskinsAndNonActorMeaningsDoNotFallThroughTheLocalOpeningResolver" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="2121534969" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.055297" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.NativeOwner (CavesOfOoo.Core.Entity e, UnityEngine.Texture2D texture) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:55
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ReskinsAndNonActorMeaningsDoNotFallThroughTheLocalOpeningResolver () [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:119
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1909" name="ThirdInputWorksIndependentlyWhileLegacyTwoInputConstructorLeavesItAbsent" fullname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ThirdInputWorksIndependentlyWhileLegacyTwoInputConstructorLeavesItAbsent" methodname="ThirdInputWorksIndependentlyWhileLegacyTwoInputConstructorLeavesItAbsent" classname="CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests" runstate="Runnable" seed="1533354290" result="Failed" start-time="2026-10-28 04:25:00Z" end-time="2026-10-28 04:25:00Z" duration="0.049919" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing three-texture resident constructor
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.Construct (UnityEngine.Texture2D cast, UnityEngine.Texture2D merchant, UnityEngine.Texture2D smith) [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:58
+at CavesOfOoo.Tests.FlatPixelSharedWeaponsmithTests.ThirdInputWorksIndependentlyWhileLegacyTwoInputConstructorLeavesItAbsent () [0x00037] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs:179
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
