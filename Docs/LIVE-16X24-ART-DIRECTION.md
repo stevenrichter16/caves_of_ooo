@@ -1,6 +1,6 @@
 # Live 16×24 art direction and integration
 
-**Credit-prioritized continuation (2026-10-28):** Maximize visible coverage with compact prompts, batched work/packages and reused evidence; preserve meaningful acceptance gates and concise thorough records. Quartzite9/10, Obsidian11/12 and shared Pillar/BrokenColumn now have bounded native Editor evidence. The shared props retain real floor under fragments across six cave bands; final419native checks pass. Next is a finite shared SteamVent/FrostVent source/reuse audit, with no new acceptance yet. See Docs/GRAPHICS-COMPLETION-PLAN.md for current state. Shipped packages still use Slate702cb9d80; no world-polish completion claim.
+**Credit-prioritized continuation (2026-10-28):** Shared natural SteamVent body is integrated outside the two admitted East kitchens, whose grille and fallback remain unchanged.208 distinct native checks pass; actual Quartzite9 body/reader, vent traversal,9↔10travel and fresh Continue128 are verified. Approved source pixels are unchanged; no new animation. Frost and other regional families, and all55+5polish scopes, remain open. Packages remain Slate702cb9d80 pending a batched build. See Docs/GRAPHICS-COMPLETION-PLAN.md and Docs/GRAPHICS-SHARED-STEAM-VENTS.md for exact evidence and next actions.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area, starting with shared Bed and Chair bodies.

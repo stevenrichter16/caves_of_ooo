@@ -1,0 +1,71 @@
+{
+  "label": "shared-steam-vent-editor-profile",
+  "start": "2026-10-28T01:28:58.519508Z",
+  "end": "2026-10-28T01:30:11.998388Z",
+  "elapsedSeconds": 73.47888,
+  "frames": 28061,
+  "zone": "Overworld.16.13.9",
+  "player": [
+    19,
+    17
+  ],
+  "hp": 28,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 28062,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 102311.96062290642,
+      "max": 19976250,
+      "p99": 289833
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 28062,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 2610665.5471812417,
+      "max": 1894177458,
+      "p99": 6816792
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 28062,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 44.093934858527547,
+      "max": 47,
+      "p99": 47
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 28062,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 44.093934858527547,
+      "max": 47,
+      "p99": 47
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 28062,
+      "capacity": 131072,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 10554.290071983465,
+      "max": 12601,
+      "p99": 12601
+    }
+  ],
+  "bounds": "Editor natural SteamVent world/Look/reader and ordinary movement on/off vent plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

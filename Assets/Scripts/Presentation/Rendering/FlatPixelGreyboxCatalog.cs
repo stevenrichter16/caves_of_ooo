@@ -81,6 +81,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelGrovelandsActorsCatalog _grovelandsActorsArt;
         private FlatPixelSharedStorageCatalog _sharedStorageArt;
         private FlatPixelSharedFurnitureCatalog _sharedFurnitureArt;
+        private FlatPixelSharedSteamVentCatalog _sharedSteamVentArt;
         private FlatPixelSharedStonePropsCatalog _sharedStonePropsArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
         private FlatPixelHarvestProductsCatalog _harvestProductsArt;
@@ -251,7 +252,15 @@ namespace CavesOfOoo.Rendering
             Color foregroundColor = ForegroundColor(kind);
             Tile foreground = kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road
                 ? null : _tiles[(int)kind];
-            if (SharedStoneRole(owner))
+            if (SharedSteamRole(zone, owner))
+            {
+                var steam = SharedSteamVentArtFor(zone, owner);
+                if (steam != null && steam.TryResolve(owner, out var steamTile))
+                { foreground = steamTile; foregroundColor = Color.white; }
+                else if (TryResolveFallback(zone, x, y, out var steamFallback))
+                { foreground = steamFallback.ForegroundTile; foregroundColor = steamFallback.ForegroundColor; }
+            }
+            else if (SharedStoneRole(owner))
             {
                 var stone = SharedStonePropsArtFor(owner);
                 if (stone != null && stone.TryResolve(owner, out var stoneTile))
@@ -526,6 +535,13 @@ namespace CavesOfOoo.Rendering
             if (_disposed || owner == null) return false;
             var render = owner.GetPart<RenderPart>();
             if (render == null || render.ParentEntity != owner || !render.Visible) return false;
+            if (SharedSteamRole(owner.SpatialZone, owner))
+            {
+                var steam = SharedSteamVentArtFor(owner.SpatialZone, owner);
+                if (steam != null && steam.TryResolve(owner, out var steamTile))
+                { sprite = steamTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(owner, x, y, out sprite, out tint);
+            }
             if (SharedStoneRole(owner))
             {
                 var stone = SharedStonePropsArtFor(owner);
@@ -1156,6 +1172,10 @@ namespace CavesOfOoo.Rendering
             Tile groveActorArt = null;
             bool groveActorNative = groveActors != null && groveActors.TryResolve(owner, out groveActorArt);
             if (groveActorKnown) art = groveActorArt;
+            bool steamKnown = SharedSteamRole(zone, owner);
+            var steam = !fallback.Remembered ? SharedSteamVentArtFor(zone, owner) : null;
+            Tile steamArt = null;
+            bool steamNative = steam != null && steam.TryResolve(owner, out steamArt);
             bool stoneKnown = SharedStoneRole(owner);
             var stone = !fallback.Remembered ? SharedStonePropsArtFor(owner) : null;
             Tile stoneArt = null;
@@ -1171,11 +1191,12 @@ namespace CavesOfOoo.Rendering
             bool storageNative = storage != null && storage.TryResolve(owner, out storageArt);
             if (storageKnown) art = storageArt;
             if (stoneKnown) art = stoneArt;
+            if (steamKnown) art = steamArt;
             // Known-product refusal is authoritative: older local item groups
             // must not bypass current semantic or optional-resource guards.
             // The same applies to exact fauna; portable species do not admit
             // regional scenery or inherit another body's art after refusal.
-            bool native = stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1202,7 +1223,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1212,6 +1233,13 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            if (SharedSteamRole(zone, subject))
+            {
+                var steam = SharedSteamVentArtFor(zone, subject);
+                if (steam != null && steam.TryResolve(subject, out var steamTile))
+                { sprite = steamTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             if (SharedStoneRole(subject))
             {
                 var stone = SharedStonePropsArtFor(subject);
@@ -1471,6 +1499,19 @@ namespace CavesOfOoo.Rendering
             return _stumpFaunaArt;
         }
 
+        // The admitted East kitchens keep their authored manufactured grille,
+        // including its missing-resource fallback. Other contexts use the natural body.
+        private static bool SharedSteamRole(Zone zone, Entity owner)
+            => FlatPixelSharedSteamVentCatalog.HasKnownRole(owner)
+                && !(IsAdmitted(zone) && (zone.ZoneID == "Overworld.12.10.0" || zone.ZoneID == "Overworld.12.11.0"));
+        private FlatPixelSharedSteamVentCatalog SharedSteamVentArtFor(Zone zone, Entity owner)
+        {
+            if (!SharedSteamRole(zone, owner)) return null;
+            if (_sharedSteamVentArt == null && _loadOptionalResources)
+                _sharedSteamVentArt = new FlatPixelSharedSteamVentCatalog();
+            return _sharedSteamVentArt;
+        }
+
         private static bool SharedStoneRole(Entity owner)
             => FlatPixelSharedStonePropsCatalog.HasKnownRole(owner)
                 && !FlatPixelSharedStonePropsCatalog.UsesAuthoredGladeBody(owner);
@@ -1710,6 +1751,8 @@ namespace CavesOfOoo.Rendering
             _stumpFaunaArt?.Dispose();
             _stumpFaunaArt = null;
             _sharedFurnitureArt?.Dispose();
+            _sharedSteamVentArt?.Dispose();
+            _sharedSteamVentArt = null;
             _sharedStonePropsArt?.Dispose();
             _sharedFurnitureArt = null;
             _sharedStonePropsArt = null;
