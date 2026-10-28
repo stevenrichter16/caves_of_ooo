@@ -13,10 +13,11 @@ namespace CavesOfOoo.Rendering
     public sealed class FlatPixelGrovelandsMaterialsCatalog : IDisposable
     {
         public const string ResourcePath = "Sprites/Live16x24/grovelands-materials";
+        public const string GroundResourcePath = "Sprites/Live16x24/grovelands-ground";
         public const int FrameCount = 14;
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] materials, sill, vegetation, opening, water;
+        readonly Tile[] materials, sill, vegetation, opening, water, forest;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -35,7 +36,8 @@ namespace CavesOfOoo.Rendering
             : this(Resources.Load<Texture2D>(ResourcePath), Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath), borrowedSelector,
+                Resources.Load<Texture2D>(GroundResourcePath)) { }
 
         /// <summary>Optional groups fail independently. Never reload injected
         /// textures, modify source pixels/settings, or dispose the borrowed selector.</summary>
@@ -47,12 +49,20 @@ namespace CavesOfOoo.Rendering
         /// ownerless permanent water. Older injected material groups do not opt in.</summary>
         public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
             Texture2D vegetation4, Texture2D opening10, Texture2D water21, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas14, sill24, vegetation4, opening10, water21, borrowedSelector, null) { }
+
+        /// <summary>Regional forest floor is independently optional. Earlier
+        /// injection contracts retain their borrowed Sill grass when omitted.</summary>
+        public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
+            Texture2D vegetation4, Texture2D opening10, Texture2D water21, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D forest4)
         {
             selector = borrowedSelector;
             if (selector == null) return;
             materials = Frames(atlas14, FrameCount, "materials"); sill = Frames(sill24, 24, "forest");
             vegetation = Frames(vegetation4, 4, "tree"); opening = Frames(opening10, 10, "bush");
             water = Frames(water21, 21, "water");
+            forest = Frames(forest4, 4, "forest floor");
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -106,8 +116,8 @@ namespace CavesOfOoo.Rendering
                 { if (grass != null || !OrdinaryGrass(owner)) return false; grass = owner; }
                 else if (CompetingGround(owner, zone, cell, x, y)) return false;
             }
-            if (grass == null || sill == null) return false;
-            floor = grass; tile = sill[20 + VariantAt(x, y)]; return true;
+            if (grass == null || forest == null && sill == null) return false;
+            floor = grass; tile = forest != null ? forest[VariantAt(x, y)] : sill[20 + VariantAt(x, y)]; return true;
         }
         /// <summary>Represents a disclosed permanent water substrate, never a
         /// physical source or subject portrait. The optional grass output permits
@@ -388,6 +398,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             DestroyFrames(materials); DestroyFrames(sill); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(water);
+            DestroyFrames(forest);
         }
         static void DestroyFrames(Tile[] tiles)
         {

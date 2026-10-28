@@ -1,6 +1,9 @@
 # Grovelands environmental polish: forest floor
 
-**Planned only,2026-10-28.** Next after the bounded Sodden/Stump passes under
+**Current environment checkpoint — 2026-10-28 16:19UTC:** Grovelands now has four original native forest-floor frames with flatter low moss/litter, replacing shared lawn repetition. V1 object-like stamps were rejected and corrected in V2.159/159native pass; actual Grove/Fen/CompostingField, Grass reader, dry/water/dry crossing and ordinary return/freshContinue173 verified (0/564000worldpixel differences). Independent final review0P1/P2. Exact publication is in progress; current43a151ddb packages exclude this pass. Sparse composition, repeated soft fragments and all full-area polish remain open. Next [Beating sand/paving/ruined-wall materials](GRAPHICS-BEATING-ENVIRONMENT.md). Crops/subtleanimation deferred. Last actual hourly report15:42:40UTC; next16:42:40UTC. Storage inspection only. See [Grovelands record](GRAPHICS-GROVELANDS-ENVIRONMENT.md).
+
+
+**In progress,2026-10-28.** Next after the bounded Sodden/Stump passes under
 the user's all-biome environmental priority. No Assets, runtime, tests, Unity
 or Git changes accompany this document. No existing plan with this name was
 present. Root owns actual capture, imagegen, integration and acceptance.
@@ -98,3 +101,19 @@ clear actual hazards/items, ordinary approach and wet/dry travel, reader parity,
 return/save/fresh Continue, and byte-identical non-target art. Native counts do
 not prove polish. The other formations/addresses, special sites, complete
 Grovelands composition, packages and physical Deck performance remain open.
+
+## Preimplementation corrections,15:49UTC
+
+Root captured actual Grove4.7(40,12HP38) from earned65 and Fen0.8 from earned4430 before changes. Existing test file is Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs, not Tests/EditMode root. New optional seventh forest texture follows borrowed selector; old5/6 constructors explicitly retain legacy floor. Only default construction loads new resource. Existing Grass resource assertions must migrate after focused RED; old injected compatibility assertions stay. Retain VariantAt and all14body/16vine/water21 groups. New five focused tests cover world/reader routing, independent fallback, actor/water priority, current owner/fog/graph refusal and cached lifetime. Source art/reference and runtime implementation remain pending.
+
+Pin correction: root first hashed the test file while the delegated RED edit was already arriving. Baseline test hash was corrected from exact HEAD a2dafcad7 (runtime/art pins unchanged); the RED file is separately preserved in native evidence. No claim that the test pin predates the write.
+
+Native filter correction: test_names does not expand the ForestFloor_ prefix. That initial run selected0cases and is not RED/verification. Root reruns the five exact full method names; final regression uses the exact class name.
+
+## Actual first trial,15:59UTC
+
+159/159 GrovelandsMaterials/SillEnvelope cases passed after five intended RED failures. Candidate1 e2eb82a improves woodland palette but actualGrove v1-01 shows repeated brightmoss and darksoil stamps reading as tiny objects. Root rejects that presentation for final acceptance; v2 reduces local contrast/removes parallelbar/inner-rim shapes while retaining basepalette and native4frame/runtimecontracts. Native code unchanged, so source/art and actualcomparison repeat after this pixel-only revision; no redundant fulltest requirement. CUA needed freshApp/AX Raise after Unityreload; no alternateinput/simulationmutation used.
+
+## Performance and final evidence
+
+Four additional cached tiles/sprites are constructed once, no new frame/turn allocation or generation work. Ownership/disclosure/selector remain unchanged, borrowed sources are never disposed; new cached views are destroyed with catalog. The five new native methods cover default world/reader routing, optional compatibility, water/actor priority, stale/hidden graph refusal and lifetime/state stability. Full focused159 passed. Pixel-only V2 does not invalidate runtimeGREEN. See `Verification/Live16x24/grovelands-environment-final-receipt.json` for actual controls, profile bounds and remaining defects. All original body/vine/tree/bush/water art stays byte-identical. This establishes the material revision in three observed views, not all Grovelands areas or packaged execution.

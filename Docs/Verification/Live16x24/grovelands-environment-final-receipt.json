@@ -1,0 +1,84 @@
+{
+  "utc": "2026-10-28T16:18:56.097991+00:00",
+  "status": "bounded_editor_material_pass_verified;whole_area_polish_open",
+  "plan": "Docs/GRAPHICS-GROVELANDS-ENVIRONMENT.md",
+  "scope": [
+    "Ordinary Grovelands Grass floor only; four original native16x24 frames"
+  ],
+  "source_png_sha256": "1131129e4ccf1f680188e945c3b7cf5993032ca6f0f2a1945b8a539cabdc3159",
+  "native": {
+    "red_failed": 5,
+    "green_passed": 159,
+    "failed": 0,
+    "green": "Docs/Verification/Live16x24/grovelands-environment-native-green.json",
+    "bounds": "Initial prefix discovery selected0, excluded; exact five method RED preceded runtime edit. V2 is art-only; frozen runtime/tests retain finalGREEN."
+  },
+  "art_iterations": {
+    "v1": "Actual Grove object-like mounds/hollows rejected",
+    "v2": "Only133pixels in frames1/3 changed;0/2 palette exact; two reproducible exports and saved Blender reopen checks"
+  },
+  "actual_areas": [
+    "Overworld.4.7.0",
+    "Overworld.4.8.0",
+    "Overworld.0.8.0"
+  ],
+  "actual_captures": [
+    "Docs/Verification/Live16x24/grovelands-environment-after-01-grove.png",
+    "Docs/Verification/Live16x24/grovelands-environment-after-02-fen.png",
+    "Docs/Verification/Live16x24/grovelands-environment-after-03-grass-reader.png",
+    "Docs/Verification/Live16x24/grovelands-environment-after-04-compost-travel.png",
+    "Docs/Verification/Live16x24/grovelands-environment-after-05-return-saved.png",
+    "Docs/Verification/Live16x24/grovelands-environment-after-06-fresh-continue.png",
+    "Docs/Verification/Live16x24/grovelands-environment-after-07-fen-water.png",
+    "Docs/Verification/Live16x24/grovelands-environment-after-08-fen-dry-recovery.png"
+  ],
+  "reader": "Actual Grass39,12 same owner/art identity",
+  "travel": "Ordinary map4.7\u21924.8\u21924.7, HP38; F5turn3800",
+  "restart": {
+    "fixture": "Docs/Verification/Live16x24/Fixtures/grovelands-environment-return173",
+    "fresh_continue": true,
+    "player": [
+      40,
+      12
+    ],
+    "hp": 38,
+    "world_pixels": 564000,
+    "different_pixels": 0
+  },
+  "fen_route": [
+    [
+      40,
+      15
+    ],
+    [
+      40,
+      16
+    ],
+    [
+      40,
+      17
+    ],
+    [
+      40,
+      18
+    ],
+    [
+      40,
+      19
+    ]
+  ],
+  "fen_semantics": "Actual dry\u2192ownerless permanentwater\u2192dry, HP38; no simulation mutation",
+  "profile": "Docs/Verification/Live16x24/grovelands-environment-editor-profile.json",
+  "profile_bounds": "51.36s Editor walk/idle/UI tooltime;9565samples,nonewrapped;renderermean0.125ms/p990.224ms,max61.71ms;mainthreadmean5.35ms,max2582.15ms includes tool stalls;max42batches. No controlled beforeafter/Deck claim.",
+  "independent_review": "Docs/Verification/Live16x24/grovelands-environment-independent-review.md",
+  "whole_area_accepted": false,
+  "remaining": [
+    "Sparse clearing and whole-chunk composition",
+    "Recurring low-detail fragments",
+    "Other Grovelands formations,sites,interiors and all-area audit",
+    "Package delivery/physicalDeck"
+  ],
+  "package_bounds": "Current43a151ddb unchanged and excludes this slice",
+  "next_plan": "Docs/GRAPHICS-BEATING-ENVIRONMENT.md",
+  "preservation": "Docs/Verification/Live16x24/grovelands-environment-preservation.json"
+}

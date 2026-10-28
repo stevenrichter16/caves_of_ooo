@@ -1,0 +1,17 @@
+# Grovelands environmental floor pass
+
+In progress. Reproducible baseline: normal isolated GameBootstrap Continue from `Fixtures/grovelands-grove-baseline65` (4.7,40,12HP38,turn3720), and `grovelands-after-fen65` (0.8,40,15HP38,turn4430). Actual before01/02 plus disclosed owner receipts are saved. Geometry, collision, water, walls and object sprites are unchanged.
+
+The old floor borrows Sill20–23; the proposed separate64×24 Grovelands ground atlas avoids repainting shared art. Five exact native methods failed as intended before production: default old Sill resource once, absent optional seventh constructor four times. The earlier prefix-filter run selected0 and is not counted. See native-red JSON/XML.
+
+Imagegen reference from actual Grove capture is labeled concept only. Original native four-frame art uses named editable quads. Source verification, final native regression, actual comparison/reader/wet-dry travel/saveContinue/profile and independent review are pending. Scope is forest-floor material identity, not whole-chunk fullness or all-area polish. All existing approved resources stay pinned; normal saves/builds and49foreign paths remain protected. Storage inspection only. Current packages43a151ddb exclude this pass.
+
+Native GREEN:159/159 exact GrovelandsMaterials + SillEnvelope cases passed (5newfocusedcases included), jobd5f80f13b24b4217a0e2feed64a145a8. Candidate1 imported64x24 Point/Clamp/uncompressed/noMip, SHAe2eb82a24ae8ab08b0fd63a8cdbe18905bc9fd2b78f13d09c00ffd89f3a1cacb. First attemptedPlay was safely refused while TestRunner cleanup remained active; no bypass. Await actualvisualcomparison.
+
+16:12UTC actual V2: Grass reader39,12 retains real Grass identity; ordinary `<`, Down, `>` entered CompostingField4.8 at40,12HP38, then `<`, Up, `>` returned Grove4.7 same40,12HP38. Map canvas offset34,10 corresponds world4,7, not a mismapped destination. F5 archived verified Quick pair173 turn3800. CUA modifier must be lowercase shift; rejected uppercase Shift sent no map key. Fresh Continue/Fen still pending.
+
+## Final bounded result,16:19UTC
+
+V2 actual Grove/Fen/CompostingField reviewed. Native159/159 unchanged; five real RED failures preceded integration. Grass reader39,12 uses new quiet native floor. Ordinary worldmap4.7→4.8→4.7, F5turn3800, archived173 and fresh Continue preserve40,12HP38; world comparison0/564000differentpixels. Fen actual40,16dry→40,17permanent ownerless water→40,19dry retainsHP38 and original coating ownership. Profiler51.36s9565samples,nonewrapped; renderermean.125msp99.224ms/max61.71ms,42maxbatches; mainthreadmax2.58s includes tool/editor stalls, not a controlled baseline or Deck claim. Read-console returned two memoryless depth-surface engine messages, no application exception observed in that read.
+
+Independent final source/actual review0P1/P2. V1P2 object stamps resolved. Source133pixel revision, both exports/reopened blends and all18pins preserved. Two baseline and eight accepted after views are actual Unity; imagegen reference is labeled concept. No whole-area acceptance: sparse clearing composition, recurring low-detail fragments and other formations/sites remain open. Current43a151ddb packages unchanged. Root finished Play/rootnull/sceneclean;49foreignpaths,1000normalEditorentries,normalStandalone/gameprefs unchanged;8generatedmetadata whitespace-only deltas backed/restored. No cleanup. Next Beating sand/paving/ruined-wall material pass, not crops.

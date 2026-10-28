@@ -1,0 +1,52 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "c4056c2c4bf24347bcbef243409f6d3a",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1793202765449,
+      "finished_unix_ms": 1793202790066,
+      "last_update_unix_ms": 1793202790066,
+      "progress": {
+        "completed": 5,
+        "total": 5,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1793202778430,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_SubmittedActorWaterPriorityAndDryRecovery",
+        "last_finished_unix_ms": 1793202778484,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_CachedViewsOwnNoBorrowedInputsOrWorldState",
+            "message": "  Forest floor must be an independently optional seventh atlas input.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_CurrentOwnerFogAndGraphRefusals",
+            "message": "  Forest floor must be an independently optional seventh atlas input.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_DefaultGrassAndReaderUseRegionalAtlas",
+            "message": "  Ordinary Grovelands still borrows Sill lawn.\n  Expected string length 17 but was 13. Strings differ at index 0.\n  Expected: \"grovelands-ground\"\n  But was:  \"sill-envelope\"\n  -----------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_OptionalFourFramesPreserveFiveAndSixInputFallback",
+            "message": "  Forest floor must be an independently optional seventh atlas input.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_SubmittedActorWaterPriorityAndDryRecovery",
+            "message": "  Forest floor must be an independently optional seventh atlas input.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

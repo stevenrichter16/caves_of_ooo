@@ -33,9 +33,12 @@ namespace CavesOfOoo.Tests
         EntityFactory previousHarvestFactory;
         FlatPixelFallbackCatalog injectedSelector;
         IDisposable injectedAdapter;
+        bool legacyFloor;
+        string CurrentGroundResource => legacyFloor ? Sill : ForestGround;
 
         [SetUp] public void Setup()
         {
+            legacyFloor = false;
             liquids = (Dictionary<string, LiquidDefinition>)typeof(LiquidRegistry).GetField("_byId", S).GetValue(null);
             previousLiquids = new Dictionary<string, LiquidDefinition>(liquids); previouslyInitialized = LiquidRegistry.IsInitialized;
             LiquidRegistry.InitializeFromJsonSources(Resources.LoadAll<TextAsset>("Content/Data/LiquidDefinitions").Select(t => t.text));
@@ -82,7 +85,7 @@ namespace CavesOfOoo.Tests
         { var adapter = Adapter(); object[] args = { zone, X, Y, null, null }; bool ok = (bool)adapter.GetType().GetMethod("TryResolveGround", I).Invoke(adapter, args); tile = (Tile)args[3]; floor = (Entity)args[4]; return ok; }
         bool Subject(Entity owner, int x = X, int y = Y)
         { var adapter = Adapter(); object[] args = { zone, owner, x, y, null }; return (bool)adapter.GetType().GetMethod("TryGetSubjectSprite", I).Invoke(adapter, args); }
-        static string ResourceFor(string name) => name == "Grass" || name == "VineWall" ? Sill : name == "Tree" ? Vegetation : name == "Bush" ? Opening : Atlas;
+        string ResourceFor(string name) => name == "Grass" ? CurrentGroundResource : name == "VineWall" ? Sill : name == "Tree" ? Vegetation : name == "Bush" ? Opening : Atlas;
         static void NativeTile(Tile tile, string resource)
         {
             var texture = Resources.Load<Texture2D>(resource); Assert.NotNull(texture, resource); Assert.NotNull(tile); Assert.NotNull(tile.sprite);
@@ -90,7 +93,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(new Vector2(8, 12), tile.sprite.pivot); Assert.AreEqual(16, tile.sprite.pixelsPerUnit);
             Assert.AreEqual(TileFlags.None, tile.flags); Assert.AreEqual(Tile.ColliderType.None, tile.colliderType);
         }
-        static void FamilyFrame(Entity owner, Tile tile)
+        void FamilyFrame(Entity owner, Tile tile)
         {
             int first = -1, last = -1;
             switch (owner.BlueprintName)
@@ -104,7 +107,7 @@ namespace CavesOfOoo.Tests
                 case "CompostCache": first = last = 11; break;
                 case "ChoirIronVein": first = last = 12; break;
                 case "WineLeafSundew": first = last = 13; break;
-                case "Grass": first = 20; last = 23; break;
+                case "Grass": first = legacyFloor ? 20 : 0; last = first + 3; break;
                 case "VineWall": first = 0; last = 15; break;
                 case "Tree": first = last = 0; break;
                 case "Bush": first = last = 5; break;
@@ -131,6 +134,7 @@ namespace CavesOfOoo.Tests
         }
         void Inject(Texture2D main, string missing = null)
         {
+            legacyFloor = true;
             world.Dispose(); world = new FlatPixelGreyboxCatalog((Texture2D)null); injectedSelector = new FlatPixelFallbackCatalog();
             injectedAdapter = (IDisposable)Activator.CreateInstance(AdapterType(), new object[] { main,
                 missing == "sill" ? null : Resources.Load<Texture2D>(Sill), missing == "vegetation" ? null : Resources.Load<Texture2D>(Vegetation),
@@ -296,7 +300,7 @@ namespace CavesOfOoo.Tests
         [TestCase("CompostRow")] [TestCase("WineLeafSundew")] [TestCase("GroveRedGrowth")]
         public void ExactDryForegroundKeepsOnlyItsExistingGrassSubstrate(string name)
         {
-            var grass=Add("Grass"); var owner=Add(name); Native(owner); Assert.True(Ground(out var tile,out var floor)); Assert.AreSame(grass,floor); NativeTile(tile,Sill);
+            var grass=Add("Grass"); var owner=Add(name); Native(owner); Assert.True(Ground(out var tile,out var floor)); Assert.AreSame(grass,floor); NativeTile(tile,CurrentGroundResource);
             Assert.True(zone.RemoveEntity(grass)); Assert.False(Ground(out _,out _)); Assert.False(View().LocalGround); Native(owner);
             grass=Add("Grass"); Assert.True(Ground(out _,out floor)); Assert.AreSame(grass,floor);
         }
@@ -435,11 +439,11 @@ namespace CavesOfOoo.Tests
             var grass=Add("Grass");var owner=Add("MycelialColumn");
             using(var paint=new Paint(world,zone))
             {
-                paint.Step();NativeTile(paint.At(X,Y),Atlas);NativeTile(paint.GroundAt(X,Y),Sill);long full=EnvironmentSpriteRenderer.Perf.FullPasses;
+                paint.Step();NativeTile(paint.At(X,Y),Atlas);NativeTile(paint.GroundAt(X,Y),CurrentGroundResource);long full=EnvironmentSpriteRenderer.Perf.FullPasses;
                 var previous=DestructionSystem.EntityFactoryRef;
                 try{DestructionSystem.EntityFactoryRef=content.Factory;Assert.AreEqual(DestroyVerdict.Destroyed,DestructionSystem.Damage(owner,999,null,zone));}
                 finally{DestructionSystem.EntityFactoryRef=previous;}
-                Assert.IsNull(zone.GetEntityCell(owner));Assert.False(Subject(owner));paint.Step();Assert.AreSame(grass,View().Owner);Assert.IsNull(paint.At(X,Y));NativeTile(paint.GroundAt(X,Y),Sill);
+                Assert.IsNull(zone.GetEntityCell(owner));Assert.False(Subject(owner));paint.Step();Assert.AreSame(grass,View().Owner);Assert.IsNull(paint.At(X,Y));NativeTile(paint.GroundAt(X,Y),CurrentGroundResource);
                 Assert.AreEqual(full,EnvironmentSpriteRenderer.Perf.FullPasses);
             }
         }
@@ -461,6 +465,7 @@ namespace CavesOfOoo.Tests
         }
         void InjectFenWater(Texture2D water, bool includeBodies = true)
         {
+            legacyFloor = true;
             world.Dispose(); injectedAdapter?.Dispose(); injectedSelector?.Dispose();
             world = new FlatPixelGreyboxCatalog((Texture2D)null); injectedSelector = new FlatPixelFallbackCatalog();
             var constructor = AdapterType().GetConstructor(new[] { typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(FlatPixelFallbackCatalog) });
@@ -509,11 +514,11 @@ namespace CavesOfOoo.Tests
             var grass = Add("Grass");
             using (var paint = new Paint(world, zone))
             {
-                paint.Step(); NativeTile(paint.GroundAt(X,Y), Sill); long full = EnvironmentSpriteRenderer.Perf.FullPasses;
+                paint.Step(); NativeTile(paint.GroundAt(X,Y), CurrentGroundResource); long full = EnvironmentSpriteRenderer.Perf.FullPasses;
                 FenWater(); string state = zone.TileState.ToSaveString(); paint.Step(); NativeFenWater(mask: 15);
                 NativeTile(paint.GroundAt(X,Y), WaterGround); Assert.IsNull(paint.At(X,Y)); Assert.IsNull(paint.Mark);
                 Assert.AreSame(grass, View().Owner); Assert.AreEqual(state, zone.TileState.ToSaveString());
-                Assert.True(zone.TileState.RemoveCoating(X,Y,"water")); paint.Step(); NoFenWater(); NativeTile(paint.GroundAt(X,Y), Sill);
+                Assert.True(zone.TileState.RemoveCoating(X,Y,"water")); paint.Step(); NoFenWater(); NativeTile(paint.GroundAt(X,Y), CurrentGroundResource);
                 Assert.IsNull(paint.Mark); Assert.IsNull(paint.At(X,Y)); Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
             }
         }
@@ -642,6 +647,108 @@ namespace CavesOfOoo.Tests
                 Assert.True(injectedSelector.TryResolve(zone,X,Y,out _),"A regional companion never owns its borrowed selector.");
             }
             finally { Object.DestroyImmediate(wrong); }
+        }
+
+        // Forest-floor follow-up: resource selection changes, not world generation.
+        const string ForestGround = "Sprites/Live16x24/grovelands-ground";
+        void InjectForestFloor(Texture2D forest, bool includeOldGroups = true)
+        {
+            legacyFloor = forest == null || forest.width != 64 || forest.height != 24;
+            world.Dispose(); injectedAdapter?.Dispose(); injectedSelector?.Dispose();
+            world = new FlatPixelGreyboxCatalog((Texture2D)null); injectedSelector = new FlatPixelFallbackCatalog();
+            var constructor = AdapterType().GetConstructor(new[] { typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(FlatPixelFallbackCatalog), typeof(Texture2D) });
+            Assert.NotNull(constructor, "Forest floor must be an independently optional seventh atlas input.");
+            injectedAdapter = (IDisposable)constructor.Invoke(new object[] {
+                includeOldGroups ? Resources.Load<Texture2D>(Atlas) : null, includeOldGroups ? Resources.Load<Texture2D>(Sill) : null,
+                includeOldGroups ? Resources.Load<Texture2D>(Vegetation) : null, includeOldGroups ? Resources.Load<Texture2D>(Opening) : null,
+                includeOldGroups ? Resources.Load<Texture2D>(WaterGround) : null, injectedSelector, forest });
+            Write(world, "_grovelandsMaterialsArt", injectedAdapter);
+        }
+        static int ForestFrame(Tile tile, Texture2D source)
+        {
+            Assert.NotNull(tile); Assert.NotNull(tile.sprite); Assert.AreSame(source,tile.sprite.texture);
+            int frame=(int)tile.sprite.rect.x/16; Assert.That(frame,Is.InRange(0,3));
+            Assert.AreEqual(new Rect(frame*16,0,16,24),tile.sprite.rect); Assert.AreEqual(new Vector2(8,12),tile.sprite.pivot);
+            Assert.AreEqual(16,tile.sprite.pixelsPerUnit); Assert.AreEqual(Tile.ColliderType.None,tile.colliderType); return frame;
+        }
+        [Test] public void ForestFloor_DefaultGrassAndReaderUseRegionalAtlas()
+        {
+            var grass=Add("Grass");var view=View();Assert.True(view.LocalGround);Assert.IsNull(view.ForegroundTile);
+            Assert.AreEqual("grovelands-ground",view.GroundTile.sprite.texture.name,"Ordinary Grovelands still borrows Sill lawn.");
+            var source=Resources.Load<Texture2D>(ForestGround);Assert.NotNull(source);Assert.AreEqual(64,source.width);Assert.AreEqual(24,source.height);
+            ForestFrame(view.GroundTile,source);Assert.AreEqual(Color.white,view.GroundColor);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,grass,X,Y,out var portrait,out var tint));
+            Assert.AreSame(view.GroundTile.sprite,portrait);Assert.AreEqual(Color.white,tint);
+            var column=Add("MycelialColumn");Native(column);Assert.AreSame(view.GroundTile,View().GroundTile);
+        }
+        [Test] public void ForestFloor_OptionalFourFramesPreserveFiveAndSixInputFallback()
+        {
+            var forest=new Texture2D(64,24);var wrong=new Texture2D(63,24);
+            try
+            {
+                var grass=Add("Grass");
+                foreach(var optional in new Texture2D[]{null,wrong})
+                {InjectForestFloor(optional);Assert.True(Ground(out var tile,out var owner));Assert.AreSame(grass,owner);NativeTile(tile,Sill);}
+                InjectForestFloor(forest);ForestFrame(View().GroundTile,forest);var column=Add("MycelialColumn");Native(column);Assert.True(zone.RemoveEntity(column));
+                Inject(Resources.Load<Texture2D>(Atlas));NativeTile(View().GroundTile,Sill);
+                InjectFenWater(Resources.Load<Texture2D>(WaterGround));NativeTile(View().GroundTile,Sill);
+                InjectForestFloor(forest,false);ForestFrame(View().GroundTile,forest);
+                Add("VineWall");Assert.False(View().NativeForeground,"A forest floor cannot fabricate an omitted vine group.");
+            }
+            finally{world.Dispose();Object.DestroyImmediate(forest);Object.DestroyImmediate(wrong);}
+        }
+        [Test] public void ForestFloor_SubmittedActorWaterPriorityAndDryRecovery()
+        {
+            var forest=new Texture2D(64,24);
+            try
+            {
+                InjectForestFloor(forest);Add("Grass");var actor=Add("Player");actor.GetPart<RenderPart>().RenderLayer=100;
+                var body=View().ForegroundTile;Assert.AreSame(actor,View().Owner);Assert.NotNull(body);
+                using(var paint=new Paint(world,zone))
+                {
+                    paint.Step();ForestFrame(paint.GroundAt(X,Y),forest);long full=EnvironmentSpriteRenderer.Perf.FullPasses;
+                    FenWater();paint.Step();NativeFenWater(mask:15);NativeTile(paint.GroundAt(X,Y),WaterGround);
+                    Assert.AreSame(actor,View().Owner);Assert.AreSame(body,paint.At(X,Y));Assert.IsNull(paint.Mark);
+                    zone.TileState.WriteCoating(X,Y,"oil",3);paint.Step();Assert.False(View().LocalGround);Assert.IsNotNull(paint.Mark);
+                    Assert.True(zone.TileState.RemoveCoating(X,Y,"oil"));Assert.True(zone.TileState.RemoveCoating(X,Y,"water"));paint.Step();
+                    ForestFrame(paint.GroundAt(X,Y),forest);Assert.AreSame(actor,View().Owner);Assert.AreSame(body,paint.At(X,Y));
+                    Assert.IsNull(paint.Mark);Assert.AreEqual(full,EnvironmentSpriteRenderer.Perf.FullPasses);
+                }
+            }
+            finally{world.Dispose();Object.DestroyImmediate(forest);}
+        }
+        [Test] public void ForestFloor_CurrentOwnerFogAndGraphRefusals()
+        {
+            var forest=new Texture2D(64,24);
+            try
+            {
+                InjectForestFloor(forest);var grass=Add("Grass");ForestFrame(View().GroundTile,forest);var render=grass.GetPart<RenderPart>();
+                render.Visible=false;Assert.False(Ground(out _,out _));render.Visible=true;
+                render.ParentEntity=new Entity();Assert.False(Ground(out _,out _));render.ParentEntity=grass;
+                var physical=grass.GetPart<PhysicsPart>();physical.InInventory=new Entity();Assert.False(Ground(out _,out _));physical.InInventory=null;
+                var duplicate=Add("Grass");Assert.False(Ground(out _,out _));Assert.True(zone.RemoveEntity(duplicate));ForestFrame(View().GroundTile,forest);
+                var cell=zone.GetCell(X,Y);cell.IsVisible=false;Assert.False(Ground(out _,out _));cell.Explored=false;Assert.False(Ground(out _,out _));
+                cell.Explored=cell.IsVisible=true;ForestFrame(View().GroundTile,forest);
+                manager.SetActiveZone(new Zone(Home));Assert.False(Ground(out _,out _));Assert.False(world.TryGetPresentationSubjectSprite(zone,grass,X,Y,out _,out _));
+                manager.SetActiveZone(zone);ForestFrame(View().GroundTile,forest);
+            }
+            finally{world.Dispose();Object.DestroyImmediate(forest);}
+        }
+        [Test] public void ForestFloor_CachedViewsOwnNoBorrowedInputsOrWorldState()
+        {
+            var forest=new Texture2D(64,24);
+            try
+            {
+                InjectForestFloor(forest);for(int y=2;y<10;y++)for(int x=2;x<18;x++)Add("Grass",x,y);
+                string state=zone.TileState.ToSaveString();int version=zone.EntityVersion;var frames=new HashSet<int>();var tiles=new HashSet<Tile>();
+                for(int y=2;y<10;y++)for(int x=2;x<18;x++)
+                {var view=View(x,y);frames.Add(ForestFrame(view.GroundTile,forest));tiles.Add(view.GroundTile);Assert.AreSame(view.GroundTile,View(x,y).GroundTile);}
+                CollectionAssert.AreEquivalent(new[]{0,1,2,3},frames);Assert.AreEqual(4,tiles.Count);Assert.AreEqual(state,zone.TileState.ToSaveString());Assert.AreEqual(version,zone.EntityVersion);
+                var sprites=tiles.Select(t=>t.sprite).ToArray();world.Dispose();world.Dispose();
+                Assert.True(tiles.All(t=>t==null));Assert.True(sprites.All(s=>s==null));Assert.True(forest!=null);
+                Assert.True(injectedSelector.TryResolve(zone,2,2,out var selected));Assert.AreEqual("Grass",selected.Owner.BlueprintName);
+            }
+            finally{world.Dispose();Object.DestroyImmediate(forest);}
         }
 
         // Existing submitted ZoneRenderer fixture; no alternate drawing implementation.

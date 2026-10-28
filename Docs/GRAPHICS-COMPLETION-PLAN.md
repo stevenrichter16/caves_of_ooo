@@ -1,5 +1,8 @@
 # Graphics completion plan
 
+**Current environment checkpoint — 2026-10-28 16:19UTC:** Grovelands now has four original native forest-floor frames with flatter low moss/litter, replacing shared lawn repetition. V1 object-like stamps were rejected and corrected in V2.159/159native pass; actual Grove/Fen/CompostingField, Grass reader, dry/water/dry crossing and ordinary return/freshContinue173 verified (0/564000worldpixel differences). Independent final review0P1/P2. Exact publication is in progress; current43a151ddb packages exclude this pass. Sparse composition, repeated soft fragments and all full-area polish remain open. Next [Beating sand/paving/ruined-wall materials](GRAPHICS-BEATING-ENVIRONMENT.md). Crops/subtleanimation deferred. Last actual hourly report15:42:40UTC; next16:42:40UTC. Storage inspection only. See [Grovelands record](GRAPHICS-GROVELANDS-ENVIRONMENT.md).
+
+
 **Current environment checkpoint — 2026-10-28 15:40UTC:** Stump21-frame floor/solid-dome pass is bounded Editor-verified:111/111 native tests, actual matched Summit/Gorge, unchanged blocking/passable ledge, reader and freshContinue172 with0/564000worldpixel changes. Independent source/visual review0P1/P2. Source `ab45624ed7580a60ab0090a481b3f23e56e6cc9d` verified on origin/main; packages43a151ddb unchanged. Flat platform-like caps and broad sparse composition remain open. Next Grovelands forestfloor/groundcover. Crops/animation deferred; all full-area polish remains open. Last actual hourly report15:42:40UTC; next16:42:40UTC. Storage inspection only. See [Stump record](GRAPHICS-STUMP-ENVIRONMENT.md).
 
 

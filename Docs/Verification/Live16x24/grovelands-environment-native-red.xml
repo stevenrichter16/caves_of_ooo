@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:58Z" duration="1.4651326">
+  <test-suite type="TestSuite" id="41828" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33984" result="Failed" site="Child" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:58Z" duration="1.465133" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41799" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33984" result="Failed" site="Child" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:58Z" duration="1.245517" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41800" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33984" result="Failed" site="Child" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:58Z" duration="1.238723" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41801" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33984" result="Failed" site="Child" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:58Z" duration="1.195667" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30665" name="FlatPixelGrovelandsMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests" runstate="Runnable" testcasecount="108" result="Failed" site="Child" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:58Z" duration="1.148812" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="30790" name="ForestFloor_CachedViewsOwnNoBorrowedInputsOrWorldState" fullname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_CachedViewsOwnNoBorrowedInputsOrWorldState" methodname="ForestFloor_CachedViewsOwnNoBorrowedInputsOrWorldState" classname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests" runstate="Runnable" seed="1752083255" result="Failed" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:57Z" duration="0.508950" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Forest floor must be an independently optional seventh atlas input.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.InjectForestFloor (UnityEngine.Texture2D forest, System.Boolean includeOldGroups) [0x000b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:654
+at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_CachedViewsOwnNoBorrowedInputsOrWorldState () [0x0000a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:736
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30789" name="ForestFloor_CurrentOwnerFogAndGraphRefusals" fullname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_CurrentOwnerFogAndGraphRefusals" methodname="ForestFloor_CurrentOwnerFogAndGraphRefusals" classname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests" runstate="Runnable" seed="1203907923" result="Failed" start-time="2026-10-28 15:52:57Z" end-time="2026-10-28 15:52:58Z" duration="0.071119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Forest floor must be an independently optional seventh atlas input.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.InjectForestFloor (UnityEngine.Texture2D forest, System.Boolean includeOldGroups) [0x000b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:654
+at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_CurrentOwnerFogAndGraphRefusals () [0x0000a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:719
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30786" name="ForestFloor_DefaultGrassAndReaderUseRegionalAtlas" fullname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_DefaultGrassAndReaderUseRegionalAtlas" methodname="ForestFloor_DefaultGrassAndReaderUseRegionalAtlas" classname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests" runstate="Runnable" seed="444330049" result="Failed" start-time="2026-10-28 15:52:58Z" end-time="2026-10-28 15:52:58Z" duration="0.298099" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ordinary Grovelands still borrows Sill lawn.
+  Expected string length 17 but was 13. Strings differ at index 0.
+  Expected: "grovelands-ground"
+  But was:  "sill-envelope"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_DefaultGrassAndReaderUseRegionalAtlas () [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:671
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30787" name="ForestFloor_OptionalFourFramesPreserveFiveAndSixInputFallback" fullname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_OptionalFourFramesPreserveFiveAndSixInputFallback" methodname="ForestFloor_OptionalFourFramesPreserveFiveAndSixInputFallback" classname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests" runstate="Runnable" seed="1937042105" result="Failed" start-time="2026-10-28 15:52:58Z" end-time="2026-10-28 15:52:58Z" duration="0.064697" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Forest floor must be an independently optional seventh atlas input.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.InjectForestFloor (UnityEngine.Texture2D forest, System.Boolean includeOldGroups) [0x000b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:654
+at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_OptionalFourFramesPreserveFiveAndSixInputFallback () [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:685
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30788" name="ForestFloor_SubmittedActorWaterPriorityAndDryRecovery" fullname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_SubmittedActorWaterPriorityAndDryRecovery" methodname="ForestFloor_SubmittedActorWaterPriorityAndDryRecovery" classname="CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests" runstate="Runnable" seed="875813700" result="Failed" start-time="2026-10-28 15:52:58Z" end-time="2026-10-28 15:52:58Z" duration="0.053967" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Forest floor must be an independently optional seventh atlas input.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.InjectForestFloor (UnityEngine.Texture2D forest, System.Boolean includeOldGroups) [0x000b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:654
+at CavesOfOoo.Tests.FlatPixelGrovelandsMaterialsTests.ForestFloor_SubmittedActorWaterPriorityAndDryRecovery () [0x0000a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGrovelandsMaterialsTests.cs:699
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
