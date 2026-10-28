@@ -59,7 +59,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveGround(Zone zone,int x,int y,out Tile tile,out Entity floor)
         {
             tile=null;floor=null;if(!ReadyCell(zone,x,y,out var cell))return false;
-            var state=zone.TileState.Get(x,y);if(state!=null&&!state.IsEmpty)return false;
+            var state=zone.TileState.Get(x,y);bool fixture=false;
             Entity grass=null,packed=null;
             foreach(var owner in cell.Occupants)
             {
@@ -69,8 +69,12 @@ namespace CavesOfOoo.Rendering
                 {if(grass!=null||!Floor(owner,true))return false;grass=owner;}
                 else if(owner.BlueprintName=="RoadStone")
                 {if(packed!=null||!Floor(owner,false))return false;packed=owner;}
+                else if(IsEligibleFixture(owner))fixture=true;
                 else if(CompetingGround(owner))return false;
             }
+            // Hazard marks remain on the independent higher tile-state layer. This
+            // exception represents real ground under exact fixtures, never Water.
+            if(state!=null&&!state.IsEmpty&&!fixture)return false;
             floor=packed??grass;if(floor==null)return false;
             tile=packed!=null?road==null?null:road[(x+y)&1]:turf==null?null:turf[VariantAt(x,y)];
             if(tile!=null)return true;floor=null;return false;
@@ -175,6 +179,32 @@ namespace CavesOfOoo.Rendering
                 ||owner.HasTag("WellGroundMarker")||owner.HasTag("OvenGroundMarker")||owner.HasTag("LanternGroundMarker")
                 ||owner.HasTag("Terrain")&&!owner.HasTag("Wall")
                 &&!(owner.BlueprintName=="Bush"&&EligibleBody(owner));
+        // Shared by the ordinary-Spread body and lower-ground paths. Existing
+        // opening contracts are intentionally unchanged. No rendering/allocation here.
+        internal static bool IsEligibleFixture(Entity owner)
+        {
+            if(owner==null||(owner.BlueprintName!="CopperPipe"&&owner.BlueprintName!="PeatBog"&&owner.BlueprintName!="SteamVent"))return false;
+            if(!Plain(owner)||!owner.HasTag("Terrain")||owner.HasTag("Solid")||owner.HasTag("Wall")
+                ||owner.HasPart<Body>()||owner.HasPart<BrainPart>()||owner.HasPart<ContainerPart>()
+                ||owner.HasPart<DoorPart>()||owner.HasPart<RepairablePart>()||owner.HasPart<HarvestablePart>()
+                ||owner.HasPart<CropPart>()||owner.HasPart<FieldHarvestPart>()||owner.HasPart<CultivatedSoilPart>()
+                ||owner.HasPart<TriggerOnStepPart>()||owner.HasPart<WellPart>()||owner.HasPart<ForgePart>()
+                ||owner.HasPart<AlchemyStillPart>()||owner.HasPart<GasPoolPart>()||owner.GetStat("Hitpoints")!=null)return false;
+            // Reject duplicate or foreign parts instead of borrowing another owner's identity.
+            for(int i=0;i<owner.Parts.Count;i++)
+            {
+                if(owner.Parts[i].ParentEntity!=owner)return false;
+                for(int j=0;j<i;j++)if(owner.Parts[i].GetType()==owner.Parts[j].GetType())return false;
+            }
+            if(owner.BlueprintName=="SteamVent")return FlatPixelSharedSteamVentCatalog.IsEligibleBody(owner);
+            if(!FlatPixelNellaCornerCatalog.IsEligibleFixtureBody(owner))return false;
+            var render=Owned<RenderPart>(owner);
+            if(render.RenderLayer!=1||!string.IsNullOrEmpty(render.BackgroundColor))return false;
+            if(owner.BlueprintName=="CopperPipe")return !owner.HasPart<LiquidPoolPart>()&&!owner.HasPart<TileStateSourcePart>();
+            var source=Owned<TileStateSourcePart>(owner);
+            return source!=null&&source.CoatingTurns==4&&source.Heat==0&&source.Cold==0&&source.Charge==0
+                &&!source.RadiatesEnergy&&string.IsNullOrEmpty(source.Residue);
+        }
         static bool ForeignMeaning(Entity owner)
             =>owner.HasPart<CropPart>()||owner.HasPart<FieldHarvestPart>()||owner.HasPart<CultivatedSoilPart>()||owner.HasPart<HarvestablePart>()
                 ||owner.HasPart<RepairablePart>()||owner.HasPart<DoorPart>()||owner.HasPart<ContainerPart>()||owner.HasPart<BrainPart>()||owner.HasPart<Body>()

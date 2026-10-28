@@ -230,6 +230,79 @@ namespace CavesOfOoo.Tests
                 Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out actual));Assert.IsNull(actual.Texture);
             }
         }
+        [TestCase("CopperPipe")][TestCase("PeatBog")][TestCase("SteamVent")]
+        public void EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader(string role)
+        {
+            var floor=Add("Grass");var owner=Add(role);var v=View();
+            Assert.True(v.NativeForeground,"Fixture body is still ASCII");Assert.True(v.LocalGround,"Fixture has a black hole instead of its actual grass");
+            Frame(v.GroundTile,Turf,0,3);Assert.AreEqual(FlatPixelGreyboxGround.Ground,v.GroundKind);Assert.False(v.RepresentedBrine||v.RepresentedMire);
+            if(role!="SteamVent")Frame(v.ForegroundTile,"Sprites/Live16x24/nella-corner",role=="PeatBog"?16:0,role=="PeatBog"?16:0);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,owner,X,Y,out var sprite,out _));Assert.AreSame(v.ForegroundTile.sprite.texture,sprite.texture);
+            var actor=Add("Player");Assert.AreSame(actor,View().Owner);Assert.True(View().LocalGround);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,owner,X,Y,out sprite,out _));Assert.AreSame(v.ForegroundTile.sprite.texture,sprite.texture);
+            zone.GetCell(X,Y).IsVisible=false;Assert.False(View().LocalGround);Assert.False(View().NativeForeground);
+            zone.GetCell(X,Y).IsVisible=true;owner.GetPart<PhysicsPart>().InInventory=actor;
+            Assert.True(!world.TryGetPresentationSubjectSprite(zone,owner,X,Y,out sprite,out _)||sprite.texture!=v.ForegroundTile.sprite.texture);
+        }
+        [Test] public void OrdinaryPipeJoinsOnlyDisclosedSelectedNeighborsAndMatchesConnectedPortrait()
+        {
+            Add("Grass");var center=Add("CopperPipe");var neighbors=new List<Entity>();int[] dx={0,1,0,-1},dy={-1,0,1,0};
+            for(int mask=0;mask<16;mask++)
+            {
+                foreach(var e in neighbors)zone.RemoveEntity(e);neighbors.Clear();
+                for(int n=0;n<4;n++)if((mask&(1<<n))!=0)neighbors.Add(Add("CopperPipe",X+dx[n],Y+dy[n]));
+                Frame(View().ForegroundTile,"Sprites/Live16x24/nella-corner",mask,mask);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone,center,X,Y,out var image,out _));Assert.AreEqual(mask*16,image.rect.x);
+            }
+            zone.GetCell(X+1,Y).IsVisible=false;Frame(View().ForegroundTile,"Sprites/Live16x24/nella-corner",13,13);
+            zone.GetCell(X+1,Y).IsVisible=true;Add("Player",X+1,Y);Frame(View().ForegroundTile,"Sprites/Live16x24/nella-corner",13,13);
+        }
+        [TestCase("CopperPipe")][TestCase("PeatBog")][TestCase("SteamVent")]
+        public void FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback(string role)
+        {
+            Add("Grass");var owner=Add(role);using(var paint=new Paint(world,zone))
+            {
+                foreach(string coating in new[]{"water","oil","ice"})
+                {
+                    zone.TileState.WriteCoating(X,Y,coating,4);paint.Dirty(X,Y);paint.Step();
+                    Frame(paint.GroundAt(X,Y),Turf,0,3);Assert.NotNull(paint.Mark(X,Y),coating+" mark must remain above native floor");
+                    zone.TileState.RemoveCoating(X,Y,coating);
+                }
+                foreach(string cue in new[]{"heat","cold","charge","cloud"})
+                {
+                    zone.TileState.Clear(X,Y);
+                    if(cue=="heat")zone.TileState.AddHeat(X,Y,2);if(cue=="cold")zone.TileState.AddCold(X,Y,2);
+                    if(cue=="charge")zone.TileState.AddCharge(X,Y,2);if(cue=="cloud")zone.TileState.WriteCloud(X,Y,"marsh-gas",4);
+                    paint.Dirty(X,Y);paint.Step();Frame(paint.GroundAt(X,Y),Turf,0,3);Assert.NotNull(paint.Mark(X,Y),cue);
+                }
+                zone.TileState.Clear(X,Y);zone.TileState.WriteCoating(X,Y,"water",4);Assert.True(View().LocalGround);
+                zone.RemoveEntity(owner);
+                // Removing PeatBog clears its projected water. Write an independent
+                // remaining film explicitly so this tests residual-state fallback.
+                zone.TileState.WriteCoating(X,Y,"water",4);paint.Dirty(X,Y);paint.Step();Assert.False(View().LocalGround);Assert.NotNull(paint.Mark(X,Y));
+            }
+        }
+        [TestCase("CopperPipe")][TestCase("PeatBog")][TestCase("SteamVent")]
+        public void InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState(string role)
+        {
+            Add("Grass");var owner=Add(role);zone.TileState.WriteCoating(X,Y,"water",3);Assert.True(View().LocalGround);
+            var r=owner.GetPart<RenderPart>();r.VisualID="other";Assert.False(View().LocalGround);r.VisualID=null;Assert.True(View().LocalGround);
+            r.Visible=false;Assert.False(View().LocalGround);r.Visible=true;
+            var conflict=Add("WaterPuddle");Assert.False(View().LocalGround);zone.RemoveEntity(conflict);Assert.True(View().LocalGround);
+            owner.GetPart<MaterialPart>().MaterialID="Wood";Assert.False(View().LocalGround);
+        }
+        [Test] public void MissingPipePeatAtlasLeavesGlyphsButDoesNotBorrowPixelsOrSuppressHazards()
+        {
+            Add("Grass");var owner=Add("CopperPipe");var selector=new FlatPixelFallbackCatalog();
+            using(var empty=new FlatPixelNellaCornerCatalog(null,selector))
+            {
+                Write(world,"_nellaCornerArt",empty);Assert.False(View().NativeForeground);Assert.True(View().LocalGround);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone,owner,X,Y,out var sprite,out _));Assert.AreNotSame(Art("Sprites/Live16x24/nella-corner"),sprite.texture);
+                zone.TileState.WriteCoating(X,Y,"oil",3);using(var paint=new Paint(world,zone)){paint.Step();Assert.NotNull(paint.Mark(X,Y));Frame(paint.GroundAt(X,Y),Turf,0,3);}
+                Write(world,"_nellaCornerArt",null);
+            }
+            selector.Dispose();
+        }
         sealed class Probe:Part{public int Renders;public override bool HandleEvent(GameEvent e){if(e.ID=="Render")Renders++;return true;}}
         sealed class Paint : IDisposable
         {

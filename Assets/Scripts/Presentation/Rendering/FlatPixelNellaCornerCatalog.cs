@@ -46,15 +46,16 @@ namespace CavesOfOoo.Rendering
         internal static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "CopperPipe" || owner?.BlueprintName == "PeatBog";
 
-        // Reuse only the observed conductor family across these exact sites.
-        // Peat remains Nella-local here; East's existing peat adapter is separate.
+        // Opening behavior stays exact-site scoped; ordinary Spread reuses the same
+        // real neutral identities under its independent world authority.
         internal static bool SupportsRole(Zone zone, Entity owner)
-            => HasKnownRole(owner) && (zone?.ZoneID == Plot
+            => HasKnownRole(owner) && (FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone) || zone?.ZoneID == Plot
                 || owner.BlueprintName == "CopperPipe"
                     && (zone?.ZoneID == "Overworld.11.9.0" || zone?.ZoneID == "Overworld.12.10.0"));
 
         bool Available(Zone zone) => !disposed && tiles != null
-            && FlatPixelGreyboxCatalog.IsAdmitted(zone) && FlatPixelFallbackCatalog.IsCurrentGraph(zone);
+            && (FlatPixelGreyboxCatalog.IsAdmitted(zone) || FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone))
+            && FlatPixelFallbackCatalog.IsCurrentGraph(zone);
 
         /// <summary>Only the selected live foreground owner can occupy this
         /// cell. Neighbor joins describe visible selected copper, never a
@@ -73,7 +74,8 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null;
             if (!Available(zone) || !SupportsRole(zone, subject) || !Disclosed(zone, x, y) || !Eligible(subject)
-                || !ReferenceEquals(subject.SpatialZone, zone)) return false;
+                || !ReferenceEquals(subject.SpatialZone, zone)
+                || FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone) && !FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(subject)) return false;
             var cell = zone.GetCell(x, y);
             if (!ReferenceEquals(zone.GetEntityCell(subject), cell) || !cell.Objects.Contains(subject)) return false;
             if (subject.HasPart<SpatialFootprintPart>() && !zone.IsFootprintCurrent(subject)) return false;
@@ -98,7 +100,8 @@ namespace CavesOfOoo.Rendering
         {
             owner = null;
             if (!Disclosed(zone, x, y) || !selector.TryResolve(zone, x, y, out var selected)
-                || selected.Remembered || !SupportsRole(zone, selected.Owner) || !Eligible(selected.Owner)) return false;
+                || selected.Remembered || !SupportsRole(zone, selected.Owner) || !Eligible(selected.Owner)
+                || FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone) && !FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(selected.Owner)) return false;
             owner = selected.Owner; return true;
         }
 
@@ -114,6 +117,8 @@ namespace CavesOfOoo.Rendering
 
         // Shared neutral peat identity; region admission and exact world/reader
         // authority remain the responsibility of each companion adapter.
+        internal static bool IsEligibleFixtureBody(Entity owner) => Eligible(owner);
+
         internal static bool IsEligiblePeat(Entity owner)
             => owner?.BlueprintName == "PeatBog" && Eligible(owner);
 

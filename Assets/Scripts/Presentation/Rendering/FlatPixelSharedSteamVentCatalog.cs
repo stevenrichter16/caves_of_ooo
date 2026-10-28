@@ -19,10 +19,10 @@ namespace CavesOfOoo.Rendering
         public bool TryResolve(Entity owner, out Tile tile)
         {
             tile = null;
-            if (disposed || !ValidBody(owner)) return false;
+            if (disposed || !IsEligibleBody(owner)) return false;
             tile = body; return tile != null;
         }
-        static bool ValidBody(Entity owner)
+        internal static bool IsEligibleBody(Entity owner)
         {
             if (!HasKnownRole(owner) || !owner.HasTag("Terrain") || owner.HasTag("Solid")
                 || owner.HasTag("Player") || owner.HasTag("Creature") || owner.HasTag("Item")

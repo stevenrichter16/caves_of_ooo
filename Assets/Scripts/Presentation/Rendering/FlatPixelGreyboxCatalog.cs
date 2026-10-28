@@ -1287,7 +1287,7 @@ namespace CavesOfOoo.Rendering
             bool orchardNative = orchard != null && orchard.TryResolve(owner, out art);
             var riverShrine = local ? RiverShrineArtFor(owner) : null;
             bool riverShrineNative = riverShrine != null && riverShrine.TryResolve(owner, out art);
-            var nellaCorner = local && !fallback.Remembered ? NellaCornerArtFor(zone, owner) : null;
+            var nellaCorner = !fallback.Remembered ? NellaCornerArtFor(zone, owner) : null;
             // East may already have its approved isolated pipe frame. A missing
             // optional connected atlas must not erase that successful fallback.
             Tile connectedCornerArt = null;
@@ -1494,7 +1494,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1685,7 +1685,7 @@ namespace CavesOfOoo.Rendering
             var riverShrine = local ? RiverShrineArtFor(subject) : null;
             if (riverShrine != null && riverShrine.TryResolve(subject, out var shrineTile))
             { sprite = shrineTile.sprite; return sprite != null; }
-            var nellaCorner = local ? NellaCornerArtFor(zone, subject) : null;
+            var nellaCorner = NellaCornerArtFor(zone, subject);
             if (nellaCorner != null && nellaCorner.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var eastFixture = local ? EastFixtureArtFor(zone, subject) : null;
             if (eastFixture != null && eastFixture.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
