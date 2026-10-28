@@ -1,6 +1,6 @@
 # Light, shadow and shading: small Sill pilot
 
-2026-10-28 — phases 1 and 2 now have bounded native and actual Editor verification. Phase1 source `e71858ddfe9d2df76f00ba6e6623e6499284b55d` is on main; phase2 publication is pending. Phase3 remains design only. The Sill river/memory continuity pass is published. The user's direction is to begin small, inspect actual play and iterate. Preserve the approved flat16x24 presentation, quieter floors, straight layered walls and existing gameplay. The first implementation is limited to the current Sill player.
+2026-10-28 — phases 1 and 2 now have bounded native and actual Editor verification. Phase1 source `e71858ddfe9d2df76f00ba6e6623e6499284b55d` is on main; phase2 source `ac908484831ef0929f1fed882511856d3e0dd71c` is pushed and verified on origin/main. Phase3 remains design only. The Sill river/memory continuity pass is published. The user's direction is to begin small, inspect actual play and iterate. Preserve the approved flat16x24 presentation, quieter floors, straight layered walls and existing gameplay. The first implementation is limited to the current Sill player.
 
 ## Source audit and reuse limits
 
@@ -106,3 +106,5 @@ Reproduce by copying immutable186 into the existing isolated native-launcher roo
 Self-review: no outstanding actionable source/visual P1/P2 within scope. This is bespoke presentation, not a Qud-mechanic parity claim. No gameplay parser, persistence, stacking or probabilistic logic changed, so broader mechanic audits are not triggered. Counter-cases, real destruction, incremental/full symmetry and independent review cover the new renderer lifecycle. Full-area, broader-material, dynamic-light and packaged/Deck acceptance stay open.
 
 **Next:** compare Stump SummitScrub's sparse center with Sodden OpenMire at whole-chunk normal zoom and choose one bounded ground-cover/composition improvement. Keep this small shadow trial stable; do not automatically expand it into every biome. Environmental material work and purposeful chunk population remain active; crops and nuanced animation remain deferred. Last actual hourly report19:44UTC; next20:44UTC unchanged.
+
+Phase2 publication verified on origin/main at 2026-10-28T20:28:44.211782+00:00; source `ac908484831ef0929f1fed882511856d3e0dd71c`. See `Verification/Live16x24/wall-shadow-publication.json`.
