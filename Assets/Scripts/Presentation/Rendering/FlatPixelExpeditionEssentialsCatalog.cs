@@ -6,21 +6,26 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Neutral bodies for three exact portable supplies. World disclosure
+    /// <summary>Neutral bodies for five exact portable supplies. World disclosure
     /// and reader custody remain caller-owned; resolving art never uses the item.</summary>
     public sealed class FlatPixelExpeditionEssentialsCatalog : IDisposable
     {
         public const string ItemsResourcePath = "Sprites/Live16x24/opening-items";
         public const string BookResourcePath = "Sprites/Environment/item_book";
-        readonly Tile tonic, meat, book;
+        public const string PlotProductsResourcePath = "Sprites/Live16x24/plot-products";
+        readonly Tile tonic, meat, book, gladrootSeed, emberwheatSeed;
         bool disposed;
 
         public FlatPixelExpeditionEssentialsCatalog()
-            : this(Resources.Load<Texture2D>(ItemsResourcePath), Resources.Load<Texture2D>(BookResourcePath)) { }
+            : this(Resources.Load<Texture2D>(ItemsResourcePath), Resources.Load<Texture2D>(BookResourcePath),
+                Resources.Load<Texture2D>(PlotProductsResourcePath)) { }
 
         /// <summary>Independent optional borrowed textures. Missing/malformed
         /// input never reloads Resources or changes the original importer/pixels.</summary>
         public FlatPixelExpeditionEssentialsCatalog(Texture2D items, Texture2D bookTexture)
+            : this(items, bookTexture, null) { }
+
+        public FlatPixelExpeditionEssentialsCatalog(Texture2D items, Texture2D bookTexture, Texture2D plotProducts)
         {
             if (items != null && items.width == 192 && items.height == 24)
             {
@@ -29,11 +34,17 @@ namespace CavesOfOoo.Rendering
             }
             if (bookTexture != null && bookTexture.width == 16 && bookTexture.height == 16)
                 book = Build(bookTexture, new Rect(0, 0, 16, 16), "watering grimoire");
+            if (plotProducts != null && plotProducts.width == 128 && plotProducts.height == 24)
+            {
+                gladrootSeed = Build(plotProducts, new Rect(16, 0, 16, 24), "gladroot seed");
+                emberwheatSeed = Build(plotProducts, new Rect(32, 0, 16, 24), "emberwheat seed");
+            }
         }
 
         public static bool HasKnownRole(Entity owner)
             => owner?.BlueprintName == "HealingTonic" || owner?.BlueprintName == "DriedMeat"
-                || owner?.BlueprintName == "WateringGrimoire";
+                || owner?.BlueprintName == "WateringGrimoire" || owner?.BlueprintName == "CandyCarrotSeed"
+                || owner?.BlueprintName == "EmberwheatSeed";
 
         public bool TryResolve(Entity owner, out Tile tile)
         {
@@ -62,8 +73,20 @@ namespace CavesOfOoo.Rendering
                 case "WateringGrimoire":
                     if (!owner.HasTag("Grimoire") || Owned<GrimoirePart>(owner)?.SkillClassName != "Hydromancy_ConjureRain") return false;
                     tile = book; break;
+                case "CandyCarrotSeed":
+                    if (!MatchesSeed(owner, "CandyCarrotCrop")) return false;
+                    tile = gladrootSeed; break;
+                case "EmberwheatSeed":
+                    if (!MatchesSeed(owner, "EmberwheatCrop")) return false;
+                    tile = emberwheatSeed; break;
             }
             return tile != null;
+        }
+
+        static bool MatchesSeed(Entity owner, string crop)
+        {
+            var seed = Owned<SeedPart>(owner);
+            return seed != null && seed.CropBlueprint == crop && !seed.RequireCultivatedSoil;
         }
 
         static bool ForeignMeaning(Entity owner)
@@ -102,7 +125,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrame(tonic); DestroyFrame(meat); DestroyFrame(book);
+            DestroyFrame(tonic); DestroyFrame(meat); DestroyFrame(book); DestroyFrame(gladrootSeed); DestroyFrame(emberwheatSeed);
         }
         static void DestroyFrame(Tile tile)
         { if (tile != null) { DestroyOwned(tile.sprite); DestroyOwned(tile); } }

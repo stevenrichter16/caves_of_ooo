@@ -1,6 +1,6 @@
 # Portable gladroot and emberwheat seeds
 
-**Status — 2026-10-28: planned only.** Root is completing the preceding package delivery. This preflight changes only this document: no runtime, tests, assets, imports, Unity state or saved gameplay. Actual seed baseline captures and native RED must precede implementation.
+**Status — 2026-10-28: native GREEN142/142 and bounded ordinary Editor use/restart observed.** Four actual baseline and eleven accepted after captures cover the two exact bodies/readers, normal pickup, both planting actions and fresh Continue166. Independent source and actual-image review found no blocking defect; source publication is the remaining root gate. Approved assets and gameplay mechanics are unchanged. Current43a151ddb packages exclude this seed change.
 
 ## Visible goal and scope
 
@@ -59,4 +59,53 @@ Use the complete existing `FlatPixelPlotProductTests` plus the preceding Essenti
 
 Root verifies both actual inventory readers and exposed ground bodies, normal pickup, at least one eligible planting if safely attainable through ordinary play, F5/fresh Continue with exact remaining counts and no ghost seeds. If ordinary planting is not observed, leave it native-only explicitly. Root then obtains independent source/actual-image review, records native results, updates bounded coverage and publishes exact owned work. Do not include this planned slice in a package already building from the preceding source.
 
-Cached two-frame reuse introduces no per-frame resource load, timer, animation, simulation event, RNG or growth change. No FPS/zero-allocation/Deck claim. Approved art, normal saves, current builds, unrelated work and all55+5 polish scopes remain preserved/open. Current stage has no implementation or acceptance; root alone owns Unity, tests, Git and delivery. Next action is actual baseline capture after package restoration, then the narrow RED cases above.
+Cached two-frame reuse introduces no per-frame resource load, timer, animation, simulation event, RNG or growth change. No FPS/zero-allocation/Deck claim. Approved art, normal saves, current builds, unrelated work and all55+5 polish scopes remain preserved/open. Current runtime has bounded native and ordinary Editor evidence; root alone owns Unity, native execution, Git and delivery. Independent actual-image review is complete; publication remains pending; package and broader area acceptance stay separate.
+
+## Tests-first preparation
+
+`Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortableSeedTests.cs` contains five native cases: two exact-identity world/authorized-reader cases, one optional atlas and preserved constructor case, one semantic refusal/local-route counter group, and one real drop/pickup/two-unit planting lifecycle. The previous20-case Essentials fixture is unchanged. The new fixture reuses the established HotbarSaveFixture isolation and the existing Essentials reader/snapshot pattern; it does not add a general test framework, synthetic painter or alternate planting path.
+
+The proposed third constructor is accessed through reflection, so the initial expected failures are the existing outside-opening glyph/reader fallback and absent constructor assertions, rather than a compilation dependency. The refusal case first establishes valid local art and then requires the new adapter before checking all four refusal routes. The real lifecycle begins with the currently missing carried native reader, then checks genuine commands and exact stock/crop changes. Those predictions were subsequently confirmed by the five-case native RED recorded below.
+
+Verification corrections: no test accesses internal `Entity.SpatialZone`; the reader retains its public Zone and removes only its owned viewer. `HotbarSaveFixture(false,false)` preserves the previous SeedPart.Factory, SettlementRuntime and TurnManager state; MessageLog/audio/diagnostic collections additionally use the prior Essentials snapshot restoration. Both target seeds intentionally plant underfoot on ordinary Grass with no CultivatedSoil marker, matching the source contract. Their shared planting engine is exercised with gladroot here; existing PlotProduct parameterized cases retain real planting coverage for both identities.
+
+### Actual baseline now captured by root
+
+Root completed four ordinary Editor captures before runtime changes: `portable-seeds-before-01-inventory.png`, `-02-gladroot-reader.png`, `-03-emberwheat-reader.png` and `-04-ground.png` under `Docs/Verification/Live16x24/`. The ground view was independently inspected: small glyph goods remain beside the player in the real mire; the log records the gladroot drop and hostile Bandfrog attacks. This is not a safe staged scene. Root preserved `Fixtures/portable-seeds-ground165` after the real drops: emberwheat2698×2 at(40,10), gladroot2697×4 at(41,10), Player at(42,10), HP28 with bleeding, turn2480. The read-only `portable-seeds-before-state.json` corroborates zone/position/HP; exact IDs/counts and turn are root's saved-session observation. No mechanics were modified to obtain the baseline.
+
+## RED and implementation
+
+Root's actual native EditMode job `b8a08b1c81b8433bb00b44e0c3c10247` completed all five cases with five intended assertion failures: two outside-opening world glyphs, two absent optional-three-texture constructor assertions and one carried-reader glyph. There was no compilation failure. `Docs/Verification/Live16x24/portable-seeds-native-red.json` preserves the uncapped five identities/messages and native timestamps; its result field is null, so no XML/result-array claim is made.
+
+Only two runtime files changed after that RED. `FlatPixelExpeditionEssentialsCatalog` now owns two additional cached16×24 Sprite/Tile views of the borrowed approved plot-products atlas. Its existing two-input constructor forwards null for that independent atlas; its default constructor explicitly loads it. Exact CandyCarrotSeed and EmberwheatSeed predicates require one current owned Seed, the authored crop and RequireCultivatedSoil=false. Existing Item/physics/render/stack/footprint/foreign-role checks remain shared. Disposal releases both new owned views, never the borrowed texture.
+
+`FlatPixelGreyboxCatalog` stores the plotProductsAtlas already supplied through its preserved eleven-input constructor chain and passes it to the Essentials adapter. No implicit reload occurs for a null or malformed explicitly injected atlas. Its four existing authoritative known-role routes now cover these two exact seeds without broadening opening/region admission or unrelated products. No new selector framework, simulation event, RNG, timer, art generation, asset import change or mechanic was added. The new five-case fixture and existing20-case Essentials fixture remain unchanged after RED.
+
+Self-review: 🧪 source publication remains pending; independent actual-image review is complete; no area, full growth-cycle or package acceptance is claimed. Native GREEN and ordinary pickup/planting/restart are recorded below. ⚪ scope remains the two exact roles within the existing portable-supplies adapter; unrelated seeds and crops keep their previous art policy. Independent source review found no concrete blocker. Existing PlotProduct/Essentials/GlobalPresentation fixtures are the regression controls for adjacent art and authority; additional tests should only follow a demonstrated gap.
+
+### Native GREEN and regression result
+
+Root's actual EditMode job `f8ca8df31bba441fb7de483db5975660` passed142/142 distinct cases, zero failed and zero skipped. The reported suite duration was14.1142411seconds. `Docs/Verification/Live16x24/portable-seeds-native-green.json` contains the complete142 per-case result entries: five PortableSeed,65 PlotProduct,20 preceding ExpeditionEssentials and52 GlobalPresentation. These are one combined result, not additive overlapping run counts. All five new tests stayed byte-identical to their RED version; no production mechanic or existing fixture was changed to obtain GREEN.
+
+A post-implementation SHA256 check also confirmed all five approved art/source/import/tool pins above unchanged. These native fixtures establish frame/authority/constructor/command invariants and regressions, not ordinary visual quality, whole-area coverage or device performance. The later ordinary after-use/restart observations are recorded below. Runtime and tests remain frozen; the record does not promote source fixtures into broader visual or device acceptance.
+
+## Ordinary Editor use and restart
+
+The accepted after set is eleven PNGs numbered01–06 and08–12 under `Docs/Verification/Live16x24/portable-seeds-after-*`. The separate `portable-seeds-trial-inventory-still-open.png` and its state receipt are preserved but excluded from that count and from successful interaction evidence. Four before PNGs remain the baseline. Native/code acceptance does not silently substitute for these actual views.
+
+- Continued the earned ground165 state in OpenMire18.8.0: Player42,10, HP28 with real bleeding, turn2480. Emberwheat2698×2 lay on Grass40,10; gladroot2697×4 on Grass41,10. `portable-seeds-observed-ground.json` confirms both exposed exact owners and actual Plantable Grass at40–42,10.
+- Ordinary exact ground actions/readers and adjacent pickup recovered the seeds. Actual carried readers show their approved identity frames. No seed, soil or health state was injected to obtain this route.
+- Real Plant spent one gladroot,4→3, and created CandyCarrotCrop25521 at42,10. Real Plant spent one emberwheat,2→1, and created EmberwheatCrop25522 at41,10. The planted-ground receipts retain the exact owners; this establishes command effects, not approval of their outside-opening crop sprites or a growth/harvest cycle.
+- F5 preserved `Fixtures/portable-seeds-planted166` at turn2510, Player41,10, HP18. Fresh Continue166 restored the same seed IDs/counts3/1, both crop IDs/positions and learned Rain. Normal combat/bleeding losses are retained; this is not a safe, healed or scripted demonstration. `portable-seeds-restarted-state.json` and `portable-seeds-restarted-ground.json` independently record the carried and exposed state.
+- Saved image10 versus restarted image11 differs0/564000world pixels within rectangle[0,40,940,640], as recorded in `portable-seeds-image-comparison.json`. This is a bounded world-rectangle match, not a claim that the whole HUD, every save field, another seed or a device build matches.
+
+Source/fixture review: [independent source review](Verification/Live16x24/portable-seeds-independent-review.md) found no concrete blocker and separately parsed RED5 and GREEN142. Independent actual-image review found no blocking seed-body defect, reproduced exact restart pixels and retained the recorded scope limits. All five approved pins in `portable-seeds-art-pins.json` and the49 unrelated dirty paths are preserved per root's check; no storage deletion occurred. Source publication is pending root; no new commit hash is claimed. Delivered Mac/Linux packages remain source`43a151ddbd714d1bf1a786084e88bc2cfcd5106b` and do not include this seed extension. No Linux/physicalDeck execution or FPS claim.
+
+Next is the existing [original Buckler body plan](GRAPHICS-BUCKLER.md), after this bounded review/publication. Sparse mire composition, other seed identities, outside-opening planted-crop art and all55+5area-polish scopes remain open. The last actual hourly report stays2026-10-28T11:40:19.440648+00:00; next due12:40:19UTC. Updating these records is not another hourly report.
+
+### Changed files in this slice
+
+- `Assets/Scripts/Presentation/Rendering/FlatPixelExpeditionEssentialsCatalog.cs`: two exact seed roles and optional borrowed plot-products frames.
+- `Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs`: preserve and forward the existing explicit plot-products input.
+- `Assets/Tests/EditMode/Presentation/Rendering/FlatPixelPortableSeedTests.cs` plus fresh `.meta`: five focused tests; preceding fixtures unchanged.
+- This plan, the completion/whole-world coverage continuations, CLAUDE's current scope, and the two coverage JSON ledgers: bounded evidence/current-next status only. Root owns the actual captures/receipts, review and publication.

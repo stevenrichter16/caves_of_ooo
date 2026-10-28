@@ -94,7 +94,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSharedStonePropsCatalog _sharedStonePropsArt;
         private FlatPixelIncidentalEquipmentCatalog _incidentalEquipmentArt;
         private FlatPixelHarvestProductsCatalog _harvestProductsArt;
-        private readonly Texture2D _harvestItemsAtlas, _harvestWorksAtlas;
+        private readonly Texture2D _harvestItemsAtlas, _harvestWorksAtlas, _expeditionPlotProductsAtlas;
         private readonly Texture2D _storageAnchorsAtlas, _storageCellarAtlas;
         private FlatPixelAftermathCatalog _aftermathArt;
         private FlatPixelOrchardCatalog _orchardArt;
@@ -214,7 +214,7 @@ namespace CavesOfOoo.Rendering
         public FlatPixelGreyboxCatalog(Texture2D openingAtlas, Texture2D castAtlas, Texture2D anchorsAtlas, Texture2D statesAtlas, Texture2D itemsAtlas, Texture2D cellarAtlas, Texture2D vegetationAtlas, Texture2D worksAtlas, Texture2D plotAtlas, Texture2D keeperAtlas, Texture2D plotProductsAtlas, Texture2D worksProductsAtlas, Texture2D longSwordAtlas)
         {
             _openingArt = new FlatPixelOpeningArtCatalog(openingAtlas, castAtlas, anchorsAtlas, statesAtlas, itemsAtlas, cellarAtlas, vegetationAtlas, worksAtlas, plotAtlas, keeperAtlas, plotProductsAtlas, worksProductsAtlas, longSwordAtlas);
-            _harvestItemsAtlas = itemsAtlas; _harvestWorksAtlas = worksProductsAtlas;
+            _harvestItemsAtlas = itemsAtlas; _harvestWorksAtlas = worksProductsAtlas; _expeditionPlotProductsAtlas = plotProductsAtlas;
             _storageAnchorsAtlas = anchorsAtlas; _storageCellarAtlas = cellarAtlas;
             _residentsCastAtlas = castAtlas;
             int count = Enum.GetValues(typeof(FlatPixelGreyboxKind)).Length;
@@ -1795,7 +1795,8 @@ namespace CavesOfOoo.Rendering
             if (!FlatPixelExpeditionEssentialsCatalog.HasKnownRole(owner)) return null;
             if (_expeditionEssentialsArt == null)
                 _expeditionEssentialsArt = new FlatPixelExpeditionEssentialsCatalog(_harvestItemsAtlas,
-                    _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelExpeditionEssentialsCatalog.BookResourcePath) : null);
+                    _loadOptionalResources ? Resources.Load<Texture2D>(FlatPixelExpeditionEssentialsCatalog.BookResourcePath) : null,
+                    _expeditionPlotProductsAtlas);
             return _expeditionEssentialsArt;
         }
 
