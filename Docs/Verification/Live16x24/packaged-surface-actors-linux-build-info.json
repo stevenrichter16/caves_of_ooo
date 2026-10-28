@@ -1,0 +1,133 @@
+{
+  "created_at_utc": "2026-10-28T02:55:55.701036+00:00",
+  "runtime_source_commit": "8c0c72e11530179fcca73d8fe429b71cd9ccb25b",
+  "package_flavor": "shared-residents-beating-actors",
+  "built_after_utc": "2026-10-28T02:50:52+00:00",
+  "slice_description": "Batched exact neutral Villager/Merchant and Scorpion/BrittleHound/GlassblownDrifter native bodies. Five approved source sprites are borrowed unchanged; no new pixels or animation. Current owner, disclosure, live-body, reskin and resource guards preserve separate corpses, legitimate services, damage/status cues and existing local identities. Farmer, Ellun and other specialist or reskinned residents remain outside this slice. No blueprint, AI, economy, save-format, geometry, global grading or camera change; isolated Shale study remains default-off.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-surface-actors-mac-build.json",
+    "sha256": "7ea930356a4f84f63e40aaa682ea134b664e0f286192d7846ac3ce3343e80c11",
+    "summary": {
+      "job_id": "build-c26a52410e",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-28-surface-actors-8c0c72e11-current/CavesOfOoo.app",
+      "started_at": "2026-10-28T02:51:20.50022Z",
+      "duration_seconds": 82.85525,
+      "completed_at": "2026-10-28T02:52:43.35547Z",
+      "total_size_mb": 344.58,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-surface-actors-linux-build.json",
+    "sha256": "47335edd8547594beb35a061386442dc6c69e486c7dc3805c43e3f5783869d2c",
+    "summary": {
+      "job_id": "build-2273ec8385",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-28-surface-actors-8c0c72e11-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-28T02:53:08.483514Z",
+      "duration_seconds": 94.51863399999999,
+      "completed_at": "2026-10-28T02:54:43.002148Z",
+      "total_size_mb": 325.04,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-residents-final154.json",
+          "sha256": "c02b642bd7a3144cd13355bf6902a23e47d6abdc9c5d56ad947ed9f008fb9dea",
+          "mode": "EditMode",
+          "summary": {
+            "total": 154,
+            "passed": 154,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 20.7077738,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 154,
+          "job_metadata": "Not supplied by these exported Results; no job times inferred.",
+          "scope": "Retained sequential native checkpoint, not executed by this wrapper."
+        },
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/beating-actors-final-139.json",
+          "sha256": "d6a6931e8170becaf30a801c51dcea1306ae105616fe16959fd391b26d104b15",
+          "mode": "EditMode",
+          "summary": {
+            "total": 139,
+            "passed": 139,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 16.5677625,
+            "resultState": "Passed"
+          },
+          "actual_case_rows": 139,
+          "job_metadata": "Not supplied by these exported Results; no job times inferred.",
+          "scope": "Retained sequential native checkpoint, not executed by this wrapper."
+        }
+      ],
+      "current_source_binding": {
+        "source_commit": "8c0c72e11530179fcca73d8fe429b71cd9ccb25b",
+        "pins": {
+          "Assets/Resources/Sprites/Environment/brittle_hound.png": "6b277f949cf55edad26579ebfc732d93af95f285650b6dfaabe94ad60d94fea8",
+          "Assets/Resources/Sprites/Environment/glassblown_drifter.png": "2dbfbc75816a83e7bda5243cc87ef11834684624cadeea2428d70c8b3ed5bcd0",
+          "Assets/Resources/Sprites/Environment/merchant.png": "d79c98d33a03b156c400e9f7120c99f1a133a67468c3dfee609e77af53ea6f2e",
+          "Assets/Resources/Sprites/Environment/scorpion.png": "32650e55a2a1284984fb11129b243242f4f613551e175272f0535a55c3205091",
+          "Assets/Resources/Sprites/Live16x24/opening-cast.png": "35a2de34d9bf6d6dfe66c7dd47439f7ac03ec6b7de9e09f026d6cb623e24d73a",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelBeatingActorsCatalog.cs": "6969393677d17fa5efb58667504e5df5867083ba9763cf6bead192ad324322e0",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "a8eefa30a32daea0f601bbf826063e872cb9a029b16954381b156f6041d12762",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedResidentsCatalog.cs": "efec19a6fd5f99f47a64e4b3d8c8d43d0c7d15152535aadcac06996eb0a54b4d",
+          "Assets/Tests/EditMode/FlatPixelBeatingActorsTests.cs": "05c1a605a7d7e05b2853706154db56708eac9f13f1c2735133db7d9d441d5846",
+          "Assets/Tests/EditMode/FlatPixelSharedResidentsTests.cs": "ac3dd19686223cd93a9a2f949b23c22630029732bd1006744c427ead6e9acc53",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelOpeningArtCatalogTests.cs": "8a88bf008572c621c56802b747a73ad1caa253a94a4bba77da61b07577e34305",
+          "Docs/Verification/Live16x24/beating-actors-final-139.json": "d6a6931e8170becaf30a801c51dcea1306ae105616fe16959fd391b26d104b15",
+          "Docs/Verification/Live16x24/shared-residents-final154.json": "c02b642bd7a3144cd13355bf6902a23e47d6abdc9c5d56ad947ed9f008fb9dea"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Selected current files match reviewed byte pins. Earlier Results remain sequential checkpoints. Root asserts source freeze/build provenance; no binary reproducibility or native job timing proof."
+      },
+      "execution_occurrences": 293,
+      "passed_execution_occurrences": 293,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "repeated_identity_occurrences": 24,
+      "distinct_test_identities_across_listed_receipts": 269,
+      "distinct_passed_test_identities": 269,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "combined_final_source_execution": false,
+      "native_job_times_verified": false,
+      "residents_checkpoint_passed": 154,
+      "beating_checkpoint_passed": 139,
+      "skipped_identities": [],
+      "inconclusive_identities": [],
+      "limits": "154 residents plus 139 Beating occurrences, deduplicated by exact fullName, give 269 unique Passed. No execution dates or job metadata are invented. No test rerun, gameplay, Linux/Deck or performance certification."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "Scope is the five exact eligible living identities: Villager, Merchant, Scorpion, BrittleHound and GlassblownDrifter. Services and contents remain simulation-owned. Actual Sill and Beating observations are bounded samples; Farmer, specialist residents, other actors, hazards and regional families remain open.",
+    "Body coverage and reader identity do not establish whole-scene fullness, reference parity or area polish. Mixed native cell sizes, sparse composition and remaining glyphs need later cohesive scene review. Actual journeys, purchases, combat and persistence have separate records.",
+    "Two complete retained native Results contain 269 distinct Passed identities across 293 occurrences with 24 repeated SharedResidents identities: 154 residents checkpoint plus 139 Beating checkpoint. These are sequential checkpoints, not one final-source combined run. No earlier subset execution is added. Exported Results provide no job timestamps; none are invented. No performance claim follows.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Worldwide static coverage and later area polish remain open."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

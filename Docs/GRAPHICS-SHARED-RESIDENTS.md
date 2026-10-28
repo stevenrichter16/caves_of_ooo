@@ -56,3 +56,7 @@ Independent cold review found no P1/P2 in catalog/four routes/resources/cues/dis
 **Self-review:** no remaining P1/P2 identified by independent source review. Coverage is bounded to two roles, not every settlement. Whole-scene captures retain sparse grass, dark repeated surfaces and specialist glyphs; no area-polish promotion. Merchant16×16 body is smaller/rounder than Villager16×24; source-preserving reuse is intentional and may need the later cohesive cast-polish pass. Exact editable Merchant raster provenance remains unidentified. Existing Mac/Linux packages remain source7e2ed7a30 and do not yet include residents; batch the next surface-family source before rebuilding.
 
 **Next:** Beating Scorpion/BrittleHound/GlassblownDrifter preflight in `GRAPHICS-BEATING-WILDLIFE.md`. Missing surface creatures and talkable drifter are higher-impact next coverage than parked cave liquids. Full world coverage, harvest observations, Farmer/specialist residents and55+5 area-polish scopes remain open.
+
+## Packaged delivery addendum — 2026-10-28
+
+Source8c0c72e11530179fcca73d8fe429b71cd9ccb25b is verified on origin/main. Fresh combined Mac/Linux builds succeeded; actual Mac drifter/merchant samples, movement, F5 and full-process reload are verified within [surface delivery bounds](Verification/Live16x24/packaged-surface-actors-delivery.md). Prior package-pending statements above are historical. Linux archive verified; Linux/Deck not run. Remaining world coverage and serious area polish are unchanged.

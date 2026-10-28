@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** Residents and three Beating bodies now have native/actual Editor evidence, including dialogue/trade and persistence. Current packages remain source7e2ed7a30; batch surface delivery next. Select further work by whole-game visible impact; shared surface props are the next finite candidate audit. See Docs/GRAPHICS-BEATING-WILDLIFE.md and current completion continuation. Preserve approved art; coverage is not area polish. Storage is inspection-only.
+**Whole-game credit priority (2026-10-28):** Residents and three Beating bodies are published in source8c0c72e11, with combined fresh Mac/Linux builds, bounded actual Mac play and preservation verified. Next finite candidate: shared Sack, Urn and ordinary Well; read Docs/GRAPHICS-SHARED-CAMP-PROPS.md and current completion continuation. Root must verify source triage/current owners before implementation. Maximize whole-game visible coverage, preserve approved art and defer optional animation. Coverage is not area polish; storage remains inspection-only.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.
