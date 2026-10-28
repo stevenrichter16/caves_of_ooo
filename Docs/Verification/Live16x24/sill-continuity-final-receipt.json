@@ -1,0 +1,129 @@
+{
+  "utc": "2026-10-28T19:30:04.972813+00:00",
+  "status": "bounded_editor_verified;publication_pending",
+  "scope": [
+    "Sill visible canonical WaterPuddle using unchanged opening-ground frames0\u201315",
+    "Sill selected remembered Grass/StoneFloor/StoneWall/VineWall using unchanged material views"
+  ],
+  "native": {
+    "memory_red": "16 failed before implementation",
+    "river_red": "18 failed before implementation",
+    "actual_defect_red": "19 total,18 passed,1 initialized-color failure",
+    "final": {
+      "passed": 203,
+      "failed": 0,
+      "job": "e6477205c795488b8f0c99dd084f7bce",
+      "xml": "sill-continuity-native-green.xml"
+    }
+  },
+  "actual": {
+    "seed": 65,
+    "before_fixture": "Fixtures/sill-continuity-before184",
+    "before_turn": 520,
+    "before_position": [
+      39,
+      20
+    ],
+    "actions": [
+      "Continue184 matched river",
+      "real water interaction/examine",
+      "four Down through river; Right to dry40,24",
+      "return around roaming merchant to court39,7",
+      "world-map glade travel and Sill return",
+      "F5 and new isolated Continue185"
+    ],
+    "after_fixture": "Fixtures/sill-continuity-return185",
+    "after_turn": 850,
+    "after_position": [
+      39,
+      11
+    ],
+    "hp": 40,
+    "restart": {
+      "comparison": "saved travel return vs freshContinue185",
+      "crop": [
+        0,
+        40,
+        940,
+        640
+      ],
+      "changed_pixels": 1892,
+      "total_pixels": 564000,
+      "difference_bbox_in_crop": [
+        7,
+        148,
+        605,
+        333
+      ],
+      "bounds": "Actual world viewport only; UI excluded. No whole-chunk or historical-memory parity claim."
+    }
+  },
+  "profile": "sill-continuity-editor-profile.json",
+  "profile_bounds": "90.804s elapsed;32768 retained samples wrapped out of54244frames; river crossing/reader/dry bank plus UI/tool/idle. Renderer max55.142ms,p99.201ms;Main max2846.632ms. No controlled speedup/build/Deck claim. Earlier stationary failed integration retained separately as diagnostic.",
+  "review": "sill-continuity-independent-review.md",
+  "input_bounds": "Three atlas PNGs unchanged. Five of six initial input pins remain exact; sill-environment.png.meta was observed after Unity whitespace normalization, then backed up and restored to HEAD semantically identical source metadata. See preservation receipt. No pixel or import-setting revision.",
+  "current_input_pins": {
+    "Assets/Resources/Sprites/Live16x24/opening-ground.png": "b35f9d6a4b7051eb6971a00195a069f58d08a7d89e3060533745ee899a66dede",
+    "Assets/Resources/Sprites/Live16x24/opening-ground.png.meta": "3353d52dbe5812efa17a08c1f45fccc6747196e9289d8c155941c15661539f6e",
+    "Assets/Resources/Sprites/Live16x24/sill-environment.png": "94b965ad31c0cb9aa6b65f4a496af06640febcbc2b987402e11fd515bcc47662",
+    "Assets/Resources/Sprites/Live16x24/sill-environment.png.meta": "8cf5ce4f8065372cdcdcc1fc208eed467b5a58396c27b638dd5710abb560d291",
+    "Assets/Resources/Sprites/Live16x24/sill-envelope.png": "bde729b96032b623093f430f8929bbb5e61a9f2649f85311aa3d6c36cfbe253f",
+    "Assets/Resources/Sprites/Live16x24/sill-envelope.png.meta": "aeee6d011efaa37537bef756cebb0ff242cb6ff6f85124ba6086c33d8cfdbffb"
+  },
+  "tested_source_pins": "sill-continuity-tested-source-pins.json",
+  "preservation": "sill-continuity-preservation.json",
+  "remaining": [
+    "Uniform water and hard shoreline edges",
+    "Sparse lawns/whole-chunk composition",
+    "Isolated remembered vine knots",
+    "Glyph forge/provisioner and other unreviewed families/areas",
+    "Localized restart differences of unproven cause",
+    "Current43a151ddb packages exclude this pass; physicalDeck untested"
+  ],
+  "next": "Small reversible light/contact-shadow pilot per new direct user request; environmental and population work continue across areas; crops/optional animation deferred.",
+  "evidence_files": [
+    "Docs/Verification/Live16x24/sill-continuity-bank-before.json",
+    "Docs/Verification/Live16x24/sill-continuity-bank-before.png",
+    "Docs/Verification/Live16x24/sill-continuity-court-final.json",
+    "Docs/Verification/Live16x24/sill-continuity-court-final.png",
+    "Docs/Verification/Live16x24/sill-continuity-court-return.json",
+    "Docs/Verification/Live16x24/sill-continuity-court-return.png",
+    "Docs/Verification/Live16x24/sill-continuity-crossed.json",
+    "Docs/Verification/Live16x24/sill-continuity-crossed.png",
+    "Docs/Verification/Live16x24/sill-continuity-diagnostic-profile.json",
+    "Docs/Verification/Live16x24/sill-continuity-dry-bank.json",
+    "Docs/Verification/Live16x24/sill-continuity-editor-profile.json",
+    "Docs/Verification/Live16x24/sill-continuity-first-native-green202.xml",
+    "Docs/Verification/Live16x24/sill-continuity-fresh-continue185.json",
+    "Docs/Verification/Live16x24/sill-continuity-fresh-continue185.png",
+    "Docs/Verification/Live16x24/sill-continuity-glade-travel.json",
+    "Docs/Verification/Live16x24/sill-continuity-glade-travel.png",
+    "Docs/Verification/Live16x24/sill-continuity-independent-review.md",
+    "Docs/Verification/Live16x24/sill-continuity-initialized-color-red.xml",
+    "Docs/Verification/Live16x24/sill-continuity-memory-native-red.xml",
+    "Docs/Verification/Live16x24/sill-continuity-native-green.xml",
+    "Docs/Verification/Live16x24/sill-continuity-plan.json",
+    "Docs/Verification/Live16x24/sill-continuity-preservation.json",
+    "Docs/Verification/Live16x24/sill-continuity-restart-comparison.json",
+    "Docs/Verification/Live16x24/sill-continuity-river-after.json",
+    "Docs/Verification/Live16x24/sill-continuity-river-after.png",
+    "Docs/Verification/Live16x24/sill-continuity-river-before.json",
+    "Docs/Verification/Live16x24/sill-continuity-river-before.png",
+    "Docs/Verification/Live16x24/sill-continuity-river-final.png",
+    "Docs/Verification/Live16x24/sill-continuity-river-native-red.xml",
+    "Docs/Verification/Live16x24/sill-continuity-start183.json",
+    "Docs/Verification/Live16x24/sill-continuity-tested-source-pins.json",
+    "Docs/Verification/Live16x24/sill-continuity-travel-return.json",
+    "Docs/Verification/Live16x24/sill-continuity-travel-return.png",
+    "Docs/Verification/Live16x24/sill-continuity-water-menu.png",
+    "Docs/Verification/Live16x24/sill-continuity-water-reader.png"
+  ],
+  "fixtures": [
+    "Docs/Verification/Live16x24/Fixtures/sill-continuity-before184/Quick.json",
+    "Docs/Verification/Live16x24/Fixtures/sill-continuity-before184/Quick.sav.gz",
+    "Docs/Verification/Live16x24/Fixtures/sill-continuity-before184/provenance.txt",
+    "Docs/Verification/Live16x24/Fixtures/sill-continuity-return185/Quick.json",
+    "Docs/Verification/Live16x24/Fixtures/sill-continuity-return185/Quick.sav.gz",
+    "Docs/Verification/Live16x24/Fixtures/sill-continuity-return185/provenance.txt"
+  ]
+}

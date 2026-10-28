@@ -1,0 +1,71 @@
+{
+  "label": "sill-continuity-diagnostic-profile",
+  "start": "2026-10-28T19:11:27.204975Z",
+  "end": "2026-10-28T19:12:01.36831Z",
+  "elapsedSeconds": 34.163336,
+  "frames": 15150,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    39,
+    20
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 15150,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 111038.95247524753,
+      "max": 11445000,
+      "p99": 244000
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 15150,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "TimeNanoseconds",
+      "mean": 2244208.921650165,
+      "max": 4655282166,
+      "p99": 4494250
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 15150,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 41.19452145214522,
+      "max": 42,
+      "p99": 42
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 15150,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 41.19452145214522,
+      "max": 42,
+      "p99": 42
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 15150,
+      "capacity": 32768,
+      "wrapped": false,
+      "unit": "Count",
+      "mean": 10487.846468646865,
+      "max": 10492,
+      "p99": 10492
+    }
+  ],
+  "bounds": "Rejected first integration: stationary river checkpoint with tool/idle time only; no crossing or interaction occurred. Diagnostic only, not final performance acceptance."
+}

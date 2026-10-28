@@ -1,0 +1,71 @@
+{
+  "label": "sill-continuity-editor-profile",
+  "start": "2026-10-28T19:18:57.662685Z",
+  "end": "2026-10-28T19:20:28.466374Z",
+  "elapsedSeconds": 90.803689999999989,
+  "frames": 54244,
+  "zone": "Overworld.10.10.0",
+  "player": [
+    40,
+    24
+  ],
+  "hp": 40,
+  "rows": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 92734.9292602539,
+      "max": 55142208,
+      "p99": 200625
+    },
+    {
+      "name": "Main Thread",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "TimeNanoseconds",
+      "mean": 1651715.22946167,
+      "max": 2846632459,
+      "p99": 2409125
+    },
+    {
+      "name": "Draw Calls Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 42.407318115234375,
+      "max": 48,
+      "p99": 48
+    },
+    {
+      "name": "Batches Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 42.407318115234375,
+      "max": 48,
+      "p99": 48
+    },
+    {
+      "name": "Triangles Count",
+      "valid": true,
+      "count": 32768,
+      "capacity": 32768,
+      "wrapped": true,
+      "unit": "Count",
+      "mean": 9858.24771118164,
+      "max": 13691,
+      "p99": 13691
+    }
+  ],
+  "bounds": "Editor Sill ordinary river crossing, water interaction/reader to the far dry bank, plus idle/UI/tool time. Not a controlled baseline speedup or physical Deck measurement; samples may wrap as reported."
+}

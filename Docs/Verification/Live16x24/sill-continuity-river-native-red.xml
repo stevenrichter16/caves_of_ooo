@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="0" failed="18" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 19:05:22Z" end-time="2026-10-28 19:05:25Z" duration="2.5506132">
+  <test-suite type="TestSuite" id="41920" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34059" result="Failed" site="Child" start-time="2026-10-28 19:05:22Z" end-time="2026-10-28 19:05:25Z" duration="2.550613" total="18" passed="0" failed="18" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41891" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34059" result="Failed" site="Child" start-time="2026-10-28 19:05:23Z" end-time="2026-10-28 19:05:25Z" duration="2.289179" total="18" passed="0" failed="18" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41892" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34059" result="Failed" site="Child" start-time="2026-10-28 19:05:23Z" end-time="2026-10-28 19:05:25Z" duration="2.258127" total="18" passed="0" failed="18" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41893" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34059" result="Failed" site="Child" start-time="2026-10-28 19:05:23Z" end-time="2026-10-28 19:05:25Z" duration="2.254081" total="18" passed="0" failed="18" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2035" name="FlatPixelSillRiverTests" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-28 19:05:23Z" end-time="2026-10-28 19:05:25Z" duration="2.244342" total="18" passed="0" failed="18" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2037" name="AllSixteenBanksUseDisclosedDryBitsNotWaterConnections" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.AllSixteenBanksUseDisclosedDryBitsNotWaterConnections" methodname="AllSixteenBanksUseDisclosedDryBitsNotWaterConnections" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="1582909179" result="Failed" start-time="2026-10-28 19:05:23Z" end-time="2026-10-28 19:05:23Z" duration="0.656999" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.AllSixteenBanksUseDisclosedDryBitsNotWaterConnections () [0x0007b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:112
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2056" name="CachedFramesAreOwnedButAtlasAndSelectorRemainBorrowed" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.CachedFramesAreOwnedButAtlasAndSelectorRemainBorrowed" methodname="CachedFramesAreOwnedButAtlasAndSelectorRemainBorrowed" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="1027824832" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.051957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Exact Sill river companion is not implemented.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Adapter () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:52
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.Construct (UnityEngine.Texture2D atlas, CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:84
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.CachedFramesAreOwnedButAtlasAndSelectorRemainBorrowed () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:260
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2039" name="EmptyAlteredThermalMaterialRenderOrForeignRoleCannotUseWaterBody" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.EmptyAlteredThermalMaterialRenderOrForeignRoleCannotUseWaterBody" methodname="EmptyAlteredThermalMaterialRenderOrForeignRoleCannotUseWaterBody" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="918388379" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.051279" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.EmptyAlteredThermalMaterialRenderOrForeignRoleCannotUseWaterBody () [0x000ec] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2047" name="FogAndRemovedOwnerRetireAuthorizedReaderWithoutLivePoolDisclosure" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.FogAndRemovedOwnerRetireAuthorizedReaderWithoutLivePoolDisclosure" methodname="FogAndRemovedOwnerRetireAuthorizedReaderWithoutLivePoolDisclosure" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="561411086" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.050356" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.FogAndRemovedOwnerRetireAuthorizedReaderWithoutLivePoolDisclosure () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:217
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2038" name="HiddenUnknownOrMixedNeighborCannotRevealABankAndCoveringActorDoesNotChangeIt" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.HiddenUnknownOrMixedNeighborCannotRevealABankAndCoveringActorDoesNotChangeIt" methodname="HiddenUnknownOrMixedNeighborCannotRevealABankAndCoveringActorDoesNotChangeIt" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="1681399715" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.047362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.HiddenUnknownOrMixedNeighborCannotRevealABankAndCoveringActorDoesNotChangeIt () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:118
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2050" name="MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.297991" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2048" name="MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads(False)" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads(False)" methodname="MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="2001024225" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.050207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads (System.Boolean malformed) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:231
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2049" name="MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads(True)" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads(True)" methodname="MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="2045408366" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.055827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.MissingOrMalformedAtlasKeepsActualWaterMarkAndNeverReloads (System.Boolean malformed) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:231
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2046" name="OnlyCurrentCanonicalSillWithExactLivePoiMapAndBiomeCanUseTheAdapter" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.OnlyCurrentCanonicalSillWithExactLivePoiMapAndBiomeCanUseTheAdapter" methodname="OnlyCurrentCanonicalSillWithExactLivePoiMapAndBiomeCanUseTheAdapter" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="987413829" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.054211" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.OnlyCurrentCanonicalSillWithExactLivePoiMapAndBiomeCanUseTheAdapter () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:206
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2043" name="SourcePartsMustBeUniqueAndOwned" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SourcePartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.302645" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2040" name="SourcePartsMustBeUniqueAndOwned(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SourcePartsMustBeUniqueAndOwned(&quot;missing&quot;)" methodname="SourcePartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="1735685449" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.068905" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.SourcePartsMustBeUniqueAndOwned (System.String fault) [0x00087] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:166
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2041" name="SourcePartsMustBeUniqueAndOwned(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SourcePartsMustBeUniqueAndOwned(&quot;foreign&quot;)" methodname="SourcePartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="1538694185" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.065067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.SourcePartsMustBeUniqueAndOwned (System.String fault) [0x00087] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:166
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2042" name="SourcePartsMustBeUniqueAndOwned(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SourcePartsMustBeUniqueAndOwned(&quot;duplicate&quot;)" methodname="SourcePartsMustBeUniqueAndOwned" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="460918773" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:24Z" duration="0.061554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.SourcePartsMustBeUniqueAndOwned (System.String fault) [0x00087] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:166
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2055" name="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:25Z" duration="0.360544" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2051" name="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;heat&quot;,'^')" methodname="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="52163729" result="Failed" start-time="2026-10-28 19:05:24Z" end-time="2026-10-28 19:05:25Z" duration="0.059969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard (System.String hazard, System.Char glyph) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:242
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2052" name="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;charge&quot;,'*')" methodname="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="1559995555" result="Failed" start-time="2026-10-28 19:05:25Z" end-time="2026-10-28 19:05:25Z" duration="0.060573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard (System.String hazard, System.Char glyph) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:242
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2053" name="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;cloud&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;cloud&quot;,'\'')" methodname="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="415815700" result="Failed" start-time="2026-10-28 19:05:25Z" end-time="2026-10-28 19:05:25Z" duration="0.059607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard (System.String hazard, System.Char glyph) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:242
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2054" name="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;residue&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard(&quot;residue&quot;,'&quot;')" methodname="SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="355867059" result="Failed" start-time="2026-10-28 19:05:25Z" end-time="2026-10-28 19:05:25Z" duration="0.066712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.SubmittedWaterSuppressesOnlySoleWaterAndKeepsIndependentHazard (System.String hazard, System.Char glyph) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:242
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2036" name="VisibleActualWaterKeepsGrassActorReaderAndSimulationIdentity" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.VisibleActualWaterKeepsGrassActorReaderAndSimulationIdentity" methodname="VisibleActualWaterKeepsGrassActorReaderAndSimulationIdentity" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="701635681" result="Failed" start-time="2026-10-28 19:05:25Z" end-time="2026-10-28 19:05:25Z" duration="0.068597" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.VisibleActualWaterKeepsGrassActorReaderAndSimulationIdentity () [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:90
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2045" name="VisibleCompetingSubstrateRefusesWhileHiddenCustodiedOrForeignContentDoesNotLeak" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.VisibleCompetingSubstrateRefusesWhileHiddenCustodiedOrForeignContentDoesNotLeak" methodname="VisibleCompetingSubstrateRefusesWhileHiddenCustodiedOrForeignContentDoesNotLeak" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="314301773" result="Failed" start-time="2026-10-28 19:05:25Z" end-time="2026-10-28 19:05:25Z" duration="0.061405" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.VisibleCompetingSubstrateRefusesWhileHiddenCustodiedOrForeignContentDoesNotLeak () [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:196
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2044" name="WaterLookingCoatingAloneMixedTemporaryProjectedOrDuplicateSourceRefuses" fullname="CavesOfOoo.Tests.FlatPixelSillRiverTests.WaterLookingCoatingAloneMixedTemporaryProjectedOrDuplicateSourceRefuses" methodname="WaterLookingCoatingAloneMixedTemporaryProjectedOrDuplicateSourceRefuses" classname="CavesOfOoo.Tests.FlatPixelSillRiverTests" runstate="Runnable" seed="609926282" result="Failed" start-time="2026-10-28 19:05:25Z" end-time="2026-10-28 19:05:25Z" duration="0.067559" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <opening-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillRiverTests.Native (UnityEngine.Tilemaps.Tile t, System.Int32 mask, UnityEngine.Texture2D texture) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:66
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.NativeWater (CavesOfOoo.Core.Entity expected, System.Int32 mask) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSillRiverTests.WaterLookingCoatingAloneMixedTemporaryProjectedOrDuplicateSourceRefuses () [0x0006e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSillRiverTests.cs:176
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:58Z" duration="2.6447942">
+  <test-suite type="TestSuite" id="41897" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34041" result="Failed" site="Child" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:58Z" duration="2.644794" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41869" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34041" result="Failed" site="Child" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:58Z" duration="2.405053" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41870" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34041" result="Failed" site="Child" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:58Z" duration="2.399188" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41871" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34041" result="Failed" site="Child" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:58Z" duration="2.369683" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32426" name="FlatPixelSillMemoryTests" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:58Z" duration="2.356270" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32435" name="HiddenMutableValuesDoNotChangeStaticMemory" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.HiddenMutableValuesDoNotChangeStaticMemory" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:56Z" duration="0.666737" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32433" name="HiddenMutableValuesDoNotChangeStaticMemory(&quot;Grass&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.HiddenMutableValuesDoNotChangeStaticMemory(&quot;Grass&quot;,True)" methodname="HiddenMutableValuesDoNotChangeStaticMemory" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="544617374" result="Failed" start-time="2026-10-28 19:02:55Z" end-time="2026-10-28 19:02:56Z" duration="0.538667" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.HiddenMutableValuesDoNotChangeStaticMemory (System.String blueprint, System.Boolean ground) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:112
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32434" name="HiddenMutableValuesDoNotChangeStaticMemory(&quot;StoneWall&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.HiddenMutableValuesDoNotChangeStaticMemory(&quot;StoneWall&quot;,False)" methodname="HiddenMutableValuesDoNotChangeStaticMemory" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="134752431" result="Failed" start-time="2026-10-28 19:02:56Z" end-time="2026-10-28 19:02:56Z" duration="0.067656" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.HiddenMutableValuesDoNotChangeStaticMemory (System.String blueprint, System.Boolean ground) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:112
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32442" name="InvalidStaticMemoryIdentityKeepsExactFallback" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-28 19:02:56Z" end-time="2026-10-28 19:02:57Z" duration="0.520808" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32438" name="InvalidStaticMemoryIdentityKeepsExactFallback(&quot;custom&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback(&quot;custom&quot;)" methodname="InvalidStaticMemoryIdentityKeepsExactFallback" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="714526901" result="Failed" start-time="2026-10-28 19:02:56Z" end-time="2026-10-28 19:02:56Z" duration="0.054241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:166
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32439" name="InvalidStaticMemoryIdentityKeepsExactFallback(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback(&quot;foreign-render&quot;)" methodname="InvalidStaticMemoryIdentityKeepsExactFallback" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="1185285736" result="Failed" start-time="2026-10-28 19:02:56Z" end-time="2026-10-28 19:02:56Z" duration="0.067225" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:166
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32440" name="InvalidStaticMemoryIdentityKeepsExactFallback(&quot;duplicate-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback(&quot;duplicate-physics&quot;)" methodname="InvalidStaticMemoryIdentityKeepsExactFallback" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="2108504874" result="Failed" start-time="2026-10-28 19:02:56Z" end-time="2026-10-28 19:02:57Z" duration="0.050642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:166
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32441" name="InvalidStaticMemoryIdentityKeepsExactFallback(&quot;wide-footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback(&quot;wide-footprint&quot;)" methodname="InvalidStaticMemoryIdentityKeepsExactFallback" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="365599136" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.070668" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.InvalidStaticMemoryIdentityKeepsExactFallback (System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:166
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32437" name="LiveFamiliesRemainAbsentWhileTheirUnderlyingStaticMemoryStaysUnchanged" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.LiveFamiliesRemainAbsentWhileTheirUnderlyingStaticMemoryStaysUnchanged" methodname="LiveFamiliesRemainAbsentWhileTheirUnderlyingStaticMemoryStaysUnchanged" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="725801516" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.061327" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.LiveFamiliesRemainAbsentWhileTheirUnderlyingStaticMemoryStaysUnchanged () [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:153
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32443" name="MemoryRequiresExploredCurrentExactSillGraph" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.MemoryRequiresExploredCurrentExactSillGraph" methodname="MemoryRequiresExploredCurrentExactSillGraph" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="533451058" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.062421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.MemoryRequiresExploredCurrentExactSillGraph () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:176
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32436" name="MemoryUsesOnlySelectedStaticOwnerAndNeverResolvesHiddenLowerGround" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.MemoryUsesOnlySelectedStaticOwnerAndNeverResolvesHiddenLowerGround" methodname="MemoryUsesOnlySelectedStaticOwnerAndNeverResolvesHiddenLowerGround" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="162314216" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.065399" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.MemoryUsesOnlySelectedStaticOwnerAndNeverResolvesHiddenLowerGround () [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:135
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32444" name="MissingOrMalformedMemoryArtKeepsIndependentLegacyOrGlyphFallback" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.MissingOrMalformedMemoryArtKeepsIndependentLegacyOrGlyphFallback" methodname="MissingOrMalformedMemoryArtKeepsIndependentLegacyOrGlyphFallback" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="1852850216" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.076289" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sill-envelope (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.MissingOrMalformedMemoryArtKeepsIndependentLegacyOrGlyphFallback () [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:204
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32432" name="RememberedVineIsIsolatedRegardlessOfVisibleOrHiddenNeighborChanges" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.RememberedVineIsIsolatedRegardlessOfVisibleOrHiddenNeighborChanges" methodname="RememberedVineIsIsolatedRegardlessOfVisibleOrHiddenNeighborChanges" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="353489331" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.312067" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <sill-envelope (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.RememberedVineIsIsolatedRegardlessOfVisibleOrHiddenNeighborChanges () [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:98
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32431" name="SelectedStaticMemoryReusesApprovedMaterialWithOneDim" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:58Z" duration="0.374188" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32427" name="SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;Grass&quot;,True,&quot;Sprites/Live16x24/sill-environment&quot;,0,3)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;Grass&quot;,True,&quot;Sprites/Live16x24/sill-environment&quot;,0,3)" methodname="SelectedStaticMemoryReusesApprovedMaterialWithOneDim" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="776516917" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.072238" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim (System.String blueprint, System.Boolean ground, System.String path, System.Int32 first, System.Int32 last) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32428" name="SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;StoneFloor&quot;,True,&quot;Sprites/Live16x24/sill-environment&quot;,4,7)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;StoneFloor&quot;,True,&quot;Sprites/Live16x24/sill-environment&quot;,4,7)" methodname="SelectedStaticMemoryReusesApprovedMaterialWithOneDim" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="635997137" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.056796" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim (System.String blueprint, System.Boolean ground, System.String path, System.Int32 first, System.Int32 last) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32429" name="SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;StoneWall&quot;,False,&quot;Sprites/Live16x24/sill-environment&quot;,8,8)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;StoneWall&quot;,False,&quot;Sprites/Live16x24/sill-environment&quot;,8,8)" methodname="SelectedStaticMemoryReusesApprovedMaterialWithOneDim" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="536112036" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:57Z" duration="0.065469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim (System.String blueprint, System.Boolean ground, System.String path, System.Int32 first, System.Int32 last) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32430" name="SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;VineWall&quot;,False,&quot;Sprites/Live16x24/sill-envelope&quot;,0,0)" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim(&quot;VineWall&quot;,False,&quot;Sprites/Live16x24/sill-envelope&quot;,0,0)" methodname="SelectedStaticMemoryReusesApprovedMaterialWithOneDim" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="759434705" result="Failed" start-time="2026-10-28 19:02:57Z" end-time="2026-10-28 19:02:58Z" duration="0.066485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-envelope (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.Frame (UnityEngine.Tilemaps.Tile tile, System.String path, System.Int32 first, System.Int32 last) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:54
+at CavesOfOoo.Tests.FlatPixelSillMemoryTests.SelectedStaticMemoryReusesApprovedMaterialWithOneDim (System.String blueprint, System.Boolean ground, System.String path, System.Int32 first, System.Int32 last) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32445" name="WarmMemoryQueriesAreReadOnlyAndDisposeOnlyCachedViews" fullname="CavesOfOoo.Tests.FlatPixelSillMemoryTests.WarmMemoryQueriesAreReadOnlyAndDisposeOnlyCachedViews" methodname="WarmMemoryQueriesAreReadOnlyAndDisposeOnlyCachedViews" classname="CavesOfOoo.Tests.FlatPixelSillMemoryTests" runstate="Runnable" seed="517093729" result="Failed" start-time="2026-10-28 19:02:58Z" end-time="2026-10-28 19:02:58Z" duration="0.070288" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSillMemoryTests.WarmMemoryQueriesAreReadOnlyAndDisposeOnlyCachedViews () [0x0003f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSillMemoryTests.cs:220
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -262,7 +262,10 @@ namespace CavesOfOoo.Tests
         {
             Add("Grass"); Add("VineWall"); NativeForeground(Envelope, 0); NativeGround(Environment);
             zone.GetCell(X, Y).IsVisible = false; var remembered = Resolve();
-            Assert.True(remembered.Remembered); Assert.False(remembered.NativeForeground); NotEnvelopeGround();
+            Assert.True(remembered.Remembered); Assert.True(remembered.NativeForeground);
+            Frame(remembered.ForegroundTile, Envelope, 0);
+            Assert.AreEqual(new Color(.35f, .35f, .35f, 1), remembered.ForegroundColor);
+            NotEnvelopeGround(); // The remembered wall does not inspect hidden lower grass.
             zone.GetCell(X, Y).Explored = false; Assert.False(world.TryResolvePresentation(zone, X, Y, out _));
             zone.GetCell(X, Y).Explored = zone.GetCell(X, Y).IsVisible = true; NativeForeground(Envelope, 0);
         }

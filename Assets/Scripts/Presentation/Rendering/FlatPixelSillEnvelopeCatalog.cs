@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Visible static materials for the actual Sill graph. Borrows
+    /// <summary>Visible materials and selected static memory for the actual Sill graph. Borrows
     /// immutable source textures and the current-owner selector; owns only
     /// cached sprites/tiles. Never adds geometry, changes state or expands the opening.</summary>
     public sealed class FlatPixelSillEnvelopeCatalog : IDisposable
@@ -62,6 +62,49 @@ namespace CavesOfOoo.Rendering
             var poi = map.GetPOI(10, 10);
             return poi != null && poi.Type == POIType.Village && poi.Name == "Sill"
                 && poi.Faction == "Villagers" && string.IsNullOrEmpty(poi.Profile);
+        }
+
+        /// <summary>Only the fallback-selected static identity may retain its
+        /// approved material in memory. This is not a last-seen snapshot: no
+        /// live substrate, wall condition or neighboring cell is inspected.
+        /// The caller applies one memory tint and grants no portrait/collision authority.</summary>
+        public bool TryResolveRemembered(Zone zone, int x, int y, Entity owner,
+            out Tile groundTile, out Tile foregroundTile)
+        {
+            groundTile = null; foregroundTile = null;
+            if (disposed || selector == null || !IsSupportedZone(zone)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || cell.IsVisible || owner == null
+                || !selector.TryResolve(zone, x, y, out var selected)
+                || !selected.Remembered || !ReferenceEquals(selected.Owner, owner)) return false;
+
+            bool grass = owner.BlueprintName == "Grass";
+            bool stone = owner.BlueprintName == "StoneFloor";
+            bool wall = owner.BlueprintName == "StoneWall";
+            bool vine = owner.BlueprintName == "VineWall";
+            if (!(grass || stone || wall || vine) || !PlainOwner(owner, grass || stone)) return false;
+            if (grass || stone)
+            {
+                if (!owner.HasTag("Terrain") || owner.HasTag("Wall")
+                    || (grass ? !owner.HasTag("Plantable") || !owner.HasTag("Vegetation")
+                        : owner.HasTag("Vegetation"))) return false;
+                int variant = VariantAt(x, y);
+                groundTile = environment != null ? environment[(stone ? 4 : 0) + variant]
+                    : stone ? stoneFloor == null ? null : stoneFloor[variant]
+                    : envelope == null ? null : envelope[20 + variant];
+            }
+            else
+            {
+                // Ownership/category checks are static. Do not call the live
+                // ForegroundFrame: it reads HP/Gone and current solidity.
+                if (Owned<RenderPart>(owner).RenderString != "#" || !owner.HasTag("Wall")
+                    || Owned<DestructiblePart>(owner) == null
+                    || vine && !owner.HasTag("Vegetation")) return false;
+                foregroundTile = vine ? envelope == null ? null : envelope[0]
+                    : environment != null ? environment[8] : masonry == null ? null : masonry[8];
+            }
+            return groundTile != null || foregroundTile != null;
         }
 
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
