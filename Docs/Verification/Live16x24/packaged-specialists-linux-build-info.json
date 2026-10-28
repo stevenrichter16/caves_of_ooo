@@ -1,0 +1,130 @@
+{
+  "created_at_utc": "2026-10-28T07:28:06.672728+00:00",
+  "runtime_source_commit": "83e1e568fa4e3e2c9d4883fdcaf88be85fea9049",
+  "package_flavor": "shared-settlement-specialists",
+  "built_after_utc": "2026-10-28T07:23:27+00:00",
+  "slice_description": "Batched exact living Weaponsmith, Tinker and WellKeeper native bodies. Weaponsmith borrows its approved 16-by-16 square texture unchanged; Tinker and WellKeeper use two original editable 16-by-24 cells. Current owner, disclosure and independent resource guards preserve mutable health, equipment, names, relationships, conversation, trade and purification teaching. Existing Villager and Merchant bodies remain unchanged. No new service, blueprint, save format, world geometry, global grading or camera behavior; isolated Shale study remains default-off.",
+  "source_provenance": "Full revision and source-freeze time asserted by the root build operator. Both successful receipts identify the requested fresh outputs and start after that boundary. This helper does not query Git or independently prove source-to-binary reproducibility.",
+  "platform": "Linux x86_64",
+  "mac_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-specialists-mac-build.json",
+    "sha256": "7eac871ea63bc2dd26a0a66d6fbfa00b2afc0a096aa2a7d949ed0dfbedce75b6",
+    "summary": {
+      "job_id": "build-89dd32ee24",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-10-28-specialists-83e1e568f-current/CavesOfOoo.app",
+      "started_at": "2026-10-28T07:23:27.974735Z",
+      "duration_seconds": 84.632723,
+      "completed_at": "2026-10-28T07:24:52.607458Z",
+      "total_size_mb": 344.59,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "linux_build_receipt": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/packaged-specialists-linux-build.json",
+    "sha256": "24a05323a51ab7e917db36c24f8bdc1dc6e6ff73bb675ef16438a7b676c72247",
+    "summary": {
+      "job_id": "build-2c5d31f65e",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-10-28-specialists-83e1e568f-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+      "started_at": "2026-10-28T07:25:03.374329Z",
+      "duration_seconds": 88.551906,
+      "completed_at": "2026-10-28T07:26:31.926235Z",
+      "total_size_mb": 325.05,
+      "errors": 0,
+      "warnings": 4
+    }
+  },
+  "default_presentation": "Flat16x24 when no saved explicit choice exists",
+  "prior_presentation_retained": true,
+  "readme_sha256": "d0af15cd3d66dd44949a0135bbf31059796bc905648313812f076e69553ca1c2",
+  "verification": {
+    "native_test_evidence": {
+      "receipts": [
+        {
+          "path": "/Users/steven/caves-of-ooo/Docs/Verification/Live16x24/shared-specialists-native-green.xml",
+          "sha256": "80b266260287b19ca7b8939bcb5300539b5518c696008e86f0cf365d46f2d5d8",
+          "summary": {
+            "id": "2",
+            "testcasecount": "99",
+            "result": "Passed",
+            "total": "99",
+            "passed": "99",
+            "failed": "0",
+            "inconclusive": "0",
+            "skipped": "0",
+            "asserts": "0",
+            "engine-version": "3.5.0.0",
+            "clr-version": "4.0.30319.42000",
+            "start-time": "2026-10-28 07:05:48Z",
+            "end-time": "2026-10-28 07:05:59Z",
+            "duration": "10.6963804"
+          },
+          "actual_case_rows": 99,
+          "mode": "EditMode",
+          "timestamp_source": "Actual native XML; no separate job metadata is inferred."
+        }
+      ],
+      "current_source_binding": {
+        "source_commit": "83e1e568fa4e3e2c9d4883fdcaf88be85fea9049",
+        "pins": {
+          "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "44dbccfb32c3e4b4c0854b71c0a0c161f17cb4e0e9d3175503f83574a0416e9b",
+          "Assets/Scripts/Presentation/Rendering/FlatPixelSharedResidentsCatalog.cs": "06fd622aaa5c3b686699ff9124ac959bbff6fdd9ec8dbb6ad27d40b6c025eb6e",
+          "Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs": "459052551b2236a8c9843874b7bcc3ab7956aa4977c459cadaad2491742ad842",
+          "Assets/Tests/EditMode/FlatPixelSharedWeaponsmithTests.cs": "07749008e2f2a1dc76da594b645e310a9f7b851c577ea1a05ade5246d21ed448",
+          "Assets/Tests/EditMode/FlatPixelSharedResidentsTests.cs": "ac3dd19686223cd93a9a2f949b23c22630029732bd1006744c427ead6e9acc53",
+          "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelIncidentalActorTests.cs": "1d3f95ea1949d822b3f3e53d0f97134fd627d2346af5d6d2fb27b01d75368e9e",
+          "Assets/Resources/Sprites/Live16x24/opening-cast.png": "35a2de34d9bf6d6dfe66c7dd47439f7ac03ec6b7de9e09f026d6cb623e24d73a",
+          "Assets/Resources/Sprites/Environment/merchant.png": "d79c98d33a03b156c400e9f7120c99f1a133a67468c3dfee609e77af53ea6f2e",
+          "Assets/Resources/Sprites/Environment/weaponsmith.png": "d07f8e09765eb0846cdeab7e1ec686145e8ee799e0b30b1c44d35836820ccc66",
+          "Assets/Resources/Sprites/Live16x24/shared-specialists.png": "02f38a58943bdb09eb078802056bc34a379e07a30a1220089e8800177938d402",
+          "ArtSource/Live16x24/shared-specialists/shared-specialists.png": "02f38a58943bdb09eb078802056bc34a379e07a30a1220089e8800177938d402",
+          "ArtSource/Live16x24/shared-specialists/source-cells.json": "47c113f5958f90be20e46860075d36707a89a05eafc7a8173a09419a614b8da8",
+          "ArtSource/Live16x24/shared-specialists/editable.blend": "002e4874231d7dec2f08b7ef7a8e5b3f25e5c3d1a832c1f08268f3043a8e24dd",
+          "ArtSource/Live16x24/shared-specialists/manifest.json": "78c727b90cbff60e03bb17cdf0d10d61fe19219442a5bc2b28118193ac9f62ba",
+          "ArtSource/Live16x24/shared-specialists/import-spec.json": "1598bf18052aa23f074a048ff769dde45f8b47d8c1aa6e28bd0b72260be139f0",
+          "ArtSource/Live16x24/shared-specialists/runtime-publication.json": "757618191ad2232adbdcf3aef4ce97ea544478cc78ce6afaa97cc36d332bfcf0",
+          "Tools/Live16x24/build_shared_specialists.py": "7649c0fff978c5b4a733143bb3a568adbc94ce7923461e1d8346f2f9b8b741d9",
+          "Docs/Verification/Live16x24/shared-specialists-native-green.xml": "80b266260287b19ca7b8939bcb5300539b5518c696008e86f0cf365d46f2d5d8"
+        },
+        "current_source_evidence_resource_bytes_match": true,
+        "limits": "Final selected bytes are pinned separately from the retained runtime test checkpoint. Root asserts source/build provenance; later art revision and gameplay acceptance need their own evidence."
+      },
+      "execution_occurrences": 99,
+      "passed_execution_occurrences": 99,
+      "failed_execution_occurrences": 0,
+      "skipped_execution_occurrences": 0,
+      "inconclusive_execution_occurrences": 0,
+      "repeated_identity_occurrences": 0,
+      "distinct_test_identities_across_listed_receipts": 99,
+      "distinct_passed_test_identities": 99,
+      "distinct_skipped_test_identities": 0,
+      "distinct_inconclusive_test_identities": 0,
+      "all_cases_passed": true,
+      "specialists_focused_passed": 19,
+      "weaponsmith_passed": 17,
+      "other_related_passed": 63,
+      "native_job_times_verified": false,
+      "native_xml_times_verified": true,
+      "skipped_identities": [],
+      "inconclusive_identities": [],
+      "limits": "One 99-case XML only; no earlier Weaponsmith or specialist subset counts added. No test rerun, final-art timing, gameplay, Linux/Deck or performance certification is invented."
+    },
+    "build_receipts": "Mac and Linux succeeded with zero reported errors; warnings retained in each summary.",
+    "editor_gameplay": "Not verified by this packaging helper.",
+    "mac_package_smoke": "Not verified by this packaging helper; separate ordinary standalone evidence required.",
+    "linux_execution": false,
+    "physical_steam_deck": false,
+    "performance_benchmark": "Not performed or certified."
+  },
+  "coverage_limits": [
+    "Scope is three exact eligible settlement resident roles: Weaponsmith, Tinker and WellKeeper. Other professions, service props, actors, areas and world families remain outside this slice. Actual Sill observations, purchases, ordinary movement and persistence have separate evidence.",
+    "Body coverage and reader identity do not establish whole-scene fullness, reference parity or area polish. Mixed cast scale, remaining glyphs, small distant role recognition and surrounding settlement composition remain separate polish work. No new animation or broad world completion is claimed.",
+    "One complete retained native XML contains 99 distinct Passed identities in one 99-case resident checkpoint: 19 specialists, 17 Weaponsmith, 24 residents and 39 incidental-actor cases. Earlier subset executions are not added. Native timestamps come directly from this pinned XML; no job metadata, gameplay or performance certification is invented.",
+    "Build/archive integrity does not certify gameplay, physical controls, full journeys, audio quality, sustained FPS or device performance. Linux is not executed; physical Steam Deck is untested. Worldwide static coverage and later area polish remain open."
+  ],
+  "build_generated_settings": "Root reviews/restores only build-generated settings separately. This helper does not edit project settings or saves."
+}

@@ -1,5 +1,7 @@
 # Shared settlement specialists — original body batch
 
+**Delivery update — 2026-10-28:** Source83e1e568f is remotely verified. Fresh three-NPC Mac/Linux packages now include this body; actual Mac and archive bounds are recorded in [package delivery](Verification/Live16x24/packaged-specialists-delivery.md). Earlier pending statements below are historical.
+
 Status: original editable two-body source and bounded native/actualEditor verification complete; source publication pending. Weaponsmith58192d5b2 is remotely verified. Tinker/WellKeeper are chosen together because both are visibly glyph-only in ordinary seed65 Sill, while the existing legacy mapper gives both the same generic16x16villager. Distinct original16x24 bodies close two real role gaps; Armorer/Apothecary exact16x16 assets remain reusable candidates awaiting actual disclosure. This does not outrank unfinished whole-game coverage or establish area polish.
 
 ## Source corrections before implementation

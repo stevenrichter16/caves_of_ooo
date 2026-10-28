@@ -1,0 +1,73 @@
+{
+  "source_commit": "83e1e568fa4e3e2c9d4883fdcaf88be85fea9049",
+  "capture_origin": "Actual macOS standalone game, CUA app-window captures",
+  "image_size": [
+    1280,
+    856
+  ],
+  "game_size": [
+    1280,
+    800
+  ],
+  "title_bar_pixels": 56,
+  "seed": 65,
+  "zone": "Overworld.10.10.0",
+  "processes": [
+    {
+      "process": 1,
+      "fixture": "shared-specialists-after146",
+      "start": [
+        74,
+        11
+      ],
+      "hp": 38,
+      "observed": [
+        "WellKeeper world/examine/chat/trade",
+        "stock4/keeper122/player28/flask from earlier actual Editor purchase",
+        "ordinary a*7,w,w passage to Tinker67,9",
+        "Tinker world/examine/chat/trade stock8/purse200",
+        "F5 fixture148 turn1490"
+      ]
+    },
+    {
+      "process": 2,
+      "fixture": "shared-specialists-packaged148",
+      "observed": [
+        "fresh Continue at67,9 HP38",
+        "world image matches saved148"
+      ]
+    },
+    {
+      "process": 3,
+      "fixture": "shared-weaponsmith-after143",
+      "observed": [
+        "Weaponsmith world/examine/chat/trade at60,3 HP38",
+        "stock6/smith328/player22 and Dagger from earlier actual Editor sale"
+      ]
+    }
+  ],
+  "new_packaged_purchases": false,
+  "unretouched_captures": 14,
+  "log_notices": {
+    "premature_thread_finalization": [
+      6,
+      5,
+      6
+    ],
+    "ComputeBuffer_disposal": [
+      1,
+      1,
+      1
+    ]
+  },
+  "limits": [
+    "Chat03/07/13 captured mid-typewriter reveal; no full speech visual acceptance",
+    "No Linux execution or physical Deck run",
+    "No all-area, full-chunk polish or sustained-performance acceptance"
+  ],
+  "preserved_test_branches": [
+    "/private/tmp/coo-specialists-packaged-run1-preserved",
+    "/private/tmp/coo-specialists-packaged-run2-preserved",
+    "/private/tmp/coo-specialists-build-restored-83e1e568f/standalone-session-Saves"
+  ]
+}

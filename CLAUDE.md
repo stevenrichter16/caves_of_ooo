@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** Originaleditable Tinker/WellKeeper16x24 bodies have99nativepasses and boundedactualSillworld/readers/chat/trade,flaskpurchase,F5/Continue146 and return147 verification. Publish exactsource, then batch with Weaponsmith58192d5b2 in freshMac/Linux packages. See Docs/GRAPHICS-SHARED-SPECIALISTS.md/currentcompletioncontinuation. Currentpackages9a2371852 preserved. Broaderwholegamecoverage/seriousarea-polish remainopen; no cavefocus or optionalmotion. Root ownsUnity/Git; preserve49foreignchanges,saves/art/builds. Storageinspection-only.
+**Whole-game credit priority (2026-10-28):** Three shared specialists are delivered from source83e1e568f: Weaponsmith plus original Tinker/Well Keeper. Native99 passes, actual Mac14 captures/three processes and exact restart comparison; Linux archive verified, no Linux/Deck execution. Finish delivery evidence publication, then select the largest observed shared equipment/prop or regional sprite gap. See the current completion continuation. All55+5 polish scopes remain open. Root owns Unity/Git; preserve49 foreign changes, saves/art/builds. Storage inspection only.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.

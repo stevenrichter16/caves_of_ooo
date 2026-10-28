@@ -1,5 +1,7 @@
 # Shared weaponsmith body coverage
 
+**Delivery update — 2026-10-28:** Source83e1e568f is remotely verified. Fresh three-NPC Mac/Linux packages now include this body; actual Mac and archive bounds are recorded in [package delivery](Verification/Live16x24/packaged-specialists-delivery.md). Earlier pending statements below are historical.
+
 Status: bounded source/Editor verification complete; source 58192d5b21dad06722d57ca60cfecdd3459dcb8f pushed and verified on origin/main. This is immutable approved sprite reuse, not new pixel art or settlement polish.
 
 ## Choice and scope
