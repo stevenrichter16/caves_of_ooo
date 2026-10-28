@@ -1,0 +1,1 @@
+Earned119: ordinary118at9Down35,17 →10Up35,17; native-fallback wall38,17reader55/55Stone; < back9then>10 andF5. HP28Charred retained; no heal/reveal/teleport/save edits. Matched camera35,17. Both9/10 stilluseglyphfallback pending native art.

@@ -102,6 +102,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelLimestoneCavesCatalog _limestoneCavesArt;
         private FlatPixelShaleCavesCatalog _shaleCavesArt;
         private FlatPixelSlateCavesCatalog _slateCavesArt;
+        private FlatPixelQuartziteCavesCatalog _quartziteCavesArt;
         private readonly bool _loadOptionalResources;
         private Texture2D _atlas;
         private bool _disposed;
@@ -1009,6 +1010,22 @@ namespace CavesOfOoo.Rendering
             {
                 groundTile = slateBackdropTile; groundColor = slateBackdropColor;
             }
+            var quartzite = !fallback.Remembered ? QuartziteCavesArtFor(zone) : null;
+            Tile quartziteGroundTile = null; Entity quartziteFloor = null;
+            bool quartziteGround = quartzite != null
+                && quartzite.TryResolveGround(zone, x, y, out quartziteGroundTile, out quartziteFloor);
+            if (quartziteGround)
+            {
+                groundTile = quartziteGroundTile; groundColor = Color.white; ground = FlatPixelGreyboxGround.StoneFloor;
+                if (owner == quartziteFloor) kind = FlatPixelGreyboxKind.Ground;
+            }
+            Tile quartziteBackdropTile = null; Color quartziteBackdropColor = default;
+            bool quartziteBackdrop = !quartziteGround && quartzite != null
+                && quartzite.TryResolveCellBackdrop(zone, x, y, out quartziteBackdropTile, out quartziteBackdropColor);
+            if (quartziteBackdrop)
+            {
+                groundTile = quartziteBackdropTile; groundColor = quartziteBackdropColor;
+            }
             var foreground = fallback.ForegroundTile;
             var foregroundColor = fallback.ForegroundColor;
             Tile art = null;
@@ -1076,6 +1093,9 @@ namespace CavesOfOoo.Rendering
             Tile slateArt = null;
             bool slateNative = slate != null && slate.TryResolveForeground(zone, x, y, owner, out slateArt);
             if (slateNative) art = slateArt;
+            Tile quartziteArt = null;
+            bool quartziteNative = quartzite != null && quartzite.TryResolveForeground(zone, x, y, owner, out quartziteArt);
+            if (quartziteNative) art = quartziteArt;
             Tile shaleRecessTile = null; Color shaleRecessColor = default;
             bool shaleRecessBackdrop = shaleNative && !shaleGround
                 && shale.TryResolveWallRecessBackdrop(zone, x, y, owner, out shaleRecessTile, out shaleRecessColor);
@@ -1114,7 +1134,7 @@ namespace CavesOfOoo.Rendering
             // must not bypass current semantic or optional-resource guards.
             // The same applies to exact fauna; portable species do not admit
             // regional scenery or inherit another body's art after refusal.
-            bool native = furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative
+            bool native = furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1126,7 +1146,8 @@ namespace CavesOfOoo.Rendering
                 || grovelandsWater && grovelandsWaterGrass != null && owner == grovelandsWaterGrass
                 || stumpGround && owner == stumpFloor || stumpWater && owner == stumpWaterSource
                 || caveGround && owner == caveFloor || limestoneGround && owner == limestoneFloor
-                || shaleGround && owner == shaleFloor || slateGround && owner == slateFloor) foreground = null;
+                || shaleGround && owner == shaleFloor || slateGround && owner == slateFloor
+                || quartziteGround && owner == quartziteFloor) foreground = null;
             if (fallback.Remembered)
             {
                 if (local) { groundColor *= .35f; groundColor.a = 1; }
@@ -1140,7 +1161,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative || furnitureNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative || furnitureNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop);
             return true;
         }
 
@@ -1206,6 +1227,8 @@ namespace CavesOfOoo.Rendering
             if (shale != null && shale.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var slate = SlateCavesArtFor(zone);
             if (slate != null && slate.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+            var quartzite = QuartziteCavesArtFor(zone);
+            if (quartzite != null && quartzite.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var boundaries = BoundaryArtFor(zone, subject, false, out bool allowNativeFallback);
             if (!allowNativeFallback) return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             if (boundaries != null && boundaries.TryGetSubjectSprite(subject, out sprite, out tint)) return true;
@@ -1347,6 +1370,17 @@ namespace CavesOfOoo.Rendering
                 _slateCavesArt = new FlatPixelSlateCavesCatalog(_glyphFallback);
             }
             return _slateCavesArt;
+        }
+
+        private FlatPixelQuartziteCavesCatalog QuartziteCavesArtFor(Zone zone)
+        {
+            if (!FlatPixelQuartziteCavesCatalog.IsSupportedZone(zone)) return null;
+            if (_quartziteCavesArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _quartziteCavesArt = new FlatPixelQuartziteCavesCatalog(_glyphFallback);
+            }
+            return _quartziteCavesArt;
         }
 
         private FlatPixelStumpMaterialsCatalog StumpMaterialsArtFor(Zone zone)
@@ -1639,6 +1673,7 @@ namespace CavesOfOoo.Rendering
             _limestoneCavesArt?.Dispose();
             _shaleCavesArt?.Dispose();
             _slateCavesArt?.Dispose();
+            _quartziteCavesArt?.Dispose();
             _grovelandsMaterialsArt = null;
             _overwritMaterialsArt = null;
             _stumpMaterialsArt = null;
@@ -1646,6 +1681,7 @@ namespace CavesOfOoo.Rendering
             _limestoneCavesArt = null;
             _shaleCavesArt = null;
             _slateCavesArt = null;
+            _quartziteCavesArt = null;
             _glyphFallback?.Dispose();
             _glyphFallback = null;
             foreach (Tile tile in _tiles) DestroyOwned(tile);

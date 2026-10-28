@@ -1,0 +1,65 @@
+{
+  "recorded_at_utc": "2026-10-28T00:06:03.308551+00:00",
+  "status": "AI reference only; pending root review before any native production",
+  "tool": "built-in image_gen__imagegen",
+  "mode": "style-transfer edit/reference reinterpretation; transparent_background=false",
+  "generated_original": "/Users/steven/.codex/generated_images/01a1333f-202a-7b13-9f83-541f1f0d78df/exec-3fdc60b5-25a5-4cc4-912c-d5600a603a07.png",
+  "inputs": [
+    {
+      "path": "Docs/Verification/Live16x24/quartzite-caves-before-07-entry10.png",
+      "role": "Primary composition target: actual depth10 entry; viewed before imagegen.",
+      "bytes": 43873,
+      "sha256": "aae36d09e8a772d213b0480f20f9af8d89e55f887d39af46e1eb88664bc074f1",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "Docs/Verification/Live16x24/quartzite-caves-before-06-down9-save.png",
+      "role": "Supporting real-game context: actual depth9 down-stair/corridor view; viewed before imagegen.",
+      "bytes": 46251,
+      "sha256": "16da691b919c30825480e5aa5b093607a49f78c5b5b0530d55686f8322061ff5",
+      "dimensions": [
+        1280,
+        800
+      ],
+      "mode": "RGB"
+    }
+  ],
+  "exact_prompt": {
+    "path": "ArtSource/Live16x24/quartzite-caves/scene-prompt-01.txt",
+    "role": "Exact prompt sent to built-in imagegen; trailing newline added when saving.",
+    "bytes": 2696,
+    "sha256": "d7151da4f1086c465c7b012c96376c72870eb9d87c1b8cb1b25b34c00bf095ac"
+  },
+  "output": {
+    "path": "ArtSource/Live16x24/quartzite-caves/scene-reference-01.png",
+    "role": "Unmodified byte-for-byte copy of generated image; not a gameplay capture or production sprite.",
+    "bytes": 1497238,
+    "sha256": "3752be94dc3bfe7ae3d0e999ab7274bf4a0c623626391e55dace34f9973b2bfd",
+    "dimensions": [
+      1586,
+      992
+    ],
+    "mode": "RGB"
+  },
+  "copy_method": "Binary file copy only; no crop, rescale, trace, raster repaint or pixel extraction. Original remains in generated_images.",
+  "accepted_direction_pending_root": [
+    "Pale cool-gray mineral mass clearly distinct from floor.",
+    "Compact hard uneven internal facets and sparse bright grains, rather than two repeated Slate slabs.",
+    "Quiet flat floor should occupy most of the disclosed walkable area."
+  ],
+  "rejected_output": [
+    "1586x992 output differs from1280x800 capture; UI and square-pixel scale are not exact.",
+    "Generated regular pebble-floor carpet is too busy; original negative space must remain.",
+    "Repeated rounded boulder/raised cliff treatment is not approved native wall silhouette.",
+    "Fog/frontier boundaries cannot be inferred as new wall owners; retain only actual disclosed placed wall footprints.",
+    "Altered illumination, text rasterization and player silhouette are reference drift, not runtime requirements."
+  ],
+  "native_assets_created": false,
+  "runtime_or_tests_changed": false,
+  "unity_or_git_invoked": false,
+  "remaining_gate": "Root reviews reference and parts critique; only then author original editable integer-cell geometry with independent source validation. Actual gameplay acceptance comes after integration, not from this concept."
+}

@@ -1,0 +1,306 @@
+{
+  "schema": 1,
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "owner": "QuartziteFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "owner": "QuartziteFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 2,
+      "rect": [
+        32,
+        0,
+        16,
+        24
+      ],
+      "owner": "QuartziteFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 3,
+      "rect": [
+        48,
+        0,
+        16,
+        24
+      ],
+      "owner": "QuartziteFloor",
+      "state": "Neutral passable real floor"
+    },
+    {
+      "index": 4,
+      "rect": [
+        64,
+        0,
+        16,
+        24
+      ],
+      "owner": "QuartziteWall",
+      "state": "Surviving structural HP1..55/max55/hardness5; actual destruction removes owner and places existing Rubble"
+    },
+    {
+      "index": 5,
+      "rect": [
+        80,
+        0,
+        16,
+        24
+      ],
+      "owner": "QuartziteWall",
+      "state": "Surviving structural HP1..55/max55/hardness5; actual destruction removes owner and places existing Rubble"
+    }
+  ],
+  "atlas": "quartzite-caves.png",
+  "width": 96,
+  "height": 24,
+  "palette": {
+    "floor": "687478",
+    "fleck": "727E82",
+    "dust": "5C686E",
+    "mass": "79888B",
+    "shadow": "485A62",
+    "seam": "647A80",
+    "plane": "9AA9A8",
+    "highlight": "CCD4CA"
+  },
+  "sprite_pivot": [
+    0.5,
+    0.5
+  ],
+  "pixels_per_unit": 16,
+  "expected_import": "Point,Clamp,no mipmaps,uncompressed,FullRect.",
+  "opaque": true,
+  "edge_masks": false,
+  "blend": "quartzite-caves.blend",
+  "source_cells": "source-cells.json",
+  "shade_style": "Original flat internal color planes; no geometry or alpha silhouette change.",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": 0,
+      "left": 8,
+      "top": 16
+    },
+    {
+      "frame": 1,
+      "left": 36,
+      "top": 16
+    },
+    {
+      "frame": 2,
+      "left": 64,
+      "top": 16
+    },
+    {
+      "frame": 3,
+      "left": 92,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 120,
+      "top": 16
+    },
+    {
+      "frame": 5,
+      "left": 148,
+      "top": 16
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 60
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 60
+    },
+    {
+      "frame": 0,
+      "left": 72,
+      "top": 60
+    },
+    {
+      "frame": 3,
+      "left": 88,
+      "top": 60
+    },
+    {
+      "frame": 2,
+      "left": 104,
+      "top": 60
+    },
+    {
+      "frame": 1,
+      "left": 120,
+      "top": 60
+    },
+    {
+      "frame": 5,
+      "left": 8,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 24,
+      "top": 84
+    },
+    {
+      "frame": 5,
+      "left": 40,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 56,
+      "top": 84
+    },
+    {
+      "frame": 1,
+      "left": 72,
+      "top": 84
+    },
+    {
+      "frame": 0,
+      "left": 88,
+      "top": 84
+    },
+    {
+      "frame": 3,
+      "left": 104,
+      "top": 84
+    },
+    {
+      "frame": 2,
+      "left": 120,
+      "top": 84
+    },
+    {
+      "frame": 4,
+      "left": 8,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 24,
+      "top": 108
+    },
+    {
+      "frame": 4,
+      "left": 40,
+      "top": 108
+    },
+    {
+      "frame": 5,
+      "left": 56,
+      "top": 108
+    },
+    {
+      "frame": 2,
+      "left": 72,
+      "top": 108
+    },
+    {
+      "frame": 1,
+      "left": 88,
+      "top": 108
+    },
+    {
+      "frame": 0,
+      "left": 104,
+      "top": 108
+    },
+    {
+      "frame": 3,
+      "left": 120,
+      "top": 108
+    }
+  ],
+  "contact_size_native": [
+    192,
+    140
+  ],
+  "ambient_base_rgb": [
+    104,
+    116,
+    120
+  ],
+  "ambient_limit": "Optional owner-free backing belongs to separately guarded runtime; not a floor owner or reader.",
+  "references": [
+    "scene-reference-01.png",
+    "scene-prompt-01.txt",
+    "PARTS-AND-CONSTRAINTS.md"
+  ],
+  "named_revision": "Initial original Quartzite candidate after root scene-reference direction approval",
+  "extraction": "Accept compact granular mineral mass, sparse embedded pale grains and quiet floor. Reject cyan endcaps, pebble carpeting, invented boundary walls, changed fog/camera/UI/scale, relighting, boulder rings, extrusion, image sampling and nonuniform pixels.",
+  "protected_input_counts": [
+    30,
+    10
+  ],
+  "png_nonpixel_timing_normalization": {
+    "quartzite-caves.png": {
+      "raw_sha256": "70d2643864a778256ffa806bf867021e7f72eb708f1e9fd4f7e5b6b441ec3854",
+      "canonical_sha256": "47b8a6984d02da33b000628e61daee9cd21a22fd5d4160293267a902204340eb",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact-native.png": {
+      "raw_sha256": "7f7eb508d9e6d99136bd78f3b97d3b7afb551e42367aad36a68998200a42bf62",
+      "canonical_sha256": "518bd6e5627d92b837afc2b9ed6586d1d3f62ace7de25c5daa35634cd3923386",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    },
+    "contact.png": {
+      "raw_sha256": "9f08957f5ac34981e5f6c287ca500cc5286e43d4f712d69814cd10385a924499",
+      "canonical_sha256": "082ba7fe1e05fceb9f0b6010e681e561025b18007bffaa96fddeabaaadb5f799",
+      "removed_text_keys": [
+        "cycles.ViewLayer.total_time",
+        "cycles.ViewLayer.render_time",
+        "cycles.ViewLayer.synchronization_time"
+      ],
+      "image_chunk_bytes_retained": true
+    }
+  },
+  "runtime_acceptance": false,
+  "area_polish_acceptance": false
+}

@@ -1,9 +1,13 @@
 # Graphics completion plan
 
+**Current continuation — 2026-10-28 00:24UTC:** Quartzite9/10 material coverage is now observed in normal Editor play: two new material identities/six native cells,36-case genuine RED then306 distinct passes including related controls, eight actual after captures, wall55→54 with blocking retained, normal9↔10 travel and freshContinue120 preserving the damaged wall. [Evidence and limitations](GRAPHICS-QUARTZITE-MATERIALS.md). Source publication pending this commit; fresh packages are intentionally batched and current shipped build remains Slate702cb9d80. Coverage is not area polish. Obsidian11/12 real baselines and unedited earned121/122 are preserved; [next plan](GRAPHICS-OBSIDIAN-MATERIALS.md). Last actual hourly report23:28UTC; next00:28UTC.
+
+**User credit priority — 2026-10-27:** About8k credits remain; maximize visible sprite output. Batch independent work and package verification, keep prompts/tool output and reviews compact, reuse valid evidence, and avoid redundant testing/investigation or optional animation/tooling. Preserve concise but thorough reproducible decisions, corrections, evidence, limitations and next steps. Keep required meaningful native/actual-play gates; do not convert preparation into acceptance.
+
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is complete within
 its recorded bounds. Slate7/8 delivery is bounded and verified; the next finite
-preflight is ordinary Quartzite9/10, whose actual baselines remain unobserved.
+preflight is ordinary Quartzite9/10, whose actual integration is recorded below.
 Keep straight wall silhouettes as the current default. The isolated shale parity
 prototype is parked, disabled and not accepted as reference parity; preserve its
 editable candidates and evidence reversibly, with no further automatic art
@@ -12,7 +16,7 @@ later biome-by-biome, area-by-area polish phase. Coverage is not polish acceptan
 Normal saves, approved art, current builds and unrelated work remain preserved.
 See [the parked study](GRAPHICS-SHALE-PARITY-TEST.md) and the shared-furniture plan.
 
-**Current continuation — fresh Slate delivery, 2026-10-27:**
+**Historical continuation — fresh Slate delivery, 2026-10-27:**
 Source `702cb9d8096e6dd8eebfd93cdeb08b22d5aece27` is verified on main by root.
 Fresh Mac and Linux builds succeeded with zero errors and five/four warnings
 respectively. The retained native evidence is270 distinct passes; it was not
