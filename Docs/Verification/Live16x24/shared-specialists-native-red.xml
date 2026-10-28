@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="19" result="Failed(Child)" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-28 07:03:47Z" end-time="2026-10-28 07:03:50Z" duration="2.5781515">
+  <test-suite type="TestSuite" id="41595" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="33798" result="Failed" site="Child" start-time="2026-10-28 07:03:47Z" end-time="2026-10-28 07:03:50Z" duration="2.578152" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="41567" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="33798" result="Failed" site="Child" start-time="2026-10-28 07:03:48Z" end-time="2026-10-28 07:03:50Z" duration="2.336863" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95516" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="41568" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="33798" result="Failed" site="Child" start-time="2026-10-28 07:03:48Z" end-time="2026-10-28 07:03:50Z" duration="2.295782" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="41569" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="33798" result="Failed" site="Child" start-time="2026-10-28 07:03:48Z" end-time="2026-10-28 07:03:50Z" duration="2.094914" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1782" name="FlatPixelSharedSpecialistsTests" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-28 07:03:48Z" end-time="2026-10-28 07:03:50Z" duration="1.995032" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1805" name="ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 07:03:48Z" end-time="2026-10-28 07:03:49Z" duration="0.513358" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1803" name="ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse(&quot;Tinker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse(&quot;Tinker&quot;)" methodname="ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="799182552" result="Failed" start-time="2026-10-28 07:03:48Z" end-time="2026-10-28 07:03:48Z" duration="0.237551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1804" name="ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse(&quot;WellKeeper&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse(&quot;WellKeeper&quot;)" methodname="ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1338123973" result="Failed" start-time="2026-10-28 07:03:48Z" end-time="2026-10-28 07:03:49Z" duration="0.048607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ActualDamagePreservesLivingFrameThenDeathRetiresItForSeparateCorpse (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:266
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1800" name="CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody" methodname="CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1381298364" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.042263" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.CustodyTakeableAndMulticellOwnersDoNotAcquireAWorldBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:235
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1798" name="EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.172564" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1795" name="EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback(&quot;missing&quot;)" methodname="EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="383379809" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.047469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1796" name="EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback(&quot;foreign&quot;)" methodname="EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1108466014" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.041366" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1797" name="EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback(&quot;duplicate&quot;)" methodname="EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1585933791" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.040809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.EssentialPartsAreUniqueAndOwnedBeforeAnyOpeningFallback (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1784" name="FourthInputOwnsTwoIndependentCachedFramesAndDisposalPreservesBorrowedTexture" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.FourthInputOwnsTwoIndependentCachedFramesAndDisposalPreservesBorrowedTexture" methodname="FourthInputOwnsTwoIndependentCachedFramesAndDisposalPreservesBorrowedTexture" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="786209924" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.041077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.FourthInputOwnsTwoIndependentCachedFramesAndDisposalPreservesBorrowedTexture () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:129
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1788" name="LegacyTwoAndThreeInputConstructorsNeverLoadSpecialistsImplicitly" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.LegacyTwoAndThreeInputConstructorsNeverLoadSpecialistsImplicitly" methodname="LegacyTwoAndThreeInputConstructorsNeverLoadSpecialistsImplicitly" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1926900238" result="Passed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.285458" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1801" name="LivingHealthIsMutableButMissingForeignOrDeadStatsRefuse" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.LivingHealthIsMutableButMissingForeignOrDeadStatsRefuse" methodname="LivingHealthIsMutableButMissingForeignOrDeadStatsRefuse" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1972601086" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.043395" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.LivingHealthIsMutableButMissingForeignOrDeadStatsRefuse () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:247
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1791" name="MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.193171" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1789" name="MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative(False)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative(False)" methodname="MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1220862265" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.048562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative (System.Boolean malformed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1790" name="MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative(True)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative(True)" methodname="MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="968553632" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.044507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.MissingOrMalformedAtlasIsAuthoritativeAcrossRoutesWhilePeersRemainNative (System.Boolean malformed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1783" name="OnlyExactSpecialistRolesAreRecognizedWithoutSourceBlueprintAliases" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.OnlyExactSpecialistRolesAreRecognizedWithoutSourceBlueprintAliases" methodname="OnlyExactSpecialistRolesAreRecognizedWithoutSourceBlueprintAliases" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="94121086" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.043649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tinker
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.OnlyExactSpecialistRolesAreRecognizedWithoutSourceBlueprintAliases () [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:120
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1802" name="ProfessionNameDoesNotAuthorizePropOrServiceParts" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ProfessionNameDoesNotAuthorizePropOrServiceParts" methodname="ProfessionNameDoesNotAuthorizePropOrServiceParts" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="875755165" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:49Z" duration="0.042414" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ProfessionNameDoesNotAuthorizePropOrServiceParts () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:258
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1794" name="RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:50Z" duration="0.219540" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1792" name="RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices(&quot;Tinker&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices(&quot;Tinker&quot;)" methodname="RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="43445568" result="Failed" start-time="2026-10-28 07:03:49Z" end-time="2026-10-28 07:03:50Z" duration="0.055449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:185
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1793" name="RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices(&quot;WellKeeper&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices(&quot;WellKeeper&quot;)" methodname="RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="797035889" result="Failed" start-time="2026-10-28 07:03:50Z" end-time="2026-10-28 07:03:50Z" duration="0.043602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RealPurchaseChatAndMutableHealthGearAiAndStockDoNotChangeBodyOrTriggerServices (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:185
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1806" name="RealPurificationTeachingChangesSettlementCareWithoutReplacingKeeperBody" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RealPurificationTeachingChangesSettlementCareWithoutReplacingKeeperBody" methodname="RealPurificationTeachingChangesSettlementCareWithoutReplacingKeeperBody" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="1523976534" result="Failed" start-time="2026-10-28 07:03:50Z" end-time="2026-10-28 07:03:50Z" duration="0.043018" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RealPurificationTeachingChangesSettlementCareWithoutReplacingKeeperBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:280
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1799" name="ReskinsAndNonCreatureTagsCannotBorrowAnExactRoleBody" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ReskinsAndNonCreatureTagsCannotBorrowAnExactRoleBody" methodname="ReskinsAndNonCreatureTagsCannotBorrowAnExactRoleBody" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="848438796" result="Failed" start-time="2026-10-28 07:03:50Z" end-time="2026-10-28 07:03:50Z" duration="0.041553" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Shared residents must expose the requested 4-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Construct (UnityEngine.Texture2D[] inputs) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:73
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.Install (UnityEngine.Texture2D atlas) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:79
+at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.ReskinsAndNonCreatureTagsCannotBorrowAnExactRoleBody () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:217
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1787" name="RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-28 07:03:50Z" end-time="2026-10-28 07:03:50Z" duration="0.211300" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1785" name="RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening(&quot;Tinker&quot;,&quot;&amp;c&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening(&quot;Tinker&quot;,&quot;&amp;c&quot;)" methodname="RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="527389735" result="Failed" start-time="2026-10-28 07:03:50Z" end-time="2026-10-28 07:03:50Z" duration="0.051935" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/shared-specialists
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening (System.String name, System.String color) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:148
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1786" name="RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening(&quot;WellKeeper&quot;,&quot;&amp;C&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening(&quot;WellKeeper&quot;,&quot;&amp;C&quot;)" methodname="RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening" classname="CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests" runstate="Runnable" seed="395392151" result="Failed" start-time="2026-10-28 07:03:50Z" end-time="2026-10-28 07:03:50Z" duration="0.043392" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Sprites/Live16x24/shared-specialists
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedSpecialistsTests.RuntimeResourceUsesExactFrameAcrossWorldAndSubjectRoutesInsideAndOutsideOpening (System.String name, System.String color) [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedSpecialistsTests.cs:148
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,59 @@
+{
+  "atlas": "shared-specialists.png",
+  "dimensions": [
+    32,
+    24
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "owner": "Tinker",
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "baseline_y": 22,
+      "meaning": "Static living body; no service props, held weapon, effects or new mechanics"
+    },
+    {
+      "index": 1,
+      "owner": "WellKeeper",
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "baseline_y": 22,
+      "meaning": "Static living body; no service props, held weapon, effects or new mechanics"
+    }
+  ],
+  "blend": "editable.blend",
+  "source": "source-cells.json",
+  "palette": "palette.json",
+  "contacts": [
+    "contact-native.png",
+    "contact.png"
+  ],
+  "contact_placements": [
+    {
+      "frame": -1,
+      "x": 8,
+      "y": 8
+    },
+    {
+      "frame": 0,
+      "x": 44,
+      "y": 8
+    },
+    {
+      "frame": 1,
+      "x": 80,
+      "y": 8
+    }
+  ],
+  "source_only": true,
+  "gameplay_acceptance": false
+}

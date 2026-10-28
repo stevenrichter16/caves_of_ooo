@@ -1,0 +1,44 @@
+{
+  "tool": "built-in image_gen",
+  "kind": "AI-generated reference only, not actual gameplay",
+  "files": {
+    "ArtSource/Live16x24/shared-specialists/scene-reference-01.png": "12371af4be8b9f974e47d8e264ee007df49005a37f92379038a727f306ae3894",
+    "ArtSource/Live16x24/shared-specialists/scene-prompt-01.txt": "d22d85e15a82d6e0f56fe8a3c2f025a5875751549433e4fd3412bfebac851206",
+    "Docs/Verification/Live16x24/shared-specialists-before-01-world.png": "51d6ca1c423b596f986caa0b8992fc0d578db0e22f87f54e57ec356ae13c792b",
+    "Docs/Verification/Live16x24/shared-specialists-before-02-tinker.png": "f122665dde633b61696fd380cd7c824f2f34193d92a2bdb9440d482b2fde1eaf",
+    "Assets/Resources/Sprites/Live16x24/opening-cast.png": "35a2de34d9bf6d6dfe66c7dd47439f7ac03ec6b7de9e09f026d6cb623e24d73a"
+  },
+  "critique": {
+    "keep": [
+      "Tinker teal workclothes/apron/gloves and modest toolbelt",
+      "WellKeeper coolblue layers/leathercap/boots and smallwaistrope",
+      "clear fullbody silhouettes consistent with upright16x24cast"
+    ],
+    "reject": [
+      "generated NPCplacements differ fromactualpositions",
+      "generated ground/wall/UI details changed",
+      "largeinsets are not exact nativepixels"
+    ]
+  },
+  "parts": [
+    {
+      "blueprint": "Tinker",
+      "frame": 0,
+      "size": [
+        16,
+        24
+      ],
+      "body_only": true
+    },
+    {
+      "blueprint": "WellKeeper",
+      "frame": 1,
+      "size": [
+        16,
+        24
+      ],
+      "body_only": true
+    }
+  ],
+  "native_authoring": "New original namedpixel/quads fromconceptcritique; not traced or resizedimagegen. No optionalmotion or changedmechanics."
+}

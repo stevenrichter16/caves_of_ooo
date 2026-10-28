@@ -9,22 +9,39 @@ namespace CavesOfOoo.Rendering
     /// Names, relationships, services and belongings remain simulation-owned.</summary>
     public sealed class FlatPixelSharedResidentsCatalog : IDisposable
     {
-        readonly Tile villager, merchant, weaponsmith;
+        readonly Tile villager, merchant, weaponsmith, tinker, wellKeeper;
         bool disposed;
         public FlatPixelSharedResidentsCatalog()
             : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
                 Resources.Load<Texture2D>("Sprites/Environment/merchant"),
-                Resources.Load<Texture2D>("Sprites/Environment/weaponsmith")) { }
+                Resources.Load<Texture2D>("Sprites/Environment/weaponsmith"),
+                Resources.Load<Texture2D>("Sprites/Live16x24/shared-specialists")) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16)
             : this(cast64, merchant16, null) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16)
+            : this(cast64, merchant16, weaponsmith16, null) { }
+        public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16, Texture2D specialists32)
         {
             villager = Build(cast64, 64, 24, 0, "villager");
             merchant = Build(merchant16, 16, 16, 0, "merchant");
             weaponsmith = Build(weaponsmith16, 16, 16, 0, "weaponsmith");
+            tinker = Build(specialists32, 32, 24, 0, "tinker");
+            wellKeeper = Build(specialists32, 32, 24, 16, "well-keeper");
         }
         public static bool HasKnownRole(Entity owner)
-            => owner?.BlueprintName == "Villager" || owner?.BlueprintName == "Merchant" || owner?.BlueprintName == "Weaponsmith";
+            => ExpectedColor(owner?.BlueprintName) != null;
+        static string ExpectedColor(string role)
+        {
+            switch (role)
+            {
+                case "Villager": return "&g";
+                case "Merchant": return "&W";
+                case "Weaponsmith": return "&r";
+                case "Tinker": return "&c";
+                case "WellKeeper": return "&C";
+                default: return null;
+            }
+        }
         public bool TryResolve(Entity owner, out Tile tile)
         {
             tile = null;
@@ -34,7 +51,7 @@ namespace CavesOfOoo.Rendering
             var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
             var hp = owner.GetStat("Hitpoints");
             if (r == null || !r.Visible || r.RenderLayer != 10 || r.RenderString != "@"
-                || r.ColorString != (owner.BlueprintName == "Villager" ? "&g" : owner.BlueprintName == "Merchant" ? "&W" : "&r")
+                || r.ColorString != ExpectedColor(owner.BlueprintName)
                 || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID)
                 || !string.IsNullOrEmpty(r.VisualVariant) || !string.IsNullOrEmpty(r.GlyphVariants)
                 || p == null || p.Takeable || p.InInventory != null || p.Equipped != null
@@ -45,14 +62,21 @@ namespace CavesOfOoo.Rendering
                 || !OptionalOwned<StatusEffectsPart>(owner)) return false;
             if (owner.HasPart<StackerPart>())
             { var stack = Owned<StackerPart>(owner); if (stack == null || stack.StackCount <= 0) return false; }
-            tile = owner.BlueprintName == "Villager" ? villager : owner.BlueprintName == "Merchant" ? merchant : weaponsmith;
+            switch (owner.BlueprintName)
+            {
+                case "Villager": tile = villager; break;
+                case "Merchant": tile = merchant; break;
+                case "Weaponsmith": tile = weaponsmith; break;
+                case "Tinker": tile = tinker; break;
+                case "WellKeeper": tile = wellKeeper; break;
+            }
             return tile != null;
         }
         static bool ForeignMeaning(Entity owner)
             => owner.HasPart<ContainerPart>() || owner.HasPart<LockPart>() || owner.HasPart<ForgePart>()
                 || owner.HasPart<CropPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>()
                 || owner.HasPart<HarvestablePart>() || owner.HasPart<LiquidPoolPart>() || owner.HasPart<WellPart>()
-                || owner.HasPart<DoorPart>() || owner.HasPart<RegionalSignpostPart>() || owner.HasPart<CampfirePart>()
+                || owner.HasPart<WellSitePart>() || owner.HasPart<DoorPart>() || owner.HasPart<RegionalSignpostPart>() || owner.HasPart<CampfirePart>()
                 || owner.HasPart<AlchemyStillPart>() || owner.HasPart<TriggerOnStepPart>()
                 || owner.HasPart<StairsDownPart>() || owner.HasPart<StairsUpPart>()
                 || owner.HasPart<DestructiblePart>() || owner.HasPart<GasPoolPart>()
@@ -86,6 +110,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             DestroyFrame(villager); DestroyFrame(merchant); DestroyFrame(weaponsmith);
+            DestroyFrame(tinker); DestroyFrame(wellKeeper);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }

@@ -1643,7 +1643,8 @@ namespace CavesOfOoo.Rendering
             if (_sharedResidentsArt == null)
                 _sharedResidentsArt = new FlatPixelSharedResidentsCatalog(_residentsCastAtlas,
                     _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/merchant") : null,
-                    _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/weaponsmith") : null);
+                    _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/weaponsmith") : null,
+                    _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Live16x24/shared-specialists") : null);
             return _sharedResidentsArt;
         }
 

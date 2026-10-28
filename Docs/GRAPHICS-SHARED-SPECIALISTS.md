@@ -1,0 +1,30 @@
+# Shared settlement specialists — original body batch
+
+Status: original editable two-body source and bounded native/actualEditor verification complete; source publication pending. Weaponsmith58192d5b2 is remotely verified. Tinker/WellKeeper are chosen together because both are visibly glyph-only in ordinary seed65 Sill, while the existing legacy mapper gives both the same generic16x16villager. Distinct original16x24 bodies close two real role gaps; Armorer/Apothecary exact16x16 assets remain reusable candidates awaiting actual disclosure. This does not outrank unfinished whole-game coverage or establish area polish.
+
+## Source corrections before implementation
+
+- Tinker directly inherits Creature, not Villager: exact@/&c, layer10,15HP, Tinker_1 conversation, TinkerStock, actualpurse200; initialTrader90 is superseded. Own Body/Brain/Inventory/Trader/Conversation/Examinable remain required. Mutable living HP, stock, gear, AI and names are not appearance gates.
+- WellKeeper inherits Villager: exact@/&C, layer10,20HP, WellKeeper_1,WellKeeperStock, actualpurse100 rather than Trader50. Neither NPC owns ForgePart, WellPart or WellSitePart. Art must not imply new crafting/water mechanics or movable service props.
+- No exact distinct Tinker/WellKeeper raster was found; legacy EnvironmentSpriteRenderer maps both to generic Environment/villager. New source must be original editable16x24 art with observed body identity, not a mislabeled reused profession sprite.
+- Armorer/Apothecary inheritVillager, exact@/&w and@/&G,20HP, both existing16x16 raster (imported12x15 crop). Later reuse should follow the complete16x16runtime view. Actual owners remain unobserved in this slice.
+
+## Reproducible baseline and next gates
+
+Root launched preserved shared-residents-before132 using GameBootstrap isolation,seed65,Sill10.10.0 at65,12HP38. Visible Tinker7537 at68,9HP15 stock8/purse200, WellKeeper7550 at74,10HP20 stock5/purse100 are glyph fallback; generic Villager and Merchant already have sprites. Current actual captures shared-specialists-before-01-world,02-tinker and03-tinker-reader are unretouched Unity1280x800. Walk s,d,d,d,w,w,w hit VineWall68,10 once (14→12HP), then a,w,w used the real open67,10doorway to67,9. Preserve that incidental wall damage, do not sanitize. Ordinary F5turn1310 checkpoint144 saves67,9HP38; full isolated branch archived /tmp/coo-specialists-before-7241-preserved before Finish. The wellkeeper was visible in01 but adjacent reader/service baseline remains to acquire.
+
+Imagegen skill, built-in tool: one reference plate from the two actual captures plus approved opening-cast style anchor; exact prompt saved in ArtSource/Live16x24/shared-specialists/scene-prompt-01.txt. Result must be labeled concept only, critiqued for parts/silhouettes, then independently authored native editable cells/atlas. Retain original sources and prior presentation. Next: record concept/part critique; new original Tinker+WellKeeper frames; focused source/runtime RED→GREEN with existing resident guards; actual readers/services/movement/save/restart/profile/comparison; independent review and exact main push. No optional animation. No glyph-only broad substitutions, scene filler, fabricated loot/services or changed geometry.
+
+Bounds: all broad biome coverage and55+5polish scopes remain open. Sparse dark Sill fields, repeated vines and specialist role readability are recorded debt, not accepted composition. Current packages remain9a2371852, no new Linux/Deck execution. Storage remains inspection-only; preserve49foreignpaths and all saves/builds/art.
+
+Wellkeeper actual continuation: from144, ordinary s,s,d,d,d to70,11, then fourd through openVillageDoor71,11 to74,11. Real WellKeeper7550 at74,10HP20stock5/purse100; actual04world,05reader,06chat and07trade captured. F5checkpoint145turn1400HP38; fullbranch /tmp/coo-specialists-before-e22f-preserved. No service/stock mutations. Current package remainsunchanged.
+
+Pre-implementation guard correction from the independent test author: existing ForeignMeaning rejects WellPart but not WellSitePart. A specialist body must also refuse a foreign WellSitePart (it would turn an NPC into the actual site owner). Add this explicit negative to the shared resident guard; no registered ordinary resident owns that part.19focused cases authored before runtime/asset publication.
+
+Native RED recorded19cases:18fail/1legacycontrolpass at07:03:47UTC, before any newruntimeasset/fourthconstructor. Root then published byte-identical32x24sourceatlas with Point/Clamp/16PPU/no mip/compression, extended the existingcatalog with independentfourthinput and two16x24frames, retained2/3input absence, added exactcase-sensitivecolors and WellSitePartrefusal. Existingfourworld/subjectroutes stay authoritative. Fullsourceverification and nativeGREEN/actualafter remain separate gates.
+
+## Completed bounded integration
+
+Nineteennew runtimecases18RED/1control →99combinedGREEN. Two originaleditable16x24bodies published in32x24atlas throughindependentfourthinput. ActualmatchingTinker+WellKeeperworld/readers/chat, room-to-roomdoorwaywalking, unchangedWellKeepertradescreen, ordinary22dramflasksale, F5/Continue146 and return147 all verified; restartworld564000pixels identical. Independent runtime/source/sevenAFTER-image review found no blockers. See [review](Verification/Live16x24/shared-specialists-review.md), sourceREADME and native XML for precise bounds. Files changed: two catalogs, one19casetest/meta, nativePNG/meta, newbuilder/editablepacket, livingdocs/coverage/evidence. No gameplay-mechanics or Qudport change claimed.
+
+Next: publish exactownedsource to main and verify, then batch Weaponsmith+twooriginalspecialists into freshMac/Linux packages using retainedfixtures146/147/143; keep previousrequiredpackages. ActualMacexecution/archiveverification separate; no Linux/Deckclaim without execution. After delivery, compare remainingrole/creature/item/surface gaps, with existing Armorer/Apothecary candidates requiring actualdisclosure. Farmer stillqueued, no blindsearchbudget. Allcoverage/polish bounds remainopen. Lastactualhourlyreport06:37:13UTC,next07:37:13UTC.

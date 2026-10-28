@@ -1,6 +1,6 @@
 # Caves of Ooo — Project Rules for Claude
 
-**Whole-game credit priority (2026-10-28):** Shared Weaponsmith body is locally source/Editor verified (80nativepasses, actual world/examine/chat/trade/purchase and freshContinue143, exact restart image). Publication pending root; see Docs/GRAPHICS-SHARED-WEAPONSMITH.md and current completion continuation. Prior camp-props-clothsource9a2371852/delivery4544dc815 main and packages preserved. Next audit cohesive common settlement services versus remaining whole-game visual gaps; Farmer outsideopening still lacks baseline. Broad coverage and serious area polish remain open. Root owns Unity/Git; preserve49foreign changes, saves/art/builds. Storage inspection-only.
+**Whole-game credit priority (2026-10-28):** Originaleditable Tinker/WellKeeper16x24 bodies have99nativepasses and boundedactualSillworld/readers/chat/trade,flaskpurchase,F5/Continue146 and return147 verification. Publish exactsource, then batch with Weaponsmith58192d5b2 in freshMac/Linux packages. See Docs/GRAPHICS-SHARED-SPECIALISTS.md/currentcompletioncontinuation. Currentpackages9a2371852 preserved. Broaderwholegamecoverage/seriousarea-polish remainopen; no cavefocus or optionalmotion. Root ownsUnity/Git; preserve49foreignchanges,saves/art/builds. Storageinspection-only.
 
 **Active user direction — 2026-10-27, cave detour ended:** Resume native sprite
 coverage across every biome and area. Shared Bed/Chair delivery is verified.

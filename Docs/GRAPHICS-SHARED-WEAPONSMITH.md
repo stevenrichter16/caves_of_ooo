@@ -1,6 +1,6 @@
 # Shared weaponsmith body coverage
 
-Status: bounded source/Editor verification complete; exact publication pending. This is immutable approved sprite reuse, not new pixel art or settlement polish.
+Status: bounded source/Editor verification complete; source 58192d5b21dad06722d57ca60cfecdd3459dcb8f pushed and verified on origin/main. This is immutable approved sprite reuse, not new pixel art or settlement polish.
 
 ## Choice and scope
 
@@ -30,6 +30,6 @@ Hourly report actually sent 2026-10-28T06:37:13.545847+00:00. Verification resum
 
 Implementation: `new FlatPixelSharedResidentsCatalog(cast, merchant, weaponsmith)` adds one independent optional cached view; two-input callers delegate withnull. Exact Weaponsmith@/&r is admitted through the existing all-four-route living/ownership/disclosure policy. No Qud mechanical-port claim; existing registered game content and unchanged approved PNG are the source of truth. Files changed: two rendering catalogs, one17-case test/meta, this plan, current continuation/coverage records and reproducible evidence.
 
-Native RED16fail/1control → final80passes (17new+24residents+39incidental). Actual sameownerworld/examine/chat use the body; trade before/after is pixel-identical. An ordinary28-dram dagger purchase changes stock7→6, trader300→328 and player50→22, preserved after four-cell walking, F5fixture143 and fresh isolated Continue. The564000pixel world comparison is exact. See [independent review and evidence](Verification/Live16x24/shared-weaponsmith-review.md) for profile, limitations, snapshot corrections and deferred polish. Tests and actual play are separate evidence. Source publication pending root remote verification; no newly packaged NPC claim.
+Native RED16fail/1control → final80passes (17new+24residents+39incidental). Actual sameownerworld/examine/chat use the body; trade before/after is pixel-identical. An ordinary28-dram dagger purchase changes stock7→6, trader300→328 and player50→22, preserved after four-cell walking, F5fixture143 and fresh isolated Continue. The564000pixel world comparison is exact. See [independent review and evidence](Verification/Live16x24/shared-weaponsmith-review.md) for profile, limitations, snapshot corrections and deferred polish. Tests and actual play are separate evidence. Source 58192d5b21dad06722d57ca60cfecdd3459dcb8f is remotely verified; no newly packaged NPC claim.
 
 Next whole-game choice: prioritize already-disclosed Sill Tinker/WellKeeper and other common settlement services with exact approved art, selected as a cohesive batch after source/art audit and actual baselines. Farmer remains queued until an outside-opening baseline is disclosed; do not spend the visual budget on searching alone. Compare these with remaining creature/item/surface gaps before expanding. Keep serious area polish separate, all55+5scopes open; no cave detour/optional motion. Root preserves49foreign changes and normal saves; storage inspection only.
