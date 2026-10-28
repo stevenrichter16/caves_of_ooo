@@ -218,7 +218,7 @@ namespace CavesOfOoo.Tests
             }} finally { Object.DestroyImmediate(service); }
         }
         [TestCase("Farmer")] [TestCase("ReedbackGrazer")]
-        public void OldInjectionOutsideScopeAndHiddenOrStaleOwnersNeverAcquireTheLocalNativeBody(string blueprint)
+        public void OldInjectionAndHiddenOrStaleOwnersStayRejectedWhileOnlyFarmerIsPortable(string blueprint)
         {
             Create(true); var owner=Owner(blueprint); Assert.True(zone.AddEntity(owner,X,Y));
             Assert.True(injected.TryResolvePresentation(zone,X,Y,out var positive)); Expect(positive.ForegroundTile,TextureFor(owner));
@@ -232,8 +232,11 @@ namespace CavesOfOoo.Tests
             Assert.True(injected.TryResolvePresentation(zone,X+1,Y,out var moved)); Expect(moved.ForegroundTile,TextureFor(owner));
             var outside=new Zone("Overworld.13.10.0"); manager.SetActiveZone(outside); outside.GetCell(X,Y).IsVisible=outside.GetCell(X,Y).Explored=true;
             Assert.True(zone.RemoveEntity(owner)); Assert.True(outside.AddEntity(owner,X,Y));
-            Assert.True(injected.TryResolvePresentation(outside,X,Y,out var other)); Assert.False(other.NativeForeground);
-            Assert.True(injected.TryGetPresentationSubjectSprite(outside,owner,X,Y,out var image,out _)); Assert.AreNotSame(TextureFor(owner),image.texture);
+            Assert.True(injected.TryResolvePresentation(outside,X,Y,out var other));
+            Assert.True(injected.TryGetPresentationSubjectSprite(outside,owner,X,Y,out var image,out _));
+            if (blueprint == "Farmer")
+            { Assert.True(other.NativeForeground); Expect(other.ForegroundTile, TextureFor(owner)); Assert.AreSame(TextureFor(owner), image.texture); }
+            else { Assert.False(other.NativeForeground); Assert.AreNotSame(TextureFor(owner), image.texture); }
             manager.CachedZones[outside.ZoneID]=new Zone(outside.ZoneID);
             Assert.False(injected.TryResolvePresentation(outside,X,Y,out _)); Assert.False(injected.TryGetPresentationSubjectSprite(outside,owner,X,Y,out _,out _));
         }

@@ -57,7 +57,21 @@ namespace CavesOfOoo.Rendering
             if (stack != null && (stack.ParentEntity != owner || stack.StackCount <= 0)) return false;
             if (owner.BlueprintName == "Farmer")
             {
-                if (render.RenderString != "@") return false;
+                // Farmer is portable; exact native identity must survive neither a
+                // reskin nor a stale/dead/service owner. Other incidental roles
+                // retain their established regional policy below.
+                var hp = owner.GetStat("Hitpoints");
+                if (render.RenderString != "@" || render.ColorString != "&Y" || render.RenderLayer != 10
+                    || !string.IsNullOrEmpty(render.BackgroundColor) || owner.HasTag("Terrain") || owner.HasTag("Corpse")
+                    || UniqueOwned<RenderPart>(owner) == null || UniqueOwned<PhysicsPart>(owner) == null
+                    || UniqueOwned<Body>(owner) == null || UniqueOwned<BrainPart>(owner) == null
+                    || UniqueOwned<InventoryPart>(owner) == null || UniqueOwned<ExaminablePart>(owner) == null
+                    || UniqueOwned<TraderPart>(owner) == null || UniqueOwned<ConversationPart>(owner) == null
+                    || hp == null || hp.Owner != owner || hp.BaseValue <= 0 || ForeignFarmerMeaning(owner)
+                    || owner.HasPart<StatusEffectsPart>() && UniqueOwned<StatusEffectsPart>(owner) == null
+                    || owner.HasPart<StackerPart>() && UniqueOwned<StackerPart>(owner) == null
+                    || owner.HasPart<SpatialFootprintPart>() && (UniqueOwned<SpatialFootprintPart>(owner) == null
+                        || owner.SpatialZone != null && !owner.SpatialZone.IsFootprintCurrent(owner))) return false;
                 tile = _farmer;
             }
             else if (owner.BlueprintName == "ReedbackGrazer")
@@ -73,6 +87,23 @@ namespace CavesOfOoo.Rendering
                 tile = _cindercaller;
             }
             return tile != null;
+        }
+
+        private static bool ForeignFarmerMeaning(Entity owner)
+            => owner.HasPart<ContainerPart>() || owner.HasPart<LockPart>() || owner.HasPart<ForgePart>()
+                || owner.HasPart<CropPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>()
+                || owner.HasPart<HarvestablePart>() || owner.HasPart<LiquidPoolPart>() || owner.HasPart<WellPart>()
+                || owner.HasPart<WellSitePart>() || owner.HasPart<DoorPart>() || owner.HasPart<RegionalSignpostPart>()
+                || owner.HasPart<CampfirePart>() || owner.HasPart<AlchemyStillPart>() || owner.HasPart<TriggerOnStepPart>()
+                || owner.HasPart<StairsDownPart>() || owner.HasPart<StairsUpPart>() || owner.HasPart<DestructiblePart>()
+                || owner.HasPart<GasPoolPart>() || owner.HasPart<TileStateSourcePart>();
+        private static T UniqueOwned<T>(Entity owner) where T : Part
+        {
+            T found = null;
+            for (int i = 0; i < owner.Parts.Count; i++)
+                if (owner.Parts[i] is T part)
+                { if (found != null || part.ParentEntity != owner) return null; found = part; }
+            return found;
         }
 
         private static T Owned<T>(Entity owner) where T : Part

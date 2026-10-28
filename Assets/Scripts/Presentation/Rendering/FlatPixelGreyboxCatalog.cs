@@ -1151,8 +1151,11 @@ namespace CavesOfOoo.Rendering
             var eastern = local ? EastKitchenArtFor(zone, owner) : null;
             bool eastNative = eastern != null && (fallback.Remembered
                 ? eastern.TryResolve(owner, out art) : eastern.TryResolvePresentation(zone, owner, out art));
-            var incidental = local ? IncidentalActorArtFor(owner) : null;
-            bool incidentalNative = incidental != null && incidental.TryResolve(owner, out art);
+            bool farmerKnown = owner?.BlueprintName == "Farmer";
+            var incidental = local || farmerKnown ? IncidentalActorArtFor(owner) : null;
+            Tile incidentalArt = null;
+            bool incidentalNative = incidental != null && incidental.TryResolve(owner, out incidentalArt);
+            if (incidentalNative) art = incidentalArt;
             var equipment = IncidentalEquipmentArtFor(owner);
             Tile equipmentArt = null;
             bool equipmentNative = equipment != null && equipment.TryResolve(owner, out equipmentArt);
@@ -1286,7 +1289,8 @@ namespace CavesOfOoo.Rendering
             // regional scenery or inherit another body's art after refusal.
             bool sidearmKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner);
             if (sidearmKnown) art = equipmentArt;
-            bool native = sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            if (farmerKnown) art = incidentalArt;
+            bool native = farmerKnown ? incidentalNative : sidearmKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1313,7 +1317,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || campNative || clothNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || sillGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || campNative || clothNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1323,6 +1327,15 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null; tint = Color.white;
             if (_disposed || !FlatPixelFallbackCatalog.IsCurrentGraph(zone)) return false;
+            // Farmer stays in its existing optional catalog, portable on the
+            // modern routes. Refusal cannot borrow unrelated opening body art.
+            if (subject?.BlueprintName == "Farmer")
+            {
+                var farmers = IncidentalActorArtFor(subject);
+                if (farmers != null && farmers.TryResolve(subject, out var farmerTile))
+                { sprite = farmerTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
             // Exact sidearm refusal must not fall through to unrelated local art.
             if (FlatPixelIncidentalEquipmentCatalog.IsSidearm(subject))
             {
@@ -1656,7 +1669,9 @@ namespace CavesOfOoo.Rendering
                 _sharedResidentsArt = new FlatPixelSharedResidentsCatalog(_residentsCastAtlas,
                     _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/merchant") : null,
                     _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/weaponsmith") : null,
-                    _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Live16x24/shared-specialists") : null);
+                    _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Live16x24/shared-specialists") : null,
+                    _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/elder") : null,
+                    _loadOptionalResources ? Resources.Load<Texture2D>("Sprites/Environment/village_child") : null);
             return _sharedResidentsArt;
         }
 
