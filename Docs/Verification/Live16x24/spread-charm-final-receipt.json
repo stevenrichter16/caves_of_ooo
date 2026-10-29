@@ -1,0 +1,54 @@
+{
+  "at_utc": "2026-10-29T00:15:25.008069+00:00",
+  "source_parent": "0edcd374295005898be7ec041ac6eb5bcbd55389",
+  "source_sha256": {
+    "Assets/Scripts/Presentation/Rendering/FlatPixelSpreadEnvironmentCatalog.cs": "8a515fb46c4e744b42bed06db7b1fe8df431bd16790e65de270102d22e56ecfd",
+    "Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs": "20296f4dc2257e1fcf3407d4e0718dcbcfb78f88518690b2fed58605e6e4fb9b"
+  },
+  "native_evidence": "spread-charm-native.json",
+  "captures": {
+    "spread-charm-01-continued.png": "a1fa1cc0fd239ae66551016352c2301bb95e965d3337e842f33f07d028f64f46",
+    "spread-charm-02-reader.png": "27e228bc33ebb28e90433d8178eb1f18c71e3844854bd1962c19398b33ca0d26",
+    "spread-charm-03-walk-closer.png": "de4fd97f40d06ea3acb01585ddd2f25575a805a74e46c9b0eaae61a4ba464e23",
+    "spread-charm-04-underfoot.png": "ee35e1d62e02c7a380d106bf4b8ea86c5c825717c44ffad9be8c35eac861d000",
+    "spread-charm-05-saved.png": "0fe1d736dec5326f598a6442e8709accbc9c8d69d1a6949820ad12692616936b",
+    "spread-charm-06-fresh-continue.png": "28989cca8bac6ce402777387f1ed90f1830bfbd01d4a9d201a3f391f372b7224"
+  },
+  "baseline": "packaged-regional-batch-08-spread-site-detour.png; earned immutable197",
+  "observed": {
+    "zone": "Overworld.19.11.0",
+    "seed": 64,
+    "player_start_end": [
+      40,
+      12
+    ],
+    "hp_start_end": 40,
+    "ordinary_route": "five north to40,7; Look and underfoot Examine;2x readable view;five south;1x overview;F5;fresh Continue198",
+    "turn_start_end": [
+      800,
+      900
+    ],
+    "currently_disclosed_charm_flower_owners": 188,
+    "separate_disclosed_FlowerField_cells": 6
+  },
+  "fresh_continue_world_comparison": {
+    "images": [
+      "spread-charm-05-saved.png",
+      "spread-charm-06-fresh-continue.png"
+    ],
+    "crop": [
+      0,
+      40,
+      940,
+      640
+    ],
+    "pixels": 564000,
+    "changed_pixels": 0
+  },
+  "profile": "spread-charm-live-read.json; one settled Editor frame only,0.1049ms renderer LateUpdate,0cells/redraw/dirty/clear; no throughput/FPS/allocation/Deck claim",
+  "independent_review": "environment_gaps_audit: no actionable P1/P2 source or bounded visual blockers; repeated rows/sparse outer clearing/other glyphs remain",
+  "preservation": "spread-charm-preservation.json",
+  "package_limit": "Current aa92e2746 packages retained and exclude this new CharmFlowers integration; no redundant build",
+  "whole_area_accepted": false,
+  "next": "Compare live TarSeep/oil and GroveSeep plus remaining larger scene gaps; preserve shadows/population queue separately"
+}

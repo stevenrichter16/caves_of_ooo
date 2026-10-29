@@ -303,6 +303,142 @@ namespace CavesOfOoo.Tests
             }
             selector.Dispose();
         }
+        const string Flowers="Sprites/Live16x24/east-kitchen";
+        void CreateFlowers(Texture2D flowers, bool inject=false)
+        {
+            var type=typeof(FlatPixelSpreadEnvironmentCatalog);
+            var ctor=type.GetConstructor(new[]{typeof(Texture2D),typeof(Texture2D),typeof(Texture2D),typeof(Texture2D),
+                typeof(Texture2D),typeof(Texture2D),typeof(FlatPixelFallbackCatalog)});
+            Assert.NotNull(ctor,"The optional CharmFlowers atlas injection must preserve the old five-texture constructor.");
+            selector=new FlatPixelFallbackCatalog();
+            adapter=(IDisposable)ctor.Invoke(new object[]{Art(Turf),Art(Road),Art(Hedge),Art(Trees),Art(Bush),flowers,selector});
+            ground=(Ground)Delegate.CreateDelegate(typeof(Ground),adapter,type.GetMethod("TryResolveGround",I));
+            foreground=(Foreground)Delegate.CreateDelegate(typeof(Foreground),adapter,type.GetMethod("TryResolveForeground",I));
+            portrait=(Portrait)Delegate.CreateDelegate(typeof(Portrait),adapter,type.GetMethod("TryGetSubjectSprite",I));
+            if(inject){world.Dispose();world=new FlatPixelGreyboxCatalog((Texture2D)null);Write(world,"_spreadEnvironmentArt",adapter);}
+        }
+        [Test] public void CharmFlowersWorldAndAuthorizedReaderReuseFrame14OverActualGrass()
+        {
+            var grass=Add("Grass");var flowers=Add("CharmFlowers");var viewer=Add("Player",X-1,Y);
+            Assert.False(flowers.GetPart<PhysicsPart>().Solid);Assert.IsNull(flowers.GetPart<CropPart>());
+            Assert.IsNull(flowers.GetPart<HarvestablePart>());Assert.IsNull(flowers.GetPart<TileStateSourcePart>());
+            int version=zone.EntityVersion;string state=zone.TileState.ToSaveString();
+            var view=View();Assert.AreSame(flowers,view.Owner);Assert.True(view.NativeForeground,"CharmFlowers still uses the magenta glyph.");
+            Frame(view.ForegroundTile,Flowers,14,14);Assert.True(view.LocalGround,"Flowers must not erase their real grass substrate.");
+            Frame(view.GroundTile,Turf,0,3);Assert.False(view.BlocksMovement);
+            using(var paint=new Paint(world,zone))
+            {
+                paint.Step();Frame(paint.At(X,Y),Flowers,14,14);Frame(paint.GroundAt(X,Y),Turf,0,3);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone,flowers,X,Y,out var sprite,out var tint));
+                Assert.AreSame(paint.At(X,Y).sprite,sprite);Assert.AreEqual(Color.white,tint);
+                var doc=ExamineDocumentBuilder.BuildWorld(flowers,zone,zone.GetCell(X,Y),viewer);
+                Assert.True(ExamineDocumentBuilder.IsCurrentSubject(doc));
+                Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out var actual));Assert.AreSame(sprite.texture,actual.Texture);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone,grass,X,Y,out var floorImage,out _));
+                Assert.AreSame(paint.GroundAt(X,Y).sprite,floorImage);
+            }
+            Assert.AreEqual(version,zone.EntityVersion);Assert.AreEqual(state,zone.TileState.ToSaveString());
+            Assert.True(zone.MoveEntity(viewer,X,Y));Assert.AreSame(viewer,View().Owner);Assert.True(View().LocalGround);
+            using(var paint=new Paint(world,zone))
+            {
+                paint.Step();var doc=ExamineDocumentBuilder.BuildWorld(flowers,zone,zone.GetCell(X,Y),viewer);
+                Assert.True(ExamineDocumentBuilder.IsCurrentSubject(doc));
+                Assert.True(world.TryGetPresentationSubjectSprite(zone,flowers,X,Y,out var sprite,out _));
+                Assert.AreSame(Art(Flowers),sprite.texture);Assert.AreEqual(new Rect(14*16,0,16,24),sprite.rect);
+                Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out var actual));Assert.AreSame(Art(Flowers),actual.Texture);
+            }
+        }
+        [Test] public void CharmFlowersNeverSubstitutesForAuthoredConjuredFlowerField()
+        {
+            CreateFlowers(Art(Flowers),true);Add("Grass");var ordinary=Add("CharmFlowers");
+            Assert.True(foreground(zone,X,Y,ordinary,out var body));Frame(body,Flowers,14,14);
+            Assert.True(ground(zone,X,Y,out _,out _));Assert.True(zone.RemoveEntity(ordinary));
+            var conjured=Add("FlowerField");Assert.AreEqual("*",conjured.GetPart<RenderPart>().RenderString);
+            Assert.AreEqual("&M",conjured.GetPart<RenderPart>().ColorString);Assert.NotNull(conjured.GetPart<TileStateSourcePart>());
+            Assert.False(foreground(zone,X,Y,conjured,out _));Assert.False(portrait(zone,conjured,X,Y,out _));
+            Assert.False(ground(zone,X,Y,out _,out _));Assert.False(View().NativeForeground);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,conjured,X,Y,out var glyph,out _));Assert.AreNotSame(Art(Flowers),glyph.texture);
+        }
+        [Test] public void CharmFlowersRequireCurrentDisclosureButAuthorizedUnderfootReaderKeepsItsOwner()
+        {
+            CreateFlowers(Art(Flowers),true);Add("Grass");var flowers=Add("CharmFlowers");var viewer=Add("Player",X-1,Y);
+            Assert.True(foreground(zone,X,Y,flowers,out _));Assert.True(portrait(zone,flowers,X,Y,out _));
+            var doc=ExamineDocumentBuilder.BuildWorld(flowers,zone,zone.GetCell(X,Y),viewer);Assert.True(ExamineDocumentBuilder.IsCurrentSubject(doc));
+            var cell=zone.GetCell(X,Y);cell.IsVisible=false;
+            Assert.False(foreground(zone,X,Y,flowers,out _));Assert.False(portrait(zone,flowers,X,Y,out _));Assert.False(View().NativeForeground);Assert.False(View().LocalGround);
+            cell.IsVisible=true;cell.Explored=false;Assert.False(foreground(zone,X,Y,flowers,out _));Assert.False(world.TryResolvePresentation(zone,X,Y,out _));cell.Explored=true;
+            var render=flowers.GetPart<RenderPart>();render.Visible=false;Assert.False(foreground(zone,X,Y,flowers,out _));Assert.False(portrait(zone,flowers,X,Y,out _));
+            Assert.True(ground(zone,X,Y,out _,out _),"An undisclosed flower must not erase the disclosed floor.");render.Visible=true;
+            Assert.True(zone.MoveEntity(viewer,X,Y));Assert.AreSame(viewer,View().Owner);Assert.True(View().LocalGround);
+            Assert.False(foreground(zone,X,Y,flowers,out _));Assert.True(portrait(zone,flowers,X,Y,out var underfoot),"The separately authorized flower reader must not borrow the Player's glyph.");
+            Assert.AreSame(Art(Flowers),underfoot.texture);Assert.AreEqual(new Rect(14*16,0,16,24),underfoot.rect);
+            Assert.True(zone.MoveEntity(viewer,X-1,Y));Assert.True(portrait(zone,flowers,X,Y,out _));
+            Assert.True(zone.MoveEntity(flowers,X+1,Y));Assert.False(portrait(zone,flowers,X,Y,out _));Assert.True(zone.MoveEntity(flowers,X,Y));
+            Assert.True(zone.RemoveEntity(flowers));Assert.False(portrait(zone,flowers,X,Y,out _));Assert.False(ExamineDocumentBuilder.IsCurrentSubject(doc));
+            Assert.True(ground(zone,X,Y,out _,out _));
+        }
+        [Test] public void CharmFlowersRejectsCustomForeignCarriedAndChangedMeaningOwners()
+        {
+            CreateFlowers(Art(Flowers),true);
+            foreach(string fault in new[]{"visual","glyph","color","background","layer","foreign-render","duplicate-render","foreign-physics","carried","equipped","solid","footprint","harvest","source"})
+            {
+                zone=Attach(Home);Add("Grass");var e=Add("CharmFlowers");Assert.True(foreground(zone,X,Y,e,out _),fault+" positive");
+                var r=e.GetPart<RenderPart>();var p=e.GetPart<PhysicsPart>();
+                switch(fault)
+                {
+                    case "visual":r.VisualID="different";break;case "glyph":r.RenderString="?";break;case "color":r.ColorString="&R";break;
+                    case "background":r.BackgroundColor="^r";break;case "layer":r.RenderLayer=1;break;
+                    case "foreign-render":r.ParentEntity=new Entity();break;case "duplicate-render":e.Parts.Add(new RenderPart{ParentEntity=e});break;
+                    case "foreign-physics":p.ParentEntity=new Entity();break;case "carried":p.InInventory=new Entity();break;case "equipped":p.Equipped=new Entity();break;
+                    case "solid":p.Solid=true;break;case "footprint":e.AddPart(new SpatialFootprintPart{CellsRaw="0,0;1,0"});break;
+                    case "harvest":e.AddPart(new HarvestablePart());break;case "source":e.AddPart(new TileStateSourcePart{Residue="petals",ResidueTurns=4});break;
+                }
+                Assert.False(foreground(zone,X,Y,e,out _),fault);Assert.False(portrait(zone,e,X,Y,out _),fault+" reader");
+                Assert.False(View().NativeForeground,fault+" must not fall through to approved flower art");
+            }
+        }
+        [Test] public void CharmFlowersDoNotAuthorizeDryGroundOverRealCoatingsOrCompetingTerrain()
+        {
+            CreateFlowers(Art(Flowers),true);var grass=Add("Grass");var flowers=Add("CharmFlowers");
+            Assert.True(ground(zone,X,Y,out _,out _));Assert.True(foreground(zone,X,Y,flowers,out _));
+            using(var paint=new Paint(world,zone))
+            {
+                foreach(string coating in new[]{"water","oil"})
+                {
+                    zone.TileState.WriteCoating(X,Y,coating,4);paint.Dirty(X,Y);paint.Step();
+                    Assert.False(ground(zone,X,Y,out _,out _));Assert.False(View().LocalGround);Assert.NotNull(paint.Mark(X,Y),coating);
+                    Frame(paint.At(X,Y),Flowers,14,14);zone.TileState.RemoveCoating(X,Y,coating);
+                    paint.Dirty(X,Y);paint.Step();Assert.True(ground(zone,X,Y,out _,out _));Frame(paint.GroundAt(X,Y),Turf,0,3);
+                }
+            }
+            foreach(string other in new[]{"WaterPuddle","StoneFloor","CropRow"})
+            {
+                var conflict=Add(other);Assert.False(ground(zone,X,Y,out _,out _),other);Assert.True(zone.RemoveEntity(conflict));
+                Assert.True(ground(zone,X,Y,out _,out _),other+" removal restores real grass");
+            }
+            var soil=new CultivatedSoilPart();grass.AddPart(soil);Assert.False(ground(zone,X,Y,out _,out _));grass.RemovePart(soil);
+            Assert.True(ground(zone,X,Y,out _,out _));
+        }
+        [Test] public void CharmFlowersAtlasIsOptionalIndependentAndBorrowsExistingArtAndSelector()
+        {
+            var malformed=new Texture2D(16,16);textures.Add(malformed);
+            foreach(var input in new Texture2D[]{null,malformed,Art(Flowers)})
+            {
+                ReleaseAdapter();CreateFlowers(input,true);zone=Attach(Home);Add("Grass");var flowers=Add("CharmFlowers");bool valid=input==Art(Flowers);
+                Assert.AreEqual(valid,foreground(zone,X,Y,flowers,out var body));Assert.AreEqual(valid,portrait(zone,flowers,X,Y,out _));
+                Assert.AreEqual(valid,View().NativeForeground);Assert.True(ground(zone,X,Y,out var floor,out _));Frame(floor,Turf,0,3);
+                var hedge=Add("Hedge",X+1,Y);Assert.True(foreground(zone,X+1,Y,hedge,out var existing));Frame(existing,Hedge,0,0);
+                if(valid)
+                {
+                    Frame(body,Flowers,14,14);var sprite=body.sprite;adapter.Dispose();adapter.Dispose();
+                    Assert.True(body==null);Assert.True(sprite==null);Assert.NotNull(Art(Flowers));Assert.True(selector.TryResolve(zone,X,Y,out _));
+                    Assert.False(foreground(zone,X,Y,flowers,out _));
+                }
+            }
+            ReleaseAdapter();Create(inject:true);zone=Attach(Home);Add("Grass");var legacy=Add("CharmFlowers");
+            Assert.False(foreground(zone,X,Y,legacy,out _));Assert.False(View().NativeForeground,"Old explicit injection must not silently load the flower atlas.");
+            Assert.True(ground(zone,X,Y,out var retained,out _));Frame(retained,Turf,0,3);
+        }
         sealed class Probe:Part{public int Renders;public override bool HandleEvent(GameEvent e){if(e.ID=="Render")Renders++;return true;}}
         sealed class Paint : IDisposable
         {

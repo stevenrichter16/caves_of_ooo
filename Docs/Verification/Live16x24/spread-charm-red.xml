@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="29" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-29 00:02:16Z" end-time="2026-10-29 00:02:19Z" duration="3.3688773">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34211" result="Failed" site="Child" start-time="2026-10-29 00:02:16Z" end-time="2026-10-29 00:02:19Z" duration="3.368877" total="35" passed="29" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="42080" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34211" result="Failed" site="Child" start-time="2026-10-29 00:02:16Z" end-time="2026-10-29 00:02:19Z" duration="3.213910" total="35" passed="29" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="67096" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="42081" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34211" result="Failed" site="Child" start-time="2026-10-29 00:02:16Z" end-time="2026-10-29 00:02:19Z" duration="3.121592" total="35" passed="29" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="42082" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34211" result="Failed" site="Child" start-time="2026-10-29 00:02:16Z" end-time="2026-10-29 00:02:19Z" duration="3.039948" total="35" passed="29" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32789" name="FlatPixelSpreadEnvironmentTests" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:19Z" duration="2.718013" total="35" passed="29" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32804" name="CachedViewsAreDisposedIndependentlyOfBorrowedArtAndSelector" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CachedViewsAreDisposedIndependentlyOfBorrowedArtAndSelector" methodname="CachedViewsAreDisposedIndependentlyOfBorrowedArtAndSelector" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="2028329637" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.186269" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32829" name="CharmFlowersAtlasIsOptionalIndependentAndBorrowsExistingArtAndSelector" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersAtlasIsOptionalIndependentAndBorrowsExistingArtAndSelector" methodname="CharmFlowersAtlasIsOptionalIndependentAndBorrowsExistingArtAndSelector" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="929022460" result="Failed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.116129" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional CharmFlowers atlas injection must preserve the old five-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CreateFlowers (UnityEngine.Texture2D flowers, System.Boolean inject) [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:312
+at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersAtlasIsOptionalIndependentAndBorrowsExistingArtAndSelector () [0x00042] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:427
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32828" name="CharmFlowersDoNotAuthorizeDryGroundOverRealCoatingsOrCompetingTerrain" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersDoNotAuthorizeDryGroundOverRealCoatingsOrCompetingTerrain" methodname="CharmFlowersDoNotAuthorizeDryGroundOverRealCoatingsOrCompetingTerrain" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="375288653" result="Failed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.043440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional CharmFlowers atlas injection must preserve the old five-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CreateFlowers (UnityEngine.Texture2D flowers, System.Boolean inject) [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:312
+at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersDoNotAuthorizeDryGroundOverRealCoatingsOrCompetingTerrain () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:402
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32825" name="CharmFlowersNeverSubstitutesForAuthoredConjuredFlowerField" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersNeverSubstitutesForAuthoredConjuredFlowerField" methodname="CharmFlowersNeverSubstitutesForAuthoredConjuredFlowerField" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="707148477" result="Failed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.043628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional CharmFlowers atlas injection must preserve the old five-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CreateFlowers (UnityEngine.Texture2D flowers, System.Boolean inject) [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:312
+at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersNeverSubstitutesForAuthoredConjuredFlowerField () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:353
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32827" name="CharmFlowersRejectsCustomForeignCarriedAndChangedMeaningOwners" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersRejectsCustomForeignCarriedAndChangedMeaningOwners" methodname="CharmFlowersRejectsCustomForeignCarriedAndChangedMeaningOwners" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1688443426" result="Failed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.044423" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional CharmFlowers atlas injection must preserve the old five-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CreateFlowers (UnityEngine.Texture2D flowers, System.Boolean inject) [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:312
+at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersRejectsCustomForeignCarriedAndChangedMeaningOwners () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:382
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32826" name="CharmFlowersRequireCurrentDisclosureButAuthorizedUnderfootReaderKeepsItsOwner" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersRequireCurrentDisclosureButAuthorizedUnderfootReaderKeepsItsOwner" methodname="CharmFlowersRequireCurrentDisclosureButAuthorizedUnderfootReaderKeepsItsOwner" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="652636298" result="Failed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.044815" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The optional CharmFlowers atlas injection must preserve the old five-texture constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CreateFlowers (UnityEngine.Texture2D flowers, System.Boolean inject) [0x00073] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:312
+at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersRequireCurrentDisclosureButAuthorizedUnderfootReaderKeepsItsOwner () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:364
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32824" name="CharmFlowersWorldAndAuthorizedReaderReuseFrame14OverActualGrass" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersWorldAndAuthorizedReaderReuseFrame14OverActualGrass" methodname="CharmFlowersWorldAndAuthorizedReaderReuseFrame14OverActualGrass" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="103990644" result="Failed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.051175" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  CharmFlowers still uses the magenta glyph.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.CharmFlowersWorldAndAuthorizedReaderReuseFrame14OverActualGrass () [0x00098] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadEnvironmentTests.cs:326
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32813" name="EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.155345" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32810" name="EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader(&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader(&quot;CopperPipe&quot;)" methodname="EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="751017695" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.055827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32811" name="EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader(&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader(&quot;PeatBog&quot;)" methodname="EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1538960276" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.048579" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32812" name="EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader(&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader(&quot;SteamVent&quot;)" methodname="EnvironmentalFixtureHasNativeBodyRealGroundAndExactReader" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="872133080" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.048422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32800" name="ExactCoreOwnershipAndCustomVisualsCannotEscapeThroughApprovedBodies" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactCoreOwnershipAndCustomVisualsCannotEscapeThroughApprovedBodies" methodname="ExactCoreOwnershipAndCustomVisualsCannotEscapeThroughApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1044597449" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.063883" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32795" name="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:18Z" duration="0.298588" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32790" name="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Grass&quot;)" methodname="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="12817715" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:17Z" duration="0.051196" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32791" name="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;RoadStone&quot;)" methodname="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="505246324" result="Passed" start-time="2026-10-29 00:02:17Z" end-time="2026-10-29 00:02:18Z" duration="0.052678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32792" name="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Hedge&quot;)" methodname="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="536269350" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.097508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32793" name="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Tree&quot;)" methodname="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="102829518" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.046545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32794" name="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission(&quot;Bush&quot;)" methodname="ExactOrdinaryWorldAndReaderReuseApprovedMaterialsWithoutOpeningAdmission" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1795422926" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.048893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32809" name="ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.294152" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32807" name="ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection(&quot;Grass&quot;)" methodname="ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1636710923" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.216025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32808" name="ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection(&quot;RoadStone&quot;)" methodname="ExactUnderfootFloorReaderMatchesSubmittedGroundWithoutBorrowingActorSelection" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1469366637" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.076861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32818" name="FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.235710" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32815" name="FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback(&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback(&quot;CopperPipe&quot;)" methodname="FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1908166971" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.078442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32816" name="FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback(&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback(&quot;PeatBog&quot;)" methodname="FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1692785368" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.078659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32817" name="FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback(&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback(&quot;SteamVent&quot;)" methodname="FixtureGroundKeepsActualHazardMarksAndSourceRemovalFallback" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="127504764" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.076899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32798" name="GroundPersistsBeneathActorsButNotCoatingsCultivationOrCompetingFloors" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.GroundPersistsBeneathActorsButNotCoatingsCultivationOrCompetingFloors" methodname="GroundPersistsBeneathActorsButNotCoatingsCultivationOrCompetingFloors" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="928207608" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.049287" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32801" name="HedgeMasksUseDisclosedSelectedCardinalsAndPortraitRemainsIsolated" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.HedgeMasksUseDisclosedSelectedCardinalsAndPortraitRemainsIsolated" methodname="HedgeMasksUseDisclosedSelectedCardinalsAndPortraitRemainsIsolated" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1447813527" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.053515" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32822" name="InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:19Z" duration="0.202452" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32819" name="InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState(&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState(&quot;CopperPipe&quot;)" methodname="InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="433530799" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.048101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32820" name="InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState(&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState(&quot;PeatBog&quot;)" methodname="InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="2005571018" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:18Z" duration="0.058280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32821" name="InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState(&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState(&quot;SteamVent&quot;)" methodname="InvalidFixtureCannotAuthorizeDryGroundOverItsHazardState" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="2080046329" result="Passed" start-time="2026-10-29 00:02:18Z" end-time="2026-10-29 00:02:19Z" duration="0.093734" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32823" name="MissingPipePeatAtlasLeavesGlyphsButDoesNotBorrowPixelsOrSuppressHazards" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.MissingPipePeatAtlasLeavesGlyphsButDoesNotBorrowPixelsOrSuppressHazards" methodname="MissingPipePeatAtlasLeavesGlyphsButDoesNotBorrowPixelsOrSuppressHazards" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1186331748" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.082720" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32802" name="NativeGroundSelectionIsStableAndDoesNotAdvanceAnyWorldState" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.NativeGroundSelectionIsStableAndDoesNotAdvanceAnyWorldState" methodname="NativeGroundSelectionIsStableAndDoesNotAdvanceAnyWorldState" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1598214517" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.053322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32806" name="OneActualRenderEventRetainsWetColorWithoutChangingNeutralReader" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.OneActualRenderEventRetainsWetColorWithoutChangingNeutralReader" methodname="OneActualRenderEventRetainsWetColorWithoutChangingNeutralReader" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="650743633" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.119916" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32803" name="OptionalGroupsAreIndependentAndInvalidInjectionNeverReloadsResources" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.OptionalGroupsAreIndependentAndInvalidInjectionNeverReloadsResources" methodname="OptionalGroupsAreIndependentAndInvalidInjectionNeverReloadsResources" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1835309834" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.093186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32814" name="OrdinaryPipeJoinsOnlyDisclosedSelectedNeighborsAndMatchesConnectedPortrait" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.OrdinaryPipeJoinsOnlyDisclosedSelectedNeighborsAndMatchesConnectedPortrait" methodname="OrdinaryPipeJoinsOnlyDisclosedSelectedNeighborsAndMatchesConnectedPortrait" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1160004045" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.049051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32805" name="RealHedgeDestructionRepaintsNeighborCapsWithoutAFullPass" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.RealHedgeDestructionRepaintsNeighborCapsWithoutAFullPass" methodname="RealHedgeDestructionRepaintsNeighborCapsWithoutAFullPass" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="635822068" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.138146" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32797" name="SavedLairColumnCannotBecomeOrdinaryByErasingItsMapLabel" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.SavedLairColumnCannotBecomeOrdinaryByErasingItsMapLabel" methodname="SavedLairColumnCannotBecomeOrdinaryByErasingItsMapLabel" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="1149203669" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.187189" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32796" name="ScopeReservesOpeningAndSettlementAddressesEvenWhenTheirLabelsAreRemoved" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.ScopeReservesOpeningAndSettlementAddressesEvenWhenTheirLabelsAreRemoved" methodname="ScopeReservesOpeningAndSettlementAddressesEvenWhenTheirLabelsAreRemoved" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="678956288" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.051247" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="32799" name="UndisclosedForeignOrCarriedCompetingOwnersDoNotRevealThemselvesThroughGround" fullname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests.UndisclosedForeignOrCarriedCompetingOwnersDoNotRevealThemselvesThroughGround" methodname="UndisclosedForeignOrCarriedCompetingOwnersDoNotRevealThemselvesThroughGround" classname="CavesOfOoo.Tests.FlatPixelSpreadEnvironmentTests" runstate="Runnable" seed="685780202" result="Passed" start-time="2026-10-29 00:02:19Z" end-time="2026-10-29 00:02:19Z" duration="0.051025" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
