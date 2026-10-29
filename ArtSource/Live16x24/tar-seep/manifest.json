@@ -1,0 +1,49 @@
+{
+  "owner": "TarSeep",
+  "atlas": "tar-seep.png",
+  "dimensions": [
+    32,
+    24
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "state": "oil Volume>0; persistently oily"
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "state": "oil Volume0; persistently oily, never dry/safe"
+    }
+  ],
+  "palette": {
+    "edge": "2D232A",
+    "tar": "3F303A",
+    "film": "493844",
+    "wet-shadow": "514553",
+    "wet": "655F6C",
+    "slit": "7A737F"
+  },
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "import": "Point, Clamp, no mipmaps, uncompressed, FullRect, no fallback physics",
+  "alpha": "Binary; no baked sand, halo, shadow, flame or ground geometry",
+  "editable": "editable.blend",
+  "source": "source-cells.json",
+  "generator": "Tools/Live16x24/build_tar_seep.py",
+  "scope": "Original source art only; Unity import/runtime/native tests/ordinary gameplay acceptance remain root gates."
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Failed(Child)" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-29 00:25:15Z" end-time="2026-10-29 00:25:17Z" duration="1.3084012">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34220" result="Failed" site="Child" start-time="2026-10-29 00:25:15Z" end-time="2026-10-29 00:25:17Z" duration="1.308401" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="42090" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34220" result="Failed" site="Child" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:17Z" duration="1.203473" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="71637" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="42091" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34220" result="Failed" site="Child" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:17Z" duration="1.132925" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="42092" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34220" result="Failed" site="Child" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:17Z" duration="0.999787" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30000" name="FlatPixelBeatingMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:17Z" duration="0.604966" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="30127" name="TarSeepDisclosurePlacementAndCurrentGraphRemainRequiredForItsReader" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepDisclosurePlacementAndCurrentGraphRemainRequiredForItsReader" methodname="TarSeepDisclosurePlacementAndCurrentGraphRemainRequiredForItsReader" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="471835887" result="Failed" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:16Z" duration="0.181696" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepDisclosurePlacementAndCurrentGraphRemainRequiredForItsReader () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:708
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30129" name="TarSeepOptionalAtlasFailureIsIndependentAndPreservesOilAndOldInjection" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepOptionalAtlasFailureIsIndependentAndPreservesOilAndOldInjection" methodname="TarSeepOptionalAtlasFailureIsIndependentAndPreservesOilAndOldInjection" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="819960760" result="Failed" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:16Z" duration="0.050343" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepOptionalAtlasFailureIsIndependentAndPreservesOilAndOldInjection () [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:744
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30126" name="TarSeepRejectsCustomForeignCarriedAndChangedMeaningOwners" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepRejectsCustomForeignCarriedAndChangedMeaningOwners" methodname="TarSeepRejectsCustomForeignCarriedAndChangedMeaningOwners" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1097130784" result="Failed" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:16Z" duration="0.049911" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepRejectsCustomForeignCarriedAndChangedMeaningOwners () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:683
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30125" name="TarSeepRejectsMixedExpiredOrAdditionalHazardStateWithoutErasingItsMarks" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepRejectsMixedExpiredOrAdditionalHazardStateWithoutErasingItsMarks" methodname="TarSeepRejectsMixedExpiredOrAdditionalHazardStateWithoutErasingItsMarks" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="18196772" result="Failed" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:16Z" duration="0.049210" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepRejectsMixedExpiredOrAdditionalHazardStateWithoutErasingItsMarks () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:665
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30128" name="TarSeepRetainsOnlyItsTrueCompatibleSubstrateAndNeverInventsOne" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepRetainsOnlyItsTrueCompatibleSubstrateAndNeverInventsOne" methodname="TarSeepRetainsOnlyItsTrueCompatibleSubstrateAndNeverInventsOne" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="68047836" result="Failed" start-time="2026-10-29 00:25:16Z" end-time="2026-10-29 00:25:17Z" duration="0.047213" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepRetainsOnlyItsTrueCompatibleSubstrateAndNeverInventsOne () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:725
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30130" name="TarSeepShippedAtlasAndDefaultCatalogUseBothNativeFrames" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepShippedAtlasAndDefaultCatalogUseBothNativeFrames" methodname="TarSeepShippedAtlasAndDefaultCatalogUseBothNativeFrames" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1243254164" result="Failed" start-time="2026-10-29 00:25:17Z" end-time="2026-10-29 00:25:17Z" duration="0.046977" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The authored native two-state asset must be integrated in Resources.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepShippedAtlasAndDefaultCatalogUseBothNativeFrames () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:761
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="30124" name="TarSeepSourceRemovalRestoresItsActualGroundWithoutManufacturingADrySeep" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepSourceRemovalRestoresItsActualGroundWithoutManufacturingADrySeep" methodname="TarSeepSourceRemovalRestoresItsActualGroundWithoutManufacturingADrySeep" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1353958313" result="Failed" start-time="2026-10-29 00:25:17Z" end-time="2026-10-29 00:25:17Z" duration="0.071350" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepSourceRemovalRestoresItsActualGroundWithoutManufacturingADrySeep () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:657
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30123" name="TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-29 00:25:17Z" end-time="2026-10-29 00:25:17Z" duration="0.100110" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30121" name="TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader(95,0)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader(95,0)" methodname="TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="905337928" result="Failed" start-time="2026-10-29 00:25:17Z" end-time="2026-10-29 00:25:17Z" duration="0.049540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader (System.Int32 stock, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:633
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="30122" name="TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader(0,1)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader(0,1)" methodname="TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="804793983" result="Failed" start-time="2026-10-29 00:25:17Z" end-time="2026-10-29 00:25:17Z" duration="0.048946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tar requires an independent optional two-frame atlas; keep the existing constructor.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.InjectTar (UnityEngine.Texture2D source, System.Boolean missing) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:616
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader (System.Int32 stock, System.Int32 frame) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:633
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -14,9 +14,12 @@ namespace CavesOfOoo.Rendering
     {
         public const string ResourcePath = "Sprites/Live16x24/beating-materials";
         public const int FrameCount = 34;
+        /// <summary>Independent optional two-state TarSeep atlas: frame 0 stocked,
+        /// frame 1 empty stock. Both states stay oily; neither is dry or safe.</summary>
+        public const string TarResourcePath = "Sprites/Live16x24/tar-seep";
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] materials, vegetation, anchors;
+        readonly Tile[] materials, vegetation, anchors, tar;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -35,18 +38,27 @@ namespace CavesOfOoo.Rendering
         public FlatPixelBeatingMaterialsCatalog(FlatPixelFallbackCatalog borrowedSelector)
             : this(Resources.Load<Texture2D>(ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
+                Resources.Load<Texture2D>(TarResourcePath), borrowedSelector) { }
 
         /// <summary>Independent injected groups never reload Resources on failure.
         /// No borrowed texture or selector is changed or disposed.</summary>
         public FlatPixelBeatingMaterialsCatalog(Texture2D atlas34, Texture2D vegetation4,
             Texture2D anchors12, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas34, vegetation4, anchors12, null, borrowedSelector) { }
+
+        /// <summary>The tar atlas is a separate optional group: missing or
+        /// malformed tar leaves every other material, the oil mark and the
+        /// fallback glyph untouched. The older constructor never loads it.</summary>
+        public FlatPixelBeatingMaterialsCatalog(Texture2D atlas34, Texture2D vegetation4,
+            Texture2D anchors12, Texture2D tar2, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
             materials = Frames(atlas34, FrameCount, "materials");
             vegetation = Frames(vegetation4, 4, "vegetation");
             anchors = Frames(anchors12, 12, "anchors");
+            tar = Frames(tar2, 2, "tar");
         }
 
         public static bool IsSupportedZone(Zone zone)
@@ -74,6 +86,7 @@ namespace CavesOfOoo.Rendering
             if (frame < 0) return false;
             if (owner.BlueprintName == "DryBrush") tile = vegetation == null ? null : vegetation[3];
             else if (owner.BlueprintName == "Signpost") tile = anchors == null ? null : anchors[8];
+            else if (owner.BlueprintName == "TarSeep") tile = tar == null ? null : tar[frame];
             else tile = materials == null ? null : materials[frame];
             return tile != null;
         }
@@ -86,11 +99,17 @@ namespace CavesOfOoo.Rendering
             tile = null; floor = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
-            if (state != null && !state.IsEmpty) return false;
-            Entity substrate = null, crust = null;
+            bool live = state != null && !state.IsEmpty;
+            Entity substrate = null, crust = null, seep = null;
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                // One canonical disclosed TarSeep may keep its real substrate
+                // beneath it; its sole live oil stays on the independent mark
+                // layer. Static eligibility, so a missing tar atlas still shows
+                // the true ground under the fallback glyph.
+                if (owner.BlueprintName == "TarSeep" && TarFrame(owner, state) >= 0)
+                { if (seep != null) return false; seep = owner; continue; }
                 bool ground = IsGroundName(owner.BlueprintName);
                 if (ground)
                 {
@@ -102,6 +121,9 @@ namespace CavesOfOoo.Rendering
                 }
                 else if (CompetingGround(owner, state, x, y)) return false;
             }
+            // Any other live state (residual oil after removal, mixtures, energy)
+            // keeps the fallback cue rather than a clean native floor.
+            if (live && seep == null) return false;
             // Salt plates form above ordinary sand. Do not invent a preference
             // over an independently supplied constructed floor or road.
             if (crust != null && substrate != null && substrate.BlueprintName != "Sand") return false;
@@ -162,6 +184,14 @@ namespace CavesOfOoo.Rendering
             if (owner?.BlueprintName == "DryBrush" && Placed(zone, cell, owner)
                 && ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) >= 0 && vegetation != null)
             { sprite = vegetation[3].sprite; return sprite != null; }
+            // The exact placed seep may be read beneath the player; world
+            // selection stays with the selector.
+            if (owner?.BlueprintName == "TarSeep" && Placed(zone, cell, owner) && tar != null)
+            {
+                int frame = TarFrame(owner, zone.TileState.Get(x, y));
+                if (frame < 0) return false;
+                sprite = tar[frame].sprite; return sprite != null;
+            }
             if (!Selected(zone, x, y, owner)) return false;
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
@@ -212,6 +242,8 @@ namespace CavesOfOoo.Rendering
                         && source != null && source.EffectiveCoating == "brine" && source.CoatingTurns > 0
                         && FlatPixelKitchenBrineCatalog.IsSoleLiveBrine(state)
                         ? (pool.Volume == 0 ? 24 : 20) + VariantAt(x, y) : -1;
+                case "TarSeep":
+                    return TarFrame(owner, state);
                 case "PaleSaltVein":
                     return render.RenderString == "*" && render.RenderLayer == 4 && owner.HasTag("Solid") && physics.Solid
                         && owner.HasTag("MineralVein") && !owner.HasTag("Terrain") && !owner.HasTag("Wall") && !owner.HasTag("Vegetation")
@@ -236,6 +268,38 @@ namespace CavesOfOoo.Rendering
                 default: return -1;
             }
         }
+        /// <summary>Canonical ordinary TarSeep: exact blueprint presentation,
+        /// tar material, one owned oil pool with non-negative stock, one owned
+        /// oil source with no energies, neutral temperature, no status effects
+        /// and the cell's sole live state is that oil. 0 stocked, 1 empty
+        /// stock (still oily), -1 refuse.</summary>
+        static int TarFrame(Entity owner, ZoneTileState.TileState state)
+        {
+            if (owner?.BlueprintName != "TarSeep" || !PlainOwner(owner) || HasForeignMeaning(owner)) return -1;
+            var render = Owned<RenderPart>(owner); var physics = Owned<PhysicsPart>(owner);
+            var pool = Owned<LiquidPoolPart>(owner); var source = Owned<TileStateSourcePart>(owner);
+            if (render.RenderString != "~" || render.ColorString != "&K" || render.RenderLayer != 1
+                || !string.IsNullOrEmpty(render.GlyphVariants)
+                || !owner.HasTag("Terrain") || owner.HasTag("Wall") || owner.HasTag("Vegetation") || owner.HasTag("Solid")
+                || physics.Solid || !Material(owner, "Tar") || !NeutralThermal(owner) || owner.HasPart<DestructiblePart>()
+                || pool == null || pool.LiquidId != "oil" || pool.Volume < 0
+                || source == null || source.EffectiveCoating != "oil" || source.CoatingTurns <= 0
+                || source.Heat != 0 || source.Cold != 0 || source.Charge != 0 || !string.IsNullOrEmpty(source.Residue)
+                || !NoEffects(owner) || !IsSoleLiveOil(state)) return -1;
+            return pool.Volume == 0 ? 1 : 0;
+        }
+        static bool NoEffects(Entity owner)
+        {
+            if (!owner.HasPart<StatusEffectsPart>()) return true;
+            var effects = Owned<StatusEffectsPart>(owner);
+            return effects != null && effects.GetAllEffects().Count == 0;
+        }
+        /// <summary>One live oil coating and nothing else: no second coating,
+        /// residue, cloud, heat, cold or charge. Observation only.</summary>
+        static bool IsSoleLiveOil(ZoneTileState.TileState state)
+            => state != null && state.Coatings.Count == 1 && state.Coatings[0].Id == "oil" && state.Coatings[0].Turns > 0
+                && state.Residues.Count == 0 && string.IsNullOrEmpty(state.Cloud)
+                && state.Heat == 0 && state.Cold == 0 && state.Charge == 0;
         static bool IsGroundName(string name)
             => name == "Sand" || name == "SaltCrust" || name == "SandstoneFloor" || name == "RoadStone";
         static bool OrdinaryGround(Entity owner)
@@ -280,13 +344,14 @@ namespace CavesOfOoo.Rendering
         static bool HasForeignMeaning(Entity owner)
         {
             bool harvest = owner.BlueprintName == "PaleSaltVein" || owner.BlueprintName == "Bones" || owner.BlueprintName == "Saltbriar";
-            bool brine = owner.BlueprintName == "BrinePool";
+            bool brine = owner.BlueprintName == "BrinePool", seep = owner.BlueprintName == "TarSeep";
             return owner.HasPart<CropPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>()
                 || !harvest && owner.HasPart<HarvestablePart>() || owner.HasPart<RepairablePart>() || owner.HasPart<DoorPart>()
                 || owner.HasPart<CampfirePart>() || owner.HasPart<TorchLightPart>() || owner.HasPart<AlchemyStillPart>()
                 || owner.HasPart<SoddenPreparationPart>() || owner.HasPart<ContainerPart>() || owner.HasPart<TriggerOnStepPart>()
                 || owner.HasPart<GasPoolPart>() || owner.HasPart<FiniteLiquidFilmPart>() || owner.HasPart<BurnOffGasPart>()
-                || !brine && (owner.HasPart<LiquidPoolPart>() || owner.HasPart<TileStateSourcePart>())
+                || !brine && !seep && (owner.HasPart<LiquidPoolPart>() || owner.HasPart<TileStateSourcePart>())
+                || owner.HasPart<WellPart>()
                 || owner.BlueprintName != "Signpost" && owner.HasPart<RegionalSignpostPart>()
                 || owner.HasTag("WellGroundMarker") || owner.HasTag("OvenGroundMarker") || owner.HasTag("LanternGroundMarker");
         }
@@ -367,7 +432,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(anchors);
+            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(anchors); DestroyFrames(tar);
         }
         static void DestroyFrames(Tile[] tiles)
         {

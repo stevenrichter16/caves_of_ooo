@@ -20,6 +20,7 @@ namespace CavesOfOoo.Tests
         const string Atlas = "Sprites/Live16x24/beating-materials";
         const string Vegetation = "Sprites/Live16x24/north-vegetation";
         const string Anchors = "Sprites/Live16x24/opening-anchors";
+        const string Tar = "Sprites/Live16x24/tar-seep";
         const int X = 10, Y = 10;
         const BindingFlags I = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
         const BindingFlags S = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
@@ -32,6 +33,7 @@ namespace CavesOfOoo.Tests
         EntityFactory previousHarvestFactory;
         FlatPixelFallbackCatalog injectedSelector;
         IDisposable injectedAdapter;
+        Texture2D tarTestTexture;
 
         [SetUp] public void Setup()
         {
@@ -50,7 +52,7 @@ namespace CavesOfOoo.Tests
         }
         [TearDown] public void Cleanup()
         {
-            try { world?.Dispose(); injectedAdapter?.Dispose(); injectedSelector?.Dispose(); content?.Dispose(); }
+            try { world?.Dispose(); injectedAdapter?.Dispose(); injectedSelector?.Dispose(); content?.Dispose(); if(tarTestTexture!=null)Object.DestroyImmediate(tarTestTexture); }
             finally
             {
                 HarvestablePart.Factory = previousHarvestFactory;
@@ -606,6 +608,169 @@ namespace CavesOfOoo.Tests
                 Assert.AreNotSame(wall, View().Owner); Assert.AreSame(neighborTile, paint.At(X + 1, Y)); Native(neighbor, X + 1, Y);
                 Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
             }
+        }
+
+        /// <summary>No tint, no temperature, no matrix row: isolates the tar "no live status effect" refusal.</summary>
+        sealed class InertTestEffect : Effect { public override string DisplayName => "inert test effect"; }
+        void InjectTar(Texture2D source=null, bool missing=false)
+        {
+            var ctor=AdapterType().GetConstructor(new[]{typeof(Texture2D),typeof(Texture2D),typeof(Texture2D),typeof(Texture2D),typeof(FlatPixelFallbackCatalog)});
+            Assert.NotNull(ctor,"Tar requires an independent optional two-frame atlas; keep the existing constructor.");
+            if(source==null&&!missing)
+            {if(tarTestTexture==null)tarTestTexture=new Texture2D(32,24){filterMode=FilterMode.Point,wrapMode=TextureWrapMode.Clamp};source=tarTestTexture;}
+            world.Dispose();injectedAdapter?.Dispose();injectedSelector?.Dispose();
+            world=new FlatPixelGreyboxCatalog((Texture2D)null);injectedSelector=new FlatPixelFallbackCatalog();
+            injectedAdapter=(IDisposable)ctor.Invoke(new object[]{Resources.Load<Texture2D>(Atlas),Resources.Load<Texture2D>(Vegetation),
+                Resources.Load<Texture2D>(Anchors),source,injectedSelector});Write(world,"_beatingMaterialsArt",injectedAdapter);
+        }
+        void TarFrame(Tile tile,int frame,Texture2D source=null)
+        {
+            Assert.NotNull(tile);Assert.NotNull(tile.sprite);Assert.AreSame(source??tarTestTexture,tile.sprite.texture);
+            Assert.AreEqual(new Rect(frame*16,0,16,24),tile.sprite.rect);Assert.AreEqual(16,tile.sprite.pixelsPerUnit);
+            Assert.AreEqual(new Vector2(8,12),tile.sprite.pivot);Assert.AreEqual(Tile.ColliderType.None,tile.colliderType);
+        }
+        [TestCase(95,0)][TestCase(0,1)]
+        public void TarSeepStockAndResidualFilmKeepNativeIdentityOilMarkAndAuthorizedUnderfootReader(int stock,int frame)
+        {
+            InjectTar();Add("Sand");var tar=Add("TarSeep");tar.GetPart<LiquidPoolPart>().Volume=stock;
+            Assert.AreEqual("Tar",tar.GetPart<MaterialPart>().MaterialID);Assert.AreEqual("oil",tar.GetPart<TileStateSourcePart>().EffectiveCoating);
+            var view=View();Assert.AreSame(tar,view.Owner);Assert.True(view.NativeForeground);TarFrame(view.ForegroundTile,frame);
+            Assert.True(view.LocalGround);NativeTile(view.GroundTile,Atlas);Assert.False(view.BlocksMovement);
+            Assert.False(view.RepresentedBrine||view.RepresentedMire);Assert.True(zone.TileState.HasCoating(X,Y,"oil"));
+            string state=zone.TileState.ToSaveString();var viewer=Add("Player",X-1,Y);int version=zone.EntityVersion;
+            using(var paint=new Paint(world,zone))
+            {
+                paint.Step();TarFrame(paint.At(X,Y),frame);Assert.NotNull(paint.Mark,"Oil remains a disclosed independent hazard even at zero stock.");
+                var doc=ExamineDocumentBuilder.BuildWorld(tar,zone,zone.GetCell(X,Y),viewer);Assert.True(ExamineDocumentBuilder.IsCurrentSubject(doc));
+                Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out var image));Assert.AreSame(tarTestTexture,image.Texture);
+                Assert.AreEqual(new Rect(frame*.5f,0,.5f,1),image.Uv);Assert.False(image.IsModel);
+                Assert.AreEqual(version,zone.EntityVersion);Assert.True(zone.MoveEntity(viewer,X,Y));version=zone.EntityVersion;
+                paint.Dirty(X,Y);paint.Step();Assert.AreSame(viewer,View().Owner);Assert.True(View().LocalGround);
+                doc=ExamineDocumentBuilder.BuildWorld(tar,zone,zone.GetCell(X,Y),viewer);Assert.True(ExamineDocumentBuilder.IsCurrentSubject(doc));
+                Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out image));Assert.AreSame(tarTestTexture,image.Texture);
+                Assert.AreEqual(new Rect(frame*.5f,0,.5f,1),image.Uv);Assert.NotNull(paint.Mark);
+                Assert.AreEqual(stock,tar.GetPart<LiquidPoolPart>().Volume);Assert.AreEqual(state,zone.TileState.ToSaveString());
+                long resolved=EnvironmentSpriteRenderer.Perf.CellsResolved;paint.Step();Assert.AreEqual(resolved,EnvironmentSpriteRenderer.Perf.CellsResolved);
+            }
+            Assert.AreEqual(version,zone.EntityVersion,"Rendering must not change owners.");
+        }
+        [Test] public void TarSeepSourceRemovalRestoresItsActualGroundWithoutManufacturingADrySeep()
+        {
+            InjectTar();var sand=Add("Sand");var tar=Add("TarSeep");Assert.True(View().NativeForeground);Assert.True(Ground(out var oldFloor,out _));
+            zone.TileState.Clear(X,Y);Assert.False(View().NativeForeground);Assert.False(Subject(tar));Assert.False(Ground(out _,out _));
+            tar.GetPart<TileStateSourcePart>().Seed(zone,X,Y);Assert.True(View().NativeForeground);Assert.True(Ground(out _,out _));
+            Assert.True(zone.RemoveEntity(tar));Assert.False(Subject(tar));Assert.False(zone.TileState.HasCoating(X,Y,"oil"));
+            Assert.True(Ground(out var actual,out var floor));Assert.AreSame(sand,floor);Assert.AreSame(oldFloor,actual);Native(sand);
+        }
+        [Test] public void TarSeepRejectsMixedExpiredOrAdditionalHazardStateWithoutErasingItsMarks()
+        {
+            InjectTar();
+            foreach(string fault in new[]{"missing","water","mixture","expired","heat","cold","charge","residue","cloud"})
+            {
+                zone=Attach(Home);Add("Sand");var tar=Add("TarSeep");Assert.True(View().NativeForeground,fault+" positive");
+                if(fault=="missing")zone.TileState.Clear(X,Y);
+                if(fault=="water"){zone.TileState.Clear(X,Y);zone.TileState.WriteCoating(X,Y,"water",4);}
+                if(fault=="mixture")zone.TileState.WriteCoating(X,Y,"water",4);
+                if(fault=="expired")zone.TileState.Get(X,Y).Coatings[0].Turns=0;
+                if(fault=="heat")zone.TileState.AddHeat(X,Y,1);if(fault=="cold")zone.TileState.AddCold(X,Y,1);
+                if(fault=="charge")zone.TileState.AddCharge(X,Y,1);if(fault=="residue")zone.TileState.WriteResidue(X,Y,"embers",4);
+                if(fault=="cloud")zone.TileState.WriteCloud(X,Y,"veil-mist",4);
+                string state=zone.TileState.ToSaveString();Assert.False(View().NativeForeground,fault);Assert.False(Subject(tar),fault);Assert.False(Ground(out _,out _),fault);
+                using(var paint=new Paint(world,zone)){paint.Step();if(fault!="missing"&&fault!="expired")Assert.NotNull(paint.Mark,fault);}
+                Assert.AreEqual(state,zone.TileState.ToSaveString(),fault+" presentation cannot consume the hazard");
+            }
+        }
+        [Test] public void TarSeepRejectsCustomForeignCarriedAndChangedMeaningOwners()
+        {
+            InjectTar();
+            foreach(string fault in new[]{"visual","color","material","liquid","negative","source","source-heat","foreign-source","duplicate-pool","carried","equipped","solid","footprint","burning","frozen","nan","crop","well","structure","frozen-effect","burning-effect","inert-effect"})
+            {
+                zone=Attach(Home);Add("Sand");var tar=Add("TarSeep");Assert.True(View().NativeForeground,fault+" positive");
+                switch(fault)
+                {
+                    case "visual":tar.GetPart<RenderPart>().VisualVariant="foreign tar";break;case "color":tar.GetPart<RenderPart>().ColorString="&R";break;
+                    case "material":tar.GetPart<MaterialPart>().MaterialID="Water";break;case "liquid":tar.GetPart<LiquidPoolPart>().LiquidId="water";break;
+                    case "negative":tar.GetPart<LiquidPoolPart>().Volume=-1;break;case "source":tar.GetPart<TileStateSourcePart>().Coating="water";break;
+                    case "source-heat":tar.GetPart<TileStateSourcePart>().Heat=1;break;
+                    case "foreign-source":tar.GetPart<TileStateSourcePart>().ParentEntity=new Entity();break;
+                    case "duplicate-pool":tar.AddPart(new LiquidPoolPart{LiquidId="oil",Volume=95});break;
+                    case "carried":tar.GetPart<PhysicsPart>().InInventory=new Entity();break;case "equipped":tar.GetPart<PhysicsPart>().Equipped=new Entity();break;
+                    case "solid":tar.GetPart<PhysicsPart>().Solid=true;break;case "footprint":tar.AddPart(new SpatialFootprintPart{CellsRaw="0,0;1,0"});break;
+                    case "burning":tar.GetPart<ThermalPart>().Temperature=201;break;case "frozen":tar.GetPart<ThermalPart>().Temperature=-100;break;
+                    case "nan":tar.GetPart<ThermalPart>().Temperature=float.NaN;break;case "crop":tar.AddPart(new CropPart());break;
+                    case "well":tar.AddPart(new WellPart());break;case "structure":tar.AddPart(new DestructiblePart());break;
+                    case "frozen-effect":Assert.True(tar.ForceApplyEffect(new FrozenEffect(1),null,zone));break;
+                    // The status matrix refuses Electrified on non-conductive tar (false premise in the first RED);
+                    // a live Burning effect is admitted on flammable tar and must refuse native presentation.
+                    case "burning-effect":Assert.True(tar.ForceApplyEffect(new BurningEffect(1f),null,zone));break;
+                    // Review finding: Frozen and Burning are already refused by tint and temperature, so only an
+                    // effect with neither proves the separate "no live status effect" rule is actually enforced.
+                    case "inert-effect":Assert.True(tar.ForceApplyEffect(new InertTestEffect(),null,zone));
+                        Assert.IsNull(tar.GetPart<StatusEffectsPart>().GetRenderColorOverride());Assert.AreEqual(20f,tar.GetPart<ThermalPart>().Temperature);break;
+                }
+                Assert.False(View().NativeForeground,fault);Assert.False(Subject(tar),fault);Assert.False(Ground(out _,out _),fault);
+            }
+        }
+        [Test] public void TarSeepDisclosurePlacementAndCurrentGraphRemainRequiredForItsReader()
+        {
+            InjectTar();Add("Sand");var tar=Add("TarSeep");var viewer=Add("Player",X-1,Y);Assert.True(Subject(tar));
+            var doc=ExamineDocumentBuilder.BuildWorld(tar,zone,zone.GetCell(X,Y),viewer);Assert.True(ExamineDocumentBuilder.IsCurrentSubject(doc));
+            using(var paint=new Paint(world,zone))
+            {
+                zone.GetCell(X,Y).IsVisible=false;Assert.False(Subject(tar));Assert.False(View().NativeForeground);Assert.False(View().LocalGround);
+                Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out var hidden));Assert.IsNull(hidden.Texture);
+                zone.GetCell(X,Y).Explored=false;Assert.False(world.TryResolvePresentation(zone,X,Y,out _));
+                zone.GetCell(X,Y).IsVisible=zone.GetCell(X,Y).Explored=true;tar.GetPart<RenderPart>().Visible=false;
+                Assert.False(Subject(tar));Assert.False(Ground(out _,out _),"Hidden tar cannot authorize native ground over its live oil.");
+                tar.GetPart<RenderPart>().Visible=true;Assert.True(Subject(tar));Assert.True(zone.MoveEntity(tar,X+1,Y));
+                Assert.False(Subject(tar));Assert.True(paint.Renderer.TryGetFlatExaminePortrait(doc,out var moved));Assert.IsNull(moved.Texture);
+            }
+            var stale=zone;manager.SetActiveZone(new Zone(Home));Assert.False(world.TryResolvePresentation(stale,X+1,Y,out _));
+            Assert.False(world.TryGetPresentationSubjectSprite(stale,tar,X+1,Y,out _,out _));
+        }
+        [Test] public void TarSeepRetainsOnlyItsTrueCompatibleSubstrateAndNeverInventsOne()
+        {
+            InjectTar();
+            foreach(string substrate in new[]{"Sand","SandstoneFloor","RoadStone","SaltCrust"})
+            {
+                zone=Attach(Home);var floor=Add(substrate);var tar=Add("TarSeep");Assert.True(Ground(out var tile,out var actual),substrate);
+                Assert.AreSame(floor,actual);NativeTile(tile,Atlas);AssertFamilyFrame(floor,tile);Assert.True(View().NativeForeground);
+                var conflict=Add(substrate=="RoadStone"?"Sand":"RoadStone");Assert.False(Ground(out _,out _));Assert.True(zone.RemoveEntity(conflict));
+                Assert.True(Ground(out _,out _));var water=Add("WaterPuddle");Assert.False(Ground(out _,out _));Assert.True(zone.RemoveEntity(water));
+                Assert.True(zone.RemoveEntity(floor));Assert.False(Ground(out _,out _),"No filler floor may be fabricated beneath tar.");
+            }
+            zone=Attach(Home);Add("Sand");Add("TarSeep");Assert.True(Ground(out _,out _));Add("TarSeep");
+            Assert.False(Ground(out _,out _),"Overlapping seep owners cannot authorize an ambiguous substrate exception.");
+        }
+        [Test] public void TarSeepOptionalAtlasFailureIsIndependentAndPreservesOilAndOldInjection()
+        {
+            var malformed=new Texture2D(17,24);
+            try
+            {
+                foreach(var input in new Texture2D[]{null,malformed})
+                {
+                    InjectTar(input,missing:true);zone=Attach(Home);Add("Sand");var tar=Add("TarSeep");
+                    Assert.False(View().NativeForeground);Assert.False(Subject(tar));Assert.True(Ground(out var floor,out _));NativeTile(floor,Atlas);
+                    using(var paint=new Paint(world,zone)){paint.Step();Assert.NotNull(paint.Mark);}
+                    Assert.True(zone.RemoveEntity(tar));var rock=Add("Rock");Native(rock);
+                }
+                InjectTar();zone=Attach(Home);Add("Sand");var valid=Add("TarSeep");Assert.True(View().NativeForeground);var tile=View().ForegroundTile;var sprite=tile.sprite;
+                injectedAdapter.Dispose();injectedAdapter.Dispose();Assert.True(tile==null);Assert.True(sprite==null);Assert.True(tarTestTexture!=null);
+                Assert.True(injectedSelector.TryResolve(zone,X,Y,out _));Assert.False(Subject(valid));
+                world.Dispose();injectedSelector.Dispose();injectedAdapter=null;injectedSelector=null;
+                Inject(Resources.Load<Texture2D>(Atlas));zone=Attach(Home);Add("Sand");var legacy=Add("TarSeep");
+                Assert.False(View().NativeForeground);Assert.False(Subject(legacy),"Old explicit constructor must not reload the optional atlas.");
+                Assert.True(Ground(out _,out _));
+            }
+            finally{Object.DestroyImmediate(malformed);}
+        }
+        [Test] public void TarSeepShippedAtlasAndDefaultCatalogUseBothNativeFrames()
+        {
+            var texture=Resources.Load<Texture2D>(Tar);Assert.NotNull(texture,"The authored native two-state asset must be integrated in Resources.");
+            Assert.AreEqual(32,texture.width);Assert.AreEqual(24,texture.height);Assert.AreEqual(FilterMode.Point,texture.filterMode);Assert.AreEqual(TextureWrapMode.Clamp,texture.wrapMode);
+            Add("Sand");var tar=Add("TarSeep");Assert.True(View().NativeForeground);TarFrame(View().ForegroundTile,0,texture);
+            tar.GetPart<LiquidPoolPart>().Volume=0;Assert.True(View().NativeForeground);TarFrame(View().ForegroundTile,1,texture);
+            Assert.True(zone.TileState.HasCoating(X,Y,"oil"));Assert.False(View().RepresentedBrine||View().RepresentedMire);
         }
 
         // Existing submitted ZoneRenderer fixture; no alternate drawing implementation.
