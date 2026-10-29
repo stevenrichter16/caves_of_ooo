@@ -18,6 +18,8 @@ Completed bounded work includes ordinary Spread grass/road/hedge/tree/bush conti
 
 ## Immediate next implementation choice
 
+Published CharmFlowers source: `ed85e03a09cd55ba383cb0effbe2c615cd3aff85`, verified remotely. Read `Docs/Verification/Live16x24/environment-next-after-charm.md` for the completed independent TarSeep/GroveSeep distinction, exact fixtures and native-art gaps.
+
 CharmFlowers reuse is completed and should not be redone. Compare the confirmed live TarSeep/oil and GroveSeep gaps against other whole-scene needs, using `regional-next-gap-audit.json`, packaged captures10/11 and the newest continuation. Preserve hazard and liquid-state truth; start a narrow RED/GREEN integration only after checking existing approved art and actual current-owner admission. Separate FlowerField is also placed by FlowerMeadow generation; do not assume every instance was conjured or treat it as CharmFlowers. Finish a useful batch before rebuilding packages.
 
 ## Visual direction
