@@ -23,6 +23,7 @@ namespace CavesOfOoo.Tests
         const string ForestFloor = "Sprites/Live16x24/grovelands-ground";
         const string Beating = "Sprites/Live16x24/beating-materials";
         const string OpeningGround = "Sprites/Live16x24/opening-ground";
+        const string TownFloor = "Sprites/Live16x24/town-floor";
         static EntityFactory factory;
         OverworldZoneManager manager;
         FlatPixelGreyboxCatalog world;
@@ -61,6 +62,12 @@ namespace CavesOfOoo.Tests
         [TestCase("Overworld.10.14.0", "StoneFloor", SillLawnAndFloors)] // Tally
         [TestCase("Overworld.10.14.0", "RoadStone", OpeningGround)]     // Tally, Spread road
         [TestCase("Overworld.8.16.0", "RoadStone", Beating)]            // Wellmeet, Beating road
+        [TestCase("Overworld.13.7.0", "Floor", TownFloor)]              // Tine: town yard
+        [TestCase("Overworld.15.6.0", "Floor", TownFloor)]              // Sumphold
+        [TestCase("Overworld.17.5.0", "Floor", TownFloor)]              // the Drowned Ledger, Sodden
+        [TestCase("Overworld.18.18.0", "Floor", TownFloor)]             // the Last Counter, Beating
+        [TestCase("Overworld.14.9.0", "Floor", TownFloor)]              // Quillhold
+        [TestCase("Overworld.10.14.0", "Floor", TownFloor)]             // Tally
         public void SettlementGroundUsesTheApprovedArtOfItsBiome(string id, string blueprint, string resource)
         {
             var zone = Visit(id); Assert.True(FlatPixelSettlementGroundCatalog.IsSupportedZone(zone), id + " is an ordinary settlement");

@@ -1,6 +1,6 @@
 # Settlement ground
 
-**Status (2026-10-29):** two slices, ground then water and sandstone walls (below); both implemented and regression-tested; verified through offline renders of real generated settlements drawn by the real presentation catalog. Not yet captured in live play (see Limits).
+**Status (2026-10-29):** three slices — ground, then water and sandstone walls, then original town-floor art (below); all implemented and regression-tested; verified through offline renders of real generated settlements drawn by the real presentation catalog. Not yet captured in live play (see Limits).
 
 ## Problem (seed-64 census, flat 16×24 presentation)
 
@@ -95,6 +95,41 @@ Every puddle cell carries the pool's permanent water projection, so each is a re
 **Corrected premise.** The first counter-check assumed a damaged wall falls back. The Beating rule only requires HP > 0, so the check now freezes the wall, which the rule does refuse.
 
 **Remaining.** The town `Floor` is now the dominant gap: about 8,400 cells across Tine, Sumphold, the Drowned Ledger, the Last Counter, Marrowstye, Quillhold and Tally. It needs its own paving art. After that come Duckboard, Reeds, PeatBank, the authored Gantry and Quillhold walls, campfire, oven and well markers, and small props.
+
+## Slice 3: original town floor (2026-10-29)
+
+**Problem.** After slice 2, the plain `Floor` owner was the dominant settlement gap: 8,378 cells across seven towns drew as black fields of dark-grey `.` glyphs. No approved material fit it:
+- the cellar floor reads as a cave void;
+- the Sill grey already marks room interiors;
+- lawn and sand would misstate the owner.
+
+**Art.** A new original material, packed town earth: `Sprites/Live16x24/town-floor` (64×24, four frames). It is built from editable Blender quads by `Tools/Live16x24/build_town_floor.py`. Source, checks and limits: `ArtSource/Live16x24/town-floor/README.md`. No imagegen concept was available in this session.
+
+**Runtime.** `FlatPixelSettlementGroundCatalog` admits the canonical `Floor` as a ground owner: `.` `&K`, no background, the standard glyph variants, terrain without material, thermal or destructible state. It draws the four frames through the shared variant selector.
+- Its ground kind is `StoneFloor`, the kind the greybox already gives a plain Floor, so tints and other receivers are unchanged.
+- The 5-texture constructor became 6-texture. Its only caller is the Resources constructor.
+
+**Tests.** Six new biome-art cases: Tine, Sumphold, the Drowned Ledger, the Last Counter, Quillhold and Tally.
+- RED: 6 failures, each 0 of N native.
+- GREEN and regression: all `FlatPixel*` classes 3,736 passed, 0 failed, 3 inconclusive (existing allocation probes).
+
+**Result.** Native cells per town:
+
+| Town | Before | After |
+|---|---|---|
+| Tine | 822 | 1,844 |
+| Sumphold | 608 | 1,878 |
+| the Drowned Ledger | 588 | 1,870 |
+| the Last Counter | 412 | 1,958 |
+| Marrowstye | 972 | 1,940 |
+| Quillhold | 557 | 1,804 |
+| Tally | 943 | 1,986 |
+
+The 15 settlements now total about 28,879 of 30,000 native cells (96%), up from 1,111 before slice 1.
+
+**Evidence.** `settlement-town-floor-{tine,last-counter,quillhold,drowned-ledger,tally}-offline.png`: before (top), after (bottom). They are offline renders through the real catalog, not gameplay captures.
+
+**New visible defect.** Remaining glyph owners on the new floor now show as black boxes, which were invisible against the old black field: DryBrush in the Last Counter, Reeds and Duckboard in Tine, campfire markers, and a magenta `+`. This is the next slice. DryBrush and Duckboard have approved Beating and Sodden art to reuse.
 
 ## Limits and next
 

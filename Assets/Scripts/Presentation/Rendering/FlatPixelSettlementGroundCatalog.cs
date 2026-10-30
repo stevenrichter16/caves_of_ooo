@@ -12,7 +12,8 @@ namespace CavesOfOoo.Rendering
     /// entirely glyph ground in the flat 16x24 view, because each biome adapter admits wilderness
     /// only. This adapter reuses art that is already approved for the same identities:
     /// Grass → the Sill settlement lawn (Grovelands: the forest floor), StoneFloor → the Sill room
-    /// floors, Sand → Beating sand, RoadStone → the opening road (Beating: the Beating road).
+    /// floors, Sand → Beating sand, RoadStone → the opening road (Beating: the Beating road),
+    /// and the plain town Floor → the original town-floor packed earth.
     /// Borrows textures and the current-owner selector; owns only cached tiles/sprites. Ground only:
     /// one plain dry owner per cell; wet, mixed, stacked, hidden, remembered or foreign cells keep
     /// their fallback. Also settlement pools (the Sill river water views) and SandstoneWall (the
@@ -21,8 +22,9 @@ namespace CavesOfOoo.Rendering
     public sealed class FlatPixelSettlementGroundCatalog : IDisposable
     {
         const int Width = 16, Height = 24;
+        public const string TownFloorResourcePath = "Sprites/Live16x24/town-floor";
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls;
+        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls, yard;
         readonly FlatPixelSillRiverCatalog water;
         bool disposed;
 
@@ -30,12 +32,13 @@ namespace CavesOfOoo.Rendering
             : this(Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath),
                 Resources.Load<Texture2D>(FlatPixelGrovelandsMaterialsCatalog.GroundResourcePath),
                 Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath),
+                Resources.Load<Texture2D>(TownFloorResourcePath), borrowedSelector) { }
 
         /// <summary>Each borrowed group is independent: a missing or malformed atlas only leaves
         /// its own identities on the fallback. No Resources reload on failure.</summary>
         public FlatPixelSettlementGroundCatalog(Texture2D sillEnvironment9, Texture2D forestGround4,
-            Texture2D beating34, Texture2D openingGround21, FlatPixelFallbackCatalog borrowedSelector)
+            Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -45,6 +48,7 @@ namespace CavesOfOoo.Rendering
             sand = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 0, 4, "sand");
             beatingRoad = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 32, 2, "beating road");
             road = Frames(openingGround21, 21, 16, 2, "road");
+            yard = Frames(townFloor4, 4, 0, 4, "town floor");
             walls = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 16, 2, "sandstone wall");
             water = new FlatPixelSillRiverCatalog(openingGround21, selector, IsSupportedZone, WaterSubstrate);
         }
@@ -91,6 +95,7 @@ namespace CavesOfOoo.Rendering
             {
                 case "Grass": tile = biome == BiomeType.Grovelands ? Pick(forest, VariantAt(x, y)) : Pick(lawn, VariantAt(x, y)); break;
                 case "StoneFloor": tile = Pick(floors, VariantAt(x, y)); break;
+                case "Floor": tile = Pick(yard, VariantAt(x, y)); break;
                 case "Sand": tile = Pick(sand, VariantAt(x, y)); break;
                 case "RoadStone": tile = biome == BiomeType.Beating ? Pick(beatingRoad, (x + y) & 1) : Pick(road, (x + y) & 1); break;
             }
@@ -137,7 +142,8 @@ namespace CavesOfOoo.Rendering
 
         public static FlatPixelGreyboxGround GroundKind(Entity floor)
             => floor?.BlueprintName == "RoadStone" ? FlatPixelGreyboxGround.Road
-                : floor?.BlueprintName == "StoneFloor" ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground;
+                : floor?.BlueprintName == "StoneFloor" || floor?.BlueprintName == "Floor"
+                    ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground; // plain Floor: the greybox's own floor kind
 
         bool ReadyCell(Zone zone, int x, int y, out Cell cell)
         {
@@ -148,7 +154,7 @@ namespace CavesOfOoo.Rendering
                 && selector.TryResolve(zone, x, y, out var selected) && !selected.Remembered;
         }
         static Tile Pick(Tile[] tiles, int i) => tiles == null || i < 0 || i >= tiles.Length ? null : tiles[i];
-        static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone";
+        static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";
 
         static bool OrdinaryGround(Entity owner)
         {
@@ -171,24 +177,15 @@ namespace CavesOfOoo.Rendering
                 case "RoadStone":
                     return !owner.HasTag("Vegetation") && r.RenderString == "=" && r.ColorString == "&y"
                         && string.IsNullOrEmpty(r.BackgroundColor) && string.IsNullOrEmpty(r.GlyphVariants);
+                case "Floor":
+                    return !owner.HasTag("Vegetation") && r.RenderString == "." && r.ColorString == "&K"
+                        && string.IsNullOrEmpty(r.BackgroundColor) && r.GlyphVariants == "...,.'`";
                 default: return false;
             }
         }
         static bool WaterSubstrate(Entity owner)
             => FlatPixelSillRiverCatalog.OrdinaryGrass(owner)
-                || owner.BlueprintName != "Grass" && owner.BlueprintName != "RoadStone" && OrdinaryGround(owner)
-                || OrdinaryFloor(owner);
-        /// <summary>The plain town Floor a settlement pool may lie on (Tine, Sumphold, the Drowned Ledger).</summary>
-        static bool OrdinaryFloor(Entity owner)
-        {
-            if (owner?.BlueprintName != "Floor" || !Plain(owner) || ForeignMeaning(owner) || !owner.HasTag("Terrain")
-                || owner.HasTag("Wall") || owner.HasTag("Solid") || owner.HasTag("Vegetation") || owner.HasTag("Barren")
-                || Owned<PhysicsPart>(owner).Solid || owner.HasPart<MaterialPart>() || owner.HasPart<ThermalPart>()
-                || owner.HasPart<DestructiblePart>()) return false;
-            var r = Owned<RenderPart>(owner);
-            return r.RenderLayer == 0 && r.RenderString == "." && r.ColorString == "&K"
-                && string.IsNullOrEmpty(r.BackgroundColor) && r.GlyphVariants == "...,.'`";
-        }
+                || owner.BlueprintName != "Grass" && owner.BlueprintName != "RoadStone" && OrdinaryGround(owner);
         static bool Plain(Entity owner)
         {
             if (owner == null || owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Item")) return false;
@@ -263,7 +260,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             water?.Dispose();
-            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls })
+            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls, yard })
             {
                 if (group == null) continue;
                 foreach (var tile in group) { if (tile == null) continue; DestroyOwned(tile.sprite); DestroyOwned(tile); }

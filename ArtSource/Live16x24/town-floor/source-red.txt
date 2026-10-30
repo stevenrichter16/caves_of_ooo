@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_town_floor.py", line 150, in <module>
+    elif o.verify:verify()
+                  ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_town_floor.py", line 102, in verify
+    count=guard();s=json.loads((OUT/'source-cells.json').read_text())
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/Live16x24/town-floor/source-cells.json'
