@@ -14,6 +14,8 @@ namespace CavesOfOoo.Rendering
         public const string ResourcePath = FlatPixelOpeningGroundCatalog.ResourcePath;
         readonly FlatPixelFallbackCatalog selector;
         readonly Tile[] water;
+        readonly Func<Zone, bool> admits;
+        readonly Func<Entity, bool> substrate;
         bool disposed;
 
         public FlatPixelSillRiverCatalog(FlatPixelFallbackCatalog borrowedSelector)
@@ -23,8 +25,16 @@ namespace CavesOfOoo.Rendering
         /// Null/malformed input stays unavailable without a resource reload.
         /// Texture and selector remain caller-owned.</summary>
         public FlatPixelSillRiverCatalog(Texture2D openingGround21, FlatPixelFallbackCatalog borrowedSelector)
+            : this(openingGround21, borrowedSelector, IsSupportedZone, OrdinaryGrass) { }
+
+        /// <summary>The same water views and pool rules for another admitted area (ordinary
+        /// settlements). <paramref name="plainSubstrate"/> names the dry ground a pool may lie on;
+        /// any other terrain beneath it still refuses.</summary>
+        internal FlatPixelSillRiverCatalog(Texture2D openingGround21, FlatPixelFallbackCatalog borrowedSelector,
+            Func<Zone, bool> admission, Func<Entity, bool> plainSubstrate)
         {
-            selector = borrowedSelector;
+            selector = borrowedSelector; admits = admission; substrate = plainSubstrate;
+            if (admits == null || substrate == null) return;
             if (selector == null || openingGround21 == null || openingGround21.width != 336 || openingGround21.height != 24) return;
             water = new Tile[16];
             for (int i = 0; i < water.Length; i++)
@@ -54,8 +64,7 @@ namespace CavesOfOoo.Rendering
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
                 if (owner.BlueprintName == "WaterPuddle")
                 { if (actual != null || !OrdinaryPool(owner)) return false; actual = owner; }
-                else if (owner.BlueprintName == "Grass")
-                { if (!OrdinaryGrass(owner)) return false; }
+                else if (substrate(owner)) { }
                 else if (CompetingGround(owner)) return false;
             }
             if (actual == null) return false;
@@ -81,7 +90,7 @@ namespace CavesOfOoo.Rendering
         bool ReadyCell(Zone zone, int x, int y, out Cell cell)
         {
             cell = null;
-            if (disposed || selector == null || !IsSupportedZone(zone)) return false;
+            if (disposed || selector == null || admits == null || !admits(zone)) return false;
             cell = zone.GetCell(x, y);
             return cell != null && cell.ParentZone == zone && cell.X == x && cell.Y == y && cell.Explored && cell.IsVisible
                 && selector.TryResolve(zone, x, y, out var selected) && !selected.Remembered;
@@ -120,7 +129,7 @@ namespace CavesOfOoo.Rendering
                 && thermal.Temperature > thermal.FreezeTemperature && thermal.Temperature < thermal.VaporTemperature
                 && thermal.Temperature < thermal.FlameTemperature;
         }
-        static bool OrdinaryGrass(Entity owner)
+        internal static bool OrdinaryGrass(Entity owner)
         {
             if (!PlainTerrain(owner) || ForeignMeaning(owner) || !owner.HasTag("Vegetation") || !owner.HasTag("Plantable")
                 || owner.HasPart<MaterialPart>() || owner.HasPart<ThermalPart>() || owner.HasPart<DestructiblePart>()

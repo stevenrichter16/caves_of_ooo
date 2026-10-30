@@ -213,6 +213,11 @@ namespace CavesOfOoo.Rendering
                 && selector.TryResolve(zone, x, y, out var selected)
                 && !selected.Remembered && ReferenceEquals(selected.Owner, owner);
 
+        /// <summary>The approved sandstone wall frame (16 or 17) for an owner the Beating would draw
+        /// natively, by exactly the same rule; -1 otherwise. Shared with ordinary settlements.</summary>
+        internal static int SandstoneWallFrame(Entity owner, int x, int y)
+            => owner?.BlueprintName == "SandstoneWall" ? ForegroundFrame(owner, null, x, y) : -1;
+
         static int ForegroundFrame(Entity owner, ZoneTileState.TileState state, int x, int y)
         {
             if (!PlainOwner(owner) || HasForeignMeaning(owner)) return -1;

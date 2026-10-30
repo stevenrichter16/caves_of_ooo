@@ -1,6 +1,6 @@
 # Settlement ground
 
-**Status (2026-10-29):** implemented and regression-tested; verified through offline renders of real generated settlements drawn by the real presentation catalog. Not yet captured in live play (see Limits).
+**Status (2026-10-29):** two slices, ground then water and sandstone walls (below); both implemented and regression-tested; verified through offline renders of real generated settlements drawn by the real presentation catalog. Not yet captured in live play (see Limits).
 
 ## Problem (seed-64 census, flat 16×24 presentation)
 
@@ -55,6 +55,46 @@ It draws ground only, with one plain dry owner per cell. Wet, mixed, stacked, hi
 ## Evidence
 
 `Docs/Verification/Live16x24/settlement-ground-{posy,wellmeet,gantry,cinderhold,tally,first-tent}-offline.png` stack before (top) over after (bottom). Each is an offline render, in the verification copy, of every cell's ground and foreground sprite exactly as `FlatPixelGreyboxCatalog` resolves them for the real generated seed-64 zone. They are not gameplay captures.
+
+## Slice 2: settlement water and sandstone walls (2026-10-29)
+
+A census of the 15 settlements found 2,394 `WaterPuddle` and 935 `SandstoneWall` cells, all still glyphs:
+
+| Settlement | Puddles lie on | Walls stand on |
+|---|---|---|
+| Posy, Slip, the Quiet's Door | Grass | — |
+| Tine, Sumphold, the Drowned Ledger | Floor | Floor |
+| The Salt-Vault | Sand | Sand |
+| Cinderhold | — | Grass |
+| Marrowstye, the Last Counter | — | Floor or StoneFloor |
+
+Every puddle cell carries the pool's permanent water projection, so each is a real pool. Every wall is the ordinary SandstoneWall blueprint.
+
+**Water.** Pools reuse the Sill river's water views and pool rules: `opening-ground` frames 0–15, with bank edges where disclosed neighbours are dry.
+- `FlatPixelSillRiverCatalog` gained an internal constructor that takes an admission rule and a plain-substrate rule.
+- The public constructor keeps Sill admission with grass, unchanged.
+- Settlements admit plain Grass, Sand, StoneFloor or the canonical town `Floor` beneath a pool.
+- Any second coating, or any other terrain, keeps the fallback.
+- Markers still refuse, so a campfire marker over water keeps its glyph.
+
+**Walls.** SandstoneWall reuses the approved Beating wall frames 16–17 through `FlatPixelBeatingMaterialsCatalog.SandstoneWallFrame`, which is exactly the Beating's own admission rule. The frames are fully opaque. Collision and the wall entity are unchanged.
+
+**Result.** Native cells rose from 17,294 to 20,501 of 30,000 (68%). Per-settlement counts: `settlement-water-walls-census-after.txt`.
+
+**Tests**
+- New cases:
+  - five settlement-water cases, covering Grass, Floor and Sand: at least 95% native water, no collider, reader matches;
+  - four sandstone-wall cases: at least 95% native, still blocking, reader matches;
+  - one counter-check: oil on a pool, and a frozen wall, keep their fallback.
+- **RED:** 10 failures, 0 of N native in each.
+- **GREEN:** 24 of 25. The remaining failure was the bridge-log SetUp noise.
+- **Regression:** with the bridge server running, all `FlatPixel*` classes gave 3,730 passed, 0 failed and 3 inconclusive (existing allocation probes). The Sill river and Beating wall suites are included and unchanged.
+
+**Evidence.** `settlement-water-walls-{tine,salt-vault,posy,cinderhold,last-counter}-offline.png`: before (top), after (bottom). They are rendered by the same offline method as above, not gameplay captures.
+
+**Corrected premise.** The first counter-check assumed a damaged wall falls back. The Beating rule only requires HP > 0, so the check now freezes the wall, which the rule does refuse.
+
+**Remaining.** The town `Floor` is now the dominant gap: about 8,400 cells across Tine, Sumphold, the Drowned Ledger, the Last Counter, Marrowstye, Quillhold and Tally. It needs its own paving art. After that come Duckboard, Reeds, PeatBank, the authored Gantry and Quillhold walls, campfire, oven and well markers, and small props.
 
 ## Limits and next
 

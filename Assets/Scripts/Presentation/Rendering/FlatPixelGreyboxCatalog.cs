@@ -1178,6 +1178,14 @@ namespace CavesOfOoo.Rendering
                 groundTile = settlementGroundTile; groundColor = Color.white; ground = FlatPixelSettlementGroundCatalog.GroundKind(settlementFloor);
                 if (owner == settlementFloor) kind = FlatPixelGreyboxKind.Ground;
             }
+            // Their permanent pools reuse the Sill river water views.
+            Tile settlementWaterTile = null; Entity settlementWaterSource = null;
+            bool settlementWater = settlement != null && settlement.TryResolveWaterGround(zone, x, y, out settlementWaterTile, out settlementWaterSource);
+            if (settlementWater)
+            {
+                groundTile = settlementWaterTile; groundColor = Color.white; ground = FlatPixelGreyboxGround.Water;
+                if (owner == settlementWaterSource) kind = FlatPixelGreyboxKind.Ground;
+            }
             var caves = !fallback.Remembered ? ShallowCavesArtFor(zone) : null;
             Tile caveGroundTile = null; Entity caveFloor = null;
             bool caveGround = caves != null && caves.TryResolveGround(zone, x, y, out caveGroundTile, out caveFloor);
@@ -1328,6 +1336,9 @@ namespace CavesOfOoo.Rendering
             Tile beatingArt = null;
             bool beatingNative = beating != null && beating.TryResolveForeground(zone, x, y, owner, out beatingArt);
             if (beatingNative) art = beatingArt;
+            Tile settlementArt = null;
+            bool settlementNative = settlement != null && settlement.TryResolveForeground(zone, x, y, owner, out settlementArt);
+            if (settlementNative) art = settlementArt;
             Tile grovelandsArt = null;
             bool grovelandsNative = grovelands != null && grovelands.TryResolveForeground(zone, x, y, owner, out grovelandsArt);
             if (grovelandsNative) art = grovelandsArt;
@@ -1451,7 +1462,7 @@ namespace CavesOfOoo.Rendering
             bool portableEquipmentKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner) || owner?.BlueprintName == "Buckler";
             if (portableEquipmentKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || spreadNative || sillNative || soddenNative || beatingNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || spreadNative || sillNative || soddenNative || beatingNative || settlementNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1464,7 +1475,7 @@ namespace CavesOfOoo.Rendering
                 || grovelandsGround && owner == grovelandsFloor || overwritGround && owner == overwritFloor
                 || grovelandsWater && grovelandsWaterGrass != null && owner == grovelandsWaterGrass
                 || stumpGround && owner == stumpFloor || stumpWater && owner == stumpWaterSource
-                || settlementGround && owner == settlementFloor
+                || settlementGround && owner == settlementFloor || settlementWater && owner == settlementWaterSource
                 || caveGround && owner == caveFloor || limestoneGround && owner == limestoneFloor
                 || shaleGround && owner == shaleFloor || slateGround && owner == slateFloor
                 || quartziteGround && owner == quartziteFloor || obsidianGround && owner == obsidianFloor) foreground = null;
@@ -1506,7 +1517,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 

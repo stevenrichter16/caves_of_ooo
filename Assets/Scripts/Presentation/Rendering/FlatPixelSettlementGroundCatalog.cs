@@ -15,13 +15,15 @@ namespace CavesOfOoo.Rendering
     /// floors, Sand → Beating sand, RoadStone → the opening road (Beating: the Beating road).
     /// Borrows textures and the current-owner selector; owns only cached tiles/sprites. Ground only:
     /// one plain dry owner per cell; wet, mixed, stacked, hidden, remembered or foreign cells keep
-    /// their fallback. Never changes geometry, state, collision or any other presentation.
+    /// their fallback. Also settlement pools (the Sill river water views) and SandstoneWall (the
+    /// Beating wall frames, by the Beating's own rule). Never changes geometry, state or collision.
     /// </summary>
     public sealed class FlatPixelSettlementGroundCatalog : IDisposable
     {
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road;
+        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls;
+        readonly FlatPixelSillRiverCatalog water;
         bool disposed;
 
         public FlatPixelSettlementGroundCatalog(FlatPixelFallbackCatalog borrowedSelector)
@@ -43,6 +45,8 @@ namespace CavesOfOoo.Rendering
             sand = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 0, 4, "sand");
             beatingRoad = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 32, 2, "beating road");
             road = Frames(openingGround21, 21, 16, 2, "road");
+            walls = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 16, 2, "sandstone wall");
+            water = new FlatPixelSillRiverCatalog(openingGround21, selector, IsSupportedZone, WaterSubstrate);
         }
 
         /// <summary>The current cached surface graph of an authored Place other than Morrowfast and
@@ -94,11 +98,39 @@ namespace CavesOfOoo.Rendering
             floor = null; return false;
         }
 
+        /// <summary>Settlement pools reuse the Sill river's water views and pool rules: one real
+        /// permanent-water WaterPuddle on plain Grass, Sand, StoneFloor or Floor. Bank edges follow
+        /// disclosed dry neighbours; any second state or other terrain keeps the fallback.</summary>
+        public bool TryResolveWaterGround(Zone zone, int x, int y, out Tile tile, out Entity source)
+        {
+            tile = null; source = null;
+            return !disposed && water != null && water.TryResolveWaterGround(zone, x, y, out tile, out source);
+        }
+
+        /// <summary>A selected SandstoneWall in the approved Beating wall frames, by exactly the rule
+        /// the Beating uses. Collision and the wall itself are unchanged.</summary>
+        public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
+        {
+            tile = null;
+            if (walls == null || !ReadyCell(zone, x, y, out _) || owner == null
+                || !selector.TryResolve(zone, x, y, out var picked) || picked.Remembered || !ReferenceEquals(picked.Owner, owner)) return false;
+            int frame = FlatPixelBeatingMaterialsCatalog.SandstoneWallFrame(owner, x, y);
+            tile = frame < 0 ? null : Pick(walls, frame - 16);
+            return tile != null;
+        }
+
         /// <summary>The reader may show the exact current ground owner, even beneath the player.</summary>
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (owner == null || !IsGroundName(owner.BlueprintName)) return false;
+            if (owner == null) return false;
+            if (owner.BlueprintName == "SandstoneWall")
+            {
+                if (!TryResolveForeground(zone, x, y, owner, out var wall)) return false;
+                sprite = wall.sprite; return sprite != null;
+            }
+            if (owner.BlueprintName == "WaterPuddle") return water != null && water.TryGetSubjectSprite(zone, owner, x, y, out sprite);
+            if (!IsGroundName(owner.BlueprintName)) return false;
             if (!TryResolveGround(zone, x, y, out var tile, out var floor) || !ReferenceEquals(floor, owner)) return false;
             sprite = tile.sprite; return sprite != null;
         }
@@ -141,6 +173,21 @@ namespace CavesOfOoo.Rendering
                         && string.IsNullOrEmpty(r.BackgroundColor) && string.IsNullOrEmpty(r.GlyphVariants);
                 default: return false;
             }
+        }
+        static bool WaterSubstrate(Entity owner)
+            => FlatPixelSillRiverCatalog.OrdinaryGrass(owner)
+                || owner.BlueprintName != "Grass" && owner.BlueprintName != "RoadStone" && OrdinaryGround(owner)
+                || OrdinaryFloor(owner);
+        /// <summary>The plain town Floor a settlement pool may lie on (Tine, Sumphold, the Drowned Ledger).</summary>
+        static bool OrdinaryFloor(Entity owner)
+        {
+            if (owner?.BlueprintName != "Floor" || !Plain(owner) || ForeignMeaning(owner) || !owner.HasTag("Terrain")
+                || owner.HasTag("Wall") || owner.HasTag("Solid") || owner.HasTag("Vegetation") || owner.HasTag("Barren")
+                || Owned<PhysicsPart>(owner).Solid || owner.HasPart<MaterialPart>() || owner.HasPart<ThermalPart>()
+                || owner.HasPart<DestructiblePart>()) return false;
+            var r = Owned<RenderPart>(owner);
+            return r.RenderLayer == 0 && r.RenderString == "." && r.ColorString == "&K"
+                && string.IsNullOrEmpty(r.BackgroundColor) && r.GlyphVariants == "...,.'`";
         }
         static bool Plain(Entity owner)
         {
@@ -215,7 +262,8 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road })
+            water?.Dispose();
+            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls })
             {
                 if (group == null) continue;
                 foreach (var tile in group) { if (tile == null) continue; DestroyOwned(tile.sprite); DestroyOwned(tile); }

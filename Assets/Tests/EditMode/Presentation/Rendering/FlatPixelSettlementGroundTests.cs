@@ -90,6 +90,69 @@ namespace CavesOfOoo.Tests
             foreach (var c in lawn) Assert.That((int)c.view.GroundTile.sprite.rect.x / 16, Is.InRange(0, 3));
         }
 
+        // ════════════════ settlement water and sandstone walls ════════════════
+        // Seed-64 census: 2,394 WaterPuddle cells (Posy, Slip, the Quiet's Door on Grass; Tine, Sumphold,
+        // the Drowned Ledger on Floor; the Salt-Vault on Sand) and 935 SandstoneWall cells were all glyphs.
+
+        [TestCase("Overworld.5.9.0")]   // Posy, on Grass
+        [TestCase("Overworld.16.1.0")]  // the Quiet's Door, on Grass
+        [TestCase("Overworld.13.7.0")]  // Tine, on Floor
+        [TestCase("Overworld.17.5.0")]  // the Drowned Ledger, on Floor
+        [TestCase("Overworld.15.15.0")] // the Salt-Vault, on Sand
+        public void SettlementPuddlesUseTheApprovedRiverWater(string id)
+        {
+            var zone = Visit(id);
+            var cells = Cells(zone, "WaterPuddle").ToList();
+            Assert.Greater(cells.Count, 100, "precondition: visible settlement water");
+            var water = Resources.Load<Texture2D>(OpeningGround);
+            bool Native(FlatPixelGreyboxCell v) => v.LocalGround && v.GroundKind == FlatPixelGreyboxGround.Water && v.ForegroundTile == null
+                && v.GroundTile?.sprite != null && ReferenceEquals(v.GroundTile.sprite.texture, water) && v.GroundTile.sprite.rect.x / 16 < 16;
+            int native = cells.Count(c => Native(c.view));
+            Assert.GreaterOrEqual(native, cells.Count * 95 / 100, "WaterPuddle in " + id + ": " + native + " of " + cells.Count + " native");
+            foreach (var c in cells.Where(c => Native(c.view)).Take(25))
+            {
+                Assert.AreEqual(Tile.ColliderType.None, c.view.GroundTile.colliderType);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, c.view.Owner, c.x, c.y, out var portrait, out _), "the reader shows the same water");
+                Assert.AreEqual(c.view.GroundTile.sprite.rect, portrait.rect);
+            }
+        }
+
+        [TestCase("Overworld.6.6.0")]   // Cinderhold, on Grass
+        [TestCase("Overworld.12.12.0")] // Marrowstye, on Floor and StoneFloor
+        [TestCase("Overworld.18.18.0")] // the Last Counter
+        [TestCase("Overworld.15.15.0")] // the Salt-Vault, on Sand
+        public void SettlementSandstoneWallsUseTheApprovedBeatingWall(string id)
+        {
+            var zone = Visit(id);
+            var cells = Cells(zone, "SandstoneWall").ToList();
+            Assert.Greater(cells.Count, 40, "precondition: visible sandstone walls");
+            var beating = Resources.Load<Texture2D>(Beating);
+            bool Native(FlatPixelGreyboxCell v) => v.NativeForeground && v.ForegroundTile?.sprite != null
+                && ReferenceEquals(v.ForegroundTile.sprite.texture, beating) && (int)v.ForegroundTile.sprite.rect.x / 16 is 16 or 17;
+            int native = cells.Count(c => Native(c.view));
+            Assert.GreaterOrEqual(native, cells.Count * 95 / 100, "SandstoneWall in " + id + ": " + native + " of " + cells.Count + " native");
+            foreach (var c in cells.Where(c => Native(c.view)).Take(25))
+            {
+                Assert.True(c.view.BlocksMovement, "a wall still blocks");
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, c.view.Owner, c.x, c.y, out var portrait, out _), "the reader shows the same wall");
+                Assert.AreEqual(c.view.ForegroundTile.sprite.rect, portrait.rect);
+            }
+        }
+
+        [Test] public void MixedWaterAndAFrozenWallKeepTheirFallback()
+        {
+            var zone = Visit("Overworld.15.15.0");
+            var puddle = Cells(zone, "WaterPuddle").First(c => c.view.LocalGround);
+            zone.TileState.WriteCoating(puddle.x, puddle.y, "oil", 4);
+            Assert.True(world.TryResolvePresentation(zone, puddle.x, puddle.y, out var oily));
+            Assert.False(oily.LocalGround && oily.GroundKind == FlatPixelGreyboxGround.Water, "oil on the water is not plain river water");
+            var wall = Cells(zone, "SandstoneWall").First(c => c.view.NativeForeground);
+            var thermal = wall.view.Owner.GetPart<ThermalPart>(); Assert.NotNull(thermal, "precondition: the wall has a temperature");
+            thermal.Temperature = thermal.FreezeTemperature - 10f;
+            Assert.True(world.TryResolvePresentation(zone, wall.x, wall.y, out var frozen));
+            Assert.False(frozen.NativeForeground, "a frozen wall keeps its truthful fallback, as in the Beating");
+        }
+
         // ════════════════ counter-checks ════════════════
 
         [TestCase("Overworld.10.10.0")] [TestCase("Overworld.3.6.0")] [TestCase("Overworld.5.11.0")]
