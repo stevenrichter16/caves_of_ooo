@@ -18,6 +18,10 @@ namespace CavesOfOoo.Core.Inventory.Planning
 
         public BodyPart TargetBodyPart { get; }
 
+        /// <summary>Optional exact ordered slots for a saved loadout. Ordinary equip
+        /// leaves this null and retains the automatic slot selection policy.</summary>
+        public IReadOnlyList<BodyPart> ExactParts { get; }
+
         public List<string> SlotTypes { get; }
 
         public List<BodyPart> ClaimedParts { get; } = new List<BodyPart>();
@@ -28,13 +32,15 @@ namespace CavesOfOoo.Core.Inventory.Planning
 
         public string FailureReason { get; private set; } = string.Empty;
 
-        public EquipPlan(Entity actor, Entity item, Body body, EquippablePart equippable, BodyPart targetBodyPart)
+        public EquipPlan(Entity actor, Entity item, Body body, EquippablePart equippable, BodyPart targetBodyPart,
+            IReadOnlyList<BodyPart> exactParts = null)
         {
             Actor = actor;
             Item = item;
             Body = body;
             Equippable = equippable;
             TargetBodyPart = targetBodyPart;
+            ExactParts = exactParts;
             SlotTypes = BuildSlotTypes(equippable);
         }
 

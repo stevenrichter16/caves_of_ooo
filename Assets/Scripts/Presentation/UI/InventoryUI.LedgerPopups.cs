@@ -23,7 +23,9 @@ namespace CavesOfOoo.Rendering
         void OpenLedgerCommands()
         {
             _ledgerCommands.Clear(); _ledgerCommandIndex = 0;
-            if (_panel == PANEL_CRAFTING)
+            if (_panel == PANEL_LOADOUTS)
+                AddLoadoutCommands();
+            else if (_panel == PANEL_CRAFTING)
             {
                 AddLedgerCommand("Pick / unpick ingredient", ToggleCraftPickUnderCursor);
                 AddLedgerCommand("Craft one", () => ExecuteCraft(false));
@@ -81,7 +83,7 @@ namespace CavesOfOoo.Rendering
 
         void RenderLedgerPopup()
         {
-            if (!LedgerHasPopup) return;
+            if (!LedgerHasPopup || _loadoutNameEditing) return;
             // Opaque modal wins every hit; the underlying pack cannot be activated.
             _ledgerHits.Clear();
             LBox(new Rect(0, 0, 1280, 800), new Color(0, 0, 0, .8f));

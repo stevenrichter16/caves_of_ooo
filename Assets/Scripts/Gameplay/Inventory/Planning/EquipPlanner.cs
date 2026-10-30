@@ -22,11 +22,12 @@ namespace CavesOfOoo.Core.Inventory.Planning
             };
         }
 
-        public EquipPlan Build(Entity actor, Entity item, BodyPart targetBodyPart = null)
+        public EquipPlan Build(Entity actor, Entity item, BodyPart targetBodyPart = null,
+            IReadOnlyList<BodyPart> exactParts = null)
         {
             var body = actor?.GetPart<Body>();
             var equippable = item?.GetPart<EquippablePart>();
-            var plan = new EquipPlan(actor, item, body, equippable, targetBodyPart);
+            var plan = new EquipPlan(actor, item, body, equippable, targetBodyPart, exactParts);
 
             if (actor == null)
             {

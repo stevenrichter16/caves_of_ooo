@@ -6,13 +6,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
     public sealed class UnequipCommand : IInventoryCommand, IInventoryAudioItem
     {
         private readonly Entity _item;
+        private readonly bool _emitSuccessMessage;
         public Entity AudioItem => _item;
 
         public string Name => "Unequip";
 
-        public UnequipCommand(Entity item)
+        public UnequipCommand(Entity item, bool emitSuccessMessage = true)
         {
             _item = item;
+            _emitSuccessMessage = emitSuccessMessage;
         }
 
         public InventoryValidationResult Validate(InventoryContext context)
@@ -66,7 +68,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // restoration (lost limb or independently occupied slot) must not
             // restore protection or enhancements to an item still in the pack.
             // Early failures before detachment still undo their stat removal.
-            bool restoreBonuses = true;
+            bool restoreBonuses = true, bonusesRemoved = false, enhancementRemoved = false, detachAttempted = false;
+            var originalCell = context.Zone?.GetEntityCell(actor) ?? actor.SpatialZone?.GetEntityCell(actor);
 
             // Fire BeforeUnequip on actor (can veto).
             var beforeUnequip = GameEvent.New("BeforeUnequip");
@@ -78,19 +81,39 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Unequip was cancelled.");
             }
+            string originalBonuses = equippable?.AppliedEquipBonuses ?? equippable?.EquipBonuses ?? "";
+            string originalSkillBonuses = equippable?.AppliedEquipSkillBonuses ?? "";
 
-            // Remove equip stat bonuses before detaching item.
+            // Register all recovery before detaching: equipment notifications and
+            // AfterUnequip callbacks can throw after ownership has already moved.
+            // Reverse order restores the location before any contribution.
+            transaction.Do(null, () =>
+            {
+                if (restoreBonuses && bonusesRemoved && equippable != null)
+                    EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true, restoredBonuses: originalBonuses, restoredSkillBonuses: originalSkillBonuses);
+            });
+            transaction.Do(null, () =>
+            {
+                if (restoreBonuses && enhancementRemoved) ItemEnhancementDispatch.DispatchOnEquip(actor, _item);
+            });
+            transaction.Do(null, () =>
+            {
+                if (!detachAttempted) return;
+                bool original = actor.GetPart<Body>() == context.Body && rollbackState.BodyParts.Count > 0;
+                if (original)
+                    foreach (var part in rollbackState.BodyParts)
+                        original &= part != null && part._Equipped == _item && context.Body?.GetParts().Contains(part) == true;
+                else if (rollbackState.BodyParts.Count == 0)
+                    original = context.Inventory.GetEquipped(rollbackState.LegacySlot) == _item;
+                restoreBonuses = original || TryForceRestore(context, _item, rollbackState);
+                if (!restoreBonuses) RetainRefusedUnit(context, _item, originalCell);
+            });
             if (equippable != null)
             {
                 EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
-                transaction.Do(
-                    apply: null,
-                    undo: () =>
-                    {
-                        if (restoreBonuses) EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
-                    });
+                bonusesRemoved = true;
             }
-
+            detachAttempted = true;
             if (!TryForceUnequip(context, _item, rollbackState))
             {
                 return InventoryCommandResult.Fail(
@@ -98,7 +121,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Unequip failed.");
             }
 
-            MessageLog.Add($"{actor.GetDisplayName()} unequips {_item.GetDisplayName()}.");
+            if (_emitSuccessMessage)
+                MessageLog.Add($"{actor.GetDisplayName()} unequips {_item.GetDisplayName()}.");
 
             // Fire AfterUnequip on actor.
             var afterUnequip = GameEvent.New("AfterUnequip");
@@ -113,20 +137,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // E.4.2 cold-eye Finding #1 fix: wrap in transaction.Do so a
             // rollback re-fires OnEquipped (concrete enhancements'
             // AppliedBonus eager-flag makes the redo idempotent).
+            enhancementRemoved = true;
             ItemEnhancementDispatch.DispatchOnUnequip(actor, _item);
-            transaction.Do(
-                apply: null,
-                undo: () =>
-                {
-                    if (restoreBonuses) ItemEnhancementDispatch.DispatchOnEquip(actor, _item);
-                });
-
-            transaction.Do(
-                apply: null,
-                undo: () =>
-                {
-                    restoreBonuses = TryForceRestore(context, _item, rollbackState);
-                });
 
             return InventoryCommandResult.Ok();
         }
@@ -162,6 +174,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             beforeUnequip.SetParameter("Actor", (object)actor);
             beforeUnequip.SetParameter("Item", (object)item);
             if (!actor.FireEventAndRelease(beforeUnequip)) return false;
+            string originalBonuses = equippable?.AppliedEquipBonuses ?? equippable?.EquipBonuses ?? "";
+            string originalSkillBonuses = equippable?.AppliedEquipSkillBonuses ?? "";
 
             // Register the full recovery before any mutation can invoke a listener.
             // Reverse order restores the location first, then gated enhancement/stat
@@ -169,7 +183,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             transaction.Do(null, () =>
             {
                 if (restoreBonuses && bonusesRemoved && equippable != null)
-                    EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
+                    EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true, restoredBonuses: originalBonuses, restoredSkillBonuses: originalSkillBonuses);
             });
             transaction.Do(null, () =>
             {

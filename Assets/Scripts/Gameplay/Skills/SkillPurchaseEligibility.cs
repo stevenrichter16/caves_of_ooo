@@ -31,7 +31,7 @@ namespace CavesOfOoo.Skills
             if (skills == null) return Refuse(result, BuySkillAction.FailureReason.ActorMissingSkillsPart);
             var points = actor.GetStat("SP");
             result.SpBefore = result.SpAfter = points?.BaseValue ?? 0;
-            result.OldRank=result.NewRank=skills.GetRank(skillClassName);
+            result.OldRank=result.NewRank=skills.GetLearnedRank(skillClassName);
             result.MaxRank=SkillRanks.Maximum(skillClassName);
             if(result.OldRank>=result.MaxRank) return Refuse(result,BuySkillAction.FailureReason.AlreadyOwned);
             result.Cost=SkillRanks.Cost(skillClassName,result.OldRank+1);
@@ -46,7 +46,7 @@ namespace CavesOfOoo.Skills
             // Use the registry's class identity, never a possibly duplicated display name.
             if (child != null && (string.IsNullOrEmpty(child.ParentSkillClass)
                 || !SkillRegistry.TryGetSkillByClass(child.ParentSkillClass, out _)
-                || !skills.HasSkill(child.ParentSkillClass)))
+                || skills.GetLearnedRank(child.ParentSkillClass) <= 0))
                 return Refuse(result, BuySkillAction.FailureReason.MissingPrereq, child.ParentSkillClass);
             if (result.SpBefore < result.Cost) return Refuse(result, BuySkillAction.FailureReason.InsufficientSP);
             result.Succeeded = true;
@@ -116,7 +116,7 @@ namespace CavesOfOoo.Skills
             {
                 string cls = raw.Trim();
                 if (cls.Length == 0) continue;
-                if (!skills.HasSkill(cls)) { missing = cls; return false; }
+                if (skills.GetLearnedRank(cls) <= 0) { missing = cls; return false; }
             }
             return true;
         }
@@ -134,7 +134,7 @@ namespace CavesOfOoo.Skills
             {
                 string cls = raw.Trim();
                 if (cls.Length == 0) continue;
-                if (skills.HasSkill(cls)) { blocking = cls; return true; }
+                if (skills.GetLearnedRank(cls) > 0) { blocking = cls; return true; }
             }
             return false;
         }

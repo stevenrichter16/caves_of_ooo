@@ -1,6 +1,131 @@
 {
   "Objects": [
     {
+      "Name": "TrinketItem",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "trinket" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Weight", "Value": "1" },
+          { "Key": "Category", "Value": "Trinkets" }
+        ] },
+        { "Name": "Stacker", "Params": [ { "Key": "MaxStack", "Value": "1" } ] },
+        { "Name": "Equippable", "Params": [ { "Key": "Slot", "Value": "Trinket" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "20" } ] }
+      ],
+      "Tags": [
+        { "Key": "Trinket", "Value": "" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "QuarryToothTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "quarry tooth" },
+          { "Key": "ColorString", "Value": "&y" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "CudgelSkill:1" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A blunt tooth hangs from a short cord. Its thumb-worn surface settles heavily against your palm." } ] }
+      ]
+    },
+    {
+      "Name": "TonguelessBellTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "tongueless bell" },
+          { "Key": "ColorString", "Value": "&C" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "Persuasion_Recruit:1,Persuasion_Dismiss:1" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "The clapper is tied outside this little bell. It makes no sound, even when you shake it." } ] }
+      ]
+    },
+    {
+      "Name": "DuelistsKnotTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "duelist's knot" },
+          { "Key": "ColorString", "Value": "&G" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "LongBlades_Deflect:1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "30" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A loop of faded fencing cord holds a tiny iron guard. Your thumb keeps finding the old knot, as if checking a grip." } ] }
+      ]
+    },
+    {
+      "Name": "SlingersWishboneTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "slinger's wishbone" },
+          { "Key": "ColorString", "Value": "&W" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "ThrowingSkill:1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "25" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A fork of bird bone is bound in sling leather. One polished arm points a little farther than the other." } ] }
+      ]
+    },
+    {
+      "Name": "SplitHaftTokenTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "split-haft token" },
+          { "Key": "ColorString", "Value": "&y" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "AxeSkill:1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "25" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A sliver of an old axe haft, pierced and threaded with red cord. The grain still carries the shape of its final blow." } ] }
+      ]
+    },
+    {
+      "Name": "GlassEmberTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "glass ember" },
+          { "Key": "ColorString", "Value": "&R" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "PyromancySkill:1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "40" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A coal-colored bead holds a red flaw that never quite reaches its surface. It stays cool in your hand." } ] }
+      ]
+    },
+    {
+      "Name": "RainwardBeadTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "rainward bead" },
+          { "Key": "ColorString", "Value": "&B" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "HydromancySkill:1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "35" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A hollow blue bead contains one drop of water. Turn it as you please; the drop always gathers against the side nearest the ground." } ] }
+      ]
+    },
+    {
+      "Name": "PalimpsestSealTrinket",
+      "Inherits": "TrinketItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "palimpsest seal" },
+          { "Key": "ColorString", "Value": "&M" }
+        ] },
+        { "Name": "Equippable", "Params": [ { "Key": "EquipSkillBonuses", "Value": "SpellcraftSkill:1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "45" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "Several erased names crowd the face of this little waxed seal. In the slanting light, each seems to have been written over the same word." } ] }
+      ]
+    },
+    {
       "Name": "WellmeetGuestLocker",
       "Inherits": "Chest",
       "Parts": [
@@ -12012,6 +12137,7 @@
       "Name": "Weaponsmith",
       "Inherits": "Villager",
       "Parts": [
+        { "Name": "LoadoutKeeper", "Params": [] },
         {
           "Name": "Render",
           "Params": [
@@ -12099,6 +12225,7 @@
       "Name": "Armorer",
       "Inherits": "Villager",
       "Parts": [
+        { "Name": "LoadoutKeeper", "Params": [] },
         {
           "Name": "Render",
           "Params": [

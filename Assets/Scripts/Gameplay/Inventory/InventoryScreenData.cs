@@ -305,7 +305,8 @@ namespace CavesOfOoo.Core
                     // Only show equippable slots
                     string slotType = part.Type;
                     if (slotType == "Body" || slotType == "Head" || slotType == "Hand" ||
-                        slotType == "Arm" || slotType == "Feet" || slotType == "Back")
+                        slotType == "Arm" || slotType == "Feet" || slotType == "Back" ||
+                        slotType == TrinketSlots.SlotType)
                     {
                         var slot = new EquipmentSlot
                         {
@@ -365,6 +366,7 @@ namespace CavesOfOoo.Core
             var extraArms = new List<EquipmentSlot>();
             var extraHands = new List<EquipmentSlot>();
             var extraFeet = new List<EquipmentSlot>();
+            var trinkets = new List<EquipmentSlot>();
 
             for (int i = 0; i < slots.Count; i++)
             {
@@ -372,6 +374,7 @@ namespace CavesOfOoo.Core
                 string name = s.BodyPartName.ToLowerInvariant();
                 string type = s.SlotName;
 
+                if (type == TrinketSlots.SlotType) { trinkets.Add(s); continue; }
                 if (type == "Head") { if (head == null) head = s; continue; }
                 if (type == "Body") { if (body == null) body = s; continue; }
                 if (type == "Back") { if (back == null) back = s; continue; }
@@ -446,6 +449,12 @@ namespace CavesOfOoo.Core
                 AssignSlot(extraFeet[i], feetX, ROW3_Y, label);
                 feetX -= (BOX_W + H_GAP);
             }
+
+            // The ledger lists these like other equipment. Give the legacy
+            // paperdoll distinct positions as capacity grows as well.
+            for (int i = 0; i < trinkets.Count; i++)
+                AssignSlot(trinkets[i], LEFT_X + (i % 3) * (BOX_W + H_GAP),
+                    ROW3_Y + (1 + i / 3) * (BOX_W + H_GAP), "T" + (i + 1));
         }
 
         private static void AssignSlot(EquipmentSlot slot, int x, int y, string label)

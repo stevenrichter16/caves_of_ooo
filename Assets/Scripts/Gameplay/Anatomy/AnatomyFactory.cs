@@ -161,6 +161,21 @@ namespace CavesOfOoo.Core.Anatomy
                 IgnorePosition = true,
             });
 
+            // Equipment positions, not limbs or hit locations. Abstract parts
+            // cannot receive ordinary equipment, so disable physical behavior
+            // explicitly while retaining the existing equip planner.
+            Register(new BodyPartType(TrinketSlots.SlotType)
+            {
+                Abstract = false,
+                Appendage = false,
+                Integral = true,
+                Mortal = false,
+                Contact = false,
+                TargetWeight = 0,
+                Mobility = 0,
+                IgnorePosition = true,
+            });
+
             // Missile Weapon: for ranged weapon hardpoints (cybernetics).
             Register(new BodyPartType("Missile Weapon", "Missile Weapon", "missile weapon hardpoint")
             {

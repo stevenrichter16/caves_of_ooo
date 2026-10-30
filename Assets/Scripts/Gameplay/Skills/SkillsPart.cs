@@ -42,6 +42,11 @@ namespace CavesOfOoo.Skills
         [NonSerialized]
         public List<BaseSkillPart> SkillList = new List<BaseSkillPart>();
 
+        // Keep active-skill cooldown debt when its last temporary source is removed.
+        // Otherwise swapping a trinket would refresh its ability immediately.
+        // The save graph supports lists of public-field records, not dictionaries.
+        public List<DetachedSkillAbilityState> DetachedSkills = new List<DetachedSkillAbilityState>();
+
         // ── Save/load (delegated to Part system) ─────────────────────────
 
         public override void OnAfterLoad(SaveReader reader)
@@ -95,7 +100,16 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < SkillList.Count; i++)
             {
                 if (SkillList[i].GetType() == skill.GetType())
+                {
+                    // A borrowed capability can be learned without replaying setup,
+                    // changing its ability identity or forgetting its cooldown.
+                    if (SkillList[i].Rank == 0 && SkillList[i].BonusRank > 0)
+                    {
+                        SkillList[i].Rank = 1;
+                        return true;
+                    }
                     return false;
+                }
             }
 
             // Attach as a Part — this sets skill.ParentEntity + calls
@@ -140,7 +154,10 @@ namespace CavesOfOoo.Skills
                         sourcePowerClass: skill.GetType().Name);
                     var entry = abilities.GetAbility(skill.ActivatedAbilityID);
                     if (entry != null)
+                    {
+                        RestoreDetachedAbility(skill, abilities, entry);
                         entry.MaxCooldown = spec.Cooldown;
+                    }
                 }
             }
 
@@ -170,6 +187,30 @@ namespace CavesOfOoo.Skills
             return AddSkill(skill, source);
         }
 
+        private void RestoreDetachedAbility(BaseSkillPart skill, ActivatedAbilitiesPart abilities, ActivatedAbility entry)
+        {
+            var state = DetachedSkills.Find(value => value.SkillClass == skill.GetType().Name);
+            if (state == null) return;
+            Guid saved = state.AbilityID;
+            if (saved != Guid.Empty && !abilities.AbilityByGuid.ContainsKey(saved))
+            {
+                Guid generated = entry.ID;
+                abilities.AbilityByGuid.Remove(generated);
+                entry.ID = saved;
+                abilities.AbilityByGuid[saved] = entry;
+                skill.ActivatedAbilityID = saved;
+                for (int i = 0; i < abilities.SlotAssignments.Length; i++)
+                    if (abilities.SlotAssignments[i] == generated) abilities.SlotAssignments[i] = saved;
+            }
+            int current = abilities.GetSlotForAbility(entry.ID);
+            if (state.Slot < 0 && current >= 0) abilities.AssignAbilityToSlot(Guid.Empty, current);
+            else if (state.Slot >= 0 && state.Slot < abilities.SlotAssignments.Length
+                && (abilities.SlotAssignments[state.Slot] == Guid.Empty || abilities.SlotAssignments[state.Slot] == entry.ID))
+                abilities.AssignAbilityToSlot(entry.ID, state.Slot);
+            entry.CooldownRemaining = Math.Max(0, state.Cooldown);
+            DetachedSkills.Remove(state);
+        }
+
         // ── RemoveSkill ──────────────────────────────────────────────────
 
         /// <summary>
@@ -193,6 +234,12 @@ namespace CavesOfOoo.Skills
         {
             if (skill == null || ParentEntity == null) return false;
             if (!SkillList.Contains(skill)) return false;
+            if (skill.BonusRank > 0)
+            {
+                if (skill.Rank == 0) return false;
+                skill.Rank = 0;
+                return true;
+            }
 
             // Capture display name BEFORE remove hook + detachment, since
             // DisplayName lookup may depend on the entity / registry state.
@@ -209,7 +256,17 @@ namespace CavesOfOoo.Skills
             {
                 var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
                 if (abilities != null)
+                {
+                    var ability = abilities.GetAbility(skill.ActivatedAbilityID);
+                    DetachedSkills.RemoveAll(value => value.SkillClass == skillClass);
+                    DetachedSkills.Add(new DetachedSkillAbilityState
+                    {
+                        SkillClass = skillClass, AbilityID = skill.ActivatedAbilityID,
+                        Slot = abilities.GetSlotForAbility(skill.ActivatedAbilityID),
+                        Cooldown = ability?.CooldownRemaining ?? 0
+                    });
                     abilities.RemoveAbility(skill.ActivatedAbilityID);
+                }
                 skill.ActivatedAbilityID = System.Guid.Empty;
             }
 
@@ -418,6 +475,9 @@ namespace CavesOfOoo.Skills
         public override bool HandleEvent(GameEvent e)
         {
             if (e == null || string.IsNullOrEmpty(e.ID)) return true;
+            if (e.ID == "EndTurn")
+                foreach (var state in DetachedSkills)
+                    if (state.Cooldown > 0) state.Cooldown--;
 
             // Fast-path early-out for events that obviously aren't skill
             // commands. CoO's command convention is "CommandX" (e.g.
@@ -489,7 +549,40 @@ namespace CavesOfOoo.Skills
 
         // Purchase serialization is transient; no callbacks may buy recursively.
         [NonSerialized] internal bool PurchaseInProgress;
-        public int GetRank(string className) => GetSkill(className)?.Rank ?? 0;
+        public int GetRank(string className) => GetSkill(className)?.EffectiveRank ?? 0;
+        public int GetLearnedRank(string className) => GetSkill(className)?.Rank ?? 0;
+
+        // Called only by SkillModifiers after all arithmetic and definitions validate.
+        internal void SetBonusRank(string className, int amount)
+        {
+            if (amount < 0) throw new ArgumentOutOfRangeException(nameof(amount));
+            var skill = GetSkill(className);
+            if (skill == null)
+            {
+                if (amount == 0) return;
+                try
+                {
+                    if (!AddSkill(className, "temporary-bonus"))
+                        throw new InvalidOperationException("Could not grant skill " + className + ".");
+                    skill = GetSkill(className);
+                    skill.Rank = 0;
+                    skill.BonusRank = amount;
+                }
+                catch
+                {
+                    RollbackAcquisition(className);
+                    throw;
+                }
+                return;
+            }
+            int oldBonus = skill.BonusRank;
+            skill.BonusRank = amount;
+            if (amount == 0 && skill.Rank == 0)
+            {
+                try { RemoveSkill(skill, "temporary-bonus-ended"); }
+                catch { skill.BonusRank = oldBonus; throw; }
+            }
+        }
         internal bool AdvanceRank(string className,int expectedRank)
         {
             var skill=GetSkill(className);
@@ -654,4 +747,14 @@ namespace CavesOfOoo.Skills
                 });
         }
     }
+
+    /// <summary>Saved ability debt and preferred binding while its skill is absent.</summary>
+    public sealed class DetachedSkillAbilityState
+    {
+        public string SkillClass;
+        public Guid AbilityID;
+        public int Slot = -1;
+        public int Cooldown;
+    }
+
 }

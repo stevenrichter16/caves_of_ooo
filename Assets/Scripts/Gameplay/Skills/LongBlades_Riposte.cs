@@ -26,9 +26,9 @@ namespace CavesOfOoo.Skills
             budget.Reserved=true;
             try
             {
-                int chance=Chance(skill.Rank), roll=rng.Next(100);
+                int chance=Chance(skill.EffectiveRank), roll=rng.Next(100);
                 if(Diag.IsChannelEnabled("damage"))Diag.Record(category:"damage",kind:"RiposteRoll",actor:actor,target:opponent,
-                    payload:new{parent.ActionId,parent.StrikeId,rank=skill.Rank,chance,roll});
+                    payload:new{parent.ActionId,parent.StrikeId,rank=skill.EffectiveRank,chance,roll});
                 if(roll>=chance)return;
                 // Keep the originally selected blade: a callback must not substitute another one.
                 if(!BladeDefense.CanReact(actor,opponent,zone) || !BladeDefense.IsHeldWeapon(actor,weapon)

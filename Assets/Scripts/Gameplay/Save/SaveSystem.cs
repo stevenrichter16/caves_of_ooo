@@ -1665,7 +1665,8 @@ namespace CavesOfOoo.Core
                 ReadPublicFields(part, reader);
 
             if(part is CavesOfOoo.Skills.BaseSkillPart skill &&
-                (skill.Rank<1 || skill.Rank>CavesOfOoo.Skills.SkillRanks.Maximum(skill.GetType().Name)))
+                (skill.Rank < 0 || skill.BonusRank < 0 || (skill.Rank == 0 && skill.BonusRank == 0)
+                || skill.Rank > CavesOfOoo.Skills.SkillRanks.Maximum(skill.GetType().Name)))
                 throw new InvalidDataException("Invalid saved skill rank: "+skill.GetType().Name);
             return part;
         }

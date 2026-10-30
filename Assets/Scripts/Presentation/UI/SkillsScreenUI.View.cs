@@ -101,7 +101,7 @@ namespace CavesOfOoo.Rendering
             }
             else Label(new Rect(284,170,430,120),"No skills available.",Muted);
             Label(new Rect(24,708,1225,22),SkillScreenText.Fit(Model.Notice,122,1),Green,20);
-            Button(new Rect(24,744,226,36),Model.Selected.State==SkillsScreenRowState.Owned&&!Model.Selected.CanUpgrade?"Already learned":Model.Selected.CanUpgrade?(lastController?"[A] Review upgrade":"[Enter] Upgrade"):lastController?"[A] Review purchase":"[Enter] Review",HitKind.Review,enabled:Model.Selected.State!=SkillsScreenRowState.Owned||Model.Selected.CanUpgrade);
+            Button(new Rect(24,744,226,36),!Model.Selected.CanLearn?"Already learned":Model.Selected.CanUpgrade?(lastController?"[A] Review upgrade":"[Enter] Upgrade"):lastController?"[A] Review purchase":"[Enter] Review",HitKind.Review,enabled:Model.Selected.CanLearn);
             Button(new Rect(266,744,266,36),Model.CanAssign?(lastController?"[X] Assign to hotbar":"[I] Assign to hotbar"):"No active to assign",HitKind.Assign,enabled:Model.CanAssign);
             Button(new Rect(1132,744,124,36),lastController?"[B] Back":"[Esc] Back",HitKind.Close);
             Label(new Rect(552,744,564,45),lastController?"D-pad / LS: browse\nRS: details pages":"Arrows: browse   PgUp/PgDn: details\nClick: select   Wheel: browse",Muted,18);
@@ -153,8 +153,8 @@ namespace CavesOfOoo.Rendering
             Frame(r,selected?Gold:Border,selected?SelectedFill:Background);
             string name=(selected?"> ":"")+row.DisplayName;
             Label(new Rect(r.x+10,r.y+7,r.width-18,board?49:24),SkillScreenText.Fit(name,board?19:43,board?2:1),selected?Gold:Ink,20);
-            string state=Model.StateLabel(row)+((row.State==SkillsScreenRowState.Owned&&!row.CanUpgrade) || row.Cost<0?"":"  "+row.Cost+" SP");
-            Label(new Rect(r.x+10,r.yMax-23,r.width-18,20),state,row.State==SkillsScreenRowState.Owned?Green:row.State==SkillsScreenRowState.Buyable?Muted:Red,18);
+            string state=Model.StateLabel(row)+(!row.CanLearn || row.Cost<0?"":"  "+row.Cost+" SP");
+            Label(new Rect(r.x+10,r.yMax-23,r.width-18,20),SkillScreenText.Fit(state,board?22:48,1),row.State==SkillsScreenRowState.Owned?Green:row.State==SkillsScreenRowState.Buyable?Muted:Red,18);
             hits.Add(new Hit{Bounds=r,Kind=HitKind.Skill,Index=i});
         }
         void RenderDetails()
@@ -162,7 +162,7 @@ namespace CavesOfOoo.Rendering
             var row=Model.Selected;
             Label(new Rect(782,114,453,65),SkillScreenText.Page(SkillScreenText.Wrap(row.DisplayName.ToUpperInvariant(),32),0,2),Gold,28);
             string state=Model.StateLabel(row);
-            if((row.State!=SkillsScreenRowState.Owned || row.CanUpgrade) && row.Cost>=0)state+="  /  "+row.Cost+" SP";
+            if(row.CanLearn && row.Cost>=0)state+="  /  "+row.Cost+" SP";
             else if(Model.CanAssign)state+="  /  SLOT "+(Model.AssignedSlot<0?"UNBOUND":AbilityManagerStateBuilder.SlotToHotkey(Model.AssignedSlot).ToString());
             Label(new Rect(782,187,454,24),state,row.State==SkillsScreenRowState.Owned?Green:row.State==SkillsScreenRowState.Buyable?Muted:Red,20);
             Label(new Rect(782,210,454,20),Model.ActivationSummary,Muted,18);

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CavesOfOoo.Core
 {
@@ -69,9 +68,17 @@ namespace CavesOfOoo.Core
                 return;
 
             var equippedOn = item.GetPart<PhysicsPart>()?.Equipped;
-            var stat = equippedOn?.GetStat(statName);
-            if (stat != null)
-                stat.Bonus += deltaBonus;
+            if (equippedOn == null) return;
+            var equippable = item.GetPart<EquippablePart>();
+            var contribution = new StatModifier(statName, deltaBonus);
+            if (equippable == null)
+            {
+                StatModifiers.Apply(equippedOn, new[] { contribution });
+                return;
+            }
+            var previous = StatModifiers.Parse(equippable.AppliedEquipBonuses);
+            var desired = new List<StatModifier>(previous) { contribution };
+            equippable.AppliedEquipBonuses = StatModifiers.Format(StatModifiers.Replace(equippedOn, previous, desired));
         }
 
         internal static void AddOrUpdateEquipBonus(Entity item, string statName, int deltaAmount)
@@ -83,78 +90,20 @@ namespace CavesOfOoo.Core
             if (equippable == null)
                 return;
 
-            var bonuses = ParseEquipBonuses(equippable.EquipBonuses);
-            if (!bonuses.TryGetValue(statName, out int current))
-                current = 0;
-
-            int updated = current + deltaAmount;
-            if (updated == 0)
-                bonuses.Remove(statName);
-            else
-                bonuses[statName] = updated;
-
-            equippable.EquipBonuses = SerializeEquipBonuses(bonuses);
-        }
-
-        private static Dictionary<string, int> ParseEquipBonuses(string raw)
-        {
-            var result = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-            if (string.IsNullOrWhiteSpace(raw))
-                return result;
-
-            string[] pairs = raw.Split(',');
-            for (int i = 0; i < pairs.Length; i++)
+            var before = StatModifiers.Parse(equippable.EquipBonuses);
+            string updated = StatModifiers.Format(new List<StatModifier>(before) { new StatModifier(statName, deltaAmount) });
+            var equippedOn = item.GetPart<PhysicsPart>()?.Equipped;
+            if (equippedOn != null && equippable.AppliedEquipBonuses == null)
             {
-                string entry = pairs[i].Trim();
-                if (string.IsNullOrEmpty(entry))
-                    continue;
-
-                int colon = entry.IndexOf(':');
-                if (colon <= 0 || colon >= entry.Length - 1)
-                    continue;
-
-                string stat = entry.Substring(0, colon).Trim();
-                string amountRaw = entry.Substring(colon + 1).Trim();
-                if (string.IsNullOrEmpty(stat))
-                    continue;
-
-                if (!int.TryParse(amountRaw, out int amount))
-                    continue;
-
-                if (!result.TryGetValue(stat, out int current))
-                    current = 0;
-                result[stat] = current + amount;
+                // Adopt the pre-modification definition of legacy equipped gear.
+                // ApplyEquippedStatBonusDelta will extend this receipt by the exact
+                // contribution that lands, without replaying its existing bonuses.
+                var legacy = new List<StatModifier>();
+                foreach (var modifier in before)
+                    if (equippedOn.GetStat(modifier.StatName) != null) legacy.Add(modifier);
+                equippable.AppliedEquipBonuses = StatModifiers.Format(legacy);
             }
-
-            return result;
-        }
-
-        private static string SerializeEquipBonuses(Dictionary<string, int> bonuses)
-        {
-            if (bonuses == null || bonuses.Count == 0)
-                return string.Empty;
-
-            var keys = new List<string>(bonuses.Keys);
-            keys.Sort(StringComparer.OrdinalIgnoreCase);
-
-            var builder = new StringBuilder();
-            bool first = true;
-            for (int i = 0; i < keys.Count; i++)
-            {
-                string key = keys[i];
-                int value = bonuses[key];
-                if (value == 0)
-                    continue;
-
-                if (!first)
-                    builder.Append(",");
-                builder.Append(key);
-                builder.Append(":");
-                builder.Append(value);
-                first = false;
-            }
-
-            return builder.ToString();
+            equippable.EquipBonuses = updated;
         }
     }
 }

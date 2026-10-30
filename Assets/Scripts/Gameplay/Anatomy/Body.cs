@@ -64,6 +64,7 @@ namespace CavesOfOoo.Core
 
         public override void OnAfterLoad(SaveReader reader)
         {
+            TrinketSlots.InitializePlayer(ParentEntity);
             if (_body != null)
             {
                 PropagateBody(_body);
@@ -252,6 +253,9 @@ namespace CavesOfOoo.Core
         public bool Dismember(BodyPart part, Zone zone = null, Entity source = null)
         {
             if (part == null || _body == null) return false;
+            // Trinket positions are equipment capacity, never physical anatomy.
+            // This forced-detach API otherwise intentionally bypasses IsSeverable.
+            if (part.Type == TrinketSlots.SlotType) return false;
             if (part == _body) return false; // Can't dismember root
             if (part.ParentPart == null) return false; // Already detached
             if (DebugInvincibility.Blocks(ParentEntity, "dismemberment", source)) return false;

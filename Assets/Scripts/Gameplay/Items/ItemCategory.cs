@@ -16,6 +16,7 @@ namespace CavesOfOoo.Core
         public const string Armor = "Armor";
         public const string Shields = "Shields";
         public const string Clothes = "Clothes";
+        public const string Trinkets = "Trinkets";
         public const string Ammo = "Ammo";
         public const string Food = "Food";
         public const string Tonics = "Tonics";
@@ -44,6 +45,7 @@ namespace CavesOfOoo.Core
             { Armor, 40 },
             { Shields, 45 },
             { Clothes, 50 },
+            { Trinkets, 55 },
             { LightSources, 60 },
             { Food, 70 },
             { Tonics, 80 },

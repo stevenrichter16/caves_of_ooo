@@ -157,7 +157,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 CarriedIndex = carried ? inventory.Objects.IndexOf(item) : -1,
                 EquippedState = UnequipCommand.CaptureEquippedState(context, item),
                 InInventoryOwner = physics?.InInventory,
-                EquippedOwner = physics?.Equipped
+                EquippedOwner = physics?.Equipped,
+                Equippable = item.GetPart<EquippablePart>(),
+                AppliedEquipBonuses = item.GetPart<EquippablePart>()?.AppliedEquipBonuses,
+                AppliedEquipSkillBonuses = item.GetPart<EquippablePart>()?.AppliedEquipSkillBonuses
             };
         }
 
@@ -167,6 +170,20 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return;
 
             RestoreItemState(context, snapshot.ItemState);
+            // Stat rollback and the corresponding equipment receipt must describe
+            // the same contribution after a nested equip/unequip action fails.
+            var itemState = snapshot.ItemState;
+            if (itemState?.Equippable != null && itemState.Item.GetPart<EquippablePart>() == itemState.Equippable)
+            {
+                var equippable = itemState.Equippable;
+                var restored = CavesOfOoo.Skills.SkillModifiers.Replace(context.Actor,
+                    CavesOfOoo.Skills.SkillModifiers.Parse(equippable.AppliedEquipSkillBonuses),
+                    CavesOfOoo.Skills.SkillModifiers.Parse(itemState.AppliedEquipSkillBonuses));
+                equippable.AppliedEquipSkillBonuses = CavesOfOoo.Skills.SkillModifiers.Format(restored);
+                equippable.AppliedEquipBonuses = itemState.AppliedEquipBonuses;
+            }
+            // Skill setup/teardown can itself affect stats (for example Dodge).
+            // Restore raw values last so those effects are not counted twice.
             RestoreActorStats(context.Actor, snapshot.ActorStats);
             context.Inventory?.RebaseHandlingCarryPenalty();
         }
@@ -288,6 +305,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             public UnequipCommand.EquippedStateSnapshot EquippedState;
             public Entity InInventoryOwner;
             public Entity EquippedOwner;
+            public EquippablePart Equippable;
+            public string AppliedEquipBonuses;
+            public string AppliedEquipSkillBonuses;
         }
     }
 }

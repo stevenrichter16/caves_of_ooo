@@ -579,6 +579,123 @@ namespace CavesOfOoo.Tests
             return false;
         }
 
+        [Test]
+        public void PaintedLoadoutSaveUsesModalNameAndOnlyCreatesPreparedSnapshot()
+        {
+            using (var r = new Rig())
+            {
+                var blade = r.Carry("Dagger");
+                Assert.True(InventorySystem.Equip(r.Player, blade));
+                r.Open(); r.Tab(5);
+                Assert.True(r.Labels().Any(label => label.Content == "SAVED LOADOUTS"));
+                r.ActivatePainted(r.FindHit("LoadoutAction", 0));
+                Assert.True((bool)Get(r.UI, "_loadoutNameEditing"));
+                Assert.False(r.Hits().Any(hit => Kind(hit) == "Tab" || Kind(hit) == "LoadoutRow"));
+                typeof(InventoryUI).GetField("_loadoutName", Members).SetValue(r.UI, "cave kit");
+                r.ActivatePainted(r.FindHit("LoadoutAction", 6));
+                var saved = PlayerLoadoutService.GetState(r.Player).Saved.Single();
+                Assert.AreEqual("cave kit", saved.Name);
+                Assert.AreEqual(saved.ID, PlayerLoadoutService.GetPrepared(r.Player, 0).ID);
+                Assert.True(InventorySystem.IsEquipped(r.Player, blade));
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+                Assert.True(r.UI.IsOpen);
+            }
+        }
+
+        [Test]
+        public void ControllerCanReachLoadoutsAndSaveWithSuggestedName()
+        {
+            using (var input = new NativeNavigationScope())
+            using (var r = new Rig())
+            {
+                r.Open(); r.Tab(4);
+                input.Button(GamepadButton.North); r.UI.HandleInput();
+                Assert.AreEqual(5, Get(r.UI, "_panel"));
+                input.Keys(); r.UI.HandleInput();
+                input.Button(GamepadButton.South); r.UI.HandleInput();
+                Assert.True((bool)Get(r.UI, "_ledgerCommandsOpen"));
+                input.Keys(); r.UI.HandleInput();
+                input.Button(GamepadButton.South); r.UI.HandleInput();
+                Assert.True((bool)Get(r.UI, "_loadoutNameEditing"));
+                input.Keys(); r.UI.HandleInput();
+                input.Button(GamepadButton.South); r.UI.HandleInput();
+                Assert.AreEqual("Loadout 1", PlayerLoadoutService.GetState(r.Player).Saved.Single().Name);
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        [Test]
+        public void LoadoutApplyPaysOnePendingTurnOnlyWhenEquipmentChanges()
+        {
+            using (var r = new Rig())
+            {
+                var blade = r.Carry("Dagger");
+                Assert.True(InventorySystem.Equip(r.Player, blade));
+                Assert.True(PlayerLoadoutService.SaveCurrent(r.Player, "armed", out _, out string reason), reason);
+                r.Open(); r.Tab(5);
+                r.ActivatePainted(r.FindHit("LoadoutAction", 1));
+                Assert.True(r.UI.IsOpen);
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+                Assert.True(InventorySystem.UnequipItem(r.Player, blade));
+                Call(r.UI, "Rebuild"); Call(r.UI, "Render");
+                r.ActivatePainted(r.FindHit("LoadoutAction", 1));
+                Assert.True(InventorySystem.IsEquipped(r.Player, blade));
+                Assert.False(r.UI.IsOpen);
+                Assert.True(r.UI.ConsumePendingEverydayTurn());
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
+        [Test]
+        public void MissingLoadoutItemShowsFailureWithoutTurnOrPartialEquip()
+        {
+            using (var r = new Rig())
+            {
+                var blade = r.Carry("Dagger");
+                Assert.True(InventorySystem.Equip(r.Player, blade));
+                Assert.True(PlayerLoadoutService.SaveCurrent(r.Player, "armed", out _, out string reason), reason);
+                Assert.True(InventorySystem.UnequipItem(r.Player, blade));
+                Assert.True(r.Pack.RemoveObject(blade));
+                r.Open(); r.Tab(5);
+                StringAssert.Contains("MISSING", (string)Call(r.UI, "DescribeSelectedLoadout"));
+                r.ActivatePainted(r.FindHit("LoadoutAction", 1));
+                Assert.True(r.UI.IsOpen);
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+                Assert.IsEmpty(r.Pack.GetAllEquipped());
+                Assert.IsNotEmpty((string)Get(r.UI, "_actionStatus"));
+            }
+        }
+
+        [Test]
+        public void OutfitterWorldActionOpensPanelButMovingAwayRevokesPreparation()
+        {
+            using (var r = new Rig())
+            {
+                for (int i = 0; i < 3; i++)
+                    Assert.True(PlayerLoadoutService.SaveCurrent(r.Player, "set " + i, out _, out string reason), reason);
+                var keeper = r.Factory.CreateEntity("Armorer");
+                Assert.NotNull(keeper.GetPart<LoadoutKeeperPart>());
+                Assert.True(r.UI.CurrentZone.AddEntity(keeper, 11, 10));
+                Assert.True(LoadoutKeeperPart.CanServe(r.Player, keeper, out string refusal), refusal);
+                var handler = r.UI.gameObject.AddComponent<InputHandler>();
+                handler.PlayerEntity = r.Player; handler.CurrentZone = r.UI.CurrentZone; handler.InventoryUI = r.UI;
+                var action = WorldInteractionSystem.GatherActions(keeper, r.Player)
+                    .Single(row => row.Command == LoadoutKeeperPart.Command);
+                Call(handler, "ExecuteWorldActionSelection", action, keeper, r.UI.CurrentZone.GetEntityCell(keeper), false);
+                Assert.True(r.UI.IsOpen); Assert.AreEqual(5, Get(r.UI, "_panel"));
+                Assert.AreSame(keeper, Get(r.UI, "_loadoutKeeper"));
+                Call(r.UI, "SelectLoadout", 2);
+                string before = PlayerLoadoutService.GetPrepared(r.Player, 0).ID;
+                r.UI.CurrentZone.RemoveEntity(keeper);
+                Assert.True(r.UI.CurrentZone.AddEntity(keeper, 15, 10));
+                Call(r.UI, "Render");
+                r.ActivatePainted(r.FindHit("LoadoutAction", 3));
+                Assert.AreEqual(before, PlayerLoadoutService.GetPrepared(r.Player, 0).ID);
+                Assert.IsNotEmpty((string)Get(r.UI, "_actionStatus"));
+                Assert.False(r.UI.ConsumePendingEverydayTurn());
+            }
+        }
+
         static object Get(object owner, string name)
         { var field = owner.GetType().GetField(name, Members); Assert.NotNull(field, name); return field.GetValue(owner); }
         static object Call(object owner, string name, params object[] args) => CallArgs(owner, name, args);

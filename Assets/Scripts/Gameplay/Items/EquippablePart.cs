@@ -43,6 +43,43 @@ namespace CavesOfOoo.Core
         public string EquipBonuses = "";
 
         /// <summary>
+        /// Exact signed bonuses currently contributed by this equipped item. Saved
+        /// alongside the wearer's already-modified stats; never reapplied on load.
+        /// Null identifies legacy equipment without a receipt, while an empty string
+        /// means no recorded contribution. Fresh stack clones clear this field.
+        /// </summary>
+        public string AppliedEquipBonuses;
+
+        /// <summary>Positive temporary ranks, as "SkillClass:Amount" pairs.</summary>
+        public string EquipSkillBonuses = "";
+
+        /// <summary>Exact saved temporary skill contribution; not replayed on load.</summary>
+        public string AppliedEquipSkillBonuses = "";
+
+        public override void FinalizeLoad(SaveReader reader)
+        {
+            // The first two prototype trinkets shipped with attribute tradeoffs.
+            // Upgrade just those old instances after all ownership/skill caches load.
+            // The saved receipt removes their exact old contribution, even if the
+            // definition or actor's learned/base values changed since equipping.
+            string replacement = ParentEntity?.BlueprintName == "QuarryToothTrinket" ? "CudgelSkill:1"
+                : ParentEntity?.BlueprintName == "TonguelessBellTrinket" ? "Persuasion_Recruit:1,Persuasion_Dismiss:1" : null;
+            if (replacement == null || !string.IsNullOrEmpty(EquipSkillBonuses)
+                || string.IsNullOrEmpty(EquipBonuses)) return;
+            var wearer = ParentEntity.GetPart<PhysicsPart>()?.Equipped;
+            if (wearer != null)
+                StatModifiers.Remove(wearer, StatModifiers.Parse(AppliedEquipBonuses ?? EquipBonuses));
+            EquipBonuses = "";
+            AppliedEquipBonuses = "";
+            EquipSkillBonuses = replacement;
+            if (wearer != null)
+                AppliedEquipSkillBonuses = CavesOfOoo.Skills.SkillModifiers.Format(
+                    CavesOfOoo.Skills.SkillModifiers.Replace(wearer,
+                        CavesOfOoo.Skills.SkillModifiers.Parse(AppliedEquipSkillBonuses),
+                        CavesOfOoo.Skills.SkillModifiers.Parse(replacement)));
+        }
+
+        /// <summary>
         /// Get the effective slots list. Returns UsesSlots if set, otherwise Slot.
         /// </summary>
         public string GetEffectiveSlots()

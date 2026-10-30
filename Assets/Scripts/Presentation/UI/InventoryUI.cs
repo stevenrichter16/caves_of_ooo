@@ -14,7 +14,7 @@ namespace CavesOfOoo.Rendering
 {
     /// <summary>
     /// Owns inventory state and commands across Equipment, Inventory, Tinkering,
-    /// Abilities and Crafting. A retained camera-bound ledger paints the view;
+    /// Abilities, Crafting and Loadouts. A retained camera-bound ledger paints the view;
     /// the original transactions and input controller retain gameplay authority.
     /// </summary>
     public partial class InventoryUI : MonoBehaviour
@@ -40,6 +40,7 @@ namespace CavesOfOoo.Rendering
         private const int PANEL_TINKERING = 2;
         private const int PANEL_ABILITIES = 3;
         private const int PANEL_CRAFTING = 4;
+        private const int PANEL_LOADOUTS = 5;
 
         // Abilities tab layout
         private const int ABILITIES_INFO_X = 6;              // where name/flavor/mechanics/signature start
@@ -63,7 +64,7 @@ namespace CavesOfOoo.Rendering
         private const int POPUP_MAX_VISIBLE = 25;
 
         private bool _isOpen;
-        private int _panel; // Equipment, Inventory, Tinkering, Abilities, Crafting
+        private int _panel; // Equipment, Inventory, Tinkering, Abilities, Crafting, Loadouts
         private InventoryScreenData.ScreenState _state;
 
         // Inventory list state (right panel)
@@ -114,6 +115,7 @@ namespace CavesOfOoo.Rendering
 
         private object CurrentActionContext()
         {
+            if (_panel == PANEL_LOADOUTS) return SelectedLoadout();
             if (_displaceConfirm != null) return _displaceConfirm;
             if (_equipPopup != null) return _equipPopup;
             if (_itemActionPopup != null) return _itemActionPopup;
@@ -176,6 +178,7 @@ namespace CavesOfOoo.Rendering
         {
             bool pending = _pendingEverydayTurn;
             _pendingEverydayTurn = false;
+            ResetLoadoutView();
             return pending;
         }
 
@@ -308,6 +311,8 @@ namespace CavesOfOoo.Rendering
 
         public void Close()
         {
+            _loadoutNameEditing = false;
+            _loadoutKeeper = null;
             ClearActionStatus();
             _isOpen = false;
             _ledgerCommandsOpen = false; _ledgerDetailsRequested = false; _ledgerStatusRequested = false;
@@ -373,6 +378,11 @@ namespace CavesOfOoo.Rendering
             }
 
 
+            if (_loadoutNameEditing)
+            {
+                if (!HandleLedgerPointer()) HandleLoadoutNameInput();
+                return true;
+            }
             if (_inventorySearchActive) { HandleInventorySearchInput(); return true; }
 
             // Retained geometry exclusively owns pointer input in every mode/modal.
@@ -478,6 +488,8 @@ namespace CavesOfOoo.Rendering
                 HandleTinkeringPanelInput();
             else if (_panel == PANEL_CRAFTING)
                 HandleCraftingPanelInput();
+            else if (_panel == PANEL_LOADOUTS)
+                HandleLoadoutsInput();
             else
                 HandleAbilitiesPanelInput();
 
@@ -2696,14 +2708,10 @@ namespace CavesOfOoo.Rendering
                 var equippable = item.GetPart<EquippablePart>();
                 if (equippable != null && !string.IsNullOrEmpty(equippable.EquipBonuses))
                 {
-                    string[] bonuses = equippable.EquipBonuses.Split(',');
-                    for (int i = 0; i < bonuses.Length; i++)
+                    foreach (var modifier in StatModifiers.Parse(equippable.EquipBonuses))
                     {
-                        string b = bonuses[i].Trim();
-                        int colon = b.IndexOf(':');
-                        if (colon < 0) continue;
-                        string stat = b.Substring(0, colon);
-                        string val = b.Substring(colon + 1);
+                        string stat = modifier.StatName;
+                        string val = modifier.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture);
                         if (stat.Length > 3) stat = stat.Substring(0, 3);
                         if (!val.StartsWith("-")) val = "+" + val;
                         parts.Add(stat + val);
@@ -2711,6 +2719,9 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            string skillBonuses = ItemExamineService.DescribeSkillBonuses(
+                item.GetPart<EquippablePart>()?.EquipSkillBonuses);
+            if (!string.IsNullOrEmpty(skillBonuses)) parts.Add(skillBonuses);
             return string.Join(" ", parts);
         }
 
@@ -2748,6 +2759,8 @@ namespace CavesOfOoo.Rendering
                         detail += " [" + handlingLabel + "]";
                     if (equip != null && !string.IsNullOrEmpty(equip.EquipBonuses))
                         detail += "  (" + equip.EquipBonuses + ")";
+                    string skillBonuses = ItemExamineService.DescribeSkillBonuses(equip?.EquipSkillBonuses);
+                    if (!string.IsNullOrEmpty(skillBonuses)) detail += "  (" + skillBonuses + ")";
                     DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
                 }
             }
@@ -2776,6 +2789,8 @@ namespace CavesOfOoo.Rendering
                     var equip = _itemActionPopup.Item.GetPart<EquippablePart>();
                     if (equip != null && !string.IsNullOrEmpty(equip.EquipBonuses))
                         detail += "  (" + equip.EquipBonuses + ")";
+                    string skillBonuses = ItemExamineService.DescribeSkillBonuses(equip?.EquipSkillBonuses);
+                    if (!string.IsNullOrEmpty(skillBonuses)) detail += "  (" + skillBonuses + ")";
                     DrawText(1, H - 1, detail, QudColorParser.BrightCyan);
                 }
             }

@@ -13,7 +13,7 @@ namespace CavesOfOoo.Rendering
         {
             Tab, Equipment, Item, TinkerRow, AbilitySlot, CraftRow, TinkerMode, CraftMode,
             ClearPicks, CraftCommit, ClearAbility, PopupRow, DisplaceYes, DisplaceNo,
-            Cancel, Details, Close
+            Cancel, Details, Close, LoadoutRow, LoadoutAction
         }
         struct LedgerHit { public Rect Bounds; public LedgerHitKind Kind; public int Index; }
         readonly List<LedgerHit> _ledgerHits = new List<LedgerHit>(48);
@@ -161,10 +161,10 @@ namespace CavesOfOoo.Rendering
                 LLabel(new Rect(630, 28, 626, 24), "Weight " + _state.CarriedWeight + "/" + _state.MaxCarryWeight
                     + " lb   Drams " + _state.Drams + "   Ink " + _state.Ink, LMuted, 18);
             LBox(new Rect(24, 65, 1232, 1), LBorder);
-            string[] tabs = { "Equipment", "Inventory", "Tinkering", "Abilities", "Crafting" };
+            string[] tabs = { "Equipment", "Inventory", "Tinkering", "Abilities", "Crafting", "Loadouts" };
             for (int i = 0; i < tabs.Length; i++)
             {
-                var rect = new Rect(24 + i * 248, 76, 240, 40);
+                var rect = new Rect(24 + i * 206, 76, 198, 40);
                 bool selected = _panel == i;
                 LFrame(rect, selected ? LGold : LBorder, selected ? LSelected : LPanel);
                 LLabel(new Rect(rect.x + 12, rect.y + 10, rect.width - 24, 20), tabs[i], selected ? LGold : LMuted, 20);
@@ -173,6 +173,7 @@ namespace CavesOfOoo.Rendering
             if (_panel == PANEL_TINKERING) RenderLedgerTinkering();
             else if (_panel == PANEL_ABILITIES) RenderLedgerAbilities();
             else if (_panel == PANEL_CRAFTING) RenderLedgerCrafting();
+            else if (_panel == PANEL_LOADOUTS) RenderLedgerLoadouts();
             else
             {
                 RenderLedgerEquipment();
@@ -181,6 +182,7 @@ namespace CavesOfOoo.Rendering
             }
             RenderLedgerFooter();
             RenderLedgerPopup();
+            RenderLoadoutNamePrompt();
             // A refused action leaves its modal open for retry. Keep the reason
             // above that modal's dimmer, in its own non-overlapping footer row.
             if (!string.IsNullOrWhiteSpace(_actionStatus))
@@ -366,9 +368,11 @@ namespace CavesOfOoo.Rendering
             LBox(new Rect(24, 740, 1232, 1), LBorder);
             bool pad = NativeGamepadInput.IsConnected;
             string hint;
-            if (_inventorySearchActive) hint = "Type to filter   Enter: accept   Esc: clear search";
+            if (_loadoutNameEditing) hint = "Type a name, or keep the default   Enter / A: save   Esc / B: cancel";
+            else if (_inventorySearchActive) hint = "Type to filter   Enter: accept   Esc: clear search";
             else if (pad) hint = "D-pad: browse  A: select  X: commands  B: back  Y: mode  LB/RB: mode  LT+RT: details";
             else if (_panel == PANEL_CRAFTING) hint = "Space: pick   Enter: craft   F/B: mode   C: clear   Tab: next   F1: details   Esc: close";
+            else if (_panel == PANEL_LOADOUTS) hint = "Arrows: browse   Enter: actions   S: save   1/2: use A/B   Tab: next   F1: details   Esc: close";
             else if (_panel == PANEL_TINKERING) hint = "Enter: select   B/M: build/mod   Tab: next   F1: details   Esc: close";
             else if (_panel == PANEL_ABILITIES) hint = "Arrows: slot   Enter: assign   X: clear   Tab: next   Esc: close";
             else if (_panel == PANEL_EQUIPMENT) hint = "Arrows: body slot   Enter: equip   E: unequip   Tab: next   F1: details   Esc: close";

@@ -8,7 +8,7 @@ namespace CavesOfOoo.Rendering
     {
         private Vector2 _ledgerLastPointer = new Vector2(float.NaN, float.NaN);
         private bool LedgerHasPopup => _displaceConfirm != null || _equipPopup != null || _itemActionPopup != null
-            || _modTargetPopup != null || _grimoirePicker != null || _ledgerCommandsOpen;
+            || _modTargetPopup != null || _grimoirePicker != null || _ledgerCommandsOpen || _loadoutNameEditing;
 
         // All pointer input is resolved against the same rectangles that paint.
         // Returning true consumes every click, including blank/modal-backdrop clicks.
@@ -53,6 +53,8 @@ namespace CavesOfOoo.Rendering
                 case LedgerHitKind.Equipment:
                     if (_panel == PANEL_EQUIPMENT && _equipCursorIndex == hit.Index) return false;
                     _panel = PANEL_EQUIPMENT; _equipCursorIndex = hit.Index; return true;
+                case LedgerHitKind.LoadoutRow:
+                    return SelectLoadout(hit.Index);
                 case LedgerHitKind.Item:
                     if (_panel == PANEL_INVENTORY && _cursorIndex == hit.Index) return false;
                     _panel = PANEL_INVENTORY; _cursorIndex = hit.Index; return true;
@@ -86,6 +88,8 @@ namespace CavesOfOoo.Rendering
             switch (hit.Kind)
             {
                 case LedgerHitKind.Tab: _panel = hit.Index; Render(); return;
+                case LedgerHitKind.LoadoutRow: Render(); return;
+                case LedgerHitKind.LoadoutAction: ExecuteLoadoutAction(hit.Index); return;
                 case LedgerHitKind.Equipment:
                     if (_equipSlots != null && hit.Index >= 0 && hit.Index < _equipSlots.Count) OpenEquipPopup(_equipSlots[hit.Index]); return;
                 case LedgerHitKind.Item:
@@ -130,7 +134,8 @@ namespace CavesOfOoo.Rendering
 
         private void CancelLedgerPopup()
         {
-            if (_ledgerCommandsOpen) _ledgerCommandsOpen = false;
+            if (_loadoutNameEditing) _loadoutNameEditing = false;
+            else if (_ledgerCommandsOpen) _ledgerCommandsOpen = false;
             else if (_displaceConfirm != null) _displaceConfirm = null;
             else if (_itemActionPopup != null && _itemActionPopup.InBodyPartPicker) _itemActionPopup.InBodyPartPicker = false;
             else if (_equipPopup != null) _equipPopup = null;
@@ -142,6 +147,7 @@ namespace CavesOfOoo.Rendering
 
         private void MoveLedgerSelection(int delta)
         {
+            if (_loadoutNameEditing) return;
             if (_ledgerCommandsOpen) _ledgerCommandIndex = Mathf.Clamp(_ledgerCommandIndex + delta, 0, _ledgerCommands.Count - 1);
             else if (_displaceConfirm != null) _displaceConfirm.CursorOnYes = !_displaceConfirm.CursorOnYes;
             else if (_equipPopup != null) _equipPopup.CursorIndex = Mathf.Clamp(_equipPopup.CursorIndex + delta, 0, Math.Max(0, _equipPopup.TotalRows - 1));
@@ -156,6 +162,7 @@ namespace CavesOfOoo.Rendering
             else if (_panel == PANEL_INVENTORY) MoveCursor(delta);
             else if (_panel == PANEL_TINKERING) MoveTinkeringCursor(delta);
             else if (_panel == PANEL_CRAFTING) MoveCraftCursor(delta);
+            else if (_panel == PANEL_LOADOUTS) MoveLoadoutSelection(delta);
             else _abilitiesCursorSlot = Mathf.Clamp(_abilitiesCursorSlot + delta, 0, ActivatedAbilitiesPart.SlotCount - 1);
         }
     }

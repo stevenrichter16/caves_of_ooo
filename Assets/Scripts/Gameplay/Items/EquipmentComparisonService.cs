@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Core.Inventory.Planning;
+using CavesOfOoo.Skills;
 
 namespace CavesOfOoo.Core
 {
@@ -199,7 +200,38 @@ namespace CavesOfOoo.Core
             bool changed = false;
             foreach (var delta in deltas) if (delta.Value != 0)
             { lines.Add("  " + delta.Key + " change: " + (delta.Value >= 0 ? "+" : "") + delta.Value); changed = true; }
-            if (!changed) lines.Add("  No numeric contribution change.");
+            if (!changed) lines.Add("  No attribute contribution change.");
+            AddSkillChanges(plan, lines);
+        }
+
+        private static void AddSkillChanges(EquipPlan plan, List<string> lines)
+        {
+            var deltas = new SortedDictionary<string, long>(StringComparer.Ordinal);
+            void Add(string definition, int sign)
+            {
+                foreach (var modifier in SkillModifiers.Parse(definition))
+                {
+                    deltas.TryGetValue(modifier.StatName, out long prior);
+                    deltas[modifier.StatName] = prior + sign * (long)modifier.Amount;
+                }
+            }
+            Add(plan.Item.GetPart<EquippablePart>()?.EquipSkillBonuses, 1);
+            foreach (var item in plan.Displacements.Select(d => d.Item).Distinct())
+            {
+                var part = item.GetPart<EquippablePart>();
+                Add(part?.AppliedEquipSkillBonuses ?? part?.EquipSkillBonuses, -1);
+            }
+            var skills = plan.Actor.GetPart<SkillsPart>();
+            foreach (var delta in deltas)
+            {
+                var skill = skills?.GetSkill(delta.Key);
+                int before = skill?.EffectiveRank ?? 0;
+                long after = Math.Max(0, Math.Min(SkillRanks.Maximum(delta.Key),
+                    (long)(skill?.Rank ?? 0) + (skill?.BonusRank ?? 0) + delta.Value));
+                lines.Add("  " + SkillModifiers.GetDisplayName(delta.Key) + " rank: "
+                    + before + " -> " + after + " (change: " + Signed(after - before)
+                    + "; maximum " + SkillRanks.Maximum(delta.Key) + ").");
+            }
         }
 
         private static bool Targetable(BodyPart part) => !part.Abstract && part.TargetWeight > 0;
@@ -240,12 +272,10 @@ namespace CavesOfOoo.Core
             var armor = item.GetPart<ArmorPart>();
             if (armor != null) { Add("DV", armor.DV); if (actor.GetStat("Speed") != null) Add("Speed", -(long)armor.SpeedPenalty); }
             string raw = item.GetPart<EquippablePart>()?.EquipBonuses;
-            foreach (string pair in (raw ?? "").Split(','))
+            foreach (var modifier in StatModifiers.Parse(raw))
             {
-                string trimmed = pair.Trim(); int colon = trimmed.IndexOf(':');
-                if (colon < 0 || !int.TryParse(trimmed.Substring(colon + 1), out int amount)) continue;
-                string stat = trimmed.Substring(0, colon);
-                if (actor.GetStat(stat) != null || stat == "HeatResistance" || stat == "ColdResistance" || stat == "ElectricResistance" || stat == "AcidResistance") Add(stat, amount);
+                string stat = modifier.StatName;
+                if (actor.GetStat(stat) != null || stat == "HeatResistance" || stat == "ColdResistance" || stat == "ElectricResistance" || stat == "AcidResistance") Add(stat, modifier.Amount);
             }
         }
 

@@ -50,6 +50,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Actor does not own this item.");
             }
 
+            if (AlreadyEquipped(context, _item))
+            {
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.BlockedByRule,
+                    "Item is already equipped. Unequip it before choosing another slot.");
+            }
+
             if (_item.GetPart<EquippablePart>() == null)
             {
                 return InventoryValidationResult.Invalid(
@@ -89,7 +96,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             bool emitPlanFailureMessage,
             bool emitSuccessMessage = true,
             System.Func<Entity, bool> validatePreparedChoice = null,
-            System.Action<Entity> reportPrepared = null)
+            System.Action<Entity> reportPrepared = null,
+            IReadOnlyList<BodyPart> exactParts = null)
         {
             if (context == null || context.Actor == null || context.Inventory == null)
             {
@@ -106,6 +114,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             var actor = context.Actor;
+            // Nested auto-equip callers enter here without this command's Validate.
+            // Equipment is still owned, but must not occupy a second slot merely
+            // because Inventory.Contains also includes already-worn items.
+            if (AlreadyEquipped(context, item))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,
+                    "Item is already equipped. Unequip it before choosing another slot.");
             if (!transaction.TryClaim(item, actor, "Equip"))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
             var equippable = item.GetPart<EquippablePart>();
@@ -148,6 +162,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Equip was cancelled.");
             }
+            if (AlreadyEquipped(context, itemToEquip))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,
+                    "The item was equipped while preparing this action.");
 
             // An explicit external slot/replacement picker can reject stale
             // anatomy or displacements after veto callbacks, before any gear
@@ -163,7 +180,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     itemToEquip,
                     targetBodyPart,
                     allowDisplacements,
-                    emitPlanFailureMessage)
+                    emitPlanFailureMessage,
+                    exactParts)
                 : TryEquipLegacy(context, transaction, itemToEquip, equippable, allowDisplacements);
 
             if (!equipped)
@@ -230,13 +248,19 @@ namespace CavesOfOoo.Core.Inventory.Commands
             return InventoryCommandResult.Ok();
         }
 
+        private static bool AlreadyEquipped(InventoryContext context, Entity item) =>
+            item?.GetPart<PhysicsPart>()?.Equipped != null
+            || context.Inventory.EquippedItems.ContainsValue(item)
+            || context.Inventory.FindEquippedBodyPart(item) != null;
+
         private static bool TryEquipBodyPartAware(
             InventoryContext context,
             InventoryTransaction transaction,
             Entity item,
             BodyPart targetBodyPart,
             bool allowDisplacements,
-            bool emitPlanFailureMessage)
+            bool emitPlanFailureMessage,
+            IReadOnlyList<BodyPart> exactParts = null)
         {
             var actor = context.Actor;
             var inventory = context.Inventory;
@@ -244,7 +268,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             // BeforeEquip may have changed anatomy or independently filled a
             // slot. Build against that settled state, including no-displacement
             // checks and selection of another free slot when one remains.
-            var plan = Planner.Build(actor, item, targetBodyPart);
+            var plan = Planner.Build(actor, item, targetBodyPart, exactParts);
             if (!plan.IsValid)
             {
                 if (emitPlanFailureMessage && !string.IsNullOrEmpty(plan.FailureReason))

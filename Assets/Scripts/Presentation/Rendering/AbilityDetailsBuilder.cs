@@ -29,12 +29,26 @@ namespace CavesOfOoo.Rendering
             if(!string.IsNullOrEmpty(warning))text.Append("\n\n").Append(warning);
             var skill = Declaration(className);
             var spec = skill?.DeclareActivatedAbility(actor);
-            if(eligibility.MaxRank>1)
+            var ownedSkill=actor.GetPart<SkillsPart>()?.GetSkill(className);
+            int bonusRank=ownedSkill?.BonusRank??0;
+            if(eligibility.MaxRank>1 || bonusRank>0)
             {
                 int rank=actor.GetPart<SkillsPart>()?.GetRank(className)??0;
                 text.Append("\n\nRank: ").Append(rank).Append('/').Append(eligibility.MaxRank);
+                if(bonusRank>0)
+                {
+                    text.Append("\nLearned: ").Append(eligibility.OldRank)
+                        .Append(". Gear: +").Append(bonusRank).Append(" while equipped.");
+                    if((long)eligibility.OldRank+bonusRank>eligibility.MaxRank)
+                        text.Append(" Rank capped at ").Append(eligibility.MaxRank).Append('.');
+                    text.Append("\nGear ranks do not satisfy learning prerequisites.");
+                }
                 if(rank>0)text.Append("\nCurrent: ").Append(skill?.DescribeRank(rank));
-                if(rank<eligibility.MaxRank)text.Append("\nNext rank ").Append(rank+1).Append(": ").Append(skill?.DescribeRank(rank+1));
+                if(eligibility.OldRank<eligibility.MaxRank)
+                {
+                    int next=eligibility.OldRank+1;
+                    text.Append(bonusRank>0?"\nNext learned rank ":"\nNext rank ").Append(next).Append(": ").Append(skill?.DescribeRank(next));
+                }
             }
             AppendBladeState(text,actor,className);
             text.Append("\n\n").Append(description);

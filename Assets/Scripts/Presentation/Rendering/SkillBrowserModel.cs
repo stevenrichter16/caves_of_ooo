@@ -93,6 +93,7 @@ namespace CavesOfOoo.Rendering
         }
         public string StateLabel(SkillsScreenRow row)
         {
+            if (row.BonusRank>0) return "GEAR +"+row.BonusRank+" / RANK "+row.EffectiveRank;
             if (row.State==SkillsScreenRowState.Owned) return row.MaxRank>1 ? (row.CanUpgrade?"OWNED ":"MAX ")+row.OwnedRank+"/"+row.MaxRank : "OWNED";
             if (row.IsObfuscated) return "UNKNOWN";
             if (row.Cost<0) return "DISCOVERY";
@@ -153,7 +154,14 @@ namespace CavesOfOoo.Rendering
                 if(!string.IsNullOrWhiteSpace(power.Requires)) foreach(var raw in power.Requires.Split(','))
                 { var cls=raw.Trim(); if(cls.Length>0 && !Prerequisites.Contains(cls)) Prerequisites.Add(cls); }
                 var lines=new StringBuilder();
-                foreach(var cls in Prerequisites) lines.Append(Actor.GetPart<SkillsPart>()?.HasSkill(cls)==true ? "+ " : "- ").Append(SafeName(cls)).Append('\n');
+                foreach(var cls in Prerequisites)
+                {
+                    var skills=Actor.GetPart<SkillsPart>();
+                    bool learned=(skills?.GetLearnedRank(cls)??0)>0;
+                    lines.Append(learned ? "+ " : "- ").Append(SafeName(cls));
+                    if(!learned && (skills?.GetRank(cls)??0)>0) lines.Append(" (gear only; learn first)");
+                    lines.Append('\n');
+                }
                 if(!string.IsNullOrWhiteSpace(power.Minimum))
                 {
                     var attrs=power.Attribute.Split('|'); var mins=power.Minimum.Split('|');

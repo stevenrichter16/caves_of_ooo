@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using CavesOfOoo.Skills;
 
 namespace CavesOfOoo.Core
 {
@@ -91,6 +92,11 @@ namespace CavesOfOoo.Core
                 {
                     lines.Add("Equip slots: " + string.Join(",", equipment.GetSlotArray()) + ".");
                     DescribeEquipBonuses(equipment.EquipBonuses, lines);
+                    string skills = DescribeSkillBonuses(equipment.EquipSkillBonuses);
+                    if (skills.Length > 0)
+                        lines.Add("Skills while equipped: " + skills
+                            + ". Grants unlearned skills; ranks stop at each skill's maximum."
+                            + " Does not spend or grant skill points.");
                 }
             }
 
@@ -162,14 +168,9 @@ namespace CavesOfOoo.Core
         {
             if (string.IsNullOrEmpty(raw)) return;
             var bonuses = new List<string>();
-            foreach (string pair in raw.Split(','))
+            foreach (var modifier in StatModifiers.Parse(raw))
             {
-                string value = pair.Trim();
-                int colon = value.IndexOf(':');
-                if (colon < 0 || !int.TryParse(value.Substring(colon + 1), out int amount)) continue;
-                // Same parsing as EquipBonusUtility. Effects require that
-                // the wearer actually has the named stat.
-                bonuses.Add(value.Substring(0, colon) + " " + Signed(amount));
+                bonuses.Add(modifier.StatName + " " + Signed(modifier.Amount));
             }
             if (bonuses.Count > 0)
                 lines.Add("Equip bonuses (if the stat exists): " + string.Join(", ", bonuses) + ".");
@@ -177,5 +178,13 @@ namespace CavesOfOoo.Core
 
         private static string Signed(long value)
             => (value >= 0 ? "+" : "") + value.ToString(CultureInfo.InvariantCulture);
+
+        public static string DescribeSkillBonuses(string raw)
+        {
+            var bonuses = new List<string>();
+            foreach (var modifier in SkillModifiers.Parse(raw))
+                bonuses.Add(SkillModifiers.GetDisplayName(modifier.StatName) + " " + Signed(modifier.Amount));
+            return string.Join(", ", bonuses);
+        }
     }
 }

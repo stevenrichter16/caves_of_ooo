@@ -1,49 +1,40 @@
+using CavesOfOoo.Skills;
+
 namespace CavesOfOoo.Core.Inventory.Commands
 {
     internal static class EquipBonusUtility
     {
-        public static void ApplyEquipBonuses(Entity actor, EquippablePart equippable, bool apply)
+        public static void ApplyEquipBonuses(Entity actor, EquippablePart equippable, bool apply,
+            string restoredBonuses = null, string restoredSkillBonuses = null)
         {
             if (actor == null || equippable == null)
                 return;
 
             var item = equippable.ParentEntity;
 
-            if (!string.IsNullOrEmpty(equippable.EquipBonuses))
+            var oldSkills = SkillModifiers.Parse(equippable.AppliedEquipSkillBonuses);
+            var nextSkills = apply ? SkillModifiers.Parse(restoredSkillBonuses ?? equippable.EquipSkillBonuses) : null;
+            var appliedSkills = SkillModifiers.Replace(actor, oldSkills, nextSkills);
+            try
             {
-                string[] pairs = equippable.EquipBonuses.Split(',');
-                for (int i = 0; i < pairs.Length; i++)
+                if (apply)
                 {
-                    string trimmed = pairs[i].Trim();
-                    if (string.IsNullOrEmpty(trimmed))
-                        continue;
-
-                    int colon = trimmed.IndexOf(':');
-                    if (colon < 0)
-                        continue;
-
-                    string statName = trimmed.Substring(0, colon);
-                    if (!int.TryParse(trimmed.Substring(colon + 1), out int amount))
-                        continue;
-
-                    var stat = actor.GetStat(statName);
-                    // Elemental damage treats an absent resistance as zero. Equipment
-                    // must therefore be able to contribute to that implicit zero,
-                    // without inventing arbitrary statistics for misspelled bonuses.
-                    if (stat == null && apply && IsElementalResistance(statName))
-                    {
-                        stat = new Stat { Owner = actor, Name = statName, BaseValue = 0,
-                            Min = -100, Max = 100 };
-                        actor.Statistics[statName] = stat;
-                    }
-                    if (stat == null)
-                        continue;
-
-                    if (apply)
-                        stat.Bonus += amount;
-                    else
-                        stat.Bonus -= amount;
+                    var applied = StatModifiers.Replace(actor, StatModifiers.Parse(equippable.AppliedEquipBonuses),
+                        StatModifiers.Parse(restoredBonuses ?? equippable.EquipBonuses), createMissingElementalResistances: true);
+                    equippable.AppliedEquipBonuses = StatModifiers.Format(applied);
                 }
+                else
+                {
+                    // Legacy stat gear predates receipts; skill bonuses never did.
+                    StatModifiers.Remove(actor, StatModifiers.Parse(equippable.AppliedEquipBonuses ?? equippable.EquipBonuses));
+                    equippable.AppliedEquipBonuses = "";
+                }
+                equippable.AppliedEquipSkillBonuses = SkillModifiers.Format(appliedSkills);
+            }
+            catch
+            {
+                SkillModifiers.Replace(actor, appliedSkills, oldSkills);
+                throw;
             }
 
             if (item == null)
@@ -62,8 +53,5 @@ namespace CavesOfOoo.Core.Inventory.Commands
             else
                 speed.Penalty -= armor.SpeedPenalty;
         }
-
-        private static bool IsElementalResistance(string name) => name == "HeatResistance"
-            || name == "ColdResistance" || name == "ElectricResistance" || name == "AcidResistance";
     }
 }

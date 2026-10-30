@@ -288,7 +288,7 @@ namespace CavesOfOoo.Rendering
 
             if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L)
                 || InputHelper.GetKeyDown(KeyCode.Tab))
-            { _panel = PANEL_EQUIPMENT; Render(); return; }
+            { _panel = PANEL_LOADOUTS; Render(); return; }
 
             if (InputHelper.GetKeyDown(KeyCode.F) && _craftingMode != CraftingMode.Forge)
             { SwitchCraftingMode(CraftingMode.Forge); return; }

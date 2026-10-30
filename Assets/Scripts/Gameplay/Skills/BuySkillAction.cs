@@ -92,6 +92,10 @@ namespace CavesOfOoo.Skills
             var skillsPart = actor.GetPart<SkillsPart>();
             var spStat = actor.GetStat("SP");
             int cost = result.Cost;
+            // A rank-zero part may already exist through equipment. A failed
+            // purchase must restore its learned rank, not detach that borrowed
+            // capability or discard its active-ability identity/cooldown.
+            var originalSkill = skillsPart.GetSkill(skillClassName);
 
             if ((expectedRank.HasValue && expectedRank.Value != result.OldRank)
                 || (expectedCost.HasValue && expectedCost.Value != cost))
@@ -115,7 +119,13 @@ namespace CavesOfOoo.Skills
             catch (System.Exception error)
             {
                 string detail=error.GetType().Name;
-                try { if(result.OldRank==0)skillsPart.RollbackAcquisition(skillClassName); }
+                try
+                {
+                    if (originalSkill != null && skillsPart.GetSkill(skillClassName) == originalSkill)
+                        originalSkill.Rank = result.OldRank;
+                    else if (result.OldRank == 0)
+                        skillsPart.RollbackAcquisition(skillClassName);
+                }
                 catch (System.Exception cleanupError)
                 {
                     // Rollback detaches in its finally block. A failing teardown

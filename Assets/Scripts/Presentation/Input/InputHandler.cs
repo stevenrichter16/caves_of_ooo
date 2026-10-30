@@ -3075,6 +3075,19 @@ namespace CavesOfOoo.Rendering
             // themselves for their own popup.
             ExitCenteredPopupOverlayViewToGameplay();
 
+            if (action.Command == LoadoutKeeperPart.Command)
+            {
+                if (!LoadoutKeeperPart.CanServe(PlayerEntity, target, out string loadoutReason))
+                {
+                    MessageLog.Add(loadoutReason);
+                    _inputState = _worldActionMenuReturnState;
+                    return;
+                }
+                OpenInventory();
+                InventoryUI?.OpenLoadouts(target);
+                return;
+            }
+
             // Special case: "what's here" picker row — open the picked
             // entity's own action menu, with a back row to the picker.
             if (action.Command.StartsWith(WorldInteractionSystem.PickTargetCommandPrefix, StringComparison.Ordinal))

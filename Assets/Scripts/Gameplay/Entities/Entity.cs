@@ -471,6 +471,13 @@ namespace CavesOfOoo.Core
                 clonePhysics.InInventory = null;
                 clonePhysics.Equipped = null;
             }
+            // A new loose unit never owns the source unit's applied contribution.
+            var cloneEquippable = clone.GetPart<EquippablePart>();
+            if (cloneEquippable != null)
+            {
+                cloneEquippable.AppliedEquipBonuses = "";
+                cloneEquippable.AppliedEquipSkillBonuses = "";
+            }
 
             return clone;
         }

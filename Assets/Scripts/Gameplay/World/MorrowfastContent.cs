@@ -70,13 +70,14 @@ namespace CavesOfOoo.Core
                 SetStat(bp, "Ego", 14, 999); SetStat(bp, "XPValue", 20, 999);
                 if (index < 2) SetPart(bp, "Loadout", "Equip", "Spear;LeatherArmor");
                 if (index == 4 || index == 5) SetPart(bp, "Trader", "StockTable", index == 4 ? "MorrowfastMenderStock" : "MorrowfastProvisionerStock", "Drams", index == 4 ? "300" : "200");
+                if (index == 4) SetPart(bp, "LoadoutKeeper");
                 if (index == 0) SetPart(bp, "QuestBeacon", "Quest", MorrowfastQuests.BellQuestId);
                 if (index == 1) SetPart(bp, "QuestBeacon", "Quest", MorrowfastQuests.ReturnQuestId);
                 if (index == 6) SetPart(bp, "QuestBeacon", "Quest", "MorrowfastDryGoods");
                 factory.Blueprints[blueprintName] = bp;
             }
             var actor = factory.CreateEntity(blueprintName);
-            if (index == 4) Stock(actor, factory, new[] { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay", "SalvagedTimber", "KnotflaxCord" }, new[] { 4, 2, 1, 1, 3, 4, 4, 3 });
+            if (index == 4) Stock(actor, factory, new[] { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay", "SalvagedTimber", "KnotflaxCord", "QuarryToothTrinket", "TonguelessBellTrinket" }, new[] { 4, 2, 1, 1, 3, 4, 4, 3, 1, 1 });
             if (index == 5) Stock(actor, factory, new[] { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask", "KnotflaxSeed", "HearthbulbSeed", "SeamleafSeed", "InertSludge" }, new[] { 8, 4, 2, 2, 3, 1, 1, 2, 2, 2, 2 });
             return actor;
         }

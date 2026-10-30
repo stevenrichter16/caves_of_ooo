@@ -11,7 +11,7 @@ namespace CavesOfOoo.Rendering
         private string _inventoryQuery = "";
         private bool _inventorySearchActive;
         private Entity _searchReturnItem;
-        public bool IsSearching => _inventorySearchActive;
+        public bool IsSearching => _inventorySearchActive || _loadoutNameEditing;
         public string SearchQuery => _inventoryQuery;
         public void HideForDecisionReader() { SetLedgerVisible(false); }
         public void RestoreAfterDecisionReader() { if (_isOpen) { SetLedgerVisible(true); Rebuild(); ClampCursor(); Render(); } }
@@ -43,6 +43,7 @@ namespace CavesOfOoo.Rendering
         {
             subject = null;
             if (!_isOpen || _inventorySearchActive) return null;
+            if (_panel == PANEL_LOADOUTS && !_loadoutNameEditing) return DescribeSelectedLoadout();
             if (_displaceConfirm != null)
             {
                 var pending = _displaceConfirm;

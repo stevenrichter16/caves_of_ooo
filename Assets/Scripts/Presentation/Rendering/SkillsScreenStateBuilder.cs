@@ -30,14 +30,18 @@ namespace CavesOfOoo.Rendering
             bool root, string parentName, int cost, int flags)
         {
             var result = SkillPurchaseEligibility.Evaluate(actor, className);
-            var state = result.OldRank>0 ? SkillsScreenRowState.Owned
+            var skills = actor.GetPart<SkillsPart>();
+            int effectiveRank = skills?.GetRank(className) ?? 0;
+            int bonusRank = skills?.GetSkill(className)?.BonusRank ?? 0;
+            var state = effectiveRank>0 ? SkillsScreenRowState.Owned
                 : result.Succeeded ? SkillsScreenRowState.Buyable
                 : result.Reason == BuySkillAction.FailureReason.AlreadyOwned ? SkillsScreenRowState.Owned
                 : result.Reason == BuySkillAction.FailureReason.InsufficientSP ? SkillsScreenRowState.InsufficientSP
                 : SkillsScreenRowState.RequirementsNotMet;
             bool obfuscated = state == SkillsScreenRowState.RequirementsNotMet && (flags & SkillData.FLAG_OBFUSCATED) != 0;
             return new SkillsScreenRow(className, obfuscated ? "???" : name, description ?? "", root,
-                parentName, result.Cost, state, obfuscated, result.OldRank,result.MaxRank,result.Succeeded);
+                parentName, result.Cost, state, obfuscated, result.OldRank,result.MaxRank,result.Succeeded,
+                effectiveRank, bonusRank);
         }
     }
 }

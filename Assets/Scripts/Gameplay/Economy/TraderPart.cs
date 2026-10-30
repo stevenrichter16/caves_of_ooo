@@ -51,6 +51,11 @@ namespace CavesOfOoo.Core
         /// <summary>Deterministic override for tests.</summary>
         public static System.Random Rng;
 
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            LoadoutKeeperPart.UpgradeExistingTrader(ParentEntity);
+        }
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "ObjectCreated")

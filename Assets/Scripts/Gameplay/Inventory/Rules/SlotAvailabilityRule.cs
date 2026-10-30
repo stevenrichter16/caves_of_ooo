@@ -18,6 +18,20 @@ namespace CavesOfOoo.Core.Inventory.Rules
 
             var remainingSlots = new List<string>(plan.SlotTypes);
 
+            if (plan.ExactParts != null)
+            {
+                if (plan.ExactParts.Count != remainingSlots.Count || plan.ExactParts.Count == 0
+                    || plan.TargetBodyPart != null && plan.ExactParts[0] != plan.TargetBodyPart)
+                    return EquipRuleResult.Fail("The saved equipment slots no longer match this item.");
+                foreach (var part in plan.ExactParts)
+                {
+                    if (part == null || part.Abstract || !builder.GetCandidateSlots(part.Type).Contains(part)
+                        || !remainingSlots.Remove(part.Type) || !builder.ClaimPart(part))
+                        return EquipRuleResult.Fail("A saved equipment slot is unavailable or incompatible.");
+                }
+                return EquipRuleResult.Pass();
+            }
+
             if (plan.TargetBodyPart != null)
             {
                 if (!builder.ClaimPart(plan.TargetBodyPart))

@@ -512,6 +512,7 @@ namespace CavesOfOoo.Data
             }
 
             body.SetBody(root);
+            TrinketSlots.InitializePlayer(entity);
 
             // Override natural weapon if specified (e.g. "DefaultClaw" for 1d4)
             string naturalWeapon = entity.GetProperty("NaturalWeapon", null);

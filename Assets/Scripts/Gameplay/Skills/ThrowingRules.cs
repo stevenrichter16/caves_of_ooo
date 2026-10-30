@@ -51,7 +51,7 @@ namespace CavesOfOoo.Core
         static bool Owns(Entity actor, string name)
         {
             var skill = actor?.GetPart<SkillsPart>()?.GetSkill(name);
-            return skill != null && skill.ParentEntity == actor && actor.Parts.Contains(skill) && skill.Rank == 1;
+            return skill != null && skill.ParentEntity == actor && actor.Parts.Contains(skill) && skill.EffectiveRank == 1;
         }
         public static bool IsCooldownSkill(string name) => name == Measured || name == Driving || name == Recovery;
         public static int CooldownRemaining(Entity actor, string name)
