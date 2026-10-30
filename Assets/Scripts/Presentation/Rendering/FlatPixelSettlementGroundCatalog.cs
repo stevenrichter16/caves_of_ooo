@@ -23,8 +23,9 @@ namespace CavesOfOoo.Rendering
     {
         const int Width = 16, Height = 24;
         public const string TownFloorResourcePath = "Sprites/Live16x24/town-floor";
+        public const string ScorchResourcePath = "Sprites/Live16x24/campfire-scorch";
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush;
+        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch;
         readonly FlatPixelSillRiverCatalog water;
         readonly FlatPixelSoddenTravelCatalog fixtures;
         bool disposed;
@@ -37,19 +38,29 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(TownFloorResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
-                Resources.Load<Texture2D>(FlatPixelSoddenTravelCatalog.ResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelSoddenTravelCatalog.ResourcePath),
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath),
+                Resources.Load<Texture2D>(ScorchResourcePath), borrowedSelector) { }
 
         /// <summary>Each borrowed group is independent: a missing or malformed atlas only leaves
         /// its own identities on the fallback. No Resources reload on failure.</summary>
         public FlatPixelSettlementGroundCatalog(Texture2D sillEnvironment9, Texture2D forestGround4,
             Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4, FlatPixelFallbackCatalog borrowedSelector)
-            : this(sillEnvironment9, forestGround4, beating34, openingGround21, townFloor4, null, null, null, borrowedSelector) { }
+            : this(sillEnvironment9, forestGround4, beating34, openingGround21, townFloor4, null, null, null, null, null, borrowedSelector) { }
 
         /// <summary>Also the approved plants (north Tree 0 and DryBrush 3 of 4, base Bush 5 of 10) and
         /// the Sodden boardwalk, reed and peat-bank art, each by its own biome's exact rule.</summary>
         public FlatPixelSettlementGroundCatalog(Texture2D sillEnvironment9, Texture2D forestGround4,
             Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4,
             Texture2D vegetation4, Texture2D base10, Texture2D soddenTravel28, FlatPixelFallbackCatalog borrowedSelector)
+            : this(sillEnvironment9, forestGround4, beating34, openingGround21, townFloor4, vegetation4, base10, soddenTravel28, null, null, borrowedSelector) { }
+
+        /// <summary>Also the settlement hearth: the approved burning campfire (opening-states frame 5 of 12)
+        /// and the original scorched-earth stain for its markers (campfire-scorch, 2 frames).</summary>
+        public FlatPixelSettlementGroundCatalog(Texture2D sillEnvironment9, Texture2D forestGround4,
+            Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4,
+            Texture2D vegetation4, Texture2D base10, Texture2D soddenTravel28, Texture2D states12, Texture2D scorch2,
+            FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -65,6 +76,8 @@ namespace CavesOfOoo.Rendering
             tree = Frames(vegetation4, 4, 0, 1, "tree");
             dryBrush = Frames(vegetation4, 4, 3, 1, "dry brush");
             bush = Frames(base10, 10, 5, 1, "bush");
+            hearth = Frames(states12, 12, 5, 1, "hearth");
+            scorch = Frames(scorch2, 2, 0, 2, "scorch");
             fixtures = new FlatPixelSoddenTravelCatalog(soddenTravel28, base10, null, null, null, selector, null, IsSupportedZone);
         }
 
@@ -177,6 +190,8 @@ namespace CavesOfOoo.Rendering
                 case "Bush": tile = FlatPixelSpreadEnvironmentCatalog.IsEligiblePlant(owner) ? Pick(bush, 0) : null; break;
                 case "Tree": tile = FlatPixelSpreadEnvironmentCatalog.IsEligiblePlant(owner) ? Pick(tree, 0) : null; break;
                 case "DryBrush": tile = FlatPixelBeatingMaterialsCatalog.IsEligibleDryBrush(owner) ? Pick(dryBrush, 0) : null; break;
+                case "Campfire": tile = OrdinaryHearth(owner) ? Pick(hearth, 0) : null; break;
+                case "CampfireGroundMarker": tile = OrdinaryScorch(owner) ? Pick(scorch, (x + y) & 1) : null; break;
                 case "Duckboard": case "Reeds": case "PeatBank":
                     return fixtures != null && fixtures.TryResolveForeground(zone, x, y, owner, out tile);
             }
@@ -191,7 +206,7 @@ namespace CavesOfOoo.Rendering
             if (owner.BlueprintName == "Duckboard" || owner.BlueprintName == "Reeds" || owner.BlueprintName == "PeatBank")
                 return fixtures != null && fixtures.TryGetSubjectSprite(zone, owner, x, y, out sprite);
             if (owner.BlueprintName == "SandstoneWall" || owner.BlueprintName == "Bush" || owner.BlueprintName == "Tree"
-                || owner.BlueprintName == "DryBrush")
+                || owner.BlueprintName == "DryBrush" || owner.BlueprintName == "Campfire" || owner.BlueprintName == "CampfireGroundMarker")
             {
                 if (!TryResolveForeground(zone, x, y, owner, out var body)) return false;
                 sprite = body.sprite; return sprite != null;
@@ -290,7 +305,29 @@ namespace CavesOfOoo.Rendering
         static bool StandsOnGround(Entity owner)
             => owner.BlueprintName == "Bush" && FlatPixelSpreadEnvironmentCatalog.IsEligiblePlant(owner)
                 || FlatPixelBeatingMaterialsCatalog.IsEligibleDryBrush(owner)
-                || (owner.BlueprintName == "Duckboard" || owner.BlueprintName == "Reeds") && FlatPixelSoddenTravelCatalog.IsSettlementFixture(owner, 0, 0);
+                || (owner.BlueprintName == "Duckboard" || owner.BlueprintName == "Reeds") && FlatPixelSoddenTravelCatalog.IsSettlementFixture(owner, 0, 0)
+                || OrdinaryHearth(owner) || OrdinaryScorch(owner);
+        /// <summary>An ordinary settlement hearth: its own CampfirePart without finite cooking (a permanent lit
+        /// fire whose glyph flickers), canonical '*' terrain with heat and fuel. Finite-cooking fires have real
+        /// cold/hot/burning states that this adapter does not read.</summary>
+        static bool OrdinaryHearth(Entity owner)
+        {
+            if (owner?.BlueprintName != "Campfire" || !Plain(owner) || !owner.HasTag("Terrain") || owner.HasTag("Wall")) return false;
+            var fire = Owned<CampfirePart>(owner); var r = Owned<RenderPart>(owner);
+            return fire != null && !fire.FiniteCooking && Owned<ThermalPart>(owner) != null && Owned<FuelPart>(owner) != null
+                && r.RenderString == "*" && r.ColorString == "&R" && string.IsNullOrEmpty(r.BackgroundColor) && string.IsNullOrEmpty(r.GlyphVariants)
+                && !owner.HasPart<ContainerPart>() && !owner.HasPart<DoorPart>() && !owner.HasPart<LiquidPoolPart>() && !owner.HasPart<TileStateSourcePart>();
+        }
+        /// <summary>The plain scorched-earth marker around a hearth: canonical red '.' terrain, nothing else.</summary>
+        static bool OrdinaryScorch(Entity owner)
+        {
+            if (owner?.BlueprintName != "CampfireGroundMarker" || !Plain(owner) || ForeignMeaning(owner) || !owner.HasTag("Terrain")
+                || owner.HasTag("Wall") || owner.HasTag("Solid") || owner.HasPart<MaterialPart>() || owner.HasPart<ThermalPart>()
+                || owner.HasPart<DestructiblePart>()) return false;
+            var r = Owned<RenderPart>(owner);
+            return r.RenderString == "." && r.ColorString == "&R" && r.RenderLayer == 0
+                && string.IsNullOrEmpty(r.BackgroundColor) && string.IsNullOrEmpty(r.GlyphVariants);
+        }
         static bool ForeignMeaning(Entity owner)
             => owner.HasPart<CropPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>() || owner.HasPart<HarvestablePart>()
                 || owner.HasPart<RepairablePart>() || owner.HasPart<DoorPart>() || owner.HasPart<ContainerPart>() || owner.HasPart<BrainPart>() || owner.HasPart<Body>()
@@ -328,7 +365,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             water?.Dispose(); fixtures?.Dispose();
-            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush })
+            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch })
             {
                 if (group == null) continue;
                 foreach (var tile in group) { if (tile == null) continue; DestroyOwned(tile.sprite); DestroyOwned(tile); }

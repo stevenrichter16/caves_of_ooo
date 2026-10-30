@@ -28,6 +28,8 @@ namespace CavesOfOoo.Tests
         const string OpeningBase = "Sprites/Live16x24/opening-base";
         const string SoddenTravel = "Sprites/Live16x24/sodden-travel";
         const string Keepers = "Sprites/Live16x24/settlement-keepers";
+        const string OpeningStates = "Sprites/Live16x24/opening-states";
+        const string Scorch = "Sprites/Live16x24/campfire-scorch";
         static EntityFactory factory;
         OverworldZoneManager manager;
         FlatPixelGreyboxCatalog world;
@@ -292,6 +294,44 @@ namespace CavesOfOoo.Tests
             Assert.False(rememberedWater.GroundTile?.sprite != null
                 && ReferenceEquals(rememberedWater.GroundTile.sprite.texture, Resources.Load<Texture2D>(OpeningGround))
                 && rememberedWater.GroundKind == FlatPixelGreyboxGround.Water, "live water state is not kept in static memory");
+        }
+
+        // ════════════════ the settlement hearth ════════════════
+        // Every settlement centre showed a red '*' and four red '.' markers on black boxes. An ordinary
+        // (not finite-cooking) campfire is a permanent lit hearth whose glyph flickers, so it uses the
+        // approved burning campfire (opening-states frame 5); its scorched-earth markers use the original
+        // campfire-scorch stain over the real settlement ground.
+
+        [TestCase("Overworld.10.14.0")] [TestCase("Overworld.8.16.0")] [TestCase("Overworld.12.12.0")]
+        public void SettlementHearthsBurnOnScorchedRealGround(string id)
+        {
+            var zone = Visit(id);
+            var fires = Cells(zone, "Campfire").ToList(); var marks = Cells(zone, "CampfireGroundMarker").ToList();
+            Assert.IsNotEmpty(fires, "precondition: a hearth"); Assert.GreaterOrEqual(marks.Count, 4, "precondition: its scorched ring");
+            var states = Resources.Load<Texture2D>(OpeningStates); var scorch = Resources.Load<Texture2D>(Scorch);
+            foreach (var f in fires)
+            {
+                Assert.True(f.view.NativeForeground, "the hearth has a native body");
+                Assert.AreSame(states, f.view.ForegroundTile.sprite.texture); Assert.AreEqual(new Rect(80, 0, 16, 24), f.view.ForegroundTile.sprite.rect, "the burning frame");
+                Assert.True(f.view.LocalGround, "real ground beneath the hearth");
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, f.view.Owner, f.x, f.y, out var portrait, out _)); Assert.AreSame(states, portrait.texture);
+            }
+            int scorched = marks.Count(m => m.view.NativeForeground && ReferenceEquals(m.view.ForegroundTile.sprite.texture, scorch) && m.view.LocalGround);
+            Assert.GreaterOrEqual(scorched, marks.Count * 80 / 100, "scorched earth on real ground: " + scorched + " of " + marks.Count);
+        }
+
+        [Test] public void AFiniteCookingFireAndAForeignMarkerKeepTheirFallback()
+        {
+            var zone = Visit("Overworld.10.14.0");
+            var fire = Cells(zone, "Campfire").First();
+            fire.view.Owner.GetPart<CampfirePart>().FiniteCooking = true;
+            Assert.True(world.TryResolvePresentation(zone, fire.x, fire.y, out var finite));
+            Assert.False(finite.NativeForeground && ReferenceEquals(finite.ForegroundTile.sprite.texture, Resources.Load<Texture2D>(OpeningStates)),
+                "a finite-cooking fire has real lit/cold states this adapter does not read");
+            var mark = Cells(zone, "CampfireGroundMarker").First(m => m.view.NativeForeground);
+            mark.view.Owner.GetPart<RenderPart>().ColorString = "&B";
+            Assert.True(world.TryResolvePresentation(zone, mark.x, mark.y, out var odd));
+            Assert.False(odd.NativeForeground, "a recoloured marker is not plain scorched earth");
         }
 
         // ════════════════ counter-checks ════════════════

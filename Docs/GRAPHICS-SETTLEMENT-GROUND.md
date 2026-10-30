@@ -240,6 +240,27 @@ The greybox consults it only where Sill's own memory does not apply.
 - Verified visually: the four captures, at the Editor's native 1× 1280×800.
 - Not verified: F5 save and fresh Continue (no state-changing claim was made), packaged builds and Deck.
 
+## Slice 7: the settlement hearth (2026-10-30)
+
+**Problem.** Every settlement centre showed a red `*` campfire and four red `.` scorched-earth markers on black boxes.
+
+**Semantics.** An ordinary settlement campfire (`CampfirePart.FiniteCooking == false`) is a permanent lit hearth whose glyph flickers between red and yellow (`CampfirePart.HandleRender`). Its truthful approved image is therefore the opening's burning campfire, `opening-states` frame 5. Finite-cooking fires have real cold, hot and burning states, which this adapter does not read, so they keep their fallback.
+
+**Art.** The markers use a new original scorched-earth stain (`ArtSource/Live16x24/campfire-scorch`, two frames, transparent so the real ground shows). The first draft read as a small object and was flattened.
+
+**Runtime.**
+- The hearth requires the canonical `*` `&R` terrain with its own CampfirePart, heat and fuel.
+- The marker requires the canonical red `.` terrain with nothing else.
+- Both stand on the real settlement ground instead of competing with it.
+
+**Tests.**
+- Three hearth cases (Tally, Wellmeet, Marrowstye): burning frame, ground beneath, reader, and at least 80% of the ring scorched on ground.
+- One counter-check: a finite-cooking fire and a recoloured marker keep their fallback.
+- **RED:** 4 failures.
+- **GREEN:** all `FlatPixel*` classes 3,760 passed, 0 failed, 3 inconclusive.
+
+**Live.** The same fixture route was taken to the Marrowstye hearth at 78,2, with the player at 75,2, turn 4340, HP 40 (`settlement-live-05/06`). The hearth burns on its stone ring, with four stains on the town ground.
+
 ## Limits and next
 
 - **Live play.** Not yet captured. Reaching a settlement from a new game needs world-map travel and `>`. Computer-use key events reach Unity without a held Shift, so `>` was never received, and typing it started the run command. A Shift+Period injection made while Unity was frontmost was not received either. Next session: inject `>` with the Input System while Unity is frontmost and the run is idle, or earn a settlement checkpoint.
