@@ -108,6 +108,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSillRiverCatalog _sillRiverArt;
         private FlatPixelSoddenTravelCatalog _soddenTravelArt;
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
+        private FlatPixelSettlementGroundCatalog _settlementGroundArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsMaterialsArt;
         private FlatPixelOverwritMaterialsCatalog _overwritMaterialsArt;
         private FlatPixelStumpMaterialsCatalog _stumpMaterialsArt;
@@ -1167,6 +1168,16 @@ namespace CavesOfOoo.Rendering
                 groundTile = stumpWaterTile; groundColor = Color.white; ground = FlatPixelGreyboxGround.Water;
                 if (owner == stumpWaterSource) kind = FlatPixelGreyboxKind.Ground;
             }
+            // Ordinary authored settlements (2026-10-29): approved biome ground for
+            // their own Grass, StoneFloor, Sand and RoadStone.
+            var settlement = !fallback.Remembered ? SettlementGroundArtFor(zone) : null;
+            Tile settlementGroundTile = null; Entity settlementFloor = null;
+            bool settlementGround = settlement != null && settlement.TryResolveGround(zone, x, y, out settlementGroundTile, out settlementFloor);
+            if (settlementGround)
+            {
+                groundTile = settlementGroundTile; groundColor = Color.white; ground = FlatPixelSettlementGroundCatalog.GroundKind(settlementFloor);
+                if (owner == settlementFloor) kind = FlatPixelGreyboxKind.Ground;
+            }
             var caves = !fallback.Remembered ? ShallowCavesArtFor(zone) : null;
             Tile caveGroundTile = null; Entity caveFloor = null;
             bool caveGround = caves != null && caves.TryResolveGround(zone, x, y, out caveGroundTile, out caveFloor);
@@ -1453,6 +1464,7 @@ namespace CavesOfOoo.Rendering
                 || grovelandsGround && owner == grovelandsFloor || overwritGround && owner == overwritFloor
                 || grovelandsWater && grovelandsWaterGrass != null && owner == grovelandsWaterGrass
                 || stumpGround && owner == stumpFloor || stumpWater && owner == stumpWaterSource
+                || settlementGround && owner == settlementFloor
                 || caveGround && owner == caveFloor || limestoneGround && owner == limestoneFloor
                 || shaleGround && owner == shaleFloor || slateGround && owner == slateFloor
                 || quartziteGround && owner == quartziteFloor || obsidianGround && owner == obsidianFloor) foreground = null;
@@ -1494,7 +1506,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1642,6 +1654,8 @@ namespace CavesOfOoo.Rendering
             if (sodden != null && sodden.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var beating = BeatingMaterialsArtFor(zone);
             if (beating != null && beating.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+            var settlementGround = SettlementGroundArtFor(zone);
+            if (settlementGround != null && settlementGround.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var grovelands = GrovelandsMaterialsArtFor(zone);
             if (grovelands != null && grovelands.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var overwrit = OverwritMaterialsArtFor(zone);
@@ -1746,6 +1760,17 @@ namespace CavesOfOoo.Rendering
                 _soddenTravelArt = new FlatPixelSoddenTravelCatalog(_glyphFallback);
             }
             return _soddenTravelArt;
+        }
+
+        private FlatPixelSettlementGroundCatalog SettlementGroundArtFor(Zone zone)
+        {
+            if (!FlatPixelSettlementGroundCatalog.IsSupportedZone(zone)) return null;
+            if (_settlementGroundArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _settlementGroundArt = new FlatPixelSettlementGroundCatalog(_glyphFallback);
+            }
+            return _settlementGroundArt;
         }
 
         private FlatPixelBeatingMaterialsCatalog BeatingMaterialsArtFor(Zone zone)
@@ -2257,6 +2282,8 @@ namespace CavesOfOoo.Rendering
             _soddenTravelArt = null;
             _beatingMaterialsArt?.Dispose();
             _beatingMaterialsArt = null;
+            _settlementGroundArt?.Dispose();
+            _settlementGroundArt = null;
             _grovelandsMaterialsArt?.Dispose();
             _overwritMaterialsArt?.Dispose();
             _stumpMaterialsArt?.Dispose();

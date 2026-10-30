@@ -253,7 +253,15 @@ namespace CavesOfOoo.Tests
             zone = new Zone(Sill); zone.GetCell(X, Y).Explored = zone.GetCell(X, Y).IsVisible = true;
             Add("VineWall"); IdentityFallback();
             zone = Attach("Overworld.7.8.0"); Add("Grass"); var sharedWall = Add("VineWall");
-            NativeForeground(Envelope, 0); NotEnvelopeGround();
+            NativeForeground(Envelope, 0);
+            // Revised 2026-10-29 (settlement ground): Gantry's grass now uses the shared Spread lawn,
+            // frames 0–3 of the settlement atlas that ordinary Spread turf already uses. Sill's own
+            // envelope and stone art, its room floors and masonry (frames 4–8) are still not adopted.
+            var gantryGround = Resolve().GroundTile.sprite;
+            Assert.AreNotSame(Resources.Load<Texture2D>(Envelope), gantryGround.texture);
+            Assert.AreNotSame(Resources.Load<Texture2D>(Stone), gantryGround.texture);
+            Assert.AreSame(Resources.Load<Texture2D>(Environment), gantryGround.texture);
+            Assert.That((int)gantryGround.rect.x / 16, Is.InRange(0, 3), "only the shared lawn frames");
             Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
             Assert.True(zone.RemoveEntity(sharedWall)); Add("VillageDoor"); IdentityFallback();
         }
