@@ -149,6 +149,10 @@ namespace CavesOfOoo.Rendering
             return !owner.HasTag("Vegetation")&&r.RenderString=="="&&r.ColorString=="&y"
                 &&string.IsNullOrEmpty(r.BackgroundColor)&&string.IsNullOrEmpty(r.GlyphVariants)&&r.RenderLayer==0;
         }
+        /// <summary>A Bush or Tree the Spread would draw natively, by exactly its rule. Shared with
+        /// ordinary settlements.</summary>
+        internal static bool IsEligiblePlant(Entity owner)
+            => (owner?.BlueprintName == "Bush" || owner?.BlueprintName == "Tree") && EligibleBody(owner);
         static bool EligibleBody(Entity owner)
         {
             if(owner?.BlueprintName=="CharmFlowers")return EligibleFlowers(owner);

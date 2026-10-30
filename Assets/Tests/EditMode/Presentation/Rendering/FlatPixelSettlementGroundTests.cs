@@ -24,6 +24,9 @@ namespace CavesOfOoo.Tests
         const string Beating = "Sprites/Live16x24/beating-materials";
         const string OpeningGround = "Sprites/Live16x24/opening-ground";
         const string TownFloor = "Sprites/Live16x24/town-floor";
+        const string Vegetation = "Sprites/Live16x24/north-vegetation";
+        const string OpeningBase = "Sprites/Live16x24/opening-base";
+        const string SoddenTravel = "Sprites/Live16x24/sodden-travel";
         static EntityFactory factory;
         OverworldZoneManager manager;
         FlatPixelGreyboxCatalog world;
@@ -158,6 +161,52 @@ namespace CavesOfOoo.Tests
             thermal.Temperature = thermal.FreezeTemperature - 10f;
             Assert.True(world.TryResolvePresentation(zone, wall.x, wall.y, out var frozen));
             Assert.False(frozen.NativeForeground, "a frozen wall keeps its truthful fallback, as in the Beating");
+        }
+
+        // ════════════════ plants and boardwalks standing on settlement ground ════════════════
+        // After the town floor, these owners showed as black boxes on native ground (seed-64 census:
+        // Duckboard 183, Bush 83, DryBrush 68, Reeds 71, PeatBank 65, Tree 31 glyph cells). Each now uses
+        // the approved art and the exact eligibility rule of the biome that owns it; see-through ones
+        // keep the real settlement ground beneath them.
+
+        [TestCase("Overworld.6.6.0", "Bush", OpeningBase, true)]      // Cinderhold
+        [TestCase("Overworld.6.6.0", "Tree", Vegetation, true)]       // Cinderhold
+        [TestCase("Overworld.8.16.0", "DryBrush", Vegetation, true)]  // Wellmeet, on Sand
+        [TestCase("Overworld.18.18.0", "DryBrush", Vegetation, true)] // the Last Counter, on Floor
+        [TestCase("Overworld.13.7.0", "Duckboard", SoddenTravel, true)] // Tine
+        [TestCase("Overworld.17.5.0", "Reeds", OpeningBase, true)]    // the Drowned Ledger
+        [TestCase("Overworld.15.6.0", "PeatBank", SoddenTravel, false)] // Sumphold: an opaque bank
+        public void SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(string id, string blueprint, string resource, bool groundBeneath)
+        {
+            var zone = Visit(id);
+            var cells = Cells(zone, blueprint).ToList();
+            Assert.Greater(cells.Count, 8, "precondition: visible " + blueprint);
+            var texture = Resources.Load<Texture2D>(resource);
+            bool Native(FlatPixelGreyboxCell v) => v.NativeForeground && v.ForegroundTile?.sprite != null
+                && ReferenceEquals(v.ForegroundTile.sprite.texture, texture) && (!groundBeneath || v.LocalGround);
+            int native = cells.Count(c => Native(c.view));
+            Assert.GreaterOrEqual(native, cells.Count * 90 / 100, blueprint + " in " + id + ": " + native + " of " + cells.Count + " native");
+            foreach (var c in cells.Where(c => Native(c.view)).Take(20))
+            {
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, c.view.Owner, c.x, c.y, out var portrait, out _), "the reader shows the same " + blueprint);
+                Assert.AreSame(texture, portrait.texture);
+            }
+        }
+
+        [Test] public void ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback()
+        {
+            var zone = Visit("Overworld.6.6.0");
+            var bush = Cells(zone, "Bush").First(c => c.view.NativeForeground);
+            var structure = bush.view.Owner.GetPart<DestructiblePart>(); Assert.NotNull(structure, "precondition");
+            structure.HP = 0;
+            Assert.True(world.TryResolvePresentation(zone, bush.x, bush.y, out var dead));
+            Assert.False(dead.NativeForeground, "a destroyed bush is not drawn as a living one");
+            zone = Visit("Overworld.13.7.0");
+            var board = Cells(zone, "Duckboard").First(c => c.view.NativeForeground);
+            var thermal = board.view.Owner.GetPart<ThermalPart>(); Assert.NotNull(thermal, "precondition");
+            thermal.Temperature = thermal.FreezeTemperature - 10f;
+            Assert.True(world.TryResolvePresentation(zone, board.x, board.y, out var frozen));
+            Assert.False(frozen.NativeForeground, "a frozen boardwalk keeps its truthful fallback, as in the Sodden");
         }
 
         // ════════════════ counter-checks ════════════════

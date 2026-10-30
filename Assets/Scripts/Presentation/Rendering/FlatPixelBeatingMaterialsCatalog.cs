@@ -217,6 +217,9 @@ namespace CavesOfOoo.Rendering
         /// natively, by exactly the same rule; -1 otherwise. Shared with ordinary settlements.</summary>
         internal static int SandstoneWallFrame(Entity owner, int x, int y)
             => owner?.BlueprintName == "SandstoneWall" ? ForegroundFrame(owner, null, x, y) : -1;
+        /// <summary>A DryBrush the Beating would draw natively, by exactly its rule.</summary>
+        internal static bool IsEligibleDryBrush(Entity owner)
+            => owner?.BlueprintName == "DryBrush" && ForegroundFrame(owner, null, 0, 0) >= 0;
 
         static int ForegroundFrame(Entity owner, ZoneTileState.TileState state, int x, int y)
         {

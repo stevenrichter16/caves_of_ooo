@@ -1,6 +1,12 @@
 # Settlement ground
 
-**Status (2026-10-29):** three slices — ground, then water and sandstone walls, then original town-floor art (below); all implemented and regression-tested; verified through offline renders of real generated settlements drawn by the real presentation catalog. Not yet captured in live play (see Limits).
+**Status (2026-10-29):** four slices, all implemented:
+1. ground;
+2. water and sandstone walls;
+3. original town-floor art;
+4. plants and boardwalks.
+
+All four and regression-tested; verified through offline renders of real generated settlements drawn by the real presentation catalog. Not yet captured in live play (see Limits).
 
 ## Problem (seed-64 census, flat 16×24 presentation)
 
@@ -130,6 +136,47 @@ The 15 settlements now total about 28,879 of 30,000 native cells (96%), up from 
 **Evidence.** `settlement-town-floor-{tine,last-counter,quillhold,drowned-ledger,tally}-offline.png`: before (top), after (bottom). They are offline renders through the real catalog, not gameplay captures.
 
 **New visible defect.** Remaining glyph owners on the new floor now show as black boxes, which were invisible against the old black field: DryBrush in the Last Counter, Reeds and Duckboard in Tine, campfire markers, and a magenta `+`. This is the next slice. DryBrush and Duckboard have approved Beating and Sodden art to reuse.
+
+## Slice 4: plants and boardwalks on settlement ground (2026-10-29)
+
+**Problem.** After the town floor, some owners still drew as glyphs on black boxes over native ground. Seed-64 census:
+
+| Owner | Cells |
+|---|---|
+| Duckboard | 183 |
+| Bush | 83 |
+| Reeds | 71 |
+| DryBrush | 68 |
+| PeatBank | 65 |
+| Tree | 31 (glyph only) |
+
+**Change.** Each owner reuses approved art and the exact eligibility rule of the biome that already draws it. Each rule is exposed as a small internal static, so admission cannot drift.
+
+| Owner | Rule | Art |
+|---|---|---|
+| Bush, Tree | `FlatPixelSpreadEnvironmentCatalog.IsEligiblePlant` (Spread) | `opening-base` frame 5; `north-vegetation` frame 0 |
+| DryBrush | `FlatPixelBeatingMaterialsCatalog.IsEligibleDryBrush` (Beating) | `north-vegetation` frame 3 |
+| Duckboard, Reeds, PeatBank | A Sodden travel instance with settlement admission, via a new internal constructor | Sodden's own connectivity masks and frames |
+
+`FlatPixelSoddenTravelCatalog.IsSettlementFixture` lets the ground resolver recognise eligible boards and reeds.
+
+**Ground beneath.** Eligible Bush, DryBrush, Duckboard and Reeds no longer compete with the settlement ground, so their see-through art shows the real ground beneath instead of a black box. Ineligible ones still compete, as before. The public Sodden, Spread and Beating behaviour is unchanged; their suites are in the regression run.
+
+**Tests.**
+- Seven new cases: Cinderhold Bush and Tree; DryBrush in Wellmeet and the Last Counter; Tine Duckboard; Drowned Ledger Reeds; Sumphold PeatBank. Each requires at least 90% native with the expected atlas, real ground beneath for see-through owners, and a matching reader texture.
+- One counter-check: a destroyed Bush (HP 0) and a frozen Duckboard keep their fallback.
+- **RED:** 7 real failures plus 2 bridge-noise failures.
+- **GREEN and regression:** all `FlatPixel*` classes 3,744 passed, 0 failed, 3 inconclusive.
+
+**Result.** Per-settlement native cells, e.g. Tine 1,844 → 1,978, Sumphold 1,878 → 1,979, the Drowned Ledger 1,870 → 1,976, Cinderhold 1,929 → 1,984. Census file: `settlement-plants-boards-census.txt`.
+
+**Evidence.** `settlement-plants-boards-{tine,cinderhold,sumphold,last-counter,wellmeet}-offline.png`. These are offline renders, not gameplay captures.
+
+**Remaining in settlements.**
+- Campfire and campfire-marker cells (red cross on black).
+- Authored Quillhold archive and Gantry timber walls.
+- Settlement NPC actors (Innkeeper, Quartermaster, Scribe, Warden, Villager), which are still smiley glyphs in every settlement.
+- Shrine, oven, lantern, door and stair glyphs.
 
 ## Limits and next
 

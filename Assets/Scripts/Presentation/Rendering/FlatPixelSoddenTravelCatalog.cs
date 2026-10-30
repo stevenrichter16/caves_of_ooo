@@ -17,6 +17,7 @@ namespace CavesOfOoo.Rendering
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
         readonly Tile[] travel, reeds, grass, stoneFloor, masonry, fenGround;
+        readonly Func<Zone, bool> admits = IsSupportedZone;
         bool disposed;
         // Canonical authored addresses only: bounded metadata, never cached world
         // approval. Mutable receiving-world authority is checked on every lookup.
@@ -51,9 +52,15 @@ namespace CavesOfOoo.Rendering
         public FlatPixelSoddenTravelCatalog(Texture2D atlas28, Texture2D opening10,
             Texture2D sill24, Texture2D floors4, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector,
             Texture2D ground36)
+            : this(atlas28, opening10, sill24, floors4, cellar9, borrowedSelector, ground36, IsSupportedZone) { }
+
+        /// <summary>The same Sodden art and rules for another admitted area (ordinary settlements).</summary>
+        internal FlatPixelSoddenTravelCatalog(Texture2D atlas28, Texture2D opening10,
+            Texture2D sill24, Texture2D floors4, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D ground36, Func<Zone, bool> admission)
         {
-            selector = borrowedSelector;
-            if (selector == null) return;
+            selector = borrowedSelector; admits = admission;
+            if (selector == null || admits == null) return;
             travel = Frames(atlas28, 28, "travel");
             reeds = Frames(opening10, 10, "reeds");
             grass = Frames(sill24, 24, "grass");
@@ -185,7 +192,7 @@ namespace CavesOfOoo.Rendering
         bool ReadyCell(Zone zone, int x, int y, out Cell cell)
         {
             cell = null;
-            if (disposed || selector == null || !IsSupportedZone(zone)) return false;
+            if (disposed || selector == null || admits == null || !admits(zone)) return false;
             cell = zone.GetCell(x, y);
             return cell != null && cell.ParentZone == zone && cell.X == x && cell.Y == y
                 && cell.Explored && cell.IsVisible;
@@ -219,6 +226,12 @@ namespace CavesOfOoo.Rendering
             }
             return pool != null;
         }
+
+        /// <summary>A Duckboard, Reeds or PeatBank the Sodden would draw natively, by exactly its
+        /// rule (none of the three reads tile state). Shared with ordinary settlements.</summary>
+        internal static bool IsSettlementFixture(Entity owner, int x, int y)
+            => (owner?.BlueprintName == "Duckboard" || owner?.BlueprintName == "Reeds" || owner?.BlueprintName == "PeatBank")
+                && ForegroundFrame(owner, null, x, y) >= 0;
 
         static int ForegroundFrame(Entity owner, ZoneTileState.TileState state, int x, int y)
         {
