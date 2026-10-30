@@ -27,6 +27,7 @@ namespace CavesOfOoo.Tests
         const string Vegetation = "Sprites/Live16x24/north-vegetation";
         const string OpeningBase = "Sprites/Live16x24/opening-base";
         const string SoddenTravel = "Sprites/Live16x24/sodden-travel";
+        const string Keepers = "Sprites/Live16x24/settlement-keepers";
         static EntityFactory factory;
         OverworldZoneManager manager;
         FlatPixelGreyboxCatalog world;
@@ -207,6 +208,45 @@ namespace CavesOfOoo.Tests
             thermal.Temperature = thermal.FreezeTemperature - 10f;
             Assert.True(world.TryResolvePresentation(zone, board.x, board.y, out var frozen));
             Assert.False(frozen.NativeForeground, "a frozen boardwalk keeps its truthful fallback, as in the Sodden");
+        }
+
+        // ════════════════ the settlement keepers ════════════════
+        // Every settlement's Innkeeper, Quartermaster and Scribe was still a coloured '@' while the shared
+        // Villager, Merchant, Tinker, Elder and Child beside them had native bodies. Three original
+        // cast-style bodies (settlement-keepers.png) now draw them, by the shared residents' exact rule.
+
+        [TestCase("Overworld.5.9.0", "Innkeeper", 0)] [TestCase("Overworld.13.7.0", "Innkeeper", 0)]
+        [TestCase("Overworld.5.9.0", "Quartermaster", 1)] [TestCase("Overworld.8.16.0", "Quartermaster", 1)]
+        [TestCase("Overworld.5.9.0", "Scribe", 2)] [TestCase("Overworld.10.14.0", "Scribe", 2)]
+        public void SettlementKeepersHaveTheirOwnNativeBodies(string id, string role, int frame)
+        {
+            var zone = Visit(id);
+            var keeper = zone.GetAllEntities().FirstOrDefault(e => e.BlueprintName == role);
+            Assert.NotNull(keeper, "precondition: " + id + " has its " + role);
+            var (x, y) = zone.GetEntityPosition(keeper);
+            Assert.True(world.TryResolvePresentation(zone, x, y, out var view));
+            Assert.AreSame(keeper, view.Owner, "precondition: the keeper is the cell's subject");
+            var atlas = Resources.Load<Texture2D>(Keepers);
+            Assert.True(view.NativeForeground, role + " has a native body");
+            Assert.AreSame(atlas, view.ForegroundTile.sprite.texture);
+            Assert.AreEqual(new Rect(frame * 16, 0, 16, 24), view.ForegroundTile.sprite.rect, role + " uses its own frame");
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, keeper, x, y, out var portrait, out _), "the reader shows the same body");
+            Assert.AreEqual(view.ForegroundTile.sprite.rect, portrait.rect);
+        }
+
+        [Test] public void AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph()
+        {
+            var zone = Visit("Overworld.5.9.0");
+            var inn = zone.GetAllEntities().First(e => e.BlueprintName == "Innkeeper");
+            var (x, y) = zone.GetEntityPosition(inn);
+            inn.GetPart<RenderPart>().ColorString = "&R";
+            Assert.True(world.TryResolvePresentation(zone, x, y, out var recoloured));
+            Assert.False(recoloured.NativeForeground, "a recoloured innkeeper is not the canonical one");
+            var scribe = zone.GetAllEntities().First(e => e.BlueprintName == "Scribe");
+            var (sx, sy) = zone.GetEntityPosition(scribe);
+            scribe.RemovePart(scribe.GetPart<TraderPart>());
+            Assert.True(world.TryResolvePresentation(zone, sx, sy, out var noTrade));
+            Assert.False(noTrade.NativeForeground, "a scribe without their trade is not the canonical one");
         }
 
         // ════════════════ counter-checks ════════════════

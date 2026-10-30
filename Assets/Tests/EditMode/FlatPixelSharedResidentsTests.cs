@@ -203,7 +203,10 @@ namespace CavesOfOoo.Tests
             using(var a=Construct(Resource("Villager"),Resource("Merchant")))
             {
                 Assert.True(Resolve(a)(content.Factory.CreateEntity("Villager"),out _));Assert.False((bool)ArtType().GetMethod("HasKnownRole").Invoke(null,new object[]{null}));
-                foreach(var name in new[]{"Farmer","Innkeeper","CreatureCorpse","Player"}){var e=content.Factory.CreateEntity(name);Assert.NotNull(e);e.Properties["SourceBlueprint"]="Villager";Assert.False((bool)ArtType().GetMethod("HasKnownRole").Invoke(null,new object[]{e}));Assert.False(Resolve(a)(e,out _));}
+                foreach(var name in new[]{"Farmer","Warden","CreatureCorpse","Player"}){var e=content.Factory.CreateEntity(name);Assert.NotNull(e);e.Properties["SourceBlueprint"]="Villager";Assert.False((bool)ArtType().GetMethod("HasKnownRole").Invoke(null,new object[]{e}));Assert.False(Resolve(a)(e,out _));}
+                // Settlement keepers (2026-10-29) are their own role, but an alias never borrows the villager body:
+                // without the keepers atlas an Innkeeper aliased to Villager stays unresolved.
+                var inn=content.Factory.CreateEntity("Innkeeper");inn.Properties["SourceBlueprint"]="Villager";Assert.True((bool)ArtType().GetMethod("HasKnownRole").Invoke(null,new object[]{inn}));Assert.False(Resolve(a)(inn,out _));
             }
             zone=Attach("Overworld.12.11.0");var farmer=Add("Farmer");Assert.True(View().NativeForeground);Assert.AreSame(Resources.Load<Texture2D>("Sprites/Live16x24/farmer"),View().ForegroundTile.sprite.texture);
         }

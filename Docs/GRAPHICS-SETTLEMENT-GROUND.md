@@ -178,6 +178,31 @@ The 15 settlements now total about 28,879 of 30,000 native cells (96%), up from 
 - Settlement NPC actors (Innkeeper, Quartermaster, Scribe, Warden, Villager), which are still smiley glyphs in every settlement.
 - Shrine, oven, lantern, door and stair glyphs.
 
+## Slice 5: original settlement keepers (2026-10-29)
+
+**Problem.** In every settlement, the Innkeeper (`&B`), Quartermaster (`&Y`) and Scribe (`&M`) were still coloured `@` glyphs, standing beside Villagers, Merchants, Tinkers and Elders who already had native bodies.
+
+**Art.** Three original 16×24 bodies in the approved right-facing cast style, built from editable Blender quads by `Tools/Live16x24/build_settlement_keepers.py`, which is modelled on the shared-specialists builder:
+- the Innkeeper has a blue vest and a white apron;
+- the Quartermaster has an ochre coat, brass buttons and a crossbody satchel;
+- the Scribe has a plum robe, a quill and a scroll.
+
+Source and contact sheet are in `ArtSource/Live16x24/settlement-keepers/`. `--verify` checks every native pixel and rejects six corruptions. `--inspect-blend` reopens the saved blend: 412 faces, exact rerender. The atlas is published as `Sprites/Live16x24/settlement-keepers` (48×24), with its own GUID.
+
+**Runtime.** `FlatPixelSharedResidentsCatalog` adds the three roles under its existing exact rule: canonical `@` and colour, Trader and Conversation, body, brain, no foreign meaning. They are portable residents like the others.
+
+The Warden is deliberately excluded. Claiming it in the shared catalog would reroute the opening's own Warden art.
+
+**Tests.**
+- Six keeper cases across Posy, Tine, Wellmeet and Tally.
+- Counter-checks: a recoloured Innkeeper, and a Scribe without trade, keep the glyph.
+- **Revised pin:** `OtherResidentsAndSourceBlueprintAliasesDoNotAcquireTheseBodiesAndFarmerStaysUnchanged` used the Innkeeper as its example of a resident with no role. It now uses the Warden, and adds a check that an Innkeeper aliased to Villager never borrows the villager body.
+- **RED:** 5 real failures plus 2 bridge-noise failures.
+- **GREEN:** the residents, settlement and civic classes, 146 of 146.
+- **Broader run** (FlatPixel, CivicQuartet and Resident classes): 3,976 passed. Of the two failures, one was the pin revised above. The other, `SpreadEverydayResidentTests` purse 8 vs 10, fails identically on committed sources.
+
+**Evidence.** `settlement-keepers-{posy,tine}-offline.png`: before (top), after (bottom), enlarged crops. These are offline renders.
+
 ## Limits and next
 
 - **Live play.** Not yet captured. Reaching a settlement from a new game needs world-map travel and `>`. Computer-use key events reach Unity without a held Shift, so `>` was never received, and typing it started the run command. A Shift+Period injection made while Unity was frontmost was not received either. Next session: inject `>` with the Input System while Unity is frontmost and the run is idle, or earn a settlement checkpoint.

@@ -9,7 +9,8 @@ namespace CavesOfOoo.Rendering
     /// Names, relationships, services and belongings remain simulation-owned.</summary>
     public sealed class FlatPixelSharedResidentsCatalog : IDisposable
     {
-        readonly Tile villager, merchant, weaponsmith, tinker, wellKeeper, elder, child;
+        public const string KeepersResourcePath = "Sprites/Live16x24/settlement-keepers";
+        readonly Tile villager, merchant, weaponsmith, tinker, wellKeeper, elder, child, innkeeper, quartermaster, scribe;
         bool disposed;
         public FlatPixelSharedResidentsCatalog()
             : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CastResourcePath),
@@ -17,7 +18,8 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>("Sprites/Environment/weaponsmith"),
                 Resources.Load<Texture2D>("Sprites/Live16x24/shared-specialists"),
                 Resources.Load<Texture2D>("Sprites/Environment/elder"),
-                Resources.Load<Texture2D>("Sprites/Environment/village_child")) { }
+                Resources.Load<Texture2D>("Sprites/Environment/village_child"),
+                Resources.Load<Texture2D>(KeepersResourcePath)) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16)
             : this(cast64, merchant16, null) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16)
@@ -25,6 +27,9 @@ namespace CavesOfOoo.Rendering
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16, Texture2D specialists32)
             : this(cast64, merchant16, weaponsmith16, specialists32, null, null) { }
         public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16, Texture2D specialists32, Texture2D elder16, Texture2D child16)
+            : this(cast64, merchant16, weaponsmith16, specialists32, elder16, child16, null) { }
+        /// <summary>Also the original settlement keepers (Innkeeper, Quartermaster, Scribe; 48x24).</summary>
+        public FlatPixelSharedResidentsCatalog(Texture2D cast64, Texture2D merchant16, Texture2D weaponsmith16, Texture2D specialists32, Texture2D elder16, Texture2D child16, Texture2D keepers48)
         {
             villager = Build(cast64, 64, 24, 0, "villager");
             merchant = Build(merchant16, 16, 16, 0, "merchant");
@@ -33,6 +38,9 @@ namespace CavesOfOoo.Rendering
             wellKeeper = Build(specialists32, 32, 24, 16, "well-keeper");
             elder = Build(elder16, 16, 16, 0, "elder");
             child = Build(child16, 16, 16, 0, "village-child");
+            innkeeper = Build(keepers48, 48, 24, 0, "innkeeper");
+            quartermaster = Build(keepers48, 48, 24, 16, "quartermaster");
+            scribe = Build(keepers48, 48, 24, 32, "scribe");
         }
         public static bool HasKnownRole(Entity owner)
             => ExpectedColor(owner?.BlueprintName) != null;
@@ -47,6 +55,9 @@ namespace CavesOfOoo.Rendering
                 case "WellKeeper": return "&C";
                 case "Elder": return "&M";
                 case "VillageChild": return "&Y";
+                case "Innkeeper": return "&B";
+                case "Quartermaster": return "&Y";
+                case "Scribe": return "&M";
                 default: return null;
             }
         }
@@ -80,6 +91,9 @@ namespace CavesOfOoo.Rendering
                 case "WellKeeper": tile = wellKeeper; break;
                 case "Elder": tile = elder; break;
                 case "VillageChild": tile = child; break;
+                case "Innkeeper": tile = innkeeper; break;
+                case "Quartermaster": tile = quartermaster; break;
+                case "Scribe": tile = scribe; break;
             }
             return tile != null;
         }
@@ -124,6 +138,7 @@ namespace CavesOfOoo.Rendering
             if (disposed) return; disposed = true;
             DestroyFrame(villager); DestroyFrame(merchant); DestroyFrame(weaponsmith);
             DestroyFrame(tinker); DestroyFrame(wellKeeper); DestroyFrame(elder); DestroyFrame(child);
+            DestroyFrame(innkeeper); DestroyFrame(quartermaster); DestroyFrame(scribe);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }
