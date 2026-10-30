@@ -68,6 +68,34 @@ The lip stays solid. The greybox wires it as a foreground and reader.
 
 **Evidence.** `special-site-lip-{lampwell,cathedral,stillleaf}-offline.png`: the previous slice (top), with the lip (bottom).
 
+## Related wilderness slice: conjured flowers (2026-10-30)
+
+**Problem.** `FlowerField` drew a magenta `*` on a black box across the Spread, including the 114-flower meadow at 6.13 and Lampwell. The census counted 629 sampled cells. Its own re-asserted `petals` residue made the Spread adapter refuse the grass beneath it.
+
+**Art.** An original sprite: `ArtSource/Live16x24/conjured-flowers` (see its README).
+
+**Runtime.** `FlatPixelSpreadEnvironmentCatalog.IsConjuredFlowers` accepts only canonical `FlowerField`:
+- magenta `*` vegetation terrain;
+- its own `FlowerCharmPart` and `LifespanPart`;
+- a residue source of petals only, with no coating or energies;
+- a cell holding nothing but that petals residue, if anything.
+
+Such a patch draws its sprite over the real grass. Any other live state, such as water, keeps the fallback. If the sprite is unavailable, the patch competes for ground exactly as before. That keeps the existing pin `CharmFlowersNeverSubstitutesForAuthoredConjuredFlowerField` unchanged and passing.
+
+**Tests.** `FlatPixelConjuredFlowersTests`:
+- two zones, at least 95% native with a matching reader;
+- own petals versus water;
+- recoloured or charmless flowers and CharmFlowers are refused.
+
+**Results.**
+- Stub RED: 3 failures.
+- The first GREEN run broke the CharmFlowers pin: `FlowerField` had been exempted from competing even without its art. That exemption was narrowed.
+- Final: all `FlatPixel*` classes 3,785 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `conjured-flowers-{meadow,lampwell}-offline.png` and `conjured-flowers-meadow-zoom4x-offline.png` (offline renders).
+
+**Polish debt.** The dense meadow repeats the same clump and token in every cell.
+
 ## Remaining
 
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).

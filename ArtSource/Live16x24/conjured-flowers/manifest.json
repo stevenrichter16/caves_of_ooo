@@ -1,0 +1,49 @@
+{
+  "owner": "FlowerField",
+  "atlas": "conjured-flowers.png",
+  "dimensions": [
+    32,
+    24
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "rect": [
+        0,
+        0,
+        16,
+        24
+      ],
+      "state": "conjured flowers, light layout A"
+    },
+    {
+      "index": 1,
+      "rect": [
+        16,
+        0,
+        16,
+        24
+      ],
+      "state": "conjured flowers, light layout B"
+    }
+  ],
+  "palette": {
+    "petal": "B4549A",
+    "petal-light": "D683BC",
+    "pollen": "E2CB78",
+    "stem": "4C7238",
+    "token": "BDAE8E",
+    "token-shade": "857A64"
+  },
+  "pixelsPerUnit": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "import": "Point, Clamp, no mipmaps, uncompressed, FullRect, no fallback physics",
+  "alpha": "Binary; no baked ground, halo or shadow",
+  "editable": "editable.blend",
+  "source": "source-cells.json",
+  "generator": "Tools/Live16x24/build_conjured_flowers.py",
+  "scope": "Original source art only; Unity import/runtime/native tests/ordinary gameplay acceptance remain root gates."
+}

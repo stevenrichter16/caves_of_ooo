@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_conjured_flowers.py", line 154, in <module>
+    elif a.verify:verify()
+                  ^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_conjured_flowers.py", line 53, in verify
+    guard();data=json.loads((OUT/'source-cells.json').read_text());frames=[cells(),cells(True)]
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/Live16x24/conjured-flowers/source-cells.json'

@@ -21,7 +21,8 @@ namespace CavesOfOoo.Rendering
 
         const int Width=16, Height=24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] turf, road, hedges, tree, bush, flowers;
+        public const string ConjuredFlowersResourcePath="Sprites/Live16x24/conjured-flowers";
+        readonly Tile[] turf, road, hedges, tree, bush, flowers, conjured;
         bool disposed;
         static readonly Dictionary<string,Vector2Int> addresses=BuildAddresses();
         static Dictionary<string,Vector2Int> BuildAddresses()
@@ -43,7 +44,8 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelHedgeCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
-                Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.ResourcePath),borrowedSelector){ }
+                Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.ResourcePath),
+                Resources.Load<Texture2D>(ConjuredFlowersResourcePath),borrowedSelector){ }
 
         /// <summary>Independent optional groups: Sill turf0–3 of9, opening road16/17 of21,
         /// sixteen hedge masks, north Tree0 of4, base Bush5 of10. Null/wrong-sized
@@ -56,10 +58,16 @@ namespace CavesOfOoo.Rendering
         /// Older explicit injection stays unavailable; no hidden Resources reload.</summary>
         public FlatPixelSpreadEnvironmentCatalog(Texture2D turf9,Texture2D ground21,Texture2D hedge16,
             Texture2D vegetation4,Texture2D base10,Texture2D eastKitchen18,FlatPixelFallbackCatalog borrowedSelector)
+            :this(turf9,ground21,hedge16,vegetation4,base10,eastKitchen18,null,borrowedSelector){ }
+
+        /// <summary>Also the original conjured-flowers sprite (2 frames) for FlowerField.</summary>
+        public FlatPixelSpreadEnvironmentCatalog(Texture2D turf9,Texture2D ground21,Texture2D hedge16,
+            Texture2D vegetation4,Texture2D base10,Texture2D eastKitchen18,Texture2D conjured2,FlatPixelFallbackCatalog borrowedSelector)
         {
             selector=borrowedSelector;if(selector==null)return;
             turf=Frames(turf9,9,0,4);road=Frames(ground21,21,16,2);hedges=Frames(hedge16,16,0,16);
             tree=Frames(vegetation4,4,0,1);bush=Frames(base10,10,5,1);flowers=Frames(eastKitchen18,18,14,1);
+            conjured=Frames(conjured2,2,0,2);
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -73,7 +81,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveGround(Zone zone,int x,int y,out Tile tile,out Entity floor)
         {
             tile=null;floor=null;if(!ReadyCell(zone,x,y,out var cell))return false;
-            var state=zone.TileState.Get(x,y);bool fixture=false;
+            var state=zone.TileState.Get(x,y);bool fixture=false,petals=false;
             Entity grass=null,packed=null;
             foreach(var owner in cell.Occupants)
             {
@@ -84,18 +92,27 @@ namespace CavesOfOoo.Rendering
                 else if(owner.BlueprintName=="RoadStone")
                 {if(packed!=null||!Floor(owner,false))return false;packed=owner;}
                 else if(IsEligibleFixture(owner))fixture=true;
+                // Only when its own sprite is available; otherwise it keeps competing as before.
+                else if(conjured!=null&&IsConjuredFlowers(owner,state))petals=true;
                 else if(CompetingGround(owner))return false;
             }
             // Hazard marks remain on the independent higher tile-state layer. This
             // exception represents real ground under exact fixtures, never Water.
-            if(state!=null&&!state.IsEmpty&&!fixture)return false;
+            // A conjured patch re-asserts only its own petals residue; that is not foreign live state.
+            if(state!=null&&!state.IsEmpty&&!fixture&&!(petals&&SolePetals(state)))return false;
             floor=packed??grass;if(floor==null)return false;
             tile=packed!=null?road==null?null:road[(x+y)&1]:turf==null?null:turf[VariantAt(x,y)];
             if(tile!=null)return true;floor=null;return false;
         }
         public bool TryResolveForeground(Zone zone,int x,int y,Entity owner,out Tile tile)
         {
-            tile=null;if(!ReadyCell(zone,x,y,out _)||!Selected(zone,x,y,owner)||!EligibleBody(owner))return false;
+            tile=null;if(!ReadyCell(zone,x,y,out _)||!Selected(zone,x,y,owner))return false;
+            if(owner.BlueprintName=="FlowerField")
+            {
+                if(conjured==null||!IsConjuredFlowers(owner,zone.TileState.Get(x,y)))return false;
+                tile=conjured[(x+y)&1];return true;
+            }
+            if(!EligibleBody(owner))return false;
             switch(owner.BlueprintName)
             {
                 case "Tree":tile=tree==null?null:tree[0];break;
@@ -122,6 +139,11 @@ namespace CavesOfOoo.Rendering
             }
             // The reader separately authorizes its exact subject. A Player may
             // cover these non-solid flowers without replacing their portrait.
+            if(owner.BlueprintName=="FlowerField")
+            {
+                if(conjured==null||!Placed(zone,zone.GetCell(x,y),owner)||!IsConjuredFlowers(owner,zone.TileState.Get(x,y)))return false;
+                sprite=conjured[(x+y)&1].sprite;return true;
+            }
             if(owner.BlueprintName=="CharmFlowers")
             {
                 if(flowers==null||!EligibleFlowers(owner)||!Placed(zone,zone.GetCell(x,y),owner))return false;
@@ -160,6 +182,27 @@ namespace CavesOfOoo.Rendering
         /// ordinary settlements.</summary>
         internal static bool IsEligiblePlant(Entity owner)
             => (owner?.BlueprintName == "Bush" || owner?.BlueprintName == "Tree") && EligibleBody(owner);
+        /// <summary>Canonical FlowerField ("conjured flowers"): magenta '*' vegetation terrain with its own charm,
+        /// lifespan and a petals-only residue source (no coating, heat, cold or charge); the cell holds nothing
+        /// but that petals residue, if anything. Never CharmFlowers, which keep their own approved bells.</summary>
+        public static bool IsConjuredFlowers(Entity owner, ZoneTileState.TileState state)
+        {
+            if(owner?.BlueprintName!="FlowerField"||!Plain(owner)||!owner.HasTag("Terrain")||!owner.HasTag("Vegetation")
+                ||owner.HasTag("Wall")||owner.HasTag("Solid")||Owned<PhysicsPart>(owner).Solid)return false;
+            if(owner.HasPart<CropPart>()||owner.HasPart<FieldHarvestPart>()||owner.HasPart<CultivatedSoilPart>()||owner.HasPart<HarvestablePart>()
+                ||owner.HasPart<LiquidPoolPart>()||owner.HasPart<GasPoolPart>()||owner.HasPart<TriggerOnStepPart>()||owner.HasPart<ContainerPart>()
+                ||owner.HasPart<BrainPart>()||owner.HasPart<DestructiblePart>())return false;
+            var render=Owned<RenderPart>(owner);var source=Owned<TileStateSourcePart>(owner);
+            if(render.RenderString!="*"||render.ColorString!="&M"||render.RenderLayer!=0
+                ||!string.IsNullOrEmpty(render.BackgroundColor)||!string.IsNullOrEmpty(render.GlyphVariants)
+                ||Owned<FlowerCharmPart>(owner)==null||Owned<LifespanPart>(owner)==null
+                ||source==null||source.Residue!="petals"||!string.IsNullOrEmpty(source.Coating)
+                ||source.Heat!=0||source.Cold!=0||source.Charge!=0)return false;
+            return state==null||state.IsEmpty||SolePetals(state);
+        }
+        static bool SolePetals(ZoneTileState.TileState state)
+            =>state!=null&&state.Coatings.Count==0&&state.Residues.Count==1&&state.Residues[0].Id=="petals"&&state.Residues[0].Turns>0
+                &&state.Heat==0&&state.Cold==0&&state.Charge==0&&string.IsNullOrEmpty(state.Cloud);
         static bool EligibleBody(Entity owner)
         {
             if(owner?.BlueprintName=="CharmFlowers")return EligibleFlowers(owner);
@@ -266,7 +309,7 @@ namespace CavesOfOoo.Rendering
             }
             return result;
         }
-        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(bush);Release(flowers);}
+        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(bush);Release(flowers);Release(conjured);}
         static void Release(Tile[] tiles){if(tiles==null)return;foreach(var tile in tiles)if(tile!=null){Destroy(tile.sprite);Destroy(tile);}}
         static void Destroy(Object value){if(value==null)return;if(Application.isPlaying)Object.Destroy(value);else Object.DestroyImmediate(value);}
     }

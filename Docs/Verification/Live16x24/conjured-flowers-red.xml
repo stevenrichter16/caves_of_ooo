@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-30 23:25:00Z" end-time="2026-10-30 23:25:01Z" duration="0.8266529">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34424" result="Failed" site="Child" start-time="2026-10-30 23:25:00Z" end-time="2026-10-30 23:25:01Z" duration="0.826653" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="42337" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34424" result="Failed" site="Child" start-time="2026-10-30 23:25:00Z" end-time="2026-10-30 23:25:01Z" duration="0.775254" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="48368" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="42338" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34424" result="Failed" site="Child" start-time="2026-10-30 23:25:00Z" end-time="2026-10-30 23:25:01Z" duration="0.720752" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="42339" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34424" result="Failed" site="Child" start-time="2026-10-30 23:25:00Z" end-time="2026-10-30 23:25:01Z" duration="0.598577" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30493" name="FlatPixelConjuredFlowersTests" fullname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests" classname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-30 23:25:01Z" end-time="2026-10-30 23:25:01Z" duration="0.348898" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="30498" name="CharmFlowersAndAChangedFlowerKeepTheirOwnPresentation" fullname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.CharmFlowersAndAChangedFlowerKeepTheirOwnPresentation" methodname="CharmFlowersAndAChangedFlowerKeepTheirOwnPresentation" classname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests" runstate="Runnable" seed="1972635405" result="Passed" start-time="2026-10-30 23:25:01Z" end-time="2026-10-30 23:25:01Z" duration="0.126659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30496" name="ConjuredFlowersDrawTheirOwnSpriteOverRealGrass" fullname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.ConjuredFlowersDrawTheirOwnSpriteOverRealGrass" classname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-30 23:25:01Z" end-time="2026-10-30 23:25:01Z" duration="0.101600" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30494" name="ConjuredFlowersDrawTheirOwnSpriteOverRealGrass(&quot;Overworld.6.13.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.ConjuredFlowersDrawTheirOwnSpriteOverRealGrass(&quot;Overworld.6.13.0&quot;)" methodname="ConjuredFlowersDrawTheirOwnSpriteOverRealGrass" classname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests" runstate="Runnable" seed="2081450581" result="Failed" start-time="2026-10-30 23:25:01Z" end-time="2026-10-30 23:25:01Z" duration="0.049250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.6.13.0: 0 of 114
+  Expected: greater than or equal to 108
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.ConjuredFlowersDrawTheirOwnSpriteOverRealGrass (System.String id) [0x000ee] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelConjuredFlowersTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="30495" name="ConjuredFlowersDrawTheirOwnSpriteOverRealGrass(&quot;Overworld.5.8.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.ConjuredFlowersDrawTheirOwnSpriteOverRealGrass(&quot;Overworld.5.8.0&quot;)" methodname="ConjuredFlowersDrawTheirOwnSpriteOverRealGrass" classname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests" runstate="Runnable" seed="1544998716" result="Failed" start-time="2026-10-30 23:25:01Z" end-time="2026-10-30 23:25:01Z" duration="0.050398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.5.8.0: 0 of 6
+  Expected: greater than or equal to 5
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.ConjuredFlowersDrawTheirOwnSpriteOverRealGrass (System.String id) [0x000ee] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelConjuredFlowersTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="30497" name="TheirOwnPetalsResidueKeepsTheGroundButOtherStateDoesNot" fullname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.TheirOwnPetalsResidueKeepsTheGroundButOtherStateDoesNot" methodname="TheirOwnPetalsResidueKeepsTheGroundButOtherStateDoesNot" classname="CavesOfOoo.Tests.FlatPixelConjuredFlowersTests" runstate="Runnable" seed="221166978" result="Failed" start-time="2026-10-30 23:25:01Z" end-time="2026-10-30 23:25:01Z" duration="0.042000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  its own re-asserted petals are not foreign state
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelConjuredFlowersTests.TheirOwnPetalsResidueKeepsTheGroundButOtherStateDoesNot () [0x0005e] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelConjuredFlowersTests.cs:67
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
