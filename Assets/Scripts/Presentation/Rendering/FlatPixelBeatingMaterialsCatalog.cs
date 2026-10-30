@@ -12,6 +12,13 @@ namespace CavesOfOoo.Rendering
     /// tiles/sprites. Never generates, advances state or widens opening admission.</summary>
     public sealed class FlatPixelBeatingMaterialsCatalog : IDisposable
     {
+        // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
+        System.Func<Zone, bool> admits = IsSupportedZone;
+        /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
+        /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
+        internal FlatPixelBeatingMaterialsCatalog AdmittingSites(BiomeType biome)
+        { admits = zone => FlatPixelSiteAdmission.IsOrdinarySite(zone, biome); return this; }
+
         public const string ResourcePath = "Sprites/Live16x24/beating-materials";
         public const int FrameCount = 34;
         /// <summary>Independent optional two-state TarSeep atlas: frame 0 stocked,
@@ -203,7 +210,7 @@ namespace CavesOfOoo.Rendering
         bool ReadyCell(Zone zone, int x, int y, out Cell cell)
         {
             cell = null;
-            if (disposed || selector == null || !IsSupportedZone(zone)) return false;
+            if (disposed || selector == null || !admits(zone)) return false;
             cell = zone.GetCell(x, y);
             return cell != null && cell.ParentZone == zone && cell.X == x && cell.Y == y
                 && cell.Explored && cell.IsVisible;

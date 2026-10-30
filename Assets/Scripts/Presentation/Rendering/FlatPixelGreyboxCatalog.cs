@@ -109,6 +109,11 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSoddenTravelCatalog _soddenTravelArt;
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
         private FlatPixelSettlementGroundCatalog _settlementGroundArt;
+        private FlatPixelSpreadEnvironmentCatalog _spreadSiteArt;
+        private FlatPixelSoddenTravelCatalog _soddenSiteArt;
+        private FlatPixelBeatingMaterialsCatalog _beatingSiteArt;
+        private FlatPixelGrovelandsMaterialsCatalog _grovelandsSiteArt;
+        private FlatPixelStumpMaterialsCatalog _stumpSiteArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsMaterialsArt;
         private FlatPixelOverwritMaterialsCatalog _overwritMaterialsArt;
         private FlatPixelStumpMaterialsCatalog _stumpMaterialsArt;
@@ -1749,7 +1754,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelSpreadEnvironmentCatalog SpreadEnvironmentArtFor(Zone zone)
         {
-            if (!FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone)) return null;
+            if (!FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone))
+            {
+                // Ordinary special sites of this biome use a separate, identically ruled instance.
+                if (!FlatPixelSiteAdmission.IsOrdinarySite(zone, BiomeType.Spread)) return null;
+                if (_spreadSiteArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _spreadSiteArt = new FlatPixelSpreadEnvironmentCatalog(_glyphFallback).AdmittingSites(BiomeType.Spread);
+                }
+                return _spreadSiteArt;
+            }
             if (_spreadEnvironmentArt == null && _loadOptionalResources)
             {
                 if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
@@ -1782,7 +1797,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelSoddenTravelCatalog SoddenTravelArtFor(Zone zone)
         {
-            if (!FlatPixelSoddenTravelCatalog.IsSupportedZone(zone)) return null;
+            if (!FlatPixelSoddenTravelCatalog.IsSupportedZone(zone))
+            {
+                // Ordinary special sites of this biome use a separate, identically ruled instance.
+                if (!FlatPixelSiteAdmission.IsOrdinarySite(zone, BiomeType.Sodden)) return null;
+                if (_soddenSiteArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _soddenSiteArt = new FlatPixelSoddenTravelCatalog(_glyphFallback).AdmittingSites();
+                }
+                return _soddenSiteArt;
+            }
             if (_soddenTravelArt == null && _loadOptionalResources)
             {
                 if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
@@ -1804,7 +1829,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelBeatingMaterialsCatalog BeatingMaterialsArtFor(Zone zone)
         {
-            if (!FlatPixelBeatingMaterialsCatalog.IsSupportedZone(zone)) return null;
+            if (!FlatPixelBeatingMaterialsCatalog.IsSupportedZone(zone))
+            {
+                // Ordinary special sites of this biome use a separate, identically ruled instance.
+                if (!FlatPixelSiteAdmission.IsOrdinarySite(zone, BiomeType.Beating)) return null;
+                if (_beatingSiteArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _beatingSiteArt = new FlatPixelBeatingMaterialsCatalog(_glyphFallback).AdmittingSites(BiomeType.Beating);
+                }
+                return _beatingSiteArt;
+            }
             if (_beatingMaterialsArt == null && _loadOptionalResources)
             {
                 if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
@@ -1815,7 +1850,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelGrovelandsMaterialsCatalog GrovelandsMaterialsArtFor(Zone zone)
         {
-            if (!FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone)) return null;
+            if (!FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone))
+            {
+                // Ordinary special sites of this biome use a separate, identically ruled instance.
+                if (!FlatPixelSiteAdmission.IsOrdinarySite(zone, BiomeType.Grovelands)) return null;
+                if (_grovelandsSiteArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _grovelandsSiteArt = new FlatPixelGrovelandsMaterialsCatalog(_glyphFallback).AdmittingSites(BiomeType.Grovelands);
+                }
+                return _grovelandsSiteArt;
+            }
             if (_grovelandsMaterialsArt == null && _loadOptionalResources)
             {
                 if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
@@ -1903,7 +1948,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelStumpMaterialsCatalog StumpMaterialsArtFor(Zone zone)
         {
-            if (!FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone)) return null;
+            if (!FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone))
+            {
+                // Ordinary special sites of this biome use a separate, identically ruled instance.
+                if (!FlatPixelSiteAdmission.IsOrdinarySite(zone, BiomeType.Stump)) return null;
+                if (_stumpSiteArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _stumpSiteArt = new FlatPixelStumpMaterialsCatalog(_glyphFallback).AdmittingSites(BiomeType.Stump);
+                }
+                return _stumpSiteArt;
+            }
             if (_stumpMaterialsArt == null && _loadOptionalResources)
             {
                 if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
@@ -2305,18 +2360,28 @@ namespace CavesOfOoo.Rendering
             _hedgeArt = null;
             _sillEnvelopeArt?.Dispose();
             _spreadEnvironmentArt?.Dispose();
+            _spreadSiteArt?.Dispose();
+            _spreadSiteArt = null;
             _sillEnvelopeArt = null;
             _sillRiverArt?.Dispose();
             _sillRiverArt = null;
             _soddenTravelArt?.Dispose();
+            _soddenSiteArt?.Dispose();
+            _soddenSiteArt = null;
             _soddenTravelArt = null;
             _beatingMaterialsArt?.Dispose();
+            _beatingSiteArt?.Dispose();
+            _beatingSiteArt = null;
             _beatingMaterialsArt = null;
             _settlementGroundArt?.Dispose();
             _settlementGroundArt = null;
             _grovelandsMaterialsArt?.Dispose();
+            _grovelandsSiteArt?.Dispose();
+            _grovelandsSiteArt = null;
             _overwritMaterialsArt?.Dispose();
             _stumpMaterialsArt?.Dispose();
+            _stumpSiteArt?.Dispose();
+            _stumpSiteArt = null;
             _shallowCavesArt?.Dispose();
             _limestoneCavesArt?.Dispose();
             _shaleCavesArt?.Dispose();

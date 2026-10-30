@@ -11,6 +11,13 @@ namespace CavesOfOoo.Rendering
     /// borrows textures and selector, and never generates or changes the world.</summary>
     public sealed class FlatPixelStumpMaterialsCatalog : IDisposable
     {
+        // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
+        System.Func<Zone, bool> admits = IsSupportedZone;
+        /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
+        /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
+        internal FlatPixelStumpMaterialsCatalog AdmittingSites(BiomeType biome)
+        { admits = zone => FlatPixelSiteAdmission.IsOrdinarySite(zone, biome); return this; }
+
         public const string ResourcePath = "Sprites/Live16x24/stump-materials";
         public const int FrameCount = 71;
         const int Width = 16, Height = 24;
@@ -159,7 +166,7 @@ namespace CavesOfOoo.Rendering
         bool ReadyCell(Zone zone, int x, int y, out Cell cell)
         {
             cell = null;
-            if (disposed || selector == null || !IsSupportedZone(zone)) return false;
+            if (disposed || selector == null || !admits(zone)) return false;
             cell = zone.GetCell(x, y);
             return cell != null && cell.ParentZone == zone && cell.X == x && cell.Y == y && cell.Explored && cell.IsVisible;
         }

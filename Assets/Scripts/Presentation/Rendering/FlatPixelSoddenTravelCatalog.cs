@@ -17,7 +17,11 @@ namespace CavesOfOoo.Rendering
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
         readonly Tile[] travel, reeds, grass, stoneFloor, masonry, fenGround;
-        readonly Func<Zone, bool> admits = IsSupportedZone;
+        Func<Zone, bool> admits = IsSupportedZone;
+        /// <summary>Make this instance draw Sodden's ordinary sinkhole surfaces
+        /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
+        internal FlatPixelSoddenTravelCatalog AdmittingSites()
+        { admits = zone => FlatPixelSiteAdmission.IsOrdinarySite(zone, BiomeType.Sodden); return this; }
         bool disposed;
         // Canonical authored addresses only: bounded metadata, never cached world
         // approval. Mutable receiving-world authority is checked on every lookup.
@@ -377,7 +381,8 @@ namespace CavesOfOoo.Rendering
         {
             // Shared edge colors keep the coarse density patches from becoming
             // checkerboard paving. Preserve the old per-cell stone variant hash.
-            var point = coordinates[zone.ZoneID];
+            // The zone's own map coordinates (identical to the wilderness table; sites are not in it).
+            var (px, py, _) = WorldMap.FromZoneID(zone.ZoneID); var point = new Vector2Int(px, py);
             uint seed = unchecked((uint)WorldLocationContext.For(zone).WorldSeed);
             uint value = unchecked((uint)((point.x * Zone.Width + x) / 7) * 0x9e3779b1u
                 ^ (uint)((point.y * Zone.Height + y) / 5) * 0x85ebca77u
