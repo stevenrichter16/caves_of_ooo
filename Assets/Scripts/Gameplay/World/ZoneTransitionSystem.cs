@@ -405,15 +405,23 @@ namespace CavesOfOoo.Core
             // silently become a one-way teleport through the fallback below.
             // Marker-free relocation callers retain their existing fallback.
             var departure = currentZone.GetCell(currentX, currentY);
-            bool physicalStair = false, returnStair = false;
+            bool physicalStair = false, returnStair = false, climbOut = false;
             if (departure != null)
                 foreach (var e in departure.Objects)
+                {
                     if (goingDown ? e.HasPart<StairsDownPart>() : e.HasPart<StairsUpPart>()) physicalStair = true;
+                    if (!goingDown && CaveClimbOutStairsBuilder.IsClimbOut(e)) climbOut = true;
+                }
+            // A cave climb-out may open the missing way down where the climber
+            // arrives; every other stair keeps the W6.7 refusal below.
+            bool openReturn = false;
             if (physicalStair)
             {
                 foreach (var e in newZone.GetAllEntities())
                     if (goingDown ? e.HasPart<StairsUpPart>() : e.HasPart<StairsDownPart>()) { returnStair = true; break; }
-                if (!returnStair)
+                if (!returnStair && climbOut && zoneManager.Factory != null && zoneManager.Factory.Blueprints.ContainsKey("StairsDown"))
+                    openReturn = true;
+                else if (!returnStair)
                 {
                     RecordFootprintArrival(player, currentZone, newZone, -1, -1, false, "return-stairs-missing");
                     return new ZoneTransitionResult { Success = false, ErrorReason = "The return stairs are missing" };
@@ -424,7 +432,7 @@ namespace CavesOfOoo.Core
             // Going down: look for StairsUp (the matching pair)
             // Going up: look for StairsDown (the matching pair)
             string searchTag = goingDown ? "StairsUp" : "StairsDown";
-            var (arriveX, arriveY) = FindStairsInZone(newZone, player, searchTag, currentX, currentY);
+            var (arriveX, arriveY) = openReturn ? (-1, -1) : FindStairsInZone(newZone, player, searchTag, currentX, currentY);
 
             if (arriveX < 0)
             {
@@ -474,6 +482,7 @@ namespace CavesOfOoo.Core
                 return new ZoneTransitionResult { Success = false, ErrorReason = "Arrival placement changed" };
             }
             RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, true, "");
+            if (openReturn) OpenClimbOutReturn(player, currentZone, newZone, currentX, currentY, arriveX, arriveY, zoneManager);
 
             // F.2.7 — bring followers along through stair transitions
             // too. Symmetric with the horizontal path above.
@@ -486,6 +495,26 @@ namespace CavesOfOoo.Core
                 NewPlayerX = arriveX,
                 NewPlayerY = arriveY
             };
+        }
+
+        /// <summary>Opens the way back down beneath a climber who came up a cave climb-out into
+        /// a zone with no way down: a registered StairsDown on the arrival cell, paired with the
+        /// climb-out below. Runs only after the transfer succeeded.</summary>
+        private static void OpenClimbOutReturn(Entity player, Zone cave, Zone above, int caveX, int caveY,
+            int x, int y, ZoneManager zoneManager)
+        {
+            var stairs = zoneManager.Factory.CreateEntity("StairsDown");
+            if (stairs == null || !above.AddEntity(stairs, x, y))
+            {
+                if (Diag.IsChannelEnabled("event"))
+                    Diag.Record("event", "CaveClimbOutRejected", actor: player, payload: new { from = cave.ZoneID, to = above.ZoneID, x, y, reason = "stair-not-placed" });
+                return;
+            }
+            zoneManager.RegisterConnection(new ZoneConnection { SourceZoneID = above.ZoneID, SourceX = x, SourceY = y,
+                TargetZoneID = cave.ZoneID, TargetX = caveX, TargetY = caveY, Type = "StairsDown" });
+            MessageLog.Add("You climb out into the open air. The way back down stays open.");
+            if (Diag.IsChannelEnabled("event"))
+                Diag.Record("event", "CaveClimbOutOpened", actor: player, payload: new { from = cave.ZoneID, to = above.ZoneID, caveX, caveY, x, y });
         }
 
         /// <summary>

@@ -588,6 +588,9 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint = floorBP });
             pipeline.AddBuilder(new StairsUpBuilder(this));
             pipeline.AddBuilder(new StairsDownBuilder(this));
+            // Ordinary columns only: authored chambers, sinkhole floors, lairs and
+            // catacomb villages keep their own stairs.
+            if (layout?.IsOrdinaryColumn == true) pipeline.AddBuilder(new CaveClimbOutStairsBuilder(WorldSeed));
             pipeline.AddBuilder(new StairConnectorBuilder(floorBP));
             if(layout?.IsOrdinaryColumn==true
                 &&(layout.SurfaceBiome==BiomeType.Spread||layout.SurfaceBiome==BiomeType.Sodden||layout.SurfaceBiome==BiomeType.Beating)
