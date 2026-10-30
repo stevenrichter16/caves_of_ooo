@@ -125,7 +125,10 @@ namespace CavesOfOoo.Rendering
         }
         /// <summary>Represents a disclosed permanent water substrate, never a
         /// physical source or subject portrait. The optional grass output permits
-        /// suppressing only that same neutral foreground owner, not a covering body.</summary>
+        /// suppressing only that same neutral foreground owner, not a covering body.
+        /// One eligible GroveSeep (approved wet body, sole live unmixed water) may sit on
+        /// this floor instead of a black cell (2026-10-29); every other pool, well or
+        /// source still refuses, and the seep's own body is unchanged.</summary>
         public bool TryResolveWaterGround(Zone zone, int x, int y, out Tile tile, out Entity representedGrass)
         {
             tile = null; representedGrass = null;
@@ -138,10 +141,12 @@ namespace CavesOfOoo.Rendering
             var coating = coatings[0];
             if (coating == null || coating.Id != "water" || coating.Turns != ZoneTileState.Permanent
                 || !string.IsNullOrEmpty(coating.ProjectionOwnerId)) return false;
-            Entity grass = null; int grasses = 0;
+            Entity grass = null, seep = null; int grasses = 0;
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (owner.BlueprintName == "GroveSeep" && ForegroundFrame(owner, zone, cell, x, y) >= 0)
+                { if (seep != null) return false; seep = owner; continue; }
                 // Ordinary pools also write unowned water. Their bodies and
                 // source overlays remain separate from this Fen substrate pass.
                 if (owner.HasPart<LiquidPoolPart>() || owner.HasPart<WellPart>() || owner.HasPart<TileStateSourcePart>()

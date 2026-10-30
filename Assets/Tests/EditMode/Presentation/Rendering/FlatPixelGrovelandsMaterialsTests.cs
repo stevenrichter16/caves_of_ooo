@@ -419,10 +419,12 @@ namespace CavesOfOoo.Tests
             string before=zone.TileState.ToSaveString();
             using(var paint=new Paint(world,zone))
             {
-                paint.Step();NativeTile(paint.At(X,Y),Atlas);FamilyFrame(owner,paint.At(X,Y));Assert.False(View().LocalGround);
-                // The existing painter chooses an unrepresented coating before
-                // heat. Keeping the real water wave must not erase the heat state.
-                Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark);Assert.AreEqual(before,zone.TileState.ToSaveString());
+                paint.Step();NativeTile(paint.At(X,Y),Atlas);FamilyFrame(owner,paint.At(X,Y));
+                // Revised 2026-10-29: the wet cell sits on Fen water, never dry grass. The represented
+                // water relinquishes its ~ glyph; heat keeps its own mark and state.
+                Assert.True(View().LocalGround);Assert.AreEqual(FlatPixelGreyboxGround.Water,View().GroundKind);
+                if(heat)Assert.AreSame(CP437TilesetGenerator.GetTile('^'),paint.Mark);else Assert.IsNull(paint.Mark);
+                Assert.AreEqual(before,zone.TileState.ToSaveString());
                 if(heat)
                 {
                     Assert.AreEqual(1,zone.TileState.Heat(X,Y));
@@ -584,19 +586,37 @@ namespace CavesOfOoo.Tests
                 Assert.AreSame(CP437TilesetGenerator.GetTile(expected),paint.Mark,hazard); Assert.AreEqual(before,zone.TileState.ToSaveString());
             }
         }
-        [Test] public void FenWater_PhysicalSeepSourcesKeepTheirOriginalWetBodyAndWave()
+        /// <summary>Revised 2026-10-29 (handoff: GroveSeep black backing). The eligible seep keeps its
+        /// approved wet body at both stocks and now sits on the approved Fen water floor instead of a
+        /// black cell; that floor represents the sole live water, so the ~ glyph is relinquished exactly
+        /// as on a seep-less Fen cell. The permanent water is never consumed or dried.</summary>
+        [Test] public void FenWater_PhysicalSeepSourcesKeepTheirWetBodyOnTheFenFloor()
         {
             Add("Grass"); FenWater(); NativeFenWater(); var seep = Add("GroveSeep"); var pool = seep.GetPart<LiquidPoolPart>();
             using (var paint = new Paint(world,zone))
             {
                 foreach (int stock in new[] { 40, 0 })
                 {
-                    pool.Volume = stock; paint.Dirty(X,Y); paint.Step(); NoFenWater(); NativeTile(paint.At(X,Y),Atlas); FamilyFrame(seep,paint.At(X,Y));
-                    Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark); Assert.AreEqual(ZoneTileState.Permanent,zone.TileState.CoatingTurns(X,Y,"water"));
+                    pool.Volume = stock; paint.Dirty(X,Y); paint.Step(); NativeFenWater(); NativeTile(paint.At(X,Y),Atlas); FamilyFrame(seep,paint.At(X,Y));
+                    Assert.IsNull(paint.Mark); Assert.AreEqual(ZoneTileState.Permanent,zone.TileState.CoatingTurns(X,Y,"water"));
                 }
                 seep.GetPart<RenderPart>().Visible = false; paint.Dirty(X,Y); paint.Step(); NativeFenWater(); Assert.IsNull(paint.Mark);
-                seep.GetPart<RenderPart>().Visible = true; paint.Dirty(X,Y); paint.Step(); NoFenWater(); Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark);
+                seep.GetPart<RenderPart>().Visible = true; paint.Dirty(X,Y); paint.Step(); NativeFenWater(); Assert.IsNull(paint.Mark);
             }
+        }
+        [Test] public void FenWater_AnIsolatedSeepGetsBankedWaterNeverDryGrass()
+        {
+            Add("Grass"); var seep = Add("GroveSeep"); Assert.True(zone.TileState.HasCoating(X,Y,"water"), "precondition: the seep projects its water");
+            Native(seep); var view = NativeFenWater(mask: 15); Assert.AreNotSame(Resources.Load<Texture2D>(CurrentGroundResource), view.GroundTile.sprite.texture, "never dry grass");
+            Assert.False(Ground(out _,out _), "the dry-ground query still refuses a wet cell");
+        }
+        [TestCase("oil")] [TestCase("foreign")]
+        public void FenWater_AMixedOrForeignSeepKeepsItsFallbackAndMark(string fault)
+        {
+            Add("Grass"); var seep = Add("GroveSeep");
+            if (fault == "oil") zone.TileState.WriteCoating(X,Y,"oil",4); else seep.GetPart<RenderPart>().VisualVariant = "foreign seep";
+            NoFenWater();
+            using (var paint = new Paint(world,zone)) { paint.Step(); Assert.NotNull(paint.Mark, fault + " keeps its cue"); }
         }
         [Test] public void FenWater_CurrentMapGraphAndSavedSiteAuthorityCanRevokeAFormerClaim()
         {
