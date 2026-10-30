@@ -334,6 +334,35 @@ namespace CavesOfOoo.Tests
             Assert.False(odd.NativeForeground, "a recoloured marker is not plain scorched earth");
         }
 
+        // ════════════════ the settlement warden ════════════════
+        // Nine settlements' Wardens were still red '@' glyphs. The opening's Warden is the same blueprint
+        // with an approved body (opening-base frame 9); settlements reuse it inside their own admission,
+        // so the opening's own Warden path is untouched.
+
+        [TestCase("Overworld.13.7.0")] [TestCase("Overworld.10.14.0")] [TestCase("Overworld.8.16.0")]
+        public void SettlementWardensUseTheApprovedWardenBody(string id)
+        {
+            var zone = Visit(id);
+            var warden = zone.GetAllEntities().FirstOrDefault(e => e.BlueprintName == "Warden");
+            Assert.NotNull(warden, "precondition: " + id + " has a Warden");
+            var (x, y) = zone.GetEntityPosition(warden);
+            Assert.True(world.TryResolvePresentation(zone, x, y, out var view)); Assert.AreSame(warden, view.Owner, "precondition");
+            Assert.True(view.NativeForeground, "the Warden has a native body");
+            Assert.AreSame(Resources.Load<Texture2D>(OpeningBase), view.ForegroundTile.sprite.texture);
+            Assert.AreEqual(new Rect(144, 0, 16, 24), view.ForegroundTile.sprite.rect, "the approved Warden frame");
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, warden, x, y, out var portrait, out _)); Assert.AreEqual(view.ForegroundTile.sprite.rect, portrait.rect);
+        }
+
+        [Test] public void ARecolouredOrDeadWardenKeepsTheGlyph()
+        {
+            var zone = Visit("Overworld.10.14.0");
+            var warden = zone.GetAllEntities().First(e => e.BlueprintName == "Warden"); var (x, y) = zone.GetEntityPosition(warden);
+            warden.GetPart<RenderPart>().ColorString = "&B";
+            Assert.True(world.TryResolvePresentation(zone, x, y, out var recoloured)); Assert.False(recoloured.NativeForeground);
+            warden.GetPart<RenderPart>().ColorString = "&r"; warden.GetStat("Hitpoints").BaseValue = 0;
+            Assert.True(world.TryResolvePresentation(zone, x, y, out var dead)); Assert.False(dead.NativeForeground && ReferenceEquals(dead.Owner, warden));
+        }
+
         // ════════════════ counter-checks ════════════════
 
         [TestCase("Overworld.10.10.0")] [TestCase("Overworld.3.6.0")] [TestCase("Overworld.5.11.0")]

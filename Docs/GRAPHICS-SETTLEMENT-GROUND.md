@@ -261,6 +261,27 @@ The greybox consults it only where Sill's own memory does not apply.
 
 **Live.** The same fixture route was taken to the Marrowstye hearth at 78,2, with the player at 75,2, turn 4340, HP 40 (`settlement-live-05/06`). The hearth burns on its stone ring, with four stains on the town ground.
 
+## Slice 8: the settlement Warden (2026-10-30)
+
+**Problem.** Wardens in nine settlements were still red `@` glyphs. The opening's Warden is the same `Warden` blueprint and has an approved body: `opening-base` frame 9.
+
+**Routing decision.** The body is drawn by `FlatPixelSettlementGroundCatalog`, which admits only settlement zones. It is not added to the portable shared-residents catalog, because claiming the role there would reroute the opening's own Warden path.
+
+**Rule.**
+- canonical red `@` on the actor layer, with no visual override;
+- its own body, brain, `AIGuardPart` and conversation;
+- alive, untinted and single-cell.
+
+A damage-flash tint therefore briefly keeps the glyph, as the other actor adapters do.
+
+**Tests.**
+- Three Warden cases: Tine, Tally and Wellmeet.
+- One counter-check: a recoloured or dead Warden keeps the glyph.
+- **RED:** 3 failures.
+- **GREEN:** all `FlatPixel*` classes 3,764 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `settlement-warden-tally-tine-offline.png`: before (left) and after (right), enlarged crops of the offline render. It is not a live capture, because the live route town Marrowstye has no Warden.
+
 ## Limits and next
 
 - **Live play.** Not yet captured. Reaching a settlement from a new game needs world-map travel and `>`. Computer-use key events reach Unity without a held Shift, so `>` was never received, and typing it started the run command. A Shift+Period injection made while Unity was frontmost was not received either. Next session: inject `>` with the Input System while Unity is frontmost and the run is idle, or earn a settlement checkpoint.

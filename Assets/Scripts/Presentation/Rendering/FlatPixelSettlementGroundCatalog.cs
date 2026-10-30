@@ -25,7 +25,7 @@ namespace CavesOfOoo.Rendering
         public const string TownFloorResourcePath = "Sprites/Live16x24/town-floor";
         public const string ScorchResourcePath = "Sprites/Live16x24/campfire-scorch";
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch;
+        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch, warden;
         readonly FlatPixelSillRiverCatalog water;
         readonly FlatPixelSoddenTravelCatalog fixtures;
         bool disposed;
@@ -76,6 +76,7 @@ namespace CavesOfOoo.Rendering
             tree = Frames(vegetation4, 4, 0, 1, "tree");
             dryBrush = Frames(vegetation4, 4, 3, 1, "dry brush");
             bush = Frames(base10, 10, 5, 1, "bush");
+            warden = Frames(base10, 10, 9, 1, "warden");
             hearth = Frames(states12, 12, 5, 1, "hearth");
             scorch = Frames(scorch2, 2, 0, 2, "scorch");
             fixtures = new FlatPixelSoddenTravelCatalog(soddenTravel28, base10, null, null, null, selector, null, IsSupportedZone);
@@ -191,6 +192,7 @@ namespace CavesOfOoo.Rendering
                 case "Tree": tile = FlatPixelSpreadEnvironmentCatalog.IsEligiblePlant(owner) ? Pick(tree, 0) : null; break;
                 case "DryBrush": tile = FlatPixelBeatingMaterialsCatalog.IsEligibleDryBrush(owner) ? Pick(dryBrush, 0) : null; break;
                 case "Campfire": tile = OrdinaryHearth(owner) ? Pick(hearth, 0) : null; break;
+                case "Warden": tile = CanonicalWarden(owner) ? Pick(warden, 0) : null; break;
                 case "CampfireGroundMarker": tile = OrdinaryScorch(owner) ? Pick(scorch, (x + y) & 1) : null; break;
                 case "Duckboard": case "Reeds": case "PeatBank":
                     return fixtures != null && fixtures.TryResolveForeground(zone, x, y, owner, out tile);
@@ -206,7 +208,8 @@ namespace CavesOfOoo.Rendering
             if (owner.BlueprintName == "Duckboard" || owner.BlueprintName == "Reeds" || owner.BlueprintName == "PeatBank")
                 return fixtures != null && fixtures.TryGetSubjectSprite(zone, owner, x, y, out sprite);
             if (owner.BlueprintName == "SandstoneWall" || owner.BlueprintName == "Bush" || owner.BlueprintName == "Tree"
-                || owner.BlueprintName == "DryBrush" || owner.BlueprintName == "Campfire" || owner.BlueprintName == "CampfireGroundMarker")
+                || owner.BlueprintName == "DryBrush" || owner.BlueprintName == "Campfire" || owner.BlueprintName == "CampfireGroundMarker"
+                || owner.BlueprintName == "Warden")
             {
                 if (!TryResolveForeground(zone, x, y, owner, out var body)) return false;
                 sprite = body.sprite; return sprite != null;
@@ -318,6 +321,23 @@ namespace CavesOfOoo.Rendering
                 && r.RenderString == "*" && r.ColorString == "&R" && string.IsNullOrEmpty(r.BackgroundColor) && string.IsNullOrEmpty(r.GlyphVariants)
                 && !owner.HasPart<ContainerPart>() && !owner.HasPart<DoorPart>() && !owner.HasPart<LiquidPoolPart>() && !owner.HasPart<TileStateSourcePart>();
         }
+        /// <summary>A settlement's living Warden, the same blueprint as the opening's: canonical red '@'
+        /// actor layer, its own body, brain, guard duty and conversation, alive and untinted. Drawn only in
+        /// settlement zones, so the opening's own Warden path is untouched.</summary>
+        static bool CanonicalWarden(Entity owner)
+        {
+            if (owner?.BlueprintName != "Warden" || !owner.HasTag("Creature") || owner.HasTag("Player") || owner.HasTag("Item")
+                || owner.HasTag("Corpse")) return false;
+            var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner); var hp = owner.GetStat("Hitpoints");
+            if (r == null || !r.Visible || r.RenderLayer != 10 || r.RenderString != "@" || r.ColorString != "&r"
+                || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID) || !string.IsNullOrEmpty(r.VisualVariant)
+                || !string.IsNullOrEmpty(r.GlyphVariants) || p == null || p.Takeable || p.InInventory != null || p.Equipped != null
+                || Owned<Body>(owner) == null || Owned<BrainPart>(owner) == null || Owned<AIGuardPart>(owner) == null
+                || Owned<ConversationPart>(owner) == null || hp == null || hp.BaseValue <= 0) return false;
+            if (owner.HasPart<StatusEffectsPart>())
+            { var e = Owned<StatusEffectsPart>(owner); if (e == null || e.GetRenderColorOverride() != null) return false; }
+            return !owner.HasPart<SpatialFootprintPart>() || Owned<SpatialFootprintPart>(owner)?.Offsets.Length == 1;
+        }
         /// <summary>The plain scorched-earth marker around a hearth: canonical red '.' terrain, nothing else.</summary>
         static bool OrdinaryScorch(Entity owner)
         {
@@ -365,7 +385,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             water?.Dispose(); fixtures?.Dispose();
-            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch })
+            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch, warden })
             {
                 if (group == null) continue;
                 foreach (var tile in group) { if (tile == null) continue; DestroyOwned(tile.sprite); DestroyOwned(tile); }
