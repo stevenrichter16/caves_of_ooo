@@ -57,6 +57,41 @@ namespace CavesOfOoo.Tests
             Assert.GreaterOrEqual(native, Zone.Width * Zone.Height * 3 / 4, id + ": " + native + " of 2000 native");
         }
 
+        // The ring of solid SinkholeLip around each mouth was a grey '#' field; it now draws the original
+        // sinkhole-lip rim block (moss cap, strata, undercut base), still solid.
+        [TestCase("Overworld.2.4.0")] [TestCase("Overworld.2.7.0")] [TestCase("Overworld.5.4.0")]
+        [TestCase("Overworld.12.3.0")] [TestCase("Overworld.16.4.0")]
+        public void SinkholeLipsDrawTheOriginalRimRock(string id)
+        {
+            var zone = Visit(id); var lip = Resources.Load<Texture2D>(FlatPixelSinkholeLipCatalog.ResourcePath);
+            int total = 0, native = 0;
+            for (int y = 0; y < Zone.Height; y++) for (int x = 0; x < Zone.Width; x++)
+            {
+                if (!world.TryResolvePresentation(zone, x, y, out var v) || v.Owner?.BlueprintName != "SinkholeLip") continue;
+                total++;
+                if (!v.NativeForeground || !ReferenceEquals(v.ForegroundTile.sprite.texture, lip)) continue;
+                native++; Assert.True(v.BlocksMovement, "the lip stays solid");
+                Assert.True(world.TryGetPresentationSubjectSprite(zone, v.Owner, x, y, out var portrait, out _)); Assert.AreSame(lip, portrait.texture);
+            }
+            Assert.Greater(total, 30, "precondition: a lip ring"); Assert.GreaterOrEqual(native, total * 95 / 100, id + ": " + native + " of " + total);
+        }
+
+        [Test] public void ALipOutsideASiteOrRecolouredKeepsItsGlyph()
+        {
+            var zone = Visit("Overworld.5.11.0");
+            var open = Enumerable.Range(1, 70).Select(x => (x, y: 12)).First(c => zone.GetCell(c.x, c.y).IsPassable());
+            Assert.True(zone.AddEntity(factory.CreateEntity("SinkholeLip"), open.x, open.y));
+            Assert.True(world.TryResolvePresentation(zone, open.x, open.y, out var wild)); Assert.False(wild.NativeForeground && wild.Owner?.BlueprintName == "SinkholeLip", "wilderness is not a sinkhole site");
+            zone = Visit("Overworld.5.4.0");
+            for (int y = 0; y < Zone.Height; y++) for (int x = 0; x < Zone.Width; x++)
+            {
+                var lip = zone.GetCell(x, y).Objects.FirstOrDefault(o => o.BlueprintName == "SinkholeLip"); if (lip == null) continue;
+                lip.GetPart<RenderPart>().ColorString = "&R";
+                Assert.True(world.TryResolvePresentation(zone, x, y, out var odd)); Assert.False(odd.NativeForeground, "a recoloured lip is not the plain rim"); return;
+            }
+            Assert.Fail("precondition: a lip");
+        }
+
         [Test] public void ASiteIsOnlyItsOwnBiomesToDraw()
         {
             var zone = Visit("Overworld.12.3.0");

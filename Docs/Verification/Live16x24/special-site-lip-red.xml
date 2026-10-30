@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Failed(Child)" total="17" passed="12" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-30 23:15:14Z" end-time="2026-10-30 23:15:17Z" duration="2.7852152">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34420" result="Failed" site="Child" start-time="2026-10-30 23:15:14Z" end-time="2026-10-30 23:15:17Z" duration="2.785215" total="17" passed="12" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="42331" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34420" result="Failed" site="Child" start-time="2026-10-30 23:15:14Z" end-time="2026-10-30 23:15:17Z" duration="2.650802" total="17" passed="12" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="46149" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="42332" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34420" result="Failed" site="Child" start-time="2026-10-30 23:15:14Z" end-time="2026-10-30 23:15:17Z" duration="2.581811" total="17" passed="12" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="42333" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34420" result="Failed" site="Child" start-time="2026-10-30 23:15:14Z" end-time="2026-10-30 23:15:17Z" duration="2.520085" total="17" passed="12" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33010" name="FlatPixelSpecialSiteTests" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:17Z" duration="2.229241" total="17" passed="12" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33023" name="ALipOutsideASiteOrRecolouredKeepsItsGlyph" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.ALipOutsideASiteOrRecolouredKeepsItsGlyph" methodname="ALipOutsideASiteOrRecolouredKeepsItsGlyph" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1420456642" result="Passed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:15Z" duration="0.205103" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+]]></output>
+            </test-case>
+            <test-case id="33024" name="ASiteIsOnlyItsOwnBiomesToDraw" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.ASiteIsOnlyItsOwnBiomesToDraw" methodname="ASiteIsOnlyItsOwnBiomesToDraw" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="997748651" result="Passed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:15Z" duration="0.094263" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33029" name="SettlementsLairsWildernessAndUniqueSitesAreNotSites" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SettlementsLairsWildernessAndUniqueSitesAreNotSites" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:15Z" duration="0.312759" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33025" name="SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.5.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.5.9.0&quot;)" methodname="SettlementsLairsWildernessAndUniqueSitesAreNotSites" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="834367389" result="Passed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:15Z" duration="0.063647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33026" name="SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.8.12.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.8.12.0&quot;)" methodname="SettlementsLairsWildernessAndUniqueSitesAreNotSites" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1044509020" result="Passed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:15Z" duration="0.081985" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'StrongBoxT1'
+]]></output>
+              </test-case>
+              <test-case id="33027" name="SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.5.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.5.11.0&quot;)" methodname="SettlementsLairsWildernessAndUniqueSitesAreNotSites" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1089263610" result="Passed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:15Z" duration="0.104701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33028" name="SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.3.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SettlementsLairsWildernessAndUniqueSitesAreNotSites(&quot;Overworld.3.3.0&quot;)" methodname="SettlementsLairsWildernessAndUniqueSitesAreNotSites" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1373309236" result="Passed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:15Z" duration="0.059862" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'SackT3'
+[LootTableRegistry] Unknown loot table 'StrongBoxT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33022" name="SinkholeLipsDrawTheOriginalRimRock" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:16Z" duration="0.707295" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33017" name="SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.2.4.0&quot;)" methodname="SinkholeLipsDrawTheOriginalRimRock" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1327559631" result="Failed" start-time="2026-10-30 23:15:15Z" end-time="2026-10-30 23:15:16Z" duration="0.172537" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.2.4.0: 0 of 60
+  Expected: greater than or equal to 57
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock (System.String id) [0x000f5] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpecialSiteTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'SackT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+]]></output>
+              </test-case>
+              <test-case id="33018" name="SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.2.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.2.7.0&quot;)" methodname="SinkholeLipsDrawTheOriginalRimRock" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1923823123" result="Failed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:16Z" duration="0.105597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.2.7.0: 0 of 60
+  Expected: greater than or equal to 57
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock (System.String id) [0x000f5] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpecialSiteTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+]]></output>
+              </test-case>
+              <test-case id="33019" name="SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.5.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.5.4.0&quot;)" methodname="SinkholeLipsDrawTheOriginalRimRock" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="267607619" result="Failed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:16Z" duration="0.098361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.5.4.0: 0 of 60
+  Expected: greater than or equal to 57
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock (System.String id) [0x000f5] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpecialSiteTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+]]></output>
+              </test-case>
+              <test-case id="33020" name="SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.12.3.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.12.3.0&quot;)" methodname="SinkholeLipsDrawTheOriginalRimRock" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="717868175" result="Failed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:16Z" duration="0.149708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.12.3.0: 0 of 60
+  Expected: greater than or equal to 57
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock (System.String id) [0x000f5] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpecialSiteTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33021" name="SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.16.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock(&quot;Overworld.16.4.0&quot;)" methodname="SinkholeLipsDrawTheOriginalRimRock" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1284366384" result="Failed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:16Z" duration="0.179671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.16.4.0: 0 of 60
+  Expected: greater than or equal to 57
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeLipsDrawTheOriginalRimRock (System.String id) [0x000f5] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpecialSiteTests.cs:76
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33016" name="SinkholeSurfacesUseTheirBiomesApprovedMaterials" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeSurfacesUseTheirBiomesApprovedMaterials" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:17Z" duration="0.650703" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33011" name="SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.2.4.0&quot;,Stump)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.2.4.0&quot;,Stump)" methodname="SinkholeSurfacesUseTheirBiomesApprovedMaterials" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1070131476" result="Passed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:16Z" duration="0.144395" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'OreCacheT3'
+[LootTableRegistry] Unknown loot table 'SackT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+]]></output>
+              </test-case>
+              <test-case id="33012" name="SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.2.7.0&quot;,Grovelands)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.2.7.0&quot;,Grovelands)" methodname="SinkholeSurfacesUseTheirBiomesApprovedMaterials" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="905210907" result="Passed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:16Z" duration="0.095327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+]]></output>
+              </test-case>
+              <test-case id="33013" name="SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.5.4.0&quot;,Grovelands)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.5.4.0&quot;,Grovelands)" methodname="SinkholeSurfacesUseTheirBiomesApprovedMaterials" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="1479479989" result="Passed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:16Z" duration="0.098425" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+]]></output>
+              </test-case>
+              <test-case id="33014" name="SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.12.3.0&quot;,Spread)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.12.3.0&quot;,Spread)" methodname="SinkholeSurfacesUseTheirBiomesApprovedMaterials" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="2012157603" result="Passed" start-time="2026-10-30 23:15:16Z" end-time="2026-10-30 23:15:17Z" duration="0.144494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33015" name="SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.16.4.0&quot;,Sodden)" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.SinkholeSurfacesUseTheirBiomesApprovedMaterials(&quot;Overworld.16.4.0&quot;,Sodden)" methodname="SinkholeSurfacesUseTheirBiomesApprovedMaterials" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="945207930" result="Passed" start-time="2026-10-30 23:15:17Z" end-time="2026-10-30 23:15:17Z" duration="0.166512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="33030" name="TheCaveBelowASiteIsNotTheSite" fullname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests.TheCaveBelowASiteIsNotTheSite" methodname="TheCaveBelowASiteIsNotTheSite" classname="CavesOfOoo.Tests.FlatPixelSpecialSiteTests" runstate="Runnable" seed="99075848" result="Passed" start-time="2026-10-30 23:15:17Z" end-time="2026-10-30 23:15:17Z" duration="0.173778" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT2'
+[LootTableRegistry] Unknown loot table 'StrongBoxT2'
+[LootTableRegistry] Unknown loot table 'OreCacheT2'
+[LootTableRegistry] Unknown loot table 'OreCacheT2'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -109,6 +109,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSoddenTravelCatalog _soddenTravelArt;
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
         private FlatPixelSettlementGroundCatalog _settlementGroundArt;
+        private FlatPixelSinkholeLipCatalog _sinkholeLipArt;
         private FlatPixelSpreadEnvironmentCatalog _spreadSiteArt;
         private FlatPixelSoddenTravelCatalog _soddenSiteArt;
         private FlatPixelBeatingMaterialsCatalog _beatingSiteArt;
@@ -1344,6 +1345,10 @@ namespace CavesOfOoo.Rendering
             Tile settlementArt = null;
             bool settlementNative = settlement != null && settlement.TryResolveForeground(zone, x, y, owner, out settlementArt);
             if (settlementNative) art = settlementArt;
+            var sinkholeLip = !fallback.Remembered && owner?.BlueprintName == "SinkholeLip" ? SinkholeLipArtFor(zone) : null;
+            Tile lipArt = null;
+            bool lipNative = sinkholeLip != null && sinkholeLip.TryResolveForeground(zone, x, y, owner, out lipArt);
+            if (lipNative) art = lipArt;
             Tile grovelandsArt = null;
             bool grovelandsNative = grovelands != null && grovelands.TryResolveForeground(zone, x, y, owner, out grovelandsArt);
             if (grovelandsNative) art = grovelandsArt;
@@ -1467,7 +1472,7 @@ namespace CavesOfOoo.Rendering
             bool portableEquipmentKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner) || owner?.BlueprintName == "Buckler";
             if (portableEquipmentKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || spreadNative || sillNative || soddenNative || beatingNative || settlementNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || spreadNative || sillNative || soddenNative || beatingNative || settlementNative || lipNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1690,6 +1695,8 @@ namespace CavesOfOoo.Rendering
             if (beating != null && beating.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var settlementGround = SettlementGroundArtFor(zone);
             if (settlementGround != null && settlementGround.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
+            var lipReader = subject?.BlueprintName == "SinkholeLip" ? SinkholeLipArtFor(zone) : null;
+            if (lipReader != null && lipReader.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var grovelands = GrovelandsMaterialsArtFor(zone);
             if (grovelands != null && grovelands.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
             var overwrit = OverwritMaterialsArtFor(zone);
@@ -1816,6 +1823,16 @@ namespace CavesOfOoo.Rendering
             return _soddenTravelArt;
         }
 
+        private FlatPixelSinkholeLipCatalog SinkholeLipArtFor(Zone zone)
+        {
+            if (!FlatPixelSinkholeLipCatalog.IsSupportedZone(zone)) return null;
+            if (_sinkholeLipArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _sinkholeLipArt = new FlatPixelSinkholeLipCatalog(_glyphFallback);
+            }
+            return _sinkholeLipArt;
+        }
         private FlatPixelSettlementGroundCatalog SettlementGroundArtFor(Zone zone)
         {
             if (!FlatPixelSettlementGroundCatalog.IsSupportedZone(zone)) return null;
@@ -2374,6 +2391,8 @@ namespace CavesOfOoo.Rendering
             _beatingSiteArt = null;
             _beatingMaterialsArt = null;
             _settlementGroundArt?.Dispose();
+            _sinkholeLipArt?.Dispose();
+            _sinkholeLipArt = null;
             _settlementGroundArt = null;
             _grovelandsMaterialsArt?.Dispose();
             _grovelandsSiteArt?.Dispose();

@@ -47,9 +47,29 @@ One supporting fix: Sodden's fen-ground variant read the zone's map coordinates 
 
 `special-site-{stillleaf,ginmere,cathedral,lampwell,spivenor}-offline.png`: before (top), after (bottom).
 
+## Slice 2: the sinkhole lip (2026-10-30)
+
+**Problem.** The solid `SinkholeLip` ring of about 60 cells per mouth drew as grey `#` glyphs.
+
+**Art.** A new original rim block (`ArtSource/Live16x24/sinkhole-lip`): a moss cap, a strata rock face and an undercut base, in two frames.
+
+**Runtime.** `FlatPixelSinkholeLipCatalog` admits only `FlatPixelSiteAdmission` sinkholes in any biome. It accepts only the canonical lip:
+- `#` `&y`, layer 2;
+- solid terrain;
+- no visual override, damage, state or foreign meaning.
+
+The lip stays solid. The greybox wires it as a foreground and reader.
+
+**Tests.**
+- Five lip cases: at least 95% native, still blocking, reader matches.
+- One counter-check: a lip placed in wilderness, and a recoloured lip, keep their glyph.
+- **RED (stub catalog):** 5 failures, 0 of 60 in each mouth.
+- **GREEN:** all `FlatPixel*` classes 3,781 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `special-site-lip-{lampwell,cathedral,stillleaf}-offline.png`: the previous slice (top), with the lip (bottom).
+
 ## Remaining
 
-- The `SinkholeLip` ring (60 cells per sinkhole), which needs art.
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).
 - Merchant camps and lair surfaces.
 - Live capture.
