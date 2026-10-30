@@ -26,7 +26,7 @@ namespace CavesOfOoo.Rendering
         public const string TarResourcePath = "Sprites/Live16x24/tar-seep";
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] materials, vegetation, anchors, tar;
+        readonly Tile[] materials, vegetation, anchors, tar, masonry;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -46,7 +46,8 @@ namespace CavesOfOoo.Rendering
             : this(Resources.Load<Texture2D>(ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
-                Resources.Load<Texture2D>(TarResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(TarResourcePath),
+                Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath), borrowedSelector) { }
 
         /// <summary>Independent injected groups never reload Resources on failure.
         /// No borrowed texture or selector is changed or disposed.</summary>
@@ -59,6 +60,12 @@ namespace CavesOfOoo.Rendering
         /// fallback glyph untouched. The older constructor never loads it.</summary>
         public FlatPixelBeatingMaterialsCatalog(Texture2D atlas34, Texture2D vegetation4,
             Texture2D anchors12, Texture2D tar2, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas34, vegetation4, anchors12, tar2, null, borrowedSelector) { }
+
+        /// <summary>Also the approved straight shaded stone masonry (sill-environment frame 8 of 9) for
+        /// the western Beating's grey StoneWall ruins; an independent optional group.</summary>
+        public FlatPixelBeatingMaterialsCatalog(Texture2D atlas34, Texture2D vegetation4,
+            Texture2D anchors12, Texture2D tar2, Texture2D sillEnvironment9, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -66,6 +73,9 @@ namespace CavesOfOoo.Rendering
             vegetation = Frames(vegetation4, 4, "vegetation");
             anchors = Frames(anchors12, 12, "anchors");
             tar = Frames(tar2, 2, "tar");
+            var environment = Frames(sillEnvironment9, 9, "stone masonry");
+            masonry = environment == null ? null : new[] { environment[8] };
+            if (environment != null) for (int i = 0; i < 8; i++) { DestroyOwned(environment[i].sprite); DestroyOwned(environment[i]); }
         }
 
         public static bool IsSupportedZone(Zone zone)
@@ -94,6 +104,7 @@ namespace CavesOfOoo.Rendering
             if (owner.BlueprintName == "DryBrush") tile = vegetation == null ? null : vegetation[3];
             else if (owner.BlueprintName == "Signpost") tile = anchors == null ? null : anchors[8];
             else if (owner.BlueprintName == "TarSeep") tile = tar == null ? null : tar[frame];
+            else if (owner.BlueprintName == "StoneWall") tile = masonry == null ? null : masonry[0];
             else tile = materials == null ? null : materials[frame];
             return tile != null;
         }
@@ -243,6 +254,12 @@ namespace CavesOfOoo.Rendering
                     return render.RenderString == "#" && render.RenderLayer == 0 && owner.HasTag("Wall")
                         && owner.HasTag("Solid") && physics.Solid && !owner.HasTag("Vegetation")
                         && Material(owner, "Stone") && Intact(owner) && NeutralThermal(owner) ? 16 + ((x + y) & 1) : -1;
+                case "StoneWall":
+                    // Grey stone ruins: the same static shape Sill uses for its StoneWall, plus the
+                    // Beating's intact/neutral-temperature condition rules. Sandstone keeps its own brick.
+                    return render.RenderString == "#" && render.RenderLayer == 0 && owner.HasTag("Wall")
+                        && owner.HasTag("Solid") && physics.Solid && !owner.HasTag("Vegetation")
+                        && Intact(owner) && (!owner.HasPart<ThermalPart>() || NeutralThermal(owner)) ? 0 : -1;
                 case "Rock":
                     return render.RenderString == "o" && render.RenderLayer == 1 && owner.HasTag("Solid") && physics.Solid
                         && !owner.HasTag("Wall") && !owner.HasTag("Vegetation") && !owner.HasTag("Terrain")
@@ -447,7 +464,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(anchors); DestroyFrames(tar);
+            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(anchors); DestroyFrames(tar); DestroyFrames(masonry);
         }
         static void DestroyFrames(Tile[] tiles)
         {

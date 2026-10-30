@@ -96,6 +96,25 @@ Such a patch draws its sprite over the real grass. Any other live state, such as
 
 **Polish debt.** The dense meadow repeats the same clump and token in every cell.
 
+## Related wilderness slice: Beating stone ruins (2026-10-30)
+
+**Problem.** The western Beating's grey `StoneWall` ruins (`#` `&w` on sand, for example 0.15–2.18) were the largest remaining Beating glyph owner: 190 sampled cells.
+
+**Change.** `FlatPixelBeatingMaterialsCatalog` reuses the approved straight shaded stone masonry, `sill-environment` frame 8, which StoneWall already wears in Sill. It loads it as an independent optional group. The rule has the same static shape as Sill's (`#`, Wall, Solid), plus the Beating's own conditions: intact, and neutral temperature when a temperature exists. SandstoneWall keeps its sandstone brick.
+
+**Tests.** `FlatPixelBeatingStoneWallTests`:
+- three zones, at least 95% native with the masonry frame;
+- still blocking, with a matching reader;
+- counter-check: a frozen or recoloured wall, or a changed glyph, keeps the fallback.
+
+**Results.**
+- RED: 3 failures.
+- GREEN: all `FlatPixel*` classes 3,789 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `beating-stone-ruins-0-16-offline.png`: before (top), after (bottom), an offline render.
+
+**Still visible in the ruin.** A camp resident (`@`) and its wilderness campfire.
+
 ## Remaining
 
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).

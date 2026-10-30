@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-30 23:38:59Z" end-time="2026-10-30 23:39:00Z" duration="0.8669056">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34428" result="Failed" site="Child" start-time="2026-10-30 23:38:59Z" end-time="2026-10-30 23:39:00Z" duration="0.866906" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="42343" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34428" result="Failed" site="Child" start-time="2026-10-30 23:38:59Z" end-time="2026-10-30 23:39:00Z" duration="0.744396" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="50850" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="42344" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34428" result="Failed" site="Child" start-time="2026-10-30 23:38:59Z" end-time="2026-10-30 23:39:00Z" duration="0.692588" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="42345" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34428" result="Failed" site="Child" start-time="2026-10-30 23:38:59Z" end-time="2026-10-30 23:39:00Z" duration="0.641515" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30269" name="FlatPixelBeatingStoneWallTests" fullname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests" classname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-30 23:39:00Z" end-time="2026-10-30 23:39:00Z" duration="0.365665" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="30274" name="AFrozenOrRecolouredStoneWallKeepsItsFallback" fullname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.AFrozenOrRecolouredStoneWallKeepsItsFallback" methodname="AFrozenOrRecolouredStoneWallKeepsItsFallback" classname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests" runstate="Runnable" seed="1002841176" result="Passed" start-time="2026-10-30 23:39:00Z" end-time="2026-10-30 23:39:00Z" duration="0.136346" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'LibraryShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT2'
+[LootTableRegistry] Unknown loot table 'CrateT2'
+[LootTableRegistry] Unknown loot table 'UrnT2'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="30273" name="BeatingStoneRuinsWearTheApprovedStoneMasonry" fullname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.BeatingStoneRuinsWearTheApprovedStoneMasonry" classname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-30 23:39:00Z" end-time="2026-10-30 23:39:00Z" duration="0.145103" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30270" name="BeatingStoneRuinsWearTheApprovedStoneMasonry(&quot;Overworld.0.16.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.BeatingStoneRuinsWearTheApprovedStoneMasonry(&quot;Overworld.0.16.0&quot;)" methodname="BeatingStoneRuinsWearTheApprovedStoneMasonry" classname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests" runstate="Runnable" seed="2111346727" result="Failed" start-time="2026-10-30 23:39:00Z" end-time="2026-10-30 23:39:00Z" duration="0.049053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.0.16.0: 0 of 28
+  Expected: greater than or equal to 26
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.BeatingStoneRuinsWearTheApprovedStoneMasonry (System.String id) [0x00179] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingStoneWallTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'LibraryShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT2'
+[LootTableRegistry] Unknown loot table 'CrateT2'
+[LootTableRegistry] Unknown loot table 'UrnT2'
+]]></output>
+              </test-case>
+              <test-case id="30271" name="BeatingStoneRuinsWearTheApprovedStoneMasonry(&quot;Overworld.0.17.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.BeatingStoneRuinsWearTheApprovedStoneMasonry(&quot;Overworld.0.17.0&quot;)" methodname="BeatingStoneRuinsWearTheApprovedStoneMasonry" classname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests" runstate="Runnable" seed="2060885465" result="Failed" start-time="2026-10-30 23:39:00Z" end-time="2026-10-30 23:39:00Z" duration="0.047386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.0.17.0: 0 of 30
+  Expected: greater than or equal to 28
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.BeatingStoneRuinsWearTheApprovedStoneMasonry (System.String id) [0x00179] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingStoneWallTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'WorkshopCacheT2'
+[LootTableRegistry] Unknown loot table 'UrnT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'UrnT3'
+]]></output>
+              </test-case>
+              <test-case id="30272" name="BeatingStoneRuinsWearTheApprovedStoneMasonry(&quot;Overworld.1.15.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.BeatingStoneRuinsWearTheApprovedStoneMasonry(&quot;Overworld.1.15.0&quot;)" methodname="BeatingStoneRuinsWearTheApprovedStoneMasonry" classname="CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests" runstate="Runnable" seed="422404873" result="Failed" start-time="2026-10-30 23:39:00Z" end-time="2026-10-30 23:39:00Z" duration="0.046678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.1.15.0: 0 of 23
+  Expected: greater than or equal to 21
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingStoneWallTests.BeatingStoneRuinsWearTheApprovedStoneMasonry (System.String id) [0x00179] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingStoneWallTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'TombVaultT2'
+[LootTableRegistry] Unknown loot table 'SealedVaultT3'
+[LootTableRegistry] Unknown loot table 'CrateT2'
+[LootTableRegistry] Unknown loot table 'UrnT2'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
