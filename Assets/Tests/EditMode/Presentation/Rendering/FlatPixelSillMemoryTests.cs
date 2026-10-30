@@ -179,7 +179,12 @@ namespace CavesOfOoo.Tests
             manager.CachedZones[Sill] = new Zone(Sill); Assert.False(world.TryResolvePresentation(zone, X, Y, out _));
             manager.CachedZones[Sill] = zone; Frame(View().GroundTile, Environment, 0, 3);
             manager.WorldMap.GetPOI(10, 10).Name = "Other village"; FallbackOnly();
-            zone = Attach("Overworld.7.8.0"); Add("Grass"); Remember(); FallbackOnly();
+            // Revised 2026-10-30: Gantry is an ordinary settlement whose own static memory keeps the
+            // shared Spread lawn frames 0-3 under the same tint; Sill's envelope is still never consulted.
+            zone = Attach("Overworld.7.8.0"); Add("Grass"); Remember();
+            Frame(View().GroundTile, Environment, 0, 3); Assert.AreEqual(MemoryTint, View().GroundColor);
+            Assert.True(FlatPixelSettlementGroundCatalog.IsSupportedZone(zone));
+            Assert.False(FlatPixelSillEnvelopeCatalog.IsSupportedZone(zone), "Gantry is never drawn by Sill's own adapter");
         }
 
         void Inject(Texture2D materials, bool legacy)

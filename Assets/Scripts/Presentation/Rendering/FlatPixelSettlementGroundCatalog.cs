@@ -104,18 +104,52 @@ namespace CavesOfOoo.Rendering
                 else if (CompetingGround(owner)) { floor = null; return false; }
             }
             if (floor == null) return false;
+            tile = MaterialFor(zone, floor, x, y);
+            if (tile != null) return true;
+            floor = null; return false;
+        }
+
+        Tile MaterialFor(Zone zone, Entity floor, int x, int y)
+        {
             var (wx, wy, _) = WorldMap.FromZoneID(zone.ZoneID);
             var biome = WorldLocationContext.For(zone).WorldMap.GetBiome(wx, wy);
             switch (floor.BlueprintName)
             {
-                case "Grass": tile = biome == BiomeType.Grovelands ? Pick(forest, VariantAt(x, y)) : Pick(lawn, VariantAt(x, y)); break;
-                case "StoneFloor": tile = Pick(floors, VariantAt(x, y)); break;
-                case "Floor": tile = Pick(yard, VariantAt(x, y)); break;
-                case "Sand": tile = Pick(sand, VariantAt(x, y)); break;
-                case "RoadStone": tile = biome == BiomeType.Beating ? Pick(beatingRoad, (x + y) & 1) : Pick(road, (x + y) & 1); break;
+                case "Grass": return biome == BiomeType.Grovelands ? Pick(forest, VariantAt(x, y)) : Pick(lawn, VariantAt(x, y));
+                case "StoneFloor": return Pick(floors, VariantAt(x, y));
+                case "Floor": return Pick(yard, VariantAt(x, y));
+                case "Sand": return Pick(sand, VariantAt(x, y));
+                case "RoadStone": return biome == BiomeType.Beating ? Pick(beatingRoad, (x + y) & 1) : Pick(road, (x + y) & 1);
+                default: return null;
             }
-            if (tile != null) return true;
-            floor = null; return false;
+        }
+
+        /// <summary>Static memory, as Sill keeps it: only the fallback-selected remembered owner, by its
+        /// static identity (plain ground owner or SandstoneWall), in the same frame it shows when seen.
+        /// No live tile state, wall condition or neighbour is read; water is live state and is never kept.
+        /// The caller applies the single memory dim and grants no reader or collision authority.</summary>
+        public bool TryResolveRemembered(Zone zone, int x, int y, Entity owner, out Tile groundTile, out Tile wallTile)
+        {
+            groundTile = null; wallTile = null;
+            if (disposed || selector == null || owner == null || !IsSupportedZone(zone)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y || !cell.Explored || cell.IsVisible
+                || !selector.TryResolve(zone, x, y, out var selected) || !selected.Remembered
+                || !ReferenceEquals(selected.Owner, owner)) return false;
+            if (IsGroundName(owner.BlueprintName))
+            {
+                if (!OrdinaryGround(owner)) return false;
+                groundTile = MaterialFor(zone, owner, x, y);
+            }
+            else if (owner.BlueprintName == "SandstoneWall")
+            {
+                // Static ownership only; the live Beating rule reads HP and temperature.
+                var r = Owned<RenderPart>(owner);
+                if (r == null || r.RenderString != "#" || !owner.HasTag("Wall") || !owner.HasPart<DestructiblePart>()
+                    || owner.GetPart<MaterialPart>()?.MaterialID != "Stone") return false;
+                wallTile = Pick(walls, (x + y) & 1);
+            }
+            return groundTile != null || wallTile != null;
         }
 
         /// <summary>Settlement pools reuse the Sill river's water views and pool rules: one real

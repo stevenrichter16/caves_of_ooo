@@ -249,6 +249,51 @@ namespace CavesOfOoo.Tests
             Assert.False(noTrade.NativeForeground, "a scribe without their trade is not the canonical one");
         }
 
+        // ════════════════ static memory ════════════════
+        // Actual play in Marrowstye (2026-10-30) showed explored settlement ground and walls falling back
+        // to dark glyph speckle once out of sight. Like Sill, remembered plain ground and sandstone walls
+        // keep their approved static material under the single memory dim, with no live state, no
+        // adjacency and no reader authority.
+
+        [TestCase("Overworld.13.7.0", "Floor", TownFloor, false)]          // Tine town floor
+        [TestCase("Overworld.5.9.0", "Grass", SillLawnAndFloors, false)]   // Posy lawn
+        [TestCase("Overworld.10.14.0", "RoadStone", OpeningGround, false)] // Tally road
+        [TestCase("Overworld.18.18.0", "SandstoneWall", Beating, true)]    // the Last Counter wall
+        public void RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(string id, string blueprint, string resource, bool wall)
+        {
+            var zone = Visit(id);
+            var live = Cells(zone, blueprint).First(c => wall ? c.view.NativeForeground : NativeGround(c.view, resource));
+            var liveRect = (wall ? live.view.ForegroundTile : live.view.GroundTile).sprite.rect;
+            zone.GetCell(live.x, live.y).IsVisible = false;
+            Assert.True(world.TryResolvePresentation(zone, live.x, live.y, out var memory));
+            Assert.True(memory.Remembered, "precondition: explored but out of sight");
+            var tile = wall ? memory.ForegroundTile : memory.GroundTile;
+            Assert.NotNull(tile, blueprint + " keeps its material in memory");
+            Assert.AreSame(Resources.Load<Texture2D>(resource), tile.sprite.texture);
+            Assert.AreEqual(liveRect, tile.sprite.rect, "the same static frame as when seen");
+            var tint = wall ? memory.ForegroundColor : memory.GroundColor;
+            Assert.Less(tint.r, .5f, "drawn under the memory dim");
+            if (!wall) Assert.IsNull(memory.ForegroundTile, "no glyph speckle over remembered ground");
+            bool portrait = world.TryGetPresentationSubjectSprite(zone, live.view.Owner, live.x, live.y, out var memoryPortrait, out _);
+            Assert.False(portrait && ReferenceEquals(memoryPortrait.texture, Resources.Load<Texture2D>(resource)),
+                "memory grants no native reader portrait");
+        }
+
+        [Test] public void UnexploredAndRememberedWaterKeepTheirFallback()
+        {
+            var zone = Visit("Overworld.13.7.0");
+            var floor = Cells(zone, "Floor").First(c => NativeGround(c.view, TownFloor));
+            var cell = zone.GetCell(floor.x, floor.y); cell.IsVisible = false; cell.Explored = false;
+            Assert.True(world.TryResolvePresentation(zone, floor.x, floor.y, out var unknown) == false || unknown.GroundTile == null
+                || !ReferenceEquals(unknown.GroundTile.sprite?.texture, Resources.Load<Texture2D>(TownFloor)), "never-seen ground stays undisclosed");
+            var water = Cells(zone, "WaterPuddle").First(c => c.view.LocalGround);
+            zone.GetCell(water.x, water.y).IsVisible = false;
+            Assert.True(world.TryResolvePresentation(zone, water.x, water.y, out var rememberedWater));
+            Assert.False(rememberedWater.GroundTile?.sprite != null
+                && ReferenceEquals(rememberedWater.GroundTile.sprite.texture, Resources.Load<Texture2D>(OpeningGround))
+                && rememberedWater.GroundKind == FlatPixelGreyboxGround.Water, "live water state is not kept in static memory");
+        }
+
         // ════════════════ counter-checks ════════════════
 
         [TestCase("Overworld.10.10.0")] [TestCase("Overworld.3.6.0")] [TestCase("Overworld.5.11.0")]
@@ -263,7 +308,10 @@ namespace CavesOfOoo.Tests
             var (wx, wy, _) = cells[0]; zone.TileState.WriteCoating(wx, wy, "water", 4);
             Assert.True(world.TryResolvePresentation(zone, wx, wy, out var wet)); Assert.False(NativeGround(wet, SillLawnAndFloors), "a wet cell does not read as dry lawn");
             var (hx, hy, _) = cells[1]; zone.GetCell(hx, hy).IsVisible = false;
-            Assert.True(world.TryResolvePresentation(zone, hx, hy, out var hidden)); Assert.False(NativeGround(hidden, SillLawnAndFloors), "remembered ground is not redrawn live");
+            Assert.True(world.TryResolvePresentation(zone, hx, hy, out var hidden));
+            // Revised with settlement memory (2026-10-30): remembered ground keeps its static material
+            // under the memory dim, but is never redrawn as live ground.
+            Assert.True(hidden.Remembered); Assert.Less(hidden.GroundColor.r, .5f, "remembered ground is not redrawn live");
             var (sx, sy, _) = cells[2]; Assert.True(zone.AddEntity(factory.CreateEntity("Sand"), sx, sy));
             Assert.True(world.TryResolvePresentation(zone, sx, sy, out var stacked)); Assert.False(NativeGround(stacked, SillLawnAndFloors), "two ground owners are ambiguous");
         }

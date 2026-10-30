@@ -203,6 +203,43 @@ The Warden is deliberately excluded. Claiming it in the shared catalog would rer
 
 **Evidence.** `settlement-keepers-{posy,tine}-offline.png`: before (top), after (bottom), enlarged crops. These are offline renders.
 
+## Live play verification and slice 6: settlement memory (2026-10-30)
+
+**Live route.** The immutable East-kitchen fixture `current-scene-earned-kitchen224401440` (Overworld.12.11.0, turn 3630, HP 40) was continued in the Editor's isolated launcher with a real C key. Real arrow keys then walked south across the zone edge into Marrowstye (12.12.0): east 4, south 6, west 2, south 19. In town: east 9, south 11 to the crossroads at 46,11; south 1, east 14, south 6 into the southeast house at 60,18. This needs no `>`, which computer-use cannot deliver. The same route was replayed after the fix and reached the same positions and turns.
+
+**Seen in actual play** (`settlement-live-01…03`):
+- the sandstone brick walls;
+- the original town floor, the opening road and the stone room floors;
+- the Scribe, Quartermaster and Innkeeper bodies, standing beside the shared Villager, Merchant, Elder and Children bodies.
+
+No `@` resident glyph remained in the house.
+
+**Live-found defect: remembered settlement ground.** Explored settlement ground and walls fell back to dark glyph speckle once out of sight (`settlement-live-04…`, top).
+
+**Fix.** `FlatPixelSettlementGroundCatalog.TryResolveRemembered` follows Sill's static-memory policy:
+- It applies only to the fallback-selected remembered owner, judged by static identity: a plain ground owner, or a SandstoneWall with its `#`, Wall tag, destructible part and Stone material.
+- It draws the same frame shown when the cell is seen, under the single 35% memory dim.
+- It reads no tile state, wall condition or neighbour. Water is live state, so it is never kept.
+- It grants no reader or collision authority.
+
+The greybox consults it only where Sill's own memory does not apply.
+
+**Tests.**
+- New: four memory cases (town floor, lawn, road and wall: same frame, dimmed, no glyph over ground, no native reader portrait) and one counter-check (unexplored ground stays undisclosed; remembered water is not kept).
+- Two deliberate revisions:
+  - The settlement "hidden" check now requires the memory dim instead of a fallback glyph.
+  - `FlatPixelSillMemoryTests.MemoryRequiresExploredCurrentExactSillGraph` used Gantry as a village with no memory. It now expects Gantry's own settlement memory (lawn frames 0–3, memory tint) and checks that Sill's adapter never admits Gantry. The renamed-Sill case still falls back.
+- The first GREEN run also showed that "no reader authority" was too strong: a remembered cell keeps the existing fallback portrait. The assertion now forbids only a native portrait from memory.
+- **RED:** 4 failures.
+- **GREEN:** all `FlatPixel*` classes 3,756 passed, 0 failed, 3 inconclusive (existing probes).
+
+**Live after.** On the same route, remembered floors, roads and walls stayed as dim native material instead of speckle (`settlement-live-04…`, bottom). A few remembered bushes still show glyphs; plant memory is not in this slice.
+
+**Honesty bounds.**
+- Verified by script: positions, turns and HP from the probe.
+- Verified visually: the four captures, at the Editor's native 1× 1280×800.
+- Not verified: F5 save and fresh Continue (no state-changing claim was made), packaged builds and Deck.
+
 ## Limits and next
 
 - **Live play.** Not yet captured. Reaching a settlement from a new game needs world-map travel and `>`. Computer-use key events reach Unity without a held Shift, so `>` was never received, and typing it started the run command. A Shift+Period injection made while Unity was frontmost was not received either. Next session: inject `>` with the Input System while Unity is frontmost and the run is idle, or earn a settlement checkpoint.

@@ -1510,6 +1510,24 @@ namespace CavesOfOoo.Rendering
                         kind = FlatPixelGreyboxKind.Wall; native = true;
                     }
                 }
+                // Ordinary settlements keep the same static memory policy (2026-10-30).
+                var settlementMemory = memory == null ? SettlementGroundArtFor(zone) : null;
+                if (settlementMemory != null && settlementMemory.TryResolveRemembered(zone, x, y, owner,
+                    out var settledGround, out var settledWall))
+                {
+                    var tint = new Color(.35f, .35f, .35f, 1f);
+                    if (settledGround != null)
+                    {
+                        groundTile = settledGround; groundColor = tint; foreground = null;
+                        kind = FlatPixelGreyboxKind.Ground; native = false; sillMemoryGround = true;
+                        ground = FlatPixelSettlementGroundCatalog.GroundKind(owner);
+                    }
+                    else
+                    {
+                        foreground = settledWall; foregroundColor = tint;
+                        kind = FlatPixelGreyboxKind.Wall; native = true;
+                    }
+                }
             }
             if (local && !fallback.Remembered && owner?.BlueprintName == "MarlbackPatchbearer")
                 ObserveSupply(zone, cell, owner, foreground, true);
