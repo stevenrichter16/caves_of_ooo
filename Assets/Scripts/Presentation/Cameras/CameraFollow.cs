@@ -378,7 +378,7 @@ namespace CavesOfOoo.Rendering
             {
                 float preferredScale = viewportPixels.height / (2f * _camera.orthographicSize * WorldPixelsPerUnit);
                 int scale = _selectedNativePixelScale > 0 ? _selectedNativePixelScale
-                    : Mathf.Max(1, Mathf.FloorToInt(preferredScale + 0.0001f));
+                    : Mathf.Max(Mathf.Max(1, Mathf.FloorToInt(preferredScale + 0.0001f)), CoverScale(viewportPixels));
                 pixelsPerWorldUnit = WorldPixelsPerUnit * scale;
                 _camera.orthographicSize = viewportPixels.height / (2f * pixelsPerWorldUnit);
             }
@@ -456,6 +456,24 @@ namespace CavesOfOoo.Rendering
             }
 
             transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        }
+
+        /// <summary>Automatic framing only: the whole-number native scale nearest the one at which
+        /// the zone covers the world viewport on both axes. Large Retina views (a 1810x1012 Game
+        /// view, a native 3024x1964 Mac player) otherwise showed the 1280x600 zone at 1x inside wide
+        /// black margins. Rounds, so a Deck-sized view (cover ratio about 1.1-1.3) keeps 1x. Capped at
+        /// the manual maximum of 4; an explicit player zoom is never overridden.</summary>
+        private int CoverScale(Rect viewportPixels)
+        {
+            if (WorldTilemap == null || WorldPixelsPerUnit <= 0) return 1;
+            Vector3 origin = WorldTilemap.CellToWorld(Vector3Int.zero);
+            float cellWidth = Mathf.Abs(WorldTilemap.CellToWorld(Vector3Int.right).x - origin.x);
+            float cellHeight = Mathf.Abs(WorldTilemap.CellToWorld(Vector3Int.up).y - origin.y);
+            float zoneWidth = Zone.Width * cellWidth * WorldPixelsPerUnit;
+            float zoneHeight = Zone.Height * cellHeight * WorldPixelsPerUnit;
+            if (zoneWidth <= 0f || zoneHeight <= 0f) return 1;
+            float cover = Mathf.Max(viewportPixels.width / zoneWidth, viewportPixels.height / zoneHeight);
+            return Mathf.Clamp(Mathf.RoundToInt(cover), 1, 4);
         }
 
         private float GetGameplayZoomSize()

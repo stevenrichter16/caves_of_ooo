@@ -131,6 +131,30 @@ namespace CavesOfOoo.Tests
             Zoom(false); ExpectScale(Mathf.Max(1, Mathf.Min(4, initial + 1) - 1)); Aligned();
         }
 
+        /// <summary>Mac (2026-10-29): a Retina Game view (2317x1191 screen, 1810x1012 world area after
+        /// the sidebar and hotbar) and a native 3024x1964 fullscreen player showed the 1280x600 zone
+        /// with wide black margins, because automatic framing floored the target scale to 1.
+        /// Automatic framing now uses the whole-number scale nearest the one at which the zone covers
+        /// the world area on both axes.</summary>
+        [TestCase(2317, 1191, 2)] [TestCase(3024, 1964, 3)]
+        public void AutomaticFramingFillsLargeMacViewsWithoutBlackMargins(int width, int height, int expected)
+        {
+            Create(width, height); ExpectScale(expected); Aligned();
+            var world = camera.pixelRect;
+            Assert.GreaterOrEqual(Zone.Width * 16f * expected, world.width, "no side margins");
+            Assert.GreaterOrEqual(Zone.Height * 24f * expected, world.height, "no top/bottom margins");
+            Assert.True(zone.MoveEntity(player, 0, 0)); follow.SnapToPlayer(); Aligned();
+            Assert.True(zone.MoveEntity(player, Zone.Width - 1, Zone.Height - 1)); follow.SnapToPlayer(); Aligned();
+        }
+        [TestCase(1280, 800)] [TestCase(1000, 680)]
+        public void DeckSizedViewsKeepOneNativePixelByDefault(int width, int height)
+        { Create(width, height); ExpectScale(1); Aligned(); }
+        [Test] public void AnExplicitZoomOutStillOverridesTheFilledMacDefault()
+        {
+            Create(2317, 1191); ExpectScale(2); Zoom(false); ExpectScale(1); Aligned();
+            follow.SnapToPlayer(); ExpectScale(1); Zoom(true); ExpectScale(2);
+        }
+
         [Test] public void FirstStepStartsFromTheActuallyDisplayedAutomaticScale()
         {
             Create(); follow.TargetVisibleTileRows = 10; follow.SnapToPlayer(); ExpectScale(2);
