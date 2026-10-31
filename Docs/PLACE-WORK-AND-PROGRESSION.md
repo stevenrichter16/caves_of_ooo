@@ -1,6 +1,6 @@
 # Place Work and Progression — design and plan
 
-Status: **design and plan, 2026-10-30. P1 (progression bench) and P2 (creature levels) implemented;**
+Status: **design and plan, 2026-10-30. P1 (progression bench), P2 (creature levels) and P3 (scaled and companion kill XP) implemented;**
 each later milestone records its own status as it lands. This is CoO-original design
 (one piece, tier-scaled XP, is a Qud-parity port and is labelled as such).
 
@@ -366,6 +366,38 @@ XP follows tier while some stat blocks lag their tier. Fix in P4/P5 (stats to
 band), noted rather than hidden. 🔵 Peaceful residents keep a small XP value if
 killed (L2, 9 XP), as before.
 
+## P3 — Scaled and companion kill XP (implemented 2026-10-30)
+
+**Ships (Qud parity, `XRL.World.Parts/Experience.cs`):**
+
+- `LevelingSystem.AwardKillXP` scales the award by the level-band gap between
+  the recipient and the victim (`ProgressionCurve.ScaleKillXP`): one band above
+  halves it, two a tenth, three or more nothing. A victim without a Level
+  counts as its tier's lowest level; a `NoXP` victim pays nothing.
+- **A companion's kill pays its leader.** `CombatSystem.HandleDeath` no longer
+  gates the award on the killer being the player; `AwardKillXP` walks the
+  killer's party-leader chain (at most 8 hops) to the player and scales at the
+  player's level (Qud `partyLeader.AwardXP`, Experience.cs:80). Before this,
+  companions' kills were simply lost XP.
+- Diag: `progression/XPAwarded` and `progression/XPWithheld` with raw,
+  awarded, both levels, `via` (kill/companion) and `reason`
+  (full/outclassed/noxp). The `progression` and `concern` channels are now on
+  by default (the P1 bench's records were silently dropped before).
+
+**Tests:** `KillXPAwardTests` 12 (9 RED → GREEN; 3 counter-checks already held:
+a stranger's kill and someone else's follower's kill pay nobody, a stronger
+victim pays exactly its value). One of my own counter-checks was wrong (L14 vs
+L1 is a two-band gap, a tenth) and was corrected to L15.
+
+**Also fixed (pre-existing, found on the way):** four
+`WorldMapObservabilityTests` failed on `HEAD`: `ContainerBuilder` installs the
+generating factory into `ContainerPlacementService.Factory`, and a world with
+no `Crate` blueprint logged an error per placement attempt. Placement now skips
+blueprints the factory lacks, as `LootStocker` already does.
+
+**Divergence from Qud:** Qud awards companions' leaders through events with
+`PassedUpFrom`; CoO walks the chain directly. Same outcome, no new event type.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -373,3 +405,5 @@ killed (L2, 9 XP), as before.
   audit and duel bench with baseline above. Per-creature level tests move to P2.
 - 2026-10-30 — P2: levels on 122 creatures, XP from level, NoXP tag, 999 clamp
   fixed, nine XP pins revised to relationships, stale traveller-hook anchor fixed.
+- 2026-10-30 — P3: band-scaled kill XP, companion kills pay the leader,
+  progression diag on by default; container placement skips unknown blueprints.

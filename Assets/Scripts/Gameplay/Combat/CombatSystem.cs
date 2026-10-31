@@ -1393,8 +1393,9 @@ namespace CavesOfOoo.Core
             string killerName = killer?.GetDisplayName() ?? "something";
             MessageLog.Add($"{targetName} is killed by {killerName}!");
 
-            // Award XP to the killer
-            if (killer != null && killer.HasTag("Player"))
+            // Award XP: the player as killer, or as leader of the killer's party
+            // (Qud parity — a companion's kill pays its leader). AwardKillXP decides.
+            if (killer != null)
                 LevelingSystem.AwardKillXP(killer, target, zone);
 
             // Drop equipment from body parts.

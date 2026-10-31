@@ -171,6 +171,9 @@ namespace CavesOfOoo.Core
                     && rng.Next(MimicOneIn) == 0;
                 if (isMimic) blueprint = "MimicChest";
 
+                // Like LootStocker: a factory without this container (a partial
+                // test or tool world) skips it instead of logging an error per try.
+                if (!Factory.Blueprints.ContainsKey(blueprint)) continue;
                 Entity container;
                 try { container = Factory.CreateEntity(blueprint); }
                 catch (System.Exception) { continue; }

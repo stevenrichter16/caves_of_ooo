@@ -18,24 +18,70 @@ namespace CavesOfOoo.Core
             return (int)Math.Floor(currentLevel * currentLevel * currentLevel * 15.0) + 100;
         }
 
+        /// <summary>Longest party-leader chain walked when passing an award up.</summary>
+        const int MaxLeaderHops = 8;
+
         /// <summary>
-        /// Award XP to the killer based on the victim's XPValue stat.
-        /// Called from CombatSystem.HandleDeath.
+        /// Award kill XP for <paramref name="victim"/>. Called from CombatSystem.HandleDeath
+        /// for every killer. Qud parity (XRL.World.Parts/Experience.cs): the award goes to
+        /// the player, either as the killer or as the party leader at the top of the
+        /// killer's leader chain (a companion's kill pays its leader), and is scaled by the
+        /// level-band gap between that recipient and the victim
+        /// (<see cref="ProgressionCurve.ScaleKillXP"/>). A victim tagged NoXP pays nothing;
+        /// a victim with no Level counts as its tier's lowest level. Emits
+        /// progression/XPAwarded or progression/XPWithheld (reason: noxp, outclassed).
         /// </summary>
         public static void AwardKillXP(Entity killer, Entity victim, Zone zone)
         {
             if (killer == null || victim == null) return;
-
-            int xpValue = victim.GetStatValue("XPValue", 0);
-            if (xpValue <= 0) return;
-
-            var xpStat = killer.GetStat("Experience");
+            Entity recipient = AwardRecipient(killer);
+            if (recipient == null) return;
+            var xpStat = recipient.GetStat("Experience");
             if (xpStat == null) return;
 
-            xpStat.BaseValue += xpValue;
-            MessageLog.Add($"You gain {xpValue} XP.");
+            int raw = victim.GetStatValue("XPValue", 0);
+            int victimLevel = victim.GetStatValue("Level", ProgressionCurve.CreatureLevelBand(ProgressionCurve.CreatureTier(victim)).Min);
+            int recipientLevel = recipient.GetStatValue("Level", 1);
+            string via = ReferenceEquals(recipient, killer) ? "kill" : "companion";
+            if (victim.HasTag("NoXP") || raw <= 0)
+            {
+                RecordXP("XPWithheld", recipient, victim, raw, 0, recipientLevel, victimLevel, via, "noxp");
+                return;
+            }
+            int awarded = ProgressionCurve.ScaleKillXP(raw, recipientLevel, victimLevel);
+            if (awarded <= 0)
+            {
+                RecordXP("XPWithheld", recipient, victim, raw, 0, recipientLevel, victimLevel, via, "outclassed");
+                return;
+            }
 
-            CheckLevelUp(killer, zone);
+            xpStat.BaseValue += awarded;
+            MessageLog.Add($"You gain {awarded} XP.");
+            RecordXP("XPAwarded", recipient, victim, raw, awarded, recipientLevel, victimLevel, via,
+                awarded < raw ? "outclassed" : "full");
+
+            CheckLevelUp(recipient, zone);
+        }
+
+        /// <summary>The player who earns a kill: the killer itself, or the player at the
+        /// top of its party-leader chain. Null when no player is involved.</summary>
+        static Entity AwardRecipient(Entity killer)
+        {
+            Entity current = killer;
+            for (int hop = 0; hop <= MaxLeaderHops && current != null; hop++)
+            {
+                if (current.HasTag("Player")) return current;
+                current = current.GetPart<BrainPart>()?.PartyLeader;
+            }
+            return null;
+        }
+
+        static void RecordXP(string kind, Entity recipient, Entity victim, int raw, int awarded,
+            int recipientLevel, int victimLevel, string via, string reason)
+        {
+            if (!CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("progression")) return;
+            CavesOfOoo.Diagnostics.Diag.Record(category: "progression", kind: kind, actor: recipient, target: victim,
+                payload: new { raw, awarded, recipientLevel, victimLevel, via, reason });
         }
 
         /// <summary>
