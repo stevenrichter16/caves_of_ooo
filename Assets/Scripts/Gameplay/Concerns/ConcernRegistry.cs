@@ -29,6 +29,8 @@ namespace CavesOfOoo.Concerns
         public static string QuestIdFor(string concernId) => QuestPrefix + concernId;
         public static string ApproachFact(string concernId) => QuestPrefix + concernId + ".approach";
         public static string ReportedFact(string concernId) => QuestPrefix + concernId + ".reported";
+        /// <summary>Set when a Supply hand-over or a Carry delivery is made.</summary>
+        public static string DoneFact(string concernId, string approachId) => QuestPrefix + concernId + "." + approachId + ".done";
         public static bool IsConcernQuest(string questId) => questId != null && questId.StartsWith(QuestPrefix, StringComparison.Ordinal);
 
         public static IReadOnlyList<ConcernData> All => ordered;
@@ -72,7 +74,7 @@ namespace CavesOfOoo.Concerns
                 work.Objectives.Add(new QuestObjectiveData
                 {
                     ID = a.Id, Text = a.Objective, Optional = true,
-                    Triggers = new List<ConversationParam>(a.Triggers ?? new List<ConversationParam>()),
+                    Triggers = TriggersFor(c, a),
                     OnEnter = onEnter,
                 });
             }
@@ -83,6 +85,19 @@ namespace CavesOfOoo.Concerns
                 ID = QuestIdFor(c.Id), OneShot = false, Tracked = true,
                 Quest = new QuestData { Name = c.Title, Accomplishment = c.Thanks, Stages = new List<QuestStageData> { work, report } },
             };
+        }
+
+        /// <summary>Authored triggers, or for Supply, Carry and Read with none authored the
+        /// condition their own hand-over, delivery or reading sets.</summary>
+        static List<ConversationParam> TriggersFor(ConcernData c, ConcernApproachData a)
+        {
+            var list = new List<ConversationParam>(a.Triggers ?? new List<ConversationParam>());
+            if (list.Count > 0) return list;
+            if (a.HasSupply || a.HasCarry)
+                list.Add(new ConversationParam { Key = "IfFact", Value = DoneFact(c.Id, a.Id) + ":>=:1" });
+            else if (a.HasRead)
+                list.Add(new ConversationParam { Key = "IfFact", Value = ReadableDocumentPart.ReadFact(a.Read.Document) + ":>=:1" });
+            return list;
         }
 
         /// <summary>Every problem that would make a concern unplayable, one line each.</summary>
@@ -106,7 +121,9 @@ namespace CavesOfOoo.Concerns
                     if (a == null || string.IsNullOrEmpty(a.Id) || !ids.Add(a.Id)) { problems.Add(aw + ": missing or duplicate approach id"); continue; }
                     if (Array.IndexOf(ConcernKinds.All, a.Kind) < 0) problems.Add(aw + ": unknown kind '" + a.Kind + "'");
                     if (string.IsNullOrWhiteSpace(a.Label) || string.IsNullOrWhiteSpace(a.Objective)) problems.Add(aw + ": needs a label and an objective");
-                    if (a.Triggers == null || a.Triggers.Count == 0) problems.Add(aw + ": no trigger can ever finish it");
+                    if ((a.Triggers == null || a.Triggers.Count == 0) && !a.HasSupply && !a.HasCarry && !a.HasRead)
+                        problems.Add(aw + ": no trigger can ever finish it");
+                    LintKind(a, aw, factory, problems);
                     CheckPredicates(a.Triggers, aw, problems);
                     CheckActions(a.Outcome, aw, problems);
                     CheckActions(a.Offer, aw + "/offer", problems);
@@ -121,6 +138,32 @@ namespace CavesOfOoo.Concerns
                 foreach (var next in c.Next)
                     if (Get(next) == null) problems.Add(who + ": next concern '" + next + "' does not exist");
             return problems;
+        }
+
+        static void LintKind(ConcernApproachData a, string aw, EntityFactory factory, List<string> problems)
+        {
+            bool Known(string bp) => factory == null || (!string.IsNullOrEmpty(bp) && factory.Blueprints.ContainsKey(bp));
+            if (a.Kind == "Supply" && !a.HasSupply && (a.Triggers == null || a.Triggers.Count == 0)) problems.Add(aw + ": a Supply approach names no supply blueprint");
+            if (a.HasSupply)
+            {
+                if (!Known(a.Supply.Blueprint)) problems.Add(aw + ": unknown supply blueprint '" + a.Supply.Blueprint + "'");
+                if (a.Supply.Count < 1) problems.Add(aw + ": supply count " + a.Supply.Count);
+            }
+            if (a.HasCarry)
+            {
+                if (!Known(a.Carry.Item)) problems.Add(aw + ": unknown carry item '" + a.Carry.Item + "'");
+                if (!PlaceExists(a.Carry.Place)) problems.Add(aw + ": unknown carry place '" + a.Carry.Place + "'");
+                if (!Known(a.Carry.Recipient)) problems.Add(aw + ": unknown recipient '" + a.Carry.Recipient + "'");
+                if (string.IsNullOrWhiteSpace(a.Carry.ItemName) || string.IsNullOrWhiteSpace(a.Carry.Handover) || string.IsNullOrWhiteSpace(a.Carry.Reply))
+                    problems.Add(aw + ": a carry needs the item's name, the handover line and the reply");
+            }
+            if (a.HasRead)
+            {
+                var doc = ReadableDocumentCatalog.Get(a.Read.Document);
+                if (doc == null) problems.Add(aw + ": unknown document '" + a.Read.Document + "'");
+                else if (!Known(doc.Blueprint)) problems.Add(aw + ": the document's blueprint '" + doc.Blueprint + "' does not exist");
+                if (!PlaceExists(a.Read.Place)) problems.Add(aw + ": unknown read place '" + a.Read.Place + "'");
+            }
         }
 
         static bool PlaceExists(string name)

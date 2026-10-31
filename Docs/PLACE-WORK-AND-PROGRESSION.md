@@ -591,6 +591,46 @@ test forces it. ⚪ TDD order: the C1 data model and registry were written befor
 their tests; the tests were then run RED by compile error and by the three
 findings above.
 
+## C3a — Supply, Carry and Read approaches (implemented 2026-10-31)
+
+**Ships:**
+
+- **Supply** (`Supply {Blueprint, Count}`): the owner's status node shows
+  "(you carry k of N)" and, once the player carries enough, "[Hand over N …]".
+  The hand-over takes exactly N carried units or nothing (stacks count each unit;
+  equipped and floor items do not), then sets `concern.<id>.<approach>.done`.
+  General `IfHaveItemCount "Blueprint:N"` and `TakeItemCount "Blueprint:N"` are
+  registered for any dialogue.
+- **Carry** (`Carry {Item, ItemName, Place, Recipient, Handover, Reply}`): the
+  owner hands over one named sealed item (`SealedLetter` / `SealedParcel`, no
+  trade value, `NoTrade`, `QuestItem`) tagged `ConcernCargo = "concern|approach"`,
+  and writes another if it is lost. Only the named recipient blueprint standing
+  in the named place offers the handover line; delivering takes the item, sets
+  the done fact and speaks the reply. Another concern's cargo never counts.
+- **Read** (`Read {Document, Place}`): while the concern is worked, the document's
+  catalog blueprint stands in the place (`ConcernWorld.OnZoneEntered`, called on
+  zone transition beside the travellers and at once on accepting in that place),
+  with a stable id so re-entry and save/load keep one copy. The player's reading
+  sets `document_read.<id>` (`ReadableDocumentPart.ReadFact`); a non-player's
+  reading sets nothing.
+- These kinds need no authored trigger: the compiler adds the done or read fact.
+  Lint checks every supply blueprint and count, carry item, place, recipient and
+  lines, and that each document and its blueprint exist.
+- Diag `concern/SupplyHanded|CargoIssued|CargoDelivered|DocumentPlaced|DocumentNotPlaced`.
+
+**Tests:** `ConcernApproachKindsTests` 22 (compile, lint, the three kinds through
+real conversations, document placement and reading, and adversarial: double
+hand-over, wrong recipients, settled-another-way, non-player reading, malformed
+counts). Regression: concern, readable, inventory and trade classes 1,226/1,227
+(MCP-socket log); content and coverage pins show only failures already present at
+HEAD.
+
+**Self-review:** 🟡 `SealedLetter` and `SealedParcel` have glyphs only; their
+native 16×24 art joins the deferred small-item packet. 🔵 Read documents are
+placed on the first open, unreserved cell ringing out from the zone centre, not
+at an authored spot; places with a natural wall or board for them get authored
+anchors in the content waves.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -610,3 +650,5 @@ findings above.
   predicates, Concord contract) and conversation (offer, spoken refusal, status,
   report, Elder); Sill's well, oven and lantern; 40-case adversarial sweep with
   three findings fixed.
+- 2026-10-31 — C3a: Supply, Carry and Read approach kinds; counted item
+  predicate/action; sealed cargo; placed documents; read facts.

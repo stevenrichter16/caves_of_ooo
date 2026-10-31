@@ -260,6 +260,10 @@ namespace CavesOfOoo.Core
             // IfPlaceSiteMethod "Sill:MainWell:Contracted" = repaired that way.
             Register("IfPlaceSiteStage", (speaker, listener, arg) => CavesOfOoo.Concerns.PlaceSites.StageAtLeast(arg));
             Register("IfPlaceSiteMethod", (speaker, listener, arg) => CavesOfOoo.Concerns.PlaceSites.ResolvedBy(arg));
+            // C3a: "Blueprint:Count" — at least that many carried units (stacks count each unit).
+            Register("IfHaveItemCount", (speaker, listener, arg) =>
+                CavesOfOoo.Concerns.ConcernItems.TryParseCount(arg, out string blueprint, out int count)
+                && CavesOfOoo.Concerns.ConcernItems.CountCarried(listener, blueprint) >= count);
 
             // ── House Drama predicates ────────────────────────────────────────
 

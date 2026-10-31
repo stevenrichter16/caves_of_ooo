@@ -25264,6 +25264,34 @@
       ]
     },
     {
+      "Name": "SealedLetter",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sealed letter" }, { "Key": "RenderString", "Value": "=" },
+          { "Key": "ColorString", "Value": "&Y" }, { "Key": "RenderLayer", "Value": "5" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "0" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "0" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Folded twice and sealed with a thumb of wax. It is addressed in a careful hand, and it is not yours to open." } ] }
+      ],
+      "Tags": [ { "Key": "Tier", "Value": "1" }, { "Key": "NoTrade", "Value": "" }, { "Key": "QuestItem", "Value": "" } ]
+    },
+    {
+      "Name": "SealedParcel",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sealed parcel" }, { "Key": "RenderString", "Value": "&" },
+          { "Key": "ColorString", "Value": "&w" }, { "Key": "RenderLayer", "Value": "5" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "0" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Wrapped in oiled cloth and tied off with a knot nobody would tie twice. Someone is waiting for it." } ] }
+      ],
+      "Tags": [ { "Key": "Tier", "Value": "1" }, { "Key": "NoTrade", "Value": "" }, { "Key": "QuestItem", "Value": "" } ]
+    },
+    {
       "Name": "SilverSand",
       "Inherits": "Item",
       "Parts": [

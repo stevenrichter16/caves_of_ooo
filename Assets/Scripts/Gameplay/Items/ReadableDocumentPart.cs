@@ -11,6 +11,10 @@ namespace CavesOfOoo.Core
         public override string Name => "ReadableDocument";
         public string DocumentId = "";
 
+        /// <summary>The fact a successful reading sets (1), so quests can ask whether a
+        /// document has been read (concern Read approaches).</summary>
+        public static string ReadFact(string documentId) => "document_read." + documentId;
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")
@@ -27,7 +31,7 @@ namespace CavesOfOoo.Core
         /// <summary>Read through an actual carried/equipped reference or a nearby
         /// entity in the actor's zone. Returns false with a visible refusal when
         /// stale/inaccessible. Success queues complete text; pagination is UI-owned.
-        /// Does not consume items, turns, health, RNG, quests or knowledge flags.</summary>
+        /// Does not consume items, turns, health or RNG; the player's reading sets ReadFact.</summary>
         public bool TryRead(Entity actor, Zone zone)=>TryRead(actor,zone,null);
         private bool TryRead(Entity actor,Zone zone,InventoryTransaction transaction)
         {
@@ -39,6 +43,7 @@ namespace CavesOfOoo.Core
             var reading=new DocumentReadAudio(actor,zone,this);
             if(transaction==null)reading.Arm();else transaction.AfterCommit(reading.Arm);
             MessageLog.AddAnnouncement(document.Title + "\n\n" + document.Text,reading);
+            if (actor != null && actor.HasTag("Player")) NarrativeStatePart.Current?.SetFact(ReadFact(DocumentId), 1);
             Diag.Record("event", "DocumentRead", actor: actor, target: ParentEntity,
                 payload: new { documentId = DocumentId, source = document.Source });
             return true;

@@ -298,6 +298,17 @@ namespace CavesOfOoo.Core
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.RefuseAction, CavesOfOoo.Concerns.ConcernConversation.Refuse);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.ReportAction, CavesOfOoo.Concerns.ConcernConversation.Report);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.OfferAction, CavesOfOoo.Concerns.ConcernConversation.TakeOffer);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.SupplyAction, CavesOfOoo.Concerns.ConcernConversation.HandSupply);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.IssueCargoAction, CavesOfOoo.Concerns.ConcernConversation.IssueCargo);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.DeliverCargoAction, CavesOfOoo.Concerns.ConcernConversation.DeliverCargo);
+
+            // C3a: "Blueprint:Count" — take exactly that many carried units, or nothing.
+            RegisterRequired("TakeItemCount", (speaker, listener, arg) =>
+            {
+                if (listener == null) return "missing_listener";
+                if (!CavesOfOoo.Concerns.ConcernItems.TryParseCount(arg, out string blueprint, out int count)) return "invalid_argument";
+                return CavesOfOoo.Concerns.ConcernItems.TakeCarried(listener, blueprint, count) ? null : "short";
+            });
 
             // Copy the first grimoire in the player's inventory, producing a GrimoireCopy
             RegisterRequired("CopyGrimoire", (speaker, listener, arg) =>

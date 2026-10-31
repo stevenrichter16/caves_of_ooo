@@ -18,7 +18,8 @@ namespace CavesOfOoo.Concerns
     ///
     /// Every no is spoken: refusing an offer undertakes the act and ends it Refused at
     /// once, so the closure ledger records an enacted refusal (Lore/11_SecondSpine.md C4).
-    /// Diag: concern/Offered, Accepted, Refused, Reported, OfferTaken.
+    /// Diag: concern/Offered, Accepted, Refused, Reported, OfferTaken, SupplyHanded,
+    /// CargoIssued, CargoDelivered.
     /// </summary>
     public static class ConcernConversation
     {
@@ -27,6 +28,9 @@ namespace CavesOfOoo.Concerns
         public const string RefuseAction = "RefuseConcern";
         public const string ReportAction = "ReportConcern";
         public const string OfferAction = "TakeConcernOffer";
+        public const string SupplyAction = "HandConcernSupply";
+        public const string IssueCargoAction = "IssueConcernCargo";
+        public const string DeliverCargoAction = "DeliverConcernCargo";
         public const string NodePrefix = "concern:";
         public const string ElderRole = "Elder";
 
@@ -81,7 +85,29 @@ namespace CavesOfOoo.Concerns
                 if (text != null) choices.Add(Open(text, (state == State.Reportable ? "report|" : state == State.Working ? "status|" : "pitch|") + c.Id));
             }
             if (anyOpen && speaker.BlueprintName == ElderRole) choices.Add(Open("[What troubles this place?]", "list|" + place));
+            AppendDeliveries(choices, speaker, listener, place);
         }
+
+        /// <summary>The named recipient, in the named place, takes sealed cargo the player
+        /// actually carries for a concern that is still being worked.</summary>
+        static void AppendDeliveries(List<ChoiceData> choices, Entity speaker, Entity listener, string place)
+        {
+            foreach (var c in ConcernRegistry.All)
+            {
+                if (StateOf(c, speaker, listener) != State.Working) continue;
+                foreach (var a in c.Approaches)
+                {
+                    if (!a.HasCarry || a.Carry.Place != place || a.Carry.Recipient != speaker.BlueprintName) continue;
+                    if (IsDone(c, a)) continue;
+                    if (ConcernItems.FindCargo(listener, a.Carry.Item, ConcernItems.CargoKey(c.Id, a.Id)) == null) continue;
+                    choices.Add(new ChoiceData { Text = "[" + a.Carry.Handover + "]", Target = "",
+                        Actions = new List<ConversationParam> { new ConversationParam { Key = DeliverCargoAction, Value = c.Id + "|" + a.Id } } });
+                }
+            }
+        }
+
+        static bool IsDone(ConcernData c, ConcernApproachData a)
+            => (NarrativeStatePart.Current?.GetFact(ConcernRegistry.DoneFact(c.Id, a.Id)) ?? 0) > 0;
 
         static ChoiceData Open(string text, string key) => new ChoiceData
         { Text = text, Target = "", Actions = new List<ConversationParam> { new ConversationParam { Key = OpenAction, Value = key } } };
@@ -133,8 +159,22 @@ namespace CavesOfOoo.Concerns
             var text = new StringBuilder("\"Any word on it?\"\n");
             var quest = StoryletPart.Current?.GetQuestState(ConcernRegistry.QuestIdFor(c.Id));
             foreach (var a in c.Approaches)
+            {
                 text.Append("\n").Append(quest != null && quest.FinishedObjectives.Contains(a.Id) ? "[x] " : "[ ] ").Append(a.Objective);
+                if (a.HasSupply && !IsDone(c, a))
+                    text.Append(" (you carry ").Append(ConcernItems.CountCarried(listener, a.Supply.Blueprint)).Append(" of ").Append(a.Supply.Count).Append(")");
+            }
             var n = Node("status|" + c.Id, text.ToString());
+            foreach (var a in c.Approaches)
+            {
+                if (IsDone(c, a)) continue;
+                if (a.HasSupply && ConcernItems.CountCarried(listener, a.Supply.Blueprint) >= a.Supply.Count)
+                    n.Choices.Add(new ChoiceData { Text = "[Hand over " + a.Supply.Count + " " + UnitName(listener, a.Supply.Blueprint) + ".]", Target = "",
+                        Actions = new List<ConversationParam> { new ConversationParam { Key = SupplyAction, Value = c.Id + "|" + a.Id } } });
+                if (a.HasCarry && ConcernItems.FindCargo(listener, a.Carry.Item, ConcernItems.CargoKey(c.Id, a.Id)) == null)
+                    n.Choices.Add(new ChoiceData { Text = "[I'll carry " + a.Carry.ItemName + " to the " + SplitWords(a.Carry.Recipient).ToLowerInvariant() + " at " + a.Carry.Place + ".]", Target = "",
+                        Actions = new List<ConversationParam> { new ConversationParam { Key = IssueCargoAction, Value = c.Id + "|" + a.Id } } });
+            }
             foreach (var a in c.Approaches)
                 if (a.Offer != null && a.Offer.Count > 0 && !string.IsNullOrEmpty(a.OfferText))
                     n.Choices.Add(new ChoiceData { Text = "[" + a.OfferText + "]", Target = "Start",
@@ -191,6 +231,8 @@ namespace CavesOfOoo.Concerns
             sp.StartQuest(new QuestState { QuestId = q });
             sp.SetGiver(q, speaker, speaker?.SpatialZone);
             Record("Accepted", speaker, c, null);
+            // A document to read in the place the player is standing in appears now, not on re-entry.
+            ConcernWorld.OnZoneEntered(listener, listener?.SpatialZone);
             return null;
         }
 
@@ -243,6 +285,78 @@ namespace CavesOfOoo.Concerns
             if (a == null || a.Offer == null || a.Offer.Count == 0) return "no_offer";
             if (!ConversationActions.TryExecuteAll(a.Offer, speaker, listener)) return "offer_refused";
             Record("OfferTaken", speaker, c, a.Id);
+            return null;
+        }
+
+        static string UnitName(Entity actor, string blueprint)
+        {
+            foreach (var item in actor.GetPart<InventoryPart>().Objects)
+                if (item != null && item.BlueprintName == blueprint) return InventoryPart.GetUnitDisplayName(item);
+            return SplitWords(blueprint).ToLowerInvariant();
+        }
+
+        static (ConcernData c, ConcernApproachData a) Resolve(string arg)
+        {
+            var parts = arg?.Split('|');
+            var c = parts != null && parts.Length == 2 ? ConcernRegistry.Get(parts[0]) : null;
+            return (c, c?.Approaches.Find(x => x.Id == parts[1]));
+        }
+
+        /// <summary>HandConcernSupply "concern|approach": all of the count or nothing.</summary>
+        public static string HandSupply(Entity speaker, Entity listener, string arg)
+        {
+            var (c, a) = Resolve(arg);
+            if (c == null) return "unknown_concern";
+            if (a == null || !a.HasSupply) return "no_supply";
+            if (StateOf(c, speaker, listener) != State.Working) return "not_working";
+            if (IsDone(c, a)) return "already_done";
+            if (!ConcernItems.TakeCarried(listener, a.Supply.Blueprint, a.Supply.Count)) return "short";
+            NarrativeStatePart.Current?.SetFact(ConcernRegistry.DoneFact(c.Id, a.Id), 1);
+            MessageLog.Add("You hand over " + a.Supply.Count + " " + SplitWords(a.Supply.Blueprint).ToLowerInvariant() + ".");
+            Record("SupplyHanded", speaker, c, a.Id);
+            ConversationManager.CurrentNode = StatusNode(c, speaker, listener);
+            return null;
+        }
+
+        /// <summary>IssueConcernCargo "concern|approach": the owner hands over the sealed item,
+        /// named and tagged for this concern; again only if the last one is lost.</summary>
+        public static string IssueCargo(Entity speaker, Entity listener, string arg)
+        {
+            var (c, a) = Resolve(arg);
+            if (c == null) return "unknown_concern";
+            if (a == null || !a.HasCarry) return "no_cargo";
+            if (StateOf(c, speaker, listener) != State.Working) return "not_working";
+            if (IsDone(c, a)) return "already_done";
+            string key = ConcernItems.CargoKey(c.Id, a.Id);
+            if (ConcernItems.FindCargo(listener, a.Carry.Item, key) != null) return "already_carried";
+            var item = ConversationActions.Factory?.CreateEntity(a.Carry.Item);
+            if (item == null) return "missing_factory_or_blueprint";
+            item.Properties[ConcernItems.CargoProperty] = key;
+            var render = item.GetPart<RenderPart>(); if (render != null) render.DisplayName = a.Carry.ItemName;
+            var inventory = listener?.GetPart<InventoryPart>();
+            if (inventory == null || !inventory.AddObject(item)) return "cannot_carry";
+            MessageLog.Add("You take " + a.Carry.ItemName + ".");
+            Record("CargoIssued", speaker, c, a.Id);
+            ConversationManager.CurrentNode = StatusNode(c, speaker, listener);
+            return null;
+        }
+
+        /// <summary>DeliverConcernCargo "concern|approach": the recipient takes it and answers.</summary>
+        public static string DeliverCargo(Entity speaker, Entity listener, string arg)
+        {
+            var (c, a) = Resolve(arg);
+            if (c == null) return "unknown_concern";
+            if (a == null || !a.HasCarry) return "no_cargo";
+            if (StateOf(c, speaker, listener) != State.Working) return "not_working";
+            if (speaker?.BlueprintName != a.Carry.Recipient || PlaceOf(speaker) != a.Carry.Place) return "wrong_recipient";
+            var item = ConcernItems.FindCargo(listener, a.Carry.Item, ConcernItems.CargoKey(c.Id, a.Id));
+            if (item == null) return "not_carried";
+            if (!listener.GetPart<InventoryPart>().RemoveObject(item)) return "cannot_hand_over";
+            NarrativeStatePart.Current?.SetFact(ConcernRegistry.DoneFact(c.Id, a.Id), 1);
+            var n = Node("delivered|" + c.Id + "|" + a.Id, "\"" + a.Carry.Reply + "\"");
+            n.Choices.Add(Back());
+            ConversationManager.CurrentNode = n;
+            Record("CargoDelivered", speaker, c, a.Id);
             return null;
         }
 

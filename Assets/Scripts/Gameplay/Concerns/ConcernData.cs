@@ -64,6 +64,49 @@ namespace CavesOfOoo.Concerns
         /// concern is open (e.g. ContractPlaceRepair). Offered as <see cref="OfferText"/>.</summary>
         public List<ConversationParam> Offer = new List<ConversationParam>();
         public string OfferText;
+        /// <summary>Kind Supply: a counted hand-over to the owner.</summary>
+        public ConcernSupplyData Supply = new ConcernSupplyData();
+        /// <summary>Kind Carry: a sealed item from the owner to a resident of another place.</summary>
+        public ConcernCarryData Carry = new ConcernCarryData();
+        /// <summary>Kind Read: a document to read where it stands.</summary>
+        public ConcernReadData Read = new ConcernReadData();
+
+        // JsonUtility always builds nested serializable objects, so "present" means filled in.
+        public bool HasSupply => Supply != null && !string.IsNullOrEmpty(Supply.Blueprint);
+        public bool HasCarry => Carry != null && !string.IsNullOrEmpty(Carry.Item);
+        public bool HasRead => Read != null && !string.IsNullOrEmpty(Read.Document);
+    }
+
+    [Serializable]
+    public class ConcernSupplyData
+    {
+        /// <summary>Blueprint of the real item asked for; carried units of it count.</summary>
+        public string Blueprint;
+        public int Count = 1;
+    }
+
+    [Serializable]
+    public class ConcernCarryData
+    {
+        /// <summary>Blueprint of the sealed item the owner hands over (e.g. SealedLetter).</summary>
+        public string Item;
+        /// <summary>The name the handed-over item carries ("the well keeper's letter").</summary>
+        public string ItemName;
+        /// <summary>The place and resident blueprint that receive it.</summary>
+        public string Place;
+        public string Recipient;
+        /// <summary>The player's line on handing it over, and the recipient's answer.</summary>
+        public string Handover;
+        public string Reply;
+    }
+
+    [Serializable]
+    public class ConcernReadData
+    {
+        /// <summary>A ReadableDocumentCatalog id; its blueprint is what stands in the place.</summary>
+        public string Document;
+        /// <summary>The place where it stands while the concern is open.</summary>
+        public string Place;
     }
 
     [Serializable]
