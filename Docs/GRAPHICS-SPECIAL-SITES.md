@@ -212,6 +212,20 @@ It accepts only canonical owners: correct glyph and colour, no visual override, 
 
 **Evidence.** `camp-hearth-warden-8-2-offline.png`: before (left), after (right).
 
+## Census after these slices (2026-10-30)
+
+The same sampled surface census (every other zone, liquids loaded) rose from 188,620 to 197,113 of 200,000 native cells: 94.3% to 98.6%. File: `world-surface-census-2026-10-30-after.txt`.
+
+The largest remaining owners:
+- Spread `CropRow` (crops are deferred);
+- Spread lair grass;
+- Spread reeds;
+- Sodden-sinkhole trees;
+- Grovelands-sinkhole inner `StoneFloor`;
+- some conjured flowers that do not qualify;
+- Spread and Stump `Wall`;
+- Beating ash beds, copper pipes and woven baskets.
+
 ## Remaining
 
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).
