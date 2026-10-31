@@ -212,7 +212,7 @@ namespace CavesOfOoo.Tests
             {
                 for (int i = 0; i < 3; i++) Assert.True(Supported(zone));
                 if (fault == "biome") tiles[16, 13] = BiomeType.Sodden;
-                if (fault == "poi") map.SetPOI(16, 13, new PointOfInterest(POIType.MerchantCamp, "scope counter"));
+                if (fault == "poi") map.SetPOI(16, 13, new PointOfInterest(POIType.Lair, "scope counter")); // camps are sites since 2026-10-30; a lair still revokes
                 if (fault == "tile-shape") map.Tiles = new BiomeType[1, 1];
                 if (fault == "poi-shape") map.POIs = new PointOfInterest[1, 1];
                 Assert.False(Supported(zone)); Fallback();

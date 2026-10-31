@@ -3,12 +3,12 @@ using CavesOfOoo.Core;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Ordinary special-site surfaces (2026-10-30): the current cached surface graph of a sinkhole in
-    /// the given biome. Every biome adapter admits only point-of-interest-free wilderness, so these
+    /// Ordinary special-site surfaces (2026-10-30): the current cached surface graph of a sinkhole or a
+    /// merchant camp in the given biome. Every biome adapter admits only point-of-interest-free wilderness, so these
     /// sites drew almost entirely glyph ground. Authored Places (settlements and Morrowfast), lairs,
     /// unique sites (the Root, the Felling-Site), caves below and saved lair columns are never sites.
-    /// Merchant camps are not sites yet: existing authority pins use a camp POI as the mutation that
-    /// revokes wilderness art, so admitting camps is a separate, deliberate decision.
+    /// Merchant camps were admitted by user decision (2026-10-30); authority pins that used a camp as
+    /// their revoking POI now use a lair, which still revokes.
     /// Metadata only: no generation, adoption or state is touched.
     /// </summary>
     public static class FlatPixelSiteAdmission
@@ -26,7 +26,7 @@ namespace CavesOfOoo.Rendering
                 || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
                 || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
             var poi = map.GetPOI(x, y);
-            return poi != null && poi.Type == POIType.Sinkhole
+            return poi != null && (poi.Type == POIType.Sinkhole || poi.Type == POIType.MerchantCamp)
                 && map.GetBiome(x, y) == biome && !LairStacks.HasSavedColumn(manager, zone.ZoneID);
         }
     }

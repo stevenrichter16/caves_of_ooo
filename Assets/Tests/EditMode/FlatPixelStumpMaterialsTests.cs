@@ -210,7 +210,7 @@ namespace CavesOfOoo.Tests
             try
             {
                 if (fault == "biome") tiles[2,5] = BiomeType.Spread;
-                if (fault == "poi") pois[2,5] = new PointOfInterest(POIType.MerchantCamp, "current site");
+                if (fault == "poi") pois[2,5] = new PointOfInterest(POIType.Lair, "current site"); // camps are sites since 2026-10-30; a lair still revokes
                 if (fault == "map-shape") map.Tiles = new BiomeType[1,1];
                 if (fault == "poi-shape") map.POIs = new PointOfInterest[1,1];
                 Assert.False(Supported(zone)); Fallback(); Assert.False(Subject(owner));

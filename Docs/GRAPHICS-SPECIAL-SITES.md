@@ -20,7 +20,7 @@ Each biome adapter (Spread, Sodden, Beating, Grovelands, Stump) gains an interna
 
 One supporting fix: Sodden's fen-ground variant read the zone's map coordinates from the wilderness table. It now uses `WorldMap.FromZoneID`, which gives identical values and also works for sites.
 
-**Merchant camps are deliberately excluded.** Seven existing authority pins use a camp POI as the map mutation that must revoke wilderness art. Admitting camps would mean revising those pins, which needs its own decision.
+**Merchant camps.** These were first excluded because seven authority pins used a camp POI as their sample revoking mutation. The user then asked for camps to be included (2026-10-30); see the camps section below.
 
 | Sinkhole | Biome | Native before | Native after |
 |---|---|---|---|
@@ -115,8 +115,33 @@ Such a patch draws its sprite over the real grass. Any other live state, such as
 
 **Still visible in the ruin.** A camp resident (`@`) and its wilderness campfire.
 
+## Merchant camps (2026-10-30, user decision)
+
+`FlatPixelSiteAdmission` now admits merchant camps as well as sinkholes. The world has three camps, all placed during generation: Overworld.8.2.0 and 14.13.0 in the Spread, and 15.18.0 in the Beating.
+
+| Camp | Native before | Native after |
+|---|---|---|
+| 8.2.0 (Spread) | 280 | 1,981 |
+| 15.18.0 (Beating) | 10 | 1,929 |
+
+**Seven pins revised deliberately.** Each used a camp only as its sample revoking point of interest, and each now uses `POIType.Lair`, which is still excluded from sites, so the revocation each pin protects is still exercised:
+- Beating `WarmAuthorityIsRevokedByTheCurrentMapAndRestoredWithoutCachingApproval("poi")`;
+- Grovelands `CurrentWorldAuthorityCanRevokeWarmAdmission("poi")` and `FenWater_CurrentMapGraphAndSavedSiteAuthorityCanRevokeAFormerClaim`;
+- regional fixtures `PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority`;
+- shared vine `RevokedRegionalAuthorityCannotFallThroughToTheSharedSurfaceRoute`;
+- Sodden `OrdinaryAuthorityReadsItsOwnCoordinatesAndRevokesWarmApproval`;
+- Stump `CurrentMapMutationRevokesWarmAdmissionAndRestoringItRestoresArt("poi")`.
+
+**Tests.**
+- New: three camp cases, at least 90% native.
+- Run: `FlatPixel*` plus the Overwrit/Ginmere, Spread presentation-scope, Sodden district and biome merchant-camp classes. RED (camps admitted, pins unrevised): the 7 pins above failed. Final: 3,894 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `special-site-camp-{8-2,15-18}-offline.png`.
+
+**Still glyphs in camps.** The camp merchant and its campfire.
+
 ## Remaining
 
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).
-- Merchant camps and lair surfaces.
+- Lair surfaces.
 - Live capture.

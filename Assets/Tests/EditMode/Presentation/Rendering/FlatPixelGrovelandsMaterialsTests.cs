@@ -191,7 +191,7 @@ namespace CavesOfOoo.Tests
             {
                 Assert.True(Supported(zone));
                 if (fault == "biome") tiles[4,7] = BiomeType.Sodden;
-                if (fault == "poi") map.SetPOI(4,7,new PointOfInterest(POIType.MerchantCamp,"current saved camp"));
+                if (fault == "poi") map.SetPOI(4,7,new PointOfInterest(POIType.Lair,"current saved lair")); // camps are sites since 2026-10-30; a lair still revokes
                 if (fault == "map-shape") map.Tiles = new BiomeType[1,1];
                 if (fault == "poi-shape") map.POIs = new PointOfInterest[1,1];
                 Assert.False(Supported(zone)); Fallback(); Assert.False(Subject(owner));
@@ -622,7 +622,8 @@ namespace CavesOfOoo.Tests
         {
             Add("Grass"); FenWater(); NativeFenWater(); var map = manager.WorldMap;
             map.Tiles[4,7] = BiomeType.Sodden; NoFenWater(); map.Tiles[4,7] = BiomeType.Grovelands; NativeFenWater();
-            map.SetPOI(4,7,new PointOfInterest(POIType.MerchantCamp,"current camp")); NoFenWater(); map.SetPOI(4,7,null); NativeFenWater();
+            // Camps are sites since 2026-10-30; a lair still revokes.
+            map.SetPOI(4,7,new PointOfInterest(POIType.Lair,"current lair")); NoFenWater(); map.SetPOI(4,7,null); NativeFenWater();
             var prior = zone; manager.SetActiveZone(new Zone(Home)); Assert.False(world.TryResolvePresentation(prior,X,Y,out _)); manager.SetActiveZone(prior); NativeFenWater();
             manager = OverworldZoneManager.CreateDetached(content.Factory,65,true); manager.WorldMap.SetPOI(4,7,new PointOfInterest(POIType.Lair,"saved site",null,1,"DesertProwler"));
             var saved = manager.GetZone(Home); Assert.NotNull(LairStacks.Inspect(manager,Home)); manager.WorldMap.SetPOI(4,7,null);

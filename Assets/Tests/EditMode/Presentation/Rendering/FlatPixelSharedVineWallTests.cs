@@ -195,7 +195,7 @@ namespace CavesOfOoo.Tests
                 try
                 {
                     if(fault=="biome")tiles[wx,wy]=BiomeType.Sodden;
-                    if(fault=="poi")map.SetPOI(wx,wy,new PointOfInterest(POIType.MerchantCamp,"changed saved site"));
+                    if(fault=="poi")map.SetPOI(wx,wy,new PointOfInterest(POIType.Lair,"changed saved site")); // camps are sites since 2026-10-30; a lair still revokes
                     if(fault=="map-shape")map.Tiles=new BiomeType[1,1];
                     if(fault=="poi-shape")map.POIs=new PointOfInterest[1,1];
                     Assert.False(id=="Overworld.10.10.0"?FlatPixelSillEnvelopeCatalog.IsSupportedZone(zone):FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone),fault);

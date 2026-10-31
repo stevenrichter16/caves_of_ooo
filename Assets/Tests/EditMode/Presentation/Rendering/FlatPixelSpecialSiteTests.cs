@@ -10,7 +10,7 @@ namespace CavesOfOoo.Tests
 {
     /// <summary>
     /// Special-site surfaces (2026-10-30). A seed-64 census found the surface graphs of the world's
-    /// sinkholes (Stillleaf, Ginmere, the Deepest Cathedral, Lampwell, Spivenor) almost entirely glyph:
+    /// merchant camps and sinkholes (Stillleaf, Ginmere, the Deepest Cathedral, Lampwell, Spivenor) almost entirely glyph:
     /// every biome adapter admits only point-of-interest-free wilderness. Their ordinary biome materials
     /// (grass, stone, bushes, trees, tepui stone, mire) are now drawn by the same biome adapter that
     /// draws them in the wilderness, admitted for that biome's own sites only.
@@ -90,6 +90,19 @@ namespace CavesOfOoo.Tests
                 Assert.True(world.TryResolvePresentation(zone, x, y, out var odd)); Assert.False(odd.NativeForeground, "a recoloured lip is not the plain rim"); return;
             }
             Assert.Fail("precondition: a lip");
+        }
+
+        // Merchant camps are sites too (user decision, 2026-10-30): the world's three camps keep their
+        // biome's grass, road, hedges and plants instead of glyph ground.
+        [TestCase("Overworld.8.2.0", BiomeType.Spread)] [TestCase("Overworld.14.13.0", BiomeType.Spread)]
+        [TestCase("Overworld.15.18.0", BiomeType.Beating)]
+        public void MerchantCampSurfacesUseTheirBiomesApprovedMaterials(string id, BiomeType biome)
+        {
+            var zone = Visit(id);
+            Assert.AreEqual(POIType.MerchantCamp, manager.WorldMap.GetPOI(WorldMap.FromZoneID(id).x, WorldMap.FromZoneID(id).y)?.Type, "precondition: a merchant camp");
+            Assert.True(FlatPixelSiteAdmission.IsOrdinarySite(zone, biome));
+            int native = Native(zone);
+            Assert.GreaterOrEqual(native, Zone.Width * Zone.Height * 9 / 10, id + ": " + native + " of 2000 native");
         }
 
         [Test] public void ASiteIsOnlyItsOwnBiomesToDraw()

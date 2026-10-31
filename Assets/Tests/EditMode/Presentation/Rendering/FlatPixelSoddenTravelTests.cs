@@ -878,7 +878,7 @@ namespace CavesOfOoo.Tests
             {
                 for (int i = 0; i < 4; i++) Assert.True(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone));
                 if (fault == "biome") map.Tiles[point.x, point.y] = BiomeType.Beating;
-                if (fault == "poi") map.SetPOI(point.x, point.y, new PointOfInterest(POIType.MerchantCamp, "ordinary counterexample"));
+                if (fault == "poi") map.SetPOI(point.x, point.y, new PointOfInterest(POIType.Lair, "ordinary counterexample")); // camps are sites since 2026-10-30; a lair still revokes
                 if (fault == "map-shape") map.Tiles = new BiomeType[1, 1];
                 if (fault == "poi-shape") map.POIs = new PointOfInterest[1, 1];
                 Assert.False(FlatPixelSoddenTravelCatalog.IsSupportedZone(zone)); IdentityFallback();

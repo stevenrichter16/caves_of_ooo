@@ -128,7 +128,7 @@ namespace CavesOfOoo.Tests
             var p=WorldMap.FromZoneID(id);var expected=manager.WorldMap.GetBiome(p.x,p.y);
             foreach(string fault in new[]{"poi","biome","cached"})
             {
-                if(fault=="poi")manager.WorldMap.SetPOI(p.x,p.y,new PointOfInterest(POIType.MerchantCamp,"counter"));
+                if(fault=="poi")manager.WorldMap.SetPOI(p.x,p.y,new PointOfInterest(POIType.Lair,"counter")); // camps are sites since 2026-10-30; a lair still revokes
                 if(fault=="biome")manager.WorldMap.Tiles[p.x,p.y]=BiomeType.Cave;
                 if(fault=="cached")manager.CachedZones[id]=new Zone(id);
                 Assert.False(Supported(zone),fault);
