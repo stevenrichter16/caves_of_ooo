@@ -187,5 +187,86 @@ namespace CavesOfOoo.Tests
                 Assert.True(c.Approaches.Select(a => a.Kind).Distinct().Count() >= 2 || c.Id.StartsWith("sill.") && c.Id != "sill.tithe",
                     c.Id + ": a new concern offers two different kinds of approach");
         }
+        // ════════════════ W1b: Posy, Quillhold, Tally, Marrowstye, Sumphold, Slip ════════════════
+
+        const string PosyZone = "Overworld.5.9.0", TallyZone = "Overworld.10.14.0", MarrowZone = "Overworld.12.12.0",
+            VaultZone = "Overworld.15.15.0", SumpZone = "Overworld.15.6.0", SlipZone = "Overworld.16.11.0";
+
+        [Test] public void PosyIsFinishedWithResinOrByStandingInIt()
+        {
+            var posy = Place(PosyZone, "Elder"); var elder = Who(posy, "Elder");
+            Assert.IsNull(ConcernConversation.Accept(elder, player, "posy.composition"));
+            Take(elder, Status(elder, "posy.composition"), "Stand where she places you");
+            Tick(); Assert.AreEqual(2, Approach("posy.composition"));
+            Assert.True(Holds(PosyZone, "Posy.YouWereHeld")); Assert.Greater(PlayerReputation.Get("BowerFolk"), 0);
+        }
+
+        [Test] public void QuillholdPaysInInkForLampOil()
+        {
+            var quill = Place(QuillZone, "Scribe"); var scribe = Who(quill, "Scribe");
+            Assert.IsNull(ConcernConversation.Accept(scribe, player, "quillhold.lamps"));
+            Give("LampOil", 3); Take(scribe, Status(scribe, "quillhold.lamps"), "Hand over 3");
+            Tick(); Assert.AreEqual(1, Approach("quillhold.lamps"));
+            int ink = RentalSystem.GetInk(player);
+            Assert.IsNull(ConcernConversation.Report(scribe, player, "quillhold.lamps"));
+            Assert.AreEqual(ink + 3, RentalSystem.GetInk(player), "paid in ink");
+            ConcernWorld.OnZoneEntered(player, quill, arriving: true);
+            Assert.AreEqual(3, ConcernItems.CountCarried(scribe, "InkVial"), "the lit desks sell ink");
+        }
+
+        [Test] public void TallysAccountIsCarriedPaidOrFormallyDeclined()
+        {
+            var tally = Place(TallyZone, "Elder"); var factor = Who(tally, "Elder");
+            int rep = PlayerReputation.Get("SaccharineConcord");
+            Assert.IsNull(ConcernConversation.Refuse(factor, player, "tally.account"));
+            Assert.AreEqual(rep - 3, PlayerReputation.Get("SaccharineConcord"), "a formal default costs standing");
+            Assert.AreEqual(ClosureState.Refused, storylets.GetClosure(ConcernRegistry.QuestIdFor("tally.account")).State, "and is a clean closure");
+        }
+
+        [Test] public void TallysNoticeReachesTheFarmerAtSill()
+        {
+            var tally = Place(TallyZone, "Elder"); var factor = Who(tally, "Elder");
+            Assert.IsNull(ConcernConversation.Accept(factor, player, "tally.account"));
+            Take(factor, Status(factor, "tally.account"), "I'll carry");
+            var sill = Place(SillZone, "Farmer");
+            Assert.IsNull(ConcernConversation.DeliverCargo(Who(sill, "Farmer"), player, "tally.account|notice"));
+            Tick(); Assert.AreEqual(1, Approach("tally.account"));
+            Assert.True(Holds(SillZone, "Sill.FarmerDunned"));
+        }
+
+        [Test] public void MarrowstyesCardsAreRuledVoidAtTheSaltVault()
+        {
+            var marrow = Place(MarrowZone, "CurationIntakeFiler"); var filer = Who(marrow, "CurationIntakeFiler");
+            Assert.IsNull(ConcernConversation.Accept(filer, player, "marrowstye.wing"));
+            Take(filer, Status(filer, "marrowstye.wing"), "I'll carry");
+            var vault = Place(VaultZone, "StillleafIndexer");
+            Assert.IsNull(ConcernConversation.DeliverCargo(Who(vault, "StillleafIndexer"), player, "marrowstye.wing|cards"));
+            Tick(); Assert.AreEqual(2, Approach("marrowstye.wing"));
+            Assert.True(Holds(MarrowZone, "Marrowstye.CardsVoided"));
+        }
+
+        [Test] public void SumpholdsEastCutIsClearedOfItsBandfrogs()
+        {
+            var sump = Place(SumpZone, "PeatCutter"); var cutter = Who(sump, "PeatCutter");
+            Assert.IsNull(ConcernConversation.Accept(cutter, player, "sumphold.cut"));
+            Assert.AreEqual("Overworld.16.6.0", ConcernWorld.SiteOf("sumphold.cut", "clear"));
+            var cut = new Zone("Overworld.16.6.0"); current.RemoveEntity(player); cut.AddEntity(player, 2, 12); current = cut;
+            ConcernWorld.OnZoneEntered(player, cut, arriving: true);
+            var frogs = cut.GetAllEntities().Where(e => e.BlueprintName == "Bandfrog").ToList();
+            Assert.AreEqual(3, frogs.Count);
+            foreach (var f in frogs) f.FireEvent(GameEvent.New("Died"));
+            Tick(); Assert.AreEqual(1, Approach("sumphold.cut"));
+            Assert.True(Holds(SumpZone, "Sumphold.EastCutCleared"));
+        }
+
+        [Test] public void SlipsEastWallIsReadAloud()
+        {
+            var slip = Place(SlipZone, "Warden"); var warden = Who(slip, "Warden");
+            Assert.IsNull(ConcernConversation.Accept(warden, player, "slip.east"));
+            ReadPlaced(slip, "slip-eastwall");
+            Tick(); Assert.AreEqual(2, Approach("slip.east"));
+            Assert.True(Holds(SlipZone, "Slip.NamesSaid"));
+            StringAssert.Contains("read out every name", PlaceConsequences.LineFor(SumpZone));
+        }
     }
 }

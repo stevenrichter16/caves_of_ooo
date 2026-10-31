@@ -1,0 +1,63 @@
+{
+  "Concerns": [
+    {
+      "Id": "quillhold.lamps",
+      "Place": "Quillhold",
+      "Owner": "Scribe",
+      "Faction": "Palimpsest",
+      "Tier": 1,
+      "Title": "The Dark Copy-Desks",
+      "Pitch": "The record of the copy-room has it that we work until the lamps go out. The lamps went out in spring. We copy by the windows now and lose the evenings. Three flasks of lamp oil and the desks are lit again. Failing oil: if your eyes are better than ours, sit with the conservators' condition report on the First Account and collate it. The last hand stopped mid-line.",
+      "Thanks": "Entered. The work is paid in ink here, as it always has been. Here is yours.",
+      "Approaches": [
+        {
+          "Id": "oil",
+          "Kind": "Supply",
+          "Label": "Bring three flasks of lamp oil for the copy-room lamps.",
+          "Objective": "Bring the Quillhold copyists three flasks of lamp oil",
+          "Supply": {
+            "Blueprint": "LampOil",
+            "Count": 3
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Quillhold:Quillhold.DesksLit"
+            }
+          ]
+        },
+        {
+          "Id": "collate",
+          "Kind": "Read",
+          "Label": "Read the condition report on the First Account and carry the collation back.",
+          "Objective": "Read the condition report on the First Account at Quillhold",
+          "Read": {
+            "Document": "codex-13",
+            "Place": "Quillhold"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Quillhold:Quillhold.ReportCollated"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I can't take the copy-room on. I'm saying so now.",
+        "Reply": "Noted, and entered beside the rest. We will keep losing the evenings."
+      },
+      "Reward": {
+        "XP": 50,
+        "Drams": 0,
+        "Effects": [
+          {
+            "Key": "GiveInk",
+            "Value": "3"
+          }
+        ]
+      },
+      "Next": []
+    }
+  ]
+}

@@ -781,6 +781,48 @@ places' news reached the same place; it now rotates. 🔵 The census is one
 seed; trader stock varies. 🔵 Two catalog pins (`DensityReadableDocument*`) were
 revised to name the W1 place documents.
 
+## W1b — Tier-1 content: Posy, Quillhold, Tally, Marrowstye, Sumphold, Slip (implemented 2026-10-31)
+
+**Ships (6 new concerns, 14 in all, every tier-1 place but Morrowfast has work):**
+
+| Concern | Owner | Approaches | Each leaves behind |
+|---|---|---|---|
+| `posy.composition` The Unfinished Composition | Elder (Bower-Folk) | Supply 2 pitchpod resin · Settle: be held in the composition for an evening | the piece sealed, Gantry hears (Bower-Folk +4) · people stand where you stood (Bower-Folk +8) |
+| `quillhold.lamps` The Dark Copy-Desks | Scribe | Supply 3 lamp oil · Read the First Account's condition report | desks lit, the scribe sells ink, prices ×0.98 · the report's last line, Tine hears; paid in 3 ink |
+| `tally.account` An Outstanding Account | Elder (Concord) | Carry the notice to the farmer at Sill · Settle 25 drams for her | Sill's farmer dunned · her debt cleared (Sill ×0.98, Concord +3); a spoken refusal is a formal default (Concord −3) |
+| `marrowstye.wing` The Disused Wing | Curation intake filer | Read what the Catchers left (codex-08) · Carry the cards to the Salt-Vault indexer | the wing filed under Catchers, the Salt-Vault hears · the cards voided |
+| `sumphold.cut` The East Cut | Peat cutter | Confront three bandfrogs in the cut east of town · Settle 30 drams for the Concord's pest man | the cut worked, prices ×0.97, Tine hears · the pest man's share, prices ×1.03 |
+| `slip.east` East of the Well | Warden | Supply 3 lamp oil · Read the names on the east wall aloud | the east lamps lit · the names said, Sumphold hears |
+
+Also: `SlipNameWall` and its document; twelve conditions. **Discoverability:**
+the owner of an offerable concern carries the Available quest cue, and the owner
+of one being worked carries the Active cue (`QuestCueStateQuery`, via
+`ConcernConversation.CueFor`); a spoken no clears it.
+
+**Evidence:** `W1ContentTests` 15 (seven new end-to-end plays: being held at
+Posy, ink pay at Quillhold, Tally's formal default as a clean closure and its
+notice reaching Sill, Marrowstye's cards voided at the Salt-Vault, Sumphold's
+bandfrogs at their resolved site, Slip's wall read aloud). The cue test pairs
+owner and non-owner, and accept and refuse. The census shows every owner and
+recipient lives in its place, and every material has a source (pitchpod resin,
+like salvaged timber, is sold in one place on seed 64). Concern, place, document
+and quest-cue classes are all green.
+
+**Voice gate, second blind run (57 passages: W1b and W1a's rewrites):** 38 pass,
+15 weak, 2 fail. No card taboos were broken, and the reviewer judged the comedy
+lines to land. The finding that matters: every pitch closed on an "Or…"
+alternative and a "bring N of X" ask, so it read as a template. The two fails
+were the peat cutter's "clear them out… east of town" (directions and a kill
+template) and Tally's three-option menu. All 17 have been rewritten, with
+alternatives woven into speech ("Failing oil…", "Lacking resin, there is still
+the gap…", "Otherwise the Concord sends its pest man…"). W1a's rewrites passed
+or improved. These rewrites wait for the next wave's blind run.
+
+**Self-review:** 🔵 The flat 16×24 renderer draws no quest cue for any quest
+(only the 3D presenters do), so concern owners are marked in 3D only. A flat
+cue marker is a graphics task, logged in the completion plan. 🔵 Morrowfast's
+residents already carry four authored quests; its concerns come with tier 3.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -810,3 +852,5 @@ revised to name the W1 place documents.
   SetPlaceCondition, TeachSkill, next-concern gating; Sill's six outcomes.
 - 2026-10-31 — W1a: Sill's bridge money, Gantry's manifest and guest-cloth,
   Tine's weir and scribe; place census bench; blind voice review and rewrites.
+- 2026-10-31 — W1b: Posy, Quillhold, Tally, Marrowstye, Sumphold and Slip;
+  concern quest cues; second blind voice run and rewrites.

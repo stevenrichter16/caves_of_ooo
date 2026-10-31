@@ -25305,6 +25305,19 @@
       ]
     },
     {
+      "Name": "SlipNameWall",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "chalked wall" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&Y" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A whitewashed wall covered low down in chalked names. Some have been written over and over until the chalk is thick as paint." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "slip-eastwall" } ] }
+      ]
+    },
+    {
       "Name": "SealedLetter",
       "Inherits": "Item",
       "Parts": [

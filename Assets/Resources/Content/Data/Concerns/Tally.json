@@ -1,0 +1,84 @@
+{
+  "Concerns": [
+    {
+      "Id": "tally.account",
+      "Place": "Tally",
+      "Owner": "Elder",
+      "Faction": "SaccharineConcord",
+      "Tier": 1,
+      "Title": "An Outstanding Account",
+      "Pitch": "Small matter, friend, small rate. The farmer at Sill bought seed on our terms two seasons ago and the account is still outstanding. Carry our notice to her and the account settles. Settle it yourself, twenty-five drams, and it settles faster, which is the only kind of moving we like. That's the rate.",
+      "Thanks": "Settled. You see? Nobody was hurt and the column adds up. That's the rate.",
+      "Approaches": [
+        {
+          "Id": "notice",
+          "Kind": "Carry",
+          "Label": "Carry the Concord's notice of account to the farmer at Sill.",
+          "Objective": "Carry Tally's notice of account to the farmer at Sill",
+          "Carry": {
+            "Item": "SealedLetter",
+            "ItemName": "the Concord's notice of account",
+            "Place": "Sill",
+            "Recipient": "Farmer",
+            "Handover": "This is from Tally. It's about the seed account.",
+            "Reply": "Two seasons. They count the seasons, do they. ... Tell them they'll have it after harvest, and tell them I said it to your face, not to a letter."
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:Sill.FarmerDunned"
+            }
+          ]
+        },
+        {
+          "Id": "settle",
+          "Kind": "Settle",
+          "Label": "Settle the farmer's account yourself: twenty-five drams.",
+          "Objective": "Settle the Sill farmer's account at Tally",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.tally.account.settle.done:>=:1"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "PayDrams",
+              "Value": "25"
+            },
+            {
+              "Key": "SetFact",
+              "Value": "concern.tally.account.settle.done:1"
+            }
+          ],
+          "OfferText": "Settle the farmer's account: 25 drams",
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:Sill.FarmerDebtCleared"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "SaccharineConcord:Player:3"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't carry it and I won't pay it. I'm saying so plainly.",
+        "Reply": "Declined, and noted on the account. The ledger keeps no grudges, friend.",
+        "Effects": [
+          {
+            "Key": "ChangeFactionFeeling",
+            "Value": "SaccharineConcord:Player:-3"
+          }
+        ]
+      },
+      "Reward": {
+        "XP": 40,
+        "Drams": 10
+      },
+      "Next": []
+    }
+  ]
+}

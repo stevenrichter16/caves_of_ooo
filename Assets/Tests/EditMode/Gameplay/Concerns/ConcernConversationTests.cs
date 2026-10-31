@@ -176,6 +176,19 @@ namespace CavesOfOoo.Tests
             Assert.False(SettlementManager.Current.HasCondition("Overworld.10.10.0", SettlementManager.ContractCondition("MainWell")), "counter-check");
         }
 
+        // ════════════════ discoverability ════════════════
+
+        [Test] public void TheOwnerCarriesAQuestCueUntilTheConcernIsDone()
+        {
+            Assert.AreEqual(QuestCueState.Available, QuestCueStateQuery.Evaluate(keeper, sill, player));
+            var villager = factory.CreateEntity("Villager"); sill.AddEntity(villager, 12, 10);
+            Assert.AreEqual(QuestCueState.None, QuestCueStateQuery.Evaluate(villager, sill, player), "counter-check: not an owner");
+            Assert.IsNull(ConcernConversation.Accept(keeper, player, "sill.well"));
+            Assert.AreEqual(QuestCueState.Active, QuestCueStateQuery.Evaluate(keeper, sill, player));
+            Assert.IsNull(ConcernConversation.Refuse(keeper, player, "sill.well"));
+            Assert.AreEqual(QuestCueState.None, QuestCueStateQuery.Evaluate(keeper, sill, player), "a spoken no clears the cue");
+        }
+
         // ════════════════ the Elder ════════════════
 
         [Test] public void TheElderNamesWhatTroublesSill()

@@ -1,0 +1,80 @@
+{
+  "Concerns": [
+    {
+      "Id": "posy.composition",
+      "Place": "Posy",
+      "Owner": "Elder",
+      "Faction": "BowerFolk",
+      "Tier": 1,
+      "Title": "The Unfinished Composition",
+      "Pitch": "Stop there. No, there; the light has you now. The east composition has waited a season for its last piece. The piece is cast and the resin is spent, and a cast left open to the air turns the colour of old teeth. Two measures of pitchpod resin would finish it. Lacking resin, there is still the gap; it would hold a person for one evening. She has been watching how you hold your shoulders.",
+      "Thanks": "Finished. Do not look at it yet. Walk to the well, turn, and then look.",
+      "Approaches": [
+        {
+          "Id": "resin",
+          "Kind": "Supply",
+          "Label": "Bring two measures of pitchpod resin to seal the last piece.",
+          "Objective": "Bring the elder of Posy two measures of pitchpod resin",
+          "Supply": {
+            "Blueprint": "PitchpodResin",
+            "Count": 2
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Posy:Posy.CompositionSealed"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "BowerFolk:Player:4"
+            }
+          ]
+        },
+        {
+          "Id": "held",
+          "Kind": "Settle",
+          "Label": "Stand in the composition yourself for an evening, placed where she wants you.",
+          "Objective": "Be held in the east composition for an evening",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.posy.composition.held.done:>=:1"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "SetFact",
+              "Value": "concern.posy.composition.held.done:1"
+            }
+          ],
+          "OfferText": "Stand where she places you, until the light goes",
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Posy:Posy.YouWereHeld"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "BowerFolk:Player:8"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't finish it. I'm telling you so.",
+        "Reply": "Then it stays open. Some pieces are better open. Not this one, but some."
+      },
+      "Reward": {
+        "XP": 50,
+        "Drams": 0,
+        "Effects": [
+          {
+            "Key": "GiveDrams",
+            "Value": "20"
+          }
+        ]
+      },
+      "Next": []
+    }
+  ]
+}

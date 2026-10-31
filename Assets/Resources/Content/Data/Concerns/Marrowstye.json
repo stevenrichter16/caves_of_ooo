@@ -1,0 +1,61 @@
+{
+  "Concerns": [
+    {
+      "Id": "marrowstye.wing",
+      "Place": "Marrowstye",
+      "Owner": "CurationIntakeFiler",
+      "Faction": "PaleCuration",
+      "Tier": 1,
+      "Title": "The Disused Wing",
+      "Pitch": "Intake has a discrepancy. Someone in the disused wing is filing subjects ahead of intake. Three villagers have intake cards with last words already entered. Two of the villagers are still using their words. Condition: irregular. Method: unknown. Status: continuing. Read what they have left in the wing, so the file can say who they are. Alternatively: the cards, sealed, to the Salt-Vault, for the central file to rule on.",
+      "Thanks": "Filed. Discrepancy closed. Relief noted.",
+      "Approaches": [
+        {
+          "Id": "pamphlet",
+          "Kind": "Read",
+          "Label": "Read what the tenants of the disused wing have left there.",
+          "Objective": "Read what was left in Marrowstye's disused wing",
+          "Read": {
+            "Document": "codex-08",
+            "Place": "Marrowstye"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Marrowstye:Marrowstye.TenantsNamed"
+            }
+          ]
+        },
+        {
+          "Id": "cards",
+          "Kind": "Carry",
+          "Label": "Carry the irregular intake cards, sealed, to the indexer at the Salt-Vault.",
+          "Objective": "Carry the irregular intake cards to the Salt-Vault",
+          "Carry": {
+            "Item": "SealedParcel",
+            "ItemName": "the irregular intake cards",
+            "Place": "the Salt-Vault",
+            "Recipient": "StillleafIndexer",
+            "Handover": "From Marrowstye intake. Irregular cards, for a ruling.",
+            "Reply": "Three cards, last words entered, subjects continuing. Ruling: void. The subjects are to be told their words are their own again. Status: corrected."
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Marrowstye:Marrowstye.CardsVoided"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I can't take this on. I'm telling you now.",
+        "Reply": "Refusal noted. Discrepancy: open. That is a status too."
+      },
+      "Reward": {
+        "XP": 50,
+        "Drams": 15
+      },
+      "Next": []
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "Concerns": [
+    {
+      "Id": "sumphold.cut",
+      "Place": "Sumphold",
+      "Owner": "PeatCutter",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "The East Cut",
+      "Pitch": "Bandfrogs have nested in the east cut. Three of them, each one louder than the dog, and they don't like the spade. Nobody's cut peat out there in a fortnight and the drying racks are empty. Somebody with a longer stick than a spade could see them off. Otherwise the Concord sends its pest man, and he takes his thirty drams and a share of every rack after.",
+      "Thanks": "Spades in the east cut again. The racks'll be full by the end of the week.",
+      "Approaches": [
+        {
+          "Id": "clear",
+          "Kind": "Confront",
+          "Label": "Clear the bandfrogs out of the east cut.",
+          "Objective": "Clear the bandfrogs out of Sumphold's east cut",
+          "Confront": {
+            "Offset": "1,0",
+            "Site": "the peat cut just east of Sumphold",
+            "Foes": [
+              {
+                "Blueprint": "Bandfrog",
+                "Count": 3
+              }
+            ]
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sumphold:Sumphold.EastCutCleared"
+            }
+          ]
+        },
+        {
+          "Id": "pest",
+          "Kind": "Settle",
+          "Label": "Pay the Concord's pest man (30 drams); he takes a share of the peat.",
+          "Objective": "Pay the Concord's pest man",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.sumphold.cut.pest.done:>=:1"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "PayDrams",
+              "Value": "30"
+            },
+            {
+              "Key": "SetFact",
+              "Value": "concern.sumphold.cut.pest.done:1"
+            }
+          ],
+          "OfferText": "Pay the Concord's pest man: 30 drams",
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sumphold:Sumphold.PestContract"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't be going out there. Better you hear it now.",
+        "Reply": "The west bank, then. Wetter peat, longer drying."
+      },
+      "Reward": {
+        "XP": 50,
+        "Drams": 15
+      },
+      "Next": []
+    }
+  ]
+}

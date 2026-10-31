@@ -1,0 +1,57 @@
+{
+  "Concerns": [
+    {
+      "Id": "slip.east",
+      "Place": "Slip",
+      "Owner": "Warden",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "East of the Well",
+      "Pitch": "The lamps east of the well are out. Nobody'll go and fill them; you don't go east-of-the-well after dark, you might not come back you. It wants three flasks of lamp oil and somebody brave enough to walk them over. There's the wall, too, with the names on it. People chalk their names there so the east knows who they are. Somebody should read them out. Out loud. Nobody here will.",
+      "Thanks": "There. That's done. Don't tell me about it. Thank you. I'll not ask how.",
+      "Approaches": [
+        {
+          "Id": "lamps",
+          "Kind": "Supply",
+          "Label": "Bring three flasks of lamp oil for the lamps east of the well.",
+          "Objective": "Bring Slip's warden three flasks of lamp oil",
+          "Supply": {
+            "Blueprint": "LampOil",
+            "Count": 3
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Slip:Slip.EastLampsLit"
+            }
+          ]
+        },
+        {
+          "Id": "names",
+          "Kind": "Read",
+          "Label": "Read the names chalked on the east wall, out loud.",
+          "Objective": "Read out the names on Slip's east wall",
+          "Read": {
+            "Document": "slip-eastwall",
+            "Place": "Slip"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Slip:Slip.NamesSaid"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't go east of the well. I'm saying it now, to your face.",
+        "Reply": "Nobody blames you. Nobody goes."
+      },
+      "Reward": {
+        "XP": 60,
+        "Drams": 10
+      },
+      "Next": []
+    }
+  ]
+}

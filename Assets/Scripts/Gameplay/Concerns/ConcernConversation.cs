@@ -62,6 +62,26 @@ namespace CavesOfOoo.Concerns
             return null;
         }
 
+        /// <summary>Quest-cue state for a resident: Available if they own an offerable
+        /// concern here, Active if one is being worked or awaits its report, else None.
+        /// Read-only; no allocation beyond the place lookup.</summary>
+        public static QuestCueState CueFor(Entity owner, Zone zone, Entity player)
+        {
+            if (owner == null || zone == null || player == null || ReferenceEquals(owner, player) || !player.HasTag("Player")
+                || owner.GetStatValue("Hitpoints") <= 0 || FactionManager.IsHostile(owner, player)) return QuestCueState.None;
+            string place = PlaceSiteCatalog.PlaceAt(zone.ZoneID);
+            if (place == null) return QuestCueState.None;
+            var cue = QuestCueState.None;
+            foreach (var c in ConcernRegistry.All)
+            {
+                if (c.Place != place || c.Owner != owner.BlueprintName) continue;
+                var state = StateOf(c, owner, player);
+                if (state == State.Working || state == State.Reportable) return QuestCueState.Active;
+                if (state == State.Offerable) cue = QuestCueState.Available;
+            }
+            return cue;
+        }
+
         static bool OwnedBy(ConcernData c, Entity speaker, string place)
             => c.Place == place && speaker.BlueprintName == c.Owner;
 

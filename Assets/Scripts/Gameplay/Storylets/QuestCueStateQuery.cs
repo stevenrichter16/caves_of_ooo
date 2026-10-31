@@ -13,7 +13,9 @@ namespace CavesOfOoo.Storylets
             var canonical = EvaluateCanonicalQuest(owner, zone, player);
             if (canonical == QuestCueState.Active) return canonical;
             var regional = owner?.GetPart<RegionalRequestPart>()?.GetCueState(player, zone) ?? QuestCueState.None;
-            return regional == QuestCueState.Active || canonical == QuestCueState.None ? regional : canonical;
+            var cue = regional == QuestCueState.Active || canonical == QuestCueState.None ? regional : canonical;
+            // C2: the owner of a place concern is marked like any quest giver.
+            return cue != QuestCueState.None ? cue : CavesOfOoo.Concerns.ConcernConversation.CueFor(owner, zone, player);
         }
 
         private static QuestCueState EvaluateCanonicalQuest(Entity owner, Zone zone, Entity player)
