@@ -70,11 +70,14 @@ namespace CavesOfOoo.Concerns
         public ConcernCarryData Carry = new ConcernCarryData();
         /// <summary>Kind Read: a document to read where it stands.</summary>
         public ConcernReadData Read = new ConcernReadData();
+        /// <summary>Kind Confront: foes at a site near the place, placed on arrival.</summary>
+        public ConcernConfrontData Confront = new ConcernConfrontData();
 
         // JsonUtility always builds nested serializable objects, so "present" means filled in.
         public bool HasSupply => Supply != null && !string.IsNullOrEmpty(Supply.Blueprint);
         public bool HasCarry => Carry != null && !string.IsNullOrEmpty(Carry.Item);
         public bool HasRead => Read != null && !string.IsNullOrEmpty(Read.Document);
+        public bool HasConfront => Confront?.Foes != null && Confront.Foes.Count > 0;
     }
 
     [Serializable]
@@ -98,6 +101,32 @@ namespace CavesOfOoo.Concerns
         /// <summary>The player's line on handing it over, and the recipient's answer.</summary>
         public string Handover;
         public string Reply;
+    }
+
+    [Serializable]
+    public class ConcernConfrontData
+    {
+        /// <summary>"dx,dy" in world cells from the concern's place: where the site is.</summary>
+        public string Offset;
+        /// <summary>How the owner and the journal name the site ("the den two fields west of Sill").</summary>
+        public string Site;
+        public List<ConcernFoeData> Foes = new List<ConcernFoeData>();
+
+        public int Total { get { int n = 0; if (Foes != null) foreach (var f in Foes) n += Math.Max(0, f?.Count ?? 0); return n; } }
+
+        public bool TryOffset(out int dx, out int dy)
+        {
+            dx = dy = 0;
+            var parts = Offset?.Split(',');
+            return parts != null && parts.Length == 2 && int.TryParse(parts[0].Trim(), out dx) && int.TryParse(parts[1].Trim(), out dy);
+        }
+    }
+
+    [Serializable]
+    public class ConcernFoeData
+    {
+        public string Blueprint;
+        public int Count = 1;
     }
 
     [Serializable]

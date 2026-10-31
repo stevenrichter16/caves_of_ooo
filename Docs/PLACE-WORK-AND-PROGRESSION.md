@@ -631,6 +631,38 @@ placed on the first open, unreserved cell ringing out from the zone centre, not
 at an authored spot; places with a natural wall or board for them get authored
 anchors in the content waves.
 
+## C3b — Confront approaches (implemented 2026-10-31)
+
+**Ships:** `Confront {Offset "dx,dy", Site, Foes [{Blueprint, Count}]}`.
+
+- Undertaking the concern fixes the site (`ConcernWorld.ResolveSites`): the place
+  plus the authored offset, or, if a place or point of interest stands there, the
+  first open zone in the rings around it. Stored as a fact, so it survives
+  save/load and content reloads; never re-resolved.
+- The status node names the site ("the den two fields west of Sill").
+- Foes are placed on the player's first real arrival at the site (the zone
+  transition, before new creatures are registered with the scheduler), never on
+  accepting, and never twice. They stand away from where the player came in.
+  Each carries `ConcernFoe` and `AddFactWhenSlain` for the approach's slain count;
+  the compiled trigger is "slain ≥ total". A foe that cannot be placed counts as
+  gone, so the approach can never lock. No killer gate (the CoO/Qud
+  `FinishObjectiveWhenSlain` convention): a neighbour's kill counts.
+- Lint: the offset must be "dx,dy", non-zero and on the world map; the site needs
+  a name; every foe must exist, have a count, and sit within the concern's tier
+  ±1 (P4's tier rule, so a tier-1 concern cannot send the player at an obsidian
+  brute).
+- Diag `concern/SiteResolved|SiteNotResolved|FoesPlaced`.
+
+**Tests:** `ConcernConfrontTests` 10 (site resolution and stepping aside from a
+place, placement once and only on arrival, finishing on the last death, status
+text, lint; adversarial: refused concerns place nothing, an unplaceable foe cannot
+lock the approach, the site survives a content reload). Concern suite 90/90.
+
+**Self-review:** ⚪ TDD order: the tests were written first but not run RED
+before the implementation (a compile RED was certain). 🔵 The site's zone tier is
+not checked at runtime when a site steps aside; lint checks the foes' tier, and a
+one-ring step changes the zone tier by at most one band in the authored map.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -652,3 +684,5 @@ anchors in the content waves.
   three findings fixed.
 - 2026-10-31 — C3a: Supply, Carry and Read approach kinds; counted item
   predicate/action; sealed cargo; placed documents; read facts.
+- 2026-10-31 — C3b: Confront approaches (sites fixed on undertaking, foes placed
+  on arrival, slain counts, tier-checked lint).

@@ -31,6 +31,8 @@ namespace CavesOfOoo.Concerns
         public static string ReportedFact(string concernId) => QuestPrefix + concernId + ".reported";
         /// <summary>Set when a Supply hand-over or a Carry delivery is made.</summary>
         public static string DoneFact(string concernId, string approachId) => QuestPrefix + concernId + "." + approachId + ".done";
+        /// <summary>Confront: how many of the site's foes have died.</summary>
+        public static string SlainFact(string concernId, string approachId) => QuestPrefix + concernId + "." + approachId + ".slain";
         public static bool IsConcernQuest(string questId) => questId != null && questId.StartsWith(QuestPrefix, StringComparison.Ordinal);
 
         public static IReadOnlyList<ConcernData> All => ordered;
@@ -93,7 +95,9 @@ namespace CavesOfOoo.Concerns
         {
             var list = new List<ConversationParam>(a.Triggers ?? new List<ConversationParam>());
             if (list.Count > 0) return list;
-            if (a.HasSupply || a.HasCarry)
+            if (a.HasConfront)
+                list.Add(new ConversationParam { Key = "IfFact", Value = SlainFact(c.Id, a.Id) + ":>=:" + a.Confront.Total });
+            else if (a.HasSupply || a.HasCarry)
                 list.Add(new ConversationParam { Key = "IfFact", Value = DoneFact(c.Id, a.Id) + ":>=:1" });
             else if (a.HasRead)
                 list.Add(new ConversationParam { Key = "IfFact", Value = ReadableDocumentPart.ReadFact(a.Read.Document) + ":>=:1" });
@@ -121,9 +125,10 @@ namespace CavesOfOoo.Concerns
                     if (a == null || string.IsNullOrEmpty(a.Id) || !ids.Add(a.Id)) { problems.Add(aw + ": missing or duplicate approach id"); continue; }
                     if (Array.IndexOf(ConcernKinds.All, a.Kind) < 0) problems.Add(aw + ": unknown kind '" + a.Kind + "'");
                     if (string.IsNullOrWhiteSpace(a.Label) || string.IsNullOrWhiteSpace(a.Objective)) problems.Add(aw + ": needs a label and an objective");
-                    if ((a.Triggers == null || a.Triggers.Count == 0) && !a.HasSupply && !a.HasCarry && !a.HasRead)
+                    if ((a.Triggers == null || a.Triggers.Count == 0) && !a.HasSupply && !a.HasCarry && !a.HasRead && !a.HasConfront)
                         problems.Add(aw + ": no trigger can ever finish it");
                     LintKind(a, aw, factory, problems);
+                    LintConfront(c, a, aw, factory, problems);
                     CheckPredicates(a.Triggers, aw, problems);
                     CheckActions(a.Outcome, aw, problems);
                     CheckActions(a.Offer, aw + "/offer", problems);
@@ -164,6 +169,32 @@ namespace CavesOfOoo.Concerns
                 else if (!Known(doc.Blueprint)) problems.Add(aw + ": the document's blueprint '" + doc.Blueprint + "' does not exist");
                 if (!PlaceExists(a.Read.Place)) problems.Add(aw + ": unknown read place '" + a.Read.Place + "'");
             }
+        }
+
+        static void LintConfront(ConcernData c, ConcernApproachData a, string aw, EntityFactory factory, List<string> problems)
+        {
+            if (!a.HasConfront) { if (a.Kind == "Confront" && (a.Triggers == null || a.Triggers.Count == 0)) problems.Add(aw + ": a Confront approach names no foes"); return; }
+            var place = PlaceNamed(c.Place);
+            if (!a.Confront.TryOffset(out int dx, out int dy) || (dx == 0 && dy == 0))
+                problems.Add(aw + ": confront offset '" + a.Confront.Offset + "' must be \"dx,dy\" away from the place");
+            else if (place.HasValue && !WorldMapAuthoring.InBounds(place.Value.X + dx, place.Value.Y + dy))
+                problems.Add(aw + ": confront offset leaves the world map");
+            if (string.IsNullOrWhiteSpace(a.Confront.Site)) problems.Add(aw + ": the site needs a name the owner can say");
+            foreach (var f in a.Confront.Foes)
+            {
+                if (f == null || f.Count < 1) { problems.Add(aw + ": foe count " + (f?.Count ?? 0)); continue; }
+                if (factory == null) continue;
+                if (string.IsNullOrEmpty(f.Blueprint) || !factory.Blueprints.ContainsKey(f.Blueprint)) { problems.Add(aw + ": unknown foe '" + f.Blueprint + "'"); continue; }
+                var probe = factory.CreateEntity(f.Blueprint);
+                int tier = probe != null ? ProgressionCurve.CreatureTier(probe) : 0;
+                if (tier < c.Tier - 1 || tier > c.Tier + 1) problems.Add(aw + ": foe '" + f.Blueprint + "' is tier " + tier + ", outside the concern's tier " + c.Tier + " band");
+            }
+        }
+
+        static WorldMapAuthoring.Place? PlaceNamed(string name)
+        {
+            foreach (var p in WorldMapAuthoring.Places) if (p.Name == name) return p;
+            return null;
         }
 
         static bool PlaceExists(string name)

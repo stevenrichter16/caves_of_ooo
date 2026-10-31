@@ -161,6 +161,8 @@ namespace CavesOfOoo.Concerns
             foreach (var a in c.Approaches)
             {
                 text.Append("\n").Append(quest != null && quest.FinishedObjectives.Contains(a.Id) ? "[x] " : "[ ] ").Append(a.Objective);
+                if (a.HasConfront && ConcernWorld.SiteOf(c.Id, a.Id) != null && !string.IsNullOrEmpty(a.Confront.Site))
+                    text.Append(" - ").Append(a.Confront.Site);
                 if (a.HasSupply && !IsDone(c, a))
                     text.Append(" (you carry ").Append(ConcernItems.CountCarried(listener, a.Supply.Blueprint)).Append(" of ").Append(a.Supply.Count).Append(")");
             }
@@ -231,8 +233,10 @@ namespace CavesOfOoo.Concerns
             sp.StartQuest(new QuestState { QuestId = q });
             sp.SetGiver(q, speaker, speaker?.SpatialZone);
             Record("Accepted", speaker, c, null);
-            // A document to read in the place the player is standing in appears now, not on re-entry.
-            ConcernWorld.OnZoneEntered(listener, listener?.SpatialZone);
+            ConcernWorld.ResolveSites(c, speaker?.SpatialZone);
+            // A document to read in the place the player is standing in appears now, not on
+            // re-entry. Foes are placed only on a real arrival.
+            ConcernWorld.OnZoneEntered(listener, listener?.SpatialZone, arriving: false);
             return null;
         }
 
