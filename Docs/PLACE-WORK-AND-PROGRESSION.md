@@ -818,10 +818,29 @@ alternatives woven into speech ("Failing oil…", "Lacking resin, there is still
 the gap…", "Otherwise the Concord sends its pest man…"). W1a's rewrites passed
 or improved. These rewrites wait for the next wave's blind run.
 
-**Self-review:** 🔵 The flat 16×24 renderer draws no quest cue for any quest
-(only the 3D presenters do), so concern owners are marked in 3D only. A flat
-cue marker is a graphics task, logged in the completion plan. 🔵 Morrowfast's
+**Self-review:** 🔵 The flat 16×24 renderer drew no quest cue for any quest
+(only the 3D presenters did). Fixed below (Flat quest cue). 🔵 Morrowfast's
 residents already carry four authored quests; its concerns come with tier 3.
+
+## Flat quest cue (implemented 2026-10-31)
+
+Closes W1b's 🔵: the flat 16×24 renderer had no quest cue for any quest. A new
+`FlatQuestCueLayer` (owned by `ZoneRenderer`, flat mode only, hidden while the
+renderer is paused) evaluates the same `QuestCueStateQuery` as the 3D presenters
+every 15 frames. Every visible creature that has something to ask gets a small
+original "!" one pixel above its head (Available). One whose work is under way
+gets a muted "..." (Active). Static resident sprites and animated actors are
+marked alike. Sprites are pooled and sort above actor bodies. The art and its
+editable source are in `ArtSource/Live16x24/quest-cue/make_quest_cue.py`, which
+writes `Resources/Sprites/Actors/quest_cue_{available,active}.png`.
+
+**Evidence:** `FlatPixelActorMotionTests.QuestCue_AConcernOwnerIsMarkedAvailableThenActiveAndANeighbourIsNot`.
+It checks: no cue before the concern exists; the owner is marked Available and
+the Villager next to them is not; the cue sorts above the body; accepting the
+concern turns it Active; an unseen cell, a paused renderer and a spoken refusal
+each clear it. The flat rendering classes are green.
+**Cannot verify:** how it reads at normal zoom in real play. There is no live
+capture yet, and the palette and placement are judged from the offline preview.
 
 ## Implementation log
 
@@ -854,3 +873,5 @@ residents already carry four authored quests; its concerns come with tier 3.
   Tine's weir and scribe; place census bench; blind voice review and rewrites.
 - 2026-10-31 — W1b: Posy, Quillhold, Tally, Marrowstye, Sumphold and Slip;
   concern quest cues; second blind voice run and rewrites.
+- 2026-10-31 — flat quest cue layer: the 16×24 view marks quest givers and
+  concern owners (Available "!", Active "...").

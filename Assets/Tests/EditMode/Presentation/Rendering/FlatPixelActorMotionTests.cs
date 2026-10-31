@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
@@ -687,6 +688,57 @@ namespace CavesOfOoo.Tests
                 typeof(AnimatedEntityRenderer).GetField("_shadowSprite", I).SetValue(f.Actors, null);
                 f.Tick(0); Assert.False(Renders(f.Shadow)); Assert.AreSame(view, f.View);
                 Assert.True(Renders(f.Body)); Assert.AreSame(body, f.Body.sprite); Assert.AreEqual(1, f.Actors.ActiveViewCount);
+            }
+        }
+
+        // ════════════════ flat quest cue ════════════════
+
+        static SpriteRenderer[] Cues(Fixture f)
+        {
+            var layer = (FlatQuestCueLayer)typeof(ZoneRenderer).GetField("_questCueLayer", I).GetValue(f.Renderer);
+            Assert.NotNull(layer, "the flat world owns a quest-cue layer");
+            layer.Sync(true);
+            return layer.GetComponentsInChildren<SpriteRenderer>(true).Where(r => r.enabled).ToArray();
+        }
+
+        [Test] public void QuestCue_AConcernOwnerIsMarkedAvailableThenActiveAndANeighbourIsNot()
+        {
+            var prior = (CavesOfOoo.Storylets.StoryletPart.Current, NarrativeStatePart.Current, CavesOfOoo.Storylets.StoryletPart.LocalPlayer);
+            try
+            {
+                CavesOfOoo.Storylets.StoryletRegistry.Reset(); CavesOfOoo.Concerns.ConcernRegistry.LoadAll();
+                CavesOfOoo.Storylets.StoryletPart.Current = new CavesOfOoo.Storylets.StoryletPart();
+                NarrativeStatePart.Current = new NarrativeStatePart();
+                using (var f = new Fixture(sill: true))
+                {
+                    CavesOfOoo.Storylets.StoryletPart.LocalPlayer = f.Actor;
+                    Assert.IsEmpty(Cues(f), "nobody here has anything to ask yet");
+                    var keeper = Actor("cue-keeper", "WellKeeper"); Assert.True(f.Zone.AddEntity(keeper, 10, 9));
+                    var neighbour = Actor("cue-neighbour", "Villager"); Assert.True(f.Zone.AddEntity(neighbour, 7, 9));
+                    var cues = Cues(f);
+                    Assert.AreEqual(1, cues.Length, "the owner, not the neighbour");
+                    StringAssert.Contains("available", cues[0].sprite.name);
+                    Assert.Greater(cues[0].sortingOrder, AnimatedEntityRenderer.BodySortingOrder, "drawn over bodies");
+
+                    Assert.IsNull(CavesOfOoo.Concerns.ConcernConversation.Accept(keeper, f.Actor, "sill.well"));
+                    cues = Cues(f);
+                    Assert.AreEqual(1, cues.Length); StringAssert.Contains("active", cues[0].sprite.name, "work under way");
+
+                    f.Zone.GetCell(10, 9).IsVisible = false;
+                    Assert.IsEmpty(Cues(f), "an unseen owner shows nothing");
+                    f.Zone.GetCell(10, 9).IsVisible = true;
+                    f.Renderer.Paused = true;
+                    Assert.IsEmpty(Cues(f), "fullscreen UI hides cues");
+                    f.Renderer.Paused = false;
+                    Assert.IsNull(CavesOfOoo.Concerns.ConcernConversation.Refuse(keeper, f.Actor, "sill.well"));
+                    Assert.IsEmpty(Cues(f), "a spoken no clears it");
+                }
+            }
+            finally
+            {
+                CavesOfOoo.Storylets.StoryletPart.Current = prior.Item1; NarrativeStatePart.Current = prior.Item2;
+                CavesOfOoo.Storylets.StoryletPart.LocalPlayer = prior.Item3;
+                CavesOfOoo.Storylets.StoryletRegistry.Reset(); CavesOfOoo.Concerns.ConcernRegistry.Reset();
             }
         }
 

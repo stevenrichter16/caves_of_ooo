@@ -63,6 +63,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _tilemap;
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
+        private FlatQuestCueLayer _questCueLayer;
         private AnimatedEnvironmentRenderer _animatedEnvRenderer; // Pass 5
         private AnimatedEntityRenderer _entityVisualRenderer;
         // Pass 6 (GlyphGhostRenderer — motion-ghost trails) REMOVED.
@@ -424,6 +425,12 @@ namespace CavesOfOoo.Rendering
                 _entityVisualRenderer.SetSourceEntityPredicate(IsSourceSceneBody);
                 _envSpriteRenderer.SetEntityVisualPredicate(_entityVisualRenderer.CanRender);
                 _envSpriteRenderer.SetFlatActorObserver(_entityVisualRenderer.ObserveFlatCell);
+                // Quest cues over whoever has something to ask, in the flat world only.
+                var questCueObj = new GameObject("FlatQuestCueLayer");
+                questCueObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(questCueObj, GameplayRenderLayers.WorldLayer);
+                _questCueLayer = questCueObj.AddComponent<FlatQuestCueLayer>();
+                _questCueLayer.Init(_tilemap, () => CurrentZone, () => !Paused && FlatPixelModeActive);
                 var village3DObject = new GameObject("Village3DPresenter");
                 village3DObject.transform.SetParent(gridParent, false);
                 _village3DPresenter = village3DObject.AddComponent<Village3DPresenter>();
