@@ -210,6 +210,7 @@ namespace CavesOfOoo.Core
             }
 
             RegionalGuidance.AppendChoices(_visibleChoices);
+            CavesOfOoo.Concerns.ConcernConversation.AppendChoices(_visibleChoices);
             SpreadDiscoveryReports.AppendChoices(_visibleChoices);
 
             // Auto-inject "[Let's trade.]" only when the speaker can

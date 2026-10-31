@@ -207,6 +207,8 @@ namespace CavesOfOoo
 
                 Debug.Log("[Bootstrap] Step 1d/9: Loading Storylets...");
                 Storylets.StoryletRegistry.LoadAll();
+                // C1: place concerns compile into quests, so they load after the storylets.
+                Concerns.ConcernRegistry.LoadAll();
 
                 // Force a fresh conversation load too (parity with the loaders
                 // above). ConversationLoader is lazy-loaded on first Get, but its

@@ -312,6 +312,22 @@ namespace CavesOfOoo.Core
                     MessageLog.AddAnnouncement("You teach the warden how to mix ward oil and trim the wick. The lantern will burn through any night.");
                     break;
 
+                case RepairMethodId.Contracted:
+                    // C1: payment is taken by the ContractPlaceRepair action before this runs.
+                    if (site.Stage == RepairStage.StableRepair || site.Stage == RepairStage.ImprovedWithCaretaker)
+                    {
+                        MessageLog.Add("That is already properly repaired.");
+                        return false;
+                    }
+                    site.Stage = RepairStage.StableRepair;
+                    site.OutcomeTier = RepairOutcomeTier.Stable;
+                    site.ResolvedByMethod = method;
+                    site.ResolvedAtTurn = GetCurrentTurn();
+                    site.RelapseAtTurn = null;
+                    state.SetCondition(ContractCondition(siteId), true);
+                    MessageLog.AddAnnouncement("The Concord's mason does the work in a day and leaves a copy of the contract nailed by the door.");
+                    break;
+
                 default:
                     MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
                     return false;
@@ -321,6 +337,9 @@ namespace CavesOfOoo.Core
             RaiseSiteChanged(settlementId, site);
             return true;
         }
+
+        /// <summary>C1: the settlement condition left by a Concord-contracted repair of a site.</summary>
+        public static string ContractCondition(string siteId) => "ConcordContract." + siteId;
 
         public bool HasCondition(string settlementId, string condition)
         {

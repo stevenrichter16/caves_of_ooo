@@ -1,0 +1,118 @@
+{
+  "Concerns": [
+    {
+      "Id": "sill.well",
+      "Place": "Sill",
+      "Owner": "WellKeeper",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "The Bitter Well",
+      "Pitch": "The well's gone bitter again. A purifying rite sweetens it for a few days, then it turns. The filtration ring under the stones needs rebuilding: the old manual says silver sand, and nobody here has the hands for it. Or there's the Concord. Their trade-post will send a mason if someone pays, and then the well is theirs to look after, and ours to pay for.",
+      "Thanks": "The water comes up clear and stays clear. Sill drinks from it without making a face.",
+      "Requires": [ { "Key": "IfNotPlaceSiteStage", "Value": "Sill:MainWell:StableRepair" } ],
+      "Approaches": [
+        {
+          "Id": "rebuild", "Kind": "Restore",
+          "Label": "Rebuild the filtration ring yourself, with the maintenance manual and silver sand.",
+          "Objective": "Rebuild the well's filtration ring with silver sand",
+          "Triggers": [
+            { "Key": "IfPlaceSiteStage", "Value": "Sill:MainWell:StableRepair" },
+            { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:MainWell:Contracted" }
+          ],
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_well_rebuilt_by_hand:1" } ]
+        },
+        {
+          "Id": "contract", "Kind": "Settle",
+          "Label": "Pay the Concord to send a mason (60 drams); the well will be under their contract.",
+          "Objective": "Pay the Concord's trade-post for a mason",
+          "Triggers": [ { "Key": "IfPlaceSiteMethod", "Value": "Sill:MainWell:Contracted" } ],
+          "Offer": [ { "Key": "ContractPlaceRepair", "Value": "Sill:MainWell:60" } ],
+          "OfferText": "Pay the Concord for a mason: 60 drams",
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_well_contracted:1" } ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I can't take this on. I'm saying so now, so you aren't left waiting.",
+        "Reply": "That's fair. Better said than left hanging. We'll boil it."
+      },
+      "Reward": { "XP": 60, "Drams": 10 },
+      "Next": []
+    },
+    {
+      "Id": "sill.oven",
+      "Place": "Sill",
+      "Owner": "Farmer",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "The Cracked Firebox",
+      "Pitch": "The bread oven's firebox has cracked through. The mending rite holds it for a while; fire clay and the builder's guide would fix it right. The Concord will rebuild it for coin, and send someone to look at it every season after, at their rate.",
+      "Thanks": "The oven holds its heat through a whole bake now. The village eats better for it.",
+      "Requires": [ { "Key": "IfNotPlaceSiteStage", "Value": "Sill:VillageOven:StableRepair" } ],
+      "Approaches": [
+        {
+          "Id": "rebuild", "Kind": "Restore",
+          "Label": "Pack the firebox with fire clay yourself, following the oven builder's guide.",
+          "Objective": "Rebuild the oven's firebox with fire clay",
+          "Triggers": [
+            { "Key": "IfPlaceSiteStage", "Value": "Sill:VillageOven:StableRepair" },
+            { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:VillageOven:Contracted" }
+          ],
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_oven_rebuilt_by_hand:1" } ]
+        },
+        {
+          "Id": "contract", "Kind": "Settle",
+          "Label": "Pay the Concord to rebuild it (50 drams) under a standing contract.",
+          "Objective": "Pay the Concord's trade-post to rebuild the oven",
+          "Triggers": [ { "Key": "IfPlaceSiteMethod", "Value": "Sill:VillageOven:Contracted" } ],
+          "Offer": [ { "Key": "ContractPlaceRepair", "Value": "Sill:VillageOven:50" } ],
+          "OfferText": "Pay the Concord to rebuild the oven: 50 drams",
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_oven_contracted:1" } ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't be fixing the oven. Better you hear it from me.",
+        "Reply": "Then we'll bake on the hearth stones like our grandparents did. Thanks for saying."
+      },
+      "Reward": { "XP": 50, "Drams": 10 },
+      "Next": []
+    },
+    {
+      "Id": "sill.lantern",
+      "Place": "Sill",
+      "Owner": "Warden",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "The Watch Lantern",
+      "Pitch": "The watch lantern gutters every few nights. The kindle rite gets it lit again but the ward oil is nearly spent, and without it the light doesn't carry past the hedges. The recipe is somewhere; the oil can be made. Or the Concord sells a sealed lantern that never needs us at all. They say.",
+      "Thanks": "The lantern burns all night now, and the watch can see the road to the bend.",
+      "Requires": [ { "Key": "IfNotPlaceSiteStage", "Value": "Sill:VillageLantern:StableRepair" } ],
+      "Approaches": [
+        {
+          "Id": "reforge", "Kind": "Restore",
+          "Label": "Fill the reservoir with ward oil you make from the recipe, and reseal the housing.",
+          "Objective": "Reforge the watch lantern with ward oil",
+          "Triggers": [
+            { "Key": "IfPlaceSiteStage", "Value": "Sill:VillageLantern:StableRepair" },
+            { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:VillageLantern:Contracted" }
+          ],
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_lantern_reforged_by_hand:1" } ]
+        },
+        {
+          "Id": "contract", "Kind": "Settle",
+          "Label": "Pay the Concord for a sealed lantern (40 drams) under their contract.",
+          "Objective": "Pay the Concord's trade-post for a sealed lantern",
+          "Triggers": [ { "Key": "IfPlaceSiteMethod", "Value": "Sill:VillageLantern:Contracted" } ],
+          "Offer": [ { "Key": "ContractPlaceRepair", "Value": "Sill:VillageLantern:40" } ],
+          "OfferText": "Pay the Concord for a sealed lantern: 40 drams",
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_lantern_contracted:1" } ]
+        }
+      ],
+      "Refusal": {
+        "Text": "The lantern isn't mine to fix. I'm telling you plainly.",
+        "Reply": "Plain's good. We'll double the watch instead."
+      },
+      "Reward": { "XP": 40, "Drams": 10 },
+      "Next": []
+    }
+  ]
+}

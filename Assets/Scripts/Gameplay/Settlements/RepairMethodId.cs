@@ -11,6 +11,9 @@ namespace CavesOfOoo.Core
         TeachBaker,
         KindleRite,
         LanternReforge,
-        TeachWarden
+        TeachWarden,
+        /// <summary>C1: a stable repair bought from the Saccharine Concord's trade-post
+        /// (ContractPlaceRepair). The place owes the Concord its upkeep.</summary>
+        Contracted
     }
 }

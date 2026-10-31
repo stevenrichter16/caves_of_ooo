@@ -47,11 +47,24 @@ namespace CavesOfOoo.Core
 
         private static bool InvokeRequired(string name, Func<Entity, Entity, string, string> func,
             Entity speaker, Entity listener, string argument)
+            => RunRequired(name, func, speaker, listener, argument) == null;
+
+        private static string RunRequired(string name, Func<Entity, Entity, string, string> func,
+            Entity speaker, Entity listener, string argument)
         {
             string reason = func(speaker, listener, argument);
             CavesOfOoo.Diagnostics.Diag.Record("event", reason == null ? "ConversationActionApplied" : "ConversationActionRejected",
                 actor: listener, target: speaker, payload: new { action = name, argument, reason });
-            return reason == null;
+            return reason;
+        }
+
+        /// <summary>Run one required action and return its refusal reason, or null when it
+        /// applied. "unknown_action" when no required action has that name.</summary>
+        public static string ExecuteRequired(string name, Entity speaker, Entity listener, string argument)
+        {
+            EnsureInitialized();
+            if (string.IsNullOrEmpty(name) || !_requiredActions.TryGetValue(name, out var required)) return "unknown_action";
+            return RunRequired(name, required, speaker, listener, argument);
         }
 
         /// <summary>Execute one action and report required handover/repair refusal.
@@ -253,6 +266,38 @@ namespace CavesOfOoo.Core
                 SettlementRuntime.MarkZoneDirty();
                 return null;
             });
+
+            // C1 (Docs/PLACE-WORK-AND-PROGRESSION.md): buy a place's repair from the
+            // Concord. arg "Place:SiteId:Drams". Atomic: drams are returned if the
+            // repair is refused; on success the Concord's standing rises.
+            RegisterRequired("ContractPlaceRepair", (speaker, listener, arg) =>
+            {
+                if (listener == null) return "missing_participant";
+                var parts = arg?.Split(':');
+                if (parts == null || parts.Length != 3 || !int.TryParse(parts[2], out int cost) || cost < 0) return "invalid_argument";
+                string zoneId = CavesOfOoo.Concerns.PlaceSites.ZoneIdOf(parts[0]);
+                if (zoneId == null) return "unknown_place";
+                if (SettlementManager.Current == null) return "missing_settlement_manager";
+                var site = SettlementManager.Current.GetSite(zoneId, parts[1]);
+                if (site == null) return "unknown_site";
+                if (site.Stage >= RepairStage.StableRepair) { MessageLog.Add("That is already properly repaired."); return "already_repaired"; }
+                int drams = TradeSystem.GetDrams(listener);
+                if (drams < cost) { MessageLog.Add($"The Concord's price is {cost} drams; you have {drams}."); return "insufficient_drams"; }
+                TradeSystem.SetDrams(listener, drams - cost);
+                if (!SettlementManager.Current.ApplyRepairMethod(zoneId, parts[1], RepairMethodId.Contracted, listener))
+                { TradeSystem.SetDrams(listener, drams); return "repair_refused"; }
+                PlayerReputation.Modify("SaccharineConcord", 5);
+                SettlementManager.Current.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone);
+                SettlementRuntime.MarkZoneDirty();
+                return null;
+            });
+
+            // C2: place concerns in conversation (CavesOfOoo.Concerns.ConcernConversation).
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.OpenAction, CavesOfOoo.Concerns.ConcernConversation.Open);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.AcceptAction, CavesOfOoo.Concerns.ConcernConversation.Accept);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.RefuseAction, CavesOfOoo.Concerns.ConcernConversation.Refuse);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.ReportAction, CavesOfOoo.Concerns.ConcernConversation.Report);
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.OfferAction, CavesOfOoo.Concerns.ConcernConversation.TakeOffer);
 
             // Copy the first grimoire in the player's inventory, producing a GrimoireCopy
             RegisterRequired("CopyGrimoire", (speaker, listener, arg) =>

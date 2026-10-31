@@ -1,6 +1,6 @@
 # Place Work and Progression — design and plan
 
-Status: **design and plan, 2026-10-30. P1 (progression bench), P2 (creature levels), P2b (player growth), P3 (scaled and companion kill XP) and P4 (tier-correct spawning) implemented;**
+Status: **design and plan, 2026-10-30. P1 (progression bench), P2 (creature levels), P2b (player growth), P3 (scaled and companion kill XP), P4 (tier-correct spawning), C1 (concern substrate) and C2 (concern conversation) implemented;**
 each later milestone records its own status as it lands. This is CoO-original design
 (one piece, tier-scaled XP, is a Qud-parity port and is labelled as such).
 
@@ -507,6 +507,90 @@ P4).
 (tier 2) are filtered from tier-4+ Stump zones; P5 decides whether canon's
 slope indicator should be re-tiered with stats to match.
 
+## C1 — Concern substrate (implemented 2026-10-31)
+
+**Ships:**
+
+- `ConcernData` (Content/Data/Concerns/*.json): id, place, owner blueprint,
+  faction, tier, title, pitch, thanks, requires, two or more approaches (kind,
+  label, objective, triggers, outcome, optional offer), a spoken refusal and its
+  reply, reward (XP, drams, effects) and next concerns.
+- `ConcernRegistry.Compile`: a concern becomes an ordinary quest `concern.<id>`
+  with a `work` stage of Optional objectives (the first approach finished
+  advances it; its outcome runs and `concern.<id>.approach` records which,
+  1-based) and a `report` stage waiting on `concern.<id>.reported`. The journal,
+  objective ticks, closure ledger, quest events and save/load are the shipped
+  quest engine's.
+- `ConcernRegistry.Lint`: every shipped concern must name a real place, owner and
+  tier; have two or more approaches with known kinds, labels, objectives and at
+  least one trigger; use only registered predicates and actions; give an offer its
+  text; and carry a spoken refusal with a reply. `EveryShippedConcernLintsClean`
+  gates content.
+- `PlaceSites` + predicates `IfPlaceSiteStage "Place:Site:Stage"` (at least that
+  stage) and `IfPlaceSiteMethod "Place:Site:Method"`, readable on tick with no
+  speaker (the conversation-only `IfSettlementSiteStage` needs one). Only exact
+  enum names count.
+- `ContractPlaceRepair "Place:Site:Drams"` and `RepairMethodId.Contracted`: the
+  Concord does a stable repair for coin, leaves the condition
+  `ConcordContract.<site>` and gains 5 standing. Checks the site and its state
+  before charging; refunds if the settlement refuses the repair.
+- Sill's well, oven and lantern are concerns on their real repair sites, each with
+  a by-hand rebuild (Restore) and a Concord contract (Settle). A site already
+  repaired before anyone asks is not raised (`Requires IfNotPlaceSiteStage`).
+
+**Divergences from the plan:**
+
+| Plan | Shipped | Why |
+|---|---|---|
+| A concern ledger part with its own save/load | None | All concern state is quest state plus facts, which `StoryletPart` and `NarrativeStatePart` already save; a second store could disagree with them. |
+| Data-driven Restore sites for every place | Sill's three hard-coded sites only | C3 makes sites data-driven; C1 proves the substrate end to end on the sites that exist. |
+
+## C2 — Concern conversation (implemented 2026-10-31)
+
+**Ships:** `ConcernConversation.AppendChoices`, a dynamic choice provider called
+from `ConversationManager.RefreshVisibleChoices`, on the authored start node only,
+for a speaker standing in the concern's own place:
+
+- The owner offers "[Is something wrong here?]" → the pitch, with each approach
+  named → "[I'll see to it.]" (quest started, giver recorded) or the spoken
+  refusal (quest started and ended Refused at once, so the ledger records an
+  enacted no; the reply is spoken; refusal effects run).
+- While open: "[About <title>...]" → a checklist of approaches, the owner's offers
+  (e.g. pay the Concord), and "[I'm giving this up. I'm telling you so.]".
+- Once an approach is finished: "[It's done: <title>.]" → the owner's thanks →
+  quest completed, then XP, drams and effects paid.
+- The place's Elder answers "[What troubles this place?]" with every open concern
+  and whom to ask. No authored dialogue tree is edited; synthetic nodes are
+  prefixed `concern:` and never stack more concern choices.
+- Diag `concern/Offered|Accepted|Refused|Reported|OfferTaken`; required actions
+  emit `event/ConversationActionApplied|Rejected` with the reason.
+  `ConversationActions.ExecuteRequired` returns that reason to callers.
+
+**Tests:** `ConcernSubstrateTests` (8), `ConcernConversationTests` (10),
+`ConcernAdversarialTests` (40: hollow and duplicate files, predicate argument
+shapes, place and speaker gates, double and wrong-state actions, contract funds
+at the boundary, refusal and refund, approach exclusivity, diag, refusal
+surviving a content reload). Regression: Concern, Settlement, Conversation,
+Storylet, Quest and Repair classes, 1,525/1,528; the three failures are an
+MCP-socket log in two setups and a pre-existing Posy appearance pin that fails
+identically at HEAD.
+
+**Adversarial findings (RED → GREEN):**
+
+1. A well already repaired before anyone asked was still pitched as broken.
+   Fixed with `Requires IfNotPlaceSiteStage` on all three Sill concerns.
+2. `Enum.TryParse` accepted "3", "-1" and lowercase names as repair stages, so a
+   content typo could pass a gate. Fixed: exact enum names only.
+3. Contracting a well that was already sound answered "you can't afford it" when
+   the player was short. Fixed: the site and its state are checked before price.
+
+**Self-review:** 🟡 (fixed) the report paid its reward before completing the
+quest; it now completes first and pays only on success. 🧪 The contract's refund
+branch is defensive since the site pre-check: no current path reaches it, and no
+test forces it. ⚪ TDD order: the C1 data model and registry were written before
+their tests; the tests were then run RED by compile error and by the three
+findings above.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -522,3 +606,7 @@ slope indicator should be re-tiered with stats to match.
   faction for indicator species, underground and tier-4/5 tables by zone tier.
 - 2026-10-31 — P4 regression against a HEAD export: field-medicine overload
   restored, Overwrit kept sparse, 3D coverage pins excuse exactly the P4 owners.
+- 2026-10-31 — C1/C2: concern substrate (compile to quests, lint, place-site
+  predicates, Concord contract) and conversation (offer, spoken refusal, status,
+  report, Elder); Sill's well, oven and lantern; 40-case adversarial sweep with
+  three findings fixed.

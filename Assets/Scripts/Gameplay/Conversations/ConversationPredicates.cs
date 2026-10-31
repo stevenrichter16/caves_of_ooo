@@ -255,6 +255,12 @@ namespace CavesOfOoo.Core
                 return site.Stage == stage;
             });
 
+            // C1 (Docs/PLACE-WORK-AND-PROGRESSION.md): a place's repair site by place name,
+            // usable from quest objectives. "Sill:MainWell:StableRepair" = at least that stage;
+            // IfPlaceSiteMethod "Sill:MainWell:Contracted" = repaired that way.
+            Register("IfPlaceSiteStage", (speaker, listener, arg) => CavesOfOoo.Concerns.PlaceSites.StageAtLeast(arg));
+            Register("IfPlaceSiteMethod", (speaker, listener, arg) => CavesOfOoo.Concerns.PlaceSites.ResolvedBy(arg));
+
             // ── House Drama predicates ────────────────────────────────────────
 
             // arg: "DramaID"
