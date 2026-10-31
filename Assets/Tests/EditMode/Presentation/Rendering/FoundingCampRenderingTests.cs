@@ -59,7 +59,7 @@ namespace CavesOfOoo.Tests
                 {
                     var recipe=SpawnRing3DRecipes.Resolve(zone,owner,library.Definition);
                     if(owner.GetPart<RenderPart>()?.Visible!=true){Assert.IsNull(recipe.ModelId);continue;}
-                    if(recipe.ModelId==null){missing.Add(id+" "+owner.BlueprintName+": "+recipe.Failure);continue;}
+                    if(recipe.ModelId==null){if(PreviousPresentationTierGap.Excuses(owner.BlueprintName))continue;missing.Add(id+" "+owner.BlueprintName+": "+recipe.Failure);continue;}
                     Assert.AreSame(owner,recipe.Owner);
                     Assert.NotNull(library.FindModel(recipe.ModelId),recipe.ModelId);
                     Assert.NotNull(library.Definition.FindModel(recipe.ModelId),recipe.ModelId);

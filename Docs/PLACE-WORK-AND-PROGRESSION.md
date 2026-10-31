@@ -1,6 +1,6 @@
 # Place Work and Progression — design and plan
 
-Status: **design and plan, 2026-10-30. P1 (progression bench), P2 (creature levels), P2b (player growth) and P3 (scaled and companion kill XP) implemented;**
+Status: **design and plan, 2026-10-30. P1 (progression bench), P2 (creature levels), P2b (player growth), P3 (scaled and companion kill XP) and P4 (tier-correct spawning) implemented;**
 each later milestone records its own status as it lands. This is CoO-original design
 (one piece, tier-scaled XP, is a Qud-parity port and is labelled as such).
 
@@ -440,6 +440,73 @@ Still failing on `HEAD` and flagged separately:
 (Int−10)×4 of 50 per level); CoO's 1-SP-per-power economy has no clean scale
 for it. Deferred, noted.
 
+## P4 — Tier-correct spawning (implemented 2026-10-30)
+
+**Ships:**
+
+- `ZoneTierPolicy.TierFor(zoneId)`: one tier per zone. Surface = authored cell
+  tier; below ground +1 for floors 1–3 and +1 per three floors after; capped at
+  5; 0 outside the world map.
+- `ZoneTierFloor`: in a zone of tier T ≥ 3, a creature hostile to the player of
+  tier < T−1 does not spawn. Applied as an admission predicate inside
+  `PopulationTable.Roll` (refusal recorded as `tier_floor`, like world-flag
+  refusals) and to structure-stamp occupants (`spawn:` markers): an outclassed
+  bandit dugout stands empty. Wildlife, non-creatures and unknown blueprints
+  always pass; tier 1–2 zones and non-world zones are never filtered.
+- **Wildlife faction** (neutral, hidden): canon's ecology indicator species —
+  cascade-father, glasspane frog, summit singer, yellowfoot wayfarer, wardline,
+  grove lantern-moth, gin frog, brocchinia-sentinel — were hostile Beasts. Canon
+  writes them as gentle ("where the water has gone wrong, they are the first
+  thing missing"; "the Bower-Folk pay for these alive"; "some villages have kept
+  one for six generations"). They no longer hunt the player, and are no longer
+  counted as threats.
+- Underground tables take the zone tier (`UndergroundTier(depth, …, zoneTier)`):
+  shallow floors under deep places now draw their tier-3/4 bestiary instead of
+  tier-1 marlbacks. All five underground call sites pass it.
+- Tier-4/5 surface tables (`WithUpperTierThreats`) keep the tier-3 table and add
+  canopy stranglers (forest biomes), ancient guardians, pale stalkers and, at
+  tier 5, obsidian brutes. The Stump bands keep their ecology and gain the same
+  threats by band and tier.
+
+**Bench, seed 64, Urqu active (the state after Sill hears the sari):**
+
+| Tier | Out-of-band hostiles before → after | Kill XP (scaled) before → after | Plan |
+|---|---|---|---|
+| 1 | 2 → 0 | 3,213 | 1,140 ✓ |
+| 2 | 16 → 0 | 15,184 | 11,004 ✓ |
+| 3 | 93 → 2 | 45,806 → 56,222 | 43,332 ✓ |
+| 4 | 139 → 2 | 2,500 → 49,760 | 111,948 |
+| 5 | 61 → 0 | 153 → 34,744 | 158,616 |
+
+(Run f82a8cf6, after the stamp floor. The four remaining out-of-band hostiles —
+a bandfrog and a mimic chest at tier 3, a desert prowler and an ambush bandit at
+tier 4 — come from builders outside the population roll and the stamps; P5
+audits them.) Tiers 4–5 now spawn the right creatures but too few: 57 and 22
+hostiles across 80 and 26 zones. Density and a deeper upper bestiary are P5.
+
+**Divergences and scope decisions:**
+
+| Decision | Why |
+|---|---|
+| The Overwrit keeps `RuinsTier3` at tiers 4–5 (no upper threats) | Its sparse Unsaying circulation is authored and pinned (`OverwritCompositionTests`); its dangers are designed with the dead-regions work, not bolted on here. Left out of the tier-threat test on purpose. |
+| `UndergroundTier(int, bool)` kept as its own overload beside `(int, bool, int zoneTier)` | `FieldMedicineSourceTests` reflects on the two-argument form as the explicit field-medicine opt-in. |
+| The previous (3D) presentation's coverage pins excuse the P4 owners (`PreviousPresentationTierGap`) | Tier 4–5 chunks in Stump, Sanctum, the Founding Camp and floors under Ginmere now hold upper threats and the deeper underground bestiary, which have no 3D models. The 3D path draws them as glyphs; the flat 16×24 target is where their art is owed (P5). The list is exact, so any other unmodeled owner still fails. |
+
+**Regression:** the full EditMode suite (34,496 cases) was compared case by case
+with an export of HEAD on the same clone. P4-only failures were the
+field-medicine overload, the Overwrit table name and the 3D coverage pins above;
+all are fixed (234/234 on the affected classes). The remaining failures in that
+run either fail identically at HEAD, read `ArtSource/` (not present in the
+verification clone), or pass when their class runs alone (order-dependent, not
+P4).
+
+**Self-review:** 🟡 the upper creatures now placed in the Stump and Grovelands
+(canopy strangler, ancient guardian, pale stalker, obsidian brute) lack native
+16×24 art in those biomes and have no 3D models; graphics coverage follows in P5
+(tracked by `PreviousPresentationTierGap`). 🔵 Sari-snakes
+(tier 2) are filtered from tier-4+ Stump zones; P5 decides whether canon's
+slope indicator should be re-tiered with stats to match.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -451,3 +518,7 @@ for it. Deferred, noted.
   progression diag on by default; container placement skips unknown blueprints.
 - 2026-10-30 — P2b: HP with Toughness, attribute points and level-6 bonuses,
   Attributes group on the skills screen; three stale pins fixed.
+- 2026-10-30 — P4: zone tier policy, tier floor in rolls and stamps, Wildlife
+  faction for indicator species, underground and tier-4/5 tables by zone tier.
+- 2026-10-31 — P4 regression against a HEAD export: field-medicine overload
+  restored, Overwrit kept sparse, 3D coverage pins excuse exactly the P4 owners.

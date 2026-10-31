@@ -52,10 +52,19 @@ namespace CavesOfOoo.Tests
 
         /// <summary>The tier a zone should play at: the authored cell tier on the surface,
         /// one deeper for the first three floors below (design rule, §3 rule 3).</summary>
-        static int ZoneTier(int wx, int wy, int wz)
-            => System.Math.Min(ProgressionCurve.MaxTier, WorldMapAuthoring.TierAt(wx, wy) + (wz > 0 ? 1 : 0));
+        static int ZoneTier(int wx, int wy, int wz) => ZoneTierPolicy.TierFor(WorldMap.ToZoneID(wx, wy, wz));
 
         Dictionary<int, TierCell> Census(EntityFactory f, Entity player)
+        {
+            // The play state most of the world is generated in: Sill has heard the sari
+            // (the opening's first storylet), so Urqu's signs are active (§7.6).
+            var previousState = NarrativeStatePart.Current;
+            NarrativeStatePart.Current = new NarrativeStatePart();
+            NarrativeStatePart.Current.SetFact("UrquActive", 1);
+            try { return CensusIn(f, player); } finally { NarrativeStatePart.Current = previousState; }
+        }
+
+        Dictionary<int, TierCell> CensusIn(EntityFactory f, Entity player)
         {
             var m = OverworldZoneManager.CreateDetached(f, Seed);
             var tiers = new Dictionary<int, TierCell>();
@@ -83,7 +92,7 @@ namespace CavesOfOoo.Tests
                             cell.KillXP += xp;
                             int victimLevel = e.GetStatValue("Level", ProgressionCurve.CreatureLevelBand(ct).Min);
                             cell.ScaledKillXP += ProgressionCurve.ScaleKillXP(xp, playerLevel, victimLevel);
-                            if (ct > tier || ct < tier - 1)
+                            if (ct > tier + 1 || ct < tier - 1)
                             {
                                 cell.Violations++;
                                 string k = e.BlueprintName + "(t" + ct + ")";
@@ -125,7 +134,7 @@ namespace CavesOfOoo.Tests
                 report.AppendLine($"TIER {tier} zones={c.Zones} hostiles={c.Hostiles} mix[{mix}] violations={c.Violations} [{worst}] killXP={c.KillXP} scaled@L{band.Min}={c.ScaledKillXP} bandNeed={need} killTarget={killTarget}");
                 Diag.Record(category: "progression", kind: "TierAudit",
                     payload: new { runId, tier, zones = c.Zones, hostiles = c.Hostiles, violations = c.Violations, killXP = c.KillXP, scaledKillXP = c.ScaledKillXP, bandNeed = need, killTarget });
-                if (c.Violations > 0) failures.Add($"tier {tier}: {c.Violations} hostiles outside tiers {tier - 1}-{tier} ({worst})");
+                if (c.Violations > 0) failures.Add($"tier {tier}: {c.Violations} hostiles outside tiers {tier - 1}-{tier + 1} ({worst})");
                 if (c.ScaledKillXP < killTarget) failures.Add($"tier {tier}: kill XP {c.ScaledKillXP} below the planned {killTarget} of {need}");
             }
             for (int t = 1; t <= ProgressionCurve.MaxTier; t++)

@@ -77,7 +77,12 @@ namespace CavesOfOoo.Data
         /// including world-gated and unselected alternatives; zoneID is optional
         /// for direct table callers and supplied by world-generation builders.
         /// </summary>
-        public List<string> Roll(System.Random rng, string zoneID = null)
+        public List<string> Roll(System.Random rng, string zoneID = null) => Roll(rng, zoneID, null);
+
+        /// <summary>P4: <paramref name="admit"/> may refuse an entry's blueprint for the zone
+        /// being populated (the zone-tier floor); a refused entry is recorded as
+        /// <c>tier_floor</c> and does not roll, exactly like a world-flag refusal.</summary>
+        public List<string> Roll(System.Random rng, string zoneID, System.Func<string, bool> admit)
         {
             if (rng == null) throw new System.ArgumentNullException(nameof(rng));
             var result = new List<string>();
@@ -91,6 +96,8 @@ namespace CavesOfOoo.Data
                     RecordRoll(entry, zoneID, 0, -1, null, "invalid_entry", "not_rolled");
                 else if (!entry.AllowedByWorldState())
                     RecordRoll(entry, zoneID, 0, -1, null, "world_flag", "not_rolled");
+                else if (admit != null && !admit(entry.BlueprintName))
+                    RecordRoll(entry, zoneID, 0, -1, null, "tier_floor", "not_rolled");
                 else
                 {
                     eligible[i] = true;
@@ -217,9 +224,9 @@ namespace CavesOfOoo.Data
         {
             switch (band)
             {
-                case StumpBand.Summit:  return StumpSummit(tier);
-                case StumpBand.Slopes:  return StumpSlopes(tier);
-                default:                return StumpFoothills(tier);
+                case StumpBand.Summit:  return WithStumpThreats(StumpSummit(tier), band, tier);
+                case StumpBand.Slopes:  return WithStumpThreats(StumpSlopes(tier), band, tier);
+                default:                return WithStumpThreats(StumpFoothills(tier), band, tier);
             }
         }
 
@@ -293,6 +300,45 @@ namespace CavesOfOoo.Data
             return t;
         }
 
+        /// <summary>
+        /// P4 (Docs/PLACE-WORK-AND-PROGRESSION.md §3): tier-4/5 cells used to reuse the
+        /// tier-3 table, so near-truth places spawned tier-1 frogs. The tier-3 table is
+        /// kept (the zone floor drops what is now too weak) and the place's upper threats
+        /// are added: the old guardians and canopy stranglers of the high forest, the pale
+        /// hunters that come up from the deeps, and at tier 5 the obsidian brutes.
+        /// </summary>
+        public static PopulationTable WithUpperTierThreats(PopulationTable baseTable, BiomeType biome, int tier)
+        {
+            var t = new PopulationTable { Name = baseTable.Name + "+T" + tier, Entries = new List<PopulationEntry>(baseTable.Entries) };
+            if (biome == BiomeType.Grovelands || biome == BiomeType.Stump || biome == BiomeType.Jungle)
+                t.Entries.Add(new PopulationEntry { BlueprintName = "CanopyStrangler", Weight = 3, MinCount = 1, MaxCount = 1 });
+            t.Entries.Add(new PopulationEntry { BlueprintName = "AncientGuardian", Weight = 2, MinCount = 1, MaxCount = 1 });
+            t.Entries.Add(new PopulationEntry { BlueprintName = "PaleStalker", Weight = 2, MinCount = 1, MaxCount = tier >= 5 ? 2 : 1 });
+            if (tier >= 5)
+                t.Entries.Add(new PopulationEntry { BlueprintName = "ObsidianBrute", Weight = 2, MinCount = 1, MaxCount = 1 });
+            return t;
+        }
+
+        /// <summary>P4: the Stump's bands keep their ecology (now neutral Wildlife) and gain
+        /// threats of their own tier: stranglers on the forested ground from tier 3, old
+        /// guardians and pale stalkers from tier 4, obsidian brutes at the Root's tier 5.</summary>
+        static PopulationTable WithStumpThreats(PopulationTable t, StumpBand band, int tier)
+        {
+            if (tier >= 3 && band != StumpBand.Summit)
+                t.Entries.Add(new PopulationEntry { BlueprintName = "CanopyStrangler", Weight = 2, MinCount = 0, MaxCount = 1 });
+            if (tier >= 3 && band == StumpBand.Summit)
+                t.Entries.Add(new PopulationEntry { BlueprintName = "AncientGuardian", Weight = 2, MinCount = 0, MaxCount = 1 });
+            if (tier >= 4)
+            {
+                if (band != StumpBand.Summit)
+                    t.Entries.Add(new PopulationEntry { BlueprintName = "AncientGuardian", Weight = 2, MinCount = 0, MaxCount = 1 });
+                t.Entries.Add(new PopulationEntry { BlueprintName = "PaleStalker", Weight = 2, MinCount = 0, MaxCount = 1 });
+            }
+            if (tier >= 5)
+                t.Entries.Add(new PopulationEntry { BlueprintName = "ObsidianBrute", Weight = 2, MinCount = 0, MaxCount = 1 });
+            return t;
+        }
+
         public static PopulationTable StumpSima()
         {
             var t = new PopulationTable { Name = "StumpSima" };
@@ -311,6 +357,9 @@ namespace CavesOfOoo.Data
             // BIOME-OVERHAUL A5: tier 3 was silently aliased to tier 2,
             // making the far ring of the world map no harder than the
             // middle ring (verified: only a `tier >= 2` branch existed).
+            // The Overwrit keeps its sparse Unsaying circulation at every tier: its
+            // emptiness is authored, and its own dangers are designed with that region.
+            if (tier >= 4 && biome != BiomeType.Overwrit) return WithUpperTierThreats(GetBiomeTable(biome, 3), biome, tier);
             if (tier >= 3)
             {
                 switch (biome)
@@ -1100,8 +1149,13 @@ namespace CavesOfOoo.Data
         /// Other callers retain their existing populations by default.
         /// </summary>
         public static PopulationTable UndergroundTier(int depth, bool includeFieldMedicine = false)
+            => UndergroundTier(depth, includeFieldMedicine, 0);
+
+        /// <param name="zoneTier">P4: the zone's own tier (ZoneTierPolicy); a shallow
+        /// floor under a deep place plays at that tier, not at its depth's.</param>
+        public static PopulationTable UndergroundTier(int depth, bool includeFieldMedicine, int zoneTier)
         {
-            int tier = depth <= 0 ? 1 : System.Math.Min(depth / 3 + 1, 8);
+            int tier = System.Math.Max(depth <= 0 ? 1 : System.Math.Min(depth / 3 + 1, 8), zoneTier);
 
             // One group per depth roll; cap pack size instead of filling deep caves with marlbacks.
             int snapMin = 1 + System.Math.Min(tier - 1, 2);

@@ -1426,6 +1426,10 @@ namespace CavesOfOoo.Core
                     }
 
                     string bp = marker.StartsWith("spawn:") ? marker.Substring(6) : marker;
+                    // P4: a stamp's occupants obey the zone-tier floor; the structure stands
+                    // (an outclassed bandit dugout is simply empty) but trivial threats do not spawn.
+                    if (marker.StartsWith("spawn:") && !ZoneTierFloor.Admits(factory, bp, ZoneTierPolicy.TierFor(zone.ZoneID)))
+                        continue;
                     var entity = factory.CreateEntity(bp);
                     if (entity != null && stamp.Name == "AbandonedCounter")
                         entity.Properties["SecondExploration.Stamp"] = stamp.Name;

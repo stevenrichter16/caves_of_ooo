@@ -66,7 +66,7 @@ namespace CavesOfOoo.Core
             });
 
             // Roll the population table
-            var toSpawn = Table.Roll(rng, zone.ZoneID);
+            var toSpawn = Table.Roll(rng, zone.ZoneID, ZoneTierFloor.AdmitFor(zone, factory));
             var exploration = ExplorationManager?.Exploration;
             SpreadExplorationEntry assignment = null;
             // Roll indices retain provenance when the inhabited opening service changes

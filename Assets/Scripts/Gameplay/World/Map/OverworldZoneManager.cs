@@ -167,7 +167,7 @@ namespace CavesOfOoo.Core
             // Underground zones use a dedicated pipeline
             if (wz > 0)
                 return CreateUndergroundPipeline(wz,
-                    UndergroundLayoutPlan.Select(WorldSeed,zoneID,biome,poi,Factory));
+                    UndergroundLayoutPlan.Select(WorldSeed,zoneID,biome,poi,Factory), ZoneTierPolicy.TierFor(zoneID));
 
             // Check for POI -- villages, lairs, and river chunks get special pipelines
             if (poi != null)
@@ -379,7 +379,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
             if(depth==2)pipeline.AddBuilder(new PopulationBuilder(PopulationTable.StumpSima()));
             pipeline.AddBuilder(new PopulationBuilder(depth==0?PopulationTable.GetBiomeTable(biome,surfaceTier)
-                :PopulationTable.UndergroundTier(depth)) { HabitatFilter=StumpFaunaHabitat.Allows });
+                :PopulationTable.UndergroundTier(depth, false, ZoneTierPolicy.TierBelow(surfaceTier, depth))) { HabitatFilter=StumpFaunaHabitat.Allows });
             pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,
                 depth==0?surfaceTier:System.Math.Min(surfaceTier+1,8),
                 depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
@@ -401,7 +401,7 @@ namespace CavesOfOoo.Core
                 mouth.AddBuilder(new RootMouthBuilder(this));
                 return mouth;
             }
-            var chamber = CreateUndergroundPipeline(depth);
+            var chamber = CreateUndergroundPipeline(depth, null, ZoneTierPolicy.TierBelow(GetTierForCoords(wx, wy), depth));
             chamber.RemoveBuilders<StairsDownBuilder>();
             chamber.AddBuilder(new RootChamberBuilder());
             return chamber;
@@ -430,7 +430,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
             var population=depth==0
                 ?(biome==BiomeType.Stump?PopulationTable.GetStumpTable(StumpBands.BandAt(wx,wy),surfaceTier):PopulationTable.GetBiomeTable(biome,surfaceTier))
-                :(!cathedral&&depth==2?PopulationTable.CaveTier3():PopulationTable.UndergroundTier(depth));
+                :(!cathedral&&depth==2?PopulationTable.CaveTier3():PopulationTable.UndergroundTier(depth, false, ZoneTierPolicy.TierBelow(surfaceTier, depth)));
             pipeline.AddBuilder(new PopulationBuilder(population){HabitatFilter=StumpFaunaHabitat.Allows});
             pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,
                 depth==0?surfaceTier:(!cathedral&&depth==2?3:System.Math.Min(surfaceTier+1,8)),
@@ -461,7 +461,7 @@ namespace CavesOfOoo.Core
             }
             pipeline.AddBuilder(new OlderdeepArrivalReservationBuilder(WorldSeed));
             pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
-            pipeline.AddBuilder(new PopulationBuilder(depth==0?PopulationTable.GetBiomeTable(biome,tier):PopulationTable.UndergroundTier(depth))
+            pipeline.AddBuilder(new PopulationBuilder(depth==0?PopulationTable.GetBiomeTable(biome,tier):PopulationTable.UndergroundTier(depth, false, ZoneTierPolicy.TierBelow(tier, depth)))
                 {HabitatFilter=StumpFaunaHabitat.Allows});
             pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,depth==0?tier:System.Math.Min(tier+1,8),
                 depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
@@ -500,7 +500,7 @@ namespace CavesOfOoo.Core
             // branch gave a Drowned Sima a Drowned Sima under it,
             // forever, because the floor also gets a StairsDownBuilder.
             if (wz > 2)
-                return CreateUndergroundPipeline(wz);
+                return CreateUndergroundPipeline(wz, null, ZoneTierPolicy.TierBelow(surfaceTier, wz));
 
             var archetype = SinkholeArchetypes.ForSite(poi);
             bool libraryFloor = wz == 2 && archetype == SinkholeArchetype.SealedLibrary;
@@ -546,7 +546,7 @@ namespace CavesOfOoo.Core
 
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave, underground: true));
             pipeline.AddBuilder(new PopulationBuilder(libraryFloor
-                ? PopulationTable.CaveTier3() : PopulationTable.UndergroundTier(wz)));
+                ? PopulationTable.CaveTier3() : PopulationTable.UndergroundTier(wz, false, ZoneTierPolicy.TierBelow(surfaceTier, wz))));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, floorTier,
                 ContainerPlacementService.ZoneKind.Underground));
             if (Diag.IsChannelEnabled("worldmap"))
@@ -577,7 +577,7 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private ZoneGenerationPipeline CreateUndergroundPipeline(int depth, UndergroundLayoutPlan layout = null)
+        private ZoneGenerationPipeline CreateUndergroundPipeline(int depth, UndergroundLayoutPlan layout = null, int zoneTier = 0)
         {
             var (wallBP, floorBP) = SolidEarthBuilder.GetMaterialsForDepth(depth);
 
@@ -610,7 +610,7 @@ namespace CavesOfOoo.Core
             // optional content retains the complete original encounter.
             bool fieldMedicine = layout?.IsOrdinaryColumn == true && layout.SurfaceBiome == BiomeType.Spread
                 && Factory.Blueprints.ContainsKey("MarlbackPatchbearer");
-            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth, fieldMedicine)));
+            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth, fieldMedicine, zoneTier)));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, undergroundTier,
                 ContainerPlacementService.ZoneKind.Underground));
             return pipeline;

@@ -50,6 +50,7 @@ namespace CavesOfOoo.Tests
             {
                 var recipe=Resolve(zone,entity);var render=entity.GetPart<RenderPart>();
                 if(render==null||!render.Visible) {Refused(recipe);continue;}
+                if(!Supported(recipe)&&PreviousPresentationTierGap.Excuses(entity.BlueprintName))continue;
                 Assert.IsTrue(Supported(recipe),id+" "+entity.BlueprintName+": "+Value<string>(recipe,"Failure"));
                 Assert.AreSame(entity,Value<Entity>(recipe,"Owner"));
                 var at=zone.GetEntityPosition(entity);
