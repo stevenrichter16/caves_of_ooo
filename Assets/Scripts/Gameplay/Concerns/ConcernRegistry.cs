@@ -95,7 +95,12 @@ namespace CavesOfOoo.Concerns
         {
             var list = new List<ConversationParam>(a.Triggers ?? new List<ConversationParam>());
             if (list.Count > 0) return list;
-            if (a.HasConfront)
+            if (a.HasRestore)
+            {
+                list.Add(new ConversationParam { Key = "IfPlaceSiteStage", Value = c.Place + ":" + a.Restore.Site + ":StableRepair" });
+                list.Add(new ConversationParam { Key = "IfNotPlaceSiteMethod", Value = c.Place + ":" + a.Restore.Site + ":Contracted" });
+            }
+            else if (a.HasConfront)
                 list.Add(new ConversationParam { Key = "IfFact", Value = SlainFact(c.Id, a.Id) + ":>=:" + a.Confront.Total });
             else if (a.HasSupply || a.HasCarry)
                 list.Add(new ConversationParam { Key = "IfFact", Value = DoneFact(c.Id, a.Id) + ":>=:1" });
@@ -125,10 +130,12 @@ namespace CavesOfOoo.Concerns
                     if (a == null || string.IsNullOrEmpty(a.Id) || !ids.Add(a.Id)) { problems.Add(aw + ": missing or duplicate approach id"); continue; }
                     if (Array.IndexOf(ConcernKinds.All, a.Kind) < 0) problems.Add(aw + ": unknown kind '" + a.Kind + "'");
                     if (string.IsNullOrWhiteSpace(a.Label) || string.IsNullOrWhiteSpace(a.Objective)) problems.Add(aw + ": needs a label and an objective");
-                    if ((a.Triggers == null || a.Triggers.Count == 0) && !a.HasSupply && !a.HasCarry && !a.HasRead && !a.HasConfront)
+                    if ((a.Triggers == null || a.Triggers.Count == 0) && !a.HasSupply && !a.HasCarry && !a.HasRead && !a.HasConfront && !a.HasRestore)
                         problems.Add(aw + ": no trigger can ever finish it");
                     LintKind(a, aw, factory, problems);
                     LintConfront(c, a, aw, factory, problems);
+                    if (a.HasRestore && PlaceSiteCatalog.Get(c.Place, a.Restore.Site) == null)
+                        problems.Add(aw + ": unknown site '" + a.Restore.Site + "' at " + c.Place);
                     CheckPredicates(a.Triggers, aw, problems);
                     CheckActions(a.Outcome, aw, problems);
                     CheckActions(a.Offer, aw + "/offer", problems);

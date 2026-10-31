@@ -663,6 +663,45 @@ before the implementation (a compile RED was certain). 🔵 The site's zone tier
 not checked at runtime when a site steps aside; lint checks the foes' tier, and a
 one-ring step changes the zone tier by at most one band in the authored map.
 
+## C3c — Data-driven Restore sites (implemented 2026-10-31)
+
+**Ships:**
+
+- `PlaceSiteCatalog` (Content/Data/PlaceSites.json): every place's working
+  structures as data: place, stable id, spoken name, broken description, a
+  lasting fix (materials, optional tool, text), an optional patch (materials,
+  relapse turns, text) and a relapse line.
+- The settlement manager tracks them as `RepairableSiteType.Structure` sites of
+  the place's settlement, at any point of interest, beside Sill's hand-built
+  well, oven and lantern (unchanged). A settlement saved before its structures
+  were authored gains them on its next access, so content can grow under
+  existing saves. Enum values are appended (saves store them as ints).
+- `SettlementManager.RepairPlaceSite` and the action `RepairPlaceSite
+  "Place:Site:Lasting|Patch"`: a lasting repair takes every material, needs the
+  tool (kept) and is stable; a patch holds for its relapse turns
+  (`RepairMethodId.PatchedRepair`) and relapses with its own line on the
+  player's return (`AdvanceSettlement`). All or nothing; refusal reasons
+  `missing_materials`, `missing_tool`, `already_repaired`, `already_patched`,
+  `no_patch`, `unknown_site`. The Concord's `ContractPlaceRepair` works on these
+  sites too.
+- Concern approach `Restore {Site}`: the owner's status shows what the repair
+  needs and offers "[Repair the …]" (and "[Patch the … for now.]") when the
+  player carries it; the compiled trigger is the site at a stable repair not made
+  by contract. A patch does not finish it.
+- Lint: catalog sites need a real place, name, broken and relapse text, lasting
+  materials, known materials and tools, and relapse turns for a patch; a Restore
+  approach must name a site of its concern's place.
+
+**Tests:** `PlaceSiteTests` 13 (tracking, reconcile under an old save, lasting
+repair atomicity and tool, patch and relapse, Concord contract, five malformed
+arguments, the Restore approach offering and finishing, a patch not finishing
+it, lint). With Concern, Settlement and Repair classes: 769/769.
+
+**Self-review:** 🔵 the catalog ships no sites yet; W1 authors them. 🔵 Data
+sites are repaired in conversation with their owner rather than at a world
+object: places have no generated object for a weir or a pump yet, and adding one
+per place (with art) belongs with each place's content wave.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -686,3 +725,5 @@ one-ring step changes the zone tier by at most one band in the authored map.
   predicate/action; sealed cargo; placed documents; read facts.
 - 2026-10-31 — C3b: Confront approaches (sites fixed on undertaking, foes placed
   on arrival, slain counts, tier-checked lint).
+- 2026-10-31 — C3c: data-driven place sites (catalog, settlement tracking and
+  reconcile, lasting repair and patch with relapse, Restore approach, lint).

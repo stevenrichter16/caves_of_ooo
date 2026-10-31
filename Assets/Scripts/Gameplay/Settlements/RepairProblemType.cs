@@ -6,6 +6,8 @@ namespace CavesOfOoo.Core
         FouledWater,
         HeatFailure,
         IrrigationBreak,
-        LightFailure
+        LightFailure,
+        /// <summary>C3c: a data-driven structure that has broken.</summary>
+        Structural
     }
 }

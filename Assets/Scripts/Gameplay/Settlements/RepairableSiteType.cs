@@ -5,6 +5,8 @@ namespace CavesOfOoo.Core
         Well,
         HeatStone,
         IrrigationNode,
-        LightBeacon
+        LightBeacon,
+        /// <summary>C3c: a data-driven working structure (PlaceSiteCatalog).</summary>
+        Structure
     }
 }

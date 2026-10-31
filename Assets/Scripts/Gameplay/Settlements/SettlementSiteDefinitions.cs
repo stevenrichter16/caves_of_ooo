@@ -28,6 +28,10 @@ namespace CavesOfOoo.Core
 
         public static IEnumerable<RepairableSiteState> CreateInitialSites(string settlementId, PointOfInterest poi)
         {
+            // C3c: every place's data-driven structures, at any point of interest.
+            if (poi != null)
+                foreach (var data in PlaceSiteCatalog.ForZone(settlementId))
+                    yield return PlaceSiteCatalog.NewState(data);
             if (!IsTrackedVillage(settlementId, poi))
                 yield break;
 

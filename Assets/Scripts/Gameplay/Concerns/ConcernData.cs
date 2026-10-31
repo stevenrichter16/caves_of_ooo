@@ -70,6 +70,8 @@ namespace CavesOfOoo.Concerns
         public ConcernCarryData Carry = new ConcernCarryData();
         /// <summary>Kind Read: a document to read where it stands.</summary>
         public ConcernReadData Read = new ConcernReadData();
+        /// <summary>Kind Restore: a data-driven structure of the concern's place (PlaceSiteCatalog).</summary>
+        public ConcernRestoreData Restore = new ConcernRestoreData();
         /// <summary>Kind Confront: foes at a site near the place, placed on arrival.</summary>
         public ConcernConfrontData Confront = new ConcernConfrontData();
 
@@ -77,6 +79,7 @@ namespace CavesOfOoo.Concerns
         public bool HasSupply => Supply != null && !string.IsNullOrEmpty(Supply.Blueprint);
         public bool HasCarry => Carry != null && !string.IsNullOrEmpty(Carry.Item);
         public bool HasRead => Read != null && !string.IsNullOrEmpty(Read.Document);
+        public bool HasRestore => Restore != null && !string.IsNullOrEmpty(Restore.Site);
         public bool HasConfront => Confront?.Foes != null && Confront.Foes.Count > 0;
     }
 
@@ -101,6 +104,13 @@ namespace CavesOfOoo.Concerns
         /// <summary>The player's line on handing it over, and the recipient's answer.</summary>
         public string Handover;
         public string Reply;
+    }
+
+    [Serializable]
+    public class ConcernRestoreData
+    {
+        /// <summary>The site id in PlaceSiteCatalog for the concern's own place.</summary>
+        public string Site;
     }
 
     [Serializable]

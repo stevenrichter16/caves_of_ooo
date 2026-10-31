@@ -302,6 +302,23 @@ namespace CavesOfOoo.Core
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.IssueCargoAction, CavesOfOoo.Concerns.ConcernConversation.IssueCargo);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.DeliverCargoAction, CavesOfOoo.Concerns.ConcernConversation.DeliverCargo);
 
+            // C3c: "Place:SiteId:Lasting|Patch" — repair a data-driven structure by hand.
+            RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.RepairAction, (speaker, listener, arg) =>
+            {
+                var parts = arg?.Split(':');
+                if (parts == null || parts.Length != 3 || (parts[2] != "Lasting" && parts[2] != "Patch")) return "invalid_argument";
+                string zoneId = CavesOfOoo.Concerns.PlaceSites.ZoneIdOf(parts[0]);
+                if (zoneId == null) return "unknown_place";
+                if (SettlementManager.Current == null) return "missing_settlement_manager";
+                string reason = SettlementManager.Current.RepairPlaceSite(zoneId, parts[1], parts[2] == "Lasting", listener);
+                if (reason == null && ConversationManager.Speaker != null && ConversationManager.CurrentNode != null
+                    && ConversationManager.CurrentNode.ID != null && ConversationManager.CurrentNode.ID.StartsWith(CavesOfOoo.Concerns.ConcernConversation.NodePrefix))
+                    ConversationManager.CurrentNode = new Data.NodeData { ID = CavesOfOoo.Concerns.ConcernConversation.NodePrefix + "repaired", Text = "\"That'll do it.\"",
+                        Choices = { new Data.ChoiceData { Text = "[Back]", Target = "Start" } } };
+                if (reason == null) { SettlementManager.Current.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone); SettlementRuntime.MarkZoneDirty(); }
+                return reason;
+            });
+
             // C3a: "Blueprint:Count" — take exactly that many carried units, or nothing.
             RegisterRequired("TakeItemCount", (speaker, listener, arg) =>
             {

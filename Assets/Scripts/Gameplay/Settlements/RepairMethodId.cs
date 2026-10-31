@@ -14,6 +14,8 @@ namespace CavesOfOoo.Core
         TeachWarden,
         /// <summary>C1: a stable repair bought from the Saccharine Concord's trade-post
         /// (ContractPlaceRepair). The place owes the Concord its upkeep.</summary>
-        Contracted
+        Contracted,
+        /// <summary>C3c: a data-driven site patched for now (PlaceSiteCatalog Patch); relapses.</summary>
+        PatchedRepair
     }
 }

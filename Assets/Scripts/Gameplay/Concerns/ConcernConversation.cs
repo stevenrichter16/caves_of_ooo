@@ -31,6 +31,7 @@ namespace CavesOfOoo.Concerns
         public const string SupplyAction = "HandConcernSupply";
         public const string IssueCargoAction = "IssueConcernCargo";
         public const string DeliverCargoAction = "DeliverConcernCargo";
+        public const string RepairAction = "RepairPlaceSite";
         public const string NodePrefix = "concern:";
         public const string ElderRole = "Elder";
 
@@ -163,6 +164,8 @@ namespace CavesOfOoo.Concerns
                 text.Append("\n").Append(quest != null && quest.FinishedObjectives.Contains(a.Id) ? "[x] " : "[ ] ").Append(a.Objective);
                 if (a.HasConfront && ConcernWorld.SiteOf(c.Id, a.Id) != null && !string.IsNullOrEmpty(a.Confront.Site))
                     text.Append(" - ").Append(a.Confront.Site);
+                if (a.HasRestore && PlaceSiteCatalog.Get(c.Place, a.Restore.Site) is PlaceSiteData site)
+                    text.Append(" (needs ").Append(Needs(site.Lasting)).Append(")");
                 if (a.HasSupply && !IsDone(c, a))
                     text.Append(" (you carry ").Append(ConcernItems.CountCarried(listener, a.Supply.Blueprint)).Append(" of ").Append(a.Supply.Count).Append(")");
             }
@@ -170,6 +173,16 @@ namespace CavesOfOoo.Concerns
             foreach (var a in c.Approaches)
             {
                 if (IsDone(c, a)) continue;
+                if (a.HasRestore && PlaceSiteCatalog.Get(c.Place, a.Restore.Site) is PlaceSiteData restore
+                    && PlaceSites.Site(c.Place, restore.Id) is RepairableSiteState state && state.Stage < RepairStage.StableRepair)
+                {
+                    if (CanFix(listener, restore.Lasting))
+                        n.Choices.Add(new ChoiceData { Text = "[Repair the " + restore.Name + ".]", Target = "",
+                            Actions = new List<ConversationParam> { new ConversationParam { Key = RepairAction, Value = c.Place + ":" + restore.Id + ":Lasting" } } });
+                    if (restore.HasPatch && state.Stage == RepairStage.Fouled && CanFix(listener, restore.Patch))
+                        n.Choices.Add(new ChoiceData { Text = "[Patch the " + restore.Name + " for now.]", Target = "",
+                            Actions = new List<ConversationParam> { new ConversationParam { Key = RepairAction, Value = c.Place + ":" + restore.Id + ":Patch" } } });
+                }
                 if (a.HasSupply && ConcernItems.CountCarried(listener, a.Supply.Blueprint) >= a.Supply.Count)
                     n.Choices.Add(new ChoiceData { Text = "[Hand over " + a.Supply.Count + " " + UnitName(listener, a.Supply.Blueprint) + ".]", Target = "",
                         Actions = new List<ConversationParam> { new ConversationParam { Key = SupplyAction, Value = c.Id + "|" + a.Id } } });
@@ -290,6 +303,24 @@ namespace CavesOfOoo.Concerns
             if (!ConversationActions.TryExecuteAll(a.Offer, speaker, listener)) return "offer_refused";
             Record("OfferTaken", speaker, c, a.Id);
             return null;
+        }
+
+        static string Needs(PlaceSiteFixData fix)
+        {
+            var b = new StringBuilder();
+            foreach (var m in fix.Materials)
+            {
+                if (b.Length > 0) b.Append(", ");
+                b.Append(m.Count).Append(' ').Append(SplitWords(m.Blueprint).ToLowerInvariant());
+            }
+            if (!string.IsNullOrEmpty(fix.Tool)) b.Append("; with a ").Append(SplitWords(fix.Tool).ToLowerInvariant());
+            return b.ToString();
+        }
+
+        static bool CanFix(Entity actor, PlaceSiteFixData fix)
+        {
+            foreach (var m in fix.Materials) if (ConcernItems.CountCarried(actor, m.Blueprint) < m.Count) return false;
+            return string.IsNullOrEmpty(fix.Tool) || ConcernItems.CountCarried(actor, fix.Tool) > 0;
         }
 
         static string UnitName(Entity actor, string blueprint)

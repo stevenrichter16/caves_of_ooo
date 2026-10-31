@@ -41,7 +41,12 @@ namespace CavesOfOoo.Core
 
             SettlementState state;
             if (_settlements.TryGetValue(settlementId, out state))
+            {
+                // C3c: a settlement saved before its place's structures were authored gains them.
+                foreach (var data in PlaceSiteCatalog.ForZone(settlementId))
+                    if (state.GetSite(data.Id) == null) state.SetSite(PlaceSiteCatalog.NewState(data));
                 return state;
+            }
 
             if (poi == null)
                 return null;
@@ -100,7 +105,9 @@ namespace CavesOfOoo.Core
                     site.RelapseAtTurn = null;
                     site.ResolvedAtTurn = -1;
                     string relapseMsg;
-                    if (site.SiteType == RepairableSiteType.HeatStone)
+                    if (site.SiteType == RepairableSiteType.Structure)
+                        relapseMsg = PlaceSiteCatalog.Get(PlaceSiteCatalog.PlaceAt(settlementId), site.SiteId)?.Relapse ?? "Something you patched here has failed again while you were away.";
+                    else if (site.SiteType == RepairableSiteType.HeatStone)
                         relapseMsg = "The oven's firebox has cracked open again while you were away.";
                     else if (site.SiteType == RepairableSiteType.LightBeacon)
                         relapseMsg = "The watch lantern has guttered out again while you were away.";
@@ -336,6 +343,51 @@ namespace CavesOfOoo.Core
             SyncConditions(state);
             RaiseSiteChanged(settlementId, site);
             return true;
+        }
+
+        /// <summary>
+        /// C3c: repair a data-driven structure (PlaceSiteCatalog) by hand. <paramref name="lasting"/>
+        /// needs every material and the tool (kept) and gives a stable repair; a patch holds
+        /// for its relapse turns. All materials or none are taken. Returns null on success or
+        /// the refusal reason.
+        /// </summary>
+        public string RepairPlaceSite(string settlementId, string siteId, bool lasting, Entity player)
+        {
+            if (player == null) return "missing_player";
+            var data = PlaceSiteCatalog.Get(PlaceSiteCatalog.PlaceAt(settlementId), siteId);
+            if (data == null) return "unknown_site";
+            PointOfInterest poi = ResolvePoi(settlementId);
+            SettlementState state = GetOrCreateSettlement(settlementId, poi);
+            RepairableSiteState site = state?.GetSite(siteId);
+            if (site == null) return "unknown_site";
+            if (site.Stage >= RepairStage.StableRepair) { MessageLog.Add("The " + data.Name + " is already properly repaired."); return "already_repaired"; }
+            var fix = lasting ? data.Lasting : data.Patch;
+            if (!lasting && !data.HasPatch) return "no_patch";
+            if (!lasting && site.Stage == RepairStage.TemporarilyPurified) { MessageLog.Add("The " + data.Name + " is patched already."); return "already_patched"; }
+            foreach (var m in fix.Materials)
+                if (CavesOfOoo.Concerns.ConcernItems.CountCarried(player, m.Blueprint) < m.Count)
+                { MessageLog.Add("You don't have what the " + data.Name + " needs."); return "missing_materials"; }
+            if (!string.IsNullOrEmpty(fix.Tool) && CavesOfOoo.Concerns.ConcernItems.CountCarried(player, fix.Tool) < 1)
+            { MessageLog.Add("You need a tool for that."); return "missing_tool"; }
+            foreach (var m in fix.Materials)
+                CavesOfOoo.Concerns.ConcernItems.TakeCarried(player, m.Blueprint, m.Count);
+
+            site.ResolvedAtTurn = GetCurrentTurn();
+            if (lasting)
+            {
+                site.Stage = RepairStage.StableRepair; site.OutcomeTier = RepairOutcomeTier.Stable;
+                site.ResolvedByMethod = RepairMethodId.ManualRepair; site.RelapseAtTurn = null;
+            }
+            else
+            {
+                site.Stage = RepairStage.TemporarilyPurified; site.OutcomeTier = RepairOutcomeTier.Temporary;
+                site.ResolvedByMethod = RepairMethodId.PatchedRepair;
+                site.RelapseAtTurn = (int)Math.Min(int.MaxValue, (long)site.ResolvedAtTurn + fix.RelapseTurns);
+            }
+            MessageLog.AddAnnouncement(fix.Text);
+            SyncConditions(state);
+            RaiseSiteChanged(settlementId, site);
+            return null;
         }
 
         /// <summary>C1: the settlement condition left by a Concord-contracted repair of a site.</summary>
