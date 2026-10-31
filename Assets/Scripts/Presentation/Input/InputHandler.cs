@@ -1153,6 +1153,8 @@ namespace CavesOfOoo.Rendering
             // Entry encounters must exist before scheduler/render registration
             // and before autosave captures their persistent stock and roll receipt.
             WorldTravellers.OnZoneEntered(PlayerEntity, result.NewZone);
+            // H1.4: a sworn host may be claimed by a hunted wayfarer.
+            ClothClaims.OnZoneEntered(PlayerEntity, result.NewZone);
             // C3a: what open concerns stand in this place (a document to read).
             CavesOfOoo.Concerns.ConcernWorld.OnZoneEntered(PlayerEntity, result.NewZone);
 

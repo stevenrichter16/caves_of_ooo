@@ -110,6 +110,40 @@
         "Text": "You set willow where the worst stakes walked. It is straight today."
       },
       "Relapse": "The willow stakes at the Drowned Ledger have bent with the peat. The line is out again."
+    },
+    {
+      "Place": "Cinderhold",
+      "Id": "Pump",
+      "Name": "mine pump",
+      "Broken": "The pump's rod has sheared at the collar, and the old binding hangs in black strings. Water stands in the shaft below.",
+      "Lasting": {
+        "Materials": [
+          {
+            "Blueprint": "IronSpikeComponent",
+            "Count": 2
+          },
+          {
+            "Blueprint": "OakHaftComponent",
+            "Count": 1
+          },
+          {
+            "Blueprint": "LeatherBindingComponent",
+            "Count": 1
+          }
+        ],
+        "Text": "You pin a new oak rod with iron at the collar and bind it tight. The pump takes its first stroke, coughs up black water, and keeps going."
+      },
+      "Patch": {
+        "Materials": [
+          {
+            "Blueprint": "FireClay",
+            "Count": 2
+          }
+        ],
+        "RelapseTurns": 600,
+        "Text": "You pack clay round the sheared collar. It turns, for now."
+      },
+      "Relapse": "The clay round Cinderhold's pump collar has cracked through. The water is climbing in the lower level again."
     }
   ]
 }

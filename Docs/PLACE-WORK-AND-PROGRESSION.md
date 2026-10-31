@@ -923,7 +923,7 @@ which checks lasting fixes only; both are sold widely. 🔵 The kin are desert
 bandits by body, which is right for the Beating but leaves the art to the
 bandit sprite. 🧪 No live play of any W2 concern yet.
 
-## H1 — The oath, sworn (design 2026-10-31)
+## H1 — The oath, sworn (implemented 2026-10-31)
 
 Canon (`Lore/Factions/07_TentRight.md` VII.4, rewards): the player can swear
 the oath and become a host. Once sworn, they must protect anyone who claims
@@ -953,6 +953,326 @@ half exists (`UnderTheClothEffect`, W2.5). Nobody can be the player's guest.
    cannot refuse. The pursuers wait outside the cloth until the third day.
 
 **Cut for now:** the Namers' subplot and the Renewal-Naming role (late game).
+
+### Implemented
+
+- **Swearing.** `TentRightHost_1` offers "I would swear the oath, and keep a
+  cloth of my own" when Tent-Right likes the player, the oath is not yet sworn
+  and the player has never broken a cloth. `SwearTentRightOath` calls
+  `TentRightOath.Swear`, which:
+  - sets `TentRight.OathSworn`;
+  - gives Tent-Right +10;
+  - teaches the `Hospitality` tree and its `Extend the Cloth` power.
+
+  A refusal is spoken ("Not yet, and I say so aloud") and costs nothing. A
+  refused swear changes nothing: no fact, no standing, no power. The
+  discipline costs −1 and is flagged hidden. It cannot be bought, and the
+  skill browser shows it only to its owner.
+- **Extending the cloth** (`Hospitality_ExtendCloth`, adjacent cell, 30-turn
+  cooldown). It puts `UnderTheClothEffect(host, sworn)` on a person: factioned
+  and not Beasts. It refuses in these cases:
+  - `not_sworn`;
+  - `no_target`, which includes the host themselves;
+  - `not_a_person`;
+  - `another_host`, when the target is someone else's guest;
+  - `not_yet_beaten`, when someone who wants the host dead is at half health
+    or more. A pursued person reaches for the hem; a fresh enemy does not.
+
+  Renewing your own guest restarts their three days.
+- **The guest's half.** A guest who is not the player keeps the peace
+  (`UnderTheClothEffect.KeepsPeace`). `FactionManager.GetFeeling` floors through
+  `Stands`, which is `Protects` or `KeepsPeace`. `KillGoal.Finished` ends a
+  hunt already under way when the cloth falls between hunter and quarry.
+  Applying the cloth also clears current targets in the zone. Standing is
+  untouched (`GetFeelingUnfloored`), so the truce launders nothing. Beasts
+  still hunt a guest.
+- **The host's half.** `UnderTheClothEffect.Break`, called from both damage
+  choke points (melee and spell), now checks the victim's recorded `HostId`.
+  - A player who strikes their own guest, or breaks a cloth as a guest, goes
+    through `TentRightOath.Oathbreak`:
+    - Tent-Right −100;
+    - `TentRight.Oathbreaker` is set;
+    - both Hospitality skills are removed;
+    - every guest of this host in the zone is withdrawn (`Withdrawn`, its own
+      message and diag).
+  - Sworn guests in other zones lose the cloth on their next turn.
+  - An NPC host who strikes their guest withdraws their other guests and does
+    not touch the player's standing.
+  - An oathbreaker is turned away at every tent ("Name me guest." → no cloth,
+    no water, no shade). `ClaimGuestRight` refuses them too, and they can never
+    swear. Canon (07 :152): an oathbreaker "is refused hospitality across all
+    Tent-Right settlements", and in the Beating that exile is death, only
+    slower. So the wells of a Tent-Right place (Wellmeet, the First Tent)
+    refuse them water, for drinking (`WellDrinkingService`, reason
+    `oathbreaker_refused`) and for filling a vessel (`WaterVesselService`).
+    Other places' wells still serve them.
+- **The claim** (`ClothClaims`, beside `WorldTravellers` in the zone
+  transition). On open Beating ground (no POI, tier ≤ 3), a sworn player has a
+  1-in-4 hash roll per zone, at most three claims a game. A hunted wayfarer
+  (villager body, `ClothClaimant_1` dialogue) takes the hem at once, because a
+  host cannot refuse. Two or three named pursuers (`DesertBandit`, three at
+  tier 3) are placed 6–9 cells out, personally hostile to the guest and held
+  at the cloth. `ClothClaimantPart` honours the defence once: when no pursuer
+  is left standing while the guest lives under the sworn player's cloth, the
+  guest gives 40 drams and Tent-Right +5. Canon: standing is "gained by ...
+  defending guests".
+- **Guest-right at a tent records its host** (`HostId` = the speaker), so the
+  Wellmeet host is the guest's host in law as well as in text.
+
+**Diag:**
+- effect/OathSworn, OathRefused, Oathbreak (side, loosed), HostStruckGuest,
+  OathWithdrawn, ClaimHonored;
+- OathClaimed now carries host and sworn;
+- skill/ClothExtended and SkillRejected with reasons;
+- worldgen/ClothClaimRoll.
+
+**Save:** `HostId` (an ID: a reference would write the host's whole body into
+the save), `HostSworn`, `Withdrawn` and the claimant's `Pursuers`/`Honored`
+round-trip by reflection (pinned). Cloths from before H1 have no host and carry
+no host obligations.
+
+**Evidence:**
+- `H1OathTests` and `H1ClothClaimTests` (20 tests). The tests swear through the
+  real conversation and extend the cloth through the real skill. They strike
+  in real melee. The claim test enters every open Beating zone with a real
+  detached world manager (seed 64). Counter-checks:
+  - no offer at neutral standing;
+  - an unsworn player's power refuses;
+  - striking a stranger is no oathbreak;
+  - an unrelated hunt continues;
+  - no claim without the oath;
+  - a withdrawn claimant honours nothing.
+- `H1OathAdversarialTests` (24 tests): self-reference, nulls, the 50%
+  boundary, two hosts, atomic refusals, double-swear, a discovery that cannot
+  be bought even with points, idempotent oathbreak, guest-side oathbreak by a
+  sworn player, NPC guests and hosts, the beast exemption, unfloored hatred,
+  the hunt resuming after the cloth, the save round trip, diag for every
+  outcome, conversation integrity, and the null-state gate.
+- **Mutation check.** The code was written before its tests, so each wiring
+  was removed in turn: the host's half of `Break`, `Stands` in `KillGoal`, and
+  `Stands` in `GetFeeling`. Six tests went red; then the wiring was restored.
+- Related suites (oath, cloth, W2, First Tent, Wellmeet, territory, kill goal,
+  factions, persuasion, skills screen and browser, registry, conversations):
+  798/798.
+
+**Found and fixed while building:**
+- 🟡 A guest caught in their own blast was an oathbreaker. `Break` treated
+  attacker == victim as striking a person. Latent since W2.5; found by the
+  adversarial sweep.
+- 🟡 The first oathbreaker gate used `IfFact`, which fails closed without
+  narrative state and hid guest-right. It is now dedicated predicates
+  (`IfTentRightOathbreaker` / `IfNotTentRightOathbreaker`), with a pin.
+- 🟡 `StandDown` tested `Protects`/`KeepsPeace` inside `OnApply`, before the
+  effect joined the guest's list, so targets were not cleared. It now tests
+  persons directly.
+- 🔵 `SkillsScreenLiveBlueprintTests` depended on the previous fixture's
+  registry. It now loads the shipped content itself.
+- 🔵 `ParchedGlareTests`' two well cases had failed since the actor contract
+  tightened: their hand-built traveller had no `PhysicsPart`, which
+  `WorldResourceActions.ActorCurrent` requires and every real player has. The
+  fixture now gives it one, so the tests measure the well again.
+
+**Voice gate, fourth blind run (61 passages: H1, W2 and W1b's rewrites):**
+44 pass, 16 weak, 1 fail.
+- **The fail** was the oathbreaker's turn-away, which still offered water.
+  That contradicts canon's exile. It was rewritten, and the exile was made
+  real at the wells (above).
+- **Weak lines:** Tent-Right's spoken-no ritual had spread to every culture's
+  player refusal. Several lines borrowed voice-card examples ("three things",
+  "upstairs", "fondest"). Wellmeet's remarks disagreed with its pitch about
+  where the kin were camped. One line put water outside the oath.
+- **Fixes:**
+  - Player refusals outside Tent-Right are now plain.
+  - The Wellmeet remarks, the Quillhold news, the Quiet's withheld line, the
+    sworn and refused-oath replies, the host's counsel, the claimant's thanks
+    and both oath announcements were rewritten.
+  - The salt-master's pitch now says it at the scales, aloud.
+- The rewrites wait for the next blind run.
+
+**Divergences from the design:**
+
+| Design | Shipped | Why |
+|---|---|---|
+| Extend to "a hostile who claims it" | Hostile persons accept only below 50% health | Otherwise the cloth is a spell that ends any fight; a beaten enemy reaching for the hem is the canon claim |
+| Guests lose the cloth wherever they are | Sworn-host guests elsewhere drop it on their next turn; an NPC host's guests only in the zone | NPC hosts have no oath fact to consult offscreen |
+| A pursued stranger "claims the cloth" | Beating only, tier ≤ 3, one roll per zone, three claims a game; defence honoured with 40 drams and +5 | "Beating first"; bounded like the travellers; canon rewards defending guests |
+| Oathbreakers refused hospitality (canon 07 :152) | New: no guest-right, no oath, at every Tent-Right host | Canon, and it was missing |
+
+**Self-review (Methodology Template §5):**
+- 🔵 A player's oathbreaks from before H1 are not recorded as facts. Those
+  saves keep their −100 standing but can still be named guest.
+- 🔵 Indirect harm (a shove into a hazard, a thrown weapon) is still not a
+  break; this is the existing W2.5 🧪.
+- 🔵 The claimant uses the villager body, so it has native art. There are no
+  pursuer-specific sprites; they use the bandit body.
+- 🧪 Live play of swearing and of a claim is not yet captured.
+
+**Cold-eye pass.**
+- Q1 symmetry: guest and host breaks run from the same call at both choke
+  points, and the two removal flags have matching messages and diag.
+- Q2: every new diag kind carries a `reason` or `side`.
+- Q3: `HostSworn` true and false, `Withdrawn`, and both `side` values are each
+  asserted.
+- Q4: this section was checked against the shipped code.
+
+**Performance:**
+- `KillGoal.Finished` adds two effect lookups per hunting creature per turn.
+- `GetFeeling` adds `KeepsPeace` only on would-be-hostile results.
+- No new per-frame work.
+
+## W3 — Tier-3 content: the First Tent, the Last Counter, Cinderhold (implemented 2026-10-31)
+
+**Scope.** The tier-3 places on the shipped map are Morrowfast, Cinderhold, the
+First Tent and the Last Counter (Grovelands and Beating).
+- **Pruned: Morrowfast.** It already carries its own deep work: the supper
+  expedition, the regional situations (`MORROWFAST-STYLE-AND-REGIONAL-SITUATIONS.md`)
+  and its named Stillcord residents. A concern there would duplicate it. The
+  arc it would have opened is folded into that existing work.
+- **Pruned: Lampwell, Olderdeep and the Slip quarter.** These are sites, not
+  `WorldMapAuthoring.Places`, so they wait for the site wave (W5).
+
+Each W3 concern also deepens a system, so each place's work changes how that
+system plays, not just what it says:
+
+| Place | Concern | System it deepens |
+|---|---|---|
+| the First Tent | **firsttent.clan** — the clan at the poles | H1: a new **Host** approach kind, so the sworn player's own cloth settles work |
+| the Last Counter | **lastcounter.retreat** — the third retreat | the abandoned predecessor counters become places with something to read, and something lives in one |
+| Cinderhold | **cinderhold.pump** — the drowned level | data-driven Restore sites and the Pruning contract: the pump, and what it costs the Choir |
+
+### firsttent.clan (owner TentRightHost at the First Tent; XP 2200)
+
+Canon VII.2: "A Tent-Right host who has sworn the oath to a guest will defend
+that guest against their own clan if necessary. *This is the oath's terrible
+cost and its whole power.*" The monument host has a guest under the cloth: a
+salt-carrier who broke a carriage contract with the host's own clan. The clan
+waits at the poles and keeps the oath to the hour. On the third day they will
+take the carrier, and the host will stand against her own blood.
+
+**Approaches:**
+- **Host** (new kind): a sworn player takes the guest under their own cloth
+  when the host's ends. The guest is placed at the First Tent while the work
+  is open (`ConcernHostData`: blueprint and name). Extending the cloth to that
+  guest sets the approach's hosted fact.
+  - An unsworn player sees the approach and learns what it would take. That
+    is a reason to swear, not a lock.
+  - Outcome: `FirstTent.CarriedOut`. The clan goes home, and Wellmeet hears it.
+- **Settle**: pay the clan the contract's worth, 120 drams. Outcome:
+  `FirstTent.ContractPaid`. Tally hears it, in the Concord register.
+- **Read**: the knotted cord of the first oath, a document at the First Tent.
+  Its precedent is that the first host swore to her own clan's enemy. Reading
+  it aloud to the clan settles them. Outcome: `FirstTent.PrecedentRead`, with
+  a remark at Wellmeet.
+
+Reward: Tent-Right +10 on any approach. +10 more on Host only: a host who
+takes a guest from a host is the oath working as designed.
+
+### lastcounter.retreat (owner SaccharineEnvoy at the Last Counter; XP 2200)
+
+Canon: the Counter "has been pulled back twice in two generations". Two
+abandoned counters stand at 19.18 and 19.19. The Envoy has orders from Tally
+to pull back a third time, because deliveries east keep failing.
+
+**Approaches:**
+- **Read**: the first counter's last ledger, placed at the abandoned counter
+  at 19.18. The Read placement accepts a zone ID as well as a place name, so
+  documents can sit at named sites that are not places. Outcome:
+  `LastCounter.LedgerRead`. The Envoy files the reason, and Tally hears it as
+  a revised rate.
+- **Confront**: what takes the deliveries. Two dune lurkers and a brittle
+  hound nest in the first abandoned counter (offset 1,0, tier 3). Outcome:
+  `LastCounter.Held`. The Envoy stocks expedition goods (Panacea, warded
+  cloak) and the post stays.
+- **Settle**: the Concord can be paid to stay, 150 drams for a "continuity
+  surcharge". Outcome: `LastCounter.Underwritten`. The post stays, and prices
+  at the Counter rise 10%, because the surcharge is passed on. That is the
+  comedy.
+
+### cinderhold.pump (owner Elder at Cinderhold; XP 2200)
+
+Canon: a practical Concord-dominated mining town, with iron and Black-Gall
+extraction. The lower workings flood, and the pump that kept them dry is
+broken.
+
+**Approaches:**
+- **Restore** the pump (`Cinderhold:Pump`).
+  - Lasting repair: iron spikes ×2, an oak haft and a leather binding, all
+    sold at Cinderhold.
+  - Patch: fire clay ×2, which relapses after 600 turns.
+  - Outcome: `Cinderhold.PumpRunning`. The smith's iron goods are cheaper
+    (0.95), and the Quartermaster stocks iron spikes.
+- **Confront** what came up out of the flooded level: a mosshulk and two
+  canopy stranglers in the Grovelands field north of town (offset 0,-1, tier
+  3). Outcome: `Cinderhold.LevelCleared`.
+- **Supply** four fire clay to seal the seep by hand. Outcome:
+  `Cinderhold.Sealed`. The Choir notices: a remark at Cinderhold and Rot
+  Choir −3, because sealing the seep dries the grove's spring.
+
+**Interaction:** the Choir is the cost of the cheap way. Sealing the seep by
+hand dries the grove spring above town (Rot Choir −3), and Morrowfast hears
+that the beetles have moved their path. *(Cut from the first draft: thanks
+varied by the pruning writ. Concern thanks are one string, and branching them
+is not worth a new mechanism for one line.)*
+
+### Mechanics added
+
+1. **Host approach kind** (`ConcernHostData`; trigger fact
+   `concern.<id>.<approach>.hosted`). `ConcernWorld` places the guest at the
+   concern's place on arrival while the work is open: once, with a stable ID,
+   tagged `ConcernGuest`. `Hospitality_ExtendCloth` sets the fact when it
+   names that guest.
+   - Lint: the guest blueprint must exist and be a person.
+   - If the guest dies, the approach is closed. Other approaches stay open.
+2. **Read at a zone.** `ConcernReadData.Place` may be a surface zone ID.
+   Lint accepts a zone ID that is in bounds.
+
+### Implemented
+
+As designed above, with these specifics:
+- **The guest:** the First Tent's guest is a villager body named "the salt-carrier",
+  with her trade stock removed. She is placed the first time the player
+  *arrives* at the First Tent while the work is open (not on a reload). She is
+  never replaced if she dies or leaves.
+- **The ledger:** placed at the abandoned counter, `Overworld.19.18.0`.
+- **The Last Counter's Confront site** resolves to that same zone.
+- **Cinderhold's field** resolves to `Overworld.6.5.0`.
+- **Diag:** concern/GuestPlaced, GuestNotPlaced (reason), GuestHosted.
+
+**Evidence:**
+- `W3ContentTests` (13). Every approach of all three concerns is played end to
+  end, through these paths:
+  - the real skill (the sworn player's cloth on the carrier), real payment
+    (with a short-by-one counter-check), real documents (the ledger is absent
+    at the Counter itself and present in the empty post), and foes placed and
+    slain;
+  - site repair (clay turns the pump without finishing it; iron and oak do),
+    and supply.
+  - Consequences checked: prices of 0.95 and 1.1, the Envoy's expedition stock,
+    and news in Wellmeet, Tally and Morrowfast.
+  - Counter-checks: an unsworn player cannot take the carrier; hosting a
+    different villager settles nothing; the carrier is placed once and not
+    replaced.
+- `W3HostAdversarialTests` (10):
+  - lint (no guest, a beast guest, an unknown or nameless guest, reads at a
+    valid zone, off the map, underground or nowhere);
+  - eight malformed guest tags;
+  - a well-formed tag setting only its own approach;
+  - placement gated by state, place and arrival;
+  - the tag surviving a save;
+  - the placement diag.
+- **Mutation check.** The code was written before its tests, so two pieces of
+  wiring were removed in turn: the skill's call to `OnGuestHosted`, and the
+  zone match for reads. Two tests went red; then the wiring was restored.
+- Concern, conversation, skill, settlement-composition, territory and
+  document suites: 1826/1826. The document-catalog pins were updated (22 → 24
+  documents; source regex adds W3).
+
+**Self-review (Methodology Template §5):**
+- 🔵 A hosted carrier stays at the First Tent after her three days. She has no
+  walk-out behaviour; the remark says she left.
+- 🔵 The Last Counter's foes nest in the abandoned counter. Its own landmark
+  stamp is untouched.
+- 🧪 No live play of any W3 concern yet.
 
 ## Implementation log
 
@@ -989,3 +1309,8 @@ half exists (`UnderTheClothEffect`, W2.5). Nobody can be the player's guest.
   concern owners (Available "!", Active "...").
 - 2026-10-31 — W2: Wellmeet, the Salt-Vault, the Drowned Ledger and the Quiet's
   Door; named foes and withheld work; third blind voice run and rewrites.
+- 2026-10-31 — H1: the Tent-Right oath sworn (swearing, Extend the Cloth, the host's
+  obligation, oathbreakers refused, the Beating claim); self-strike oathbreak fixed.
+- 2026-10-31 — W3: the First Tent, the Last Counter and Cinderhold; the Host approach
+  kind and reads at named sites; fourth blind voice run and rewrites; oathbreakers
+  refused water at Tent-Right wells.

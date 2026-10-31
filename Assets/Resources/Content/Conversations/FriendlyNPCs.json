@@ -1429,6 +1429,22 @@
                   "Key": "ClaimGuestRight",
                   "Value": ""
                 }
+              ],
+              "Predicates": [
+                {
+                  "Key": "IfNotTentRightOathbreaker",
+                  "Value": ""
+                }
+              ]
+            },
+            {
+              "Text": "Name me guest.",
+              "Target": "NoCloth",
+              "Predicates": [
+                {
+                  "Key": "IfTentRightOathbreaker",
+                  "Value": ""
+                }
               ]
             },
             {
@@ -1438,6 +1454,38 @@
             {
               "Text": "What does the cloth mean?",
               "Target": "TheCloth"
+            },
+            {
+              "Text": "I would swear the oath, and keep a cloth of my own.",
+              "Target": "Oath",
+              "Predicates": [
+                {
+                  "Key": "IfReputationAtLeast",
+                  "Value": "TentRight:Liked"
+                },
+                {
+                  "Key": "IfFact",
+                  "Value": "TentRight.OathSworn:<:1"
+                },
+                {
+                  "Key": "IfNotTentRightOathbreaker",
+                  "Value": ""
+                }
+              ]
+            },
+            {
+              "Text": "I keep a cloth now. Tell me how it is held.",
+              "Target": "HostCounsel",
+              "Predicates": [
+                {
+                  "Key": "IfFact",
+                  "Value": "TentRight.OathSworn:>=:1"
+                },
+                {
+                  "Key": "IfNotTentRightOathbreaker",
+                  "Value": ""
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -1477,11 +1525,128 @@
                   "Key": "ClaimGuestRight",
                   "Value": ""
                 }
+              ],
+              "Predicates": [
+                {
+                  "Key": "IfNotTentRightOathbreaker",
+                  "Value": ""
+                }
               ]
             },
             {
               "Text": "Back to my other questions.",
               "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Oath",
+          "Text": "Then hear the whole of it before you answer. Sworn, you are host wherever you stand. Whoever reaches for your hem is your guest for three days: your enemy, if it is your enemy who reaches. No person may harm them, and you may not. Break it, as guest or as host, and no tent will lift a cloth for you again.",
+          "Choices": [
+            {
+              "Text": "I swear it.",
+              "Target": "Sworn",
+              "Actions": [
+                {
+                  "Key": "SwearTentRightOath",
+                  "Value": ""
+                }
+              ]
+            },
+            {
+              "Text": "No. I say it aloud.",
+              "Target": "OathRefusedWell"
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Sworn",
+          "Text": "Sworn. From now, whoever takes your hem is your guest, and a host does not say no to a claim. The water and the shade you have are theirs for three days, as mine were yours.",
+          "Choices": [
+            {
+              "Text": "The cloth over us.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "OathRefusedWell",
+          "Text": "Refused, and said. Nothing is owed. If you come back to swear, come back meaning yes.",
+          "Choices": [
+            {
+              "Text": "I will.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "NoCloth",
+          "Text": "You broke a cloth. Every tent knows it. There is no cloth here for you, and no water, and no shade. Go now, while you still have what you carried in.",
+          "Choices": [
+            {
+              "Text": "I go.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "HostCounsel",
+          "Text": "As host: whoever takes your hem is guest for three days, and you do not ask their road before the third. No person harms them under your cloth, and you least of all. Someone who means you harm will take the hem only when beaten. That is still a claim, and it binds you the same.",
+          "Choices": [
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "ClothClaimant_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Do not ask my road. That is a question for the third day, and it is not the third day. Are they still out there?",
+          "Choices": [
+            {
+              "Text": "They are. Stay behind me.",
+              "Target": "Behind"
+            },
+            {
+              "Text": "Who are they?",
+              "Target": "Who"
+            },
+            {
+              "Text": "Rest.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Behind",
+          "Text": "Behind you, then. I will not lift a hand to them while I am under your cloth. That is my half of it.",
+          "Choices": [
+            {
+              "Text": "Rest.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Who",
+          "Text": "People I owe a debt that was not mine to owe. The cloth does not ask whose it was. Neither should you, today.",
+          "Choices": [
+            {
+              "Text": "Today I will not.",
+              "Target": "End"
             }
           ]
         }

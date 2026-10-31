@@ -82,7 +82,10 @@ namespace CavesOfOoo.Tests
             if (change == "cloth-player") Assert.True(Player.ApplyEffect(new UnderTheClothEffect()));
             if (change == "cloth-guard") Assert.True(guard.ApplyEffect(new UnderTheClothEffect()));
             if (change == "dead") guard.GetStat("Hitpoints").BaseValue = 0;
-            Assert.AreSame(Player, brain.Target, "No further guard action has cleared this stale pointer.");
+            // H1: taking the cloth stands a hunter down at once (UnderTheClothEffect.StandDown),
+            // so the cloth cases have no stale pointer left; the bump must still be refused.
+            if (change.StartsWith("cloth")) Assert.IsNull(brain.Target, "The cloth itself cleared the pursuit.");
+            else Assert.AreSame(Player, brain.Target, "No further guard action has cleared this stale pointer.");
             RefusesBump(key); Assert.False(brain.IsPersonallyHostileTo(Player));
         }
 

@@ -290,7 +290,7 @@ namespace CavesOfOoo.Tests
             var quiet = Place(QuietZone, "Elder"); var elder = Who(quiet, "Elder");
             var c = ConcernRegistry.Get("quiet.dim");
             Assert.AreEqual(ConcernConversation.State.Withheld, ConcernConversation.StateOf(c, elder, player));
-            StringAssert.Contains("Upstairs", ConcernConversation.BuildNode("withheld|quiet.dim", elder, player).Text);
+            StringAssert.Contains("Not yet", ConcernConversation.BuildNode("withheld|quiet.dim", elder, player).Text);
             Assert.AreEqual(QuestCueState.None, ConcernConversation.CueFor(elder, quiet, player));
             Assert.AreEqual("not_offerable", ConcernConversation.Accept(elder, player, "quiet.dim"));
 

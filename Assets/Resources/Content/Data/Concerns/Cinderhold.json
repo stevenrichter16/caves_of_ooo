@@ -1,0 +1,86 @@
+{
+  "Concerns": [
+    {
+      "Id": "cinderhold.pump",
+      "Place": "Cinderhold",
+      "Owner": "Elder",
+      "Faction": "Villagers",
+      "Tier": 3,
+      "Title": "The Drowned Level",
+      "Pitch": "You'll have heard the pump, or you'll have heard it stop, which is worse. The lower level's under water to the knee and climbing. My grandmother's lot dug that level with their hands, and her lot said the water came up because the grove wanted its spring back. That's an old story; it's a cracked pump. The rod's sheared and the binding's rotted through. Iron spikes and an oak haft would see it right, and a leather binding, and the smith sells all three if you'll carry them. Some of the lads went down to bail and came up fast with something behind them, out in the field north of town. And if you've no hands for iron, fire clay will plug the seep. It'll stop the water. I'm told it stops the spring as well.",
+      "Thanks": "The level's dry enough to stand in. The lads are down there again, swearing at the dark like proper miners. My grandmother would've said the grove will want its water back sooner or later. Well. Later, then.",
+      "Approaches": [
+        {
+          "Id": "pump",
+          "Kind": "Restore",
+          "Label": "Mend the pump: iron spikes, an oak haft and a binding, or clay to get it turning.",
+          "Objective": "Get Cinderhold's pump working",
+          "Restore": {
+            "Site": "Pump"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Cinderhold:Cinderhold.PumpRunning"
+            }
+          ]
+        },
+        {
+          "Id": "field",
+          "Kind": "Confront",
+          "Label": "Deal with what came up after the lads, in the field north of town.",
+          "Objective": "Clear the field north of Cinderhold",
+          "Confront": {
+            "Offset": "0,-1",
+            "Site": "the field north of Cinderhold",
+            "Foes": [
+              {
+                "Blueprint": "Mosshulk",
+                "Count": 1
+              },
+              {
+                "Blueprint": "CanopyStrangler",
+                "Count": 2
+              }
+            ]
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Cinderhold:Cinderhold.LevelCleared"
+            }
+          ]
+        },
+        {
+          "Id": "seal",
+          "Kind": "Supply",
+          "Label": "Bring four fire clay to plug the seep by hand.",
+          "Objective": "Bring the elder four fire clay",
+          "Supply": {
+            "Blueprint": "FireClay",
+            "Count": 4
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Cinderhold:Cinderhold.Sealed"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "RotChoir:Player:-3"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I can't go down there for you.",
+        "Reply": "No? Then the lads bail. They've bailed before. Mind the ladder on your way past."
+      },
+      "Reward": {
+        "XP": 2200,
+        "Drams": 50
+      },
+      "Next": []
+    }
+  ]
+}

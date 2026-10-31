@@ -1,0 +1,96 @@
+{
+  "Concerns": [
+    {
+      "Id": "lastcounter.retreat",
+      "Place": "the Last Counter",
+      "Owner": "SaccharineEnvoy",
+      "Faction": "SaccharineConcord",
+      "Tier": 3,
+      "Title": "The Third Retreat",
+      "Pitch": "Orders from Tally, settled and stamped: pull the Counter back. Again. This is the third time in two generations, and the first two counters are still out there to the east, standing empty, which is not a good look for a business. The reason on the order is 'deliveries east of this point are not arriving'. The order doesn't say what is not arriving them. I'd rather not move, friend. The well's good and the sign's freshly painted. Tell me why the first counter closed, or clear whatever is sitting on the east road, and I can write Tally a better reason than 'we were nervous'. Or there's a rate for staying. There's always a rate.",
+      "Thanks": "The Counter stays where it's standing, and the sign stays true: we still can't guarantee delivery past this point. We can guarantee the point. That's the rate, and you've paid it in your own coin.",
+      "Approaches": [
+        {
+          "Id": "ledger",
+          "Kind": "Read",
+          "Label": "Read the first counter's last ledger, in the empty post a field east of here.",
+          "Objective": "Read the last ledger of the first abandoned counter",
+          "Read": {
+            "Document": "lastcounter-ledger",
+            "Place": "Overworld.19.18.0"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Last Counter:LastCounter.LedgerRead"
+            }
+          ]
+        },
+        {
+          "Id": "road",
+          "Kind": "Confront",
+          "Label": "Clear what nests in the first counter, a field east.",
+          "Objective": "Clear the first abandoned counter east of the Last Counter",
+          "Confront": {
+            "Offset": "1,0",
+            "Site": "the first counter, a field east of the post",
+            "Foes": [
+              {
+                "Blueprint": "DuneLurker",
+                "Count": 2
+              },
+              {
+                "Blueprint": "BrittleHound",
+                "Count": 1
+              }
+            ]
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Last Counter:LastCounter.Held"
+            }
+          ]
+        },
+        {
+          "Id": "surcharge",
+          "Kind": "Settle",
+          "Label": "Pay the Concord's continuity surcharge.",
+          "Objective": "Pay the continuity surcharge to keep the Counter where it is",
+          "Offer": [
+            {
+              "Key": "PayDrams",
+              "Value": "150"
+            },
+            {
+              "Key": "SetFact",
+              "Value": "concern.lastcounter.retreat.surcharge.done:1"
+            }
+          ],
+          "OfferText": "Pay the continuity surcharge, 150 drams.",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.lastcounter.retreat.surcharge.done:>=:1"
+            }
+          ],
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Last Counter:LastCounter.Underwritten"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't do Tally's thinking for it.",
+        "Reply": "Fair terms. I'll start packing the crates. Slowly. Ask again later."
+      },
+      "Reward": {
+        "XP": 2200,
+        "Drams": 60
+      },
+      "Next": []
+    }
+  ]
+}

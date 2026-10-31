@@ -120,7 +120,7 @@ namespace CavesOfOoo.Core
                 if (pool != null)
                 { if (pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedPool(zone, source)) return source; continue; }
                 if (source.GetPart<WellPart>() is WellPart well)
-                { if (well.IsUsable && LiquidSourcePhase.CanDrawWater(zone, source)) return source; continue; }
+                { if (well.IsUsable && LiquidSourcePhase.CanDrawWater(zone, source) && !TentRightOath.RefusesWater(actor, zone)) return source; continue; }
                 var spring = source.GetPart<TileStateSourcePart>();
                 if (spring?.Coating == "water" && spring.CoatingTurns > 0
                     && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedSource(zone, source, "water")) return source;

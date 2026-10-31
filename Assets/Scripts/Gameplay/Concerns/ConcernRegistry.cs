@@ -33,6 +33,8 @@ namespace CavesOfOoo.Concerns
         public static string DoneFact(string concernId, string approachId) => QuestPrefix + concernId + "." + approachId + ".done";
         /// <summary>Confront: how many of the site's foes have died.</summary>
         public static string SlainFact(string concernId, string approachId) => QuestPrefix + concernId + "." + approachId + ".slain";
+        /// <summary>W3: set when the sworn player names this approach's guest.</summary>
+        public static string HostedFact(string concernId, string approachId) => QuestPrefix + concernId + "." + approachId + ".hosted";
         public static bool IsConcernQuest(string questId) => questId != null && questId.StartsWith(QuestPrefix, StringComparison.Ordinal);
 
         public static IReadOnlyList<ConcernData> All => ordered;
@@ -114,6 +116,8 @@ namespace CavesOfOoo.Concerns
                 list.Add(new ConversationParam { Key = "IfFact", Value = DoneFact(c.Id, a.Id) + ":>=:1" });
             else if (a.HasRead)
                 list.Add(new ConversationParam { Key = "IfFact", Value = ReadableDocumentPart.ReadFact(a.Read.Document) + ":>=:1" });
+            else if (a.HasHost)
+                list.Add(new ConversationParam { Key = "IfFact", Value = HostedFact(c.Id, a.Id) + ":>=:1" });
             return list;
         }
 
@@ -138,7 +142,7 @@ namespace CavesOfOoo.Concerns
                     if (a == null || string.IsNullOrEmpty(a.Id) || !ids.Add(a.Id)) { problems.Add(aw + ": missing or duplicate approach id"); continue; }
                     if (Array.IndexOf(ConcernKinds.All, a.Kind) < 0) problems.Add(aw + ": unknown kind '" + a.Kind + "'");
                     if (string.IsNullOrWhiteSpace(a.Label) || string.IsNullOrWhiteSpace(a.Objective)) problems.Add(aw + ": needs a label and an objective");
-                    if ((a.Triggers == null || a.Triggers.Count == 0) && !a.HasSupply && !a.HasCarry && !a.HasRead && !a.HasConfront && !a.HasRestore)
+                    if ((a.Triggers == null || a.Triggers.Count == 0) && !a.HasSupply && !a.HasCarry && !a.HasRead && !a.HasConfront && !a.HasRestore && !a.HasHost)
                         problems.Add(aw + ": no trigger can ever finish it");
                     LintKind(a, aw, factory, problems);
                     LintConfront(c, a, aw, factory, problems);
@@ -184,7 +188,15 @@ namespace CavesOfOoo.Concerns
                 var doc = ReadableDocumentCatalog.Get(a.Read.Document);
                 if (doc == null) problems.Add(aw + ": unknown document '" + a.Read.Document + "'");
                 else if (!Known(doc.Blueprint)) problems.Add(aw + ": the document's blueprint '" + doc.Blueprint + "' does not exist");
-                if (!PlaceExists(a.Read.Place)) problems.Add(aw + ": unknown read place '" + a.Read.Place + "'");
+                if (!PlaceExists(a.Read.Place) && !SurfaceZone(a.Read.Place)) problems.Add(aw + ": unknown read place '" + a.Read.Place + "'");
+            }
+            if (a.Kind == "Host" && !a.HasHost && (a.Triggers == null || a.Triggers.Count == 0)) problems.Add(aw + ": a Host approach names no guest");
+            if (a.HasHost)
+            {
+                if (!Known(a.Host.Blueprint)) problems.Add(aw + ": unknown guest '" + a.Host.Blueprint + "'");
+                else if (factory != null && !UnderTheClothEffect.IsPerson(factory.CreateEntity(a.Host.Blueprint)))
+                    problems.Add(aw + ": the guest '" + a.Host.Blueprint + "' is not a person the cloth can cover");
+                if (string.IsNullOrWhiteSpace(a.Host.Name)) problems.Add(aw + ": the guest needs a name");
             }
         }
 
@@ -206,6 +218,14 @@ namespace CavesOfOoo.Concerns
                 int tier = probe != null ? ProgressionCurve.CreatureTier(probe) : 0;
                 if (tier < c.Tier - 1 || tier > c.Tier + 1) problems.Add(aw + ": foe '" + f.Blueprint + "' is tier " + tier + ", outside the concern's tier " + c.Tier + " band");
             }
+        }
+
+        /// <summary>W3: a document may lie at a named site that is not a place.</summary>
+        static bool SurfaceZone(string zoneId)
+        {
+            if (string.IsNullOrEmpty(zoneId) || !zoneId.StartsWith("Overworld.", StringComparison.Ordinal)) return false;
+            var (x, y, z) = WorldMap.FromZoneID(zoneId);
+            return z == 0 && WorldMapAuthoring.InBounds(x, y) && WorldMap.ToZoneID(x, y, 0) == zoneId;
         }
 
         static WorldMapAuthoring.Place? PlaceNamed(string name)

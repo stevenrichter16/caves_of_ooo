@@ -202,6 +202,11 @@ namespace CavesOfOoo.Core
             Register("IfNotHostile", (speaker, listener, arg) =>
                 !FactionManager.IsHostile(speaker, listener));
 
+            // H1: the Tent-Right oathbreaker gate. Unlike IfFact this does not
+            // fail closed without narrative state: no state, no broken cloth.
+            Register("IfTentRightOathbreaker", (speaker, listener, arg) => TentRightOath.IsOathbreaker());
+            Register("IfNotTentRightOathbreaker", (speaker, listener, arg) => !TentRightOath.IsOathbreaker());
+
             // Check player reputation with a faction: "FactionName:AttitudeLevel"
             // e.g., "RotChoir:Liked" checks if player attitude >= Liked
             Register("IfReputationAtLeast", (speaker, listener, arg) =>

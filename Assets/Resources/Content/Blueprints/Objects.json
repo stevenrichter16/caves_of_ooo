@@ -25357,6 +25357,32 @@
       ]
     },
     {
+      "Name": "FirstTentOathCord",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "knotted cord" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&y" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A long cord of undyed wool hung from the oldest pole, knotted at uneven spacing. Two hands tied it; the fifth knot is pulled tighter than the rest." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "firsttent-cord" } ] }
+      ]
+    },
+    {
+      "Name": "CounterLastLedger",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "counter ledger" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&W" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A Concord ledger left open on a dusty counter, its last page ruled and half-filled in a careful hand. The ink of the final lines is newer than the rest." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "lastcounter-ledger" } ] }
+      ]
+    },
+    {
       "Name": "SealedLetter",
       "Inherits": "Item",
       "Parts": [

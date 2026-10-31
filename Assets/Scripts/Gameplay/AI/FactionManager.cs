@@ -182,8 +182,10 @@ namespace CavesOfOoo.Core
             // hostility by construction — canon: "If your enemy comes to
             // my cloth he will find me between you" (the pursuers wait).
             // Oathbreak removes the effect, which removes the floor.
+            // H1: and a guest who is not the player keeps the peace
+            // (UnderTheClothEffect.KeepsPeace), so the floor runs both ways.
             if (feeling <= HOSTILE_THRESHOLD
-                && UnderTheClothEffect.Protects(source, target))
+                && UnderTheClothEffect.Stands(source, target))
                 return 0;
             return feeling;
         }

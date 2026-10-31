@@ -53,24 +53,72 @@ namespace CavesOfOoo.Core
         /// oathbreak from an ordinary expiry. Public for save-reach.</summary>
         public bool Broken;
 
+        /// <summary>H1: the ID of whoever extended the cloth (an ID, not a
+        /// reference: saving a reference would write the host's whole body
+        /// into the save, a duplicate if the host lives in another zone).
+        /// Null on cloths from before H1.</summary>
+        public string HostId;
+
+        /// <summary>H1: extended by a host sworn to the oath (the player's
+        /// <c>Hospitality_ExtendCloth</c>). If that host's oath is withdrawn,
+        /// this cloth comes off, wherever the guest is.</summary>
+        public bool HostSworn;
+
+        /// <summary>H1: removed because the host broke the oath, not because
+        /// the guest did. Public for save-reach.</summary>
+        public bool Withdrawn;
+
         public UnderTheClothEffect()
         {
             Duration = -1;   // the clock, not the turn counter, ends this
             ExpiryTick = WorldClock.CurrentTick + OathTicks;
         }
 
+        public UnderTheClothEffect(Entity host, bool sworn = false) : this()
+        {
+            HostId = host?.ID;
+            HostSworn = sworn;
+        }
+
         public override void OnApply(Entity target)
         {
-            MessageLog.Add(target.GetDisplayName()
-                + " is named guest. For three days, the cloth is over you.");
+            MessageLog.Add(target.GetDisplayName() + (target.HasTag("Player")
+                ? " is named guest. For three days, the cloth is over you."
+                : " is named guest. For three days, the cloth is over them."));
+            StandDown(target);
             if (Diag.IsChannelEnabled("effect"))
                 Diag.Record("effect", "OathClaimed", actor: target,
-                    payload: new { expiryTick = ExpiryTick });
+                    payload: new { expiryTick = ExpiryTick, host = HostId, sworn = HostSworn });
+        }
+
+        // A guest who was fighting puts the fight down, and whoever was
+        // hunting the guest has to wait. KillGoal also checks Stands each
+        // turn; this makes the change take effect at once. OnApply runs
+        // before the effect joins the guest's list, so this tests persons
+        // directly rather than through Protects/KeepsPeace.
+        static void StandDown(Entity guest)
+        {
+            bool npcGuest = !guest.HasTag("Player");
+            var zone = guest.GetPart<BrainPart>()?.CurrentZone ?? guest.SpatialZone;
+            if (zone == null) return;
+            foreach (var e in zone.GetAllEntities())
+            {
+                var brain = e.GetPart<BrainPart>();
+                if (brain?.Target == null) continue;
+                if (ReferenceEquals(e, guest) ? npcGuest && IsPerson(brain.Target) : brain.Target == guest && IsPerson(e))
+                    brain.Target = null;
+            }
         }
 
         public override void OnRemove(Entity target)
         {
-            if (Broken)
+            if (Withdrawn)
+            {
+                MessageLog.Add("The cloth over " + target.GetDisplayName() + " is withdrawn by its host.");
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record("effect", "OathWithdrawn", actor: target, payload: new { host = HostId });
+            }
+            else if (Broken)
             {
                 MessageLog.Add("The cloth is withdrawn. Every tent will know.");
                 if (Diag.IsChannelEnabled("effect"))
@@ -98,6 +146,12 @@ namespace CavesOfOoo.Core
         {
             if (WorldClock.CurrentTick >= ExpiryTick)
                 Duration = 0;   // the standard cleanup removes it this tick
+            else if (HostSworn && TentRightOath.IsOathbreaker())
+            {
+                // The host broke the oath while this guest was elsewhere.
+                Withdrawn = true;
+                Duration = 0;
+            }
         }
 
         // ════════════════════════════════════════════════════════
@@ -113,7 +167,7 @@ namespace CavesOfOoo.Core
         /// BOTH static seams so floor and break can never drift apart
         /// again (the W2 close-out's one-way-shield bug was exactly
         /// that drift).</summary>
-        private static bool IsPerson(Entity e)
+        internal static bool IsPerson(Entity e)
         {
             if (e == null) return false;
             if (e.HasEffect<UnderTheClothEffect>()) return true;
@@ -133,6 +187,25 @@ namespace CavesOfOoo.Core
             return IsPerson(source);
         }
 
+        /// <summary>H1: the guest's half. A guest who is not the player keeps
+        /// the peace: its would-be hostility toward people is floored too, so
+        /// a raider who takes the cloth stops fighting. The player is bound
+        /// by <see cref="Break"/> instead, because the player chooses every
+        /// swing. Standing is untouched (<c>GetFeelingUnfloored</c>), so the
+        /// truce launders nothing.</summary>
+        public static bool KeepsPeace(Entity source, Entity target)
+        {
+            if (source == null || target == null || source == target || source.HasTag("Player")) return false;
+            if (!source.HasEffect<UnderTheClothEffect>()) return false;
+            return IsPerson(target);
+        }
+
+        /// <summary>Does the cloth stand between these two in either
+        /// direction? FactionManager.GetFeeling, KillGoal and territory
+        /// enforcement consult this.</summary>
+        public static bool Stands(Entity source, Entity target)
+            => Protects(source, target) || KeepsPeace(source, target);
+
         /// <summary>The guest swung at a person. Remove the cloth and
         /// land the hammer. Called unconditionally from the two damage
         /// choke points (melee, spell); this helper filters. The rule is
@@ -142,6 +215,10 @@ namespace CavesOfOoo.Core
         /// removed"). Beasts and the factionless wilds are daily life.</summary>
         public static void Break(Entity guest, Entity victim)
         {
+            // A guest caught in their own blast has struck no one. Latent
+            // since W2.5; surfaced by H1OathAdversarialTests.
+            if (guest == null || guest == victim) return;
+            BreakHost(guest, victim);
             var effects = guest?.GetPart<StatusEffectsPart>();
             var oath = effects?.GetEffect<UnderTheClothEffect>();
             if (oath == null) return;
@@ -150,7 +227,41 @@ namespace CavesOfOoo.Core
             oath.Broken = true;
             effects.RemoveEffect<UnderTheClothEffect>();
             if (guest.HasTag("Player"))
-                PlayerReputation.Modify("TentRight", OathbreakRepLoss);
+                TentRightOath.Oathbreak(guest, "guest");
+        }
+
+        /// <summary>H1: the host's half. Striking your own guest breaks the
+        /// cloth from the other side: canon does not forgive "the guest who
+        /// breaks it, and not the host". Called from <see cref="Break"/>, so
+        /// both damage choke points carry it.</summary>
+        static void BreakHost(Entity attacker, Entity victim)
+        {
+            if (attacker == null || victim == null || attacker == victim || string.IsNullOrEmpty(attacker.ID)) return;
+            var cloth = victim.GetEffect<UnderTheClothEffect>();
+            if (cloth == null || cloth.HostId != attacker.ID) return;
+            if (Diag.IsChannelEnabled("effect"))
+                Diag.Record("effect", "HostStruckGuest", actor: attacker, target: victim);
+            if (attacker.HasTag("Player")) TentRightOath.Oathbreak(attacker, "host");
+            else Withdraw(attacker.ID, victim.SpatialZone);
+        }
+
+        /// <summary>Take the cloth off every guest of this host in the zone.
+        /// Guests elsewhere lose it on their next turn (<see cref="OnTurnEnd"/>,
+        /// sworn hosts only).</summary>
+        public static int Withdraw(string hostId, Zone zone)
+        {
+            if (string.IsNullOrEmpty(hostId) || zone == null) return 0;
+            int n = 0;
+            foreach (var e in zone.GetAllEntities())
+            {
+                var effects = e.GetPart<StatusEffectsPart>();
+                var cloth = effects?.GetEffect<UnderTheClothEffect>();
+                if (cloth == null || cloth.HostId != hostId) continue;
+                cloth.Withdrawn = true;
+                effects.RemoveEffect<UnderTheClothEffect>();
+                n++;
+            }
+            return n;
         }
     }
 }

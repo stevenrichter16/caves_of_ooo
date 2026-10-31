@@ -16,6 +16,11 @@ namespace CavesOfOoo.Core
         internal static bool TryDrink(Entity actor, WellPart well, Zone zone, InventoryTransaction tx)
         {
             if (!Available(actor, well, zone)) return WorldResourceActions.Reject(actor, well?.ParentEntity, "DrawWaterAtWell", "invalid_or_unavailable_water_source");
+            if (TentRightOath.RefusesWater(actor, zone))
+            {
+                MessageLog.Add(TentRightOath.RefusedWaterLine);
+                return WorldResourceActions.Reject(actor, well.ParentEntity, "DrawWaterAtWell", "oathbreaker_refused");
+            }
             bool own = tx == null; tx ??= new InventoryTransaction();
             try
             {

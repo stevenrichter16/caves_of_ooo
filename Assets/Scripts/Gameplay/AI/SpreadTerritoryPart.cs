@@ -44,7 +44,7 @@ namespace CavesOfOoo.Core
                 || target == null || target == ParentEntity || !SpreadActorContext.Ground(target, zone)
                 || !target.HasTag("Creature") || target.GetStatValue("Hitpoints", 0) <= 0 || CombatSystem.IsDeathHandled(target)
                 || BrainPart.ArePartyAligned(ParentEntity, target)
-                || UnderTheClothEffect.Protects(target, ParentEntity)) return false;
+                || UnderTheClothEffect.Stands(target, ParentEntity) || UnderTheClothEffect.Stands(ParentEntity, target)) return false;
             return CurrentPost(zone) && WarningTarget == target && brain.Target == target
                 && GraceRemaining == 0 && ClaimsTarget(target, zone);
         }
@@ -94,7 +94,7 @@ namespace CavesOfOoo.Core
             // A paid crossing and the hospitality oath both govern the actual
             // enforcer, not merely the player's ability to bump it afterward.
             if (!Intersects(zone, target) || BrainPart.ArePartyAligned(ParentEntity, target)
-                || UnderTheClothEffect.Protects(ParentEntity, target)) return false;
+                || UnderTheClothEffect.Stands(ParentEntity, target)) return false;
             var permit = ParentEntity.GetPart<LocalPassagePermitPart>();
             return permit != null
                 ? !permit.Allows(target, zone) && (permit.ClaimsEntry(target, zone) || FactionManager.IsHostile(ParentEntity, target))

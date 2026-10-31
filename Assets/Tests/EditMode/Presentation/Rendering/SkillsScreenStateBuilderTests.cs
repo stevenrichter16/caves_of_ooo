@@ -53,6 +53,9 @@ namespace CavesOfOoo.Tests
             // initialization → state-builder iteration). A regression in
             // any one step (e.g. Resources path drift, JSON malformed,
             // SkillsPart removal) would zero out RowCount.
+            // The shipped registry, not whatever the previous fixture seeded
+            // (order-dependent before H1: a filtered run left one test tree).
+            SkillRegistry.ResetForTests(); SkillRegistry.EnsureInitialized();
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
             var snapshot = SkillsScreenStateBuilder.Build(ctx.PlayerEntity);
             Assert.GreaterOrEqual(snapshot.RowCount, 2,

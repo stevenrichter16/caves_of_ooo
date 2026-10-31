@@ -78,6 +78,8 @@ namespace CavesOfOoo.Concerns
         public ConcernRestoreData Restore = new ConcernRestoreData();
         /// <summary>Kind Confront: foes at a site near the place, placed on arrival.</summary>
         public ConcernConfrontData Confront = new ConcernConfrontData();
+        /// <summary>W3: a guest the sworn player can take under their own cloth.</summary>
+        public ConcernHostData Host = new ConcernHostData();
 
         // JsonUtility always builds nested serializable objects, so "present" means filled in.
         public bool HasSupply => Supply != null && !string.IsNullOrEmpty(Supply.Blueprint);
@@ -85,6 +87,7 @@ namespace CavesOfOoo.Concerns
         public bool HasRead => Read != null && !string.IsNullOrEmpty(Read.Document);
         public bool HasRestore => Restore != null && !string.IsNullOrEmpty(Restore.Site);
         public bool HasConfront => Confront?.Foes != null && Confront.Foes.Count > 0;
+        public bool HasHost => Host != null && !string.IsNullOrEmpty(Host.Blueprint);
     }
 
     [Serializable]
@@ -136,6 +139,17 @@ namespace CavesOfOoo.Concerns
         }
     }
 
+    /// <summary>W3: a Host approach. While the work is open the guest stands at the
+    /// concern's place (placed once, by <c>ConcernWorld</c>); naming them guest with
+    /// <c>Hospitality_ExtendCloth</c> finishes the approach.</summary>
+    [Serializable]
+    public class ConcernHostData
+    {
+        public string Blueprint;
+        /// <summary>How the guest is named in the world ("the salt-carrier").</summary>
+        public string Name;
+    }
+
     [Serializable]
     public class ConcernFoeData
     {
@@ -176,6 +190,6 @@ namespace CavesOfOoo.Concerns
 
     public static class ConcernKinds
     {
-        public static readonly string[] All = { "Confront", "Supply", "Restore", "Carry", "Read", "Settle" };
+        public static readonly string[] All = { "Confront", "Supply", "Restore", "Carry", "Read", "Settle", "Host" };
     }
 }

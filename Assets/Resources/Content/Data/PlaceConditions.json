@@ -323,13 +323,13 @@
       "Place": "Wellmeet",
       "Condition": "Wellmeet.KinFaced",
       "Remarks": [
-        "Three went out to the wash after a guest who was not theirs, and nobody came back to the pole. The cloth held.",
+        "Somebody walked out to the dry wash and faced Harl's kin where they camped. The guest never left the shade, and never had to.",
         "Somebody not of our tents stood at the wash. We will not ask who. We will offer them water."
       ],
       "HeardIn": [
         "the First Tent"
       ],
-      "Heard": "From Wellmeet: three of a dead man's kin went down the dry wash after his killer, and they were met there by someone owed nothing by anyone. The host poured that one water first."
+      "Heard": "From Wellmeet: Harl's kin were camped in the dry wash, waiting out a guest's three days. A stranger walked out and faced them there, away from the tents."
     },
     {
       "Place": "Wellmeet",
@@ -422,7 +422,7 @@
       "HeardIn": [
         "Quillhold"
       ],
-      "Heard": "Word from the Drowned Ledger: the eleventh has set the bed by the tenth recension's survey and sent us a fair copy. Their reading of stake eleven diverges from the tenth's. We have filed both, and we are rather fond of the divergence."
+      "Heard": "Word from the Drowned Ledger: the eleventh has set the bed by the tenth recension's survey, blank at stake ten and all, and sent us a fair copy. Ours shows a stake ten. One of the two has been wrong for a long while."
     },
     {
       "Place": "the Quiet's Door",
@@ -437,6 +437,115 @@
       "Remarks": [
         "The ward smells of upstairs. It'll do. It's doing."
       ]
+    },
+    {
+      "Place": "the First Tent",
+      "Condition": "FirstTent.CarriedOut",
+      "Remarks": [
+        "The salt-carrier walked out of here under a stranger's cloth, with the clan watching from the poles. Not one of them stood up. That is the oath, and it was hard to watch."
+      ],
+      "HeardIn": [
+        "Wellmeet"
+      ],
+      "Heard": "From the First Tent: a carrier went out under a second cloth when the first one ended, and her pursuers were the host's own clan. They sat. They kept it."
+    },
+    {
+      "Place": "the First Tent",
+      "Condition": "FirstTent.ContractPaid",
+      "Remarks": [
+        "The clan was paid for the salt and went home. The contract is settled. The cloth was never part of it, and nobody here pretends otherwise."
+      ],
+      "HeardIn": [
+        "Tally"
+      ],
+      "Heard": "Carriage dispute at the First Tent, settled in drams by a third party. Tent-Right accounts are rarely this tidy. We've noted the rate."
+    },
+    {
+      "Place": "the First Tent",
+      "Condition": "FirstTent.PrecedentRead",
+      "Remarks": [
+        "Somebody read the first cord out loud at the poles, all of it, and the clan sat through it. The first host was hosting her own clan's enemy. They knew that. Hearing it said is a different thing."
+      ],
+      "HeardIn": [
+        "Wellmeet"
+      ],
+      "Heard": "At the First Tent someone read the first cord out to a clan at the poles, and the clan went home."
+    },
+    {
+      "Place": "the Last Counter",
+      "Condition": "LastCounter.LedgerRead",
+      "Remarks": [
+        "We've filed the first counter's last ledger with Tally as our reason, terms and all. Head office has gone quiet. That usually means they're pricing it."
+      ],
+      "HeardIn": [
+        "Tally"
+      ],
+      "Heard": "Revised rate for the far east route: the Last Counter has filed a reason, and the reason is on the account. Carriage beyond the point stays unguaranteed. The rate is under review."
+    },
+    {
+      "Place": "the Last Counter",
+      "Condition": "LastCounter.Held",
+      "Price": 0.95,
+      "Remarks": [
+        "The road east was quiet this morning. Not safe. Quiet. We're selling that difference at a fair rate."
+      ],
+      "Stock": [
+        {
+          "Owner": "SaccharineEnvoy",
+          "Blueprint": "Panacea",
+          "Count": 1
+        },
+        {
+          "Owner": "SaccharineEnvoy",
+          "Blueprint": "WardedCloak",
+          "Count": 1
+        }
+      ]
+    },
+    {
+      "Place": "the Last Counter",
+      "Condition": "LastCounter.Underwritten",
+      "Price": 1.1,
+      "Remarks": [
+        "Continuity surcharge paid, by a customer, which is a first. It's on the prices now, naturally. Somebody has to carry it, and you're here."
+      ],
+      "HeardIn": [
+        "Tally"
+      ],
+      "Heard": "The Last Counter has been underwritten by a private party. The surcharge is being passed on at the counter, as is proper."
+    },
+    {
+      "Place": "Cinderhold",
+      "Condition": "Cinderhold.PumpRunning",
+      "Price": 0.95,
+      "Remarks": [
+        "You can hear the pump from the well, if you listen. Thump, and wait, and thump. Sounds like a slow heart, my gran would say. It isn't. It's a pump."
+      ],
+      "Stock": [
+        {
+          "Owner": "Quartermaster",
+          "Blueprint": "IronSpikeComponent",
+          "Count": 2
+        }
+      ]
+    },
+    {
+      "Place": "Cinderhold",
+      "Condition": "Cinderhold.LevelCleared",
+      "Remarks": [
+        "The lads go down the north field path again. They take a lamp and a spade and they don't sing, which is new."
+      ]
+    },
+    {
+      "Place": "Cinderhold",
+      "Condition": "Cinderhold.Sealed",
+      "Remarks": [
+        "Clay in the seep, and the level's drying. The spring in the grove's gone to a trickle, they say. Nobody here goes up there to look."
+      ],
+      "HeardIn": [
+        "Morrowfast"
+      ],
+      "Heard": "The grove spring above Cinderhold has dropped to a trickle since they clayed the mine seep. The beetles have moved their path."
     }
   ]
 }

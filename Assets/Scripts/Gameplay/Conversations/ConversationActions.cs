@@ -796,11 +796,21 @@ namespace CavesOfOoo.Core
             // the conversation node (the oath codex is the source text);
             // this is the mechanical half. Re-claiming refreshes the
             // three days (UnderTheClothEffect.OnStack).
+            // H1: the host is recorded, and an oathbreaker is never named guest.
             Register("ClaimGuestRight", (speaker, listener, arg) =>
             {
                 if (listener == null) return;
-                listener.ApplyEffect(new UnderTheClothEffect(), speaker, null);
+                if (listener.HasTag("Player") && TentRightOath.IsOathbreaker())
+                {
+                    MessageLog.Add((speaker?.GetDisplayName() ?? "The host") + " does not lift the cloth for you, or pour you water.");
+                    return;
+                }
+                listener.ApplyEffect(new UnderTheClothEffect(speaker), speaker, null);
             });
+
+            // H1: swear the Tent-Right oath and become a host.
+            RegisterRequired("SwearTentRightOath", (speaker, listener, arg) =>
+                TentRightOath.Swear(listener, speaker));
 
             // W2.7 — arg: mineral blueprint name. The FIRST production
             // caller of MineralTradeService.TryTrade (shipped in E.3.5

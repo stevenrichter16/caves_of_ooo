@@ -46,6 +46,9 @@ namespace CavesOfOoo.Tests
             var e = new Entity { ID = "traveller", BlueprintName = "Player" };
             e.Tags["Creature"] = "";
             e.AddPart(new RenderPart { DisplayName = "you" });
+            // A real traveller has a body in the world: the well and other
+            // world actions check the actor's physics (WorldResourceActions).
+            e.AddPart(new PhysicsPart());
             e.Statistics["Strength"] = new Stat { Owner = e, Name = "Strength", BaseValue = 16 };
             e.Statistics["Agility"] = new Stat { Owner = e, Name = "Agility", BaseValue = 16 };
             zone.AddEntity(e, x, y);

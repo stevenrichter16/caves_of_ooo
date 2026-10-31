@@ -1,0 +1,96 @@
+{
+  "Concerns": [
+    {
+      "Id": "firsttent.clan",
+      "Place": "the First Tent",
+      "Owner": "TentRightHost",
+      "Faction": "TentRight",
+      "Tier": 3,
+      "Title": "The Clan at the Poles",
+      "Pitch": "There is water, and there is shade; sit, and let the hard part wait until you have drunk. My guest is a salt-carrier. She took my cloth four days ago with my own clan behind her, and they are behind her still: they are sitting at the poles. She broke a carriage-contract with them and walked off the pans with the salt. I have not asked her business. They told me anyway. They keep the oath to the hour, as they should; at dawn her third day is over, and they will take her. And then I stand between my guest and my own blood, which is what I swore here, under these poles, and what I would rather not find out I meant. Hear me plainly: I am not asking you to fight my clan. They are people, and the oath binds you as it binds them. There are other ways out of the morning.",
+      "Thanks": "Dawn came. My clan stood up from the poles and went home without their salt or their carrier, and nobody's cloth was torn. I did not have to learn what I meant. I owe you that, and I will not put a price on it.",
+      "Approaches": [
+        {
+          "Id": "host",
+          "Kind": "Host",
+          "Label": "If you are sworn, take her under your own cloth when mine ends.",
+          "Objective": "Name the salt-carrier your guest before her third day ends",
+          "Host": {
+            "Blueprint": "Villager",
+            "Name": "the salt-carrier"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the First Tent:FirstTent.CarriedOut"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:10"
+            }
+          ]
+        },
+        {
+          "Id": "pay",
+          "Kind": "Settle",
+          "Label": "Pay my clan what the contract was worth.",
+          "Objective": "Pay the clan the carriage-contract's worth",
+          "Offer": [
+            {
+              "Key": "PayDrams",
+              "Value": "120"
+            },
+            {
+              "Key": "SetFact",
+              "Value": "concern.firsttent.clan.pay.done:1"
+            }
+          ],
+          "OfferText": "Pay the clan 120 drams for the salt.",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.firsttent.clan.pay.done:>=:1"
+            }
+          ],
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the First Tent:FirstTent.ContractPaid"
+            }
+          ]
+        },
+        {
+          "Id": "cord",
+          "Kind": "Read",
+          "Label": "Read the cord of the first oath, and say what it says to the clan.",
+          "Objective": "Read the knotted cord of the first oath at the First Tent",
+          "Read": {
+            "Document": "firsttent-cord",
+            "Place": "the First Tent"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the First Tent:FirstTent.PrecedentRead"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't stand in a clan's quarrel. No.",
+        "Reply": "Refused, and said aloud, under the poles. That is all the cloth asks of you. Drink before you go."
+      },
+      "Reward": {
+        "XP": 2200,
+        "Drams": 0,
+        "Effects": [
+          {
+            "Key": "ChangeFactionFeeling",
+            "Value": "TentRight:Player:10"
+          }
+        ]
+      },
+      "Next": []
+    }
+  ]
+}

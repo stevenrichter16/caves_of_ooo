@@ -128,7 +128,7 @@ namespace CavesOfOoo.Core
             return false;
         }
         private static readonly (int x, int y)[] Cardinal = { (1, 0), (-1, 0), (0, 1), (0, -1) };
-        private static bool StandingCell(Zone zone, int x, int y)
+        internal static bool StandingCell(Zone zone, int x, int y)
         {
             if (x < 2 || y < 2 || x >= Zone.Width - 2 || y >= Zone.Height - 2 || zone.GenReservedCells.Contains((x, y))) return false;
             var cell = zone.GetCell(x, y);

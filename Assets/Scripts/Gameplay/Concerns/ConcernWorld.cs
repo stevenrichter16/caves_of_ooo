@@ -77,7 +77,7 @@ namespace CavesOfOoo.Concerns
         /// afterwards); foes are placed only then. Documents are placed either way.</summary>
         public static int OnZoneEntered(Entity player, Zone zone, bool arriving = true)
         {
-            int foes = arriving ? PlaceFoes(player, zone) : 0;
+            int foes = arriving ? PlaceFoes(player, zone) + PlaceGuests(player, zone) : 0;
             // C4: what the place's conditions keep there (stock, new residents).
             int kept = PlaceConsequences.OnZoneEntered(player, zone, arriving);
             return foes + kept + PlaceDocuments(player, zone);
@@ -119,11 +119,63 @@ namespace CavesOfOoo.Concerns
             return placed;
         }
 
+        /// <summary>The property naming a placed guest's concern and approach ("id|approach").</summary>
+        public const string GuestProperty = "ConcernGuest";
+
+        /// <summary>W3: Host approaches. The guest is placed once at the concern's place while
+        /// the work is open, with a stable ID; a guest who later dies is not replaced.</summary>
+        static int PlaceGuests(Entity player, Zone zone)
+        {
+            if (player == null || zone == null || StoryletPart.Current == null || NarrativeStatePart.Current == null) return 0;
+            string place = PlaceAt(zone.ZoneID);
+            if (place == null) return 0;
+            var factory = ConversationActions.Factory;
+            int placed = 0;
+            foreach (var c in ConcernRegistry.All)
+            {
+                if (c.Place != place || ConcernConversation.StateOf(c, null, player) != ConcernConversation.State.Working) continue;
+                foreach (var a in c.Approaches)
+                {
+                    if (!a.HasHost || NarrativeStatePart.Current.GetFact(PlacedFact(c.Id, a.Id)) > 0) continue;
+                    var guest = factory?.CreateEntity(a.Host.Blueprint);
+                    if (guest == null || !FindCell(zone, out int x, out int y)) { Record("GuestNotPlaced", c, a, guest == null ? "missing_blueprint_or_factory" : "no_free_cell"); continue; }
+                    guest.ID = "concernguest:" + c.Id + ":" + a.Id;
+                    guest.Properties[GuestProperty] = c.Id + "|" + a.Id;
+                    if (guest.GetPart<RenderPart>() is RenderPart render) render.DisplayName = a.Host.Name;
+                    guest.RemovePart(guest.GetPart<TraderPart>());
+                    if (!zone.AddEntity(guest, x, y)) { Record("GuestNotPlaced", c, a, "add_refused"); continue; }
+                    NarrativeStatePart.Current.SetFact(PlacedFact(c.Id, a.Id), 1);
+                    placed++;
+                    Record("GuestPlaced", c, a, x + "," + y);
+                }
+            }
+            return placed;
+        }
+
+        /// <summary>W3: the sworn player named a concern's guest (Hospitality_ExtendCloth).</summary>
+        public static bool OnGuestHosted(Entity guest)
+        {
+            string tag = guest?.GetProperty(GuestProperty);
+            int bar = tag?.IndexOf('|') ?? -1;
+            if (bar <= 0 || NarrativeStatePart.Current == null) return false;
+            var c = ConcernRegistry.Get(tag.Substring(0, bar));
+            string approach = tag.Substring(bar + 1);
+            if (c == null) return false;
+            foreach (var a in c.Approaches)
+                if (a.Id == approach && a.HasHost)
+                {
+                    NarrativeStatePart.Current.SetFact(ConcernRegistry.HostedFact(c.Id, a.Id), 1);
+                    Record("GuestHosted", c, a, guest.ID);
+                    return true;
+                }
+            return false;
+        }
+
         static int PlaceDocuments(Entity player, Zone zone)
         {
             if (player == null || zone == null || StoryletPart.Current == null) return 0;
+            // W3: a Read may name a place or a surface zone (a named site that is not a place).
             string place = PlaceAt(zone.ZoneID);
-            if (place == null) return 0;
             var factory = ConversationActions.Factory;
             int placed = 0;
             foreach (var c in ConcernRegistry.All)
@@ -131,7 +183,7 @@ namespace CavesOfOoo.Concerns
                 if (ConcernConversation.StateOf(c, null, player) != ConcernConversation.State.Working) continue;
                 foreach (var a in c.Approaches)
                 {
-                    if (!a.HasRead || a.Read.Place != place) continue;
+                    if (!a.HasRead || (a.Read.Place != place && a.Read.Place != zone.ZoneID)) continue;
                     if ((NarrativeStatePart.Current?.GetFact(ReadableDocumentPart.ReadFact(a.Read.Document)) ?? 0) > 0) continue;
                     string id = DocumentEntityId(c.Id, a.Id);
                     if (Contains(zone, id)) continue;

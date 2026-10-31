@@ -34,7 +34,10 @@ namespace CavesOfOoo.Core
 
         public override bool Finished()
         {
+            // H1: a hunt already under way ends when the cloth falls between
+            // hunter and quarry (the pursuers wait; a guest puts its fight down).
             return Abandoned || Target == null || Target == ParentEntity
+                || UnderTheClothEffect.Stands(ParentEntity, Target)
                 || CurrentZone?.GetEntityCell(Target) == null
                 || Target.GetStatValue("Hitpoints", 1) <= 0 || CombatSystem.IsDeathHandled(Target);
         }
