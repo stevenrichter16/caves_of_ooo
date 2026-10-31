@@ -173,8 +173,11 @@ namespace CavesOfOoo.Tests
         {
             var canonical = Enumerable.Range(1, 13).Select(i => "Codex" + i.ToString("00")).ToArray();
             var local = new[] { "CurationTransferDocket", "CurationDiscrepancyReport", "CurationAnnexPlacard" };
-            var localIds = ReadableDocumentCatalog.All.Where(entry => local.Contains(entry.Blueprint)).Select(entry => entry.Id).ToArray();
-            CollectionAssert.AreEquivalent(canonical.Concat(local), ReadableDocumentCatalog.All.Select(entry => entry.Blueprint));
+            var place = new[] { "GantryManifestCopy", "GantryTitheRoll" }; // W1 concern documents
+            var localIds = ReadableDocumentCatalog.All.Where(entry => local.Contains(entry.Blueprint) || place.Contains(entry.Blueprint)).Select(entry => entry.Id).ToArray();
+            CollectionAssert.AreEquivalent(canonical.Concat(local).Concat(place), ReadableDocumentCatalog.All.Select(entry => entry.Blueprint));
+            foreach (var entry in ReadableDocumentCatalog.All.Where(entry => place.Contains(entry.Blueprint)))
+                StringAssert.Contains("original Gantry", entry.Source);
             foreach (var entry in ReadableDocumentCatalog.All.Where(entry => canonical.Contains(entry.Blueprint)))
                 StringAssert.StartsWith("Lore/Codex/", entry.Source);
             foreach (var entry in ReadableDocumentCatalog.All.Where(entry => local.Contains(entry.Blueprint)))

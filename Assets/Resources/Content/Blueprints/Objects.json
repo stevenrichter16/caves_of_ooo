@@ -25264,6 +25264,47 @@
       ]
     },
     {
+      "Name": "LakePerch",
+      "Inherits": "FoodItem",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lake perch" }, { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&G" }, { "Key": "RenderLayer", "Value": "5" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" } ] },
+        { "Name": "Food", "Params": [ { "Key": "Healing", "Value": "2d4" }, { "Key": "Cooking", "Value": "Meal" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "5" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Green-barred and still cold from the lake. Somebody gutted it already, and not neatly." } ] }
+      ],
+      "Tags": [ { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "GantryManifestCopy",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "posted manifest" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&W" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A copy of a caravan manifest nailed to a post, annotated in two different inks by two people who disagree." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "gantry-manifest" } ] }
+      ]
+    },
+    {
+      "Name": "GantryTitheRoll",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "road-tithe roll" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&y" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A long roll chained to a lectern. The entries are in four hands, and the oldest has faded to the colour of weak tea." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "gantry-tithe" } ] }
+      ]
+    },
+    {
       "Name": "SealedLetter",
       "Inherits": "Item",
       "Parts": [

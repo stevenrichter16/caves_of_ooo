@@ -1,0 +1,148 @@
+{
+  "Concerns": [
+    {
+      "Id": "gantry.manifest",
+      "Place": "Gantry",
+      "Owner": "GantryRegistrar",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "The Sixth Crate",
+      "Pitch": "A cloth caravan out of Wellmeet declared six crates. The exchange floor counted five and wants duty on the one that isn't there. I counted six. The sixth is under the drover, who is a guest, and nobody asks a guest to stand before the third day. My copy is posted by the wayboard; read it and back my six. Or countersign the exchange's five, and everyone stops shouting at me.",
+      "Thanks": "Entered, sealed. The shouting has moved down the road.",
+      "Approaches": [
+        {
+          "Id": "read",
+          "Kind": "Read",
+          "Label": "Read the posted manifest by the wayboard and back the registrar's count of six.",
+          "Objective": "Read the posted manifest at Gantry",
+          "Read": {
+            "Document": "gantry-manifest",
+            "Place": "Gantry"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Gantry:Gantry.ManifestEntered"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:5"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "SaccharineConcord:Player:-3"
+            }
+          ]
+        },
+        {
+          "Id": "sign",
+          "Kind": "Settle",
+          "Label": "Countersign the exchange's count of five. The caravan pays duty on a crate that isn't there.",
+          "Objective": "Countersign the exchange floor's count",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.gantry.manifest.sign.done:>=:1"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "SetFact",
+              "Value": "concern.gantry.manifest.sign.done:1"
+            }
+          ],
+          "OfferText": "Countersign the exchange's count of five",
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Gantry:Gantry.ShortCountSigned"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "SaccharineConcord:Player:5"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:-5"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't take a side in this. I'm telling you so.",
+        "Reply": "Then I keep both counts in the file. That is what the file is for."
+      },
+      "Reward": {
+        "XP": 50,
+        "Drams": 10
+      },
+      "Next": []
+    },
+    {
+      "Id": "gantry.cloth",
+      "Place": "Gantry",
+      "Owner": "TentRightHost",
+      "Faction": "TentRight",
+      "Tier": 1,
+      "Title": "The Torn Guest-Cloth",
+      "Pitch": "There is water. There was shade. The guest-cloth has torn through, and a guest under a torn cloth is not under the oath. I do not ask your business. I ask a cloth: a good cloak will serve, and a stake to peg it. Or fill the guest bowl while the cloth is down. Four starapples fill it. Sit.",
+      "Thanks": "There is water. There is shade. Sit.",
+      "Requires": [
+        {
+          "Key": "IfNotPlaceSiteStage",
+          "Value": "Gantry:GuestPole:StableRepair"
+        }
+      ],
+      "Approaches": [
+        {
+          "Id": "cloth",
+          "Kind": "Restore",
+          "Label": "Hang a new guest-cloth: a cloak for the cloth and an oak stake to peg it.",
+          "Objective": "Rehang the guest-cloth at Gantry",
+          "Restore": {
+            "Site": "GuestPole"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Gantry:Gantry.GuestClothHung"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:5"
+            }
+          ]
+        },
+        {
+          "Id": "bowl",
+          "Kind": "Supply",
+          "Label": "Fill the guest bowl with four starapples while the cloth is down.",
+          "Objective": "Fill the guest bowl at Gantry",
+          "Supply": {
+            "Blueprint": "Starapple",
+            "Count": 4
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Gantry:Gantry.GuestBowlFilled"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:2"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I cannot bring you a cloth. That is my answer, said.",
+        "Reply": "Said is enough. Sit if you need to. The water is still water."
+      },
+      "Reward": {
+        "XP": 40,
+        "Drams": 0
+      },
+      "Next": []
+    }
+  ]
+}

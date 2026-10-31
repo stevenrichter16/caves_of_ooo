@@ -1,0 +1,124 @@
+{
+  "Concerns": [
+    {
+      "Id": "tine.weir",
+      "Place": "Tine",
+      "Owner": "Elder",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "The Gapped Weir",
+      "Pitch": "The weir's gone at the waterline. The stakes rotted, and the perch go round it now, straight past the nets. It wants new stakes, timber worked in between, and somebody with a hatchet who isn't seventy. Or there's the Concord. They'll build it for coin and take a tithe on the catch after.",
+      "Thanks": "Perch in the nets by the second morning. The old men are insufferable about it.",
+      "Requires": [
+        {
+          "Key": "IfNotPlaceSiteStage",
+          "Value": "Tine:Weir:StableRepair"
+        }
+      ],
+      "Approaches": [
+        {
+          "Id": "rebuild",
+          "Kind": "Restore",
+          "Label": "Cut out the rotten stakes and build the weir again: salvaged timber, two oak stakes and a hatchet.",
+          "Objective": "Rebuild Tine's fishing weir",
+          "Restore": {
+            "Site": "Weir"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Tine:RebuiltByHand.Weir"
+            }
+          ]
+        },
+        {
+          "Id": "contract",
+          "Kind": "Settle",
+          "Label": "Pay the Concord to rebuild it (45 drams); the catch will owe them after.",
+          "Objective": "Pay the Concord to rebuild the weir",
+          "Triggers": [
+            {
+              "Key": "IfPlaceSiteMethod",
+              "Value": "Tine:Weir:Contracted"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "ContractPlaceRepair",
+              "Value": "Tine:Weir:45"
+            }
+          ],
+          "OfferText": "Pay the Concord to rebuild the weir: 45 drams"
+        }
+      ],
+      "Refusal": {
+        "Text": "I can't take the weir on. Better you know now.",
+        "Reply": "Then we fish off the end of the dock like it's a holiday. Thanks for saying."
+      },
+      "Reward": {
+        "XP": 60,
+        "Drams": 15
+      },
+      "Next": []
+    },
+    {
+      "Id": "tine.scribe",
+      "Place": "Tine",
+      "Owner": "Scribe",
+      "Faction": "Palimpsest",
+      "Tier": 1,
+      "Title": "The Scribe's Last Copy",
+      "Pitch": "The record of Tine has it that I retired. The record is generous. I am copying one last thing, the Reading's account of the Felling, from memory, and my memory diverges in the middle. If there were ink enough, I would finish in my own hand and enter the gap as a gap. Or someone could read the collated account at Quillhold and tell me what the third hand says. The middle is where I stop.",
+      "Thanks": "Entered. Thank you. You are in the margin now, I am afraid.",
+      "Approaches": [
+        {
+          "Id": "ink",
+          "Kind": "Supply",
+          "Label": "Bring her three vials of ink, so she can finish in her own hand, gap and all.",
+          "Objective": "Bring the scribe at Tine three vials of ink",
+          "Supply": {
+            "Blueprint": "InkVial",
+            "Count": 3
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Tine:Tine.ScribeCopyFinished"
+            }
+          ]
+        },
+        {
+          "Id": "read",
+          "Kind": "Read",
+          "Label": "Read the collated account of the Felling at Quillhold, and carry back what it says.",
+          "Objective": "Read the Reading's account of the Felling at Quillhold",
+          "Read": {
+            "Document": "codex-01",
+            "Place": "Quillhold"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Tine:Tine.ScribeCopyCollated"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I can't do this for you. I'm saying it plainly.",
+        "Reply": "Thank you for saying it plainly. I will enter the gap as a gap."
+      },
+      "Reward": {
+        "XP": 50,
+        "Drams": 0,
+        "Effects": [
+          {
+            "Key": "GiveItem",
+            "Value": "Codex05"
+          }
+        ]
+      },
+      "Next": []
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "Sites": [
+    {
+      "Place": "Tine",
+      "Id": "Weir",
+      "Name": "fishing weir",
+      "Broken": "The weir's stakes have rotted at the waterline; the perch go round it.",
+      "Lasting": {
+        "Materials": [
+          {
+            "Blueprint": "SalvagedTimber",
+            "Count": 2
+          },
+          {
+            "Blueprint": "OakHaftComponent",
+            "Count": 2
+          }
+        ],
+        "Tool": "Hatchet",
+        "Text": "You cut out the rotten stakes, drive new ones and work the timber in between. The current leans on it, and the weir holds."
+      },
+      "Patch": {
+        "Materials": [
+          {
+            "Blueprint": "SalvagedTimber",
+            "Count": 1
+          }
+        ],
+        "RelapseTurns": 150,
+        "Text": "You wedge a plank across the worst gap. It will hold for a while."
+      },
+      "Relapse": "The weir at Tine has gapped again while you were away; the perch are going round it."
+    },
+    {
+      "Place": "Gantry",
+      "Id": "GuestPole",
+      "Name": "guest-cloth",
+      "Broken": "The cloth on the guest pole is torn through. A guest cannot sit under it.",
+      "Lasting": {
+        "Materials": [
+          {
+            "Blueprint": "Cloak",
+            "Count": 1
+          },
+          {
+            "Blueprint": "OakHaftComponent",
+            "Count": 1
+          }
+        ],
+        "Text": "You hang a new cloth from the pole and peg it square. There is shade under it again."
+      },
+      "Relapse": "The guest-cloth at Gantry has come down again."
+    }
+  ]
+}

@@ -96,13 +96,21 @@ namespace CavesOfOoo.Core
             foreach (var c in PlaceConditionCatalog.All)
                 if (c.Place == place && c.Remarks != null && c.Remarks.Count > 0 && Holds(zoneId, c.Condition))
                     return c.Remarks[Math.Abs(pick) % c.Remarks.Count];
+            // News heard from elsewhere: every holding piece takes its turn (two passes, no allocation).
+            int heard = 0;
+            foreach (var c in PlaceConditionCatalog.All) if (IsHeardHere(c, place)) heard++;
+            if (heard == 0) return null;
+            int want = Math.Abs(pick) % heard;
             foreach (var c in PlaceConditionCatalog.All)
-            {
-                if (c.HeardIn == null || !c.HeardIn.Contains(place) || string.IsNullOrEmpty(c.Heard)) continue;
-                string there = ZoneOf(c.Place);
-                if (there != null && Holds(there, c.Condition)) return c.Heard;
-            }
+                if (IsHeardHere(c, place) && want-- == 0) return c.Heard;
             return null;
+        }
+
+        static bool IsHeardHere(PlaceConditionData c, string place)
+        {
+            if (c.HeardIn == null || !c.HeardIn.Contains(place) || string.IsNullOrEmpty(c.Heard)) return false;
+            string there = ZoneOf(c.Place);
+            return there != null && Holds(there, c.Condition);
         }
 
         /// <summary>An ambient remark by a resident near the player (called after

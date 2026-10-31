@@ -743,6 +743,44 @@ it per row. 🔵 Trader-capacity bench tests (GameAuditTransfer*) fail in some
 suite orderings and pass alone; they also failed in the P4 full run before C4
 existed, so the order-dependence predates this work.
 
+## W1a — Tier-1 content: Sill's arc, Gantry, Tine (implemented 2026-10-31)
+
+**Ships (5 new concerns, 8 in all):**
+
+| Concern | Owner | Approaches | Each leaves behind |
+|---|---|---|---|
+| `sill.tithe` The Bridge Money (after `sill.well`) | Elder | Carry the elder's letter to the Gantry registrar · Read the road-tithe roll at Gantry · Pay 30 drams | a new hand on the roll (prices ×0.98, Gantry hears) · Sill stops paying · Sill paid, still no bridge |
+| `gantry.manifest` The Sixth Crate | Gantry registrar | Read the posted manifest · Countersign the exchange's count | caravans trust Gantry (Tent-Right +5, Concord −3, Wellmeet hears) · the exchange is grateful (prices ×0.95, Concord +5, Tent-Right −5, Wellmeet warns of short counts) |
+| `gantry.cloth` The Torn Guest-Cloth | Tent-Right host | Restore the guest pole (cloak + oak stake) · Supply four starapples | shade under the cloth again (Tent-Right +5, Wellmeet hears) · the guest bowl filled, the cloth still down |
+| `tine.weir` The Gapped Weir | Elder | Restore the weir (2 salvaged timber, 2 oak stakes, a hatchet; patch possible) · Concord contract 45 | perch sold again (merchant keeps 4), prices ×0.97, Sumphold and Sill hear · Concord catch-tax, prices ×1.04 |
+| `tine.scribe` The Scribe's Last Copy | Scribe (retired Palimpsest) | Supply three ink vials · Read the Felling account at Quillhold | she finishes her copy, gap and all · a new margin, Quillhold hears; she gives her old plaque-wall copy (Codex05) |
+
+New content: two place sites (Tine weir, Gantry guest pole), two place documents
+(the posted manifest, the road-tithe roll), `LakePerch`, eleven place conditions,
+and `PayDrams "N"` (all or nothing).
+
+**Evidence:**
+
+- `W1ContentTests` (8) plays each concern end to end through the real
+  conversation, site, document, reputation and consequence systems: two different
+  Gantrys from the manifest, the weir feeding Tine, the scribe helped from
+  Quillhold, the tithe arc after the well, paying short.
+- `PlaceCensusBenchTests` (explicit) on seed 64: every owner and Carry recipient
+  lives in its place, and every Supply/Restore material is sold or lying in a
+  place of the concern's tier or below. Salvaged timber is the thinnest source:
+  one place on seed 64, and which place varies between runs.
+- Voice gate: a blind fresh-context reviewer attributed 36 passages against the
+  voice cards. 20 passed, 15 were weak and one failed: the registrar "striking"
+  a roll entry broke the Recension taboo, since they do not correct old hands
+  but enter theirs beside them. All 16 have been rewritten, the fail as "a fifth
+  hand beside the four". Per the gate, rewrites are not re-graded; they go to
+  the next wave's blind run.
+
+**Self-review:** 🟡 fixed: heard news only ever told the first item when two
+places' news reached the same place; it now rotates. 🔵 The census is one
+seed; trader stock varies. 🔵 Two catalog pins (`DensityReadableDocument*`) were
+revised to name the W1 place documents.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -770,3 +808,5 @@ existed, so the order-dependence predates this work.
   reconcile, lasting repair and patch with relapse, Restore approach, lint).
 - 2026-10-31 — C4: place conditions (prices, stock, remarks, news, arrivals),
   SetPlaceCondition, TeachSkill, next-concern gating; Sill's six outcomes.
+- 2026-10-31 — W1a: Sill's bridge money, Gantry's manifest and guest-cloth,
+  Tine's weir and scribe; place census bench; blind voice review and rewrites.

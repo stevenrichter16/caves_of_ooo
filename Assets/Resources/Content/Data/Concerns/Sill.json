@@ -9,34 +9,76 @@
       "Title": "The Bitter Well",
       "Pitch": "The well's gone bitter again. A purifying rite sweetens it for a few days, then it turns. The filtration ring under the stones needs rebuilding: the old manual says silver sand, and nobody here has the hands for it. Or there's the Concord. Their trade-post will send a mason if someone pays, and then the well is theirs to look after, and ours to pay for.",
       "Thanks": "The water comes up clear and stays clear. Sill drinks from it without making a face.",
-      "Requires": [ { "Key": "IfNotPlaceSiteStage", "Value": "Sill:MainWell:StableRepair" } ],
+      "Requires": [
+        {
+          "Key": "IfNotPlaceSiteStage",
+          "Value": "Sill:MainWell:StableRepair"
+        }
+      ],
       "Approaches": [
         {
-          "Id": "rebuild", "Kind": "Restore",
+          "Id": "rebuild",
+          "Kind": "Restore",
           "Label": "Rebuild the filtration ring yourself, with the maintenance manual and silver sand.",
           "Objective": "Rebuild the well's filtration ring with silver sand",
           "Triggers": [
-            { "Key": "IfPlaceSiteStage", "Value": "Sill:MainWell:StableRepair" },
-            { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:MainWell:Contracted" }
+            {
+              "Key": "IfPlaceSiteStage",
+              "Value": "Sill:MainWell:StableRepair"
+            },
+            {
+              "Key": "IfNotPlaceSiteMethod",
+              "Value": "Sill:MainWell:Contracted"
+            }
           ],
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_well_rebuilt_by_hand:1" }, { "Key": "SetPlaceCondition", "Value": "Sill:RebuiltByHand.MainWell" } ]
+          "Outcome": [
+            {
+              "Key": "SetFact",
+              "Value": "sill_well_rebuilt_by_hand:1"
+            },
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:RebuiltByHand.MainWell"
+            }
+          ]
         },
         {
-          "Id": "contract", "Kind": "Settle",
+          "Id": "contract",
+          "Kind": "Settle",
           "Label": "Pay the Concord to send a mason (60 drams); the well will be under their contract.",
           "Objective": "Pay the Concord's trade-post for a mason",
-          "Triggers": [ { "Key": "IfPlaceSiteMethod", "Value": "Sill:MainWell:Contracted" } ],
-          "Offer": [ { "Key": "ContractPlaceRepair", "Value": "Sill:MainWell:60" } ],
+          "Triggers": [
+            {
+              "Key": "IfPlaceSiteMethod",
+              "Value": "Sill:MainWell:Contracted"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "ContractPlaceRepair",
+              "Value": "Sill:MainWell:60"
+            }
+          ],
           "OfferText": "Pay the Concord for a mason: 60 drams",
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_well_contracted:1" } ]
+          "Outcome": [
+            {
+              "Key": "SetFact",
+              "Value": "sill_well_contracted:1"
+            }
+          ]
         }
       ],
       "Refusal": {
         "Text": "I can't take this on. I'm saying so now, so you aren't left waiting.",
         "Reply": "That's fair. Better said than left hanging. We'll boil it."
       },
-      "Reward": { "XP": 60, "Drams": 10 },
-      "Next": []
+      "Reward": {
+        "XP": 60,
+        "Drams": 10
+      },
+      "Next": [
+        "sill.tithe"
+      ]
     },
     {
       "Id": "sill.oven",
@@ -47,33 +89,73 @@
       "Title": "The Cracked Firebox",
       "Pitch": "The bread oven's firebox has cracked through. The mending rite holds it for a while; fire clay and the builder's guide would fix it right. The Concord will rebuild it for coin, and send someone to look at it every season after, at their rate.",
       "Thanks": "The oven holds its heat through a whole bake now. The village eats better for it.",
-      "Requires": [ { "Key": "IfNotPlaceSiteStage", "Value": "Sill:VillageOven:StableRepair" } ],
+      "Requires": [
+        {
+          "Key": "IfNotPlaceSiteStage",
+          "Value": "Sill:VillageOven:StableRepair"
+        }
+      ],
       "Approaches": [
         {
-          "Id": "rebuild", "Kind": "Restore",
+          "Id": "rebuild",
+          "Kind": "Restore",
           "Label": "Pack the firebox with fire clay yourself, following the oven builder's guide.",
           "Objective": "Rebuild the oven's firebox with fire clay",
           "Triggers": [
-            { "Key": "IfPlaceSiteStage", "Value": "Sill:VillageOven:StableRepair" },
-            { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:VillageOven:Contracted" }
+            {
+              "Key": "IfPlaceSiteStage",
+              "Value": "Sill:VillageOven:StableRepair"
+            },
+            {
+              "Key": "IfNotPlaceSiteMethod",
+              "Value": "Sill:VillageOven:Contracted"
+            }
           ],
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_oven_rebuilt_by_hand:1" }, { "Key": "SetPlaceCondition", "Value": "Sill:RebuiltByHand.VillageOven" } ]
+          "Outcome": [
+            {
+              "Key": "SetFact",
+              "Value": "sill_oven_rebuilt_by_hand:1"
+            },
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:RebuiltByHand.VillageOven"
+            }
+          ]
         },
         {
-          "Id": "contract", "Kind": "Settle",
+          "Id": "contract",
+          "Kind": "Settle",
           "Label": "Pay the Concord to rebuild it (50 drams) under a standing contract.",
           "Objective": "Pay the Concord's trade-post to rebuild the oven",
-          "Triggers": [ { "Key": "IfPlaceSiteMethod", "Value": "Sill:VillageOven:Contracted" } ],
-          "Offer": [ { "Key": "ContractPlaceRepair", "Value": "Sill:VillageOven:50" } ],
+          "Triggers": [
+            {
+              "Key": "IfPlaceSiteMethod",
+              "Value": "Sill:VillageOven:Contracted"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "ContractPlaceRepair",
+              "Value": "Sill:VillageOven:50"
+            }
+          ],
           "OfferText": "Pay the Concord to rebuild the oven: 50 drams",
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_oven_contracted:1" } ]
+          "Outcome": [
+            {
+              "Key": "SetFact",
+              "Value": "sill_oven_contracted:1"
+            }
+          ]
         }
       ],
       "Refusal": {
         "Text": "I won't be fixing the oven. Better you hear it from me.",
         "Reply": "Then we'll bake on the hearth stones like our grandparents did. Thanks for saying."
       },
-      "Reward": { "XP": 50, "Drams": 10 },
+      "Reward": {
+        "XP": 50,
+        "Drams": 10
+      },
       "Next": []
     },
     {
@@ -85,33 +167,159 @@
       "Title": "The Watch Lantern",
       "Pitch": "The watch lantern gutters every few nights. The kindle rite gets it lit again but the ward oil is nearly spent, and without it the light doesn't carry past the hedges. The recipe is somewhere; the oil can be made. Or the Concord sells a sealed lantern that never needs us at all. They say.",
       "Thanks": "The lantern burns all night now, and the watch can see the road to the bend.",
-      "Requires": [ { "Key": "IfNotPlaceSiteStage", "Value": "Sill:VillageLantern:StableRepair" } ],
+      "Requires": [
+        {
+          "Key": "IfNotPlaceSiteStage",
+          "Value": "Sill:VillageLantern:StableRepair"
+        }
+      ],
       "Approaches": [
         {
-          "Id": "reforge", "Kind": "Restore",
+          "Id": "reforge",
+          "Kind": "Restore",
           "Label": "Fill the reservoir with ward oil you make from the recipe, and reseal the housing.",
           "Objective": "Reforge the watch lantern with ward oil",
           "Triggers": [
-            { "Key": "IfPlaceSiteStage", "Value": "Sill:VillageLantern:StableRepair" },
-            { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:VillageLantern:Contracted" }
+            {
+              "Key": "IfPlaceSiteStage",
+              "Value": "Sill:VillageLantern:StableRepair"
+            },
+            {
+              "Key": "IfNotPlaceSiteMethod",
+              "Value": "Sill:VillageLantern:Contracted"
+            }
           ],
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_lantern_reforged_by_hand:1" }, { "Key": "SetPlaceCondition", "Value": "Sill:RebuiltByHand.VillageLantern" } ]
+          "Outcome": [
+            {
+              "Key": "SetFact",
+              "Value": "sill_lantern_reforged_by_hand:1"
+            },
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:RebuiltByHand.VillageLantern"
+            }
+          ]
         },
         {
-          "Id": "contract", "Kind": "Settle",
+          "Id": "contract",
+          "Kind": "Settle",
           "Label": "Pay the Concord for a sealed lantern (40 drams) under their contract.",
           "Objective": "Pay the Concord's trade-post for a sealed lantern",
-          "Triggers": [ { "Key": "IfPlaceSiteMethod", "Value": "Sill:VillageLantern:Contracted" } ],
-          "Offer": [ { "Key": "ContractPlaceRepair", "Value": "Sill:VillageLantern:40" } ],
+          "Triggers": [
+            {
+              "Key": "IfPlaceSiteMethod",
+              "Value": "Sill:VillageLantern:Contracted"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "ContractPlaceRepair",
+              "Value": "Sill:VillageLantern:40"
+            }
+          ],
           "OfferText": "Pay the Concord for a sealed lantern: 40 drams",
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_lantern_contracted:1" } ]
+          "Outcome": [
+            {
+              "Key": "SetFact",
+              "Value": "sill_lantern_contracted:1"
+            }
+          ]
         }
       ],
       "Refusal": {
         "Text": "The lantern isn't mine to fix. I'm telling you plainly.",
         "Reply": "Plain's good. We'll double the watch instead."
       },
-      "Reward": { "XP": 40, "Drams": 10 },
+      "Reward": {
+        "XP": 40,
+        "Drams": 10
+      },
+      "Next": []
+    },
+    {
+      "Id": "sill.tithe",
+      "Place": "Sill",
+      "Owner": "Elder",
+      "Faction": "Villagers",
+      "Tier": 1,
+      "Title": "The Bridge Money",
+      "Pitch": "Every season the registrar at Gantry sends for the bridge money. One dram a house, for the bridge at the bend. There's no bridge at the bend. There's never been a bridge at the bend. My grandmother paid for it and she never crossed it either. Take them a letter from me, or go and read what their roll says about it. Or pay it, and let's have a quiet season.",
+      "Thanks": "Well. That's settled, one way or another. Sit down, you've walked a long way about a bridge.",
+      "Approaches": [
+        {
+          "Id": "letter",
+          "Kind": "Carry",
+          "Label": "Carry the elder's letter about the bridge money to the registrar at Gantry.",
+          "Objective": "Carry the elder's letter to the registrar at Gantry",
+          "Carry": {
+            "Item": "SealedLetter",
+            "ItemName": "the elder's letter about the bridge money",
+            "Place": "Gantry",
+            "Recipient": "GantryRegistrar",
+            "Handover": "Sill's elder sent this, about the bridge money.",
+            "Reply": "A bridge. At the bend. Let me see the roll. ... No surveyor ever signed it. I am entering a fifth hand beside the four: no bridge, no surveyor, no tithe owing. Tell your elder the roll has a new hand on it, which it has never had."
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:Sill.TitheStruck"
+            }
+          ]
+        },
+        {
+          "Id": "roll",
+          "Kind": "Read",
+          "Label": "Read the road-tithe roll at Gantry and tell the elder what it says.",
+          "Objective": "Read the road-tithe roll at Gantry",
+          "Read": {
+            "Document": "gantry-tithe",
+            "Place": "Gantry"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:Sill.TitheRefused"
+            }
+          ]
+        },
+        {
+          "Id": "pay",
+          "Kind": "Settle",
+          "Label": "Pay the season's bridge money (30 drams) and keep the peace.",
+          "Objective": "Pay Sill's bridge money",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.sill.tithe.pay.done:>=:1"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "PayDrams",
+              "Value": "30"
+            },
+            {
+              "Key": "SetFact",
+              "Value": "concern.sill.tithe.pay.done:1"
+            }
+          ],
+          "OfferText": "Pay the bridge money: 30 drams",
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Sill:Sill.TithePaid"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't be carrying that one. Better you hear it from me.",
+        "Reply": "Fair. We'll pay and grumble on the dock, same as every season."
+      },
+      "Reward": {
+        "XP": 50,
+        "Drams": 10
+      },
       "Next": []
     }
   ]

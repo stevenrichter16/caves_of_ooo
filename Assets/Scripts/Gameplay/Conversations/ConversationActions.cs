@@ -319,6 +319,18 @@ namespace CavesOfOoo.Core
                 return reason;
             });
 
+            // W1: "Drams" — pay that much or nothing (a concern's Settle offer).
+            RegisterRequired("PayDrams", (speaker, listener, arg) =>
+            {
+                if (listener == null) return "missing_listener";
+                if (!int.TryParse(arg, out int cost) || cost < 0) return "invalid_argument";
+                int drams = TradeSystem.GetDrams(listener);
+                if (drams < cost) { MessageLog.Add($"That's {cost} drams; you have {drams}."); return "insufficient_drams"; }
+                TradeSystem.SetDrams(listener, drams - cost);
+                MessageLog.Add($"You pay {cost} drams.");
+                return null;
+            });
+
             // C4: "Place:Condition" — the place changes (PlaceConditionCatalog says how).
             RegisterRequired("SetPlaceCondition", (speaker, listener, arg) =>
             {

@@ -1,35 +1,207 @@
 {
   "Conditions": [
     {
-      "Place": "Sill", "Condition": "RebuiltByHand.MainWell", "Price": 0.97,
-      "Remarks": [ "The water's sweet. Somebody did that with their own two hands.", "First summer in years nobody's boiled the well water." ],
-      "HeardIn": [ "Gantry", "Tine" ], "Heard": "They say Sill's well runs clear now. A stranger rebuilt the ring by hand.",
-      "Stock": [ { "Owner": "WellKeeper", "Blueprint": "Waterskin", "Count": 2 } ]
+      "Place": "Sill",
+      "Condition": "RebuiltByHand.MainWell",
+      "Price": 0.97,
+      "Remarks": [
+        "The water's sweet. Somebody did that with their own two hands.",
+        "First summer in years nobody's boiled the well water."
+      ],
+      "HeardIn": [
+        "Gantry",
+        "Tine"
+      ],
+      "Heard": "They say Sill's well runs clear now. A stranger rebuilt the ring by hand.",
+      "Stock": [
+        {
+          "Owner": "WellKeeper",
+          "Blueprint": "Waterskin",
+          "Count": 2
+        }
+      ]
     },
     {
-      "Place": "Sill", "Condition": "ConcordContract.MainWell", "Price": 1.04,
-      "Remarks": [ "The Concord's man came round for the well money again.", "Clean water, and a bill nailed by the door for it." ],
-      "HeardIn": [ "Gantry" ], "Heard": "Sill pays the Concord for its own water now, I hear.",
-      "Arrivals": [ { "Blueprint": "ConcordFactor", "Count": 1 } ]
+      "Place": "Sill",
+      "Condition": "ConcordContract.MainWell",
+      "Price": 1.04,
+      "Remarks": [
+        "The Concord's man came round for the well money again.",
+        "Clean water, and a bill nailed by the door for it."
+      ],
+      "HeardIn": [
+        "Gantry"
+      ],
+      "Heard": "Sill pays the Concord for its own water now, I hear.",
+      "Arrivals": [
+        {
+          "Blueprint": "ConcordFactor",
+          "Count": 1
+        }
+      ]
     },
     {
-      "Place": "Sill", "Condition": "RebuiltByHand.VillageOven", "Price": 0.98,
-      "Remarks": [ "Bread every morning again. Smell that." ],
-      "Stock": [ { "Owner": "Farmer", "Blueprint": "ToastedEmberwheat", "Count": 3 } ]
+      "Place": "Sill",
+      "Condition": "RebuiltByHand.VillageOven",
+      "Price": 0.98,
+      "Remarks": [
+        "Bread every morning again. Smell that."
+      ],
+      "Stock": [
+        {
+          "Owner": "Farmer",
+          "Blueprint": "ToastedEmberwheat",
+          "Count": 3
+        }
+      ]
     },
     {
-      "Place": "Sill", "Condition": "ConcordContract.VillageOven", "Price": 1.03,
-      "Remarks": [ "The oven's fine. The Concord's inspector says so, every season, for a fee." ]
+      "Place": "Sill",
+      "Condition": "ConcordContract.VillageOven",
+      "Price": 1.03,
+      "Remarks": [
+        "The oven's fine. The Concord's inspector says so, every season, for a fee."
+      ]
     },
     {
-      "Place": "Sill", "Condition": "RebuiltByHand.VillageLantern",
-      "Remarks": [ "The watch can see the bend in the road all night now." ],
-      "HeardIn": [ "Tally" ], "Heard": "Sill keeps a proper light on its road again. Safer going that way.",
-      "Stock": [ { "Owner": "Warden", "Blueprint": "Torch", "Count": 2 } ]
+      "Place": "Sill",
+      "Condition": "RebuiltByHand.VillageLantern",
+      "Remarks": [
+        "The watch can see the bend in the road all night now."
+      ],
+      "HeardIn": [
+        "Tally"
+      ],
+      "Heard": "Sill keeps a proper light on its road again. Safer going that way.",
+      "Stock": [
+        {
+          "Owner": "Warden",
+          "Blueprint": "Torch",
+          "Count": 2
+        }
+      ]
     },
     {
-      "Place": "Sill", "Condition": "ConcordContract.VillageLantern", "Price": 1.02,
-      "Remarks": [ "That sealed lantern of the Concord's never gutters. Nobody here knows how it works." ]
+      "Place": "Sill",
+      "Condition": "ConcordContract.VillageLantern",
+      "Price": 1.02,
+      "Remarks": [
+        "That sealed lantern of the Concord's never gutters. Nobody here knows how it works."
+      ]
+    },
+    {
+      "Place": "Tine",
+      "Condition": "RebuiltByHand.Weir",
+      "Price": 0.97,
+      "Remarks": [
+        "Perch in the nets again. The weir's holding.",
+        "The old men are down at the weir arguing about it again. Let them be."
+      ],
+      "HeardIn": [
+        "Sumphold",
+        "Sill"
+      ],
+      "Heard": "Tine's weir is mended, they say. There'll be perch on the boats this season.",
+      "Stock": [
+        {
+          "Owner": "Merchant",
+          "Blueprint": "LakePerch",
+          "Count": 4
+        }
+      ]
+    },
+    {
+      "Place": "Tine",
+      "Condition": "ConcordContract.Weir",
+      "Price": 1.04,
+      "Remarks": [
+        "The Concord's weir works. So does the Concord's catch-tax."
+      ]
+    },
+    {
+      "Place": "Tine",
+      "Condition": "Tine.ScribeCopyFinished",
+      "Remarks": [
+        "The scribe finished her copy. She says the gap in it is the best part."
+      ]
+    },
+    {
+      "Place": "Tine",
+      "Condition": "Tine.ScribeCopyCollated",
+      "Remarks": [
+        "The scribe has a new margin in her copy. She read it to us twice."
+      ],
+      "HeardIn": [
+        "Quillhold"
+      ],
+      "Heard": "The old copyist at Tine has entered the third hand. Someone carried it to her."
+    },
+    {
+      "Place": "Gantry",
+      "Condition": "Gantry.ManifestEntered",
+      "Remarks": [
+        "The registrar entered six crates. The drover's allowed to stand up now."
+      ],
+      "HeardIn": [
+        "Wellmeet"
+      ],
+      "Heard": "Cloth caravans will go through Gantry again. Their registrar counted six."
+    },
+    {
+      "Place": "Gantry",
+      "Condition": "Gantry.ShortCountSigned",
+      "Price": 0.95,
+      "Remarks": [
+        "The exchange floor is smiling at everybody. Somebody signed something for them."
+      ],
+      "HeardIn": [
+        "Wellmeet"
+      ],
+      "Heard": "Gantry signed a short count against a caravan of the cloth. Go through there with your crates where you can see them."
+    },
+    {
+      "Place": "Gantry",
+      "Condition": "Gantry.GuestClothHung",
+      "Remarks": [
+        "There is shade under the cloth again. Sit."
+      ],
+      "HeardIn": [
+        "Wellmeet"
+      ],
+      "Heard": "A stranger rehung the guest-cloth at Gantry. The oath keeps there."
+    },
+    {
+      "Place": "Gantry",
+      "Condition": "Gantry.GuestBowlFilled",
+      "Remarks": [
+        "The guest bowl is full. Someone saw to it."
+      ]
+    },
+    {
+      "Place": "Sill",
+      "Condition": "Sill.TitheStruck",
+      "Price": 0.98,
+      "Remarks": [
+        "No more paying for a bridge nobody built."
+      ],
+      "HeardIn": [
+        "Gantry"
+      ],
+      "Heard": "Sill's road-tithe has a new hand on the roll: no bridge, nothing owing. First new hand on that roll in years."
+    },
+    {
+      "Place": "Sill",
+      "Condition": "Sill.TitheRefused",
+      "Remarks": [
+        "We've stopped paying the bridge money. Let them come and show us the bridge."
+      ]
+    },
+    {
+      "Place": "Sill",
+      "Condition": "Sill.TithePaid",
+      "Remarks": [
+        "We paid the bridge money. There's still no bridge."
+      ]
     }
   ]
 }
