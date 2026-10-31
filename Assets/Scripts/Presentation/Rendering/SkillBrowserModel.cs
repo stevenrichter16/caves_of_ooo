@@ -30,7 +30,10 @@ namespace CavesOfOoo.Rendering
         public string Requirements { get; private set; } = "";
         public string ActivationSummary { get; private set; } = "";
         public string Notice { get; private set; } = "";
-        public int Points => Actor?.GetStat("SP")?.BaseValue ?? 0;
+        /// <summary>P2b: the Attributes group spends attribute points; every other group SP.</summary>
+        public bool InAttributes => Current?.Class == AttributeAdvancement.DisciplineClass;
+        public string Unit => InAttributes ? "AP" : "SP";
+        public int Points => Actor?.GetStat(Unit)?.BaseValue ?? 0;
         public Discipline Current => Disciplines.Count == 0 ? null : Disciplines[DisciplineIndex];
         public SkillsScreenRow Selected => Current == null || Current.Rows.Count == 0 ? default : Current.Rows[SkillIndex];
         public bool CanAssign => OwnedAbility() != null;
@@ -63,6 +66,7 @@ namespace CavesOfOoo.Rendering
                     if(!hiddenRoot || group.Rows.Count>1) Disciplines.Add(group);
                 }
                 Disciplines.Sort((a,b) => string.Compare(a.Name,b.Name,StringComparison.Ordinal));
+                if (Actor.GetStat("AP") != null) Disciplines.Insert(0, AttributesGroup());
             }
             DisciplineIndex = Math.Max(0, Math.Min(DisciplineIndex, Disciplines.Count-1));
             SkillIndex = 0;
@@ -98,11 +102,42 @@ namespace CavesOfOoo.Rendering
             if (row.IsObfuscated) return "UNKNOWN";
             if (row.Cost<0) return "DISCOVERY";
             if (row.State==SkillsScreenRowState.Buyable) return "AVAILABLE";
-            return row.State==SkillsScreenRowState.InsufficientSP ? "NEED SP" : "LOCKED";
+            return row.State==SkillsScreenRowState.InsufficientSP ? (AttributeAdvancement.IsRowClass(row.Class)?"NEED AP":"NEED SP") : "LOCKED";
         }
+        Discipline AttributesGroup()
+        {
+            var group = new Discipline { Class = AttributeAdvancement.DisciplineClass, Name = "Attributes" };
+            int ap = Actor.GetStat("AP").BaseValue;
+            foreach (string attribute in AttributeAdvancement.Attributes)
+            {
+                if (Actor.GetStat(attribute) == null) continue;
+                group.Rows.Add(new SkillsScreenRow(AttributeAdvancement.RowClass(attribute), attribute + " " + Actor.GetStatValue(attribute),
+                    AttributeText(attribute), false, "", 1,
+                    ap > 0 ? SkillsScreenRowState.Buyable : SkillsScreenRowState.InsufficientSP, false, purchaseEligible: ap > 0));
+            }
+            return group;
+        }
+        static string AttributeText(string attribute)
+        {
+            switch (attribute)
+            {
+                case "Strength": return "Melee damage and penetration, and how much you can carry.";
+                case "Agility": return "Hitting and dodging.";
+                case "Toughness": return "Health: each modifier step adds health for every level you have taken, and every level after.";
+                case "Intelligence": return "Learning, and the work of the mind.";
+                case "Willpower": return "Resisting what would bend your mind, and recovering from it.";
+                default: return "Presence: persuasion and how others read you.";
+            }
+        }
+
         public bool ReviewPurchase()
         {
             Cancel();
+            if (AttributeAdvancement.IsRowClass(Selected.Class))
+            {
+                if (Points < 1) { Notice = "You have no attribute point to spend."; return false; }
+                PendingPurchase = Selected.Class; PendingRank = 0; PendingCost = 1; return true;
+            }
             if(Selected.IsObfuscated) { Notice="Requirements remain unknown."; return false; }
             var eligible=SkillPurchaseEligibility.Evaluate(Actor,Selected.Class);
             if (!eligible.Succeeded) { Notice=FailureForActor(Selected.DisplayName,eligible); return false; }
@@ -112,6 +147,15 @@ namespace CavesOfOoo.Rendering
         public bool ConfirmPurchase()
         {
             if (PendingPurchase==null) return false;
+            if (AttributeAdvancement.IsRowClass(PendingPurchase))
+            {
+                string attribute = AttributeAdvancement.AttributeOf(PendingPurchase); Cancel();
+                bool raised = AttributeAdvancement.TrySpend(Actor, attribute, out string failure);
+                Refresh(); SelectClass(AttributeAdvancement.RowClass(attribute));
+                Notice = raised ? "Raised " + attribute + " to " + Actor.GetStatValue(attribute) + ". Spent 1 AP." : failure;
+                if (raised) MessageLog.Add(Notice);
+                return raised;
+            }
             string name=Selected.DisplayName, pending=PendingPurchase; Cancel();
             var result=BuySkillAction.Execute(Actor,pending,PendingRank,PendingCost);
             Refresh();
@@ -142,6 +186,13 @@ namespace CavesOfOoo.Rendering
         {
             Prerequisites.Clear(); Requirements=""; ActivationSummary="";
             if(Current==null) { Details="No skills available."; return; }
+            if(AttributeAdvancement.IsRowClass(Selected.Class))
+            {
+                string attribute=AttributeAdvancement.AttributeOf(Selected.Class);
+                Details=Selected.Description+"\n\nCurrent "+Actor.GetStatValue(attribute)+" (modifier "+StatUtils.GetModifier(Actor,attribute)
+                    +"). Attribute points arrive at levels 3, 9 and 15; every attribute rises at 6, 12 and 18.";
+                ActivationSummary="ATTRIBUTE"; return;
+            }
             Details=AbilityDetailsBuilder.BuildForSkill(Actor,Selected.Class) ?? "Details unavailable.";
             if(Selected.IsObfuscated) return;
             var spec=AbilityDetailsBuilder.Declaration(Selected.Class)?.DeclareActivatedAbility(Actor);

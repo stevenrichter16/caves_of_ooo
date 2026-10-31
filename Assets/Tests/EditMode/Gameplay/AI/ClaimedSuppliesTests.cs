@@ -364,7 +364,7 @@ namespace CavesOfOoo.Tests
                 var session=GameSessionState.Capture("claimed-supplies","aftermath",manager,new TurnManager(),player,0);GameSessionState restored;
                 using(var stream=new MemoryStream()){session.Save(new SaveWriter(stream));stream.Position=0;restored=GameSessionState.Load(new SaveReader(stream,scope.Factory));}
                 var loaded=(OverworldZoneManager)restored.ZoneManager;var returned=loaded.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(zone,returned);Assert.AreEqual(roots,returned.EntityCount);
-                Assert.AreEqual(16,loaded.Exploration.Version);Assert.AreEqual(2,loaded.Exploration.DispositionFor(id));
+                Assert.AreEqual(SpreadExplorationPlan.CurrentVersion,loaded.Exploration.Version);Assert.AreEqual(2,loaded.Exploration.DispositionFor(id));
                 var defender=returned.GetReadOnlyEntities().Single(e=>e.ID==actorID);var saved=defender.GetPart<SpreadTerritoryPart>();Assert.NotNull(saved);Assert.AreEqual(actorAt,returned.GetEntityPosition(defender));
                 var cache=returned.GetReadOnlyEntities().SingleOrDefault(e=>e.ID==postID);Assert.AreEqual(!removePost,cache!=null);
                 CollectionAssert.AreEqual(cargo,restored.Player.GetPart<InventoryPart>().Objects.Select(e=>e.ID+":"+e.BlueprintName+":"+(e.GetPart<StackerPart>()?.StackCount??1)));

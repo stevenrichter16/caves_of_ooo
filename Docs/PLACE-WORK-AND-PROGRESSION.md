@@ -1,6 +1,6 @@
 # Place Work and Progression — design and plan
 
-Status: **design and plan, 2026-10-30. P1 (progression bench), P2 (creature levels) and P3 (scaled and companion kill XP) implemented;**
+Status: **design and plan, 2026-10-30. P1 (progression bench), P2 (creature levels), P2b (player growth) and P3 (scaled and companion kill XP) implemented;**
 each later milestone records its own status as it lands. This is CoO-original design
 (one piece, tier-scaled XP, is a Qud-parity port and is labelled as such).
 
@@ -398,6 +398,48 @@ blueprints the factory lacks, as `LootStocker` already does.
 **Divergence from Qud:** Qud awards companions' leaders through events with
 `PassedUpFrom`; CoO walks the chain directly. Same outcome, no new event type.
 
+## P2b — Player growth per level (implemented 2026-10-30)
+
+**Ships (Qud parity, `XRL.World.Parts/Leveler.cs`):**
+
+- Health per level is `max(2 + Toughness modifier, 1)` (Qud `RollHP`:
+  `max(roll 1-4 + modifier, 1)`). **Divergence:** CoO keeps its deterministic
+  base of 2 instead of rolling, so no level-up can be re-rolled by reloading;
+  at average Toughness the result is the old +2. The starting player
+  (Toughness 18) now gains +3.
+- An attribute point (`AP`, new Player stat) at levels 3, 9, 15…; +1 to every
+  attribute at 6, 12, 18… (Leveler.cs:268-269).
+- Raising Toughness, by point or by the level-6 bonus, adds or removes the
+  modifier change once per level already taken, to maximum and current health
+  (Qud's Toughness stat-change handler).
+- `AttributeAdvancement.TrySpend` spends points; diag
+  `progression/AttributeRaised|AttributeRefused`.
+- **Where points are spent:** the skills screen gains an **Attributes** group
+  (first, when the actor has an AP stat) with one row per attribute, its
+  current value, modifier and purpose. Review/confirm uses the same flow as
+  skills; the screen's unit label reads AP in this group and SP elsewhere.
+
+**Tests:** `PlayerGrowthTests` 14 (RED by compile → GREEN). Counter-checks:
+modifier 0 keeps +2, very low Toughness still gains 1, no AP at 2 or 6, no
+bonus before 6, no health from a Toughness raise within a modifier step,
+nothing spent without a point or on a non-attribute.
+
+**Revised pins (deliberate):** `GameAuditMortalDeathTests.LevelUpKeeps…`
+pinned +2 HP for the real player; it now asserts 2 + Toughness modifier.
+
+**Also fixed (pre-existing, stale pins found in the regression):**
+`SpreadRareEncounterLifecycleTests.UsedLunge…` pinned a 25-turn Lunge cooldown
+that `bfa625f44` deliberately cut to 10 (the save restores it correctly; the
+test now reads `LongBlades_Lunge.COOLDOWN`), and `ClaimedSuppliesTests.RealTaken…`
+pinned exploration plan version 16 (now `SpreadExplorationPlan.CurrentVersion`, 17).
+Still failing on `HEAD` and flagged separately:
+`RealDeathSpillsSameGearAndPickedCapSurvives…` and two
+`WorldLogHistoryInputTests` pointer tests (batch-mode hit-testing suspected).
+
+**Self-review:** 🔵 Intelligence does not yet add skill points (Qud adds
+(Int−10)×4 of 50 per level); CoO's 1-SP-per-power economy has no clean scale
+for it. Deferred, noted.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -407,3 +449,5 @@ blueprints the factory lacks, as `LootStocker` already does.
   fixed, nine XP pins revised to relationships, stale traveller-hook anchor fixed.
 - 2026-10-30 — P3: band-scaled kill XP, companion kills pay the leader,
   progression diag on by default; container placement skips unknown blueprints.
+- 2026-10-30 — P2b: HP with Toughness, attribute points and level-6 bonuses,
+  Attributes group on the skills screen; three stale pins fixed.

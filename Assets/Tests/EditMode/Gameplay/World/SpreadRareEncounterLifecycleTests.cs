@@ -88,7 +88,7 @@ namespace CavesOfOoo.Tests
             var saved=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("rare-cooldown","rare",manager,turns,player));
             var owner=saved.ZoneManager.GetZone(zone.ZoneID).GetReadOnlyEntities().Single(e=>e.ID==leader.ID);
             Assert.AreEqual(skillID,owner.GetPart<SkillsPart>().SkillList.Single().ActivatedAbilityID);
-            Assert.AreEqual(25,owner.GetPart<ActivatedAbilitiesPart>().AbilityList.Single().CooldownRemaining);
+            Assert.AreEqual(LongBlades_Lunge.COOLDOWN,owner.GetPart<ActivatedAbilitiesPart>().AbilityList.Single().CooldownRemaining,"the used cooldown survives the save");
             Assert.IsFalse(owner.GetPart<CombatTacticsPart>().TryUseAbility(saved.Player,saved.ZoneManager.GetZone(zone.ZoneID),new DensityCombatFixture.LowRandom()));
         }
     }

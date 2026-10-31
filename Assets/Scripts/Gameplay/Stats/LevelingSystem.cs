@@ -6,13 +6,17 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// Handles XP awards from kills and level-up progression.
     /// XP formula mirrors Qud: XP(L) = floor(L^3 * 15) + 100.
-    /// Level-up rewards: +2 max HP, +1 MP, heal to full.
+    /// Level-up rewards: 2 + Toughness modifier max HP (at least 1), +1 MP, +1 SP,
+    /// an attribute point at 3/9/15…, +1 to every attribute at 6/12/18…, heal to full.
     /// </summary>
     public static class LevelingSystem
     {
         /// <summary>
         /// XP required to reach the next level from current level.
         /// </summary>
+        /// <summary>Health gained per level before the Toughness modifier.</summary>
+        public const int BaseHPPerLevel = 2;
+
         public static int XPToNextLevel(int currentLevel)
         {
             return (int)Math.Floor(currentLevel * currentLevel * currentLevel * 15.0) + 100;
@@ -100,15 +104,28 @@ namespace CavesOfOoo.Core
                 levelStat.BaseValue++;
                 int newLevel = levelStat.Value;
 
-                // +2 max HP; living actors heal to full. Self-kill XP must not
-                // refill a victim whose death lifecycle has already committed.
+                // P2b, Qud parity (Leveler.RollHP): 2 + the Toughness modifier, at least 1
+                // (Qud rolls 1-4; CoO keeps its deterministic base of 2). Living actors heal
+                // to full. Self-kill XP must not refill a victim whose death lifecycle has
+                // already committed.
                 var hp = entity.GetStat("Hitpoints");
+                int hpGain = Math.Max(BaseHPPerLevel + StatUtils.GetModifier(entity, "Toughness"), 1);
                 if (hp != null)
                 {
-                    hp.Max += 2;
+                    hp.Max += hpGain;
                     if (!CombatSystem.IsDeathHandled(entity))
                         hp.BaseValue = hp.Max;
                 }
+
+                // P2b, Qud parity (Leveler.cs:268-269): an attribute point at 3, 9, 15…;
+                // every attribute +1 at 6, 12, 18… (a Toughness rise pays back earlier levels).
+                var apStat = entity.GetStat("AP");
+                bool gainedAP = apStat != null && AttributeAdvancement.GrantsPoint(newLevel);
+                if (gainedAP) apStat.BaseValue += 1;
+                bool attributeBonus = AttributeAdvancement.GrantsBonus(newLevel);
+                if (attributeBonus)
+                    foreach (string attribute in AttributeAdvancement.Attributes)
+                        AttributeAdvancement.Raise(entity, attribute, 1);
 
                 // +1 MP for mutation advancement
                 var mpStat = entity.GetStat("MP");
@@ -140,13 +157,17 @@ namespace CavesOfOoo.Core
                 // claim that dead or penalized actors were healed to full.
                 if (hp != null && ReferenceEquals(entity.GetStat("Hitpoints"), hp))
                 {
-                    rewards.Add(new AnnouncementFact("Maximum HP", $"+2; now {hp.Max}"));
+                    rewards.Add(new AnnouncementFact("Maximum HP", $"+{hpGain}; now {hp.Max}"));
                     rewards.Add(new AnnouncementFact("Health", $"{hp.Value} / {hp.Max}"));
                 }
                 if (gainedMP && mpStat != null && ReferenceEquals(entity.GetStat("MP"), mpStat))
                     rewards.Add(new AnnouncementFact("MP gained", $"+1; now {mpStat.Value}"));
                 if (spStat != null && ReferenceEquals(entity.GetStat("SP"), spStat))
                     rewards.Add(new AnnouncementFact("SP gained", $"+1; now {spStat.Value}"));
+                if (gainedAP && ReferenceEquals(entity.GetStat("AP"), apStat))
+                    rewards.Add(new AnnouncementFact("Attribute point", $"+1; now {apStat.Value} (spend it on the skills screen)"));
+                if (attributeBonus)
+                    rewards.Add(new AnnouncementFact("Attributes", "+1 to each"));
                 MessageLog.AddPresentedAnnouncement(announcement,new AnnouncementDocument(
                     $"Level {newLevel}","LEVEL UP",new[]{new AnnouncementSection("",announcement,AnnouncementTone.Positive)},rewards));
             }

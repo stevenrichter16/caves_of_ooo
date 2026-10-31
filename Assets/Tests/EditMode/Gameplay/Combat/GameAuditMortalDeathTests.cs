@@ -150,8 +150,8 @@ namespace CavesOfOoo.Tests
                 MortalDeathFixture.Stat(player,"MP",2,100);MortalDeathFixture.Stat(player,"SP",3,100);
                 int mp=player.GetStatValue("MP"),sp=player.GetStatValue("SP");
                 if(selfDeath)CombatSystem.HandleDeath(player,player,f.Zone);else LevelingSystem.AwardKillXP(player,f.Victim,f.Zone);
-                Assert.AreEqual(2,player.GetStatValue("Level"));Assert.AreEqual(0,player.GetStatValue("Experience"));Assert.AreEqual(max+2,hp.Max);
-                Assert.AreEqual(selfDeath?0:max+2,hp.BaseValue);Assert.AreEqual(mp+1,player.GetStatValue("MP"));Assert.AreEqual(sp+1,player.GetStatValue("SP"));
+                Assert.AreEqual(2,player.GetStatValue("Level"));Assert.AreEqual(0,player.GetStatValue("Experience"));Assert.AreEqual(max+System.Math.Max(LevelingSystem.BaseHPPerLevel+StatUtils.GetModifier(player,"Toughness"),1),hp.Max,"P2b: 2 + Toughness modifier");
+                Assert.AreEqual(selfDeath?0:hp.Max,hp.BaseValue);Assert.AreEqual(mp+1,player.GetStatValue("MP"));Assert.AreEqual(sp+1,player.GetStatValue("SP"));
             }
         }
     }
