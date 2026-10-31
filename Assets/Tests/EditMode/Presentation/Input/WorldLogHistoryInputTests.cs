@@ -48,6 +48,22 @@ namespace CavesOfOoo.Tests
         void Update(){typeof(InputHandler).GetField("_lastMoveTime",Private).SetValue(input,-999f);Call("Update");}
         void Pad(GamepadState value){InputSystem.QueueStateEvent(pad,value);InputSystem.Update();Update();}
         void Key(params UnityEngine.InputSystem.Key[] keys){InputSystem.QueueStateEvent(keyboard,new KeyboardState(keys));InputSystem.Update();Update();}
+        // Unity clamps a camera viewport to the actual screen (batch mode is
+        // 640x480 with the legacy pointer at the origin), so a rect centred on
+        // the pointer can lose its lower-left half. Fill the real screen and
+        // move the camera until the unmoved pointer lands on the requested row.
+        Camera OverlapPointer(string name,Vector3 pointer,int rowCount,int row=0)
+        {
+            var camera=Make(name).AddComponent<Camera>();camera.enabled=false;
+            camera.pixelRect=new Rect(0,0,Screen.width,Screen.height);
+            if(!camera.pixelRect.Contains(pointer))Assert.Inconclusive("The legacy pointer "+pointer+" is outside the "+Screen.width+"x"+Screen.height+" screen.");
+            camera.orthographic=true;camera.orthographicSize=22.5f;
+            var target=new Vector3(CenteredPopupLayout.GetCenteredOriginX(48)+2.5f,CenteredPopupLayout.GetCenteredTopY(rowCount+5)-3-row+.5f,-10);
+            camera.transform.position=target;
+            var hit=camera.ScreenToWorldPoint(new Vector3(pointer.x,pointer.y,10));
+            camera.transform.position=new Vector3(2*target.x-hit.x,2*target.y-hit.y,target.z);
+            return camera;
+        }
         void Unchanged(int tick,int energy){Assert.AreEqual(tick,turns.TickCount);Assert.AreEqual(energy,turns.GetEnergy(actor));Assert.AreEqual((10,10),zone.GetEntityPosition(actor));}
         [Test] public void ActualCharacterMenuAppendsWorldLogAndNativeAOpensOlderHistoryWithoutCost()
         {
@@ -71,12 +87,7 @@ namespace CavesOfOoo.Tests
             // Project the actual legacy pointer onto row zero without moving it
             // or replacing Input.mousePosition. This recreates the native overlap.
             Vector3 pointer=UnityEngine.Input.mousePosition;
-            var camera=Make("stationary pointer overlap").AddComponent<Camera>();camera.enabled=false;
-            camera.pixelRect=new Rect(pointer.x-320,pointer.y-240,640,480);
-            camera.orthographic=true;camera.orthographicSize=22.5f;camera.aspect=4f/3f;
-            camera.transform.position=new Vector3(CenteredPopupLayout.GetCenteredOriginX(48)+2.5f,
-                CenteredPopupLayout.GetCenteredTopY(rows.Count+5)-3+.5f,-10);
-            menu.PopupCamera=camera;
+            menu.PopupCamera=OverlapPointer("stationary pointer overlap",pointer,rows.Count);
             Assert.AreEqual(0,(int)typeof(WorldActionMenuUI).GetMethod("GetRowAtMouse",Private).Invoke(menu,null),
                 "Real pointer must hit row zero, otherwise the old hover-reset defect is not exercised.");
             Pad(new GamepadState());Key();
@@ -93,17 +104,32 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void PointerOverlapFixtureFollowsTheRequestedRowAtTheActualScreenSize()
+        {
+            Pad(new GamepadState().WithButton(GamepadButton.Start));Pad(new GamepadState());
+            var menu=input.WorldActionMenuUI;
+            var rows=(List<InventoryAction>)typeof(WorldActionMenuUI).GetField("_actions",Private).GetValue(menu);
+            var hit=typeof(WorldActionMenuUI).GetMethod("GetRowAtMouse",Private);
+            Vector3 pointer=UnityEngine.Input.mousePosition;
+            foreach(int row in new[]{0,1,rows.Count-1})
+            {
+                menu.PopupCamera=OverlapPointer("fixture row "+row,pointer,rows.Count,row);
+                Assert.AreEqual(row,(int)hit.Invoke(menu,null),"The fixture must aim the unmoved pointer at the row it names.");
+            }
+            // Counter-check: two lines above row zero is the title, not a choice.
+            menu.PopupCamera=OverlapPointer("fixture title",pointer,rows.Count,-2);
+            Assert.AreEqual(-1,(int)hit.Invoke(menu,null),"The title line is not a selectable row.");
+            Assert.AreEqual(pointer,UnityEngine.Input.mousePosition);
+        }
+
+        [Test]
         public void PriorPointerMovementReclaimsHoverOnceAndOpenRearmsTheSample()
         {
             Pad(new GamepadState().WithButton(GamepadButton.Start));Pad(new GamepadState());
             var menu=input.WorldActionMenuUI;
             var rows=(List<InventoryAction>)typeof(WorldActionMenuUI).GetField("_actions",Private).GetValue(menu);
             Vector3 pointer=UnityEngine.Input.mousePosition;
-            var camera=Make("pointer rearm overlap").AddComponent<Camera>();camera.enabled=false;
-            camera.pixelRect=new Rect(pointer.x-320,pointer.y-240,640,480);
-            camera.orthographic=true;camera.orthographicSize=22.5f;camera.aspect=4f/3f;
-            camera.transform.position=new Vector3(CenteredPopupLayout.GetCenteredOriginX(48)+2.5f,
-                CenteredPopupLayout.GetCenteredTopY(rows.Count+5)-3+.5f,-10);menu.PopupCamera=camera;
+            menu.PopupCamera=OverlapPointer("pointer rearm overlap",pointer,rows.Count);
             Assert.AreEqual(0,(int)typeof(WorldActionMenuUI).GetMethod("GetRowAtMouse",Private).Invoke(menu,null));
             var previous=typeof(WorldActionMenuUI).GetField("_lastMousePosition",Private);
             Assert.NotNull(previous,"Menu must retain its previous pointer sample.");

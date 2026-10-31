@@ -28,7 +28,7 @@ namespace CavesOfOoo.Tests
         {
             Assert.AreEqual(35,leader.GetPart<CombatTacticsPart>().AbilityChance);
             Assert.IsTrue(Lunge());Assert.AreEqual((10,10),zone.GetEntityPosition(leader));
-            Assert.AreEqual(25,Ability.CooldownRemaining);Assert.IsFalse(Lunge());
+            Assert.AreEqual(LongBlades_Lunge.COOLDOWN,Ability.CooldownRemaining,"the swing pays the real cooldown");Assert.IsFalse(Lunge());
             Assert.IsTrue(MessageLog.GetAllEntries().Any(e=>e.Text.Contains("(Lunge)")),"A real swing is recorded even when its ordinary hit roll misses.");
         }
         [TestCase("disarm")] [TestCase("wall")] [TestCase("ally")] [TestCase("range")]
@@ -63,7 +63,11 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(InventorySystem.Pickup(player,cap,zone));
             Assert.IsTrue(EquipmentComparisonService.TryDescribe(player,cap,out var description,out _));
             StringAssert.Contains("AV: +1",description);
-            Assert.IsTrue(InventorySystem.Equip(player,cap));
+            // Ordinary pickup auto-equips into the free head slot (Qud parity);
+            // since ade908f62 an explicit re-equip of worn gear is refused.
+            Assert.AreSame(player,cap.GetPart<PhysicsPart>().Equipped,"pickup wears the spilled cap");
+            Assert.IsFalse(InventorySystem.Equip(player,cap),"a worn cap cannot claim a second slot");
+            Assert.AreEqual(1,player.GetPart<Body>().GetParts().Count(p=>p._Equipped==cap));
             var manager=OverworldZoneManager.CreateDetached(scope.Factory,1);manager.SetActiveZone(zone);
             var turns=new TurnManager();turns.RestoreSavedState(3,true,player,new List<TurnManager.SavedTurnEntry>{new TurnManager.SavedTurnEntry{Entity=player,Energy=1000}});
             var state=GameSessionState.Capture("rare-life","rare-life",manager,turns,player);
