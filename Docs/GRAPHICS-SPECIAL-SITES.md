@@ -167,6 +167,32 @@ It is admitted in ordinary Spread and Sodden wilderness and their sites. Passing
 
 **Evidence.** `flood-water-{sodden-18-10,spread-6-8}-offline.png`.
 
+## Related wilderness slice: wild fauna (2026-10-30)
+
+**Problem.** Outside the opening, these were still glyphs although approved bodies exist:
+- wandering magpies and vipers;
+- glass scorpions;
+- rune cultists;
+- rotlings;
+- the Beating camp's cactus field.
+
+**Change.** `FlatPixelWildFaunaCatalog` draws:
+- Magpie and Viper with their approved `north-works` frames 5 and 6, which the opening already uses for them;
+- GlassScorpion, RuneCultist, Rotling and Cactus with the shared 16×16 environment sprites. This is the accepted format of the shared Merchant and Elder.
+
+It accepts only canonical owners: correct glyph and colour, no visual override, untinted and single-cell. Creatures must also be alive and have a body and brain. The cactus must be a plain prop. The catalog is never consulted inside opening-admitted zones, so the opening's own routes are unchanged.
+
+**Tests.** `FlatPixelWildFaunaTests`:
+- six roles: native body, exact frame, matching reader;
+- a recoloured or dead cultist keeps the glyph;
+- the opening is not admitted.
+
+**Results.**
+- Stub RED: 7 failures.
+- GREEN: all `FlatPixel*` classes 3,805 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `wild-fauna-{camp-15-18,cultists-0-14}-offline.png`.
+
 ## Remaining
 
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).

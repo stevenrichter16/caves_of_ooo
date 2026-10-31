@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Failed(Child)" total="8" passed="1" failed="7" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-31 00:31:56Z" end-time="2026-10-31 00:31:57Z" duration="1.4391183">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34444" result="Failed" site="Child" start-time="2026-10-31 00:31:56Z" end-time="2026-10-31 00:31:57Z" duration="1.439118" total="8" passed="1" failed="7" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="42364" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34444" result="Failed" site="Child" start-time="2026-10-31 00:31:56Z" end-time="2026-10-31 00:31:57Z" duration="1.323614" total="8" passed="1" failed="7" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="59873" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="42365" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34444" result="Failed" site="Child" start-time="2026-10-31 00:31:56Z" end-time="2026-10-31 00:31:57Z" duration="1.261857" total="8" passed="1" failed="7" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="42366" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34444" result="Failed" site="Child" start-time="2026-10-31 00:31:56Z" end-time="2026-10-31 00:31:57Z" duration="1.207723" total="8" passed="1" failed="7" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33115" name="FlatPixelWildFaunaTests" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-31 00:31:56Z" end-time="2026-10-31 00:31:57Z" duration="0.982075" total="8" passed="1" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33123" name="ARecolouredOrDeadCreatureKeepsItsGlyph" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.ARecolouredOrDeadCreatureKeepsItsGlyph" methodname="ARecolouredOrDeadCreatureKeepsItsGlyph" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="1393549793" result="Passed" start-time="2026-10-31 00:31:56Z" end-time="2026-10-31 00:31:57Z" duration="0.118630" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CultCacheT2'
+[LootTableRegistry] Unknown loot table 'UrnT2'
+[LootTableRegistry] Unknown loot table 'BoneCacheT2'
+]]></output>
+            </test-case>
+            <test-case id="33124" name="OpeningZonesKeepTheirOwnRoutes" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.OpeningZonesKeepTheirOwnRoutes" methodname="OpeningZonesKeepTheirOwnRoutes" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="1612378086" result="Failed" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.276359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWildFaunaTests.OpeningZonesKeepTheirOwnRoutes () [0x0001f] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWildFaunaTests.cs:79
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33122" name="WildFaunaUseTheirApprovedBodies" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.521705" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33116" name="WildFaunaUseTheirApprovedBodies(&quot;Overworld.4.9.0&quot;,&quot;Magpie&quot;,&quot;Sprites/Live16x24/north-works&quot;,80,24)" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies(&quot;Overworld.4.9.0&quot;,&quot;Magpie&quot;,&quot;Sprites/Live16x24/north-works&quot;,80,24)" methodname="WildFaunaUseTheirApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="197066228" result="Failed" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.044979" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Magpie has a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies (System.String id, System.String blueprint, System.String resource, System.Int32 rectX, System.Int32 height) [0x000a8] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWildFaunaTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33117" name="WildFaunaUseTheirApprovedBodies(&quot;Overworld.5.10.0&quot;,&quot;Viper&quot;,&quot;Sprites/Live16x24/north-works&quot;,96,24)" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies(&quot;Overworld.5.10.0&quot;,&quot;Viper&quot;,&quot;Sprites/Live16x24/north-works&quot;,96,24)" methodname="WildFaunaUseTheirApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="2045029182" result="Failed" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.285581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Viper has a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies (System.String id, System.String blueprint, System.String resource, System.Int32 rectX, System.Int32 height) [0x000a8] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWildFaunaTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33118" name="WildFaunaUseTheirApprovedBodies(&quot;Overworld.0.17.0&quot;,&quot;GlassScorpion&quot;,&quot;Sprites/Environment/glass_scorpion&quot;,0,16)" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies(&quot;Overworld.0.17.0&quot;,&quot;GlassScorpion&quot;,&quot;Sprites/Environment/glass_scorpion&quot;,0,16)" methodname="WildFaunaUseTheirApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="196155732" result="Failed" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.036879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  GlassScorpion has a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies (System.String id, System.String blueprint, System.String resource, System.Int32 rectX, System.Int32 height) [0x000a8] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWildFaunaTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'WorkshopCacheT2'
+[LootTableRegistry] Unknown loot table 'UrnT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'UrnT3'
+]]></output>
+              </test-case>
+              <test-case id="33119" name="WildFaunaUseTheirApprovedBodies(&quot;Overworld.0.14.0&quot;,&quot;RuneCultist&quot;,&quot;Sprites/Environment/rune_cultist&quot;,0,16)" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies(&quot;Overworld.0.14.0&quot;,&quot;RuneCultist&quot;,&quot;Sprites/Environment/rune_cultist&quot;,0,16)" methodname="WildFaunaUseTheirApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="812047161" result="Failed" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.038751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  RuneCultist has a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies (System.String id, System.String blueprint, System.String resource, System.Int32 rectX, System.Int32 height) [0x000a8] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWildFaunaTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CultCacheT2'
+[LootTableRegistry] Unknown loot table 'UrnT2'
+[LootTableRegistry] Unknown loot table 'BoneCacheT2'
+]]></output>
+              </test-case>
+              <test-case id="33120" name="WildFaunaUseTheirApprovedBodies(&quot;Overworld.0.0.0&quot;,&quot;Rotling&quot;,&quot;Sprites/Environment/rotling&quot;,0,16)" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies(&quot;Overworld.0.0.0&quot;,&quot;Rotling&quot;,&quot;Sprites/Environment/rotling&quot;,0,16)" methodname="WildFaunaUseTheirApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="1065313588" result="Failed" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.072141" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Rotling has a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies (System.String id, System.String blueprint, System.String resource, System.Int32 rectX, System.Int32 height) [0x000a8] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWildFaunaTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'HunterCacheT1'
+[LootTableRegistry] Unknown loot table 'HollowLogT3'
+[LootTableRegistry] Unknown loot table 'BasketT3'
+[LootTableRegistry] Unknown loot table 'SackT3'
+]]></output>
+              </test-case>
+              <test-case id="33121" name="WildFaunaUseTheirApprovedBodies(&quot;Overworld.15.18.0&quot;,&quot;Cactus&quot;,&quot;Sprites/Environment/cactus&quot;,0,16)" fullname="CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies(&quot;Overworld.15.18.0&quot;,&quot;Cactus&quot;,&quot;Sprites/Environment/cactus&quot;,0,16)" methodname="WildFaunaUseTheirApprovedBodies" classname="CavesOfOoo.Tests.FlatPixelWildFaunaTests" runstate="Runnable" seed="1242974743" result="Failed" start-time="2026-10-31 00:31:57Z" end-time="2026-10-31 00:31:57Z" duration="0.041586" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cactus has a native body
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelWildFaunaTests.WildFaunaUseTheirApprovedBodies (System.String id, System.String blueprint, System.String resource, System.Int32 rectX, System.Int32 height) [0x000a8] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelWildFaunaTests.cs:57
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'LibraryShelfT1'
+[LootTableRegistry] Unknown loot table 'CultCacheT2'
+[LootTableRegistry] Unknown loot table 'StrongBoxT3'
+[LootTableRegistry] Unknown loot table 'UrnT3'
+[LootTableRegistry] Unknown loot table 'CrateT3'
+[LootTableRegistry] Unknown loot table 'UrnT3'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
