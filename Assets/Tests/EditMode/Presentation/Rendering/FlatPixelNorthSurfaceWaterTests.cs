@@ -179,11 +179,15 @@ namespace CavesOfOoo.Tests
         [Test] public void NorthDoesNotGrantTheMaterialToOtherGraphsOrDisableApprovedWaterSites()
         {
             world = new FlatPixelGreyboxCatalog();
-            foreach (string id in new[] { "Overworld.12.11.0", GleanersCellarBuilder.ZoneID, "Overworld.11.7.0" })
+            foreach (string id in new[] { "Overworld.12.11.0", GleanersCellarBuilder.ZoneID })
             {
                 zone = Attach(id); Water(); Assert.False(ground.TryResolve(zone, X, Y, out _, out _));
                 Assert.AreNotSame(Resource(), Visible().GroundTile.sprite.texture);
             }
+            // Revised 2026-10-30: ordinary Spread wilderness (11.7) is still never the North adapter's, but its
+            // flooded grass now shows the shared flood water (FlatPixelFloodWaterCatalog), the same approved views.
+            zone = Attach("Overworld.11.7.0"); Water(); Assert.False(ground.TryResolve(zone, X, Y, out _, out _));
+            Assert.True(FlatPixelFloodWaterCatalog.IsSupportedZone(zone));
             foreach (string id in new[] { ReferenceGladePlan.ZoneID, "Overworld.11.8.0", "Overworld.12.10.0", North })
             { zone = Attach(id); Water(); Expect(15); Assert.AreSame(Resource(), Visible().GroundTile.sprite.texture); }
         }

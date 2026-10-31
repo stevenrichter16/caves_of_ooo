@@ -140,6 +140,33 @@ Such a patch draws its sprite over the real grass. Any other live state, such as
 
 **Still glyphs in camps.** The camp merchant and its campfire.
 
+## Related wilderness slice: flood water (2026-10-30)
+
+**Problem.** Spread and Sodden grass under a permanent, ownerless water coating drew black `.` glyph fields. Examples: all 606 such cells in Sodden 18.10 (drowned copses), and about 180 each in Spread 6.8 and 8.6. Grovelands already draws the identical case as Fen water.
+
+**Change.** `FlatPixelFloodWaterCatalog` applies the Grovelands rule with the same approved views (opening-ground frames 0–15, with banks toward disclosed dry neighbours):
+- the cell holds exactly one coating, permanent and ownerless water;
+- there is no pool, well, source, gas or film owner;
+- only plain grass is represented.
+
+It is admitted in ordinary Spread and Sodden wilderness and their sites. Passing (non-permanent) or mixed water keeps the fallback.
+
+**Two pins revised deliberately.**
+- `FlatPixelNorthSurfaceWaterTests.NorthDoesNotGrantTheMaterialToOtherGraphsOrDisableApprovedWaterSites`: 11.7 is still never the North adapter's, but its flooded grass now shows the shared flood water.
+- `FlatPixelSoddenTravelTests.OrdinaryCopseSubmitsRealPlainWaterWithoutClaimingMire`: copse standing water is now water ground (still never mire or brine), and the ground represents the water instead of a `~` mark.
+
+**Tests.** `FlatPixelFloodWaterTests`:
+- three zones, at least 95% water;
+- passing and mixed water refused;
+- admission.
+
+**Results.**
+- Stub RED: 4 failures (0 of 606, 0 of 181, 0 of 180).
+- The first GREEN run broke the two pins above, which were then revised.
+- Final: all `FlatPixel*` classes 3,797 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `flood-water-{sodden-18-10,spread-6-8}-offline.png`.
+
 ## Remaining
 
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).

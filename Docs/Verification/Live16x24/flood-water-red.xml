@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-31 00:18:09Z" end-time="2026-10-31 00:18:10Z" duration="1.14784">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="34436" result="Failed" site="Child" start-time="2026-10-31 00:18:09Z" end-time="2026-10-31 00:18:10Z" duration="1.147840" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="42354" name="EditModeTests.dll" fullname="/Users/steven/coo-verification/clone/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="34436" result="Failed" site="Child" start-time="2026-10-31 00:18:09Z" end-time="2026-10-31 00:18:10Z" duration="1.051794" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="57165" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="42355" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34436" result="Failed" site="Child" start-time="2026-10-31 00:18:09Z" end-time="2026-10-31 00:18:10Z" duration="1.007982" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="42356" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34436" result="Failed" site="Child" start-time="2026-10-31 00:18:09Z" end-time="2026-10-31 00:18:10Z" duration="0.965107" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="30818" name="FlatPixelFloodWaterTests" fullname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" classname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-31 00:18:10Z" end-time="2026-10-31 00:18:10Z" duration="0.746417" total="5" passed="1" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="30822" name="FloodedGrassShowsTheApprovedWater" fullname="CavesOfOoo.Tests.FlatPixelFloodWaterTests.FloodedGrassShowsTheApprovedWater" classname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-31 00:18:10Z" end-time="2026-10-31 00:18:10Z" duration="0.359184" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="30819" name="FloodedGrassShowsTheApprovedWater(&quot;Overworld.18.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFloodWaterTests.FloodedGrassShowsTheApprovedWater(&quot;Overworld.18.10.0&quot;)" methodname="FloodedGrassShowsTheApprovedWater" classname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" runstate="Runnable" seed="1934656940" result="Failed" start-time="2026-10-31 00:18:10Z" end-time="2026-10-31 00:18:10Z" duration="0.274317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.18.10.0: 0 of 606
+  Expected: greater than or equal to 575
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFloodWaterTests.FloodedGrassShowsTheApprovedWater (System.String id) [0x0005b] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFloodWaterTests.cs:58
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'HunterCacheT1'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'HollowLogT2'
+]]></output>
+              </test-case>
+              <test-case id="30820" name="FloodedGrassShowsTheApprovedWater(&quot;Overworld.6.8.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFloodWaterTests.FloodedGrassShowsTheApprovedWater(&quot;Overworld.6.8.0&quot;)" methodname="FloodedGrassShowsTheApprovedWater" classname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" runstate="Runnable" seed="469533317" result="Failed" start-time="2026-10-31 00:18:10Z" end-time="2026-10-31 00:18:10Z" duration="0.045075" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.6.8.0: 0 of 181
+  Expected: greater than or equal to 171
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFloodWaterTests.FloodedGrassShowsTheApprovedWater (System.String id) [0x0005b] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFloodWaterTests.cs:58
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="30821" name="FloodedGrassShowsTheApprovedWater(&quot;Overworld.8.6.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFloodWaterTests.FloodedGrassShowsTheApprovedWater(&quot;Overworld.8.6.0&quot;)" methodname="FloodedGrassShowsTheApprovedWater" classname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" runstate="Runnable" seed="1516435902" result="Failed" start-time="2026-10-31 00:18:10Z" end-time="2026-10-31 00:18:10Z" duration="0.036820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.8.6.0: 0 of 180
+  Expected: greater than or equal to 171
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFloodWaterTests.FloodedGrassShowsTheApprovedWater (System.String id) [0x0005b] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFloodWaterTests.cs:58
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="30824" name="GrovelandsKeepsItsOwnFenWaterAndOtherBiomesAreNotAdmitted" fullname="CavesOfOoo.Tests.FlatPixelFloodWaterTests.GrovelandsKeepsItsOwnFenWaterAndOtherBiomesAreNotAdmitted" methodname="GrovelandsKeepsItsOwnFenWaterAndOtherBiomesAreNotAdmitted" classname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" runstate="Runnable" seed="333109195" result="Failed" start-time="2026-10-31 00:18:10Z" end-time="2026-10-31 00:18:10Z" duration="0.079441" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  ordinary Spread wilderness
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFloodWaterTests.GrovelandsKeepsItsOwnFenWaterAndOtherBiomesAreNotAdmitted () [0x0002a] in /Users/steven/coo-verification/clone/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFloodWaterTests.cs:77
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+            </test-case>
+            <test-case id="30823" name="PassingWaterMixedStateAndPoolsKeepTheirOwnPresentation" fullname="CavesOfOoo.Tests.FlatPixelFloodWaterTests.PassingWaterMixedStateAndPoolsKeepTheirOwnPresentation" methodname="PassingWaterMixedStateAndPoolsKeepTheirOwnPresentation" classname="CavesOfOoo.Tests.FlatPixelFloodWaterTests" runstate="Runnable" seed="1293294898" result="Passed" start-time="2026-10-31 00:18:10Z" end-time="2026-10-31 00:18:10Z" duration="0.243926" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'HunterCacheT1'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'BasketT2'
+[LootTableRegistry] Unknown loot table 'HollowLogT2'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

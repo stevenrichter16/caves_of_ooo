@@ -110,6 +110,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
         private FlatPixelSettlementGroundCatalog _settlementGroundArt;
         private FlatPixelSinkholeLipCatalog _sinkholeLipArt;
+        private FlatPixelFloodWaterCatalog _floodWaterArt;
         private FlatPixelSpreadEnvironmentCatalog _spreadSiteArt;
         private FlatPixelSoddenTravelCatalog _soddenSiteArt;
         private FlatPixelBeatingMaterialsCatalog _beatingSiteArt;
@@ -1192,6 +1193,15 @@ namespace CavesOfOoo.Rendering
                 groundTile = settlementWaterTile; groundColor = Color.white; ground = FlatPixelGreyboxGround.Water;
                 if (owner == settlementWaterSource) kind = FlatPixelGreyboxKind.Ground;
             }
+            // Spread and Sodden flood water: the Grovelands Fen-water rule with the same approved views.
+            var flood = !fallback.Remembered ? FloodWaterArtFor(zone) : null;
+            Tile floodWaterTile = null; Entity floodWaterGrass = null;
+            bool floodWater = flood != null && flood.TryResolveWaterGround(zone, x, y, out floodWaterTile, out floodWaterGrass);
+            if (floodWater)
+            {
+                groundTile = floodWaterTile; groundColor = Color.white; ground = FlatPixelGreyboxGround.Water;
+                if (floodWaterGrass != null && owner == floodWaterGrass) kind = FlatPixelGreyboxKind.Ground;
+            }
             var caves = !fallback.Remembered ? ShallowCavesArtFor(zone) : null;
             Tile caveGroundTile = null; Entity caveFloor = null;
             bool caveGround = caves != null && caves.TryResolveGround(zone, x, y, out caveGroundTile, out caveFloor);
@@ -1486,6 +1496,7 @@ namespace CavesOfOoo.Rendering
                 || grovelandsWater && grovelandsWaterGrass != null && owner == grovelandsWaterGrass
                 || stumpGround && owner == stumpFloor || stumpWater && owner == stumpWaterSource
                 || settlementGround && owner == settlementFloor || settlementWater && owner == settlementWaterSource
+                || floodWater && floodWaterGrass != null && owner == floodWaterGrass
                 || caveGround && owner == caveFloor || limestoneGround && owner == limestoneFloor
                 || shaleGround && owner == shaleFloor || slateGround && owner == slateFloor
                 || quartziteGround && owner == quartziteFloor || obsidianGround && owner == obsidianFloor) foreground = null;
@@ -1545,7 +1556,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null, native, local || spreadGround || sillGround || sillWater || sillMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1823,6 +1834,16 @@ namespace CavesOfOoo.Rendering
             return _soddenTravelArt;
         }
 
+        private FlatPixelFloodWaterCatalog FloodWaterArtFor(Zone zone)
+        {
+            if (!FlatPixelFloodWaterCatalog.IsSupportedZone(zone)) return null;
+            if (_floodWaterArt == null && _loadOptionalResources)
+            {
+                if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                _floodWaterArt = new FlatPixelFloodWaterCatalog(_glyphFallback);
+            }
+            return _floodWaterArt;
+        }
         private FlatPixelSinkholeLipCatalog SinkholeLipArtFor(Zone zone)
         {
             if (!FlatPixelSinkholeLipCatalog.IsSupportedZone(zone)) return null;
@@ -2392,6 +2413,8 @@ namespace CavesOfOoo.Rendering
             _beatingMaterialsArt = null;
             _settlementGroundArt?.Dispose();
             _sinkholeLipArt?.Dispose();
+            _floodWaterArt?.Dispose();
+            _floodWaterArt = null;
             _sinkholeLipArt = null;
             _settlementGroundArt = null;
             _grovelandsMaterialsArt?.Dispose();

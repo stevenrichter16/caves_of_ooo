@@ -971,14 +971,17 @@ namespace CavesOfOoo.Tests
             using (var paint = new Paint(world, zone))
             {
                 paint.Step(); var wet = View(x, y);
-                Assert.AreSame(owner, wet.Owner); Assert.False(wet.RepresentedMire); Assert.False(wet.RepresentedBrine); Assert.False(wet.LocalGround);
+                // Revised 2026-10-30: standing permanent water on copse ground is drawn as the shared flood water
+                // (never mire or brine); the water is represented by the ground, not a '~' mark over a glyph.
+                Assert.AreSame(owner, wet.Owner); Assert.False(wet.RepresentedMire); Assert.False(wet.RepresentedBrine);
+                Assert.True(wet.LocalGround); Assert.AreEqual(FlatPixelGreyboxGround.Water, wet.GroundKind);
                 if (blueprint == "DeadTree") NativeTile(paint.At(x, y), Atlas);
-                Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.MarkAt(x, y));
+                Assert.IsNull(paint.MarkAt(x, y));
                 Assert.AreEqual(state, zone.TileState.ToSaveString());
                 Assert.True(zone.TileState.RemoveCoating(x, y, "water")); paint.Dirty(x, y); paint.Step();
                 Assert.IsNull(paint.MarkAt(x, y)); Assert.True(View(x, y).LocalGround); NativeTile(paint.GroundAt(x, y), CurrentGroundAtlas);
                 zone.TileState.WriteCoating(x, y, "water", ZoneTileState.Permanent); paint.Dirty(x, y); paint.Step();
-                Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.MarkAt(x, y)); Assert.False(View(x, y).RepresentedMire);
+                Assert.IsNull(paint.MarkAt(x, y)); Assert.AreEqual(FlatPixelGreyboxGround.Water, View(x, y).GroundKind); Assert.False(View(x, y).RepresentedMire);
                 Assert.True(zone.TileState.HasCoating(x, y, "water")); Assert.False(zone.TileState.HasCoating(x, y, "bog-mire"));
             }
         }
