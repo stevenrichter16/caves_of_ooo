@@ -62,6 +62,34 @@ namespace CavesOfOoo.Tests
             Assert.Greater(shown, 0, "precondition: a selected " + blueprint);
         }
 
+        // Camps and wild camps: the merchant camp's Warden (no guard duty) wears the approved opening Warden
+        // body, and ordinary (permanently lit) campfires burn on the real biome ground beneath them.
+        [TestCase("Overworld.8.2.0")] [TestCase("Overworld.0.16.0")]
+        public void OrdinaryCampfiresBurnOnRealGround(string id)
+        {
+            var zone = Visit(id);
+            var fires = zone.GetAllEntities().Where(e => e.BlueprintName == "Campfire").ToList();
+            Assert.IsNotEmpty(fires, "precondition: a campfire");
+            foreach (var fire in fires)
+            {
+                var (x, y) = zone.GetEntityPosition(fire);
+                Assert.True(world.TryResolvePresentation(zone, x, y, out var v)); Assert.AreSame(fire, v.Owner);
+                Assert.True(v.NativeForeground, "the hearth burns natively");
+                Assert.AreSame(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath), v.ForegroundTile.sprite.texture);
+                Assert.AreEqual(new Rect(80, 0, 16, 24), v.ForegroundTile.sprite.rect);
+                Assert.True(v.LocalGround, "real ground beneath the fire");
+            }
+        }
+
+        [Test] public void TheCampWardenWearsTheApprovedWardenBody()
+        {
+            var zone = Visit("Overworld.8.2.0");
+            var warden = zone.GetAllEntities().First(e => e.BlueprintName == "Warden"); var (x, y) = zone.GetEntityPosition(warden);
+            Assert.True(world.TryResolvePresentation(zone, x, y, out var v)); Assert.AreSame(warden, v.Owner);
+            Assert.True(v.NativeForeground); Assert.AreSame(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath), v.ForegroundTile.sprite.texture);
+            Assert.AreEqual(new Rect(144, 0, 16, 24), v.ForegroundTile.sprite.rect);
+        }
+
         [Test] public void ARecolouredOrDeadCreatureKeepsItsGlyph()
         {
             var zone = Visit("Overworld.0.14.0");

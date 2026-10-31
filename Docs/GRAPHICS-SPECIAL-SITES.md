@@ -193,6 +193,25 @@ It accepts only canonical owners: correct glyph and colour, no visual override, 
 
 **Evidence.** `wild-fauna-{camp-15-18,cultists-0-14}-offline.png`.
 
+## Related slice: camp Wardens and wild hearths (2026-10-30)
+
+**Problem.** Merchant camps and wild camps (for example the Beating ruin at 0.16) still showed a red `@` Warden and a red `*` campfire on a black box.
+
+**Change.**
+- `FlatPixelWildFaunaCatalog` now also draws:
+  - the camp Warden, with the same blueprint and approved `opening-base` frame 9 as the opening's own Warden, and a conversation required;
+  - the ordinary lit hearth (`FlatPixelSettlementGroundCatalog.IsOrdinaryHearth`, now public), with the burning frame `opening-states` 5.
+- The Spread, Beating, Grovelands and Sodden ground resolvers no longer let an ordinary hearth compete, so the real ground shows beneath it. Finite-cooking fires and every other terrain still compete as before.
+- Opening zones are still never consulted.
+
+**Tests.**
+- Two campfire cases (camp 8.2, Beating ruin 0.16): burning frame, ground beneath.
+- The camp Warden body.
+- **RED:** 3 failures.
+- **GREEN:** all `FlatPixel*` classes 3,808 passed, 0 failed, 3 inconclusive.
+
+**Evidence.** `camp-hearth-warden-8-2-offline.png`: before (left), after (right).
+
 ## Remaining
 
 - The Cathedral and Ginmere inner sinkhole floors (`StoneFloor`, which the Grovelands adapter does not draw).

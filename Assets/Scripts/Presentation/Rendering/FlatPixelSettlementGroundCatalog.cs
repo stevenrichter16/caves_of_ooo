@@ -313,6 +313,7 @@ namespace CavesOfOoo.Rendering
         /// <summary>An ordinary settlement hearth: its own CampfirePart without finite cooking (a permanent lit
         /// fire whose glyph flickers), canonical '*' terrain with heat and fuel. Finite-cooking fires have real
         /// cold/hot/burning states that this adapter does not read.</summary>
+        public static bool IsOrdinaryHearth(Entity owner) => OrdinaryHearth(owner);
         static bool OrdinaryHearth(Entity owner)
         {
             if (owner?.BlueprintName != "Campfire" || !Plain(owner) || !owner.HasTag("Terrain") || owner.HasTag("Wall")) return false;

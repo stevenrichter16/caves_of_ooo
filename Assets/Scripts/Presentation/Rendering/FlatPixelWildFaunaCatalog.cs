@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 namespace CavesOfOoo.Rendering
 {
     /// <summary>
-    /// Wild fauna outside the opening (2026-10-30): Magpie and Viper use their approved north-works bodies
+    /// Wild fauna, camp Wardens and ordinary lit hearths outside the opening (2026-10-30): Magpie and Viper use their approved north-works bodies
     /// (frames 5 and 6 of 9); GlassScorpion, RuneCultist, Rotling and the Cactus use the shared 16x16
     /// environment sprites (the accepted Merchant/Elder format). Only canonical, visible, living, untinted,
     /// single-cell owners; never inside opening-admitted zones, whose own routes stay unchanged.
@@ -15,16 +15,23 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public sealed class FlatPixelWildFaunaCatalog : IDisposable
     {
-        readonly Tile magpie, viper, scorpion, cultist, rotling, cactus;
+        readonly Tile magpie, viper, scorpion, cultist, rotling, cactus, hearth, warden;
         bool disposed;
 
         public FlatPixelWildFaunaCatalog()
             : this(Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.WorksResourcePath),
                 Resources.Load<Texture2D>("Sprites/Environment/glass_scorpion"), Resources.Load<Texture2D>("Sprites/Environment/rune_cultist"),
-                Resources.Load<Texture2D>("Sprites/Environment/rotling"), Resources.Load<Texture2D>("Sprites/Environment/cactus")) { }
+                Resources.Load<Texture2D>("Sprites/Environment/rotling"), Resources.Load<Texture2D>("Sprites/Environment/cactus"),
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath), Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath)) { }
 
         /// <summary>Each group is independent; a missing or malformed texture leaves its role on the glyph.</summary>
         public FlatPixelWildFaunaCatalog(Texture2D works9, Texture2D scorpion16, Texture2D cultist16, Texture2D rotling16, Texture2D cactus16)
+            : this(works9, scorpion16, cultist16, rotling16, cactus16, null, null) { }
+
+        /// <summary>Also the ordinary lit hearth (opening-states burning frame 5 of 12) and the camp Warden
+        /// (opening-base Warden frame 9 of 10).</summary>
+        public FlatPixelWildFaunaCatalog(Texture2D works9, Texture2D scorpion16, Texture2D cultist16, Texture2D rotling16, Texture2D cactus16,
+            Texture2D states12, Texture2D base10)
         {
             magpie = Build(works9, 144, 24, 80, "magpie");
             viper = Build(works9, 144, 24, 96, "viper");
@@ -32,6 +39,8 @@ namespace CavesOfOoo.Rendering
             cultist = Build(cultist16, 16, 16, 0, "rune cultist");
             rotling = Build(rotling16, 16, 16, 0, "rotling");
             cactus = Build(cactus16, 16, 16, 0, "cactus");
+            hearth = Build(states12, 192, 24, 80, "hearth");
+            warden = Build(base10, 160, 24, 144, "camp warden");
         }
 
         public static bool AppliesTo(Zone zone) => zone?.ZoneID != null && !FlatPixelGreyboxCatalog.IsAdmitted(zone);
@@ -47,6 +56,8 @@ namespace CavesOfOoo.Rendering
                 case "RuneCultist": glyph = "c"; color = "&M"; return true;
                 case "Rotling": glyph = "r"; color = "&g"; return true;
                 case "Cactus": glyph = "t"; color = "&g"; return true;
+                case "Campfire": glyph = "*"; color = "&R"; return true;
+                case "Warden": glyph = "@"; color = "&r"; return true;
                 default: glyph = color = null; return false;
             }
         }
@@ -64,6 +75,8 @@ namespace CavesOfOoo.Rendering
             { var e = Owned<StatusEffectsPart>(owner); if (e == null || e.GetRenderColorOverride() != null) return false; }
             if (owner.HasPart<SpatialFootprintPart>())
             { var f = Owned<SpatialFootprintPart>(owner); if (f == null || f.Offsets.Length != 1 || f.Offsets[0] != Vector2Int.zero) return false; }
+            if (owner.BlueprintName == "Campfire")
+            { tile = FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner) ? hearth : null; return tile != null; }
             if (owner.BlueprintName == "Cactus")
             {
                 // A plain cactus prop: no harvest, container, state or creature meaning.
@@ -81,6 +94,9 @@ namespace CavesOfOoo.Rendering
                 case "GlassScorpion": tile = scorpion; break;
                 case "RuneCultist": tile = cultist; break;
                 case "Rotling": tile = rotling; break;
+                case "Warden":
+                    // The same Warden blueprint and approved body as the opening's; conversation required.
+                    tile = Owned<ConversationPart>(owner) != null ? warden : null; break;
             }
             return tile != null;
         }
@@ -104,7 +120,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            foreach (var t in new[] { magpie, viper, scorpion, cultist, rotling, cactus })
+            foreach (var t in new[] { magpie, viper, scorpion, cultist, rotling, cactus, hearth, warden })
             { if (t == null) continue; DestroyOwned(t.sprite); DestroyOwned(t); }
         }
         static void DestroyOwned(Object value)

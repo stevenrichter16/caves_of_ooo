@@ -137,6 +137,7 @@ namespace CavesOfOoo.Rendering
                     else
                     { if (substrate != null) return false; substrate = owner; }
                 }
+                else if (FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)) { } // a lit hearth stands on the real ground
                 else if (CompetingGround(owner, state, x, y)) return false;
             }
             // Any other live state (residual oil after removal, mixtures, energy)

@@ -351,7 +351,7 @@ namespace CavesOfOoo.Rendering
                 || owner.HasTag("WellGroundMarker") || owner.HasTag("OvenGroundMarker") || owner.HasTag("LanternGroundMarker")
                 || owner.HasTag("Terrain") && !owner.HasTag("Wall")
                     && owner.BlueprintName != "Grass" && owner.BlueprintName != "StoneFloor"
-                    && !NeutralDryOverlay(owner, state, x, y);
+                    && !NeutralDryOverlay(owner, state, x, y) && !FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner);
         static bool NeutralDryOverlay(Entity owner, ZoneTileState.TileState state, int x, int y)
             => (owner.BlueprintName == "Reeds" || owner.BlueprintName == "DeadTree" || owner.BlueprintName == "Duckboard")
                 && ForegroundFrame(owner, state, x, y) >= 0;

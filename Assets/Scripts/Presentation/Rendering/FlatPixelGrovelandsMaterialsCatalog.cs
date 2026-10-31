@@ -122,6 +122,7 @@ namespace CavesOfOoo.Rendering
                 if (owner.BlueprintName == "Grass")
                 { if (grass != null || !OrdinaryGrass(owner)) return false; grass = owner; }
                 else if (FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(owner)) fixture = true;
+                else if (FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)) { } // a lit hearth stands on the real ground
                 else if (CompetingGround(owner, zone, cell, x, y)) return false;
             }
             // Represent actual Grass, never Water: live hazard/disclosure marks

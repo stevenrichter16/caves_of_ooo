@@ -92,6 +92,8 @@ namespace CavesOfOoo.Rendering
                 else if(owner.BlueprintName=="RoadStone")
                 {if(packed!=null||!Floor(owner,false))return false;packed=owner;}
                 else if(IsEligibleFixture(owner))fixture=true;
+                // An ordinary lit hearth stands on the real ground (2026-10-30).
+                else if(FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)){}
                 // Only when its own sprite is available; otherwise it keeps competing as before.
                 else if(conjured!=null&&IsConjuredFlowers(owner,state))petals=true;
                 else if(CompetingGround(owner))return false;
