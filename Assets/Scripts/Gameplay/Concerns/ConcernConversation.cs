@@ -48,6 +48,8 @@ namespace CavesOfOoo.Concerns
             var closure = sp.GetClosure(q);
             if (closure != null && closure.State == ClosureState.Refused) return State.Hidden;
             if (sp.IsQuestFailed(q)) return State.Hidden;
+            foreach (var before in ConcernRegistry.Predecessors(c.Id))
+                if (!sp.IsQuestCompleted(ConcernRegistry.QuestIdFor(before.Id))) return State.Hidden;
             return ConversationPredicates.CheckAll(c.Requires, speaker, listener) ? State.Offerable : State.Hidden;
         }
 

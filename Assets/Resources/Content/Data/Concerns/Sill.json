@@ -19,7 +19,7 @@
             { "Key": "IfPlaceSiteStage", "Value": "Sill:MainWell:StableRepair" },
             { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:MainWell:Contracted" }
           ],
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_well_rebuilt_by_hand:1" } ]
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_well_rebuilt_by_hand:1" }, { "Key": "SetPlaceCondition", "Value": "Sill:RebuiltByHand.MainWell" } ]
         },
         {
           "Id": "contract", "Kind": "Settle",
@@ -57,7 +57,7 @@
             { "Key": "IfPlaceSiteStage", "Value": "Sill:VillageOven:StableRepair" },
             { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:VillageOven:Contracted" }
           ],
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_oven_rebuilt_by_hand:1" } ]
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_oven_rebuilt_by_hand:1" }, { "Key": "SetPlaceCondition", "Value": "Sill:RebuiltByHand.VillageOven" } ]
         },
         {
           "Id": "contract", "Kind": "Settle",
@@ -95,7 +95,7 @@
             { "Key": "IfPlaceSiteStage", "Value": "Sill:VillageLantern:StableRepair" },
             { "Key": "IfNotPlaceSiteMethod", "Value": "Sill:VillageLantern:Contracted" }
           ],
-          "Outcome": [ { "Key": "SetFact", "Value": "sill_lantern_reforged_by_hand:1" } ]
+          "Outcome": [ { "Key": "SetFact", "Value": "sill_lantern_reforged_by_hand:1" }, { "Key": "SetPlaceCondition", "Value": "Sill:RebuiltByHand.VillageLantern" } ]
         },
         {
           "Id": "contract", "Kind": "Settle",

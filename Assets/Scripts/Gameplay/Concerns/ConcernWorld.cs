@@ -78,7 +78,9 @@ namespace CavesOfOoo.Concerns
         public static int OnZoneEntered(Entity player, Zone zone, bool arriving = true)
         {
             int foes = arriving ? PlaceFoes(player, zone) : 0;
-            return foes + PlaceDocuments(player, zone);
+            // C4: what the place's conditions keep there (stock, new residents).
+            int kept = PlaceConsequences.OnZoneEntered(player, zone, arriving);
+            return foes + kept + PlaceDocuments(player, zone);
         }
 
         static int PlaceFoes(Entity player, Zone zone)

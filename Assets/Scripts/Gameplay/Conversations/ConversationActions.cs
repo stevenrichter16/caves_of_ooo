@@ -319,6 +319,30 @@ namespace CavesOfOoo.Core
                 return reason;
             });
 
+            // C4: "Place:Condition" — the place changes (PlaceConditionCatalog says how).
+            RegisterRequired("SetPlaceCondition", (speaker, listener, arg) =>
+            {
+                int colon = arg?.IndexOf(':') ?? -1;
+                if (colon <= 0 || colon == arg.Length - 1) return "invalid_argument";
+                string zoneId = CavesOfOoo.Concerns.PlaceSites.ZoneIdOf(arg.Substring(0, colon));
+                if (zoneId == null) return "unknown_place";
+                if (SettlementManager.Current == null) return "missing_settlement_manager";
+                SettlementManager.Current.SetCondition(zoneId, arg.Substring(colon + 1), true);
+                return SettlementManager.Current.HasCondition(zoneId, arg.Substring(colon + 1)) ? null : "no_settlement";
+            });
+
+            // C4: "SkillClass" — a resident teaches a power free (no SP).
+            RegisterRequired("TeachSkill", (speaker, listener, arg) =>
+            {
+                var skills = listener?.GetPart<CavesOfOoo.Skills.SkillsPart>();
+                if (skills == null) return "missing_skills";
+                if (string.IsNullOrEmpty(arg) || !CavesOfOoo.Skills.SkillRegistry.HasEntry(arg)) return "unknown_skill";
+                if (skills.HasSkill(arg)) return "already_known";
+                if (!skills.AddSkill(arg, "concern")) return "refused";
+                MessageLog.AddAnnouncement((speaker?.GetDisplayName() ?? "Someone") + " shows you how it is done.");
+                return null;
+            });
+
             // C3a: "Blueprint:Count" — take exactly that many carried units, or nothing.
             RegisterRequired("TakeItemCount", (speaker, listener, arg) =>
             {

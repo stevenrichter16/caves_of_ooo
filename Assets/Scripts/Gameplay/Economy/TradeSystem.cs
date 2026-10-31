@@ -79,7 +79,8 @@ namespace CavesOfOoo.Core
             int value = GetItemValue(item);
             if (value <= 0) return 0;
             if (performance <= 0.01) return value * 20; // safety cap
-            double factionMod = GetFactionModifier(trader);
+            // C4: the place's conditions (a Concord tithe, a rebuilt oven) move its prices.
+            double factionMod = GetFactionModifier(trader) * PlaceConsequences.PriceModifier(trader);
             return (int)Math.Ceiling(value / performance * factionMod);
         }
 
@@ -91,7 +92,7 @@ namespace CavesOfOoo.Core
         {
             int value = GetItemValue(item);
             if (value <= 0) return 0;
-            double factionMod = GetFactionModifier(trader);
+            double factionMod = GetFactionModifier(trader) * PlaceConsequences.PriceModifier(trader);
             return Math.Max(1, (int)Math.Floor(value * performance / factionMod));
         }
 

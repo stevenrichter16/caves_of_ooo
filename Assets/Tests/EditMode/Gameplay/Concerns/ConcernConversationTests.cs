@@ -172,6 +172,8 @@ namespace CavesOfOoo.Tests
             storylets.OnTickEnd(NarrativeStatePart.Current);
             Assert.AreEqual(1, NarrativeStatePart.Current.GetFact(ConcernRegistry.ApproachFact("sill.well")), "by hand was approach 1");
             Assert.AreEqual(1, NarrativeStatePart.Current.GetFact("sill_well_rebuilt_by_hand"));
+            Assert.True(SettlementManager.Current.HasCondition("Overworld.10.10.0", "RebuiltByHand.MainWell"), "the place remembers how");
+            Assert.False(SettlementManager.Current.HasCondition("Overworld.10.10.0", SettlementManager.ContractCondition("MainWell")), "counter-check");
         }
 
         // ════════════════ the Elder ════════════════

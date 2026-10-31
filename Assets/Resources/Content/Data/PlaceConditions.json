@@ -1,0 +1,35 @@
+{
+  "Conditions": [
+    {
+      "Place": "Sill", "Condition": "RebuiltByHand.MainWell", "Price": 0.97,
+      "Remarks": [ "The water's sweet. Somebody did that with their own two hands.", "First summer in years nobody's boiled the well water." ],
+      "HeardIn": [ "Gantry", "Tine" ], "Heard": "They say Sill's well runs clear now. A stranger rebuilt the ring by hand.",
+      "Stock": [ { "Owner": "WellKeeper", "Blueprint": "Waterskin", "Count": 2 } ]
+    },
+    {
+      "Place": "Sill", "Condition": "ConcordContract.MainWell", "Price": 1.04,
+      "Remarks": [ "The Concord's man came round for the well money again.", "Clean water, and a bill nailed by the door for it." ],
+      "HeardIn": [ "Gantry" ], "Heard": "Sill pays the Concord for its own water now, I hear.",
+      "Arrivals": [ { "Blueprint": "ConcordFactor", "Count": 1 } ]
+    },
+    {
+      "Place": "Sill", "Condition": "RebuiltByHand.VillageOven", "Price": 0.98,
+      "Remarks": [ "Bread every morning again. Smell that." ],
+      "Stock": [ { "Owner": "Farmer", "Blueprint": "ToastedEmberwheat", "Count": 3 } ]
+    },
+    {
+      "Place": "Sill", "Condition": "ConcordContract.VillageOven", "Price": 1.03,
+      "Remarks": [ "The oven's fine. The Concord's inspector says so, every season, for a fee." ]
+    },
+    {
+      "Place": "Sill", "Condition": "RebuiltByHand.VillageLantern",
+      "Remarks": [ "The watch can see the bend in the road all night now." ],
+      "HeardIn": [ "Tally" ], "Heard": "Sill keeps a proper light on its road again. Safer going that way.",
+      "Stock": [ { "Owner": "Warden", "Blueprint": "Torch", "Count": 2 } ]
+    },
+    {
+      "Place": "Sill", "Condition": "ConcordContract.VillageLantern", "Price": 1.02,
+      "Remarks": [ "That sealed lantern of the Concord's never gutters. Nobody here knows how it works." ]
+    }
+  ]
+}

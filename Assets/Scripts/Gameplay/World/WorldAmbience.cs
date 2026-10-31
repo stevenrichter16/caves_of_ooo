@@ -23,7 +23,7 @@ namespace CavesOfOoo.Core
             player.IntProperties[TurnProperty] = turn;
             if (SariAmbience.OnZoneEntered(player, zone)) return;
             if (MayEmit(player) && !SariAmbience.TryPeriodic(player, zone, turn))
-                WorldRemarks.TryEmit(player, zone);
+                if (!WorldRemarks.TryEmit(player, zone)) PlaceConsequences.TryRemark(player, zone);
         }
 
         internal static bool IsPresentPlayer(Entity player, Zone zone)

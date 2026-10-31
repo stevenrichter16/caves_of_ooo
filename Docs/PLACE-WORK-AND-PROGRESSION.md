@@ -702,6 +702,47 @@ sites are repaired in conversation with their owner rather than at a world
 object: places have no generated object for a weir or a pump yet, and adding one
 per place (with art) belongs with each place's content wave.
 
+## C4 — Consequences (implemented 2026-10-31)
+
+**Ships:** `PlaceConditionCatalog` (Content/Data/PlaceConditions.json) says what a
+settlement condition does to its place while it holds, applied by
+`PlaceConsequences`:
+
+| Effect | How |
+|---|---|
+| Prices | `Price` multiplies what the place's traders charge and divides what they pay (`TradeSystem.GetBuyPrice/GetSellPrice`), for traders standing in the place only. Lint keeps it within 0.5–2. |
+| Stock | `Stock [{Owner, Blueprint, Count}]`: on arrival the resident is topped up to the count, at most once per restock interval (int-property stamp, save-safe). |
+| Residents' lines | `Remarks`: an ambient remark by a visible, non-hostile resident near the player, after `WorldRemarks` declines the turn (own chance, shared emission budget). |
+| News elsewhere | `HeardIn` + `Heard`: residents of the listed places say it while the condition holds in its own place. |
+| Arrivals | `Arrivals [{Blueprint, Count}]`: placed once on a real arrival, stable ids, before the scheduler registers the zone. |
+
+Concern outcomes set conditions with `SetPlaceCondition "Place:Condition"`;
+`ContractPlaceRepair` already sets `ConcordContract.<site>`. `TeachSkill
+"SkillClass"` teaches a power free (refuses unknown or known skills). A concern
+listed in another's `Next` is raised only once that one is completed (reported,
+not merely worked).
+
+**Sill content:** by hand, the well lowers Sill's prices (×0.97), keeps the well
+keeper selling waterskins, and is talked about in Gantry and Tine. The oven keeps
+the farmer selling toasted emberwheat, and the lantern keeps the warden selling
+torches and is talked about in Tally. By contract, prices rise
+(×1.04/×1.03/×1.02, the Concord's tithe), residents grumble about the bill or the
+inspector, Gantry hears Sill now pays for its own water, and a Concord factor
+comes to live in Sill after the well contract.
+
+**Tests:** `PlaceConsequencesTests` 9 (setting conditions, prices with
+counter-checks, stock top-up and its interval, arrivals once and only on
+arrival, own and heard lines, a resident speaking, teaching once, the next
+concern waiting for a report, shipped conditions lint clean). The Sill hand
+rebuild sets its condition and not the contract's. Concern, place, settlement,
+remark, ambience, Sari and conversation classes: 588/588.
+
+**Self-review:** ⚪ TDD order: tests were written first but not run RED before
+the implementation. 🔵 `PlaceAt` keeps its last answer because trade prices ask
+it per row. 🔵 Trader-capacity bench tests (GameAuditTransfer*) fail in some
+suite orderings and pass alone; they also failed in the P4 full run before C4
+existed, so the order-dependence predates this work.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -727,3 +768,5 @@ per place (with art) belongs with each place's content wave.
   on arrival, slain counts, tier-checked lint).
 - 2026-10-31 — C3c: data-driven place sites (catalog, settlement tracking and
   reconcile, lasting repair and patch with relapse, Restore approach, lint).
+- 2026-10-31 — C4: place conditions (prices, stock, remarks, news, arrivals),
+  SetPlaceCondition, TeachSkill, next-concern gating; Sill's six outcomes.

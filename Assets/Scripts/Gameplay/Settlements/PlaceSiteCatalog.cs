@@ -47,13 +47,19 @@ namespace CavesOfOoo.Core
             return null;
         }
 
-        /// <summary>The authored place standing at a surface zone id, or null.</summary>
+        static string lastZone, lastPlace;
+
+        /// <summary>The authored place standing at a surface zone id, or null. Trade prices
+        /// ask this per row, so the last answer is kept (zone ids are immutable strings).</summary>
         public static string PlaceAt(string zoneId)
         {
             if (string.IsNullOrEmpty(zoneId)) return null;
+            if (ReferenceEquals(zoneId, lastZone) || zoneId == lastZone) return lastPlace;
+            string found = null;
             foreach (var p in WorldMapAuthoring.Places)
-                if (WorldMap.ToZoneID(p.X, p.Y, 0) == zoneId) return p.Name;
-            return null;
+                if (WorldMap.ToZoneID(p.X, p.Y, 0) == zoneId) { found = p.Name; break; }
+            lastZone = zoneId; lastPlace = found;
+            return found;
         }
 
         public static IEnumerable<PlaceSiteData> ForZone(string zoneId)

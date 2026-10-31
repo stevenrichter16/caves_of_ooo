@@ -40,6 +40,14 @@ namespace CavesOfOoo.Concerns
 
         public static void Reset() { concerns.Clear(); ordered.Clear(); }
 
+        /// <summary>C4: concerns that list <paramref name="concernId"/> in their Next; it is
+        /// raised only once every one of them is done.</summary>
+        public static IEnumerable<ConcernData> Predecessors(string concernId)
+        {
+            foreach (var c in ordered)
+                if (c.Next != null && c.Next.Contains(concernId)) yield return c;
+        }
+
         /// <summary>Load every concern file under Resources and register its quests.
         /// Call after <see cref="StoryletRegistry.LoadAll"/>.</summary>
         public static void LoadAll()
