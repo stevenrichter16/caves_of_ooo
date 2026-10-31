@@ -153,24 +153,25 @@ namespace CavesOfOoo.Tests
         [Test]
         public void BossXP_ScalesAboveTheirMinions()
         {
-            // Round-6 beta audit: XP grants tier-scale (t2 x3, t3 x5)
-            // so the cubic level curve stays climbable. Tier-2 lair
-            // bosses land at 195 (above MarlbackTunnelguard's 120), the
-            // tier-3 boss at 500 (above non-boss ChoirTendril's 350).
-            Assert.AreEqual(195, XpOf("MarlbackWallkeeper"), "chieftain");
-            Assert.AreEqual(195, XpOf("DesertProwler"), "prowler");
-            Assert.AreEqual(195, XpOf("JungleStalker"), "stalker");
-            Assert.AreEqual(500, XpOf("AncientGuardian"), "guardian");
+            // P2 (Docs/PLACE-WORK-AND-PROGRESSION.md): XP now follows each creature's
+            // authored Level (ProgressionCurve.XPValueForLevel). The ladder this test
+            // protects is relational: tier-2 lair bosses outpay the tier-2 rank and
+            // file, and the tier-3 boss outpays the non-boss ChoirTendril.
+            foreach (var boss in new[] { "MarlbackWallkeeper", "DesertProwler", "JungleStalker" })
+                Assert.Greater(XpOf(boss), XpOf("MarlbackTunnelguard"), boss);
+            Assert.Greater(XpOf("AncientGuardian"), XpOf("ChoirTendril"), "guardian");
         }
 
         [Test]
         public void BossXP_MinionValuesUntouched()
         {
-            // Counter-check: the boss retune must not drift the rank
-            // and file that AlphaCombatStakesTests already pinned.
-            Assert.AreEqual(15, XpOf("MarlbackScrabbler"));
-            Assert.AreEqual(120 /* round-6: t2 x3 scaling */, XpOf("MarlbackTunnelguard"));
-            Assert.AreEqual(350 /* round-6: tier-scaled XP */, XpOf("ChoirTendril"));
+            // Counter-check: bosses get no special XP rule; rank and file pay exactly
+            // what their own Level is worth on the shared curve.
+            foreach (var name in new[] { "MarlbackScrabbler", "MarlbackTunnelguard", "ChoirTendril", "MarlbackWallkeeper" })
+            {
+                var e = _factory.CreateEntity(name);
+                Assert.AreEqual(ProgressionCurve.XPValueForLevel(e.GetStat("Level").Value), XpOf(name), name);
+            }
         }
 
         // ── 4. The five 1d2-fist hostiles get real weapons ───────

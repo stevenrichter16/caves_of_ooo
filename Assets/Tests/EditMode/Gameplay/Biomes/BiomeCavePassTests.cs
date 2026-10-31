@@ -60,8 +60,10 @@ namespace CavesOfOoo.Tests
             var warlord = _factory.CreateEntity("MarlbackBreacher");
             Assert.IsNotNull(warlord);
             Assert.AreEqual(45, warlord.GetStat("Hitpoints").Value);
-            Assert.AreEqual(450 /* round-6 beta audit: tier-scaled XP (t3 x5, t2 x3) */, warlord.GetStat("XPValue").Value,
-                "a warband leader outpays its chieftain cousin (65)");
+            Assert.AreEqual(ProgressionCurve.XPValueForLevel(warlord.GetStat("Level").Value) /* P2: XP follows Level */, warlord.GetStat("XPValue").Value,
+                "XP follows the warlord's level");
+            Assert.Greater(warlord.GetStat("XPValue").Value, _factory.CreateEntity("MarlbackWallkeeper").GetStat("XPValue").Value,
+                "a warband leader outpays its chieftain cousin");
             Assert.AreEqual("OutlandRaiders", warlord.Tags["Faction"]);
             Assert.AreEqual("2d5", HandWeapon(warlord).BaseDamage, "BreacherCleaver");
         }

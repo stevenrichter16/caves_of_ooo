@@ -1,6 +1,6 @@
 # Place Work and Progression — design and plan
 
-Status: **design and plan, 2026-10-30. P1 (progression bench) implemented;**
+Status: **design and plan, 2026-10-30. P1 (progression bench) and P2 (creature levels) implemented;**
 each later milestone records its own status as it lands. This is CoO-original design
 (one piece, tier-scaled XP, is a Qud-parity port and is labelled as such).
 
@@ -327,8 +327,49 @@ spells, consumables or companions; non-melee builds are reported, not asserted.
 deliberate (find tables are what a player meets) and noted. 🧪 the
 attribute-spend path for P2b is not yet audited.
 
+## P2 — Creature levels (implemented 2026-10-30)
+
+**Ships:** every one of the 122 concrete creature blueprints now carries a
+`Level` inside its tier's band, and its `XPValue` equals
+`ProgressionCurve.XPValueForLevel(Level)`. Creatures that deliberately give no
+XP (filers, scribes, hosts, grazers…) carry Qud's `NoXP` tag and pay 0.
+`CreatureLevelTests` pins both rules for every creature.
+
+**Level choice:** each creature's old hand-set XP was inverted through the curve
+and clamped into its tier's band, which keeps relative threat within a tier
+(e.g. Glowmaw L3, Mosshulk L9, Vault Sentinel L10). One authored exception:
+the Sand Wurm is L7, not L6, so it still outpays the Cave Bear
+(`AlphaCombatStakesTests.Xp_RiskMatchesReward_AcrossTiers`).
+
+**Bug found on the way:** stat entries default to `Max = 999`, so the three
+upper-tier creatures (Pale Stalker, Sky-Sari, Obsidian Brute) silently paid 999
+instead of 1,041–2,462. Their XP entries now declare `Max: 999999`; the
+drift test would catch a recurrence.
+
+**Revised pins (deliberate):** nine tests pinned the old hand-set XP numbers
+(round-6 audit). Exact values became "XP follows Level", and the relationships
+they protected are now asserted directly: bosses outpay their minions, a
+warband leader outpays its chieftain, the tier-3 guardian outpays the Choir
+tendril. `BossXP_MinionValuesUntouched` now pins that bosses get no special rule.
+
+**Also fixed:** `DensityTravellerIntegrationContractTests.EntryHookPrecedes…`
+anchored on `SaveGameService.QuickSave()`, renamed to `RequestQuickSave()`; the
+order contract was still true but the test was failing on a missing anchor.
+It now anchors on the current call and asserts its anchors exist.
+
+**Bench after P2 (seed 64):** kill XP tier 1 3,213 (plan 1,140), tier 2 15,273
+(11,004), tier 3 45,806 (43,332). Tiers 4–5 stay at 2,500 and 153 because they
+still spawn tier-1/2 creatures; that is P4.
+
+**Self-review:** 🟡 Brittle Hound (20 HP) now pays 311 and Sky-Sari (58 HP) 1,041:
+XP follows tier while some stat blocks lag their tier. Fix in P4/P5 (stats to
+band), noted rather than hidden. 🔵 Peaceful residents keep a small XP value if
+killed (L2, 9 XP), as before.
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
 - 2026-10-30 — P1: `ProgressionCurve` + curve tests (13 green); explicit tier
   audit and duel bench with baseline above. Per-creature level tests move to P2.
+- 2026-10-30 — P2: levels on 122 creatures, XP from level, NoXP tag, 999 clamp
+  fixed, nine XP pins revised to relationships, stale traveller-hook anchor fixed.
