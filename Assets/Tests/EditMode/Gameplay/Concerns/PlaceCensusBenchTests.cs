@@ -66,10 +66,10 @@ namespace CavesOfOoo.Tests
                     if (box?.Contents != null) foreach (var item in box.Contents) goods.Add(item.BlueprintName);
                     if (!e.HasTag("Creature") && !e.HasTag("Terrain") && e.GetPart<PhysicsPart>()?.Takeable == true) goods.Add(e.BlueprintName);
                 }
-                report.AppendLine("  goods: " + string.Join(", ", goods.OrderBy(g => g)));
                 report.AppendLine($"== {p.Name} ({id}, tier {WorldMapAuthoring.TierAt(p.X, p.Y)}, {p.Faction})");
                 report.AppendLine("  talk: " + string.Join(", ", talkers.Select(kv => kv.Key + (kv.Value > 1 ? "x" + kv.Value : ""))));
                 report.AppendLine("  things: " + string.Join(", ", things.Where(kv => kv.Value <= 12).Select(kv => kv.Key + (kv.Value > 1 ? "x" + kv.Value : ""))));
+                report.AppendLine("  goods: " + string.Join(", ", goods.OrderBy(g => g)));
             }
 
             ConcernRegistry.LoadAll();

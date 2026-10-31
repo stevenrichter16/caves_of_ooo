@@ -35,7 +35,7 @@ namespace CavesOfOoo.Concerns
         public const string NodePrefix = "concern:";
         public const string ElderRole = "Elder";
 
-        public enum State { Hidden, Offerable, Working, Reportable, Done }
+        public enum State { Hidden, Offerable, Working, Reportable, Done, Withheld }
 
         public static State StateOf(ConcernData c, Entity speaker, Entity listener)
         {
@@ -50,7 +50,8 @@ namespace CavesOfOoo.Concerns
             if (sp.IsQuestFailed(q)) return State.Hidden;
             foreach (var before in ConcernRegistry.Predecessors(c.Id))
                 if (!sp.IsQuestCompleted(ConcernRegistry.QuestIdFor(before.Id))) return State.Hidden;
-            return ConversationPredicates.CheckAll(c.Requires, speaker, listener) ? State.Offerable : State.Hidden;
+            if (ConversationPredicates.CheckAll(c.Requires, speaker, listener)) return State.Offerable;
+            return string.IsNullOrWhiteSpace(c.Withheld) ? State.Hidden : State.Withheld;
         }
 
         static string PlaceOf(Entity speaker)
@@ -102,10 +103,11 @@ namespace CavesOfOoo.Concerns
                 var state = StateOf(c, speaker, listener);
                 if (state == State.Offerable || state == State.Working || state == State.Reportable) anyOpen = true;
                 if (!OwnedBy(c, speaker, place)) continue;
-                string text = state == State.Offerable ? "[Is something wrong here?]"
+                string text = state == State.Offerable || state == State.Withheld ? "[Is something wrong here?]"
                     : state == State.Working ? "[About " + c.Title.ToLowerInvariant() + "...]"
                     : state == State.Reportable ? "[It's done: " + c.Title.ToLowerInvariant() + ".]" : null;
-                if (text != null) choices.Add(Open(text, (state == State.Reportable ? "report|" : state == State.Working ? "status|" : "pitch|") + c.Id));
+                if (text != null) choices.Add(Open(text, (state == State.Reportable ? "report|" : state == State.Working ? "status|"
+                    : state == State.Withheld ? "withheld|" : "pitch|") + c.Id));
             }
             if (anyOpen && speaker.BlueprintName == ElderRole) choices.Add(Open("[What troubles this place?]", "list|" + place));
             AppendDeliveries(choices, speaker, listener, place);
@@ -157,6 +159,7 @@ namespace CavesOfOoo.Concerns
                 case "pitch": return PitchNode(c, speaker, listener);
                 case "status": return StatusNode(c, speaker, listener);
                 case "report": return ReportNode(c);
+                case "withheld": return WithheldNode(c, speaker);
                 default: return null;
             }
         }
@@ -173,6 +176,16 @@ namespace CavesOfOoo.Concerns
                 Actions = new List<ConversationParam> { new ConversationParam { Key = AcceptAction, Value = c.Id } } });
             n.Choices.Add(new ChoiceData { Text = "[" + c.Refusal.Text + "]", Target = "",
                 Actions = new List<ConversationParam> { new ConversationParam { Key = RefuseAction, Value = c.Id } } });
+            n.Choices.Add(Back());
+            return n;
+        }
+
+        /// <summary>The owner's answer while the concern's gate is shut: no offer, no refusal.</summary>
+        static NodeData WithheldNode(ConcernData c, Entity speaker)
+        {
+            if (string.IsNullOrWhiteSpace(c.Withheld)) return null;
+            Record("Withheld", speaker, c, null);
+            var n = Node("withheld|" + c.Id, c.Withheld);
             n.Choices.Add(Back());
             return n;
         }

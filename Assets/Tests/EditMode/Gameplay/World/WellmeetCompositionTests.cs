@@ -81,7 +81,9 @@ namespace CavesOfOoo.Tests
         {
             var poi=new PointOfInterest(POIType.Village,"Renamed camp",profile:"TentCamp");
             Assert.IsTrue(SettlementSiteDefinitions.IsTrackedVillage(WellmeetCompositionPlan.ZoneID,poi));
-            CollectionAssert.AreEquivalent(new[]{"MainWell","VillageOven","VillageLantern"},
+            // The three native sites, plus the tare Scales the place-work layer
+            // made repairable data (PlaceSites.json, W2).
+            CollectionAssert.AreEquivalent(new[]{"MainWell","VillageOven","VillageLantern","Scales"},
                 SettlementSiteDefinitions.CreateInitialSites(WellmeetCompositionPlan.ZoneID,poi).Select(s=>s.SiteId));
             Assert.IsFalse(SettlementSiteDefinitions.IsTrackedVillage("Overworld.5.17.0",poi));
             Assert.IsFalse(SettlementSiteDefinitions.IsTrackedVillage("Overworld.8.16.1",poi));

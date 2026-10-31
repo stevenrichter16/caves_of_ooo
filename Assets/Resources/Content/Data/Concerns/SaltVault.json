@@ -1,0 +1,69 @@
+{
+  "Concerns": [
+    {
+      "Id": "saltvault.lastwords",
+      "Place": "the Salt-Vault",
+      "Owner": "StillleafIndexer",
+      "Faction": "PaleCuration",
+      "Tier": 2,
+      "Title": "Unrecorded",
+      "Pitch": "Intake, nine days ago, from the Wellmeet road. Subject: a woman, travelling alone, one lamp, unlit. Condition: good. Salt-cure begun. Last words: not witnessed. Index position: unrecorded, which is a shelf with very many people on it. Grief noted. She lodged at the inn at Wellmeet before the road. Guests there chalk a line on the slate when they leave, and the innkeeper sat with her the last evening. My intake card wants a witness's mark before it is valid.",
+      "Thanks": "Index line entered. Her lamp came in with her intake, unlit; it is shelved beside her, as is correct for personal effects. She can be found now.",
+      "Approaches": [
+        {
+          "Id": "slate",
+          "Kind": "Read",
+          "Label": "Read what she chalked on the slate at Wellmeet's inn.",
+          "Objective": "Read the lodging slate at Wellmeet's inn",
+          "Read": {
+            "Document": "saltvault-lodgingslate",
+            "Place": "Wellmeet"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Salt-Vault:SaltVault.FiledWritten"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "PaleCuration:Player:3"
+            }
+          ]
+        },
+        {
+          "Id": "witness",
+          "Kind": "Carry",
+          "Label": "Take the intake card to Wellmeet's innkeeper, who sat with her.",
+          "Objective": "Take the intake card to the innkeeper at Wellmeet",
+          "Carry": {
+            "Item": "SealedLetter",
+            "ItemName": "the intake card",
+            "Place": "Wellmeet",
+            "Recipient": "Innkeeper",
+            "Handover": "From the Salt-Vault. The indexer asks what she said, the woman who went out on the Vault road.",
+            "Reply": "Her. She asked whether the road was long. I said not very. She said, 'Then I'll not need the lamp,' and I gave it her anyway. Put that in their file, if it goes in a file. And put that she drank first."
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Salt-Vault:SaltVault.FiledSpoken"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "PaleCuration:Player:5"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I will not go asking after her. That is my answer.",
+        "Reply": "Declined. Noted. She is filed under unrecorded. That is not your fault, and the file says so."
+      },
+      "Reward": {
+        "XP": 1400,
+        "Drams": 30
+      },
+      "Next": []
+    }
+  ]
+}

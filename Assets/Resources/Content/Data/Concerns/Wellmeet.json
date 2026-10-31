@@ -1,0 +1,179 @@
+{
+  "Concerns": [
+    {
+      "Id": "wellmeet.guest",
+      "Place": "Wellmeet",
+      "Owner": "TentRightHost",
+      "Faction": "TentRight",
+      "Tier": 2,
+      "Title": "Under the Cloth",
+      "Pitch": "There is water. Sit first; this keeps. Two nights ago a woman came in off the pans and claimed the cloth, and she is under it. I have not asked her business, and I will not before the third day. Her pursuers told me anyway, at the pole, loudly: she killed a man called Harl at the salt-scales, and they are his kin. Three of them are camped in the dry wash south of town. The oath holds them at the pole until the third day ends, and not one hour after. My clan keeps the oath. Nobody here will argue it, and nobody here will walk out to the wash for her. Someone not of my tent may. Hear one thing plainly, because it is law: if you sit under any cloth in this town, you cannot carry a blade out to them. The cloth comes off the one who strikes. The oath is not for sale; her debt to Harl's kin is another thing, and a debt can be paid. And the keepers at the First Tent hear what the oath cannot settle, if her word reached them.",
+      "Thanks": "The third day ended this morning. She drank, she thanked the cloth, and she went out by the north road. Nobody followed her past the pole. That is what the cloth is for.",
+      "Approaches": [
+        {
+          "Id": "stand",
+          "Kind": "Confront",
+          "Label": "Go out to the dry wash south of Wellmeet and face Harl's kin.",
+          "Objective": "Face Harl's kin at the dry wash south of Wellmeet",
+          "Confront": {
+            "Offset": "0,1",
+            "Site": "the dry wash south of Wellmeet",
+            "Foes": [
+              {
+                "Blueprint": "DesertBandit",
+                "Count": 3,
+                "Name": "Harl's kin"
+              }
+            ]
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Wellmeet:Wellmeet.KinFaced"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:6"
+            }
+          ]
+        },
+        {
+          "Id": "price",
+          "Kind": "Settle",
+          "Label": "Pay Harl's kin the blood-price on her behalf: 45 drams.",
+          "Objective": "Pay Harl's kin the blood-price",
+          "Triggers": [
+            {
+              "Key": "IfFact",
+              "Value": "concern.wellmeet.guest.price.done:>=:1"
+            }
+          ],
+          "Offer": [
+            {
+              "Key": "PayDrams",
+              "Value": "45"
+            },
+            {
+              "Key": "SetFact",
+              "Value": "concern.wellmeet.guest.price.done:1"
+            }
+          ],
+          "OfferText": "Pay Harl's kin the blood-price: 45 drams",
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Wellmeet:Wellmeet.BloodPricePaid"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:2"
+            }
+          ]
+        },
+        {
+          "Id": "keepers",
+          "Kind": "Carry",
+          "Label": "Carry her sealed word to the oath-keepers at the First Tent.",
+          "Objective": "Carry the guest's word to the oath-keepers at the First Tent",
+          "Carry": {
+            "Item": "SealedLetter",
+            "ItemName": "her sealed word",
+            "Place": "the First Tent",
+            "Recipient": "TentRightHost",
+            "Handover": "From a host at Wellmeet. A guest under his cloth asks the keepers to hear her when the third day ends.",
+            "Reply": "Then she will be heard, and so will Harl's kin, and the oath will say its piece between them. A keeper will be at Wellmeet's pole before the third day is out. You carried this without asking who she is. That is the first thing a keeper is taught, and you knew it already."
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Wellmeet:Wellmeet.KeepersSent"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:4"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "It is not mine to stand in. I am saying so to you.",
+        "Reply": "That is a clean no, and I thank you for saying it. The water is still yours."
+      },
+      "Reward": {
+        "XP": 1500,
+        "Drams": 0
+      },
+      "Next": []
+    },
+    {
+      "Id": "wellmeet.scales",
+      "Place": "Wellmeet",
+      "Owner": "SaltMaster",
+      "Faction": "TentRight",
+      "Tier": 2,
+      "Title": "Short Weight",
+      "Pitch": "Sit; the scales will wait for you. The Concord says our salt reaches Tally a tenth light. They carry it under guest-right, so I cannot show them the pole, and I will not show them these scales either until the scales are true. The counterweight is cracked and the pan sits low. I can see it, and so can their carters, and we are all too courteous to say so at the scales. Their tare-book is kept at the Exchange in Tally. I would like very much to know what a Concord carter writes down when no one from the tents is reading over his shoulder.",
+      "Thanks": "True to the grain. Bring me salt any day and I will weigh it in front of you, and in front of them.",
+      "Approaches": [
+        {
+          "Id": "true",
+          "Kind": "Restore",
+          "Label": "Re-true the pan scales: iron in the beam, or sand in the pan for now.",
+          "Objective": "Re-true Wellmeet's pan scales",
+          "Restore": {
+            "Site": "Scales"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Wellmeet:Wellmeet.ScalesTrue"
+            }
+          ]
+        },
+        {
+          "Id": "book",
+          "Kind": "Read",
+          "Label": "Read the carters' tare-book at the Exchange in Tally.",
+          "Objective": "Read the Concord carters' tare-book at Tally",
+          "Read": {
+            "Document": "wellmeet-tarebook",
+            "Place": "Tally"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "Wellmeet:Wellmeet.TareRead"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "TentRight:Player:4"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "SaccharineConcord:Player:-3"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I will not take a side in a weighing. That is my answer.",
+        "Reply": "Said like a scale. Good."
+      },
+      "Reward": {
+        "XP": 1300,
+        "Drams": 0,
+        "Effects": [
+          {
+            "Key": "GiveItem",
+            "Value": "PaleSalt"
+          },
+          {
+            "Key": "GiveItem",
+            "Value": "PaleSalt"
+          }
+        ]
+      },
+      "Next": []
+    }
+  ]
+}

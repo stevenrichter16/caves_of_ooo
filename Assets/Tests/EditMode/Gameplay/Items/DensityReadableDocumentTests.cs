@@ -59,14 +59,15 @@ namespace CavesOfOoo.Tests
         [Test] public void Catalog_HasThirteenCanonicalCopiesAndThreeDistinctLocalRecords()
         {
             // 13 canonical codex copies, 3 Marrowstye receiving records, and the place
-            // documents that concerns send the player to read (W1: Gantry's two, Slip's wall).
-            Assert.AreEqual(19, ReadableDocumentCatalog.All.Count);
+            // documents that concerns send the player to read (W1: Gantry's two, Slip's wall;
+            // W2: the tare-book, the lodging slate, the tenth survey).
+            Assert.AreEqual(22, ReadableDocumentCatalog.All.Count);
             CollectionAssert.IsEmpty(ReadableDocumentCatalog.Validate());
-            Assert.AreEqual(19, ReadableDocumentCatalog.All.Select(x => x.Id).Distinct().Count());
-            Assert.AreEqual(19, ReadableDocumentCatalog.All.Select(x => x.Blueprint).Distinct().Count());
+            Assert.AreEqual(22, ReadableDocumentCatalog.All.Select(x => x.Id).Distinct().Count());
+            Assert.AreEqual(22, ReadableDocumentCatalog.All.Select(x => x.Blueprint).Distinct().Count());
             var canonical = Enumerable.Range(1, 13).Select(i => "Codex" + i.ToString("00")).ToArray();
             CollectionAssert.AreEquivalent(canonical.Concat(new[] { "CurationTransferDocket", "CurationDiscrepancyReport", "CurationAnnexPlacard",
-                "GantryManifestCopy", "GantryTitheRoll", "SlipNameWall" }), ReadableDocumentCatalog.All.Select(x => x.Blueprint));
+                "GantryManifestCopy", "GantryTitheRoll", "SlipNameWall", "WellmeetTareBook", "WellmeetLodgingSlate", "LedgerSurveySheet" }), ReadableDocumentCatalog.All.Select(x => x.Blueprint));
             foreach (var entry in ReadableDocumentCatalog.All)
             {
                 if (canonical.Contains(entry.Blueprint)) StringAssert.StartsWith("Lore/Codex/", entry.Source);

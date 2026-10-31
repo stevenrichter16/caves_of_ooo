@@ -105,6 +105,7 @@ namespace CavesOfOoo.Concerns
                             var foe = factory?.CreateEntity(f.Blueprint);
                             if (foe == null || !FindCellNear(zone, ax, ay, out int x, out int y)) { missed++; continue; }
                             foe.Properties[FoeProperty] = key;
+                            if (!string.IsNullOrWhiteSpace(f.Name) && foe.GetPart<RenderPart>() is RenderPart render) render.DisplayName = f.Name;
                             foe.AddPart(new AddFactWhenSlain { Fact = ConcernRegistry.SlainFact(c.Id, a.Id), Amount = 1 });
                             if (zone.AddEntity(foe, x, y)) here++; else missed++;
                         }

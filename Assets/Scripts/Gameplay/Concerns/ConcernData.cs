@@ -38,6 +38,10 @@ namespace CavesOfOoo.Concerns
         public string Thanks;
         /// <summary>Predicates that must all pass before the owner raises it.</summary>
         public List<ConversationParam> Requires = new List<ConversationParam>();
+        /// <summary>W2: what the owner says, asked "Is something wrong here?", while
+        /// <see cref="Requires"/> fail (predecessors done): the work exists and is not
+        /// offered. Empty keeps a gated concern silent. Needs <see cref="Requires"/>.</summary>
+        public string Withheld;
         /// <summary>Two or more ways through; the first one finished resolves the concern.</summary>
         public List<ConcernApproachData> Approaches = new List<ConcernApproachData>();
         public ConcernRefusalData Refusal = new ConcernRefusalData();
@@ -137,6 +141,9 @@ namespace CavesOfOoo.Concerns
     {
         public string Blueprint;
         public int Count = 1;
+        /// <summary>W2: the concern's own name for these foes ("Harl's kin"), shown as
+        /// their display name; body, art and stats stay the blueprint's. Empty keeps it.</summary>
+        public string Name;
     }
 
     [Serializable]

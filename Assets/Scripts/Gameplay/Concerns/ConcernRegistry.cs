@@ -153,6 +153,8 @@ namespace CavesOfOoo.Concerns
                 problems.Add(who + ": every concern needs a spoken refusal and its reply");
             else CheckActions(c.Refusal.Effects, who + "/refusal", problems);
             CheckPredicates(c.Requires, who + "/requires", problems);
+            if (!string.IsNullOrWhiteSpace(c.Withheld) && (c.Requires == null || c.Requires.Count == 0))
+                problems.Add(who + ": withheld text with no Requires to withhold it");
             if (c.Reward != null) CheckActions(c.Reward.Effects, who + "/reward", problems);
             if (c.Next != null)
                 foreach (var next in c.Next)

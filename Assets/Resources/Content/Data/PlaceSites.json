@@ -50,6 +50,66 @@
         "Text": "You hang a new cloth from the pole and peg it square. There is shade under it again."
       },
       "Relapse": "The guest-cloth at Gantry has come down again."
+    },
+    {
+      "Place": "Wellmeet",
+      "Id": "Scales",
+      "Name": "pan scales",
+      "Broken": "The counterweight is cracked through and the salt pan sits low on its beam.",
+      "Lasting": {
+        "Materials": [
+          {
+            "Blueprint": "IronSpikeComponent",
+            "Count": 2
+          },
+          {
+            "Blueprint": "LeatherBindingComponent",
+            "Count": 1
+          }
+        ],
+        "Text": "You pin the cracked counterweight with iron, bind the beam, and hang the pan again. Empty, it rides level. A weighed stone reads true twice running."
+      },
+      "Patch": {
+        "Materials": [
+          {
+            "Blueprint": "SilverSand",
+            "Count": 2
+          }
+        ],
+        "RelapseTurns": 900,
+        "Text": "You pour sand into the low pan until the beam rides level. It will hold until the wind gets at it."
+      },
+      "Relapse": "The sand has blown out of the pan at Wellmeet. The scales sit low again."
+    },
+    {
+      "Place": "the Drowned Ledger",
+      "Id": "SurveyLine",
+      "Name": "survey line",
+      "Broken": "The survey stakes lean out of line, and the cord between them hangs slack across the wrong bodies.",
+      "Lasting": {
+        "Materials": [
+          {
+            "Blueprint": "OakHaftComponent",
+            "Count": 3
+          },
+          {
+            "Blueprint": "LeatherBindingComponent",
+            "Count": 1
+          }
+        ],
+        "Text": "You drive oak down past the soft peat into the firm, and re-run the cord stake to stake. The line stands straight from the first number to the last."
+      },
+      "Patch": {
+        "Materials": [
+          {
+            "Blueprint": "WillowHaftComponent",
+            "Count": 2
+          }
+        ],
+        "RelapseTurns": 700,
+        "Text": "You set willow where the worst stakes walked. It is straight today."
+      },
+      "Relapse": "The willow stakes at the Drowned Ledger have bent with the peat. The line is out again."
     }
   ]
 }

@@ -842,6 +842,118 @@ each clear it. The flat rendering classes are green.
 **Cannot verify:** how it reads at normal zoom in real play. There is no live
 capture yet, and the palette and placement are judged from the offline preview.
 
+## W2 — Tier-2 content: Wellmeet, the Salt-Vault, the Drowned Ledger, the Quiet's Door (implemented 2026-10-31)
+
+The four places at map tier 2 (`WorldMapAuthoring.TierAt`), each built from its
+own canon. Each concern's approaches use different systems, and each leaves a
+different place behind.
+
+**Budget.** Tier 2 spans player levels 5–9, about 18,300 XP. Concern work is
+40% of that (§3 rule 5), so about 7,300 XP across the wave's five concerns:
+1,300–1,600 each. That is a large step up from tier 1's 40–60 because the
+curve is cubic, and P6 retunes it with the bench.
+
+| Concern | Owner | Canon | Approaches → what each leaves |
+|---|---|---|---|
+| `wellmeet.guest` Under the Cloth | Tent-Right host | 07_TentRight VIII "the pursued guest"; III.1 the murderer under the cloth | **Confront** the dead man's kin waiting at the dry wash south of town (named foes) → kin driven off, Tent-Right +6 · **Settle** pay the blood-price, 45 drams ("the oath is not for sale; her debt is") → the kin go home paid, Tent-Right +2 · **Carry** her sealed word to the oath-keeper at the First Tent → the keepers hear both sides after the third day; a keeper comes to Wellmeet, Tent-Right +4. **No drams paid:** the oath is priceless (III.5). |
+| `wellmeet.scales` Short Weight | salt-master | 07 III.5 priceless vs priced; the Concord under guest-right | **Restore** re-true the pan scales (lasting: iron spikes and binding; patch: sand ballast that drifts) → fair weight, prices ×0.97 · **Read** the Concord carters' tare-book at Tally, which deducts "guest-right, valued" from every load → the joke made public; Tent-Right +4, Concord −3, salt at Wellmeet ×0.95, Tally and Gantry hear. Paid in Pale-Salt. |
+| `saltvault.lastwords` Unrecorded | Salt-Vault indexer | 03_PaleCuration III "the filing system" and VIII "the index" | **Read** her last line, chalked on the lodging slate at Wellmeet's inn → filed under what she wrote, cross-filed while the indexers argue whether written counts as said; Curation +3 · **Carry** the intake card to Wellmeet's innkeeper, who sat with her the last night → filed under what she said; Curation +5, Marrowstye hears. |
+| `ledger.stakes` Between the Lines | Curation sorter | 02 Geography (the Ledger, the slowest excavation); the sorter's "we are still deciding the tense" | **Restore** re-drive the survey line (oak stakes and binding; patch: willow, which bends) · **Confront** the maw-toads in the flooded cut that heave the stakes at night → the line holds of itself · **Read** the tenth recension's survey sheet and set the line by its numbers → the eleventh signs the correction in the margin; Palimpsest +4. |
+| `quiet.dim` The Sealed Dim | Elder of the Quiet | catacomb_village_design §IX.4 "they need an outsider for something they cannot do themselves"; §V the Sealed Dim, Sari-Snake ward-fluid | Gated on CatacombFolk Liked (a major reputation investment, canon). **Confront** the sari-snakes at the sinkhole lip; the Quiet do not go up → ward-fluid for the Dim, CatacombFolk +8 · **Supply** three flasks of surface ward-oil → it serves, with distaste; CatacombFolk +3. |
+
+**Substrate deepened (two pieces, each with its own RED):**
+1. **Named foes** (`ConcernFoeData.Name`). A Confront foe can carry the
+   concern's own name for it ("Harl's kin"), shown everywhere a display name is
+   (look, combat log, journal), while the body and art stay the blueprint's.
+2. **Withheld work** (`ConcernData.Withheld`). When a concern's `Requires`
+   fail (its predecessors done, not refused, not finished), its owner still
+   answers "[Is something wrong here?]" with the withheld line. There is no
+   cue, no list entry and no offer. So a gated place says, in its own voice,
+   that work exists and what earns it, instead of looking empty.
+
+**Content and sources.** Two place sites (`Wellmeet:Scales`,
+`the Drowned Ledger:SurveyLine`), three readable documents (the tare-book at
+Tally, the lodging slate at Wellmeet, the tenth survey at the Ledger), and about
+eleven conditions (prices, remarks, news heard in neighbouring places, one
+arrival). The census bench must show every owner, recipient and material
+reachable at tier ≤2.
+
+**Honesty bounds.** The guest is spoken of, not placed: the host's tent is
+canon, but a guest resident with oath-bound behaviour is the "take the oath
+yourself" mechanic (07 VII.4). That mechanic is logged as next systems work, not
+faked here.
+
+**Interaction found while building:** a player who has claimed the cloth at
+Wellmeet and then goes out to fight Harl's kin breaks their own guest-right.
+Striking a person while under the cloth is the existing −100 oathbreak, and the
+kin are people (`UnderTheClothEffect.IsPerson`). That is canon-correct and a
+real choice, so the host now states it as law in the pitch ("the cloth comes
+off the one who strikes"). A test pins both sides: with the cloth, the kin hold
+off, the strike forfeits the cloth and the kin answer; without it, striking
+them is no oathbreak.
+
+**Evidence:**
+- `W2ContentTests` (17): every approach of all five concerns played end to
+  end. That covers named foes at their resolved sites, a blood-price that
+  cannot be paid short, a keeper arriving at Wellmeet, and patches that do not
+  finish a Restore. Price factors, Pale-Salt pay, news in Tally, Gantry, the
+  First Tent, Marrowstye and Quillhold, the withheld gate with its
+  counter-check, and the cloth interaction above are also checked.
+- `ConcernConfrontTests` gains named-foe and withheld cases, plus adversarial
+  pins: a named foe through save and load, a whitespace name, withheld work
+  that cannot be refused or listed, and a predecessor gate that hides rather
+  than withholds. Each new substrate piece was RED (3 failures) before
+  implementation.
+- The place census passes: every W2 owner and recipient lives in its place,
+  and every lasting material is sold at 8–13 places of tier ≤2.
+
+**Voice gate, third blind run (53 passages: W2 and W1b's rewrites):** 37 pass,
+15 weak, 1 fail. The tare-book, the inn slate and the innkeeper's reply were
+the strongest, and the reviewer found the tare-book funny without being told
+to. The fail was Sumphold's pitch, which sounded like any farm in any game. The
+weak lines clustered in the stake-bed passages and the news lines, and several
+reused lines from the voice cards' own examples. The template finding was
+that every culture's pitch closed on a fallback option. All 16 were rewritten:
+pitches now state the trouble and let the listed approaches carry the options,
+borrowed lines are replaced, and the sorter speaks wholly in the Curation
+register. The rewrites wait for the next wave's blind run.
+
+**Self-review:** 🔵 Patch materials (sand, willow) are not in the census,
+which checks lasting fixes only; both are sold widely. 🔵 The kin are desert
+bandits by body, which is right for the Beating but leaves the art to the
+bandit sprite. 🧪 No live play of any W2 concern yet.
+
+## H1 — The oath, sworn (design 2026-10-31)
+
+Canon (`Lore/Factions/07_TentRight.md` VII.4, rewards): the player can swear
+the oath and become a host. Once sworn, they must protect anyone who claims
+their hospitality, "even when it is inconvenient, even when the guest is the
+player's enemy". The sworn player can extend the cloth: pacify a hostile who
+claims it, protect an ally, make a temporary safe place. Today only the guest
+half exists (`UnderTheClothEffect`, W2.5). Nobody can be the player's guest.
+
+**The mechanic:**
+1. **Swearing.** A Tent-Right host (Wellmeet or the First Tent) administers the
+   oath to a player in good standing (Tent-Right Liked, never an oathbreaker).
+   It is permanent (`OathSworn` fact), with Tent-Right +10. Refusal is spoken
+   and clean.
+2. **Extending the cloth.** A sworn player can offer the cloth to an adjacent
+   person (factioned, not Beasts). The guest gets `UnderTheClothEffect` with
+   the player recorded as host. For three days people may not harm the guest,
+   and the guest keeps the peace: an NPC guest's would-be hostility is floored
+   too, so a raider who takes the cloth stops fighting. Their faction's
+   standing is unchanged (`GetFeelingUnfloored`), so the truce launders
+   nothing.
+3. **The host's obligation.** A host who strikes their own guest is an
+   oathbreaker: the cloth comes off every guest they host, Tent-Right takes
+   −100, and the oath is withdrawn. Each guest keeps its own three days, so a
+   pursuer who strikes the guest strikes against the cloth.
+4. **The claim.** A sworn player is sometimes reached by a pursued stranger
+   (a world traveller, Beating first) who claims the cloth. Canon: a host
+   cannot refuse. The pursuers wait outside the cloth until the third day.
+
+**Cut for now:** the Namers' subplot and the Renewal-Naming role (late game).
+
 ## Implementation log
 
 - 2026-10-30 — design and plan written; census evidence gathered.
@@ -875,3 +987,5 @@ capture yet, and the palette and placement are judged from the offline preview.
   concern quest cues; second blind voice run and rewrites.
 - 2026-10-31 — flat quest cue layer: the 16×24 view marks quest givers and
   concern owners (Available "!", Active "...").
+- 2026-10-31 — W2: Wellmeet, the Salt-Vault, the Drowned Ledger and the Quiet's
+  Door; named foes and withheld work; third blind voice run and rewrites.

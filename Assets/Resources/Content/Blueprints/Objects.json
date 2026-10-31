@@ -25318,6 +25318,45 @@
       ]
     },
     {
+      "Name": "WellmeetTareBook",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "carters' tare-book" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&W" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A long ledger on a sloped desk, chained to it at the spine. The columns are very neat. One of them is headed in a different ink." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "wellmeet-tarebook" } ] }
+      ]
+    },
+    {
+      "Name": "WellmeetLodgingSlate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "lodging slate" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&w" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A slate on the inn wall, chalked over by many hands and wiped where it filled. A stub of chalk hangs from it on a string." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "saltvault-lodgingslate" } ] }
+      ]
+    },
+    {
+      "Name": "LedgerSurveySheet",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "survey sheet" }, { "Key": "RenderString", "Value": "?" },
+          { "Key": "ColorString", "Value": "&y" }, { "Key": "RenderLayer", "Value": "3" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A waxed sheet weighted at the corners with peat bricks, ruled in two hands. The newer hand writes only in the margins." } ] },
+        { "Name": "ReadableDocument", "Params": [ { "Key": "DocumentId", "Value": "ledger-tenthsurvey" } ] }
+      ]
+    },
+    {
       "Name": "SealedLetter",
       "Inherits": "Item",
       "Parts": [

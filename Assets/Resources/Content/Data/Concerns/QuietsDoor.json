@@ -1,0 +1,78 @@
+{
+  "Concerns": [
+    {
+      "Id": "quiet.dim",
+      "Place": "the Quiet's Door",
+      "Owner": "Elder",
+      "Faction": "CatacombFolk",
+      "Tier": 2,
+      "Title": "Before the Dim",
+      "Requires": [
+        {
+          "Key": "IfReputationAtLeast",
+          "Value": "CatacombFolk:Liked"
+        }
+      ],
+      "Withheld": "(The elder looks at your mouth, then at the light, and answers very low.) Upstairs. You talk like upstairs. Sit at somebody's patch first, through a whole meal. Come back warm from it. Then we'll have something to say.",
+      "Pitch": "Sit low; the light's tired. Our warden went up to the lip when the green went strange last time. The green came back. She didn't. Third row now, by the cold wall, and nobody to go up. The Dim is coming again; you can see it at the edge of the patch. The ward-jars are nearly dry. Ward is made from sari venom, and the sari sit at the lip above us, in upstairs light. We don't go up. You do. Upstairs folk sell an oil that does the same work, near enough. It smells of upstairs. We'd use it.",
+      "Thanks": "The jars are full. When the Dim comes we'll be quiet in it. You'll be welcome to be quiet with us.",
+      "Approaches": [
+        {
+          "Id": "venom",
+          "Kind": "Confront",
+          "Label": "Take the sari-snakes at the sinkhole lip east of the Door, for their venom.",
+          "Objective": "Take the sari-snakes at the lip east of the Quiet's Door",
+          "Confront": {
+            "Offset": "1,0",
+            "Site": "the sinkhole lip east of the Quiet's Door",
+            "Foes": [
+              {
+                "Blueprint": "SariSnake",
+                "Count": 3
+              }
+            ]
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Quiet's Door:Quiet.WardFromVenom"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "CatacombFolk:Player:8"
+            }
+          ]
+        },
+        {
+          "Id": "oil",
+          "Kind": "Supply",
+          "Label": "Bring down three flasks of upstairs ward oil.",
+          "Objective": "Bring the Quiet three flasks of ward oil",
+          "Supply": {
+            "Blueprint": "WardOil",
+            "Count": 3
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Quiet's Door:Quiet.WardFromOil"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "CatacombFolk:Player:3"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I won't go up to the lip. I'm saying it.",
+        "Reply": "Then don't. Mind the light on your way out."
+      },
+      "Reward": {
+        "XP": 1600,
+        "Drams": 0
+      },
+      "Next": []
+    }
+  ]
+}

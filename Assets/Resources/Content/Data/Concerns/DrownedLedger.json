@@ -1,0 +1,82 @@
+{
+  "Concerns": [
+    {
+      "Id": "ledger.stakes",
+      "Place": "the Drowned Ledger",
+      "Owner": "CurationSorter",
+      "Faction": "PaleCuration",
+      "Tier": 2,
+      "Title": "Between the Lines",
+      "Pitch": "Condition of the bed: shifting. The peat heaves after dark, and a stake that stood at nine at evening stands at eleven by morning. Nine and eleven are two different subjects. I cannot index a subject against a stake that will not stay where it was driven. Status of the survey: suspended. The scribe has entered a cause, maw-toads in the flooded cut to the west, and marked it claimed, not confirmed; the scribe marks everything that way. The tenth recension's own survey sheet is still on the reading table, weighted at the corners with peat bricks.",
+      "Thanks": "Stake nine: the adult with one hand open. Stake eleven: the child, curled, facing nine. Both where they were driven. Indexed. Thank you.",
+      "Approaches": [
+        {
+          "Id": "restake",
+          "Kind": "Restore",
+          "Label": "Re-drive the survey line: oak and binding, or willow for now.",
+          "Objective": "Re-drive the Drowned Ledger's survey line",
+          "Restore": {
+            "Site": "SurveyLine"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Drowned Ledger:Ledger.LineRedriven"
+            }
+          ]
+        },
+        {
+          "Id": "cut",
+          "Kind": "Confront",
+          "Label": "Find what heaves the peat in the flooded cut west of the Ledger.",
+          "Objective": "Quiet the flooded cut west of the Drowned Ledger",
+          "Confront": {
+            "Offset": "-1,0",
+            "Site": "the flooded cut west of the Drowned Ledger",
+            "Foes": [
+              {
+                "Blueprint": "MawToad",
+                "Count": 2
+              }
+            ]
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Drowned Ledger:Ledger.CutQuiet"
+            }
+          ]
+        },
+        {
+          "Id": "tenth",
+          "Kind": "Read",
+          "Label": "Read the tenth recension's survey sheet on the reading table.",
+          "Objective": "Read the tenth recension's survey of the bed",
+          "Read": {
+            "Document": "ledger-tenthsurvey",
+            "Place": "the Drowned Ledger"
+          },
+          "Outcome": [
+            {
+              "Key": "SetPlaceCondition",
+              "Value": "the Drowned Ledger:Ledger.SetByTenth"
+            },
+            {
+              "Key": "ChangeFactionFeeling",
+              "Value": "Palimpsest:Player:4"
+            }
+          ]
+        }
+      ],
+      "Refusal": {
+        "Text": "I will leave the stakes be. I am saying it now.",
+        "Reply": "Said, and entered. Walk between the lines on your way out."
+      },
+      "Reward": {
+        "XP": 1500,
+        "Drams": 25
+      },
+      "Next": []
+    }
+  ]
+}
