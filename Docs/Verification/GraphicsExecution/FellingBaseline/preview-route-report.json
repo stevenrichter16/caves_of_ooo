@@ -1,0 +1,29 @@
+{
+    "runId": "463d3d3322914bddb5b3093a9674dd40",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/39e1d0615530432da9de071a6ac8bac9",
+    "gameId": "",
+    "finalZone": "Overworld.3.5.0",
+    "fatal": "System.InvalidOperationException: Native Felling presenter failed to become ready: \n  at CavesOfOoo.Scenarios.Custom.FellingScenePlayAudit+<WaitForScene>d__72.MoveNext () [0x000ad] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/FellingScenePlayAudit.cs:502 \n  at CavesOfOoo.Scenarios.Custom.FellingScenePlayAudit+<RunSafely>d__49.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/FellingScenePlayAudit.cs:73 ",
+    "profileContext": "Preview only; profiling is reserved for the full native audit.",
+    "failures": 2,
+    "cases": 5,
+    "nativeSteps": 13,
+    "clearActions": 0,
+    "clearTicks": 0,
+    "profileCapacity": 4096,
+    "faunaExamined": 0,
+    "dressingActions": 0,
+    "faunaWaits": 0,
+    "previewOnly": true,
+    "seconds": 12.8500524,
+    "profileSeconds": 0.0,
+    "metrics": [],
+    "audit": [
+        "PASS ordinary_start_is_not_felling",
+        "PASS owned_root_held_through_boot",
+        "FAIL world_map_route_seven_west_five_north",
+        "PASS native_world_map_reaches_felling_poi",
+        "FAIL native_audit_precondition: Native Felling presenter failed to become ready: "
+    ],
+    "removedIds": []
+}

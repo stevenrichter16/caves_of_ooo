@@ -13,10 +13,46 @@ namespace CavesOfOoo.Rendering
     {
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
+        bool fellingGroundOnly;
+        string[,] fellingDryOwnerIds;
         /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
         /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
         internal FlatPixelStumpMaterialsCatalog AdmittingSites(BiomeType biome)
         { admits = zone => FlatPixelSiteAdmission.IsOrdinarySite(zone, biome); return this; }
+
+        // Felling has authored geometry and ritual terrain; only its verified
+        // open dry substrate borrows this material. Never inherit wilderness bodies/water.
+        internal FlatPixelStumpMaterialsCatalog AdmittingFelling()
+        {
+            fellingGroundOnly = true;
+            admits = IsSupportedFellingZone;
+            var definition = FellingSceneDefinition.Load();
+            if (definition == null) return this;
+            fellingDryOwnerIds = new string[80, 25];
+            foreach (var spec in definition.cells)
+                if (!spec.water && !spec.solid && !spec.opaque)
+                    fellingDryOwnerIds[spec.x, spec.y] = spec.x == 0 && spec.y == 0
+                        ? "felling-scene-state" : "felling-terrain:" + spec.x + ":" + spec.y;
+            foreach (var landmark in definition.landmarks)
+                fellingDryOwnerIds[landmark.x, landmark.y] = null;
+            return this;
+        }
+        internal static bool IsSupportedFellingZone(Zone zone)
+        {
+            if (!FellingSceneRuntime.IsActive(zone)) return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.POIs == null || map.POIs.GetLength(0) != WorldMap.Width
+                || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            return map.GetPOI(FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY)?.Type == POIType.FellingSite
+                && !LairStacks.HasSavedColumn(manager, zone.ZoneID);
+        }
+        bool FellingDryOwner(Entity owner, int x, int y)
+            => fellingDryOwnerIds != null && x >= 0 && y >= 0 && x < 80 && y < 25
+                && fellingDryOwnerIds[x, y] != null && owner.ID == fellingDryOwnerIds[x, y]
+                && owner.HasTag(FellingSceneRuntime.TerrainTag);
 
         public const string ResourcePath = "Sprites/Live16x24/stump-materials";
         public const int FrameCount = 71;
@@ -68,7 +104,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
-            if (!ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner) || !Placed(zone, cell, owner)) return false;
+            if (fellingGroundOnly || !ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner) || !Placed(zone, cell, owner)) return false;
             int frame = DryFrame(owner, x, y);
             if (frame < 0) return false;
             var group = owner.BlueprintName == "Tree" ? vegetation : owner.BlueprintName == "Bush" ? opening : materials;
@@ -113,7 +149,11 @@ namespace CavesOfOoo.Rendering
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
                 if (owner.BlueprintName == "TepuiStone")
-                { if (actual != null || !OrdinaryFloor(owner)) return false; actual = owner; }
+                {
+                    if (actual != null || !OrdinaryFloor(owner)
+                        || fellingGroundOnly && !FellingDryOwner(owner, x, y)) return false;
+                    actual = owner;
+                }
                 // A lit hearth stands on the real ground, as in the other four biome resolvers
                 // (2026-10-31: a watcher's-camp waysite fire burned on black without it).
                 else if (FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)) { }
@@ -129,7 +169,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveWaterGround(Zone zone, int x, int y, out Tile tile, out Entity source)
         {
             tile = null; source = null;
-            if (materials == null || !ReadyCell(zone, x, y, out var cell)
+            if (fellingGroundOnly || materials == null || !ReadyCell(zone, x, y, out var cell)
                 || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered
                 || !PermanentWater(zone.TileState.Get(x, y))) return false;
             Entity actual = null; int frame = -1;
@@ -153,6 +193,15 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
+            if (fellingGroundOnly)
+            {
+                // Examine may authorize the substrate beneath a covering actor/prop.
+                if (!ReadyCell(zone, x, y, out var cell) || !Placed(zone, cell, owner)
+                    || !VisiblePhysicalOwner(owner)
+                    || !TryResolveGround(zone, x, y, out var underfoot, out var actual)
+                    || !ReferenceEquals(actual, owner)) return false;
+                sprite = underfoot.sprite; return sprite != null;
+            }
             if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }

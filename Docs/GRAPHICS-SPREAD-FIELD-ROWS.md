@@ -1,7 +1,7 @@
 # Ordinary Spread field-row presentation
 
 Status: bounded native and actual Editor verification complete, 2026-11-01;
-source publication, sustained performance and packaged delivery remain pending.
+source published in27445b20d; matched performance comparison and packaged delivery remain pending.
 Root owns Unity, capture, tests and publication. This is V1 of the
 [whole-game execution plan](GRAPHICS-EXECUTION-PLAN.md): reuse approved native art
 for existing ordinary field owners. No crop mechanics, new planting stages, geometry,
@@ -165,3 +165,12 @@ ripe reader, ordinary one-grain harvest, preserved harvested owner on fresh Cont
 and bounded independent source/visual review. Still unverified: whole-area polish,
 new shadow/population work, sustained performance, current packaged execution and
 physical Deck. Main publication is pending root at this checkpoint.
+
+## Sustained observation — 2026-11-01
+
+An81.43s ordinary Editor interval at1280×800 recorded renderer p95=0.200ms,
+p99=0.250ms, max95.670ms; draw-call p9544/max45. The player moved from38,18HP40
+to38,24HP10 during ordinary encounters. This is performance observation, not safe
+route acceptance; no new saved checkpoint replaced the tested harvest fixture.
+No matched pre-change run exists; spikes and packaged performance remain open.
+See [raw receipts and limits](Verification/GraphicsExecution/Profiles/README.md).

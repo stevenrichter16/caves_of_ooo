@@ -267,3 +267,7 @@ packaged-performance target. All are requirements, not claims of verification.
   existing10-minute cadence, pointing to this plan/matrix and current continuation.
   Root-owned Unity test sessions finished; all75 preexisting modified tracked files
   retain their initial hashes. No cleanup.
+
+- 2026-11-01T21:01Z: Felling1,638dry-cell slice observed in actual gameplay, native163/163, independent review clear, freshContinue preserved. Separate current matrix records retain fallback/in-progress for the whole site.
+- Bounded manual profile extension records native raw-unit percentiles without gameplay writes;71sFelling/81sSpread completed. Spikes, unmatched baselines and current packages keep R11/V6 open; see Profiles/README. This does not waive the backlog or expand full-area acceptance.
+- Last actual hourly report2026-11-01T20:59:02Z; next21:59:02Z. Normal isolation restored; storage inspection only.

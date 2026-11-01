@@ -1,6 +1,7 @@
 # Visual execution matrix
 
-Status: source inventory initialized; actual acceptance has not advanced. This is the
+Status: source inventory initialized; bounded field-row and Felling dry-ground
+observations recorded. No whole-area polish acceptance has advanced. This is the
 machine-readable worklist for [the execution plan](GRAPHICS-EXECUTION-PLAN.md).
 The data lives at `ArtSource/Live16x24/visual-execution-matrix.json` and starts at
 source `1f68a9ba87f3bbaf37284c0a6ea6b43892719acd`.
@@ -50,8 +51,8 @@ zone IDs across the currently expanded records.
 
 ## Acceptance and inherited evidence
 
-All current status axes start `not-audited`: coverage, polish, population, shadow and
-delivery. This means the new execution audit has not been performed, **not** that
+All current status axes were initialized `not-audited`: coverage, polish, population,
+shadow and delivery. Subsequent bounded observations are recorded below. This means the new execution audit has not been performed, **not** that
 previously integrated art disappeared. The17 historical concrete polish records are
 copied unchanged into `prior_reviews`, including their seed, state, limits and evidence.
 Applicable rows reference them by `prior_review_ids`; no old bounded slice is promoted
@@ -99,7 +100,8 @@ Initialization checked:
 - All 400 coordinate IDs are unique and in bounds; all scope IDs are unique.
 - All 31 formation, 18 sinkhole-depth and six material-band rows are present.
 - Eleven distinct second-exploration destinations resolve to source constants.
-- Every status axis remains `not-audited`; the 17 prior review objects are unchanged.
+- Every status axis initially remained `not-audited`; the 17 prior review objects
+  remain unchanged after current bounded observations.
 - JSON parses and its counts agree with its records. Source SHA256 values are retained
   for drift detection; they are not runtime test evidence.
 
@@ -137,4 +139,47 @@ for x in r:
 
 ## First current observation — 2026-11-01
 
-Surface10.15 now records a bounded dry-field-row observation at seed65, native196/196, actual reader/harvest/freshContinue and independent review. Coverage remains `fallback` for the area because other visible glyphs remain; polish is `in-progress`. Population, shadows and delivery are not advanced. All other current audit axes remain not-audited; historical evidence is preserved.
+Surface10.15 now records a bounded dry-field-row observation at seed65, native196/196, actual reader/harvest/freshContinue and independent review. Coverage remains `fallback` for the area because other visible glyphs remain; polish is `in-progress`. Population, shadows and delivery are not advanced. At that checkpoint all other current audit axes remained not-audited; historical evidence is preserved. The subsequent Felling observation is separately recorded below.
+
+## Felling dry-ground observation — 2026-11-01
+
+The surface3.5, Felling family and its concrete site row now reference the same
+bounded observation; these are three overlapping scopes, not three independently
+accepted areas. At actual seed704860946, **1638 authored dry-ground cells** reuse
+approved Stump ground frames0–3. Coverage stays `fallback` and polish `in-progress`:
+355 solid/blocking-water cells and7 ritual landmark cells remain excluded. Population,
+shadow and delivery axes do not advance.
+
+[Before](Verification/GraphicsExecution/FellingBaseline/flat-before.png),
+[after](Verification/GraphicsExecution/FellingBaseline/flat-after.png),
+[ground Examine](Verification/GraphicsExecution/FellingBaseline/ground-examine.png),
+[walk](Verification/GraphicsExecution/FellingBaseline/ground-walk.png) and
+[fresh Continue](Verification/GraphicsExecution/FellingBaseline/fresh-continue.png)
+record the actual flat Editor scope. The baseline was turn290 at40,12HP40; ordinary
+walking reached40,6 then40,13. F5 saved turn420 at40,13HP40, and fresh Continue retained
+that position/HP. No pixel-identical whole-scene restart is claimed.
+
+[Native regression](Verification/GraphicsExecution/FellingBaseline/regression-green.xml)
+passed163/163 with no failures, skips or inconclusives. Root reports independent
+source/visual review with no new P1/P2 finding in the dry-ground slice. Source hashes
+are recorded; the final commit is pending root publication. See
+[the slice record](GRAPHICS-FELLING-GROUND.md).
+
+Source corrections:1645 open dry source positions include7 terrain owners with ritual
+meaning, so the safe ground denominator is1638. The Felling address must be reserved
+before generic Stump-site admission; a changed POI must not bypass its dedicated
+authority checks. The old preview route/legacy-presenter report contains failed
+assertions and remains failed evidence. A domain-reload profile/Continue attempt had
+empty active-zone counters and cannot establish performance or reload acceptance;
+valid later gameplay evidence is kept separate.
+
+Remaining: rock/water/ritual material identity, sparse-center composition, shadows,
+sustained performance and its controlled comparison, current package and physical
+Deck execution. A valid profile is ongoing with root; this matrix does not predict
+its result or mark R11 passed. No full-area or family-wide acceptance is implied.
+
+Root follow-up: clean71s Felling and81s field Editor observations are now linked.
+Controlled before/after comparison, spike attribution and packaged performance
+remain open. Felling's1,638 count is an integration test over source coordinates;
+actual gameplay observation covers the recorded viewport/reader/walk/reload, not
+every cell or the entire authored scene.

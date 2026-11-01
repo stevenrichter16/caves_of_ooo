@@ -3858,14 +3858,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Compare matched pre-change performance and attribute spikes; review remaining solid/water/ritual materials, sparse composition and shadow applicability; package reviewed source.",
       "coordinates": [
         3,
         5,
@@ -3875,10 +3875,153 @@
       "authored_road": false,
       "authored_river": false,
       "formation": null,
-      "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
+      "role_resolution": "Observed installed authored Felling-Site; ordinary formation selection does not define this graph.",
       "related_scope_ids": [
         "area-family/felling_site/Overworld.3.5.0"
-      ]
+      ],
+      "observed_seed": 704860946,
+      "observed_role": "Installed Felling-Site; bounded authored dry-ground presentation",
+      "observed_source_revision": "Working-tree Felling dry-ground slice; exact reviewed commit pending root publication",
+      "bounded_slices": [
+        {
+          "id": "felling-authored-dry-ground",
+          "status": "observed",
+          "integration": "integrated",
+          "materials": [
+            "approved Stump ground frames0\u20133"
+          ],
+          "admitted_cells": 1638,
+          "excluded_cells": {
+            "solid_or_blocking_water": 355,
+            "ritual_landmarks": 7
+          },
+          "record": "Docs/GRAPHICS-FELLING-GROUND.md",
+          "limits": [
+            "Only authored open dry cells; solid/water/ritual terrain keeps separate meaning/fallback.",
+            "1638 is the native source-cell integration gate, not a claim every cell was seen in actual gameplay.",
+            "Actual viewport, underfoot reader, walking and fresh Continue observed; no whole-area/population/shadow/package acceptance.",
+            "Clean71s Editor observation recorded; matched performance comparison and spike attribution pending."
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/flat-before.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/flat-after.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-examine.png"
+        ],
+        "route_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-walk.png"
+        ],
+        "reload_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/fresh-continue.png",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/after-save/Quick.json"
+        ],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-red.xml",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/authority-red.xml",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/regression-green.xml"
+        ],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/Profiles/manual-20261101-205808-799.json",
+          "Docs/Verification/GraphicsExecution/Profiles/README.md"
+        ],
+        "independent_reviews": [
+          "Docs/GRAPHICS-FELLING-GROUND.md"
+        ]
+      },
+      "observations": {
+        "baseline": {
+          "turn": 290,
+          "player": [
+            40,
+            12
+          ],
+          "hp": 40
+        },
+        "ordinary_walk": [
+          [
+            40,
+            6
+          ],
+          [
+            40,
+            13
+          ]
+        ],
+        "saved": {
+          "turn": 420,
+          "player": [
+            40,
+            13
+          ],
+          "hp": 40,
+          "timestamp_utc": "2026-11-01T20:50:21.0926450Z"
+        },
+        "fresh_continue": {
+          "player": [
+            40,
+            13
+          ],
+          "hp": 40
+        },
+        "native_regression": {
+          "passed": 163,
+          "failed": 0,
+          "skipped": 0,
+          "inconclusive": 0,
+          "receipt": "Docs/Verification/GraphicsExecution/FellingBaseline/regression-green.xml"
+        },
+        "review": {
+          "new_P1_P2_findings": 0,
+          "bounds": "Root-reported independent source/visual review of this dry-ground slice; full-area review remains open."
+        }
+      },
+      "actual_zoom_resolution": "1280x800 isolated flat Editor; ordinary viewpoint captures, not whole-chunk acceptance",
+      "reviewer": "Codex root actual review plus independent source/visual review (reported to matrix owner)",
+      "named_defects": [
+        {
+          "id": "FELLING-GROUND-01",
+          "status": "resolved-bounded",
+          "description": "Authored open dry floor remained glyph-backed;1638 canonical dry cells now reuse approved Stump floor views."
+        },
+        {
+          "id": "FELLING-GROUND-02",
+          "status": "open",
+          "description": "355 solid/blocking-water cells and7 ritual landmark cells require separate material/identity work; no false passable-floor reuse."
+        },
+        {
+          "id": "FELLING-COMPOSITION-01",
+          "status": "open",
+          "description": "Sparse center and remaining whole-scene scale/material relationship need multi-view composition review."
+        },
+        {
+          "id": "FELLING-SHADOW-01",
+          "status": "open",
+          "description": "Broader vertical-form grounding and subtle shadows have not been accepted."
+        }
+      ],
+      "source_corrections": [
+        "1645 open dry source positions minus7 ritual terrain owners gives1638 eligible floor cells.",
+        "Reserve the canonical Felling address before generic Stump-site admission so changed POI authority cannot escape the dedicated checks.",
+        "Legacy-presenter preview/route assertions failed in flat mode; preserved preview-route-report.json is failed evidence, not a successful whole-route audit.",
+        "A profile/Continue attempt straddled a domain reload with empty active-zone counters; discard that attempt for acceptance and relaunch before measuring."
+      ],
+      "limitations": [
+        "Actual observation uses seed704860946, not the planned canonical seed64.",
+        "Coverage remains fallback for the area; dry-ground observation does not accept other materials, states or ending roles.",
+        "The preserved legacy preview/route report contains failed assertions; the actual saved flat checkpoint/walk/Continue evidence is separately scoped.",
+        "No pixel-identical whole-scene reload claim, full-area polish, population or shadow acceptance.",
+        "Matched performance comparison, unexplained spikes, current packages and physical Deck are pending."
+      ],
+      "source_hashes_at_recording": {
+        "Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs": "9ea9f45ca296cc650c7c3d115b954dceec3a6a7dced07af6dd5a228b209c2c62",
+        "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "531582ccf2f8395fdd64987bcc160750266e02c82da3efa707090958226fbf6e"
+      }
     },
     {
       "id": "surface/Overworld.4.5.0",
@@ -10401,7 +10544,7 @@
           "record": "Docs/GRAPHICS-SPREAD-FIELD-ROWS.md",
           "limits": [
             "Other visible glyphs remain",
-            "60\u201390s matched profile and package execution pending",
+            "81s Editor observation recorded; matched comparison, spike attribution and package execution pending",
             "Not whole-area polish"
           ]
         }
@@ -10429,7 +10572,10 @@
           "Docs/Verification/GraphicsExecution/field-optional-red.xml",
           "Docs/Verification/GraphicsExecution/field-regression-green.xml"
         ],
-        "profiles": [],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/Profiles/manual-20261101-210043-381.json",
+          "Docs/Verification/GraphicsExecution/Profiles/README.md"
+        ],
         "independent_reviews": [
           "Docs/GRAPHICS-SPREAD-FIELD-ROWS.md"
         ]
@@ -16243,20 +16389,163 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/FellingSiteBuilder.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve concrete instances and current evidence before advancing any acceptance axis.",
+      "next_action": "Compare matched pre-change performance and attribute spikes; review remaining solid/water/ritual materials, sparse composition and shadow applicability; package reviewed source.",
       "legacy_inventory_pointer": "/other_area_families/2",
       "instance_addresses": [
         "Overworld.3.5.0"
       ],
-      "address_resolution": "registered finite address list; runtime graph/state audit pending",
-      "scope_note": "Authored circle, participants and ending states."
+      "address_resolution": "Registered site observed at seed704860946; dry-ground slice only, remaining scene/ending states unaudited.",
+      "scope_note": "Authored circle, participants and ending states.",
+      "observed_seed": 704860946,
+      "observed_role": "Installed Felling-Site; bounded authored dry-ground presentation",
+      "observed_source_revision": "Working-tree Felling dry-ground slice; exact reviewed commit pending root publication",
+      "bounded_slices": [
+        {
+          "id": "felling-authored-dry-ground",
+          "status": "observed",
+          "integration": "integrated",
+          "materials": [
+            "approved Stump ground frames0\u20133"
+          ],
+          "admitted_cells": 1638,
+          "excluded_cells": {
+            "solid_or_blocking_water": 355,
+            "ritual_landmarks": 7
+          },
+          "record": "Docs/GRAPHICS-FELLING-GROUND.md",
+          "limits": [
+            "Only authored open dry cells; solid/water/ritual terrain keeps separate meaning/fallback.",
+            "1638 is the native source-cell integration gate, not a claim every cell was seen in actual gameplay.",
+            "Actual viewport, underfoot reader, walking and fresh Continue observed; no whole-area/population/shadow/package acceptance.",
+            "Clean71s Editor observation recorded; matched performance comparison and spike attribution pending."
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/flat-before.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/flat-after.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-examine.png"
+        ],
+        "route_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-walk.png"
+        ],
+        "reload_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/fresh-continue.png",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/after-save/Quick.json"
+        ],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-red.xml",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/authority-red.xml",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/regression-green.xml"
+        ],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/Profiles/manual-20261101-205808-799.json",
+          "Docs/Verification/GraphicsExecution/Profiles/README.md"
+        ],
+        "independent_reviews": [
+          "Docs/GRAPHICS-FELLING-GROUND.md"
+        ]
+      },
+      "observations": {
+        "baseline": {
+          "turn": 290,
+          "player": [
+            40,
+            12
+          ],
+          "hp": 40
+        },
+        "ordinary_walk": [
+          [
+            40,
+            6
+          ],
+          [
+            40,
+            13
+          ]
+        ],
+        "saved": {
+          "turn": 420,
+          "player": [
+            40,
+            13
+          ],
+          "hp": 40,
+          "timestamp_utc": "2026-11-01T20:50:21.0926450Z"
+        },
+        "fresh_continue": {
+          "player": [
+            40,
+            13
+          ],
+          "hp": 40
+        },
+        "native_regression": {
+          "passed": 163,
+          "failed": 0,
+          "skipped": 0,
+          "inconclusive": 0,
+          "receipt": "Docs/Verification/GraphicsExecution/FellingBaseline/regression-green.xml"
+        },
+        "review": {
+          "new_P1_P2_findings": 0,
+          "bounds": "Root-reported independent source/visual review of this dry-ground slice; full-area review remains open."
+        }
+      },
+      "actual_zoom_resolution": "1280x800 isolated flat Editor; ordinary viewpoint captures, not whole-chunk acceptance",
+      "reviewer": "Codex root actual review plus independent source/visual review (reported to matrix owner)",
+      "named_defects": [
+        {
+          "id": "FELLING-GROUND-01",
+          "status": "resolved-bounded",
+          "description": "Authored open dry floor remained glyph-backed;1638 canonical dry cells now reuse approved Stump floor views."
+        },
+        {
+          "id": "FELLING-GROUND-02",
+          "status": "open",
+          "description": "355 solid/blocking-water cells and7 ritual landmark cells require separate material/identity work; no false passable-floor reuse."
+        },
+        {
+          "id": "FELLING-COMPOSITION-01",
+          "status": "open",
+          "description": "Sparse center and remaining whole-scene scale/material relationship need multi-view composition review."
+        },
+        {
+          "id": "FELLING-SHADOW-01",
+          "status": "open",
+          "description": "Broader vertical-form grounding and subtle shadows have not been accepted."
+        }
+      ],
+      "source_corrections": [
+        "1645 open dry source positions minus7 ritual terrain owners gives1638 eligible floor cells.",
+        "Reserve the canonical Felling address before generic Stump-site admission so changed POI authority cannot escape the dedicated checks.",
+        "Legacy-presenter preview/route assertions failed in flat mode; preserved preview-route-report.json is failed evidence, not a successful whole-route audit.",
+        "A profile/Continue attempt straddled a domain reload with empty active-zone counters; discard that attempt for acceptance and relaunch before measuring."
+      ],
+      "limitations": [
+        "Actual observation uses seed704860946, not the planned canonical seed64.",
+        "Coverage remains fallback for the area; dry-ground observation does not accept other materials, states or ending roles.",
+        "The preserved legacy preview/route report contains failed assertions; the actual saved flat checkpoint/walk/Continue evidence is separately scoped.",
+        "No pixel-identical whole-scene reload claim, full-area polish, population or shadow acceptance.",
+        "Matched performance comparison, unexplained spikes, current packages and physical Deck are pending."
+      ],
+      "source_hashes_at_recording": {
+        "Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs": "9ea9f45ca296cc650c7c3d115b954dceec3a6a7dced07af6dd5a228b209c2c62",
+        "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "531582ccf2f8395fdd64987bcc160750266e02c82da3efa707090958226fbf6e"
+      }
     },
     {
       "id": "area-family/felling_site/Overworld.3.5.0",
@@ -16269,16 +16558,159 @@
         "Assets/Scripts/Gameplay/World/Generation/Builders/FellingSiteBuilder.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
         "delivery": "not-audited"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve current registration/admission; capture actual whole-scene route and critical owner states.",
+      "next_action": "Compare matched pre-change performance and attribute spikes; review remaining solid/water/ritual materials, sparse composition and shadow applicability; package reviewed source.",
       "parent_id": "area-family/felling_site",
-      "scope_note": "Authored circle, participants and ending states."
+      "scope_note": "Authored circle, participants and ending states.",
+      "observed_seed": 704860946,
+      "observed_role": "Installed Felling-Site; bounded authored dry-ground presentation",
+      "observed_source_revision": "Working-tree Felling dry-ground slice; exact reviewed commit pending root publication",
+      "bounded_slices": [
+        {
+          "id": "felling-authored-dry-ground",
+          "status": "observed",
+          "integration": "integrated",
+          "materials": [
+            "approved Stump ground frames0\u20133"
+          ],
+          "admitted_cells": 1638,
+          "excluded_cells": {
+            "solid_or_blocking_water": 355,
+            "ritual_landmarks": 7
+          },
+          "record": "Docs/GRAPHICS-FELLING-GROUND.md",
+          "limits": [
+            "Only authored open dry cells; solid/water/ritual terrain keeps separate meaning/fallback.",
+            "1638 is the native source-cell integration gate, not a claim every cell was seen in actual gameplay.",
+            "Actual viewport, underfoot reader, walking and fresh Continue observed; no whole-area/population/shadow/package acceptance.",
+            "Clean71s Editor observation recorded; matched performance comparison and spike attribution pending."
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/flat-before.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/flat-after.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-examine.png"
+        ],
+        "route_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-walk.png"
+        ],
+        "reload_checks": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/fresh-continue.png",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/after-save/Quick.json"
+        ],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/FellingBaseline/ground-red.xml",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/authority-red.xml",
+          "Docs/Verification/GraphicsExecution/FellingBaseline/regression-green.xml"
+        ],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/Profiles/manual-20261101-205808-799.json",
+          "Docs/Verification/GraphicsExecution/Profiles/README.md"
+        ],
+        "independent_reviews": [
+          "Docs/GRAPHICS-FELLING-GROUND.md"
+        ]
+      },
+      "observations": {
+        "baseline": {
+          "turn": 290,
+          "player": [
+            40,
+            12
+          ],
+          "hp": 40
+        },
+        "ordinary_walk": [
+          [
+            40,
+            6
+          ],
+          [
+            40,
+            13
+          ]
+        ],
+        "saved": {
+          "turn": 420,
+          "player": [
+            40,
+            13
+          ],
+          "hp": 40,
+          "timestamp_utc": "2026-11-01T20:50:21.0926450Z"
+        },
+        "fresh_continue": {
+          "player": [
+            40,
+            13
+          ],
+          "hp": 40
+        },
+        "native_regression": {
+          "passed": 163,
+          "failed": 0,
+          "skipped": 0,
+          "inconclusive": 0,
+          "receipt": "Docs/Verification/GraphicsExecution/FellingBaseline/regression-green.xml"
+        },
+        "review": {
+          "new_P1_P2_findings": 0,
+          "bounds": "Root-reported independent source/visual review of this dry-ground slice; full-area review remains open."
+        }
+      },
+      "actual_zoom_resolution": "1280x800 isolated flat Editor; ordinary viewpoint captures, not whole-chunk acceptance",
+      "reviewer": "Codex root actual review plus independent source/visual review (reported to matrix owner)",
+      "named_defects": [
+        {
+          "id": "FELLING-GROUND-01",
+          "status": "resolved-bounded",
+          "description": "Authored open dry floor remained glyph-backed;1638 canonical dry cells now reuse approved Stump floor views."
+        },
+        {
+          "id": "FELLING-GROUND-02",
+          "status": "open",
+          "description": "355 solid/blocking-water cells and7 ritual landmark cells require separate material/identity work; no false passable-floor reuse."
+        },
+        {
+          "id": "FELLING-COMPOSITION-01",
+          "status": "open",
+          "description": "Sparse center and remaining whole-scene scale/material relationship need multi-view composition review."
+        },
+        {
+          "id": "FELLING-SHADOW-01",
+          "status": "open",
+          "description": "Broader vertical-form grounding and subtle shadows have not been accepted."
+        }
+      ],
+      "source_corrections": [
+        "1645 open dry source positions minus7 ritual terrain owners gives1638 eligible floor cells.",
+        "Reserve the canonical Felling address before generic Stump-site admission so changed POI authority cannot escape the dedicated checks.",
+        "Legacy-presenter preview/route assertions failed in flat mode; preserved preview-route-report.json is failed evidence, not a successful whole-route audit.",
+        "A profile/Continue attempt straddled a domain reload with empty active-zone counters; discard that attempt for acceptance and relaunch before measuring."
+      ],
+      "limitations": [
+        "Actual observation uses seed704860946, not the planned canonical seed64.",
+        "Coverage remains fallback for the area; dry-ground observation does not accept other materials, states or ending roles.",
+        "The preserved legacy preview/route report contains failed assertions; the actual saved flat checkpoint/walk/Continue evidence is separately scoped.",
+        "No pixel-identical whole-scene reload claim, full-area polish, population or shadow acceptance.",
+        "Matched performance comparison, unexplained spikes, current packages and physical Deck are pending."
+      ],
+      "source_hashes_at_recording": {
+        "Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs": "9ea9f45ca296cc650c7c3d115b954dceec3a6a7dced07af6dd5a228b209c2c62",
+        "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs": "531582ccf2f8395fdd64987bcc160750266e02c82da3efa707090958226fbf6e"
+      }
     },
     {
       "id": "area-family/morrowfast_special",

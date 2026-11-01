@@ -117,6 +117,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelBeatingMaterialsCatalog _beatingSiteArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsSiteArt;
         private FlatPixelStumpMaterialsCatalog _stumpSiteArt;
+        private FlatPixelStumpMaterialsCatalog _fellingGroundArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsMaterialsArt;
         private FlatPixelOverwritMaterialsCatalog _overwritMaterialsArt;
         private FlatPixelStumpMaterialsCatalog _stumpMaterialsArt;
@@ -2007,6 +2008,18 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelStumpMaterialsCatalog StumpMaterialsArtFor(Zone zone)
         {
+            if (FlatPixelStumpMaterialsCatalog.IsSupportedFellingZone(zone))
+            {
+                if (_fellingGroundArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _fellingGroundArt = new FlatPixelStumpMaterialsCatalog(_glyphFallback).AdmittingFelling();
+                }
+                return _fellingGroundArt;
+            }
+            // The reserved authored site must never escape into generic site rules
+            // after its POI, source revision or current graph loses authority.
+            if (zone?.ZoneID == FellingSiteBuilder.ZoneID) return null;
             if (!FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone))
             {
                 // Ordinary special sites of this biome use a separate, identically ruled instance.
@@ -2446,6 +2459,8 @@ namespace CavesOfOoo.Rendering
             _overwritMaterialsArt?.Dispose();
             _stumpMaterialsArt?.Dispose();
             _stumpSiteArt?.Dispose();
+            _fellingGroundArt?.Dispose();
+            _fellingGroundArt = null;
             _stumpSiteArt = null;
             _shallowCavesArt?.Dispose();
             _limestoneCavesArt?.Dispose();
