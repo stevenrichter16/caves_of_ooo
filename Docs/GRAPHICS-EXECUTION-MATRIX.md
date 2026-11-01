@@ -202,3 +202,9 @@ occupancy/reader verification and exact639200pixel saved/fresh comparison. Popul
 and whole-area acceptance do not advance. Oven47,21 remains a named ASCII defect;
 earnedWorkshopBaseline3960 is the next material slice. R11 and package lag remain
 explicit in GRAPHICS-MARROWSTYE-SHADOW.md.
+
+## 2026-11-01 work-fixture continuity
+
+Marrowstye and shared furniture rows separately record actual ordinary Oven observation
+and integrated/native-tested MillStone.147nativepasses and exact4040reload support
+bounded body identity; no whole-family, population or performance acceptance.

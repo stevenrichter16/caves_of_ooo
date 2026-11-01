@@ -6,13 +6,13 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Rendering
 {
-    /// <summary>Exact ordinary bed/chair and market-counter bodies shared across current world graphs.
+    /// <summary>Exact ordinary bed/chair, neutral work-fixture and market-counter bodies shared across current world graphs.
     /// Borrows approved textures, owns only cached views. Callers retain
     /// placement, selection and document/disclosure authority.</summary>
     public sealed class FlatPixelSharedFurnitureCatalog : IDisposable
     {
         public const string MarketStallResourcePath = "Sprites/Environment/market_stall";
-        readonly Tile bed, chair, marketStall;
+        readonly Tile bed, chair, marketStall, oven, millStone;
         bool disposed;
 
         public FlatPixelSharedFurnitureCatalog()
@@ -31,13 +31,18 @@ namespace CavesOfOoo.Rendering
         {
             bed = Build(eastKitchen18, 2, "bed");
             chair = Build(eastKitchen18, 3, "chair");
+            oven = Build(eastKitchen18, 1, "oven");
+            millStone = Build(eastKitchen18, 17, "mill stone");
             if (marketStall16 != null && marketStall16.width == 16 && marketStall16.height == 16)
                 marketStall = BuildFrame(marketStall16, new Rect(0, 0, 16, 16), "market stall");
         }
 
         /// <summary>Identity only, not permission to reveal, render or use a body.</summary>
         public static bool HasKnownRole(Entity owner)
-            => owner?.BlueprintName == "Bed" || owner?.BlueprintName == "Chair" || owner?.BlueprintName == "MarketStall";
+            => owner?.BlueprintName == "Bed" || owner?.BlueprintName == "Chair" || owner?.BlueprintName == "MarketStall"
+                || owner?.BlueprintName == "MillStone"
+                // Keep authored cooking and repair ovens on their existing stateful paths.
+                || owner?.BlueprintName == "Oven" && !owner.HasPart<CampfirePart>() && !owner.HasPart<OvenSitePart>();
 
         /// <summary>Pure neutral body lookup. Owner, Occupied and Occupant never
         /// select artwork. In particular, do not dispatch IdleQuery: it reserves
@@ -48,6 +53,12 @@ namespace CavesOfOoo.Rendering
             if (disposed || !HasKnownRole(owner)
                 || owner.HasTag("Player") || owner.HasTag("Creature") || owner.HasTag("Item")
                 || owner.HasTag("Terrain") || owner.HasTag("Crop") || ForeignMeaning(owner)) return false;
+            if (owner.BlueprintName == "Oven" || owner.BlueprintName == "MillStone")
+            {
+                if (!OrdinaryWorkFixture(owner)) return false;
+                tile = owner.BlueprintName == "Oven" ? oven : millStone;
+                return tile != null;
+            }
             bool counter = owner.BlueprintName == "MarketStall";
             if (counter ? !owner.HasTag("Solid") : !owner.HasTag("Furniture")) return false;
             var render = Owned<RenderPart>(owner); var physics = Owned<PhysicsPart>(owner);
@@ -71,6 +82,29 @@ namespace CavesOfOoo.Rendering
             }
             else if (render.RenderString == "h" && Owned<ChairPart>(owner) != null && !owner.HasPart<BedPart>()) tile = chair;
             return tile != null;
+        }
+
+        // Neutral physical bodies, never a promise of cooking/processing service.
+        // MillStone's real blueprint is solid via Physics but has no Solid tag.
+        static bool OrdinaryWorkFixture(Entity owner)
+        {
+            var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
+            bool isOven = owner.BlueprintName == "Oven";
+            if (r == null || !r.Visible || r.RenderLayer != 1 || p == null || !p.Solid || p.Takeable
+                || p.InInventory != null || p.Equipped != null || Owned<ExaminablePart>(owner) == null
+                || r.RenderString != (isOven ? "#" : "O") || r.ColorString != (isOven ? "&K" : "&w")
+                || !string.IsNullOrEmpty(r.BackgroundColor) || !string.IsNullOrEmpty(r.VisualID)
+                || !string.IsNullOrEmpty(r.VisualVariant) || !string.IsNullOrEmpty(r.GlyphVariants)
+                || !string.IsNullOrEmpty(r.DetailColor) || !string.IsNullOrEmpty(r.TileColor)
+                || !SingleCell(owner) || !OptionalOwned<StatusEffectsPart>(owner)
+                || owner.HasPart<BedPart>() || owner.HasPart<ChairPart>() || owner.HasPart<InventoryPart>()
+                || owner.HasPart<OvenSitePart>()) return false;
+            if (owner.HasPart<StackerPart>())
+            { var stack = Owned<StackerPart>(owner); if (stack == null || stack.StackCount <= 0) return false; }
+            if (isOven) return owner.HasTag("Solid") && !owner.HasPart<HandlingPart>();
+            var handling = Owned<HandlingPart>(owner);
+            return handling != null && !handling.Carryable && !handling.Throwable
+                && handling.Weight == 150 && handling.BulkClass == "Massive" && p.Weight == 150;
         }
 
         static bool ForeignMeaning(Entity owner)
@@ -119,7 +153,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrame(bed); DestroyFrame(chair); DestroyFrame(marketStall);
+            DestroyFrame(bed); DestroyFrame(chair); DestroyFrame(marketStall); DestroyFrame(oven); DestroyFrame(millStone);
         }
         static void DestroyFrame(Tile tile)
         { if (tile == null) return; DestroyOwned(tile.sprite); DestroyOwned(tile); }

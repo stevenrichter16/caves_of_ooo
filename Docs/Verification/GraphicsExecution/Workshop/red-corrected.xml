@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Failed(Child)" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 22:18:23Z" end-time="2026-11-01 22:18:26Z" duration="3.204148">
+  <test-suite type="TestSuite" id="43375" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35320" result="Failed" site="Child" start-time="2026-11-01 22:18:23Z" end-time="2026-11-01 22:18:26Z" duration="3.204148" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43347" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35320" result="Failed" site="Child" start-time="2026-11-01 22:18:23Z" end-time="2026-11-01 22:18:26Z" duration="3.120533" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43348" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35320" result="Failed" site="Child" start-time="2026-11-01 22:18:23Z" end-time="2026-11-01 22:18:26Z" duration="3.055821" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43349" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35320" result="Failed" site="Child" start-time="2026-11-01 22:18:23Z" end-time="2026-11-01 22:18:26Z" duration="2.901109" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2035" name="FlatPixelSharedWorkFixtureTests" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:26Z" duration="2.270910" total="30" passed="0" failed="30" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="2061" name="AlteredIdentityCannotBorrowNeutralBody" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:25Z" duration="0.798205" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2045" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;custody&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="987108257" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.107550" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2046" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;custody&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1982463973" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.045119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2047" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;hidden&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1637507651" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.044362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2048" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;hidden&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="2058488621" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.043276" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2049" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;glyph&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="890306228" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.042069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2050" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;glyph&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="453125612" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.043790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2051" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;visual&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="588045684" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.042658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2052" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;visual&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="899885985" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.044120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2053" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;layer&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1121957647" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.046389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2054" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;layer&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="463472897" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.044304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2055" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;nonSolid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;nonSolid&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1893569721" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.044646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2056" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;nonSolid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;nonSolid&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1111247636" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:24Z" duration="0.044451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2057" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;service&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="581392121" result="Failed" start-time="2026-11-01 22:18:24Z" end-time="2026-11-01 22:18:25Z" duration="0.044421" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2058" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;service&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="237458449" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.043924" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2059" name="AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;foreignPart&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;Oven&quot;,&quot;foreignPart&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1527368348" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.045399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2060" name="AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;foreignPart&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody(&quot;MillStone&quot;,&quot;foreignPart&quot;)" methodname="AlteredIdentityCannotBorrowNeutralBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1989348075" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.044849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  positive precondition
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.AlteredIdentityCannotBorrowNeutralBody (System.String name, System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2038" name="CurrentWorldAndReaderShareNeutralBodyOnRealGround" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.CurrentWorldAndReaderShareNeutralBodyOnRealGround" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.360986" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2036" name="CurrentWorldAndReaderShareNeutralBodyOnRealGround(&quot;Oven&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.CurrentWorldAndReaderShareNeutralBodyOnRealGround(&quot;Oven&quot;)" methodname="CurrentWorldAndReaderShareNeutralBodyOnRealGround" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1803714620" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.180777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.CurrentWorldAndReaderShareNeutralBodyOnRealGround (System.String name) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2037" name="CurrentWorldAndReaderShareNeutralBodyOnRealGround(&quot;MillStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.CurrentWorldAndReaderShareNeutralBodyOnRealGround(&quot;MillStone&quot;)" methodname="CurrentWorldAndReaderShareNeutralBodyOnRealGround" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="888777258" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.134768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.CurrentWorldAndReaderShareNeutralBodyOnRealGround (System.String name) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2067" name="MillHandlingChangesWithdrawBody" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.418314" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2063" name="MillHandlingChangesWithdrawBody(&quot;throw&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody(&quot;throw&quot;)" methodname="MillHandlingChangesWithdrawBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="311736964" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.232493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody (System.String change) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2064" name="MillHandlingChangesWithdrawBody(&quot;weight&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody(&quot;weight&quot;)" methodname="MillHandlingChangesWithdrawBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="608339756" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.050123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody (System.String change) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2065" name="MillHandlingChangesWithdrawBody(&quot;bulk&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody(&quot;bulk&quot;)" methodname="MillHandlingChangesWithdrawBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1555444035" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.043160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody (System.String change) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2066" name="MillHandlingChangesWithdrawBody(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody(&quot;foreign&quot;)" methodname="MillHandlingChangesWithdrawBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="633316407" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.042463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MillHandlingChangesWithdrawBody (System.String change) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:135
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2062" name="MissingSharedArtCannotBorrowOldEastButAuthoredCookingOvenSurvives" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MissingSharedArtCannotBorrowOldEastButAuthoredCookingOvenSurvives" methodname="MissingSharedArtCannotBorrowOldEastButAuthoredCookingOvenSurvives" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="2092822153" result="Failed" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:25Z" duration="0.063320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MissingSharedArtCannotBorrowOldEastButAuthoredCookingOvenSurvives () [0x00140] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:125
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2070" name="MulticellDoesNotStretchSingleBody" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MulticellDoesNotStretchSingleBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 22:18:25Z" end-time="2026-11-01 22:18:26Z" duration="0.131609" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2068" name="MulticellDoesNotStretchSingleBody(&quot;Oven&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MulticellDoesNotStretchSingleBody(&quot;Oven&quot;)" methodname="MulticellDoesNotStretchSingleBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1772696350" result="Failed" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.045979" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MulticellDoesNotStretchSingleBody (System.String name) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2069" name="MulticellDoesNotStretchSingleBody(&quot;MillStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MulticellDoesNotStretchSingleBody(&quot;MillStone&quot;)" methodname="MulticellDoesNotStretchSingleBody" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1942865363" result="Failed" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.043956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.MulticellDoesNotStretchSingleBody (System.String name) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:146
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2071" name="RepairOvenAndPortableMillRemainSeparate" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.RepairOvenAndPortableMillRemainSeparate" methodname="RepairOvenAndPortableMillRemainSeparate" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="2061736326" result="Failed" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.042684" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.RepairOvenAndPortableMillRemainSeparate () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:156
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2044" name="ResourceFailureAndDisposalLeaveBorrowedArtIntact" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.ResourceFailureAndDisposalLeaveBorrowedArtIntact" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.127543" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2042" name="ResourceFailureAndDisposalLeaveBorrowedArtIntact(&quot;Oven&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.ResourceFailureAndDisposalLeaveBorrowedArtIntact(&quot;Oven&quot;)" methodname="ResourceFailureAndDisposalLeaveBorrowedArtIntact" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="243577379" result="Failed" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.042243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.ResourceFailureAndDisposalLeaveBorrowedArtIntact (System.String name) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2043" name="ResourceFailureAndDisposalLeaveBorrowedArtIntact(&quot;MillStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.ResourceFailureAndDisposalLeaveBorrowedArtIntact(&quot;MillStone&quot;)" methodname="ResourceFailureAndDisposalLeaveBorrowedArtIntact" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1399192576" result="Failed" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.042114" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.ResourceFailureAndDisposalLeaveBorrowedArtIntact (System.String name) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2041" name="SelectedAndCurrentPlacementRemainsAuthority" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.SelectedAndCurrentPlacementRemainsAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.316234" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2039" name="SelectedAndCurrentPlacementRemainsAuthority(&quot;Oven&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.SelectedAndCurrentPlacementRemainsAuthority(&quot;Oven&quot;)" methodname="SelectedAndCurrentPlacementRemainsAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1858604615" result="Failed" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.172343" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <east-kitchen (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.Native (UnityEngine.Tilemaps.Tile tile, System.String name) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.SelectedAndCurrentPlacementRemainsAuthority (System.String name) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:59
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2040" name="SelectedAndCurrentPlacementRemainsAuthority(&quot;MillStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.SelectedAndCurrentPlacementRemainsAuthority(&quot;MillStone&quot;)" methodname="SelectedAndCurrentPlacementRemainsAuthority" classname="CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests" runstate="Runnable" seed="1792451096" result="Failed" start-time="2026-11-01 22:18:26Z" end-time="2026-11-01 22:18:26Z" duration="0.103840" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <east-kitchen (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.Native (UnityEngine.Tilemaps.Tile tile, System.String name) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:34
+at CavesOfOoo.Tests.FlatPixelSharedWorkFixtureTests.SelectedAndCurrentPlacementRemainsAuthority (System.String name) [0x00047] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSharedWorkFixtureTests.cs:59
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
