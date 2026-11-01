@@ -5,15 +5,25 @@
   - EC3: the Choir sells nothing. A tendril gives its shelf for blood (`OfferToChoir`); its parts, art and renewal are kept.
   - EC4: Tent-Right never sells water (pinned).
   - EC5: salt is priced by distance from the salt pans (0.5 to 2.0), so carrying it inland pays.
+  - EC6: who takes what (`Tender`): the Choir nothing, the Concord drams everywhere, Tent-Right and catacomb folk barter, and anyone in the deep wasteland barters (Beating cells at least 3 from another biome, 52 of 107).
+    - The barter screen (`TradeUI` deal mode, `[D]` at dram traders): mark units on both sides, `[S]` balances with salt, `[O]` offers in one transaction (`Barter.TryDeal`).
+    - Barter traders are restocked with salt, not drams.
+  - EC7: the Concord's account (`ConcordAccount`).
+    - A Factor lends 20 plus half your standing (20% fee, due in 3 days); any Concord post takes repayment.
+    - Paying on time after a day carried earns +5 standing; a missed day is found on travel (`EconomyUpkeep`) and costs 25.
+    - The greeting reads the account.
 - **Found on the way:**
-  - the audit benches depended on leaked loadout factories;
-  - a save fixture raced background autosaves;
-  - three inn pins had stale fixtures (all fixed).
+  - EC3 had left the Choir's five shrine keepers with unreachable shelves; they now offer.
+  - A deal's value was judged twice, so a mutant survived; it is now judged once, at the offer.
+  - The trade screen's divider showed through the detail line.
+  - Barter rows printed `$` (found live).
+- **Verified live:** `EconomyBarterBench` passes 21 of 21 diag cells over MCP; `BarterScreenFixture` was captured in the Game view.
+- **MCP:** the editor's bridge reconnects after `Assets > Refresh` (via the computer-use menu) with the keeper running.
 - **Next:**
-  - EC6: barter and salt as money in the deep wasteland (sweep `TradeUI` first);
-  - EC7: Concord credit at a Factor;
   - E5: `PalimpsestEcho`, a superseded-world trader;
-  - a commit-time record for transactional fees.
+  - buying on account at a Concord trader;
+  - a commit-time record for transactional fees;
+  - Lumen-hours when catacomb traders exist.
 - Four pre-existing failures on main are flagged as a separate task.
 
 **Current chunk-activity checkpoint — 2026-11-01:** Waysites and chunk density are in (see `Docs/CHUNK-ACTIVITY.md`).
