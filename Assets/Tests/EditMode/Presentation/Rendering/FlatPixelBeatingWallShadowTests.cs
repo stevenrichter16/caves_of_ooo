@@ -256,7 +256,7 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        sealed class Paint : IDisposable
+        internal sealed class Paint : IDisposable
         {
             readonly HotbarSaveFixture saved;
             readonly GameObject root;

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Failed(Child)" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 21:58:40Z" end-time="2026-11-01 21:58:44Z" duration="3.8433691">
+  <test-suite type="TestSuite" id="43337" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35289" result="Failed" site="Child" start-time="2026-11-01 21:58:40Z" end-time="2026-11-01 21:58:44Z" duration="3.843369" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43309" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35289" result="Failed" site="Child" start-time="2026-11-01 21:58:40Z" end-time="2026-11-01 21:58:44Z" duration="3.769560" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43310" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35289" result="Failed" site="Child" start-time="2026-11-01 21:58:40Z" end-time="2026-11-01 21:58:44Z" duration="3.713355" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43311" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35289" result="Failed" site="Child" start-time="2026-11-01 21:58:40Z" end-time="2026-11-01 21:58:44Z" duration="3.658289" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32297" name="FlatPixelMarrowstyeShadowTests" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-11-01 21:58:41Z" end-time="2026-11-01 21:58:44Z" duration="3.371806" total="22" passed="1" failed="21" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32302" name="CanonicalDryReceiversGetOnlyShortSouthShade" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 21:58:41Z" end-time="2026-11-01 21:58:42Z" duration="0.992048" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32298" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Floor&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="2063614464" result="Failed" start-time="2026-11-01 21:58:41Z" end-time="2026-11-01 21:58:41Z" duration="0.658389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32299" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;StoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;StoneFloor&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="211540136" result="Failed" start-time="2026-11-01 21:58:41Z" end-time="2026-11-01 21:58:41Z" duration="0.104006" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32300" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;RoadStone&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="798095707" result="Failed" start-time="2026-11-01 21:58:41Z" end-time="2026-11-01 21:58:42Z" duration="0.102405" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32301" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Grass&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1646499564" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.103406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32315" name="DisclosureAndLiveStateRemoveOnlyShade" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.750154" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32308" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;source-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;source-hidden&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="2083678289" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.102540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32309" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;source-memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;source-memory&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1982614753" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.102085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32310" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-hidden&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="2058010914" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.101031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32311" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-memory&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="144086383" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.099278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32312" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;oil&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="438289195" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.102906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32313" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;changed&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1830457100" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.098819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32314" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;heat&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1832517255" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.099230" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32316" name="HiddenOccupantsCannotAffectTheDisclosedShadow" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow" methodname="HiddenOccupantsCannotAffectTheDisclosedShadow" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1412773021" result="Failed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:42Z" duration="0.101907" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:77
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32323" name="MissingReceiverAtlasCannotBorrowTheValidWallAtlas" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas" methodname="MissingReceiverAtlasCannotBorrowTheValidWallAtlas" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1217667357" result="Passed" start-time="2026-11-01 21:58:42Z" end-time="2026-11-01 21:58:43Z" duration="0.105629" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32307" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.441295" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32303" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Player&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="307710551" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.099024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32304" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Dagger&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1746766129" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.098774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32305" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WoodenDoor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WoodenDoor&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="2102656834" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.098653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32306" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WaterPuddle&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="624977680" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.099425" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32322" name="WarmAuthorityRevocationClearsThePilot" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:44Z" duration="0.934988" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32317" name="WarmAuthorityRevocationClearsThePilot(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;profile&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="271671001" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.098751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32318" name="WarmAuthorityRevocationClearsThePilot(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;name&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="1162718680" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.101870" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32319" name="WarmAuthorityRevocationClearsThePilot(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;graph&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="869369077" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:43Z" duration="0.147283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32320" name="WarmAuthorityRevocationClearsThePilot(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;map&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="492172749" result="Failed" start-time="2026-11-01 21:58:43Z" end-time="2026-11-01 21:58:44Z" duration="0.259045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:84
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32321" name="WarmAuthorityRevocationClearsThePilot(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;alias&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests" runstate="Runnable" seed="2017848141" result="Failed" start-time="2026-11-01 21:58:44Z" end-time="2026-11-01 21:58:44Z" duration="0.282696" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Marrowstye native masonry has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelMarrowstyeShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMarrowstyeShadowTests.cs:84
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

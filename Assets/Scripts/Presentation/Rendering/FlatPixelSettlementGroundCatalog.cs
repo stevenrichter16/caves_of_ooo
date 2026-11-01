@@ -134,6 +134,13 @@ namespace CavesOfOoo.Rendering
         {
             var (wx, wy, _) = WorldMap.FromZoneID(zone.ZoneID);
             var biome = WorldLocationContext.For(zone).WorldMap.GetBiome(wx, wy);
+            return MaterialFor(floor, x, y, biome);
+        }
+
+        // Fixed-address shade admission can reuse actual optional views without
+        // adding zone-string parsing or resource loads to the wall paint path.
+        Tile MaterialFor(Entity floor, int x, int y, BiomeType biome)
+        {
             switch (floor.BlueprintName)
             {
                 case "Grass": return biome == BiomeType.Grovelands ? Pick(forest, VariantAt(x, y)) : Pick(lawn, VariantAt(x, y));
@@ -267,6 +274,39 @@ namespace CavesOfOoo.Rendering
             if (r.DisplayName == MorrowfastSceneRuntime.WallName) return wall ? r.DisplayName : null;
             if (r.DisplayName == MorrowfastSceneRuntime.GroundName || r.DisplayName == MorrowfastSceneRuntime.FloorName) return open ? r.DisplayName : null;
             return null;
+        }
+
+        /// <summary>Bounded Marrowstye masonry receiver: one disclosed empty dry
+        /// ground owner with a real cached native tile. Hidden occupants do not
+        /// influence shade; any disclosed object or state withdraws it.</summary>
+        internal bool CanReceiveMarrowstyeWallShadow(Zone zone, int x, int y)
+        {
+            if (disposed || zone?.ZoneID != MarrowstyeCompositionPlan.ZoneID) return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            if (map?.Tiles == null || map.POIs == null
+                || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
+                || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
+            var poi = map.GetPOI(12, 12);
+            if (poi?.Name != "Marrowstye" || !AreaCompositionScope.IsMarrowstyeSite(poi)
+                || LairStacks.HasSavedColumn(manager, zone.ZoneID)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || !cell.IsVisible) return false;
+            var state = zone.TileState.Get(x, y);
+            if (state != null && !state.IsEmpty) return false;
+            Entity floor = null;
+            foreach (var owner in cell.Occupants)
+            {
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (floor != null || (owner.BlueprintName != "Floor" && owner.BlueprintName != "StoneFloor"
+                    && owner.BlueprintName != "RoadStone" && owner.BlueprintName != "Grass")
+                    || !OrdinaryGround(owner)) return false;
+                floor = owner;
+            }
+            return floor != null && MaterialFor(floor, x, y, map.GetBiome(12, 12)) != null;
         }
 
         static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";

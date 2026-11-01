@@ -193,3 +193,12 @@ actual play,128/128native checks, real underfoot reader and saved/freshContinue.
 Coverage stays fallback and polish in-progress due ledge/other glyphs; population
 and shadows unchanged. R11 and package delivery for this slice remain open.
 See GRAPHICS-STILLLEAF-DESCENT.md and its actual evidence.
+
+## 2026-11-01 Marrowstye shadow observation
+
+Surface12.12 and settlement/marrowstye now record bounded Editor shadow observation
+and fallback coverage.116distinct native passes; actual1056changed shade pixels,
+occupancy/reader verification and exact639200pixel saved/fresh comparison. Population
+and whole-area acceptance do not advance. Oven47,21 remains a named ASCII defect;
+earnedWorkshopBaseline3960 is the next material slice. R11 and package lag remain
+explicit in GRAPHICS-MARROWSTYE-SHADOW.md.
