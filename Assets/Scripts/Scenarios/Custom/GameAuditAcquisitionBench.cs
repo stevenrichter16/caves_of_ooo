@@ -50,8 +50,14 @@ namespace CavesOfOoo.Scenarios.Custom
             SackLarge = Stack("Starapple", 99); SackSmall = Stack("Starapple", 1);
             var contents = Sack.GetPart<ContainerPart>();
             if (!contents.AddItem(SackLarge) || !contents.AddItem(SackSmall)) throw new InvalidOperationException("Sack boundary stock refused.");
-            Merchant = ctx.Factory.CreateEntity("Merchant"); Place(Merchant, 21, 12);
+            // The bench stages its own merchant: suppress the authored stock roll and loadout (a short sword
+            // and boots), which otherwise depend on whichever factories an earlier caller left set.
+            var traderFactory = TraderPart.Factory; var loadoutFactory = LoadoutPart.Factory;
+            TraderPart.Factory = null; LoadoutPart.Factory = null;
+            try { Merchant = ctx.Factory.CreateEntity("Merchant"); } finally { TraderPart.Factory = traderFactory; LoadoutPart.Factory = loadoutFactory; }
+            Place(Merchant, 21, 12);
             var shelf = Merchant.GetPart<InventoryPart>();
+            if (shelf.EquippedItems.Count > 0) throw new InvalidOperationException("Merchant fixture is already holding equipment.");
             foreach (var item in shelf.Objects.ToArray()) shelf.RemoveObject(item);
             StockLarge = Stack("Starapple", 99); StockSmall = Stack("Starapple", 1);
             if (!shelf.AddObject(StockLarge) || !shelf.AddObject(StockSmall)) throw new InvalidOperationException("Merchant boundary stock refused.");

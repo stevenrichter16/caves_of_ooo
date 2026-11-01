@@ -76,13 +76,22 @@ namespace CavesOfOoo.Core
         /// restored native graphs. This hook must never rebuild their contents.</summary>
         protected virtual void OnZoneAttached(Zone zone) { }
 
+        /// <summary>Separates the trader-stock stream from the pipeline's own (both start from seed and zone).</summary>
+        const int TraderStockSalt = 0x7135;
+
         private Zone GenerateZone(string zoneID)
         {
             var zone = new Zone(zoneID);
             var rng = new System.Random(WorldSeed ^ zoneID.GetHashCode());
 
             var pipeline = GetPipelineForZone(zoneID);
-            bool success = pipeline.Generate(zone, Factory, rng);
+            // EC1 (Docs/ECONOMY-SYSTEM.md): traders generated with the zone stock their shelves from the
+            // world seed and the zone, unless a caller (a fixture, a traveller) already set a generator.
+            bool scopedStock = TraderPart.Rng == null;
+            if (scopedStock) TraderPart.Rng = new System.Random(unchecked(WorldSeed ^ zoneID.GetHashCode() ^ TraderStockSalt));
+            bool success;
+            try { success = pipeline.Generate(zone, Factory, rng); }
+            finally { if (scopedStock) TraderPart.Rng = null; }
 
             if (success)
                 OnZoneGenerated(zone, zoneID);

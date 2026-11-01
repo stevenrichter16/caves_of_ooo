@@ -95,6 +95,10 @@ namespace CavesOfOoo.Tests
         { Assert.NotNull(Loaded); Assert.AreEqual(NewID,Loaded.GameID); Assert.AreEqual(222,Loaded.WorldSeed); Assert.AreEqual(Fresh.Player.ID,Loaded.Player.ID); OldUnchanged(); }
         public void Dispose()
         {
+            // Restoring the fields by reflection bypasses SaveRootOverride's own flush, so a background
+            // autosave from the test's last transition could still be writing while the folders below are
+            // deleted ("Directory not empty"). Wait for it first.
+            SaveGameService.FlushPendingSaves();
             foreach (var field in _fields) field.Key.SetValue(null,field.Value);
             if (_hadPref) PlayerPrefs.SetString(SaveGameService.LastGameIDPrefsKey,_pref); else PlayerPrefs.DeleteKey(SaveGameService.LastGameIDPrefsKey); PlayerPrefs.Save();
             MessageLog.Restore(_log,_announcements,_flash,_serial); PlayerReputation.Restore(_rep);

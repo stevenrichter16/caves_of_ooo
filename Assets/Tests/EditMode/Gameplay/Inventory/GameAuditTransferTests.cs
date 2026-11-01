@@ -32,6 +32,9 @@ namespace CavesOfOoo.Tests
         {
             FactionManager.Initialize(); PlayerReputation.Reset(); Diag.ResetAll(); Diag.SetChannel("trade", true);
             TraderPart.Factory = null; TraderPart.Rng = null;
+            // A merchant's authored loadout (short sword, boots) arms it whenever an earlier fixture left
+            // LoadoutPart.Factory set; these capacity cases need an unarmed merchant.
+            _loadoutFactory = LoadoutPart.Factory; LoadoutPart.Factory = null;
             _actor = _factory.CreateEntity("Player"); Inv.MaxWeight = -1;
             _zone = new Zone("AuditTransfer"); _zone.AddEntity(_actor, 10, 10);
             MessageLog.Clear(); _messages.Clear(); MessageLog.OnMessage = m => _messages.Add(m);
@@ -40,8 +43,9 @@ namespace CavesOfOoo.Tests
         public void TearDown()
         {
             MessageLog.OnMessage = null; MessageLog.Clear(); FactionManager.Reset(); PlayerReputation.Reset();
-            Diag.ResetAll(); TraderPart.Factory = null; TraderPart.Rng = null;
+            Diag.ResetAll(); TraderPart.Factory = null; TraderPart.Rng = null; LoadoutPart.Factory = _loadoutFactory;
         }
+        private EntityFactory _loadoutFactory;
         private Entity Item(string bp, int count = 1)
         {
             var item = _factory.CreateEntity(bp); Assert.NotNull(item, bp);

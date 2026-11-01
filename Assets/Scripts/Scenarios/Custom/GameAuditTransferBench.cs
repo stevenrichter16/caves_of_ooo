@@ -52,8 +52,14 @@ namespace CavesOfOoo.Scenarios.Custom
             if (!inventory.AddObject(CarriedDagger) || !InventorySystem.Equip(ctx.PlayerEntity, CarriedDagger))
                 throw new InvalidOperationException("Dagger fixture could not equip one unit.");
             EquippedDagger = inventory.EquippedItems.Values.Distinct().Single();
-            Merchant = ctx.Factory.CreateEntity("Merchant"); Place(Merchant, 21, 12);
+            // The bench stages its own merchant: suppress the authored stock roll and loadout (a short sword
+            // and boots), which otherwise depend on whichever factories an earlier caller left set.
+            var traderFactory = TraderPart.Factory; var loadoutFactory = LoadoutPart.Factory;
+            TraderPart.Factory = null; LoadoutPart.Factory = null;
+            try { Merchant = ctx.Factory.CreateEntity("Merchant"); } finally { TraderPart.Factory = traderFactory; LoadoutPart.Factory = loadoutFactory; }
+            Place(Merchant, 21, 12);
             var shelf = Merchant.GetPart<InventoryPart>();
+            if (shelf.EquippedItems.Count > 0) throw new InvalidOperationException("Merchant fixture is already holding equipment.");
             foreach (var item in shelf.Objects.ToArray()) shelf.RemoveObject(item);
             foreach (int count in new[] { 99, 51 })
             {
