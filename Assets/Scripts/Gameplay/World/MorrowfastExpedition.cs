@@ -185,7 +185,7 @@ namespace CavesOfOoo.Core
                     if (examination != null) examination.Text = "A common supper table with the recovered dry cloth laid ready. No seat or bed is owed in return.";
                 }
                 StoryletPart.Current.CompleteQuest(QuestId, player);
-                TradeSystem.SetDrams(player, TradeSystem.GetDrams(player) + RewardDrams);
+                Ledger.TryCredit(player, RewardDrams, "morrowfast-expedition", out _);
                 var inv = player.GetPart<InventoryPart>();
                 if (inv == null || !inv.AddObject(clay))
                 { var pc = zone.GetEntityCell(player); zone.AddEntity(clay, pc.X, pc.Y); ZoneRenderHooks.MarkCellDirty(pc.X, pc.Y, "ExpeditionReward"); }

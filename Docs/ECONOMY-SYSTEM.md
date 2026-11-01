@@ -232,10 +232,36 @@ second-exploration services) and the Morrowfast and cloth-claimant gifts move in
 leave both purses whole, conservation, self-payment, non-positive amounts and missing parties
 everywhere, and diagnostics never steering the money.
 
-## 8. Next steps
+## 8. EC2b — the last direct purse writes (2026-11-01)
+
+**Survey correction (C3).** §4 said at least eight services move drams by hand. That is half
+wrong:
+- The fee parts (gathering claims, the botanical ink desk, Sodden preparation, kitchen batches,
+  second-exploration services) and regional request rewards already pay through
+  `InventoryTransaction.DeferCurrencyTransfer` or `DeferCurrencyCredit`, which are atomic and
+  guarded.
+- Only three gameplay paths wrote a purse directly: the Morrowfast expedition reward, the
+  cloth-claimant's gift, and the trader restock top-up.
+
+**Change.** Those three now credit through the ledger, with the faucets `morrowfast-expedition`,
+`guest-gift` and `trader-restock`.
+
+**Pin.** `NoCodeWritesAPurseOutsideTheMoneyPaths` scans `Assets/Scripts` (outside scenarios) for
+any purse write and allows only:
+- the money paths: `TradeSystem`, `Ledger` and `InventoryTransaction`;
+- three named initialisers: a trader's opening purse, a generated indexer's empty purse, and the
+  bootstrap elder.
+
+It was RED on `d9cb7db3a` (three files) and is GREEN now. A new direct write fails the pin and
+names its file.
+
+**Not yet observable:** a committed transactional transfer (a fee) records only its rejections,
+not its success. A `trade/Transferred` record on transaction commit is follow-up work; existing
+diag-count pins must be checked first.
+
+## 9. Next steps
 
 1. Finish the §5.3 sweep (trade screen, restock timing, conversation-to-trader routing,
    faction trust data).
-2. EC2b: move the fee parts and gifts onto the ledger, then add a pin that no production
-   code writes the `Drams` property outside `Ledger`, `TradeSystem` and `InventoryTransaction`.
-3. EC3 (the Choir does not trade) and EC4 (Tent-Right never sells water).
+2. EC3 (the Choir does not trade) and EC4 (Tent-Right never sells water).
+3. EC5 (salt priced by distance from the flats), then EC6 and EC7.

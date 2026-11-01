@@ -74,7 +74,7 @@ namespace CavesOfOoo.Core
 
                 if (drams < DramsFloor)
                 {
-                    TradeSystem.SetDrams(e, DramsFloor);
+                    Ledger.TryCredit(e, DramsFloor - drams, "trader-restock", out _);
                     restocked++;
                 }
 

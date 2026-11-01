@@ -44,7 +44,7 @@ namespace CavesOfOoo.Core
                     if (("," + Pursuers + ",").Contains("," + e.ID + ",")
                         && e.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(e)) return false;
             Honored = true;
-            TradeSystem.SetDrams(host, TradeSystem.GetDrams(host) + Gift);
+            Ledger.TryCredit(host, Gift, "guest-gift", out _);
             PlayerReputation.Modify(TentRightOath.Faction, HonorRep);
             MessageLog.AddAnnouncement(guest.GetDisplayName() + " says, \"You stood between. Take this; it is all I carry that is mine. Ask me my road on the third day, and I will tell you.\"");
             if (Diag.IsChannelEnabled("effect"))

@@ -88,6 +88,29 @@ namespace CavesOfOoo.Tests
             CollectionAssert.IsEmpty(stock.Where(t => Rolls(t, new System.Collections.Generic.HashSet<string>())).ToList(), "a shop shelf offers coins");
         }
 
+        /// <summary>EC2b: drams move only through the ledger, a trade or an inventory transaction. A purse is
+        /// otherwise written only where it is first set up (a trader's opening purse, a generated indexer's empty
+        /// one, the bootstrap elder). A new direct write fails here, naming its file.</summary>
+        [Test] public void NoCodeWritesAPurseOutsideTheMoneyPaths()
+        {
+            var allowed = new System.Collections.Generic.Dictionary<string, string>
+            {
+                { "Gameplay/Economy/TradeSystem.cs", "defines SetDrams; buy and sell" },
+                { "Gameplay/Economy/Ledger.cs", "faucets, sinks and payments" },
+                { "Gameplay/Inventory/InventoryTransaction.cs", "transactional currency deltas" },
+                { "Gameplay/Economy/TraderPart.cs", "a trader's opening purse" },
+                { "Gameplay/World/Generation/Builders/CurationReceivingBuilder.cs", "a generated indexer's empty purse" },
+                { "Presentation/Bootstrap/GameBootstrap.cs", "the bootstrap elder's purse" },
+            };
+            var write = new System.Text.RegularExpressions.Regex(@"SetDrams\s*\(|SetIntProperty\s*\(\s*(TradeSystem\.CURRENCY_PROP|""Drams"")|IntProperties\s*\[\s*(TradeSystem\.CURRENCY_PROP|""Drams"")\s*\]\s*=[^=]");
+            string root = Path.Combine(Application.dataPath, "Scripts");
+            var writers = Directory.GetFiles(root, "*.cs", SearchOption.AllDirectories)
+                .Select(f => f.Substring(root.Length + 1).Replace('\\', '/'))
+                .Where(f => !f.StartsWith("Scenarios/") && write.IsMatch(File.ReadAllText(Path.Combine(root, f)))).ToList();
+            CollectionAssert.IsSubsetOf(writers, allowed.Keys.ToList(), "a purse is written outside the money paths");
+            CollectionAssert.Contains(writers, "Gameplay/Economy/Ledger.cs", "counter-check: the scan finds real writers");
+        }
+
         /// <summary>E2. Hypothesis: a conversation reward near the purse's ceiling overflows and the clamp
         /// turns the wrapped negative into zero, wiping the purse.</summary>
         [Test] public void ARewardNearTheCeilingNeverWipesThePurse()
