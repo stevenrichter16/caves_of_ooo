@@ -1319,9 +1319,11 @@ namespace CavesOfOoo.Rendering
             if (equipmentNative) art = equipmentArt;
             var aftermath = local ? AftermathArtFor(owner) : null;
             bool aftermathNative = aftermath != null && aftermath.TryResolve(owner, out art);
-            var orchard = local ? OrchardArtFor(owner) : null;
+            // Hive and river shrine keep one approved image everywhere (rank 2, 2026-10-31):
+            // outside the opening, live disclosed cells only.
+            var orchard = local || !fallback.Remembered ? OrchardArtFor(owner) : null;
             bool orchardNative = orchard != null && orchard.TryResolve(owner, out art);
-            var riverShrine = local ? RiverShrineArtFor(owner) : null;
+            var riverShrine = local || !fallback.Remembered ? RiverShrineArtFor(owner) : null;
             bool riverShrineNative = riverShrine != null && riverShrine.TryResolve(owner, out art);
             var nellaCorner = !fallback.Remembered ? NellaCornerArtFor(zone, owner) : null;
             // East may already have its approved isolated pipe frame. A missing
@@ -1752,13 +1754,17 @@ namespace CavesOfOoo.Rendering
             var equipment = IncidentalEquipmentArtFor(subject);
             if (equipment != null && equipment.TryResolve(subject, out var equipmentTile))
             { sprite = equipmentTile.sprite; return sprite != null; }
+            // Generated item icons in a pack or worn (Docs/GLYPH-TO-PIXEL-REPLACEMENT.md, items).
+            if (FlatPixelWildFaunaCatalog.HasItemIcon(subject) && WildFaunaArt() is FlatPixelWildFaunaCatalog pack
+                && pack.TryResolvePortableItem(subject, out var packTile))
+            { sprite = packTile.sprite; return sprite != null; }
             var aftermath = local ? AftermathArtFor(subject) : null;
             if (aftermath != null && aftermath.TryResolve(subject, out var aftermathTile))
             { sprite = aftermathTile.sprite; return sprite != null; }
-            var orchard = local ? OrchardArtFor(subject) : null;
+            var orchard = OrchardArtFor(subject);
             if (orchard != null && orchard.TryResolve(subject, out var hiveTile))
             { sprite = hiveTile.sprite; return sprite != null; }
-            var riverShrine = local ? RiverShrineArtFor(subject) : null;
+            var riverShrine = RiverShrineArtFor(subject);
             if (riverShrine != null && riverShrine.TryResolve(subject, out var shrineTile))
             { sprite = shrineTile.sprite; return sprite != null; }
             var nellaCorner = NellaCornerArtFor(zone, subject);

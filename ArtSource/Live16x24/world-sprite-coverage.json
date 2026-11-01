@@ -2941,6 +2941,69 @@
         "world_map_and_poi_markers"
       ],
       "note": "Cartographic symbols are intentional representation; they still require consistency/readability review."
+    },
+    {
+      "id": "glyph_to_pixel_generated_atlases",
+      "state": "editmode_offline_verified;independent_review_round1_redrawn;runtime_census_taken;live_capture_pending;polish_not_reviewed",
+      "sources": [
+        "ArtSource/Live16x24/item-icons/make_item_icons.py",
+        "ArtSource/Live16x24/prop-icons/make_prop_icons.py",
+        "ArtSource/Live16x24/glyph-slice2",
+        "ArtSource/Live16x24/glyph-slice3",
+        "ArtSource/Live16x24/glyph-census/static_census.py"
+      ],
+      "identities": {
+        "shared_bodies_creatures_npcs_props": 80,
+        "item_icons": 251,
+        "prop_frames": 305,
+        "prop_blueprints": 117,
+        "biome_crops_with_three_stage_frames": 33,
+        "doors_with_open_closed_frames": 6,
+        "prop_variant_families": {
+          "planks": 3,
+          "rail": 2
+        },
+        "painted_place_scene_owner_frames": 113
+      },
+      "contexts": [
+        "ground",
+        "pack_or_worn_reader",
+        "authorized_examine"
+      ],
+      "admission": "FlatPixelWildFaunaCatalog outside opening-admitted zones; canonical owners only (glyph, colour, background for the current state; untinted; one cell; not carried; not wrecked)",
+      "evidence": [
+        "FlatPixelSharedBodiesTests",
+        "FlatPixelItemIconsTests",
+        "FlatPixelPropIconsTests (19 positive cases red with the prop branch disabled)",
+        "Independent blind review round 1: 8 FAIL families redrawn; copy check clean (36 frames vs the shelf's object/terrain atlases)",
+        "FlatPixelSpreadBerryHiveTests (3 positive cases red with the rank-2 slice reverted)",
+        "FlatPixelMorrowfastGroundTests 7/7 (RED first: 0 of ~1,930 land cells native)"
+      ],
+      "deliberate_glyph": [
+        "TheRoot"
+      ],
+      "note": "Generated template art in a muted shared palette; inventory and equipped contexts not certified. Static census 2026-10-31: creatures/NPCs/items 0 and props 1 (TheRoot) not named by any flat catalog. Named is not drawn: the runtime census and live play remain the acceptance gates. See Docs/GLYPH-TO-PIXEL-REPLACEMENT.md.",
+      "rank2_reuse": {
+        "BerryBush": "north-vegetation frame 2 via the Spread and settlement rules",
+        "Beehive": "orchard-hive outside the opening",
+        "RiverShrine": "river-shrine outside the opening"
+      },
+      "runtime_census_seed64": {
+        "zones": 709,
+        "world_glyph_blueprints": 58,
+        "world_glyph_owners": 26226,
+        "note": "before rank 2; the remainder is triaged in Docs/GLYPH-TO-PIXEL-REPLACEMENT.md"
+      },
+      "rank1_painted_places": {
+        "Morrowfast": "ground (grove turf/flagstone/house wall) via the settlement catalog while its scene is installed; 53 furnishings + 5 doors keyed by ComponentId",
+        "FellingSite": "55 layers keyed by ComponentId; ground still glyph (next)",
+        "not_yet": [
+          "Morrowfast water",
+          "Morrowfast people",
+          "Felling ground",
+          "shells and roofs"
+        ]
+      }
     }
   ],
   "next_queue": [

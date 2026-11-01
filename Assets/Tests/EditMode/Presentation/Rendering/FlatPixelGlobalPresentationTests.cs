@@ -400,8 +400,9 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        // Dagger now has approved shared art; keep this fallback invariant on
-        // genuinely unsupported equipment (sidearm coverage tests pin Dagger).
+        // Dagger now has approved shared art (sidearm coverage tests pin Dagger). Revised 2026-10-31
+        // (Docs/GLYPH-TO-PIXEL-REPLACEMENT.md, items): equipment without approved art wears its own
+        // generated icon, never another identity's approved body, and its reader matches.
         [TestCase("Battleaxe")] [TestCase("ChainMail")]
         public void UnsupportedEquipmentDoesNotBorrowAnApprovedIdentityOutsideOpening(string blueprint)
         {
@@ -410,7 +411,8 @@ namespace CavesOfOoo.Tests
                 var item = factory.CreateEntity(blueprint); Assert.NotNull(item);
                 Assert.True(f.Zone.AddEntity(item, X, Y)); f.Frame();
                 var sprite = f.Foreground()?.sprite; Assert.NotNull(sprite);
-                Assert.AreEqual(408, sprite.texture.height);
+                Assert.AreSame(Resources.Load<Texture2D>(FlatPixelWildFaunaCatalog.ItemAtlasResourcePath), sprite.texture,
+                    "its own generated icon, not a borrowed approved identity");
                 AssertPortrait(portraits.GetPortrait(f.Document(item), f.Renderer), sprite);
                 AssertNoPreview(portraits);
             }

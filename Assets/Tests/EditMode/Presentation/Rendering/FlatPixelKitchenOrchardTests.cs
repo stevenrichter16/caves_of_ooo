@@ -174,6 +174,8 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(FilterMode.Bilinear, atlas.filterMode, "Borrowed texture is not edited.");
         }
 
+        /// <summary>Revised 2026-10-31 (Docs/GLYPH-TO-PIXEL-REPLACEMENT.md, rank 2): outside the opening the
+        /// same hive draws the same approved image; it used to keep its glyph there.</summary>
         [Test] public void FogRemovalStaleGraphAndOutsideOpeningKeepDisclosureAndAdmission()
         {
             Create(atlas, true); var owner = Add("Beehive"); var cell = zone.GetCell(10, 10);
@@ -188,9 +190,12 @@ namespace CavesOfOoo.Tests
             Assert.False(world.TryResolvePresentation(zone, 11, 10, out _));
             zone = Attach("Overworld.12.12.0"); owner = Add("Beehive");
             Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone)); Assert.AreSame(owner, Resolve().Owner);
-            Assert.False(Resolve().NativeForeground);
+            Assert.True(Resolve().NativeForeground, "one hive, one image, in or out of the opening");
+            Frame(Resolve().ForegroundTile, atlas);
             Assert.True(world.TryGetPresentationSubjectSprite(zone, owner, 10, 10, out var sprite, out _));
-            Assert.AreNotSame(atlas, sprite.texture);
+            Assert.AreSame(atlas, sprite.texture);
+            cell = zone.GetCell(10, 10); cell.IsVisible = false;
+            Assert.IsNull(Resolve().Owner, "counter-check: outside the opening, memory still discloses no hive");
         }
 
         [Test] public void SuccessfulHarvestRemovesTheHiveInsteadOfInventingADepletedFrame()

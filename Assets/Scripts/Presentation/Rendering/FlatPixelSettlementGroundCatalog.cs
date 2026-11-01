@@ -25,7 +25,7 @@ namespace CavesOfOoo.Rendering
         public const string TownFloorResourcePath = "Sprites/Live16x24/town-floor";
         public const string ScorchResourcePath = "Sprites/Live16x24/campfire-scorch";
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch, warden;
+        readonly Tile[] lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden;
         readonly FlatPixelSillRiverCatalog water;
         readonly FlatPixelSoddenTravelCatalog fixtures;
         bool disposed;
@@ -66,6 +66,7 @@ namespace CavesOfOoo.Rendering
             if (selector == null) return;
             lawn = Frames(sillEnvironment9, 9, 0, 4, "lawn");
             floors = Frames(sillEnvironment9, 9, 4, 4, "floor");
+            masonry = Frames(sillEnvironment9, 9, 8, 1, "masonry");
             forest = Frames(forestGround4, 4, 0, 4, "forest");
             sand = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 0, 4, "sand");
             beatingRoad = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 32, 2, "beating road");
@@ -74,6 +75,7 @@ namespace CavesOfOoo.Rendering
             walls = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 16, 2, "sandstone wall");
             water = new FlatPixelSillRiverCatalog(openingGround21, selector, IsSupportedZone, WaterSubstrate);
             tree = Frames(vegetation4, 4, 0, 1, "tree");
+            berry = Frames(vegetation4, 4, 2, 1, "berry bush");
             dryBrush = Frames(vegetation4, 4, 3, 1, "dry brush");
             bush = Frames(base10, 10, 5, 1, "bush");
             warden = Frames(base10, 10, 9, 1, "warden");
@@ -90,7 +92,10 @@ namespace CavesOfOoo.Rendering
             var (x, y, z) = WorldMap.FromZoneID(zone.ZoneID);
             if (x < 0 || z != 0) return false;
             var place = WorldMapAuthoring.PlaceAt(x, y);
-            if (!place.HasValue || place.Value.Name == "Morrowfast" || place.Value.Name == "Sill") return false;
+            if (!place.HasValue || place.Value.Name == "Sill") return false;
+            // Morrowfast (2026-10-31, rank 1): its painted scene is a legacy presenter that flat mode hides,
+            // so its authored land is ours while that scene is installed; the roles are the runtime's own.
+            if (place.Value.Name == "Morrowfast" && !MorrowfastSceneRuntime.IsActive(zone)) return false;
             var manager = WorldLocationContext.For(zone);
             if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
                 || !ReferenceEquals(current, zone)) return false;
@@ -115,6 +120,8 @@ namespace CavesOfOoo.Rendering
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
                 if (IsGroundName(owner.BlueprintName))
                 { if (floor != null || !OrdinaryGround(owner)) { floor = null; return false; } floor = owner; }
+                else if (MorrowfastRole(owner) is string role)
+                { if (floor != null || role == MorrowfastSceneRuntime.WallName) { floor = null; return false; } floor = owner; }
                 else if (CompetingGround(owner)) { floor = null; return false; }
             }
             if (floor == null) return false;
@@ -134,6 +141,10 @@ namespace CavesOfOoo.Rendering
                 case "Floor": return Pick(yard, VariantAt(x, y));
                 case "Sand": return Pick(sand, VariantAt(x, y));
                 case "RoadStone": return biome == BiomeType.Beating ? Pick(beatingRoad, (x + y) & 1) : Pick(road, (x + y) & 1);
+                case "TepuiStone":
+                    string role = MorrowfastRole(floor);
+                    return role == MorrowfastSceneRuntime.GroundName ? Pick(forest, VariantAt(x, y))
+                        : role == MorrowfastSceneRuntime.FloorName ? Pick(floors, VariantAt(x, y)) : null;
                 default: return null;
             }
         }
@@ -154,6 +165,11 @@ namespace CavesOfOoo.Rendering
             {
                 if (!OrdinaryGround(owner)) return false;
                 groundTile = MaterialFor(zone, owner, x, y);
+            }
+            else if (MorrowfastRole(owner) is string role)
+            {
+                if (role == MorrowfastSceneRuntime.WallName) wallTile = Pick(masonry, 0);
+                else groundTile = MaterialFor(zone, owner, x, y);
             }
             else if (owner.BlueprintName == "SandstoneWall")
             {
@@ -189,7 +205,9 @@ namespace CavesOfOoo.Rendering
                     int frame = FlatPixelBeatingMaterialsCatalog.SandstoneWallFrame(owner, x, y);
                     tile = frame < 0 ? null : Pick(walls, frame - 16); break;
                 case "Bush": tile = FlatPixelSpreadEnvironmentCatalog.IsEligiblePlant(owner) ? Pick(bush, 0) : null; break;
+                case "TepuiStone": tile = MorrowfastRole(owner) == MorrowfastSceneRuntime.WallName ? Pick(masonry, 0) : null; break;
                 case "Tree": tile = FlatPixelSpreadEnvironmentCatalog.IsEligiblePlant(owner) ? Pick(tree, 0) : null; break;
+                case "BerryBush": tile = FlatPixelSpreadEnvironmentCatalog.IsEligibleBerryBush(owner) ? Pick(berry, 0) : null; break;
                 case "DryBrush": tile = FlatPixelBeatingMaterialsCatalog.IsEligibleDryBrush(owner) ? Pick(dryBrush, 0) : null; break;
                 case "Campfire": tile = OrdinaryHearth(owner) ? Pick(hearth, 0) : null; break;
                 case "Warden": tile = CanonicalWarden(owner) ? Pick(warden, 0) : null; break;
@@ -207,7 +225,8 @@ namespace CavesOfOoo.Rendering
             if (owner == null) return false;
             if (owner.BlueprintName == "Duckboard" || owner.BlueprintName == "Reeds" || owner.BlueprintName == "PeatBank")
                 return fixtures != null && fixtures.TryGetSubjectSprite(zone, owner, x, y, out sprite);
-            if (owner.BlueprintName == "SandstoneWall" || owner.BlueprintName == "Bush" || owner.BlueprintName == "Tree"
+            if (owner.BlueprintName == "SandstoneWall" || owner.BlueprintName == "Bush" || owner.BlueprintName == "Tree" || owner.BlueprintName == "BerryBush"
+                || owner.BlueprintName == "TepuiStone" && MorrowfastRole(owner) == MorrowfastSceneRuntime.WallName
                 || owner.BlueprintName == "DryBrush" || owner.BlueprintName == "Campfire" || owner.BlueprintName == "CampfireGroundMarker"
                 || owner.BlueprintName == "Warden")
             {
@@ -234,6 +253,22 @@ namespace CavesOfOoo.Rendering
                 && selector.TryResolve(zone, x, y, out var selected) && !selected.Remembered;
         }
         static Tile Pick(Tile[] tiles, int i) => tiles == null || i < 0 || i >= tiles.Length ? null : tiles[i];
+        /// <summary>Morrowfast's authored land, by the role its runtime named it (MorrowfastSceneRuntime.NameTerrain):
+        /// grove turf and flagstone floor stand open, the house wall is solid and opaque. Only the runtime's own
+        /// TepuiStone (its terrain tag), canonical and plain; anything renamed, retagged or foreign keeps its glyph.</summary>
+        internal static string MorrowfastRole(Entity owner)
+        {
+            if (owner?.BlueprintName != "TepuiStone" || !owner.HasTag(MorrowfastSceneRuntime.TerrainTag) || !Plain(owner)
+                || ForeignMeaning(owner) || !owner.HasTag("Terrain")) return null;
+            var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
+            if (r.RenderLayer != 0 || r.RenderString != "." || r.ColorString != "&y" || !string.IsNullOrEmpty(r.BackgroundColor)) return null;
+            bool wall = p.Solid && owner.HasTag("Solid") && owner.HasTag("Wall");
+            bool open = !p.Solid && !owner.HasTag("Solid") && !owner.HasTag("Wall");
+            if (r.DisplayName == MorrowfastSceneRuntime.WallName) return wall ? r.DisplayName : null;
+            if (r.DisplayName == MorrowfastSceneRuntime.GroundName || r.DisplayName == MorrowfastSceneRuntime.FloorName) return open ? r.DisplayName : null;
+            return null;
+        }
+
         static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";
 
         static bool OrdinaryGround(Entity owner)
@@ -386,7 +421,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             water?.Dispose(); fixtures?.Dispose();
-            foreach (var group in new[] { lawn, floors, forest, sand, beatingRoad, road, walls, yard, tree, dryBrush, bush, hearth, scorch, warden })
+            foreach (var group in new[] { lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden })
             {
                 if (group == null) continue;
                 foreach (var tile in group) { if (tile == null) continue; DestroyOwned(tile.sprite); DestroyOwned(tile); }

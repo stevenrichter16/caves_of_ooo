@@ -105,9 +105,19 @@ namespace CavesOfOoo.Tests
 
         // Exact MarketStall coverage is independently pinned by FlatPixelMarketStallTests.
         [TestCase("WellGroundMarker")]
-        [TestCase("Apothecary")] [TestCase("Hedge")] [TestCase("RepairLinedWell")]
+        [TestCase("Hedge")] [TestCase("RepairLinedWell")]
         public void PendingFamiliesDoNotAcquireAnOpeningAlias(string blueprint)
         { Add(blueprint); IdentityFallback(); Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone)); }
+
+        /// <summary>Revised 2026-10-31 (Docs/GLYPH-TO-PIXEL-REPLACEMENT.md, slice 1): the Apothecary left the
+        /// pending list. In Sill it wears its own shared body, never an opening alias.</summary>
+        [Test] public void TheApothecaryWearsItsOwnSharedBodyNotAnOpeningAlias()
+        {
+            var keeper = Add("Apothecary"); var value = Resolve();
+            Assert.AreSame(keeper, value.Owner); Assert.True(value.NativeForeground);
+            Assert.AreSame(Resources.Load<Texture2D>("Sprites/Environment/apothecary"), value.ForegroundTile.sprite.texture);
+            Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
+        }
 
         [Test] public void AllCardinalVineShapesDescribeRealWallsAndRetainGaps()
         {

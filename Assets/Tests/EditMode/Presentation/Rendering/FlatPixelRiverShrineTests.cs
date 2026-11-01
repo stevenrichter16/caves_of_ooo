@@ -200,13 +200,16 @@ namespace CavesOfOoo.Tests
             Assert.True(world.TryResolvePresentation(zone, 11, 10, out var removed)); Assert.IsNull(removed.Owner);
         }
 
-        [Test] public void OutsideOpeningKeepsTheCanonicalGlyphAndReader()
+        /// <summary>Revised 2026-10-31 (Docs/GLYPH-TO-PIXEL-REPLACEMENT.md, rank 2): outside the opening the
+        /// same shrine draws the same approved image; it used to keep its glyph there.</summary>
+        [Test] public void OutsideOpeningDrawsTheSameShrineAndReader()
         {
             Create(atlas, true); zone = Attach("Overworld.12.12.0"); var shrine = Add("RiverShrine");
             Native(shrine); Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone));
-            Assert.AreSame(shrine, Resolve().Owner); Assert.False(Resolve().NativeForeground);
+            Assert.AreSame(shrine, Resolve().Owner); Assert.True(Resolve().NativeForeground);
+            Assert.AreSame(atlas, Resolve().ForegroundTile.sprite.texture);
             Assert.True(world.TryGetPresentationSubjectSprite(zone, shrine, 10, 10, out var sprite, out _));
-            Assert.AreNotSame(atlas, sprite.texture);
+            Assert.AreSame(atlas, sprite.texture);
         }
 
         [TestCase(false)] [TestCase(true)]

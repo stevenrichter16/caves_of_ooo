@@ -22,7 +22,7 @@ namespace CavesOfOoo.Rendering
         const int Width=16, Height=24;
         readonly FlatPixelFallbackCatalog selector;
         public const string ConjuredFlowersResourcePath="Sprites/Live16x24/conjured-flowers";
-        readonly Tile[] turf, road, hedges, tree, bush, flowers, conjured;
+        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured;
         bool disposed;
         static readonly Dictionary<string,Vector2Int> addresses=BuildAddresses();
         static Dictionary<string,Vector2Int> BuildAddresses()
@@ -66,7 +66,7 @@ namespace CavesOfOoo.Rendering
         {
             selector=borrowedSelector;if(selector==null)return;
             turf=Frames(turf9,9,0,4);road=Frames(ground21,21,16,2);hedges=Frames(hedge16,16,0,16);
-            tree=Frames(vegetation4,4,0,1);bush=Frames(base10,10,5,1);flowers=Frames(eastKitchen18,18,14,1);
+            tree=Frames(vegetation4,4,0,1);berry=Frames(vegetation4,4,2,1);bush=Frames(base10,10,5,1);flowers=Frames(eastKitchen18,18,14,1);
             conjured=Frames(conjured2,2,0,2);
         }
         public static bool IsSupportedZone(Zone zone)
@@ -114,10 +114,11 @@ namespace CavesOfOoo.Rendering
                 if(conjured==null||!IsConjuredFlowers(owner,zone.TileState.Get(x,y)))return false;
                 tile=conjured[(x+y)&1];return true;
             }
-            if(!EligibleBody(owner))return false;
+            if(!EligibleBody(owner)&&!IsEligibleBerryBush(owner))return false;
             switch(owner.BlueprintName)
             {
                 case "Tree":tile=tree==null?null:tree[0];break;
+                case "BerryBush":tile=berry==null?null:berry[0];break;
                 case "Bush":tile=bush==null?null:bush[0];break;
                 case "CharmFlowers":tile=flowers==null?null:flowers[0];break;
                 case "Hedge":
@@ -219,6 +220,19 @@ namespace CavesOfOoo.Rendering
                 ||thermal==null||!float.IsFinite(thermal.Temperature)||!float.IsFinite(thermal.FlameTemperature)||!float.IsFinite(thermal.FreezeTemperature))return false;
             return low?owner.HasTag("Terrain")&&!owner.HasTag("Solid"):!owner.HasTag("Terrain");
         }
+        /// <summary>The opening's berry-bush rule (FlatPixelOpeningArtCatalog.VegetationFrameOf), held to the
+        /// canonical ';' &r body: non-solid standing vegetation with one unspent WildBerries harvest in range,
+        /// whole, and nothing else foreign. A real harvest removes the bush; no spent frame exists.</summary>
+        internal static bool IsEligibleBerryBush(Entity owner)
+        {
+            if(owner?.BlueprintName!="BerryBush"||!Plain(owner)||ForeignMeaning(owner,true)||!owner.HasTag("Vegetation")
+                ||owner.HasTag("Terrain")||owner.HasTag("Wall")||owner.HasTag("Solid")||Owned<PhysicsPart>(owner).Solid)return false;
+            var render=Owned<RenderPart>(owner);var structure=Owned<DestructiblePart>(owner);var harvest=Owned<HarvestablePart>(owner);
+            return render.RenderString==";"&&render.ColorString=="&r"&&string.IsNullOrEmpty(render.BackgroundColor)&&string.IsNullOrEmpty(render.GlyphVariants)
+                &&structure!=null&&!structure.Gone&&structure.HP>0
+                &&harvest!=null&&!harvest.Harvested&&harvest.YieldBlueprint=="WildBerries"&&harvest.YieldMin>0&&harvest.YieldMax>=harvest.YieldMin
+                &&harvest.YieldMax<=HarvestablePart.MaximumYieldCount&&harvest.YieldChance>0&&harvest.YieldChance<=100;
+        }
         static bool EligibleFlowers(Entity owner)
         {
             if(owner?.BlueprintName!="CharmFlowers"||!Plain(owner)||ForeignMeaning(owner)
@@ -286,8 +300,9 @@ namespace CavesOfOoo.Rendering
             return source!=null&&source.CoatingTurns==4&&source.Heat==0&&source.Cold==0&&source.Charge==0
                 &&!source.RadiatesEnergy&&string.IsNullOrEmpty(source.Residue);
         }
-        static bool ForeignMeaning(Entity owner)
-            =>owner.HasPart<CropPart>()||owner.HasPart<FieldHarvestPart>()||owner.HasPart<CultivatedSoilPart>()||owner.HasPart<HarvestablePart>()
+        /// <param name="ownHarvest">The owner's own harvest is its meaning (the berry bush), not a foreign one.</param>
+        static bool ForeignMeaning(Entity owner,bool ownHarvest=false)
+            =>owner.HasPart<CropPart>()||owner.HasPart<FieldHarvestPart>()||owner.HasPart<CultivatedSoilPart>()||!ownHarvest&&owner.HasPart<HarvestablePart>()
                 ||owner.HasPart<RepairablePart>()||owner.HasPart<DoorPart>()||owner.HasPart<ContainerPart>()||owner.HasPart<BrainPart>()||owner.HasPart<Body>()
                 ||owner.HasPart<LiquidPoolPart>()||owner.HasPart<GasPoolPart>()||owner.HasPart<TileStateSourcePart>()||owner.HasPart<TriggerOnStepPart>()
                 ||owner.HasPart<WellPart>()||owner.HasPart<ForgePart>()||owner.HasPart<AlchemyStillPart>()||owner.HasPart<CampfirePart>()||owner.HasPart<TorchLightPart>()
@@ -311,7 +326,7 @@ namespace CavesOfOoo.Rendering
             }
             return result;
         }
-        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(bush);Release(flowers);Release(conjured);}
+        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);}
         static void Release(Tile[] tiles){if(tiles==null)return;foreach(var tile in tiles)if(tile!=null){Destroy(tile.sprite);Destroy(tile);}}
         static void Destroy(Object value){if(value==null)return;if(Application.isPlaying)Object.Destroy(value);else Object.DestroyImmediate(value);}
     }

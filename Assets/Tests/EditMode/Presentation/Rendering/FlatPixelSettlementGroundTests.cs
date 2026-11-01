@@ -365,7 +365,9 @@ namespace CavesOfOoo.Tests
 
         // ════════════════ counter-checks ════════════════
 
-        [TestCase("Overworld.10.10.0")] [TestCase("Overworld.3.6.0")] [TestCase("Overworld.5.11.0")]
+        // Revised 2026-10-31 (Docs/GLYPH-TO-PIXEL-REPLACEMENT.md, rank 1): Morrowfast is admitted while its painted
+        // scene is installed. FlatPixelMorrowfastGroundTests pins that, and that the bare address alone is not.
+        [TestCase("Overworld.10.10.0")] [TestCase("Overworld.5.11.0")]
         public void SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(string id)
             => Assert.False(FlatPixelSettlementGroundCatalog.IsSupportedZone(Visit(id)), id);
 
