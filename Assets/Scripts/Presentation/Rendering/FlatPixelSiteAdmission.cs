@@ -13,6 +13,18 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class FlatPixelSiteAdmission
     {
+        internal static bool IsGroveSinkholeFloor(Zone zone)
+        {
+            bool ginmere = zone?.ZoneID == "Overworld.2.7.0";
+            if (!ginmere && zone?.ZoneID != "Overworld.5.4.0") return false;
+            if (!IsOrdinarySite(zone, BiomeType.Grovelands)) return false;
+            var poi = WorldLocationContext.For(zone).WorldMap.GetPOI(ginmere ? 2 : 5, ginmere ? 7 : 4);
+            return ginmere
+                ? poi.Type == POIType.Sinkhole && poi.Name == "Ginmere"
+                    && SinkholeArchetypes.ForSite(poi) == SinkholeArchetype.DrownedSima
+                : AreaCompositionScope.IsCathedralSite(poi);
+        }
+
         /// <summary>Bounded material pilot for Stillleaf's authored first descent.
         /// Current graph and persisted site identity are rechecked on every use;
         /// no generation, ledger initialization or deeper-floor admission.</summary>

@@ -150,8 +150,8 @@
         "plan": "Docs/GRAPHICS-STUMP-ENVIRONMENT.md",
         "evidence": "Docs/Verification/Live16x24/stump-environment-final-receipt.json",
         "scope": [
-          "TepuiStone floor0\u20133",
-          "StoneDome interior20\u201321/exposed56\u201370"
+          "TepuiStone floor0–3",
+          "StoneDome interior20–21/exposed56–70"
         ],
         "changed_frames": 21,
         "protected_frames": 50,
@@ -218,8 +218,8 @@
         "plan": "Docs/GRAPHICS-STUMP-ENVIRONMENT.md",
         "evidence": "Docs/Verification/Live16x24/stump-environment-final-receipt.json",
         "scope": [
-          "TepuiStone floor0\u20133",
-          "StoneDome interior20\u201321/exposed56\u201370"
+          "TepuiStone floor0–3",
+          "StoneDome interior20–21/exposed56–70"
         ],
         "changed_frames": 21,
         "protected_frames": 50,
@@ -3320,14 +3320,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
       "coordinates": [
         5,
         4,
@@ -3341,7 +3341,58 @@
       "related_scope_ids": [
         "sinkhole/the-deepest-cathedral",
         "sinkhole/the-deepest-cathedral/depth/0"
-      ]
+      ],
+      "observed_seed": 704860946,
+      "bounded_slices": [
+        {
+          "id": "grove-sinkhole-surface-sandstone",
+          "status": "observed",
+          "axis": "coverage",
+          "record": "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md",
+          "owners": {
+            "SandstoneFloor": 177
+          },
+          "art": "unchanged beating-materials12–15",
+          "delivery": "editor-only",
+          "limits": [
+            "Surface only; stack/deeper materials remain unaudited or fallback",
+            "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
+            "No whole-area polish, population or shadow acceptance; R11 open"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/cathedral-entry.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/cathedral-reader.png"
+        ],
+        "reload_checks": [],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/Ginmere/red.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/initial-regression-green.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/final-regression-green.xml"
+        ],
+        "profiles": [],
+        "independent_reviews": [
+          "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md"
+        ]
+      },
+      "named_defects": [
+        {
+          "id": "GROVE-SURFACE-FLOOR",
+          "status": "resolved-bounded",
+          "description": "Black glyph SandstoneFloor basin now uses approved quiet sandstone."
+        },
+        {
+          "id": "GROVE-SURFACE-REMAINDER",
+          "status": "open",
+          "description": "Black-backed stairs/special owners, abrupt stepped rim transitions and fuller-area composition remain."
+        }
+      ],
+      "actual_zoom_resolution": "1280x800 Editor1x, Ginmere2x detail"
     },
     {
       "id": "surface/Overworld.6.4.0",
@@ -3916,7 +3967,7 @@
           "status": "observed",
           "integration": "integrated",
           "materials": [
-            "approved Stump ground frames0\u20133"
+            "approved Stump ground frames0–3"
           ],
           "admitted_cells": 1638,
           "excluded_cells": {
@@ -5271,14 +5322,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
       "coordinates": [
         2,
         7,
@@ -5292,7 +5343,68 @@
       "related_scope_ids": [
         "sinkhole/ginmere",
         "sinkhole/ginmere/depth/0"
-      ]
+      ],
+      "observed_seed": 704860946,
+      "bounded_slices": [
+        {
+          "id": "grove-sinkhole-surface-sandstone",
+          "status": "observed",
+          "axis": "coverage",
+          "record": "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md",
+          "owners": {
+            "SandstoneFloor": 177
+          },
+          "art": "unchanged beating-materials12–15",
+          "delivery": "editor-only",
+          "limits": [
+            "Surface only; stack/deeper materials remain unaudited or fallback",
+            "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
+            "No whole-area polish, population or shadow acceptance; R11 open"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/before.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/after.png",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-close.png",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-east-boundary.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/after-reader.png"
+        ],
+        "reload_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/reload-state.json",
+          "Docs/Verification/GraphicsExecution/Ginmere/reload-pixels.json"
+        ],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/Ginmere/red.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/initial-regression-green.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/final-regression-green.xml"
+        ],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/Ginmere/before-profile.json",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-profile.json"
+        ],
+        "independent_reviews": [
+          "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md"
+        ]
+      },
+      "named_defects": [
+        {
+          "id": "GROVE-SURFACE-FLOOR",
+          "status": "resolved-bounded",
+          "description": "Black glyph SandstoneFloor basin now uses approved quiet sandstone."
+        },
+        {
+          "id": "GROVE-SURFACE-REMAINDER",
+          "status": "open",
+          "description": "Black-backed stairs/special owners, abrupt stepped rim transitions and fuller-area composition remain."
+        }
+      ],
+      "actual_zoom_resolution": "1280x800 Editor1x, Ginmere2x detail"
     },
     {
       "id": "surface/Overworld.3.7.0",
@@ -15486,14 +15598,14 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve concrete instances and current evidence before advancing any acceptance axis.",
+      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
       "legacy_inventory_pointer": "/sinkhole_stacks/1",
       "authored_depth_scope": [
         0,
@@ -15507,7 +15619,58 @@
         "doors_and_seals",
         "loot",
         "return_route"
-      ]
+      ],
+      "observed_seed": 704860946,
+      "bounded_slices": [
+        {
+          "id": "grove-sinkhole-surface-sandstone",
+          "status": "observed",
+          "axis": "coverage",
+          "record": "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md",
+          "owners": {
+            "SandstoneFloor": 177
+          },
+          "art": "unchanged beating-materials12–15",
+          "delivery": "editor-only",
+          "limits": [
+            "Surface only; stack/deeper materials remain unaudited or fallback",
+            "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
+            "No whole-area polish, population or shadow acceptance; R11 open"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/cathedral-entry.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/cathedral-reader.png"
+        ],
+        "reload_checks": [],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/Ginmere/red.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/initial-regression-green.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/final-regression-green.xml"
+        ],
+        "profiles": [],
+        "independent_reviews": [
+          "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md"
+        ]
+      },
+      "named_defects": [
+        {
+          "id": "GROVE-SURFACE-FLOOR",
+          "status": "resolved-bounded",
+          "description": "Black glyph SandstoneFloor basin now uses approved quiet sandstone."
+        },
+        {
+          "id": "GROVE-SURFACE-REMAINDER",
+          "status": "open",
+          "description": "Black-backed stairs/special owners, abrupt stepped rim transitions and fuller-area composition remain."
+        }
+      ],
+      "actual_zoom_resolution": "1280x800 Editor1x, Ginmere2x detail"
     },
     {
       "id": "sinkhole/the-deepest-cathedral/depth/0",
@@ -15522,14 +15685,14 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Walk descent/return and each reachable interior; audit this depth separately from its mouth.",
+      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
       "parent_id": "sinkhole/the-deepest-cathedral",
       "depth": 0,
       "required_roles": [
@@ -15539,7 +15702,58 @@
         "doors_and_seals",
         "loot",
         "return_route"
-      ]
+      ],
+      "observed_seed": 704860946,
+      "bounded_slices": [
+        {
+          "id": "grove-sinkhole-surface-sandstone",
+          "status": "observed",
+          "axis": "coverage",
+          "record": "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md",
+          "owners": {
+            "SandstoneFloor": 177
+          },
+          "art": "unchanged beating-materials12–15",
+          "delivery": "editor-only",
+          "limits": [
+            "Surface only; stack/deeper materials remain unaudited or fallback",
+            "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
+            "No whole-area polish, population or shadow acceptance; R11 open"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/cathedral-entry.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/cathedral-reader.png"
+        ],
+        "reload_checks": [],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/Ginmere/red.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/initial-regression-green.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/final-regression-green.xml"
+        ],
+        "profiles": [],
+        "independent_reviews": [
+          "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md"
+        ]
+      },
+      "named_defects": [
+        {
+          "id": "GROVE-SURFACE-FLOOR",
+          "status": "resolved-bounded",
+          "description": "Black glyph SandstoneFloor basin now uses approved quiet sandstone."
+        },
+        {
+          "id": "GROVE-SURFACE-REMAINDER",
+          "status": "open",
+          "description": "Black-backed stairs/special owners, abrupt stepped rim transitions and fuller-area composition remain."
+        }
+      ],
+      "actual_zoom_resolution": "1280x800 Editor1x, Ginmere2x detail"
     },
     {
       "id": "sinkhole/the-deepest-cathedral/depth/1",
@@ -15882,14 +16096,14 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve concrete instances and current evidence before advancing any acceptance axis.",
+      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
       "legacy_inventory_pointer": "/sinkhole_stacks/4",
       "authored_depth_scope": [
         0,
@@ -15903,7 +16117,68 @@
         "doors_and_seals",
         "loot",
         "return_route"
-      ]
+      ],
+      "observed_seed": 704860946,
+      "bounded_slices": [
+        {
+          "id": "grove-sinkhole-surface-sandstone",
+          "status": "observed",
+          "axis": "coverage",
+          "record": "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md",
+          "owners": {
+            "SandstoneFloor": 177
+          },
+          "art": "unchanged beating-materials12–15",
+          "delivery": "editor-only",
+          "limits": [
+            "Surface only; stack/deeper materials remain unaudited or fallback",
+            "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
+            "No whole-area polish, population or shadow acceptance; R11 open"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/before.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/after.png",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-close.png",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-east-boundary.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/after-reader.png"
+        ],
+        "reload_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/reload-state.json",
+          "Docs/Verification/GraphicsExecution/Ginmere/reload-pixels.json"
+        ],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/Ginmere/red.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/initial-regression-green.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/final-regression-green.xml"
+        ],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/Ginmere/before-profile.json",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-profile.json"
+        ],
+        "independent_reviews": [
+          "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md"
+        ]
+      },
+      "named_defects": [
+        {
+          "id": "GROVE-SURFACE-FLOOR",
+          "status": "resolved-bounded",
+          "description": "Black glyph SandstoneFloor basin now uses approved quiet sandstone."
+        },
+        {
+          "id": "GROVE-SURFACE-REMAINDER",
+          "status": "open",
+          "description": "Black-backed stairs/special owners, abrupt stepped rim transitions and fuller-area composition remain."
+        }
+      ],
+      "actual_zoom_resolution": "1280x800 Editor1x, Ginmere2x detail"
     },
     {
       "id": "sinkhole/ginmere/depth/0",
@@ -15918,14 +16193,14 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Walk descent/return and each reachable interior; audit this depth separately from its mouth.",
+      "next_action": "Ginmere first-descent2.7.1 actual glyph continuity repair, then Felling rock/water/ritual comparison. No all-depth admission.",
       "parent_id": "sinkhole/ginmere",
       "depth": 0,
       "required_roles": [
@@ -15935,7 +16210,68 @@
         "doors_and_seals",
         "loot",
         "return_route"
-      ]
+      ],
+      "observed_seed": 704860946,
+      "bounded_slices": [
+        {
+          "id": "grove-sinkhole-surface-sandstone",
+          "status": "observed",
+          "axis": "coverage",
+          "record": "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md",
+          "owners": {
+            "SandstoneFloor": 177
+          },
+          "art": "unchanged beating-materials12–15",
+          "delivery": "editor-only",
+          "limits": [
+            "Surface only; stack/deeper materials remain unaudited or fallback",
+            "Ginmere matched baseline/reload; Cathedral after-only entry/reader/movement/save",
+            "No whole-area polish, population or shadow acceptance; R11 open"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/before.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/Ginmere/after.png",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-close.png",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-east-boundary.png"
+        ],
+        "reader_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/after-reader.png"
+        ],
+        "reload_checks": [
+          "Docs/Verification/GraphicsExecution/Ginmere/reload-state.json",
+          "Docs/Verification/GraphicsExecution/Ginmere/reload-pixels.json"
+        ],
+        "regressions": [
+          "Docs/Verification/GraphicsExecution/Ginmere/red.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/initial-regression-green.xml",
+          "Docs/Verification/GraphicsExecution/Ginmere/final-regression-green.xml"
+        ],
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/Ginmere/before-profile.json",
+          "Docs/Verification/GraphicsExecution/Ginmere/after-profile.json"
+        ],
+        "independent_reviews": [
+          "Docs/GRAPHICS-GROVE-SINKHOLE-FLOORS.md"
+        ]
+      },
+      "named_defects": [
+        {
+          "id": "GROVE-SURFACE-FLOOR",
+          "status": "resolved-bounded",
+          "description": "Black glyph SandstoneFloor basin now uses approved quiet sandstone."
+        },
+        {
+          "id": "GROVE-SURFACE-REMAINDER",
+          "status": "open",
+          "description": "Black-backed stairs/special owners, abrupt stepped rim transitions and fuller-area composition remain."
+        }
+      ],
+      "actual_zoom_resolution": "1280x800 Editor1x, Ginmere2x detail"
     },
     {
       "id": "sinkhole/ginmere/depth/1",
@@ -16652,7 +16988,7 @@
           "status": "observed",
           "integration": "integrated",
           "materials": [
-            "approved Stump ground frames0\u20133"
+            "approved Stump ground frames0–3"
           ],
           "admitted_cells": 1638,
           "excluded_cells": {
@@ -16817,7 +17153,7 @@
           "status": "observed",
           "integration": "integrated",
           "materials": [
-            "approved Stump ground frames0\u20133"
+            "approved Stump ground frames0–3"
           ],
           "admitted_cells": 1638,
           "excluded_cells": {
@@ -17475,7 +17811,7 @@
       "legacy_inventory_pointer": "/other_area_families/13",
       "instance_addresses": [],
       "address_resolution": "unresolved; derive from current planner/seed rather than inventing addresses",
-      "scope_note": "Fresh placement targets3\u20135lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal."
+      "scope_note": "Fresh placement targets3–5lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal."
     },
     {
       "id": "area-family/merchant_camps",
@@ -17499,7 +17835,7 @@
       "legacy_inventory_pointer": "/other_area_families/14",
       "instance_addresses": [],
       "address_resolution": "unresolved; derive from current planner/seed rather than inventing addresses",
-      "scope_note": "Fresh placement targets2\u20133camps with bounded attempts; excludes Overwrit/Stump."
+      "scope_note": "Fresh placement targets2–3camps with bounded attempts; excludes Overwrit/Stump."
     },
     {
       "id": "area-family/river_chunk",

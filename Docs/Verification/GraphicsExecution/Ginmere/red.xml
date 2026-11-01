@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="24" result="Failed(Child)" total="24" passed="0" failed="24" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 23:38:37Z" end-time="2026-11-01 23:38:41Z" duration="3.6053686">
+  <test-suite type="TestSuite" id="43474" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35401" result="Failed" site="Child" start-time="2026-11-01 23:38:37Z" end-time="2026-11-01 23:38:41Z" duration="3.605369" total="24" passed="0" failed="24" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43446" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35401" result="Failed" site="Child" start-time="2026-11-01 23:38:37Z" end-time="2026-11-01 23:38:41Z" duration="3.525939" total="24" passed="0" failed="24" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43447" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35401" result="Failed" site="Child" start-time="2026-11-01 23:38:37Z" end-time="2026-11-01 23:38:41Z" duration="3.478090" total="24" passed="0" failed="24" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43448" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35401" result="Failed" site="Child" start-time="2026-11-01 23:38:37Z" end-time="2026-11-01 23:38:41Z" duration="3.431571" total="24" passed="0" failed="24" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1193" name="FlatPixelGroveSinkholeFloorTests" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-11-01 23:38:38Z" end-time="2026-11-01 23:38:41Z" duration="3.267651" total="24" passed="0" failed="24" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1215" name="DisclosureAndForeignMeaningRefuse" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-01 23:38:38Z" end-time="2026-11-01 23:38:39Z" duration="1.260067" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1207" name="DisclosureAndForeignMeaningRefuse(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;hidden&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1327873643" result="Failed" start-time="2026-11-01 23:38:38Z" end-time="2026-11-01 23:38:38Z" duration="0.259156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1208" name="DisclosureAndForeignMeaningRefuse(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;memory&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1482150323" result="Failed" start-time="2026-11-01 23:38:38Z" end-time="2026-11-01 23:38:38Z" duration="0.091911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1209" name="DisclosureAndForeignMeaningRefuse(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;changed&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1294025477" result="Failed" start-time="2026-11-01 23:38:38Z" end-time="2026-11-01 23:38:38Z" duration="0.097232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1210" name="DisclosureAndForeignMeaningRefuse(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;oil&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1984434407" result="Failed" start-time="2026-11-01 23:38:38Z" end-time="2026-11-01 23:38:38Z" duration="0.134248" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1211" name="DisclosureAndForeignMeaningRefuse(&quot;water&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;water&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1330451817" result="Failed" start-time="2026-11-01 23:38:38Z" end-time="2026-11-01 23:38:39Z" duration="0.350645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1212" name="DisclosureAndForeignMeaningRefuse(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;duplicate&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1800928006" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.105609" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1213" name="DisclosureAndForeignMeaningRefuse(&quot;grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;grass&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1691383039" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.099900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1214" name="DisclosureAndForeignMeaningRefuse(&quot;vent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse(&quot;vent&quot;)" methodname="DisclosureAndForeignMeaningRefuse" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="2055992652" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.099451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.DisclosureAndForeignMeaningRefuse (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1196" name="GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.302665" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1194" name="GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState(&quot;Overworld.2.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState(&quot;Overworld.2.7.0&quot;)" methodname="GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="270147642" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.097892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState (System.String id) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1195" name="GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState(&quot;Overworld.5.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState(&quot;Overworld.5.4.0&quot;)" methodname="GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="989431749" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.170385" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.GeneratedSurfaceUsesApprovedSandstoneWithoutChangingState (System.String id) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:31
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1216" name="OptionalFloorResourceAndFloorOnlyContract" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.OptionalFloorResourceAndFloorOnlyContract" methodname="OptionalFloorResourceAndFloorOnlyContract" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1127642396" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.094308" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.OptionalFloorResourceAndFloorOnlyContract () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1221" name="SameMaterialCannotExpandAddress" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:40Z" duration="0.420480" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1217" name="SameMaterialCannotExpandAddress(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress(&quot;Overworld.2.7.1&quot;)" methodname="SameMaterialCannotExpandAddress" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1605281024" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.095826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1218" name="SameMaterialCannotExpandAddress(&quot;Overworld.5.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress(&quot;Overworld.5.4.1&quot;)" methodname="SameMaterialCannotExpandAddress" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="988675556" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:39Z" duration="0.097907" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1219" name="SameMaterialCannotExpandAddress(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress(&quot;Overworld.2.4.0&quot;)" methodname="SameMaterialCannotExpandAddress" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="818152486" result="Failed" start-time="2026-11-01 23:38:39Z" end-time="2026-11-01 23:38:40Z" duration="0.098061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1220" name="SameMaterialCannotExpandAddress(&quot;Overworld.02.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress(&quot;Overworld.02.7.0&quot;)" methodname="SameMaterialCannotExpandAddress" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="2125060975" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:40Z" duration="0.096627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SameMaterialCannotExpandAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1206" name="SavedLairClaimRevokesEvenAfterLabelRestoration" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SavedLairClaimRevokesEvenAfterLabelRestoration" methodname="SavedLairClaimRevokesEvenAfterLabelRestoration" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="180805856" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:40Z" duration="0.093040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.SavedLairClaimRevokesEvenAfterLabelRestoration () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:58
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1205" name="WarmAuthorityRevokes" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:41Z" duration="1.056496" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1197" name="WarmAuthorityRevokes(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;poi&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="848050016" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:40Z" duration="0.094914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1198" name="WarmAuthorityRevokes(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;name&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="819058834" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:40Z" duration="0.097103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1199" name="WarmAuthorityRevokes(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;profile&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1947009799" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:40Z" duration="0.095455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1200" name="WarmAuthorityRevokes(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;biome&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1245540204" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:40Z" duration="0.099215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1201" name="WarmAuthorityRevokes(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;absent&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1707334104" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:40Z" duration="0.152355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1202" name="WarmAuthorityRevokes(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;graph&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="1185226101" result="Failed" start-time="2026-11-01 23:38:40Z" end-time="2026-11-01 23:38:41Z" duration="0.286785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1203" name="WarmAuthorityRevokes(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;tiles&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="508946931" result="Failed" start-time="2026-11-01 23:38:41Z" end-time="2026-11-01 23:38:41Z" duration="0.098258" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1204" name="WarmAuthorityRevokes(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes(&quot;pois&quot;)" methodname="WarmAuthorityRevokes" classname="CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests" runstate="Runnable" seed="131859655" result="Failed" start-time="2026-11-01 23:38:41Z" end-time="2026-11-01 23:38:41Z" duration="0.098478" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Grovelands sinkhole sandstone remains glyph ground
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGroveSinkholeFloorTests.WarmAuthorityRevokes (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGroveSinkholeFloorTests.cs:43
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
