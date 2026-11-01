@@ -1,0 +1,95 @@
+{
+  "captured_at_utc": "2026-11-01T22:48:11.178192+00:00",
+  "base_commit": "fa67717e17e95e4c25c94fc1a43aeafab1085dac",
+  "seed": 64,
+  "zone": "Overworld.1.2.0",
+  "camera": "actual GameBootstrap Editor1280x800 normal1x",
+  "before": {
+    "turn": 2150,
+    "position": [
+      59,
+      15
+    ],
+    "hp": 40,
+    "wall_structure": "39/40"
+  },
+  "after_reload": {
+    "turn": 2170,
+    "position": [
+      59,
+      15
+    ],
+    "hp": 40,
+    "invincibility": false,
+    "world_pixels_different": 0,
+    "world_pixels": 639200
+  },
+  "actual": [
+    "world before/after",
+    "authorized Examine same masonry and Stone39/40",
+    "protected native Up/Down step and return",
+    "F12off before F5",
+    "fresh Continue"
+  ],
+  "native_tests": {
+    "initial_red": {
+      "failed": 28,
+      "passed_counters": 2
+    },
+    "initial_green": 209,
+    "review_color_red": 2,
+    "focused_final_green": 32,
+    "distinct_passed": 211,
+    "adjacent_not_repeated": 179
+  },
+  "independent_review": {
+    "source": "capture_route and prior bounded review",
+    "visual": "capture_route",
+    "result": "no remaining actionable P1/P2 within wall body scope"
+  },
+  "performance": {
+    "baseline_profile": "../Profiles/manual-20261101-223404-354.json",
+    "current_profile": "../Profiles/manual-20261101-224215-679.json",
+    "baseline_seconds": 62.8498,
+    "current_seconds": 76.2129,
+    "renderer_p95_ms": [
+      0.247625,
+      0.224917
+    ],
+    "renderer_max_ms": [
+      3.389708,
+      2.811792
+    ],
+    "main_thread_max_ms": [
+      143.028,
+      20592.2345
+    ],
+    "gc_allocated_frame_max_bytes": [
+      9955162,
+      353448397
+    ],
+    "R11": "open",
+    "fresh_first_reader_retry_ms": 2718,
+    "retry_does_not_explain_prior_stall": true
+  },
+  "limitations": [
+    "Spread admission native-tested; this actual observation is Stump only",
+    "Protected approach/step not survival or encounter-balance acceptance",
+    "First unprotected approach died; retained evidence",
+    "7048 before/after world pixels differ; only2724 exceed1RGB; memory/light variation not causally attributed",
+    "One masonry body; no full-area polish, population or shadow acceptance",
+    "Remembered-wall glyph transition, repetition and green cast remain",
+    "Current packages0a2cc9bae exclude this slice"
+  ],
+  "art": {
+    "path": "Assets/Resources/Sprites/Live16x24/opening-cellar.png",
+    "frame": 8,
+    "sha256": "94a9dd85bee742f03543138e877b39adec2e7058b9c732911025ef976ec7cf77",
+    "changed": false
+  },
+  "source_files": {
+    "Assets/Scripts/Presentation/Rendering/FlatPixelSpreadEnvironmentCatalog.cs": "434aa43ef74dc06ed38c3f36393e176ce1d1623ddded69db668a7ac1ddc76832",
+    "Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs": "82264ea4af1d987feb51059455d82aef216cd75e3d2483556fa0032d0be74e92",
+    "Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs": "0a961b363728db6aa090956e3d31cc57fda5f542856acde5273026d44b83ef7b"
+  }
+}

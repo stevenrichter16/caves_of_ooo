@@ -58,7 +58,7 @@ namespace CavesOfOoo.Rendering
         public const int FrameCount = 71;
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] materials, vegetation, opening;
+        readonly Tile[] materials, vegetation, opening, plainWalls;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -76,17 +76,23 @@ namespace CavesOfOoo.Rendering
         public FlatPixelStumpMaterialsCatalog(FlatPixelFallbackCatalog borrowedSelector)
             : this(Resources.Load<Texture2D>(ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
+                Resources.Load<Texture2D>(FlatPixelEastFixtureCatalog.CellarResourcePath), borrowedSelector) { }
 
         /// <summary>Optional groups fail independently. Explicit null injection
         /// never reloads a resource or disables another valid borrowed group.</summary>
         public FlatPixelStumpMaterialsCatalog(Texture2D atlas71, Texture2D vegetation4,
             Texture2D opening10, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas71, vegetation4, opening10, null, borrowedSelector) { }
+
+        public FlatPixelStumpMaterialsCatalog(Texture2D atlas71, Texture2D vegetation4,
+            Texture2D opening10, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
             materials = Frames(atlas71, FrameCount, "materials");
             vegetation = Frames(vegetation4, 4, "tree"); opening = Frames(opening10, 10, "bush");
+            plainWalls = Frames(cellar9, 9, "plain masonry", 8, 1);
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -105,6 +111,12 @@ namespace CavesOfOoo.Rendering
         {
             tile = null;
             if (fellingGroundOnly || !ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner) || !Placed(zone, cell, owner)) return false;
+            if (owner.BlueprintName == "Wall")
+            {
+                // Site-admitting and Felling instances do not gain this wilderness family.
+                if (!IsSupportedZone(zone) || plainWalls == null || !IsOrdinaryStoneWall(owner)) return false;
+                tile = plainWalls[0]; return true;
+            }
             int frame = DryFrame(owner, x, y);
             if (frame < 0) return false;
             var group = owner.BlueprintName == "Tree" ? vegetation : owner.BlueprintName == "Bush" ? opening : materials;
@@ -233,6 +245,19 @@ namespace CavesOfOoo.Rendering
             return render.RenderString == "." && render.ColorString == "&y" && render.RenderLayer == 0
                 && render.GlyphVariants == "...,.'`";
         }
+        internal static bool IsOrdinaryStoneWall(Entity owner)
+        {
+            if (owner?.BlueprintName != "Wall" || !PlainOwner(owner) || ForeignMeaning(owner)
+                || owner.HasPart<Body>() || owner.HasPart<LockPart>() || owner.HasPart<TileStateSourcePart>()
+                || owner.HasPart<GasPoolPart>() || owner.HasPart<FiniteLiquidFilmPart>() || owner.HasPart<OvenSitePart>()) return false;
+            var r = Owned<RenderPart>(owner); var thermal = Owned<ThermalPart>(owner);
+            return Render(r, "#", "&K", 0) && r.BackgroundColor == "^k" && string.IsNullOrEmpty(r.GlyphVariants)
+                && string.IsNullOrEmpty(r.DetailColor) && string.IsNullOrEmpty(r.TileColor)
+                && SolidObject(owner) && owner.HasTag("Wall") && Material(owner, "Stone", 0f, "Stone", "Mineral")
+                && Intact(owner, 40, 3, "Rubble") && NeutralThermal(owner)
+                && thermal.FlameTemperature == 1200f && thermal.HeatCapacity == 3f;
+        }
+
         static int DryFrame(Entity owner, int x, int y)
         {
             if (!PlainOwner(owner) || ForeignMeaning(owner)) return -1;
@@ -393,13 +418,14 @@ namespace CavesOfOoo.Rendering
             value ^= value >> 16; value = unchecked(value * 0x7feb352du); value ^= value >> 15;
             return (value & 15u) < 12u ? 0 : 1 + (int)((value >> 4) % 3u);
         }
-        static Tile[] Frames(Texture2D texture, int count, string group)
+        static Tile[] Frames(Texture2D texture, int count, string group, int start = 0, int selectedCount = -1)
         {
             if (texture == null || texture.width != count * Width || texture.height != Height) return null;
-            var tiles = new Tile[count];
-            for (int i = 0; i < count; i++)
+            if (selectedCount < 0) selectedCount = count;
+            var tiles = new Tile[selectedCount];
+            for (int i = 0; i < selectedCount; i++)
             {
-                var sprite = Sprite.Create(texture, new Rect(i * Width, 0, Width, Height),
+                var sprite = Sprite.Create(texture, new Rect((start + i) * Width, 0, Width, Height),
                     new Vector2(.5f, .5f), Width, 0, SpriteMeshType.FullRect);
                 sprite.name = "Live16x24 Stump " + group + " " + i; sprite.hideFlags = HideFlags.HideAndDontSave;
                 var tile = ScriptableObject.CreateInstance<Tile>(); tile.name = sprite.name;
@@ -411,7 +437,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening);
+            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(plainWalls);
         }
         static void DestroyFrames(Tile[] tiles)
         {

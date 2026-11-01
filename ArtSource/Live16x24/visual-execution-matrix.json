@@ -1913,14 +1913,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Audit remaining whole-chunk materials, remembered identity and composition; retain R11 and package gates.",
       "coordinates": [
         1,
         2,
@@ -1931,7 +1931,27 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "bounded_stone_wall_observation": {
+        "record": "Docs/GRAPHICS-SURFACE-STONE-WALLS.md",
+        "receipt": "Docs/Verification/GraphicsExecution/SurfaceWall/play-receipt.json",
+        "scope": "canonical ordinary wilderness Wall only; Stumpactual,Spreadnative-tested",
+        "tests": "211distinctpasses",
+        "full_scope_accepted": false
+      },
+      "observed_seed": 64,
+      "defects": [
+        {
+          "id": "STUMP-WALL-ASCII-01",
+          "status": "resolved-bounded",
+          "description": "Disclosed canonical Wall body/Examine native; six current cells actual-observed."
+        },
+        {
+          "id": "STUMP-WALL-POLISH-01",
+          "status": "open",
+          "description": "One-frame repetition, greenish cast, remembered glyph transition, other owners and whole-chunk audit."
+        }
+      ]
     },
     {
       "id": "surface/Overworld.2.2.0",
@@ -13624,7 +13644,14 @@
         "Beehive",
         "HollowStump",
         "Signpost"
-      ]
+      ],
+      "bounded_stone_wall_observation": {
+        "record": "Docs/GRAPHICS-SURFACE-STONE-WALLS.md",
+        "receipt": "Docs/Verification/GraphicsExecution/SurfaceWall/play-receipt.json",
+        "scope": "canonical ordinary wilderness Wall only; Stumpactual,Spreadnative-tested",
+        "tests": "211distinctpasses",
+        "full_scope_accepted": false
+      }
     },
     {
       "id": "formation/Spread/Hedgerow",
@@ -14454,7 +14481,14 @@
         "SariSnake",
         "BrocchiniaSentinel",
         "SummitSinger"
-      ]
+      ],
+      "bounded_stone_wall_observation": {
+        "record": "Docs/GRAPHICS-SURFACE-STONE-WALLS.md",
+        "receipt": "Docs/Verification/GraphicsExecution/SurfaceWall/play-receipt.json",
+        "scope": "canonical ordinary wilderness Wall only; Stumpactual,Spreadnative-tested",
+        "tests": "211distinctpasses",
+        "full_scope_accepted": false
+      }
     },
     {
       "id": "formation/Stump/Grainfield",
@@ -18045,7 +18079,14 @@
         "plants_and_harvest_outcomes",
         "chunk_fullness"
       ],
-      "prior_coverage_summary": "bounded_six_graph_art_remainder_not_audited"
+      "prior_coverage_summary": "bounded_six_graph_art_remainder_not_audited",
+      "bounded_stone_wall_observation": {
+        "record": "Docs/GRAPHICS-SURFACE-STONE-WALLS.md",
+        "receipt": "Docs/Verification/GraphicsExecution/SurfaceWall/play-receipt.json",
+        "scope": "canonical ordinary wilderness Wall only; Stumpactual,Spreadnative-tested",
+        "tests": "211distinctpasses",
+        "full_scope_accepted": false
+      }
     },
     {
       "id": "shared/knowledge_documents",

@@ -22,7 +22,7 @@ namespace CavesOfOoo.Rendering
         const int Width=16, Height=24;
         readonly FlatPixelFallbackCatalog selector;
         public const string ConjuredFlowersResourcePath="Sprites/Live16x24/conjured-flowers";
-        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured, signpost, fieldSoil, fieldRows;
+        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured, signpost, fieldSoil, fieldRows, plainWalls;
         bool disposed;
         static readonly Dictionary<string,Vector2Int> addresses=BuildAddresses();
         static Dictionary<string,Vector2Int> BuildAddresses()
@@ -46,7 +46,8 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.ResourcePath),
                 Resources.Load<Texture2D>(ConjuredFlowersResourcePath),
-                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),borrowedSelector){ }
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
+                Resources.Load<Texture2D>(FlatPixelEastFixtureCatalog.CellarResourcePath),borrowedSelector){ }
 
         /// <summary>Independent optional groups: Sill turf0–3 of9, opening road16/17 of21,
         /// sixteen hedge masks, north Tree0 of4, base Bush5 of10. Null/wrong-sized
@@ -70,12 +71,17 @@ namespace CavesOfOoo.Rendering
         /// already borrows (rank 2b, 2026-10-31: boundary-stone waysites).</summary>
         public FlatPixelSpreadEnvironmentCatalog(Texture2D turf9,Texture2D ground21,Texture2D hedge16,
             Texture2D vegetation4,Texture2D base10,Texture2D eastKitchen18,Texture2D conjured2,Texture2D anchors12,FlatPixelFallbackCatalog borrowedSelector)
+            :this(turf9,ground21,hedge16,vegetation4,base10,eastKitchen18,conjured2,anchors12,null,borrowedSelector){ }
+
+        public FlatPixelSpreadEnvironmentCatalog(Texture2D turf9,Texture2D ground21,Texture2D hedge16,
+            Texture2D vegetation4,Texture2D base10,Texture2D eastKitchen18,Texture2D conjured2,Texture2D anchors12,Texture2D cellar9,FlatPixelFallbackCatalog borrowedSelector)
         {
             selector=borrowedSelector;if(selector==null)return;
             turf=Frames(turf9,9,0,4);road=Frames(ground21,21,16,2);hedges=Frames(hedge16,16,0,16);
             tree=Frames(vegetation4,4,0,1);berry=Frames(vegetation4,4,2,1);bush=Frames(base10,10,5,1);flowers=Frames(eastKitchen18,18,14,1);
             conjured=Frames(conjured2,2,0,2);signpost=Frames(anchors12,12,8,1);
             fieldSoil=Frames(ground21,21,18,1);fieldRows=Frames(base10,10,7,2);
+            plainWalls=Frames(cellar9,9,8,1);
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -128,6 +134,11 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone,int x,int y,Entity owner,out Tile tile)
         {
             tile=null;if(!ReadyCell(zone,x,y,out _)||!Selected(zone,x,y,owner))return false;
+            if(owner.BlueprintName=="Wall")
+            {
+                if(!IsSupportedZone(zone)||plainWalls==null||!FlatPixelStumpMaterialsCatalog.IsOrdinaryStoneWall(owner))return false;
+                tile=plainWalls[0];return true;
+            }
             if(IsEligibleFieldRow(owner))
             {
                 if(fieldRows==null||!DryFieldCell(zone,x,y))return false;
@@ -399,7 +410,7 @@ namespace CavesOfOoo.Rendering
             }
             return result;
         }
-        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);Release(signpost);Release(fieldSoil);Release(fieldRows);}
+        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);Release(signpost);Release(fieldSoil);Release(fieldRows);Release(plainWalls);}
         static void Release(Tile[] tiles){if(tiles==null)return;foreach(var tile in tiles)if(tile!=null){Destroy(tile.sprite);Destroy(tile);}}
         static void Destroy(Object value){if(value==null)return;if(Application.isPlaying)Object.Destroy(value);else Object.DestroyImmediate(value);}
     }

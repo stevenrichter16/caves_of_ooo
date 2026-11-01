@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="30" result="Failed(Child)" total="30" passed="2" failed="28" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 22:35:42Z" end-time="2026-11-01 22:35:45Z" duration="3.2664503">
+  <test-suite type="TestSuite" id="43412" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35350" result="Failed" site="Child" start-time="2026-11-01 22:35:42Z" end-time="2026-11-01 22:35:45Z" duration="3.266450" total="30" passed="2" failed="28" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43384" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35350" result="Failed" site="Child" start-time="2026-11-01 22:35:42Z" end-time="2026-11-01 22:35:45Z" duration="3.180623" total="30" passed="2" failed="28" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43385" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35350" result="Failed" site="Child" start-time="2026-11-01 22:35:42Z" end-time="2026-11-01 22:35:45Z" duration="3.115120" total="30" passed="2" failed="28" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43386" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35350" result="Failed" site="Child" start-time="2026-11-01 22:35:42Z" end-time="2026-11-01 22:35:45Z" duration="3.048271" total="30" passed="2" failed="28" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2399" name="FlatPixelSurfaceStoneWallTests" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:45Z" duration="2.432663" total="30" passed="2" failed="28" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="2420" name="AlteredWallCannotBorrowOrdinaryMasonry" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:44Z" duration="0.953939" total="17" passed="0" failed="17" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2403" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;visual&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="76747047" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.159521" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2404" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;glyph&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1852603507" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.051489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2405" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;color&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="61522609" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.048863" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2406" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;background&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;background&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1371743652" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.049128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2407" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;layer&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1959212584" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.047051" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2408" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;foreign&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="2028110438" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.046716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2409" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;duplicate&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1627532284" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.046572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2410" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;custody&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1273012071" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.046803" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2411" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;nonSolid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;nonSolid&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1622773155" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.047117" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2412" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;footprint&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="946347619" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:43Z" duration="0.045583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2413" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;material&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1214860253" result="Failed" start-time="2026-11-01 22:35:43Z" end-time="2026-11-01 22:35:44Z" duration="0.047461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2414" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;wreckage&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;wreckage&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="965898632" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.046072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2415" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;maxHP&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;maxHP&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1549616921" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.046944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2416" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;hot&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;hot&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="411353089" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.047584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2417" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;frozen&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="2119614187" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.046982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2418" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;nan&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;nan&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1314693795" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.046204" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2419" name="AlteredWallCannotBorrowOrdinaryMasonry(&quot;service&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry(&quot;service&quot;)" methodname="AlteredWallCannotBorrowOrdinaryMasonry" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="678227476" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.047578" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.AlteredWallCannotBorrowOrdinaryMasonry (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:40
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2402" name="CanonicalWorldReaderAndDamageReuseExactApprovedFrame" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CanonicalWorldReaderAndDamageReuseExactApprovedFrame" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.148342" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2400" name="CanonicalWorldReaderAndDamageReuseExactApprovedFrame(&quot;Overworld.10.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CanonicalWorldReaderAndDamageReuseExactApprovedFrame(&quot;Overworld.10.11.0&quot;)" methodname="CanonicalWorldReaderAndDamageReuseExactApprovedFrame" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1413934555" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.049975" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CanonicalWorldReaderAndDamageReuseExactApprovedFrame (System.String id) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2401" name="CanonicalWorldReaderAndDamageReuseExactApprovedFrame(&quot;Overworld.1.2.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CanonicalWorldReaderAndDamageReuseExactApprovedFrame(&quot;Overworld.1.2.0&quot;)" methodname="CanonicalWorldReaderAndDamageReuseExactApprovedFrame" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="117190927" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.057558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CanonicalWorldReaderAndDamageReuseExactApprovedFrame (System.String id) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2425" name="CurrentWildernessAuthorityIsRequired" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.239161" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2421" name="CurrentWildernessAuthorityIsRequired(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired(&quot;biome&quot;)" methodname="CurrentWildernessAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1734724813" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.052186" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2422" name="CurrentWildernessAuthorityIsRequired(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired(&quot;poi&quot;)" methodname="CurrentWildernessAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="816577636" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.050096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2423" name="CurrentWildernessAuthorityIsRequired(&quot;replacement&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired(&quot;replacement&quot;)" methodname="CurrentWildernessAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1903120851" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.049011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2424" name="CurrentWildernessAuthorityIsRequired(&quot;map-shape&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired(&quot;map-shape&quot;)" methodname="CurrentWildernessAuthorityIsRequired" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1947203353" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.048594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.CurrentWildernessAuthorityIsRequired (System.String fault) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2435" name="ExplicitMissingWallResourceKeepsOtherMaterials" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.ExplicitMissingWallResourceKeepsOtherMaterials" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.274051" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2433" name="ExplicitMissingWallResourceKeepsOtherMaterials(False)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.ExplicitMissingWallResourceKeepsOtherMaterials(False)" methodname="ExplicitMissingWallResourceKeepsOtherMaterials" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1415842278" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.099949" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.ExplicitMissingWallResourceKeepsOtherMaterials (System.Boolean stump) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:78
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2434" name="ExplicitMissingWallResourceKeepsOtherMaterials(True)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.ExplicitMissingWallResourceKeepsOtherMaterials(True)" methodname="ExplicitMissingWallResourceKeepsOtherMaterials" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="601693467" result="Failed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:44Z" duration="0.126536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.ExplicitMissingWallResourceKeepsOtherMaterials (System.Boolean stump) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:78
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2432" name="SavedLairColumnStillRefusesAfterLabelRemoval" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SavedLairColumnStillRefusesAfterLabelRemoval" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:45Z" duration="0.629219" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2430" name="SavedLairColumnStillRefusesAfterLabelRemoval(&quot;Overworld.10.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SavedLairColumnStillRefusesAfterLabelRemoval(&quot;Overworld.10.11.0&quot;)" methodname="SavedLairColumnStillRefusesAfterLabelRemoval" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1587955242" result="Passed" start-time="2026-11-01 22:35:44Z" end-time="2026-11-01 22:35:45Z" duration="0.443703" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2431" name="SavedLairColumnStillRefusesAfterLabelRemoval(&quot;Overworld.1.2.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SavedLairColumnStillRefusesAfterLabelRemoval(&quot;Overworld.1.2.0&quot;)" methodname="SavedLairColumnStillRefusesAfterLabelRemoval" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="621469320" result="Passed" start-time="2026-11-01 22:35:45Z" end-time="2026-11-01 22:35:45Z" duration="0.138153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2429" name="SpecialSiteDepthAndFellingDoNotInheritWildernessWall" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SpecialSiteDepthAndFellingDoNotInheritWildernessWall" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-01 22:35:45Z" end-time="2026-11-01 22:35:45Z" duration="0.183840" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2426" name="SpecialSiteDepthAndFellingDoNotInheritWildernessWall(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SpecialSiteDepthAndFellingDoNotInheritWildernessWall(&quot;Overworld.2.4.0&quot;)" methodname="SpecialSiteDepthAndFellingDoNotInheritWildernessWall" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="674348896" result="Failed" start-time="2026-11-01 22:35:45Z" end-time="2026-11-01 22:35:45Z" duration="0.047352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SpecialSiteDepthAndFellingDoNotInheritWildernessWall (System.String id) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2427" name="SpecialSiteDepthAndFellingDoNotInheritWildernessWall(&quot;Overworld.1.2.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SpecialSiteDepthAndFellingDoNotInheritWildernessWall(&quot;Overworld.1.2.1&quot;)" methodname="SpecialSiteDepthAndFellingDoNotInheritWildernessWall" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="365693915" result="Failed" start-time="2026-11-01 22:35:45Z" end-time="2026-11-01 22:35:45Z" duration="0.049008" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SpecialSiteDepthAndFellingDoNotInheritWildernessWall (System.String id) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2428" name="SpecialSiteDepthAndFellingDoNotInheritWildernessWall(&quot;Overworld.3.5.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SpecialSiteDepthAndFellingDoNotInheritWildernessWall(&quot;Overworld.3.5.0&quot;)" methodname="SpecialSiteDepthAndFellingDoNotInheritWildernessWall" classname="CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests" runstate="Runnable" seed="1658742059" result="Failed" start-time="2026-11-01 22:35:45Z" end-time="2026-11-01 22:35:45Z" duration="0.045065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  canonical Wall remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.Native (CavesOfOoo.Core.Entity e) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:21
+at CavesOfOoo.Tests.FlatPixelSurfaceStoneWallTests.SpecialSiteDepthAndFellingDoNotInheritWildernessWall (System.String id) [0x0000e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelSurfaceStoneWallTests.cs:67
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

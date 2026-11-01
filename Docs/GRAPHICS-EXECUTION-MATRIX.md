@@ -208,3 +208,11 @@ explicit in GRAPHICS-MARROWSTYE-SHADOW.md.
 Marrowstye and shared furniture rows separately record actual ordinary Oven observation
 and integrated/native-tested MillStone.147nativepasses and exact4040reload support
 bounded body identity; no whole-family, population or performance acceptance.
+
+## 2026-11-01 ordinary surface stone walls
+
+Stump1.2 now records bounded canonical Wall world/Examine/reload,211distinctnative
+passes and exact2170reload. Spread admission is native-tested only; family rows
+retain their unaccepted status. One-frame repetition, remembered glyph transition,
+other owners, population, broader shadows and R11remain open. Batch package next.
+See GRAPHICS-SURFACE-STONE-WALLS.md.
