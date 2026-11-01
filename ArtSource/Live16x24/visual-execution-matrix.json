@@ -10602,12 +10602,12 @@
       "status_axes": {
         "coverage": "fallback",
         "polish": "in-progress",
-        "population": "not-audited",
+        "population": "reviewed",
         "shadow": "not-audited",
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Close largest actual material/selected-glyph gaps; whole-area routes/interiors/population/shadows and performance remain open. Bounded Mac slice is delivered; do not repeat its tests/build without changes.",
+      "next_action": "Ginmere/Deepest Cathedral material gaps next; retain field repetition, sparse patches, unrelated glyphs and R11 as open. Batch new composition delivery later.",
       "coordinates": [
         10,
         15,
@@ -10620,7 +10620,7 @@
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
       "related_scope_ids": [],
       "observed_seed": 65,
-      "observed_role": "Field strips with 240 existing CropRow/RipeCropRow owners",
+      "observed_role": "Seed65 LastGleanings / BankCrossing FieldStrips;240 existing rows;15 new margin Tree/Bush owners",
       "bounded_slices": [
         {
           "id": "ordinary-dry-field-rows",
@@ -10637,37 +10637,73 @@
           ],
           "delivery": "bounded-mac-observed",
           "delivery_record": "Docs/GRAPHICS-CURRENT-PACKAGES.md"
+        },
+        {
+          "id": "last-gleanings-field-margins",
+          "status": "observed",
+          "axis": "population",
+          "record": "Docs/GRAPHICS-SPREAD-FIELD-COMPOSITION.md",
+          "owners": {
+            "Tree": 3,
+            "Bush": 12
+          },
+          "delivery": "editor-only",
+          "limits": [
+            "Modest margin dressing, not full-area fullness",
+            "F12-protected traversal does not establish encounter balance",
+            "R11 spikes unresolved; packages remain a72a22983"
+          ]
         }
       ],
       "evidence": {
         "baseline_captures": [
-          "Docs/Verification/GraphicsExecution/field-before.png"
+          "Docs/Verification/GraphicsExecution/field-before.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/before-center.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/before-west.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/before-east-x46.png"
         ],
         "after_captures": [
           "Docs/Verification/GraphicsExecution/field-after.png",
-          "Docs/Verification/GraphicsExecution/field-after-zoom2.png"
+          "Docs/Verification/GraphicsExecution/field-after-zoom2.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/after-center.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/after-west.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/after-east-x46.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/after-close.png"
         ],
         "reader_checks": [
-          "Docs/Verification/GraphicsExecution/field-ripe-examine.png"
+          "Docs/Verification/GraphicsExecution/field-ripe-examine.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/tree-reader.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/bush-reader.png"
         ],
         "route_checks": [
           "Docs/Verification/GraphicsExecution/field-harvest.png"
         ],
         "reload_checks": [
           "Docs/Verification/GraphicsExecution/field-fresh-continue.png",
-          "Docs/Verification/GraphicsExecution/field-harvest-save/Quick.json"
+          "Docs/Verification/GraphicsExecution/field-harvest-save/Quick.json",
+          "Docs/Verification/GraphicsExecution/FieldComposition/after-fresh-continue.png",
+          "Docs/Verification/GraphicsExecution/FieldComposition/actual-state.json",
+          "Docs/Verification/GraphicsExecution/FieldComposition/reload-comparison.json"
         ],
         "regressions": [
           "Docs/Verification/GraphicsExecution/field-rows-red.xml",
           "Docs/Verification/GraphicsExecution/field-optional-red.xml",
-          "Docs/Verification/GraphicsExecution/field-regression-green.xml"
+          "Docs/Verification/GraphicsExecution/field-regression-green.xml",
+          "Docs/Verification/GraphicsExecution/FieldComposition/red.xml",
+          "Docs/Verification/GraphicsExecution/FieldComposition/review-red.xml",
+          "Docs/Verification/GraphicsExecution/FieldComposition/relocation-red.xml",
+          "Docs/Verification/GraphicsExecution/FieldComposition/regression-green.xml",
+          "Docs/Verification/GraphicsExecution/FieldComposition/final-green.xml"
         ],
         "profiles": [
           "Docs/Verification/GraphicsExecution/Profiles/manual-20261101-210043-381.json",
-          "Docs/Verification/GraphicsExecution/Profiles/README.md"
+          "Docs/Verification/GraphicsExecution/Profiles/README.md",
+          "Docs/Verification/GraphicsExecution/FieldComposition/after-profile.json",
+          "Docs/Verification/GraphicsExecution/FieldComposition/before-clean-profile.json"
         ],
         "independent_reviews": [
-          "Docs/GRAPHICS-SPREAD-FIELD-ROWS.md"
+          "Docs/GRAPHICS-SPREAD-FIELD-ROWS.md",
+          "Docs/GRAPHICS-SPREAD-FIELD-COMPOSITION.md"
         ]
       },
       "actual_zoom_resolution": "1280x800 Editor;1x before/after center,2x closer play;freshContinue1x",
@@ -10686,7 +10722,7 @@
         {
           "id": "FIELD-03",
           "status": "open",
-          "description": "Broad sparse center and outer grass need purposeful composition review."
+          "description": "Three field-margin groups improve edges modestly; broad green gaps and substantial-place composition remain open."
         },
         {
           "id": "FIELD-04",
@@ -10697,8 +10733,8 @@
       "limitations": [
         "Replayed travel comparison; initial retainedsaveis10.11 entry, not10.15",
         "Fullchunkedges and all owners not yet audited",
-        "No new population/shadows; no fullareaacceptance",
-        "Bounded Mac slice observed; full-area delivery, Linux/Deck execution and packaged performance remain open"
+        "Bounded Mac slice observed; full-area delivery, Linux/Deck execution and packaged performance remain open",
+        "Bounded15-owner cold margin composition observed; no new shadows or full-area acceptance"
       ],
       "delivery_observation": {
         "source_revision": "0a2cc9baebfeedf8491db1c4e5aa5f77f9fd4cd1",

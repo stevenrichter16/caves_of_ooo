@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 23:13:02Z" end-time="2026-11-01 23:13:05Z" duration="2.4436213">
+  <test-suite type="TestSuite" id="43430" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35364" result="Failed" site="Child" start-time="2026-11-01 23:13:02Z" end-time="2026-11-01 23:13:05Z" duration="2.443621" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43402" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35364" result="Failed" site="Child" start-time="2026-11-01 23:13:03Z" end-time="2026-11-01 23:13:05Z" duration="2.252221" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43403" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35364" result="Failed" site="Child" start-time="2026-11-01 23:13:03Z" end-time="2026-11-01 23:13:05Z" duration="1.835642" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43404" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35364" result="Failed" site="Child" start-time="2026-11-01 23:13:03Z" end-time="2026-11-01 23:13:05Z" duration="1.683695" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="25888" name="SpreadFieldMarginTests" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-11-01 23:13:03Z" end-time="2026-11-01 23:13:05Z" duration="1.490222" total="12" passed="2" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="25900" name="CachedGraphCannotBeRetrofitted" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.CachedGraphCannotBeRetrofitted" methodname="CachedGraphCannotBeRetrofitted" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="1081087240" result="Failed" start-time="2026-11-01 23:13:03Z" end-time="2026-11-01 23:13:04Z" duration="0.251117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.CachedGraphCannotBeRetrofitted () [0x0003e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:80
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="25890" name="DeterministicWithoutConsumingCallerRandomOrStacking" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.DeterministicWithoutConsumingCallerRandomOrStacking" methodname="DeterministicWithoutConsumingCallerRandomOrStacking" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="278675648" result="Failed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.291974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.DeterministicWithoutConsumingCallerRandomOrStacking () [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:54
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="25899" name="ForeignFactoryCannotDressTheGraph" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.ForeignFactoryCannotDressTheGraph" methodname="ForeignFactoryCannotDressTheGraph" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="532660775" result="Failed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.099737" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.ForeignFactoryCannotDressTheGraph () [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:78
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25893" name="MissingResourceDeclinesAtomically" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.MissingResourceDeclinesAtomically" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.188481" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25891" name="MissingResourceDeclinesAtomically(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.MissingResourceDeclinesAtomically(&quot;Tree&quot;)" methodname="MissingResourceDeclinesAtomically" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="1871753101" result="Failed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.076268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.MissingResourceDeclinesAtomically (System.String blueprint) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25892" name="MissingResourceDeclinesAtomically(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.MissingResourceDeclinesAtomically(&quot;Bush&quot;)" methodname="MissingResourceDeclinesAtomically" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="121929064" result="Failed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.074476" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.MissingResourceDeclinesAtomically (System.String blueprint) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="25903" name="NonSelectedAddressHasNoMarginBuilder" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.NonSelectedAddressHasNoMarginBuilder" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.181472" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="25901" name="NonSelectedAddressHasNoMarginBuilder(64)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.NonSelectedAddressHasNoMarginBuilder(64)" methodname="NonSelectedAddressHasNoMarginBuilder" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="610698448" result="Passed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.074218" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="25902" name="NonSelectedAddressHasNoMarginBuilder(777)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.NonSelectedAddressHasNoMarginBuilder(777)" methodname="NonSelectedAddressHasNoMarginBuilder" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="786127101" result="Passed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.068117" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="25889" name="Seed65AddsThreeSmallGroupsWithoutChangingExistingOwnersOrSources" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.Seed65AddsThreeSmallGroupsWithoutChangingExistingOwnersOrSources" methodname="Seed65AddsThreeSmallGroupsWithoutChangingExistingOwnersOrSources" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="1156521019" result="Failed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:04Z" duration="0.068880" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.Seed65AddsThreeSmallGroupsWithoutChangingExistingOwnersOrSources () [0x000ac] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:41
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="25898" name="UnavailableMarginsLeaveOriginalGraphUntouched" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:05Z" duration="0.343668" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="25894" name="UnavailableMarginsLeaveOriginalGraphUntouched(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched(&quot;reserved&quot;)" methodname="UnavailableMarginsLeaveOriginalGraphUntouched" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="162727882" result="Failed" start-time="2026-11-01 23:13:04Z" end-time="2026-11-01 23:13:05Z" duration="0.072960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched (System.String reason) [0x0011b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25895" name="UnavailableMarginsLeaveOriginalGraphUntouched(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched(&quot;wet&quot;)" methodname="UnavailableMarginsLeaveOriginalGraphUntouched" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="571998394" result="Failed" start-time="2026-11-01 23:13:05Z" end-time="2026-11-01 23:13:05Z" duration="0.077012" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched (System.String reason) [0x0011b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25896" name="UnavailableMarginsLeaveOriginalGraphUntouched(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched(&quot;occupied&quot;)" methodname="UnavailableMarginsLeaveOriginalGraphUntouched" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="24173675" result="Failed" start-time="2026-11-01 23:13:05Z" end-time="2026-11-01 23:13:05Z" duration="0.081689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched (System.String reason) [0x0011b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:74
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="25897" name="UnavailableMarginsLeaveOriginalGraphUntouched(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched(&quot;interior&quot;)" methodname="UnavailableMarginsLeaveOriginalGraphUntouched" classname="CavesOfOoo.Tests.SpreadFieldMarginTests" runstate="Runnable" seed="824499235" result="Failed" start-time="2026-11-01 23:13:05Z" end-time="2026-11-01 23:13:05Z" duration="0.070695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing optional cold field-margin composition
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadFieldMarginTests+Fixture.Run (CavesOfOoo.Data.EntityFactory factory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:33
+at CavesOfOoo.Tests.SpreadFieldMarginTests.UnavailableMarginsLeaveOriginalGraphUntouched (System.String reason) [0x0011b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadFieldMarginTests.cs:74
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -223,3 +223,7 @@ BatchA72 verifies bounded actualMac wall/oven/Marrowshade/Stillleaf materials,
 movement/readers/stairs/save/freshContinue; three exact worldreloadpairs. Linux
 retryarchiveverified,notexecuted. Full-area axes remain unaccepted. Current source
 now matches packages; R11/physicalhardware and separatepopulation/polish remainopen.
+
+## Bounded composition update — 2026-11-01
+
+Spread10.15 seed65 now records the15-owner cold field-margin pilot separately under population=reviewed. Three actual viewpoints,2×readability, interactions and exact reload passed; full-area polish, encounter balance and R11 remain open. Current packagesa72a22983 exclude the addition. See `GRAPHICS-SPREAD-FIELD-COMPOSITION.md`. Next actual Ginmere floor baseline; no universal coverage/polish promotion.

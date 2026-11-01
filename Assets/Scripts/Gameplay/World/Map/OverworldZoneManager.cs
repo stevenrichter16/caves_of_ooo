@@ -80,6 +80,9 @@ namespace CavesOfOoo.Core
                 }
                 // A v2 quiet address stays quiet; it must not borrow the old independent selector.
                 pipeline.RemoveBuilders<SpreadWildernessSituationBuilder>();
+                if(land!=null&&assignment.Family==SpreadExplorationFamily.LastGleanings
+                    &&assignment.Topology==SpreadExplorationTopology.BankCrossing)
+                    pipeline.AddBuilder(new SpreadFieldMarginBuilder(this,land));
                 if(assignment.Family!=SpreadExplorationFamily.None&&land!=null&&population!=null&&containers!=null)
                     pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers,haul,captured.Version>=8&&assignment.Family==SpreadExplorationFamily.HuntThroughCover));
             }
