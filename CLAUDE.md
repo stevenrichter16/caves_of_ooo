@@ -1,3 +1,21 @@
+**Current economy checkpoint — 2026-11-01:** The economy is becoming a first-class system (see `Docs/ECONOMY-SYSTEM.md`: survey, canon trust table, design EC1–EC7).
+- **Shipped:**
+  - EC1: shops stock from the world seed.
+  - EC2: one `Ledger` for drams outside trades. Fixed a reward-overflow purse wipe and a coin round trip that minted drams; coins are now `NoTrade`. A source pin keeps every purse write on the money paths.
+  - EC3: the Choir sells nothing. A tendril gives its shelf for blood (`OfferToChoir`); its parts, art and renewal are kept.
+  - EC4: Tent-Right never sells water (pinned).
+  - EC5: salt is priced by distance from the salt pans (0.5 to 2.0), so carrying it inland pays.
+- **Found on the way:**
+  - the audit benches depended on leaked loadout factories;
+  - a save fixture raced background autosaves;
+  - three inn pins had stale fixtures (all fixed).
+- **Next:**
+  - EC6: barter and salt as money in the deep wasteland (sweep `TradeUI` first);
+  - EC7: Concord credit at a Factor;
+  - E5: `PalimpsestEcho`, a superseded-world trader;
+  - a commit-time record for transactional fees.
+- Four pre-existing failures on main are flagged as a separate task.
+
 **Current chunk-activity checkpoint — 2026-11-01:** Waysites and chunk density are in (see `Docs/CHUNK-ACTIVITY.md`).
 - **Waysites:** small authored situations with real verbs in wild chunks of five biomes.
   - Kinds (12): Spread hedge camp, drovers' trough, bee orchard, fallen cart, boundary stone; Sodden bothy, hummock camp, duckboard landing; Beating shade cistern, wall shelter; Stump watcher's camp; Grovelands gatherer's rest (no fire under Choir law). The Overwrit gets none, by canon.
