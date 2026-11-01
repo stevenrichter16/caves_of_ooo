@@ -1,0 +1,151 @@
+{
+  "source_commit": "0a2cc9baebfeedf8491db1c4e5aa5f77f9fd4cd1",
+  "runtime_source_commit": "0a2cc9baebfeedf8491db1c4e5aa5f77f9fd4cd1",
+  "built_after_utc": "2026-11-01T21:23:37Z",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-01-graphics-0a2cc9bae-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-01-graphics-0a2cc9bae-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-01-graphics-0a2cc9bae-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "planned_new_files": 31,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/mac-build.json",
+      "sha256": "5b6cf1b592d894a69d5a225b0c83f3f6522003120dd0d881fa831b898dcbfdac",
+      "summary": {
+        "job_id": "build-6b2c6c62ec",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-01-graphics-0a2cc9bae-current/CavesOfOoo.app",
+        "started_at": "2026-11-01T21:23:37.182897Z",
+        "duration_seconds": 38.628104,
+        "completed_at": "2026-11-01T21:24:15.811001Z",
+        "total_size_mb": 346.2,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/linux-build.json",
+      "sha256": "ecd1bb6c9d134c38905ef9a9087aa885d891c4530ccf030b1e7ac5b91471d611",
+      "summary": {
+        "job_id": "build-4bf7a395fc",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-01-graphics-0a2cc9bae-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-01T21:25:03.51904Z",
+        "duration_seconds": 29.774787,
+        "completed_at": "2026-11-01T21:25:33.293827Z",
+        "total_size_mb": 326.66,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/field-regression-green.xml",
+        "sha256": "02ca8f960013c83ce11bb0e543295d6bbf5e0f0c36d9413f8bcfc76f23585a06",
+        "passed": 196,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-11-01T20:21:31+00:00",
+        "completed_at_utc": "2026-11-01T20:22:03+00:00",
+        "skips": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/FellingBaseline/regression-green.xml",
+        "sha256": "0408e61c2889729e8c0c70476b6107aaf7f5710119ab5981f5930d0cfff22497",
+        "passed": 163,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-11-01T20:47:33+00:00",
+        "completed_at_utc": "2026-11-01T20:48:11+00:00",
+        "skips": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained Spread field-row 196-case and Felling dry-ground 163-case checkpoints; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/build-input-audit.json",
+    "sha256": "3878d655acf04c9b4c477cd89f8786189ea130fec2d8f60ede89b3e71e067da5",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 73,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 62
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 2
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-01T21:23:19.155415+00:00",
+      "checks": [
+        {
+          "path": "Assets/Scripts/Presentation/Rendering/FlatPixelGreyboxCatalog.cs",
+          "sha256": "531582ccf2f8395fdd64987bcc160750266e02c82da3efa707090958226fbf6e",
+          "matchesPublished": true
+        },
+        {
+          "path": "Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs",
+          "sha256": "9ea9f45ca296cc650c7c3d115b954dceec3a6a7dced07af6dd5a228b209c2c62",
+          "matchesPublished": true
+        }
+      ],
+      "editor": "Stopped, no compile, clean SampleScene, SaveRootOverride null after Finish; published current code compiled and exercised."
+    },
+    "renderer_published_bytes_rechecked": true,
+    "known_neutral_build_inputs_rechecked": 79,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/package-current.py",
+    "sha256": "d4ceb5afedd61e2e8d6dbaf136c67b606a9236e2bab375bb832b28288d5bc82b",
+    "adapted_from": "Docs/Verification/Live16x24/regional-batch-package-audit.py",
+    "adapted_from_sha256": "8e3fa353485b285ab4611f0d6b2307bc61ece8919d3f0ad5e51a17c2bc5f63e4"
+  },
+  "created_at_utc": "2026-11-01T21:28:26.917188+00:00",
+  "package_flavor": "current-graphics-spread-field-rows-felling-dry-ground",
+  "scope": "Published current graphics through Spread field-row and Felling dry-ground integration, inheriting the intervening settlement/site/shared-art and gameplay changes since the prior aa92e2746 packages. Bounded slice acceptance only; no whole-game or whole-area completion claim.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and selected current renderer/input bytes are checked; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Root reports: the first protection snapshot was interrupted by the Mac build and its partial output was preserved. Three owned build-generated settings were restored byte-exact, then /private/tmp/coo-graphics-build-protection-0a2cc9bae-complete completed before Linux began. This later snapshot is not represented as a pre-Mac snapshot; runtime sources were unchanged. Final preservation reconciliation belongs to the release record.",
+  "canonical_executable_copy": {
+    "source_commit": "0a2cc9baebfeedf8491db1c4e5aa5f77f9fd4cd1",
+    "at_utc": "2026-11-01T21:28:26.916861+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-01-graphics-0a2cc9bae-current/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-01-graphics-0a2cc9bae-current/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4472,
+    "both_sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing built-in controls documented in unchanged README-Steam-Deck.md; no new controller mapping or physical verification.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including matched Felling observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}
