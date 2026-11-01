@@ -362,12 +362,17 @@ namespace CavesOfOoo.Tests
                 var chat = GameEvent.New("InventoryAction"); chat.SetParameter("Command", "Chat"); chat.SetParameter("Actor", (object)player); choir.FireEventAndRelease(chat);
                 Assert.True(ConversationManager.IsActive); Assert.AreEqual("ChoirTendril_1", ConversationManager.CurrentConversation.ID); Assert.AreSame(choir, ConversationManager.Speaker);
                 Assert.True(choir.GetPart<BrainPart>().InConversation); Native(View().ForegroundTile, Resource("ChoirTendril"));
-                int index = ConversationManager.VisibleChoices.ToList().FindIndex(c => c.Actions != null && c.Actions.Any(a => a.Key == "StartTrade")); Assert.GreaterOrEqual(index, 0);
-                Assert.False(ConversationManager.SelectChoice(index)); Assert.AreSame(choir, ConversationManager.PendingTradePartner); Assert.False(choir.GetPart<BrainPart>().InConversation);
-                var item = TradeSystem.GetTraderStock(choir).First(); int price = TradeSystem.GetBuyPrice(item, TradeSystem.GetTradePerformance(player), choir);
-                TradeSystem.SetDrams(player, price + 10); int purse = TradeSystem.GetDrams(choir); int beforeCount = stock.Objects.Count;
-                Assert.True(TradeSystem.BuyFromTrader(player, choir, item, out var reason), reason);
-                Assert.AreEqual(purse + price, TradeSystem.GetDrams(choir)); Assert.AreEqual(10, TradeSystem.GetDrams(player)); Assert.AreEqual(beforeCount - 1, stock.Objects.Count);
+                // EC3 (Docs/ECONOMY-SYSTEM.md §9): the Choir keeps its shelf but sells nothing; the walker gives
+                // themselves instead. Revised from the trade path this pin used to walk.
+                Assert.False(ConversationManager.VisibleChoices.Any(c => c.Actions != null && c.Actions.Any(a => a.Key == "StartTrade")), "no [Let's trade.] with the Choir");
+                int ask = ConversationManager.VisibleChoices.ToList().FindIndex(c => c.Target == "NoTrade"); Assert.GreaterOrEqual(ask, 0);
+                Assert.True(ConversationManager.SelectChoice(ask));
+                int give = ConversationManager.VisibleChoices.ToList().FindIndex(c => c.Actions != null && c.Actions.Any(a => a.Key == "OfferToChoir")); Assert.GreaterOrEqual(give, 0);
+                var held = stock.Objects.ToArray(); Assert.True(ConversationManager.SelectChoice(give));
+                Assert.IsEmpty(stock.Objects, "what it held, it gives"); Assert.True(held.All(player.GetPart<InventoryPart>().Objects.Contains));
+                int farewell = ConversationManager.VisibleChoices.ToList().FindIndex(c => c.Target == "End"); Assert.GreaterOrEqual(farewell, 0);
+                Assert.False(ConversationManager.SelectChoice(farewell)); Assert.False(choir.GetPart<BrainPart>().InConversation);
+                Native(View().ForegroundTile, Resource("ChoirTendril"));
                 var remaining = stock.Objects.ToArray(); int changedPurse = TradeSystem.GetDrams(choir);
                 using (var paint = new Paint(world, zone)) using (var portraits = Portraits())
                 {

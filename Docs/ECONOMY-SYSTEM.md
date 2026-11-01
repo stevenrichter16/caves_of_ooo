@@ -259,9 +259,43 @@ names its file.
 not its success. A `trade/Transferred` record on transaction commit is follow-up work; existing
 diag-count pins must be checked first.
 
-## 9. Next steps
+## 9. EC3 — the Choir does not trade (2026-11-01)
+
+**Canon.** `Lore/History/08_MaterialCulture.md` §II: "the Choir has no economy at all (you
+cannot *buy* anything from the Choir — you can only give yourself)". The tendril's own
+dialogue already says "The Choir gives freely, for what is ours is all of ours." The shop
+contradicted both.
+
+**First attempt, reverted.** Removing the tendril's `Trader` part broke three deliberate,
+pinned designs (21 tests):
+- the Groveland actor art treats that part as essential, so the tendril fell back to a glyph;
+- the Choir cathedral composes tendrils with a renewing `ChoirStock` shelf;
+- restock eligibility and the `Codex11` document source expect a stocked tendril.
+
+**Change (kept).** The tendril keeps its parts, stock, purse and renewal. What changes is what
+canon cares about: nothing on the shelf is for sale.
+- `ChoirOffering.KeepsNoShop` (a speaker of the `RotChoir` faction):
+  - `ConversationManager.CanTrade` returns false, so no "[Let's trade.]";
+  - `TradeSystem.CanBeTraded` vetoes buying from or selling to a Choir trader, so no route
+    around the window exists.
+- **The offering** (conversation action `OfferToChoir`, from a new `NoTrade` node: asking what
+  it would take for what it carries).
+  - It costs a fifth of the walker's maximum health, never the last of it.
+  - The tendril gives everything it currently holds.
+  - The walker gains Choir regard (+5).
+  - Refusals change nothing: a tendril holding nothing asks nothing (`nothing_to_give`), and a
+    walker too weak to give is refused (`too_weak`).
+  - The shelf renews through the existing restock, so a later visit can offer again.
+  - Diag: `trade/ChoirOffering` or `ChoirOfferingRefused`.
+- `Codex11`, which only `ChoirStock` supplies, is given now, not sold.
+
+**Spore-Wedded villages** are a different matter: canon lets the player trade with them
+(`01_RotChoir.md` §216). Only the Choir itself, through a tendril, keeps no shop.
+
+## 10. Next steps
 
 1. Finish the §5.3 sweep (trade screen, restock timing, conversation-to-trader routing,
    faction trust data).
-2. EC3 (the Choir does not trade) and EC4 (Tent-Right never sells water).
-3. EC5 (salt priced by distance from the flats), then EC6 and EC7.
+2. EC4: Tent-Right never sells water.
+3. EC5: salt priced by distance from the flats; then EC6 and EC7.
+4. E5: `PalimpsestEcho` (a superseded-world trader); decide its fate against `Lore/`.

@@ -352,9 +352,10 @@ namespace CavesOfOoo.Core
         /// be traded in the requested direction. Mirrors Qud's
         /// <c>CanBeTradedEvent</c> (XRL.World.Parts.Inventory cite).
         ///
-        /// Two veto paths:
+        /// Veto paths:
         ///   1. Items tagged <c>"NoTrade"</c> are refused outright
-        ///      (quest items, dungeon keys, soft-bound rewards).
+        ///      (quest items, dungeon keys, soft-bound rewards, coins),
+        ///      and nothing is traded with the Choir (<see cref="ChoirOffering.KeepsNoShop"/>).
         ///   2. The <c>CanBeTraded</c> event fires on the item itself;
         ///      any listener returning false from HandleEvent vetoes.
         ///      This lets future Parts (e.g. a "BoundToOwner" Part)
@@ -368,6 +369,8 @@ namespace CavesOfOoo.Core
 
             // 1. Tag-based fast-path veto.
             if (item.HasTag("NoTrade")) return false;
+            // EC3: nothing is bought from or sold to the Choir (Docs/ECONOMY-SYSTEM.md §9).
+            if (ChoirOffering.KeepsNoShop(trader)) return false;
 
             // 2. Event-based veto. Lets parts on the item refuse
             // dynamically (a quest part might allow trade after the

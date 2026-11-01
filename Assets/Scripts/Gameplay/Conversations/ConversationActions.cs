@@ -202,6 +202,9 @@ namespace CavesOfOoo.Core
                 return DeliverItem(listener, item);
             });
 
+            // EC3: the Choir does not sell; a walker gives themselves and the tendril gives what it holds.
+            RegisterRequired("OfferToChoir", (speaker, listener, arg) => ChoirOffering.Offer(speaker, listener));
+
             // A handover removes one positive carried unit, not its whole stack.
             RegisterRequired("TakeItem", (speaker, listener, arg) =>
                 TakeOne(listener, arg, matchTag: false));
@@ -950,7 +953,7 @@ namespace CavesOfOoo.Core
         }
 
         // Shared GiveItem/copy delivery: both inventory and ground placement can refuse.
-        private static string DeliverItem(Entity listener, Entity item)
+        internal static string DeliverItem(Entity listener, Entity item)
         {
             var inventory = listener.GetPart<InventoryPart>();
             if (inventory == null) return "missing_inventory";

@@ -186,6 +186,8 @@ namespace CavesOfOoo.Core
             var inv = speaker.GetPart<InventoryPart>();
             if (inv == null) return false;
 
+            // EC3: the Choir keeps a shelf but sells nothing; it gives to whoever gives themselves.
+            if (ChoirOffering.KeepsNoShop(speaker)) return false;
             if (speaker.GetPart<TraderPart>() != null) return true;
             if (!string.IsNullOrEmpty(
                 speaker.GetProperty(TraderRestockSystem.ShopStockTableProp)))

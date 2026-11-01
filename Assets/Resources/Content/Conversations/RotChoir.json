@@ -67,9 +67,36 @@
           "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:4" } ]
         },
         {
+              "Text": "What would you take for what you carry?",
+              "Target": "NoTrade"
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
+          ]
+        },
+        {
+          "ID": "NoTrade",
+          "Text": "Take? We do not take, walker, and we do not sell. Drams are a word the Concord says; the soil has never learned it. What is ours is all of ours. If you would have what this tendril holds, give the soil something of yourself. A little blood. We would taste you, and then we would know you, and what we hold would be yours.",
+          "Choices": [
+            {
+              "Text": "[Offer] Let the soil taste you.",
+              "Target": "Offered",
+              "Actions": [ { "Key": "OfferToChoir", "Value": "" } ]
+            },
+            {
+              "Text": "Not today.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Offered",
+          "Text": "Warm. Salt and iron and the long road behind you. We know you a little now, walker, and the soil will remember.",
+          "Choices": [
+            { "Text": "Back to my other questions.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
           ]
         },
         {
