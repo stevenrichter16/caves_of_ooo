@@ -216,3 +216,10 @@ passes and exact2170reload. Spread admission is native-tested only; family rows
 retain their unaccepted status. One-frame repetition, remembered glyph transition,
 other owners, population, broader shadows and R11remain open. Batch package next.
 See GRAPHICS-SURFACE-STONE-WALLS.md.
+
+## Current delivery through a72a22983
+
+BatchA72 verifies bounded actualMac wall/oven/Marrowshade/Stillleaf materials,
+movement/readers/stairs/save/freshContinue; three exact worldreloadpairs. Linux
+retryarchiveverified,notexecuted. Full-area axes remain unaccepted. Current source
+now matches packages; R11/physicalhardware and separatepopulation/polish remainopen.

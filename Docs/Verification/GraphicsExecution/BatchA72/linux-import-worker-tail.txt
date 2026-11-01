@@ -1,0 +1,84 @@
+oolbox : ReceiveNextEventCommon
+	0x194f791f4 - /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox : _BlockUntilNextEventMatchingListInMode
+	0x18ccc6294 - /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit : _DPSBlockUntilNextEventMatchingListInMode
+	0x18c7dcedc - /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit : _DPSNextEvent
+	0x18d22f990 - /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit : -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+	0x18d22f69c - /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit : -[NSApplication(NSEventRouting) nextEventMatchingMask:untilDate:inMode:dequeue:]
+	0x18c7d5720 - /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit : -[NSApplication run]
+	0x18c7c1694 - /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit : NSApplicationMain
+	0x103e88928 - /Applications/Unity/Hub/Editor/6000.3.4f1/Unity.app/Contents/MacOS/Unity : _Z10EditorMainiPPKc
+	0x103e88c0c - /Applications/Unity/Hub/Editor/6000.3.4f1/Unity.app/Contents/MacOS/Unity : main
+	0x187f91d54 - /usr/lib/dyld : start
+
+=================================================================
+	Telemetry Dumper:
+=================================================================
+Pkilling 0x6170849280x from 0x8402340288x
+Pkilling 0x6158807040x from 0x8402340288x
+Pkilling 0x6169702400x from 0x8402340288x
+Pkilling 0x6186496000x from 0x8402340288x
+Pkilling 0x6171422720x from 0x8402340288x
+Pkilling 0x6188642304x from 0x8402340288x
+Pkilling 0x6164393984x from 0x8402340288x
+Pkilling 0x6170275840x from 0x8402340288x
+Entering thread summarizer pause from 0x8402340288x
+Finished thread summarizer pause from 0x8402340288x.
+Failed to create breadcrumb file (null)/crash_hash_0x0
+debugger-agent: Unable to listen on 38
+
+Waiting for dumping threads to resume
+
+=================================================================
+	External Debugger Dump:
+=================================================================
+
+=================================================================
+	Basic Fault Address Reporting
+=================================================================
+Memory around native instruction pointer (0x10171a388):0x10171a378  8a 02 40 f9 ab f1 7d d3 6b 01 0d cb 40 01 0b 8b  ..@...}.k...@...
+0x10171a388  0c 00 40 b9 9f 01 09 6b 01 03 00 54 eb 03 00 aa  ..@....k...T....
+0x10171a398  6e 8d 40 f8 6f 7d 40 39 f0 03 80 52 10 02 0f cb  n.@.o}@9...R....
+0x10171a3a8  71 09 40 f9 ff 01 01 71 6f 31 8e 9a 0e 32 91 9a  q.@....qo1...2..
+
+=================================================================
+	Managed Stacktrace:
+=================================================================
+=================================================================
+Obtained 37 stack frames.
+#0  0x0000010171a388 in core::base_hash_set<core::pair<core::basic_string<char, core::StringStorageDefault<char>> const, keywords::LocalKeyword, true>, core::hash_pair<core::hash<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>>::node* core::base_hash_set<core::pair<core::basic_string<char, core::StringStorageDefault<char>> const, keywords::LocalKeyword, true>, core::hash_pair<core::hash<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>>::lookup<core::basic_string_ref<char>, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>>>(core::basic_string_ref<char> const&, core::equal_pair<std::__1::equal_to<core::basic_string_ref<char>>, core::basic_string<char, core::StringStorageDefault<char>>> const&) const
+#1  0x00000101716508 in keywords::KeywordRemap::Init(keywords::LocalSpace const&, keywords::LocalSpace const&)
+#2  0x0000010173a404 in ShaderLab::IntShader::ResolveFallback(ShaderLab::SerializedShader const&, Shader*, core::vector<PPtr<Shader>, core::allocator<PPtr<Shader>, 0ul>>&, bool)
+#3  0x000001016b1140 in ShaderLab::IntShader::CreateFromSerializedShaderMainThread(ShaderLab::IntShader*, ShaderLab::SerializedShader const&, core::vector<PPtr<Shader>, core::allocator<PPtr<Shader>, 0ul>>&, bool, Shader*)
+#4  0x000001016b561c in ShaderFromSerializedShaderMainThread(ShaderLab::IntShader*, ShaderLab::SerializedShader const*, core::vector<PPtr<Shader>, core::allocator<PPtr<Shader>, 0ul>>&, bool, Shader*)
+#5  0x00000103744eb8 in Shader::CreateFromParsedForm()
+#6  0x00000103745114 in Shader::AwakeFromLoad(AwakeFromLoadMode)
+#7  0x00000101a55a60 in AwakeFromLoadQueue::InvokePersistentManagerAwake(AwakeFromLoadQueue::Item*, unsigned int, AwakeFromLoadMode, bool)
+#8  0x00000101a55498 in AwakeFromLoadQueue::PersistentManagerSingleQueueAwakeFromLoad(int, AwakeFromLoadMode)
+#9  0x00000101a550c8 in AwakeFromLoadQueue::PersistentManagerAwakeFromLoad_NoChecks(AwakeFromLoadMode)
+#10 0x00000101a60bcc in PersistentManager::IntegrateAllThreadedObjects()
+#11 0x00000101a61dc4 in PersistentManager::LoadAndIntegrateAllPreallocatedObjects(PersistentManager::LockFlags)
+#12 0x00000101a64014 in PersistentManager::LoadObjects(EntityId const*, int, bool)
+#13 0x000001033135a0 in ReloadInstances(core::vector<EntityId, core::allocator<EntityId, 0ul>> const&, core::hash_map<EntityId, ScriptingGCHandle, core::hash<EntityId>, std::__1::equal_to<EntityId>> const&)
+#14 0x0000010331564c in ReloadAssetIfLoaded(UnityGUID const&)
+#15 0x000001032d6f20 in invocation function for block in AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_4::operator()() const
+#16 0x000001881aeac4 in _dispatch_client_callout
+#17 0x000001881a4a18 in _dispatch_async_and_wait_invoke
+#18 0x000001881aeac4 in _dispatch_client_callout
+#19 0x000001881cc0e4 in _dispatch_main_queue_drain.cold.5
+#20 0x000001881a3f48 in _dispatch_main_queue_drain
+#21 0x000001881a3e84 in _dispatch_main_queue_callback_4CF
+#22 0x0000018841c098 in __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+#23 0x000001883ee8cc in __CFRunLoopRun
+#24 0x000001884ac898 in _CFRunLoopRunSpecificWithOptions
+#25 0x00000194dec730 in RunCurrentEventLoopInMode
+#26 0x00000194def9d0 in ReceiveNextEventCommon
+#27 0x00000194f791f4 in _BlockUntilNextEventMatchingListInMode
+#28 0x0000018ccc6294 in _DPSBlockUntilNextEventMatchingListInMode
+#29 0x0000018c7dcedc in _DPSNextEvent
+#30 0x0000018d22f990 in -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+#31 0x0000018d22f69c in -[NSApplication(NSEventRouting) nextEventMatchingMask:untilDate:inMode:dequeue:]
+#32 0x0000018c7d5720 in -[NSApplication run]
+#33 0x0000018c7c1694 in NSApplicationMain
+#34 0x00000103e88928 in EditorMain(int, char const**)
+#35 0x00000103e88c0c in main
+#36 0x00000187f91d54 in start

@@ -1,0 +1,160 @@
+{
+  "source_commit": "a72a229833df9b908e9d2b11b9b653a97275fa12",
+  "runtime_source_commit": "a72a229833df9b908e9d2b11b9b653a97275fa12",
+  "built_after_utc": "2026-11-01T22:49:23.736263Z",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-01-graphics-a72a22983-current-retry/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-01-graphics-a72a22983-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-01-graphics-a72a22983-current-retry/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "planned_new_files": 31,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchA72/mac-build.json",
+      "sha256": "493f34814271a1593a375ec31975986dcba8aae82ed8b94b57f7efca8b2f6b4d",
+      "summary": {
+        "job_id": "build-a8dd8a5efa",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-01-graphics-a72a22983-current/CavesOfOoo.app",
+        "started_at": "2026-11-01T22:49:23.736263Z",
+        "duration_seconds": 46.547107,
+        "completed_at": "2026-11-01T22:50:10.28337Z",
+        "total_size_mb": 346.2,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchA72/linux-build.json",
+      "sha256": "c82b4475aba9e82407f2b61dc5457be1f4b10978d7c5ff706fbdcfe9b3d7a48b",
+      "summary": {
+        "job_id": "build-7c624d5e68",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-01-graphics-a72a22983-current-retry/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-01T22:52:34.858793Z",
+        "duration_seconds": 35.510947,
+        "completed_at": "2026-11-01T22:53:10.36974Z",
+        "total_size_mb": 326.66,
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/Stillleaf/green.xml",
+        "sha256": "b3fc4e91732de8e3b649bf536e4e2707957ee13b4f95bfbb1679c3f407a7e9c2",
+        "passed": 128,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-11-01T21:47:08+00:00",
+        "completed_at_utc": "2026-11-01T21:48:04+00:00",
+        "skips": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/Marrowstye/green-focused.xml",
+        "sha256": "01482d226912ba0d7768c99e901e635fac4f83a3617b4a4fdc153efbcad5ad1a",
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-11-01T22:01:52+00:00",
+        "completed_at_utc": "2026-11-01T22:01:57+00:00",
+        "skips": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/Workshop/green.xml",
+        "sha256": "3015e23b6dc405513eba156c0678ed60ec1248cfdbb79e7cdec1d4df5091459f",
+        "passed": 147,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-11-01T22:19:39+00:00",
+        "completed_at_utc": "2026-11-01T22:20:25+00:00",
+        "skips": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/SurfaceWall/green-focused.xml",
+        "sha256": "43fde307c48625b3983e9ffa31ca50472fd889989e4f8a496580ac8d47abb2a6",
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "started_at_utc": "2026-11-01T22:39:52+00:00",
+        "completed_at_utc": "2026-11-01T22:39:56+00:00",
+        "skips": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained bounded Stillleaf/Marrow/work-fixture/surface-wall checkpoints; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/BatchA72/build-input-audit.json",
+    "sha256": "59e9f9da5bad7ca47718183c2d60993f6f139bbb06fcbf0a2f6d8f8e0dee847d",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 73,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 62
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-01T22:49:23.699649+00:00",
+      "checks": [],
+      "editor": "Stopped Play, rootnull, scene clean; no temporary renderer controls in this batch."
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 79,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/BatchA72/package.py",
+    "sha256": "34b298c49cac8f3cee221c9f23cd5239bdbdc490c143269d16cbd9fd17d4976b",
+    "adapted_from": "Docs/Verification/Live16x24/regional-batch-package-audit.py",
+    "adapted_from_sha256": "8e3fa353485b285ab4611f0d6b2307bc61ece8919d3f0ad5e51a17c2bc5f63e4"
+  },
+  "created_at_utc": "2026-11-01T22:55:24.574821+00:00",
+  "package_flavor": "current-graphics-materials-shadows-work-fixtures-surface-walls",
+  "scope": "Published graphics through a72a22983: Stillleaf descent materials, Marrowstye shadows, ordinary work fixtures and Spread/Stump stone walls. Bounded slice evidence only, not whole-area acceptance.",
+  "source_provenance": "Source/runtime revision and build boundary are root assertions. Exact output/job/time receipts and neutral input/settings bytes are checked; current runtime-byte equality is a retained root assertion; no source-to-binary reproducibility claim.",
+  "preservation_sequence": "Full snapshot /private/tmp/coo-graphics-build-protection-a72a22983 completed before either build:55192tracked objects,75foreign paths, normal saves/preferences and previous0a2cc9bae packages. Final restoration is a separate receipt.",
+  "canonical_executable_copy": {
+    "source_commit": "a72a229833df9b908e9d2b11b9b653a97275fa12",
+    "at_utc": "2026-11-01T22:55:24.574458+00:00",
+    "raw_build_executable": "Builds/SteamDeck/2026-11-01-graphics-a72a22983-current-retry/CavesOfOoo-current/CavesOfOoo",
+    "canonical_archive_executable": "Builds/SteamDeck/2026-11-01-graphics-a72a22983-current-retry/CavesOfOoo-current/CavesOfOoo.x86_64",
+    "action": "exclusive copy; raw build executable preserved",
+    "bytes": 4472,
+    "both_sha256": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+    "mode": "0o755"
+  },
+  "helper_sha256": "fee94989ff27720ec8c3fcdd3270e7b870f11e13668f821c94f64b08f9c977b7",
+  "default_presentation": "Flat16x24 unless a saved explicit choice exists",
+  "controller_guidance": "Existing built-in controls documented in unchanged README-Steam-Deck.md; no new controller mapping or physical verification.",
+  "mac_package_smoke": "Separate ordinary runtime evidence required; not performed by this helper.",
+  "linux_execution": false,
+  "physical_steam_deck": false,
+  "performance_benchmark": false,
+  "performance_limits": "Separate Editor manual profiles exist, including matched Felling observations; this helper neither validates those measurements nor treats them as packaged/Linux/Deck performance acceptance.",
+  "whole_area_polish_accepted": false,
+  "limits": "Archive integrity does not certify gameplay, all-source tests, whole-area polish, Linux/Deck execution or performance."
+}

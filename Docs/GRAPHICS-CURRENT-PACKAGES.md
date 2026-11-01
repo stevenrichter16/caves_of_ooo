@@ -1,3 +1,51 @@
+# Current graphics packages — a72a22983
+
+Current runtime/source `a72a229833df9b908e9d2b11b9b653a97275fa12` includes Stillleaf
+descent materials, Marrowstye masonry shadows, ordinary Oven/MillStone and ordinary
+Spread/Stump stone walls, plus earlier field-row/Felling work. Source is remotely verified.
+
+- Mac: `Builds/Verification/2026-11-01-graphics-a72a22983-current/CavesOfOoo.app`;
+  jobbuild-a8dd8a5efa,46.55s,0errors4warnings.
+- Linux: `Builds/SteamDeck/2026-11-01-graphics-a72a22983-current-retry/CavesOfOoo-current/`;
+  jobbuild-7c624d5e68,35.51s,0errors0warnings. Initial105.32s build returned success
+  but logged an import-worker transport/crash error (1error6warnings); retained
+  separately and not accepted as the release archive. No source change for retry.
+- Archive: `CavesOfOoo-SteamDeck-flat16x24-current.tar.gz` in that retry folder;
+  129057139bytes,190files10directories, SHA256
+  `30833c956e4080aa2048d15c4b20eb8234c8760fd22fbce02fc3cbf881f55b7b`.
+  Every member/hash/mode and gzip EOF verified. No Linux/physicalDeck execution.
+
+Actual Mac validation used six cold launches, default3024x1898 native window, real
+GameBootstrap Continue from unchanged earned checkpoints. Wall world/Examine agree;
+protected Up/Down thenF12off/F5turn2190 preserved59,15HP40. MarrowstyeOven reader,
+ordinary lane walk and subtle wall shade survive F5turn4200/freshContinue40,11HP40.
+Stillleaf floorreader52,11, true stairs ascent2.4.1→surface2.4.0→descent2.4.1,
+F5turn780/freshContinue52,12HP40 verified. All three saved/freshworld crops exactly
+match3397680pixels each. Independent source/package/visual review no newP1/P2.
+
+Failed attempts remain evidence: MarrowstyeCUA route timedout at44,11, recovered
+with four verified Left presses; firstStillleafDown hit PaleStalker and stayed on
+stairs, offstairsascent refused. Correctedfloorreader and ascent images are named
+explicitly. No claimed success from unsuccessful inputs or protected balance testing.
+
+Full55,192tracked-object snapshot completed before either build;75foreign tracked
+paths, normal saves/preferences and previous0a2cc9bae packages verified preserved.
+Three reviewed build-generated settings restored exactly; owned standalone saves
+archived under/private/tmp/coo-a72-restored and/private/tmp/coo-a72-intermediate-saves.
+No cache cleanup or storage reclamation. Exact build neutral overlay and inherited
+GUID/source classifications disclosed; no clean-worktree or reproducible-binary claim.
+
+Native test receipts reused as separate bounded executions, not an additive all-source
+suite. R11remains open: Editor intermittent20s/353MB spikes have no establishedcause;
+no packaged performance benchmark, Linux/Deck execution, whole-area acceptance or
+new population acceptance. RemainingASCII ledges/stairs/specialcells, blackbacks,
+repetition, sparseplaces and unobservedMillStone remain.
+
+Evidence and reproducible package/restoration scripts:
+`Docs/Verification/GraphicsExecution/BatchA72/`.
+
+## Previous preserved checkpoint
+
 # Current graphics package checkpoint — 2026-11-01
 
 Status: delivered locally; source0a2cc9baebfeedf8491db1c4e5aa5f77f9fd4cd1 is already on origin/main. This record/evidence publication is tracked in the continuation. V0–V7 remains executing.
