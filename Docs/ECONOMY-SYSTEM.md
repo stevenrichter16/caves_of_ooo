@@ -511,8 +511,129 @@ standing.
   showed through every space at column 39 of the detail and action lines. It now stops at the
   panels.
 
+### 12.8 EC7 — implementation (2026-11-01)
+
+**Code.**
+- `ConcordAccount` implements §12.4. The account is five integer properties on the player:
+  `ConcordDebt`, `ConcordDue`, `ConcordOpened`, `ConcordDefaulted` and `ConcordHonored`.
+- Blueprint tags mark who holds the books: `ConcordCredit` on `ConcordFactor` (lends) and
+  `ConcordLedger` on `ConcordFactor` and `SaccharineEnvoy` (take payment). Faction alone is
+  not enough, since the Concord's glass scorpions keep no books.
+- `Borrow` and `Repay` review the account first, so a late payment is known to be late.
+  `Repay` pays the least of what was asked, what is owed and what is carried.
+- **The greeting.** On a ledger keeper's `Start` node, `ConversationManager` appends the live
+  choices (`ConcordAccount.AppendChoices`) and the account statement
+  (`ConcordAccount.AppendText`):
+  - credit (half the line, the whole line) appears only while no account is open;
+  - settlement ("Settle my account" or "Pay N of the M I owe") appears only to a player
+    carrying drams.
+
+  Both are read-only and change nothing. The actions `ConcordBorrow` and `ConcordRepay` parse
+  a whole number of drams.
+- **Travel.** `EconomyUpkeep.OnZoneEntered` is the one per-zone economy upkeep: the trader
+  restock, then `ConcordAccount.Review`. `InputHandler.HandleZoneTransition` calls it in place
+  of the bare restock call.
+
+**Divergence from §12.4.** The line has no separate Disliked guard. `20 + standing/2` already
+reaches zero at standing −40, so the guard could never change an outcome (found by asking
+which mutant would kill it).
+
+### 12.9 Verification and self-review (EC6, EC7)
+
+**Tests.**
+
+| File | Tests |
+|---|---|
+| `TenderTests` | 11 |
+| `BarterDealTests` | 18 |
+| `BarterScreenTests` | 10 |
+| `ConcordAccountTests` | 27 |
+| `BarterCreditAdversarialTests` | 23 |
+
+**RED first:**
+- EC6a and EC6b ran RED against stubs (9 of 11 and 16 of 18 failing).
+- The EC6c screen and the EC7 account were written with their tests and proven by mutation
+  instead.
+
+**Mutation sweep:**
+- 7 EC6 mutants: 6 killed on the first pass.
+- **The survivor was a real design flaw.** `Barter.TryDeal` judged value and payment with
+  the deal's preview before the transaction judged them again, so the transaction's own
+  check was unreachable. Value is now judged once, inside the transaction, at the moment of
+  offer, and the deal's performance is read live. The rerun mutant is killed by 5 tests.
+- 9 EC7 mutants (honour timing, default once, fee, choices that would lie, the travel
+  review, clearing a default, one account at a time, stale performance) — results in the
+  implementation log.
+
+**Self-review (§5):**
+- 🟡 (fixed) Two judges of a deal's value (above).
+- 🟡 (fixed) The trade screen's divider showed through the detail and action lines.
+- 🟡 (fixed, F1) The Choir's shrine keepers lost their shops in EC3 and gave nothing.
+- 🔵 Selling a stack piecemeal can pay at most 1 dram more than selling it whole: each line
+  keeps the old minimum sell price of 1. Separating a stack in the inventory already allowed
+  the same, so this is not new, and it is bounded per stack.
+- 🔵 A salt purse is a goods faucet the size of the dram floor; carried inland it is worth up
+  to four times as much. That is the caravan margin canon intends (EC5). Salt veins, which
+  are free, were already a larger faucet.
+- ⚪ A travelling merchant who wanders into the deep wasteland starts bartering there, and a
+  deal composed elsewhere is re-judged by the new tender (pinned:
+  `Adversarial_ATenderChangeIsReadWhenTheDealIsOffered`).
+- ⚪ An interior zone (an id that names no world cell) trusts drams, even inside the deep
+  wasteland.
+
+**Honesty bounds:**
+- **Can verify:** every rule above against EditMode fixtures, the real blueprints, and the
+  real conversation and loot data.
+- **Cannot verify from tests:** the barter screen's look and feel at play speed, and whether
+  the deep wasteland's traders read well in play. The live bench and fixture (§12.10) address
+  the runtime; feel needs a playthrough.
+
+### 12.10 Live verification in the Editor (2026-11-01)
+
+The Editor was driven over MCP (`execute_menu_item`, `diag_query`, `manage_editor`) after
+reconnecting its bridge (an `Assets > Refresh` re-runs the kickstart).
+
+**`EconomyBarterBench`** (self-auditing; `Caves of Ooo/Scenarios/Economy/Economy Barter Bench`).
+Run `237c174b`: **21 of 21 cells pass**, read back through
+`diag_query category=economybench kind=Cell`. The cells run against the real bootstrap: the
+factory, `Factions.json`, the loot and conversation registries, and the restock factory.
+- **Tender:** 8 cells (two controls).
+- **Deals:** barter goods-for-goods with no drams; the direct path refusing drams; a dram
+  deal paying the difference (control).
+- **Salt:** balancing a short deal; a salt purse of 17 units and 0 drams in the deep
+  wasteland.
+- **Real conversations:**
+  - Grib's real conversation offers exactly one offering and no trade;
+  - the tendril's real conversation shows no injected duplicate;
+  - the Factor's real conversation offers two credit lines and the statement.
+- **Account cycle:** borrow, honoured repayment at an envoy, default once, and a second
+  review that takes no penalty (control).
+
+**Two findings from the live run:**
+- **The bench's records were first dropped.** A new diag category is off unless listed;
+  `economybench` joined `Diag.DefaultOnCategories` beside `gasbench` and `questbench`.
+- **A recompile can finish during Play** and reload the domain, wiping an earlier run's
+  buffer. The audit was rerun after the editor settled (Rule 8).
+
+**`BarterScreenFixture`** opens the barter screen through the real `InputHandler.OpenTrade`
+against a salt-walker in the deep wasteland. Captured in the Game view:
+- the header reads "Barter with Saltwalker / They take goods and salt, not drams.";
+- the marked salt row reads `1/18`;
+- the red deal line reads "Give 0 Take 17 Short 17: add goods or salt.";
+- the detail line reads "in deal 1 of 18 each 17";
+- the key bar fits the width.
+
+**Real issue found there and fixed:** barter rows still printed `$` after each value,
+suggesting drams the trader refuses. Pinned in `BarterScreenTests`.
+
+**Not verified live:** pressing the keys at play speed (background control cannot send keys
+to an unfocused game), and a natural barter trader met in the world rather than through the
+fixture.
+
 ## 13. Next steps
 
-1. EC6 shipped (§12.7). EC7 (the Concord's account) is designed in §12.4.
+1. EC6 and EC7: shipped (§12). Possible follow-ups:
+   - buying on account at a Concord trader (carrying debt at the trade screen);
+   - Lumen-hours, once catacomb traders exist.
 2. E5: `PalimpsestEcho` (a superseded-world trader); decide its fate against `Lore/`.
 3. A commit-time `trade/Transferred` record for transactional fees (EC2b note).

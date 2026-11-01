@@ -1216,7 +1216,8 @@ namespace CavesOfOoo.Rendering
             // ALPHA economy-renewables SM3: traders the player sold out
             // regain buying power over time (floor top-up, save-safe
             // per-entity turn stamp).
-            TraderRestockSystem.RestockZone(result.NewZone,
+            // EC7: and a Concord debt past its day is found in default when the player travels.
+            EconomyUpkeep.OnZoneEntered(PlayerEntity, result.NewZone,
                 TurnManager != null ? TurnManager.TickCount : 0);
 
             Debug.Log($"[Zone] Transitioned to {result.NewZone.ZoneID}");

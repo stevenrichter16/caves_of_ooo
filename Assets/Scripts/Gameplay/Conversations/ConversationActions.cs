@@ -295,6 +295,12 @@ namespace CavesOfOoo.Core
                 return null;
             });
 
+            // EC7 (Docs/ECONOMY-SYSTEM.md §12.4): the Concord's account. Argument: drams.
+            RegisterRequired(ConcordAccount.BorrowAction, (speaker, listener, arg) =>
+                int.TryParse(arg, out int principal) ? ConcordAccount.Borrow(speaker, listener, principal, WorldClock.CurrentTick) : "invalid_argument");
+            RegisterRequired(ConcordAccount.RepayAction, (speaker, listener, arg) =>
+                int.TryParse(arg, out int amount) ? ConcordAccount.Repay(speaker, listener, amount, WorldClock.CurrentTick) : "invalid_argument");
+
             // C2: place concerns in conversation (CavesOfOoo.Concerns.ConcernConversation).
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.OpenAction, CavesOfOoo.Concerns.ConcernConversation.Open);
             RegisterRequired(CavesOfOoo.Concerns.ConcernConversation.AcceptAction, CavesOfOoo.Concerns.ConcernConversation.Accept);
