@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="19" result="Failed(Child)" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 21:43:27Z" end-time="2026-11-01 21:43:33Z" duration="6.7469905">
+  <test-suite type="TestSuite" id="43305" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:43:27Z" end-time="2026-11-01 21:43:33Z" duration="6.746991" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43277" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:43:27Z" end-time="2026-11-01 21:43:33Z" duration="6.602695" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43278" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:43:27Z" end-time="2026-11-01 21:43:33Z" duration="6.145806" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43279" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:43:27Z" end-time="2026-11-01 21:43:33Z" duration="5.988975" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2127" name="FlatPixelStillleafDescentTests" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-11-01 21:43:28Z" end-time="2026-11-01 21:43:33Z" duration="5.772956" total="19" passed="1" failed="18" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2128" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1042968980" result="Failed" start-time="2026-11-01 21:43:28Z" end-time="2026-11-01 21:43:28Z" duration="0.433362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:31
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2147" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 21:43:28Z" end-time="2026-11-01 21:43:30Z" duration="1.461495" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2143" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1270064124" result="Failed" start-time="2026-11-01 21:43:28Z" end-time="2026-11-01 21:43:28Z" duration="0.234769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2144" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="833066110" result="Failed" start-time="2026-11-01 21:43:28Z" end-time="2026-11-01 21:43:29Z" duration="0.329061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2145" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="742773483" result="Failed" start-time="2026-11-01 21:43:29Z" end-time="2026-11-01 21:43:29Z" duration="0.605143" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2146" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1864008088" result="Failed" start-time="2026-11-01 21:43:29Z" end-time="2026-11-01 21:43:30Z" duration="0.240076" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:75
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2142" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 21:43:30Z" end-time="2026-11-01 21:43:31Z" duration="0.979410" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2138" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1478750000" result="Failed" start-time="2026-11-01 21:43:30Z" end-time="2026-11-01 21:43:30Z" duration="0.238757" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:69
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2139" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1978357104" result="Failed" start-time="2026-11-01 21:43:30Z" end-time="2026-11-01 21:43:30Z" duration="0.232210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:69
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2140" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.2&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1015654015" result="Failed" start-time="2026-11-01 21:43:30Z" end-time="2026-11-01 21:43:30Z" duration="0.229398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:69
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2141" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1864851590" result="Failed" start-time="2026-11-01 21:43:30Z" end-time="2026-11-01 21:43:31Z" duration="0.227380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:69
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2149" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1552775862" result="Passed" start-time="2026-11-01 21:43:31Z" end-time="2026-11-01 21:43:31Z" duration="0.222212" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2130" name="PersistedLibraryProfileSurvivesAStoryRename" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.PersistedLibraryProfileSurvivesAStoryRename" methodname="PersistedLibraryProfileSurvivesAStoryRename" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1309972748" result="Failed" start-time="2026-11-01 21:43:31Z" end-time="2026-11-01 21:43:31Z" duration="0.261320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.PersistedLibraryProfileSurvivesAStoryRename () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:47
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2148" name="SavedLairColumnRevokesEvenWithRestoredLibraryLabel" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.SavedLairColumnRevokesEvenWithRestoredLibraryLabel" methodname="SavedLairColumnRevokesEvenWithRestoredLibraryLabel" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1376973149" result="Failed" start-time="2026-11-01 21:43:31Z" end-time="2026-11-01 21:43:32Z" duration="0.633082" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.SavedLairColumnRevokesEvenWithRestoredLibraryLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:86
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2129" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="2080538364" result="Failed" start-time="2026-11-01 21:43:32Z" end-time="2026-11-01 21:43:32Z" duration="0.241945" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2137" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-01 21:43:32Z" end-time="2026-11-01 21:43:33Z" duration="1.460784" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2131" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1248959977" result="Failed" start-time="2026-11-01 21:43:32Z" end-time="2026-11-01 21:43:32Z" duration="0.244145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2132" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="260290378" result="Failed" start-time="2026-11-01 21:43:32Z" end-time="2026-11-01 21:43:33Z" duration="0.237599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2133" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="350741862" result="Failed" start-time="2026-11-01 21:43:33Z" end-time="2026-11-01 21:43:33Z" duration="0.242036" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2134" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1602569956" result="Failed" start-time="2026-11-01 21:43:33Z" end-time="2026-11-01 21:43:33Z" duration="0.235815" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2135" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1564296528" result="Failed" start-time="2026-11-01 21:43:33Z" end-time="2026-11-01 21:43:33Z" duration="0.221768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2136" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1781819852" result="Failed" start-time="2026-11-01 21:43:33Z" end-time="2026-11-01 21:43:33Z" duration="0.228059" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Stillleaf sandstone floor remains glyphs
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Native () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:26
+at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:52
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

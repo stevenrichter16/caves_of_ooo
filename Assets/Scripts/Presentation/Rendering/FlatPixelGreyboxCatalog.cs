@@ -122,6 +122,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelOverwritMaterialsCatalog _overwritMaterialsArt;
         private FlatPixelStumpMaterialsCatalog _stumpMaterialsArt;
         private FlatPixelShallowCavesCatalog _shallowCavesArt;
+        private FlatPixelShallowCavesCatalog _stillleafDescentArt;
         private FlatPixelLimestoneCavesCatalog _limestoneCavesArt;
         private FlatPixelShaleCavesCatalog _shaleCavesArt;
         private FlatPixelSlateCavesCatalog _slateCavesArt;
@@ -1942,6 +1943,15 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelShallowCavesCatalog ShallowCavesArtFor(Zone zone)
         {
+            if (FlatPixelSiteAdmission.IsStillleafDescent(zone))
+            {
+                if (_stillleafDescentArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _stillleafDescentArt = new FlatPixelShallowCavesCatalog(_glyphFallback).AdmittingStillleafDescent();
+                }
+                return _stillleafDescentArt;
+            }
             if (!FlatPixelShallowCavesCatalog.IsSupportedZone(zone)) return null;
             if (_shallowCavesArt == null && _loadOptionalResources)
             {
@@ -2463,6 +2473,7 @@ namespace CavesOfOoo.Rendering
             _fellingGroundArt = null;
             _stumpSiteArt = null;
             _shallowCavesArt?.Dispose();
+            _stillleafDescentArt?.Dispose();
             _limestoneCavesArt?.Dispose();
             _shaleCavesArt?.Dispose();
             _slateCavesArt?.Dispose();
@@ -2472,6 +2483,7 @@ namespace CavesOfOoo.Rendering
             _overwritMaterialsArt = null;
             _stumpMaterialsArt = null;
             _shallowCavesArt = null;
+            _stillleafDescentArt = null;
             _limestoneCavesArt = null;
             _shaleCavesArt = null;
             _slateCavesArt = null;

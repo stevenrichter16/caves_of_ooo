@@ -11,6 +11,12 @@ namespace CavesOfOoo.Rendering
     /// textures and the selector; owns only cached sprite/tile views.</summary>
     public sealed class FlatPixelShallowCavesCatalog : IDisposable
     {
+        Func<Zone, bool> admits = IsSupportedZone;
+        bool allowCoveredFloorReader;
+        /// <summary>Separate instance for the bounded authored Stillleaf descent,
+        /// retaining the ordinary owners, resource and disclosure contracts.</summary>
+        internal FlatPixelShallowCavesCatalog AdmittingStillleafDescent()
+        { admits = FlatPixelSiteAdmission.IsStillleafDescent; allowCoveredFloorReader = true; return this; }
         public const string ResourcePath = "Sprites/Live16x24/shallow-caves";
         public const int FrameCount = 2;
         const int Width = 16, Height = 24;
@@ -145,7 +151,7 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
+            if (!ReadyCell(zone, x, y, out _) || (!allowCoveredFloorReader && !Selected(zone, x, y, owner))) return false;
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && ReferenceEquals(floor, owner))
@@ -155,7 +161,7 @@ namespace CavesOfOoo.Rendering
         bool ReadyCell(Zone zone, int x, int y, out Cell cell)
         {
             cell = null;
-            if (disposed || selector == null || !IsSupportedZone(zone)) return false;
+            if (disposed || selector == null || !admits(zone)) return false;
             cell = zone.GetCell(x, y);
             return cell != null && cell.ParentZone == zone && cell.X == x && cell.Y == y && cell.Explored && cell.IsVisible;
         }

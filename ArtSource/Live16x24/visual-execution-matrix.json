@@ -15908,14 +15908,14 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Walk descent/return and each reachable interior; audit this depth separately from its mouth.",
+      "next_action": "Review remaining ledge/foreground families later; current next slice is non-cave Marrowstye12.12 masonry grounding/shadow baseline.",
       "parent_id": "sinkhole/stillleaf",
       "depth": 1,
       "required_roles": [
@@ -15925,6 +15925,41 @@
         "doors_and_seals",
         "loot",
         "return_route"
+      ],
+      "observed_seed": 704860946,
+      "evidence": [
+        "Docs/GRAPHICS-STILLLEAF-DESCENT.md",
+        "Docs/Verification/GraphicsExecution/Stillleaf/play-receipt.json",
+        "Docs/Verification/GraphicsExecution/Stillleaf/green.xml"
+      ],
+      "bounded_material_observation": "Canonical Stillleaf2.4.1 approved sandstone walls/floors and ordinary shallow views; actual turn610 baseline, turn730 saved/freshContinue52,12HP40, player-covered floor reader;128/128native. No new shadows/population.",
+      "defects": [
+        {
+          "id": "STILLLEAF-LEDGE-01",
+          "status": "open",
+          "description": "DescentLedge dash glyph foreground remains over true native floor."
+        },
+        {
+          "id": "STILLLEAF-MATERIAL-01",
+          "status": "open",
+          "description": "Black-backed glyph objects and modest wall relief remain."
+        },
+        {
+          "id": "STILLLEAF-COMPOSITION-01",
+          "status": "open",
+          "description": "Sparse open center, weak clustering and muted-green object contrast require whole-area review."
+        },
+        {
+          "id": "STILLLEAF-PERF-01",
+          "status": "open",
+          "description": "47.61s baseline is short; current renderer85.65ms maximum and MainThread p95 increase unresolved."
+        }
+      ],
+      "limitations": [
+        "Source counts are not actual whole-area acceptance.",
+        "FreshContinue crop5895/639200different; no pixel equality claim.",
+        "Current0a2cc9bae packages exclude this pilot; Linux/Deck execution unavailable.",
+        "Population/shadow axes unchanged; profile R11 open."
       ]
     },
     {

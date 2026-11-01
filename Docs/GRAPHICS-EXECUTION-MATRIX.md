@@ -187,3 +187,9 @@ every cell or the entire authored scene.
 ## Current package observation — 2026-11-01
 
 The current Mac checkpoint through0a2cc9bae has actual cold-launch, field travel/save/freshContinue and Felling dry-ground save/freshContinue evidence in `GRAPHICS-CURRENT-PACKAGES.md`. Overlapping rows retain bounded evidence and `editor-verified` as a conservative area-delivery status; a bounded Mac slice does not certify entire-area delivery. Linux is built/archive-verified only. The Felling performance comparison is recorded, with an unexplained transient allocation/stall burst and packaged profile still open. Existing coverage/polish/population/shadow statuses are unchanged.
+
+Stillleaf depth1 material pilot (2026-11-01): canonical2.4.1 sandstone observed in
+actual play,128/128native checks, real underfoot reader and saved/freshContinue.
+Coverage stays fallback and polish in-progress due ledge/other glyphs; population
+and shadows unchanged. R11 and package delivery for this slice remain open.
+See GRAPHICS-STILLLEAF-DESCENT.md and its actual evidence.

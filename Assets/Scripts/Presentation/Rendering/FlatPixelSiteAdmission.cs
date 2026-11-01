@@ -13,6 +13,23 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class FlatPixelSiteAdmission
     {
+        /// <summary>Bounded material pilot for Stillleaf's authored first descent.
+        /// Current graph and persisted site identity are rechecked on every use;
+        /// no generation, ledger initialization or deeper-floor admission.</summary>
+        internal static bool IsStillleafDescent(Zone zone)
+        {
+            if (zone?.ZoneID != "Overworld.2.4.1") return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
+                || !ReferenceEquals(current, zone)) return false;
+            var map = manager.WorldMap;
+            return map?.Tiles != null && map.POIs != null
+                && map.Tiles.GetLength(0) == WorldMap.Width && map.Tiles.GetLength(1) == WorldMap.Height
+                && map.POIs.GetLength(0) == WorldMap.Width && map.POIs.GetLength(1) == WorldMap.Height
+                && AreaCompositionScope.IsStillleafSite(map.GetPOI(2, 4))
+                && !LairStacks.HasSavedColumn(manager, "Overworld.2.4.0");
+        }
+
         public static bool IsOrdinarySite(Zone zone, BiomeType biome)
         {
             if (zone?.ZoneID == null) return false;

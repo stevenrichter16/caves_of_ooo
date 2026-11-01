@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="19" result="Failed(Child)" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 21:42:06Z" end-time="2026-11-01 21:42:12Z" duration="6.4105783">
+  <test-suite type="TestSuite" id="43305" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:42:06Z" end-time="2026-11-01 21:42:12Z" duration="6.410578" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43277" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:42:06Z" end-time="2026-11-01 21:42:12Z" duration="5.955738" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43278" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:42:07Z" end-time="2026-11-01 21:42:12Z" duration="5.809726" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43279" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35263" result="Failed" site="Child" start-time="2026-11-01 21:42:07Z" end-time="2026-11-01 21:42:12Z" duration="5.734528" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2127" name="FlatPixelStillleafDescentTests" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-11-01 21:42:07Z" end-time="2026-11-01 21:42:12Z" duration="5.523360" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2128" name="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" methodname="ActualAuthoredDescentReusesApprovedMaterialsAndPreservesGeometry" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="3250577" result="Failed" label="Error" start-time="2026-11-01 21:42:07Z" end-time="2026-11-01 21:42:07Z" duration="0.375782" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2147" name="DisclosureAndMaterialStateKeepTruthfulFallback" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 21:42:07Z" end-time="2026-11-01 21:42:09Z" duration="1.405888" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2143" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;hidden&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1626313339" result="Failed" label="Error" start-time="2026-11-01 21:42:07Z" end-time="2026-11-01 21:42:08Z" duration="0.219019" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2144" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;memory&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1019097156" result="Failed" label="Error" start-time="2026-11-01 21:42:08Z" end-time="2026-11-01 21:42:08Z" duration="0.626911" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2145" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;changed&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="951282352" result="Failed" label="Error" start-time="2026-11-01 21:42:08Z" end-time="2026-11-01 21:42:09Z" duration="0.273904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2146" name="DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.DisclosureAndMaterialStateKeepTruthfulFallback(&quot;coating&quot;)" methodname="DisclosureAndMaterialStateKeepTruthfulFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1596821659" result="Failed" label="Error" start-time="2026-11-01 21:42:09Z" end-time="2026-11-01 21:42:09Z" duration="0.234465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2142" name="EqualMaterialNamesCannotExpandPilotAddress" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-01 21:42:09Z" end-time="2026-11-01 21:42:10Z" duration="0.962024" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2138" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.02.4.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1930912366" result="Failed" label="Error" start-time="2026-11-01 21:42:09Z" end-time="2026-11-01 21:42:09Z" duration="0.236307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2139" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.0&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="784985683" result="Failed" label="Error" start-time="2026-11-01 21:42:09Z" end-time="2026-11-01 21:42:09Z" duration="0.225803" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2140" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.4.2&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1281739296" result="Failed" label="Error" start-time="2026-11-01 21:42:09Z" end-time="2026-11-01 21:42:10Z" duration="0.225694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2141" name="EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.EqualMaterialNamesCannotExpandPilotAddress(&quot;Overworld.2.7.1&quot;)" methodname="EqualMaterialNamesCannotExpandPilotAddress" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1719745421" result="Failed" label="Error" start-time="2026-11-01 21:42:10Z" end-time="2026-11-01 21:42:10Z" duration="0.220363" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2149" name="MissingOptionalArtKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.MissingOptionalArtKeepsFallback" methodname="MissingOptionalArtKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1560111534" result="Failed" label="Error" start-time="2026-11-01 21:42:10Z" end-time="2026-11-01 21:42:10Z" duration="0.217776" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2130" name="PersistedLibraryProfileSurvivesAStoryRename" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.PersistedLibraryProfileSurvivesAStoryRename" methodname="PersistedLibraryProfileSurvivesAStoryRename" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="58733666" result="Failed" label="Error" start-time="2026-11-01 21:42:10Z" end-time="2026-11-01 21:42:10Z" duration="0.222130" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2148" name="SavedLairColumnRevokesEvenWithRestoredLibraryLabel" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.SavedLairColumnRevokesEvenWithRestoredLibraryLabel" methodname="SavedLairColumnRevokesEvenWithRestoredLibraryLabel" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="8895608" result="Failed" label="Error" start-time="2026-11-01 21:42:10Z" end-time="2026-11-01 21:42:11Z" duration="0.615322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2129" name="UnderfootAndWallReadersUseTheirActualWorldIdentity" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.UnderfootAndWallReadersUseTheirActualWorldIdentity" methodname="UnderfootAndWallReadersUseTheirActualWorldIdentity" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1978642813" result="Failed" label="Error" start-time="2026-11-01 21:42:11Z" end-time="2026-11-01 21:42:11Z" duration="0.241621" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2137" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-01 21:42:11Z" end-time="2026-11-01 21:42:12Z" duration="1.402879" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2131" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;poi&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1502793280" result="Failed" label="Error" start-time="2026-11-01 21:42:11Z" end-time="2026-11-01 21:42:11Z" duration="0.232187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2132" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;profile&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1558355146" result="Failed" label="Error" start-time="2026-11-01 21:42:11Z" end-time="2026-11-01 21:42:12Z" duration="0.236814" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2133" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;absent&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1217237558" result="Failed" label="Error" start-time="2026-11-01 21:42:12Z" end-time="2026-11-01 21:42:12Z" duration="0.227859" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2134" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;graph&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1937792387" result="Failed" label="Error" start-time="2026-11-01 21:42:12Z" end-time="2026-11-01 21:42:12Z" duration="0.222419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2135" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;tiles&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="2035987741" result="Failed" label="Error" start-time="2026-11-01 21:42:12Z" end-time="2026-11-01 21:42:12Z" duration="0.216349" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2136" name="WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests.WarmAdmissionRevokesWhenCurrentAuthorityChanges(&quot;pois&quot;)" methodname="WarmAdmissionRevokesWhenCurrentAuthorityChanges" classname="CavesOfOoo.Tests.FlatPixelStillleafDescentTests" runstate="Runnable" seed="1964201904" result="Failed" label="Error" start-time="2026-11-01 21:42:12Z" end-time="2026-11-01 21:42:12Z" duration="0.214849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp : System.InvalidOperationException : Sequence contains no matching element]]></message>
+                  <stack-trace><![CDATA[--SetUp
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 
+  at CavesOfOoo.Tests.FlatPixelStillleafDescentTests.Setup () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafDescentTests.cs:20 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
