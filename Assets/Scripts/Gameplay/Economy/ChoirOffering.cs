@@ -21,8 +21,16 @@ namespace CavesOfOoo.Core
         public const int BloodPercent = 20;
         public const int Regard = 5;
 
+        public const string Action = "OfferToChoir";
+        public const string ChoiceText = "[Offer] Let the soil taste you.";
+
         /// <summary>A speaker of the Choir itself: it gives, it never sells.</summary>
         public static bool KeepsNoShop(Entity speaker) => speaker != null && FactionManager.GetFaction(speaker) == Faction;
+
+        /// <summary>F1 (Docs/ECONOMY-SYSTEM.md §12.1): any Choir speaker holding something can give it, not only
+        /// the tendril (the shrine keepers kept their shelves when EC3 closed their shops). The choice never lies:
+        /// an empty shelf offers nothing.</summary>
+        public static bool CanOffer(Entity speaker) => KeepsNoShop(speaker) && speaker.GetPart<InventoryPart>()?.Objects.Count > 0;
 
         /// <summary>The health an offering costs <paramref name="walker"/>, or 0 without a health stat.</summary>
         public static int Cost(Entity walker)
@@ -53,7 +61,7 @@ namespace CavesOfOoo.Core
                 names.Add(gift.BlueprintName);
                 if (ConversationActions.DeliverItem(walker, gift) != null) held.AddObject(gift);
             }
-            MessageLog.Add("The tendril tastes you, unhurried. What it held, it gives: what is ours is all of ours.");
+            MessageLog.Add("The soil tastes you through " + tendril.GetDisplayName() + ", unhurried. What it held, it gives: what is ours is all of ours.");
             if (Diag.IsChannelEnabled("trade"))
                 Diag.Record("trade", "ChoirOffering", actor: walker, target: tendril, payload: new { cost, gifts = string.Join(",", names), regard = Regard });
             return null;

@@ -72,7 +72,13 @@ namespace CavesOfOoo.Core
                 if (last != int.MinValue && (long)currentTurn - last <= RestockIntervalTurns)
                     continue;
 
-                if (drams < DramsFloor)
+                // EC6 (Docs/ECONOMY-SYSTEM.md §12.3): drams are dead weight to a barter trader, so its
+                // buying power is salt: topped up to DramsFloor worth at its local salt price.
+                if (Tender.For(e) == TenderKind.Barter)
+                {
+                    if (TopUpSalt(e)) restocked++;
+                }
+                else if (drams < DramsFloor)
                 {
                     Ledger.TryCredit(e, DramsFloor - drams, "trader-restock", out _);
                     restocked++;
@@ -103,6 +109,38 @@ namespace CavesOfOoo.Core
             }
             return restocked;
         }
+        /// <summary>The salt a barter trader keeps as its purse.</summary>
+        public const string SaltPurseBlueprint = "PaleSalt";
+
+        /// <summary>Units of salt worth <see cref="DramsFloor"/> at this trader's local salt price (EC5).</summary>
+        public static int SaltFloorUnits(Entity trader, Entity salt)
+        {
+            double unit = TradeSystem.GetItemValue(salt, 1) * RegionalValue.Modifier(salt, trader);
+            return unit <= 0 ? 0 : (int)System.Math.Ceiling(DramsFloor / unit);
+        }
+
+        // Factory-gated like shelf refills. Counts every salt good the trader holds, so salt the player
+        // traded in counts toward the purse rather than being topped up again.
+        private static bool TopUpSalt(Entity trader)
+        {
+            if (Factory == null || !Factory.Blueprints.ContainsKey(SaltPurseBlueprint)) return false;
+            var inv = trader.GetPart<InventoryPart>();
+            if (inv == null) return false;
+            var salt = Factory.CreateEntity(SaltPurseBlueprint);
+            if (salt == null) return false;
+            int floor = SaltFloorUnits(trader, salt), held = 0;
+            foreach (var item in inv.Objects)
+                if (item != null && item.HasTag(RegionalValue.SaltTag)) held += item.GetPart<StackerPart>()?.StackCount ?? 1;
+            if (held >= floor) return false;
+            var stacker = salt.GetPart<StackerPart>();
+            if (stacker != null) stacker.StackCount = floor - held;
+            if (!inv.AddObject(salt)) return false;
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("trade"))
+                CavesOfOoo.Diagnostics.Diag.Record("trade", "SaltRestocked", actor: trader, target: trader,
+                    payload: new { units = floor - held, floor, held });
+            return true;
+        }
+
         // Membership is rebuilt per refill check: registry replacement and a keeper's
         // current authored table remain authoritative, with no persisted cache.
         private static int CountStockUnits(InventoryPart inventory, string stockTable)

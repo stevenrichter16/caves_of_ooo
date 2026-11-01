@@ -197,6 +197,18 @@ namespace CavesOfOoo.Core
             return TradeSystem.GetDrams(speaker) > 0;
         }
 
+        static bool AuthorsOffering(ConversationData conversation)
+        {
+            if (conversation?.Nodes == null) return false;
+            foreach (var node in conversation.Nodes)
+                if (node?.Choices != null)
+                    foreach (var choice in node.Choices)
+                        if (choice?.Actions != null)
+                            foreach (var action in choice.Actions)
+                                if (action.Key == ChoirOffering.Action) return true;
+            return false;
+        }
+
         public static void RefreshVisibleChoices()
         {
             _visibleChoices.Clear();
@@ -232,6 +244,21 @@ namespace CavesOfOoo.Core
                     Actions = new List<ConversationParam>
                     {
                         new ConversationParam { Key = "StartTrade", Value = "" }
+                    }
+                });
+            }
+
+            // F1 (EC6, Docs/ECONOMY-SYSTEM.md §12.1): a Choir speaker never trades, but one that holds
+            // something offers it, unless its conversation authors the offering itself.
+            if (Speaker != null && ChoirOffering.CanOffer(Speaker) && !AuthorsOffering(CurrentConversation))
+            {
+                _visibleChoices.Add(new ChoiceData
+                {
+                    Text = ChoirOffering.ChoiceText,
+                    Target = "",
+                    Actions = new List<ConversationParam>
+                    {
+                        new ConversationParam { Key = ChoirOffering.Action, Value = "" }
                     }
                 });
             }

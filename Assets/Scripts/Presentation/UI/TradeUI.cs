@@ -11,6 +11,11 @@ namespace CavesOfOoo.Rendering
     /// Left panel: NPC items with buy prices.
     /// Right panel: Player items with sell prices.
     /// Follows InventoryUI's 80x45 grid pattern.
+    ///
+    /// <para>EC6c (Docs/ECONOMY-SYSTEM.md §12.3): deal mode. A barter trader (<see cref="Tender"/>) always
+    /// opens in deal mode; a dram trader opens in the per-item shop and <c>[D]</c> switches. In deal mode the
+    /// player marks units on both sides, row 41 shows the balance, <c>[S]</c> balances with salt and <c>[O]</c>
+    /// offers the whole deal in one transaction (<see cref="Barter.TryDeal"/>).</para>
     /// </summary>
     public class TradeUI : MonoBehaviour
     {
@@ -44,6 +49,19 @@ namespace CavesOfOoo.Rendering
         private Entity _trader;
         private double _performance;
 
+        // EC6c: the deal being composed (null in the per-item shop) and what the trader accepts.
+        private BarterDeal _deal;
+        private TenderKind _tender;
+        private bool _confirmDeal;
+        public bool IsDealMode => _isOpen && _deal != null;
+        public BarterDeal Deal => _deal;
+        public string StatusMessage => _statusMessage;
+        private static readonly KeyCode[] DealKeys =
+        {
+            KeyCode.Return, KeyCode.RightArrow, KeyCode.L, KeyCode.LeftArrow, KeyCode.H,
+            KeyCode.A, KeyCode.S, KeyCode.O, KeyCode.D
+        };
+
         // 0 = left (buy from trader), 1 = right (sell to trader)
         private int _panel;
         private int _leftCursor, _leftScroll;
@@ -72,6 +90,10 @@ namespace CavesOfOoo.Rendering
             _trader = trader;
             _isOpen = true;
             _panel = 0;
+            _statusMessage = null;
+            _confirmActive = false;
+            _tender = Tender.For(trader);
+            _deal = _tender == TenderKind.Barter ? new BarterDeal(PlayerEntity, trader) : null;
             _leftCursor = _leftScroll = 0;
             _rightCursor = _rightScroll = 0;
             Rebuild();
@@ -186,6 +208,26 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // EC6c: deal mode owns Enter, the side arrows and its letter keys.
+            if (_deal != null)
+            {
+                for (int i = 0; i < DealKeys.Length; i++)
+                    if (InputHelper.GetKeyDown(DealKeys[i])) { DealKey(DealKeys[i]); return; }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    var at = MouseToGrid();
+                    if (at.x >= 0)
+                    {
+                        _panel = at.x < DIVIDER_X ? 0 : 1;
+                        int row = GetItemRowAtGrid(at);
+                        if (row >= 0) { SetCursor(row); DealKey(KeyCode.Return); return; }
+                        Render();
+                    }
+                }
+                return;
+            }
+            if (_tender == TenderKind.Drams && InputHelper.GetKeyDown(KeyCode.D)) { DealKey(KeyCode.D); return; }
+
             // Mouse click
             if (Input.GetMouseButtonDown(0))
             {
@@ -216,6 +258,53 @@ namespace CavesOfOoo.Rendering
                 ShowConfirmation();
                 return;
             }
+        }
+
+        /// <summary>EC6c: one deal-mode key (the input seam; public so tests can drive the screen without a
+        /// keyboard). Enter/→/L add one unit of the selected row, ←/H remove one, A toggles the whole stack,
+        /// S balances with salt, O offers the deal, D toggles deal mode at a dram trader. Returns whether the key
+        /// meant anything here.</summary>
+        public bool DealKey(KeyCode key)
+        {
+            if (!_isOpen || _confirmActive) return false;
+            if (key == KeyCode.D)
+            {
+                if (_tender != TenderKind.Drams) return false;
+                _deal = _deal == null ? new BarterDeal(PlayerEntity, _trader) : null;
+                _statusMessage = null; Render(); return true;
+            }
+            if (_deal == null) return false;
+            _statusMessage = null;
+            switch (key)
+            {
+                case KeyCode.Return: case KeyCode.RightArrow: case KeyCode.L: AdjustSelected(+1, false); break;
+                case KeyCode.LeftArrow: case KeyCode.H: AdjustSelected(-1, false); break;
+                case KeyCode.A: AdjustSelected(0, true); break;
+                case KeyCode.S:
+                    if (_deal.BalanceWithSalt() == 0 && _deal.Balance < 0) _statusMessage = "There is no salt to balance with.";
+                    break;
+                case KeyCode.O:
+                    string refusal = _deal.Refusal();
+                    if (refusal != null) _statusMessage = Barter.Explain(refusal);
+                    else { _confirmActive = true; _confirmDeal = true; _confirmChoice = 0; }
+                    break;
+                default: return false;
+            }
+            Render();
+            return true;
+        }
+
+        private void AdjustSelected(int delta, bool toggleAll)
+        {
+            var rows = _panel == 0 ? _leftRows : _rightRows;
+            int cursor = _panel == 0 ? _leftCursor : _rightCursor;
+            if (rows.Count == 0 || cursor < 0 || cursor >= rows.Count) return;
+            var item = rows[cursor].Item;
+            int now = _panel == 0 ? _deal.Taking(item) : _deal.Giving(item);
+            int units = BarterDeal.Units(item);
+            int next = toggleAll ? (now < units ? units : 0) : now + delta;
+            bool changed = _panel == 0 ? _deal.SetTake(item, next) : _deal.SetGive(item, next);
+            if (!changed && next > now) _statusMessage = $"You can't trade {item.GetDisplayName()}.";
         }
 
         private void MoveCursor(int delta)
@@ -332,13 +421,33 @@ namespace CavesOfOoo.Rendering
         private void ConfirmTrade()
         {
             _confirmActive = false;
+            if (_confirmDeal) { _confirmDeal = false; ExecuteDeal(); return; }
             ExecuteTrade();
         }
 
         private void CancelConfirmation()
         {
             _confirmActive = false;
+            _confirmDeal = false;
             Render();
+        }
+
+        /// <summary>EC6c: offer the composed deal. Success starts a fresh deal; a refusal keeps the deal and
+        /// shows its reason on the screen.</summary>
+        private void ExecuteDeal()
+        {
+            if (_deal == null) return;
+            bool ok = Barter.TryDeal(_deal, out string reason);
+            _statusMessage = ok ? null : reason;
+            if (ok) _deal = new BarterDeal(PlayerEntity, _trader);
+            Rebuild();
+            Render();
+        }
+
+        /// <summary>Confirm the pending deal popup, as [Y] would (tests drive the screen through this).</summary>
+        public void ConfirmPendingDeal()
+        {
+            if (_confirmActive && _confirmDeal) ConfirmTrade();
         }
 
         // BETA AUDIT 🔴 #8 — TradeSystem's failure messages go to the
@@ -446,21 +555,31 @@ namespace CavesOfOoo.Rendering
 
                 // Row 0: panel titles
                 string traderName = _trader != null ? _trader.GetDisplayName() : "Trader";
-                string leftTitle = "Buy from " + traderName;
-                string rightTitle = "Sell your items";
+                bool barter = _deal != null && _tender == TenderKind.Barter;
+                string leftTitle = barter ? "Barter with " + traderName : _deal != null ? "Deal with " + traderName : "Buy from " + traderName;
+                string rightTitle = _deal != null ? "Your pack" : "Sell your items";
                 DrawText(LEFT_START, 0, leftTitle, _panel == 0 ? QudColorParser.White : QudColorParser.Gray);
                 DrawText(RIGHT_START, 0, rightTitle, _panel == 1 ? QudColorParser.White : QudColorParser.Gray);
 
-                // Row 1: drams and performance
-                DrawText(LEFT_START, 1, "Trader: $" + traderDrams, QudColorParser.BrightYellow);
-                string playerInfo = "You: $" + playerDrams + "  Perf:" + perfPct + "%";
-                DrawText(RIGHT_START, 1, playerInfo, QudColorParser.BrightYellow);
+                // Row 1: drams and performance (EC6: a barter trader takes no drams, so none are shown)
+                if (barter)
+                {
+                    DrawText(LEFT_START, 1, "They take goods and salt, not drams.", QudColorParser.BrightYellow);
+                    DrawText(RIGHT_START, 1, "Perf:" + perfPct + "%", QudColorParser.BrightYellow);
+                }
+                else
+                {
+                    DrawText(LEFT_START, 1, "Trader: $" + traderDrams, QudColorParser.BrightYellow);
+                    string playerInfo = "You: $" + playerDrams + "  Perf:" + perfPct + "%";
+                    DrawText(RIGHT_START, 1, playerInfo, QudColorParser.BrightYellow);
+                }
 
                 // Row 2: separator
                 DrawHLine(0, 2, W);
 
-                // Vertical divider
-                for (int y = 0; y < H; y++)
+                // Vertical divider: the panels only. Below them the deal, detail and action lines span the
+                // full width (EC6c found the divider painted through their spaces at column 39).
+                for (int y = 0; y < CONTENT_BOTTOM; y++)
                     DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
 
                 // Left panel: trader items
@@ -468,6 +587,9 @@ namespace CavesOfOoo.Rendering
 
                 // Right panel: player items
                 RenderPanel(_rightRows, RIGHT_START, _rightCursor, _rightScroll, _panel == 1, RIGHT_W, false);
+
+                // Row 41: the deal's balance (EC6c)
+                if (_deal != null) DrawText(1, CONTENT_BOTTOM, DealSummary(out Color summaryColor), summaryColor);
 
                 // Row 42: separator
                 DrawHLine(0, CONTENT_BOTTOM + 1, W);
@@ -481,18 +603,45 @@ namespace CavesOfOoo.Rendering
                 {
                     DrawText(0, H - 1, " " + _statusMessage, QudColorParser.BrightRed);
                 }
+                else if (_deal != null)
+                {
+                    string actionBar = " [Enter/>]add [<]remove [A]all [S]salt [O]offer [Tab]side"
+                        + (_tender == TenderKind.Drams ? " [D]shop" : "") + " [Esc]close";
+                    DrawText(0, H - 1, actionBar, QudColorParser.DarkGray);
+                }
                 else
                 {
                     string actionBar = _panel == 0
-                        ? " [Enter]buy  [Tab]sell panel  [Esc]close"
-                        : " [Enter]sell  [Tab]buy panel  [Esc]close";
+                        ? " [Enter]buy  [Tab]sell panel  [D]deal  [Esc]close"
+                        : " [Enter]sell  [Tab]buy panel  [D]deal  [Esc]close";
                     DrawText(0, H - 1, actionBar, QudColorParser.DarkGray);
                 }
 
                 // Confirmation popup overlay
-                if (_confirmActive)
+                if (_confirmActive && _confirmDeal)
+                    RenderDealPopup();
+                else if (_confirmActive)
                     RenderConfirmPopup();
             }
+        }
+
+        /// <summary>EC6c: the deal line on row 41.</summary>
+        public string DealSummary(out Color color)
+        {
+            color = QudColorParser.White;
+            if (_deal == null) return "";
+            int give = _deal.GiveValue, take = _deal.TakeValue, balance = give - take;
+            string text = "Give " + give + "   Take " + take + "   ";
+            if (_deal.IsEmpty) { color = QudColorParser.Gray; return text + "Mark goods on either side."; }
+            if (_tender == TenderKind.Barter)
+            {
+                if (balance < 0) { color = QudColorParser.BrightRed; return text + "Short " + (-balance) + ": add goods or salt."; }
+                if (balance > 0) { color = QudColorParser.BrightYellow; return text + "They keep " + balance + " over."; }
+                color = QudColorParser.BrightGreen; return text + "Even.";
+            }
+            if (balance < 0) { color = _deal.Refusal() == null ? QudColorParser.BrightYellow : QudColorParser.BrightRed; return text + "You pay " + (-balance) + " drams."; }
+            if (balance > 0) { color = _deal.Refusal() == null ? QudColorParser.BrightYellow : QudColorParser.BrightRed; return text + "You receive " + balance + " drams."; }
+            color = QudColorParser.BrightGreen; return text + "Even.";
         }
 
         private void RenderPanel(List<TradeRow> rows, int x0, int cursor, int scroll,
@@ -517,12 +666,22 @@ namespace CavesOfOoo.Rendering
                 // Build row text: "  name            4lb   29$"
                 string name = rows[i].Name;
                 int maxNameLen = panelW - 14; // room for weight + price
+                if (_deal != null)
+                {
+                    // EC6c: a marked row shows its count in the deal ("2/9", or "*" for a single item).
+                    int inDeal = isBuyPanel ? _deal.Taking(rows[i].Item) : _deal.Giving(rows[i].Item);
+                    int units = BarterDeal.Units(rows[i].Item);
+                    string mark = inDeal == 0 ? "" : units > 1 ? inDeal + "/" + units : "*";
+                    name = mark.PadRight(6) + name;
+                    if (inDeal > 0) textColor = selected ? QudColorParser.BrightGreen : QudColorParser.DarkGreen;
+                }
                 if (name.Length > maxNameLen)
                     name = name.Substring(0, maxNameLen - 1) + "~";
 
                 string line = name.PadRight(maxNameLen);
                 line += rows[i].Weight.ToString().PadLeft(4) + "lb ";
-                line += rows[i].Price.ToString().PadLeft(5) + "$";
+                // EC6c (found in live play): a barter trader takes no drams, so its values carry no "$".
+                line += rows[i].Price.ToString().PadLeft(5) + (_deal != null && _tender == TenderKind.Barter ? " " : "$");
 
                 DrawText(x0 + 1, y, line, textColor);
             }
@@ -544,6 +703,14 @@ namespace CavesOfOoo.Rendering
             int baseValue = TradeSystem.GetItemValue(row.Item);
             string action = _panel == 0 ? "Buy" : "Sell";
             string detail = $" [F1]details  {row.Name}  Wt:{row.Weight}  {action} stack:{row.Price}$";
+            if (_deal != null)
+            {
+                int inDeal = _panel == 0 ? _deal.Taking(row.Item) : _deal.Giving(row.Item);
+                int units = BarterDeal.Units(row.Item);
+                int each = _panel == 0 ? TradeSystem.GetBuyPrice(row.Item, _performance, _trader, 1)
+                    : TradeSystem.GetSellPrice(row.Item, _performance, _trader, 1);
+                detail = $" [F1]details  {row.Name}  in deal {inDeal} of {units}  each {each}";
+            }
             if (detail.Length > W)
                 detail = detail.Substring(0, W);
             DrawText(0, H - 2, detail, QudColorParser.BrightCyan);
@@ -633,6 +800,54 @@ namespace CavesOfOoo.Rendering
             if (_confirmChoice == 1)
                 DrawChar(infoX, choiceY + 1, '>', QudColorParser.White);
             DrawText(infoX + 2, choiceY + 1, "[N] No", noColor);
+        }
+
+        /// <summary>EC6c: the offer popup: both sides' values and the settlement, then Yes/No (same geometry
+        /// as the per-item popup, so <see cref="GetConfirmButtonRow"/> serves both).</summary>
+        private void RenderDealPopup()
+        {
+            int popupW = 40, popupH = 11;
+            int popupX = (W - popupW) / 2, popupY = (H - popupH) / 2;
+            for (int py = popupY; py < popupY + popupH; py++)
+                for (int px = popupX; px < popupX + popupW; px++)
+                {
+                    var tilePos = new Vector3Int(px, H - 1 - py, 0);
+                    Tilemap.SetTile(tilePos, CP437TilesetGenerator.GetUiTile(' '));
+                    Tilemap.SetTileFlags(tilePos, TileFlags.None);
+                    Tilemap.SetColor(tilePos, QudColorParser.Black);
+                }
+            for (int px = popupX; px < popupX + popupW; px++)
+            {
+                DrawChar(px, popupY, '-', QudColorParser.White);
+                DrawChar(px, popupY + popupH - 1, '-', QudColorParser.White);
+            }
+            for (int py = popupY; py < popupY + popupH; py++)
+            {
+                DrawChar(popupX, py, '|', QudColorParser.White);
+                DrawChar(popupX + popupW - 1, py, '|', QudColorParser.White);
+            }
+            string title = "Offer Deal";
+            DrawText(popupX + (popupW - title.Length) / 2, popupY + 1, title, QudColorParser.BrightYellow);
+            for (int px = popupX + 1; px < popupX + popupW - 1; px++)
+                DrawChar(px, popupY + 2, '-', QudColorParser.DarkGray);
+            int infoX = popupX + 2;
+            DrawText(infoX, popupY + 3, "You give " + Lines(_deal.Gives) + ", worth " + _deal.GiveValue, QudColorParser.White);
+            DrawText(infoX, popupY + 4, "You take " + Lines(_deal.Takes) + ", worth " + _deal.TakeValue, QudColorParser.White);
+            string settle = DealSummary(out _);
+            int cut = settle.IndexOf("   ", settle.IndexOf("Take", System.StringComparison.Ordinal), System.StringComparison.Ordinal);
+            DrawText(infoX, popupY + 5, cut >= 0 ? settle.Substring(cut + 3) : settle, QudColorParser.Gray);
+            int choiceY = popupY + 7;
+            if (_confirmChoice == 0) DrawChar(infoX, choiceY, '>', QudColorParser.White);
+            DrawText(infoX + 2, choiceY, "[Y] Yes", _confirmChoice == 0 ? QudColorParser.White : QudColorParser.Gray);
+            if (_confirmChoice == 1) DrawChar(infoX, choiceY + 1, '>', QudColorParser.White);
+            DrawText(infoX + 2, choiceY + 1, "[N] No", _confirmChoice == 1 ? QudColorParser.White : QudColorParser.Gray);
+        }
+
+        private static string Lines(IReadOnlyList<BarterDeal.Line> lines)
+        {
+            int units = 0;
+            for (int i = 0; i < lines.Count; i++) units += lines[i].Count;
+            return units == 0 ? "nothing" : units == 1 ? "1 thing" : units + " things";
         }
 
         // ===== Drawing Helpers (same as InventoryUI) =====

@@ -18,6 +18,8 @@ namespace CavesOfOoo.Core
     public static class TradeSystem
     {
         public const string CURRENCY_PROP = "Drams";
+        /// <summary>The refusal a barter trader gives the direct buy and sell paths.</summary>
+        public const string NoDrams = "They take no drams here; offer goods in exchange.";
 
         /// <summary>
         /// Get the base value of an item from its CommercePart.
@@ -34,6 +36,15 @@ namespace CavesOfOoo.Core
             if (stacker != null)
                 return baseValue * stacker.StackCount;
             return baseValue;
+        }
+
+        /// <summary>EC6b: the value of <paramref name="count"/> units of a stack (a barter line may hold part of
+        /// one). Equals <see cref="GetItemValue(Entity)"/> when <paramref name="count"/> is the whole stack.</summary>
+        public static int GetItemValue(Entity item, int count)
+        {
+            var commerce = item?.GetPart<CommercePart>();
+            if (commerce == null || count <= 0) return 0;
+            return (int)System.Math.Min(int.MaxValue, (long)commerce.Value * count);
         }
 
         /// <summary>
@@ -74,9 +85,13 @@ namespace CavesOfOoo.Core
         /// Price the player pays to buy an item from a trader.
         /// Higher performance = lower price. Better faction standing = lower price.
         /// </summary>
-        public static int GetBuyPrice(Entity item, double performance, Entity trader = null)
+        public static int GetBuyPrice(Entity item, double performance, Entity trader = null) =>
+            GetBuyPrice(item, performance, trader, item?.GetPart<StackerPart>()?.StackCount ?? 1);
+
+        /// <summary>The buy price of <paramref name="count"/> units (EC6b barter lines).</summary>
+        public static int GetBuyPrice(Entity item, double performance, Entity trader, int count)
         {
-            int value = GetItemValue(item);
+            int value = GetItemValue(item, count);
             if (value <= 0) return 0;
             if (performance <= 0.01) return value * 20; // safety cap
             // C4: the place's conditions (a Concord tithe, a rebuilt oven) move its prices.
@@ -89,9 +104,13 @@ namespace CavesOfOoo.Core
         /// Price the player receives selling an item to a trader.
         /// Higher performance = better sell price. Better faction standing = better price.
         /// </summary>
-        public static int GetSellPrice(Entity item, double performance, Entity trader = null)
+        public static int GetSellPrice(Entity item, double performance, Entity trader = null) =>
+            GetSellPrice(item, performance, trader, item?.GetPart<StackerPart>()?.StackCount ?? 1);
+
+        /// <summary>The sell price of <paramref name="count"/> units (EC6b barter lines).</summary>
+        public static int GetSellPrice(Entity item, double performance, Entity trader, int count)
         {
-            int value = GetItemValue(item);
+            int value = GetItemValue(item, count);
             if (value <= 0) return 0;
             double factionMod = GetFactionModifier(trader) * PlaceConsequences.PriceModifier(trader);
             return Math.Max(1, (int)Math.Floor(value * RegionalValue.Modifier(item, trader) * performance / factionMod));
@@ -132,6 +151,9 @@ namespace CavesOfOoo.Core
                 return RefuseBuy(buyer, trader, item, "An inventory is missing for this purchase.", out failureReason);
             if (TraderUnableToTrade(trader, out string reason))
                 return RefuseBuy(buyer, trader, item, $"The trader {reason}.", out failureReason);
+            // EC6: drams are dead weight to a barter trader (Docs/ECONOMY-SYSTEM.md §12.2); deal in goods instead.
+            if (Tender.For(trader) == TenderKind.Barter)
+                return RefuseBuy(buyer, trader, item, NoDrams, out failureReason);
             string itemName = item.GetDisplayName();
             var command = new BuyTransferCommand(trader, item);
             var result = InventorySystem.ExecuteCommand(command, buyer);
@@ -218,6 +240,8 @@ namespace CavesOfOoo.Core
                 return RefuseSale(seller, trader, item, "An inventory is missing for this sale.", out failureReason);
             if (TraderUnableToTrade(trader, out string reason))
                 return RefuseSale(seller, trader, item, $"The trader {reason}.", out failureReason);
+            if (Tender.For(trader) == TenderKind.Barter)
+                return RefuseSale(seller, trader, item, NoDrams, out failureReason);
             // Name/quantity must be captured before destination merging absorbs the input.
             string itemName = item.GetDisplayName();
             var command = new SellTransferCommand(trader, item);
