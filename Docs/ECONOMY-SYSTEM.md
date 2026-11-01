@@ -163,7 +163,7 @@ Log corrections before writing code.
 |---|---|---|---|
 | C1 | No single transfer API exists | `InventoryTransaction` already batches currency deltas atomically, with overflow and insufficient-funds guards and `event/CurrencyDebitRejected` or `CurrencyCreditRejected` records; trade and pickup use it | EC2 builds the ledger on this path and moves the non-transactional call sites (fees, conversation actions, shrine, rewards) onto it; it does not add a parallel mechanism |
 | C2 | Trader stock rolls are unseeded everywhere | Fixtures and `WorldTravellers` already scope `TraderPart.Rng`; only ordinary zone generation left it null | EC1 scopes a seed in `ZoneManager.GenerateZone`, only when no caller set one |
-| E10 | (new, pre-existing failures) | `BiomeHermitTests.RestAtInn_CostSiteForm_ChargesAndNamesTheSite` and two `BiomePhaseBAdversarialTests` cases fail on main: a malformed or negative inn cost leaves the purse untouched (expected 40, was 50), so resting is free instead of falling back to the default 10 | the inn path joins the ledger in EC2; these pins become its RED tests |
+| E10 | (pre-existing failing pins) "resting at an inn with a malformed or negative cost is free" | **False premise, corrected.** `RestAtInn` charges only after a successful rest. In these fixtures the rest itself was refused (`invalid_rest_context`): `RestSystem` needs the actor in a zone and the running clock (`TurnManager.Active`), and the three pins (`BiomeHermitTests` ×1, `BiomePhaseBAdversarialTests` ×2) predate that gate, so they never reached the cost parser | fixtures repaired with a real rest context; the parser's fallback-to-10 and never-mint contracts are exercised again |
 | E9 | (new) | A picked-up `GoldCoin` credits 5 drams (`PickupCommand`), but its `Commerce` value is 1, and `EnvoyStock` sells 3–9 of them | **Exploit:** buy a coin for about 3 drams, drop it, pick it up for 5, and repeat while the Envoy restocks. EC2 pins it RED first; the likely fix makes the coin's value match its credit |
 
 ## 6. EC1 — reproducible trader stock (2026-11-01)
@@ -193,9 +193,49 @@ already seeds from the turn and the trader's ID.
 - `Arena_MerchantIsTheBenchsOwnWhateverTraderStateWasLeftBehind` drives the leaked state
   directly. It was RED with the fix reverted.
 
-## 7. Next steps
+## 7. EC2a — the ledger, and the first money bugs (2026-11-01)
+
+**`Ledger`** (`Assets/Scripts/Gameplay/Economy/Ledger.cs`) moves drams outside a trade
+transaction:
+- `TryCredit(to, amount, source)` is a named faucet;
+- `TryDebit(from, amount, sink)` is a named sink;
+- `TryTransfer(from, to, amount, reason)` is a payment that conserves the total.
+
+Each operation is all-or-nothing. It refuses a missing party, a non-positive amount, a purse
+that cannot cover a debit, and a credit past `int.MaxValue`, and records `trade/Credited`,
+`Debited`, `Transferred` or `LedgerRefused` (with `refusal`).
+
+**Migrated in EC2a:**
+- conversation rewards (`GiveDrams`), concern settlements (`PayDrams`) and the Concord repair
+  contract (`ContractPlaceRepair`, including its refund on refusal);
+- inn rooms (`RestAtInn`, sink `inn:<site>`) and the shrine offering (`SanctuaryPart`, which
+  had bypassed even `TradeSystem.SetDrams`).
+
+The fee parts (gathering claims, the botanical ink desk, Sodden preparation, kitchen batches,
+second-exploration services) and the Morrowfast and cloth-claimant gifts move in EC2b.
+
+**Bugs fixed, RED first** (`MoneySupplyTests`):
+- **E2:** a conversation reward near the purse's ceiling wrapped to a negative, which the clamp
+  turned into **zero**, wiping the purse. It is now refused whole.
+- **E9:** buying a coin, dropping it and picking it up netted +2 drams (RED: 100 → 102), so
+  money could be minted while the Envoy restocked.
+  - **Fix:** coins are money, not merchandise. `GoldCoin` carries `NoTrade`, so the existing
+    `CanBeTraded` veto refuses buying or selling one, including coins a trader carries in a
+    loadout. `EnvoyStock` and `GnomeStock` no longer roll coins.
+  - **Rejected alternative:** making a coin's trade value equal its credit (5). It inflated
+    every reviewed loot-value band (`DensityLairRewardBudgetTests`, `DensityLootCensusTests`:
+    12 pins), which is a balance re-review, not a bug fix.
+- **E10:** the three inn pins were stale fixtures, not free rest (§5.4). They are repaired and
+  now exercise the fallback-to-10 and never-mint contracts again.
+
+**Contract tests** (`LedgerTests`, 13 cases; `MoneySupplyTests`, 4): faucet and sink naming, exact emptying, refusals
+leave both purses whole, conservation, self-payment, non-positive amounts and missing parties
+everywhere, and diagnostics never steering the money.
+
+## 8. Next steps
 
 1. Finish the §5.3 sweep (trade screen, restock timing, conversation-to-trader routing,
    faction trust data).
-2. EC2: the ledger on the `InventoryTransaction` currency path, migrating the non-transactional
-   call sites. It starts with RED pins for E2 (`GiveDrams` overflow) and E9 (the coin exploit).
+2. EC2b: move the fee parts and gifts onto the ledger, then add a pin that no production
+   code writes the `Drams` property outside `Ledger`, `TradeSystem` and `InventoryTransaction`.
+3. EC3 (the Choir does not trade) and EC4 (Tent-Right never sells water).

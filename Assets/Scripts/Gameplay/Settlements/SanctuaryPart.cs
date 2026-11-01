@@ -52,7 +52,7 @@ namespace CavesOfOoo.Core
                 }
                 else
                 {
-                    actor.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - DonationCost);
+                    Ledger.TryDebit(actor, DonationCost, "shrine-offering", out _);
                     actor.ForceApplyEffect(new StoneskinEffect(BlessingReduction, BlessingDuration));
                     MessageLog.Add("You leave a small offering. A quiet blessing settles over you.");
                     if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("furniture"))

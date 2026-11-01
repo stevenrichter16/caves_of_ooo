@@ -188,7 +188,8 @@ namespace CavesOfOoo.Tests
         [TestCase(false, false)] [TestCase(false, true)] [TestCase(true, false)] [TestCase(true, true)]
         public void Adversarial_IndependentPurchaseCannotSpendProvisionalGold(bool preexistingFunds, bool rollback)
         {
-            var outer = Ground(); var goods = Item("GoldCoin"); _trader.GetPart<InventoryPart>().AddObject(goods);
+            // Any cheap merchandise will do; coins are money, not merchandise (NoTrade, EC2), so a starapple.
+            var outer = Ground(); var goods = Item("Starapple"); _trader.GetPart<InventoryPart>().AddObject(goods);
             int price = TradeSystem.GetBuyPrice(goods, TradeSystem.GetTradePerformance(_actor), _trader);
             Assert.That(price, Is.InRange(1, 15)); int before = preexistingFunds ? price : 0;
             TradeSystem.SetDrams(_actor, before); bool nested = false;

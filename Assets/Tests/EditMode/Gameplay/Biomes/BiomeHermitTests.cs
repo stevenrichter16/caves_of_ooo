@@ -95,6 +95,7 @@ namespace CavesOfOoo.Tests
             var patient = new Entity { ID = "patient" };
             patient.AddPart(new RenderPart { DisplayName = "patient" });
             patient.AddPart(new StatusEffectsPart());
+            patient.AddPart(new PhysicsPart());   // a resting actor must be physically present (RestSystem)
             if (drams > 0) patient.SetIntProperty(TradeSystem.CURRENCY_PROP, drams);
             return patient;
         }
@@ -132,6 +133,9 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("T");
             SettlementRuntime.ActiveZone = zone;
             var tm = new TurnManager();
+            // Resting needs the running clock (RestSystem refuses "invalid_rest_context" without it).
+            var clock = typeof(TurnManager).GetProperty("Active", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+            var previousClock = TurnManager.Active; clock.SetValue(null, tm);
             FactionManager.Initialize();
             try
             {
@@ -152,6 +156,7 @@ namespace CavesOfOoo.Tests
             {
                 FactionManager.Reset();
                 SettlementRuntime.ActiveZone = null;
+                clock.SetValue(null, previousClock);
             }
         }
     }

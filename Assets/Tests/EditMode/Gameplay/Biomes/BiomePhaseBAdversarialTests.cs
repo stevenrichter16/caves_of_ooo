@@ -50,10 +50,28 @@ namespace CavesOfOoo.Tests
             var p = new Entity { ID = "p" };
             p.AddPart(new RenderPart { DisplayName = "p" });
             p.AddPart(new StatusEffectsPart());
+            p.AddPart(new PhysicsPart());   // a resting actor must be physically present (RestSystem)
             p.SetIntProperty(TradeSystem.CURRENCY_PROP, drams);
             var stat = new Stat { Owner = p, Name = "Hitpoints", BaseValue = hp, Min = 0, Max = maxHp };
             p.Statistics["Hitpoints"] = stat;
             return p;
+        }
+
+        /// <summary>Resting needs a real place and the running clock (RestSystem refuses
+        /// "invalid_rest_context" otherwise, and charges nothing). These pins predate that gate and had
+        /// been failing for it, never reaching the cost parser they exist to probe.</summary>
+        private sealed class RestScope : System.IDisposable
+        {
+            static readonly System.Reflection.PropertyInfo Clock = typeof(TurnManager).GetProperty("Active",
+                System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+            readonly TurnManager previous; readonly Zone previousZone;
+            public RestScope(Entity patient)
+            {
+                previous = TurnManager.Active; previousZone = SettlementRuntime.ActiveZone;
+                var zone = new Zone("T"); zone.AddEntity(patient, 10, 10); SettlementRuntime.ActiveZone = zone;
+                Clock.SetValue(null, new TurnManager());
+            }
+            public void Dispose() { Clock.SetValue(null, previous); SettlementRuntime.ActiveZone = previousZone; }
         }
 
         [Test]
@@ -62,6 +80,7 @@ namespace CavesOfOoo.Tests
             foreach (var arg in new[] { "abc", "", ":", ":fireside", "abc:fireside" })
             {
                 var p = Patient(drams: 50);
+                using var rest = new RestScope(p);
                 ConversationActions.Execute("RestAtInn", null, p, arg);
                 Assert.AreEqual(40, p.GetIntProperty(TradeSystem.CURRENCY_PROP, -1),
                     $"'{arg}': unparseable cost falls back to the default 10 — never free, never ruinous");
@@ -73,6 +92,7 @@ namespace CavesOfOoo.Tests
         public void Adversarial_RestAtInn_NegativeCost_NeverPays()
         {
             var p = Patient(drams: 50);
+            using var rest = new RestScope(p);
             ConversationActions.Execute("RestAtInn", null, p, "-5:scam corner");
             Assert.AreEqual(40, p.GetIntProperty(TradeSystem.CURRENCY_PROP, -1),
                 "negative costs clamp to the default — resting never MINTS drams");

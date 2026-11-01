@@ -283,9 +283,9 @@ namespace CavesOfOoo.Core
                 if (site.Stage >= RepairStage.StableRepair) { MessageLog.Add("That is already properly repaired."); return "already_repaired"; }
                 int drams = TradeSystem.GetDrams(listener);
                 if (drams < cost) { MessageLog.Add($"The Concord's price is {cost} drams; you have {drams}."); return "insufficient_drams"; }
-                TradeSystem.SetDrams(listener, drams - cost);
+                if (cost > 0 && !Ledger.TryDebit(listener, cost, "concord-repair-contract", out _)) return "insufficient_drams";
                 if (!SettlementManager.Current.ApplyRepairMethod(zoneId, parts[1], RepairMethodId.Contracted, listener))
-                { TradeSystem.SetDrams(listener, drams); return "repair_refused"; }
+                { if (cost > 0) Ledger.TryCredit(listener, cost, "concord-repair-refund", out _); return "repair_refused"; }
                 PlayerReputation.Modify("SaccharineConcord", 5);
                 SettlementManager.Current.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone);
                 SettlementRuntime.MarkZoneDirty();
@@ -326,7 +326,7 @@ namespace CavesOfOoo.Core
                 if (!int.TryParse(arg, out int cost) || cost < 0) return "invalid_argument";
                 int drams = TradeSystem.GetDrams(listener);
                 if (drams < cost) { MessageLog.Add($"That's {cost} drams; you have {drams}."); return "insufficient_drams"; }
-                TradeSystem.SetDrams(listener, drams - cost);
+                if (cost > 0 && !Ledger.TryDebit(listener, cost, "concern-settlement", out _)) return "insufficient_drams";
                 MessageLog.Add($"You pay {cost} drams.");
                 return null;
             });
@@ -757,8 +757,9 @@ namespace CavesOfOoo.Core
                 if (!int.TryParse(arg, out int amt) || amt <= 0) return;
                 if (listener == null) return;
 
-                int before = TradeSystem.GetDrams(listener);
-                TradeSystem.SetDrams(listener, before + amt);
+                // EC2: a named faucet. A reward the purse cannot hold is refused whole; it never wraps.
+                if (!Ledger.TryCredit(listener, amt, "conversation-reward", out _))
+                { MessageLog.Add("You cannot carry that much currency."); return; }
 
                 MessageLog.Add($"You receive {amt} drams.");
             });
@@ -1013,7 +1014,7 @@ namespace CavesOfOoo.Core
                 : RestSystem.TryRest(listener, SettlementRuntime.ActiveZone, site, out _);
             if (!rested) return; // Rest already messaged + diagnosed; no charge.
 
-            listener.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - cost);
+            if (cost > 0) Ledger.TryDebit(listener, cost, "inn:" + site, out _);
             listener.ForceApplyEffect(new WellRestedEffect());
             MessageLog.Add($"You pay {cost} drams.");
         }
