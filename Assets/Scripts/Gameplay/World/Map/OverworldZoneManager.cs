@@ -239,13 +239,13 @@ namespace CavesOfOoo.Core
                             else spread.AddBuilder(new SpreadWildernessSituationBuilder(this,land,people,caches,Wayhouse?.ZoneID));
                         }
                     }
-                    return WithWaysites(spread, biome, tier, zoneID);
+                    return WithDensity(WithWaysites(spread, biome, tier, zoneID), biome, zoneID);
                 case BiomeType.Sodden:
                     return WithWaysites(CreateSoddenPipeline(tier, composed: SoddenCompositionPlan.IsWildernessZone(zoneID)), biome, tier, zoneID);
                 case BiomeType.Beating:
                     if (zoneID == TenthFireZoneID)
                         return CreateTenthFirePipeline(tier);
-                    return WithWaysites(CreateBeatingPipeline(tier, zoneID, composed: BeatingCompositionPlan.IsWildernessZone(zoneID)), biome, tier, zoneID);
+                    return WithDensity(WithWaysites(CreateBeatingPipeline(tier, zoneID, composed: BeatingCompositionPlan.IsWildernessZone(zoneID)), biome, tier, zoneID), biome, zoneID);
                 case BiomeType.Grovelands:
                 {
                     // W4.4 SM-D (R8): the Bloom-front registers HERE —
@@ -284,6 +284,16 @@ namespace CavesOfOoo.Core
         private ZoneGenerationPipeline WithWaysites(ZoneGenerationPipeline pipeline, BiomeType biome, int tier, string zoneID)
         {
             if (pipeline != null && WaysitePlan.IsEligible(this, zoneID)) pipeline.AddBuilder(new WaysiteBuilder(biome, tier, WorldSeed));
+            return pipeline;
+        }
+
+        /// <summary>Structure for a sparse wild chunk's empty sectors (Docs/CHUNK-ACTIVITY.md §9): copses,
+        /// field trees, hedge runs and tuft drifts in the Spread; outcrops and brush in the Beating. Never
+        /// where an exploration family owns the chunk (<see cref="ChunkDensityPlan.IsEligible"/>).</summary>
+        private ZoneGenerationPipeline WithDensity(ZoneGenerationPipeline pipeline, BiomeType biome, string zoneID)
+        {
+            if (pipeline != null && ChunkDensityPlan.IsEligible(this, zoneID))
+                pipeline.AddBuilder(new ChunkDensityBuilder(biome, ChunkDensityPlan.FormationOf(biome, zoneID), WorldSeed));
             return pipeline;
         }
 

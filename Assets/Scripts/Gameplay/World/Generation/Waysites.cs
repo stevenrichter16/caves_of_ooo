@@ -30,7 +30,9 @@ namespace CavesOfOoo.Core
         static readonly HashSet<string> Opening = new HashSet<string>(StringComparer.Ordinal)
         { "Overworld.11.9.0", "Overworld.11.8.0", "Overworld.12.10.0", "Overworld.12.11.0" };
 
-        /// <summary>A wild surface zone that no curated plan already owns.</summary>
+        /// <summary>A wild surface zone that no curated plan already owns. A Spread exploration family
+        /// owns its zone too: its composer reads the ordinary owners as its source and its finalizer
+        /// checks them, and the zone already has its own thing to do.</summary>
         public static bool IsEligible(OverworldZoneManager manager, string zoneId)
         {
             if (manager == null || string.IsNullOrEmpty(zoneId) || !zoneId.StartsWith("Overworld.", StringComparison.Ordinal)) return false;
@@ -42,6 +44,8 @@ namespace CavesOfOoo.Core
                 || zoneId == OverworldZoneManager.AbandonedCounterZoneA || zoneId == OverworldZoneManager.AbandonedCounterZoneB) return false;
             foreach (var d in RegionalSituations.Definitions)
                 if (d.SourceZoneId == zoneId || d.RecipientZoneId == zoneId) return false;
+            if (manager.Exploration != null && manager.Exploration.TryGetPlacement(manager, zoneId, out var entry)
+                && entry.Family != SpreadExplorationFamily.None) return false;
             return true;
         }
 
@@ -200,13 +204,16 @@ namespace CavesOfOoo.Core
                 "WaysiteNoteFerrySlate1", "WaysiteNoteFerrySlate2"),
         };
 
-        // The Beating: shade and water are the sites worth stopping for; salt is the money.
+        // The Beating: shade and water are the sites worth stopping for.
         static readonly WaysiteKind[] Beating =
         {
             Kind("ShadeCistern", 10, new[] { "#C#", "ini" }, new Dictionary<char, string>
                 { { '#', "SandstoneWall" }, { 'C', "Cistern" }, { 'i', "interior" }, { 'n', WaysiteKind.NoteMarker } },
                 "WaysiteNoteCistern1", "WaysiteNoteCistern2"),
-            Kind("SaltPan", 8, new[] { "v.v", ".v." }, new Dictionary<char, string> { { 'v', "PaleSaltVein" } }),
+            // A broken wall someone sleeps behind, out of the glare. (A salt-pan kind was cut: salt is the
+            // wasteland's money, and the composition keeps each pan to 2-4 veins on purpose.)
+            Kind("WallShelter", 8, new[] { "##", "bi" }, new Dictionary<char, string>
+                { { '#', "SandstoneWall" }, { 'b', "Bedroll" }, { 'i', "interior" } }),
         };
 
         // The Stump: a watcher's ledge camp.

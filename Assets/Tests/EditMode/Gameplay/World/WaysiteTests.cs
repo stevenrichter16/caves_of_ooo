@@ -91,6 +91,24 @@ namespace CavesOfOoo.Tests
             Assert.Greater(eligible, 250, "counter-check: ordinary wilderness is eligible");
         }
 
+        /// <summary>Hypothesis (found by the collector, grazer and snake pipeline pins): a waysite at 3850
+        /// moves the ordinary owners an exploration family composes from at 4001/4300, so the family refuses.
+        /// A family's zone already has its thing to do; the waysite stays out.</summary>
+        [Test] public void AnExplorationFamilysZoneIsNeverEligible()
+        {
+            var manager = OverworldZoneManager.CreateDetached(factory, Seed, enableExploration: true);
+            int owned = 0, quiet = 0;
+            foreach (var entry in manager.Exploration.Entries.Where(e => e.PlacementEligible))
+            {
+                var (x, y, _) = WorldMap.FromZoneID(entry.ZoneID);
+                if (WorldMapAuthoring.BiomeAt(x, y) != BiomeType.Spread) continue;
+                if (entry.Family != SpreadExplorationFamily.None) { owned++; Assert.False(WaysitePlan.IsEligible(manager, entry.ZoneID), entry.ZoneID + " " + entry.Family); }
+                else if (WaysitePlan.IsEligible(manager, entry.ZoneID)) quiet++;
+            }
+            Assert.Greater(owned, 0, "the seed has exploration families");
+            Assert.Greater(quiet, 0, "counter-check: a quiet exploration address keeps its waysite");
+        }
+
         // ════════════════ placement ════════════════
 
         [Test] public void ASiteIsPlacedWholeAndRecorded()
@@ -242,10 +260,14 @@ namespace CavesOfOoo.Tests
             var player = factory.CreateEntity("Player"); zone.AddEntity(player, 21, 10);
             var skin = factory.CreateEntity("Waterskin"); player.GetPart<InventoryPart>().AddObject(skin);
             var water = skin.GetPart<WaterskinPart>(); water.Charges = 0;
-            Assume.That(water.Capacity, Is.GreaterThan(WaysiteCatalog.CisternDraws), "a skin holds more than a cistern");
+            var well = cistern.GetPart<WellPart>();
+            Assert.AreEqual(WaysiteCatalog.CisternDraws, well.Stock, "the authored cistern holds its draws");
+            // A skin holds as much as a whole cistern, so leave less in it than the skin can take:
+            // only then does a full skin prove nothing, and a short one prove the limit.
+            well.Stock = water.Capacity - 1;
             Assert.True(WaterVesselService.TryAct(player, skin, zone, "FillWaterskin"));
-            Assert.AreEqual(WaysiteCatalog.CisternDraws, water.Charges, "the skin takes what the cistern holds");
-            Assert.AreEqual(0, cistern.GetPart<WellPart>().Stock, "and the cistern is dry");
+            Assert.AreEqual(water.Capacity - 1, water.Charges, "the skin takes what the cistern holds, not its capacity");
+            Assert.AreEqual(0, well.Stock, "and the cistern is dry");
             water.Charges = 0;
             Assert.False(WaterVesselService.TryAct(player, skin, zone, "FillWaterskin"), "nothing left to fill from");
             var trough = factory.CreateEntity("DroversTrough"); zone.AddEntity(trough, 30, 10); zone.MoveEntity(player, 31, 10);

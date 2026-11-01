@@ -1,25 +1,19 @@
-**Current chunk-activity checkpoint — 2026-10-31:** Waysites are in: small authored situations with real verbs, in wild chunks of five biomes (see `Docs/CHUNK-ACTIVITY.md`).
-- **Kinds (13):**
-  - Spread: hedge camp, drovers' trough, bee orchard, fallen cart, boundary stone.
-  - Sodden: bothy, hummock camp, duckboard landing.
-  - Beating: shade cistern, salt pan.
-  - Stump: watcher's camp.
-  - Grovelands: gatherer's rest, with no fire under Choir law.
-  - The Overwrit gets none, by canon.
-- **Content:** 7 props and 15 catalogued notes.
-- **Rules:**
-  - Selection is deterministic, and no zone repeats its west neighbour's lead site.
-  - Placement is atomic on open ground and never cuts a route.
+**Current chunk-activity checkpoint — 2026-11-01:** Waysites and chunk density are in (see `Docs/CHUNK-ACTIVITY.md`).
+- **Waysites:** small authored situations with real verbs in wild chunks of five biomes.
+  - Kinds (12): Spread hedge camp, drovers' trough, bee orchard, fallen cart, boundary stone; Sodden bothy, hummock camp, duckboard landing; Beating shade cistern, wall shelter; Stump watcher's camp; Grovelands gatherer's rest (no fire under Choir law). The Overwrit gets none, by canon.
+  - The salt pan was cut: free salt veins inflated the wasteland's money (`Adversarial_NoWaysiteMintsSalt`).
+  - Never in a Spread exploration-family zone (their composers read the ordinary owners).
   - A cistern holds 3 units of water (`WellPart.Stock`).
-- **Same-filter census:** Spread purposeful owners 4.0 → 8.3, verbs 2.8 → 6.3; Sodden 4.3 → 8.6, verbs 2.1 → 6.7. The opening is unchanged.
-- **Also fixed:**
-  - Spread signposts reuse the opening's approved frame.
-  - Stump fires get real ground beneath them.
-- **Tests:** 41 adversarial tests (2 bugs fixed, 7 mutants caught).
+- **Density:** `ChunkDensityBuilder` (3860, after landmarks and waysites) dresses empty sectors of Spread FieldStrips, FlowerMeadow, OldRoad and RiverMeadow, and of Beating CaravanRoad and RuinField.
+  - Features: copse knots, field trees, hedge runs, tuft drifts, outcrops with lee brush, brush clumps.
+  - Only open, dry, buildable ground; never a road, an interior or a reserved cell; never cuts a route; only adds.
+  - Census: CaravanRoad median owners 42 → 60. The Spread changed little: most sparse Spread zones are exploration-family zones, and the rest already have crops, reeds or flowers.
+- **Tests:** 22 density adversarial tests; 12 of 13 mutants caught (the survivor is now covered).
 - **MCP:** every editor quit kills the server; run it via `~/bin/coo_mcp_keeper.py` (memory: mcp-server-relaunch).
 - **Next:**
-  - Chunk density for the sparse Spread and Beating formations (§9).
-  - Glyph gaps: Spread CropRow beyond the opening, Sodden DryBrush, CopperPipe and PeatBog.
+  - the `CropRow` glyph gap beyond the opening (the FieldStrips' real bareness);
+  - composition inside the exploration-family zones;
+  - the economy (`Docs/ECONOMY-SYSTEM.md`).
 
 **Current glyph → pixel checkpoint — 2026-10-31:** P5 upper bestiary (9fff61389) and glyph → pixel (ebbdc176c) are pushed.
 - **Coverage:** every creature, NPC, item and prop blueprint now has native flat art.

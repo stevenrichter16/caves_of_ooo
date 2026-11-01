@@ -31,7 +31,7 @@ namespace CavesOfOoo.Tests
 
         sealed class Row
         {
-            public string Id, Biome, Kind;
+            public string Id, Biome, Kind, Formation, Family = "None";
             public int Purposeful;
             public HashSet<string> PurposeVerbs = new HashSet<string>();
             public int Owners, Actionable, Hostiles, Talkers, Harvests, Containers, Stations, Readables, Hazards, Items, Scenery;
@@ -98,8 +98,12 @@ namespace CavesOfOoo.Tests
                 var row = new Row
                 {
                     Id = id, Biome = WorldMapAuthoring.BiomeAt(x, y).ToString(),
-                    Kind = Opening.Contains(id) ? "opening" : place.HasValue ? "place" : poi != null ? poi.Type.ToString().ToLowerInvariant() : "wild"
+                    Kind = Opening.Contains(id) ? "opening" : place.HasValue ? "place" : poi != null ? poi.Type.ToString().ToLowerInvariant() : "wild",
+                    // The selector's formation; a composition override (rare: exploration fixtures) is not seen here.
+                    Formation = (WorldMapAuthoring.BiomeAt(x, y) == BiomeType.Stump
+                        ? FormationSelector.ForStump(StumpBands.BandAt(x, y), id) : FormationSelector.For(WorldMapAuthoring.BiomeAt(x, y), id)).ToString()
                 };
+                if (manager.Exploration != null && manager.Exploration.TryGetPlacement(manager, id, out var entry)) row.Family = entry.Family.ToString();
                 foreach (var e in zone.GetAllEntities())
                 {
                     var r = e.GetPart<RenderPart>();
@@ -152,6 +156,12 @@ namespace CavesOfOoo.Tests
                 Line(biome + " sites", rows.Where(r => r.Biome == biome && r.Kind != "wild" && r.Kind != "place" && r.Kind != "opening").ToList());
                 Line(biome + " places", rows.Where(r => r.Biome == biome && r.Kind == "place").ToList());
             }
+            report.AppendLine("\nWILD BY FORMATION (owners: mean, median, min; zones under 60):");
+            foreach (var g in rows.Where(r => r.Kind == "wild").GroupBy(r => r.Biome + " " + r.Formation).OrderBy(g => g.Key))
+            {
+                var o = g.Select(r => r.Owners).OrderBy(v => v).ToList();
+                report.AppendLine($"  {g.Key,-28} zones={o.Count,3} mean={o.Average(),6:F0} median={o[o.Count / 2],4} min={o[0],4} under60={o.Count(v => v < 60),3} purposeful={g.Average(r => r.Purposeful),5:F1} scenery={g.Average(r => r.Scenery),5:F0} explorationFamilies={g.Count(r => r.Family != "None"),3}");
+            }
             report.AppendLine("\nVERBS ANYWHERE: " + string.Join(", ", rows.SelectMany(r => r.Verbs).GroupBy(v => v).OrderByDescending(g => g.Count()).Select(g => g.Key + " " + g.Count())));
             foreach (var biome in rows.Select(r => r.Biome).Distinct().OrderBy(b => b))
             {
@@ -167,7 +177,7 @@ namespace CavesOfOoo.Tests
                 report.AppendLine($"  {r.Id,-20} {r.Biome,-10} owners={r.Owners} purposeful={r.Purposeful} pverbs={r.PurposeVerbs.Count} hostiles={r.Hostiles} things={string.Join(" ", r.Things.Take(8))}");
             report.AppendLine("\nPER-ZONE (wild):");
             foreach (var r in rows.Where(r => r.Kind == "wild").OrderBy(r => r.Biome).ThenBy(r => r.Id))
-                report.AppendLine($"  {r.Id,-20} {r.Biome,-10} owners={r.Owners} purposeful={r.Purposeful} pverbs={string.Join("/", r.PurposeVerbs)} hostiles={r.Hostiles} harvests={r.Harvests} containers={r.Containers} stations={r.Stations} readables={r.Readables} hazards={r.Hazards} things={string.Join(" ", r.Things.Take(10))}");
+                report.AppendLine($"  {r.Id,-20} {r.Biome,-10} {r.Formation,-14} {r.Family,-16} owners={r.Owners} purposeful={r.Purposeful} pverbs={string.Join("/", r.PurposeVerbs)} hostiles={r.Hostiles} harvests={r.Harvests} containers={r.Containers} stations={r.Stations} readables={r.Readables} hazards={r.Hazards} things={string.Join(" ", r.Things.Take(10))}");
             string dir = Path.Combine(Application.dataPath, "..", "Library", "ArtCensus");
             Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir, "chunk-activity.txt"), report.ToString());

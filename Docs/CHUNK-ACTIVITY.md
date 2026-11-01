@@ -85,6 +85,14 @@ trace that says why it is there.
 - before hazards (3900), population (4000) and containers (4100), so creatures and caches
   arrange around the site.
 
+**Eligibility (`WaysitePlan.IsEligible`).** A wild surface zone that no curated plan owns:
+not the opening, a place, the wayhouse, a rare-encounter or regional-situation zone, and
+(since 2026-11-01) not a zone a Spread exploration family owns. The broad run found the last
+case: a waysite at 3850 moved the ordinary owners that the collector, grazer and snake families
+compose from at 4001/4300, so the families refused and their pipeline pins failed. A family's
+zone already has its own thing to do. `AnExplorationFamilysZoneIsNeverEligible` pins it, with a
+counter-check that a quiet exploration address keeps its waysite.
+
 **Budget.** Each biome has a target number of sites per wild chunk:
 
 | Biome | Sites per chunk |
@@ -157,7 +165,12 @@ All placed owners are real.
   cistern holds only `WaysiteCatalog.CisternDraws` (3) units of rain water (`WellPart.Stock`).
   Endless water in about half the wild Beating would undo the exposure that is the region's
   point.
-- **Salt pan:** three PaleSaltVein (Harvest).
+- **Wall shelter:** a broken sandstone wall with a bedroll in its lee and a patch of shade
+  (Sleep).
+- **Cut: the salt pan** (three PaleSaltVein). The full-suite run found it breaking
+  `BeatingCompositionAdversarialTests`, which holds each salt pan to 2–4 veins: "the salt
+  economy". Canon makes salt the wasteland's money, so free veins in about half the wild Beating
+  were inflation, not activity. `Adversarial_NoWaysiteMintsSalt` pins the cut.
 
 **Stump:**
 - **Watcher's camp:** Campfire, Bedroll and an observation note.
@@ -334,7 +347,7 @@ Mutations, each run in the verification clone; every one turned its probe RED:
 | Resolve keeps `ClearsVegetation` | `AVegetationClearingStamp_NeverBuildsIntoATree` |
 | Drop the incomplete-site undo | `ASpawnTheTierFloorRefuses_UndoesTheWholeSite` |
 
-## 9. Next milestone — chunk density (planned, not started)
+## 9. Chunk density (2026-11-01)
 
 **Evidence.** The census owner counts are bimodal:
 
@@ -349,28 +362,159 @@ Whole-chunk renders of the sparse cases:
 - **Spread FieldStrips, FlowerMeadow and OldRoad:** wide uniform grass. The only structure is
   two shelter masses (trees and bushes) in opposite corners. The opening reads rich because of
   structure (hedge lines, tree groves, tuft skirts, water, a ruin), not scatter.
-- **Beating CaravanRoad, SaltPan and RuinField:** open sand. RuinField's ruins are single wall
-  tiles that do not read as ruins.
+- **Beating CaravanRoad, SaltPan and RuinField:** open sand.
 - **Sodden open mire and bare Stump ledges:** read as their formations intend; not targets.
 
-**Direction.** Structure, not confetti. A post-composition builder for the sparse formations
-only, before connectivity repair (3000) so routes are re-proven:
-- **Spread:** field-margin hedge fragments on parcel edges; lone field trees with bush skirts
-  at margin corners; tuft drifts along lanes. Approved art only: Tree, Bush, Hedge,
-  CharmFlowers.
-- **Beating:** low rock outcrops with dry brush in their lee, the WindBarrens grammar applied
-  sparsely; RuinField fragments completed into readable corner ruins.
+The census now reports owners per formation, which is the per-formation baseline.
 
-**Constraints.**
-- Never in the opening, places or sites, or where an exploration family or situation owns
-  the chunk's cover (captured hedges and trees).
-- Determinism and no pipeline-RNG use, as for waysites.
-- Pins checked deliberately.
+### 9.1 Design
 
-**Success:** sparse-formation median owners at least 80, with no empty quarter-chunk; routes
-proven; whole-chunk before/after renders reviewed.
+**Direction.** Structure, not confetti. `ChunkDensityBuilder` runs at priority 3860:
+- after the ambient landmarks (3800) and waysites (3850), so authored set pieces keep first
+  claim on open ground and count as structure in their sectors;
+- before hazards (3900) and population (4000), so creatures arrange around it.
+
+The first design ran it at 2900, before connectivity repair; review moved it, because it took
+open ground ahead of the set pieces (against §3.1's rule). It guarantees its own routes, so it
+does not need the repair pass. It reads the generated zone, not a composition plan, so no plan
+or pin internals change.
+
+**Empty sectors only.**
+- The playable area (x 2–77, y 2–22) is divided into 4 × 2 sectors, about 20 × 10 cells each.
+- A sector whose cells are almost all bare ground (fewer than `MinStructure` non-bare cells)
+  receives one feature.
+- A sector that already has structure is left alone. That keeps deliberate open fields open
+  and never stacks density on density.
+
+**Features (approved art only).**
+
+| Biome | Feature | Cells | Notes |
+|---|---|---|---|
+| Spread | Copse knot | a tree with 1–2 more, ringed by 3–5 bushes | the opening's grove-with-tuft-skirt idiom |
+| Spread | Field tree | one tree, 1–2 bushes at its foot | a margin landmark |
+| Spread | Hedge run | 5–9 hedges in a straight line, a gate gap when long | a field boundary fragment |
+| Spread | Tuft drift | 5–8 bushes in an elongated blob | passable |
+| Beating | Outcrop | 3–5 rocks, 2–3 dry brush in the zone's lee | the WindBarrens grammar, sparse |
+| Beating | Brush clump | 3–6 dry brush | passable |
+
+Weights follow the formation:
+- FieldStrips favours hedge runs and field trees.
+- FlowerMeadow favours tuft drifts and field trees.
+- OldRoad favours copses.
+- In the Beating, CaravanRoad favours outcrops and RuinField splits outcrops and brush.
+
+**Cut during the verification sweep (2026-11-01):**
+- **Flower patches.** The meadow already has its flowers: `SpreadCompositionPlan` lays
+  `CharmFlowers` drifts, and the formation places `FlowerField`, Urqu's bleed instrument, which
+  wilts early as the bleed rises (`Docs/FELLING-W1-W2-PLAN.md` SM3). Another patch would stack
+  flowers on flowers and blur which ones are the instrument. No density feature places flowers.
+- **SaltPan.** `Formation.cs` defines it as "zero cover — a duel floor". Its openness is the
+  design, so it stays empty like the Overwrit.
+- **DuneBelt** (cut after the first census, 2026-11-01). Its `DuneCrest` cells are solid
+  terrain: the belt's structure. Counted as structure, they fill every sector, so density never
+  fired there; the census showed 0 of 12 zones changed. The belt reads as open sand in the census
+  only because terrain is not counted as an owner.
+
+**Scope and safety.**
+- **Eligible:** `WaysitePlan.IsEligible` zones in the sparse formations only:
+  - Spread: FieldStrips, FlowerMeadow, OldRoad, RiverMeadow;
+  - Beating: CaravanRoad, RuinField.
+- **Never** where a Spread exploration family owns the chunk. This is now part of
+  `WaysitePlan.IsEligible` itself (§3.1), so it covers waysites too.
+- Features take bare, unreserved ground only, and never a road (`RoadStone`) or an interior
+  cell. A road cell holds only its ground, so "bare" alone would let a hedge run lie across the
+  old road; the route check only guards connectivity. The Beating's road, approaches and focal
+  clearing are already reserved by its composition builder.
+- Each feature is atomic: the reachability and piece-count check that waysites use, and an
+  exact undo.
+- Selection and anchors come from a generator seeded from the world seed and zone, never the
+  pipeline's RNG.
+- Fresh generation only.
+
+**Diag:** `worldgen/DensityFeaturePlaced` {zone, sector, feature, ax, ay, cells} and
+`worldgen/DensityFeatureRefused` {zone, sector, feature, reason}, where reason is
+`no-anchor`, `cuts-route`, `incomplete` or `unknown-blueprint`.
+
+**Success (as designed):**
+- the sparse formations' median owners reach at least 80;
+- no eligible zone keeps an empty sector it could fill;
+- the opening control is unchanged;
+- every placed owner draws native art on its real ground;
+- whole-chunk before/after renders are reviewed.
+
+### 9.2 Results (seed 64, same census filter, density off → on)
+
+| Formation | Zones | Eligible (no family) | Changed | Mean owners | Median | Under 60 |
+|---|---:|---:|---:|---|---|---|
+| Beating CaravanRoad | 12 | 12 | 12 | 40 → 55 | 42 → 60 | 12 → 6 |
+| Beating RuinField | 13 | 13 | 10 | 93 → 97 | 97 → 101 | 0 → 0 |
+| Spread OldRoad | 16 | 5 | 3 | 53 → 54 | 49 → 50 | 14 → 13 |
+| Spread RiverMeadow | 15 | 6 | 4 | 42 → 43 | 41 → 41 | 15 → 15 |
+| Spread FieldStrips | 29 | 7 | 1 | 43 → 43 | 42 → 42 | 26 → 26 |
+| Spread FlowerMeadow | 16 | 4 | 1 | 36 → 36 | 31 → 31 | 16 → 16 |
+
+Every other formation, the opening control and the Overwrit are unchanged.
+
+**Against the targets.**
+- The 80-owner median is **not met**. The CaravanRoad reaches 60.
+- In the Spread the builder is right but has little to do:
+  - Most sparse Spread zones belong to an exploration family and are excluded (22 of 29
+    FieldStrips, 12 of 16 FlowerMeadow, 11 of 16 OldRoad, 9 of 15 RiverMeadow).
+  - The rest are structured already:
+    - FieldStrips sectors are full of `CropRow`;
+    - RiverMeadow has reeds and flooded grass;
+    - FlowerMeadow has flower drifts.
+  - The FieldStrips' bare look in renders is the `CropRow` glyph gap beyond the opening (241
+    non-native cells in Overworld.10.15.0), not missing objects. That art gap is the real lever
+    and is queued.
+- The family zones are the larger lever. Their bareness is a question for each family's own
+  composition, which owns those zones; it is recorded as follow-up, not done here.
+
+**Renders** (offline, through `FlatPixelGreyboxCatalog`, before and after):
+- **CaravanRoad (Overworld.1.18.0):** goes from open sand with a road to small rock outcrops with
+  lee brush in seven sectors. A bounded improvement: the outcrops are small at normal zoom.
+- **OldRoad (Overworld.10.11.0):** tuft drifts in the empty north and hedge-run field boundaries
+  in the south. The road stays clear.
+
+Later builders (hazards, population, containers) draw from the pipeline's RNG and retry around
+occupied cells, so a dressed chunk's creatures and loose items can land differently. Density
+never draws from that RNG itself; what it guarantees is that it only adds (see the bracketed
+pin below).
 
 ## Implementation log
 
 - 2026-10-31 — census bench (`ChunkActivityCensusBenchTests`); baseline above; design
   written.
+- 2026-11-01 — chunk density (§9).
+  - **Code:** `ChunkDensityPlan`, `ChunkDensityCatalog` and `ChunkDensityBuilder` (priority
+    3860), wired into the Spread and Beating pipelines by `OverworldZoneManager.WithDensity`.
+  - **Verification-sweep cuts:**
+    - SaltPan (a zero-cover duel floor);
+    - flower patches (the meadow already has its flowers);
+    - DuneBelt (its crests are its structure).
+  - **Real bugs found and fixed before commit:**
+    - **Roads.** A road cell holds only `RoadStone`, so a hedge run could lie across the old
+      road. `Buildable` refuses roads and interiors.
+    - **Solid and wet ground.** A wall, a dune crest, a pool or flooded grass also holds only its
+      ground, so a tree could stand in water or on a wall. Found by two surviving mutants ("bare
+      check removed", "route check removed"). `Bare` now means open, dry, passable ground; the
+      rest is structure.
+    - **Ordering.** Density ran at 2900, ahead of the landmarks and waysites, against §3.1's
+      first-claim rule. Moved to 3860.
+  - **Waysite fix (§3.1).** Exploration-family zones are no longer waysite-eligible. The broad
+    run found waysites breaking the collector, grazer and snake-forage pipeline pins.
+  - **Tests:**
+    - `ChunkDensityTests`: 20 cases;
+    - `ChunkDensityAdversarialTests`: 22 cases covering boundary inputs, unknown content, shape
+      invariants (300 draws × both lees), pockets and margins, refusal residue, determinism,
+      order independence, diag accounting, a bracketed probe proving density only adds, and
+      real salt pans staying open.
+  - **Mutants:** 12 of 13 caught across two batches. The survivor ("sparse guard removed") is
+    now caught by the new cross-biome case.
+  - **Other fixes in passing:**
+    - the cistern test was inconclusive (a skin holds exactly what a cistern holds) and now
+      really checks the limit;
+    - three wooden waysite props (hitching post, overturned cart, boat-hook post) had
+      combustibility but no `Thermal` part, so they could never burn;
+    - `SealedLibraryTests` now skips the icon atlases, which draw the keeper's key but cannot
+      supply it (the glyph → pixel item atlas added that icon).

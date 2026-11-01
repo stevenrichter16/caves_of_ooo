@@ -137,6 +137,9 @@ namespace CavesOfOoo.Tests
                 { row.exclusion = render == null ? "no-render-part" : "native-render-hidden"; continue; }
                 row.drawn = f.Find(owner, out var view, out string model) && presenter.IsRenderedEntity(owner)
                     && Submitted(view);
+                // An undrawn owner on exactly the documented list (P4/P5/waysites) is excused, as the other
+                // previous-presentation censuses excuse it; any other undrawn owner still fails.
+                if (!row.drawn && PreviousPresentationTierGap.Excuses(owner.BlueprintName)) { row.exclusion = "previous-presentation-gap"; continue; }
                 row.model = model;
                 InspectStyle(presenter, owner, row, report);
                 if (!row.drawn) report.failures.Add(id + ": undrawn " + owner.BlueprintName + "#" + owner.ID);

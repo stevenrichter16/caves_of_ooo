@@ -378,6 +378,16 @@ namespace CavesOfOoo.Tests
                 CollectionAssert.DoesNotContain(k.Stamp.Legend.Values.ToList(), "Campfire", k.Id);
         }
 
+        [Test] public void Adversarial_NoWaysiteMintsSalt()
+        {
+            // Canon: salt is the wasteland's money, and the Beating composition keeps each salt pan to
+            // 2-4 veins (BeatingCompositionAdversarialTests). A salt-pan waysite broke that pin; cut.
+            foreach (BiomeType biome in System.Enum.GetValues(typeof(BiomeType)))
+                foreach (var k in WaysiteCatalog.For(biome))
+                    foreach (var m in k.Stamp.Legend.Values)
+                        Assert.False(m.Contains("PaleSaltVein") || m.Contains("SaltCrust"), k.Id + " places salt");
+        }
+
         [Test] public void Adversarial_ShippedKindsAreUniqueWellFormedAndNeverClearVegetation()
         {
             var ids = new HashSet<string>();

@@ -14,6 +14,15 @@ namespace CavesOfOoo.Tests
     /// malformed catalog and no-gameplay-side-effect probes.</summary>
     public sealed class DensityReadableDocumentAdversarialTests
     {
+        /// <summary>The wayside notes waysites leave in wild chunks (Docs/CHUNK-ACTIVITY.md §3.3).</summary>
+        public static readonly string[] WaysiteNotes =
+        {
+            "WaysiteNoteDrover1", "WaysiteNoteDrover2", "WaysiteNoteDrover3", "WaysiteNoteCarriage1", "WaysiteNoteCarriage2",
+            "WaysiteNotePeatTally1", "WaysiteNotePeatTally2", "WaysiteNoteFerrySlate1", "WaysiteNoteFerrySlate2",
+            "WaysiteNoteCistern1", "WaysiteNoteCistern2", "WaysiteNoteWatcher1", "WaysiteNoteWatcher2",
+            "WaysiteNoteGatherer1", "WaysiteNoteGatherer2",
+        };
+
         EntityFactory factory;
         Entity actor;
         Zone zone;
@@ -174,8 +183,10 @@ namespace CavesOfOoo.Tests
             var canonical = Enumerable.Range(1, 13).Select(i => "Codex" + i.ToString("00")).ToArray();
             var local = new[] { "CurationTransferDocket", "CurationDiscrepancyReport", "CurationAnnexPlacard" };
             var place = new[] { "GantryManifestCopy", "GantryTitheRoll", "SlipNameWall", "WellmeetTareBook", "WellmeetLodgingSlate", "LedgerSurveySheet", "FirstTentOathCord", "CounterLastLedger" }; // W1-W3 concern documents
-            var localIds = ReadableDocumentCatalog.All.Where(entry => local.Contains(entry.Blueprint) || place.Contains(entry.Blueprint)).Select(entry => entry.Id).ToArray();
-            CollectionAssert.AreEquivalent(canonical.Concat(local).Concat(place), ReadableDocumentCatalog.All.Select(entry => entry.Blueprint));
+            var localIds = ReadableDocumentCatalog.All.Where(entry => local.Contains(entry.Blueprint) || place.Contains(entry.Blueprint) || WaysiteNotes.Contains(entry.Blueprint)).Select(entry => entry.Id).ToArray();
+            CollectionAssert.AreEquivalent(canonical.Concat(local).Concat(place).Concat(WaysiteNotes), ReadableDocumentCatalog.All.Select(entry => entry.Blueprint));
+            foreach (var entry in ReadableDocumentCatalog.All.Where(entry => WaysiteNotes.Contains(entry.Blueprint)))
+                StringAssert.IsMatch("^(Lore|Docs)/", entry.Source, entry.Blueprint + " cites its canon");
             foreach (var entry in ReadableDocumentCatalog.All.Where(entry => place.Contains(entry.Blueprint)))
                 StringAssert.IsMatch("original (Gantry|Slip) W1|original (Wellmeet|Salt-Vault|Drowned Ledger) W2|original W3", entry.Source);
             foreach (var entry in ReadableDocumentCatalog.All.Where(entry => canonical.Contains(entry.Blueprint)))

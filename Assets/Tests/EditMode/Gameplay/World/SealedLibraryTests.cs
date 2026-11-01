@@ -73,8 +73,15 @@ namespace CavesOfOoo.Tests
             foreach(var bp in _factory.Blueprints.Values)
                 if(bp.Parts.ContainsKey("Key")&&_factory.CreateEntity(bp.Name).GetPart<KeyPart>()?.KeyId==SealedLibraryBuilder.KeyID)openers.Add(bp.Name);
             CollectionAssert.AreEqual(new[]{StillleafArchive.KeyBlueprint},openers,"exactly one key opens the vault");
+            // The icon atlases draw the key; they cannot supply one (glyph -> pixel added the key's icon).
+            var drawsOnly=new System.Collections.Generic.HashSet<string>{"ItemIcons.json","PropIcons.json"};
+            int scanned=0;
             foreach(var file in System.IO.Directory.GetFiles(System.IO.Path.Combine(Application.dataPath,"Resources/Content/Data"),"*.json",System.IO.SearchOption.AllDirectories))
-                StringAssert.DoesNotContain(StillleafArchive.KeyBlueprint,System.IO.File.ReadAllText(file),System.IO.Path.GetFileName(file)+" must not supply the keeper's key");
+            {
+                if(drawsOnly.Contains(System.IO.Path.GetFileName(file))){StringAssert.Contains("\"Icons\"",System.IO.File.ReadAllText(file),"an atlas holds icons only");continue;}
+                scanned++;StringAssert.DoesNotContain(StillleafArchive.KeyBlueprint,System.IO.File.ReadAllText(file),System.IO.Path.GetFileName(file)+" must not supply the keeper's key");
+            }
+            Assert.Greater(scanned,10,"counter-check: the content data is still scanned");
             var e=GameEvent.New("AttemptUnlock");e.SetParameter("Actor",(object)actor);door.FireEventAndRelease(e);
             Assert.IsTrue(door.GetPart<LockPart>().IsLocked,"a keyless attempt still fails");
         }
