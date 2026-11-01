@@ -97,6 +97,14 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        /// <summary>P5: line of sight, unless the observer perceives some other way (an
+        /// eyeless hunter hears; <see cref="IPerceptionBehavior"/>).</summary>
+        static bool Senses(IPerceptionBehavior sense, Entity other, Zone zone, int sx, int sy, int ox, int oy)
+        {
+            if (sense != null && sense.TryPerceive(other, zone, out bool perceived)) return perceived;
+            return HasLineOfSight(zone, sx, sy, ox, oy);
+        }
+
         /// <summary>
         /// Find an actually visible body contact, without treating a large
         /// creature's hidden anchor as observed knowledge. Body enumeration is
@@ -108,6 +116,7 @@ namespace CavesOfOoo.Core
             visibleCell = null;
             if (observer == null || target == null || zone == null || radius < 0) return false;
             int nearest = int.MaxValue;
+            var sense = CreatureBehaviors.PerceptionOf(observer);
             foreach (var eye in zone.GetOccupiedCells(observer))
             {
                 if (eye == null) continue;
@@ -116,7 +125,7 @@ namespace CavesOfOoo.Core
                     if (contact == null) continue;
                     int distance = ChebyshevDistance(eye.X, eye.Y, contact.X, contact.Y);
                     if (distance > radius || distance >= nearest
-                        || !HasLineOfSight(zone, eye.X, eye.Y, contact.X, contact.Y)) continue;
+                        || !Senses(sense, target, zone, eye.X, eye.Y, contact.X, contact.Y)) continue;
                     nearest = distance; visibleCell = contact;
                 }
             }
@@ -208,7 +217,7 @@ namespace CavesOfOoo.Core
             int dist = ChebyshevDistance(selfCell.X, selfCell.Y, targetCell.X, targetCell.Y);
             if (dist > radius) return false;
 
-            if (!HasLineOfSight(zone, selfCell.X, selfCell.Y, targetCell.X, targetCell.Y))
+            if (!Senses(CreatureBehaviors.PerceptionOf(self), target, zone, selfCell.X, selfCell.Y, targetCell.X, targetCell.Y))
                 return false;
 
             return true;
@@ -231,6 +240,7 @@ namespace CavesOfOoo.Core
 
             Entity nearest = null;
             int nearestDist = int.MaxValue;
+            var sense = CreatureBehaviors.PerceptionOf(self);
 
             var creatures = ScratchCreatures;
             zone.GetEntitiesWithTagNonAlloc("Creature", creatures);
@@ -249,8 +259,8 @@ namespace CavesOfOoo.Core
                 int dist = ChebyshevDistance(selfX, selfY, otherCell.X, otherCell.Y);
                 if (dist > radius) continue;
 
-                // Check line of sight
-                if (!HasLineOfSight(zone, selfX, selfY, otherCell.X, otherCell.Y))
+                // Check line of sight (or the observer's own sense: P5 hunting by sound)
+                if (!Senses(sense, other, zone, selfX, selfY, otherCell.X, otherCell.Y))
                     continue;
 
                 if (dist < nearestDist)
@@ -270,6 +280,7 @@ namespace CavesOfOoo.Core
         {
             var result = new List<Entity>();
             if (self == null || zone == null) return result;
+            var sense = CreatureBehaviors.PerceptionOf(self);
 
             var selfCell = zone.GetEntityCell(self);
             if (selfCell == null) return result;
@@ -291,7 +302,7 @@ namespace CavesOfOoo.Core
                 int dist = ChebyshevDistance(selfX, selfY, otherCell.X, otherCell.Y);
                 if (dist > radius) continue;
 
-                if (!HasLineOfSight(zone, selfX, selfY, otherCell.X, otherCell.Y))
+                if (!Senses(sense, other, zone, selfX, selfY, otherCell.X, otherCell.Y))
                     continue;
 
                 result.Add(other);

@@ -13,6 +13,9 @@ namespace CavesOfOoo.Core
                 case "BrocchiniaSentinel": return Near(cell, "TankBrocchinia", 2);
                 case "SummitSinger":
                 case "HelmwoodFrog": return Near(cell, "Tree", 2);
+                // P5: the riverwarden lies in or beside standing water.
+                case "Riverwarden":
+                case "OldRiverwarden": return NearLiquid(cell, 1);
                 default: return true;
             }
         }
@@ -23,6 +26,20 @@ namespace CavesOfOoo.Core
                 if (cell.Objects[i].BlueprintName == blueprint) return true;
             return false;
         }
+        private static bool NearLiquid(Cell cell, int radius)
+        {
+            if (cell?.ParentZone == null) return false;
+            for (int dx = -radius; dx <= radius; dx++)
+                for (int dy = -radius; dy <= radius; dy++)
+                {
+                    var c = cell.ParentZone.GetCell(cell.X + dx, cell.Y + dy);
+                    if (c == null) continue;
+                    for (int i = 0; i < c.Objects.Count; i++)
+                        if (c.Objects[i].GetPart<LiquidPoolPart>()?.Volume > 0) return true;
+                }
+            return false;
+        }
+
         private static bool Near(Cell cell, string blueprint, int radius)
         {
             for (int dx = -radius; dx <= radius; dx++)

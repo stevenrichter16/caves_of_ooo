@@ -16792,6 +16792,40 @@
               "Value": "80"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The outline of a scholar in cold ink, still reading something no one else can see. When it looks up, the air between you takes the chill of an unheated library."
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": "Cryomancy_IceLance"
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "45"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "false"
+            },
+            {
+              "Key": "PreferredRange",
+              "Value": "3"
+            },
+            {
+              "Key": "RepositionForShot",
+              "Value": "true"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -19089,6 +19123,45 @@
               "Value": "0.02"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Rubble that remembers being a wall, walking. Its fists are the heaviest thing in the cave and it swings them slowly enough to watch. Watching is the whole of the defence."
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "CommittedMelee",
+          "Params": [
+            {
+              "Key": "AttackName",
+              "Value": "a stone fist"
+            },
+            {
+              "Key": "Reach",
+              "Value": "2"
+            },
+            {
+              "Key": "DamagePercent",
+              "Value": "200"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -19179,6 +19252,67 @@
               "Value": "5"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Long, hairless and eyeless, the colour of a root that has never seen light. Its head turns toward sounds before its body does. The catacomb Wardens say the only defence is to stand still and let it decide you are a stone."
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.15"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": ""
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "0"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "true"
+            },
+            {
+              "Key": "AssistRadius",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "HuntsBySound",
+          "Params": [
+            {
+              "Key": "Window",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "PackHunter",
+          "Params": [
+            {
+              "Key": "FlankBonus",
+              "Value": "2"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -19224,6 +19358,78 @@
         {
           "Key": "Tier",
           "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "PaleMatriarch",
+      "Inherits": "PaleStalker",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "pale matriarch"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "16"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The largest of the pale hunters, long as two of them, its head turning toward every sound in the dead zone before the sound has finished. The Wardens' oldest songs are about her line. They all end the same way: stand still, and keep standing still."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 85,
+          "Min": 0,
+          "Max": 85
+        },
+        {
+          "Name": "Strength",
+          "Value": 26
+        },
+        {
+          "Name": "Agility",
+          "Value": 24
+        },
+        {
+          "Name": "Speed",
+          "Value": 115
+        },
+        {
+          "Name": "XPValue",
+          "Value": 2952,
+          "Max": 999999
+        },
+        {
+          "Name": "Level",
+          "Value": 17
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "5"
         }
       ]
     },
@@ -19296,6 +19502,45 @@
             {
               "Key": "HarvestChance",
               "Value": "35"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Black glass grown into the shape of a fist and a will. Every swing starts a long way back. What it hits stays hit."
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "CommittedMelee",
+          "Params": [
+            {
+              "Key": "AttackName",
+              "Value": "an obsidian maul"
+            },
+            {
+              "Key": "Reach",
+              "Value": "2"
+            },
+            {
+              "Key": "DamagePercent",
+              "Value": "250"
             }
           ]
         }
@@ -19666,6 +19911,45 @@
               "Value": "100"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A mound of moss and old wood on legs, slow to wake and slow to anger, and very hard to stop once it has. Its arms sweep rather than strike, and what they sweep goes somewhere else."
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": "Cudgel_Slam"
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "45"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "false"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -19969,6 +20253,10 @@
             {
               "Key": "Staying",
               "Value": "true"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.2"
             }
           ]
         },
@@ -19982,6 +20270,15 @@
             {
               "Key": "WakeOnHostileInSight",
               "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A low sand-coloured back that is, until it moves, just more dune. It waits for weight on the crust above it. When it comes up, it comes up all at once."
             }
           ]
         }
@@ -20079,6 +20376,58 @@
             {
               "Key": "MaterialTagsRaw",
               "Value": "Glass,Crystal,Brittle"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Salt-crusted, rib-thin and fast, with a bark like a dry branch breaking. One is a nuisance. They are never one: the bark is how the others find you."
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.3"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": ""
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "0"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "true"
+            },
+            {
+              "Key": "AssistRadius",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "PackHunter",
+          "Params": [
+            {
+              "Key": "FlankBonus",
+              "Value": "2"
             }
           ]
         }
@@ -20378,6 +20727,10 @@
             {
               "Key": "Staying",
               "Value": "true"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.2"
             }
           ]
         },
@@ -20391,6 +20744,28 @@
             {
               "Key": "WakeOnHostileInSight",
               "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A coil of vine-dark muscle hanging in the high branches like a fallen rope. It drops on whatever passes beneath and holds on. Things that are held by it stop struggling, eventually."
+            }
+          ]
+        },
+        {
+          "Name": "Grapple",
+          "Params": [
+            {
+              "Key": "Chance",
+              "Value": "60"
+            },
+            {
+              "Key": "SqueezeDamage",
+              "Value": "4"
             }
           ]
         }
@@ -20576,6 +20951,45 @@
               "Value": "0.02"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A shape of grain-marked stone taller than a door, set down where something once needed guarding and never told to stop. It moves the way a landslide decides to. When it raises an arm, there is time to get out from under it, and only just."
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "7"
+            }
+          ]
+        },
+        {
+          "Name": "CommittedMelee",
+          "Params": [
+            {
+              "Key": "AttackName",
+              "Value": "a crushing blow"
+            },
+            {
+              "Key": "Reach",
+              "Value": "2"
+            },
+            {
+              "Key": "DamagePercent",
+              "Value": "200"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -20670,7 +21084,7 @@
           "Params": [
             {
               "Key": "SightRadius",
-              "Value": "10"
+              "Value": "9"
             },
             {
               "Key": "Wanders",
@@ -20683,6 +21097,10 @@
             {
               "Key": "Staying",
               "Value": "true"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
             }
           ]
         },
@@ -20721,6 +21139,40 @@
             {
               "Key": "HarvestChance",
               "Value": "35"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A keeper of something sealed, built of ward-iron and patience. Charge crawls along its seams and jumps to whatever comes near the door it no longer has. It does not leave its post to chase; it does not need to."
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": "Galvanism_ArcBolt"
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "50"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "false"
+            },
+            {
+              "Key": "PreferredRange",
+              "Value": "3"
+            },
+            {
+              "Key": "RepositionForShot",
+              "Value": "true"
             }
           ]
         }
@@ -37405,71 +37857,1056 @@
       "Name": "SkySari",
       "Inherits": "Creature",
       "Parts": [
-        { "Name": "Render", "Params": [
-          { "Key": "DisplayName", "Value": "sky-sari" },
-          { "Key": "RenderString", "Value": "E" },
-          { "Key": "ColorString", "Value": "&W" },
-          { "Key": "RenderLayer", "Value": "10" }
-        ] },
-        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
-        { "Name": "Brain", "Params": [
-          { "Key": "Passive", "Value": "false" },
-          { "Key": "Wanders", "Value": "true" },
-          { "Key": "SightRadius", "Value": "10" }
-        ] },
-        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "2d8" } ] },
-        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "An immense ash-pale eagle, dark beneath the wings. Its talons close slowly on nothing. People who know the slopes watch the ground when this shadow crosses them: what coils below and what circles above have begun keeping the same hours." } ] }
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sky-sari"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "E"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "false"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "true"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "14"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.25"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "2d8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "An immense ash-pale eagle, dark beneath the wings. Its talons close slowly on nothing. People who know the slopes watch the ground when this shadow crosses them: what coils below and what circles above have begun keeping the same hours."
+            }
+          ]
+        },
+        {
+          "Name": "Stoop",
+          "Params": [
+            {
+              "Key": "Range",
+              "Value": "8"
+            },
+            {
+              "Key": "ShadowTurns",
+              "Value": "2"
+            },
+            {
+              "Key": "DamagePercent",
+              "Value": "200"
+            },
+            {
+              "Key": "CooldownTurns",
+              "Value": "4"
+            }
+          ]
+        }
       ],
       "Stats": [
-        { "Name": "Hitpoints", "Value": 58, "Min": 0, "Max": 58 },
-        { "Name": "Strength", "Value": 23 },
-        { "Name": "Agility", "Value": 18 },
-        { "Name": "Toughness", "Value": 16 },
-        { "Name": "XPValue", "Value": 1041, "Max": 999999 },
+        {
+          "Name": "Hitpoints",
+          "Value": 58,
+          "Min": 0,
+          "Max": 58
+        },
+        {
+          "Name": "Strength",
+          "Value": 23
+        },
+        {
+          "Name": "Agility",
+          "Value": 18
+        },
+        {
+          "Name": "Toughness",
+          "Value": 16
+        },
+        {
+          "Name": "XPValue",
+          "Value": 1041,
+          "Max": 999999
+        },
         {
           "Name": "Level",
           "Value": 12
         }
       ],
-      "Props": [ { "Key": "Anatomy", "Value": "Avian" } ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Avian"
+        }
+      ],
       "Tags": [
-        { "Key": "BodyNaturalAttack", "Value": "" }, { "Key": "Faction", "Value": "Beasts" },
-                { "Key": "Tier", "Value": "4" } ]
+        {
+          "Key": "BodyNaturalAttack",
+          "Value": ""
+        },
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "OldSkySari",
+      "Inherits": "SkySari",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "old sky-sari"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "2d10"
+            }
+          ]
+        },
+        {
+          "Name": "Stoop",
+          "Params": [
+            {
+              "Key": "Range",
+              "Value": "10"
+            },
+            {
+              "Key": "ShadowTurns",
+              "Value": "2"
+            },
+            {
+              "Key": "DamagePercent",
+              "Value": "300"
+            },
+            {
+              "Key": "CooldownTurns",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A Sky-Sari so old its pale feathers have gone the grey of the stone it hunts over. Its shadow is the size of a tent. People on the high slopes do not look up when they hear the wind change; they look down, for the shadow, and move."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 90,
+          "Min": 0,
+          "Max": 90
+        },
+        {
+          "Name": "Strength",
+          "Value": 27
+        },
+        {
+          "Name": "Agility",
+          "Value": 20
+        },
+        {
+          "Name": "Toughness",
+          "Value": 20
+        },
+        {
+          "Name": "XPValue",
+          "Value": 2952,
+          "Max": 999999
+        },
+        {
+          "Name": "Level",
+          "Value": 17
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "5"
+        }
+      ]
+    },
+    {
+      "Name": "Riverwarden",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "riverwarden"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "R"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&G"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "6"
+            },
+            {
+              "Key": "DV",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "8"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            },
+            {
+              "Key": "Staying",
+              "Value": "true"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.2"
+            }
+          ]
+        },
+        {
+          "Name": "AIAmbush",
+          "Params": [
+            {
+              "Key": "WakeOnDamage",
+              "Value": "true"
+            },
+            {
+              "Key": "WakeOnHostileInSight",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "2d6"
+            }
+          ]
+        },
+        {
+          "Name": "Grapple",
+          "Params": [
+            {
+              "Key": "Chance",
+              "Value": "50"
+            },
+            {
+              "Key": "Drag",
+              "Value": "true"
+            },
+            {
+              "Key": "DrownDamage",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A black-armoured river beast, low and broad, lying in the shallows with only its eyes and nostrils above the water. It does not chase. It waits for a foot on the bank, then takes the foot, and goes back into the water with whatever is attached."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 55,
+          "Min": 0,
+          "Max": 55
+        },
+        {
+          "Name": "Strength",
+          "Value": 22
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Toughness",
+          "Value": 18
+        },
+        {
+          "Name": "Speed",
+          "Value": 95
+        },
+        {
+          "Name": "XPValue",
+          "Value": 604
+        },
+        {
+          "Name": "Level",
+          "Value": 10
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Quadruped"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "BodyNaturalAttack",
+          "Value": ""
+        },
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "3"
+        }
+      ]
+    },
+    {
+      "Name": "OldRiverwarden",
+      "Inherits": "Riverwarden",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "old riverwarden"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "8"
+            },
+            {
+              "Key": "DV",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Grapple",
+          "Params": [
+            {
+              "Key": "Chance",
+              "Value": "65"
+            },
+            {
+              "Key": "Drag",
+              "Value": "true"
+            },
+            {
+              "Key": "DrownDamage",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A riverwarden older than the village downstream, its armour gone grey and grown over with weed. It has learned to wait longer than anything that comes to drink, and it does not let go."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 85,
+          "Min": 0,
+          "Max": 85
+        },
+        {
+          "Name": "Strength",
+          "Value": 26
+        },
+        {
+          "Name": "Agility",
+          "Value": 12
+        },
+        {
+          "Name": "Toughness",
+          "Value": 22
+        },
+        {
+          "Name": "Speed",
+          "Value": 90
+        },
+        {
+          "Name": "XPValue",
+          "Value": 1650,
+          "Max": 999999
+        },
+        {
+          "Name": "Level",
+          "Value": 14
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "SimaSteward",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sima-steward"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "v"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "1"
+            },
+            {
+              "Key": "DV",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "true"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "true"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "10"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.5"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "1d6"
+            }
+          ]
+        },
+        {
+          "Name": "Colony",
+          "Params": [
+            {
+              "Key": "Radius",
+              "Value": "10"
+            },
+            {
+              "Key": "Call",
+              "Value": "The roost wakes all at once: clicking, then screaming, then wings."
+            }
+          ]
+        },
+        {
+          "Name": "TabooKill",
+          "Params": [
+            {
+              "Key": "Faction",
+              "Value": "CatacombFolk"
+            },
+            {
+              "Key": "Penalty",
+              "Value": "-10"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A night bird with a hooked bill and wings the colour of old leaves, clicking softly to itself in the dark. The seeds it carries down are why anything grows in a sinkhole. Leave the roost alone and it leaves you alone; strike one, and the whole roost comes for you."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 22,
+          "Min": 0,
+          "Max": 22
+        },
+        {
+          "Name": "Strength",
+          "Value": 12
+        },
+        {
+          "Name": "Agility",
+          "Value": 20
+        },
+        {
+          "Name": "Speed",
+          "Value": 125
+        },
+        {
+          "Name": "XPValue",
+          "Value": 311
+        },
+        {
+          "Name": "Level",
+          "Value": 8
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Avian"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "BodyNaturalAttack",
+          "Value": ""
+        },
+        {
+          "Key": "Faction",
+          "Value": "Wildlife"
+        },
+        {
+          "Key": "Tier",
+          "Value": "3"
+        }
+      ]
+    },
+    {
+      "Name": "BloomedWarden",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "bloomed warden"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "@"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&m"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "4"
+            },
+            {
+              "Key": "DV",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "8"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "true"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "2d6"
+            }
+          ]
+        },
+        {
+          "Name": "BloomOnCreate",
+          "Params": []
+        },
+        {
+          "Name": "GivesRep",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A catacomb warden in chitin plates, tall and pale, walking toward open ground with the patience of someone who has forgotten why. Pale fruiting caps have broken through the seams of the armour at the neck and wrists. It strikes whatever is beside it. When it falls, it bursts."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 70,
+          "Min": 0,
+          "Max": 70
+        },
+        {
+          "Name": "Strength",
+          "Value": 22
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Toughness",
+          "Value": 18
+        },
+        {
+          "Name": "XPValue",
+          "Value": 1322,
+          "Max": 999999
+        },
+        {
+          "Name": "Level",
+          "Value": 13
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Humanoid"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "BodyNaturalAttack",
+          "Value": ""
+        },
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "BloomedHound",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "bloomed hound"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "b"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&m"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "2"
+            },
+            {
+              "Key": "DV",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "10"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "true"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "1d10"
+            }
+          ]
+        },
+        {
+          "Name": "BloomOnCreate",
+          "Params": []
+        },
+        {
+          "Name": "GivesRep",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Rib-thin and salt-crusted like any brittle hound, but it does not bark and it does not run with the others. Something pale grows along its spine in a neat double row. It goes where it is driven and bites what it meets, and it should not be killed close."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 34,
+          "Min": 0,
+          "Max": 34
+        },
+        {
+          "Name": "Strength",
+          "Value": 16
+        },
+        {
+          "Name": "Agility",
+          "Value": 20
+        },
+        {
+          "Name": "Speed",
+          "Value": 125
+        },
+        {
+          "Name": "XPValue",
+          "Value": 1041,
+          "Max": 999999
+        },
+        {
+          "Name": "Level",
+          "Value": 12
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Quadruped"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "BodyNaturalAttack",
+          "Value": ""
+        },
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "4"
+        }
+      ]
     },
     {
       "Name": "PrickleBrowGecko",
       "Inherits": "Creature",
       "Parts": [
-        { "Name": "Render", "Params": [
-          { "Key": "DisplayName", "Value": "sima pricklebrow" },
-          { "Key": "RenderString", "Value": "l" },
-          { "Key": "ColorString", "Value": "&B" },
-          { "Key": "RenderLayer", "Value": "10" }
-        ] },
-        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
-        { "Name": "Brain", "Params": [
-          { "Key": "Passive", "Value": "false" },
-          { "Key": "Wanders", "Value": "true" },
-          { "Key": "SightRadius", "Value": "6" }
-        ] },
-        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "1d3" } ] },
-        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "An indigo gecko with an amber throat and a long fine spine above each eye. It holds itself close to the litter, all sharp elbows and patient attention. Several small tracks meet beneath the stone beside it." } ] }
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sima pricklebrow"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "l"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&B"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "true"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "1d3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "An indigo gecko with an amber throat and a long fine spine above each eye. It holds itself close to the litter, all sharp elbows and patient attention. Several small tracks meet beneath the stone beside it."
+            }
+          ]
+        },
+        {
+          "Name": "Colony",
+          "Params": [
+            {
+              "Key": "Radius",
+              "Value": "6"
+            },
+            {
+              "Key": "Call",
+              "Value": "The geckos under the stones rise together, spines up."
+            }
+          ]
+        }
       ],
       "Stats": [
-        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
-        { "Name": "Strength", "Value": 8 },
-        { "Name": "Agility", "Value": 17 },
-        { "Name": "Toughness", "Value": 8 },
-        { "Name": "XPValue", "Value": 9 },
+        {
+          "Name": "Hitpoints",
+          "Value": 6,
+          "Min": 0,
+          "Max": 6
+        },
+        {
+          "Name": "Strength",
+          "Value": 8
+        },
+        {
+          "Name": "Agility",
+          "Value": 17
+        },
+        {
+          "Name": "Toughness",
+          "Value": 8
+        },
+        {
+          "Name": "XPValue",
+          "Value": 9
+        },
         {
           "Name": "Level",
           "Value": 2
         }
       ],
-      "Props": [ { "Key": "Anatomy", "Value": "Quadruped" } ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Quadruped"
+        }
+      ],
       "Tags": [
-        { "Key": "BodyNaturalAttack", "Value": "" }, { "Key": "Faction", "Value": "Beasts" },
-                { "Key": "Tier", "Value": "1" } ]
+        {
+          "Key": "BodyNaturalAttack",
+          "Value": ""
+        },
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
     },
     {
       "Name": "HelmwoodFrog",

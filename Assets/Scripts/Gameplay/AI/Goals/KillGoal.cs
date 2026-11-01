@@ -118,6 +118,8 @@ namespace CavesOfOoo.Core
             var duty = ParentEntity.GetPart<WorksiteGuardPart>();
             if (duty?.Applies(ParentBrain, CurrentZone) == true && !duty.AllowsPursuit(CurrentZone, LastSeenX, LastSeenY))
             { Abandon("outside-worksite-duty"); return; }
+            // P5: authored creature behaviours (stoop, grapple, pack) act first.
+            if (CreatureBehaviors.TryAct(ParentEntity, Target, CurrentZone, Rng, visible)) return;
             if (!visible)
             {
                 if (myPos.x != LastSeenX || myPos.y != LastSeenY)

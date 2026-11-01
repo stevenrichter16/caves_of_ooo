@@ -30,7 +30,9 @@ namespace CavesOfOoo.Tests
             "MawToad|DefaultBite", "Bandfrog|DefaultBite", "Shambler|DefaultTendril",
             "SootGremlin|ScavengerClaw", "DirtGnome|ScavengerClaw",
             "SpreadHurdleCutter|MarlbackRake", "SpreadDitchMate|MarlbackRake", "SpreadLatchcoil|ViperBite", "MarlbackCindercaller|MarlbackRake", "MarlbackSoursprayer|MarlbackRake", "MarlbackStormbinder|MarlbackRake",
-            "CurationHalfSet|DefaultTendril"
+            "CurationHalfSet|DefaultTendril",
+            // P5 (Docs/UPPER-TIER-BESTIARY.md B8): the Pale Matriarch inherits her line's talon.
+            "PaleMatriarch|StalkerTalon"
         };
         // Literal recipe dice baseline prevents a nonnull premature DefaultFist from passing.
         static readonly Dictionary<string,string> RecipeDice = new Dictionary<string,string> {
@@ -72,7 +74,7 @@ namespace CavesOfOoo.Tests
             {
                 var resolved = f.Factory.Blueprints.Values.Where(b => b.Props.TryGetValue("NaturalWeapon", out var recipe) && !string.IsNullOrEmpty(recipe))
                     .Select(b => b.Name + "|" + b.Props["NaturalWeapon"]).ToArray();
-                Assert.AreEqual(53, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
+                Assert.AreEqual(54, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
                 foreach (string row in Declared)
                 {
                     var fields = row.Split('|'); var actor = f.Create(fields[0]); var hands = Hands(actor);

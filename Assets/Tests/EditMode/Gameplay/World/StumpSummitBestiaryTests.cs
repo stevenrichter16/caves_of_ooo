@@ -24,7 +24,7 @@ namespace CavesOfOoo.Tests
         [TestCase("SummitSinger", true)]
         [TestCase("BrocchiniaSentinel", true)]
         [TestCase("SkySari", false)]
-        [TestCase("PrickleBrowGecko", false)]
+        [TestCase("PrickleBrowGecko", true)] // P5: a passive colony that rises together when struck (ColonyPart)
         [TestCase("HelmwoodFrog", true)]
         public void SummitSimaAnimalExistsWithItsTemperamentAndCellSizedArt(string blueprint, bool passive)
         {

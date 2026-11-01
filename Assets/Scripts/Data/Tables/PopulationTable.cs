@@ -42,13 +42,25 @@ namespace CavesOfOoo.Data
         /// <summary>Does the world currently allow this entry? Null
         /// predicates always pass, so every shipped table is
         /// unaffected.</summary>
-        public bool AllowedByWorldState()
+        public bool AllowedByWorldState() => AllowedByWorldState(null);
+
+        /// <summary>P5: <c>UrquActive</c> is regional (<see cref="UrquPressure.IsActiveAt"/>):
+        /// the Felling-Site's gradient and local manifestations count for the zone being
+        /// generated, as well as the global story fact.</summary>
+        public bool AllowedByWorldState(string zoneId)
         {
             var state = NarrativeStatePart.Current;
             if (!string.IsNullOrEmpty(RequiresWorldFlag))
             {
-                if (state == null) return false;              // fail closed
-                if (state.GetFact(RequiresWorldFlag) == 0) return false;
+                if (RequiresWorldFlag == UrquPressure.StoryFact)
+                {
+                    if (!UrquPressure.IsActiveAt(zoneId)) return false;
+                }
+                else
+                {
+                    if (state == null) return false;              // fail closed
+                    if (state.GetFact(RequiresWorldFlag) == 0) return false;
+                }
             }
             if (!string.IsNullOrEmpty(ForbidsWorldFlag))
             {
@@ -94,7 +106,7 @@ namespace CavesOfOoo.Data
                 var entry = Entries[i];
                 if (!Valid(entry))
                     RecordRoll(entry, zoneID, 0, -1, null, "invalid_entry", "not_rolled");
-                else if (!entry.AllowedByWorldState())
+                else if (!entry.AllowedByWorldState(zoneID))
                     RecordRoll(entry, zoneID, 0, -1, null, "world_flag", "not_rolled");
                 else if (admit != null && !admit(entry.BlueprintName))
                     RecordRoll(entry, zoneID, 0, -1, null, "tier_floor", "not_rolled");
@@ -251,6 +263,13 @@ namespace CavesOfOoo.Data
             if (tier >= 2)
                 t.Entries.Add(new PopulationEntry
                 { BlueprintName = "MawToad", Weight = 2, MinCount = 0, MaxCount = 2 });
+            // P5: the blackwater creeks' apex, and its elder where the slope is deep.
+            if (tier >= 3)
+                t.Entries.Add(new PopulationEntry
+                { BlueprintName = "Riverwarden", Weight = 2, MinCount = 0, MaxCount = 1 });
+            if (tier >= 4)
+                t.Entries.Add(new PopulationEntry
+                { BlueprintName = "OldRiverwarden", Weight = 1, MinCount = 0, MaxCount = 1 });
             return t;
         }
 
@@ -336,14 +355,26 @@ namespace CavesOfOoo.Data
             }
             if (tier >= 5)
                 t.Entries.Add(new PopulationEntry { BlueprintName = "ObsidianBrute", Weight = 2, MinCount = 0, MaxCount = 1 });
+            // P5: the old bird circles the high slopes and the summit where Urqu is near:
+            // the gradient around the Felling-Site, or a manifestation.
+            if (tier >= 4 && band != StumpBand.Foothills)
+                t.Entries.Add(new PopulationEntry { BlueprintName = "OldSkySari", Weight = 1, MinCount = 0, MaxCount = 1,
+                    RequiresWorldFlag = UrquPressure.StoryFact });
             return t;
         }
 
+        /// <summary>The sima floors: a Pricklebrow colony and (P5) a Sima-Steward roost —
+        /// the seed-bringers the catacomb villages hold sacred — and in the standing water,
+        /// sometimes, a riverwarden.</summary>
         public static PopulationTable StumpSima()
         {
             var t = new PopulationTable { Name = "StumpSima" };
             t.Entries.Add(new PopulationEntry
-            { BlueprintName = "PrickleBrowGecko", Weight = 1, MinCount = 1, MaxCount = 3 });
+            { BlueprintName = "PrickleBrowGecko", Weight = 1, MinCount = 3, MaxCount = 8 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "SimaSteward", Weight = 1, MinCount = 2, MaxCount = 4 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "Riverwarden", Weight = 1, MinCount = 0, MaxCount = 1 });
             return t;
         }
 
@@ -1209,6 +1240,16 @@ namespace CavesOfOoo.Data
             {
                 table.Entries.Add(new PopulationEntry { BlueprintName = "StoneGolem", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
                 table.Entries.Add(new PopulationEntry { BlueprintName = "ObsidianBrute", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
+                // P5: the dead zones' hunters come as a pack, and the Bloom walks the deep.
+                table.Entries.Add(new PopulationEntry { BlueprintName = "PaleStalker", Weight = 3, MinCount = 2, MaxCount = 3, EncounterGroup = "DepthEncounter" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "BloomedWarden", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "DepthEncounter" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "BloomedHound", Weight = 2, MinCount = 2, MaxCount = 3, EncounterGroup = "DepthEncounter" });
+            }
+            if (tier >= 5)
+            {
+                // The matriarch hunts with her line around her.
+                table.Entries.Add(new PopulationEntry { BlueprintName = "PaleMatriarch", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthApex" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "PaleStalker", Weight = 3, MinCount = 2, MaxCount = 2, EncounterGroup = "DepthApexPack" });
             }
 
             // BIOME-OVERHAUL A3: harvestable mineral veins by strata band

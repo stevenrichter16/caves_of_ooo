@@ -63,6 +63,7 @@ namespace CavesOfOoo.Skills
             // W2.5 — a spell at a person is a swing like any other
             // (see CombatSystem.PerformMeleeAttack's twin call).
             UnderTheClothEffect.Break(attacker, target);
+            Noise.Mark(attacker); // P5: a cast is heard
 
             // Skill modifier — Spellcraft_Empower returns +2 universally,
             // PyromancySkill returns +damage when Heat hits a Burning

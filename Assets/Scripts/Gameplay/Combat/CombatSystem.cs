@@ -88,13 +88,29 @@ namespace CavesOfOoo.Core
         /// <summary>One primary strike for an already committed physical ray.
         /// Shares normal attack veto, weapon selection, FX, rolls, damage and hooks.</summary>
         public static bool PerformCommittedMeleeAttack(Entity attacker, Entity defender, Zone zone, Random rng)
-            => PerformMeleeAttackCore(attacker, defender, zone, rng, singleStrike: true);
+            => PerformCommittedMeleeAttack(attacker, defender, zone, rng, 100);
+
+        /// <summary>P5: a telegraphed heavy swing lands at <paramref name="damagePercent"/>
+        /// of its rolled damage (the wind-up is the warning that pays for it).</summary>
+        public static bool PerformCommittedMeleeAttack(Entity attacker, Entity defender, Zone zone, Random rng, int damagePercent)
+        {
+            int previous = _heavyStrikePercent; Entity previousAttacker = _heavyStrikeAttacker;
+            _heavyStrikePercent = Math.Max(1, damagePercent); _heavyStrikeAttacker = attacker;
+            try { return PerformMeleeAttackCore(attacker, defender, zone, rng, singleStrike: true); }
+            finally { _heavyStrikePercent = previous; _heavyStrikeAttacker = previousAttacker; }
+        }
+
+        // Scoped to one committed strike by one attacker (set and restored above); a
+        // defender's counter inside the same swing is not that attacker's. 0 = ordinary.
+        [ThreadStatic] static int _heavyStrikePercent;
+        [ThreadStatic] static Entity _heavyStrikeAttacker;
 
         private static bool PerformMeleeAttackCore(Entity attacker, Entity defender, Zone zone, Random rng, bool singleStrike)
         {
             using (PerformanceMarkers.Combat.PerformMeleeAttack.Auto())
             {
                 if (attacker == null || defender == null) return false;
+                Noise.Mark(attacker); // P5: a swing is heard
 
                 // W2.5 — the oath breaks on the SWING, not the hit: a
                 // guest under the cloth attacking any PERSON (the mirror
@@ -293,7 +309,8 @@ namespace CavesOfOoo.Core
             int hitRoll = DiceRoller.Roll(20, rng);
             int agilityMod = StatUtils.GetModifier(attacker, "Agility");
             int skillHitBonus = CavesOfOoo.Skills.SkillEventDispatcher
-                .GetSkillHitModifier(attacker, weapon) + VaultPoiseEffect.ConsumeHitBonus(attacker, defender, zone);
+                .GetSkillHitModifier(attacker, weapon) + VaultPoiseEffect.ConsumeHitBonus(attacker, defender, zone)
+                + PackHunterPart.FlankHitBonus(attacker, defender, zone);
             int totalHit = hitRoll + agilityMod + hitBonus + skillHitBonus;
             int dv = GetDV(defender);
 
@@ -452,6 +469,7 @@ namespace CavesOfOoo.Core
             int totalDamage = 0;
             for (int i = 0; i < penetrations; i++)
                 totalDamage += DiceRoller.Roll(damageDice, rng);
+            if (_heavyStrikePercent > 0 && _heavyStrikePercent != 100 && ReferenceEquals(attacker, _heavyStrikeAttacker)) totalDamage = totalDamage * _heavyStrikePercent / 100;
             damage.Amount = guarded ? totalDamage / 2 + totalDamage % 2 : totalDamage;
 
             // DamageRoll diag emission — surfaces the base damage roll
@@ -1438,6 +1456,9 @@ namespace CavesOfOoo.Core
             // GivesRepPart) ignore the extra parameter.
             died.SetParameter("Zone", (object)zone);
             target.FireEventAndRelease(died);
+
+            // P5: a mass death is one of Urqu's catastrophic conditions.
+            UrquPressure.OnDeath(target, zone);
 
             // M2.3: broadcast the death to nearby Passive NPCs so they can
             // visibly react (wander-pace for 20 turns). Fires AFTER the Died

@@ -641,6 +641,9 @@ namespace CavesOfOoo.Core
                 // including cancellation/recovery when goals or zones changed.
                 if (ParentEntity.GetPart<CommittedMeleePart>()?.AdvancePendingAction(CurrentZone, Rng) == true)
                     return true;
+                // P5: a behaviour already under way (a stoop aloft) owns the turn too.
+                if (CreatureBehaviors.AdvancePending(ParentEntity, CurrentZone, Rng))
+                    return true;
 
                 // Guard: no zone or not in zone (dead/removed)
                 if (CurrentZone == null) return true;

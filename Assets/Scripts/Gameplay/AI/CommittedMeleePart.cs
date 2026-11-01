@@ -13,6 +13,9 @@ namespace CavesOfOoo.Core
         public override string Name => "CommittedMelee";
         public string AttackName = "heavy swing";
         public int Reach = 2;
+        /// <summary>P5: the strike's damage as a percent of an ordinary hit (100 = the
+        /// original contract). Brutes swing at 200–250: the wind-up is the warning.</summary>
+        public int DamagePercent = 100;
         public enum AttackStage { Idle, Windup, Recovery }
         public AttackStage Stage;
         public int OriginX, OriginY, DirectionX, DirectionY;
@@ -78,7 +81,7 @@ namespace CavesOfOoo.Core
             // Transition before combat: reactions may stun, displace, or kill us.
             Stage = AttackStage.Recovery; RecoveryFresh = true;
             Dirty(zone);
-            bool attempted = victim != null && CombatSystem.PerformCommittedMeleeAttack(ParentEntity, victim, zone, rng ?? new Random());
+            bool attempted = victim != null && CombatSystem.PerformCommittedMeleeAttack(ParentEntity, victim, zone, rng ?? new Random(), DamagePercent);
             Record("CommittedMeleeResolved", victim, blocked ? "blocked" : victim == null ? "empty-ray" : attempted ? "strike" : "vetoed");
             SayVisible(zone, ParentEntity.GetDisplayName() + " finishes " + AttackName + " and pauses to recover.");
             return true;

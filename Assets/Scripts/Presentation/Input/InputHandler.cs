@@ -1155,6 +1155,8 @@ namespace CavesOfOoo.Rendering
             WorldTravellers.OnZoneEntered(PlayerEntity, result.NewZone);
             // H1.4: a sworn host may be claimed by a hunted wayfarer.
             ClothClaims.OnZoneEntered(PlayerEntity, result.NewZone);
+            // P5: where Urqu is active, its fauna is waiting.
+            UrquPressure.OnZoneEntered(PlayerEntity, result.NewZone);
             // C3a: what open concerns stand in this place (a document to read).
             CavesOfOoo.Concerns.ConcernWorld.OnZoneEntered(PlayerEntity, result.NewZone);
 

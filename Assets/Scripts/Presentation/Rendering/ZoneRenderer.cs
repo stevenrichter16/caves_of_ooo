@@ -64,6 +64,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
         private FlatQuestCueLayer _questCueLayer;
+        private FlatThreatCueLayer _threatCueLayer;
         private AnimatedEnvironmentRenderer _animatedEnvRenderer; // Pass 5
         private AnimatedEntityRenderer _entityVisualRenderer;
         // Pass 6 (GlyphGhostRenderer — motion-ghost trails) REMOVED.
@@ -431,6 +432,12 @@ namespace CavesOfOoo.Rendering
                 GameplayRenderLayers.SetLayerRecursive(questCueObj, GameplayRenderLayers.WorldLayer);
                 _questCueLayer = questCueObj.AddComponent<FlatQuestCueLayer>();
                 _questCueLayer.Init(_tilemap, () => CurrentZone, () => !Paused && FlatPixelModeActive);
+                // P5: the Sky-Sari's shadow on the ground, under actor bodies.
+                var threatCueObj = new GameObject("FlatThreatCueLayer");
+                threatCueObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(threatCueObj, GameplayRenderLayers.WorldLayer);
+                _threatCueLayer = threatCueObj.AddComponent<FlatThreatCueLayer>();
+                _threatCueLayer.Init(_tilemap, () => CurrentZone, () => !Paused && FlatPixelModeActive);
                 var village3DObject = new GameObject("Village3DPresenter");
                 village3DObject.transform.SetParent(gridParent, false);
                 _village3DPresenter = village3DObject.AddComponent<Village3DPresenter>();

@@ -19,6 +19,9 @@ namespace CavesOfOoo.Tests
             // deeper underground tables under tier 3-5 places, and what they carry or raise
             "IceWight", "SkeletalSentry", "StoneGolem", "CharredHusk", "PaleSaltVein",
             "LongSword", "LeatherArmor",
+            // P5 (Docs/UPPER-TIER-BESTIARY.md B8): the new upper kinds and elders. Their art is the flat
+            // 16x24 bodies of B9 (FlatPixelUpperBestiaryTests); the previous presentation has no models.
+            "Riverwarden", "OldRiverwarden", "SimaSteward", "BloomedWarden", "BloomedHound", "PaleMatriarch", "OldSkySari",
         };
 
         public static bool Excuses(string blueprint) => blueprint != null && Blueprints.Contains(blueprint);

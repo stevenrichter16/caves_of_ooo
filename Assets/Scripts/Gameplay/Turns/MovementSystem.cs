@@ -113,6 +113,7 @@ namespace CavesOfOoo.Core
             DirtyForMove(entity, oldX, oldY, newX, newY);
 
             // Fire AfterMove event
+            Noise.Mark(entity); // P5: what moves can be heard
             var afterMove = GameEvent.New("AfterMove");
             afterMove.SetParameter("Actor", (object)entity);
             afterMove.SetParameter("Cell", (object)targetCell);
@@ -165,6 +166,7 @@ namespace CavesOfOoo.Core
             DirtyForMove(entity, oldX, oldY, x, y);
 
             // Fire AfterMove event
+            Noise.Mark(entity); // P5: what moves can be heard
             var afterMove = GameEvent.New("AfterMove");
             afterMove.SetParameter("Actor", (object)entity);
             afterMove.SetParameter("Cell", (object)targetCell);
@@ -227,6 +229,7 @@ namespace CavesOfOoo.Core
 
             DirtyForMove(entity, oldX, oldY, x, y);
 
+            Noise.Mark(entity); // P5: what moves can be heard
             var afterMove = GameEvent.New("AfterMove");
             afterMove.SetParameter("Actor", (object)entity);
             afterMove.SetParameter("Cell", (object)targetCell);
@@ -264,6 +267,7 @@ namespace CavesOfOoo.Core
             if (zone.GetEntityCell(owner) != destination || owner.GetStatValue("Hitpoints", 1) <= 0) return;
             NotifyVisualMove(owner, zone, source.X, source.Y, destination.X, destination.Y, forced);
             DirtyForMove(owner, source.X, source.Y, destination.X, destination.Y);
+            Noise.Mark(owner); // P5: what moves can be heard
             var afterMove = GameEvent.New("AfterMove");
             afterMove.SetParameter("Actor", (object)owner);
             afterMove.SetParameter("Cell", (object)destination);
