@@ -108,7 +108,9 @@ namespace CavesOfOoo.Tests
             Create();var grass=Add("Grass");Assert.True(ground(zone,X,Y,out var tile,out var floor));Frame(tile,Turf,0,3);
             var actor=Add("Player");Assert.True(ground(zone,X,Y,out var covered,out floor));Assert.AreSame(tile,covered);Assert.AreSame(grass,floor);
             foreach(string liquid in new[]{"water","oil"}){zone.TileState.WriteCoating(X,Y,liquid,3);Assert.False(ground(zone,X,Y,out _,out _));zone.TileState.RemoveCoating(X,Y,liquid);}
-            foreach(string role in new[]{"StoneFloor","CropRow","WaterPuddle"}){var other=Add(role);Assert.False(ground(zone,X,Y,out _,out _),role);zone.RemoveEntity(other);}
+            foreach(string role in new[]{"StoneFloor","WaterPuddle"}){var other=Add(role);Assert.False(ground(zone,X,Y,out _,out _),role);zone.RemoveEntity(other);}
+            // Ordinary dry rows now have native field soil; prepared rows still outrank turf.
+            var prepared=Add("CropRow");prepared.AddPart(new CultivatedSoilPart());Assert.False(ground(zone,X,Y,out _,out _));zone.RemoveEntity(prepared);
             var soil=new CultivatedSoilPart();grass.AddPart(soil);Assert.False(ground(zone,X,Y,out _,out _));grass.RemovePart(soil);Assert.True(ground(zone,X,Y,out _,out _));
             var road=Add("RoadStone");Assert.True(ground(zone,X,Y,out tile,out floor));Assert.AreSame(road,floor);Frame(tile,Road,16,17);
             var duplicate=Add("RoadStone");Assert.False(ground(zone,X,Y,out _,out _));zone.RemoveEntity(duplicate);Assert.True(ground(zone,X,Y,out _,out _));
@@ -116,7 +118,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void UndisclosedForeignOrCarriedCompetingOwnersDoNotRevealThemselvesThroughGround()
         {
-            Create();var grass=Add("Grass");Assert.True(ground(zone,X,Y,out var tile,out _));var crop=Add("CropRow");
+            Create();var grass=Add("Grass");Assert.True(ground(zone,X,Y,out var tile,out _));var crop=Add("CropRow");crop.AddPart(new CultivatedSoilPart());
             crop.GetPart<RenderPart>().Visible=false;Assert.True(ground(zone,X,Y,out var same,out _));Assert.AreSame(tile,same);
             crop.GetPart<RenderPart>().Visible=true;Assert.False(ground(zone,X,Y,out _,out _));
             crop.GetPart<PhysicsPart>().InInventory=new Entity();Assert.True(ground(zone,X,Y,out _,out _));crop.GetPart<PhysicsPart>().InInventory=null;
@@ -440,6 +442,31 @@ namespace CavesOfOoo.Tests
             Assert.True(ground(zone,X,Y,out var retained,out _));Frame(retained,Turf,0,3);
         }
         sealed class Probe:Part{public int Renders;public override bool HandleEvent(GameEvent e){if(e.ID=="Render")Renders++;return true;}}
+        [Test] public void RealFieldHarvestRepaintsIncrementallyAndMatchesAFullPass()
+        {
+            Add("Grass");var row=Add("RipeCropRow");var actor=Add("Player",X-1,Y);Add("Grass",X+1,Y);
+            var savedFactory=HarvestablePart.Factory;HarvestablePart.Factory=content.Factory;
+            try
+            {
+                using(var paint=new Paint(world,zone))
+                {
+                    paint.Step();Frame(paint.At(X,Y),Bush,7,7);Frame(paint.GroundAt(X,Y),Road,18,18);
+                    var neighbor=paint.GroundAt(X+1,Y).sprite;var soil=paint.GroundAt(X,Y).sprite;
+                    var harvest=new GameEvent("InventoryAction");harvest.SetParameter("Actor",actor);
+                    harvest.SetParameter("Zone",zone);harvest.SetParameter("Command","Harvest");row.FireEvent(harvest);
+                    Assert.True(harvest.Handled);paint.Step();
+                    Frame(paint.At(X,Y),Bush,8,8);Assert.AreSame(soil,paint.GroundAt(X,Y).sprite);
+                    var cut=paint.At(X,Y).sprite;var tint=paint.Tint(X,Y);
+                    paint.Renderer.MarkDirty("field parity control");paint.Step();
+                    Assert.AreSame(cut,paint.At(X,Y).sprite);Assert.AreEqual(tint,paint.Tint(X,Y));
+                    Assert.AreSame(soil,paint.GroundAt(X,Y).sprite);
+                    Assert.AreSame(neighbor,paint.GroundAt(X+1,Y).sprite);
+                    Assert.AreSame(row,View().Owner);
+                }
+            }
+            finally {HarvestablePart.Factory=savedFactory;}
+        }
+
         sealed class Paint : IDisposable
         {
             readonly HotbarSaveFixture saved;

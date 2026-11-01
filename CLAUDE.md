@@ -1,3 +1,5 @@
+**Current execution — 2026-11-01:** The user authorized a comprehensive plan and autonomous implementation. Read `Docs/GRAPHICS-EXECUTION-PLAN.md` and `Docs/GRAPHICS-EXECUTION-MATRIX.md` first. Codex root serializes Unity/Git; historical ownership notes below are superseded for this run. Current scope is remaining actual ASCII/material gaps, whole-area polish, purposeful population, subtle shadows and current packaged delivery. Preserve unrelated changes and all sources/saves/builds; no cleanup. Ordinary Spread field-row presentation is the first active slice; no new full-area acceptance is claimed.
+
 **Current economy checkpoint — 2026-11-01:** The economy is becoming a first-class system (see `Docs/ECONOMY-SYSTEM.md`: survey, canon trust table, design EC1–EC7).
 - **Shipped:**
   - EC1: shops stock from the world seed.

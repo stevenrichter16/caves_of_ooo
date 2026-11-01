@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="11" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-01 20:04:24Z" end-time="2026-11-01 20:04:26Z" duration="1.9892865">
+  <test-suite type="TestSuite" id="43242" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35209" result="Failed" site="Child" start-time="2026-11-01 20:04:24Z" end-time="2026-11-01 20:04:26Z" duration="1.989287" total="16" passed="11" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43213" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35209" result="Failed" site="Child" start-time="2026-11-01 20:04:24Z" end-time="2026-11-01 20:04:26Z" duration="1.904448" total="16" passed="11" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99456" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43214" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35209" result="Failed" site="Child" start-time="2026-11-01 20:04:24Z" end-time="2026-11-01 20:04:26Z" duration="1.741499" total="16" passed="11" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43215" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35209" result="Failed" site="Child" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:26Z" duration="1.346090" total="16" passed="11" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33886" name="FlatPixelSpreadFieldRowsTests" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:26Z" duration="1.101934" total="16" passed="11" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33891" name="HarvestedStateChangesTheSameOwnerWithoutRecreatingTheCatalog" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.HarvestedStateChangesTheSameOwnerWithoutRecreatingTheCatalog" methodname="HarvestedStateChangesTheSameOwnerWithoutRecreatingTheCatalog" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="2098707649" result="Failed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.079953" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.HarvestedStateChangesTheSameOwnerWithoutRecreatingTheCatalog () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadFieldRowsTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="33903" name="MissingBaseArtDoesNotBorrowAResourceBehindTheCallersBack" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.MissingBaseArtDoesNotBorrowAResourceBehindTheCallersBack" methodname="MissingBaseArtDoesNotBorrowAResourceBehindTheCallersBack" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="1920296279" result="Passed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.039418" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33904" name="OrdinaryFieldDoesNotAdmitAnOpeningOrForeignZone" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryFieldDoesNotAdmitAnOpeningOrForeignZone" methodname="OrdinaryFieldDoesNotAdmitAnOpeningOrForeignZone" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="528940025" result="Passed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.039371" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33890" name="OrdinaryRowsUseApprovedBodyAndOldFieldSoil" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryRowsUseApprovedBodyAndOldFieldSoil" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.238190" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33887" name="OrdinaryRowsUseApprovedBodyAndOldFieldSoil(False,False,8)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryRowsUseApprovedBodyAndOldFieldSoil(False,False,8)" methodname="OrdinaryRowsUseApprovedBodyAndOldFieldSoil" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="930872231" result="Failed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.039747" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ordinary field must not remain an ASCII row
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryRowsUseApprovedBodyAndOldFieldSoil (System.Boolean ripe, System.Boolean harvested, System.Int32 frame) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadFieldRowsTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33888" name="OrdinaryRowsUseApprovedBodyAndOldFieldSoil(True,False,7)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryRowsUseApprovedBodyAndOldFieldSoil(True,False,7)" methodname="OrdinaryRowsUseApprovedBodyAndOldFieldSoil" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="1111749759" result="Failed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.086488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ordinary field must not remain an ASCII row
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryRowsUseApprovedBodyAndOldFieldSoil (System.Boolean ripe, System.Boolean harvested, System.Int32 frame) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadFieldRowsTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33889" name="OrdinaryRowsUseApprovedBodyAndOldFieldSoil(True,True,8)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryRowsUseApprovedBodyAndOldFieldSoil(True,True,8)" methodname="OrdinaryRowsUseApprovedBodyAndOldFieldSoil" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="770092028" result="Failed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.080473" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ordinary field must not remain an ASCII row
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.OrdinaryRowsUseApprovedBodyAndOldFieldSoil (System.Boolean ripe, System.Boolean harvested, System.Int32 frame) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadFieldRowsTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33892" name="UnderfootReaderStillDescribesTheCoveredRow" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnderfootReaderStillDescribesTheCoveredRow" methodname="UnderfootReaderStillDescribesTheCoveredRow" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="168423758" result="Failed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:25Z" duration="0.270044" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnderfootReaderStillDescribesTheCoveredRow () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSpreadFieldRowsTests.cs:66
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33902" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:26Z" duration="0.392968" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33893" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;hidden-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;hidden-cell&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="791434532" result="Passed" start-time="2026-11-01 20:04:25Z" end-time="2026-11-01 20:04:26Z" duration="0.042515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33894" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;unexplored&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="286375384" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.040201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33895" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;hidden-owner&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;hidden-owner&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="1986500333" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.039463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33896" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;recoloured&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;recoloured&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="385563336" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.039877" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33897" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;solid&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="2001532556" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.040370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33898" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;foreign-yield&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;foreign-yield&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="2069952374" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.040624" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33899" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;prepared&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;prepared&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="646549370" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.039631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33900" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;wrong-glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;wrong-glyph&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="446891355" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.040180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33901" name="UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;wrong-layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests.UnsupportedMeaningDoesNotBorrowTheCanonicalField(&quot;wrong-layer&quot;)" methodname="UnsupportedMeaningDoesNotBorrowTheCanonicalField" classname="CavesOfOoo.Tests.FlatPixelSpreadFieldRowsTests" runstate="Runnable" seed="1925539590" result="Passed" start-time="2026-11-01 20:04:26Z" end-time="2026-11-01 20:04:26Z" duration="0.040241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

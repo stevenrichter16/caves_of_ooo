@@ -22,7 +22,7 @@ namespace CavesOfOoo.Rendering
         const int Width=16, Height=24;
         readonly FlatPixelFallbackCatalog selector;
         public const string ConjuredFlowersResourcePath="Sprites/Live16x24/conjured-flowers";
-        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured, signpost;
+        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured, signpost, fieldSoil, fieldRows;
         bool disposed;
         static readonly Dictionary<string,Vector2Int> addresses=BuildAddresses();
         static Dictionary<string,Vector2Int> BuildAddresses()
@@ -75,6 +75,7 @@ namespace CavesOfOoo.Rendering
             turf=Frames(turf9,9,0,4);road=Frames(ground21,21,16,2);hedges=Frames(hedge16,16,0,16);
             tree=Frames(vegetation4,4,0,1);berry=Frames(vegetation4,4,2,1);bush=Frames(base10,10,5,1);flowers=Frames(eastKitchen18,18,14,1);
             conjured=Frames(conjured2,2,0,2);signpost=Frames(anchors12,12,8,1);
+            fieldSoil=Frames(ground21,21,18,1);fieldRows=Frames(base10,10,7,2);
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -89,7 +90,7 @@ namespace CavesOfOoo.Rendering
         {
             tile=null;floor=null;if(!ReadyCell(zone,x,y,out var cell))return false;
             var state=zone.TileState.Get(x,y);bool fixture=false,petals=false;
-            Entity grass=null,packed=null;
+            Entity grass=null,packed=null,field=null;
             foreach(var owner in cell.Occupants)
             {
                 // Hidden/foreign/carried props cannot disclose themselves through a lower floor.
@@ -98,6 +99,8 @@ namespace CavesOfOoo.Rendering
                 {if(grass!=null||!Floor(owner,true))return false;grass=owner;}
                 else if(owner.BlueprintName=="RoadStone")
                 {if(packed!=null||!Floor(owner,false))return false;packed=owner;}
+                else if(IsEligibleFieldRow(owner))
+                {if(field!=null)return false;field=owner;}
                 else if(IsEligibleFixture(owner))fixture=true;
                 // An ordinary lit hearth stands on the real ground (2026-10-30).
                 else if(FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)){}
@@ -109,6 +112,15 @@ namespace CavesOfOoo.Rendering
             // exception represents real ground under exact fixtures, never Water.
             // A conjured patch re-asserts only its own petals residue; that is not foreign live state.
             if(state!=null&&!state.IsEmpty&&!fixture&&!(petals&&SolePetals(state)))return false;
+            // Old field soil belongs to the actual row, including row-only cells.
+            // A road or any live state is not an ordinary dry field substrate.
+            if(field!=null)
+            {
+                // A ground claim suppresses this owner's glyph in the world composer.
+                // Keep that fallback visible when the optional body atlas is unavailable.
+                if(packed!=null||fieldSoil==null||fieldRows==null||!DryFieldCell(zone,x,y))return false;
+                floor=field;tile=fieldSoil[0];return true;
+            }
             floor=packed??grass;if(floor==null)return false;
             tile=packed!=null?road==null?null:road[(x+y)&1]:turf==null?null:turf[VariantAt(x,y)];
             if(tile!=null)return true;floor=null;return false;
@@ -116,6 +128,11 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone,int x,int y,Entity owner,out Tile tile)
         {
             tile=null;if(!ReadyCell(zone,x,y,out _)||!Selected(zone,x,y,owner))return false;
+            if(IsEligibleFieldRow(owner))
+            {
+                if(fieldRows==null||!DryFieldCell(zone,x,y))return false;
+                tile=fieldRows[owner.GetPart<FieldHarvestPart>()?.Harvested==false?0:1];return true;
+            }
             if(owner.BlueprintName=="FlowerField")
             {
                 if(conjured==null||!IsConjuredFlowers(owner,zone.TileState.Get(x,y)))return false;
@@ -144,6 +161,11 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone,Entity owner,int x,int y,out Sprite sprite)
         {
             sprite=null;if(owner==null||!ReadyCell(zone,x,y,out _))return false;
+            if(IsEligibleFieldRow(owner))
+            {
+                if(fieldRows==null||!Placed(zone,zone.GetCell(x,y),owner)||!DryFieldCell(zone,x,y))return false;
+                sprite=fieldRows[owner.GetPart<FieldHarvestPart>()?.Harvested==false?0:1].sprite;return true;
+            }
             if(owner.BlueprintName=="Grass"||owner.BlueprintName=="RoadStone")
             {
                 if(!TryResolveGround(zone,x,y,out var material,out var floor)||!ReferenceEquals(floor,owner))return false;
@@ -322,8 +344,8 @@ namespace CavesOfOoo.Rendering
                 &&!source.RadiatesEnergy&&string.IsNullOrEmpty(source.Residue);
         }
         /// <param name="ownHarvest">The owner's own harvest is its meaning (the berry bush), not a foreign one.</param>
-        static bool ForeignMeaning(Entity owner,bool ownHarvest=false)
-            =>owner.HasPart<CropPart>()||owner.HasPart<FieldHarvestPart>()||owner.HasPart<CultivatedSoilPart>()||!ownHarvest&&owner.HasPart<HarvestablePart>()
+        static bool ForeignMeaning(Entity owner,bool ownHarvest=false,bool ownField=false)
+            =>owner.HasPart<CropPart>()||!ownField&&owner.HasPart<FieldHarvestPart>()||owner.HasPart<CultivatedSoilPart>()||!ownHarvest&&owner.HasPart<HarvestablePart>()
                 ||owner.HasPart<RepairablePart>()||owner.HasPart<DoorPart>()||owner.HasPart<ContainerPart>()||owner.HasPart<BrainPart>()||owner.HasPart<Body>()
                 ||owner.HasPart<LiquidPoolPart>()||owner.HasPart<GasPoolPart>()||owner.HasPart<TileStateSourcePart>()||owner.HasPart<TriggerOnStepPart>()
                 ||owner.HasPart<WellPart>()||owner.HasPart<ForgePart>()||owner.HasPart<AlchemyStillPart>()||owner.HasPart<CampfirePart>()||owner.HasPart<TorchLightPart>()
@@ -332,6 +354,36 @@ namespace CavesOfOoo.Rendering
         {
             T found=null;for(int i=0;i<owner.Parts.Count;i++)if(owner.Parts[i] is T part)
             {if(found!=null||part.ParentEntity!=owner)return null;found=part;}return found;
+        }
+        // Harvest keeps RipeCropRow and layer2; prepared beds retain their own policy.
+        static bool IsEligibleFieldRow(Entity owner)
+        {
+            if(owner==null||(owner.BlueprintName!="CropRow"&&owner.BlueprintName!="RipeCropRow")
+                ||!Plain(owner)||ForeignMeaning(owner,ownField:true)||!owner.HasTag("Terrain")
+                ||!owner.HasTag("Vegetation")||owner.HasTag("Wall")||owner.HasTag("Solid")
+                ||Owned<PhysicsPart>(owner).Solid)return false;
+            var render=Owned<RenderPart>(owner);var field=Owned<FieldHarvestPart>(owner);
+            if(!string.IsNullOrEmpty(render.BackgroundColor)||!string.IsNullOrEmpty(render.GlyphVariants))return false;
+            bool ripe=owner.BlueprintName=="RipeCropRow";
+            if(ripe&&(field==null||field.YieldBlueprint!="Emberwheat"||field.YieldCount!=1))return false;
+            if(!ripe&&owner.HasPart<FieldHarvestPart>())return false;
+            bool standing=ripe&&!field.Harvested;
+            return render.RenderLayer==(ripe?2:0)&&render.RenderString==(standing?"Y":"\"")
+                &&render.ColorString==(standing?"&Y":"&w");
+        }
+        static bool DryFieldCell(Zone zone,int x,int y)
+        {
+            var cell=zone.GetCell(x,y);var state=zone.TileState.Get(x,y);
+            if(cell==null||state!=null&&!state.IsEmpty)return false;
+            int rows=0;
+            foreach(var owner in cell.Occupants)
+            {
+                if(!Placed(zone,cell,owner)||!VisiblePhysicalOwner(owner))continue;
+                if(IsEligibleFieldRow(owner)){if(++rows>1)return false;}
+                else if(owner.BlueprintName=="Grass"){if(!Floor(owner,true))return false;}
+                else if(CompetingGround(owner)||owner.HasTag("Terrain")&&!owner.HasTag("Wall"))return false;
+            }
+            return rows==1;
         }
         static int VariantAt(int x,int y)
         {uint value=unchecked((uint)x*0x9e3779b1u^(uint)y*0x85ebca77u);value^=value>>16;value=unchecked(value*0x7feb352du);value^=value>>15;return(value&15u)<12u?0:1+(int)((value>>4)%3u);}
@@ -347,7 +399,7 @@ namespace CavesOfOoo.Rendering
             }
             return result;
         }
-        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);Release(signpost);}
+        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);Release(signpost);Release(fieldSoil);Release(fieldRows);}
         static void Release(Tile[] tiles){if(tiles==null)return;foreach(var tile in tiles)if(tile!=null){Destroy(tile.sprite);Destroy(tile);}}
         static void Destroy(Object value){if(value==null)return;if(Application.isPlaying)Object.Destroy(value);else Object.DestroyImmediate(value);}
     }
