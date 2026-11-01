@@ -475,6 +475,13 @@ def frame_rows(fam):
 
 def family(name, glyph):
     has = lambda *ks: any(k in name for k in ks)
+    if has("Bedroll"): return "bedroll"
+    if has("Trough"): return "trough"
+    if has("HitchingPost"): return "hitching_post"
+    if has("OverturnedCart"): return "cart_over"
+    if has("BoatHookPost"): return "hook_post"
+    if has("Cistern"): return "well"
+    if has("TokenDish"): return "bowl"
     if has("Crop"): return "crop"
     if has("Corpse"): return "corpse"
     if glyph == "&": return "body"
@@ -661,6 +668,13 @@ def scene_rows():
         if fam: rows.append(("MorrowfastSceneProp", o["id"], "*", "&y", "", ["scene:" + fam]))
     return rows
 
+# ════════════════ waysite props (Docs/CHUNK-ACTIVITY.md) ════════════════
+T["bedroll"] = L(["..oooooooooooo", ".ocCooAAAAAAAAo", ".occCoAHAAAAAAo", ".ooooooaaaaaaao", "..oooooooooooo"])
+T["trough"] = L(["oooooooooooooooo", "oHHHHHHHHHHHHHHo", "oAXxXXXxXXXxXXAo", "oAAAAAAAAAAAAAAo", "oaaaaaaaaaaaaaao", "oooooooooooooooo", ".oao........oao.", ".ooo........ooo."])
+T["hitching_post"] = L([".....oo", "....oTto", "....oto.oo", "....oto.oSo", "....otoooSo", "....oto.oo", "....oto", "....oto", "...oTtto", "...ooooo"])
+T["cart_over"] = L(["....ooo", "...oSsSo", "...osoSo", "...oSsSo", "....ooto", "oooooooooooooo", "oTTTTTTTTTTTTo", "otttttttttttto", "oTtoTtoTtoTtTo", "oooooooooooooo"])
+T["hook_post"] = L(["......oo", ".....oSo", "....oSo", "....oo.oo", "......oto", "......oto", "......oto", "......oto", ".....oTto", ".....oooo"])
+
 # Families drawn in several variants, chosen per cell so a run does not repeat (index "Variants").
 VARIANT_FAMILIES = {"planks": ["planks", "planks_b", "planks_c"], "rail": ["rail", "rail_b"]}
 TILE_EDGES = {"wall", "planks", "planks_b", "planks_c", "rail", "rail_b", "chalk_wall", "ice_wall"}
@@ -679,7 +693,7 @@ def palette(fam, code):
     if fam == "bones": pal["A"], pal["a"], pal["H"] = (206, 198, 176, 255), (160, 150, 128, 255), (224, 218, 200, 255)
     if fam == "body": pal.update(items.WRAPS.get(code, items.WRAPS["y"]))
     if fam == "chalk_wall": pal["A"], pal["H"], pal["a"] = (184, 180, 164, 255), (200, 196, 180, 255), (160, 156, 142, 255)
-    if fam in ("stone_chest", "slab", "graves") or fam.startswith("compass_"): pal.update(STONE)
+    if fam in ("stone_chest", "slab", "graves", "trough") or fam.startswith("compass_"): pal.update(STONE)
     if fam in ("sign", "post"): pal.update(BOARD)
     if fam in ("shelf", "toppled_shelf"): pal.update(SPINES)
     if fam == "glass_case": pal.update(GLASS)

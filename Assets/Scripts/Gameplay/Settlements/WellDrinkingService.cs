@@ -10,7 +10,7 @@ namespace CavesOfOoo.Core
             if (!WorldResourceActions.Nearby(actor, owner, zone) || owner.GetPart<WellPart>() != well
                 || owner.GetPart<PhysicsPart>().Takeable || owner.HasTag("Creature") || !well.IsUsable) return false;
             var pool = owner.GetPart<LiquidPoolPart>();
-            return pool == null || pool.ParentEntity == owner && pool.LiquidId == "water" && pool.Volume > 0
+            return pool == null ? well.HasWater : pool.ParentEntity == owner && pool.LiquidId == "water" && pool.Volume > 0
                 && LiquidSourcePhase.CanDrawWater(zone, owner) && LiquidSourceSafety.IsUnmixedPool(zone, owner);
         }
         internal static bool TryDrink(Entity actor, WellPart well, Zone zone, InventoryTransaction tx)
@@ -29,10 +29,11 @@ namespace CavesOfOoo.Core
                 var effects = actor.GetPart<StatusEffectsPart>(); var thirst = actor.GetEffect<ParchedEffect>();
                 int index = -1, stacks = thirst?.Stacks ?? 0; string cause = thirst?.LastRemovalCause;
                 if (thirst != null) for (int i = 0; i < effects.EffectCount; i++) if (effects.GetAllEffects()[i] == thirst) index = i;
-                var pool = owner.GetPart<LiquidPoolPart>(); int volume = pool?.Volume ?? 0;
+                var pool = owner.GetPart<LiquidPoolPart>(); int volume = pool?.Volume ?? 0, stock = well.Stock;
                 tx.Do(null, () =>
                 {
                     if (pool != null) pool.Volume = volume;
+                    well.Stock = stock;
                     if (thirst == null) return;
                     var current = actor.GetEffect<ParchedEffect>(); int restored = stacks;
                     if (current == null) { thirst.Stacks = stacks; thirst.LastRemovalCause = cause; effects.RestoreRemovedEffectForInventoryUndo(thirst, index); }
@@ -41,10 +42,11 @@ namespace CavesOfOoo.Core
                     if (actor.GetStat("Agility") is Stat agility) agility.Penalty += restored * ParchedEffect.PenaltyPerStack;
                 });
                 if (pool != null) pool.Volume--;
+                else if (well.Stock > 0) well.Stock--;
                 if (thirst != null) effects.RemoveEffect<ParchedEffect>();
                 tx.AfterCommit(() => MessageLog.Add(thirst != null ? "You draw cool water and drink until the parch lets go." : "You drink. The well water is cool."));
                 tx.AfterCommit(() => CavesOfOoo.Diagnostics.Diag.Record("furniture", "WaterDrawn", actor, owner,
-                    new { curedParched = thirst != null, finiteUnitsSpent = pool == null ? 0 : 1 }));
+                    new { curedParched = thirst != null, finiteUnitsSpent = pool != null || stock > 0 ? 1 : 0, stockLeft = well.Stock }));
                 if (own) tx.Commit(); return true;
             }
             finally { if (own) tx.Rollback(); }

@@ -239,13 +239,13 @@ namespace CavesOfOoo.Core
                             else spread.AddBuilder(new SpreadWildernessSituationBuilder(this,land,people,caches,Wayhouse?.ZoneID));
                         }
                     }
-                    return spread;
+                    return WithWaysites(spread, biome, tier, zoneID);
                 case BiomeType.Sodden:
-                    return CreateSoddenPipeline(tier, composed: SoddenCompositionPlan.IsWildernessZone(zoneID));
+                    return WithWaysites(CreateSoddenPipeline(tier, composed: SoddenCompositionPlan.IsWildernessZone(zoneID)), biome, tier, zoneID);
                 case BiomeType.Beating:
                     if (zoneID == TenthFireZoneID)
                         return CreateTenthFirePipeline(tier);
-                    return CreateBeatingPipeline(tier, zoneID, composed: BeatingCompositionPlan.IsWildernessZone(zoneID));
+                    return WithWaysites(CreateBeatingPipeline(tier, zoneID, composed: BeatingCompositionPlan.IsWildernessZone(zoneID)), biome, tier, zoneID);
                 case BiomeType.Grovelands:
                 {
                     // W4.4 SM-D (R8): the Bloom-front registers HERE —
@@ -265,17 +265,26 @@ namespace CavesOfOoo.Core
                         return CreateWovenDollPipeline(tier);
                     var grove = CreateGrovelandsPipeline(tier, composed: true);
                     grove.AddBuilder(new BloomFrontBuilder());
-                    return grove;
+                    return WithWaysites(grove, biome, tier, zoneID);
                 }
                 case BiomeType.Overwrit:
                     return CreateOverwritPipeline(tier, zoneID);
                 case BiomeType.Stump:
-                    return CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy), composed: StumpCompositionPlan.IsWildernessZone(zoneID));
+                    return WithWaysites(CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy), composed: StumpCompositionPlan.IsWildernessZone(zoneID)), biome, tier, zoneID);
 
                 case BiomeType.Cave:
                 default:
                     return CreateCavePipeline(tier);
             }
+        }
+
+        /// <summary>A wild chunk's waysites (Docs/CHUNK-ACTIVITY.md): small authored situations with
+        /// real verbs, placed after the ambient landmarks. Curated zones are never eligible
+        /// (<see cref="WaysitePlan.IsEligible"/>); the Overwrit's budget is zero by canon.</summary>
+        private ZoneGenerationPipeline WithWaysites(ZoneGenerationPipeline pipeline, BiomeType biome, int tier, string zoneID)
+        {
+            if (pipeline != null && WaysitePlan.IsEligible(this, zoneID)) pipeline.AddBuilder(new WaysiteBuilder(biome, tier, WorldSeed));
+            return pipeline;
         }
 
         /// <summary>

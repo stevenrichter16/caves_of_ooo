@@ -41035,6 +41035,1628 @@
       ]
     },
     {
+      "Name": "Bedroll",
+      "Inherits": "Bed",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "bedroll"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A roll of blanket and oilcloth spread on the driest ground to hand. It has been slept in recently."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "DroversTrough",
+      "Inherits": "Well",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "drovers' trough"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "O"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A long stone trough, spring-fed through a split-reed pipe. The water runs clear and cold, and the lip is worn smooth where muzzles have rested."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "Cistern",
+      "Inherits": "Well",
+      "Parts": [
+        {
+          "Name": "Well",
+          "Params": [
+            {
+              "Key": "Stock",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "covered cistern"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "O"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A stone-capped cistern sunk below the sand, filled by what little rain the Beating gets. Under the cover the water is dark and very cold, and there is not much of it."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "HitchingPost",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hitching post"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "|"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "8"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.5"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A post with a worn iron ring. Rope has polished one side of it."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "OverturnedCart",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "overturned cart"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "x"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "12"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.5"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A two-wheeled cart lies on its side, one wheel in the air, the axle snapped clean at the hub. The shafts are empty."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "TokenDish",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "token dish"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "_"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A shallow clay dish at the foot of the stone, holding carved river-tokens. Some are new. Most have been here a long time."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BoatHookPost",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "landing post"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "|"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "8"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.5"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A ferry post sunk deep in the peat, a boat-hook hung from its nail. Two knocks have worn a pale patch in the wood."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteDrover1",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "drover's note"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-drover-1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteDrover2",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "drover's scratched slat"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-drover-2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteDrover3",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "drover's tally"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-drover-3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteCarriage1",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "torn carriage slip"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-carriage-1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteCarriage2",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "water-spoiled carriage slip"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-carriage-2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNotePeatTally1",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "peat-cutter's tally board"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-peat-1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNotePeatTally2",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "note from the bothy door"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-peat-2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteFerrySlate1",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "chalked ferry slate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-ferry-1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteFerrySlate2",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "rubbed ferry slate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-ferry-2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteCistern1",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "salt-stained note"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-cistern-1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteCistern2",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "scratched capstone rubbing"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-cistern-2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteWatcher1",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "watcher's log page"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-watcher-1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteWatcher2",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "strip of pencilled bark"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-watcher-2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteGatherer1",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "gatherer's warning"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-gatherer-1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "WaysiteNoteGatherer2",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "charcoal-written stone rubbing"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "waysite-gatherer-2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Left at a wayside by whoever stopped here last. Read it."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
       "Name": "Codex02",
       "Inherits": "Item",
       "Parts": [

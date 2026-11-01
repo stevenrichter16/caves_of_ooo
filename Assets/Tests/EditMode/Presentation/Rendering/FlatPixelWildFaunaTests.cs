@@ -64,7 +64,9 @@ namespace CavesOfOoo.Tests
 
         // Camps and wild camps: the merchant camp's Warden (no guard duty) wears the approved opening Warden
         // body, and ordinary (permanently lit) campfires burn on the real biome ground beneath them.
-        [TestCase("Overworld.8.2.0")] [TestCase("Overworld.0.16.0")]
+        // 4.2: a Stump watcher's camp (waysite, Docs/CHUNK-ACTIVITY.md); the Stump resolver was the one
+        // ground resolver without the ordinary-hearth exemption, so its fire burned on black.
+        [TestCase("Overworld.8.2.0")] [TestCase("Overworld.0.16.0")] [TestCase("Overworld.4.2.0")]
         public void OrdinaryCampfiresBurnOnRealGround(string id)
         {
             var zone = Visit(id);

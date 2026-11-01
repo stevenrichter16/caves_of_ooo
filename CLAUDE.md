@@ -1,3 +1,26 @@
+**Current chunk-activity checkpoint — 2026-10-31:** Waysites are in: small authored situations with real verbs, in wild chunks of five biomes (see `Docs/CHUNK-ACTIVITY.md`).
+- **Kinds (13):**
+  - Spread: hedge camp, drovers' trough, bee orchard, fallen cart, boundary stone.
+  - Sodden: bothy, hummock camp, duckboard landing.
+  - Beating: shade cistern, salt pan.
+  - Stump: watcher's camp.
+  - Grovelands: gatherer's rest, with no fire under Choir law.
+  - The Overwrit gets none, by canon.
+- **Content:** 7 props and 15 catalogued notes.
+- **Rules:**
+  - Selection is deterministic, and no zone repeats its west neighbour's lead site.
+  - Placement is atomic on open ground and never cuts a route.
+  - A cistern holds 3 units of water (`WellPart.Stock`).
+- **Same-filter census:** Spread purposeful owners 4.0 → 8.3, verbs 2.8 → 6.3; Sodden 4.3 → 8.6, verbs 2.1 → 6.7. The opening is unchanged.
+- **Also fixed:**
+  - Spread signposts reuse the opening's approved frame.
+  - Stump fires get real ground beneath them.
+- **Tests:** 41 adversarial tests (2 bugs fixed, 7 mutants caught).
+- **MCP:** every editor quit kills the server; run it via `~/bin/coo_mcp_keeper.py` (memory: mcp-server-relaunch).
+- **Next:**
+  - Chunk density for the sparse Spread and Beating formations (§9).
+  - Glyph gaps: Spread CropRow beyond the opening, Sodden DryBrush, CopperPipe and PeatBog.
+
 **Current glyph → pixel checkpoint — 2026-10-31:** P5 upper bestiary (9fff61389) and glyph → pixel (ebbdc176c) are pushed.
 - **Coverage:** every creature, NPC, item and prop blueprint now has native flat art.
   - Shared 16×16 bodies: slices 1–4.
@@ -9,7 +32,7 @@
 - **Review:** blind art review, two rounds, all FAILs redrawn; copy check clean.
 - **Runtime census** (seed 64, before rank 1/2): 58 blueprints / 26,226 owners still glyphs.
 - **Next:** Felling-Site ground, then rank 2b (opening identities beyond the opening: glow-quartz, mendleaf, fallen beam, signpost, barrel, oven, millstone), sinkhole inner floors and lairs, live capture (Prompt 8).
-- **MCP:** start the server in its own session (memory: mcp-server-relaunch).
+- **MCP:** superseded; see the chunk-activity checkpoint above.
 
 See `Docs/GLYPH-TO-PIXEL-REPLACEMENT.md`.
 

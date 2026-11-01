@@ -637,7 +637,7 @@ glyph owners in seed 64):
 | glow-quartz vein | 151 | `FlatPixelOpeningArtCatalog` |
 | mendleaf | 85 | `FlatPixelOpeningArtCatalog` |
 | fallen beam | 30 | `FlatPixelOpeningArtCatalog` |
-| signpost | 29 | `FlatPixelOpeningArtCatalog` |
+| signpost | 29 | `FlatPixelOpeningArtCatalog` — **done in ordinary Spread country, 2026-10-31** (below) |
 | wooden barrel | 18 | `FlatPixelOpeningArtCatalog` |
 | oven | 16 | `FlatPixelEastKitchenCatalog` |
 | millstone | 13 | `FlatPixelEastKitchenCatalog` |
@@ -645,6 +645,18 @@ glyph owners in seed 64):
 Each needs a semantic accessor that keeps its home catalog's exact rule, as the orchard and
 river-shrine catalogs already do. The world and reader routes then consult it outside the
 home zone.
+
+**Signpost, ordinary Spread (2026-10-31).** Boundary-stone waysites (`Docs/CHUNK-ACTIVITY.md`)
+put signposts into wild Spread chunks, where they drew as `I` glyphs.
+`FlatPixelSpreadEnvironmentCatalog.IsEligibleSignpost` admits the canonical body to
+opening-anchors frame 8, on the real grass:
+- the solid `I` `&y` post;
+- whose only meaning is its carved directions (`RegionalSignpostPart`);
+- with no material, structure or other state.
+
+The Beating already borrows the same frame, so a signpost reads the same in both countries.
+Tests: `FlatPixelSpreadSignpostTests`, with 9 mutation counter-checks and a consistency pin.
+Signposts elsewhere (Sodden, Grovelands, Stump) are not admitted yet.
 
 **Not yet verified:** live captures (Prompt 8).
 

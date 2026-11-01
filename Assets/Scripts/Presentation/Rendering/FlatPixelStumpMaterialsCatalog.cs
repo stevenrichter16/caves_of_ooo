@@ -114,6 +114,9 @@ namespace CavesOfOoo.Rendering
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
                 if (owner.BlueprintName == "TepuiStone")
                 { if (actual != null || !OrdinaryFloor(owner)) return false; actual = owner; }
+                // A lit hearth stands on the real ground, as in the other four biome resolvers
+                // (2026-10-31: a watcher's-camp waysite fire burned on black without it).
+                else if (FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)) { }
                 else if (CompetingGround(owner, x, y)) return false;
             }
             if (actual == null) return false;

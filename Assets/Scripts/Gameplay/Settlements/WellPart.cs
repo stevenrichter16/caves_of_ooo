@@ -17,6 +17,15 @@ namespace CavesOfOoo.Core
         /// <summary>Ordinary wells work; an authored structural fault disables both drinking and filling.</summary>
         public bool IsUsable => !RepairablePart.BlocksFunction(ParentEntity);
 
+        /// <summary>Units of water left. -1 (the default) is an endless well or spring. A finite well
+        /// (a waysite rain cistern, Docs/CHUNK-ACTIVITY.md) spends one unit per drink and one per
+        /// waterskin charge, and offers nothing once dry. A well with its own LiquidPool counts that
+        /// pool instead. Plain public: it round-trips through the reflection save path.</summary>
+        public int Stock = -1;
+
+        /// <summary>False only for a finite well that has run dry.</summary>
+        public bool HasWater => Stock != 0;
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")

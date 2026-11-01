@@ -22,7 +22,7 @@ namespace CavesOfOoo.Rendering
         const int Width=16, Height=24;
         readonly FlatPixelFallbackCatalog selector;
         public const string ConjuredFlowersResourcePath="Sprites/Live16x24/conjured-flowers";
-        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured;
+        readonly Tile[] turf, road, hedges, tree, berry, bush, flowers, conjured, signpost;
         bool disposed;
         static readonly Dictionary<string,Vector2Int> addresses=BuildAddresses();
         static Dictionary<string,Vector2Int> BuildAddresses()
@@ -45,7 +45,8 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelEastKitchenCatalog.ResourcePath),
-                Resources.Load<Texture2D>(ConjuredFlowersResourcePath),borrowedSelector){ }
+                Resources.Load<Texture2D>(ConjuredFlowersResourcePath),
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),borrowedSelector){ }
 
         /// <summary>Independent optional groups: Sill turf0–3 of9, opening road16/17 of21,
         /// sixteen hedge masks, north Tree0 of4, base Bush5 of10. Null/wrong-sized
@@ -63,11 +64,17 @@ namespace CavesOfOoo.Rendering
         /// <summary>Also the original conjured-flowers sprite (2 frames) for FlowerField.</summary>
         public FlatPixelSpreadEnvironmentCatalog(Texture2D turf9,Texture2D ground21,Texture2D hedge16,
             Texture2D vegetation4,Texture2D base10,Texture2D eastKitchen18,Texture2D conjured2,FlatPixelFallbackCatalog borrowedSelector)
+            :this(turf9,ground21,hedge16,vegetation4,base10,eastKitchen18,conjured2,null,borrowedSelector){ }
+
+        /// <summary>Also the opening's approved signpost, anchors frame 8 of 12, which the Beating
+        /// already borrows (rank 2b, 2026-10-31: boundary-stone waysites).</summary>
+        public FlatPixelSpreadEnvironmentCatalog(Texture2D turf9,Texture2D ground21,Texture2D hedge16,
+            Texture2D vegetation4,Texture2D base10,Texture2D eastKitchen18,Texture2D conjured2,Texture2D anchors12,FlatPixelFallbackCatalog borrowedSelector)
         {
             selector=borrowedSelector;if(selector==null)return;
             turf=Frames(turf9,9,0,4);road=Frames(ground21,21,16,2);hedges=Frames(hedge16,16,0,16);
             tree=Frames(vegetation4,4,0,1);berry=Frames(vegetation4,4,2,1);bush=Frames(base10,10,5,1);flowers=Frames(eastKitchen18,18,14,1);
-            conjured=Frames(conjured2,2,0,2);
+            conjured=Frames(conjured2,2,0,2);signpost=Frames(anchors12,12,8,1);
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -114,6 +121,8 @@ namespace CavesOfOoo.Rendering
                 if(conjured==null||!IsConjuredFlowers(owner,zone.TileState.Get(x,y)))return false;
                 tile=conjured[(x+y)&1];return true;
             }
+            if(owner.BlueprintName=="Signpost")
+            {if(signpost==null||!IsEligibleSignpost(owner))return false;tile=signpost[0];return true;}
             if(!EligibleBody(owner)&&!IsEligibleBerryBush(owner))return false;
             switch(owner.BlueprintName)
             {
@@ -233,6 +242,18 @@ namespace CavesOfOoo.Rendering
                 &&harvest!=null&&!harvest.Harvested&&harvest.YieldBlueprint=="WildBerries"&&harvest.YieldMin>0&&harvest.YieldMax>=harvest.YieldMin
                 &&harvest.YieldMax<=HarvestablePart.MaximumYieldCount&&harvest.YieldChance>0&&harvest.YieldChance<=100;
         }
+        /// <summary>The canonical weathered signpost: the solid 'I' &amp;y post whose only meaning is its
+        /// carved directions (RegionalSignpostPart), with no material, structure or other state.
+        /// The Beating admits the same body to the same frame.</summary>
+        internal static bool IsEligibleSignpost(Entity owner)
+        {
+            if(owner?.BlueprintName!="Signpost"||!Plain(owner)||ForeignMeaning(owner)||Owned<RegionalSignpostPart>(owner)==null
+                ||owner.HasTag("Terrain")||owner.HasTag("Wall")||owner.HasTag("Vegetation")||!Owned<PhysicsPart>(owner).Solid
+                ||owner.HasPart<MaterialPart>()||owner.HasPart<ThermalPart>()||owner.HasPart<DestructiblePart>())return false;
+            var render=Owned<RenderPart>(owner);
+            return render.RenderString=="I"&&render.ColorString=="&y"&&render.RenderLayer==1
+                &&string.IsNullOrEmpty(render.BackgroundColor)&&string.IsNullOrEmpty(render.GlyphVariants);
+        }
         static bool EligibleFlowers(Entity owner)
         {
             if(owner?.BlueprintName!="CharmFlowers"||!Plain(owner)||ForeignMeaning(owner)
@@ -326,7 +347,7 @@ namespace CavesOfOoo.Rendering
             }
             return result;
         }
-        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);}
+        public void Dispose(){if(disposed)return;disposed=true;Release(turf);Release(road);Release(hedges);Release(tree);Release(berry);Release(bush);Release(flowers);Release(conjured);Release(signpost);}
         static void Release(Tile[] tiles){if(tiles==null)return;foreach(var tile in tiles)if(tile!=null){Destroy(tile.sprite);Destroy(tile);}}
         static void Destroy(Object value){if(value==null)return;if(Application.isPlaying)Object.Destroy(value);else Object.DestroyImmediate(value);}
     }

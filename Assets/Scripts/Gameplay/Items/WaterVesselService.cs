@@ -33,12 +33,16 @@ namespace CavesOfOoo.Core
                     if (source == null) return Reject(actor, vessel, command, "no_fresh_water", "Stand beside a well, cistern, or pool of fresh water to fill it.");
                     if (!transaction.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source_in_use", "That water is already being drawn.");
                     var pool = source.GetPart<LiquidPoolPart>();
+                    // A finite well (a rain cistern) gives only what it holds; -1 is endless.
+                    var finite = pool == null && source.GetPart<WellPart>() is WellPart w && w.Stock > 0 ? w : null;
                     var sourceCell = zone.GetEntityCell(source);
-                    int oldVolume = pool?.Volume ?? 0;
-                    int amount = pool == null ? skin.Capacity - before : Math.Min(skin.Capacity - before, oldVolume);
-                    transaction.Do(null, () => { skin.Charges = before; if (pool != null) pool.Volume = oldVolume; });
+                    int oldVolume = pool?.Volume ?? 0, oldStock = finite?.Stock ?? -1;
+                    int amount = pool != null ? Math.Min(skin.Capacity - before, oldVolume)
+                        : finite != null ? Math.Min(skin.Capacity - before, oldStock) : skin.Capacity - before;
+                    transaction.Do(null, () => { skin.Charges = before; if (pool != null) pool.Volume = oldVolume; if (finite != null) finite.Stock = oldStock; });
                     skin.Charges += amount;
                     if (pool != null) pool.Volume -= amount;
+                    if (finite != null) finite.Stock -= amount;
                     int expectedCharges=skin.Charges, capacity=skin.Capacity;
                     Part sourcePart=(Part)pool??(Part)source.GetPart<WellPart>()??(Part)source.GetPart<TileStateSourcePart>();
                     var audio=WorldAudioUtility.Take(actor,vessel,zone,WorldAudioCue.WaterFill,source,false,
@@ -120,7 +124,7 @@ namespace CavesOfOoo.Core
                 if (pool != null)
                 { if (pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedPool(zone, source)) return source; continue; }
                 if (source.GetPart<WellPart>() is WellPart well)
-                { if (well.IsUsable && LiquidSourcePhase.CanDrawWater(zone, source) && !TentRightOath.RefusesWater(actor, zone)) return source; continue; }
+                { if (well.IsUsable && well.HasWater && LiquidSourcePhase.CanDrawWater(zone, source) && !TentRightOath.RefusesWater(actor, zone)) return source; continue; }
                 var spring = source.GetPart<TileStateSourcePart>();
                 if (spring?.Coating == "water" && spring.CoatingTurns > 0
                     && LiquidSourcePhase.CanDrawWater(zone, source) && LiquidSourceSafety.IsUnmixedSource(zone, source, "water")) return source;

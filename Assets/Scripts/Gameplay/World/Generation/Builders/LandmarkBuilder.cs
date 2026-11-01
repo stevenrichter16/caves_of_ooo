@@ -1255,7 +1255,7 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        private static bool AllBlueprintsKnown(StructureStamp stamp, EntityFactory factory)
+        internal static bool AllBlueprintsKnown(StructureStamp stamp, EntityFactory factory)
         {
             foreach (var kvp in stamp.Legend)
             {
@@ -1272,7 +1272,7 @@ namespace CavesOfOoo.Core
                     if (!factory.Blueprints.ContainsKey("LockedChest")) return false;
                     continue;
                 }
-                if (marker.StartsWith("shop:"))
+                if (marker.StartsWith("shop:") || marker.StartsWith("stock:"))
                 {
                     var parts = marker.Split(':');
                     if (parts.Length < 3 || !factory.Blueprints.ContainsKey(parts[1])) return false;
@@ -1355,8 +1355,31 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        private static void Apply(Zone zone, EntityFactory factory, System.Random rng,
+        /// <summary>What one stamp application changed, so a caller that must place a whole
+        /// structure or nothing (<see cref="WaysiteBuilder"/>) can undo it exactly.</summary>
+        internal sealed class PlacementRecord
+        {
+            public readonly List<Entity> Created = new List<Entity>();
+            public readonly List<(int x, int y)> Reserved = new List<(int x, int y)>();
+            public readonly List<(int x, int y)> MadeInterior = new List<(int x, int y)>();
+        }
+
+        /// <summary>The ambient placement rule for one anchor: every footprint cell free,
+        /// unreserved, off stairs and liquid, and passable unless the stamp clears vegetation.</summary>
+        internal static bool CanPlaceAt(Zone zone, StructureStamp stamp, int ax, int ay) => FootprintClear(zone, stamp, ax, ay);
+
+        /// <summary>Apply a stamp at an anchor and record what it created. Never clears vegetation:
+        /// a recorded placement must be exactly undoable.</summary>
+        internal static PlacementRecord ApplyRecorded(Zone zone, EntityFactory factory, System.Random rng,
             StructureStamp stamp, int ax, int ay)
+        {
+            var record = new PlacementRecord();
+            Apply(zone, factory, rng, stamp, ax, ay, record);
+            return record;
+        }
+
+        private static void Apply(Zone zone, EntityFactory factory, System.Random rng,
+            StructureStamp stamp, int ax, int ay, PlacementRecord record = null)
         {
             for (int y = 0; y < stamp.Height; y++)
             {
@@ -1364,9 +1387,9 @@ namespace CavesOfOoo.Core
                 for (int x = 0; x < row.Length; x++)
                 {
                     int wx = ax + x, wy = ay + y;
-                    zone.GenReservedCells.Add((wx, wy));
+                    if (zone.GenReservedCells.Add((wx, wy))) record?.Reserved.Add((wx, wy));
 
-                    if (stamp.ClearsVegetation)
+                    if (stamp.ClearsVegetation && record == null)
                         ClearSolidNonWalls(zone, wx, wy);
 
                     char ch = row[x];
@@ -1382,7 +1405,7 @@ namespace CavesOfOoo.Core
                     if (marker == "interior")
                     {
                         var icell = zone.GetCell(wx, wy);
-                        if (icell != null) icell.IsInterior = true;
+                        if (icell != null && !icell.IsInterior) { icell.IsInterior = true; record?.MadeInterior.Add((wx, wy)); }
                         continue;
                     }
 
@@ -1391,8 +1414,21 @@ namespace CavesOfOoo.Core
                         var chest = factory.CreateEntity("Chest");
                         if (chest != null)
                         {
-                            zone.AddEntity(chest, wx, wy);
+                            zone.AddEntity(chest, wx, wy); record?.Created.Add(chest);
                             LootStocker.StockContainer(chest, marker.Substring(6), factory, rng);
+                        }
+                        continue;
+                    }
+                    // stock:Blueprint:Table — any container blueprint, stocked from a loot table
+                    // (a camp sack, a basket), so a site's container says what it is.
+                    if (marker.StartsWith("stock:"))
+                    {
+                        var parts = marker.Split(':');
+                        var box = parts.Length >= 3 ? factory.CreateEntity(parts[1]) : null;
+                        if (box != null)
+                        {
+                            zone.AddEntity(box, wx, wy); record?.Created.Add(box);
+                            LootStocker.StockContainer(box, parts[2], factory, rng);
                         }
                         continue;
                     }
@@ -1401,7 +1437,7 @@ namespace CavesOfOoo.Core
                         var locked = factory.CreateEntity("LockedChest");
                         if (locked != null)
                         {
-                            zone.AddEntity(locked, wx, wy);
+                            zone.AddEntity(locked, wx, wy); record?.Created.Add(locked);
                             LootStocker.StockContainer(locked, marker.Substring(12), factory, rng);
                         }
                         continue;
@@ -1418,7 +1454,7 @@ namespace CavesOfOoo.Core
                             var shopkeeper = factory.CreateEntity(parts[1]);
                             if (shopkeeper != null)
                             {
-                                zone.AddEntity(shopkeeper, wx, wy);
+                                zone.AddEntity(shopkeeper, wx, wy); record?.Created.Add(shopkeeper);
                                 StockShopkeeper(shopkeeper, parts[2], factory, rng);
                             }
                         }
@@ -1434,7 +1470,7 @@ namespace CavesOfOoo.Core
                     if (entity != null && stamp.Name == "AbandonedCounter")
                         entity.Properties["SecondExploration.Stamp"] = stamp.Name;
                     if (entity != null)
-                        zone.AddEntity(entity, wx, wy);
+                    { zone.AddEntity(entity, wx, wy); record?.Created.Add(entity); }
                 }
             }
         }
