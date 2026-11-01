@@ -111,6 +111,36 @@ namespace CavesOfOoo.Tests
             CollectionAssert.Contains(writers, "Gameplay/Economy/Ledger.cs", "counter-check: the scan finds real writers");
         }
 
+        /// <summary>EC4. Canon (Lore/History/08_MaterialCulture.md, Tent-Right): water is the truest wealth and is
+        /// given to a guest, never sold. No Tent-Right member's shelf may ever roll water; their places hold free
+        /// wells and no shops. Counter-check: the detector sees the Well Keeper's waterskins.</summary>
+        [Test] public void TentRightNeverSellsWater()
+        {
+            LootTableRegistry.InitializeFromJsonSources(Resources.LoadAll<TextAsset>("Content/Data/Loot").Select(t => t.text).ToList());
+            bool IsWater(string bp)
+            {
+                var e = factory.Blueprints.ContainsKey(bp) ? factory.CreateEntity(bp) : null;
+                return e != null && (e.HasPart<WaterskinPart>() || bp.Contains("Water"));
+            }
+            bool RollsWater(string table, System.Collections.Generic.HashSet<string> seen)
+            {
+                var t = seen.Add(table) ? LootTableRegistry.Get(table) : null;
+                return t != null && t.Entries.Any(e => e.Blueprint != null && IsWater(e.Blueprint) || e.TableRef != null && RollsWater(e.TableRef, seen));
+            }
+            int members = 0;
+            foreach (var bp in factory.Blueprints.Values)
+            {
+                var e = factory.CreateEntity(bp.Name);
+                if (e == null || FactionManager.GetFaction(e) != TentRightOath.Faction) continue;
+                members++;
+                var stock = e.GetPart<TraderPart>()?.StockTable;
+                if (!string.IsNullOrEmpty(stock)) Assert.False(RollsWater(stock, new System.Collections.Generic.HashSet<string>()), bp.Name + " sells water");
+                Assert.False(e.GetPart<InventoryPart>()?.Objects.Any(o => IsWater(o.BlueprintName)) == true && e.GetPart<TraderPart>() != null, bp.Name + " shelves water");
+            }
+            Assert.Greater(members, 0, "precondition: Tent-Right has members");
+            Assert.True(RollsWater("WellKeeperStock", new System.Collections.Generic.HashSet<string>()), "counter-check: the Well Keeper's shelf is water");
+        }
+
         /// <summary>E2. Hypothesis: a conversation reward near the purse's ceiling overflows and the clamp
         /// turns the wrapped negative into zero, wiping the purse.</summary>
         [Test] public void ARewardNearTheCeilingNeverWipesThePurse()

@@ -292,10 +292,47 @@ canon cares about: nothing on the shelf is for sale.
 **Spore-Wedded villages** are a different matter: canon lets the player trade with them
 (`01_RotChoir.md` §216). Only the Choir itself, through a tendril, keeps no shop.
 
-## 10. Next steps
+## 10. EC4 — Tent-Right never sells water (2026-11-01)
+
+**Finding.** No Tent-Right member trades: `TentRightHost` and `SaltMaster` have no `Trader`
+part. Wellmeet and the First Tent hold free wells and no shops. Canon already holds, so EC4
+is a pin, not new code. `TentRightNeverSellsWater` checks every Tent-Right blueprint: none
+may stock or shelve water. Its counter-check confirms the detector sees the Well Keeper's
+waterskins.
+
+## 11. EC5 — salt is priced by distance from the flats (2026-11-01)
+
+**Canon.** Salt is "over-abundant near salt-flats; precious far from them"; the Concord's power
+is its logistics.
+
+**Change.** `RegionalValue.Modifier(item, trader)` scales the value of a salt good (blueprints
+tagged `TradeSalt`: `PaleSalt`) by the trader's world distance from the nearest salt pan
+(Beating zones in the `SaltPan` formation):
+- `0.5 + 0.15` per zone, capped at `2.0`, so it runs from 0.5 beside the flats to 2.0 ten zones
+  away;
+- 1 for anything else, or for a trader standing nowhere on the surface map.
+
+It multiplies the good's own value in both `GetBuyPrice` and `GetSellPrice`, so a far trader
+both charges more and pays more. That differs from the place modifier, which moves prices
+against the player both ways.
+
+**What it does to play.**
+- A shrewd trader (high Ego) profits carrying salt inland. At performance 0.95, a pale salt
+  bought beside the flats for 7 sells far away for 22.
+- Nobody profits buying and selling in one place.
+- `SaltMaster`'s mineral request is unchanged.
+
+**Tests** (`RegionalValueTests`): near is cheaper than far both ways; other goods keep one
+price (counter-check); the caravan margin exists and no loop exists in one place; the factor is
+bounded and never falls with distance; an off-map trader stays neutral; and the world really
+has flats and hinterland.
+
+## 12. Next steps
 
 1. Finish the §5.3 sweep (trade screen, restock timing, conversation-to-trader routing,
    faction trust data).
-2. EC4: Tent-Right never sells water.
-3. EC5: salt priced by distance from the flats; then EC6 and EC7.
+2. EC6: Tent-Right takes salt, not drams. This needs a trade-screen design (barter); sweep
+   `TradeUI` first.
+3. EC7: Concord credit at a Factor.
 4. E5: `PalimpsestEcho` (a superseded-world trader); decide its fate against `Lore/`.
+5. A commit-time `trade/Transferred` record for transactional fees (EC2b note).
