@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_sodden_deck.py", line 107, in <module>
+    else:verify('--old' in sys.argv)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_sodden_deck.py", line 94, in verify
+    guard();d=read((BASE if old else OUT)/'source-cells.json');contract(d)
+                                                               ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_sodden_deck.py", line 69, in contract
+    assert bool(f['cells'][y][x])==((mask&bits)==bits),('Connected quadrant remains open',mask,x,y)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('Connected quadrant remains open', 3, 15, 0)

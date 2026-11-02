@@ -1,0 +1,44 @@
+{
+  "job_id": "e5ae61fdc20e498199541e17da662043",
+  "reported": {
+    "mode": "EditMode",
+    "summary": {
+      "total": 185,
+      "passed": 185,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 23.9367203,
+      "resultState": "Passed"
+    },
+    "results": [
+      {
+        "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+        "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+        "state": "Inconclusive",
+        "durationSeconds": 0.0483775,
+        "message": "Current-thread allocation counter did not detect the positive control.",
+        "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:630\n",
+        "output": ""
+      },
+      {
+        "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+        "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+        "state": "Inconclusive",
+        "durationSeconds": 0.0504952,
+        "message": "Current-thread allocation counter did not detect the positive control.",
+        "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:630\n",
+        "output": ""
+      },
+      {
+        "name": "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+        "fullName": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+        "state": "Inconclusive",
+        "durationSeconds": 0.0469296,
+        "message": "Current-thread allocation counter did not detect the positive control.",
+        "stackTrace": "at CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap (System.String id) [0x000f3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelSoddenTravelTests.cs:630\n",
+        "output": ""
+      }
+    ]
+  },
+  "interpretation": "185 passed + 3 inconclusive = 188 cases; allocation positive-control limitation, not all-green"
+}

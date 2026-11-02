@@ -222,4 +222,8 @@ def main():
     check_preserved();print(json.dumps({'packetOnly':True,'frames':28,'size':[448,24],'sha256':manifest['sha256']}))
 
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    # The current approved successor owns all exports. The historical quiet-mire
+    # generator remains reproducible under sodden-travel/deck-before.
+    from build_sodden_deck import build
+    build()
