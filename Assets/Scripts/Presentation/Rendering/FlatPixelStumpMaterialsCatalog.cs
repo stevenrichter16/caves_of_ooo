@@ -359,9 +359,12 @@ namespace CavesOfOoo.Rendering
             return source != null;
         }
         static bool CanonicalFellingWater(Entity owner)
+            => CanonicalAuthoredWater(owner, FellingSceneRuntime.TerrainTag, true);
+
+        internal static bool CanonicalAuthoredWater(Entity owner, string terrainTag, bool solid)
         {
-            if (owner.BlueprintName != "WaterPuddle" || !owner.HasTag(FellingSceneRuntime.TerrainTag)
-                || !PlainOwner(owner) || ForeignMeaning(owner, true) || !Terrain(owner, true, false)
+            if (owner.BlueprintName != "WaterPuddle" || !owner.HasTag(terrainTag)
+                || !PlainOwner(owner) || ForeignMeaning(owner, true) || !Terrain(owner, solid, false)
                 || !Material(owner, "Water", 0f, "Liquid", "Water") || owner.HasPart<DestructiblePart>()) return false;
             var render = Owned<RenderPart>(owner); var pool = Owned<LiquidPoolPart>(owner); var thermal = Owned<ThermalPart>(owner);
             return render.RenderString == "~" && (render.ColorString == "&B" || render.ColorString == "&c")
@@ -528,7 +531,7 @@ namespace CavesOfOoo.Rendering
             return part != null && float.IsFinite(part.Temperature) && float.IsFinite(part.FreezeTemperature)
                 && float.IsFinite(part.FlameTemperature) && part.Temperature > part.FreezeTemperature && part.Temperature < part.FlameTemperature;
         }
-        static bool PermanentWater(ZoneTileState.TileState state)
+        internal static bool PermanentWater(ZoneTileState.TileState state)
         {
             if (state?.Coatings == null || state.Coatings.Count != 1) return false;
             var coating = state.Coatings[0];
@@ -541,7 +544,7 @@ namespace CavesOfOoo.Rendering
                 || owner.HasPart<TriggerOnStepPart>() || owner.HasPart<FiniteLiquidFilmPart>()
                 || owner.HasTag("WellGroundMarker") || owner.HasTag("OvenGroundMarker") || owner.HasTag("LanternGroundMarker")
                 || owner.HasTag("Terrain") && DryFrame(owner, x, y) < 0;
-        static bool Placed(Zone zone, Cell cell, Entity owner)
+        internal static bool Placed(Zone zone, Cell cell, Entity owner)
         {
             if (owner == null || owner.SpatialZone != zone) return false;
             var anchor = zone.GetEntityCell(owner);
@@ -551,7 +554,7 @@ namespace CavesOfOoo.Rendering
             return footprint != null && zone.IsFootprintCurrent(owner)
                 && SpatialQuery.DistanceToCell(zone, owner, cell.X, cell.Y) == 0;
         }
-        static bool VisiblePhysicalOwner(Entity owner)
+        internal static bool VisiblePhysicalOwner(Entity owner)
         {
             var render = Owned<RenderPart>(owner); var physics = Owned<PhysicsPart>(owner);
             if (render == null || !render.Visible || physics == null || physics.InInventory != null || physics.Equipped != null) return false;

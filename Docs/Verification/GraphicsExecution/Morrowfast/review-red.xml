@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.7070929">
+  <test-suite type="TestSuite" id="44208" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36033" result="Failed" site="Child" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.707093" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44180" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36033" result="Failed" site="Child" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.664575" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44181" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36033" result="Failed" site="Child" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.660253" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44182" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36033" result="Failed" site="Child" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.657074" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1477" name="FlatPixelMorrowfastRiverTests" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.646736" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1534" name="InvalidPhysicalCompetitorDoesNotRevokeRiver" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.644559" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1530" name="InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;custody&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;custody&quot;)" methodname="InvalidPhysicalCompetitorDoesNotRevokeRiver" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1655340748" result="Failed" start-time="2026-11-02 10:35:28Z" end-time="2026-11-02 10:35:29Z" duration="0.340679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver (System.String change) [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:47
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+              </test-case>
+              <test-case id="1531" name="InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;foreign-render&quot;)" methodname="InvalidPhysicalCompetitorDoesNotRevokeRiver" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="729728645" result="Failed" start-time="2026-11-02 10:35:29Z" end-time="2026-11-02 10:35:29Z" duration="0.088919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver (System.String change) [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1532" name="InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;foreign-physics&quot;)" methodname="InvalidPhysicalCompetitorDoesNotRevokeRiver" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1447787889" result="Failed" start-time="2026-11-02 10:35:29Z" end-time="2026-11-02 10:35:29Z" duration="0.087444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver (System.String change) [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:47
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1533" name="InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver(&quot;zero-stack&quot;)" methodname="InvalidPhysicalCompetitorDoesNotRevokeRiver" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="340871694" result="Failed" start-time="2026-11-02 10:35:29Z" end-time="2026-11-02 10:35:29Z" duration="0.087271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.InvalidPhysicalCompetitorDoesNotRevokeRiver (System.String change) [0x000d1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:47
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

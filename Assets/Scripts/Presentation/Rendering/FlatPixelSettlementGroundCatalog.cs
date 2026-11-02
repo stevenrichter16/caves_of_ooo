@@ -27,6 +27,7 @@ namespace CavesOfOoo.Rendering
         readonly FlatPixelFallbackCatalog selector;
         readonly Tile[] lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden;
         readonly FlatPixelSillRiverCatalog water;
+        readonly FlatPixelMorrowfastRiverCatalog morrowRiver;
         readonly FlatPixelSoddenTravelCatalog fixtures;
         bool disposed;
 
@@ -40,7 +41,7 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelSoddenTravelCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.StatesResourcePath),
-                Resources.Load<Texture2D>(ScorchResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(ScorchResourcePath), Resources.Load<Texture2D>(FlatPixelMorrowfastRiverCatalog.ResourcePath), borrowedSelector) { }
 
         /// <summary>Each borrowed group is independent: a missing or malformed atlas only leaves
         /// its own identities on the fallback. No Resources reload on failure.</summary>
@@ -61,6 +62,13 @@ namespace CavesOfOoo.Rendering
             Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4,
             Texture2D vegetation4, Texture2D base10, Texture2D soddenTravel28, Texture2D states12, Texture2D scorch2,
             FlatPixelFallbackCatalog borrowedSelector)
+            : this(sillEnvironment9, forestGround4, beating34, openingGround21, townFloor4,
+                vegetation4, base10, soddenTravel28, states12, scorch2, null, borrowedSelector) { }
+
+        public FlatPixelSettlementGroundCatalog(Texture2D sillEnvironment9, Texture2D forestGround4,
+            Texture2D beating34, Texture2D openingGround21, Texture2D townFloor4,
+            Texture2D vegetation4, Texture2D base10, Texture2D soddenTravel28, Texture2D states12, Texture2D scorch2,
+            Texture2D morrowWater17, FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -74,6 +82,7 @@ namespace CavesOfOoo.Rendering
             yard = Frames(townFloor4, 4, 0, 4, "town floor");
             walls = Frames(beating34, FlatPixelBeatingMaterialsCatalog.FrameCount, 16, 2, "sandstone wall");
             water = new FlatPixelSillRiverCatalog(openingGround21, selector, IsSupportedZone, WaterSubstrate);
+            morrowRiver = new FlatPixelMorrowfastRiverCatalog(morrowWater17, soddenTravel28, selector);
             tree = Frames(vegetation4, 4, 0, 1, "tree");
             berry = Frames(vegetation4, 4, 2, 1, "berry bush");
             dryBrush = Frames(vegetation4, 4, 3, 1, "dry brush");
@@ -200,8 +209,12 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveWaterGround(Zone zone, int x, int y, out Tile tile, out Entity source)
         {
             tile = null; source = null;
-            return !disposed && water != null && water.TryResolveWaterGround(zone, x, y, out tile, out source);
+            return !disposed && ((morrowRiver != null && morrowRiver.TryResolveWater(zone, x, y, out tile, out source))
+                || (water != null && water.TryResolveWaterGround(zone, x, y, out tile, out source)));
         }
+
+        internal Tile MorrowfastBridge(Zone zone, int x, int y)
+            => disposed ? null : morrowRiver?.Bridge(zone, x, y);
 
         /// <summary>A selected SandstoneWall (Beating wall frames), Bush or Tree (Spread rule), DryBrush
         /// (Beating rule) or Duckboard, Reeds or PeatBank (Sodden rule and art), each judged exactly as
@@ -245,7 +258,12 @@ namespace CavesOfOoo.Rendering
                 if (!TryResolveForeground(zone, x, y, owner, out var body)) return false;
                 sprite = body.sprite; return sprite != null;
             }
-            if (owner.BlueprintName == "WaterPuddle") return water != null && water.TryGetSubjectSprite(zone, owner, x, y, out sprite);
+            if (owner.BlueprintName == "WaterPuddle")
+            {
+                if (TryResolveWaterGround(zone, x, y, out var waterTile, out var waterOwner) && ReferenceEquals(owner, waterOwner))
+                { sprite = waterTile.sprite; return sprite != null; }
+                return false;
+            }
             if (!IsGroundName(owner.BlueprintName)) return false;
             if (!TryResolveGround(zone, x, y, out var tile, out var floor) || !ReferenceEquals(floor, owner)) return false;
             sprite = tile.sprite; return sprite != null;
@@ -468,7 +486,7 @@ namespace CavesOfOoo.Rendering
             value ^= value >> 16; value = unchecked(value * 0x7feb352du); value ^= value >> 15;
             return (value & 15u) < 12u ? 0 : 1 + (int)((value >> 4) % 3u);
         }
-        static Tile[] Frames(Texture2D texture, int atlasCount, int start, int count, string group)
+        internal static Tile[] Frames(Texture2D texture, int atlasCount, int start, int count, string group)
         {
             if (texture == null || texture.width != atlasCount * Width || texture.height != Height) return null;
             var tiles = new Tile[count];
@@ -484,7 +502,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            water?.Dispose(); fixtures?.Dispose();
+            water?.Dispose(); fixtures?.Dispose(); morrowRiver?.Dispose();
             foreach (var group in new[] { lawn, floors, masonry, forest, sand, beatingRoad, road, walls, yard, tree, berry, dryBrush, bush, hearth, scorch, warden })
             {
                 if (group == null) continue;

@@ -1,0 +1,62 @@
+{
+  "recorded_utc": "2026-11-02T10:44:48.558927+00:00",
+  "source_base": "9c91feb793442917f61bedb757e2bb7e87452d6d",
+  "scope": "Morrowfast3.6 seed65;67 authored waters (61 solid deep,6 passable bridge supports),6 real western-footbridge support art cells",
+  "status": "bounded-editor-verified; source publication in containing commit",
+  "implementation": "Independent optional approved felling-blackwater17 and sodden-travel28 views; exact cached scene/definition/terrain and live bridge-owner authority. Flat16x24 straight boundaries, real collision/opacity/liquids/wetness unchanged. Shared canonical water validator preserves Felling scope. Disclosed-only bank/board joins, covered water readers, fallback for altered state; borrowed textures retained. No shadow/population changes.",
+  "tests": {
+    "red": "red.xml:41 failures+1 pass, before implementation",
+    "initial_green": "green-initial.xml:42/42",
+    "regression": "green-regression.xml:278/278 across river,Felling,Stump,settlement,Morrowfast ground/bridge",
+    "review_red": "review-red.xml:4/4 intended failures for invalid physical competitors",
+    "final": "green-final.xml:92/92 Morrowfast+Felling after review fixes; counts nonadditive"
+  },
+  "source_corrections": [
+    "Initial copied test draft retained Felling coordinates/API and is excluded; saved corrected42-case RED is authoritative.",
+    "Review corrected invalid physical competitor filtering, cached67terrain IDs, and retained-texture Unity-null lifetime test.",
+    "An attempted immediate Finish\u2192Play was safely refused by isolated-root guard before any fixture mutation; restarted only after Play=false/root=null.",
+    "Read-only position probe initially used Find on KeyCollection and failed compilation; corrected foreach, no gameplay mutation.",
+    "A stale42-test XML was briefly copied while278-job was running, renamed prior-green-42-not-regression.xml and excluded. Final278 receipt copied only after succeeded job."
+  ],
+  "actual_play": {
+    "checkpoint": "RiverCheckpoint:turn1550,25,14HP40; BeforeCheckpoint earlier38,14turn1400; isolated GameBootstrap/native Continue, no F12 in this slice",
+    "matched": [
+      "before-river.png",
+      "after-river.png",
+      "after-final.png"
+    ],
+    "final_correction_world_difference": "0/639200 pixels between initial/final after images",
+    "movement": "25,14\u219222,14 west bank\u219226,14 east bank;HP40. Prior actual Up25,14\u219225,13 then Up remains25,13 at deepwater boundary.",
+    "readers": [
+      "bridge-reader.png",
+      "water-examine.png"
+    ],
+    "removal": "Native Look24,14\u2192Remove component from26,14 removed all6board cells incrementally. Escape/Left remained26,14. bridge-removed.png. Removed-state persistence not separately observed.",
+    "save_reload": "F5turn1620HP40 at26,14; AfterCheckpoint\u2192fresh Continue26,14.0/639200 worldpixels different from east-bank-saved.png.",
+    "travel": "native worldmap3.6\u21923.5 arrives40,12\u21923.6 arrives38,10; travel-return.png",
+    "whole_scene": "Western river corridor normal1x, full-height bank relation; baseline-center and baseline-west. Not all rooms/approaches/whole-settlement acceptance."
+  },
+  "profile": {
+    "file": "profile-final.json",
+    "seconds": 71.2227552,
+    "mode": "after-only actual Editor movement/readers/save; no execute_code inside measurement",
+    "renderer_p95_ms": 0.084584,
+    "renderer_max_ms": 99.704459,
+    "main_max_ms": 138.653667,
+    "limit": "No matched-before or packaged/hardware speedup claim. R11 spikes open. Earlier44.36s sample retained as profile-initial-short.json, not minimum-duration acceptance."
+  },
+  "reviews": {
+    "source": "portable_equipment_final_review:3P2 fixed, re-review0remainingP1/P2",
+    "visual": "capture_route:0newP1/P2; continuous channel and easier crossing; scope limited to observed subset"
+  },
+  "remaining": [
+    "Repeated vertical ripples",
+    "Abrupt bank transitions",
+    "Board frames read somewhat grate-like",
+    "Dark interiors, quiet western ground and other unreviewed ASCII/owners",
+    "No new shadow/population/full-area acceptance",
+    "Currentdd772Mac/Linux builds exclude this slice; batch next accepted environmental work; Linux/Deck unexecuted"
+  ],
+  "preservation": "75foreign tracked hashes unchanged;2neutral metadata retained; approved art+definition match source base; preexisting foreign sodden-travel metadata matches initial-preservation instead; normal saves untouched by isolated root; Finish verified Play=false/root=null/scene clean; no cleanup",
+  "next_action": "Fresh Cinderhold6.6 actual center/approach/interior audit from Morrowfast worldmapRight3. Native material integration already exists; choose demonstrated wall/floor/road or bounded sandstone-shadow issue, do not invent missing art."
+}

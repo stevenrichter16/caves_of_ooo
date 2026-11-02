@@ -6998,7 +6998,7 @@
         "coverage": "fallback",
         "polish": "in-progress",
         "population": "not-audited",
-        "shadow": "in-progress",
+        "shadow": "observed",
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
@@ -7368,7 +7368,8 @@
           "CurrentfbfeaMac/Linuxexclude water/shadow/memory; batchnext.",
           "No fullarea/population/globalshadow acceptance; darkmemory,olivegrade,otherASCII,interiors/composition andR11remain."
         ]
-      }
+      },
+      "shadow_status_enum_correction": "Existing actual Gantry shadow observation; in-progress is not a valid shadow-axis value. No broader acceptance."
     },
     {
       "id": "surface/Overworld.8.8.0",
@@ -16368,14 +16369,14 @@
         "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Enumerate real interior/service footprints and states; walk all approaches and compare native materials/readers.",
+      "next_action": "Remaining Morrowfast interiors/joins/services/full-scene audit; global next fresh Cinderhold6.6 material/shadow baseline.",
       "faction": "Stillcord",
       "profile": "Morrowfast",
       "legacy_inventory_pointer": "/settlements/0",
@@ -16391,7 +16392,25 @@
         "status": "not-enumerated",
         "records": [],
         "rule": "Use actual footprint/owner IDs; do not invent separate zone IDs for same-graph interiors."
-      }
+      },
+      "observed_seed": 65,
+      "bounded_slices": [
+        {
+          "id": "morrowfast-river-bridge",
+          "axis": "coverage",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-MORROWFAST-RIVER.md",
+          "delivery": "Editor only; currentdd772 packages exclude",
+          "limits": [
+            "Repeated vertical ripples",
+            "Abrupt bank transitions",
+            "Board frames read somewhat grate-like",
+            "Dark interiors, quiet western ground and other unreviewed ASCII/owners",
+            "No new shadow/population/full-area acceptance",
+            "Currentdd772Mac/Linux builds exclude this slice; batch next accepted environmental work; Linux/Deck unexecuted"
+          ]
+        }
+      ]
     },
     {
       "id": "settlement/sill",
@@ -16447,7 +16466,7 @@
         "coverage": "fallback",
         "polish": "in-progress",
         "population": "not-audited",
-        "shadow": "in-progress",
+        "shadow": "observed",
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
@@ -16812,7 +16831,8 @@
           "CurrentfbfeaMac/Linuxexclude water/shadow/memory; batchnext.",
           "No fullarea/population/globalshadow acceptance; darkmemory,olivegrade,otherASCII,interiors/composition andR11remain."
         ]
-      }
+      },
+      "shadow_status_enum_correction": "Existing actual Gantry shadow observation; in-progress is not a valid shadow-axis value. No broader acceptance."
     },
     {
       "id": "settlement/tine",
@@ -19801,20 +19821,38 @@
         "Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve concrete instances and current evidence before advancing any acceptance axis.",
+      "next_action": "Remaining Morrowfast interiors/joins/services/full-scene audit; global next fresh Cinderhold6.6 material/shadow baseline.",
       "legacy_inventory_pointer": "/other_area_families/3",
       "instance_addresses": [
         "Overworld.3.6.0"
       ],
       "address_resolution": "registered finite address list; runtime graph/state audit pending",
-      "scope_note": "Also counted once among17settlements; dedicated scene/resident roles require distinct evidence."
+      "scope_note": "Also counted once among17settlements; dedicated scene/resident roles require distinct evidence.",
+      "observed_seed": 65,
+      "bounded_slices": [
+        {
+          "id": "morrowfast-river-bridge",
+          "axis": "coverage",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-MORROWFAST-RIVER.md",
+          "delivery": "Editor only; currentdd772 packages exclude",
+          "limits": [
+            "Repeated vertical ripples",
+            "Abrupt bank transitions",
+            "Board frames read somewhat grate-like",
+            "Dark interiors, quiet western ground and other unreviewed ASCII/owners",
+            "No new shadow/population/full-area acceptance",
+            "Currentdd772Mac/Linux builds exclude this slice; batch next accepted environmental work; Linux/Deck unexecuted"
+          ]
+        }
+      ]
     },
     {
       "id": "area-family/morrowfast_special/Overworld.3.6.0",
@@ -19827,16 +19865,34 @@
         "Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve current registration/admission; capture actual whole-scene route and critical owner states.",
+      "next_action": "Remaining Morrowfast interiors/joins/services/full-scene audit; global next fresh Cinderhold6.6 material/shadow baseline.",
       "parent_id": "area-family/morrowfast_special",
-      "scope_note": "Also counted once among17settlements; dedicated scene/resident roles require distinct evidence."
+      "scope_note": "Also counted once among17settlements; dedicated scene/resident roles require distinct evidence.",
+      "observed_seed": 65,
+      "bounded_slices": [
+        {
+          "id": "morrowfast-river-bridge",
+          "axis": "coverage",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-MORROWFAST-RIVER.md",
+          "delivery": "Editor only; currentdd772 packages exclude",
+          "limits": [
+            "Repeated vertical ripples",
+            "Abrupt bank transitions",
+            "Board frames read somewhat grate-like",
+            "Dark interiors, quiet western ground and other unreviewed ASCII/owners",
+            "No new shadow/population/full-area acceptance",
+            "Currentdd772Mac/Linux builds exclude this slice; batch next accepted environmental work; Linux/Deck unexecuted"
+          ]
+        }
+      ]
     },
     {
       "id": "area-family/multicell_pilot",

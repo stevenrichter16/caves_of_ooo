@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="42" result="Failed(Child)" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:25Z" duration="4.8190476">
+  <test-suite type="TestSuite" id="44194" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36021" result="Failed" site="Child" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:25Z" duration="4.819048" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44166" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36021" result="Failed" site="Child" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:25Z" duration="4.777779" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44167" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36021" result="Failed" site="Child" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:25Z" duration="4.773327" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44168" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36021" result="Failed" site="Child" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:25Z" duration="4.769103" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1477" name="FlatPixelMorrowfastRiverTests" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:25Z" duration="4.757337" total="42" passed="1" failed="41" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1512" name="AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot" methodname="AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="887761271" result="Failed" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:20Z" duration="0.303982" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot () [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:33
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+            </test-case>
+            <test-case id="1478" name="All67AuthoredWaterCellsKeepAuthoredBlockingMeaning" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.All67AuthoredWaterCellsKeepAuthoredBlockingMeaning" methodname="All67AuthoredWaterCellsKeepAuthoredBlockingMeaning" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="37526662" result="Failed" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:20Z" duration="0.089852" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  25,0
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.All67AuthoredWaterCellsKeepAuthoredBlockingMeaning () [0x0007a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:17
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1514" name="AtlasHasNativePointImportAndStableIdentity" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.AtlasHasNativePointImportAndStableIdentity" methodname="AtlasHasNativePointImportAndStableIdentity" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="122667828" result="Failed" start-time="2026-11-02 10:28:20Z" end-time="2026-11-02 10:28:21Z" duration="0.108507" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.AtlasHasNativePointImportAndStableIdentity () [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:35
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1521" name="ChangedBridgeWithdrawsAllSupportArt" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.487640" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1516" name="ChangedBridgeWithdrawsAllSupportArt(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt(&quot;removed&quot;)" methodname="ChangedBridgeWithdrawsAllSupportArt" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="237867492" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.090045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt (System.String change) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1517" name="ChangedBridgeWithdrawsAllSupportArt(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt(&quot;moved&quot;)" methodname="ChangedBridgeWithdrawsAllSupportArt" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="25194647" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.090654" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt (System.String change) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1518" name="ChangedBridgeWithdrawsAllSupportArt(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt(&quot;hidden&quot;)" methodname="ChangedBridgeWithdrawsAllSupportArt" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="2021646049" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.089785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt (System.String change) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1519" name="ChangedBridgeWithdrawsAllSupportArt(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt(&quot;memory&quot;)" methodname="ChangedBridgeWithdrawsAllSupportArt" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="920407026" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.091322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt (System.String change) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1520" name="ChangedBridgeWithdrawsAllSupportArt(&quot;component&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt(&quot;component&quot;)" methodname="ChangedBridgeWithdrawsAllSupportArt" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="271109076" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.091112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedBridgeWithdrawsAllSupportArt (System.String change) [0x00021] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1508" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:24Z" duration="3.201304" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1480" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;id&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="2011161155" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.086375" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1481" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;tag&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="464238386" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:21Z" duration="0.164119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1482" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="703567189" result="Failed" start-time="2026-11-02 10:28:21Z" end-time="2026-11-02 10:28:22Z" duration="0.364064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1483" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid-tag&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="177377291" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.086581" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1484" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;wall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;wall&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1368501723" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.088390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1485" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;layer&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="946984658" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.088015" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1486" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;color&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1542440389" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.089228" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1487" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;glyph&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="919481614" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.088912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1488" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;hidden&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1438912542" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.087570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1489" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;memory&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="807925375" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.086714" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1490" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;unexplored&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="497924122" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.086948" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1491" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;volume&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;volume&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1508677992" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:22Z" duration="0.085606" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1492" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;liquid&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="853747558" result="Failed" start-time="2026-11-02 10:28:22Z" end-time="2026-11-02 10:28:23Z" duration="0.086582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1493" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;oil&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="608913605" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.086574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1494" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;heat&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1582463736" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.085970" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1495" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;revision&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;revision&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1169982027" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.085669" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1496" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;poi&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="2147467" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.090874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1497" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;graph&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1408677445" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.087953" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1498" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;foreign-part&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1232647842" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.087569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1499" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;duplicate&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1603801828" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.085045" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1500" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;frozen&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1681364064" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:23Z" duration="0.127262" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1501" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;boiling&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;boiling&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="788747066" result="Failed" start-time="2026-11-02 10:28:23Z" end-time="2026-11-02 10:28:24Z" duration="0.191306" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1502" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nonfinite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nonfinite&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1678316352" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.300527" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1503" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;cold&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="2025295243" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.089131" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1504" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;charge&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1711778190" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.090608" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1505" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;residue&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;residue&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="906451220" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.088026" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1506" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;lower-vapor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;lower-vapor&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1586173178" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.090749" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1507" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nan-vapor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nan-vapor&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="683443212" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.088626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1509" name="CoveredReaderLosesHiddenMemoryThenRecovers" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.CoveredReaderLosesHiddenMemoryThenRecovers" methodname="CoveredReaderLosesHiddenMemoryThenRecovers" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1979342899" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.088310" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.CoveredReaderLosesHiddenMemoryThenRecovers () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1511" name="DisclosedNeighborJoinRevokesForHiddenAndCoveredWater" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.DisclosedNeighborJoinRevokesForHiddenAndCoveredWater" methodname="DisclosedNeighborJoinRevokesForHiddenAndCoveredWater" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1378164283" result="Failed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:24Z" duration="0.088757" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.DisclosedNeighborJoinRevokesForHiddenAndCoveredWater () [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:32
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1510" name="MissingOptionalResourceRetainsFallback" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.MissingOptionalResourceRetainsFallback" methodname="MissingOptionalResourceRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="2122815504" result="Passed" start-time="2026-11-02 10:28:24Z" end-time="2026-11-02 10:28:25Z" duration="0.087902" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1513" name="SavedLairClaimStillRevokesRestoredSettlementLabel" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.SavedLairClaimStillRevokesRestoredSettlementLabel" methodname="SavedLairClaimStillRevokesRestoredSettlementLabel" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="1762088083" result="Failed" start-time="2026-11-02 10:28:25Z" end-time="2026-11-02 10:28:25Z" duration="0.085767" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.SavedLairClaimStillRevokesRestoredSettlementLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:34
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1515" name="SixBridgeSupportCellsHaveBoardsAndKeepWaterUnderActors" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.SixBridgeSupportCellsHaveBoardsAndKeepWaterUnderActors" methodname="SixBridgeSupportCellsHaveBoardsAndKeepWaterUnderActors" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="364587138" result="Failed" start-time="2026-11-02 10:28:25Z" end-time="2026-11-02 10:28:25Z" duration="0.087467" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.SixBridgeSupportCellsHaveBoardsAndKeepWaterUnderActors () [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1479" name="WaterReaderAndCoveredBodyShareSubstrateIdentity" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.WaterReaderAndCoveredBodyShareSubstrateIdentity" methodname="WaterReaderAndCoveredBodyShareSubstrateIdentity" classname="CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests" runstate="Runnable" seed="510781425" result="Failed" start-time="2026-11-02 10:28:25Z" end-time="2026-11-02 10:28:25Z" duration="0.086411" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastRiverTests.WaterReaderAndCoveredBodyShareSubstrateIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelMorrowfastRiverTests.cs:18
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
