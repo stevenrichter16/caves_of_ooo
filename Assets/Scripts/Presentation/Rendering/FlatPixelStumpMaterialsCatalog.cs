@@ -17,9 +17,11 @@ namespace CavesOfOoo.Rendering
         Tile[] fellingBlackwater;
         string[,] fellingWaterOwnerIds;
         public const string BlackwaterResourcePath = "Sprites/Live16x24/felling-blackwater";
-        bool ginmereLedgesOnly;
+        bool siteLedgesOnly;
         internal FlatPixelStumpMaterialsCatalog AdmittingGinmereLedges()
-        { admits = FlatPixelSiteAdmission.IsGinmereDescent; ginmereLedgesOnly = true; return this; }
+        { admits = FlatPixelSiteAdmission.IsGinmereDescent; siteLedgesOnly = true; return this; }
+        internal FlatPixelStumpMaterialsCatalog AdmittingStillleafLedges()
+        { admits = FlatPixelSiteAdmission.IsStillleafDescent; siteLedgesOnly = true; return this; }
         string[,] fellingDryOwnerIds, fellingSolidOwnerIds;
         byte[,] fellingSolidRoles; // 1 = opaque wall; 2 = blocking, sight-permeable ridge
         /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
@@ -136,7 +138,7 @@ namespace CavesOfOoo.Rendering
         {
             tile = null;
             if (!ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner) || !Placed(zone, cell, owner)) return false;
-            if (ginmereLedgesOnly) return TryResolveGinmereLedge(zone, x, y, owner, out tile);
+            if (siteLedgesOnly) return TryResolveSiteLedge(zone, x, y, owner, out tile);
             if (fellingAuthored)
             {
                 if (materials == null) return false;
@@ -218,7 +220,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
-            if (ginmereLedgesOnly) return false;
+            if (siteLedgesOnly) return false;
             if (materials == null || !ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
             if (state != null && !state.IsEmpty) return false;
@@ -247,7 +249,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveWaterGround(Zone zone, int x, int y, out Tile tile, out Entity source)
         {
             tile = null; source = null;
-            if (ginmereLedgesOnly) return false;
+            if (siteLedgesOnly) return false;
             if (fellingAuthored) return TryResolveFellingWater(zone, x, y, out tile, out source);
             if (materials == null || !ReadyCell(zone, x, y, out var cell)
                 || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered
@@ -273,11 +275,11 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (ginmereLedgesOnly)
+            if (siteLedgesOnly)
             {
                 // Examine can name this real owner beneath a covering actor.
                 // It still proves placement, disclosure, identity and neutral state.
-                if (!TryResolveGinmereLedge(zone, x, y, owner, out var ledge)) return false;
+                if (!TryResolveSiteLedge(zone, x, y, owner, out var ledge)) return false;
                 sprite = ledge.sprite; return sprite != null;
             }
             if (fellingAuthored)
@@ -358,7 +360,7 @@ namespace CavesOfOoo.Rendering
                 && thermal.Temperature < 100 && float.IsFinite(thermal.VaporTemperature)
                 && thermal.Temperature < thermal.VaporTemperature && NeutralThermal(owner);
         }
-        bool TryResolveGinmereLedge(Zone zone, int x, int y, Entity owner, out Tile tile)
+        bool TryResolveSiteLedge(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
             if (materials == null || owner?.BlueprintName != "DescentLedge"

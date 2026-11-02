@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Failed(Child)" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 02:50:30Z" end-time="2026-11-02 02:50:37Z" duration="7.0695548">
+  <test-suite type="TestSuite" id="43728" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35616" result="Failed" site="Child" start-time="2026-11-02 02:50:30Z" end-time="2026-11-02 02:50:37Z" duration="7.069555" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43700" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35616" result="Failed" site="Child" start-time="2026-11-02 02:50:30Z" end-time="2026-11-02 02:50:37Z" duration="7.059411" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43701" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35616" result="Failed" site="Child" start-time="2026-11-02 02:50:30Z" end-time="2026-11-02 02:50:37Z" duration="7.054996" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43702" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35616" result="Failed" site="Child" start-time="2026-11-02 02:50:30Z" end-time="2026-11-02 02:50:37Z" duration="7.051140" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2335" name="FlatPixelStillleafLedgeTests" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-11-02 02:50:30Z" end-time="2026-11-02 02:50:37Z" duration="7.040988" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2336" name="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" methodname="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="2085068858" result="Failed" start-time="2026-11-02 02:50:30Z" end-time="2026-11-02 02:50:30Z" duration="0.335221" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2353" name="ChangedMeaningOrDisclosureFallsBack" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-02 02:50:31Z" end-time="2026-11-02 02:50:33Z" duration="2.195388" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2347" name="ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1645534175" result="Failed" start-time="2026-11-02 02:50:31Z" end-time="2026-11-02 02:50:31Z" duration="0.203331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2348" name="ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="139223072" result="Failed" start-time="2026-11-02 02:50:31Z" end-time="2026-11-02 02:50:31Z" duration="0.198631" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2349" name="ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="896442548" result="Failed" start-time="2026-11-02 02:50:31Z" end-time="2026-11-02 02:50:31Z" duration="0.382454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2350" name="ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="429467216" result="Failed" start-time="2026-11-02 02:50:31Z" end-time="2026-11-02 02:50:32Z" duration="0.567150" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2351" name="ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="775751836" result="Failed" start-time="2026-11-02 02:50:32Z" end-time="2026-11-02 02:50:32Z" duration="0.602239" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2352" name="ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1589203998" result="Failed" start-time="2026-11-02 02:50:32Z" end-time="2026-11-02 02:50:33Z" duration="0.202053" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:68
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2365" name="CoveredReaderRevokesAndRecoversWithDisclosure" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 02:50:33Z" end-time="2026-11-02 02:50:33Z" duration="0.438958" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2363" name="CoveredReaderRevokesAndRecoversWithDisclosure(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure(False)" methodname="CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="2039227663" result="Failed" start-time="2026-11-02 02:50:33Z" end-time="2026-11-02 02:50:33Z" duration="0.200543" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2364" name="CoveredReaderRevokesAndRecoversWithDisclosure(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure(True)" methodname="CoveredReaderRevokesAndRecoversWithDisclosure" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="838736843" result="Failed" start-time="2026-11-02 02:50:33Z" end-time="2026-11-02 02:50:33Z" duration="0.205670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.CoveredReaderRevokesAndRecoversWithDisclosure (System.Boolean memory) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:104
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="2359" name="EqualBlueprintDoesNotExpandThisCatalog" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 02:50:33Z" end-time="2026-11-02 02:50:34Z" duration="0.847050" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2355" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.02.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.02.4.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1764597661" result="Failed" start-time="2026-11-02 02:50:33Z" end-time="2026-11-02 02:50:33Z" duration="0.198315" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:131
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:129
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2356" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.0&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1810768861" result="Failed" start-time="2026-11-02 02:50:33Z" end-time="2026-11-02 02:50:34Z" duration="0.206113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:131
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:129
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2357" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.2&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="625449703" result="Failed" start-time="2026-11-02 02:50:34Z" end-time="2026-11-02 02:50:34Z" duration="0.205296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:131
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:129
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2358" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1241337517" result="Failed" start-time="2026-11-02 02:50:34Z" end-time="2026-11-02 02:50:34Z" duration="0.205937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:131
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:129
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:88
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2354" name="ForeignOrRemovedReaderCannotBorrowLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ForeignOrRemovedReaderCannotBorrowLedgeArt" methodname="ForeignOrRemovedReaderCannotBorrowLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1125914202" result="Failed" start-time="2026-11-02 02:50:34Z" end-time="2026-11-02 02:50:34Z" duration="0.287396" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.ForeignOrRemovedReaderCannotBorrowLedgeArt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:81
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2362" name="MissingOrMalformedOptionalAtlasDeclines" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 02:50:34Z" end-time="2026-11-02 02:50:35Z" duration="0.613989" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2360" name="MissingOrMalformedOptionalAtlasDeclines(False)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines(False)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="422219769" result="Failed" start-time="2026-11-02 02:50:34Z" end-time="2026-11-02 02:50:35Z" duration="0.379852" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:131
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines (System.Boolean malformed) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2361" name="MissingOrMalformedOptionalAtlasDeclines(True)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines(True)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="530260419" result="Failed" start-time="2026-11-02 02:50:35Z" end-time="2026-11-02 02:50:35Z" duration="0.194946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:131
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.MissingOrMalformedOptionalAtlasDeclines (System.Boolean malformed) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2345" name="PersistedLibraryProfilePermitsStoryRename" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.PersistedLibraryProfilePermitsStoryRename" methodname="PersistedLibraryProfilePermitsStoryRename" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1996152705" result="Failed" start-time="2026-11-02 02:50:35Z" end-time="2026-11-02 02:50:35Z" duration="0.201766" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.PersistedLibraryProfilePermitsStoryRename () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2366" name="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" methodname="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="234976759" result="Failed" start-time="2026-11-02 02:50:35Z" end-time="2026-11-02 02:50:35Z" duration="0.195054" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:131
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:129
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:117
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2346" name="SavedLairAuthorityWinsOverRestoredStillleafLabel" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.SavedLairAuthorityWinsOverRestoredStillleafLabel" methodname="SavedLairAuthorityWinsOverRestoredStillleafLabel" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="636566250" result="Failed" start-time="2026-11-02 02:50:35Z" end-time="2026-11-02 02:50:35Z" duration="0.195225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.SavedLairAuthorityWinsOverRestoredStillleafLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:62
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2344" name="WarmCurrentAuthorityChangesRevokeLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-02 02:50:35Z" end-time="2026-11-02 02:50:37Z" duration="1.509338" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2338" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="1105611196" result="Failed" start-time="2026-11-02 02:50:36Z" end-time="2026-11-02 02:50:36Z" duration="0.194738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2339" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="150989382" result="Failed" start-time="2026-11-02 02:50:36Z" end-time="2026-11-02 02:50:36Z" duration="0.198889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2340" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="59405903" result="Failed" start-time="2026-11-02 02:50:36Z" end-time="2026-11-02 02:50:36Z" duration="0.199770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2341" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="2026100155" result="Failed" start-time="2026-11-02 02:50:36Z" end-time="2026-11-02 02:50:36Z" duration="0.362690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2342" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="2122923616" result="Failed" start-time="2026-11-02 02:50:36Z" end-time="2026-11-02 02:50:37Z" duration="0.319442" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2343" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="639781226" result="Failed" start-time="2026-11-02 02:50:37Z" end-time="2026-11-02 02:50:37Z" duration="0.197468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="2337" name="WorldAndCoveredExamineKeepTheSameLedgeIdentity" fullname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WorldAndCoveredExamineKeepTheSameLedgeIdentity" methodname="WorldAndCoveredExamineKeepTheSameLedgeIdentity" classname="CavesOfOoo.Tests.FlatPixelStillleafLedgeTests" runstate="Runnable" seed="194033240" result="Failed" start-time="2026-11-02 02:50:37Z" end-time="2026-11-02 02:50:37Z" duration="0.196400" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Stillleaf ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelStillleafLedgeTests.WorldAndCoveredExamineKeepTheSameLedgeIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStillleafLedgeTests.cs:40
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

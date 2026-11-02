@@ -119,6 +119,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelStumpMaterialsCatalog _stumpSiteArt;
         private FlatPixelStumpMaterialsCatalog _fellingGroundArt;
         private FlatPixelStumpMaterialsCatalog _ginmereLedgeArt;
+        private FlatPixelStumpMaterialsCatalog _stillleafLedgeArt;
         private FlatPixelGrovelandsMaterialsCatalog _grovelandsMaterialsArt;
         private FlatPixelOverwritMaterialsCatalog _overwritMaterialsArt;
         private FlatPixelStumpMaterialsCatalog _stumpMaterialsArt;
@@ -2052,6 +2053,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelStumpMaterialsCatalog StumpMaterialsArtFor(Zone zone)
         {
+            if (FlatPixelSiteAdmission.IsStillleafDescent(zone))
+            {
+                if (_stillleafLedgeArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _stillleafLedgeArt = new FlatPixelStumpMaterialsCatalog(
+                        Resources.Load<Texture2D>(FlatPixelStumpMaterialsCatalog.ResourcePath),
+                        null, null, _glyphFallback).AdmittingStillleafLedges();
+                }
+                return _stillleafLedgeArt;
+            }
             if (FlatPixelSiteAdmission.IsGinmereDescent(zone))
             {
                 if (_ginmereLedgeArt == null && _loadOptionalResources)
@@ -2517,6 +2529,8 @@ namespace CavesOfOoo.Rendering
             _fellingGroundArt?.Dispose();
             _ginmereLedgeArt?.Dispose();
             _ginmereLedgeArt = null;
+            _stillleafLedgeArt?.Dispose();
+            _stillleafLedgeArt = null;
             _fellingGroundArt = null;
             _stumpSiteArt = null;
             _shallowCavesArt?.Dispose();
