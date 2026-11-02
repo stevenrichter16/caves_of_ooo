@@ -307,3 +307,7 @@ Spread10.15 seed65 now records the15-owner cold field-margin pilot separately un
 `sinkhole/ginmere/depth/1` records observed bounded SandstoneFloor/Wall reuse,137native passes and actual readers/movement/collision/stairs/reload. The overlapping stack gets a bounded note; depth2 remains untouched. Coverage stays fallback for remaining owners, polish in-progress, population/shadows not advanced. R11 and20750worldpixel restart differences remain open. See [slice](GRAPHICS-GINMERE-DESCENT.md).
 
 2026-11-02: Beating19.12 bounded9passablefragment composition reviewed separately from material/full-area acceptance. Threeactualviews,reader/crossing/F5freshContinue exactworldpixels;316applicablenative, source2P2fixed/final0P1P2. Smallgreen orderlyfragments andbroademptyrooms remain. Currentca323packageslag; batchnext. See [record](GRAPHICS-BEATING-FRAGMENTS.md).
+
+## Covered mire — 2026-11-02
+
+Causeway19.7 now has bounded actual covered-item/player pool continuity and exact reader, using unchanged approved art.177 native completed, zero reported failures; full result null and3 allocation checks uncertified. Actual travel/save/fresh reload0/639200worlddifference. Coverage stays fallback and polish in-progress; population/shadow unchanged. Current5f345 packages exclude this and PeatBank. See GRAPHICS-COVERED-MIRE.md.

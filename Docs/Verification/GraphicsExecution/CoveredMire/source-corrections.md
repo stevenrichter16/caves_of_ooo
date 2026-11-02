@@ -1,0 +1,7 @@
+# Saved contract correction before implementation
+
+The old `SubmittedMireCoverUncoverRestoresTheWaveUntilNativeSurfaceReturns` explicitly expects blue~ while an actor covers native mire. Current actual Causeway53,19 has canonical visible MirePool60 beneath RawMeat/CreatureCorpse and shows this defect. Change that expectation deliberately to native lower ground plus unchanged selected owner; retain independent state marks and all refusal controls. Ground is presentation only: no stock/coating/owner writes, no new mechanics. Native RED precedes implementation. Reuse existing approved sodden-ground art and renderer layers; no imagegen/newart needed.
+
+First regression run176completed found one regression in existing same-liquid projection test: the new reader's sole-pool gate also rejected an already-selected source among merged same-liquid owners. Preserve that existing selected-subject path and apply uniqueness only to the new covered path. No old assertion weakened. Hidden/duplicate covered pools remain refusal cases. Terminal full result was unavailable, so no inferred full pass count. Added submitted movement/depletion/removal/full-paint comparison.
+
+Added movement test initially asserted the public reader returned false for a moved/wrong-cell subject. Source audit shows that public API may return a generic glyph after the native adapter declines; caller authorizes the document. Correct the assertion to reject both Sodden native textures, matching existing refusal tests. Do not change runtime behavior to satisfy the mistaken assertion.

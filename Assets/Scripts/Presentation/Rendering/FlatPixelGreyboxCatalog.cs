@@ -1127,6 +1127,13 @@ namespace CavesOfOoo.Rendering
                 ground = soddenFloor.BlueprintName == "StoneFloor" ? FlatPixelGreyboxGround.StoneFloor : FlatPixelGreyboxGround.Ground;
                 if (owner == soddenFloor) kind = FlatPixelGreyboxKind.Ground;
             }
+            var coveredMire = sodden?.CoveredMire(zone, x, y);
+            bool soddenMireGround = coveredMire != null;
+            if (soddenMireGround)
+            {
+                groundTile = coveredMire; groundColor = Color.white;
+                ground = FlatPixelGreyboxGround.Water;
+            }
             var beating = !fallback.Remembered ? BeatingMaterialsArtFor(zone) : null;
             Tile beatingGroundTile = null;
             Entity beatingFloor = null;
@@ -1412,7 +1419,7 @@ namespace CavesOfOoo.Rendering
                 groundTile = shaleRecessTile; groundColor = shaleRecessColor;
             }
             bool beatingBrineNative = beatingNative && owner.BlueprintName == "BrinePool";
-            bool mireNative = soddenNative && owner.BlueprintName == "MirePool";
+            bool mireNative = soddenMireGround || soddenNative && owner.BlueprintName == "MirePool";
             bool productKnown = FlatPixelHarvestProductsCatalog.HasKnownRole(owner);
             var products = HarvestProductsArtFor(owner);
             Tile productArt = null;
@@ -1623,7 +1630,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || soddenMireGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 

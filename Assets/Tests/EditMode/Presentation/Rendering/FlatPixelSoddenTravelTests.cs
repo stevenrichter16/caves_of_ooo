@@ -740,7 +740,7 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
             }
         }
-        [Test] public void SubmittedMireCoverUncoverRestoresTheWaveUntilNativeSurfaceReturns()
+        [Test] public void SubmittedMireCoverUncoverPreservesNativeSurface()
         {
             var mire = Add("MirePool");
             using (var paint = new Paint(world, zone))
@@ -749,9 +749,10 @@ namespace CavesOfOoo.Tests
                 long full = EnvironmentSpriteRenderer.Perf.FullPasses;
                 var actor = Add("Player"); actor.GetPart<RenderPart>().RenderLayer = 100;
                 paint.Dirty(X, Y); paint.Step(); Assert.AreSame(actor, View().Owner);
-                Assert.AreSame(CP437TilesetGenerator.GetTile('~'), paint.Mark);
-                Assert.AreEqual(new Color(.30f, .55f, .95f), paint.MarkTint);
-                NotSoddenNative(mire);
+                NativeTile(paint.GroundAt(X,Y),CurrentMireAtlas); Assert.IsNull(paint.Mark);
+                Assert.True(View().RepresentedMire);
+                Assert.True(world.TryGetPresentationSubjectSprite(zone,mire,X,Y,out var sprite,out _));
+                Assert.AreSame(Resources.Load<Texture2D>(CurrentMireAtlas),sprite.texture);
                 Assert.True(zone.MoveEntity(actor, X - 1, Y)); paint.Dirty(X, Y); paint.Step();
                 NativeTile(paint.At(X, Y), CurrentMireAtlas); Assert.IsNull(paint.Mark);
                 Assert.AreEqual(full, EnvironmentSpriteRenderer.Perf.FullPasses);
@@ -1122,6 +1123,85 @@ namespace CavesOfOoo.Tests
                 var decorated=paint.DecorationAt(X+1,Y);paint.Renderer.MarkDirty();paint.Step();Assert.AreSame(decorated,paint.DecorationAt(X+1,Y));
                 Assert.AreEqual(DestroyVerdict.Destroyed,DestructionSystem.Damage(board,999,null,zone));paint.Step();Assert.IsNull(paint.DecorationAt(X,Y));
                 Assert.AreEqual(0,paint.DecorationAt(X+1,Y).sprite.rect.x);
+            }
+        }
+
+        [TestCase("Player",60)] [TestCase("RawMeat",60)] [TestCase("Dagger",0)]
+        public void CoveredMireKeepsNativeGroundAndExactReader(string coverName,int stock)
+        {
+            Add("Grass");var pool=Add("MirePool");pool.GetPart<LiquidPoolPart>().Volume=stock;
+            var cover=Add(coverName);cover.GetPart<RenderPart>().RenderLayer=100;
+            string state=zone.TileState.ToSaveString();int version=zone.EntityVersion;
+            var view=View();Assert.AreSame(cover,view.Owner);NativeTile(view.GroundTile,FenAtlas);Assert.True(view.RepresentedMire);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,pool,X,Y,out var sprite,out var tint));
+            Assert.AreSame(Resources.Load<Texture2D>(FenAtlas),sprite.texture);
+            Assert.AreEqual(new Rect((stock==0?20:4)*16,0,16,24),sprite.rect);Assert.AreEqual(Color.white,tint);
+            Assert.AreEqual(state,zone.TileState.ToSaveString());Assert.AreEqual(version,zone.EntityVersion);
+        }
+        [TestCase("hidden")] [TestCase("fog")] [TestCase("unexplored")] [TestCase("duplicate")]
+        [TestCase("other-pool")] [TestCase("solid")] [TestCase("mixed")] [TestCase("material")]
+        [TestCase("foreign-pool")] [TestCase("carried")] [TestCase("removed")] [TestCase("frozen")]
+        [TestCase("stale")]
+        public void CoveredMireCountercasesKeepTruthfulFallback(string fault)
+        {
+            var pool=Add("MirePool");var cover=Add("Player");cover.GetPart<RenderPart>().RenderLayer=100;
+            Assert.True(View().RepresentedMire,"Covered-pool positive control");
+            switch(fault)
+            {
+                case "hidden":pool.GetPart<RenderPart>().Visible=false;break;
+                case "fog":zone.GetCell(X,Y).IsVisible=false;break;
+                case "unexplored":zone.GetCell(X,Y).Explored=false;break;
+                case "duplicate":Add("MirePool");break;
+                case "other-pool":Add("BrinePool");break;
+                case "solid":Add("PeatBank");break;
+                case "mixed":zone.TileState.WriteCoating(X,Y,"oil",ZoneTileState.Permanent);break;
+                case "material":pool.GetPart<MaterialPart>().MaterialID="Stone";break;
+                case "foreign-pool":pool.GetPart<LiquidPoolPart>().ParentEntity=new Entity();break;
+                case "carried":pool.GetPart<PhysicsPart>().InInventory=cover;break;
+                case "removed":Assert.True(zone.RemoveEntity(pool));break;
+                case "frozen":pool.GetPart<ThermalPart>().Temperature=pool.GetPart<ThermalPart>().FreezeTemperature;break;
+                case "stale":Attach(Crossing);break;
+            }
+            if(world.TryResolvePresentation(zone,X,Y,out var view))Assert.False(view.RepresentedMire);
+            if(world.TryGetPresentationSubjectSprite(zone,pool,X,Y,out var sprite,out _))Assert.AreNotSame(Resources.Load<Texture2D>(FenAtlas),sprite?.texture);
+        }
+        [Test] public void CoveredMireHiddenCompetitorAndHeatStayIndependent()
+        {
+            var pool=Add("MirePool");var cover=Add("RawMeat");cover.GetPart<RenderPart>().RenderLayer=100;
+            Add("MirePool",seed:false).GetPart<RenderPart>().Visible=false;
+            zone.TileState.AddHeat(X,Y,25);string state=zone.TileState.ToSaveString();
+            using(var paint=new Paint(world,zone))
+            {paint.Step();NativeTile(paint.GroundAt(X,Y),FenAtlas);Assert.True(View().RepresentedMire);
+             Assert.NotNull(paint.Mark);Assert.AreNotSame(CP437TilesetGenerator.GetTile('~'),paint.Mark);var mark=paint.Mark;var tint=paint.MarkTint;
+             Assert.True(zone.RemoveEntity(cover));paint.Dirty(X,Y);paint.Step();Assert.AreSame(mark,paint.Mark);Assert.AreEqual(tint,paint.MarkTint);
+             Assert.AreEqual(state,zone.TileState.ToSaveString());}
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void CoveredMireMissingResourcesRetainWave(bool malformed)
+        {
+            var pool=Add("MirePool");var cover=Add("Player");cover.GetPart<RenderPart>().RenderLayer=100;
+            var bad=malformed?new Texture2D(447,24):null;
+            try {Inject(bad);using(var paint=new Paint(world,zone))
+              {paint.Step();Assert.False(View().RepresentedMire);Assert.AreSame(cover,View().Owner);Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark);}}
+            finally {world?.Dispose();if(bad!=null)Object.DestroyImmediate(bad);}
+        }
+
+        [Test] public void CoveredMireSubmittedMoveDepleteAndRemovalAgreeWithFullPaint()
+        {
+            var first=Add("MirePool");var second=Add("MirePool",X+1);var actor=Add("Player");actor.GetPart<RenderPart>().RenderLayer=100;
+            using(var paint=new Paint(world,zone))
+            {
+                paint.Step();NativeTile(paint.GroundAt(X,Y),FenAtlas);Assert.IsNull(paint.Mark);
+                long full=EnvironmentSpriteRenderer.Perf.FullPasses;
+                first.GetPart<LiquidPoolPart>().Volume=0;paint.Dirty(X,Y);paint.Step();
+                Assert.AreEqual((20+2)*16,paint.GroundAt(X,Y).sprite.rect.x);
+                Assert.True(zone.MoveEntity(actor,X+1,Y));paint.Dirty(X,Y);paint.Dirty(X+1,Y);paint.Step();
+                NativeTile(paint.At(X,Y),FenAtlas);NativeTile(paint.GroundAt(X+1,Y),FenAtlas);Assert.IsNull(paint.MarkAt(X+1,Y));
+                Assert.AreEqual(full,EnvironmentSpriteRenderer.Perf.FullPasses);
+                var ground=paint.GroundAt(X+1,Y);paint.Renderer.MarkDirty();paint.Step();Assert.AreSame(ground,paint.GroundAt(X+1,Y));
+                if(world.TryGetPresentationSubjectSprite(zone,first,X+1,Y,out var movedSprite,out _))
+                {Assert.AreNotSame(Resources.Load<Texture2D>(FenAtlas),movedSprite.texture);Assert.AreNotSame(Resources.Load<Texture2D>(Atlas),movedSprite.texture);}
+                Assert.True(zone.RemoveEntity(second));paint.Dirty(X+1,Y);paint.Step();Assert.False(View(X+1,Y).RepresentedMire);
             }
         }
 

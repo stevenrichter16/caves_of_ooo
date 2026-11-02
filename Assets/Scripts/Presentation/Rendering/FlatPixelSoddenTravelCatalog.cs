@@ -99,14 +99,7 @@ namespace CavesOfOoo.Rendering
             if (owner.BlueprintName == "Reeds") tile = reeds == null ? null : reeds[frame];
             else if (owner.BlueprintName == "StoneWall") tile = masonry == null ? null : masonry[8];
             else if (owner.BlueprintName == "MirePool" && fenGround != null)
-            {
-                int mask = 0;
-                if (MireAt(zone, x, y - 1)) mask |= 1;
-                if (MireAt(zone, x + 1, y)) mask |= 2;
-                if (MireAt(zone, x, y + 1)) mask |= 4;
-                if (MireAt(zone, x - 1, y)) mask |= 8;
-                tile = fenGround[(Owned<LiquidPoolPart>(owner).Volume == 0 ? 20 : 4) + mask];
-            }
+                tile = MireTile(zone, x, y, owner);
             else if (travel != null)
             {
                 if (owner.BlueprintName == "Duckboard")
@@ -179,13 +172,19 @@ namespace CavesOfOoo.Rendering
                 if (travel == null || !TryBoardOwner(zone, x, y, out var board) || !ReferenceEquals(board, owner)) return false;
                 sprite = travel[0].sprite; return sprite != null;
             }
-            if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
-            if (owner.BlueprintName == "MirePool" && fenGround != null)
+            if (owner?.BlueprintName == "MirePool")
             {
-                if (ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) < 0) return false;
-                sprite = fenGround[Owned<LiquidPoolPart>(owner).Volume == 0 ? 20 : 4].sprite;
-                return sprite != null;
+                if (!ReadyCell(zone, x, y, out _)) return false;
+                // Preserve the already-selected subject contract, including merged
+                // same-liquid sources. Only the new covered route requires a sole pool.
+                if (Selected(zone, x, y, owner))
+                { if (ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) < 0) return false; }
+                else if (!TryMireOwner(zone, x, y, out var pool) || !ReferenceEquals(pool, owner)) return false;
+                var tile = fenGround != null ? fenGround[Owned<LiquidPoolPart>(owner).Volume == 0 ? 20 : 4]
+                    : travel == null ? null : travel[ForegroundFrame(owner, zone.TileState.Get(x, y), x, y)];
+                sprite = tile == null ? null : tile.sprite; return sprite != null;
             }
+            if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && floor == owner)
@@ -247,6 +246,44 @@ namespace CavesOfOoo.Rendering
         }
         static bool BoardCover(Entity owner)
             => owner != null && (owner.HasTag("Player") || owner.HasTag("Creature") || owner.HasTag("Item"));
+
+        /// <summary>A disclosed canonical pool remains water beneath a real actor/item.
+        /// The caller sets RepresentedMire only when this actual tile is submitted.</summary>
+        public Tile CoveredMire(Zone zone, int x, int y)
+        {
+            if (!TryMireOwner(zone, x, y, out var pool) || Selected(zone, x, y, pool)) return null;
+            return MireTile(zone, x, y, pool);
+        }
+        Tile MireTile(Zone zone, int x, int y, Entity pool)
+        {
+            if (fenGround == null) return travel == null ? null : travel[ForegroundFrame(pool, zone.TileState.Get(x, y), x, y)];
+            int mask = 0;
+            if (MireAt(zone, x, y - 1)) mask |= 1;
+            if (MireAt(zone, x + 1, y)) mask |= 2;
+            if (MireAt(zone, x, y + 1)) mask |= 4;
+            if (MireAt(zone, x - 1, y)) mask |= 8;
+            return fenGround[(Owned<LiquidPoolPart>(pool).Volume == 0 ? 20 : 4) + mask];
+        }
+        bool TryMireOwner(Zone zone, int x, int y, out Entity pool)
+        {
+            pool = null;
+            if (!ReadyCell(zone, x, y, out var cell)
+                || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered) return false;
+            var state = zone.TileState.Get(x, y);
+            foreach (var owner in cell.Occupants)
+            {
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (owner.BlueprintName == "MirePool")
+                {
+                    if (pool != null || ForegroundFrame(owner, state, x, y) < 0) return false;
+                    pool = owner;
+                }
+                else if (!BoardCover(owner) && (owner.HasTag("Solid") || Owned<PhysicsPart>(owner).Solid
+                    || CompetingGround(owner, state, x, y))) return false;
+            }
+            return pool != null && (ReferenceEquals(selected.Owner, pool)
+                || BoardCover(selected.Owner) && Placed(zone, cell, selected.Owner) && VisiblePhysicalOwner(selected.Owner));
+        }
 
         static bool MireAt(Zone zone, int x, int y)
         {
