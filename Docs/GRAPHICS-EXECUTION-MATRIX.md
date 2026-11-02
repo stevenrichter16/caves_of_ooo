@@ -1,3 +1,5 @@
+**Stump fixtures2026-11-02:** FiveSummitpipes now native on realstone, actualreaders/crossing/reload verified. Peat/ventbacking integratedonly.216applicable nativepasses; R11/fullarea open. See GRAPHICS-STUMP-FIXTURES.md. Next6BrinePool andboundedshadowcomparison.
+
 **Stillleaf update2026-11-02:**233real passable ledges boundedEditorverified,74applicable native cases, actualreaders/crossing/reload exactowners. Brightness20613pixels unproven;R11/fullareaopen. Current08efa packagesexcludeledgechange. See GRAPHICS-STILLLEAF-LEDGES.md. Next Summit surfacefixtures.
 
 **Delivery update2026-11-02:**08efa currentMac sixlaunches verify SummitBush/Ginmereledges/Fellingwater readers,movement andsaved/freshContinue, plus3.5→3.4→3.5travel. Ginmere/Fellingworldexact; Summit3475localpixels unresolved. Linuxarchiveverifiedonly. InitialMacimportworkererrorpreserved/excluded; retry0errors.55,587protectedobjects/75foreign restored. Next StillleafledgeASCII, then identifySummitfixtures. No whole-area/R11/hardware promotion.

@@ -14,6 +14,7 @@ namespace CavesOfOoo.Tests
     // Regional regression slice: real factory owners and submitted painter, no new mechanics.
     public sealed class FlatPixelRegionalFixtureTests
     {
+        const string Stump="Overworld.3.4.0", OtherStump="Overworld.2.5.0";
         const string Grove="Overworld.4.7.0", Sodden="Overworld.18.8.0", Corner="Sprites/Live16x24/nella-corner";
         const int X=10,Y=10;
         const BindingFlags I=BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
@@ -49,17 +50,18 @@ namespace CavesOfOoo.Tests
         void Attach(string id)
         {
             var p=WorldMap.FromZoneID(id);Assert.IsNull(manager.WorldMap.GetPOI(p.x,p.y));
-            Assert.AreEqual(id==Grove?BiomeType.Grovelands:BiomeType.Sodden,manager.WorldMap.GetBiome(p.x,p.y));
+            Assert.AreEqual(id==Grove?BiomeType.Grovelands:id==Sodden?BiomeType.Sodden:BiomeType.Stump,manager.WorldMap.GetBiome(p.x,p.y));
             zone=new Zone(id);manager.SetActiveZone(zone);foreach(var c in zone.Cells)c.IsVisible=c.Explored=true;
             Assert.True(Supported(zone));
         }
-        bool Supported(Zone graph)=>graph.ZoneID==Grove?FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(graph):FlatPixelSoddenTravelCatalog.IsSupportedZone(graph);
+        bool Supported(Zone graph)=>graph.ZoneID==Grove?FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(graph):graph.ZoneID==Sodden?FlatPixelSoddenTravelCatalog.IsSupportedZone(graph):FlatPixelStumpMaterialsCatalog.IsSupportedZone(graph);
         Entity Add(string name,int x=X,int y=Y){var e=content.Factory.CreateEntity(name);Assert.NotNull(e,name);Assert.True(zone.AddEntity(e,x,y));return e;}
         static object Read(object o,string n){var f=o.GetType().GetField(n,I);Assert.NotNull(f,n);return f.GetValue(o);}
         static void Write(object o,string n,object v){var f=o.GetType().GetField(n,I);Assert.NotNull(f,n);f.SetValue(o,v);}
         static Texture2D Art(string path){var t=Resources.Load<Texture2D>(path);Assert.NotNull(t,path);return t;}
         FlatPixelGreyboxCell View(int x=X,int y=Y){Assert.True(world.TryResolvePresentation(zone,x,y,out var v));return v;}
-        string GroundPath=>zone.ZoneID==Grove?"Sprites/Live16x24/grovelands-ground":"Sprites/Live16x24/sodden-ground";
+        string GroundOwner=>zone.ZoneID==Stump||zone.ZoneID==OtherStump?"TepuiStone":"Grass";
+        string GroundPath=>zone.ZoneID==Stump||zone.ZoneID==OtherStump?"Sprites/Live16x24/stump-materials":zone.ZoneID==Grove?"Sprites/Live16x24/grovelands-ground":"Sprites/Live16x24/sodden-ground";
         void NativeGround(Tile tile)
         {
             Assert.NotNull(tile);Assert.AreSame(Art(GroundPath),tile.sprite.texture);
@@ -67,9 +69,11 @@ namespace CavesOfOoo.Tests
             Assert.That(tile.sprite.rect.x,Is.InRange(0,48));Assert.AreEqual(Tile.ColliderType.None,tile.colliderType);
         }
         [TestCase(Grove,"CopperPipe")][TestCase(Grove,"PeatBog")][TestCase(Grove,"SteamVent")]
+        [TestCase(Stump,"CopperPipe")][TestCase(Stump,"PeatBog")][TestCase(Stump,"SteamVent")]
+        [TestCase(OtherStump,"CopperPipe")][TestCase(OtherStump,"PeatBog")][TestCase(OtherStump,"SteamVent")]
         public void RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(string id,string role)
         {
-            Attach(id);Add("Grass");var owner=Add(role);var v=View();Assert.True(v.NativeForeground,"Fixture remains a glyph");
+            Attach(id);Add(GroundOwner);var owner=Add(role);var v=View();Assert.True(v.NativeForeground,"Fixture remains a glyph");
             Assert.True(v.LocalGround,"Real regional floor is missing beneath fixture");NativeGround(v.GroundTile);
             Assert.AreEqual(FlatPixelGreyboxGround.Ground,v.GroundKind);Assert.False(v.RepresentedBrine||v.RepresentedMire);
             var resource=Art(role=="SteamVent"?"Sprites/Environment/steam_vent":Corner);Assert.AreSame(resource,v.ForegroundTile.sprite.texture);
@@ -102,9 +106,11 @@ namespace CavesOfOoo.Tests
             }
         }
         [TestCase(Grove,"CopperPipe")][TestCase(Grove,"PeatBog")][TestCase(Grove,"SteamVent")]
+        [TestCase(Stump,"CopperPipe")][TestCase(Stump,"PeatBog")][TestCase(Stump,"SteamVent")]
+        [TestCase(OtherStump,"CopperPipe")][TestCase(OtherStump,"PeatBog")][TestCase(OtherStump,"SteamVent")]
         public void RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(string id,string role)
         {
-            Attach(id);Add("Grass");var owner=Add(role);using(var paint=new Paint(world,zone))
+            Attach(id);Add(GroundOwner);var owner=Add(role);using(var paint=new Paint(world,zone))
             {
                 foreach(string coating in new[]{"water","oil","ice"})
                 {
@@ -121,10 +127,10 @@ namespace CavesOfOoo.Tests
                 Assert.False(View().LocalGround);Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark(X,Y));
             }
         }
-        [TestCase(Grove)]
+        [TestCase(Grove)][TestCase(Stump)]
         public void PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority(string id)
         {
-            Attach(id);Add("Grass");var pipe=Add("CopperPipe");Assert.True(View().NativeForeground);Assert.True(View().LocalGround);
+            Attach(id);Add(GroundOwner);var pipe=Add("CopperPipe");Assert.True(View().NativeForeground);Assert.True(View().LocalGround);
             var p=WorldMap.FromZoneID(id);var expected=manager.WorldMap.GetBiome(p.x,p.y);
             foreach(string fault in new[]{"poi","biome","cached"})
             {
@@ -146,10 +152,10 @@ namespace CavesOfOoo.Tests
             using(var selector=new FlatPixelFallbackCatalog())using(var native=new FlatPixelNellaCornerCatalog(Art(Corner),selector))
             {var source=Add("CopperPipe");Assert.False(native.TryGetSubjectSprite(zone,source,X,Y,out _));}
         }
-        [TestCase(Grove)]
+        [TestCase(Grove)][TestCase(Stump)]
         public void MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards(string id)
         {
-            Attach(id);Add("Grass");var pipe=Add("CopperPipe");Assert.True(View().NativeForeground);
+            Attach(id);Add(GroundOwner);var pipe=Add("CopperPipe");Assert.True(View().NativeForeground);
             var previous=Read(world,"_nellaCornerArt");
             using(var selector=new FlatPixelFallbackCatalog())using(var missing=new FlatPixelNellaCornerCatalog(null,selector))
             {
@@ -163,12 +169,85 @@ namespace CavesOfOoo.Tests
                 finally{Write(world,"_nellaCornerArt",previous);}
             }
         }
+        [TestCase(0)][TestCase(1)][TestCase(2)][TestCase(3)][TestCase(4)][TestCase(5)][TestCase(6)][TestCase(7)]
+        [TestCase(8)][TestCase(9)][TestCase(10)][TestCase(11)][TestCase(12)][TestCase(13)][TestCase(14)][TestCase(15)]
+        public void StumpPipeJoinsOnlyDisclosedSelectedNeighbors(int mask)
+        {
+            Attach(Stump);Add(GroundOwner);Add("CopperPipe");
+            var dx=new[]{0,1,0,-1};var dy=new[]{-1,0,1,0};
+            for(int n=0;n<4;n++)if((mask&(1<<n))!=0){Add(GroundOwner,X+dx[n],Y+dy[n]);Add("CopperPipe",X+dx[n],Y+dy[n]);}
+            Assert.True(View().NativeForeground);Assert.AreEqual(mask*16,View().ForegroundTile.sprite.rect.x);
+            for(int n=0;n<4;n++)if((mask&(1<<n))!=0)
+            {
+                var cell=zone.GetCell(X+dx[n],Y+dy[n]);cell.IsVisible=false;
+                Assert.AreEqual((mask&~(1<<n))*16,View().ForegroundTile.sprite.rect.x,"remembered neighbor");cell.Explored=false;
+                Assert.AreEqual((mask&~(1<<n))*16,View().ForegroundTile.sprite.rect.x,"hidden neighbor");cell.IsVisible=cell.Explored=true;
+                var actor=Add("Player",cell.X,cell.Y);Assert.AreEqual((mask&~(1<<n))*16,View().ForegroundTile.sprite.rect.x,"covered neighbor");
+                Assert.True(zone.RemoveEntity(actor));Assert.AreEqual(mask*16,View().ForegroundTile.sprite.rect.x);
+            }
+        }
+        [TestCase("missing")][TestCase("duplicate")][TestCase("solid-floor")][TestCase("wall-floor")]
+        [TestCase("foreign-floor")][TestCase("competing-pool")][TestCase("competing-crop")]
+        public void StumpFixtureCannotInventOrOverrideGround(string fault)
+        {
+            Attach(Stump);var floor=Add(GroundOwner);Add("CopperPipe");Assert.True(View().LocalGround);
+            if(fault=="missing")zone.RemoveEntity(floor);
+            if(fault=="duplicate")Add(GroundOwner);
+            if(fault=="solid-floor")floor.GetPart<PhysicsPart>().Solid=true;
+            if(fault=="wall-floor")floor.Tags["Wall"]="";
+            if(fault=="foreign-floor"){zone.RemoveEntity(floor);Add("Grass");}
+            if(fault=="competing-pool")Add("WaterPuddle");
+            if(fault=="competing-crop")floor.AddPart(new CultivatedSoilPart());
+            Assert.False(View().LocalGround,fault);
+        }
+        [TestCase("solid")][TestCase("source")][TestCase("pool")][TestCase("visual")][TestCase("footprint")][TestCase("duplicate-part")]
+        public void StumpPipeAlteredIdentityRefusesBodyAndUnderlay(string fault)
+        {
+            Attach(Stump);Add(GroundOwner);var pipe=Add("CopperPipe");Assert.True(View().NativeForeground);Assert.True(View().LocalGround);
+            if(fault=="solid")pipe.GetPart<PhysicsPart>().Solid=true;
+            if(fault=="source")pipe.AddPart(new TileStateSourcePart());
+            if(fault=="pool")pipe.AddPart(new LiquidPoolPart());
+            if(fault=="visual")pipe.GetPart<RenderPart>().VisualID="foreign";
+            if(fault=="footprint")pipe.AddPart(new SpatialFootprintPart { CellsRaw="0,0;1,0" });
+            if(fault=="duplicate-part")pipe.AddPart(new RenderPart());
+            Assert.False(View().NativeForeground,fault+" body");
+            if(fault=="duplicate-part")
+            {
+                // An unreadable malformed occupant cannot veto independent dry stone,
+                // but it cannot authorize native ground beneath live hazard state.
+                Assert.True(View().LocalGround,"independent dry stone");
+                zone.TileState.WriteCoating(X,Y,"oil",4);
+            }
+            Assert.False(View().LocalGround,fault+" fixture state exception");
+        }
+        [TestCase(false,"CopperPipe")][TestCase(false,"PeatBog")][TestCase(false,"SteamVent")]
+        [TestCase(true,"CopperPipe")][TestCase(true,"PeatBog")][TestCase(true,"SteamVent")]
+        public void StumpFixturesDoNotWidenSeparateSiteOrFellingGround(bool felling,string role)
+        {
+            if(felling)
+            {
+                zone=manager.GetZone(FellingSiteBuilder.ZoneID);manager.SetActiveZone(zone);
+                foreach(var c in zone.Cells)c.IsVisible=c.Explored=true;
+                var target=zone.Cells.Cast<Cell>().First(c=>c.Objects.Count==1&&c.Objects[0].BlueprintName=="TepuiStone"
+                    &&!c.Objects[0].GetPart<PhysicsPart>().Solid);
+                Assert.True(View(target.X,target.Y).LocalGround,"real admitted Felling ground baseline");
+                Add(role,target.X,target.Y);Assert.False(View(target.X,target.Y).LocalGround);
+            }
+            else
+            {
+                Attach(Stump);Add(GroundOwner);manager.WorldMap.SetPOI(3,4,new PointOfInterest(POIType.MerchantCamp,"site counter"));
+                Assert.True(FlatPixelSiteAdmission.IsOrdinarySite(zone,BiomeType.Stump));
+                Assert.True(View().LocalGround,"separate site ground baseline");
+                Add(role);Assert.False(View().LocalGround);
+                if(role!="SteamVent")Assert.False(View().NativeForeground);
+            }
+        }
         // Actual OpenMire audit found no disclosed target fixtures. Keep Sodden
         // outside this admission change; its native MirePool is a different owner.
         [TestCase("CopperPipe")][TestCase("PeatBog")][TestCase("SteamVent")]
         public void UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(string role)
         {
-            Attach(Sodden);Add("Grass");var owner=Add(role);zone.TileState.WriteCoating(X,Y,"water",4);
+            Attach(Sodden);Add(GroundOwner);var owner=Add(role);zone.TileState.WriteCoating(X,Y,"water",4);
             var v=View();Assert.False(v.LocalGround,"No unobserved Sodden fixture-underlay extension");
             Assert.AreEqual(role=="SteamVent",v.NativeForeground,"Only the existing globally shared vent body is native");
             if(role!="SteamVent")
@@ -230,7 +309,12 @@ namespace CavesOfOoo.Tests
                     if (saved?.Root != null)
                     {
                         var environment = saved.Root.GetComponent<EnvironmentSpriteRenderer>();
-                        if (environment != null) Write(environment, "_flatPixelGreybox", null);
+                        if (environment != null)
+                        {
+                            Write(environment, "_flatPixelGreybox", null);
+                            // This fixture never activates, so invoke the real resource teardown.
+                            typeof(EnvironmentSpriteRenderer).GetMethod("OnDestroy", I).Invoke(environment, null);
+                        }
                     }
                     saved?.Dispose(); if (root != null) Object.DestroyImmediate(root);
                 }

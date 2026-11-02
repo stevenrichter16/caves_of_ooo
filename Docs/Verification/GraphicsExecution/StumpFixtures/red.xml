@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="54" result="Failed(Child)" total="54" passed="11" failed="43" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:40Z" duration="20.6528185">
+  <test-suite type="TestSuite" id="43774" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35659" result="Failed" site="Child" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:40Z" duration="20.652819" total="54" passed="11" failed="43" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43746" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35659" result="Failed" site="Child" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:40Z" duration="20.641046" total="54" passed="11" failed="43" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43747" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35659" result="Failed" site="Child" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:40Z" duration="20.635187" total="54" passed="11" failed="43" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43748" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35659" result="Failed" site="Child" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:40Z" duration="20.629714" total="54" passed="11" failed="43" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33708" name="FlatPixelRegionalFixtureTests" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="54" result="Failed" site="Child" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:40Z" duration="20.615284" total="54" passed="11" failed="43" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="33734" name="MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:19Z" duration="0.375367" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33732" name="MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards(&quot;Overworld.4.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards(&quot;Overworld.4.7.0&quot;)" methodname="MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="174695181" result="Passed" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:19Z" duration="0.300733" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33733" name="MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards(&quot;Overworld.3.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards(&quot;Overworld.3.4.0&quot;)" methodname="MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="609160047" result="Failed" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:19Z" duration="0.055086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards (System.String id) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:158
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33731" name="PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 03:13:19Z" end-time="2026-11-02 03:13:20Z" duration="0.287642" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33729" name="PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority(&quot;Overworld.4.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority(&quot;Overworld.4.7.0&quot;)" methodname="PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1862705382" result="Passed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.206567" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33730" name="PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority(&quot;Overworld.3.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority(&quot;Overworld.3.4.0&quot;)" methodname="PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1985118330" result="Failed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.051510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority (System.String id) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:133
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33718" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:21Z" duration="0.831295" total="9" passed="3" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33709" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.4.7.0&quot;,&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.4.7.0&quot;,&quot;CopperPipe&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="2136994101" result="Passed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.299512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33710" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.4.7.0&quot;,&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.4.7.0&quot;,&quot;PeatBog&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="233910426" result="Passed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.103494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33711" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.4.7.0&quot;,&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.4.7.0&quot;,&quot;SteamVent&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1943483468" result="Passed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.103113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33712" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.3.4.0&quot;,&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.3.4.0&quot;,&quot;CopperPipe&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="310117960" result="Failed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.049843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fixture remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader (System.String id, System.String role) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33713" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.3.4.0&quot;,&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.3.4.0&quot;,&quot;PeatBog&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1928871307" result="Failed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.049362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fixture remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader (System.String id, System.String role) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33714" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.3.4.0&quot;,&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.3.4.0&quot;,&quot;SteamVent&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1560759037" result="Failed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.049812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real regional floor is missing beneath fixture
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader (System.String id, System.String role) [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33715" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.2.5.0&quot;,&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.2.5.0&quot;,&quot;CopperPipe&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1246547132" result="Failed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:20Z" duration="0.049145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fixture remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader (System.String id, System.String role) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33716" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.2.5.0&quot;,&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.2.5.0&quot;,&quot;PeatBog&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="346996465" result="Failed" start-time="2026-11-02 03:13:20Z" end-time="2026-11-02 03:13:21Z" duration="0.049018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fixture remains a glyph
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader (System.String id, System.String role) [0x0002f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:76
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33717" name="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.2.5.0&quot;,&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader(&quot;Overworld.2.5.0&quot;,&quot;SteamVent&quot;)" methodname="RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1520192086" result="Failed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:21Z" duration="0.049023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real regional floor is missing beneath fixture
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureRetainsItsBodyGroundAndExactCoveredReader (System.String id, System.String role) [0x00044] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:77
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33728" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:22Z" duration="1.093265" total="9" passed="3" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33719" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.4.7.0&quot;,&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.4.7.0&quot;,&quot;CopperPipe&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="2145859807" result="Passed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:21Z" duration="0.104642" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33720" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.4.7.0&quot;,&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.4.7.0&quot;,&quot;PeatBog&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="460015610" result="Passed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:21Z" duration="0.260695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33721" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.4.7.0&quot;,&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.4.7.0&quot;,&quot;SteamVent&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="89015399" result="Passed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:21Z" duration="0.103704" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33722" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.3.4.0&quot;,&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.3.4.0&quot;,&quot;CopperPipe&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="822543941" result="Failed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:21Z" duration="0.102837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <stump-materials (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.NativeGround (UnityEngine.Tilemaps.Tile tile) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:67
+at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback (System.String id, System.String role) [0x0009c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33723" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.3.4.0&quot;,&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.3.4.0&quot;,&quot;PeatBog&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="451991463" result="Failed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:21Z" duration="0.101070" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <stump-materials (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.NativeGround (UnityEngine.Tilemaps.Tile tile) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:67
+at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback (System.String id, System.String role) [0x0009c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33724" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.3.4.0&quot;,&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.3.4.0&quot;,&quot;SteamVent&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="2059100520" result="Failed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:21Z" duration="0.108964" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <stump-materials (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.NativeGround (UnityEngine.Tilemaps.Tile tile) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:67
+at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback (System.String id, System.String role) [0x0009c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33725" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.2.5.0&quot;,&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.2.5.0&quot;,&quot;CopperPipe&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="136691779" result="Failed" start-time="2026-11-02 03:13:21Z" end-time="2026-11-02 03:13:22Z" duration="0.110211" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <stump-materials (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.NativeGround (UnityEngine.Tilemaps.Tile tile) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:67
+at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback (System.String id, System.String role) [0x0009c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33726" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.2.5.0&quot;,&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.2.5.0&quot;,&quot;PeatBog&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1962342542" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.082134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <stump-materials (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.NativeGround (UnityEngine.Tilemaps.Tile tile) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:67
+at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback (System.String id, System.String role) [0x0009c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33727" name="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.2.5.0&quot;,&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback(&quot;Overworld.2.5.0&quot;,&quot;SteamVent&quot;)" methodname="RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="716766779" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.087054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <stump-materials (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.NativeGround (UnityEngine.Tilemaps.Tile tile) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:67
+at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.RegionalFixtureUnderlayPreservesSubmittedHazardsAndResidualFallback (System.String id, System.String role) [0x0009c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:118
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33759" name="StumpFixtureCannotInventOrOverrideGround" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.464415" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33752" name="StumpFixtureCannotInventOrOverrideGround(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround(&quot;missing&quot;)" methodname="StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="814267496" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.039659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:193
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33753" name="StumpFixtureCannotInventOrOverrideGround(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround(&quot;duplicate&quot;)" methodname="StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="463304441" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.037809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:193
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33754" name="StumpFixtureCannotInventOrOverrideGround(&quot;solid-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround(&quot;solid-floor&quot;)" methodname="StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1114993208" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.065355" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:193
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33755" name="StumpFixtureCannotInventOrOverrideGround(&quot;wall-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround(&quot;wall-floor&quot;)" methodname="StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="648981283" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.166969" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:193
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33756" name="StumpFixtureCannotInventOrOverrideGround(&quot;foreign-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround(&quot;foreign-floor&quot;)" methodname="StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="823327680" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.039641" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:193
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33757" name="StumpFixtureCannotInventOrOverrideGround(&quot;competing-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround(&quot;competing-pool&quot;)" methodname="StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="391698307" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.038210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:193
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33758" name="StumpFixtureCannotInventOrOverrideGround(&quot;competing-crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround(&quot;competing-crop&quot;)" methodname="StumpFixtureCannotInventOrOverrideGround" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1972620917" result="Failed" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:22Z" duration="0.037739" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpFixtureCannotInventOrOverrideGround (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:193
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33766" name="StumpPipeAlteredIdentityRefusesBodyAndUnderlay" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-02 03:13:22Z" end-time="2026-11-02 03:13:39Z" duration="16.644817" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33760" name="StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;solid&quot;)" methodname="StumpPipeAlteredIdentityRefusesBodyAndUnderlay" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1988484688" result="Failed" start-time="2026-11-02 03:13:38Z" end-time="2026-11-02 03:13:38Z" duration="0.082497" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33761" name="StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;source&quot;)" methodname="StumpPipeAlteredIdentityRefusesBodyAndUnderlay" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="690216809" result="Failed" start-time="2026-11-02 03:13:38Z" end-time="2026-11-02 03:13:39Z" duration="0.196794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33762" name="StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;pool&quot;)" methodname="StumpPipeAlteredIdentityRefusesBodyAndUnderlay" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1453643646" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.040175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33763" name="StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;visual&quot;)" methodname="StumpPipeAlteredIdentityRefusesBodyAndUnderlay" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="2062514132" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33764" name="StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;footprint&quot;)" methodname="StumpPipeAlteredIdentityRefusesBodyAndUnderlay" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1711471317" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.042646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33765" name="StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;duplicate-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay(&quot;duplicate-part&quot;)" methodname="StumpPipeAlteredIdentityRefusesBodyAndUnderlay" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="564236853" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.045725" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeAlteredIdentityRefusesBodyAndUnderlay (System.String fault) [0x0002c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:206
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33751" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.654102" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33735" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(0)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(0)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1505645021" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33736" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(1)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(1)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1348026926" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.038264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33737" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(2)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(2)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1584166802" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.038839" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33738" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(3)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(3)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1005310290" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.037943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33739" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(4)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(4)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1609572193" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.037813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33740" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(5)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(5)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1956246340" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.037970" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33741" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(6)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(6)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1010011624" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.038596" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33742" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(7)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(7)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="303128756" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.038361" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33743" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(8)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(8)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="2052976760" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33744" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(9)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(9)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="2134557428" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039484" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33745" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(10)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(10)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1640250484" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33746" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(11)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(11)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1034075059" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039844" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33747" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(12)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(12)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1601863201" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33748" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(13)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(13)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1476436569" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.040419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33749" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(14)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(14)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="585951488" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.039593" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33750" name="StumpPipeJoinsOnlyDisclosedSelectedNeighbors(15)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors(15)" methodname="StumpPipeJoinsOnlyDisclosedSelectedNeighbors" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1335536321" result="Failed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:39Z" duration="0.038946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.StumpPipeJoinsOnlyDisclosedSelectedNeighbors (System.Int32 mask) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelRegionalFixtureTests.cs:179
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33770" name="UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:40Z" duration="0.262027" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33767" name="UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(&quot;CopperPipe&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(&quot;CopperPipe&quot;)" methodname="UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1260553459" result="Passed" start-time="2026-11-02 03:13:39Z" end-time="2026-11-02 03:13:40Z" duration="0.081520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33768" name="UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(&quot;PeatBog&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(&quot;PeatBog&quot;)" methodname="UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="11778090" result="Passed" start-time="2026-11-02 03:13:40Z" end-time="2026-11-02 03:13:40Z" duration="0.075744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33769" name="UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(&quot;SteamVent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests.UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(&quot;SteamVent&quot;)" methodname="UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody" classname="CavesOfOoo.Tests.FlatPixelRegionalFixtureTests" runstate="Runnable" seed="1614709562" result="Passed" start-time="2026-11-02 03:13:40Z" end-time="2026-11-02 03:13:40Z" duration="0.077799" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

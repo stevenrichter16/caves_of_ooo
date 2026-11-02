@@ -223,7 +223,7 @@ namespace CavesOfOoo.Rendering
             if (siteLedgesOnly) return false;
             if (materials == null || !ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
-            if (state != null && !state.IsEmpty) return false;
+            bool fixture = false;
             Entity actual = null;
             foreach (var owner in cell.Occupants)
             {
@@ -234,11 +234,18 @@ namespace CavesOfOoo.Rendering
                         || fellingAuthored && !FellingDryOwner(owner, x, y)) return false;
                     actual = owner;
                 }
+                // The same canonical fixtures used in Spread/Grovelands stand on
+                // real stone; this exception never admits a site or Felling view.
+                else if (FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(owner)
+                    && !fellingAuthored && IsSupportedZone(zone)) fixture = true;
                 // A lit hearth stands on the real ground, as in the other four biome resolvers
                 // (2026-10-31: a watcher's-camp waysite fire burned on black without it).
                 else if (FlatPixelSettlementGroundCatalog.IsOrdinaryHearth(owner)) { }
                 else if (CompetingGround(owner, x, y)) return false;
             }
+            // Hazard marks remain on their independent higher layer. Residual
+            // state refuses again after the qualifying fixture is removed.
+            if (state != null && !state.IsEmpty && !fixture) return false;
             if (actual == null) return false;
             floor = actual; tile = materials[VariantAt(x, y)]; return true;
         }

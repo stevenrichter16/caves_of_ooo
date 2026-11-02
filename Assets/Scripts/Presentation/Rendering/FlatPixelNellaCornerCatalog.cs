@@ -50,7 +50,8 @@ namespace CavesOfOoo.Rendering
         // the same neutral identities under their independent world authority.
         static bool OrdinaryFixtureZone(Zone zone)
             => FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone)
-                || FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone);
+                || FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone)
+                || FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone);
         internal static bool SupportsRole(Zone zone, Entity owner)
             => HasKnownRole(owner) && (OrdinaryFixtureZone(zone) || zone?.ZoneID == Plot
                 || owner.BlueprintName == "CopperPipe"

@@ -1,3 +1,5 @@
+**Stump fixtures2026-11-02:** FiveSummitpipes now native on realstone, actualreaders/crossing/reload verified. Peat/ventbacking integratedonly.216applicable nativepasses; R11/fullarea open. See GRAPHICS-STUMP-FIXTURES.md. Next6BrinePool andboundedshadowcomparison.
+
 **2026-11-02 Stillleaf2.4.1:**233ASCIIledge owners now approvednativeStump10–11; actualreader/crossing/reload boundedverified. Repeated bands/sparsecenter/specialglyphs remain; nofullareapromotion. See GRAPHICS-STILLLEAF-LEDGES.md. Next Summit surface fixturebacking confirmation.
 
 **Summit pocket — 2026-11-02:** Cold seed64 gains4StoneDome+1Tree+6Bush through existing owners; cached layouts unchanged.28focused/137adjacent/120material-reader scoped native cases with final applicable passes; actual center/sides/2×, reader/collision/walk/reload and independent0newP1/P2. Covered Bush reader corrected;11states exact,255worldpixels differ unproven. Modest population improvement, no whole-area/balance/R11/shadow acceptance. Current4c1 packages exclude; batch next. See `Docs/GRAPHICS-SUMMIT-POCKET.md`.
