@@ -1,3 +1,5 @@
+**Delivery update 2026-11-02:** de600 current Mac four-launch smoke and Linux archive verified; source-pinned evidence in `Docs/Verification/GraphicsExecution/BatchDe600/`. Ginmere surface exact reload; Spread localized5901pixel differences unresolved. Cathedral included only. No status-axis promotion; R11/hardware/full-area gates remain open. Next Felling298authored solid stone cells, then Tree contact shade.
+
 # Visual execution matrix
 
 Status: source inventory initialized; bounded field-row and Felling dry-ground

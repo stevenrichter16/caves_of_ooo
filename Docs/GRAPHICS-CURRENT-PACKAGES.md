@@ -1,3 +1,21 @@
+# Current graphics packages — de6002171
+
+Current source `de60021715b31469a7f0c1070b2096476faeec6f` is verified on origin/main. This batch includes Spread field-margin groups, Ginmere/Cathedral surface sandstone and Ginmere first-descent floor/walls, plus the previous a72 checkpoint. V0–V7 remains open.
+
+- Mac: `Builds/Verification/2026-11-02-graphics-de6002171-current/CavesOfOoo.app`; build-e10b01445c,30.873498s,0errors4warnings.
+- Linux: `Builds/SteamDeck/2026-11-02-graphics-de6002171-current-retry/CavesOfOoo-current/`; build-849da52798,14.526139s,0errors0warnings. Initial23.733151s build reported success but logged a UnityMCP Log/mcp.log SourceAssetDB modification-time race (1error4warnings); retained, not accepted. Retry changed no source.
+- Transfer archive: sibling `CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,129057476bytes,190files10directories. SHA256 `801590230672ec44817dd919ac63f67702599629ec2b5404bb7036aed4c5af4b`. All member hashes/sizes/modes, internal checksums and gzip EOF verified. Linux/Deck execution remains unperformed.
+
+Four actual Mac cold launches used real GameBootstrap and native3024×1898 default presentation. Ginmere floor readers, surface ascent, surface F5/freshContinue52,12HP40 and descent return passed without F12. Spread native rows and margin Bush41,9 Plant6/6, Tree41,7 Wood28/30 agree with their readers; F12 protection was OFF before F5turn2440/freshContinue41,8HP40. Snakes blocked several intended movements and two died through actual bumps: that is combat evidence, not successful return traversal or encounter-balance acceptance. Cathedral is included but not separately walked in this batch.
+
+Saved/fresh world crop(0,0)-(2216,1614): surface0/3576624 changed pixels; field5901/3576624, confined to(1055,546)-(1169,720) near player/tree/remains, reaching120RGB levels. Cause remains unproven; no pixel-exact or lighting-only claim. Independent source/package and visual reviews found0newP1/P2 within this bounded delivery. No packaged performance sample; R11, ASCII ledges/special backings, shallow wall relief, sparse/repetitive composition and whole-area acceptance remain open.
+
+A complete55324tracked-object snapshot preceded both builds. Final guarded restoration verified all objects,75foreign changes, normal saves/preferences and prior a72 packages; three reviewed generated settings restored. Owned test saves archived under `/private/tmp/coo-de600-restored/standalone-session-Saves` and `/private/tmp/coo-de600-owned-session-before3`. No cleanup. Native test receipts reused as separate executions, not summed into an all-source suite. Full evidence and reproducible scripts: `Docs/Verification/GraphicsExecution/BatchDe600/`.
+
+Next: actual Felling Site stone baseline; reuse approved Stump walls/ridges for its298authored solid cells with strict owner/opacity/disclosure checks. Blackwater57 and ritual7 remain separate gaps. Then a bounded field Tree contact-shadow comparison; continue cross-region triage.
+
+## Previous preserved checkpoint
+
 # Current graphics packages — a72a22983
 
 Current runtime/source `a72a229833df9b908e9d2b11b9b653a97275fa12` includes Stillleaf

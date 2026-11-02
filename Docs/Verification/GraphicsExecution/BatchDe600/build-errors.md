@@ -1,0 +1,1 @@
+Initial Linux build13828742cd logged one Assets/UnityMCP/Log/mcp.log source-database modification-time mismatch (00:16:33 versus00:16:57) despite success. Output and receipt retained; separate unchanged-source retry849da52798 follows. No deletion, dependency change or runtime fix.

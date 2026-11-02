@@ -1,3 +1,5 @@
+**Delivery update 2026-11-02:** Source de6002171 is now in current Mac/Linux packages; see `GRAPHICS-CURRENT-PACKAGES.md` and `Verification/GraphicsExecution/BatchDe600/`. Four actual Mac launches verify bounded Ginmere/Spread use and reload; Cathedral included but not walked. Linux archive verified, hardware execution unperformed. Earlier package-lag statements below are historical. No whole-area or R11 acceptance.
+
 # Ginmere first-descent material continuity
 
 Status: bounded floor/wall integration and actual Editor verification complete; ready for exact publication. Source surface floor slicefa0acd14b9cb1b7e8b6f0cce64ed16d0739709d5 is remotely verified. This next slice is limited to actual SandstoneFloor/SandstoneWall at canonical2.7.1; V0–V7 remain open.

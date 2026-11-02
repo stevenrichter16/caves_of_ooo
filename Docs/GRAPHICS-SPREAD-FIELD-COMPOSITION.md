@@ -1,3 +1,5 @@
+**Delivery update 2026-11-02:** Source de6002171 is now in current Mac/Linux packages; see `GRAPHICS-CURRENT-PACKAGES.md` and `Verification/GraphicsExecution/BatchDe600/`. Four actual Mac launches verify bounded Ginmere/Spread use and reload; Cathedral included but not walked. Linux archive verified, hardware execution unperformed. Earlier package-lag statements below are historical. No whole-area or R11 acceptance.
+
 # Spread field-margin composition pilot
 
 Status: bounded Editor composition observed and independently reviewed; publication pending. Population/composition is V4. R11 and whole-area acceptance remain open; no new sprite coverage.
