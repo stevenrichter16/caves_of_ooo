@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="18" result="Failed(Child)" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="1.1114152">
+  <test-suite type="TestSuite" id="44086" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35926" result="Failed" site="Child" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="1.111415" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44058" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35926" result="Failed" site="Child" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="1.076692" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44059" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35926" result="Failed" site="Child" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="1.072722" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44060" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35926" result="Failed" site="Child" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="1.069922" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32081" name="FlatPixelGantryMemoryTests" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="1.059644" total="18" passed="4" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="32082" name="ExistingRememberedTimberKeepsLiveFrameWithExactlyOneDimAndNoShadow" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.ExistingRememberedTimberKeepsLiveFrameWithExactlyOneDimAndNoShadow" methodname="ExistingRememberedTimberKeepsLiveFrameWithExactlyOneDimAndNoShadow" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="619635166" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.195995" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Remembered timber still becomes ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.ExistingRememberedTimberKeepsLiveFrameWithExactlyOneDimAndNoShadow () [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:28
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32083" name="MemoryDoesNotReadHiddenDamageTemperatureSolidityOccupantsOrNeighbors" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.MemoryDoesNotReadHiddenDamageTemperatureSolidityOccupantsOrNeighbors" methodname="MemoryDoesNotReadHiddenDamageTemperatureSolidityOccupantsOrNeighbors" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="670053372" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.045518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.MemoryDoesNotReadHiddenDamageTemperatureSolidityOccupantsOrNeighbors () [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32101" name="MissingOptionalArtAndDisposedCatalogRetainFallbackAndBorrowedTexture" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.MissingOptionalArtAndDisposedCatalogRetainFallbackAndBorrowedTexture" methodname="MissingOptionalArtAndDisposedCatalogRetainFallbackAndBorrowedTexture" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="1926700549" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.044108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.MissingOptionalArtAndDisposedCatalogRetainFallbackAndBorrowedTexture () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32100" name="ThisPilotDoesNotPromoteOtherRememberedProps" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.ThisPilotDoesNotPromoteOtherRememberedProps" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.214195" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32096" name="ThisPilotDoesNotPromoteOtherRememberedProps(&quot;TentWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.ThisPilotDoesNotPromoteOtherRememberedProps(&quot;TentWall&quot;)" methodname="ThisPilotDoesNotPromoteOtherRememberedProps" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="1049098621" result="Passed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.046405" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32097" name="ThisPilotDoesNotPromoteOtherRememberedProps(&quot;Crate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.ThisPilotDoesNotPromoteOtherRememberedProps(&quot;Crate&quot;)" methodname="ThisPilotDoesNotPromoteOtherRememberedProps" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="1665901133" result="Passed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.043882" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32098" name="ThisPilotDoesNotPromoteOtherRememberedProps(&quot;VillageDoor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.ThisPilotDoesNotPromoteOtherRememberedProps(&quot;VillageDoor&quot;)" methodname="ThisPilotDoesNotPromoteOtherRememberedProps" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="391600057" result="Passed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.043965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32099" name="ThisPilotDoesNotPromoteOtherRememberedProps(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.ThisPilotDoesNotPromoteOtherRememberedProps(&quot;Player&quot;)" methodname="ThisPilotDoesNotPromoteOtherRememberedProps" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="411244158" result="Passed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.046518" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32095" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="0.521693" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32084" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;unexplored&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="117355439" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.044104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32085" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;hidden-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;hidden-render&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="443555541" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.044012" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32086" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;variant&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="466248565" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.044857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32087" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;glyph&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="2018493570" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.044717" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32088" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;crop&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="910440186" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:33Z" duration="0.044016" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32089" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;takeable&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="187253806" result="Failed" start-time="2026-11-02 08:43:33Z" end-time="2026-11-02 08:43:34Z" duration="0.044467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32090" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;stale&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="258848792" result="Failed" start-time="2026-11-02 08:43:34Z" end-time="2026-11-02 08:43:34Z" duration="0.044049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32091" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;profile&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="1363315634" result="Failed" start-time="2026-11-02 08:43:34Z" end-time="2026-11-02 08:43:34Z" duration="0.043899" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32092" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;name&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="1870813391" result="Failed" start-time="2026-11-02 08:43:34Z" end-time="2026-11-02 08:43:34Z" duration="0.045009" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32093" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;alias&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="515201030" result="Failed" start-time="2026-11-02 08:43:34Z" end-time="2026-11-02 08:43:34Z" duration="0.044690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32094" name="UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;other-zone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback(&quot;other-zone&quot;)" methodname="UnsupportedIdentityOrAuthorityKeepsConservativeFallback" classname="CavesOfOoo.Tests.FlatPixelGantryMemoryTests" runstate="Runnable" seed="1207663662" result="Failed" start-time="2026-11-02 08:43:34Z" end-time="2026-11-02 08:43:34Z" duration="0.044674" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Memory baseline required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryMemoryTests.UnsupportedIdentityOrAuthorityKeepsConservativeFallback (System.String fault) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryMemoryTests.cs:45
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

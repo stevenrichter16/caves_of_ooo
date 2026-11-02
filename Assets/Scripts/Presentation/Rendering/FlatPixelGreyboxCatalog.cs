@@ -1531,6 +1531,13 @@ namespace CavesOfOoo.Rendering
             bool staticMemoryGround = false;
             if (fallback.Remembered)
             {
+                if (owner?.BlueprintName == FlatPixelWildFaunaCatalog.GantryTimberBlueprint && zone.ZoneID == GantryCompositionPlan.ZoneID
+                    && WildFaunaArt() is FlatPixelWildFaunaCatalog timberMemory
+                    && timberMemory.TryResolveRememberedGantryWall(zone, x, y, fallback, out var timberTile))
+                {
+                    foreground = timberTile; foregroundColor = new Color(.35f, .35f, .35f, 1f);
+                    kind = FlatPixelGreyboxKind.Wall; native = true;
+                }
                 var memory = SillEnvelopeArtFor(zone);
                 if (memory != null && memory.TryResolveRemembered(zone, x, y, owner,
                     out var memoryGround, out var memoryWall))

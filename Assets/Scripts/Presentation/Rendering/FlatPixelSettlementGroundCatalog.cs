@@ -290,7 +290,7 @@ namespace CavesOfOoo.Rendering
         internal bool CanReceiveGantryWallShadow(Zone zone, int x, int y, Entity source)
         {
             if (zone?.ZoneID != GantryCompositionPlan.ZoneID || !Plain(source) || ForeignMeaning(source)
-                || !GantryCompositionBuilder.Valid(source, "GantryTimberWall")
+                || !GantryCompositionBuilder.Valid(source, FlatPixelWildFaunaCatalog.GantryTimberBlueprint)
                 || Owned<MaterialPart>(source) == null || Owned<ThermalPart>(source) == null
                 || Owned<DestructiblePart>(source) == null) return false;
             var cell = zone.GetCell(x, y - 1);

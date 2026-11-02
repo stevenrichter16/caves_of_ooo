@@ -129,6 +129,7 @@ namespace CavesOfOoo.Rendering
         // props are 16x24 cells with one row per state (crop stage, door open or closed).
         public const string ItemAtlasResourcePath = "Sprites/Live16x24/item-icons";
         public const string ItemIndexResourcePath = "Content/Data/ItemIcons";
+        internal const string GantryTimberBlueprint = "GantryTimberWall";
         public const string PropAtlasResourcePath = "Sprites/Live16x24/prop-icons";
         public const string PropIndexResourcePath = "Content/Data/PropIcons";
         [System.Serializable] sealed class IconRow { public string Blueprint; public string State; public int Frame; public int Variants; public string Glyph; public string Color; public string Background; }
@@ -322,6 +323,37 @@ namespace CavesOfOoo.Rendering
                 case "Warden": glyph = "@"; color = "&r"; return true;
                 default: glyph = color = null; return false;
             }
+        }
+
+        // The caller supplies the existing conservative static-memory selection.
+        // Never invoke live prop state resolution here: hidden HP, temperature,
+        // solidity, status, tile state and neighbors must not alter remembered art.
+        internal bool TryResolveRememberedGantryWall(Zone zone, int x, int y,
+            in FlatPixelGreyboxCell selected, out Tile tile)
+        {
+            tile = null;
+            var owner = selected.Owner;
+            if (disposed || !selected.Remembered || owner?.BlueprintName != GantryTimberBlueprint
+                || zone?.ZoneID != GantryCompositionPlan.ZoneID
+                || !FlatPixelSettlementGroundCatalog.IsSupportedZone(zone)
+                || !AreaCompositionScope.IsGantrySite(WorldLocationContext.For(zone).WorldMap.GetPOI(7, 8))) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || !cell.Explored || cell.IsVisible || cell.ParentZone != zone
+                || cell.X != x || cell.Y != y || owner.SpatialZone != zone
+                || !ReferenceEquals(zone.GetEntityCell(owner), cell) || !owner.HasTag("Wall")) return false;
+            var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner);
+            if (r == null || !r.Visible || r.RenderLayer != 1 || p == null || p.Takeable
+                || p.InInventory != null || p.Equipped != null || Owned<DestructiblePart>(owner) == null
+                || Owned<MaterialPart>(owner)?.MaterialID != "Wood"
+                || !string.IsNullOrEmpty(r.VisualID) || !string.IsNullOrEmpty(r.VisualVariant)
+                || !string.IsNullOrEmpty(r.GlyphVariants) || !string.IsNullOrEmpty(r.TileColor)
+                || !string.IsNullOrEmpty(r.DetailColor)) return false;
+            if (owner.HasPart<SpatialFootprintPart>())
+            { var f = Owned<SpatialFootprintPart>(owner); if (f == null || f.Offsets.Length != 1 || f.Offsets[0] != Vector2Int.zero) return false; }
+            if (!Props.TryGet(owner.BlueprintName, "", out var row) || r.RenderString != row.Glyph
+                || r.ColorString != row.Color || (r.BackgroundColor ?? "") != (row.Background ?? "")) return false;
+            tile = PropTile(row, VariantAt(zone, owner, row.Variants));
+            return tile != null;
         }
 
         public bool TryResolve(Zone zone, Entity owner, out Tile tile)

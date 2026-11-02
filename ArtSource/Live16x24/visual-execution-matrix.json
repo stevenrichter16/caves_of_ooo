@@ -6941,7 +6941,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Retain fullarea/memoryASCII/population/R11; broader shade needs its own actual comparison. Batchwater+shade delivery later.",
+      "next_action": "Batch current water/shadow/memory Mac/Linux delivery, then compare largest remaining environmental/population gap. Memory static policy remains bounded; fullarea/R11 open.",
       "coordinates": [
         7,
         8,
@@ -7205,8 +7205,109 @@
       },
       "evidence": [
         "Docs/GRAPHICS-GANTRY-SHADOW.md",
-        "Docs/Verification/GraphicsExecution/GantryShadow/verification.json"
-      ]
+        "Docs/Verification/GraphicsExecution/GantryShadow/verification.json",
+        "Docs/GRAPHICS-GANTRY-MEMORY.md",
+        "Docs/Verification/GraphicsExecution/GantryMemory/verification.json"
+      ],
+      "bounded_timber_memory": {
+        "recorded_utc": "2026-11-02T08:54:02.461456+00:00",
+        "source_base": "046e1c5c9d97a1818329f222d974c19d8006b348",
+        "scope": "Gantry7.8 remembered timber wall continuity only",
+        "status": "bounded-editor-verified",
+        "memory_policy": "Existing fallback selects current conservative static terrain in explored nonvisible cells; not historical snapshots. No new reader access or hidden HP,solidity,temperature,status,TileState,neighbor inspection.",
+        "art": "Approvedpropframes68\u201370 unchanged; existingcoordinatevariant andsingle.35tint; no rememberedshadow",
+        "native": {
+          "red_job": "dc0d6b90df4c4d04b77da3a7f30826df",
+          "red_total": 18,
+          "red_failed": 14,
+          "red_passed": 4,
+          "initial_job": "f658bf0d222a45ada51575ac81934f92",
+          "initial_total": 401,
+          "initial_passed": 400,
+          "initial_failed": 1,
+          "correction": "Direct blueprint literals in routing flagged source-ownership scan. Centralized GantryTimberBlueprint in owning prop catalog; test unchanged.",
+          "final_job": "4b0c001df8d14a438f02c21d784c2940",
+          "final_passed": 78,
+          "final_failed": 0,
+          "final_inconclusive": 0,
+          "seconds": 8.6679487,
+          "retained_adjacent_passes": {
+            "BeatingMaterials": 224,
+            "GrovelandsMaterials": 128
+          },
+          "note": "Separate nonadditive receipts, not wholegame acceptance."
+        },
+        "actual": {
+          "fixture": "Docs/Verification/GraphicsExecution/GantryShadow/AfterCheckpoint",
+          "seed": 704860946,
+          "game_id": "a2e4390711a54b869eced598fbfbbac0",
+          "zone": "Overworld.7.8.0",
+          "baseline_turn": 1930,
+          "matched_position": [
+            39,
+            11
+          ],
+          "matched_hp": 22,
+          "initial_remembered_sources": 20,
+          "observed": "Visible upperright subset now darktimber; all20selected source tiles confirmed native byreadonly probe, notall20onscreen.",
+          "movement": "39,11\u219240,11 groundreader; protectedroute reached48,7 at2x, encountering realactors. Earlier closer50,10 excluded because rememberedwall was offscreen.",
+          "reader": "CurrentGrassreader at40,11; unchangedWood24/24 livewallreader reused from GantryShadow/reader.png, not rerun.",
+          "protection": "F12ON for closerroute/encounters;OFFbeforeF5. HP22unchanged; ordinary NPCcombat continued in isolatedsession.",
+          "travel": [
+            "Overworld.7.8.0",
+            "Overworld.7.9.0",
+            "Overworld.7.8.0"
+          ],
+          "save_turn": 2190,
+          "save_utc": "2026-11-02T08:51:23.8723260Z",
+          "fresh_position": [
+            39,
+            11
+          ],
+          "fresh_hp": 22
+        },
+        "comparison": {
+          "material": {
+            "changed_world_pixels": 4944,
+            "total_world_pixels": 639200,
+            "bbox": [
+              734,
+              88,
+              940,
+              112
+            ],
+            "right_ui_equal": true
+          },
+          "reload": {
+            "changed_world_pixels": 170,
+            "total_world_pixels": 639200,
+            "bbox": [
+              263,
+              260,
+              762,
+              466
+            ]
+          }
+        },
+        "profile": {
+          "seconds": 196.0253421,
+          "renderer_p95_ms": 0.072917,
+          "renderer_max_ms": 102.460417,
+          "main_thread_p95_ms": 1.689208,
+          "main_thread_max_ms": 166.944,
+          "gc_max_bytes": 46641635,
+          "limits": "After-only Editor movement/reader/zoom/encounter/travel/capture; noexecute_code inside profile. Not causal speedup, packaged or hardware acceptance;R11open."
+        },
+        "review": {
+          "source": "coverage_priorities:0P1/P2 staticselection/authority/resource/disclosure; no readerexpansion",
+          "visual": "capture_route:0newP1/P2 normalmatched39,11view, darktimberband consistentwithvisiblewall,clearvisibilityboundary;actualsubsetonly"
+        },
+        "limits": [
+          "Worldreload170/639200localpixels differ at263,260\u2013762,466, causeunproven; remembered upperband outside differencebbox.",
+          "CurrentfbfeaMac/Linuxexclude water/shadow/memory; batchnext.",
+          "No fullarea/population/globalshadow acceptance; darkmemory,olivegrade,otherASCII,interiors/composition andR11remain."
+        ]
+      }
     },
     {
       "id": "surface/Overworld.8.8.0",
@@ -16226,7 +16327,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Retain fullarea/memoryASCII/population/R11; broader shade needs its own actual comparison. Batchwater+shade delivery later.",
+      "next_action": "Batch current water/shadow/memory Mac/Linux delivery, then compare largest remaining environmental/population gap. Memory static policy remains bounded; fullarea/R11 open.",
       "faction": "Villagers",
       "profile": "CrossroadsExchange",
       "legacy_inventory_pointer": "/settlements/2",
@@ -16493,8 +16594,109 @@
       },
       "evidence": [
         "Docs/GRAPHICS-GANTRY-SHADOW.md",
-        "Docs/Verification/GraphicsExecution/GantryShadow/verification.json"
-      ]
+        "Docs/Verification/GraphicsExecution/GantryShadow/verification.json",
+        "Docs/GRAPHICS-GANTRY-MEMORY.md",
+        "Docs/Verification/GraphicsExecution/GantryMemory/verification.json"
+      ],
+      "bounded_timber_memory": {
+        "recorded_utc": "2026-11-02T08:54:02.461456+00:00",
+        "source_base": "046e1c5c9d97a1818329f222d974c19d8006b348",
+        "scope": "Gantry7.8 remembered timber wall continuity only",
+        "status": "bounded-editor-verified",
+        "memory_policy": "Existing fallback selects current conservative static terrain in explored nonvisible cells; not historical snapshots. No new reader access or hidden HP,solidity,temperature,status,TileState,neighbor inspection.",
+        "art": "Approvedpropframes68\u201370 unchanged; existingcoordinatevariant andsingle.35tint; no rememberedshadow",
+        "native": {
+          "red_job": "dc0d6b90df4c4d04b77da3a7f30826df",
+          "red_total": 18,
+          "red_failed": 14,
+          "red_passed": 4,
+          "initial_job": "f658bf0d222a45ada51575ac81934f92",
+          "initial_total": 401,
+          "initial_passed": 400,
+          "initial_failed": 1,
+          "correction": "Direct blueprint literals in routing flagged source-ownership scan. Centralized GantryTimberBlueprint in owning prop catalog; test unchanged.",
+          "final_job": "4b0c001df8d14a438f02c21d784c2940",
+          "final_passed": 78,
+          "final_failed": 0,
+          "final_inconclusive": 0,
+          "seconds": 8.6679487,
+          "retained_adjacent_passes": {
+            "BeatingMaterials": 224,
+            "GrovelandsMaterials": 128
+          },
+          "note": "Separate nonadditive receipts, not wholegame acceptance."
+        },
+        "actual": {
+          "fixture": "Docs/Verification/GraphicsExecution/GantryShadow/AfterCheckpoint",
+          "seed": 704860946,
+          "game_id": "a2e4390711a54b869eced598fbfbbac0",
+          "zone": "Overworld.7.8.0",
+          "baseline_turn": 1930,
+          "matched_position": [
+            39,
+            11
+          ],
+          "matched_hp": 22,
+          "initial_remembered_sources": 20,
+          "observed": "Visible upperright subset now darktimber; all20selected source tiles confirmed native byreadonly probe, notall20onscreen.",
+          "movement": "39,11\u219240,11 groundreader; protectedroute reached48,7 at2x, encountering realactors. Earlier closer50,10 excluded because rememberedwall was offscreen.",
+          "reader": "CurrentGrassreader at40,11; unchangedWood24/24 livewallreader reused from GantryShadow/reader.png, not rerun.",
+          "protection": "F12ON for closerroute/encounters;OFFbeforeF5. HP22unchanged; ordinary NPCcombat continued in isolatedsession.",
+          "travel": [
+            "Overworld.7.8.0",
+            "Overworld.7.9.0",
+            "Overworld.7.8.0"
+          ],
+          "save_turn": 2190,
+          "save_utc": "2026-11-02T08:51:23.8723260Z",
+          "fresh_position": [
+            39,
+            11
+          ],
+          "fresh_hp": 22
+        },
+        "comparison": {
+          "material": {
+            "changed_world_pixels": 4944,
+            "total_world_pixels": 639200,
+            "bbox": [
+              734,
+              88,
+              940,
+              112
+            ],
+            "right_ui_equal": true
+          },
+          "reload": {
+            "changed_world_pixels": 170,
+            "total_world_pixels": 639200,
+            "bbox": [
+              263,
+              260,
+              762,
+              466
+            ]
+          }
+        },
+        "profile": {
+          "seconds": 196.0253421,
+          "renderer_p95_ms": 0.072917,
+          "renderer_max_ms": 102.460417,
+          "main_thread_p95_ms": 1.689208,
+          "main_thread_max_ms": 166.944,
+          "gc_max_bytes": 46641635,
+          "limits": "After-only Editor movement/reader/zoom/encounter/travel/capture; noexecute_code inside profile. Not causal speedup, packaged or hardware acceptance;R11open."
+        },
+        "review": {
+          "source": "coverage_priorities:0P1/P2 staticselection/authority/resource/disclosure; no readerexpansion",
+          "visual": "capture_route:0newP1/P2 normalmatched39,11view, darktimberband consistentwithvisiblewall,clearvisibilityboundary;actualsubsetonly"
+        },
+        "limits": [
+          "Worldreload170/639200localpixels differ at263,260\u2013762,466, causeunproven; remembered upperband outside differencebbox.",
+          "CurrentfbfeaMac/Linuxexclude water/shadow/memory; batchnext.",
+          "No fullarea/population/globalshadow acceptance; darkmemory,olivegrade,otherASCII,interiors/composition andR11remain."
+        ]
+      }
     },
     {
       "id": "settlement/tine",

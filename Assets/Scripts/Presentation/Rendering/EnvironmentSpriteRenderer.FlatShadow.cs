@@ -103,7 +103,7 @@ namespace CavesOfOoo.Rendering
                 : flat.Owner?.BlueprintName == "SandstoneWall"
                     && (FlatPixelBeatingMaterialsCatalog.CanReceiveWallShadow(zone, x, y + 1)
                         || _flatPixelGreybox != null && _flatPixelGreybox.CanReceiveMarrowstyeWallShadow(zone, x, y + 1));
-            if (!receiver && flat.Owner?.BlueprintName == "GantryTimberWall")
+            if (!receiver && flat.Owner?.BlueprintName == FlatPixelWildFaunaCatalog.GantryTimberBlueprint)
                 receiver = _flatPixelGreybox != null
                     && _flatPixelGreybox.CanReceiveGantryWallShadow(zone, x, y + 1, flat.Owner);
             if (!receiver) return;
