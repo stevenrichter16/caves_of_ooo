@@ -1,6 +1,6 @@
 # Cinderhold wall-contact pilot
 
-Status: bounded Editor verified, publish with this slice. Ordinary Cinderhold6.6 already had native sandstone buildings, grass, stone floors and packed roads. The demonstrated gap was weak wall-ground contact, not missing material integration. This small shadow extension follows the larger Morrowfast river/bridge replacement.
+Status: bounded Editor and current Mac package verified; source fa616fcd7 published. Ordinary Cinderhold6.6 already had native sandstone buildings, grass, stone floors and packed roads. The demonstrated gap was weak wall-ground contact, not missing material integration. This small shadow extension follows the larger Morrowfast river/bridge replacement.
 
 ## Requirements and implementation
 
@@ -19,3 +19,7 @@ Reuse the established opaque native wall sprite on the existing 2D shadow layer:
 Greenish road/material contrast, dark interiors, other ASCII, every building/approach and whole-chunk composition remain open. Existing four buildings and occupied office are substantial; no arbitrary population was added. Continue environmental gap work and periodically choose actual sparse-family population improvements. Current dd772635a Mac/Linux builds exclude this and Morrowfastab5f33858; batch both next, with actual Mac verification and explicit Linux/Deck limits.
 
 Use BeforeCheckpoint through isolated Live16x24 GameBootstrap/native Continue for the matched view. AfterCheckpoint reproduces the verified route/save at30,9. See [verification.json](Verification/GraphicsExecution/Cinderhold/verification.json) for exact receipts and limits. Do not repeat the115 unchanged checks.
+
+## Current packaged delivery — 2026-11-02
+
+BatchFa616 includes this slice. Actual Mac river/bridge and sandstone/office readers, ordinary travel,F5 and exact fresh reload verified; Linux archive built and independently verified, Linux/Deck not executed. Packaged shadow is observational, not an isolated comparison. Earlier Editor-only/currentdd772 exclusion statements are historical. See [delivery evidence](Verification/GraphicsExecution/BatchFa616/README.md). Full-area acceptance and R11 remain open.

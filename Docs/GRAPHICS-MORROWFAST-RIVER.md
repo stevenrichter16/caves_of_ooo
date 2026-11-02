@@ -1,6 +1,6 @@
 # Morrowfast river and footbridge
 
-Status: bounded Editor verified; publish with this slice. Seed65 ordinary Morrowfast3.6 showed an uninterrupted environmental gap: 67 authored river cells were blue ASCII on black, and the six-cell crossing had only its small anchor icon. Existing buildings and ground already used native art. This larger coherent family was selected ahead of three isolated Ginmere pipe props.
+Status: bounded Editor and current Mac package verified; source ab5f33858 published. Seed65 ordinary Morrowfast3.6 showed an uninterrupted environmental gap: 67 authored river cells were blue ASCII on black, and the six-cell crossing had only its small anchor icon. Existing buildings and ground already used native art. This larger coherent family was selected ahead of three isolated Ginmere pipe props.
 
 ## Requirements and result
 
@@ -22,3 +22,7 @@ Implemented through a small Morrowfast river adapter composed into the existing 
 Repetition in vertical ripples, abrupt banks and grate-like board joins remain. Dark interiors, quiet western ground, all other rooms/approaches/services and unreviewed glyph owners need separate audits. No shadow or population acceptance is advanced. Current dd772635a Mac/Linux builds exclude this slice; batch after the next accepted environmental work.
 
 Reproduce through the isolated Live16x24 GameBootstrap session: RiverCheckpoint is the matched baseline; AfterCheckpoint is the accepted saved crossing. Use native Continue and1× normal zoom. Evidence and exact source corrections: [verification.json](Verification/GraphicsExecution/Morrowfast/verification.json). Next: Cinderhold6.6 center, approaches and actual interior (worldmapRight3 from Morrowfast). Its materials are already integrated; inspect before choosing material or restrained sandstone-wall shadow changes. Do not repeat completed river checks.
+
+## Current packaged delivery — 2026-11-02
+
+BatchFa616 includes this slice. Actual Mac river/bridge and sandstone/office readers, ordinary travel,F5 and exact fresh reload verified; Linux archive built and independently verified, Linux/Deck not executed. Packaged shadow is observational, not an isolated comparison. Earlier Editor-only/currentdd772 exclusion statements are historical. See [delivery evidence](Verification/GraphicsExecution/BatchFa616/README.md). Full-area acceptance and R11 remain open.
