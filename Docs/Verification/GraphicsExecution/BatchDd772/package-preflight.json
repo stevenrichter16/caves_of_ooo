@@ -1,0 +1,132 @@
+{
+  "source_commit": "dd772635a8ec6affdfd7d188f5bae82b30001b3c",
+  "runtime_source_commit": "dd772635a8ec6affdfd7d188f5bae82b30001b3c",
+  "built_after_utc": "2026-11-02T10:11:12.380862+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-02-graphics-dd772635a-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-02-graphics-dd772635a-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-02-graphics-dd772635a-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "planned_new_files": 31,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchDd772/mac-build.json",
+      "sha256": "bf49140e6258c1d46546d5e272b5339da2b132dc409b548ffeff00956dfa18fd",
+      "summary": {
+        "job_id": "build-b2d4909fbe",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-02-graphics-dd772635a-current/CavesOfOoo.app",
+        "started_at": "2026-11-02T10:11:50.945024Z",
+        "duration_seconds": 36.472159,
+        "completed_at": "2026-11-02T10:12:27.417183Z",
+        "total_size_mb": 346.51,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchDd772/linux-build.json",
+      "sha256": "9324834da793c16a8ab38ce273e3240600830a9fe4eed650671a551b7a2de29e",
+      "summary": {
+        "job_id": "build-0ded7edbe5",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-02-graphics-dd772635a-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-02T10:12:36.60422Z",
+        "duration_seconds": 50.187459,
+        "completed_at": "2026-11-02T10:13:26.791679Z",
+        "total_size_mb": 326.97,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/RimForest/regression.xml",
+        "sha256": "d9cc5b3b322adcbdaf9804d5ad643917ee3fce31ed18e368b197d12678e3609f",
+        "passed": 166,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-02T09:26:19+00:00",
+        "completed_at_utc": "2026-11-02T09:27:34+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/AshBed/regression.xml",
+        "sha256": "54062deeb39404e898567cf71e55fe98fb4b5531e242874e018a2dbd335003ab",
+        "passed": 169,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-02T09:56:05+00:00",
+        "completed_at_utc": "2026-11-02T09:56:19+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/AshBed/green-final32.xml",
+        "sha256": "bfd2677255e448ff89293b2af3ee9170cbabc7431043d0389b9cb1a10e437b7c",
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-02T10:05:27+00:00",
+        "completed_at_utc": "2026-11-02T10:05:30+00:00",
+        "inconclusive_cases": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained RimForest166, Ash169 and final32 checkpoints; overlapping/nonadditive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/BatchDd772/build-input-audit.json",
+    "sha256": "44482379916b4c4ab0adb1a8bffbf4cefd81d1bf31c00a50e0b2dbed2bf02366",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 73,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 64
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 2
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-02T10:11:12.380862+00:00",
+      "checks": [],
+      "note": "Play stopped, root null, scene clean; no temporary controls."
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 81,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/BatchDd772/package.py",
+    "sha256": "9a772360d7b33533848104f952cc75e53dcd333bce0ee8766cde45a03455fd2d",
+    "adapted_from": "Docs/Verification/Live16x24/regional-batch-package-audit.py",
+    "adapted_from_sha256": "8e3fa353485b285ab4611f0d6b2307bc61ece8919d3f0ad5e51a17c2bc5f63e4"
+  },
+  "dry_run": true,
+  "no_files_written": true
+}
+
