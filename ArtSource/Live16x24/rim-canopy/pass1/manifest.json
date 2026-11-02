@@ -1,0 +1,33 @@
+{
+  "native": [
+    48,
+    24
+  ],
+  "frame": [
+    16,
+    24
+  ],
+  "frames": 3,
+  "ppu": 16,
+  "pivot": [
+    0.5,
+    0.5
+  ],
+  "filter": "Point",
+  "wrap": "Clamp",
+  "mipmaps": false,
+  "compression": "None",
+  "source": "rim-canopy.blend",
+  "generator": "Tools/Live16x24/build_rim_canopy.py",
+  "concept": "concept.png (reference only; no raster extraction)",
+  "baseline": "Docs/Verification/GraphicsExecution/RimTreeShadow/after.png",
+  "sha256": "71c8dcf36678a9f90736fb8fb7203ad29f90f1b96292872856baa75bd26acf25",
+  "occupied": [
+    219,
+    216,
+    213
+  ],
+  "limits": "Authored only; integration and actual gameplay still required.",
+  "preserved_original_sha256": "f6d1ede626402f9b7963b4aba7434044f10a925376e4da74c73e4dfb94e68777",
+  "source_pixel_verification": "verify.py passed exact pixels,200\u2013270occupied/cell,binary alpha,single connected body withinx1\u201314/y1\u201322"
+}

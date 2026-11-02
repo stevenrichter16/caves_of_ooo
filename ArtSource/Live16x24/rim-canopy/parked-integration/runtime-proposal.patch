@@ -1,0 +1,51 @@
+diff --git a/Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs b/Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs
+index 3116a0556..a3fccc064 100644
+--- a/Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/FlatPixelStumpMaterialsCatalog.cs
+@@ -82,10 +82,12 @@ namespace CavesOfOoo.Rendering
+                 && owner.HasTag(FellingSceneRuntime.TerrainTag);
+ 
+         public const string ResourcePath = "Sprites/Live16x24/stump-materials";
++        public const string RimCanopyResourcePath = "Sprites/Live16x24/rim-canopy";
+         public const int FrameCount = 71;
+         const int Width = 16, Height = 24;
+         readonly FlatPixelFallbackCatalog selector;
+         readonly Tile[] materials, vegetation, opening, plainWalls;
++        readonly Tile[] rimCanopy;
+         bool disposed;
+         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
+ 
+@@ -104,7 +106,8 @@ namespace CavesOfOoo.Rendering
+             : this(Resources.Load<Texture2D>(ResourcePath),
+                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
+                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
+-                Resources.Load<Texture2D>(FlatPixelEastFixtureCatalog.CellarResourcePath), borrowedSelector) { }
++                Resources.Load<Texture2D>(FlatPixelEastFixtureCatalog.CellarResourcePath), borrowedSelector)
++        { rimCanopy = Frames(Resources.Load<Texture2D>(RimCanopyResourcePath), 3, "Rim tree canopy"); }
+ 
+         /// <summary>Optional groups fail independently. Explicit null injection
+         /// never reloads a resource or disables another valid borrowed group.</summary>
+@@ -163,6 +166,14 @@ namespace CavesOfOoo.Rendering
+             }
+             int frame = DryFrame(owner, x, y);
+             if (frame < 0) return false;
++            // Regional art varies only the existing selected Tree's body. Missing
++            // optional art retains the approved original; all owner checks above apply.
++            if (owner.BlueprintName == "Tree" && zone.ZoneID == "Overworld.2.3.0"
++                && IsSupportedZone(zone) && rimCanopy != null)
++            {
++                int variant = (int)(((uint)x * 73856093u ^ (uint)y * 19349663u) % 3);
++                tile = rimCanopy[variant]; return true;
++            }
+             var group = owner.BlueprintName == "Tree" ? vegetation : owner.BlueprintName == "Bush" ? opening : materials;
+             if (group == null) return false;
+             tile = group[PerimeterFrame(zone, owner.BlueprintName, x, y, frame)]; return true;
+@@ -612,7 +623,7 @@ namespace CavesOfOoo.Rendering
+         public void Dispose()
+         {
+             if (disposed) return; disposed = true;
+-            DestroyFrames(fellingBlackwater); DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(plainWalls);
++            DestroyFrames(fellingBlackwater); DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(plainWalls); DestroyFrames(rimCanopy);
+         }
+         static void DestroyFrames(Tile[] tiles)
+         {
