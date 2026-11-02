@@ -271,3 +271,5 @@ packaged-performance target. All are requirements, not claims of verification.
 - 2026-11-01T21:01Z: Felling1,638dry-cell slice observed in actual gameplay, native163/163, independent review clear, freshContinue preserved. Separate current matrix records retain fallback/in-progress for the whole site.
 - Bounded manual profile extension records native raw-unit percentiles without gameplay writes;71sFelling/81sSpread completed. Spikes, unmatched baselines and current packages keep R11/V6 open; see Profiles/README. This does not waive the backlog or expand full-area acceptance.
 - Last actual hourly report2026-11-01T20:59:02Z; next21:59:02Z. Normal isolation restored; storage inspection only.
+
+-2026-11-02: bounded Spread10.15 Tree root-contact V5 slice observed;154native, actual1×/2×/reader/walk/F5/freshContinue and independent review. No V0–V7 closure; R11 remains open. See GRAPHICS-TREE-CONTACT-SHADOW.md. Batch current delivery next.

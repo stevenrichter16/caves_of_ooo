@@ -1,0 +1,153 @@
+{
+  "before_seconds": 85.367666,
+  "after_seconds": 98.8020906,
+  "before": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "category": "Scripts",
+      "units": "TimeNanoseconds",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 57250,
+      "mean": 80446.04188646289,
+      "p50": 77042.0,
+      "p95": 100334.0,
+      "p99": 125667.0,
+      "max": 82202750.0
+    },
+    {
+      "name": "Main Thread",
+      "category": "Internal",
+      "units": "TimeNanoseconds",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 57250,
+      "mean": 1488319.6855196506,
+      "p50": 1175000.0,
+      "p95": 1936166.0,
+      "p99": 5955875.0,
+      "max": 1860701500.0
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "category": "Memory",
+      "units": "Bytes",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 57250,
+      "mean": 319452.8743930131,
+      "p50": 17961.0,
+      "p95": 18645.0,
+      "p99": 508179.0,
+      "max": 2185779151.0
+    },
+    {
+      "name": "Batches Count",
+      "category": "Render",
+      "units": "Count",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 57250,
+      "mean": 43.18073362445415,
+      "p50": 42.0,
+      "p95": 46.0,
+      "p99": 46.0,
+      "max": 46.0
+    },
+    {
+      "name": "Draw Calls Count",
+      "category": "Render",
+      "units": "Count",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 57250,
+      "mean": 43.878637554585154,
+      "p50": 43.0,
+      "p95": 46.0,
+      "p99": 46.0,
+      "max": 46.0
+    }
+  ],
+  "after": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "category": "Scripts",
+      "units": "TimeNanoseconds",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 70972,
+      "mean": 88684.55262638787,
+      "p50": 80250.0,
+      "p95": 109708.0,
+      "p99": 139542.0,
+      "max": 91423750.0
+    },
+    {
+      "name": "Main Thread",
+      "category": "Internal",
+      "units": "TimeNanoseconds",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 70972,
+      "mean": 1389058.656005185,
+      "p50": 1202459.0,
+      "p95": 1901666.0,
+      "p99": 2442667.0,
+      "max": 1961803542.0
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "category": "Memory",
+      "units": "Bytes",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 70972,
+      "mean": 163786.33294820492,
+      "p50": 17961.0,
+      "p95": 18049.0,
+      "p99": 476383.0,
+      "max": 972591326.0
+    },
+    {
+      "name": "Batches Count",
+      "category": "Render",
+      "units": "Count",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 70972,
+      "mean": 43.2393056416615,
+      "p50": 43.0,
+      "p95": 47.0,
+      "p99": 47.0,
+      "max": 47.0
+    },
+    {
+      "name": "Draw Calls Count",
+      "category": "Render",
+      "units": "Count",
+      "failure": "",
+      "valid": true,
+      "wrapped": false,
+      "count": 70972,
+      "mean": 44.17377275545285,
+      "p50": 44.0,
+      "p95": 47.0,
+      "p99": 47.0,
+      "max": 47.0
+    }
+  ],
+  "limits": [
+    "Editor observations, not packaged/hardware performance or causal speedup.",
+    "After began at2x, first native Next returned1x; reader/right-left/idle without execute_code or captures during interval.",
+    "Preexisting large baseline allocation/scheduling outliers remain R11; no new ownership attribution."
+  ]
+}

@@ -12,7 +12,7 @@ Saved/fresh world crop(0,0)-(2216,1614): surface0/3576624 changed pixels; field5
 
 A complete55324tracked-object snapshot preceded both builds. Final guarded restoration verified all objects,75foreign changes, normal saves/preferences and prior a72 packages; three reviewed generated settings restored. Owned test saves archived under `/private/tmp/coo-de600-restored/standalone-session-Saves` and `/private/tmp/coo-de600-owned-session-before3`. No cleanup. Native test receipts reused as separate executions, not summed into an all-source suite. Full evidence and reproducible scripts: `Docs/Verification/GraphicsExecution/BatchDe600/`.
 
-Next: actual Felling Site stone baseline; reuse approved Stump walls/ridges for its298authored solid cells with strict owner/opacity/disclosure checks. Blackwater57 and ritual7 remain separate gaps. Then a bounded field Tree contact-shadow comparison; continue cross-region triage.
+Next: batch current delivery for published Felling solid5e40 and the separately verified Spread Tree root-contact pilot. These de600 packages exclude both. Felling blackwater57/ritual7 and Ginmere253ledge bands remain distinct material candidates.
 
 ## Previous preserved checkpoint
 

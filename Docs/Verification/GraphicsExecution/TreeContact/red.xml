@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="28" result="Failed(Child)" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:41Z" duration="2.8797004">
+  <test-suite type="TestSuite" id="43579" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35490" result="Failed" site="Child" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:41Z" duration="2.879700" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43551" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35490" result="Failed" site="Child" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:41Z" duration="2.871839" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43552" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35490" result="Failed" site="Child" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:41Z" duration="2.867374" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43553" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35490" result="Failed" site="Child" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:41Z" duration="2.863128" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="34244" name="FlatPixelTreeContactShadowTests" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:41Z" duration="2.852288" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="34262" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:40Z" duration="1.680776" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34246" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;memory&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="355193571" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:39Z" duration="0.292896" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34247" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;unexplored&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1886277135" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:39Z" duration="0.086166" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34248" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;source-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;source-hidden&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="979081555" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:39Z" duration="0.080116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34249" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;source-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;source-variant&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="584419486" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:39Z" duration="0.081120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34250" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;removed&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="361372180" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:39Z" duration="0.082512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34251" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;dead&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="25377418" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:39Z" duration="0.082567" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34252" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;floor-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;floor-hidden&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="866197630" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:39Z" duration="0.081807" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34253" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;floor-variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;floor-variant&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="83334368" result="Failed" start-time="2026-11-02 00:50:39Z" end-time="2026-11-02 00:50:40Z" duration="0.083564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34254" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;floor-removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;floor-removed&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="542876353" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.081760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34255" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;oil&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="241421625" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.155583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34256" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;heat&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1322227132" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.141430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34257" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;grass-solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;grass-solid&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="202991615" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.081599" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34258" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;poi&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="154221366" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.081807" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34259" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;graph&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1910322180" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.083483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34260" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;alias&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="381689873" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.081879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34261" name="ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact(&quot;map&quot;)" methodname="ChangedMeaningDisclosureAndAuthorityClearWarmContact" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1853913718" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.081942" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.ChangedMeaningDisclosureAndAuthorityClearWarmContact (System.String change) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="34272" name="DamagedTreeRetainsContactButThePilotDoesNotExpandAcrossZones" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.DamagedTreeRetainsContactButThePilotDoesNotExpandAcrossZones" methodname="DamagedTreeRetainsContactButThePilotDoesNotExpandAcrossZones" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1415140633" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.082862" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.DamagedTreeRetainsContactButThePilotDoesNotExpandAcrossZones () [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:112
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34271" name="MissingNativeGrassDeclinesWhileTheNativeTreeBodyRemains" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.MissingNativeGrassDeclinesWhileTheNativeTreeBodyRemains" methodname="MissingNativeGrassDeclinesWhileTheNativeTreeBodyRemains" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1017386417" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:40Z" duration="0.082200" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.MissingNativeGrassDeclinesWhileTheNativeTreeBodyRemains () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:100
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34274" name="OptionalMaskAndNativeGroundAreRequiredAndBorrowedMaskSurvivesDisposal" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.OptionalMaskAndNativeGroundAreRequiredAndBorrowedMaskSurvivesDisposal" methodname="OptionalMaskAndNativeGroundAreRequiredAndBorrowedMaskSurvivesDisposal" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1435852750" result="Failed" start-time="2026-11-02 00:50:40Z" end-time="2026-11-02 00:50:41Z" duration="0.081806" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.OptionalMaskAndNativeGroundAreRequiredAndBorrowedMaskSurvivesDisposal () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:130
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34270" name="RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.201985" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34268" name="RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden(False)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden(False)" methodname="RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="2025086838" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.083918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden (System.Boolean visible) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34269" name="RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden(True)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden(True)" methodname="RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="1202213873" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.081380" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.RealWaterCoatingDeclinesEvenWhenItsOwnerIsHidden (System.Boolean visible) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:92
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="34245" name="RootContactStaysInsideTheSourceCellAndBelowItsApprovedBody" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.RootContactStaysInsideTheSourceCellAndBelowItsApprovedBody" methodname="RootContactStaysInsideTheSourceCellAndBelowItsApprovedBody" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="786339609" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.080106" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.RootContactStaysInsideTheSourceCellAndBelowItsApprovedBody () [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:38
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34273" name="SavedLairClaimStillExcludesRestoredWildernessLabel" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.SavedLairClaimStillExcludesRestoredWildernessLabel" methodname="SavedLairClaimStillExcludesRestoredWildernessLabel" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="327613290" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.080931" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.SavedLairClaimStillExcludesRestoredWildernessLabel () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:120
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="34275" name="TreeRemovalIncrementalMatchesFullAndLegacyClearsOnlyOwnedShade" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.TreeRemovalIncrementalMatchesFullAndLegacyClearsOnlyOwnedShade" methodname="TreeRemovalIncrementalMatchesFullAndLegacyClearsOnlyOwnedShade" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="942995923" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.080077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.TreeRemovalIncrementalMatchesFullAndLegacyClearsOnlyOwnedShade () [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:141
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34267" name="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.477365" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="34263" name="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Dagger&quot;)" methodname="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="361605354" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.080481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34264" name="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Bush&quot;)" methodname="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="419630525" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.088964" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34265" name="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Player&quot;)" methodname="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="918201477" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.192692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="34266" name="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves(&quot;Grass&quot;)" methodname="VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves" classname="CavesOfOoo.Tests.FlatPixelTreeContactShadowTests" runstate="Runnable" seed="820908014" result="Failed" start-time="2026-11-02 00:50:41Z" end-time="2026-11-02 00:50:41Z" duration="0.080215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Tree has no bounded root contact shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:25
+at CavesOfOoo.Tests.FlatPixelTreeContactShadowTests.VisibleCompetitorsWithdrawContactButHiddenOnesCannotRevealThemselves (System.String name) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelTreeContactShadowTests.cs:83
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

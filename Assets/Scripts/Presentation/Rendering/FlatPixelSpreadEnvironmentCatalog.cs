@@ -131,6 +131,16 @@ namespace CavesOfOoo.Rendering
             tile=packed!=null?road==null?null:road[(x+y)&1]:turf==null?null:turf[VariantAt(x,y)];
             if(tile!=null)return true;floor=null;return false;
         }
+        internal bool CanReceiveTreeContactShadow(Zone zone,int x,int y,Entity source)
+        {
+            if(zone?.ZoneID!="Overworld.10.15.0"||!IsSupportedZone(zone)||!ReadyCell(zone,x,y,out var cell)
+                ||source?.BlueprintName!="Tree"||!IsEligiblePlant(source)||!Placed(zone,cell,source)||!Selected(zone,x,y,source)
+                ||!TryResolveGround(zone,x,y,out var ground,out var floor)||ground==null||floor?.BlueprintName!="Grass")return false;
+            var state=zone.TileState.Get(x,y);if(state!=null&&!state.IsEmpty)return false;
+            foreach(var owner in cell.Occupants)
+                if(Placed(zone,cell,owner)&&VisiblePhysicalOwner(owner)&&!ReferenceEquals(owner,source)&&!ReferenceEquals(owner,floor))return false;
+            return true;
+        }
         public bool TryResolveForeground(Zone zone,int x,int y,Entity owner,out Tile tile)
         {
             tile=null;if(!ReadyCell(zone,x,y,out _)||!Selected(zone,x,y,owner))return false;

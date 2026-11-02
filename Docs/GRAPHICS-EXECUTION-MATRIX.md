@@ -1,3 +1,5 @@
+**Tree contact update2026-11-02:** Spread10.15 shadow axis observed within one dry native Tree/Grass pilot; coverage/polish/population unchanged.154native, real readers/walk/reload, independent review;0/639200reloadpixels. R11/packages remain open. See GRAPHICS-TREE-CONTACT-SHADOW.md.
+
 **Felling solid update2026-11-02:** Two Felling rows retain fallback/in-progress overall and gain bounded solid-stone evidence.122selectedsolidowners observed; source195opaque/103nonopaque;156finalnative, actual reader/collision/LOS/route/reload exact. Low-cap visual P2 resolved by approved reuse;57water/7ritual/covered-memoryglyphs/composition/R11 remain. Currentde600packages lag this slice. Next boundedSpreadTreecontactshadow.
 
 **Delivery update 2026-11-02:** de600 current Mac four-launch smoke and Linux archive verified; source-pinned evidence in `Docs/Verification/GraphicsExecution/BatchDe600/`. Ginmere surface exact reload; Spread localized5901pixel differences unresolved. Cathedral included only. No status-axis promotion; R11/hardware/full-area gates remain open. Next Felling298authored solid stone cells, then Tree contact shade.

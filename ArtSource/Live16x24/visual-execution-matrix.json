@@ -150,8 +150,8 @@
         "plan": "Docs/GRAPHICS-STUMP-ENVIRONMENT.md",
         "evidence": "Docs/Verification/Live16x24/stump-environment-final-receipt.json",
         "scope": [
-          "TepuiStone floor0–3",
-          "StoneDome interior20–21/exposed56–70"
+          "TepuiStone floor0\u20133",
+          "StoneDome interior20\u201321/exposed56\u201370"
         ],
         "changed_frames": 21,
         "protected_frames": 50,
@@ -218,8 +218,8 @@
         "plan": "Docs/GRAPHICS-STUMP-ENVIRONMENT.md",
         "evidence": "Docs/Verification/Live16x24/stump-environment-final-receipt.json",
         "scope": [
-          "TepuiStone floor0–3",
-          "StoneDome interior20–21/exposed56–70"
+          "TepuiStone floor0\u20133",
+          "StoneDome interior20\u201321/exposed56\u201370"
         ],
         "changed_frames": 21,
         "protected_frames": 50,
@@ -3352,7 +3352,7 @@
           "owners": {
             "SandstoneFloor": 177
           },
-          "art": "unchanged beating-materials12–15",
+          "art": "unchanged beating-materials12\u201315",
           "delivery": "editor-only",
           "limits": [
             "Surface only; stack/deeper materials remain unaudited or fallback",
@@ -3986,7 +3986,7 @@
           "status": "observed",
           "integration": "integrated",
           "materials": [
-            "approved Stump ground frames0–3"
+            "approved Stump ground frames0\u20133"
           ],
           "admitted_cells": 1638,
           "excluded_cells": {
@@ -4014,7 +4014,7 @@
             "nonopaque_solid": 103
           },
           "observed_selected_solids": 122,
-          "art": "unchanged Stump4–5/26–40 wall;20–21/56–70 lowcap",
+          "art": "unchanged Stump4\u20135/26\u201340 wall;20\u201321/56\u201370 lowcap",
           "native_final": 156,
           "actual": "Matched1x/2x, readers, real wall/ridge collision and nonopaque sight, return route, F5turn830/freshContinue47,7HP40;2000terrain signatures exact;0/639200worldpixels",
           "polish": "bounded ridge cue resolved; whole-area in-progress",
@@ -5418,7 +5418,7 @@
           "owners": {
             "SandstoneFloor": 177
           },
-          "art": "unchanged beating-materials12–15",
+          "art": "unchanged beating-materials12\u201315",
           "delivery": "editor-only",
           "limits": [
             "Surface only; stack/deeper materials remain unaudited or fallback",
@@ -10798,11 +10798,11 @@
         "coverage": "fallback",
         "polish": "in-progress",
         "population": "reviewed",
-        "shadow": "not-audited",
+        "shadow": "observed",
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Ginmere/Deepest Cathedral material gaps next; retain field repetition, sparse patches, unrelated glyphs and R11 as open. Batch new composition delivery later.",
+      "next_action": "Batch current delivery after Tree contact/Felling solid; compare next evidenced regional material gap. Field combs, broad gaps, glyph backings and R11 remain open.",
       "coordinates": [
         10,
         15,
@@ -10842,11 +10842,24 @@
             "Tree": 3,
             "Bush": 12
           },
-          "delivery": "editor-only",
+          "delivery": "bounded-mac-observed",
           "limits": [
             "Modest margin dressing, not full-area fullness",
             "F12-protected traversal does not establish encounter balance",
-            "R11 spikes unresolved; packages remain a72a22983"
+            "R11 spikes unresolved; bounded Mac observed in de600 delivery"
+          ]
+        },
+        {
+          "id": "spread-tree-root-contact",
+          "axis": "shadow",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-TREE-CONTACT-SHADOW.md",
+          "delivery": "editor-only",
+          "limits": [
+            "Only current ordinary10.15 dry native Grass/Tree",
+            "Root contact only, no canopy or full-area lighting",
+            "R11 large preexisting Editor outliers unresolved",
+            "Current de600 packages exclude pilot"
           ]
         }
       ],
@@ -10855,7 +10868,9 @@
           "Docs/Verification/GraphicsExecution/field-before.png",
           "Docs/Verification/GraphicsExecution/FieldComposition/before-center.png",
           "Docs/Verification/GraphicsExecution/FieldComposition/before-west.png",
-          "Docs/Verification/GraphicsExecution/FieldComposition/before-east-x46.png"
+          "Docs/Verification/GraphicsExecution/FieldComposition/before-east-x46.png",
+          "Docs/Verification/GraphicsExecution/TreeContact/before.png",
+          "Docs/Verification/GraphicsExecution/TreeContact/before-2x.png"
         ],
         "after_captures": [
           "Docs/Verification/GraphicsExecution/field-after.png",
@@ -10863,22 +10878,29 @@
           "Docs/Verification/GraphicsExecution/FieldComposition/after-center.png",
           "Docs/Verification/GraphicsExecution/FieldComposition/after-west.png",
           "Docs/Verification/GraphicsExecution/FieldComposition/after-east-x46.png",
-          "Docs/Verification/GraphicsExecution/FieldComposition/after-close.png"
+          "Docs/Verification/GraphicsExecution/FieldComposition/after-close.png",
+          "Docs/Verification/GraphicsExecution/TreeContact/after.png",
+          "Docs/Verification/GraphicsExecution/TreeContact/after-2x.png"
         ],
         "reader_checks": [
           "Docs/Verification/GraphicsExecution/field-ripe-examine.png",
           "Docs/Verification/GraphicsExecution/FieldComposition/tree-reader.png",
-          "Docs/Verification/GraphicsExecution/FieldComposition/bush-reader.png"
+          "Docs/Verification/GraphicsExecution/FieldComposition/bush-reader.png",
+          "Docs/Verification/GraphicsExecution/TreeContact/tree-reader.png"
         ],
         "route_checks": [
-          "Docs/Verification/GraphicsExecution/field-harvest.png"
+          "Docs/Verification/GraphicsExecution/field-harvest.png",
+          "Docs/Verification/GraphicsExecution/TreeContact/reload-comparison.json"
         ],
         "reload_checks": [
           "Docs/Verification/GraphicsExecution/field-fresh-continue.png",
           "Docs/Verification/GraphicsExecution/field-harvest-save/Quick.json",
           "Docs/Verification/GraphicsExecution/FieldComposition/after-fresh-continue.png",
           "Docs/Verification/GraphicsExecution/FieldComposition/actual-state.json",
-          "Docs/Verification/GraphicsExecution/FieldComposition/reload-comparison.json"
+          "Docs/Verification/GraphicsExecution/FieldComposition/reload-comparison.json",
+          "Docs/Verification/GraphicsExecution/TreeContact/fresh.png",
+          "Docs/Verification/GraphicsExecution/TreeContact/after-save/Quick.json",
+          "Docs/Verification/GraphicsExecution/TreeContact/reload-comparison.json"
         ],
         "regressions": [
           "Docs/Verification/GraphicsExecution/field-rows-red.xml",
@@ -10888,17 +10910,24 @@
           "Docs/Verification/GraphicsExecution/FieldComposition/review-red.xml",
           "Docs/Verification/GraphicsExecution/FieldComposition/relocation-red.xml",
           "Docs/Verification/GraphicsExecution/FieldComposition/regression-green.xml",
-          "Docs/Verification/GraphicsExecution/FieldComposition/final-green.xml"
+          "Docs/Verification/GraphicsExecution/FieldComposition/final-green.xml",
+          "Docs/Verification/GraphicsExecution/TreeContact/red.xml",
+          "Docs/Verification/GraphicsExecution/TreeContact/green.xml"
         ],
         "profiles": [
           "Docs/Verification/GraphicsExecution/Profiles/manual-20261101-210043-381.json",
           "Docs/Verification/GraphicsExecution/Profiles/README.md",
           "Docs/Verification/GraphicsExecution/FieldComposition/after-profile.json",
-          "Docs/Verification/GraphicsExecution/FieldComposition/before-clean-profile.json"
+          "Docs/Verification/GraphicsExecution/FieldComposition/before-clean-profile.json",
+          "Docs/Verification/GraphicsExecution/TreeContact/before-profile.json",
+          "Docs/Verification/GraphicsExecution/TreeContact/after-profile.json",
+          "Docs/Verification/GraphicsExecution/TreeContact/profile-comparison.json"
         ],
         "independent_reviews": [
           "Docs/GRAPHICS-SPREAD-FIELD-ROWS.md",
-          "Docs/GRAPHICS-SPREAD-FIELD-COMPOSITION.md"
+          "Docs/GRAPHICS-SPREAD-FIELD-COMPOSITION.md",
+          "Docs/Verification/GraphicsExecution/TreeContact/source-review.json",
+          "Docs/Verification/GraphicsExecution/TreeContact/visual-review.json"
         ]
       },
       "actual_zoom_resolution": "1280x800 Editor;1x before/after center,2x closer play;freshContinue1x",
@@ -10929,7 +10958,7 @@
         "Replayed travel comparison; initial retainedsaveis10.11 entry, not10.15",
         "Fullchunkedges and all owners not yet audited",
         "Bounded Mac slice observed; full-area delivery, Linux/Deck execution and packaged performance remain open",
-        "Bounded15-owner cold margin composition observed; no new shadows or full-area acceptance"
+        "Bounded15-owner cold margin composition observed; Tree root-contact separately observed; no full-area acceptance"
       ],
       "delivery_observation": {
         "source": "de60021715b31469a7f0c1070b2096476faeec6f",
@@ -15723,7 +15752,7 @@
           "owners": {
             "SandstoneFloor": 177
           },
-          "art": "unchanged beating-materials12–15",
+          "art": "unchanged beating-materials12\u201315",
           "delivery": "editor-only",
           "limits": [
             "Surface only; stack/deeper materials remain unaudited or fallback",
@@ -15825,7 +15854,7 @@
           "owners": {
             "SandstoneFloor": 177
           },
-          "art": "unchanged beating-materials12–15",
+          "art": "unchanged beating-materials12\u201315",
           "delivery": "editor-only",
           "limits": [
             "Surface only; stack/deeper materials remain unaudited or fallback",
@@ -16259,7 +16288,7 @@
           "owners": {
             "SandstoneFloor": 177
           },
-          "art": "unchanged beating-materials12–15",
+          "art": "unchanged beating-materials12\u201315",
           "delivery": "editor-only",
           "limits": [
             "Surface only; stack/deeper materials remain unaudited or fallback",
@@ -16276,7 +16305,7 @@
             "SandstoneFloor",
             "SandstoneWall"
           ],
-          "art": "unchanged beating-materials12–15 and shallow-caves0–1",
+          "art": "unchanged beating-materials12\u201315 and shallow-caves0\u20131",
           "native_tests": {
             "red_failures": 25,
             "red_counter_pass": 1,
@@ -16410,7 +16439,7 @@
           "owners": {
             "SandstoneFloor": 177
           },
-          "art": "unchanged beating-materials12–15",
+          "art": "unchanged beating-materials12\u201315",
           "delivery": "editor-only",
           "limits": [
             "Surface only; stack/deeper materials remain unaudited or fallback",
@@ -16523,7 +16552,7 @@
             "SandstoneFloor",
             "SandstoneWall"
           ],
-          "art": "unchanged beating-materials12–15 and shallow-caves0–1",
+          "art": "unchanged beating-materials12\u201315 and shallow-caves0\u20131",
           "native_tests": {
             "red_failures": 25,
             "red_counter_pass": 1,
@@ -17320,7 +17349,7 @@
           "status": "observed",
           "integration": "integrated",
           "materials": [
-            "approved Stump ground frames0–3"
+            "approved Stump ground frames0\u20133"
           ],
           "admitted_cells": 1638,
           "excluded_cells": {
@@ -17485,7 +17514,7 @@
           "status": "observed",
           "integration": "integrated",
           "materials": [
-            "approved Stump ground frames0–3"
+            "approved Stump ground frames0\u20133"
           ],
           "admitted_cells": 1638,
           "excluded_cells": {
@@ -17513,7 +17542,7 @@
             "nonopaque_solid": 103
           },
           "observed_selected_solids": 122,
-          "art": "unchanged Stump4–5/26–40 wall;20–21/56–70 lowcap",
+          "art": "unchanged Stump4\u20135/26\u201340 wall;20\u201321/56\u201370 lowcap",
           "native_final": 156,
           "actual": "Matched1x/2x, readers, real wall/ridge collision and nonopaque sight, return route, F5turn830/freshContinue47,7HP40;2000terrain signatures exact;0/639200worldpixels",
           "polish": "bounded ridge cue resolved; whole-area in-progress",
@@ -18188,7 +18217,7 @@
       "legacy_inventory_pointer": "/other_area_families/13",
       "instance_addresses": [],
       "address_resolution": "unresolved; derive from current planner/seed rather than inventing addresses",
-      "scope_note": "Fresh placement targets3–5lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal."
+      "scope_note": "Fresh placement targets3\u20135lairs with bounded attempts, not guaranteed counts; new stacks depth1or2; legacy saves literal."
     },
     {
       "id": "area-family/merchant_camps",
@@ -18212,7 +18241,7 @@
       "legacy_inventory_pointer": "/other_area_families/14",
       "instance_addresses": [],
       "address_resolution": "unresolved; derive from current planner/seed rather than inventing addresses",
-      "scope_note": "Fresh placement targets2–3camps with bounded attempts; excludes Overwrit/Stump."
+      "scope_note": "Fresh placement targets2\u20133camps with bounded attempts; excludes Overwrit/Stump."
     },
     {
       "id": "area-family/river_chunk",

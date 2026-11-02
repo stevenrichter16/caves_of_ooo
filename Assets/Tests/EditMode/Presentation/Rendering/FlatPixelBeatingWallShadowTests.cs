@@ -328,7 +328,17 @@ namespace CavesOfOoo.Tests
             }
             public void Dispose()
             {
-                try { if (Environment != null) Catalog(null); saved?.Dispose(); if (root != null) Object.DestroyImmediate(root); }
+                try
+                {
+                    if (Environment != null)
+                    {
+                        Catalog(null); // Borrowed catalog belongs to the outer fixture.
+                        // HotbarSaveFixture is never active, so Unity will not call OnDestroy.
+                        // Exercise the real teardown explicitly before destroying that inactive root.
+                        typeof(EnvironmentSpriteRenderer).GetMethod("OnDestroy", I).Invoke(Environment, null);
+                    }
+                    saved?.Dispose(); if (root != null) Object.DestroyImmediate(root);
+                }
                 finally
                 {
                     ZoneRenderHooks.CellDirtyCallback = oldCell; ZoneRenderHooks.FullDirtyCallback = oldFull; bound.SetValue(null, oldBound);
