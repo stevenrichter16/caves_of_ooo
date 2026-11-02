@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
     /// <summary>Static material bodies for current ordinary Grovelands graphs.
     /// Borrows approved source textures and the visible-owner selector; owns only
     /// cached sprites/tiles. Never generates, changes stock or expands opening scope.</summary>
-    public sealed class FlatPixelGrovelandsMaterialsCatalog : IDisposable
+    public sealed partial class FlatPixelGrovelandsMaterialsCatalog : IDisposable
     {
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
@@ -44,7 +44,8 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath), borrowedSelector,
-                Resources.Load<Texture2D>(GroundResourcePath), Resources.Load<Texture2D>("Sprites/Live16x24/sodden-flood-water")) { }
+                Resources.Load<Texture2D>(GroundResourcePath), Resources.Load<Texture2D>("Sprites/Live16x24/sodden-flood-water"),
+                Resources.Load<Texture2D>(MucilageResourcePath)) { }
 
         /// <summary>Optional groups fail independently. Never reload injected
         /// textures, modify source pixels/settings, or dispose the borrowed selector.</summary>
@@ -69,6 +70,11 @@ namespace CavesOfOoo.Rendering
         public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
             Texture2D vegetation4, Texture2D opening10, Texture2D water21, FlatPixelFallbackCatalog borrowedSelector,
             Texture2D forest4, Texture2D optionalFenSurface)
+            : this(atlas14, sill24, vegetation4, opening10, water21, borrowedSelector, forest4, optionalFenSurface, null) { }
+
+        public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
+            Texture2D vegetation4, Texture2D opening10, Texture2D water21, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D forest4, Texture2D optionalFenSurface, Texture2D optionalMucilage)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -77,6 +83,7 @@ namespace CavesOfOoo.Rendering
             water = Frames(water21, 21, "water");
             forest = Frames(forest4, 4, "forest floor");
             fenSurface = Frames(optionalFenSurface, 128, "quiet Fen water");
+            mucilage = Frames(optionalMucilage, 4, "mirror mucilage");
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -126,6 +133,11 @@ namespace CavesOfOoo.Rendering
         {
             tile = null;
             if (!ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner)) return false;
+            if (owner.BlueprintName == "MirrorMucilagePool")
+            {
+                if (!TryMucilageOwner(zone, x, y, out var pool, out _) || pool != owner) return false;
+                tile = MucilageTile(pool, x, y); return tile != null;
+            }
             int frame = ForegroundFrame(owner, zone, cell, x, y);
             if (frame < 0) return false;
             switch (owner.BlueprintName)
@@ -151,6 +163,12 @@ namespace CavesOfOoo.Rendering
         {
             tile = null; floor = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
+            if (TryMucilageOwner(zone, x, y, out _, out var mucilageGrass))
+            {
+                floor = mucilageGrass;
+                tile = forest != null ? forest[VariantAt(x, y)] : sill == null ? null : sill[20 + VariantAt(x, y)];
+                return tile != null;
+            }
             var state = zone.TileState.Get(x, y);
             bool fixture = false;
             Entity grass = null;
@@ -224,6 +242,11 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
+            if (owner?.BlueprintName == "MirrorMucilagePool")
+            {
+                if (!TryMucilageOwner(zone, x, y, out var pool, out _) || pool != owner) return false;
+                sprite = MucilageTile(pool, x, y).sprite; return sprite != null;
+            }
             if (!ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner)) return false;
             if (owner.BlueprintName == "VineWall")
             {
@@ -457,7 +480,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             DestroyFrames(materials); DestroyFrames(sill); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(water);
-            DestroyFrames(forest); DestroyFrames(fenSurface);
+            DestroyFrames(forest); DestroyFrames(fenSurface); DestroyFrames(mucilage);
         }
         static void DestroyFrames(Tile[] tiles)
         {

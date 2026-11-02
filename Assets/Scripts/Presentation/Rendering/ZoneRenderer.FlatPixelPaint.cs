@@ -30,9 +30,9 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            PaintTileStateMarkWithLiquids(x, y, position, cell,
+            PaintTileStateMarkWithMucilage(x, y, position, cell,
                 flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water,
-                flat.RepresentedBrine, flat.RepresentedMire);
+                flat.RepresentedBrine, flat.RepresentedMire, flat.RepresentedMucilage);
             Color nativeColorCue = Color.white;
             var tint = !flat.Remembered && flat.Owner != null
                 ? ResolveRenderColor(flat.Owner, flat.Owner.GetPart<RenderPart>(), x, y, out nativeColorCue)

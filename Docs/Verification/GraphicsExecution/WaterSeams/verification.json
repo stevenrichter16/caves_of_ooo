@@ -1,0 +1,89 @@
+{
+  "at_utc": "2026-11-02T19:17:04.246314+00:00",
+  "source_base": "bc656ea728189b5ed9e0d792deabd3e395f31e84",
+  "status": "bounded-editor-verified",
+  "scope": "Ordinary Grovelands canonical MirrorMucilagePool on one disclosed Grass owner; optional four-frame native art",
+  "actual": {
+    "zone": "Overworld.3.0.0",
+    "before_position": [
+      40,
+      12
+    ],
+    "hp": 38,
+    "time": "Dusk",
+    "pools": [
+      [
+        44,
+        12
+      ],
+      [
+        44,
+        13
+      ]
+    ],
+    "liquid": "choir-mirror-mucilage",
+    "volume": 60,
+    "matched_capture": "grove-after.png",
+    "pool_rectangle_changed_pixels": 768,
+    "world_changed_pixels": 3611,
+    "right_ui_changed_pixels": 0,
+    "outside_pool_differences": "Not attributed; do not credit all changed world pixels to this art",
+    "movement": "44,12 then44,13; mirror-glazed applied; HP38 unchanged",
+    "readers": [
+      "mucilage-portrait.png",
+      "underfoot-portrait.png"
+    ],
+    "travel": "WorldMap33,3 then ordinary return40,12",
+    "save_turn": 4330,
+    "fresh_continue": "40,12 HP38 Dusk; world0/639200pixel differences",
+    "test_only": [
+      "depleted-volume frames",
+      "item cover",
+      "mixed/frozen/foreign/missing-resource cases"
+    ],
+    "excluded_capture": "excluded-pause-before-move.png: extra Escape opened pause; no movement occurred; corrected before accepted crossing"
+  },
+  "native": {
+    "red": "631cfb0fb2584617a86f548de235d200:32 completed,missing body failures capped25,result null; not a full per-test receipt",
+    "unstarted": "0f6ec8d38f3c4d96ba98171780fef6bf:initialization timeout,0completed,excluded",
+    "initial_green": "d93277f1b57047fb8729792102ac74a4:32completed,2fixture assertion failures",
+    "final": "98a6e8e512b549c59336b4c0bec41ca6:173 distinct Passed,0fail/skip;35new+138existing; full receipt retained"
+  },
+  "source_corrections": [
+    "Actual LiquidPool initialization color is&C, not blueprint&W.",
+    "Unexplored cells refuse world presentation; do not assert successful fallback.",
+    "Inactive Paint fixture explicitly releases owned renderer resources after detaching borrowed catalog.",
+    "Zone.UnprojectPool removes sole pool coating on source removal; null mark is correct. Independently remaining film has a glyph."
+  ],
+  "art": {
+    "frames": 4,
+    "native": [
+      16,
+      24
+    ],
+    "editable": "ArtSource/Live16x24/mirror-mucilage/editable.blend",
+    "exact_pixel_verification": 1536,
+    "concept": "ArtSource/Live16x24/mirror-mucilage/concept.png"
+  },
+  "performance": {
+    "receipt": "Docs/Verification/GraphicsExecution/Profiles/manual-20261102-191235-030.json",
+    "seconds": 256.1004523,
+    "renderer_p95_ms": 0.095458,
+    "renderer_max_ms": 111.227708,
+    "main_max_ms": 953.21675,
+    "batches_max": 48,
+    "limits": "After-only Editor; tooling/captures/readers/map included; metadata2321x1285 versus actual PNG1280x800; no causal comparison, R11/hardware unresolved"
+  },
+  "review": {
+    "source": "portable_equipment_final_review:0remainingP1/P2 after fixture corrections; independently parsed173distinctPassed",
+    "visual": "capture_route:0P1/P2; wet pools/player cover/portrait/reload bounded accepted; sticky identity subtle at1x"
+  },
+  "delivery": "Currentcc6418ff8Mac/Linux exclude this and Stumpdome bc656; batch after next accepted slice",
+  "remaining": [
+    "Stump4.4SprayPool shares41,17 with real StairsDown; needs readable entrance before removing glyph",
+    "Grovelands broad quiet center, repetitive vegetation, other remaining ASCII",
+    "Global coverage, area polish, population and shadows remain incomplete",
+    "R11 and Linux/physicalDeck execution open"
+  ],
+  "ownership": "Playstopped,SaveRootOverridenull,scene clean;77foreigntracked retained;no cache cleanup"
+}
