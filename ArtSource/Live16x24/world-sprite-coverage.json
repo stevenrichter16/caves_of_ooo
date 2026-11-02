@@ -5622,14 +5622,26 @@
         "seed": 65,
         "zone_id_or_unresolved": "Overworld.2.3.0",
         "formation_POI_depth_interior_role": "ordinary RimForest",
-        "status": "not_audited",
+        "status": "in_progress",
         "prior_material_checkpoint": "Docs/Verification/Live16x24/stump-final-gameplay-receipt.json",
         "known_defects": [
+          "Row-like/rectangular low-cover outlines",
+          "Tiny tree silhouettes and weak canopy hierarchy",
+          "Broad pinkstone planes",
           "Subtle blocking-stone cues",
-          "Glyph actors and black-backed effects"
+          "AshBed black backing; other glyphs remain unaudited"
         ],
         "defect_audit_complete": false,
-        "polish_acceptance_evidence": null
+        "polish_acceptance_evidence": {
+          "status": "partial; not accepted",
+          "record": "Docs/GRAPHICS-RIM-FOREST-COMPOSITION.md",
+          "captures": [
+            "Docs/Verification/GraphicsExecution/RimForest/after-center.png",
+            "Docs/Verification/GraphicsExecution/RimForest/after-west.png",
+            "Docs/Verification/GraphicsExecution/RimForest/after-east.png"
+          ]
+        },
+        "population_review": "Bounded72-Bush addition actual verified; not full-area acceptance"
       },
       {
         "biome": "Stump",
@@ -15764,5 +15776,12 @@
       "CurrentfbfeaMac/Linuxexclude water/shadow/memory; batchnext.",
       "No fullarea/population/globalshadow acceptance; darkmemory,olivegrade,otherASCII,interiors/composition andR11remain."
     ]
+  },
+  "rim_forest_composition": {
+    "status": "bounded Editor observed; source publication pending",
+    "record": "Docs/GRAPHICS-RIM-FOREST-COMPOSITION.md",
+    "new_sprite_coverage": false,
+    "whole_area_accepted": false,
+    "packaged": false
   }
 }

@@ -81,6 +81,7 @@ namespace CavesOfOoo.Core
             RepairOpenPockets();
             MarkHabitats();
             if (Formation == Formation.SummitScrub) ShelterScrub();
+            if (Formation == Formation.RimForest) ForestUnderstory();
         }
 
         private void Gorge(Random rng)
@@ -246,6 +247,63 @@ namespace CavesOfOoo.Core
                     break;
                 }
             }
+        }
+
+        // Fill already reserved tree shelter with passable, real low vegetation.
+        // Freeze eligibility before adding owners: no spreading habitat, changed
+        // population slots, displaced objects, or extra pipeline RNG draws.
+        private void ForestUnderstory()
+        {
+            var candidates = new List<(int x, int y)>();
+            for (int y=2;y<23;y++) for (int x=2;x<78;x++)
+                if (habitat[x,y] && objects[x,y]==null && !NearApproach(x,y,1)
+                    && Near(x,y,"Tree",2) && !Near(x,y,"TankBrocchinia",1)
+                    && Math.Abs(y-(12+Math.Sin(x*.07+phase)*5))>2.25)
+                    candidates.Add((x,y));
+            var eligible = new HashSet<(int x, int y)>(candidates);
+            var occupied = new HashSet<(int x, int y)>();
+            var targets = new[] { (x:12,size:21), (x:67,size:17), (x:29,size:14), (x:50,size:11), (x:40,size:9) };
+            foreach (var target in targets)
+            {
+                candidates.Sort((a,b) => {
+                    int order=Math.Abs(a.x-target.x).CompareTo(Math.Abs(b.x-target.x));
+                    return order!=0 ? order : ForestRank(a,b);
+                });
+                var best = new List<(int x, int y)>();
+                foreach (var anchor in candidates)
+                {
+                    var drift = new List<(int x, int y)>();
+                    var seen = new HashSet<(int x, int y)>();
+                    var queue = new Queue<(int x, int y)>();
+                    queue.Enqueue(anchor); seen.Add(anchor);
+                    while (queue.Count>0 && drift.Count<target.size)
+                    {
+                        var c=queue.Dequeue();
+                        if (!eligible.Contains(c) || Math.Abs(c.x-anchor.x)>5 || Math.Abs(c.y-anchor.y)>3) continue;
+                        bool separated=true;
+                        for (int dy=-1;dy<=1;dy++) for (int dx=-1;dx<=1;dx++)
+                            if (occupied.Contains((c.x+dx,c.y+dy))) separated=false;
+                        if (!separated) continue;
+                        drift.Add(c);
+                        var neighbours = new List<(int x, int y)>();
+                        for (int dy=-1;dy<=1;dy++) for (int dx=-1;dx<=1;dx++)
+                            if (dx!=0 || dy!=0) neighbours.Add((c.x+dx,c.y+dy));
+                        neighbours.Sort(ForestRank);
+                        foreach (var n in neighbours) if (seen.Add(n)) queue.Enqueue(n);
+                    }
+                    if (drift.Count>best.Count) best=drift;
+                    if (best.Count==target.size) break;
+                }
+                // Keep genuine quiet gaps when protected shelter cannot support
+                // another useful mass; never relax route/tank/owner protection.
+                if (best.Count<5) continue;
+                foreach (var c in best) { objects[c.x,c.y]="Bush"; occupied.Add(c); }
+            }
+        }
+        private int ForestRank((int x,int y) a,(int x,int y) b)
+        {
+            int order=Hash(a.x,a.y,79).CompareTo(Hash(b.x,b.y,79));
+            return order!=0 ? order : (a.y*Zone.Width+a.x).CompareTo(b.y*Zone.Width+b.x);
         }
 
         private bool DryCentre(int x,int y)

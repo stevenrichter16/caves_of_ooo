@@ -2595,16 +2595,16 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
-        "population": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
+        "population": "reviewed",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [
         "seed65/Overworld.2.3.0"
       ],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Current AshBed60,18 body/backing baseline and approved scorch reuse, preserving independent heat; later organic group outlines, canopy hierarchy and stone relief. Batch packages after accepted slices.",
       "coordinates": [
         2,
         3,
@@ -2613,9 +2613,53 @@
       "tier": 4,
       "authored_road": false,
       "authored_river": false,
-      "formation": null,
+      "formation": "RimForest",
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "observed_seed": 65,
+      "observed_role": "ordinary RimForest with preserved tree shelter and added real passable understory",
+      "bounded_slices": [
+        {
+          "id": "rim-forest-understory",
+          "axis": "population",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-RIM-FOREST-COMPOSITION.md",
+          "owners_added": {
+            "Bush": 72
+          },
+          "delivery": "Editor only; current fedc68 packages exclude",
+          "limits": [
+            "Eight native seeds, seed65 actual; no universal seed or natural encounter-balance acceptance",
+            "Row-like pockets, tiny trees and broad clearings remain",
+            "R11 spikes unresolved; no full-area/shadow/coverage completion"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/RimForest/before-center.png",
+          "Docs/Verification/GraphicsExecution/RimForest/before-west.png",
+          "Docs/Verification/GraphicsExecution/RimForest/before-east.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/RimForest/after-center.png",
+          "Docs/Verification/GraphicsExecution/RimForest/after-west.png",
+          "Docs/Verification/GraphicsExecution/RimForest/after-east.png",
+          "Docs/Verification/GraphicsExecution/RimForest/after-2x.png"
+        ],
+        "readers": [
+          "Docs/Verification/GraphicsExecution/RimForest/bush-reader.png",
+          "Docs/Verification/GraphicsExecution/RimForest/tank-action.png"
+        ],
+        "native": "Docs/Verification/GraphicsExecution/RimForest/regression.xml",
+        "owners_reload": "Docs/Verification/GraphicsExecution/RimForest/owner-persistence.json",
+        "visual_reload": "Docs/Verification/GraphicsExecution/RimForest/reload.png",
+        "independent_review": "Docs/Verification/GraphicsExecution/RimForest/independent-review.md",
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/RimForest/before-profile.json",
+          "Docs/Verification/GraphicsExecution/RimForest/after-profile.json"
+        ]
+      }
     },
     {
       "id": "surface/Overworld.3.3.0",
@@ -16219,18 +16263,64 @@
         "Assets/Scripts/Gameplay/World/Generation/Formation.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
-        "population": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
+        "population": "reviewed",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve concrete instances and current evidence before advancing any acceptance axis.",
+      "next_action": "Current AshBed60,18 body/backing baseline and approved scorch reuse, preserving independent heat; later organic group outlines, canopy hierarchy and stone relief. Batch packages after accepted slices.",
       "formation": "RimForest",
       "parent_id": "biome/Stump",
-      "instance_addresses": [],
-      "address_resolution": "runtime-required; surface coordinates do not certify their generated formation"
+      "instance_addresses": [
+        "Overworld.2.3.0"
+      ],
+      "address_resolution": "Actual seed65 native plan and gameplay confirmed ordinary RimForest at2.3; other seeds sampled natively.",
+      "observed_seed": 65,
+      "observed_role": "ordinary RimForest with preserved tree shelter and added real passable understory",
+      "bounded_slices": [
+        {
+          "id": "rim-forest-understory",
+          "axis": "population",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-RIM-FOREST-COMPOSITION.md",
+          "owners_added": {
+            "Bush": 72
+          },
+          "delivery": "Editor only; current fedc68 packages exclude",
+          "limits": [
+            "Eight native seeds, seed65 actual; no universal seed or natural encounter-balance acceptance",
+            "Row-like pockets, tiny trees and broad clearings remain",
+            "R11 spikes unresolved; no full-area/shadow/coverage completion"
+          ]
+        }
+      ],
+      "evidence": {
+        "baseline_captures": [
+          "Docs/Verification/GraphicsExecution/RimForest/before-center.png",
+          "Docs/Verification/GraphicsExecution/RimForest/before-west.png",
+          "Docs/Verification/GraphicsExecution/RimForest/before-east.png"
+        ],
+        "after_captures": [
+          "Docs/Verification/GraphicsExecution/RimForest/after-center.png",
+          "Docs/Verification/GraphicsExecution/RimForest/after-west.png",
+          "Docs/Verification/GraphicsExecution/RimForest/after-east.png",
+          "Docs/Verification/GraphicsExecution/RimForest/after-2x.png"
+        ],
+        "readers": [
+          "Docs/Verification/GraphicsExecution/RimForest/bush-reader.png",
+          "Docs/Verification/GraphicsExecution/RimForest/tank-action.png"
+        ],
+        "native": "Docs/Verification/GraphicsExecution/RimForest/regression.xml",
+        "owners_reload": "Docs/Verification/GraphicsExecution/RimForest/owner-persistence.json",
+        "visual_reload": "Docs/Verification/GraphicsExecution/RimForest/reload.png",
+        "independent_review": "Docs/Verification/GraphicsExecution/RimForest/independent-review.md",
+        "profiles": [
+          "Docs/Verification/GraphicsExecution/RimForest/before-profile.json",
+          "Docs/Verification/GraphicsExecution/RimForest/after-profile.json"
+        ]
+      }
     },
     {
       "id": "settlement/morrowfast",
