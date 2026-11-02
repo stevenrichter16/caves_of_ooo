@@ -14,10 +14,13 @@ namespace CavesOfOoo.Rendering
     {
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
-        bool stumpBrineOnly;
+        bool brineOnly;
         /// <summary>Independent ordinary Stump reuse of the existing brine states only.</summary>
         internal FlatPixelBeatingMaterialsCatalog AdmittingStumpBrine()
-        { admits = FlatPixelStumpMaterialsCatalog.IsSupportedZone; stumpBrineOnly = true; return this; }
+        { admits = FlatPixelStumpMaterialsCatalog.IsSupportedZone; brineOnly = true; return this; }
+        /// <summary>Independent ordinary Sodden reuse; no other Beating material is admitted.</summary>
+        internal FlatPixelBeatingMaterialsCatalog AdmittingSoddenBrine()
+        { admits = FlatPixelSoddenTravelCatalog.IsSupportedZone; brineOnly = true; return this; }
         /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
         /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
         internal FlatPixelBeatingMaterialsCatalog AdmittingSites(BiomeType biome)
@@ -106,7 +109,7 @@ namespace CavesOfOoo.Rendering
             out Tile groundTile, out Tile wallTile)
         {
             groundTile = null; wallTile = null;
-            if (disposed || selector == null || stumpBrineOnly || owner == null
+            if (disposed || selector == null || brineOnly || owner == null
                 || !IsSupportedZone(zone) || !admits(zone)) return false;
             var cell = zone.GetCell(x, y);
             if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
@@ -152,7 +155,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
-            if (stumpBrineOnly && owner?.BlueprintName != "BrinePool") return false;
+            if (brineOnly && owner?.BlueprintName != "BrinePool") return false;
             if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
             int frame = ForegroundFrame(owner, zone.TileState.Get(x, y), x, y);
             if (frame < 0) return false;
@@ -170,7 +173,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
-            if (stumpBrineOnly) return false;
+            if (brineOnly) return false;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
             bool live = state != null && !state.IsEmpty;
@@ -256,7 +259,7 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
-            if (stumpBrineOnly)
+            if (brineOnly)
             {
                 if (owner?.BlueprintName != "BrinePool" || !Placed(zone, cell, owner) || materials == null) return false;
                 int frame = ForegroundFrame(owner, zone.TileState.Get(x, y), x, y);

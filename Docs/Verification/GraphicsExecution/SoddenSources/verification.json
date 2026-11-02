@@ -1,0 +1,55 @@
+{
+  "status": "bounded-editor-verified",
+  "area": "ordinary Sodden16.5",
+  "current_seed": 65,
+  "current_cluster": {
+    "CopperPipe": 6,
+    "PeatBog": 4,
+    "SteamVent": 2
+  },
+  "native_tests": 390,
+  "native_result": "Docs/Verification/GraphicsExecution/SoddenSources/green-final.xml",
+  "current_actual": [
+    "matched1x",
+    "closer2x",
+    "peat/pipe/vent readers",
+    "wetness step",
+    "travel15.5 roundtrip",
+    "F12OFF F5turn2840 fresh40,12 HP19"
+  ],
+  "current_reload": {
+    "world_changed_pixels": 0,
+    "total_pixels": 639200
+  },
+  "retained_brine": {
+    "owners": 2,
+    "positions": [
+      [
+        11,
+        12
+      ],
+      [
+        11,
+        13
+      ]
+    ],
+    "observed": "after-only reader and partial covered world; protected route, F12OFF save",
+    "save_turn": 3540,
+    "fresh_position": [
+      10,
+      12
+    ],
+    "hp": 4,
+    "world_changed_pixels": 0
+  },
+  "review": "source and actual visual:0newP1/P2",
+  "remaining": [
+    "whole-area polish",
+    "uniform water and repeated grass",
+    "small peat silhouette",
+    "actual depleted brine",
+    "population/shadow expansion",
+    "R11",
+    "packages exclude source"
+  ]
+}

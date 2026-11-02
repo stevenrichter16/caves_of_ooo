@@ -51,9 +51,11 @@ namespace CavesOfOoo.Rendering
         static bool OrdinaryFixtureZone(Zone zone)
             => FlatPixelSpreadEnvironmentCatalog.IsSupportedZone(zone)
                 || FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone)
-                || FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone);
+                || FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone)
+                || FlatPixelSoddenTravelCatalog.IsSupportedZone(zone);
         internal static bool SupportsRole(Zone zone, Entity owner)
-            => HasKnownRole(owner) && (OrdinaryFixtureZone(zone) || zone?.ZoneID == Plot
+            => HasKnownRole(owner)
+                && (OrdinaryFixtureZone(zone) || zone?.ZoneID == Plot
                 || owner.BlueprintName == "CopperPipe"
                     && (zone?.ZoneID == "Overworld.11.9.0" || zone?.ZoneID == "Overworld.12.10.0"));
 

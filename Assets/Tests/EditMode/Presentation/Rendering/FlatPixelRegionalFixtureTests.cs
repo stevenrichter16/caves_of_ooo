@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 namespace CavesOfOoo.Tests
 {
     // Regional regression slice: real factory owners and submitted painter, no new mechanics.
-    public sealed class FlatPixelRegionalFixtureTests
+    public sealed partial class FlatPixelRegionalFixtureTests
     {
         const string Stump="Overworld.3.4.0", OtherStump="Overworld.2.5.0";
         const string Grove="Overworld.4.7.0", Sodden="Overworld.18.8.0", Corner="Sprites/Live16x24/nella-corner";
@@ -68,6 +68,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(new Vector2(16,24),tile.sprite.rect.size);Assert.AreEqual(16,tile.sprite.pixelsPerUnit);
             Assert.That(tile.sprite.rect.x,Is.InRange(0,48));Assert.AreEqual(Tile.ColliderType.None,tile.colliderType);
         }
+        [TestCase(Sodden,"PeatBog")][TestCase(Sodden,"CopperPipe")][TestCase(Sodden,"SteamVent")]
         [TestCase(Grove,"CopperPipe")][TestCase(Grove,"PeatBog")][TestCase(Grove,"SteamVent")]
         [TestCase(Stump,"CopperPipe")][TestCase(Stump,"PeatBog")][TestCase(Stump,"SteamVent")]
         [TestCase(OtherStump,"CopperPipe")][TestCase(OtherStump,"PeatBog")][TestCase(OtherStump,"SteamVent")]
@@ -87,7 +88,7 @@ namespace CavesOfOoo.Tests
             {
                 paint.Step();Assert.True(paint.Renderer.TryGetFlatExaminePortrait(document,out var accepted));
                 Assert.AreSame(resource,accepted.Texture);
-                zone.GetCell(X,Y).IsVisible=false;Assert.False(View().LocalGround);Assert.False(View().NativeForeground);
+                zone.GetCell(X,Y).IsVisible=false;Assert.AreEqual(id==Grove && role=="PeatBog",View().LocalGround,"Published Grove static memory remains independent of hidden fixture");Assert.False(View().NativeForeground);
                 Assert.False(ExamineDocumentBuilder.IsCurrentSubject(document));
                 Assert.True(paint.Renderer.TryGetFlatExaminePortrait(document,out var hiddenPortrait));Assert.IsNull(hiddenPortrait.Texture);
                 // Shared SteamVent supplies static owner art; the public document
@@ -105,6 +106,7 @@ namespace CavesOfOoo.Tests
                     Assert.True(!world.TryGetPresentationSubjectSprite(zone,owner,X,Y,out var moved,out _)||moved.texture!=resource);
             }
         }
+        [TestCase(Sodden,"PeatBog")][TestCase(Sodden,"CopperPipe")][TestCase(Sodden,"SteamVent")]
         [TestCase(Grove,"CopperPipe")][TestCase(Grove,"PeatBog")][TestCase(Grove,"SteamVent")]
         [TestCase(Stump,"CopperPipe")][TestCase(Stump,"PeatBog")][TestCase(Stump,"SteamVent")]
         [TestCase(OtherStump,"CopperPipe")][TestCase(OtherStump,"PeatBog")][TestCase(OtherStump,"SteamVent")]
@@ -127,10 +129,10 @@ namespace CavesOfOoo.Tests
                 Assert.False(View().LocalGround);Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark(X,Y));
             }
         }
-        [TestCase(Grove)][TestCase(Stump)]
+        [TestCase(Sodden)][TestCase(Grove)][TestCase(Stump)]
         public void PipeBodyAndFloorCannotEscapeCurrentBiomePoiOrSavedLairAuthority(string id)
         {
-            Attach(id);Add(GroundOwner);var pipe=Add("CopperPipe");Assert.True(View().NativeForeground);Assert.True(View().LocalGround);
+            Attach(id);Add(GroundOwner);var pipe=Add(id==Sodden?"PeatBog":"CopperPipe");Assert.True(View().NativeForeground);Assert.True(View().LocalGround);
             var p=WorldMap.FromZoneID(id);var expected=manager.WorldMap.GetBiome(p.x,p.y);
             foreach(string fault in new[]{"poi","biome","cached"})
             {
@@ -150,12 +152,12 @@ namespace CavesOfOoo.Tests
             // Use a fresh exact pipe in the actual saved-lair graph, not the detached old owner.
             foreach(var c in zone.Cells)c.IsVisible=c.Explored=true;
             using(var selector=new FlatPixelFallbackCatalog())using(var native=new FlatPixelNellaCornerCatalog(Art(Corner),selector))
-            {var source=Add("CopperPipe");Assert.False(native.TryGetSubjectSprite(zone,source,X,Y,out _));}
+            {var source=Add(id==Sodden?"PeatBog":"CopperPipe");Assert.False(native.TryGetSubjectSprite(zone,source,X,Y,out _));}
         }
-        [TestCase(Grove)][TestCase(Stump)]
+        [TestCase(Sodden)][TestCase(Grove)][TestCase(Stump)]
         public void MissingCornerArtKeepsGlyphFallbackIndependentOfNativeGroundAndHazards(string id)
         {
-            Attach(id);Add(GroundOwner);var pipe=Add("CopperPipe");Assert.True(View().NativeForeground);
+            Attach(id);Add(GroundOwner);var pipe=Add(id==Sodden?"PeatBog":"CopperPipe");Assert.True(View().NativeForeground);
             var previous=Read(world,"_nellaCornerArt");
             using(var selector=new FlatPixelFallbackCatalog())using(var missing=new FlatPixelNellaCornerCatalog(null,selector))
             {
@@ -242,19 +244,18 @@ namespace CavesOfOoo.Tests
                 if(role!="SteamVent")Assert.False(View().NativeForeground);
             }
         }
-        // Actual OpenMire audit found no disclosed target fixtures. Keep Sodden
-        // outside this admission change; its native MirePool is a different owner.
+        // Actual current16.5 has four peat, six pipes and two vents.
         [TestCase("CopperPipe")][TestCase("PeatBog")][TestCase("SteamVent")]
-        public void UnauditedSoddenFixturesKeepExistingFallbackAndSharedVentBody(string role)
+        public void ObservedSoddenFixtureClusterKeepsNativeBodiesAndHazardMarks(string role)
         {
             Attach(Sodden);Add(GroundOwner);var owner=Add(role);zone.TileState.WriteCoating(X,Y,"water",4);
-            var v=View();Assert.False(v.LocalGround,"No unobserved Sodden fixture-underlay extension");
-            Assert.AreEqual(role=="SteamVent",v.NativeForeground,"Only the existing globally shared vent body is native");
+            var v=View();Assert.True(v.LocalGround,"All three actually observed canonical fixtures retain real grass");
+            Assert.True(v.NativeForeground);
             if(role!="SteamVent")
             {
-                Assert.AreNotSame(Art(Corner),v.ForegroundTile.sprite.texture);
+                Assert.AreSame(Art(Corner),v.ForegroundTile.sprite.texture);
                 Assert.True(world.TryGetPresentationSubjectSprite(zone,owner,X,Y,out var sprite,out _));
-                Assert.AreNotSame(Art(Corner),sprite.texture);
+                Assert.AreSame(Art(Corner),sprite.texture);
             }
             using(var paint=new Paint(world,zone))
             {paint.Step();Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark(X,Y));}

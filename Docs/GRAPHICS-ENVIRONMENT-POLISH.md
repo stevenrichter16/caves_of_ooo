@@ -1,3 +1,5 @@
+**Sodden source update 2026-11-02:** Current16.5 native pipe/peat/vent cluster and retained brine reader/partial world verified.390 native checks, actual travel/two fresh reloads, independent0newP1/P2. See [GRAPHICS-SODDEN-SOURCES.md](GRAPHICS-SODDEN-SOURCES.md). Material coverage only; broader polish, population, shadows and R11 remain open.
+
 **Marrowstye material update 2026-11-02:** Exact native Intake yard/road hue pilot bounded Editor verified,81 native checks and actual readers/travel/save/reload. See [GRAPHICS-SETTLEMENT-GRADE.md](GRAPHICS-SETTLEMENT-GRADE.md). Full-area polish, population and R11 remain open; current source56cfa packages exclude this slice.
 
 **Stump fixtures2026-11-02:** FiveSummitpipes now native on realstone, actualreaders/crossing/reload verified. Peat/ventbacking integratedonly.216applicable nativepasses; R11/fullarea open. See GRAPHICS-STUMP-FIXTURES.md. Next6BrinePool andboundedshadowcomparison.

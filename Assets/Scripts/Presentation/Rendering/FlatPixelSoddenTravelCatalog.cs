@@ -129,7 +129,7 @@ namespace CavesOfOoo.Rendering
             tile = null; floor = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
-            if (state != null && !state.IsEmpty) return false;
+            bool fixture = false;
             // Owner-local cultivation is checked below with disclosed owned parts.
             // The gameplay helper ignores Render visibility and would leak hidden owners.
             Entity grassOwner = null, stoneOwner = null;
@@ -138,7 +138,14 @@ namespace CavesOfOoo.Rendering
                 if (!Placed(zone, cell, owner)) continue;
                 // Hidden/foreign/custodied owners cannot disclose themselves by
                 // erasing visible ground. Independent actual tile state still wins.
-                if (VisiblePhysicalOwner(owner) && CompetingGround(owner, state, x, y)) return false;
+                if (VisiblePhysicalOwner(owner))
+                {
+                    // Audited ordinary fixtures retain their actual grass beneath
+                    // independent live hazard marks. Sites stay separate.
+                    if (IsSupportedZone(zone) && FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(owner))
+                    { if (fixture) return false; fixture = true; }
+                    else if (CompetingGround(owner, state, x, y)) return false;
+                }
                 if (owner.BlueprintName == "Grass")
                 {
                     if (grassOwner != null || !OrdinaryFloor(owner, true)) return false;
@@ -150,6 +157,8 @@ namespace CavesOfOoo.Rendering
                     stoneOwner = owner;
                 }
             }
+            if (state != null && !state.IsEmpty && !fixture) return false;
+            if (fixture && (grassOwner == null || stoneOwner != null)) return false;
             if (stoneOwner != null)
             { floor = stoneOwner; tile = stoneFloor == null ? null : stoneFloor[GroundVariantAt(x, y)]; }
             else if (grassOwner != null)

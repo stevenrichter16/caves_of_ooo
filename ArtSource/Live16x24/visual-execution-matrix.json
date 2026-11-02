@@ -4872,14 +4872,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Compare larger regional material gaps; retain full-area/population/shadow/R11 debt. Batch current source delivery; do not repeat finished fixture audit.",
       "coordinates": [
         16,
         5,
@@ -4890,7 +4890,78 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "evidence": [
+        "Docs/GRAPHICS-SODDEN-SOURCES.md",
+        "Docs/Verification/GraphicsExecution/SoddenSources/verification.json"
+      ],
+      "bounded_source_cluster": {
+        "status": "bounded-editor-verified",
+        "area": "ordinary Sodden16.5",
+        "current_seed": 65,
+        "current_cluster": {
+          "CopperPipe": 6,
+          "PeatBog": 4,
+          "SteamVent": 2
+        },
+        "native_tests": 390,
+        "native_result": "Docs/Verification/GraphicsExecution/SoddenSources/green-final.xml",
+        "current_actual": [
+          "matched1x",
+          "closer2x",
+          "peat/pipe/vent readers",
+          "wetness step",
+          "travel15.5 roundtrip",
+          "F12OFF F5turn2840 fresh40,12 HP19"
+        ],
+        "current_reload": {
+          "world_changed_pixels": 0,
+          "total_pixels": 639200
+        },
+        "retained_brine": {
+          "owners": 2,
+          "positions": [
+            [
+              11,
+              12
+            ],
+            [
+              11,
+              13
+            ]
+          ],
+          "observed": "after-only reader and partial covered world; protected route, F12OFF save",
+          "save_turn": 3540,
+          "fresh_position": [
+            10,
+            12
+          ],
+          "hp": 4,
+          "world_changed_pixels": 0
+        },
+        "review": "source and actual visual:0newP1/P2",
+        "remaining": [
+          "whole-area polish",
+          "uniform water and repeated grass",
+          "small peat silhouette",
+          "actual depleted brine",
+          "population/shadow expansion",
+          "R11",
+          "packages exclude source"
+        ]
+      },
+      "defects": [
+        {
+          "id": "SODDEN-SOURCE-CLUSTER-01",
+          "status": "resolved-bounded",
+          "description": "Current native copper/peat/vent bodies over actual grass, hazard marks/readers/travel/reload verified; retained brine after-only reader/partial world."
+        },
+        {
+          "id": "SODDEN-SOURCE-COMPOSITION-01",
+          "status": "open",
+          "description": "Repeated grass, uniform water, subtle peat, other glyph owners and full-area composition remain."
+        }
+      ]
     },
     {
       "id": "surface/Overworld.17.5.0",
