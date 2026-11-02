@@ -14,6 +14,7 @@ namespace CavesOfOoo.Core
         public Formation FormationOverride = Formation.None;
         public StumpCompositionPlan Plan { get; private set; }
         internal Zone SourceZone { get; private set; }
+        internal EntityFactory SourceFactory { get; private set; }
         private readonly int seed;
         public StumpCompositionBuilder(int worldSeed) { seed=worldSeed; }
 
@@ -42,7 +43,7 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
-            Plan=null;SourceZone=null;
+            Plan=null;SourceZone=null;SourceFactory=null;
             if(zone==null||factory==null||zone.EntityCount!=0)
                 return Reject(zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone");
             if(!StumpCompositionPlan.IsWildernessZone(zone.ZoneID))return Reject("ineligible-zone");
@@ -65,7 +66,7 @@ namespace CavesOfOoo.Core
                 if(bp=="TepuiboneVein")
                     for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)zone.GenReservedCells.Add((x+dx,y+dy));
             }
-            Plan=plan;SourceZone=zone;
+            Plan=plan;SourceZone=zone;SourceFactory=factory;
             Diag.Record("worldgen","StumpCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,
                 band=plan.Band.ToString(),formation=plan.Formation.ToString(),objects,habitats});
             return true;

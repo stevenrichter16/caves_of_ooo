@@ -273,7 +273,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Overwrit:
                     return CreateOverwritPipeline(tier, zoneID);
                 case BiomeType.Stump:
-                    return WithWaysites(CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy), composed: StumpCompositionPlan.IsWildernessZone(zoneID)), biome, tier, zoneID);
+                    return WithWaysites(CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy), composed: StumpCompositionPlan.IsWildernessZone(zoneID), zoneID: zoneID), biome, tier, zoneID);
 
                 case BiomeType.Cave:
                 default:
@@ -881,7 +881,7 @@ namespace CavesOfOoo.Core
         /// <summary>The Stump — the petrified tepui. Rock and
         /// fissure.</summary>
         private ZoneGenerationPipeline CreateStumpPipeline(
-            int tier = 1, StumpBand band = StumpBand.None, bool composed = false)
+            int tier = 1, StumpBand band = StumpBand.None, bool composed = false, string zoneID = null)
         {
             if (composed)
             {
@@ -893,6 +893,7 @@ namespace CavesOfOoo.Core
                 composedPipeline.RemoveBuilders<PopulationBuilder>();
                 composedPipeline.AddBuilder(new StumpHabitatPopulationBuilder(terrain,
                     PopulationTable.GetStumpTable(band, tier)));
+                composedPipeline.AddBuilder(new StumpSummitPocketBuilder(this, terrain, zoneID));
                 return composedPipeline;
             }
             // W6.2a — the W0 placeholder (CaveBuilder 50/0.44, "rock

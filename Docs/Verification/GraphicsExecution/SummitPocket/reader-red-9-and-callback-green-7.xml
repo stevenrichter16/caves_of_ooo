@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="16" result="Failed(Child)" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:17Z" duration="4.1585886">
+  <test-suite type="TestSuite" id="43696" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35590" result="Failed" site="Child" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:17Z" duration="4.158589" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43668" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35590" result="Failed" site="Child" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:17Z" duration="4.149710" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43669" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35590" result="Failed" site="Child" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:17Z" duration="4.145705" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43670" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35590" result="Failed" site="Child" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:17Z" duration="4.142507" total="16" passed="7" failed="9" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2384" name="FlatPixelStumpMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.511512" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2518" name="CoveredBushReaderKeepsNativeIdentityWhilePlayerRemainsWorldOwner" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderKeepsNativeIdentityWhilePlayerRemainsWorldOwner" methodname="CoveredBushReaderKeepsNativeIdentityWhilePlayerRemainsWorldOwner" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="643036326" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.124819" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderKeepsNativeIdentityWhilePlayerRemainsWorldOwner () [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:663
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2527" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.364965" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="2519" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;hidden&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="507422713" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.044860" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2520" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;remembered&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;remembered&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="7821191" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.042398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2521" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;unexplored&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1408483476" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.040996" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2522" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;removed&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="2106472554" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.042463" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2523" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;moved&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="65935537" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.040208" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2524" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;damage&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;damage&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="385574046" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.040656" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2525" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;stale-graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;stale-graph&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="1962876795" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.041740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="2526" name="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;missing-atlas&quot;)" fullname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(&quot;missing-atlas&quot;)" methodname="CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource" classname="CavesOfOoo.Tests.FlatPixelStumpMaterialsTests" runstate="Runnable" seed="947421696" result="Failed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:13Z" duration="0.041719" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Covered valid owner is the positive counter
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelStumpMaterialsTests.CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource (System.String fault) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelStumpMaterialsTests.cs:672
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="27498" name="StumpSummitPocketTests" fullname="CavesOfOoo.Tests.StumpSummitPocketTests" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:17Z" duration="3.614501" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="27533" name="PayloadAndCallbackCorruptionCannotPublishPocket" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:17Z" duration="3.583382" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27526" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;wall&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;wall&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1643463529" result="Passed" start-time="2026-11-02 02:22:13Z" end-time="2026-11-02 02:22:14Z" duration="0.465159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27527" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;barren&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1160037765" result="Passed" start-time="2026-11-02 02:22:14Z" end-time="2026-11-02 02:22:15Z" duration="1.089490" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27528" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;empty-id&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;empty-id&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1506797787" result="Passed" start-time="2026-11-02 02:22:15Z" end-time="2026-11-02 02:22:15Z" duration="0.419874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27529" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;duplicate-id&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="809130643" result="Passed" start-time="2026-11-02 02:22:15Z" end-time="2026-11-02 02:22:16Z" duration="0.413007" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27530" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;footprint&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="587743933" result="Passed" start-time="2026-11-02 02:22:16Z" end-time="2026-11-02 02:22:16Z" duration="0.405052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27531" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;tile&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;tile&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="621350578" result="Passed" start-time="2026-11-02 02:22:16Z" end-time="2026-11-02 02:22:17Z" duration="0.482183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27532" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;reserve&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;reserve&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1794102238" result="Passed" start-time="2026-11-02 02:22:17Z" end-time="2026-11-02 02:22:17Z" duration="0.306447" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

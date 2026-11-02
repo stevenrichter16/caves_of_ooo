@@ -293,6 +293,12 @@ namespace CavesOfOoo.Rendering
                     || !ReferenceEquals(actual, owner)) return false;
                 sprite = underfoot.sprite; return sprite != null;
             }
+            // Examine can identify a passable bush beneath the player without
+            // changing the world's selected owner or relaxing its state checks.
+            if (owner?.BlueprintName == "Bush" && opening != null
+                && ReadyCell(zone, x, y, out var bushCell)
+                && Placed(zone, bushCell, owner) && DryFrame(owner, x, y) == 5)
+            { sprite = opening[5].sprite; return sprite != null; }
             if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }

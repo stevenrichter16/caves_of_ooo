@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="22" result="Failed(Child)" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:02Z" duration="2.0957772">
+  <test-suite type="TestSuite" id="43678" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35575" result="Failed" site="Child" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:02Z" duration="2.095777" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43650" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35575" result="Failed" site="Child" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:02Z" duration="2.081376" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43651" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35575" result="Failed" site="Child" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:02Z" duration="2.069704" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43652" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35575" result="Failed" site="Child" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:02Z" duration="2.059767" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="27488" name="StumpSummitPocketTests" fullname="CavesOfOoo.Tests.StumpSummitPocketTests" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:02Z" duration="2.048053" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="27499" name="ForeignOrLoadedAuthorityDeclines" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:01Z" duration="0.506109" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27494" name="ForeignOrLoadedAuthorityDeclines(&quot;cached&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines(&quot;cached&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="678078438" result="Failed" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:00Z" duration="0.147592" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27495" name="ForeignOrLoadedAuthorityDeclines(&quot;active&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines(&quot;active&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="790759608" result="Failed" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:00Z" duration="0.078914" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27496" name="ForeignOrLoadedAuthorityDeclines(&quot;foreign-factory&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines(&quot;foreign-factory&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="589660747" result="Failed" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:00Z" duration="0.096853" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27497" name="ForeignOrLoadedAuthorityDeclines(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines(&quot;biome&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1563063337" result="Failed" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:00Z" duration="0.073968" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27498" name="ForeignOrLoadedAuthorityDeclines(&quot;source-zone&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines(&quot;source-zone&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="914098369" result="Failed" start-time="2026-11-02 02:08:00Z" end-time="2026-11-02 02:08:01Z" duration="0.090489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27492" name="FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.231077" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27489" name="FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom(17)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom(17)" methodname="FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1474602091" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.068921" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom (System.Int32 seed) [0x000bb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27490" name="FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom(64)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom(64)" methodname="FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1558072196" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.065267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom (System.Int32 seed) [0x000bb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27491" name="FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom(65)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom(65)" methodname="FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1838242870" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.066815" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.FreshPocketPreservesAllOriginalOwnersRoutesReservesAndRandom (System.Int32 seed) [0x000bb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27503" name="MissingPayloadDeclinesWholePocket" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.MissingPayloadDeclinesWholePocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.252002" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27500" name="MissingPayloadDeclinesWholePocket(&quot;StoneDome&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.MissingPayloadDeclinesWholePocket(&quot;StoneDome&quot;)" methodname="MissingPayloadDeclinesWholePocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="517518880" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.075762" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.MissingPayloadDeclinesWholePocket (System.String bp) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27501" name="MissingPayloadDeclinesWholePocket(&quot;Tree&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.MissingPayloadDeclinesWholePocket(&quot;Tree&quot;)" methodname="MissingPayloadDeclinesWholePocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1478994568" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.072214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.MissingPayloadDeclinesWholePocket (System.String bp) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27502" name="MissingPayloadDeclinesWholePocket(&quot;Bush&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.MissingPayloadDeclinesWholePocket(&quot;Bush&quot;)" methodname="MissingPayloadDeclinesWholePocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1720517511" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.072037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.MissingPayloadDeclinesWholePocket (System.String bp) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27515" name="PayloadAndCallbackCorruptionCannotPublishPocket" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:02Z" duration="0.618802" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27509" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;barren&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1342832393" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.066999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27510" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;empty-id&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;empty-id&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="737388392" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.062949" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27511" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;duplicate-id&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1415870030" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.063240" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27512" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;footprint&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1474927736" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.071079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27513" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;tile&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;tile&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="325233556" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:01Z" duration="0.098176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27514" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;reserve&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;reserve&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1276841304" result="Failed" start-time="2026-11-02 02:08:01Z" end-time="2026-11-02 02:08:02Z" duration="0.224617" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="27493" name="SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack" methodname="SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1043145961" result="Failed" start-time="2026-11-02 02:08:02Z" end-time="2026-11-02 02:08:02Z" duration="0.100657" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27508" name="UnavailableShoulderPreservesOriginalGraph" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 02:08:02Z" end-time="2026-11-02 02:08:02Z" duration="0.335258" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27504" name="UnavailableShoulderPreservesOriginalGraph(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph(&quot;reserved&quot;)" methodname="UnavailableShoulderPreservesOriginalGraph" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1882388527" result="Failed" start-time="2026-11-02 02:08:02Z" end-time="2026-11-02 02:08:02Z" duration="0.073394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27505" name="UnavailableShoulderPreservesOriginalGraph(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph(&quot;wet&quot;)" methodname="UnavailableShoulderPreservesOriginalGraph" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="1027028559" result="Failed" start-time="2026-11-02 02:08:02Z" end-time="2026-11-02 02:08:02Z" duration="0.074264" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27506" name="UnavailableShoulderPreservesOriginalGraph(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph(&quot;occupied&quot;)" methodname="UnavailableShoulderPreservesOriginalGraph" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="912987790" result="Failed" start-time="2026-11-02 02:08:02Z" end-time="2026-11-02 02:08:02Z" duration="0.082210" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27507" name="UnavailableShoulderPreservesOriginalGraph(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph(&quot;interior&quot;)" methodname="UnavailableShoulderPreservesOriginalGraph" classname="CavesOfOoo.Tests.StumpSummitPocketTests" runstate="Runnable" seed="102936037" result="Failed" start-time="2026-11-02 02:08:02Z" end-time="2026-11-02 02:08:02Z" duration="0.073943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold SummitScrub shelter
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.StumpSummitPocketTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:25
+at CavesOfOoo.Tests.StumpSummitPocketTests.UnavailableShoulderPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpSummitPocketTests.cs:52
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

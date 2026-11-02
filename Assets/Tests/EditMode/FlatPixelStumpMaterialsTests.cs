@@ -656,5 +656,32 @@ namespace CavesOfOoo.Tests
                 }
             }
         }
+        [Test] public void CoveredBushReaderKeepsNativeIdentityWhilePlayerRemainsWorldOwner()
+        {
+            var bush=Add("Bush");var expected=View().ForegroundTile.sprite;NativeTile(View().ForegroundTile,Opening);
+            bush.GetPart<DestructiblePart>().HP=5;Assert.AreSame(expected,View().ForegroundTile.sprite);
+            var player=Add("Player");player.GetPart<RenderPart>().RenderLayer=100;
+            Assert.AreSame(player,View().Owner);Assert.True(Subject(bush));
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,bush,X,Y,out var actual,out _));Assert.AreSame(expected,actual);
+            Assert.AreSame(player,View().Owner);
+        }
+        [TestCase("hidden")][TestCase("remembered")][TestCase("unexplored")][TestCase("removed")]
+        [TestCase("moved")][TestCase("destroyed")][TestCase("stale-graph")][TestCase("missing-atlas")]
+        public void CoveredBushReaderStillRefusesInvalidDisclosureStateOrResource(string fault)
+        {
+            var bush=Add("Bush");Native(bush);var player=Add("Player");player.GetPart<RenderPart>().RenderLayer=100;
+            Assert.True(Subject(bush),"Covered valid owner is the positive counter");
+            if(fault=="hidden")bush.GetPart<RenderPart>().Visible=false;
+            else if(fault=="remembered")zone.GetCell(X,Y).IsVisible=false;
+            else if(fault=="unexplored")zone.GetCell(X,Y).Explored=false;
+            else if(fault=="removed")zone.RemoveEntity(bush);
+            else if(fault=="moved")zone.MoveEntity(bush,X+2,Y);
+            else if(fault=="destroyed")bush.GetPart<DestructiblePart>().HP=0;
+            else if(fault=="stale-graph")manager.CachedZones[Home]=new Zone(Home);
+            else Inject(Resources.Load<Texture2D>(Atlas),"bush");
+            Assert.False(Subject(bush));
+            if(fault=="hidden"){bush.GetPart<RenderPart>().Visible=true;Assert.True(Subject(bush));}
+            if(fault=="remembered"){zone.GetCell(X,Y).IsVisible=true;Assert.True(Subject(bush));}
+        }
     }
 }
