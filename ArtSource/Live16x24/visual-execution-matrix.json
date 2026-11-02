@@ -5600,7 +5600,7 @@
         "polish": "in-progress",
         "population": "not-audited",
         "shadow": "observed",
-        "delivery": "source-only"
+        "delivery": "packaged-verified"
       },
       "prior_review_ids": [],
       "next_action": "Batch Cinderhold road; broader town/interior/composition/ASCII audit remains. Next largest proven other-region gap is WorldMap Beating.",
@@ -5695,16 +5695,65 @@
         }
       },
       "current_packaged_delivery": {
-        "source_commit": "fa616fcd7d35f8fa1c10e8a531e62ac488bffd6d",
-        "evidence": "Docs/Verification/GraphicsExecution/BatchFa616/README.md",
-        "mac": "Two actual processes at ordinary3024\u00d71898: Morrowfast river/bridge reader/eastbank27,14; ordinary3.6\u21926.6 travel; Cinderhold sandstone reader27,8 and office22,7HP40,F5turn1940,freshContinue;0/3576624worldpixels",
-        "included_not_packaged_visited": [
-          "Earlier regional slices retain their own package evidence"
+        "at_utc": "2026-11-02T17:32:51.078539+00:00",
+        "source": "5a5d0af5d2a865aeae02935dfef59e68e663c1fd",
+        "status": "packaged_verified_with_hardware_and_performance_limits",
+        "mac": {
+          "job_id": "build-ede4394c84",
+          "result": "succeeded",
+          "platform": "StandaloneOSX",
+          "output_path": "Builds/Verification/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo.app",
+          "started_at": "2026-11-02T17:25:38.434193Z",
+          "duration_seconds": 51.707496,
+          "completed_at": "2026-11-02T17:26:30.141689Z",
+          "total_size_mb": 548.88,
+          "errors": 0,
+          "warnings": 4
+        },
+        "linux": {
+          "job_id": "build-c7f791aab6",
+          "result": "succeeded",
+          "platform": "StandaloneLinux64",
+          "output_path": "Builds/SteamDeck/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo-current/CavesOfOoo",
+          "started_at": "2026-11-02T17:26:48.606673Z",
+          "duration_seconds": 95.20517199999999,
+          "completed_at": "2026-11-02T17:28:23.811845Z",
+          "total_size_mb": 409.73,
+          "errors": 0,
+          "warnings": 4
+        },
+        "archive": {
+          "bytes": 162139071,
+          "sha256": "ea47e26d52f397675da47428fd8c3ea5f6db795bca628553e6bd299209e2f93c",
+          "members": 319,
+          "files": 306,
+          "directories": 13
+        },
+        "actual": "Two exact-path Mac processes at ordinary3024x1898. Cinderhold33,11\u219232,11HP40; Look31,11Packedroad; ascendWorldMap36,9 (native Spread+Beating and merchant-on-sand visible), F5turn1900; freshContinue36,9HP40Dusk world0/3576807diff; descendcachedCinderhold32,11HP40.",
+        "pixel_comparison": "mac-pixel-comparison.json",
+        "reviews": "portable_equipment_final_review independently verified fullarchive/305internalchecksums/modes/gzipEOF/52pins/source/scope,0P1/P2; capture_route six actual package captures0newP1/P2. Green merchant-on-sand, villages/lairs and road/shadow readability bounded accepted.",
+        "corrections": [
+          "Pre-apply review found four stale prior-source runtime/test pins; rebound only after bytes verified againstHEAD and snapshot; refreshed overlay SHA, scope/conclusion/source-change paths",
+          "Initial apply refused missing build receipts before any output mutation; stored actual successful receipts, inspected pre-copy boundary and then packaged successfully"
         ],
-        "linux": "built and full archive verified; not executed",
-        "physical_deck": "not executed",
-        "whole_area_polish": false,
-        "performance_gate": "R11 open; run1 overlapped Linux build, no packaged benchmark"
+        "preservation": {
+          "snapshot": "/private/tmp/coo-graphics-build-protection-5a5d0af5",
+          "tracked_objects": 56957,
+          "dirty_paths": 77,
+          "restored_utc": "2026-11-02T17:31:06.721813+00:00",
+          "normal_editor_unchanged": true,
+          "normal_standalone_originally_absent_restored": true,
+          "prior61cc_packages_preserved": true,
+          "owned_save_archive": "/private/tmp/coo-5a5d-preserved-after/standalone-session-Saves",
+          "removed": []
+        },
+        "limits": [
+          "Linux/physicalDeck unexecuted",
+          "First Mac run overlapped Linux build; no packaged performance attribution/R11closure",
+          "No fullmap/town/population/newshadow acceptance; lair contrast remains subdued and other mapregions ASCII",
+          "Final tint test fullreceipt null; first56pass+2allocationinconclusive and Cinder98/98 retained, nonadditive"
+        ],
+        "next_action": "BeatingRuinField19.12 bounded broken-colonnade shoulder: supported Pillar/BrokenColumn owners, cold generation and route checks; no savedchunk retrofit."
       },
       "bounded_slices": [
         {
@@ -5712,7 +5761,7 @@
           "axis": "polish",
           "status": "bounded-editor-verified",
           "record": "Docs/GRAPHICS-CINDERHOLD-ROAD.md",
-          "delivery": "pending next batch",
+          "delivery": "Batch5a5d actualMac verified; Linux/archive verified, unexecuted",
           "limits": [
             "No full-area, population or new shadow acceptance",
             "Stepped road widths, isolated grass cutouts, repetitive flecks, sparse open spaces and green regional cast remain",
@@ -17630,7 +17679,7 @@
         "polish": "in-progress",
         "population": "not-audited",
         "shadow": "observed",
-        "delivery": "source-only"
+        "delivery": "packaged-verified"
       },
       "prior_review_ids": [],
       "next_action": "Batch Cinderhold road; broader town/interior/composition/ASCII audit remains. Next largest proven other-region gap is WorldMap Beating.",
@@ -17727,16 +17776,65 @@
         }
       },
       "current_packaged_delivery": {
-        "source_commit": "fa616fcd7d35f8fa1c10e8a531e62ac488bffd6d",
-        "evidence": "Docs/Verification/GraphicsExecution/BatchFa616/README.md",
-        "mac": "Two actual processes at ordinary3024\u00d71898: Morrowfast river/bridge reader/eastbank27,14; ordinary3.6\u21926.6 travel; Cinderhold sandstone reader27,8 and office22,7HP40,F5turn1940,freshContinue;0/3576624worldpixels",
-        "included_not_packaged_visited": [
-          "Earlier regional slices retain their own package evidence"
+        "at_utc": "2026-11-02T17:32:51.078539+00:00",
+        "source": "5a5d0af5d2a865aeae02935dfef59e68e663c1fd",
+        "status": "packaged_verified_with_hardware_and_performance_limits",
+        "mac": {
+          "job_id": "build-ede4394c84",
+          "result": "succeeded",
+          "platform": "StandaloneOSX",
+          "output_path": "Builds/Verification/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo.app",
+          "started_at": "2026-11-02T17:25:38.434193Z",
+          "duration_seconds": 51.707496,
+          "completed_at": "2026-11-02T17:26:30.141689Z",
+          "total_size_mb": 548.88,
+          "errors": 0,
+          "warnings": 4
+        },
+        "linux": {
+          "job_id": "build-c7f791aab6",
+          "result": "succeeded",
+          "platform": "StandaloneLinux64",
+          "output_path": "Builds/SteamDeck/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo-current/CavesOfOoo",
+          "started_at": "2026-11-02T17:26:48.606673Z",
+          "duration_seconds": 95.20517199999999,
+          "completed_at": "2026-11-02T17:28:23.811845Z",
+          "total_size_mb": 409.73,
+          "errors": 0,
+          "warnings": 4
+        },
+        "archive": {
+          "bytes": 162139071,
+          "sha256": "ea47e26d52f397675da47428fd8c3ea5f6db795bca628553e6bd299209e2f93c",
+          "members": 319,
+          "files": 306,
+          "directories": 13
+        },
+        "actual": "Two exact-path Mac processes at ordinary3024x1898. Cinderhold33,11\u219232,11HP40; Look31,11Packedroad; ascendWorldMap36,9 (native Spread+Beating and merchant-on-sand visible), F5turn1900; freshContinue36,9HP40Dusk world0/3576807diff; descendcachedCinderhold32,11HP40.",
+        "pixel_comparison": "mac-pixel-comparison.json",
+        "reviews": "portable_equipment_final_review independently verified fullarchive/305internalchecksums/modes/gzipEOF/52pins/source/scope,0P1/P2; capture_route six actual package captures0newP1/P2. Green merchant-on-sand, villages/lairs and road/shadow readability bounded accepted.",
+        "corrections": [
+          "Pre-apply review found four stale prior-source runtime/test pins; rebound only after bytes verified againstHEAD and snapshot; refreshed overlay SHA, scope/conclusion/source-change paths",
+          "Initial apply refused missing build receipts before any output mutation; stored actual successful receipts, inspected pre-copy boundary and then packaged successfully"
         ],
-        "linux": "built and full archive verified; not executed",
-        "physical_deck": "not executed",
-        "whole_area_polish": false,
-        "performance_gate": "R11 open; run1 overlapped Linux build, no packaged benchmark"
+        "preservation": {
+          "snapshot": "/private/tmp/coo-graphics-build-protection-5a5d0af5",
+          "tracked_objects": 56957,
+          "dirty_paths": 77,
+          "restored_utc": "2026-11-02T17:31:06.721813+00:00",
+          "normal_editor_unchanged": true,
+          "normal_standalone_originally_absent_restored": true,
+          "prior61cc_packages_preserved": true,
+          "owned_save_archive": "/private/tmp/coo-5a5d-preserved-after/standalone-session-Saves",
+          "removed": []
+        },
+        "limits": [
+          "Linux/physicalDeck unexecuted",
+          "First Mac run overlapped Linux build; no packaged performance attribution/R11closure",
+          "No fullmap/town/population/newshadow acceptance; lair contrast remains subdued and other mapregions ASCII",
+          "Final tint test fullreceipt null; first56pass+2allocationinconclusive and Cinder98/98 retained, nonadditive"
+        ],
+        "next_action": "BeatingRuinField19.12 bounded broken-colonnade shoulder: supported Pillar/BrokenColumn owners, cold generation and route checks; no savedchunk retrofit."
       },
       "bounded_slices": [
         {
@@ -17744,7 +17842,7 @@
           "axis": "polish",
           "status": "bounded-editor-verified",
           "record": "Docs/GRAPHICS-CINDERHOLD-ROAD.md",
-          "delivery": "pending next batch",
+          "delivery": "Batch5a5d actualMac verified; Linux/archive verified, unexecuted",
           "limits": [
             "No full-area, population or new shadow acceptance",
             "Stepped road widths, isolated grass cutouts, repetitive flecks, sparse open spaces and green regional cast remain",
@@ -20179,7 +20277,7 @@
         "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "source-only"
+        "delivery": "packaged-verified"
       },
       "prior_review_ids": [],
       "next_action": "Batch Beating map and Cinderhold roads. Remaining map regions/scale/marker accessibility; no whole-map acceptance.",
@@ -20268,7 +20366,7 @@
           "axis": "coverage",
           "status": "bounded-editor-verified",
           "record": "Docs/GRAPHICS-WORLD-MAP-BEATING.md",
-          "delivery": "pending batch",
+          "delivery": "Batch5a5d actualMac verified; Linux/archive verified, unexecuted",
           "limits": [
             "Other map regions remain ASCII and overall scale/abrupt biome steps unfinished",
             "No population, shadow or full-map acceptance",
@@ -20276,7 +20374,68 @@
             "Current61cc packages exclude this and Cinderhold road pending batch"
           ]
         }
-      ]
+      ],
+      "current_packaged_delivery": {
+        "at_utc": "2026-11-02T17:32:51.078539+00:00",
+        "source": "5a5d0af5d2a865aeae02935dfef59e68e663c1fd",
+        "status": "packaged_verified_with_hardware_and_performance_limits",
+        "mac": {
+          "job_id": "build-ede4394c84",
+          "result": "succeeded",
+          "platform": "StandaloneOSX",
+          "output_path": "Builds/Verification/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo.app",
+          "started_at": "2026-11-02T17:25:38.434193Z",
+          "duration_seconds": 51.707496,
+          "completed_at": "2026-11-02T17:26:30.141689Z",
+          "total_size_mb": 548.88,
+          "errors": 0,
+          "warnings": 4
+        },
+        "linux": {
+          "job_id": "build-c7f791aab6",
+          "result": "succeeded",
+          "platform": "StandaloneLinux64",
+          "output_path": "Builds/SteamDeck/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo-current/CavesOfOoo",
+          "started_at": "2026-11-02T17:26:48.606673Z",
+          "duration_seconds": 95.20517199999999,
+          "completed_at": "2026-11-02T17:28:23.811845Z",
+          "total_size_mb": 409.73,
+          "errors": 0,
+          "warnings": 4
+        },
+        "archive": {
+          "bytes": 162139071,
+          "sha256": "ea47e26d52f397675da47428fd8c3ea5f6db795bca628553e6bd299209e2f93c",
+          "members": 319,
+          "files": 306,
+          "directories": 13
+        },
+        "actual": "Two exact-path Mac processes at ordinary3024x1898. Cinderhold33,11\u219232,11HP40; Look31,11Packedroad; ascendWorldMap36,9 (native Spread+Beating and merchant-on-sand visible), F5turn1900; freshContinue36,9HP40Dusk world0/3576807diff; descendcachedCinderhold32,11HP40.",
+        "pixel_comparison": "mac-pixel-comparison.json",
+        "reviews": "portable_equipment_final_review independently verified fullarchive/305internalchecksums/modes/gzipEOF/52pins/source/scope,0P1/P2; capture_route six actual package captures0newP1/P2. Green merchant-on-sand, villages/lairs and road/shadow readability bounded accepted.",
+        "corrections": [
+          "Pre-apply review found four stale prior-source runtime/test pins; rebound only after bytes verified againstHEAD and snapshot; refreshed overlay SHA, scope/conclusion/source-change paths",
+          "Initial apply refused missing build receipts before any output mutation; stored actual successful receipts, inspected pre-copy boundary and then packaged successfully"
+        ],
+        "preservation": {
+          "snapshot": "/private/tmp/coo-graphics-build-protection-5a5d0af5",
+          "tracked_objects": 56957,
+          "dirty_paths": 77,
+          "restored_utc": "2026-11-02T17:31:06.721813+00:00",
+          "normal_editor_unchanged": true,
+          "normal_standalone_originally_absent_restored": true,
+          "prior61cc_packages_preserved": true,
+          "owned_save_archive": "/private/tmp/coo-5a5d-preserved-after/standalone-session-Saves",
+          "removed": []
+        },
+        "limits": [
+          "Linux/physicalDeck unexecuted",
+          "First Mac run overlapped Linux build; no packaged performance attribution/R11closure",
+          "No fullmap/town/population/newshadow acceptance; lair contrast remains subdued and other mapregions ASCII",
+          "Final tint test fullreceipt null; first56pass+2allocationinconclusive and Cinder98/98 retained, nonadditive"
+        ],
+        "next_action": "BeatingRuinField19.12 bounded broken-colonnade shoulder: supported Pillar/BrokenColumn owners, cold generation and route checks; no savedchunk retrofit."
+      }
     },
     {
       "id": "area-family/world_map/WorldMap",
@@ -22394,42 +22553,65 @@
     }
   ],
   "current_delivery": {
-    "at_utc": "2026-11-02T16:57:02.015353+00:00",
-    "source": "61cc264fbb3d26141f906301d39ef2312d0da1d6",
+    "at_utc": "2026-11-02T17:32:51.078539+00:00",
+    "source": "5a5d0af5d2a865aeae02935dfef59e68e663c1fd",
     "status": "packaged_verified_with_hardware_and_performance_limits",
     "mac": {
-      "job": "build-372ce129e1",
-      "path": "Builds/Verification/2026-11-02-graphics-61cc264fb-current/CavesOfOoo.app",
-      "duration_seconds": 42.135501,
+      "job_id": "build-ede4394c84",
+      "result": "succeeded",
+      "platform": "StandaloneOSX",
+      "output_path": "Builds/Verification/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo.app",
+      "started_at": "2026-11-02T17:25:38.434193Z",
+      "duration_seconds": 51.707496,
+      "completed_at": "2026-11-02T17:26:30.141689Z",
+      "total_size_mb": 548.88,
       "errors": 0,
       "warnings": 4
     },
     "linux": {
-      "job": "build-17b3249bcf",
-      "path": "Builds/SteamDeck/2026-11-02-graphics-61cc264fb-current/CavesOfOoo-current",
-      "duration_seconds": 79.02016,
+      "job_id": "build-c7f791aab6",
+      "result": "succeeded",
+      "platform": "StandaloneLinux64",
+      "output_path": "Builds/SteamDeck/2026-11-02-graphics-5a5d0af5d-current/CavesOfOoo-current/CavesOfOoo",
+      "started_at": "2026-11-02T17:26:48.606673Z",
+      "duration_seconds": 95.20517199999999,
+      "completed_at": "2026-11-02T17:28:23.811845Z",
+      "total_size_mb": 409.73,
       "errors": 0,
-      "warnings": 4,
-      "executed": false
+      "warnings": 4
     },
     "archive": {
-      "bytes": 162140719,
-      "sha256": "e8c4641f6e31cbbf2d7c1944aa4fa26e3b78211a302a82dbd378a7f576b433d7",
+      "bytes": 162139071,
+      "sha256": "ea47e26d52f397675da47428fd8c3ea5f6db795bca628553e6bd299209e2f93c",
       "members": 319,
       "files": 306,
-      "directories": 13,
-      "internal_checksums": 305
+      "directories": 13
     },
-    "actual": "Two exact-path Mac processes at3024x1898: map47,15\u219246,15; Look45,15; descend16.12\u2192WorldMap; F5turn3380 HP38 Dark; fresh46,15 world0/3576807 pixel changes. First run overlaps Linux compilation, no packaged benchmark. No actual Examine modal claim.",
-    "preservation": "56894 tracked objects/77dirty, normal saves/preferences and priorA69d packages verified; four reviewed build-generated settings restored16:55:47Z; owned test saves archived /private/tmp/coo-61cc-preserved-after. No cleanup.",
-    "review": "Independent source/archive corrected2P2 stale packaging prose and unpinned current native receipts; all45pins and archive verified, no remainingP1/P2. Actual visual review requested separately.",
+    "actual": "Two exact-path Mac processes at ordinary3024x1898. Cinderhold33,11\u219232,11HP40; Look31,11Packedroad; ascendWorldMap36,9 (native Spread+Beating and merchant-on-sand visible), F5turn1900; freshContinue36,9HP40Dusk world0/3576807diff; descendcachedCinderhold32,11HP40.",
+    "pixel_comparison": "mac-pixel-comparison.json",
+    "reviews": "portable_equipment_final_review independently verified fullarchive/305internalchecksums/modes/gzipEOF/52pins/source/scope,0P1/P2; capture_route six actual package captures0newP1/P2. Green merchant-on-sand, villages/lairs and road/shadow readability bounded accepted.",
+    "corrections": [
+      "Pre-apply review found four stale prior-source runtime/test pins; rebound only after bytes verified againstHEAD and snapshot; refreshed overlay SHA, scope/conclusion/source-change paths",
+      "Initial apply refused missing build receipts before any output mutation; stored actual successful receipts, inspected pre-copy boundary and then packaged successfully"
+    ],
+    "preservation": {
+      "snapshot": "/private/tmp/coo-graphics-build-protection-5a5d0af5",
+      "tracked_objects": 56957,
+      "dirty_paths": 77,
+      "restored_utc": "2026-11-02T17:31:06.721813+00:00",
+      "normal_editor_unchanged": true,
+      "normal_standalone_originally_absent_restored": true,
+      "prior61cc_packages_preserved": true,
+      "owned_save_archive": "/private/tmp/coo-5a5d-preserved-after/standalone-session-Saves",
+      "removed": []
+    },
     "limits": [
-      "Other map regions/whole-area polish remain open",
-      "No new population or shadow acceptance",
-      "R11 and allocation certification remain open",
-      "Linux/Deck not executed",
-      "Rim canopy remains parked disabled"
-    ]
+      "Linux/physicalDeck unexecuted",
+      "First Mac run overlapped Linux build; no packaged performance attribution/R11closure",
+      "No fullmap/town/population/newshadow acceptance; lair contrast remains subdued and other mapregions ASCII",
+      "Final tint test fullreceipt null; first56pass+2allocationinconclusive and Cinder98/98 retained, nonadditive"
+    ],
+    "next_action": "BeatingRuinField19.12 bounded broken-colonnade shoulder: supported Pillar/BrokenColumn owners, cold generation and route checks; no savedchunk retrofit."
   },
   "sodden_native_receipt_correction": {
     "total": 393,
@@ -22559,6 +22741,44 @@
         "R11performance spikes unresolved",
         "Linux/Deckexecutionunavailable",
         "Developmentbuilds0errors4warningseach"
+      ]
+    },
+    {
+      "at_utc": "2026-11-02T16:57:02.015353+00:00",
+      "source": "61cc264fbb3d26141f906301d39ef2312d0da1d6",
+      "status": "packaged_verified_with_hardware_and_performance_limits",
+      "mac": {
+        "job": "build-372ce129e1",
+        "path": "Builds/Verification/2026-11-02-graphics-61cc264fb-current/CavesOfOoo.app",
+        "duration_seconds": 42.135501,
+        "errors": 0,
+        "warnings": 4
+      },
+      "linux": {
+        "job": "build-17b3249bcf",
+        "path": "Builds/SteamDeck/2026-11-02-graphics-61cc264fb-current/CavesOfOoo-current",
+        "duration_seconds": 79.02016,
+        "errors": 0,
+        "warnings": 4,
+        "executed": false
+      },
+      "archive": {
+        "bytes": 162140719,
+        "sha256": "e8c4641f6e31cbbf2d7c1944aa4fa26e3b78211a302a82dbd378a7f576b433d7",
+        "members": 319,
+        "files": 306,
+        "directories": 13,
+        "internal_checksums": 305
+      },
+      "actual": "Two exact-path Mac processes at3024x1898: map47,15\u219246,15; Look45,15; descend16.12\u2192WorldMap; F5turn3380 HP38 Dark; fresh46,15 world0/3576807 pixel changes. First run overlaps Linux compilation, no packaged benchmark. No actual Examine modal claim.",
+      "preservation": "56894 tracked objects/77dirty, normal saves/preferences and priorA69d packages verified; four reviewed build-generated settings restored16:55:47Z; owned test saves archived /private/tmp/coo-61cc-preserved-after. No cleanup.",
+      "review": "Independent source/archive corrected2P2 stale packaging prose and unpinned current native receipts; all45pins and archive verified, no remainingP1/P2. Actual visual review requested separately.",
+      "limits": [
+        "Other map regions/whole-area polish remain open",
+        "No new population or shadow acceptance",
+        "R11 and allocation certification remain open",
+        "Linux/Deck not executed",
+        "Rim canopy remains parked disabled"
       ]
     }
   ]
