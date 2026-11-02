@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Failed(Child)" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:44Z" duration="3.6129722">
+  <test-suite type="TestSuite" id="43825" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35703" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:44Z" duration="3.612972" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43797" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35703" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:44Z" duration="3.601507" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43798" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35703" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:44Z" duration="3.598096" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43799" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35703" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:44Z" duration="3.595038" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31127" name="FlatPixelBeatingMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="149" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:44Z" duration="3.556973" total="38" passed="1" failed="37" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="31301" name="BeatingBrineVaporBoundaryCannotKeepLiquidPixels" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.BeatingBrineVaporBoundaryCannotKeepLiquidPixels" methodname="BeatingBrineVaporBoundaryCannotKeepLiquidPixels" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1590720236" result="Passed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.142567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31291" name="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.250932" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31287" name="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;Sand&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;Sand&quot;)" methodname="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1570198829" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.053039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31288" name="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;DryBrush&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;DryBrush&quot;)" methodname="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="515532083" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.045216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31289" name="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;TarSeep&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;TarSeep&quot;)" methodname="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="167057696" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.046436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31290" name="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;StoneWall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(&quot;StoneWall&quot;)" methodname="StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="466586802" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.069878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround (System.String blueprint) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31296" name="StumpBrineInstanceCannotFollowForeignArea" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.396327" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31292" name="StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.3.5.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.3.5.0&quot;)" methodname="StumpBrineInstanceCannotFollowForeignArea" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1061038058" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.070512" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea (System.String id) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31293" name="StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.3.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.3.4.1&quot;)" methodname="StumpBrineInstanceCannotFollowForeignArea" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1548166417" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.199273" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea (System.String id) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31294" name="StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.03.4.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.03.4.0&quot;)" methodname="StumpBrineInstanceCannotFollowForeignArea" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1881912459" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.044797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea (System.String id) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31295" name="StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.16.13.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea(&quot;Overworld.16.13.0&quot;)" methodname="StumpBrineInstanceCannotFollowForeignArea" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="691224607" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.044308" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineInstanceCannotFollowForeignArea (System.String id) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:106
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31300" name="StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:42Z" duration="0.128682" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31298" name="StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources(False)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources(False)" methodname="StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1712321339" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:41Z" duration="0.048837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources (System.Boolean malformed) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31299" name="StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources(True)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources(True)" methodname="StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="684635227" result="Failed" start-time="2026-11-02 03:35:41Z" end-time="2026-11-02 03:35:42Z" duration="0.044445" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources (System.Boolean malformed) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:125
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31279" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.955479" total="16" passed="0" failed="16" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31263" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;missing&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="587302687" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.045377" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31264" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;expired&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;expired&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="731541999" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.043044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31265" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;mixture&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;mixture&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1731062191" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.043818" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31266" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;ice&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;ice&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1533986520" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.044240" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31267" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;wrong-liquid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;wrong-liquid&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1254535680" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.044579" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31268" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;negative-stock&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;negative-stock&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="458669258" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.046155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31269" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;frozen&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1025313340" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.045701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31270" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;vapor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;vapor&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="71087798" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.059390" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31271" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;nan-vapor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;nan-vapor&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1680203458" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.044920" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31272" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;electrified&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;electrified&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1745977590" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.044933" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31273" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;foreign-source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;foreign-source&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1703833676" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.045226" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31274" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;duplicate-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;duplicate-pool&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="459995456" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.044319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31275" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;footprint&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2022223709" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.044765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31276" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;hidden&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="266132502" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.045121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31277" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;moved&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1108894046" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.088744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31278" name="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(&quot;variant&quot;)" methodname="StumpBrineRejectsUnsupportedStateAfterPositiveBaseline" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1181055814" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:42Z" duration="0.189524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineRejectsUnsupportedStateAfterPositiveBaseline (System.String fault) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:45
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31262" name="StumpBrineStockAndCoveredReaderPreserveRealState" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:43Z" duration="0.211675" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31258" name="StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.3.4.0&quot;,90)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.3.4.0&quot;,90)" methodname="StumpBrineStockAndCoveredReaderPreserveRealState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1837793898" result="Failed" start-time="2026-11-02 03:35:42Z" end-time="2026-11-02 03:35:43Z" duration="0.044352" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState (System.String id, System.Int32 stock) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31259" name="StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.3.4.0&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.3.4.0&quot;,0)" methodname="StumpBrineStockAndCoveredReaderPreserveRealState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1731985713" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:43Z" duration="0.043798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState (System.String id, System.Int32 stock) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31260" name="StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.2.5.0&quot;,90)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.2.5.0&quot;,90)" methodname="StumpBrineStockAndCoveredReaderPreserveRealState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1443486900" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:43Z" duration="0.044893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState (System.String id, System.Int32 stock) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31261" name="StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.2.5.0&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState(&quot;Overworld.2.5.0&quot;,0)" methodname="StumpBrineStockAndCoveredReaderPreserveRealState" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1446900916" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:43Z" duration="0.043187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineStockAndCoveredReaderPreserveRealState (System.String id, System.Int32 stock) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31286" name="StumpBrineSubmittedMarksRemainAuthoritative" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:44Z" duration="1.098041" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31280" name="StumpBrineSubmittedMarksRemainAuthoritative(90,&quot;none&quot;,'\0')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative(90,&quot;none&quot;,'\0')" methodname="StumpBrineSubmittedMarksRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1917904751" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:43Z" duration="0.048509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative (System.Int32 stock, System.String hazard, System.Char expected) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31281" name="StumpBrineSubmittedMarksRemainAuthoritative(0,&quot;none&quot;,'\0')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative(0,&quot;none&quot;,'\0')" methodname="StumpBrineSubmittedMarksRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1975865977" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:43Z" duration="0.192954" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative (System.Int32 stock, System.String hazard, System.Char expected) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31282" name="StumpBrineSubmittedMarksRemainAuthoritative(90,&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative(90,&quot;charge&quot;,'*')" methodname="StumpBrineSubmittedMarksRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1503855020" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:43Z" duration="0.188003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative (System.Int32 stock, System.String hazard, System.Char expected) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31283" name="StumpBrineSubmittedMarksRemainAuthoritative(0,&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative(0,&quot;heat&quot;,'^')" methodname="StumpBrineSubmittedMarksRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="505140507" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:43Z" duration="0.205836" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative (System.Int32 stock, System.String hazard, System.Char expected) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31284" name="StumpBrineSubmittedMarksRemainAuthoritative(90,&quot;embers&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative(90,&quot;embers&quot;,'&quot;')" methodname="StumpBrineSubmittedMarksRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="467222756" result="Failed" start-time="2026-11-02 03:35:43Z" end-time="2026-11-02 03:35:44Z" duration="0.215340" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative (System.Int32 stock, System.String hazard, System.Char expected) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31285" name="StumpBrineSubmittedMarksRemainAuthoritative(0,&quot;veil-mist&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative(0,&quot;veil-mist&quot;,'\'')" methodname="StumpBrineSubmittedMarksRemainAuthoritative" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1074437355" result="Failed" start-time="2026-11-02 03:35:44Z" end-time="2026-11-02 03:35:44Z" duration="0.214479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineSubmittedMarksRemainAuthoritative (System.Int32 stock, System.String hazard, System.Char expected) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31297" name="StumpBrineWarmGraphAuthorityIsRechecked" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineWarmGraphAuthorityIsRechecked" methodname="StumpBrineWarmGraphAuthorityIsRechecked" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2040817962" result="Failed" start-time="2026-11-02 03:35:44Z" end-time="2026-11-02 03:35:44Z" duration="0.346138" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Native (CavesOfOoo.Core.Entity owner, System.Int32 x, System.Int32 y) [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:93
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.StumpBrineWarmGraphAuthorityIsRechecked () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelStumpBrineTests.cs:114
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

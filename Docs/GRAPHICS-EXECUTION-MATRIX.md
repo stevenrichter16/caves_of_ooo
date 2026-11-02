@@ -1,3 +1,5 @@
+**Stump brine2026-11-02:** Fourwestern pools actual native,269native checks, readers/hazard/crossing/reload6states. R11/fullarea/eastpair/depletion open. Next coherent stone relief/ground/shadow pass per user impact feedback; then currentpackages. See GRAPHICS-STUMP-BRINE.md.
+
 **Stump fixtures2026-11-02:** FiveSummitpipes now native on realstone, actualreaders/crossing/reload verified. Peat/ventbacking integratedonly.216applicable nativepasses; R11/fullarea open. See GRAPHICS-STUMP-FIXTURES.md. Next6BrinePool andboundedshadowcomparison.
 
 **Stillleaf update2026-11-02:**233real passable ledges boundedEditorverified,74applicable native cases, actualreaders/crossing/reload exactowners. Brightness20613pixels unproven;R11/fullareaopen. Current08efa packagesexcludeledgechange. See GRAPHICS-STILLLEAF-LEDGES.md. Next Summit surfacefixtures.

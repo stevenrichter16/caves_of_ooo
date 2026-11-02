@@ -14,7 +14,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Tests
 {
-    public sealed class FlatPixelBeatingMaterialsTests
+    public sealed partial class FlatPixelBeatingMaterialsTests
     {
         const string Home = "Overworld.16.13.0";
         const string Atlas = "Sprites/Live16x24/beating-materials";
@@ -816,7 +816,16 @@ namespace CavesOfOoo.Tests
             { try { typeof(ZoneRenderer).GetMethod("LateUpdate", I).Invoke(Renderer, null); } catch (TargetInvocationException e) { throw e.InnerException ?? e; } }
             public void Dispose()
             {
-                try { saved?.Dispose(); if (root != null) Object.DestroyImmediate(root); }
+                try
+                {
+                    var env = saved?.Root?.GetComponent<EnvironmentSpriteRenderer>();
+                    if (env != null)
+                    {
+                        Write(env, "_flatPixelGreybox", null); // Borrowed by this inactive fixture.
+                        typeof(EnvironmentSpriteRenderer).GetMethod("OnDestroy", I).Invoke(env, null);
+                    }
+                    saved?.Dispose(); if (root != null) Object.DestroyImmediate(root);
+                }
                 finally
                 {
                     ZoneRenderHooks.CellDirtyCallback = oldCell; ZoneRenderHooks.FullDirtyCallback = oldFull; bound.SetValue(null, oldBound);

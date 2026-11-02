@@ -108,6 +108,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSillRiverCatalog _sillRiverArt;
         private FlatPixelSoddenTravelCatalog _soddenTravelArt;
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
+        private FlatPixelBeatingMaterialsCatalog _stumpBrineArt;
         private FlatPixelSettlementGroundCatalog _settlementGroundArt;
         private FlatPixelSinkholeLipCatalog _sinkholeLipArt;
         private FlatPixelFloodWaterCatalog _floodWaterArt;
@@ -1894,6 +1895,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelBeatingMaterialsCatalog BeatingMaterialsArtFor(Zone zone)
         {
+            if (FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone))
+            {
+                if (_stumpBrineArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _stumpBrineArt = new FlatPixelBeatingMaterialsCatalog(
+                        Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
+                        null, null, _glyphFallback).AdmittingStumpBrine();
+                }
+                return _stumpBrineArt;
+            }
             if (!FlatPixelBeatingMaterialsCatalog.IsSupportedZone(zone))
             {
                 // Ordinary special sites of this biome use a separate, identically ruled instance.
@@ -2509,6 +2521,8 @@ namespace CavesOfOoo.Rendering
             _soddenSiteArt = null;
             _soddenTravelArt = null;
             _beatingMaterialsArt?.Dispose();
+            _stumpBrineArt?.Dispose();
+            _stumpBrineArt = null;
             _beatingSiteArt?.Dispose();
             _beatingSiteArt = null;
             _beatingMaterialsArt = null;

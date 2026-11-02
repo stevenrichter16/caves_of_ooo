@@ -14,6 +14,10 @@ namespace CavesOfOoo.Rendering
     {
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
+        bool stumpBrineOnly;
+        /// <summary>Independent ordinary Stump reuse of the existing brine states only.</summary>
+        internal FlatPixelBeatingMaterialsCatalog AdmittingStumpBrine()
+        { admits = FlatPixelStumpMaterialsCatalog.IsSupportedZone; stumpBrineOnly = true; return this; }
         /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
         /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
         internal FlatPixelBeatingMaterialsCatalog AdmittingSites(BiomeType biome)
@@ -98,6 +102,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
+            if (stumpBrineOnly && owner?.BlueprintName != "BrinePool") return false;
             if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
             int frame = ForegroundFrame(owner, zone.TileState.Get(x, y), x, y);
             if (frame < 0) return false;
@@ -115,6 +120,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
+            if (stumpBrineOnly) return false;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
             bool live = state != null && !state.IsEmpty;
@@ -200,6 +206,13 @@ namespace CavesOfOoo.Rendering
         {
             sprite = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
+            if (stumpBrineOnly)
+            {
+                if (owner?.BlueprintName != "BrinePool" || !Placed(zone, cell, owner) || materials == null) return false;
+                int frame = ForegroundFrame(owner, zone.TileState.Get(x, y), x, y);
+                if (frame < 0) return false;
+                sprite = materials[frame].sprite; return sprite != null;
+            }
             if (owner?.BlueprintName == "DryBrush" && Placed(zone, cell, owner)
                 && ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) >= 0 && vegetation != null)
             { sprite = vegetation[3].sprite; return sprite != null; }
@@ -270,7 +283,7 @@ namespace CavesOfOoo.Rendering
                     var pool = Owned<LiquidPoolPart>(owner); var source = Owned<TileStateSourcePart>(owner);
                     return render.RenderString == "~" && render.RenderLayer == 1 && owner.HasTag("Terrain")
                         && !owner.HasTag("Wall") && !owner.HasTag("Vegetation") && !owner.HasTag("Solid") && !physics.Solid
-                        && Material(owner, "Brine") && NeutralThermal(owner) && !owner.HasPart<DestructiblePart>()
+                        && Material(owner, "Brine") && NeutralThermal(owner) && BelowVapor(owner) && !owner.HasPart<DestructiblePart>()
                         && pool != null && pool.LiquidId == "brine" && pool.Volume >= 0
                         && source != null && source.EffectiveCoating == "brine" && source.CoatingTurns > 0
                         && FlatPixelKitchenBrineCatalog.IsSoleLiveBrine(state)
@@ -405,6 +418,11 @@ namespace CavesOfOoo.Rendering
             return part != null && float.IsFinite(part.Temperature) && float.IsFinite(part.FreezeTemperature)
                 && float.IsFinite(part.FlameTemperature) && part.Temperature > part.FreezeTemperature
                 && part.Temperature < part.FlameTemperature;
+        }
+        static bool BelowVapor(Entity owner)
+        {
+            var part = Owned<ThermalPart>(owner);
+            return part != null && float.IsFinite(part.VaporTemperature) && part.Temperature < part.VaporTemperature;
         }
         static bool Placed(Zone zone, Cell cell, Entity owner)
         {
