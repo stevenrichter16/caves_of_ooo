@@ -456,8 +456,8 @@ namespace CavesOfOoo.Tests
         FlatPixelGreyboxCell NativeFenWater(int x = X, int y = Y, int mask = -1)
         {
             var value = View(x, y); Assert.True(value.LocalGround); Assert.AreEqual(FlatPixelGreyboxGround.Water, value.GroundKind);
-            Assert.AreEqual(Color.white, value.GroundColor); NativeTile(value.GroundTile, WaterGround);
-            if (mask >= 0) Assert.AreEqual(mask * 16, value.GroundTile.sprite.rect.x);
+            Assert.AreEqual(Color.white, value.GroundColor); NativeTile(value.GroundTile, zone.ZoneID == "Overworld.0.8.0" && !legacyFloor ? FenSurface : WaterGround);
+            if (mask >= 0) Assert.AreEqual(mask, (int)value.GroundTile.sprite.rect.x / 16 % 16);
             Assert.False(FlatPixelGreyboxCatalog.IsAdmitted(zone)); return value;
         }
         void NoFenWater(int x = X, int y = Y)
@@ -824,5 +824,69 @@ namespace CavesOfOoo.Tests
                 }
             }
         }
+        const string FenSurface = "Sprites/Live16x24/sodden-flood-water";
+        void PilotFen()
+        { zone = Attach("Overworld.0.8.0"); Assert.True(Supported(zone)); }
+        FlatPixelGrovelandsMaterialsCatalog PilotCatalog(Texture2D optional, Texture2D mandatory)
+        {
+            var ctor = AdapterType().GetConstructor(new[] { typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(Texture2D), typeof(FlatPixelFallbackCatalog), typeof(Texture2D), typeof(Texture2D) });
+            Assert.NotNull(ctor, "Optional Fen material injection must retain older constructors.");
+            injectedSelector?.Dispose(); injectedSelector = new FlatPixelFallbackCatalog();
+            return (FlatPixelGrovelandsMaterialsCatalog)ctor.Invoke(new object[] { Resources.Load<Texture2D>(Atlas), Resources.Load<Texture2D>(Sill), Resources.Load<Texture2D>(Vegetation), Resources.Load<Texture2D>(Opening), mandatory, injectedSelector, Resources.Load<Texture2D>(ForestGround), optional });
+        }
+        [Test] public void FenSurface_QuietVariantsPreserveAllBankMasksAndSimulation()
+        {
+            PilotFen(); var source = Resources.Load<Texture2D>(FenSurface); Assert.NotNull(source);
+            var variants = new HashSet<int>();
+            for (int x = 5; x < 29; x++)
+            {
+                Add("Grass", x, Y); FenWater(x,Y);
+                var offsets = new[] { new Vector2Int(0,-1),new Vector2Int(1,0),new Vector2Int(0,1),new Vector2Int(-1,0) };
+                for (int mask = 0; mask < 16; mask++)
+                {
+                    foreach (var delta in offsets) zone.TileState.Clear(x+delta.x,Y+delta.y);
+                    for (int n=0;n<4;n++) if ((mask & (1<<n))==0) FenWater(x+offsets[n].x,Y+offsets[n].y);
+                    string state = zone.TileState.ToSaveString(); int version = zone.EntityVersion;
+                    var value = View(x,Y); Assert.AreSame(source,value.GroundTile.sprite.texture);
+                    int frame = (int)value.GroundTile.sprite.rect.x/16; Assert.AreEqual(mask,frame%16); variants.Add(frame/16);
+                    Assert.AreEqual(state,zone.TileState.ToSaveString()); Assert.AreEqual(version,zone.EntityVersion);
+                }
+            }
+            Assert.Greater(variants.Count,3,"Not a single repeated stamp"); Assert.Contains(0,variants.ToArray());
+        }
+        [TestCase("outside")][TestCase("biome")][TestCase("poi")][TestCase("hidden")]
+        [TestCase("unexplored")][TestCase("finite")][TestCase("mixed")][TestCase("projection")]
+        public void FenSurface_OnlyCurrentDisclosedOrdinaryWaterUsesPilot(string fault)
+        {
+            PilotFen(); Add("Grass"); FenWater(); Assert.AreSame(Resources.Load<Texture2D>(FenSurface),View().GroundTile.sprite.texture);
+            switch(fault)
+            {
+                case "outside": zone=Attach(Home);Add("Grass");FenWater();break;
+                case "biome": manager.WorldMap.Tiles[0,8]=BiomeType.Stump;break;
+                case "poi": manager.WorldMap.SetPOI(0,8,new PointOfInterest(POIType.Lair,"test",null,1,"DesertProwler"));break;
+                case "hidden": zone.GetCell(X,Y).IsVisible=false;break;
+                case "unexplored": zone.GetCell(X,Y).Explored=false;break;
+                case "finite": zone.TileState.Get(X,Y).Coatings[0].Turns=3;break;
+                case "mixed": zone.TileState.WriteCoating(X,Y,"brine",3);break;
+                case "projection": zone.TileState.Get(X,Y).Coatings[0].ProjectionOwnerId="other";break;
+            }
+            if(world.TryResolvePresentation(zone,X,Y,out var result)) Assert.AreNotSame(Resources.Load<Texture2D>(FenSurface),result.GroundTile?.sprite?.texture);
+        }
+        [Test] public void FenSurface_OptionalFallbackAndDisposalPreserveBorrowedSources()
+        {
+            PilotFen(); Add("Grass"); FenWater(); var source=Resources.Load<Texture2D>(FenSurface);var old=Resources.Load<Texture2D>(WaterGround);var wrong=new Texture2D(17,24);
+            try
+            {
+                foreach(var optional in new Texture2D[]{null,wrong,source})
+                {
+                    var art=PilotCatalog(optional,old);Assert.True(art.TryResolveWaterGround(zone,X,Y,out var tile,out _));
+                    Assert.AreSame(optional==source?source:old,tile.sprite.texture);var sprite=tile.sprite;
+                    art.Dispose();art.Dispose();Assert.True(tile==null);Assert.True(sprite==null);Assert.True(source!=null);Assert.True(old!=null);
+                }
+                using(var art=PilotCatalog(source,null)) Assert.False(art.TryResolveWaterGround(zone,X,Y,out _,out _));
+            }
+            finally{Object.DestroyImmediate(wrong);}
+        }
+
     }
 }

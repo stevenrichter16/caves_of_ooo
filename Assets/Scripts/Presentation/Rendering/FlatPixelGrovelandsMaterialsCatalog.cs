@@ -24,7 +24,7 @@ namespace CavesOfOoo.Rendering
         public const int FrameCount = 14;
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] materials, sill, vegetation, opening, water, forest;
+        readonly Tile[] materials, sill, vegetation, opening, water, forest, fenSurface;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -44,7 +44,7 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningGroundCatalog.ResourcePath), borrowedSelector,
-                Resources.Load<Texture2D>(GroundResourcePath)) { }
+                Resources.Load<Texture2D>(GroundResourcePath), Resources.Load<Texture2D>("Sprites/Live16x24/sodden-flood-water")) { }
 
         /// <summary>Optional groups fail independently. Never reload injected
         /// textures, modify source pixels/settings, or dispose the borrowed selector.</summary>
@@ -63,6 +63,12 @@ namespace CavesOfOoo.Rendering
         public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
             Texture2D vegetation4, Texture2D opening10, Texture2D water21, FlatPixelFallbackCatalog borrowedSelector,
             Texture2D forest4)
+            : this(atlas14, sill24, vegetation4, opening10, water21, borrowedSelector, forest4, null) { }
+
+        /// <summary>Quiet Fen surface is optional; old injected groups retain their water art.</summary>
+        public FlatPixelGrovelandsMaterialsCatalog(Texture2D atlas14, Texture2D sill24,
+            Texture2D vegetation4, Texture2D opening10, Texture2D water21, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D forest4, Texture2D optionalFenSurface)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -70,6 +76,7 @@ namespace CavesOfOoo.Rendering
             vegetation = Frames(vegetation4, 4, "tree"); opening = Frames(opening10, 10, "bush");
             water = Frames(water21, 21, "water");
             forest = Frames(forest4, 4, "forest floor");
+            fenSurface = Frames(optionalFenSurface, 128, "quiet Fen water");
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -199,6 +206,10 @@ namespace CavesOfOoo.Rendering
             if (DisclosedDryBank(zone, x, y + 1)) mask |= 4;
             if (DisclosedDryBank(zone, x - 1, y)) mask |= 8;
             tile = water[mask];
+            // Preserve the existing water authority and disclosed bank geometry.
+            // This material trial is ordinary Fen only, not a special-site expansion.
+            if (fenSurface != null && zone.ZoneID == "Overworld.0.8.0" && IsSupportedZone(zone))
+                tile = fenSurface[FlatPixelFloodWaterCatalog.SurfaceVariant(x, y) * 16 + mask];
             if (tile == null) return false;
             if (grasses == 1) representedGrass = grass;
             return true;
@@ -446,7 +457,7 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             DestroyFrames(materials); DestroyFrames(sill); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(water);
-            DestroyFrames(forest);
+            DestroyFrames(forest); DestroyFrames(fenSurface);
         }
         static void DestroyFrames(Tile[] tiles)
         {

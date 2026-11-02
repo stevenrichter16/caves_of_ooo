@@ -89,7 +89,7 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
-        static int SurfaceVariant(int x, int y)
+        internal static int SurfaceVariant(int x, int y)
         {
             // Quiet patches span several cells; per-cell strokes vary within
             // the active patches. Hashes are visual only, with no RNG state.

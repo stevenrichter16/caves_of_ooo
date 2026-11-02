@@ -1,0 +1,95 @@
+{
+  "recorded_utc": "2026-11-02T13:39:37.288633+00:00",
+  "scope": "ordinary Grovelands Fen Overworld.0.8.0 current disclosed permanent water; approved optional surface variants",
+  "status": "bounded-editor-observed",
+  "base": "1bbad44509b01273e1c7ad1efefbd7442a0f248d",
+  "record": "Docs/GRAPHICS-FEN-SURFACE.md",
+  "native": {
+    "red": {
+      "completed": 10,
+      "failed": 10
+    },
+    "green": {
+      "total": 154,
+      "passed": 154,
+      "failed": 0,
+      "seconds": 29.3248577
+    }
+  },
+  "actual": {
+    "seed": 65,
+    "baseline_turn": 4790,
+    "matched": [
+      40,
+      12,
+      38,
+      "Dark"
+    ],
+    "crossing": [
+      42,
+      17,
+      38,
+      "Dawn"
+    ],
+    "reader": "Grass with water surface; unchanged water electrical/fire effects described",
+    "travel": [
+      "Overworld.0.8.0",
+      "Overworld.0.9.0",
+      "Overworld.0.8.0"
+    ],
+    "save_turn": 4940,
+    "fresh_continue": [
+      40,
+      12,
+      38
+    ],
+    "F12": false
+  },
+  "comparisons": {
+    "matched": {
+      "world_pixels": 639200,
+      "changed_pixels": 847,
+      "bbox": [
+        0,
+        212,
+        937,
+        515
+      ],
+      "right_ui_exact": true
+    },
+    "reload": {
+      "world_pixels": 639200,
+      "changed_pixels": 0,
+      "bbox": null,
+      "right_ui_exact": false
+    }
+  },
+  "reviews": {
+    "source": "environment_gaps_audit: no actionable P1/P2; authority/disclosure/lifetime/fallback checked",
+    "visual": "capture_route: no new P1/P2; modest useful ripples preserve bank silhouettes and teal water identity"
+  },
+  "profile": {
+    "seconds": 141.967429,
+    "renderer_p95_ms": 0.083916,
+    "renderer_max_ms": 148.463292,
+    "main_thread_p95_ms": 2.080667,
+    "main_thread_max_ms": 2253.932416,
+    "limits": "After-only Editor with travel, readers and capture/probe tools; not causal or packaged performance acceptance. R11 remains open."
+  },
+  "preservation": {
+    "foreign_hashes": 75,
+    "changed": 0,
+    "play": false,
+    "save_root": null,
+    "dirty_scene": false,
+    "cleanup": "none"
+  },
+  "delivery": "Current f77e4 Mac/Linux builds exclude this new pilot; batch after further accepted slices. Linux/Deck remain unexecuted.",
+  "remaining": [
+    "surface still flat/saturated and short strokes repeat",
+    "stepped banks",
+    "other ASCII/black memory backings",
+    "full-area composition/population/shadows",
+    "R11/hardware"
+  ]
+}
