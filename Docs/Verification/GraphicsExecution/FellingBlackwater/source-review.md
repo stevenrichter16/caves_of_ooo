@@ -1,0 +1,3 @@
+Independent source reviewer: coverage_priorities. P2 footprint competitors omitted by Objects scan; P2 configured vapor threshold omitted. Add native reproduction before fixes. Optional-water-alone counter also added. All runtime PNG/editable hashes independently matched. No broad-area acceptance.
+
+Final review by coverage_priorities: zero remaining actionable P1/P2. Occupants/placement and configured vapor gates address findings; visible/hidden/recovery, resource independence, disposal and exact-authority counters match contract. Footprint collision changes confined to setup. Native GREEN and actual acceptance remain root gates.

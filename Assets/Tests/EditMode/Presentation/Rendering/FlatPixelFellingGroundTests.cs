@@ -78,7 +78,7 @@ namespace CavesOfOoo.Tests
             {
                 if(!spec.solid&&!spec.water&&!spec.opaque)continue;
                 Assert.True(world.TryResolvePresentation(zone,spec.x,spec.y,out var v));
-                Assert.False(v.LocalGround,"solid/water "+spec.x+","+spec.y);Assert.True(v.BlocksMovement);count++;
+                if(spec.water){Assert.True(v.LocalGround);Assert.AreEqual(FlatPixelGreyboxGround.Water,v.GroundKind);}else Assert.False(v.LocalGround,"solid "+spec.x+","+spec.y);Assert.True(v.BlocksMovement);count++;
             }
             Assert.AreEqual(355,count);
         }
@@ -147,12 +147,12 @@ namespace CavesOfOoo.Tests
             NativeSolid(owner);Assert.AreEqual(opaque,zone.GetCell(x,y).IsWall());
             Assert.AreEqual(version,zone.EntityVersion);Assert.AreEqual(state,zone.TileState.ToSaveString());
         }
-        [Test] public void EverySelectedAuthoredSolidUsesTheRightRoleWhileWaterAndRitualRemainExcluded()
+        [Test] public void EverySelectedAuthoredSolidUsesTheRightRoleWhileWaterAndRitualRemainDistinct()
         {
             int walls=0,ridges=0,water=0,selected=0;
             foreach(var spec in FellingSceneDefinition.Load().cells)
             {
-                if(spec.water){water++;Assert.True(world.TryResolvePresentation(zone,spec.x,spec.y,out var w));Assert.False(w.LocalGround);continue;}
+                if(spec.water){water++;Assert.True(world.TryResolvePresentation(zone,spec.x,spec.y,out var w));Assert.True(w.LocalGround);Assert.AreEqual(FlatPixelGreyboxGround.Water,w.GroundKind);continue;}
                 if(!spec.solid)continue;
                 if(spec.opaque)walls++;else ridges++;
                 x=spec.x;y=spec.y;var owner=zone.GetCell(x,y).Objects.First(o=>o.ID=="felling-terrain:"+x+":"+y);

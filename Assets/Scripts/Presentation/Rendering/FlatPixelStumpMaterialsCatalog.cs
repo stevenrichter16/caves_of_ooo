@@ -14,6 +14,9 @@ namespace CavesOfOoo.Rendering
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
         bool fellingAuthored;
+        Tile[] fellingBlackwater;
+        string[,] fellingWaterOwnerIds;
+        public const string BlackwaterResourcePath = "Sprites/Live16x24/felling-blackwater";
         bool ginmereLedgesOnly;
         internal FlatPixelStumpMaterialsCatalog AdmittingGinmereLedges()
         { admits = FlatPixelSiteAdmission.IsGinmereDescent; ginmereLedgesOnly = true; return this; }
@@ -24,19 +27,23 @@ namespace CavesOfOoo.Rendering
         internal FlatPixelStumpMaterialsCatalog AdmittingSites(BiomeType biome)
         { admits = zone => FlatPixelSiteAdmission.IsOrdinarySite(zone, biome); return this; }
 
-        // Felling borrows dry substrate and exact authored solid roles. Its ritual
-        // terrain, blackwater and other wilderness families remain independent.
-        internal FlatPixelStumpMaterialsCatalog AdmittingFelling()
+        // Felling borrows dry substrate and exact authored solid roles. Blackwater
+        // has an independently optional atlas; ritual and wilderness families remain separate.
+        internal FlatPixelStumpMaterialsCatalog AdmittingFelling(Texture2D blackwaterAtlas = null)
         {
             fellingAuthored = true;
+            fellingBlackwater = Frames(blackwaterAtlas, 17, "Felling deep water");
             admits = IsSupportedFellingZone;
             var definition = FellingSceneDefinition.Load();
             if (definition == null) return this;
             fellingDryOwnerIds = new string[80, 25];
+            fellingWaterOwnerIds = new string[80, 25];
             fellingSolidOwnerIds = new string[80, 25];
             fellingSolidRoles = new byte[80, 25];
             foreach (var spec in definition.cells)
             {
+                if (spec.water && spec.solid && !spec.opaque)
+                    fellingWaterOwnerIds[spec.x, spec.y] = "felling-terrain:" + spec.x + ":" + spec.y;
                 if (!spec.water && !spec.solid && !spec.opaque)
                     fellingDryOwnerIds[spec.x, spec.y] = spec.x == 0 && spec.y == 0
                         ? "felling-scene-state" : "felling-terrain:" + spec.x + ":" + spec.y;
@@ -49,6 +56,7 @@ namespace CavesOfOoo.Rendering
             foreach (var landmark in definition.landmarks)
             {
                 fellingDryOwnerIds[landmark.x, landmark.y] = null;
+                fellingWaterOwnerIds[landmark.x, landmark.y] = null;
                 fellingSolidOwnerIds[landmark.x, landmark.y] = null;
                 fellingSolidRoles[landmark.x, landmark.y] = 0;
             }
@@ -240,7 +248,8 @@ namespace CavesOfOoo.Rendering
         {
             tile = null; source = null;
             if (ginmereLedgesOnly) return false;
-            if (fellingAuthored || materials == null || !ReadyCell(zone, x, y, out var cell)
+            if (fellingAuthored) return TryResolveFellingWater(zone, x, y, out tile, out source);
+            if (materials == null || !ReadyCell(zone, x, y, out var cell)
                 || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered
                 || !PermanentWater(zone.TileState.Get(x, y))) return false;
             Entity actual = null; int frame = -1;
@@ -273,6 +282,8 @@ namespace CavesOfOoo.Rendering
             }
             if (fellingAuthored)
             {
+                if (TryResolveFellingWater(zone, x, y, out var waterTile, out var waterOwner) && ReferenceEquals(owner, waterOwner))
+                { sprite = waterTile.sprite; return true; }
                 if (TryResolveForeground(zone, x, y, owner, out var solid))
                 { sprite = solid.sprite; return sprite != null; }
                 // Examine may authorize the substrate beneath a covering actor/prop.
@@ -294,6 +305,52 @@ namespace CavesOfOoo.Rendering
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && ReferenceEquals(floor, owner))
             { sprite = ground.sprite; return sprite != null; }
             return false;
+        }
+        bool TryResolveFellingWater(Zone zone, int x, int y, out Tile tile, out Entity source)
+        {
+            tile = null; source = null;
+            if (fellingBlackwater == null || !TryFellingWaterOwner(zone, x, y, out source)) return false;
+            int mask = 0;
+            if (!JoinsFellingWater(zone, x, y - 1)) mask |= 1;
+            if (!JoinsFellingWater(zone, x + 1, y)) mask |= 2;
+            if (!JoinsFellingWater(zone, x, y + 1)) mask |= 4;
+            if (!JoinsFellingWater(zone, x - 1, y)) mask |= 8;
+            tile = fellingBlackwater[mask == 0 ? (VariantAt(x, y) == 0 ? 0 : 1) : mask + 1];
+            return true;
+        }
+        bool JoinsFellingWater(Zone zone, int x, int y)
+            => TryFellingWaterOwner(zone, x, y, out var owner) && Selected(zone, x, y, owner);
+        bool TryFellingWaterOwner(Zone zone, int x, int y, out Entity source)
+        {
+            source = null;
+            if (!fellingAuthored || fellingWaterOwnerIds == null || !ReadyCell(zone, x, y, out var cell)
+                || x >= 80 || y >= 25 || fellingWaterOwnerIds[x, y] == null
+                || !selector.TryResolve(zone, x, y, out var picked) || picked.Remembered) return false;
+            var state = zone.TileState.Get(x, y);
+            if (!PermanentWater(state) || state.Heat != 0 || state.Cold != 0 || state.Charge != 0
+                || !string.IsNullOrEmpty(state.Cloud) || state.Residues == null || state.Residues.Count != 0) return false;
+            foreach (var owner in cell.Occupants)
+            {
+                if (!VisiblePhysicalOwner(owner) || !Placed(zone, cell, owner)) continue;
+                if (owner.ID == fellingWaterOwnerIds[x, y] && CanonicalFellingWater(owner) && Placed(zone, cell, owner))
+                { if (source != null) return false; source = owner; }
+                else if (owner.HasTag("Terrain") || owner.HasPart<LiquidPoolPart>() || owner.HasPart<GasPoolPart>()
+                    || owner.HasPart<TileStateSourcePart>() || owner.HasPart<FiniteLiquidFilmPart>()) return false;
+            }
+            return source != null;
+        }
+        static bool CanonicalFellingWater(Entity owner)
+        {
+            if (owner.BlueprintName != "WaterPuddle" || !owner.HasTag(FellingSceneRuntime.TerrainTag)
+                || !PlainOwner(owner) || ForeignMeaning(owner, true) || !Terrain(owner, true, false)
+                || !Material(owner, "Water", 0f, "Liquid", "Water") || owner.HasPart<DestructiblePart>()) return false;
+            var render = Owned<RenderPart>(owner); var pool = Owned<LiquidPoolPart>(owner); var thermal = Owned<ThermalPart>(owner);
+            return render.RenderString == "~" && (render.ColorString == "&B" || render.ColorString == "&c")
+                && render.RenderLayer == 0 && string.IsNullOrEmpty(render.GlyphVariants)
+                && pool != null && pool.LiquidId == "water" && pool.Volume > 0
+                && thermal != null && float.IsFinite(thermal.Temperature) && thermal.Temperature > 0
+                && thermal.Temperature < 100 && float.IsFinite(thermal.VaporTemperature)
+                && thermal.Temperature < thermal.VaporTemperature && NeutralThermal(owner);
         }
         bool TryResolveGinmereLedge(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
@@ -416,10 +473,10 @@ namespace CavesOfOoo.Rendering
             { var effects = Owned<StatusEffectsPart>(owner); if (effects == null || effects.GetRenderColorOverride() != null) return false; }
             return true;
         }
-        static bool ForeignMeaning(Entity owner)
+        static bool ForeignMeaning(Entity owner, bool allowWaterPool = false)
             => owner.HasPart<CropPart>() || owner.HasPart<FieldHarvestPart>() || owner.HasPart<CultivatedSoilPart>()
                 || owner.BlueprintName != "TepuiboneVein" && owner.HasPart<HarvestablePart>()
-                || owner.BlueprintName != "SprayPool" && owner.HasPart<LiquidPoolPart>()
+                || !allowWaterPool && owner.BlueprintName != "SprayPool" && owner.HasPart<LiquidPoolPart>()
                 || owner.BlueprintName != "TankBrocchinia" && owner.HasPart<WellPart>()
                 || owner.HasPart<RepairablePart>() || owner.HasPart<DoorPart>() || owner.HasPart<ContainerPart>()
                 || owner.HasPart<ConversationPart>() || owner.HasPart<TraderPart>()
@@ -516,7 +573,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(plainWalls);
+            DestroyFrames(fellingBlackwater); DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(plainWalls);
         }
         static void DestroyFrames(Tile[] tiles)
         {

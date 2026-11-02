@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Failed(Child)" total="38" passed="35" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:25Z" duration="4.2030161">
+  <test-suite type="TestSuite" id="43650" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35553" result="Failed" site="Child" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:25Z" duration="4.203016" total="38" passed="35" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43622" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35553" result="Failed" site="Child" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:25Z" duration="4.194999" total="38" passed="35" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43623" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35553" result="Failed" site="Child" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:25Z" duration="4.191008" total="38" passed="35" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43624" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35553" result="Failed" site="Child" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:25Z" duration="4.187534" total="38" passed="35" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1142" name="FlatPixelFellingBlackwaterTests" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:25Z" duration="4.176262" total="38" passed="35" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1177" name="AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot" methodname="AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="462741097" result="Failed" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:21Z" duration="0.200231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.AdjacentVisibleFootprintPoolRevokesButHiddenDoesNot () [0x0008d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelFellingBlackwaterTests.cs:33
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1143" name="All57AuthoredWaterCellsKeepDeepBlockingMeaning" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.All57AuthoredWaterCellsKeepDeepBlockingMeaning" methodname="All57AuthoredWaterCellsKeepDeepBlockingMeaning" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="481959878" result="Passed" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:21Z" duration="0.101434" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1181" name="AtlasHasNativePointImportAndStableIdentity" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.AtlasHasNativePointImportAndStableIdentity" methodname="AtlasHasNativePointImportAndStableIdentity" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="757572520" result="Passed" start-time="2026-11-02 01:42:21Z" end-time="2026-11-02 01:42:22Z" duration="0.089992" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1173" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:25Z" duration="2.976335" total="28" passed="26" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1145" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;id&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;id&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="922961139" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.092382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1146" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;tag&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1952654896" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.091332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1147" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1985778871" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.091184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1148" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid-tag&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;solid-tag&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="222441222" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.165136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1149" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;wall&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;wall&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1811336572" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.177383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1150" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;layer&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;layer&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="2017497707" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.087701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1151" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;color&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1981038840" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.087306" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1152" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;glyph&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="2042594013" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:22Z" duration="0.088035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1153" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;hidden&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1068463681" result="Passed" start-time="2026-11-02 01:42:22Z" end-time="2026-11-02 01:42:23Z" duration="0.086629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1154" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;memory&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1460669924" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.088055" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1155" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;unexplored&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1395106945" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.086546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1156" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;volume&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;volume&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1628519457" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.089487" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1157" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;liquid&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="778067719" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.089882" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1158" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;oil&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="274970263" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.245731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1159" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;heat&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1638491119" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.088705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1160" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;revision&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;revision&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1782866978" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.088103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1161" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;poi&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1456659583" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.088312" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1162" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;graph&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="667983515" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:23Z" duration="0.088081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1163" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;foreign-part&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1171104007" result="Passed" start-time="2026-11-02 01:42:23Z" end-time="2026-11-02 01:42:24Z" duration="0.086236" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1164" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;duplicate&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1978474694" result="Passed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.087408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1165" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;frozen&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="2018855603" result="Passed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.086003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1166" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;boiling&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;boiling&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="66248665" result="Passed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.086732" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1167" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nonfinite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nonfinite&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="639833558" result="Passed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.092707" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1168" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;cold&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="640318250" result="Passed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.232552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1169" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;charge&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1261826101" result="Passed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.089113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1170" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;residue&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;residue&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="817152516" result="Passed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.086461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1171" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;lower-vapor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;lower-vapor&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="173762574" result="Failed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:24Z" duration="0.087316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  lower-vapor
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x007a3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelFellingBlackwaterTests.cs:29
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1172" name="ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nan-vapor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater(&quot;nan-vapor&quot;)" methodname="ChangedMeaningOrDisclosureRevokesWarmNativeWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1715114883" result="Failed" start-time="2026-11-02 01:42:24Z" end-time="2026-11-02 01:42:25Z" duration="0.086152" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  nan-vapor
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.ChangedMeaningOrDisclosureRevokesWarmNativeWater (System.String change) [0x007a3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelFellingBlackwaterTests.cs:29
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1174" name="CoveredReaderLosesHiddenMemoryThenRecovers" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.CoveredReaderLosesHiddenMemoryThenRecovers" methodname="CoveredReaderLosesHiddenMemoryThenRecovers" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1937246348" result="Passed" start-time="2026-11-02 01:42:25Z" end-time="2026-11-02 01:42:25Z" duration="0.088597" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1176" name="DisclosedNeighborJoinRevokesForHiddenAndCoveredWater" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.DisclosedNeighborJoinRevokesForHiddenAndCoveredWater" methodname="DisclosedNeighborJoinRevokesForHiddenAndCoveredWater" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="912195250" result="Passed" start-time="2026-11-02 01:42:25Z" end-time="2026-11-02 01:42:25Z" duration="0.088212" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1180" name="MalformedWaterAtlasAndDisposedAdapterDecline" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.MalformedWaterAtlasAndDisposedAdapterDecline" methodname="MalformedWaterAtlasAndDisposedAdapterDecline" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="921913393" result="Passed" start-time="2026-11-02 01:42:25Z" end-time="2026-11-02 01:42:25Z" duration="0.086386" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1175" name="MissingOptionalResourceRetainsFallback" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.MissingOptionalResourceRetainsFallback" methodname="MissingOptionalResourceRetainsFallback" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1839032492" result="Passed" start-time="2026-11-02 01:42:25Z" end-time="2026-11-02 01:42:25Z" duration="0.085466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1179" name="MissingWaterAtlasLeavesApprovedStoneAvailable" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.MissingWaterAtlasLeavesApprovedStoneAvailable" methodname="MissingWaterAtlasLeavesApprovedStoneAvailable" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1534421621" result="Passed" start-time="2026-11-02 01:42:25Z" end-time="2026-11-02 01:42:25Z" duration="0.089202" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1178" name="SavedLairClaimStillRevokesRestoredFellingLabel" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.SavedLairClaimStillRevokesRestoredFellingLabel" methodname="SavedLairClaimStillRevokesRestoredFellingLabel" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="1788159415" result="Passed" start-time="2026-11-02 01:42:25Z" end-time="2026-11-02 01:42:25Z" duration="0.257778" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1144" name="WaterReaderAndCoveredBodyShareSubstrateIdentity" fullname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests.WaterReaderAndCoveredBodyShareSubstrateIdentity" methodname="WaterReaderAndCoveredBodyShareSubstrateIdentity" classname="CavesOfOoo.Tests.FlatPixelFellingBlackwaterTests" runstate="Runnable" seed="854736387" result="Passed" start-time="2026-11-02 01:42:25Z" end-time="2026-11-02 01:42:25Z" duration="0.090256" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

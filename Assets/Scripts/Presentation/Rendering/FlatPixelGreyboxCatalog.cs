@@ -2068,7 +2068,7 @@ namespace CavesOfOoo.Rendering
                 if (_fellingGroundArt == null && _loadOptionalResources)
                 {
                     if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
-                    _fellingGroundArt = new FlatPixelStumpMaterialsCatalog(_glyphFallback).AdmittingFelling();
+                    _fellingGroundArt = new FlatPixelStumpMaterialsCatalog(_glyphFallback).AdmittingFelling(Resources.Load<Texture2D>(FlatPixelStumpMaterialsCatalog.BlackwaterResourcePath));
                 }
                 return _fellingGroundArt;
             }

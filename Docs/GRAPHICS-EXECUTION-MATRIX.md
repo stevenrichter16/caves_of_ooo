@@ -1,3 +1,5 @@
+**Felling blackwater — 2026-11-02:**57real blocking/nonopaque water owners now have17native tiles;219native checks and actual bank/reader/collision/LOS/reload pass. Source/visual0newP1/P2. Coverage observed; full-area polish/population/shadows/R11 remain open. See `Docs/GRAPHICS-FELLING-BLACKWATER.md`. Current4c1packages exclude this slice. Next SummitScrub central composition baseline.
+
 **2026-11-02 Ginmere ledges:**253real first-descent ledges now use approved native strips;210native checks, actual readers/passable crossing/reload, independent0newP1/P2. Regular bright bands, sparse center, memory/special glyphs and R11 remain. Coverage observed only; current4c1 packages exclude slice. See [record](GRAPHICS-GINMERE-LEDGES.md). Next Felling blackwater and bounded SummitScrub center composition.
 
 **Delivery update2026-11-02:** Current4c1 Mac Felling/SpreadTree readers, walk, collision, restart and ordinary Spreadtravel observed; each restart world exact. Linux archive verified only. See Batch4c1 and GRAPHICS-CURRENT-PACKAGES.md. No coverage/polish/population/shadow promotion from packaging. Next Ginmere253ledge bands; R11/fullarea/hardware open.
