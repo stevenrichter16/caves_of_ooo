@@ -1,3 +1,5 @@
+**Felling update 2026-11-02:** Authored solid stone now has bounded actual wall/low-ridge coverage; see `Docs/GRAPHICS-FELLING-STONE.md`.156final native checks, real readers/collision/LOS/route/save/reload, independent review. Approved art unchanged;195opaque/103nonopaque source roles,122current selected solid owners observed. Water57/ritual7 and whole-area/R11 debt remain; no population or shadow expansion. Packagesde600 lag this slice.
+
 # Felling-Site flat ground
 
 Status: bounded dry-ground integration and actual Editor review complete; matched

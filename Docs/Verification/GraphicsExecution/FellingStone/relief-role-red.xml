@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.3098677">
+  <test-suite type="TestSuite" id="43547" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35462" result="Failed" site="Child" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.309868" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43519" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35462" result="Failed" site="Child" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.302158" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43520" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35462" result="Failed" site="Child" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.298276" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43521" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35462" result="Failed" site="Child" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.295500" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31658" name="FlatPixelFellingGroundTests" fullname="CavesOfOoo.Tests.FlatPixelFellingGroundTests" classname="CavesOfOoo.Tests.FlatPixelFellingGroundTests" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.283410" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31682" name="AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight" fullname="CavesOfOoo.Tests.FlatPixelFellingGroundTests.AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight" classname="CavesOfOoo.Tests.FlatPixelFellingGroundTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.281714" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31680" name="AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight(True)" fullname="CavesOfOoo.Tests.FlatPixelFellingGroundTests.AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight(True)" methodname="AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight" classname="CavesOfOoo.Tests.FlatPixelFellingGroundTests" runstate="Runnable" seed="1988450378" result="Passed" start-time="2026-11-02 00:35:06Z" end-time="2026-11-02 00:35:07Z" duration="0.175594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31681" name="AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight(False)" fullname="CavesOfOoo.Tests.FlatPixelFellingGroundTests.AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight(False)" methodname="AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight" classname="CavesOfOoo.Tests.FlatPixelFellingGroundTests" runstate="Runnable" seed="1126921869" result="Failed" start-time="2026-11-02 00:35:07Z" end-time="2026-11-02 00:35:07Z" duration="0.088574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  wrong solid role frame 53
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFellingGroundTests.NativeSolid (CavesOfOoo.Core.Entity owner) [0x0007e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingGroundTests.cs:139
+at CavesOfOoo.Tests.FlatPixelFellingGroundTests.AuthoredSolidUsesItsOwnRoleWithoutChangingCollisionOrSight (System.Boolean opaque) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFellingGroundTests.cs:147
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

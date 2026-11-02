@@ -13,28 +13,42 @@ namespace CavesOfOoo.Rendering
     {
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
-        bool fellingGroundOnly;
-        string[,] fellingDryOwnerIds;
+        bool fellingAuthored;
+        string[,] fellingDryOwnerIds, fellingSolidOwnerIds;
+        byte[,] fellingSolidRoles; // 1 = opaque wall; 2 = blocking, sight-permeable ridge
         /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
         /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
         internal FlatPixelStumpMaterialsCatalog AdmittingSites(BiomeType biome)
         { admits = zone => FlatPixelSiteAdmission.IsOrdinarySite(zone, biome); return this; }
 
-        // Felling has authored geometry and ritual terrain; only its verified
-        // open dry substrate borrows this material. Never inherit wilderness bodies/water.
+        // Felling borrows dry substrate and exact authored solid roles. Its ritual
+        // terrain, blackwater and other wilderness families remain independent.
         internal FlatPixelStumpMaterialsCatalog AdmittingFelling()
         {
-            fellingGroundOnly = true;
+            fellingAuthored = true;
             admits = IsSupportedFellingZone;
             var definition = FellingSceneDefinition.Load();
             if (definition == null) return this;
             fellingDryOwnerIds = new string[80, 25];
+            fellingSolidOwnerIds = new string[80, 25];
+            fellingSolidRoles = new byte[80, 25];
             foreach (var spec in definition.cells)
+            {
                 if (!spec.water && !spec.solid && !spec.opaque)
                     fellingDryOwnerIds[spec.x, spec.y] = spec.x == 0 && spec.y == 0
                         ? "felling-scene-state" : "felling-terrain:" + spec.x + ":" + spec.y;
+                if (!spec.water && spec.solid)
+                {
+                    fellingSolidOwnerIds[spec.x, spec.y] = "felling-terrain:" + spec.x + ":" + spec.y;
+                    fellingSolidRoles[spec.x, spec.y] = (byte)(spec.opaque ? 1 : 2);
+                }
+            }
             foreach (var landmark in definition.landmarks)
+            {
                 fellingDryOwnerIds[landmark.x, landmark.y] = null;
+                fellingSolidOwnerIds[landmark.x, landmark.y] = null;
+                fellingSolidRoles[landmark.x, landmark.y] = 0;
+            }
             return this;
         }
         internal static bool IsSupportedFellingZone(Zone zone)
@@ -110,7 +124,23 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
-            if (fellingGroundOnly || !ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner) || !Placed(zone, cell, owner)) return false;
+            if (!ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner) || !Placed(zone, cell, owner)) return false;
+            if (fellingAuthored)
+            {
+                if (materials == null) return false;
+                int role = FellingSolidRole(zone, owner, x, y);
+                if (role == 0) return false;
+                int variant = VariantAt(x, y);
+                // The approved low-cap face makes blocking, sight-permeable stone read as raised.
+                int interior = (role == 1 ? 4 : 20) + (variant == 0 ? 0 : 1);
+                int mask = 0;
+                if (!JoinsFellingSolid(zone, role, x, y - 1)) mask |= 1;
+                if (!JoinsFellingSolid(zone, role, x + 1, y)) mask |= 2;
+                if (!JoinsFellingSolid(zone, role, x, y + 1)) mask |= 4;
+                if (!JoinsFellingSolid(zone, role, x - 1, y)) mask |= 8;
+                tile = materials[mask == 0 ? interior : (role == 1 ? 26 : 56) + mask - 1];
+                return true;
+            }
             if (owner.BlueprintName == "Wall")
             {
                 // Site-admitting and Felling instances do not gain this wilderness family.
@@ -122,6 +152,29 @@ namespace CavesOfOoo.Rendering
             var group = owner.BlueprintName == "Tree" ? vegetation : owner.BlueprintName == "Bush" ? opening : materials;
             if (group == null) return false;
             tile = group[PerimeterFrame(zone, owner.BlueprintName, x, y, frame)]; return true;
+        }
+        int FellingSolidRole(Zone zone, Entity owner, int x, int y)
+        {
+            if (fellingSolidRoles == null || x < 0 || y < 0 || x >= 80 || y >= 25
+                || owner?.BlueprintName != "TepuiStone" || fellingSolidRoles[x, y] == 0
+                || owner.ID != fellingSolidOwnerIds[x, y] || !owner.HasTag(FellingSceneRuntime.TerrainTag)
+                || !PlainOwner(owner) || ForeignMeaning(owner) || !NoMaterialState(owner)
+                || !owner.HasTag("Terrain") || owner.HasTag("Vegetation") || !owner.HasTag("Solid")
+                || !Owned<PhysicsPart>(owner).Solid || owner.HasTag("Wall") != (fellingSolidRoles[x, y] == 1)) return 0;
+            var state = zone.TileState.Get(x, y);
+            if (state != null && !state.IsEmpty) return 0;
+            var render = Owned<RenderPart>(owner);
+            return Render(render, ".", "&y", 0) && render.GlyphVariants == "...,.'`"
+                ? fellingSolidRoles[x, y] : 0;
+        }
+        bool JoinsFellingSolid(Zone zone, int role, int x, int y)
+        {
+            var cell = zone.GetCell(x, y);
+            // A hidden, remembered or covered rock must not change this silhouette.
+            return cell != null && cell.ParentZone == zone && cell.X == x && cell.Y == y
+                && cell.Explored && cell.IsVisible
+                && selector.TryResolve(zone, x, y, out var picked) && !picked.Remembered
+                && Placed(zone, cell, picked.Owner) && FellingSolidRole(zone, picked.Owner, x, y) == role;
         }
         // Exposed edges, not connection bits. Zone north is screen top (y - 1).
         // A fully joined mass retains its original quiet interior variant.
@@ -163,7 +216,7 @@ namespace CavesOfOoo.Rendering
                 if (owner.BlueprintName == "TepuiStone")
                 {
                     if (actual != null || !OrdinaryFloor(owner)
-                        || fellingGroundOnly && !FellingDryOwner(owner, x, y)) return false;
+                        || fellingAuthored && !FellingDryOwner(owner, x, y)) return false;
                     actual = owner;
                 }
                 // A lit hearth stands on the real ground, as in the other four biome resolvers
@@ -181,7 +234,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveWaterGround(Zone zone, int x, int y, out Tile tile, out Entity source)
         {
             tile = null; source = null;
-            if (fellingGroundOnly || materials == null || !ReadyCell(zone, x, y, out var cell)
+            if (fellingAuthored || materials == null || !ReadyCell(zone, x, y, out var cell)
                 || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered
                 || !PermanentWater(zone.TileState.Get(x, y))) return false;
             Entity actual = null; int frame = -1;
@@ -205,8 +258,10 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (fellingGroundOnly)
+            if (fellingAuthored)
             {
+                if (TryResolveForeground(zone, x, y, owner, out var solid))
+                { sprite = solid.sprite; return sprite != null; }
                 // Examine may authorize the substrate beneath a covering actor/prop.
                 if (!ReadyCell(zone, x, y, out var cell) || !Placed(zone, cell, owner)
                     || !VisiblePhysicalOwner(owner)

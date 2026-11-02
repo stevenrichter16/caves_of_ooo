@@ -1,0 +1,72 @@
+{
+  "seed": 704860946,
+  "zone": "Overworld.3.5.0",
+  "source_base": "b5c58368de7bbb772ff85d4d3a1d6dfff8a47022",
+  "scope": "Felling authored solid stone presentation only",
+  "native": {
+    "initial_red": 26,
+    "initial_existing_pass": 18,
+    "initial_green": 156,
+    "visual_role_red": 1,
+    "visual_role_counter_pass": 1,
+    "final_green": 156
+  },
+  "actual": {
+    "normal_zoom": "before.png -> after-v2.png",
+    "closer_zoom": "after-2x.png -> after-v2-2x.png",
+    "wall_reader": "after-wall-reader.png (unchanged opaque role)",
+    "ridge_reader": "after-v2-ridge-reader.png",
+    "wall_bump": {
+      "pos": {
+        "Item1": 39,
+        "Item2": 7
+      },
+      "wall": true,
+      "blocked": true
+    },
+    "ridge_bump": {
+      "pos": {
+        "Item1": 47,
+        "Item2": 7
+      },
+      "hp": 40,
+      "currentNative": 122,
+      "ridgeOpaque": false,
+      "ridgeBlocked": true,
+      "beyondVisible": true
+    },
+    "route": {
+      "pos": {
+        "Item1": 40,
+        "Item2": 13
+      },
+      "ridgeOpaque": false,
+      "ridgeBlocked": true,
+      "hp": 40
+    },
+    "save_turn": 830,
+    "fresh": {
+      "pos": {
+        "Item1": 47,
+        "Item2": 7
+      },
+      "hp": 40,
+      "currentNative": 122,
+      "ridgeOpaque": false,
+      "ridgeBlocked": true,
+      "beyondVisible": true
+    },
+    "initial_geometry_equal": true,
+    "reload_geometry_equal": true,
+    "protection": false,
+    "comparison_note": "Compared owner-signature sets; JS lexical and C# culture-dependent sort orders differ."
+  },
+  "limits": [
+    "195 opaque/103 nonopaque source cells are not full observed coverage;122 selected native solid owners in final viewport state",
+    "Blackwater57, ritual7, covered cells and memory glyphs remain",
+    "R11 performance gate open;70.44s current sample has large unexplained outliers, no matched before",
+    "Whole-area composition and native-art polish remain open",
+    "Mac/Linux de600 package excludes current slice; batch later"
+  ],
+  "review": "independent-review.md"
+}
