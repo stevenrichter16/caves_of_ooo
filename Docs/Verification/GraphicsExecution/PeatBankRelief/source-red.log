@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_sodden_peat.py", line 101, in <module>
+    else:verify('--old' in sys.argv)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_sodden_peat.py", line 86, in verify
+    guard();d=read((BASE if old else OUT)/'source-cells.json');contract(d)
+                                                               ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/Tools/Live16x24/build_sodden_peat.py", line 58, in contract
+    assert {'broad-upper-peat-face','broad-lower-peat-face','moist-foot-contact'}<=parts, 'Face still lacks coherent depth regions'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Face still lacks coherent depth regions

@@ -4902,14 +4902,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "ConfirmactualcoveredMirePoolowner/state,then guarded native-underlay coverage before further optional material work",
       "coordinates": [
         15,
         5,
@@ -4920,7 +4920,75 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "observed_seed": 65,
+      "observed_formation": "PeatCuts",
+      "bounded_peat_material": {
+        "recorded_utc": "2026-11-02T12:45:35.206819+00:00",
+        "source_base": "2a77da9ba762c474dbb6782ecf4cda763a79f034",
+        "status": "bounded-editor-material-verified",
+        "scope": "PeatBank18\u201319; ordinaryPeatCuts15.5,after-onlyBogFace15.8sharedcontrol",
+        "art": {
+          "changed_pixels": 768,
+          "protected_frames": 26,
+          "native_atlas": [
+            448,
+            24
+          ],
+          "silhouette": "opaque straight; actual collision unchanged",
+          "source": "ArtSource/Live16x24/sodden-travel/source-cells.json",
+          "generator": "Tools/Live16x24/build_sodden_peat.py",
+          "previous": "peat-before",
+          "rejected": "peat-candidate1; uniform rails read as timber",
+          "concept": "Established approved Sodden concept/parts reused for bounded correction",
+          "reproduction": "RepeatPNG/sourceJSONexact;reopened29collections(28semantic+default);noBlendbinaryclaim"
+        },
+        "tests": {
+          "final": 16,
+          "failed": 0,
+          "duration_seconds": 1.6655635,
+          "receipt": "Docs/Verification/GraphicsExecution/PeatBankRelief/native-final.json",
+          "source_old": "fails missing depth-region contract; art contract not runtimeRED",
+          "behavior": "No runtimecodechanged; first16candidate1checks retained/nonadditive"
+        },
+        "actual": {
+          "seed": 65,
+          "matched_closeup": [
+            40,
+            16
+          ],
+          "matched_time": "Dawn",
+          "whole_view": "40,12 Dawn before / Height after; not matched lighting",
+          "reader": "Peatbank40,18 Peat2/10solid after real blocked strike from40,17",
+          "travel": "15.5\u219215.8\u219215.5",
+          "save_turn": 2860,
+          "reload": [
+            40,
+            12
+          ],
+          "hp": 38,
+          "new_f12": false,
+          "reload_world_diff": 0,
+          "reload_world_pixels": 639200
+        },
+        "review": {
+          "source": "OneP2 verifierimport corrected; current entrypoints pass",
+          "visual": "capture_route:0newP1/P2; bounded material improvement; repetition remains"
+        },
+        "performance": "No runtime/renderstructure change or new benchmark; R11 remains open",
+        "coverage": "No newfamily; previousnativeowners preserved",
+        "population": "No addition; assess widergrassquietpatches separately",
+        "shadow": "Baked shallowbase only; no cast-shadow expansion",
+        "whole_area_accepted": false,
+        "delivery": "Editorverified; current5f345packagesexcludepeat",
+        "remaining": [
+          "Repeated short strokes acrosslongspans",
+          "RememberedASCIIandcoveredMireglyphs",
+          "Broaderchunkcomposition/wholearea",
+          "R11andphysicalDeck"
+        ],
+        "next": "ConfirmactualcoveredMirePoolowner/state,then guarded native-underlay coverage before further optional material work"
+      }
     },
     {
       "id": "surface/Overworld.16.5.0",
@@ -6677,7 +6745,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Publish exact reviewed owned changes; batch current Mac/Linux including d681 deck art and covered continuity. Then largest evidenced other-region environmental gap, with chunk composition and shadow assessment.",
+      "next_action": "Attribute actual coveredMirePool glyph regression; native-underlay fix if confirmed. Broaderpolish remainsopen.",
       "coordinates": [
         19,
         7,
@@ -6842,6 +6910,19 @@
         ],
         "preservation": "75foreign metadata hashes intact;2root-neutral metadata unchanged; normal saves/preferences isolated; Play stopped/root null/scene clean; no cleanup.",
         "next_action": "Publish exact reviewed owned changes; batch current Mac/Linux including d681 deck art and covered continuity. Then largest evidenced other-region environmental gap, with chunk composition and shadow assessment."
+      },
+      "bounded_current_delivery": {
+        "source_commit": "5f34547aa8ece11c33afc604ea3c482b1e4355c3",
+        "evidence": "Docs/Verification/GraphicsExecution/Batch5f345/README.md",
+        "build_flavor": "Development=true on both platforms",
+        "mac": "Two actual Mac processes at ordinary3024\u00d71898: Causeway19.7 continuous deck beneath actors, native duckboard Wood8/8 reader, movement and19.7\u219219.8\u219219.7 travel, F5turn2680/freshContinue40,15HP30. Real snake hit38\u219230; no F12. Saved/reload5798/3576624worldpixels differ locally; snake colors differ, cause unproven.",
+        "included_not_packaged_visited": [
+          "Earlier regional slices retain separate package evidence"
+        ],
+        "linux": "built and all archive members/checksums independently verified; not executed",
+        "physical_deck": "not executed",
+        "whole_area_polish": false,
+        "performance_gate": "R11 open; no packaged benchmark or release-build performance equivalence"
       }
     },
     {
@@ -7843,14 +7924,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "ConfirmactualcoveredMirePoolowner/state,then guarded native-underlay coverage before further optional material work",
       "coordinates": [
         15,
         8,
@@ -7861,7 +7942,75 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "observed_seed": 65,
+      "observed_formation": "BogFace",
+      "bounded_peat_material": {
+        "recorded_utc": "2026-11-02T12:45:35.206819+00:00",
+        "source_base": "2a77da9ba762c474dbb6782ecf4cda763a79f034",
+        "status": "bounded-editor-material-verified",
+        "scope": "PeatBank18\u201319; ordinaryPeatCuts15.5,after-onlyBogFace15.8sharedcontrol",
+        "art": {
+          "changed_pixels": 768,
+          "protected_frames": 26,
+          "native_atlas": [
+            448,
+            24
+          ],
+          "silhouette": "opaque straight; actual collision unchanged",
+          "source": "ArtSource/Live16x24/sodden-travel/source-cells.json",
+          "generator": "Tools/Live16x24/build_sodden_peat.py",
+          "previous": "peat-before",
+          "rejected": "peat-candidate1; uniform rails read as timber",
+          "concept": "Established approved Sodden concept/parts reused for bounded correction",
+          "reproduction": "RepeatPNG/sourceJSONexact;reopened29collections(28semantic+default);noBlendbinaryclaim"
+        },
+        "tests": {
+          "final": 16,
+          "failed": 0,
+          "duration_seconds": 1.6655635,
+          "receipt": "Docs/Verification/GraphicsExecution/PeatBankRelief/native-final.json",
+          "source_old": "fails missing depth-region contract; art contract not runtimeRED",
+          "behavior": "No runtimecodechanged; first16candidate1checks retained/nonadditive"
+        },
+        "actual": {
+          "seed": 65,
+          "matched_closeup": [
+            40,
+            16
+          ],
+          "matched_time": "Dawn",
+          "whole_view": "40,12 Dawn before / Height after; not matched lighting",
+          "reader": "Peatbank40,18 Peat2/10solid after real blocked strike from40,17",
+          "travel": "15.5\u219215.8\u219215.5",
+          "save_turn": 2860,
+          "reload": [
+            40,
+            12
+          ],
+          "hp": 38,
+          "new_f12": false,
+          "reload_world_diff": 0,
+          "reload_world_pixels": 639200
+        },
+        "review": {
+          "source": "OneP2 verifierimport corrected; current entrypoints pass",
+          "visual": "capture_route:0newP1/P2; bounded material improvement; repetition remains"
+        },
+        "performance": "No runtime/renderstructure change or new benchmark; R11 remains open",
+        "coverage": "No newfamily; previousnativeowners preserved",
+        "population": "No addition; assess widergrassquietpatches separately",
+        "shadow": "Baked shallowbase only; no cast-shadow expansion",
+        "whole_area_accepted": false,
+        "delivery": "Editorverified; current5f345packagesexcludepeat",
+        "remaining": [
+          "Repeated short strokes acrosslongspans",
+          "RememberedASCIIandcoveredMireglyphs",
+          "Broaderchunkcomposition/wholearea",
+          "R11andphysicalDeck"
+        ],
+        "next": "ConfirmactualcoveredMirePoolowner/state,then guarded native-underlay coverage before further optional material work"
+      }
     },
     {
       "id": "surface/Overworld.16.8.0",

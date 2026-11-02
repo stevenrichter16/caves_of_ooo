@@ -1,0 +1,17 @@
+# Peat-cut bank relief
+
+Status: candidate2 bounded Editor material verification complete; full-area acceptance remains open.
+
+Scope: only original PeatBank18–19 art,448×24 atlas unchanged. Keep26otherframes/importer/collision/owner/state/fog/memory exact. Named actual defect: long cutbanks at ordinary PeatCuts15.5 read as repeated dark hatch marks. Fresh captures are Dawn, not Dark as in an older screenshot. Existing material remains dark peat; broad warm upper/lower strata and a shallow moist foot should separate the vertical form from quiet ground. Straight boundaries retained. No new population or runtime shadow layer.
+
+Baseline: source2a77da9ba, earned seed65 sodden-ordinary-before-peat-cuts65,40,12HP38.1×/2× whole/center views; real four-step south movement to40,16 andF5 BeforeCheckpoint. An unused initial preparation was stopped before gameplay to use the existing camera-owning isolated launcher. No teleport/reveal/F12. Underlying geometry comes from real GameBootstrap.
+
+Use established approved Sodden concept/parts and original integer-cell Blender pipeline for this bounded native correction. Approved art/source/manifests/generators frozen in peat-before with explicit pins. Candidate1 changes768nativepixels in18–19; all26otherframes exact. Source contrast-region contract fails old then passes new; this is an art contract, not runtimeRED. No runtimecode changes.16native resource/identity/ordinaryformation/fallback/ground checks passed2.597s; full first response saved before reload. Previous208results remain separate, nonadditive.
+
+Acceptance requires matched actual40,16/40,12 views at1×/2×, clear solid bank identity and joins, real blocked movement/reader, ordinary travel/F5/freshContinue, independent source/visual review, concise limits and exact publication. Preserve any rejected candidate. Long repeated rows and wider world composition remain separate debts; no full-area or physicalDeck claim. Current5f345packages exclude this candidate.
+
+Source correction: independent review caught `verify.py` importing the old deck verifier directly (the CLI redirect did not cover an import). Repointed to the peat verifier and ran the documented wrapper successfully. Candidate1 preserved separately: overly straight bands read like timber; candidate2 interrupts strata and softens the warm face. Source bytes for every non-peat frame remain exact. Reopened28semanticcollections; repeatedPNG/sourceJSON exact, no.blend-byte claim.
+
+Observed candidate2: matched40,16Dawn2× improves relief; later40,12Height1× is a camera-matched but time-advanced comparison. Wholechunk remains rectilinear/repetitive and sparse; no fullarea acceptance. RealDown40,16→40,17 then blocked strike40,18 damagedbank10→2; native reader says Peat,2/10,solid. No fabricated interaction state. Normal15.5→15.8BogFace→15.5, after-onlysharedformationcontrol,F5turn2860HP38; noF12. FreshContinue40,12HP38 exactly matches saved639200worldpixels; final16native checks passed1.6655635s. Source/visual review0remainingnewP1/P2. Runtime/render structure unchanged; retain existingR11limitations, no new performance improvement claim.
+
+Final evidence: `Verification/GraphicsExecution/PeatBankRelief/verification.json`. Current runtimePNG matches reproducible source. All26otherframes and11input pins preserved. Unity stopped/rootnull/clean; no cleanup. Next actual attribution and guarded fix for coveredMire native-surface loss.

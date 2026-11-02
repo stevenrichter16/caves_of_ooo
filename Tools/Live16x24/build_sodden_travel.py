@@ -225,5 +225,5 @@ def main():
 if __name__=='__main__':
     # The current approved successor owns all exports. The historical quiet-mire
     # generator remains reproducible under sodden-travel/deck-before.
-    from build_sodden_deck import build
+    from build_sodden_peat import build
     build()

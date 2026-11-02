@@ -103,5 +103,7 @@ def verify(old=False):
                 changed+=a.getpixel(point)!=b.getpixel(point)
     save('deck-verification.json',{'passed':True,'changed_pixels':changed,'protected_frames':list(range(16,28)),'unchanged_narrow_masks':[0,1,2,4,5,8,10],'native_pixels':448*24,'runtime_sha256':sha(OUT/'sodden-travel.png'),'actual_play':False});print('PASS',changed,'pixels changed;12non-board and7narrow masks exact')
 if __name__=='__main__':
-    if '--build' in sys.argv:build()
-    else:verify('--old' in sys.argv)
+    # The historical implementation remains preserved in peat-before.
+    from build_sodden_peat import build as current_build, verify as current_verify
+    if '--build' in sys.argv:current_build()
+    else:current_verify('--old' in sys.argv)
