@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.8793383">
+  <test-suite type="TestSuite" id="43979" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35834" result="Failed" site="Child" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.879338" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43950" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35834" result="Failed" site="Child" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.867160" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43951" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35834" result="Failed" site="Child" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.864477" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43952" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35834" result="Failed" site="Child" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.862907" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31186" name="FlatPixelBeatingMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="203" result="Failed" site="Child" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.838960" total="12" passed="0" failed="12" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="31362" name="DuneReliefDoesNotExpandRegionOrReadHiddenOwners" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefDoesNotExpandRegionOrReadHiddenOwners" methodname="DuneReliefDoesNotExpandRegionOrReadHiddenOwners" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="705385240" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.177897" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefDoesNotExpandRegionOrReadHiddenOwners () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:53
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31352" name="DuneReliefExposedSouthKeepsIdentityAndCollision" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefExposedSouthKeepsIdentityAndCollision" methodname="DuneReliefExposedSouthKeepsIdentityAndCollision" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="174377077" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.042167" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefExposedSouthKeepsIdentityAndCollision () [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:27
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31363" name="DuneReliefMissingOptionalAtlasKeepsApprovedBodyAndDisposal" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefMissingOptionalAtlasKeepsApprovedBodyAndDisposal" methodname="DuneReliefMissingOptionalAtlasKeepsApprovedBodyAndDisposal" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="209193500" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.041016" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefMissingOptionalAtlasKeepsApprovedBodyAndDisposal () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:60
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31364" name="DuneReliefNeighborOnlyDirtyMatchesFullRepaint" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefNeighborOnlyDirtyMatchesFullRepaint" methodname="DuneReliefNeighborOnlyDirtyMatchesFullRepaint" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1855299868" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.196571" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefNeighborOnlyDirtyMatchesFullRepaint () [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31361" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.354088" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31353" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;hidden&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2114271617" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.040286" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31354" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;unexplored&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="319365583" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.039555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31355" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;wet&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="469547247" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.039838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31356" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;heat&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1853047883" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.038963" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31357" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;duplicate&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="490557450" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.039018" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31358" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;custom&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;custom&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="459701993" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:44Z" duration="0.039793" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31359" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;solid&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1088902099" result="Failed" start-time="2026-11-02 06:12:44Z" end-time="2026-11-02 06:12:45Z" duration="0.047183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31360" name="DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand(&quot;missing&quot;)" methodname="DuneReliefOnlyUsesDisclosedUnambiguousDrySand" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="513458558" result="Failed" start-time="2026-11-02 06:12:45Z" end-time="2026-11-02 06:12:45Z" duration="0.039474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <dune-relief (UnityEngine.Texture2D)>
+  But was:  <beating-materials (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NativeTile (UnityEngine.Tilemaps.Tile tile, System.String resource) [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingMaterialsTests.cs:83
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.Relief (System.Boolean expected) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:22
+at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.DuneReliefOnlyUsesDisclosedUnambiguousDrySand (System.String fault) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelDuneReliefTests.cs:37
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

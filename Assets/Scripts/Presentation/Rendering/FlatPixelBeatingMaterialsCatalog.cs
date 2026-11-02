@@ -28,12 +28,13 @@ namespace CavesOfOoo.Rendering
 
         public const string ResourcePath = "Sprites/Live16x24/beating-materials";
         public const int FrameCount = 34;
+        public const string DuneReliefResourcePath = "Sprites/Live16x24/dune-relief";
         /// <summary>Independent optional two-state TarSeep atlas: frame 0 stocked,
         /// frame 1 empty stock. Both states stay oily; neither is dry or safe.</summary>
         public const string TarResourcePath = "Sprites/Live16x24/tar-seep";
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] materials, vegetation, anchors, tar, masonry;
+        readonly Tile[] materials, vegetation, anchors, tar, masonry, duneRelief;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -54,7 +55,8 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath),
                 Resources.Load<Texture2D>(TarResourcePath),
-                Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath),
+                Resources.Load<Texture2D>(DuneReliefResourcePath), borrowedSelector) { }
 
         /// <summary>Independent injected groups never reload Resources on failure.
         /// No borrowed texture or selector is changed or disposed.</summary>
@@ -73,6 +75,13 @@ namespace CavesOfOoo.Rendering
         /// the western Beating's grey StoneWall ruins; an independent optional group.</summary>
         public FlatPixelBeatingMaterialsCatalog(Texture2D atlas34, Texture2D vegetation4,
             Texture2D anchors12, Texture2D tar2, Texture2D sillEnvironment9, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas34, vegetation4, anchors12, tar2, sillEnvironment9, null, borrowedSelector) { }
+
+        /// <summary>Independent optional shallow dune south face. Explicit older constructors
+        /// retain the approved quiet crest without loading the extra resource.</summary>
+        public FlatPixelBeatingMaterialsCatalog(Texture2D atlas34, Texture2D vegetation4,
+            Texture2D anchors12, Texture2D tar2, Texture2D sillEnvironment9, Texture2D duneRelief4,
+            FlatPixelFallbackCatalog borrowedSelector)
         {
             selector = borrowedSelector;
             if (selector == null) return;
@@ -80,6 +89,7 @@ namespace CavesOfOoo.Rendering
             vegetation = Frames(vegetation4, 4, "vegetation");
             anchors = Frames(anchors12, 12, "anchors");
             tar = Frames(tar2, 2, "tar");
+            duneRelief = Frames(duneRelief4, 4, "dune south slope");
             var environment = Frames(sillEnvironment9, 9, "stone masonry");
             masonry = environment == null ? null : new[] { environment[8] };
             if (environment != null) for (int i = 0; i < 8; i++) { DestroyOwned(environment[i].sprite); DestroyOwned(environment[i]); }
@@ -163,8 +173,32 @@ namespace CavesOfOoo.Rendering
             else if (owner.BlueprintName == "Signpost") tile = anchors == null ? null : anchors[8];
             else if (owner.BlueprintName == "TarSeep") tile = tar == null ? null : tar[frame];
             else if (owner.BlueprintName == "StoneWall") tile = masonry == null ? null : masonry[0];
+            else if (owner.BlueprintName == "DuneCrest" && materials != null && duneRelief != null
+                && zone.ZoneID == "Overworld.19.14.0" && IsSupportedZone(zone)
+                && DisclosedSandBelowDune(zone, x, y + 1)) tile = duneRelief[frame - 8];
             else tile = materials == null ? null : materials[frame];
             return tile != null;
+        }
+
+        // Shading stays inside the source cell. Unknown edges retain the quiet
+        // body; never infer an edge by inspecting hidden neighbors. Actors and
+        // items on sand do not make the slope flicker, but disclosed terrain or
+        // structures competing with that sand conservatively suppress it.
+        bool DisclosedSandBelowDune(Zone zone, int x, int y)
+        {
+            if (!ReadyCell(zone, x, y, out var cell)) return false;
+            var state = zone.TileState.Get(x, y);
+            if (state != null && !state.IsEmpty) return false;
+            Entity sand = null;
+            foreach (var owner in cell.Occupants)
+            {
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (owner.BlueprintName == "Sand")
+                { if (sand != null || !OrdinaryGround(owner)) return false; sand = owner; }
+                else if (owner.HasTag("Terrain") || owner.HasTag("Wall") || owner.HasTag("Structure")
+                    || CompetingGround(owner, state, x, y)) return false;
+            }
+            return sand != null;
         }
 
         /// <summary>Current dry material below a covering subject. Real crust
@@ -278,6 +312,12 @@ namespace CavesOfOoo.Rendering
                 sprite = tar[frame].sprite; return sprite != null;
             }
             if (!Selected(zone, x, y, owner)) return false;
+            if (owner.BlueprintName == "DuneCrest" && materials != null)
+            {
+                int frame = ForegroundFrame(owner, zone.TileState.Get(x, y), x, y);
+                if (frame < 0) return false;
+                sprite = materials[frame].sprite; return sprite != null;
+            }
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && ReferenceEquals(floor, owner))
@@ -537,7 +577,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(anchors); DestroyFrames(tar); DestroyFrames(masonry);
+            DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(anchors); DestroyFrames(tar); DestroyFrames(masonry); DestroyFrames(duneRelief);
         }
         static void DestroyFrames(Tile[] tiles)
         {

@@ -11093,16 +11093,16 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "fallback",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [
         "seed65/Overworld.19.14.0"
       ],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Batch current accepted sources; later inspect remaining glyphs, whole-area palette/composition and other biome gaps. Do not repeat finished dune pilot.",
       "coordinates": [
         19,
         14,
@@ -11113,7 +11113,63 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "bounded_dune_relief": {
+        "status": "bounded-editor-verified",
+        "area": "Beating DuneField19.14 seed65",
+        "art": "ArtSource/Live16x24/dune-relief",
+        "revision": 3,
+        "native": {
+          "passed": 214,
+          "failed": 0,
+          "new_relief_cases": 13,
+          "genuine_red": 12,
+          "xml": "Docs/Verification/GraphicsExecution/DuneRelief/green.xml"
+        },
+        "actual": [
+          "matched1x/2x at40,14 HP38 turn2930",
+          "crest blocked Left and canonical reader",
+          "sand lane36,16",
+          "normal19.13 roundtrip",
+          "F5turn3070 and fresh40,12 HP38"
+        ],
+        "reload": {
+          "pixels": 639200,
+          "different": 0,
+          "bounds": [
+            0,
+            0,
+            940,
+            680
+          ],
+          "diff_bbox": null
+        },
+        "review": "independent source/visual0P1/P2",
+        "limits": [
+          "only19.14 south boundary",
+          "other material/ASCII gaps",
+          "full-area polish/population",
+          "gold palette/diagrammatic height",
+          "R11",
+          "current56cfa packages exclude this slice"
+        ]
+      },
+      "evidence": [
+        "Docs/GRAPHICS-DUNE-RELIEF.md",
+        "Docs/Verification/GraphicsExecution/DuneRelief/verification.json"
+      ],
+      "defects": [
+        {
+          "id": "DUNE-RELIEF-01",
+          "status": "resolved-bounded",
+          "description": "Exposed south crest reads solid with shaded native slope; original geometry and canonical reader preserved."
+        },
+        {
+          "id": "DUNE-AREA-01",
+          "status": "open",
+          "description": "Strong gold grade, diagrammatic rectangular ridges, remaining glyphs/fullarea review."
+        }
+      ]
     },
     {
       "id": "surface/Overworld.0.15.0",
@@ -20081,5 +20137,17 @@
     "physical_deck": "not executed",
     "whole_area_polish": false,
     "performance_gate": "R11 open"
+  },
+  "sodden_native_receipt_correction": {
+    "total": 393,
+    "passed": 390,
+    "failed": 0,
+    "inconclusive": 3,
+    "identities": [
+      "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(Overworld.15.7.0)",
+      "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(Overworld.16.7.0)",
+      "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(Overworld.17.7.0)"
+    ],
+    "reason": "Current-thread allocation counter did not detect the positive control."
   }
 }

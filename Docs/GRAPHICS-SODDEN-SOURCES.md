@@ -1,3 +1,5 @@
+**Test receipt correction2026-11-02:** Sodden final XML has393cases:390Passed,0Failed,3Inconclusive (not390/390complete). Three WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap cases15.7/16.7/17.7 could not validate their allocation-counter positive control. Functional passes stand; allocation claims remain unverified. Dune214/214 is unaffected.
+
 # Ordinary Sodden source-cluster continuity
 
 Status: bounded Editor verified; publication pending this commit. This slice reuses approved environmental art for real source owners; it adds no layout, items, crop mechanics or new artwork.

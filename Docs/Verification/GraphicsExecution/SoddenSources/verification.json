@@ -51,5 +51,17 @@
     "population/shadow expansion",
     "R11",
     "packages exclude source"
-  ]
+  ],
+  "sodden_native_receipt_correction": {
+    "total": 393,
+    "passed": 390,
+    "failed": 0,
+    "inconclusive": 3,
+    "identities": [
+      "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(Overworld.15.7.0)",
+      "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(Overworld.16.7.0)",
+      "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(Overworld.17.7.0)"
+    ],
+    "reason": "Current-thread allocation counter did not detect the positive control."
+  }
 }
