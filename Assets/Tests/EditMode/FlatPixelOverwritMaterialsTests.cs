@@ -13,7 +13,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Tests
 {
-    public sealed class FlatPixelOverwritMaterialsTests
+    public sealed partial class FlatPixelOverwritMaterialsTests
     {
         const string Home = "Overworld.0.9.0", Atlas = "Sprites/Live16x24/overwrit-materials";
         const string Floor = "OverwritGround", Growth = "OverwritNewGrowth", Bench = "OverwritPilgrimBench", Marker = "OverwritWaymarker";

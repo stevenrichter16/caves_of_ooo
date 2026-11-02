@@ -12,10 +12,12 @@ namespace CavesOfOoo.Rendering
     public sealed class FlatPixelOverwritMaterialsCatalog : IDisposable
     {
         public const string ResourcePath = "Sprites/Live16x24/overwrit-materials";
+        public const string WearResourcePath = "Sprites/Live16x24/overwrit-wear";
         public const int FrameCount = 8;
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
         readonly Tile[] tiles;
+        readonly Tile[] wearTiles;
         bool disposed;
         static readonly Dictionary<string, Vector2Int> coordinates = BuildCoordinates();
 
@@ -31,14 +33,21 @@ namespace CavesOfOoo.Rendering
             return result;
         }
         public FlatPixelOverwritMaterialsCatalog(FlatPixelFallbackCatalog borrowedSelector)
-            : this(Resources.Load<Texture2D>(ResourcePath), borrowedSelector) { }
+            : this(Resources.Load<Texture2D>(ResourcePath), borrowedSelector, Resources.Load<Texture2D>(WearResourcePath)) { }
 
         /// <summary>A missing injected atlas stays missing. Never reload, modify
         /// or dispose borrowed resources.</summary>
         public FlatPixelOverwritMaterialsCatalog(Texture2D atlas, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas, borrowedSelector, null) { }
+
+        public FlatPixelOverwritMaterialsCatalog(Texture2D atlas, FlatPixelFallbackCatalog borrowedSelector, Texture2D wearAtlas)
         {
             selector = borrowedSelector;
-            if (selector != null) tiles = Frames(atlas);
+            if (selector != null)
+            {
+                tiles = Frames(atlas);
+                if (tiles != null) wearTiles = Frames(wearAtlas, 96);
+            }
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -77,7 +86,14 @@ namespace CavesOfOoo.Rendering
                 else if (CompetingGround(owner, x, y)) return false;
             }
             if (actual == null) return false;
-            floor = actual; tile = tiles[VariantAt(x, y)]; return true;
+            floor = actual;
+            if (UsesWear(zone))
+            {
+                int frame = WearFrameAt(x, y);
+                tile = frame < 0 ? tiles[0] : wearTiles[frame];
+            }
+            else tile = tiles[VariantAt(x, y)];
+            return true;
         }
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
@@ -86,7 +102,7 @@ namespace CavesOfOoo.Rendering
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && ReferenceEquals(floor, owner))
-            { sprite = ground.sprite; return sprite != null; }
+            { sprite = UsesWear(zone) ? tiles[0].sprite : ground.sprite; return sprite != null; }
             return false;
         }
         bool ReadyCell(Zone zone, int x, int y, out Cell cell)
@@ -219,15 +235,30 @@ namespace CavesOfOoo.Rendering
             value ^= value >> 16; value = unchecked(value * 0x7feb352du); value ^= value >> 15;
             return (value & 15u) < 12u ? 0 : 1 + (int)((value >> 4) % 3u);
         }
-        static Tile[] Frames(Texture2D texture)
+        bool UsesWear(Zone zone) => wearTiles != null
+            && (zone.ZoneID == "Overworld.4.12.0" || zone.ZoneID == "Overworld.0.10.0");
+        // A bounded visual motif, never world generation. Coordinates alone keep
+        // the pattern stable through disclosure, movement and save/reload.
+        static int WearFrameAt(int x, int y)
         {
-            if (texture == null || texture.width != FrameCount * Width || texture.height != Height) return null;
-            var result = new Tile[FrameCount];
-            for (int i = 0; i < FrameCount; i++)
+            int bx = x / 13, by = y / 7;
+            uint value = unchecked((uint)bx * 0x9e3779b1u ^ (uint)by * 0x85ebca77u ^ 61u);
+            value ^= value >> 16;
+            if ((value & 3u) == 0u) return -1;
+            int col = x % 13 - (int)(value % 5u);
+            int row = y % 7 - (int)((value >> 3) % 3u);
+            int motif = (int)((value >> 8) % 3u);
+            return col >= 0 && col < 8 && row >= 0 && row < 4 ? motif * 32 + row * 8 + col : -1;
+        }
+        static Tile[] Frames(Texture2D texture, int count = FrameCount)
+        {
+            if (texture == null || texture.width != count * Width || texture.height != Height) return null;
+            var result = new Tile[count];
+            for (int i = 0; i < count; i++)
             {
                 var sprite = Sprite.Create(texture, new Rect(i * Width, 0, Width, Height),
                     new Vector2(.5f, .5f), Width, 0, SpriteMeshType.FullRect);
-                sprite.name = "Live16x24 Overwrit material " + i; sprite.hideFlags = HideFlags.HideAndDontSave;
+                sprite.name = (count == FrameCount ? "Live16x24 Overwrit material " : "Live16x24 Overwrit wear ") + i; sprite.hideFlags = HideFlags.HideAndDontSave;
                 var tile = ScriptableObject.CreateInstance<Tile>(); tile.name = sprite.name;
                 tile.hideFlags = HideFlags.HideAndDontSave; tile.sprite = sprite;
                 tile.flags = TileFlags.None; tile.colliderType = Tile.ColliderType.None; result[i] = tile;
@@ -237,8 +268,12 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            if (tiles == null) return;
-            foreach (var tile in tiles)
+            DisposeTiles(tiles); DisposeTiles(wearTiles);
+        }
+        static void DisposeTiles(Tile[] group)
+        {
+            if (group == null) return;
+            foreach (var tile in group)
             { if (tile == null) continue; DestroyOwned(tile.sprite); DestroyOwned(tile); }
         }
         static void DestroyOwned(Object value)

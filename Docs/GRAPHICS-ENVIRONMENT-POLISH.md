@@ -1,3 +1,5 @@
+**Overwrit scrapedground pilot:** [bounded current material observation](GRAPHICS-OVERWRIT-WEAR.md); irregular flatwear replaces evenmicro-scuffs at4.12 and0.10only.83native/currentplay/independentreview;0.10after-only, coveredreaderfallback/fullarea/R11remain. No new population/shadows.
+
 **Beating19.14 dune relief:** Four optional native south faces,3actualiterations,214native passes; actualcollision/reader/walk/travel/F5/freshreload exact. BoundedEditorverified, no wholearea/population/castshadow promotion; R11open. See [pilot](GRAPHICS-DUNE-RELIEF.md). Current56cfa packages exclude this/Marrow/Sodden; batch next.
 
 **Sodden source update 2026-11-02:** Current16.5 native pipe/peat/vent cluster and retained brine reader/partial world verified.390 native checks, actual travel/two fresh reloads, independent0newP1/P2. See [GRAPHICS-SODDEN-SOURCES.md](GRAPHICS-SODDEN-SOURCES.md). Material coverage only; broader polish, population, shadows and R11 remain open.

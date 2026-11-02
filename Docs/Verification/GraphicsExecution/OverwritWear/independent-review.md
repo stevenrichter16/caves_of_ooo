@@ -1,0 +1,3 @@
+# Source and actual visual review
+
+Independent coverage_priorities final source:0P1/P2;96frame selector bounded, currentgraph/owner/state/disclosure guards intact, no neighbor/RNG inputs, old missing/malformed behavior preserved, canonical reader pilot-only, borrowed textures not destroyed. Independent capture_route: candidate1 rejected oval depression/stamp pattern. Candidate2 resolves it with openflat scrapes/quiet gaps; player/bench/vegetation readable1×/2×, no newP1/P2.0.10after-only establishes observedcompatibility, not matchedimprovement; covered underfoot+portrait remains knownfallback. Smallmotifvocabulary/lowpalettecontrast/fullarea/population/R11 remain.

@@ -5971,7 +5971,10 @@
         "status": "in_progress",
         "known_defects": [
           "Repeated short scrape clusters",
-          "Whole-chunk composition/visibility and other formations remain unreviewed"
+          "Whole-chunk composition/visibility and other formations remain unreviewed",
+          "Smallwearmotif vocabulary/lowcontrast",
+          "Covered underfootground reader+fallback",
+          "Wholearea andR11 remain;0.10after-onlycontrol"
         ],
         "defect_audit_complete": false,
         "polish_acceptance_evidence": null,
@@ -5980,7 +5983,8 @@
           "evidence": "Docs/Verification/Live16x24/overwrit-environment-final-receipt.json",
           "source_commit": "83ebfec320e6fb389b73f68cc39a22941683b480",
           "whole_area_accepted": false
-        }
+        },
+        "overwrit_wear_evidence": "Docs/Verification/GraphicsExecution/OverwritWear/acceptance.json"
       },
       {
         "biome": "Overwrit",
@@ -5991,7 +5995,10 @@
         "status": "in_progress",
         "known_defects": [
           "Repeated short scrape clusters",
-          "Whole-chunk composition/visibility and other formations remain unreviewed"
+          "Whole-chunk composition/visibility and other formations remain unreviewed",
+          "Smallwearmotif vocabulary/lowcontrast",
+          "Covered underfootground reader+fallback",
+          "Wholearea andR11 remain;0.10after-onlycontrol"
         ],
         "defect_audit_complete": false,
         "polish_acceptance_evidence": null,
@@ -6000,7 +6007,8 @@
           "evidence": "Docs/Verification/Live16x24/overwrit-environment-final-receipt.json",
           "source_commit": "83ebfec320e6fb389b73f68cc39a22941683b480",
           "whole_area_accepted": false
-        }
+        },
+        "overwrit_wear_evidence": "Docs/Verification/GraphicsExecution/OverwritWear/acceptance.json"
       },
       {
         "biome": "Stump",
@@ -14554,5 +14562,27 @@
       "WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(Overworld.17.7.0)"
     ],
     "reason": "Current-thread allocation counter did not detect the positive control."
+  },
+  "overwrit_coherent_wear": {
+    "status": "bounded Editor material observation; fullarea in progress",
+    "evidence": "Docs/Verification/GraphicsExecution/OverwritWear/acceptance.json",
+    "scope": [
+      "Overworld.4.12.0",
+      "Overworld.0.10.0"
+    ],
+    "native_passes": 83,
+    "coverage_gain": false,
+    "population": false,
+    "shadow": false,
+    "packaged": false,
+    "limits": [
+      "fullarea notaccepted",
+      "0.10after-only",
+      "covered readerfallback",
+      "limitedmotifvocabulary",
+      "lowcontrast",
+      "remainingASCII/memory",
+      "R11"
+    ]
   }
 }

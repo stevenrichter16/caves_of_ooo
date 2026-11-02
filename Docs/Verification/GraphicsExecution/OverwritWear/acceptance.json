@@ -1,0 +1,87 @@
+{
+  "at_utc": "2026-11-02T07:07:24.497214+00:00",
+  "status": "bounded Editor material observation; fullarea in progress",
+  "source_base": "8e1a73fa6408b26083e515d56eb2ba155fea2546",
+  "scope": [
+    "Overworld.4.12.0",
+    "Overworld.0.10.0"
+  ],
+  "native": {
+    "red": {
+      "total": 2,
+      "failed": 2,
+      "job": "affa6ce182dd403b85dfcc2bdb239a74"
+    },
+    "green": {
+      "passed": 83,
+      "failed": 0,
+      "inconclusive": 0,
+      "skipped": 0,
+      "seconds": 23.7649631,
+      "job": "fcb45105c9b34a40a068dcacca9d3f26",
+      "sha256": "1e3ed414af0400544006aebada00192fb1459f63f169863e9a4a125268b34048"
+    }
+  },
+  "actual": {
+    "matched_zone": "Overworld.4.12.0",
+    "position": [
+      75,
+      18
+    ],
+    "hp": 38,
+    "zoom": [
+      1,
+      2
+    ],
+    "changed_world_pixels": 27426,
+    "right_ui_exact": true,
+    "readers": [
+      "adjacent scraped ground",
+      "inward-facing bench"
+    ],
+    "walk": [
+      73,
+      18
+    ],
+    "travel": [
+      "Overworld.4.12.0",
+      "Overworld.3.12.0",
+      "Overworld.4.12.0"
+    ],
+    "F5_turn": 6370,
+    "fresh_continue": [
+      40,
+      12,
+      38
+    ],
+    "reload_changed_world_pixels": 0,
+    "world_crop_pixels": 639200,
+    "f12_used": false,
+    "control": "0.10after-only40,12HP38; LeftRight and adjacentgroundreader observed; no matchedimprovement or distinctreload claim",
+    "covered_control_reader": "underfoot retains +fallback; notfixed"
+  },
+  "profile": {
+    "seconds": 109.0071818,
+    "renderer_p95_ms": 0.081792,
+    "renderer_max_ms": 173.477084,
+    "main_max_ms": 2113.664292,
+    "gc_max_bytes": 292767187,
+    "execute_code_during_window": false,
+    "limits": "Includesnativeinput/zoom/readers/capturetooling. No matchedbaseline, packagedperformance or spikeattribution; R11open."
+  },
+  "review": "independent-review.md",
+  "new_coverage": false,
+  "population_changed": false,
+  "shadow_changed": false,
+  "package_includes_change": false,
+  "current_package_source": "689157039",
+  "limits": [
+    "fullarea notaccepted",
+    "0.10after-only",
+    "covered readerfallback",
+    "limitedmotifvocabulary",
+    "lowcontrast",
+    "remainingASCII/memory",
+    "R11"
+  ]
+}
