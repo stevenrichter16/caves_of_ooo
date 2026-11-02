@@ -144,10 +144,12 @@ namespace CavesOfOoo.Rendering
             var (wx, wy, _) = WorldMap.FromZoneID(zone.ZoneID);
             var map = WorldLocationContext.For(zone).WorldMap;
             var biome = map.GetBiome(wx, wy);
-            // The Intake pilot's packed road should read as worn stone/earth,
+            // Intake and Cinderhold packed roads should read as worn stone/earth,
             // distinct from its warm yards. Reuse approved road art; no geometry change.
             bool intakeRoad = zone.ZoneID == MarrowstyeCompositionPlan.ZoneID
-                && AreaCompositionScope.IsMarrowstyeSite(map.GetPOI(wx, wy));
+                && AreaCompositionScope.IsMarrowstyeSite(map.GetPOI(wx, wy))
+                || zone.ZoneID == CinderholdCompositionPlan.ZoneID
+                && AreaCompositionScope.IsCinderholdSite(map.GetPOI(wx, wy));
             return MaterialFor(floor, x, y, biome, intakeRoad);
         }
 
@@ -351,7 +353,7 @@ namespace CavesOfOoo.Rendering
                     || !OrdinaryGround(owner)) return false;
                 floor = owner;
             }
-            return floor != null && MaterialFor(floor, x, y, map.GetBiome(wx, wy), intakeRoad: !gantry && !cinderhold) != null;
+            return floor != null && MaterialFor(floor, x, y, map.GetBiome(wx, wy), intakeRoad: !gantry) != null;
         }
 
         static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";

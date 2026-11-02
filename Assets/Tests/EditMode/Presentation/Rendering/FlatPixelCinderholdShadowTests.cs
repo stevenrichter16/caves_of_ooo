@@ -110,7 +110,16 @@ namespace CavesOfOoo.Tests
             {
                 var art=new FlatPixelSettlementGroundCatalog(null,null,Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),null,null,selector);
                 typeof(FlatPixelGreyboxCatalog).GetField("_settlementGroundArt",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(world,art);
-                using(var p=new Paint(world,zone)){p.Step();Assert.NotNull(p.At(X,Y));Off(p);}
+                // Cinderhold now shares the Beating atlas for road and wall;
+                // withdraw only cached road views so the wall remains a valid source.
+                var field=typeof(FlatPixelSettlementGroundCatalog).GetField("beatingRoad",BindingFlags.Instance|BindingFlags.NonPublic);
+                var saved=field.GetValue(art);
+                try
+                {
+                    if(material=="RoadStone")field.SetValue(art,null);
+                    using(var p=new Paint(world,zone)){p.Step();Assert.NotNull(p.At(X,Y));Off(p);}
+                }
+                finally { field.SetValue(art,saved); }
             }
         }
         [TestCase("solid")][TestCase("material")][TestCase("health")][TestCase("thermal")]

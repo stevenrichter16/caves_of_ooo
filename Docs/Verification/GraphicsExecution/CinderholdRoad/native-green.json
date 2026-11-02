@@ -1,0 +1,934 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"b90a7db5c4fb484db2333dde61d4e04d\",\"status\":\"succeeded\",\"mode\":\"EditMode\",\"started_unix_ms\":1793638870803,\"finished_unix_ms\":1793638893870,\"last_update_unix_ms\":1793638893870,\"progress\":{\"completed\":98,\"total\":98,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1793638893715,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.WetHiddenAndStackedGroundKeepTheirFallback\",\"last_finished_unix_ms\":1793638893754,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[],\"failures_capped\":false},\"error\":null,\"result\":{\"mode\":\"EditMode\",\"summary\":{\"total\":98,\"passed\":98,\"failed\":0,\"skipped\":0,\"durationSeconds\":21.2222598,\"resultState\":\"Passed\"},\"results\":[{\"name\":\"ChangedSiteCannotUseRegionalRoad(\\\"profile\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\\\"profile\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.3303733,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedSiteCannotUseRegionalRoad(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0405051,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedSiteCannotUseRegionalRoad(\\\"type\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\\\"type\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0388065,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedSiteCannotUseRegionalRoad(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0398072,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedSiteCannotUseRegionalRoad(\\\"lair\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\\\"lair\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0411181,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"LiveMemoryAndExactReaderAgreeWithoutStateMutation\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.LiveMemoryAndExactReaderAgreeWithoutStateMutation\",\"state\":\"Passed\",\"durationSeconds\":0.1953761,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingRoadClearsItsShadowWithoutRemovingWall\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.MissingRoadClearsItsShadowWithoutRemovingWall\",\"state\":\"Passed\",\"durationSeconds\":0.5238721,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"PlayerKeepsNativeRoadAndTallyKeepsItsExistingRoad\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.PlayerKeepsNativeRoadAndTallyKeepsItsExistingRoad\",\"state\":\"Passed\",\"durationSeconds\":0.1743488,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CanonicalDryReceiversGetOnlyShortSouthShade(\\\"Floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\\\"Floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.503694,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CanonicalDryReceiversGetOnlyShortSouthShade(\\\"StoneFloor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\\\"StoneFloor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1692358,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CanonicalDryReceiversGetOnlyShortSouthShade(\\\"RoadStone\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\\\"RoadStone\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1585026,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"CanonicalDryReceiversGetOnlyShortSouthShade(\\\"Grass\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\\\"Grass\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1556455,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedWallRefusesShadow(\\\"solid\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\\\"solid\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0908382,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedWallRefusesShadow(\\\"material\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\\\"material\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.088794,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedWallRefusesShadow(\\\"health\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\\\"health\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0913578,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ChangedWallRefusesShadow(\\\"thermal\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\\\"thermal\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0913714,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosureAndLiveStateRemoveOnlyShade(\\\"source-hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\\\"source-hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0887994,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosureAndLiveStateRemoveOnlyShade(\\\"source-memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\\\"source-memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0883013,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosureAndLiveStateRemoveOnlyShade(\\\"receiver-hidden\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\\\"receiver-hidden\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0878403,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosureAndLiveStateRemoveOnlyShade(\\\"receiver-memory\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\\\"receiver-memory\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0872693,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosureAndLiveStateRemoveOnlyShade(\\\"oil\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\\\"oil\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0897433,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosureAndLiveStateRemoveOnlyShade(\\\"changed\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\\\"changed\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0892449,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"DisclosureAndLiveStateRemoveOnlyShade(\\\"heat\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\\\"heat\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1707975,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"HiddenOccupantsCannotAffectTheDisclosedShadow\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow\",\"state\":\"Passed\",\"durationSeconds\":0.224353,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\\\"Floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\\\"Floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0952036,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\\\"RoadStone\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\\\"RoadStone\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0870863,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"Player\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"Player\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1298669,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"Dagger\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"Dagger\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1670925,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"VillageDoor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"VillageDoor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1227798,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"WaterPuddle\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\\\"WaterPuddle\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1658517,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"SavedSurfaceLairRevokesShade\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.SavedSurfaceLairRevokesShade\",\"state\":\"Passed\",\"durationSeconds\":0.1113918,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmAuthorityRevocationClearsThePilot(\\\"profile\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\\\"profile\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1220131,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmAuthorityRevocationClearsThePilot(\\\"name\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\\\"name\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1114821,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmAuthorityRevocationClearsThePilot(\\\"graph\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\\\"graph\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0889445,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmAuthorityRevocationClearsThePilot(\\\"map\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\\\"map\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1117134,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"WarmAuthorityRevocationClearsThePilot(\\\"alias\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\\\"alias\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0910994,\"message\":null,\"stackTrace\":null,\"output\":\"\"},{\"name\":\"ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback\",\"state\":\"Passed\",\"durationSeconds\":0.4823905,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"AFiniteCookingFireAndAForeignMarkerKeepTheirFallback\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.AFiniteCookingFireAndAForeignMarkerKeepTheirFallback\",\"state\":\"Passed\",\"durationSeconds\":0.1585273,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph\",\"state\":\"Passed\",\"durationSeconds\":0.1709234,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"ARecolouredOrDeadWardenKeepsTheGlyph\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.ARecolouredOrDeadWardenKeepsTheGlyph\",\"state\":\"Passed\",\"durationSeconds\":0.0367451,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers\",\"state\":\"Passed\",\"durationSeconds\":1.8139979,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade\",\"state\":\"Passed\",\"durationSeconds\":1.6444136,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"MixedWaterAndAFrozenWallKeepTheirFallback\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.MixedWaterAndAFrozenWallKeepTheirFallback\",\"state\":\"Passed\",\"durationSeconds\":0.1374657,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'WeaponRackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n[Conversation] Loaded 80 conversations from 31 files.\\n[StoryletRegistry] Loaded 23 storylet(s).\\n\"},{\"name\":\"RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.13.7.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\",False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.13.7.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\",False)\",\"state\":\"Passed\",\"durationSeconds\":0.0411703,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.5.9.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\",False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.5.9.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\",False)\",\"state\":\"Passed\",\"durationSeconds\":0.0387479,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.12.12.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/beating-materials\\\",False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.12.12.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/beating-materials\\\",False)\",\"state\":\"Passed\",\"durationSeconds\":1.7164459,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.10.14.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/opening-ground\\\",False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.10.14.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/opening-ground\\\",False)\",\"state\":\"Passed\",\"durationSeconds\":0.0381099,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.18.18.0\\\",\\\"SandstoneWall\\\",\\\"Sprites/Live16x24/beating-materials\\\",True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\\\"Overworld.18.18.0\\\",\\\"SandstoneWall\\\",\\\"Sprites/Live16x24/beating-materials\\\",True)\",\"state\":\"Passed\",\"durationSeconds\":0.0427318,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementFloorsAndLawnUseTheirOwnFrames\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementFloorsAndLawnUseTheirOwnFrames\",\"state\":\"Passed\",\"durationSeconds\":0.2096225,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.5.9.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.5.9.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0836282,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.16.11.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.16.11.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0819912,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.16.1.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.16.1.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0808613,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.6.6.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/grovelands-ground\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.6.6.0\\\",\\\"Grass\\\",\\\"Sprites/Live16x24/grovelands-ground\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0778037,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.8.16.0\\\",\\\"Sand\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.8.16.0\\\",\\\"Sand\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1237911,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.5.17.0\\\",\\\"Sand\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.5.17.0\\\",\\\"Sand\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0731918,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.10.14.0\\\",\\\"StoneFloor\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.10.14.0\\\",\\\"StoneFloor\\\",\\\"Sprites/Live16x24/sill-environment\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0708113,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.12.12.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.12.12.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"state\":\"Passed\",\"durationSeconds\":1.7644882,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.10.14.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/opening-ground\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.10.14.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/opening-ground\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.071316,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.8.16.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.8.16.0\\\",\\\"RoadStone\\\",\\\"Sprites/Live16x24/beating-materials\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0720288,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.13.7.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.13.7.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.085342,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.15.6.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.15.6.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0908344,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.17.5.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.17.5.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0955511,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.18.18.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.18.18.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0725452,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.14.9.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.14.9.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0733736,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.10.14.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\\\"Overworld.10.14.0\\\",\\\"Floor\\\",\\\"Sprites/Live16x24/town-floor\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0726079,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"SettlementHearthsBurnOnScorchedRealGround(\\\"Overworld.10.14.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(\\\"Overworld.10.14.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.1049967,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"SettlementHearthsBurnOnScorchedRealGround(\\\"Overworld.8.16.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(\\\"Overworld.8.16.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.102572,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementHearthsBurnOnScorchedRealGround(\\\"Overworld.12.12.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(\\\"Overworld.12.12.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":1.7900687,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.5.9.0\\\",\\\"Innkeeper\\\",0)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.5.9.0\\\",\\\"Innkeeper\\\",0)\",\"state\":\"Passed\",\"durationSeconds\":0.0404167,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.13.7.0\\\",\\\"Innkeeper\\\",0)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.13.7.0\\\",\\\"Innkeeper\\\",0)\",\"state\":\"Passed\",\"durationSeconds\":0.0424705,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.5.9.0\\\",\\\"Quartermaster\\\",1)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.5.9.0\\\",\\\"Quartermaster\\\",1)\",\"state\":\"Passed\",\"durationSeconds\":0.0412468,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.8.16.0\\\",\\\"Quartermaster\\\",1)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.8.16.0\\\",\\\"Quartermaster\\\",1)\",\"state\":\"Passed\",\"durationSeconds\":0.0375284,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.5.9.0\\\",\\\"Scribe\\\",2)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.5.9.0\\\",\\\"Scribe\\\",2)\",\"state\":\"Passed\",\"durationSeconds\":0.0398674,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.10.14.0\\\",\\\"Scribe\\\",2)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\\\"Overworld.10.14.0\\\",\\\"Scribe\\\",2)\",\"state\":\"Passed\",\"durationSeconds\":0.0379208,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.6.6.0\\\",\\\"Bush\\\",\\\"Sprites/Live16x24/opening-base\\\",True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.6.6.0\\\",\\\"Bush\\\",\\\"Sprites/Live16x24/opening-base\\\",True)\",\"state\":\"Passed\",\"durationSeconds\":0.0742479,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.6.6.0\\\",\\\"Tree\\\",\\\"Sprites/Live16x24/north-vegetation\\\",True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.6.6.0\\\",\\\"Tree\\\",\\\"Sprites/Live16x24/north-vegetation\\\",True)\",\"state\":\"Passed\",\"durationSeconds\":0.0730809,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.8.16.0\\\",\\\"DryBrush\\\",\\\"Sprites/Live16x24/north-vegetation\\\",True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.8.16.0\\\",\\\"DryBrush\\\",\\\"Sprites/Live16x24/north-vegetation\\\",True)\",\"state\":\"Passed\",\"durationSeconds\":0.0716421,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.18.18.0\\\",\\\"DryBrush\\\",\\\"Sprites/Live16x24/north-vegetation\\\",True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.18.18.0\\\",\\\"DryBrush\\\",\\\"Sprites/Live16x24/north-vegetation\\\",True)\",\"state\":\"Passed\",\"durationSeconds\":0.0741901,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.13.7.0\\\",\\\"Duckboard\\\",\\\"Sprites/Live16x24/sodden-travel\\\",True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.13.7.0\\\",\\\"Duckboard\\\",\\\"Sprites/Live16x24/sodden-travel\\\",True)\",\"state\":\"Passed\",\"durationSeconds\":0.1105385,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.17.5.0\\\",\\\"Reeds\\\",\\\"Sprites/Live16x24/opening-base\\\",True)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.17.5.0\\\",\\\"Reeds\\\",\\\"Sprites/Live16x24/opening-base\\\",True)\",\"state\":\"Passed\",\"durationSeconds\":0.1127167,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.15.6.0\\\",\\\"PeatBank\\\",\\\"Sprites/Live16x24/sodden-travel\\\",False)\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\\\"Overworld.15.6.0\\\",\\\"PeatBank\\\",\\\"Sprites/Live16x24/sodden-travel\\\",False)\",\"state\":\"Passed\",\"durationSeconds\":0.165005,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.5.9.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.5.9.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.2254854,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.16.1.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.16.1.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0839563,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.13.7.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.13.7.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.085864,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.17.5.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.17.5.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0853936,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.15.15.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\\\"Overworld.15.15.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0805144,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'WeaponRackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.6.6.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.6.6.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0734439,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.12.12.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.12.12.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":1.7235656,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.18.18.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.18.18.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0696527,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'SackT1'\\n\"},{\"name\":\"SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.15.15.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\\\"Overworld.15.15.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0815485,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'WeaponRackT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementWardensUseTheApprovedWardenBody(\\\"Overworld.13.7.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(\\\"Overworld.13.7.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.042167,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SettlementWardensUseTheApprovedWardenBody(\\\"Overworld.10.14.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(\\\"Overworld.10.14.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.036635,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"SettlementWardensUseTheApprovedWardenBody(\\\"Overworld.8.16.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(\\\"Overworld.8.16.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0363786,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\\\"Overworld.10.10.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\\\"Overworld.10.10.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0462983,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'WeaponsmithStock'\\n[LootTableRegistry] Unknown loot table 'ProvisionerStock'\\n[LootTableRegistry] Unknown loot table 'ArmorerStock'\\n[LootTableRegistry] Unknown loot table 'ApothecaryStock'\\n[LootTableRegistry] Unknown loot table 'ArcanistStock'\\n[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n\"},{\"name\":\"SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\\\"Overworld.5.11.0\\\")\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\\\"Overworld.5.11.0\\\")\",\"state\":\"Passed\",\"durationSeconds\":0.0514072,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CampGoodsT1'\\n[LootTableRegistry] Unknown loot table 'WaysiteCampSack'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"TheWildernessAroundAPlaceIsUnchanged\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.TheWildernessAroundAPlaceIsUnchanged\",\"state\":\"Passed\",\"durationSeconds\":0.2165032,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CampGoodsT1'\\n[LootTableRegistry] Unknown loot table 'WaysiteCampSack'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"UnexploredAndRememberedWaterKeepTheirFallback\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.UnexploredAndRememberedWaterKeepTheirFallback\",\"state\":\"Passed\",\"durationSeconds\":0.0431163,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"},{\"name\":\"WetHiddenAndStackedGroundKeepTheirFallback\",\"fullName\":\"CavesOfOoo.Tests.FlatPixelSettlementGroundTests.WetHiddenAndStackedGroundKeepTheirFallback\",\"state\":\"Passed\",\"durationSeconds\":0.0394788,\"message\":null,\"stackTrace\":null,\"output\":\"[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\\n[LootTableRegistry] Unknown loot table 'CrateT1'\\n\"}]}},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "b90a7db5c4fb484db2333dde61d4e04d",
+        "status": "succeeded",
+        "mode": "EditMode",
+        "started_unix_ms": 1793638870803,
+        "finished_unix_ms": 1793638893870,
+        "last_update_unix_ms": 1793638893870,
+        "progress": {
+          "completed": 98,
+          "total": 98,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1793638893715,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.WetHiddenAndStackedGroundKeepTheirFallback",
+          "last_finished_unix_ms": 1793638893754,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": {
+          "mode": "EditMode",
+          "summary": {
+            "total": 98,
+            "passed": 98,
+            "failed": 0,
+            "skipped": 0,
+            "durationSeconds": 21.2222598,
+            "resultState": "Passed"
+          },
+          "results": [
+            {
+              "name": "ChangedSiteCannotUseRegionalRoad(\"profile\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\"profile\")",
+              "state": "Passed",
+              "durationSeconds": 0.3303733,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedSiteCannotUseRegionalRoad(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.0405051,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedSiteCannotUseRegionalRoad(\"type\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\"type\")",
+              "state": "Passed",
+              "durationSeconds": 0.0388065,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedSiteCannotUseRegionalRoad(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0398072,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedSiteCannotUseRegionalRoad(\"lair\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.ChangedSiteCannotUseRegionalRoad(\"lair\")",
+              "state": "Passed",
+              "durationSeconds": 0.0411181,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "LiveMemoryAndExactReaderAgreeWithoutStateMutation",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.LiveMemoryAndExactReaderAgreeWithoutStateMutation",
+              "state": "Passed",
+              "durationSeconds": 0.1953761,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingRoadClearsItsShadowWithoutRemovingWall",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.MissingRoadClearsItsShadowWithoutRemovingWall",
+              "state": "Passed",
+              "durationSeconds": 0.5238721,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "PlayerKeepsNativeRoadAndTallyKeepsItsExistingRoad",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdRoadTests.PlayerKeepsNativeRoadAndTallyKeepsItsExistingRoad",
+              "state": "Passed",
+              "durationSeconds": 0.1743488,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CanonicalDryReceiversGetOnlyShortSouthShade(\"Floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\"Floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.503694,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CanonicalDryReceiversGetOnlyShortSouthShade(\"StoneFloor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\"StoneFloor\")",
+              "state": "Passed",
+              "durationSeconds": 0.1692358,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CanonicalDryReceiversGetOnlyShortSouthShade(\"RoadStone\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\"RoadStone\")",
+              "state": "Passed",
+              "durationSeconds": 0.1585026,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "CanonicalDryReceiversGetOnlyShortSouthShade(\"Grass\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(\"Grass\")",
+              "state": "Passed",
+              "durationSeconds": 0.1556455,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedWallRefusesShadow(\"solid\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\"solid\")",
+              "state": "Passed",
+              "durationSeconds": 0.0908382,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedWallRefusesShadow(\"material\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\"material\")",
+              "state": "Passed",
+              "durationSeconds": 0.088794,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedWallRefusesShadow(\"health\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\"health\")",
+              "state": "Passed",
+              "durationSeconds": 0.0913578,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ChangedWallRefusesShadow(\"thermal\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.ChangedWallRefusesShadow(\"thermal\")",
+              "state": "Passed",
+              "durationSeconds": 0.0913714,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosureAndLiveStateRemoveOnlyShade(\"source-hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\"source-hidden\")",
+              "state": "Passed",
+              "durationSeconds": 0.0887994,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosureAndLiveStateRemoveOnlyShade(\"source-memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\"source-memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0883013,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosureAndLiveStateRemoveOnlyShade(\"receiver-hidden\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\"receiver-hidden\")",
+              "state": "Passed",
+              "durationSeconds": 0.0878403,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosureAndLiveStateRemoveOnlyShade(\"receiver-memory\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\"receiver-memory\")",
+              "state": "Passed",
+              "durationSeconds": 0.0872693,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosureAndLiveStateRemoveOnlyShade(\"oil\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\"oil\")",
+              "state": "Passed",
+              "durationSeconds": 0.0897433,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosureAndLiveStateRemoveOnlyShade(\"changed\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\"changed\")",
+              "state": "Passed",
+              "durationSeconds": 0.0892449,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "DisclosureAndLiveStateRemoveOnlyShade(\"heat\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.DisclosureAndLiveStateRemoveOnlyShade(\"heat\")",
+              "state": "Passed",
+              "durationSeconds": 0.1707975,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "HiddenOccupantsCannotAffectTheDisclosedShadow",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow",
+              "state": "Passed",
+              "durationSeconds": 0.224353,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\"Floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\"Floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.0952036,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\"RoadStone\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.MissingReceiverAtlasCannotBorrowTheValidWallAtlas(\"RoadStone\")",
+              "state": "Passed",
+              "durationSeconds": 0.0870863,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"Player\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"Player\")",
+              "state": "Passed",
+              "durationSeconds": 0.1298669,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"Dagger\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"Dagger\")",
+              "state": "Passed",
+              "durationSeconds": 0.1670925,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"VillageDoor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"VillageDoor\")",
+              "state": "Passed",
+              "durationSeconds": 0.1227798,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"WaterPuddle\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(\"WaterPuddle\")",
+              "state": "Passed",
+              "durationSeconds": 0.1658517,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "SavedSurfaceLairRevokesShade",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.SavedSurfaceLairRevokesShade",
+              "state": "Passed",
+              "durationSeconds": 0.1113918,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmAuthorityRevocationClearsThePilot(\"profile\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\"profile\")",
+              "state": "Passed",
+              "durationSeconds": 0.1220131,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmAuthorityRevocationClearsThePilot(\"name\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\"name\")",
+              "state": "Passed",
+              "durationSeconds": 0.1114821,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmAuthorityRevocationClearsThePilot(\"graph\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\"graph\")",
+              "state": "Passed",
+              "durationSeconds": 0.0889445,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmAuthorityRevocationClearsThePilot(\"map\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\"map\")",
+              "state": "Passed",
+              "durationSeconds": 0.1117134,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "WarmAuthorityRevocationClearsThePilot(\"alias\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelCinderholdShadowTests.WarmAuthorityRevocationClearsThePilot(\"alias\")",
+              "state": "Passed",
+              "durationSeconds": 0.0910994,
+              "message": null,
+              "stackTrace": null,
+              "output": ""
+            },
+            {
+              "name": "ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback",
+              "state": "Passed",
+              "durationSeconds": 0.4823905,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "AFiniteCookingFireAndAForeignMarkerKeepTheirFallback",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.AFiniteCookingFireAndAForeignMarkerKeepTheirFallback",
+              "state": "Passed",
+              "durationSeconds": 0.1585273,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph",
+              "state": "Passed",
+              "durationSeconds": 0.1709234,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "ARecolouredOrDeadWardenKeepsTheGlyph",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.ARecolouredOrDeadWardenKeepsTheGlyph",
+              "state": "Passed",
+              "durationSeconds": 0.0367451,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers",
+              "state": "Passed",
+              "durationSeconds": 1.8139979,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade",
+              "state": "Passed",
+              "durationSeconds": 1.6444136,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "MixedWaterAndAFrozenWallKeepTheirFallback",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.MixedWaterAndAFrozenWallKeepTheirFallback",
+              "state": "Passed",
+              "durationSeconds": 0.1374657,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'WeaponRackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n[Conversation] Loaded 80 conversations from 31 files.\n[StoryletRegistry] Loaded 23 storylet(s).\n"
+            },
+            {
+              "name": "RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.13.7.0\",\"Floor\",\"Sprites/Live16x24/town-floor\",False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.13.7.0\",\"Floor\",\"Sprites/Live16x24/town-floor\",False)",
+              "state": "Passed",
+              "durationSeconds": 0.0411703,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.5.9.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\",False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.5.9.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\",False)",
+              "state": "Passed",
+              "durationSeconds": 0.0387479,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.12.12.0\",\"RoadStone\",\"Sprites/Live16x24/beating-materials\",False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.12.12.0\",\"RoadStone\",\"Sprites/Live16x24/beating-materials\",False)",
+              "state": "Passed",
+              "durationSeconds": 1.7164459,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.10.14.0\",\"RoadStone\",\"Sprites/Live16x24/opening-ground\",False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.10.14.0\",\"RoadStone\",\"Sprites/Live16x24/opening-ground\",False)",
+              "state": "Passed",
+              "durationSeconds": 0.0381099,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.18.18.0\",\"SandstoneWall\",\"Sprites/Live16x24/beating-materials\",True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(\"Overworld.18.18.0\",\"SandstoneWall\",\"Sprites/Live16x24/beating-materials\",True)",
+              "state": "Passed",
+              "durationSeconds": 0.0427318,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementFloorsAndLawnUseTheirOwnFrames",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementFloorsAndLawnUseTheirOwnFrames",
+              "state": "Passed",
+              "durationSeconds": 0.2096225,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.5.9.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.5.9.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\")",
+              "state": "Passed",
+              "durationSeconds": 0.0836282,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.16.11.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.16.11.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\")",
+              "state": "Passed",
+              "durationSeconds": 0.0819912,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.16.1.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.16.1.0\",\"Grass\",\"Sprites/Live16x24/sill-environment\")",
+              "state": "Passed",
+              "durationSeconds": 0.0808613,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.6.6.0\",\"Grass\",\"Sprites/Live16x24/grovelands-ground\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.6.6.0\",\"Grass\",\"Sprites/Live16x24/grovelands-ground\")",
+              "state": "Passed",
+              "durationSeconds": 0.0778037,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.8.16.0\",\"Sand\",\"Sprites/Live16x24/beating-materials\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.8.16.0\",\"Sand\",\"Sprites/Live16x24/beating-materials\")",
+              "state": "Passed",
+              "durationSeconds": 0.1237911,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.5.17.0\",\"Sand\",\"Sprites/Live16x24/beating-materials\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.5.17.0\",\"Sand\",\"Sprites/Live16x24/beating-materials\")",
+              "state": "Passed",
+              "durationSeconds": 0.0731918,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.10.14.0\",\"StoneFloor\",\"Sprites/Live16x24/sill-environment\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.10.14.0\",\"StoneFloor\",\"Sprites/Live16x24/sill-environment\")",
+              "state": "Passed",
+              "durationSeconds": 0.0708113,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.12.12.0\",\"RoadStone\",\"Sprites/Live16x24/beating-materials\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.12.12.0\",\"RoadStone\",\"Sprites/Live16x24/beating-materials\")",
+              "state": "Passed",
+              "durationSeconds": 1.7644882,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.10.14.0\",\"RoadStone\",\"Sprites/Live16x24/opening-ground\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.10.14.0\",\"RoadStone\",\"Sprites/Live16x24/opening-ground\")",
+              "state": "Passed",
+              "durationSeconds": 0.071316,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.8.16.0\",\"RoadStone\",\"Sprites/Live16x24/beating-materials\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.8.16.0\",\"RoadStone\",\"Sprites/Live16x24/beating-materials\")",
+              "state": "Passed",
+              "durationSeconds": 0.0720288,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.13.7.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.13.7.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.085342,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.15.6.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.15.6.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.0908344,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.17.5.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.17.5.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.0955511,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.18.18.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.18.18.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.0725452,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.14.9.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.14.9.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.0733736,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.10.14.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(\"Overworld.10.14.0\",\"Floor\",\"Sprites/Live16x24/town-floor\")",
+              "state": "Passed",
+              "durationSeconds": 0.0726079,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "SettlementHearthsBurnOnScorchedRealGround(\"Overworld.10.14.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(\"Overworld.10.14.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.1049967,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "SettlementHearthsBurnOnScorchedRealGround(\"Overworld.8.16.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(\"Overworld.8.16.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.102572,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementHearthsBurnOnScorchedRealGround(\"Overworld.12.12.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(\"Overworld.12.12.0\")",
+              "state": "Passed",
+              "durationSeconds": 1.7900687,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.5.9.0\",\"Innkeeper\",0)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.5.9.0\",\"Innkeeper\",0)",
+              "state": "Passed",
+              "durationSeconds": 0.0404167,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.13.7.0\",\"Innkeeper\",0)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.13.7.0\",\"Innkeeper\",0)",
+              "state": "Passed",
+              "durationSeconds": 0.0424705,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.5.9.0\",\"Quartermaster\",1)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.5.9.0\",\"Quartermaster\",1)",
+              "state": "Passed",
+              "durationSeconds": 0.0412468,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.8.16.0\",\"Quartermaster\",1)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.8.16.0\",\"Quartermaster\",1)",
+              "state": "Passed",
+              "durationSeconds": 0.0375284,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.5.9.0\",\"Scribe\",2)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.5.9.0\",\"Scribe\",2)",
+              "state": "Passed",
+              "durationSeconds": 0.0398674,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.10.14.0\",\"Scribe\",2)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(\"Overworld.10.14.0\",\"Scribe\",2)",
+              "state": "Passed",
+              "durationSeconds": 0.0379208,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.6.6.0\",\"Bush\",\"Sprites/Live16x24/opening-base\",True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.6.6.0\",\"Bush\",\"Sprites/Live16x24/opening-base\",True)",
+              "state": "Passed",
+              "durationSeconds": 0.0742479,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.6.6.0\",\"Tree\",\"Sprites/Live16x24/north-vegetation\",True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.6.6.0\",\"Tree\",\"Sprites/Live16x24/north-vegetation\",True)",
+              "state": "Passed",
+              "durationSeconds": 0.0730809,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.8.16.0\",\"DryBrush\",\"Sprites/Live16x24/north-vegetation\",True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.8.16.0\",\"DryBrush\",\"Sprites/Live16x24/north-vegetation\",True)",
+              "state": "Passed",
+              "durationSeconds": 0.0716421,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.18.18.0\",\"DryBrush\",\"Sprites/Live16x24/north-vegetation\",True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.18.18.0\",\"DryBrush\",\"Sprites/Live16x24/north-vegetation\",True)",
+              "state": "Passed",
+              "durationSeconds": 0.0741901,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.13.7.0\",\"Duckboard\",\"Sprites/Live16x24/sodden-travel\",True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.13.7.0\",\"Duckboard\",\"Sprites/Live16x24/sodden-travel\",True)",
+              "state": "Passed",
+              "durationSeconds": 0.1105385,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.17.5.0\",\"Reeds\",\"Sprites/Live16x24/opening-base\",True)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.17.5.0\",\"Reeds\",\"Sprites/Live16x24/opening-base\",True)",
+              "state": "Passed",
+              "durationSeconds": 0.1127167,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.15.6.0\",\"PeatBank\",\"Sprites/Live16x24/sodden-travel\",False)",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(\"Overworld.15.6.0\",\"PeatBank\",\"Sprites/Live16x24/sodden-travel\",False)",
+              "state": "Passed",
+              "durationSeconds": 0.165005,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.5.9.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.5.9.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.2254854,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.16.1.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.16.1.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0839563,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.13.7.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.13.7.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.085864,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.17.5.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.17.5.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0853936,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.15.15.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(\"Overworld.15.15.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0805144,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'WeaponRackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.6.6.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.6.6.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0734439,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.12.12.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.12.12.0\")",
+              "state": "Passed",
+              "durationSeconds": 1.7235656,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.18.18.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.18.18.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0696527,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'SackT1'\n"
+            },
+            {
+              "name": "SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.15.15.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(\"Overworld.15.15.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0815485,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'WeaponRackT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementWardensUseTheApprovedWardenBody(\"Overworld.13.7.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(\"Overworld.13.7.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.042167,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SettlementWardensUseTheApprovedWardenBody(\"Overworld.10.14.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(\"Overworld.10.14.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.036635,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "SettlementWardensUseTheApprovedWardenBody(\"Overworld.8.16.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(\"Overworld.8.16.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0363786,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\"Overworld.10.10.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\"Overworld.10.10.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0462983,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'WeaponsmithStock'\n[LootTableRegistry] Unknown loot table 'ProvisionerStock'\n[LootTableRegistry] Unknown loot table 'ArmorerStock'\n[LootTableRegistry] Unknown loot table 'ApothecaryStock'\n[LootTableRegistry] Unknown loot table 'ArcanistStock'\n[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n"
+            },
+            {
+              "name": "SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\"Overworld.5.11.0\")",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(\"Overworld.5.11.0\")",
+              "state": "Passed",
+              "durationSeconds": 0.0514072,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CampGoodsT1'\n[LootTableRegistry] Unknown loot table 'WaysiteCampSack'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "TheWildernessAroundAPlaceIsUnchanged",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.TheWildernessAroundAPlaceIsUnchanged",
+              "state": "Passed",
+              "durationSeconds": 0.2165032,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CampGoodsT1'\n[LootTableRegistry] Unknown loot table 'WaysiteCampSack'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "UnexploredAndRememberedWaterKeepTheirFallback",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.UnexploredAndRememberedWaterKeepTheirFallback",
+              "state": "Passed",
+              "durationSeconds": 0.0431163,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            },
+            {
+              "name": "WetHiddenAndStackedGroundKeepTheirFallback",
+              "fullName": "CavesOfOoo.Tests.FlatPixelSettlementGroundTests.WetHiddenAndStackedGroundKeepTheirFallback",
+              "state": "Passed",
+              "durationSeconds": 0.0394788,
+              "message": null,
+              "stackTrace": null,
+              "output": "[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'\n[LootTableRegistry] Unknown loot table 'CrateT1'\n"
+            }
+          ]
+        }
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

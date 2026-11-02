@@ -17260,5 +17260,27 @@
         "Rim canopy remains parked disabled"
       ]
     }
+  },
+  "cinderhold_road_material": {
+    "status": "bounded_editor_verified",
+    "recorded_utc": "2026-11-02T17:12:13.723474+00:00",
+    "source_base": "4eced3a1aa0479ca16a3dd582aae9ccb53f3592d",
+    "zone": "Overworld.6.6.0",
+    "seed": 65,
+    "scope": "Cinderhold packed-road material correction; already native, no new ASCII coverage count",
+    "art": "Approved beating-materials frames32\u201333; exact current Village/Cinderhold/PruningPost authority",
+    "implementation": "Live, memory and exact reader share road selection. Existing wall-shadow receiver requires that same optional road resource. No geometry, collision, RNG, saves, population or shadow-strength change. Marrowstye/Gantry/Tally controls retained.",
+    "native": "8/8 genuine RED; 98/98 GREEN covering road, settlement ground and Cinderhold shadow. Missing-road shadow test now removes road views because road/wall intentionally share an atlas.",
+    "actual": "1280x800 normal1x, baseline31,9 HP40 Dusk; 135988 changed world pixels/right UI0. Actual Look/Examine30,9 Packed road; Up blocked by sandstone wall31,9; walk33,11; ascendWorldMap36,9 and descend6.6 back33,11; F5turn1880; freshContinue33,11 HP40 Dusk. Reload world0/639200 changed pixels, UI logs differ.",
+    "profile": "431.153s after-only instrumented Editor sample includes tools/travel/Continue. Renderer p95 .084292ms/max88.466334ms; Main max891.256583ms. No matched attribution or R11 closure.",
+    "review": "environment_gaps_audit source0P1/P2; capture_route before/after and final reader/blocked-wall/walk/return/save/reload0newP1/P2; bounded material acceptance",
+    "limitations": [
+      "No full-area, population or new shadow acceptance",
+      "Stepped road widths, isolated grass cutouts, repetitive flecks, sparse open spaces and green regional cast remain",
+      "Current61cc Mac/Linux packages exclude this change until next batch",
+      "Physical Linux/Deck execution and R11 remain open"
+    ],
+    "evidence": "Docs/Verification/GraphicsExecution/CinderholdRoad",
+    "next_action": "Publish; next WorldMap Beating107-coordinate ASCII region using approved Sand0\u20133; then Beating RuinField19.12 composition review."
   }
 }
