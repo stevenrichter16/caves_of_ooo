@@ -1,0 +1,51 @@
+{
+  "scope": "First viable Beating RuinField colonnade; approved Pillar/BrokenColumn reuse",
+  "base_revision": "531f6895c86e62d0e14892df3813cbdcb516ebdc",
+  "native_tests": {
+    "final": 73,
+    "passed": 73,
+    "job": "85735f9097454b548ec8812fc344436f",
+    "red": "native-red.json",
+    "failed_candidate": "native-first-green-failed.json"
+  },
+  "actual": {
+    "fixture": "Docs/Verification/Live16x24/Fixtures/sill-court-return182",
+    "seed": 64,
+    "zone": "Overworld.19.12.0",
+    "entry": [
+      40,
+      12
+    ],
+    "saved_turn": 1980,
+    "hp": "40/40",
+    "owners": 13,
+    "pillars": [
+      [
+        32,
+        17,
+        28
+      ],
+      [
+        32,
+        19,
+        50
+      ]
+    ],
+    "fresh_continue": "Same IDs, blueprints, coordinates and HP after sorting; 0/639200 world pixel differences",
+    "protection": "F12 ON for long survey, OFF before F5; no encounter-balance acceptance",
+    "route_bounds": "One batched return was blocked by encounters; resulting repeated strikes reduced first pillar to28HP. Position checked before correcting to west12,6. Observed WorldMap49,15 and returned40,12."
+  },
+  "recovery": "Owned5d49 Play had null CurrentZone after editor reload. Finish left pending=true with play=false/isolation=false/root=null. Invoked existing private Restore under exact idle/token guard. Fresh758722 session loaded valid zone; fresh17e267 reload succeeded. No normal saves changed.",
+  "reviews": {
+    "source": "environment_gaps_audit:0 actionable P1/P2",
+    "visual": "capture_route:0newP1/P2; modest localized architectural focus, cooler/small pillars and broad empty floors remain"
+  },
+  "limits": [
+    "Small colonnade shoulder only; no entire chunk acceptance",
+    "No new sprite coverage or shadow change",
+    "Broad empty planes, green fragment tint and other ASCII remain",
+    "Unmatched Editor profile; R11 and Linux/Deck execution open",
+    "Current5a5d packages exclude this slice"
+  ],
+  "next": "Sodden native map terrain63 authored coordinates using approved quiet water; preserve markers and hidden sites."
+}

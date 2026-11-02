@@ -1,3 +1,5 @@
+Current extension: see `GRAPHICS-BEATING-COLONNADE.md` for the first viable two-pillar/five-fragment group. The original pilot evidence below remains historical.
+
 # Beating ruin-fragment composition pilot
 
 Status: bounded Editor verification complete; publication pending. Full-area polish, encounter balance and R11 performance acceptance remain open.

@@ -31,15 +31,17 @@ namespace CavesOfOoo.Tests
    var f=new Fixture(scope.Factory,seed);var z=f.Zone;var original=z.GetReadOnlyEntities().ToDictionary(e=>e,e=>z.GetEntityPosition(e));
    string sig=f.Terrain.Plan.Signature(),state=z.TileState.ToSaveString();var reserves=z.GenReservedCells.ToArray();var reach=WaysiteBuilder.Reach(z);
    f.Rng=new Random(783);Assert.True(f.Run(scope.Factory));var added=z.GetReadOnlyEntities().Where(e=>!original.ContainsKey(e)).ToArray();
-   Assert.That(added.Length,Is.InRange(0,9));if(seed==64)Assert.GreaterOrEqual(added.Length,6,"Actual baseline compounds must receive meaningful groups");
-   Assert.True(added.All(e=>e.BlueprintName=="BrokenColumn"));
+   Assert.That(added.Length,Is.InRange(0,14));if(seed==64)Assert.GreaterOrEqual(added.Length,6,"Actual baseline compounds must receive meaningful groups");
+   Assert.True(added.All(e=>e.BlueprintName=="BrokenColumn"||e.BlueprintName=="Pillar"));
+   if(seed==64)Assert.AreEqual(2,added.Count(e=>e.BlueprintName=="Pillar"),"A real colonnade shoulder must be visible in the baseline ruin");
    foreach(var kv in original){Assert.AreEqual(kv.Value,z.GetEntityPosition(kv.Key));Assert.AreSame(kv.Key,z.GetReadOnlyEntities().Single(e=>e.ID==kv.Key.ID));}
-   foreach(var e in added){var p=z.GetEntityPosition(e);Assert.IsNull(f.Terrain.Plan.ObjectAt(p.x,p.y));for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)Assert.False(f.Terrain.Plan.IsApproach(p.x+dx,p.y+dy));Assert.False(e.GetPart<PhysicsPart>().Solid);Assert.False(e.GetPart<PhysicsPart>().Takeable);Assert.True(Enumerable.Range(0,f.Terrain.Plan.RuinCount).Any(n=>f.Terrain.Plan.GetRuin(n).Contains(p.x,p.y)));}
+   foreach(var e in added){var p=z.GetEntityPosition(e);Assert.IsNull(f.Terrain.Plan.ObjectAt(p.x,p.y));for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)Assert.False(f.Terrain.Plan.IsApproach(p.x+dx,p.y+dy));Assert.AreEqual(e.BlueprintName=="Pillar",e.GetPart<PhysicsPart>().Solid);Assert.False(e.GetPart<PhysicsPart>().Takeable);Assert.True(Enumerable.Range(0,f.Terrain.Plan.RuinCount).Any(n=>f.Terrain.Plan.GetRuin(n).Contains(p.x,p.y)));}
    for(int room=0;room<f.Terrain.Plan.RuinCount;room++)
    {
     var ruin=f.Terrain.Plan.GetRuin(room);var cells=added.Select(e=>z.GetEntityPosition(e)).Where(p=>ruin.Contains(p.x,p.y)).ToArray();
-    Assert.That(cells.Length,Is.EqualTo(0).Or.EqualTo(4-room));
+    Assert.That(cells.Length,Is.EqualTo(0).Or.EqualTo(4-room).Or.EqualTo(7));
     foreach(var p in cells)Assert.True(Enumerable.Range(-2,5).Any(dy=>Enumerable.Range(-2,5).Any(dx=>z.GetCell(p.x+dx,p.y+dy).Occupants.Any(e=>e.BlueprintName=="SandstoneWall"))));
+    if(cells.Length==7)Assert.AreEqual(2,added.Count(e=>e.BlueprintName=="Pillar"&&ruin.Contains(z.GetEntityPosition(e).x,z.GetEntityPosition(e).y)));
     if(cells.Length>0){var reached=new HashSet<(int x,int y)>{cells[0]};bool more;do{more=false;foreach(var p in cells)if(!reached.Contains(p)&&reached.Any(q=>Math.Abs(q.x-p.x)+Math.Abs(q.y-p.y)==1)){reached.Add(p);more=true;}}while(more);Assert.AreEqual(cells.Length,reached.Count);}
    }
    Assert.AreEqual(original.Keys.Count(e=>e.BlueprintName=="DryBrush"),z.GetReadOnlyEntities().Count(e=>e.BlueprintName=="DryBrush"));
@@ -73,15 +75,31 @@ namespace CavesOfOoo.Tests
   [TestCase("cultivated")][TestCase("finite-row")][TestCase("harvestable")]
   public void ExistingGroundMechanismsNeverBecomeFragments(string kind)
   {var f=new Fixture(scope.Factory);foreach(var e in f.Zone.GetReadOnlyEntities().Where(e=>e.BlueprintName=="SandstoneFloor")){if(kind=="cultivated")e.AddPart(new CultivatedSoilPart());else if(kind=="finite-row")e.AddPart(new FieldHarvestPart());else e.AddPart(new HarvestablePart());}var before=Shape(f.Zone);Assert.True(f.Run(scope.Factory));CollectionAssert.AreEqual(before,Shape(f.Zone));}
-  [TestCase("BrokenColumn")]
+  [TestCase("BrokenColumn")][TestCase("Pillar")]
   public void MissingPayloadDeclinesWholeFragmentSet(string bp)
   {var f=new Fixture(scope.Factory);var before=Shape(f.Zone);scope.Factory.Blueprints.Remove(bp);Assert.True(f.Run(scope.Factory));CollectionAssert.AreEqual(before,Shape(f.Zone));}
   [TestCase("reserved")][TestCase("wet")][TestCase("occupied")][TestCase("interior")]
   public void UnavailableCompoundPreservesOriginalGraph(string kind)
   {var f=new Fixture(scope.Factory);var z=f.Zone;for(int y=2;y<23;y++)for(int x=2;x<78;x++){if(kind=="reserved")z.GenReservedCells.Add((x,y));else if(kind=="wet")z.TileState.WriteCoating(x,y,"water",ZoneTileState.Permanent);else if(kind=="interior")z.GetCell(x,y).IsInterior=true;else z.AddEntity(new Entity{ID="fixture-"+x+"-"+y,BlueprintName="foreign"},x,y);}var before=Shape(z);var reserves=z.GenReservedCells.ToArray();var state=z.TileState.ToSaveString();Assert.True(f.Run(scope.Factory));CollectionAssert.AreEqual(before,Shape(z));CollectionAssert.AreEquivalent(reserves,z.GenReservedCells);Assert.AreEqual(state,z.TileState.ToSaveString());}
 
+  [TestCase("duplicate-physics")][TestCase("destroyed")][TestCase("passable")][TestCase("material")][TestCase("wall")]
+  public void MalformedPillarCannotPublishAnyGroup(string fault)
+  {
+   var f=new Fixture(scope.Factory);var before=Shape(f.Zone);
+   scope.Factory.RegisterPartType<SpreadGenerationReceiptTests.ReceiptCreatedPart>("ReceiptCreated");
+   scope.Factory.Blueprints["Pillar"].Parts["ReceiptCreated"]=new Dictionary<string,string>();
+   SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=e=>{e.RemovePart(e.GetPart<SpreadGenerationReceiptTests.ReceiptCreatedPart>());
+    if(fault=="duplicate-physics")e.AddPart(new PhysicsPart());
+    else if(fault=="destroyed")e.GetPart<DestructiblePart>().HP=0;
+    else if(fault=="passable")e.GetPart<PhysicsPart>().Solid=false;
+    else if(fault=="material")e.GetPart<MaterialPart>().MaterialID="Wood";
+    else e.Tags["Wall"]="true";};
+   try{Assert.True(f.Run(scope.Factory));CollectionAssert.AreEqual(before,Shape(f.Zone));}
+   finally{SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=null;}
+  }
+
   [Test] public void BenignCreationCallbackStillPublishesCanonicalFragments()
-  {var f=new Fixture(scope.Factory);var before=f.Zone.EntityCount;scope.Factory.RegisterPartType<SpreadGenerationReceiptTests.ReceiptCreatedPart>("ReceiptCreated");scope.Factory.Blueprints["BrokenColumn"].Parts["ReceiptCreated"]=new Dictionary<string,string>();int callbacks=0;SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=e=>{callbacks++;e.RemovePart(e.GetPart<SpreadGenerationReceiptTests.ReceiptCreatedPart>());};try{Assert.True(f.Run(scope.Factory));Assert.AreEqual(9,callbacks);Assert.AreEqual(before+9,f.Zone.EntityCount);}finally{SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=null;}}
+  {var f=new Fixture(scope.Factory);var before=f.Zone.EntityCount;scope.Factory.RegisterPartType<SpreadGenerationReceiptTests.ReceiptCreatedPart>("ReceiptCreated");scope.Factory.Blueprints["BrokenColumn"].Parts["ReceiptCreated"]=new Dictionary<string,string>();int callbacks=0;SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=e=>{callbacks++;e.RemovePart(e.GetPart<SpreadGenerationReceiptTests.ReceiptCreatedPart>());};try{Assert.True(f.Run(scope.Factory));Assert.That(callbacks,Is.InRange(10,12));Assert.AreEqual(before+callbacks+2,f.Zone.EntityCount);}finally{SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=null;}}
   [TestCase("duplicate-physics")][TestCase("duplicate-render")][TestCase("duplicate-examinable")][TestCase("wall")][TestCase("solid")][TestCase("empty-id")][TestCase("duplicate-id")][TestCase("footprint")][TestCase("tile")][TestCase("reserve")]
   public void PayloadAndCallbackCorruptionCannotPublishPocket(string mutation)
   {
