@@ -1,0 +1,86 @@
+{
+  "recorded_utc": "2026-11-02T22:12:35.600636+00:00",
+  "source_commit": "16afcc497446968f815e092ea2c1d2f27630d6c7",
+  "source_remote_verified": true,
+  "mac": "Builds/Verification/2026-11-02-deck-16afcc497-current/CavesOfOoo.app",
+  "linux": "Builds/SteamDeck/2026-11-02-deck-16afcc497-current/CavesOfOoo-current",
+  "archive": "Builds/SteamDeck/2026-11-02-deck-16afcc497-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "archive_sha256": "ba9dfeee376856bc669e0e4cc4d942852eb2455e42b7b50a80a53924fb9c8ab8",
+  "archive_bytes": 162168409,
+  "archive_members": 320,
+  "internal_checksums": 306,
+  "source_pins": 170,
+  "build_results": {
+    "mac": "build-6533222db2:0errors4warnings",
+    "linux": "build-f7bd80d24b:0errors4warnings"
+  },
+  "mac_actual": {
+    "requested": [
+      1280,
+      800
+    ],
+    "capture": [
+      1280,
+      856
+    ],
+    "window_title_height": 56,
+    "effective_game_area": [
+      1280,
+      800
+    ],
+    "route": "Continue Causeway19.7; Graphics/Abilities menus; Map49,10 and return; Left39,12HP24; PageUp/Down zoom; F5turn2860 and fresh Continue39,12HP24Height",
+    "controller_scope": "Keyboard coexistence in Mac player; synthetic gamepad verified separately in Editor",
+    "reload_comparison": {
+      "world_rect": [
+        0,
+        56,
+        940,
+        736
+      ],
+      "different_pixels": 950,
+      "total_pixels": 639200,
+      "relative_bounds": [
+        879,
+        192,
+        929,
+        249
+      ],
+      "cause": "not established"
+    },
+    "limits": "First Mac launch overlapped build; not performance evidence"
+  },
+  "review": {
+    "source": "coverage_priorities:0remainingP1/P2",
+    "editor_visual": "capture_route:reported P2s resolved,0additionalblockingP1/P2 in reviewed captures",
+    "mac_visual": "capture_route:0newP1/P2; bounded readability/reload acceptance",
+    "archive": "portable_equipment_final_review:fullgzipEOF,modes,306checksums,170pinsverified;0P1/P2"
+  },
+  "restoration": {
+    "source_commit": "16afcc497446968f815e092ea2c1d2f27630d6c7",
+    "reviewed_manifest_sha256": "a6dffe40dcd2e1a5458b9dd70b06f927f51fa2a11e58b3b69b4f07f786cfc5ec",
+    "tracked_files": 57481,
+    "dirty_tracked_files_preserved": 77,
+    "build_serialization_to_restore": [
+      "Assets/Settings/UniversalRP.asset",
+      "Assets/UniversalRenderPipelineGlobalSettings.asset",
+      "ProjectSettings/ProjectSettings.asset",
+      "ProjectSettings/UnityConnectSettings.asset"
+    ],
+    "prior_builds_preserved": true,
+    "editor_preferences_and_saves_unchanged": true,
+    "current_editor_state_preserved": "Retain idle Editor preferences and unchanged normal save tree; all root-owned standalone session files archived.",
+    "normal_standalone_saves_originally_absent": true,
+    "test_save_archive": "/private/tmp/coo-deck16af-preserved-after/standalone-session-Saves",
+    "preference_extra_key_count": 5,
+    "cache_deletion": false,
+    "at_utc": "2026-11-02T22:11:17.791892+00:00",
+    "applied": true,
+    "all_tracked_snapshot_objects_equal": true,
+    "normal_standalone_saves_and_preferences_restored": true,
+    "current_normal_editor_state_preserved": true,
+    "free_bytes": 330919534592,
+    "limits": "Root supplies Editor-idle assertion; no Unity/build/player invocation or cache cleanup. No unrelated file restored."
+  },
+  "hardware": "Linux/physicalDeck/SteamInput/performance/suspend unverified",
+  "next": "Fresh Sumphold15.6 normal-zoom scene; no assumed ASCII gap where existing native routes already cover owners."
+}

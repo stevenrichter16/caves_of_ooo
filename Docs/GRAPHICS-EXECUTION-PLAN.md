@@ -273,3 +273,7 @@ packaged-performance target. All are requirements, not claims of verification.
 - Last actual hourly report2026-11-01T20:59:02Z; next21:59:02Z. Normal isolation restored; storage inspection only.
 
 -2026-11-02: bounded Spread10.15 Tree root-contact V5 slice observed;154native, actual1×/2×/reader/walk/F5/freshContinue and independent review. No V0–V7 closure; R11 remains open. See GRAPHICS-TREE-CONTACT-SHADOW.md. Batch current delivery next.
+
+## Current Deck compatibility gate (2026-11-02)
+
+Preserve the requirements and evidence limits in `Docs/STEAM-DECK-FLAT-READINESS.md`. Future changes affecting input, cameras or UI must retain 1280×800 readability, controller access and free zoom/menu actions. Reuse the current isolated flat controller route and relevant focused regressions; do not rerun unrelated suites for art-only edits. Linux packaging and Editor/Mac qualification do not close the physical Deck, Steam Input or sustained-performance gates.

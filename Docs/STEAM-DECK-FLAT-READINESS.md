@@ -1,6 +1,6 @@
 # Steam Deck readiness: current flat presentation
 
-Status: bounded Editor qualification passed; updated packages pending, 2026-11-02. This records engineering readiness; it is not Valve certification or a physical-device pass.
+Status: bounded Editor and Mac presentation qualification passed; current Linux package built and independently verified, 2026-11-02. This records engineering readiness; it is not Valve certification or a physical-device pass.
 
 ## Requirements and acceptance
 
@@ -43,3 +43,7 @@ Run `d14fa09d9c52426c981e9aa2f7ee2b2e`: 46/46 checks, 14 actual 1280×800 captur
 The visible footer defects produced 4/4 RED failures; the independently found shrinking-ability-menu bug produced its own RED. Final relevant UI/affordance suite: 83/83 GREEN. These suites overlap the initial 198 tests and are not an additive unique-test count. Receipts and before/after screenshots are retained in `Docs/Verification/SteamDeckFlat/`.
 
 Independent final visual review: the reported P2s are resolved; five reviewed captures show no new blocking P1/P2. The 2× view improves player/sign/fixture recognition with intact sidebar, guidance and hotbar. This is bounded 800p acceptance, not a physical comfort or full-game claim.
+
+## Current delivery
+
+Source `16afcc497` is published and packaged. See `Docs/Verification/SteamDeckFlat/Delivery/delivery.json` for exact outputs, SHA256, Mac launch/travel/save/fresh-reload evidence and restoration. Mac screenshots confirm a 1280×800 game area. The Linux archive has verified executable permissions, checksums and source pins; it has not been executed on Linux/Deck. The standalone Mac smoke uses keyboard input; the 46-check controller route uses synthetic native gamepad events in Editor.
