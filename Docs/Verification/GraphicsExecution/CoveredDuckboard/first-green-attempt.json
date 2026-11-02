@@ -1,0 +1,49 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"04271b880f8c4bc2afa905b34f98ae0a\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1793620641826,\"finished_unix_ms\":1793620685421,\"last_update_unix_ms\":1793620685421,\"progress\":{\"completed\":211,\"total\":211,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1793620685272,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\\\"Overworld.17.7.0\\\")\",\"last_finished_unix_ms\":1793620685309,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.FlatPixelSoddenTravelTests.CoveredBoardDisclosureAndSemanticCountercases(\\\"tinted\\\")\",\"message\":\"  Expected: null\\n  But was:  <Live16x24 Sodden travel 0 (UnityEngine.Tilemaps.Tile)>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FlatPixelSoddenTravelTests.CoverRemovalAndOldReaderSubjectNeverReuseThePreviousNativeOwner\",\"message\":\"  Expected: not same as <sodden-travel (UnityEngine.Texture2D)>\\n  But was:  <sodden-travel (UnityEngine.Texture2D)>\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "04271b880f8c4bc2afa905b34f98ae0a",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1793620641826,
+        "finished_unix_ms": 1793620685421,
+        "last_update_unix_ms": 1793620685421,
+        "progress": {
+          "completed": 211,
+          "total": 211,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1793620685272,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+          "last_finished_unix_ms": 1793620685309,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.CoveredBoardDisclosureAndSemanticCountercases(\"tinted\")",
+              "message": "  Expected: null\n  But was:  <Live16x24 Sodden travel 0 (UnityEngine.Tilemaps.Tile)>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.CoverRemovalAndOldReaderSubjectNeverReuseThePreviousNativeOwner",
+              "message": "  Expected: not same as <sodden-travel (UnityEngine.Texture2D)>\n  But was:  <sodden-travel (UnityEngine.Texture2D)>\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

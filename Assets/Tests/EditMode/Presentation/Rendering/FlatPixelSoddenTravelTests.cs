@@ -250,7 +250,7 @@ namespace CavesOfOoo.Tests
         }
         [TestCase("hidden")] [TestCase("unexplored")] [TestCase("covered")]
         [TestCase("gone")] [TestCase("foreign-material")]
-        public void BoardConnectionCannotReadHiddenCoveredOrInvalidNeighbor(string fault)
+        public void BoardConnectionKeepsDisclosedCoveredButRejectsHiddenOrInvalidNeighbor(string fault)
         {
             Add("Duckboard"); var east = Add("Duckboard", X + 1, Y); BoardFrame(2);
             if (fault == "hidden") zone.GetCell(X + 1, Y).IsVisible = false;
@@ -258,7 +258,7 @@ namespace CavesOfOoo.Tests
             if (fault == "covered") Add("Dagger", X + 1, Y).GetPart<RenderPart>().RenderLayer = 100;
             if (fault == "gone") east.GetPart<DestructiblePart>().Gone = true;
             if (fault == "foreign-material") east.GetPart<MaterialPart>().ParentEntity = new Entity();
-            BoardFrame(0);
+            BoardFrame(fault == "covered" ? 2 : 0);
         }
         [Test] public void RealMireDefinitionAndSourceStayMireWhenStockIsDepleted()
         {
@@ -478,7 +478,9 @@ namespace CavesOfOoo.Tests
         {
             var board = Add("Duckboard"); Native(board); Add("Duckboard", X + 1); BoardFrame(2);
             var actor = Add("Player"); actor.GetPart<RenderPart>().RenderLayer = 100;
-            Assert.AreSame(actor, View().Owner); NotSoddenNative(board);
+            Assert.AreSame(actor, View().Owner); NativeTile(View().GroundDecorationTile, Atlas);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, board, X, Y, out var covered, out _));
+            Assert.AreSame(Resources.Load<Texture2D>(Atlas), covered.texture);
             Assert.True(zone.MoveEntity(actor, X - 2, Y)); Native(board); BoardFrame(2);
             Assert.True(zone.RemoveEntity(board)); Assert.AreNotSame(board, View().Owner); NotSoddenNative(board);
         }
@@ -692,7 +694,7 @@ namespace CavesOfOoo.Tests
                 zone.GetCell(X + 1, Y).IsVisible = false; paint.Dirty(X + 1, Y); paint.Step(); BoardTile(paint.At(X, Y), 0);
                 zone.GetCell(X + 1, Y).IsVisible = true; paint.Dirty(X + 1, Y); paint.Step(); BoardTile(paint.At(X, Y), 2);
                 var cover = Add("Dagger", X + 1); cover.GetPart<RenderPart>().RenderLayer = 100;
-                paint.Dirty(X + 1, Y); paint.Step(); BoardTile(paint.At(X, Y), 0);
+                paint.Dirty(X + 1, Y); paint.Step(); BoardTile(paint.At(X, Y), 2);
                 Assert.True(zone.RemoveEntity(cover)); paint.Dirty(X + 1, Y); paint.Step(); BoardTile(paint.At(X, Y), 2);
                 zone.GetCell(X, Y).IsVisible = false; paint.Dirty(X, Y); paint.Step();
                 var hidden = paint.At(X, Y); Assert.True(hidden == null || hidden.sprite.texture != Resources.Load<Texture2D>(Atlas));
@@ -1027,6 +1029,102 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [TestCase("Player")] [TestCase("Dagger")]
+        public void CoveredBoardKeepsGroundDecorationAndExactReader(string coverName)
+        {
+            var floor = Add("Grass"); var board = Add("Duckboard"); Add("Duckboard", X + 1);
+            var cover = Add(coverName); cover.GetPart<RenderPart>().RenderLayer = 100;
+            string state = zone.TileState.ToSaveString(); int version = zone.EntityVersion;
+            var view = View(); Assert.AreSame(cover, view.Owner); NativeTile(view.GroundDecorationTile, Atlas);
+            Assert.AreEqual(new Rect(2 * 16, 0, 16, 24), view.GroundDecorationTile.sprite.rect);
+            NativeTile(view.GroundTile, CurrentGroundAtlas);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone, board, X, Y, out var sprite, out var tint));
+            Assert.AreSame(Resources.Load<Texture2D>(Atlas), sprite.texture); Assert.AreEqual(new Rect(0,0,16,24),sprite.rect);
+            Assert.AreEqual(Color.white,tint); Assert.AreEqual(state,zone.TileState.ToSaveString()); Assert.AreEqual(version,zone.EntityVersion);
+            var east=View(X+1,Y); Assert.AreEqual(8*16,east.ForegroundTile.sprite.rect.x);
+        }
+        [TestCase("hidden")] [TestCase("fog")] [TestCase("unexplored")] [TestCase("duplicate")]
+        [TestCase("altered-duplicate")] [TestCase("material")] [TestCase("foreign-render")] [TestCase("foreign-physics")]
+        [TestCase("carried")] [TestCase("removed")] [TestCase("destroyed")] [TestCase("frozen")]
+        [TestCase("tinted")] [TestCase("solid-fixture")] [TestCase("stale-graph")]
+        public void CoveredBoardDisclosureAndSemanticCountercases(string fault)
+        {
+            Add("Grass"); var board=Add("Duckboard"); var cover=Add("Player");cover.GetPart<RenderPart>().RenderLayer=100;
+            Assert.NotNull(View().GroundDecorationTile,"Positive control must establish covered-board presentation first.");
+            switch(fault)
+            {
+                case "hidden":board.GetPart<RenderPart>().Visible=false;break;
+                case "fog":zone.GetCell(X,Y).IsVisible=false;break;
+                case "unexplored":zone.GetCell(X,Y).Explored=false;break;
+                case "duplicate":Add("Duckboard");break;
+                case "altered-duplicate":Add("Duckboard").GetPart<MaterialPart>().MaterialID="Stone";break;
+                case "material":board.GetPart<MaterialPart>().MaterialID="Stone";break;
+                case "foreign-render":board.GetPart<RenderPart>().ParentEntity=new Entity();break;
+                case "foreign-physics":board.GetPart<PhysicsPart>().ParentEntity=new Entity();break;
+                case "carried":board.GetPart<PhysicsPart>().InInventory=cover;break;
+                case "removed":Assert.True(zone.RemoveEntity(board));break;
+                case "destroyed":board.GetPart<DestructiblePart>().Gone=true;break;
+                case "frozen":board.GetPart<ThermalPart>().Temperature=board.GetPart<ThermalPart>().FreezeTemperature;break;
+                case "tinted":
+                    // The object-status matrix rejects electricity on dry wood. Inject an owned
+                    // active tint state directly to test presentation independently of admission.
+                    var effects=board.GetPart<StatusEffectsPart>();
+                    if(effects==null){effects=new StatusEffectsPart();board.AddPart(effects);}
+                    Assert.True(effects.ForceApplyEffect(new ElectrifiedEffect(1),null,zone));
+                    Assert.NotNull(effects.GetRenderColorOverride());break;
+                case "solid-fixture":Add("PeatBank");break;
+                case "stale-graph":Attach(Crossing);break;
+            }
+            if(world.TryResolvePresentation(zone,X,Y,out var view))Assert.IsNull(view.GroundDecorationTile);
+            if(world.TryGetPresentationSubjectSprite(zone,board,X,Y,out var sprite,out _))Assert.AreNotSame(Resources.Load<Texture2D>(Atlas),sprite?.texture);
+        }
+        [TestCase("Duckboard")] [TestCase("PeatBank")]
+        public void HiddenCompetingOwnersDoNotEraseDisclosedCoveredBoard(string hiddenName)
+        {
+            var board=Add("Duckboard");var cover=Add("Player");cover.GetPart<RenderPart>().RenderLayer=100;
+            var hidden=Add(hiddenName);hidden.GetPart<RenderPart>().Visible=false;
+            NativeTile(View().GroundDecorationTile,Atlas);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,board,X,Y,out var sprite,out _));Assert.AreSame(Resources.Load<Texture2D>(Atlas),sprite.texture);
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void CoveredBoardMissingResourceDeclinesWithoutChangingCover(bool malformed)
+        {
+            var board=Add("Duckboard");var cover=Add("Player");cover.GetPart<RenderPart>().RenderLayer=100;
+            var bad=malformed?new Texture2D(447,24):null;
+            try { Inject(bad);Assert.AreSame(cover,View().Owner);Assert.IsNull(View().GroundDecorationTile);
+                if(world.TryGetPresentationSubjectSprite(zone,board,X,Y,out var sprite,out _))Assert.AreNotSame(Resources.Load<Texture2D>(Atlas),sprite?.texture); }
+            finally { world?.Dispose();if(bad!=null)Object.DestroyImmediate(bad); }
+        }
+        [Test] public void CoveredBoardWetGroundAndHeatMarksRemainIndependent()
+        {
+            Add("Grass");Add("Duckboard");var cover=Add("Player");cover.GetPart<RenderPart>().RenderLayer=100;
+            zone.TileState.WriteCoating(X,Y,"water",ZoneTileState.Permanent);
+            zone.TileState.AddHeat(X,Y,25);string state=zone.TileState.ToSaveString();
+            using(var paint=new Paint(world,zone))
+            {
+                paint.Step();NativeTile(paint.DecorationAt(X,Y),Atlas);var ground=paint.GroundAt(X,Y);var mark=paint.Mark;var tint=paint.MarkTint;
+                Assert.NotNull(ground, "Wet ground must actually be submitted."); Assert.NotNull(mark, "Heat mark must actually be submitted.");
+                Assert.AreSame(cover,View().Owner);Assert.AreEqual(state,zone.TileState.ToSaveString());
+                Assert.True(zone.RemoveEntity(cover));paint.Dirty(X,Y);paint.Step();Assert.IsNull(paint.DecorationAt(X,Y));
+                Assert.AreSame(ground,paint.GroundAt(X,Y));Assert.AreSame(mark,paint.Mark);Assert.AreEqual(tint,paint.MarkTint);
+            }
+        }
+        [Test] public void CoveredBoardSubmittedMoveRemovalAndFullDirtyAgree()
+        {
+            var board=Add("Duckboard");Add("Duckboard",X+1);var cover=Add("Player");cover.GetPart<RenderPart>().RenderLayer=100;
+            using(var paint=new Paint(world,zone))
+            {
+                paint.Step();NativeTile(paint.DecorationAt(X,Y),Atlas);BoardTile(paint.At(X+1,Y),8);
+                long full=EnvironmentSpriteRenderer.Perf.FullPasses;
+                Assert.True(zone.RemoveEntity(cover));Assert.True(zone.AddEntity(cover,X+1,Y));paint.Dirty(X,Y);paint.Dirty(X+1,Y);paint.Step();
+                Assert.IsNull(paint.DecorationAt(X,Y));BoardTile(paint.At(X,Y),2);NativeTile(paint.DecorationAt(X+1,Y),Atlas);
+                Assert.AreEqual(full,EnvironmentSpriteRenderer.Perf.FullPasses);
+                var decorated=paint.DecorationAt(X+1,Y);paint.Renderer.MarkDirty();paint.Step();Assert.AreSame(decorated,paint.DecorationAt(X+1,Y));
+                Assert.AreEqual(DestroyVerdict.Destroyed,DestructionSystem.Damage(board,999,null,zone));paint.Step();Assert.IsNull(paint.DecorationAt(X,Y));
+                Assert.AreEqual(0,paint.DecorationAt(X+1,Y).sprite.rect.x);
+            }
+        }
+
         // Existing KitchenBrine submitted-paint pattern, kept local and small.
         // No alternative renderer, synthetic native selector or new test framework.
         sealed class Paint : IDisposable
@@ -1062,6 +1160,7 @@ namespace CavesOfOoo.Tests
             }
             public bool FullDirty => (bool)Read(Renderer, "_fullDirty");
             public Tile At(int x, int y) => overlay.GetTile<Tile>(new Vector3Int(x, Zone.Height - 1 - y, 0));
+            public Tile DecorationAt(int x,int y) => ((Tilemap)Read((EnvironmentSpriteRenderer)Read(Renderer,"_envSpriteRenderer"),"_flatGroundDecorationTilemap")).GetTile<Tile>(new Vector3Int(x,Zone.Height-1-y,0));
             public Tile GroundAt(int x, int y) => ground.GetTile<Tile>(new Vector3Int(x, Zone.Height - 1 - y, 0));
             public TileBase Mark => marks.GetTile(new Vector3Int(X, Zone.Height - 1 - Y, 0));
             public TileBase MarkAt(int x, int y) => marks.GetTile(new Vector3Int(x, Zone.Height - 1 - y, 0));

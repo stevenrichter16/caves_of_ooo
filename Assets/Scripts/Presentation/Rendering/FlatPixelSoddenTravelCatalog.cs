@@ -111,11 +111,8 @@ namespace CavesOfOoo.Rendering
             {
                 if (owner.BlueprintName == "Duckboard")
                 {
-                    frame = 0;
-                    if (BoardAt(zone, x, y - 1)) frame |= 1;
-                    if (BoardAt(zone, x + 1, y)) frame |= 2;
-                    if (BoardAt(zone, x, y + 1)) frame |= 4;
-                    if (BoardAt(zone, x - 1, y)) frame |= 8;
+                    if (!TryBoardOwner(zone, x, y, out var board) || !ReferenceEquals(board, owner)) return false;
+                    frame = BoardMask(zone, x, y);
                 }
                 tile = travel[frame];
             }
@@ -172,17 +169,17 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>Caller still authorizes the examine document. Only the same
-        /// selected visible world subject can borrow this native image; board
+        /// disclosed world subject can borrow this native image; board
         /// portraits use isolated frame0 rather than revealing neighboring geometry.</summary>
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
-            if (owner.BlueprintName == "Duckboard")
+            if (owner?.BlueprintName == "Duckboard")
             {
-                if (travel == null || ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) < 0) return false;
+                if (travel == null || !TryBoardOwner(zone, x, y, out var board) || !ReferenceEquals(board, owner)) return false;
                 sprite = travel[0].sprite; return sprite != null;
             }
+            if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
             if (owner.BlueprintName == "MirePool" && fenGround != null)
             {
                 if (ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) < 0) return false;
@@ -213,14 +210,43 @@ namespace CavesOfOoo.Rendering
         bool Selected(Zone zone, int x, int y, Entity owner)
             => owner != null && selector.TryResolve(zone, x, y, out var selected)
                 && !selected.Remembered && ReferenceEquals(selected.Owner, owner);
-        bool BoardAt(Zone zone, int x, int y)
+        /// <summary>Use the existing lower decoration layer only while a real actor/item
+        /// covers the board. The selected foreground and independent floor/hazards stay intact.</summary>
+        public Tile CoveredBoard(Zone zone, int x, int y)
         {
-            var cell = zone.GetCell(x, y);
-            return cell != null && cell.Explored && cell.IsVisible
-                && selector.TryResolve(zone, x, y, out var selected) && !selected.Remembered
-                && selected.Owner?.BlueprintName == "Duckboard"
-                && ForegroundFrame(selected.Owner, zone.TileState.Get(x, y), x, y) == 0;
+            if (travel == null || !TryBoardOwner(zone, x, y, out var board) || Selected(zone, x, y, board)) return null;
+            return travel[BoardMask(zone, x, y)];
         }
+        int BoardMask(Zone zone, int x, int y)
+        {
+            int mask = 0;
+            if (TryBoardOwner(zone, x, y - 1, out _)) mask |= 1;
+            if (TryBoardOwner(zone, x + 1, y, out _)) mask |= 2;
+            if (TryBoardOwner(zone, x, y + 1, out _)) mask |= 4;
+            if (TryBoardOwner(zone, x - 1, y, out _)) mask |= 8;
+            return mask;
+        }
+        bool TryBoardOwner(Zone zone, int x, int y, out Entity board)
+        {
+            board = null;
+            if (!ReadyCell(zone, x, y, out var cell)
+                || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered) return false;
+            foreach (var owner in cell.Occupants)
+            {
+                // Hidden owners cannot reveal themselves by removing a disclosed board.
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (owner.BlueprintName == "Duckboard")
+                {
+                    if (board != null || ForegroundFrame(owner, zone.TileState.Get(x, y), x, y) != 0) return false;
+                    board = owner;
+                }
+                else if (!BoardCover(owner) && (owner.HasTag("Solid") || Owned<PhysicsPart>(owner).Solid)) return false;
+            }
+            return board != null && (ReferenceEquals(selected.Owner, board)
+                || BoardCover(selected.Owner) && Placed(zone, cell, selected.Owner) && VisiblePhysicalOwner(selected.Owner));
+        }
+        static bool BoardCover(Entity owner)
+            => owner != null && (owner.HasTag("Player") || owner.HasTag("Creature") || owner.HasTag("Item"));
 
         static bool MireAt(Zone zone, int x, int y)
         {
