@@ -1,3 +1,17 @@
+# Current graphics packages — fbfea9592
+
+Source `fbfea9592f5aea1b8b8c3d1c42493c9f0e3acc3a` is verified on origin/main. This batch includes Overwrit ground wear, ordinary Grove brine sources and Gantry timber relief, plus prior689157 work. **Read [package metadata corrections](Verification/GraphicsExecution/BatchFbfea/ERRATA.md): three descriptive fields in the preserved archive are stale.**
+
+- Mac: `Builds/Verification/2026-11-02-graphics-fbfea9592-current/CavesOfOoo.app`; build-046e45aea4,40.024604s,0errors4warnings.
+- Linux: `Builds/SteamDeck/2026-11-02-graphics-fbfea9592-current/CavesOfOoo-current`; build-149598191e,84.462495s,0errors4warnings.
+- Archive: sibling `CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,129086088bytes,191files/13directories/204members; SHA256 `4a52b7a47786be2b268124ded5c7f86690dea9d41b9979bac16b91f7b9780fd6`. Independently verified contents/checksums/gzip EOF. No Linux/physical Deck execution.
+
+Two actual Mac processes at ordinary3024×1898 verified Gantry timber in world, well reader, movement,7.8→7.9→7.8 travel,F5turn1960 and freshContinue39,11HP32. No newF12/damage; prior protected Editor history is disclosed and alreadyOFF. Overwrit/Grove included but not packaged visited. Saved/fresh world differs by3096/3576624pixels,max9/255,causeunproven; no exact parity. Logs contain zero Exception/error/warning/failed matches. No packaged benchmark/R11 acceptance.
+
+Separate native checkpoints:83P,352P,31P and retained Sodden390P+3Inconclusive allocation checks; non-additive. Independent source/archive/visual review found the disclosed P2 metadata issue, no additional blocker. Applied restoration preserved56122tracked objects,76dirty paths(75foreign+1owned neutral importer normalization),normal saves/preferences and prior689157packages; four generated settings restored, owned saves archived, no cleanup. See [full delivery evidence](Verification/GraphicsExecution/BatchFbfea/README.md). Coverage/polish/population/shadow/V0–V7 remain incomplete.
+
+## Previous preserved checkpoint
+
 # Current graphics packages — 689157039
 
 Source `6891570399aa04a8812f5ddbe34efffa4ac057af` is verified on origin/main. This batch includes Marrowstye12.12 ground/grade, ordinary Sodden source continuity and Beating19.14 dune relief, plus prior56cfa work. V0–V7 remains open.
