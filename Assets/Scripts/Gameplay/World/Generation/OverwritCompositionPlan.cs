@@ -94,6 +94,9 @@ namespace CavesOfOoo.Core
             Route(NorthX, 0, 40, 12); Route(SouthX, 24, 40, 12);
             var rng = new Random(unchecked(seed ^ FormationSelector.StableIndex(id, int.MaxValue)));
             Grow(rng);
+            // One fresh-layout pilot on the inhabited eastern rim. The Blank
+            // and every other address retain their original sparse placement.
+            if (ZoneID == "Overworld.4.12.0" && PilgrimageGathering()) return;
             if (Formation == OverwritFormation.PilgrimageRim && rng.Next(100) < 35)
                 PilgrimageFurniture(rng);
         }
@@ -113,6 +116,39 @@ namespace CavesOfOoo.Core
                     if (CanPlace(x, y)) { objects[x, y] = "OverwritNewGrowth"; placed++; }
                 }
             }
+        }
+
+        private bool PilgrimageGathering()
+        {
+            if (Formation != OverwritFormation.PilgrimageRim || OutwardX != 1) return false;
+            int start = Hash(Seed, 4, 12, 71) % 13;
+            for (int i = 0; i < 13; i++)
+            {
+                int cy = 6 + (start + i) % 13;
+                var seats = new[] { (x: 74, y: cy - 2), (x: 74, y: cy + 2), (x: 76, y: cy) };
+                bool fits = true;
+                foreach (var s in seats)
+                    for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
+                    {
+                        int x = s.x + dx, y = s.y + dy;
+                        if (!IsRim(x, y) || x <= 1 || y <= 1 || x >= Zone.Width - 2 || y >= Zone.Height - 2
+                            || approaches[x, y] || objects[x, y] != null && objects[x, y] != "OverwritNewGrowth") fits = false;
+                    }
+                if (!fits) continue;
+                // Shape existing passable growth into two shoulders. Clear only
+                // fresh-plan aprons, never real entities or a cached zone.
+                foreach (var s in seats)
+                    for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
+                        objects[s.x + dx, s.y + dy] = null;
+                objects[74, cy - 2] = objects[74, cy + 2] = "OverwritPilgrimBench";
+                objects[76, cy] = "OverwritWaymarker";
+                var shoulders = new[] { (x: 73, y: cy - 4), (x: 74, y: cy - 4), (x: 76, y: cy - 4),
+                    (x: 77, y: cy - 3), (x: 73, y: cy + 4), (x: 75, y: cy + 4), (x: 77, y: cy + 3) };
+                foreach (var s in shoulders)
+                    if (IsRim(s.x, s.y) && CanPlace(s.x, s.y)) objects[s.x, s.y] = "OverwritNewGrowth";
+                return true;
+            }
+            return false; // Keep the original furniture chance if routes leave no safe apron.
         }
 
         private void PilgrimageFurniture(Random rng)

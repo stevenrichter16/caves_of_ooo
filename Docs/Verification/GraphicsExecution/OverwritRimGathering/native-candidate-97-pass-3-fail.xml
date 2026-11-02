@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="100" result="Failed(Child)" total="100" passed="97" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:56Z" duration="32.4622479">
+  <test-suite type="TestSuite" id="44747" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:56Z" duration="32.462248" total="100" passed="97" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44719" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:56Z" duration="32.450471" total="100" passed="97" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3752" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44720" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:56Z" duration="32.442774" total="100" passed="97" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44721" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:56Z" duration="32.436254" total="100" passed="97" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24472" name="OverwritCompositionAdversarialTests" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:28Z" duration="4.108449" total="56" passed="53" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24535" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:25Z" duration="1.886184" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24532" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(2048)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(2048)" methodname="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="334186984" result="Failed" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:24Z" duration="0.568329" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.3.10.0
+  Expected: collection containing "HollowchimeCrop"
+  But was:  < "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable (System.Int32 seed) [0x0015e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/OverwritCompositionAdversarialTests.cs:218
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24533" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(64)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(64)" methodname="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1937858498" result="Failed" start-time="2026-11-02 20:20:24Z" end-time="2026-11-02 20:20:25Z" duration="0.775309" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.4.11.0
+  Expected: collection containing "GreybladderCrop"
+  But was:  < "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable (System.Int32 seed) [0x0015e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/OverwritCompositionAdversarialTests.cs:218
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24534" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(1729)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(1729)" methodname="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1051684598" result="Failed" start-time="2026-11-02 20:20:25Z" end-time="2026-11-02 20:20:25Z" duration="0.519752" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.0.9.0
+  Expected: collection containing "AbsentmintCrop"
+  But was:  < "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable (System.Int32 seed) [0x0015e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/OverwritCompositionAdversarialTests.cs:218
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24531" name="Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 20:20:25Z" end-time="2026-11-02 20:20:26Z" duration="0.129126" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24528" name="Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent(&quot;OverwritNewGrowth&quot;,False)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent(&quot;OverwritNewGrowth&quot;,False)" methodname="Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="4671796" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.028554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24529" name="Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent(&quot;OverwritWaymarker&quot;,True)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent(&quot;OverwritWaymarker&quot;,True)" methodname="Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="780651923" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.031534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24530" name="Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent(&quot;OverwritPilgrimBench&quot;,False)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent(&quot;OverwritPilgrimBench&quot;,False)" methodname="Adversarial_DestructionKeepsNativeOwnersAndIsIdempotent" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="196358931" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.028646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24522" name="Adversarial_FailedReuseDoesNotExposeAnOldPlanOrRepairAnExistingZone" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_FailedReuseDoesNotExposeAnOldPlanOrRepairAnExistingZone" methodname="Adversarial_FailedReuseDoesNotExposeAnOldPlanOrRepairAnExistingZone" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1636192004" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.036898" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24489" name="Adversarial_GenerationIgnoresUnrelatedRngConsumption" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_GenerationIgnoresUnrelatedRngConsumption" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.208169" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24486" name="Adversarial_GenerationIgnoresUnrelatedRngConsumption(int.MinValue)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_GenerationIgnoresUnrelatedRngConsumption(int.MinValue)" methodname="Adversarial_GenerationIgnoresUnrelatedRngConsumption" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="2018233064" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.059112" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24487" name="Adversarial_GenerationIgnoresUnrelatedRngConsumption(-1)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_GenerationIgnoresUnrelatedRngConsumption(-1)" methodname="Adversarial_GenerationIgnoresUnrelatedRngConsumption" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="2070738428" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.057274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24488" name="Adversarial_GenerationIgnoresUnrelatedRngConsumption(int.MaxValue)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_GenerationIgnoresUnrelatedRngConsumption(int.MaxValue)" methodname="Adversarial_GenerationIgnoresUnrelatedRngConsumption" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="747275039" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.063893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24517" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:27Z" duration="1.007722" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24493" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="2021162991" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.038692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24494" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Physics&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Physics&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1284984720" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.038416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24495" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Destructible&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Destructible&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="664791938" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.039935" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24496" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Material&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Material&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1764289174" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.041412" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24497" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Thermal&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Thermal&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="260852840" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.038811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24498" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Physics&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Physics&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1968762546" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.041456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24499" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Render&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Render&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="915764618" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.054620" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24500" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Destructible&quot;,null,null)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Destructible&quot;,null,null)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="64199804" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.045280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24501" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,&quot;Visible&quot;,&quot;false&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,&quot;Visible&quot;,&quot;false&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="293995061" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.036359" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24502" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,&quot;RenderString&quot;,&quot;?&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,&quot;RenderString&quot;,&quot;?&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="113737505" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.036959" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24503" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,&quot;GlyphVariants&quot;,&quot;.,'&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Render&quot;,&quot;GlyphVariants&quot;,&quot;.,'&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1554054686" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.037486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24504" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;true&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1571793978" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.036811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24505" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Physics&quot;,&quot;Takeable&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritGround&quot;,&quot;Physics&quot;,&quot;Takeable&quot;,&quot;true&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="172557427" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.036697" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24506" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;true&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1139574009" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.039091" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24507" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Physics&quot;,&quot;Takeable&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Physics&quot;,&quot;Takeable&quot;,&quot;true&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="51447451" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:26Z" duration="0.040301" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24508" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Destructible&quot;,&quot;HP&quot;,&quot;0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Destructible&quot;,&quot;HP&quot;,&quot;0&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="157173201" result="Passed" start-time="2026-11-02 20:20:26Z" end-time="2026-11-02 20:20:27Z" duration="0.040774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24509" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Material&quot;,&quot;MaterialTagsRaw&quot;,&quot;&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Material&quot;,&quot;MaterialTagsRaw&quot;,&quot;&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1947260874" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.037003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24510" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Thermal&quot;,&quot;HeatCapacity&quot;,&quot;0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritNewGrowth&quot;,&quot;Thermal&quot;,&quot;HeatCapacity&quot;,&quot;0&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1705358383" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.036422" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24511" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;false&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Physics&quot;,&quot;Solid&quot;,&quot;false&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1086547309" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.044812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24512" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Destructible&quot;,&quot;Indestructible&quot;,&quot;true&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Destructible&quot;,&quot;Indestructible&quot;,&quot;true&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="579888192" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.043724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24513" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Destructible&quot;,&quot;WreckageBlueprint&quot;,&quot;&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritWaymarker&quot;,&quot;Destructible&quot;,&quot;WreckageBlueprint&quot;,&quot;&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="103964057" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.046020" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24514" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Render&quot;,&quot;Visible&quot;,&quot;false&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Render&quot;,&quot;Visible&quot;,&quot;false&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="48866903" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.041946" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24515" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Material&quot;,&quot;Combustibility&quot;,&quot;0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Material&quot;,&quot;Combustibility&quot;,&quot;0&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="963763893" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.043467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24516" name="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Examinable&quot;,&quot;Description&quot;,&quot;&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything(&quot;OverwritPilgrimBench&quot;,&quot;Examinable&quot;,&quot;Description&quot;,&quot;&quot;)" methodname="Adversarial_MalformedNativeOwnerRejectsWithoutCommittingAnything" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="175853180" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.042702" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24492" name="Adversarial_MissingRequiredContentLeavesNoGroundOrReservations" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MissingRequiredContentLeavesNoGroundOrReservations" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.074693" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24490" name="Adversarial_MissingRequiredContentLeavesNoGroundOrReservations(&quot;OverwritGround&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MissingRequiredContentLeavesNoGroundOrReservations(&quot;OverwritGround&quot;)" methodname="Adversarial_MissingRequiredContentLeavesNoGroundOrReservations" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1600889157" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.022953" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24491" name="Adversarial_MissingRequiredContentLeavesNoGroundOrReservations(&quot;OverwritNewGrowth&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_MissingRequiredContentLeavesNoGroundOrReservations(&quot;OverwritNewGrowth&quot;)" methodname="Adversarial_MissingRequiredContentLeavesNoGroundOrReservations" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="676951283" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.023271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24479" name="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.026075" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24473" name="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;overworld.1.10.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;overworld.1.10.0&quot;)" methodname="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1893391957" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24474" name="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.+1.10.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.+1.10.0&quot;)" methodname="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="753295056" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24475" name="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.1.10.+0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.1.10.+0&quot;)" methodname="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="866970051" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24476" name="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.1.10.00&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.1.10.00&quot;)" methodname="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="853412737" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24477" name="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.2147483648.10.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.2147483648.10.0&quot;)" methodname="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1189818923" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24478" name="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.1.10.0 &quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_NoncanonicalNamesHaveNoRoleOrFacing(&quot;Overworld.1.10.0 &quot;)" methodname="Adversarial_NoncanonicalNamesHaveNoRoleOrFacing" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1700011650" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24485" name="Adversarial_OutOfBoundsQueriesAreNeutral" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_OutOfBoundsQueriesAreNeutral" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.027975" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24480" name="Adversarial_OutOfBoundsQueriesAreNeutral(-1,0)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_OutOfBoundsQueriesAreNeutral(-1,0)" methodname="Adversarial_OutOfBoundsQueriesAreNeutral" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1216070146" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24481" name="Adversarial_OutOfBoundsQueriesAreNeutral(0,-1)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_OutOfBoundsQueriesAreNeutral(0,-1)" methodname="Adversarial_OutOfBoundsQueriesAreNeutral" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="492000457" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24482" name="Adversarial_OutOfBoundsQueriesAreNeutral(80,24)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_OutOfBoundsQueriesAreNeutral(80,24)" methodname="Adversarial_OutOfBoundsQueriesAreNeutral" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1046143738" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000032" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24483" name="Adversarial_OutOfBoundsQueriesAreNeutral(79,25)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_OutOfBoundsQueriesAreNeutral(79,25)" methodname="Adversarial_OutOfBoundsQueriesAreNeutral" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1822711083" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24484" name="Adversarial_OutOfBoundsQueriesAreNeutral(int.MinValue,int.MaxValue)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_OutOfBoundsQueriesAreNeutral(int.MinValue,int.MaxValue)" methodname="Adversarial_OutOfBoundsQueriesAreNeutral" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="2090539698" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.000031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24536" name="Adversarial_PilgrimageFurnitureIsRareAccessibleAndDoesNotInvadeTheBlank" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_PilgrimageFurnitureIsRareAccessibleAndDoesNotInvadeTheBlank" methodname="Adversarial_PilgrimageFurnitureIsRareAccessibleAndDoesNotInvadeTheBlank" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1330094170" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.380451" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24527" name="Adversarial_RuntimePoiKeepsItsOwnPipeline" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_RuntimePoiKeepsItsOwnPipeline" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:28Z" duration="0.144178" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24523" name="Adversarial_RuntimePoiKeepsItsOwnPipeline(Village)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_RuntimePoiKeepsItsOwnPipeline(Village)" methodname="Adversarial_RuntimePoiKeepsItsOwnPipeline" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="898521322" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.034491" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24524" name="Adversarial_RuntimePoiKeepsItsOwnPipeline(MerchantCamp)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_RuntimePoiKeepsItsOwnPipeline(MerchantCamp)" methodname="Adversarial_RuntimePoiKeepsItsOwnPipeline" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="993934157" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.029474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24525" name="Adversarial_RuntimePoiKeepsItsOwnPipeline(Lair)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_RuntimePoiKeepsItsOwnPipeline(Lair)" methodname="Adversarial_RuntimePoiKeepsItsOwnPipeline" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="20519136" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:27Z" duration="0.027227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24526" name="Adversarial_RuntimePoiKeepsItsOwnPipeline(RiverChunk)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_RuntimePoiKeepsItsOwnPipeline(RiverChunk)" methodname="Adversarial_RuntimePoiKeepsItsOwnPipeline" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1648098664" result="Passed" start-time="2026-11-02 20:20:27Z" end-time="2026-11-02 20:20:28Z" duration="0.027115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24521" name="Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.140238" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24518" name="Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement(&quot;Solid&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement(&quot;Solid&quot;)" methodname="Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="110484355" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.036891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24519" name="Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement(&quot;LiquidPool&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement(&quot;LiquidPool&quot;)" methodname="Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="949466675" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.034624" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24520" name="Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement(&quot;TileStateSource&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement(&quot;TileStateSource&quot;)" methodname="Adversarial_UnexpectedGroundMechanicRejectsBeforePlacement" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1832634295" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.038302" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24537" name="Adversarial_UnsayingPipelineCarriesTheExactLegacyCirculationCatalog" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_UnsayingPipelineCarriesTheExactLegacyCirculationCatalog" methodname="Adversarial_UnsayingPipelineCarriesTheExactLegacyCirculationCatalog" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="359609711" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.040781" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="24538" name="OverwritCompositionTests" fullname="CavesOfOoo.Tests.OverwritCompositionTests" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:55Z" duration="27.394269" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="24569" name="ActualManagerUsesOrdinaryCompositionButRetainsUnsayingCirculation" fullname="CavesOfOoo.Tests.OverwritCompositionTests.ActualManagerUsesOrdinaryCompositionButRetainsUnsayingCirculation" methodname="ActualManagerUsesOrdinaryCompositionButRetainsUnsayingCirculation" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1016114543" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.305853" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24574" name="CachedRimFacingPointsIntoTheBlank" fullname="CavesOfOoo.Tests.OverwritCompositionTests.CachedRimFacingPointsIntoTheBlank" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.044362" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24570" name="CachedRimFacingPointsIntoTheBlank(&quot;Overworld.1.10.0&quot;,False,0)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.CachedRimFacingPointsIntoTheBlank(&quot;Overworld.1.10.0&quot;,False,0)" methodname="CachedRimFacingPointsIntoTheBlank" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="53520591" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.002714" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24571" name="CachedRimFacingPointsIntoTheBlank(&quot;Overworld.0.9.0&quot;,True,2)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.CachedRimFacingPointsIntoTheBlank(&quot;Overworld.0.9.0&quot;,True,2)" methodname="CachedRimFacingPointsIntoTheBlank" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="2056058065" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.000219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24572" name="CachedRimFacingPointsIntoTheBlank(&quot;Overworld.0.13.0&quot;,True,0)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.CachedRimFacingPointsIntoTheBlank(&quot;Overworld.0.13.0&quot;,True,0)" methodname="CachedRimFacingPointsIntoTheBlank" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1662747909" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.000030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24573" name="CachedRimFacingPointsIntoTheBlank(&quot;Overworld.4.11.0&quot;,True,3)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.CachedRimFacingPointsIntoTheBlank(&quot;Overworld.4.11.0&quot;,True,3)" methodname="CachedRimFacingPointsIntoTheBlank" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1347969197" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.000024" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24539" name="ExactTwentyTwoOrdinaryAddressesExcludeTheReservedUnsaying" fullname="CavesOfOoo.Tests.OverwritCompositionTests.ExactTwentyTwoOrdinaryAddressesExcludeTheReservedUnsaying" methodname="ExactTwentyTwoOrdinaryAddressesExcludeTheReservedUnsaying" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1955938064" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:28Z" duration="0.043156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24568" name="MissingContentAndOccupiedZonesRejectBeforeMutation" fullname="CavesOfOoo.Tests.OverwritCompositionTests.MissingContentAndOccupiedZonesRejectBeforeMutation" methodname="MissingContentAndOccupiedZonesRejectBeforeMutation" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1481222974" result="Passed" start-time="2026-11-02 20:20:28Z" end-time="2026-11-02 20:20:29Z" duration="0.302757" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24578" name="NativeRimCaveEntrancesStayInThePhysicalMargin" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 20:20:29Z" end-time="2026-11-02 20:20:37Z" duration="8.011293" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24575" name="NativeRimCaveEntrancesStayInThePhysicalMargin(2048)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin(2048)" methodname="NativeRimCaveEntrancesStayInThePhysicalMargin" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1222108907" result="Passed" start-time="2026-11-02 20:20:29Z" end-time="2026-11-02 20:20:33Z" duration="4.646612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24576" name="NativeRimCaveEntrancesStayInThePhysicalMargin(64)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin(64)" methodname="NativeRimCaveEntrancesStayInThePhysicalMargin" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1836742705" result="Passed" start-time="2026-11-02 20:20:33Z" end-time="2026-11-02 20:20:35Z" duration="1.760178" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24577" name="NativeRimCaveEntrancesStayInThePhysicalMargin(1729)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin(1729)" methodname="NativeRimCaveEntrancesStayInThePhysicalMargin" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1768042008" result="Passed" start-time="2026-11-02 20:20:35Z" end-time="2026-11-02 20:20:37Z" duration="1.575221" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24566" name="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 20:20:37Z" end-time="2026-11-02 20:20:38Z" duration="0.999159" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24562" name="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(0)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(0)" methodname="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="2140045210" result="Passed" start-time="2026-11-02 20:20:37Z" end-time="2026-11-02 20:20:37Z" duration="0.242626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24563" name="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(1)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(1)" methodname="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="688694192" result="Passed" start-time="2026-11-02 20:20:37Z" end-time="2026-11-02 20:20:37Z" duration="0.244824" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24564" name="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(2)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(2)" methodname="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1496981637" result="Passed" start-time="2026-11-02 20:20:37Z" end-time="2026-11-02 20:20:37Z" duration="0.232765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24565" name="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(3)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached(3)" methodname="NativeSurfaceIsStonelessSparseAndEveryOpenCellCanBeReached" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1061258649" result="Passed" start-time="2026-11-02 20:20:37Z" end-time="2026-11-02 20:20:38Z" duration="0.221337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24567" name="PhysicalContentHasHonestNativeVerbsAndNoInheritedGroundNoise" fullname="CavesOfOoo.Tests.OverwritCompositionTests.PhysicalContentHasHonestNativeVerbsAndNoInheritedGroundNoise" methodname="PhysicalContentHasHonestNativeVerbsAndNoInheritedGroundNoise" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="502178804" result="Passed" start-time="2026-11-02 20:20:38Z" end-time="2026-11-02 20:20:38Z" duration="0.021239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24557" name="SeedsChangeSparsePlacementWithoutChangingTheLevelBlankGround" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SeedsChangeSparsePlacementWithoutChangingTheLevelBlankGround" methodname="SeedsChangeSparsePlacementWithoutChangingTheLevelBlankGround" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="341888399" result="Passed" start-time="2026-11-02 20:20:38Z" end-time="2026-11-02 20:20:38Z" duration="0.001037" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24561" name="SharedEdgesAgreeOnThreeCellApproaches" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SharedEdgesAgreeOnThreeCellApproaches" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 20:20:38Z" end-time="2026-11-02 20:20:55Z" duration="17.251399" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24558" name="SharedEdgesAgreeOnThreeCellApproaches(0)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SharedEdgesAgreeOnThreeCellApproaches(0)" methodname="SharedEdgesAgreeOnThreeCellApproaches" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="184834973" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000638" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24559" name="SharedEdgesAgreeOnThreeCellApproaches(-1)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SharedEdgesAgreeOnThreeCellApproaches(-1)" methodname="SharedEdgesAgreeOnThreeCellApproaches" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="339985731" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24560" name="SharedEdgesAgreeOnThreeCellApproaches(int.MaxValue)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SharedEdgesAgreeOnThreeCellApproaches(int.MaxValue)" methodname="SharedEdgesAgreeOnThreeCellApproaches" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="700674460" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24579" name="SillsRealArcanistCanRestockAllSixUtilityBooksAndWorkshopSchematics" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SillsRealArcanistCanRestockAllSixUtilityBooksAndWorkshopSchematics" methodname="SillsRealArcanistCanRestockAllSixUtilityBooksAndWorkshopSchematics" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1026161564" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.216519" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24556" name="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.036265" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24552" name="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(0,Blank)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(0,Blank)" methodname="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="68670083" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.003399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24553" name="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(1,GreenRim)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(1,GreenRim)" methodname="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="697096350" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000621" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24554" name="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(2,DryRim)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(2,DryRim)" methodname="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1112798486" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24555" name="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(3,PilgrimageRim)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore(3,PilgrimageRim)" methodname="SurfaceRoleFollowsTheActualNeighborInsteadOfRandomNewLore" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1865490932" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24551" name="UnsupportedAddressesCannotConstructAPlan" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.027062" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24540" name="UnsupportedAddressesCannotConstructAPlan(null)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(null)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="740648995" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24541" name="UnsupportedAddressesCannotConstructAPlan(&quot;&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1709964031" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000085" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24542" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="431407770" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24543" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.01.10.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.01.10.0&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="642725869" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000052" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24544" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10.-1&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10.-1&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1865152207" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24545" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10.1&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10.1&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="217398603" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24546" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.-1.10.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.-1.10.0&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="346001315" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24547" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.20.10.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.20.10.0&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1538049735" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24548" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10.0.extra&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.1.10.0.extra&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1169103959" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24549" name="UnsupportedAddressesCannotConstructAPlan(&quot; Overworld.1.10.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot; Overworld.1.10.0&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="833631651" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24550" name="UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.2.11.0&quot;)" fullname="CavesOfOoo.Tests.OverwritCompositionTests.UnsupportedAddressesCannotConstructAPlan(&quot;Overworld.2.11.0&quot;)" methodname="UnsupportedAddressesCannotConstructAPlan" classname="CavesOfOoo.Tests.OverwritCompositionTests" runstate="Runnable" seed="1705235398" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.000047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="24580" name="OverwritRimGatheringTests" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:56Z" duration="0.908493" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="24586" name="FreshPilotHasAnOpenConnectedGatheringPlace" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:56Z" duration="0.857528" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24581" name="FreshPilotHasAnOpenConnectedGatheringPlace(64)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(64)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="2115409568" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.126446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24582" name="FreshPilotHasAnOpenConnectedGatheringPlace(65)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(65)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="782090199" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:55Z" duration="0.089119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24583" name="FreshPilotHasAnOpenConnectedGatheringPlace(704860946)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(704860946)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1290328856" result="Passed" start-time="2026-11-02 20:20:55Z" end-time="2026-11-02 20:20:56Z" duration="0.298950" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24584" name="FreshPilotHasAnOpenConnectedGatheringPlace(int.MinValue)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(int.MinValue)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="188989086" result="Passed" start-time="2026-11-02 20:20:56Z" end-time="2026-11-02 20:20:56Z" duration="0.273283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24585" name="FreshPilotHasAnOpenConnectedGatheringPlace(int.MaxValue)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(int.MaxValue)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1284702543" result="Passed" start-time="2026-11-02 20:20:56Z" end-time="2026-11-02 20:20:56Z" duration="0.068351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24591" name="OtherFormationsKeepExistingFurnitureBounds" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 20:20:56Z" end-time="2026-11-02 20:20:56Z" duration="0.028255" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24587" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.2.13.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.2.13.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="408615224" result="Passed" start-time="2026-11-02 20:20:56Z" end-time="2026-11-02 20:20:56Z" duration="0.000971" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24588" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.4.11.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.4.11.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="2036386632" result="Passed" start-time="2026-11-02 20:20:56Z" end-time="2026-11-02 20:20:56Z" duration="0.000898" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24589" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.9.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.9.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="863477031" result="Passed" start-time="2026-11-02 20:20:56Z" end-time="2026-11-02 20:20:56Z" duration="0.000798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24590" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.13.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.13.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1891048393" result="Passed" start-time="2026-11-02 20:20:56Z" end-time="2026-11-02 20:20:56Z" duration="0.000798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

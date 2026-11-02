@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="9" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:25Z" duration="2.2781617">
+  <test-suite type="TestSuite" id="44747" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:25Z" duration="2.278162" total="12" passed="9" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44719" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:25Z" duration="2.266651" total="12" passed="9" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3752" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44720" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:25Z" duration="2.259244" total="12" passed="9" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44721" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36497" result="Failed" site="Child" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:25Z" duration="2.252153" total="12" passed="9" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24472" name="OverwritCompositionAdversarialTests" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:24Z" duration="1.484770" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="24535" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:24Z" duration="1.482665" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24532" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(2048)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(2048)" methodname="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="2146653539" result="Failed" start-time="2026-11-02 20:23:23Z" end-time="2026-11-02 20:23:24Z" duration="0.575035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.3.10.0
+  Expected: collection containing "BiomeCropPatchRecord"
+  But was:  < "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown", "HollowchimeCrop", "GreybladderCrop", "AbsentmintCrop" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable (System.Int32 seed) [0x0015e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/OverwritCompositionAdversarialTests.cs:220
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24533" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(64)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(64)" methodname="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1867352196" result="Failed" start-time="2026-11-02 20:23:24Z" end-time="2026-11-02 20:23:24Z" duration="0.674232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.4.11.0
+  Expected: collection containing "BiomeCropPatchRecord"
+  But was:  < "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown", "HollowchimeCrop", "GreybladderCrop", "AbsentmintCrop" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable (System.Int32 seed) [0x0015e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/OverwritCompositionAdversarialTests.cs:220
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24534" name="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(1729)" fullname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable(1729)" methodname="Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable" classname="CavesOfOoo.Tests.OverwritCompositionAdversarialTests" runstate="Runnable" seed="1264077136" result="Failed" start-time="2026-11-02 20:23:24Z" end-time="2026-11-02 20:23:24Z" duration="0.208746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.0.9.0
+  Expected: collection containing "BiomeCropPatchRecord"
+  But was:  < "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown", "HollowchimeCrop", "GreybladderCrop", "AbsentmintCrop" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.OverwritCompositionAdversarialTests.Adversarial_AllTwentyTwoNativeChunksRemainSparseAndTraversable (System.Int32 seed) [0x0015e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/OverwritCompositionAdversarialTests.cs:220
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="24580" name="OverwritRimGatheringTests" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-02 20:23:24Z" end-time="2026-11-02 20:23:25Z" duration="0.752034" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="24586" name="FreshPilotHasAnOpenConnectedGatheringPlace" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.648418" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24581" name="FreshPilotHasAnOpenConnectedGatheringPlace(64)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(64)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1717455419" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.071042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24582" name="FreshPilotHasAnOpenConnectedGatheringPlace(65)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(65)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1285884350" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.084623" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24583" name="FreshPilotHasAnOpenConnectedGatheringPlace(704860946)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(704860946)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1794782619" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.114838" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24584" name="FreshPilotHasAnOpenConnectedGatheringPlace(int.MinValue)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(int.MinValue)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1779122912" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.117546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24585" name="FreshPilotHasAnOpenConnectedGatheringPlace(int.MaxValue)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.FreshPilotHasAnOpenConnectedGatheringPlace(int.MaxValue)" methodname="FreshPilotHasAnOpenConnectedGatheringPlace" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1177120656" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.229427" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24591" name="OtherFormationsKeepExistingFurnitureBounds" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.068885" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24587" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.2.13.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.2.13.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="62861733" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.008800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24588" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.4.11.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.4.11.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="549713131" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.010569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24589" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.9.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.9.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1394338221" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.006426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24590" name="OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.13.0&quot;)" fullname="CavesOfOoo.Tests.OverwritRimGatheringTests.OtherFormationsKeepExistingFurnitureBounds(&quot;Overworld.0.13.0&quot;)" methodname="OtherFormationsKeepExistingFurnitureBounds" classname="CavesOfOoo.Tests.OverwritRimGatheringTests" runstate="Runnable" seed="1364829848" result="Passed" start-time="2026-11-02 20:23:25Z" end-time="2026-11-02 20:23:25Z" duration="0.013618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

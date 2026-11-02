@@ -215,7 +215,10 @@ namespace CavesOfOoo.Tests
                 {
                     Assert.IsFalse(e.HasTag("Creature"), id + ": inherited population returned");
                     Assert.IsFalse(e.HasPart<LiquidPoolPart>() || e.HasPart<TileStateSourcePart>(), id);
-                    Assert.Contains(e.BlueprintName, new[] { "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown" }, id);
+                    // Existing regional wild crops predate this composition pilot.
+                    // Keep the exact allowlist while retaining owner/route limits.
+                    Assert.Contains(e.BlueprintName, new[] { "OverwritGround", "OverwritNewGrowth", "OverwritWaymarker", "OverwritPilgrimBench", "StairsDown",
+                        "HollowchimeCrop", "GreybladderCrop", "AbsentmintCrop", "MargincressCrop", "BinderrootCrop", "BiomeCropPatchRecord" }, id);
                 }
                 Assert.LessOrEqual(z.EntityCount, Zone.Width * Zone.Height + 43, id);
             }

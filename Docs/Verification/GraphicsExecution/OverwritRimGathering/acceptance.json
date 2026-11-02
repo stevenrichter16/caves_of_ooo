@@ -1,0 +1,104 @@
+{
+  "scope": "Fresh Overworld.4.12.0 PilgrimageRim gathering pocket",
+  "status": "bounded-editor-verified",
+  "at_utc": "2026-11-02T20:35:34.354962+00:00",
+  "source_base": "8675ceea9e4874bcdaa7469cae93f1a056beea88",
+  "record": "Docs/GRAPHICS-OVERWRIT-RIM-GATHERING.md",
+  "actual_seed": 704860946,
+  "change": "Two existing inward-facing benches, one blank waymarker and seven possible passable growth shoulders; validate clear aprons and protected approaches before placement. Other addresses retain original RNG and furniture chance; cached graphs unchanged.",
+  "native": {
+    "red": "native-red.xml: 5 failed, 4 passed",
+    "candidate": "native-candidate-97-pass-3-fail.xml: 97 passed, 3 preexisting owner-allowlist failures",
+    "baseline": "unchanged-source-baseline-failures.xml: identical three failures on original runtime",
+    "final": "native-final-3-green.xml: corrected three broad tests passed; 100 distinct current cases green across retained receipts, not a single all-green 100-case run",
+    "fixture_correction": "Exact five preexisting Overwrit crop names from Farming/BiomeCrops.json and invisible BiomeCropPatchRecord; all route/owner exclusions and +43 entity cap retained. Intermediate record and Margincress omissions retained."
+  },
+  "actual": {
+    "fixture_game_id": "9ba2c3d179134acc9f898addede41f94",
+    "before": "BeforeEntry: earned WorldMap34,15; ordinary descent4.12 and 34 east steps to74,12 HP40 Dawn",
+    "owners": [
+      {
+        "blueprint": "OverwritPilgrimBench",
+        "id": "12595",
+        "cell": [
+          74,
+          16
+        ]
+      },
+      {
+        "blueprint": "OverwritPilgrimBench",
+        "id": "12918",
+        "cell": [
+          74,
+          20
+        ]
+      },
+      {
+        "blueprint": "OverwritWaymarker",
+        "id": "12759",
+        "cell": [
+          76,
+          18
+        ]
+      }
+    ],
+    "interaction": "Bench blocks south from74,15. Ordinary bump/actions struck it to8/12; real Wood Examine retained. Clear apron walked to75,18; marker Stone24/24 native Examine. No Restable service claimed.",
+    "travel": "WorldMap34,15 and return75,18 through ordinary input",
+    "reload": "F5 turn2650 HP40; fresh Continue75,18; exact world pixels and three solid owners retained",
+    "cached": "OldLayoutCheckpoint Continue on new source at74,12 retains zero furniture and exact old world pixels",
+    "pixel_comparisons": {
+      "matched": {
+        "world_changed": 760,
+        "world_total": 639200,
+        "ui_changed": 20576,
+        "size": [
+          800,
+          1280,
+          3
+        ]
+      },
+      "reload": {
+        "world_changed": 0,
+        "world_total": 639200,
+        "ui_changed": 20839,
+        "size": [
+          800,
+          1280,
+          3
+        ]
+      },
+      "cached_control": {
+        "world_changed": 0,
+        "world_total": 639200,
+        "ui_changed": 20270,
+        "furniture_owners": 0
+      }
+    }
+  },
+  "performance": {
+    "receipt": "Docs/Verification/GraphicsExecution/Profiles/manual-20261102-203212-496.json",
+    "seconds": 145.1221834,
+    "renderer_p95_ms": 0.093292,
+    "renderer_max_ms": 99.578625,
+    "main_max_ms": 17859.357208,
+    "limits": "After-only Editor observation includes input/tool/capture scheduling; no speedup or R11 attribution/closure. Actual captures1280x800; profile window metadata2321x1285."
+  },
+  "review": {
+    "source": "portable_equipment_final_review: no new P1/P2 on pilot/guards; exact preexisting allowlist correction reviewed",
+    "visual": "capture_route: no new P1/P2; localized modest stopping place, subdued marker and seats. No whole-chunk fullness claim.",
+    "ui_discrepancy": "Bench modal8/12 vs sidebarFocus10/12 after ordinary strikes; stale-focus cause/preexistence unverified. No consistent damage-reporting or fresh-reloadHP assertion."
+  },
+  "coverage": "Approved existing art reused; no new ASCII family closed",
+  "population": "Bounded fresh-address environmental composition; no new NPC/service/loot",
+  "shadow": "unchanged",
+  "whole_area_accepted": false,
+  "delivery": "Current f5a7 packages exclude Morrowfast grade/readers and this; batch next",
+  "remaining": [
+    "Low prominence of small rim pocket",
+    "Intentionally empty interior and Blank remain",
+    "Other ordinary ASCII/material gaps across game",
+    "R11 performance attribution and Linux/Deck execution",
+    "Bench Focus10/12 versus Examine8/12 discrepancy; cause/preexistence not established"
+  ],
+  "next": "Publish exact source then batch Mac/Linux with Morrowfast grade/readers; continue evidenced ordinary environmental gaps."
+}
