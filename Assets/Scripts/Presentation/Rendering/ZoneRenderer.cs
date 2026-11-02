@@ -1281,9 +1281,9 @@ namespace CavesOfOoo.Rendering
         {
             FlatPixelGreyboxCell flat = default;
             bool resolved = FlatPixelModeActive && _envSpriteRenderer.TryResolveFlatPresentation(this, CurrentZone, x, y, out flat);
-            PaintTileStateMarkWithMucilage(x, y, tilePos, cell,
+            PaintTileStateMarkWithAcid(x, y, tilePos, cell,
                 resolved && flat.LocalGround && flat.GroundKind == FlatPixelGreyboxGround.Water,
-                resolved && flat.RepresentedBrine, resolved && flat.RepresentedMire, resolved && flat.RepresentedMucilage);
+                resolved && flat.RepresentedBrine, resolved && flat.RepresentedMire, resolved && flat.RepresentedMucilage, resolved && flat.RepresentedAcid);
         }
 
         private void PaintTileStateMarkCore(int x, int y, Vector3Int tilePos, Cell cell, bool flatWaterRepresented)
@@ -1300,6 +1300,12 @@ namespace CavesOfOoo.Rendering
 
         private void PaintTileStateMarkWithMucilage(int x, int y, Vector3Int tilePos, Cell cell,
             bool flatWaterRepresented, bool flatBrineRepresented, bool flatMireRepresented, bool flatMucilageRepresented)
+            => PaintTileStateMarkWithAcid(x, y, tilePos, cell, flatWaterRepresented, flatBrineRepresented,
+                flatMireRepresented, flatMucilageRepresented, false);
+
+        private void PaintTileStateMarkWithAcid(int x, int y, Vector3Int tilePos, Cell cell,
+            bool flatWaterRepresented, bool flatBrineRepresented, bool flatMireRepresented,
+            bool flatMucilageRepresented, bool flatAcidRepresented)
         {
             if (_tileStateTilemap == null) return;
 
@@ -1351,7 +1357,8 @@ namespace CavesOfOoo.Rendering
                 && !IsFlatPixelWaterRepresented(state, flatWaterRepresented)
                 && !(flatBrineRepresented && FlatPixelKitchenBrineCatalog.IsSoleLiveBrine(state))
                 && !(flatMireRepresented && FlatPixelSoddenTravelCatalog.IsSoleLiveMire(state))
-                && !(flatMucilageRepresented && FlatPixelGrovelandsMaterialsCatalog.IsSoleMucilage(state)))
+                && !(flatMucilageRepresented && FlatPixelGrovelandsMaterialsCatalog.IsSoleMucilage(state))
+                && !(flatAcidRepresented && FlatPixelSoddenTravelCatalog.IsSoleAcid(state)))
             {
                 // Per-liquid tint: ice used to paint the same blue as
                 // water — indistinguishable even on the map (study §1).

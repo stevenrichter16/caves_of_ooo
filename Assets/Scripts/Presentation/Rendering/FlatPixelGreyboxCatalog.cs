@@ -38,6 +38,7 @@ namespace CavesOfOoo.Rendering
         /// <summary>Submitted native MirePool body represents the sole live bog-mire layer; not brine/water.</summary>
         public readonly bool RepresentedMire;
         public readonly bool RepresentedMucilage;
+        public readonly bool RepresentedAcid;
         /// <summary>Opted-in native actors and storage use the selected owner's existing
         /// Render-event color override; their unchanged authored body stays white.</summary>
         public readonly bool PreserveRenderColorCue;
@@ -46,14 +47,14 @@ namespace CavesOfOoo.Rendering
             Color foregroundColor, Entity owner, FlatPixelGreyboxKind kind,
             FlatPixelGreyboxGround groundKind, bool remembered, bool blocksMovement, Tile groundDecoration = null,
             bool nativeForeground = false, bool localGround = false, bool representedBrine = false, bool representedMire = false,
-            bool preserveRenderColorCue = false, bool ambientBackdrop = false, bool representedMucilage = false)
+            bool preserveRenderColorCue = false, bool ambientBackdrop = false, bool representedMucilage = false, bool representedAcid = false)
         {
             GroundTile = ground; ForegroundTile = foreground; GroundDecorationTile = groundDecoration;
             GroundColor = groundColor; ForegroundColor = foregroundColor;
             Owner = owner; Kind = kind; GroundKind = groundKind;
             Remembered = remembered; BlocksMovement = blocksMovement;
             NativeForeground = nativeForeground; LocalGround = localGround; RepresentedBrine = representedBrine;
-            RepresentedMire = representedMire; RepresentedMucilage = representedMucilage;
+            RepresentedMire = representedMire; RepresentedMucilage = representedMucilage; RepresentedAcid = representedAcid;
             PreserveRenderColorCue = preserveRenderColorCue;
             AmbientBackdrop = ambientBackdrop;
         }
@@ -1136,6 +1137,7 @@ namespace CavesOfOoo.Rendering
                 if (owner == soddenFloor) kind = FlatPixelGreyboxKind.Ground;
             }
             var coveredMire = sodden?.CoveredMire(zone, x, y);
+            var coveredAcid = sodden?.CoveredAcid(zone, x, y);
             bool soddenMireGround = coveredMire != null;
             if (soddenMireGround)
             {
@@ -1640,8 +1642,9 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, coveredMucilage ?? stump?.WetEntrance(zone, x, y) ?? settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || mapGround || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || soddenMireGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop,
-                coveredMucilage != null || grovelandsNative && owner.BlueprintName == "MirrorMucilagePool");
+                fallback.BlocksMovement, coveredAcid ?? coveredMucilage ?? stump?.WetEntrance(zone, x, y) ?? settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || mapGround || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || soddenMireGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop,
+                coveredMucilage != null || grovelandsNative && owner.BlueprintName == "MirrorMucilagePool",
+                coveredAcid != null || soddenNative && owner.BlueprintName == "AcidPool");
             return true;
         }
 

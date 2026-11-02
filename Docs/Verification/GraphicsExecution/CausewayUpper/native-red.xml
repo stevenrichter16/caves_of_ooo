@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="1.7399433">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36532" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="1.739943" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44759" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36532" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="1.733341" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="20102" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44760" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36532" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="1.729944" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44761" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36532" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="1.727870" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="31747" name="FlatPixelCausewayUpperTests" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="1.717934" total="35" passed="25" failed="10" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31751" name="CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.167420" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31749" name="CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground(&quot;Player&quot;)" methodname="CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1398441053" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.122125" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground (System.String cover) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31750" name="CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground(&quot;LongSword&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground(&quot;LongSword&quot;)" methodname="CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="305461976" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.042583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.CoveredAcidRetainsBodyAndReaderWithoutReplacingForeground (System.String cover) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:56
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31785" name="DryBrushReusesExistingArtAndItsExistingStateRule" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.DryBrushReusesExistingArtAndItsExistingStateRule" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.174575" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31781" name="DryBrushReusesExistingArtAndItsExistingStateRule(&quot;intact&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.DryBrushReusesExistingArtAndItsExistingStateRule(&quot;intact&quot;)" methodname="DryBrushReusesExistingArtAndItsExistingStateRule" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1457928296" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.044028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.DryBrushReusesExistingArtAndItsExistingStateRule (System.String state) [0x00084] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:98
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31782" name="DryBrushReusesExistingArtAndItsExistingStateRule(&quot;hot&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.DryBrushReusesExistingArtAndItsExistingStateRule(&quot;hot&quot;)" methodname="DryBrushReusesExistingArtAndItsExistingStateRule" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1358400263" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.043027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31783" name="DryBrushReusesExistingArtAndItsExistingStateRule(&quot;gone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.DryBrushReusesExistingArtAndItsExistingStateRule(&quot;gone&quot;)" methodname="DryBrushReusesExistingArtAndItsExistingStateRule" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="736493449" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.041886" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31784" name="DryBrushReusesExistingArtAndItsExistingStateRule(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.DryBrushReusesExistingArtAndItsExistingStateRule(&quot;hidden&quot;)" methodname="DryBrushReusesExistingArtAndItsExistingStateRule" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1866707043" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.042241" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31757" name="IndependentHazardMarksSurvive" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.225887" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31752" name="IndependentHazardMarksSurvive(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive(&quot;heat&quot;,'^')" methodname="IndependentHazardMarksSurvive" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1702900770" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.042337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive (System.String hazard, System.Char expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31753" name="IndependentHazardMarksSurvive(&quot;cold&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive(&quot;cold&quot;,'^')" methodname="IndependentHazardMarksSurvive" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1205347452" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.042173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive (System.String hazard, System.Char expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31754" name="IndependentHazardMarksSurvive(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive(&quot;charge&quot;,'*')" methodname="IndependentHazardMarksSurvive" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="796598438" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.041867" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive (System.String hazard, System.Char expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31755" name="IndependentHazardMarksSurvive(&quot;embers&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive(&quot;embers&quot;,'&quot;')" methodname="IndependentHazardMarksSurvive" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="184639221" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.042106" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive (System.String hazard, System.Char expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31756" name="IndependentHazardMarksSurvive(&quot;veil-mist&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive(&quot;veil-mist&quot;,'\'')" methodname="IndependentHazardMarksSurvive" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="986608862" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.054768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.IndependentHazardMarksSurvive (System.String hazard, System.Char expected) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:65
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="31748" name="OrdinaryAcidHasIndependentNativeBodyGroundReaderAndNoBlueWave" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.OrdinaryAcidHasIndependentNativeBodyGroundReaderAndNoBlueWave" methodname="OrdinaryAcidHasIndependentNativeBodyGroundReaderAndNoBlueWave" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="666232672" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.100763" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.OrdinaryAcidHasIndependentNativeBodyGroundReaderAndNoBlueWave () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="31786" name="ReplacedGraphCannotReadOldAcid" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.ReplacedGraphCannotReadOldAcid" methodname="ReplacedGraphCannotReadOldAcid" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="509147979" result="Failed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.043919" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Native acid body required
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:40
+at CavesOfOoo.Tests.FlatPixelCausewayUpperTests.ReplacedGraphCannotReadOldAcid () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelCausewayUpperTests.cs:104
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="31780" name="UnsupportedAcidStateKeepsFallback" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="1.001585" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31758" name="UnsupportedAcidStateKeepsFallback(&quot;mixed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;mixed&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1866207807" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.044715" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31759" name="UnsupportedAcidStateKeepsFallback(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;empty&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="911840015" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.042552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31760" name="UnsupportedAcidStateKeepsFallback(&quot;finite&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;finite&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1306482758" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:28Z" duration="0.041328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31761" name="UnsupportedAcidStateKeepsFallback(&quot;projected&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;projected&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="693181279" result="Passed" start-time="2026-11-02 20:55:28Z" end-time="2026-11-02 20:55:29Z" duration="0.042349" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31762" name="UnsupportedAcidStateKeepsFallback(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;missing&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1220265789" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041680" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31763" name="UnsupportedAcidStateKeepsFallback(&quot;wrong-liquid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;wrong-liquid&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="457853347" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041627" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31764" name="UnsupportedAcidStateKeepsFallback(&quot;negative-stock&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;negative-stock&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="165604335" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041961" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31765" name="UnsupportedAcidStateKeepsFallback(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;frozen&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1142575450" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041663" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31766" name="UnsupportedAcidStateKeepsFallback(&quot;vapor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;vapor&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1428289637" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041687" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31767" name="UnsupportedAcidStateKeepsFallback(&quot;nan&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;nan&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="818937410" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041766" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31768" name="UnsupportedAcidStateKeepsFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;hidden&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="357719894" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31769" name="UnsupportedAcidStateKeepsFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;memory&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1665629026" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.040901" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31770" name="UnsupportedAcidStateKeepsFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;variant&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1728865895" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31771" name="UnsupportedAcidStateKeepsFallback(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;glyph&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="104264990" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.057062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31772" name="UnsupportedAcidStateKeepsFallback(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;color&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="335155975" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.096485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31773" name="UnsupportedAcidStateKeepsFallback(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;solid&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="180464550" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.043237" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31774" name="UnsupportedAcidStateKeepsFallback(&quot;other-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;other-pool&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="2063064740" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.043690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31775" name="UnsupportedAcidStateKeepsFallback(&quot;duplicate-pool&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;duplicate-pool&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1097922250" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.042531" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31776" name="UnsupportedAcidStateKeepsFallback(&quot;duplicate-grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;duplicate-grass&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1692192105" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041609" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31777" name="UnsupportedAcidStateKeepsFallback(&quot;stairs&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;stairs&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="79134676" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.042371" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31778" name="UnsupportedAcidStateKeepsFallback(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;removed&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="1507416565" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.042738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31779" name="UnsupportedAcidStateKeepsFallback(&quot;no-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests.UnsupportedAcidStateKeepsFallback(&quot;no-floor&quot;)" methodname="UnsupportedAcidStateKeepsFallback" classname="CavesOfOoo.Tests.FlatPixelCausewayUpperTests" runstate="Runnable" seed="39134108" result="Passed" start-time="2026-11-02 20:55:29Z" end-time="2026-11-02 20:55:29Z" duration="0.041545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

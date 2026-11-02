@@ -1,0 +1,82 @@
+{
+  "recorded_utc": "2026-11-02T21:07:56.298658+00:00",
+  "status": "bounded Editor material/readers/travel/reload reviewed; source publication pending",
+  "source_base": "b135faa8ea274e2f9a9e47c83c77d5d3b44057ea",
+  "zone": "Overworld.19.7.0",
+  "actual_owners": {
+    "AcidPool": [
+      "28409 at27,5 volume60",
+      "28408 at27,6 volume60"
+    ],
+    "DryBrush": [
+      "28404 at36,4 HP4",
+      "28405 at36,5 HP4"
+    ]
+  },
+  "native": {
+    "red": "35 cases:10failed25passed",
+    "candidate": "247:238passed6failed3inconclusive; fast paint forwarding corrected",
+    "candidate2": "250:245passed2failed3inconclusive; tests incorrectly dereferenced null state after pool removal",
+    "final": "250:247passed0failed3allocationinconclusive",
+    "nonadditive": true
+  },
+  "actual": {
+    "baseline": "40,12HP24Height1280x800",
+    "readers": [
+      "DryBrush36,5 native portrait DryPlant4/4",
+      "AcidPool27,5 native portrait Acid; live acid3damage/turn text"
+    ],
+    "travel": "ordinary Right/Left then WorldMap49,10 and returned40,12",
+    "save": "turn2830HP24/40; fresh isolated Continue40,12; same four IDs/liquid volumes/brush HP",
+    "failed_trial": "First walking approach: rapid90ms inputs missed;200ms repeated; readback39,12 then37,1; subsequent snake combat killed player. FailedApproach and capture preserved. No successful brush approach/contact or encounter-balance claim. Remote readers and roundtrip are a separate fresh original-fixture trial.",
+    "diagnostic_failure": "Cursor read-only probe after exiting Look encountered null field; no gameplay mutation."
+  },
+  "comparisons": {
+    "world_changed_pixels": 2314,
+    "right_ui_changed_pixels": 0,
+    "bounds": [
+      170,
+      120,
+      413,
+      261
+    ],
+    "claim": "Matched player/camera/time and unchanged rightUI. Fourowner rectangles account1536max; additional world differences retained, cause unproven.",
+    "saved_reload_world_rect": [
+      0,
+      0,
+      940,
+      680
+    ],
+    "saved_reload_world_pixels": 639200,
+    "saved_reload_changed_pixels": 210,
+    "four_owner_rects_origin_native": [
+      -178,
+      40
+    ],
+    "four_owner_changed_pixels": 1536,
+    "other_world_changed_pixels": 778
+  },
+  "profile": {
+    "path": "Docs/Verification/GraphicsExecution/Profiles/manual-20261102-210318-416.json",
+    "seconds": 144.4355997,
+    "renderer_p95_ms": 0.094292,
+    "renderer_max_ms": 289.893834,
+    "main_max_ms": 17444.628625,
+    "scope": "after-only Editor includes failed approach/combat, MCP/CUA/idle scheduling; no matched speedup or R11 closure",
+    "resolution_note": "ScreenCapture outputs1280x800 while profile reports2321x1285 Editor target; retained as separate recorded values"
+  },
+  "limits": [
+    "210reload pixels atx885..917,y192..243; cause unproven, not exact scene equality",
+    "empty/frozen/mixed pools remain fallback",
+    "no new population or shadows",
+    "full-area,globalR11,hardware remain open",
+    "current8dbecpackages exclude this change"
+  ],
+  "next": "independent visual review then exact source publication; rotate beyond Causeway",
+  "hourly_report_utc": "2026-11-02T21:07:11Z",
+  "review": {
+    "source": "portable_equipment_final_review: no additionalP1/P2 beyond known optimized-paint forwarding; fixed and covered by finalnative. No runtime tools used by reviewer.",
+    "visual": "capture_route: no newP1/P2; native woody brush, brightergreenacid, correct portraits, realMap49,10, readable saved/reloaded40,12HP24Height. Creature red/green coloration differs onreload; preserve210pixel difference.",
+    "remaining": "Acid rectangular speckling can resemble moss at1x; strongerliquidedge/hazardprominence remains polishdebt. Fourownerrects1536pixels,another778worldpixels differ,causeunproven."
+  }
+}

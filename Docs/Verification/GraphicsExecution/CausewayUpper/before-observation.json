@@ -1,0 +1,64 @@
+{
+  "source": "b135faa8ea274e2f9a9e47c83c77d5d3b44057ea",
+  "observed_utc": "2026-11-02T20:53:27.981802+00:00",
+  "fixture": "Docs/Verification/GraphicsExecution/CoveredMire/AfterCheckpoint",
+  "game_id": "50e670c30b6d48feb82756df64bd1cbc",
+  "zone": "Overworld.19.7.0",
+  "player": [
+    40,
+    12
+  ],
+  "hp": "24/40",
+  "time": "Height",
+  "resolution": [
+    1280,
+    800
+  ],
+  "owners": [
+    {
+      "blueprint": "AcidPool",
+      "cells": [
+        [
+          27,
+          5
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "ids": [
+        "28409",
+        "28408"
+      ],
+      "liquid": "acid",
+      "volume": 60,
+      "coating": "acid",
+      "turns": 2147483647,
+      "projection_owner": "",
+      "temperature_first": 20.3267422
+    },
+    {
+      "blueprint": "DryBrush",
+      "cells": [
+        [
+          36,
+          4
+        ],
+        [
+          36,
+          5
+        ]
+      ],
+      "ids": [
+        "28404",
+        "28405"
+      ],
+      "hp": "4/4",
+      "material": "DryPlant",
+      "temperature": 25
+    }
+  ],
+  "defect": "Two blue wave glyphs and two black-backed brush glyphs on otherwise native fen. Lower mire53,19 already resolved; exclude.",
+  "acceptance": "baseline only; read-only actual owner probe; no runtime edits"
+}

@@ -16,7 +16,8 @@ namespace CavesOfOoo.Rendering
         public const string GroundResourcePath = "Sprites/Live16x24/sodden-ground";
         const int Width = 16, Height = 24;
         readonly FlatPixelFallbackCatalog selector;
-        readonly Tile[] travel, reeds, grass, stoneFloor, masonry, fenGround;
+        readonly Tile[] travel, reeds, grass, stoneFloor, masonry, fenGround, brush;
+        readonly Tile acid;
         Func<Zone, bool> admits = IsSupportedZone;
         /// <summary>Make this instance draw Sodden's ordinary sinkhole surfaces
         /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
@@ -45,7 +46,9 @@ namespace CavesOfOoo.Rendering
                 Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelCellarFloorCatalog.ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.CellarResourcePath), borrowedSelector,
-                Resources.Load<Texture2D>(GroundResourcePath)) { }
+                Resources.Load<Texture2D>(GroundResourcePath),
+                Resources.Load<Texture2D>("Sprites/Environment/acid_pond"),
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath)) { }
 
         /// <summary>Each injected group is independent. Null/wrong-size groups
         /// never reload Resources. Borrowed dependencies are not changed or disposed.</summary>
@@ -58,10 +61,22 @@ namespace CavesOfOoo.Rendering
             Texture2D ground36)
             : this(atlas28, opening10, sill24, floors4, cellar9, borrowedSelector, ground36, IsSupportedZone) { }
 
+        /// <summary>Optional approved AcidPool surface and DryBrush reuse. Older injected
+        /// constructors do not load either group. AcidPond semantics are not aliased.</summary>
+        public FlatPixelSoddenTravelCatalog(Texture2D atlas28, Texture2D opening10,
+            Texture2D sill24, Texture2D floors4, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D ground36, Texture2D acid16, Texture2D vegetation4)
+            : this(atlas28, opening10, sill24, floors4, cellar9, borrowedSelector, ground36,
+                IsSupportedZone, acid16, vegetation4) { }
+
         /// <summary>The same Sodden art and rules for another admitted area (ordinary settlements).</summary>
         internal FlatPixelSoddenTravelCatalog(Texture2D atlas28, Texture2D opening10,
             Texture2D sill24, Texture2D floors4, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector,
             Texture2D ground36, Func<Zone, bool> admission)
+            : this(atlas28, opening10, sill24, floors4, cellar9, borrowedSelector, ground36, admission, null, null) { }
+        FlatPixelSoddenTravelCatalog(Texture2D atlas28, Texture2D opening10,
+            Texture2D sill24, Texture2D floors4, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector,
+            Texture2D ground36, Func<Zone, bool> admission, Texture2D acid16, Texture2D vegetation4)
         {
             selector = borrowedSelector; admits = admission;
             if (selector == null || admits == null) return;
@@ -71,6 +86,8 @@ namespace CavesOfOoo.Rendering
             stoneFloor = Frames(floors4, 4, "floor");
             masonry = Frames(cellar9, 9, "stone");
             fenGround = Frames(ground36, 36, "fen ground");
+            brush = Frames(vegetation4, 4, "dry brush");
+            acid = AcidFrame(acid16);
         }
 
         public static bool IsSupportedZone(Zone zone)
@@ -94,6 +111,16 @@ namespace CavesOfOoo.Rendering
         {
             tile = null;
             if (!ReadyCell(zone, x, y, out _) || !Selected(zone, x, y, owner)) return false;
+            if (owner?.BlueprintName == "AcidPool")
+            {
+                if (!TryAcidOwner(zone, x, y, out var pool, out _) || !ReferenceEquals(pool, owner)) return false;
+                tile = acid; return true;
+            }
+            if (owner?.BlueprintName == "DryBrush")
+            {
+                if (!IsSupportedZone(zone) || !FlatPixelBeatingMaterialsCatalog.IsEligibleDryBrush(owner)) return false;
+                tile = brush == null ? null : brush[3]; return tile != null;
+            }
             int frame = ForegroundFrame(owner, zone.TileState.Get(x, y), x, y);
             if (frame < 0) return false;
             if (owner.BlueprintName == "Reeds") tile = reeds == null ? null : reeds[frame];
@@ -118,6 +145,8 @@ namespace CavesOfOoo.Rendering
         {
             tile = null; floor = null;
             if (!ReadyCell(zone, x, y, out var cell)) return false;
+            if (TryAcidOwner(zone, x, y, out _, out var acidFloor))
+            { floor = acidFloor; tile = fenGround[FenGroundVariantAt(zone, x, y)]; return true; }
             var state = zone.TileState.Get(x, y);
             bool fixture = false;
             // Owner-local cultivation is checked below with disclosed owned parts.
@@ -134,7 +163,8 @@ namespace CavesOfOoo.Rendering
                     // independent live hazard marks. Sites stay separate.
                     if (IsSupportedZone(zone) && FlatPixelSpreadEnvironmentCatalog.IsEligibleFixture(owner))
                     { if (fixture) return false; fixture = true; }
-                    else if (CompetingGround(owner, state, x, y)) return false;
+                    else if (!(IsSupportedZone(zone) && FlatPixelBeatingMaterialsCatalog.IsEligibleDryBrush(owner))
+                        && CompetingGround(owner, state, x, y)) return false;
                 }
                 if (owner.BlueprintName == "Grass")
                 {
@@ -167,6 +197,11 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
+            if (owner?.BlueprintName == "AcidPool")
+            {
+                if (!TryAcidOwner(zone, x, y, out var pool, out _) || !ReferenceEquals(pool, owner)) return false;
+                sprite = acid.sprite; return true;
+            }
             if (owner?.BlueprintName == "Duckboard")
             {
                 if (travel == null || !TryBoardOwner(zone, x, y, out var board) || !ReferenceEquals(board, owner)) return false;
@@ -190,6 +225,58 @@ namespace CavesOfOoo.Rendering
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && floor == owner)
             { sprite = ground.sprite; return sprite != null; }
             return false;
+        }
+
+        // Exact ordinary surface admission only. A native acid body requires its
+        // real quiet grass backing, one live liquid owner and no competing surface.
+        public Tile CoveredAcid(Zone zone, int x, int y)
+            => TryAcidOwner(zone, x, y, out var pool, out _) && !Selected(zone, x, y, pool) ? acid : null;
+        bool TryAcidOwner(Zone zone, int x, int y, out Entity pool, out Entity floor)
+        {
+            pool = null; floor = null;
+            if (acid == null || fenGround == null || !IsSupportedZone(zone)
+                || !ReadyCell(zone, x, y, out var cell) || !IsSoleAcid(zone.TileState.Get(x, y))) return false;
+            foreach (var owner in cell.Occupants)
+            {
+                if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
+                if (owner.BlueprintName == "AcidPool")
+                { if (pool != null || !EligibleAcid(owner)) return false; pool = owner; }
+                else if (owner.BlueprintName == "Grass")
+                { if (floor != null || !OrdinaryFloor(owner, true) || HasForeignMeaning(owner, false)) return false; floor = owner; }
+                else if (!BoardCover(owner)) return false;
+            }
+            return pool != null && floor != null && selector.TryResolve(zone, x, y, out var selected)
+                && !selected.Remembered && (ReferenceEquals(selected.Owner, pool)
+                    || BoardCover(selected.Owner) && Placed(zone, cell, selected.Owner) && VisiblePhysicalOwner(selected.Owner));
+        }
+        internal static bool IsSoleAcid(ZoneTileState.TileState state)
+            => state != null && state.Coatings.Count == 1 && state.Coatings[0].Id == "acid"
+                && state.Coatings[0].Turns == ZoneTileState.Permanent && string.IsNullOrEmpty(state.Coatings[0].ProjectionOwnerId);
+        static bool EligibleAcid(Entity owner)
+        {
+            if (!PlainOwner(owner) || HasForeignMeaning(owner, true) || !owner.HasTag("Terrain")
+                || owner.HasTag("Wall") || owner.HasTag("Vegetation") || owner.HasTag("Solid")
+                || owner.HasPart<Body>() || owner.HasPart<BrainPart>() || owner.GetStat("Hitpoints") != null
+                || owner.HasPart<TileStateSourcePart>() || owner.HasPart<BurnOffGasPart>() || owner.HasPart<DestructiblePart>()
+                || owner.HasPart<StairsDownPart>() || owner.HasPart<StairsUpPart>()) return false;
+            var r = Owned<RenderPart>(owner); var p = Owned<PhysicsPart>(owner); var m = Owned<MaterialPart>(owner);
+            var l = Owned<LiquidPoolPart>(owner); var t = Owned<ThermalPart>(owner);
+            return r.RenderString == "~" && r.ColorString == "&G" && r.RenderLayer == 1
+                && EmptyVariants(r) && string.IsNullOrEmpty(r.BackgroundColor) && !p.Solid
+                && Owned<ExaminablePart>(owner) != null && m != null && m.MaterialID == "Acid"
+                && m.Combustibility == 0 && m.Conductivity == 0 && m.Porosity == 0
+                && m.HasMaterialTag("Liquid") && m.HasMaterialTag("Acid")
+                && l != null && l.LiquidId == "acid" && l.Volume > 0 && NeutralThermal(owner)
+                && float.IsFinite(t.VaporTemperature) && t.Temperature < t.VaporTemperature;
+        }
+        static Tile AcidFrame(Texture2D texture)
+        {
+            if (texture == null || texture.width != 16 || texture.height != 16) return null;
+            var sprite = Sprite.Create(texture, new Rect(0, 0, 16, 16), new Vector2(.5f, .5f), 16, 0, SpriteMeshType.FullRect);
+            sprite.name = "Live16x24 Sodden acid surface"; sprite.hideFlags = HideFlags.HideAndDontSave;
+            var tile = ScriptableObject.CreateInstance<Tile>(); tile.name = sprite.name; tile.sprite = sprite;
+            tile.hideFlags = HideFlags.HideAndDontSave; tile.flags = TileFlags.None; tile.colliderType = Tile.ColliderType.None;
+            return tile;
         }
 
         /// <summary>Exact independent coating truth, including a depleted pool
@@ -487,7 +574,8 @@ namespace CavesOfOoo.Rendering
         {
             if (disposed) return; disposed = true;
             DestroyFrames(travel); DestroyFrames(reeds); DestroyFrames(grass); DestroyFrames(stoneFloor); DestroyFrames(masonry);
-            DestroyFrames(fenGround);
+            DestroyFrames(fenGround); DestroyFrames(brush);
+            if (acid != null) { DestroyOwned(acid.sprite); DestroyOwned(acid); }
         }
         static void DestroyFrames(Tile[] tiles)
         {
