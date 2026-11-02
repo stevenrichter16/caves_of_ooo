@@ -311,3 +311,7 @@ Spread10.15 seed65 now records the15-owner cold field-margin pilot separately un
 ## Covered mire — 2026-11-02
 
 Causeway19.7 now has bounded actual covered-item/player pool continuity and exact reader, using unchanged approved art.177 native completed, zero reported failures; full result null and3 allocation checks uncertified. Actual travel/save/fresh reload0/639200worlddifference. Coverage stays fallback and polish in-progress; population/shadow unchanged. Current5f345 packages exclude this and PeatBank. See GRAPHICS-COVERED-MIRE.md.
+
+## Delivery f77e4 — 2026-11-02
+
+PeatBank/CoveredMire now in current Mac/Linux Development packages. Actual Mac peat world/reader/freshContinue and covered-item/travel/freshCauseway exact0/3576624worlddiff. Combat route is not player-on-mire evidence; Peat Pause overlay excludespixelcomparison. Linux archive verified, hardware execution/R11/fullarea remain open. See BatchF77e4/verification.json.

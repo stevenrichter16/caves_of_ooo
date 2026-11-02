@@ -1,0 +1,631 @@
+Mono path[0] = '/Users/steven/caves-of-ooo/Builds/Verification/2026-11-02-graphics-f77e4c870-current/CavesOfOoo.app/Contents/Resources/Data/Managed'
+Mono config path = '/Users/steven/caves-of-ooo/Builds/Verification/2026-11-02-graphics-f77e4c870-current/CavesOfOoo.app/Contents/MonoBleedingEdge/etc'
+Found 1 interfaces on host : 0) 192.168.1.139
+Player connection [8402340288]  Target information:
+
+Player connection [8402340288]  * "[IP] 192.168.1.139 [Port] 55000 [Flags] 2 [Guid] 2359104964 [EditorId] 2600189070 [Version] 1048832 [Id] OSXPlayer(1,Mac.lan) [Debug] 0 [PackageName] OSXPlayer [ProjectName] caves-of-ooo" 
+
+Player connection [8402340288] Started UDP target info broadcast (1) on [225.0.0.222:54997].
+
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.3.4f1 (fdd3b8998ec4)
+[Subsystems] Discovering subsystems at path /Users/steven/caves-of-ooo/Builds/Verification/2026-11-02-graphics-f77e4c870-current/CavesOfOoo.app/Contents/Resources/Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeThreaded
+ preferred device: Apple M5 (high power)
+Metal devices available: 1
+0: Apple M5 (high power)
+Using device Apple M5 (high power)
+Initializing Metal device caps: Apple M5
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.053 seconds
+- Finished resetting the current domain, in  0.001 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Metal RecreateSurface[0x79c603d80]: surface size 3024x1898
+UnloadTime: 0.631750 ms
+[Bootstrap] Awake called
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:Awake () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:68)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Start called
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:73)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 1/9: Initializing factions...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:128)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[FactionLoader] Loaded 15 factions.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.Data.FactionLoader:Load (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Data/Factions/FactionLoader.cs:22)
+CavesOfOoo.Core.FactionManager:Initialize (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/AI/FactionManager.cs:48)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_0 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:134)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:129)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 1b/9: Initializing material reactions...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:143)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Loaded 13 reaction file(s), 13 reaction(s) total.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_1 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:154)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:144)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 1b'/9: Initializing liquid definitions...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:163)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Loaded 26 liquid file(s), 26 liquid(s) total.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_2 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:174)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:164)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 1b''/9: Initializing gas definitions...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:183)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Loaded 9 gas file(s), 9 gas(es) total.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_3 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:194)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:184)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 1c/9: Loading House Dramas...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:203)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[HouseDramaLoader] Loaded 2 drama(s).
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.Data.HouseDramaLoader:LoadAll () (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/HouseDrama/HouseDramaLoader.cs:27)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:204)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 1d/9: Loading Storylets...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:208)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[StoryletRegistry] Loaded 23 storylet(s).
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.Storylets.StoryletRegistry:LoadAll () (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Storylets/StoryletRegistry.cs:37)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:209)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Conversation] Loaded 80 conversations from 31 files.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.Data.ConversationLoader:LoadAll () (at /Users/steven/caves-of-ooo/Assets/Scripts/Data/Conversations/ConversationLoader.cs:45)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:221)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 3/9: Creating EntityFactory...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:228)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 4/9: Loading blueprints...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:231)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Loaded 761 blueprints
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_5 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:242)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase<bool> (string,Unity.Profiling.ProfilerMarker,System.Func`1<bool>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:268)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:232)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap/ASCII] Blueprint render validation passed.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:LogAsciiBlueprintValidation () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:1305)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_5 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:243)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase<bool> (string,Unity.Profiling.ProfilerMarker,System.Func`1<bool>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:268)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:232)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap/Handling] Blueprint handling validation passed.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:LogHandlingBlueprintValidation () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:1322)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_5 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:244)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase<bool> (string,Unity.Profiling.ProfilerMarker,System.Func`1<bool>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:268)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:232)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 4b/9: Loading loot tables...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:287)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Loaded 105 loot table(s), 0 problem(s).
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:301)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 4c/9: Loading starting builds...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:315)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Loaded 7 starting build(s); new-game picker ON.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:325)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 5/9: Generating starting zone...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:329)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Zone generated: 2698 entities
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:GenerateStartingZone () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:1450)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase<bool> (string,Unity.Profiling.ProfilerMarker,System.Func`1<bool>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:268)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:330)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 6/9: Creating player...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:355)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Player created. Has Body part: True, Body initialized: True
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_6 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:366)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase<bool> (string,Unity.Profiling.ProfilerMarker,System.Func`1<bool>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:268)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:356)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap/Farming] Granted 3 farming kit item stack(s) to the player.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:GivePlayerFarmingStarterKit () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:1244)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_6 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:387)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase<bool> (string,Unity.Profiling.ProfilerMarker,System.Func`1<bool>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:268)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:356)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap/Farming] Plantable cells near spawn: 25.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:EnsureFarmPlotAtSpawn () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:1179)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_6 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:395)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase<bool> (string,Unity.Profiling.ProfilerMarker,System.Func`1<bool>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:268)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:356)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 7/9: Setting up turns...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:413)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+GameBootstrap: Registered 7 creatures for turns
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:RegisterCreaturesForTurns () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:1495)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_7 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:419)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:414)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 8/9: Wiring renderer...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:422)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] ZoneRenderer wired successfully
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_8 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:428)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:423)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] Step 9/9: Wiring input...
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_8 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:556)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:423)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[ActionMenu:wire] component=True Tilemap=SET BgTilemap=SET PopupCamera=SET
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:<DoStart>b__21_8 () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:628)
+CavesOfOoo.Diagnostics.PerformanceDiagnostics:MeasureStartupPhase (string,Unity.Profiling.ProfilerMarker,System.Action) (at /Users/steven/caves-of-ooo/Assets/Scripts/Shared/Utilities/PerformanceDiagnostics.cs:283)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:423)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Combat] Save detected. Press [C] to continue, [N] for new game.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:225)
+CavesOfOoo.Core.MessageLog:AddRaw (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:106)
+CavesOfOoo.Core.MessageLog:Add (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:85)
+CavesOfOoo.Rendering.BootMenuController:TryActivate (bool,System.Action`1<string>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/UI/BootMenuController.cs:54)
+CavesOfOoo.Rendering.InputHandler:TryActivateBootMenu (bool) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Input/InputHandler.cs:415)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:772)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Combat] Controller: [A] continue, [X] new game.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:225)
+CavesOfOoo.Core.MessageLog:AddRaw (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:106)
+CavesOfOoo.Core.MessageLog:Add (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:85)
+CavesOfOoo.Rendering.BootMenuController:TryActivate (bool,System.Action`1<string>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/UI/BootMenuController.cs:55)
+CavesOfOoo.Rendering.InputHandler:TryActivateBootMenu (bool) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Input/InputHandler.cs:415)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:772)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Combat] Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:225)
+CavesOfOoo.Core.MessageLog:AddRaw (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:106)
+CavesOfOoo.Core.MessageLog:Add (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:85)
+CavesOfOoo.Rendering.ControlsReference:PrintBootSummary (System.Action`1<string>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/UI/ControlsReference.cs:90)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:796)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Combat] [X] skills, [M] abilities, [F5] save, [F1] full controls.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:225)
+CavesOfOoo.Core.MessageLog:AddRaw (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:106)
+CavesOfOoo.Core.MessageLog:Add (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:85)
+CavesOfOoo.Rendering.ControlsReference:PrintBootSummary (System.Action`1<string>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/UI/ControlsReference.cs:91)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:796)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Combat] Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:225)
+CavesOfOoo.Core.MessageLog:AddRaw (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:106)
+CavesOfOoo.Core.MessageLog:Add (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:85)
+CavesOfOoo.Rendering.ControlsReference:PrintBootSummary (System.Action`1<string>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/UI/ControlsReference.cs:92)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:796)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Combat] Villagers have work for you — press [Q] for your quest log.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap/<>c:<DoStart>b__21_4 (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:225)
+CavesOfOoo.Core.MessageLog:AddRaw (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:106)
+CavesOfOoo.Core.MessageLog:Add (string) (at /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/Events/MessageLog.cs:85)
+CavesOfOoo.Rendering.ControlsReference:PrintBootSummary (System.Action`1<string>) (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/UI/ControlsReference.cs:93)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:796)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+[Bootstrap] DONE. Zone has 2699 entities. WASD/arrows to move.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:35)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:123)
+CavesOfOoo.GameBootstrap:DoStart () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:800)
+CavesOfOoo.GameBootstrap:Start () (at /Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs:76)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 123)
+
+Thread 0x16ce9b000 may have been prematurely finalized
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+Thread 0x16bc43000 may have been prematurely finalized
+Thread 0x16bccf000 may have been prematurely finalized
+Thread 0x16bd5b000 may have been prematurely finalized
+Thread 0x16bde7000 may have been prematurely finalized
+Thread 0x16be73000 may have been prematurely finalized
+GarbageCollector disposing of ComputeBuffer. Please use ComputeBuffer.Release() or .Dispose() to manually release the buffer.
+PlayerConnection::Cleanup##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1793625680683,"processId":10237,"allocatedMemory":2386814,"memoryLabels":[{"Default":14161},{"Permanent":1520},{"Thread":39352},{"Manager":15102},{"VertexData":8},{"Geometry":408},{"Texture":16},{"Shader":78377},{"Material":24},{"GfxDevice":39392},{"GfxThread":344},{"Animation":328},{"Audio":3040},{"FontEngine":272},{"Physics":2120},{"Physics2D":16},{"Serialization":624},{"Input":10056},{"JobScheduler":33216},{"TextLib":192},{"Mono":32},{"ScriptingNativeRuntime":128},{"BaseObject":1609216},{"Resource":496},{"Renderer":3528},{"Transform":6485},{"File":816},{"WebCam":32},{"Culling":32},{"Terrain":11250},{"Wind":24},{"String":3155},{"DynamicArray":31512},{"HashMap":11776},{"Utility":299264},{"PoolAlloc":1464},{"TypeTree":5064},{"ScriptManager":64},{"RuntimeInitializeOnLoadManager":64},{"SpriteAtlas":112},{"GI":7176},{"Director":8152},{"CloudService":144},{"WebRequest":776},{"VR":47442},{"SceneManager":360},{"Video":2080},{"LazyScriptCache":32},{"NativeArray":648},{"Camera":9},{"Secure":1},{"SerializationCache":1576},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57496},{"Baselib":16},{"Hierarchy":992},{"CoreStats":13032},{"Identifiers":12960},{"Gui":32},{"CoreBusinessMetrics":120},{"AssetReference":32}]}

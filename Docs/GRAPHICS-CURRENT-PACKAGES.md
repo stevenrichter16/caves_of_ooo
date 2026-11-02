@@ -1,3 +1,5 @@
+**Current delivery — 2026-11-02T13:24:13.449894+00:00:** Sourcef77e4c870 remotely verified; PeatBank+CoveredMire now current Mac/Linux Development builds,0errors4warnings each. ActualMac peat/native reader/fresh40,17HP38; Causewaycovereditem,19.7↔19.8,F5turn2910/fresh40,12HP24 with0/3576624worlddiff. Combat route41,16HP5bleeding remains excluded from player-on-mire claim; that case Editorverified. NoF12. Linuxarchiveverified/unexecuted;R11/fullarea/otherASCII/population/shadowsopen. Restoration56616objects77dirty/normalstate/prior5f345 intact13:22:55Z;no cleanup. Next fresh GrovelandsFen0.8 from GroveSources/AfterCheckpoint, optional approved quiet-water trial;then Ginmere sparsecenter population assessment. Last hourly13:04:39Z,next14:04:39Z. See GRAPHICS-CURRENT-PACKAGES.md.
+
 # Current graphics packages — 5f34547aa
 
 Source `5f34547aa8ece11c33afc604ea3c482b1e4355c3` is verified on origin/main. Includes d681 connected Duckboard artwork and 5f345 covered-owner/reader continuity, plus prior river/shadow work.
