@@ -71,6 +71,7 @@ namespace CavesOfOoo.Rendering
         private readonly Sprite[] _sprites;
         private readonly FlatPixelOpeningArtCatalog _openingArt;
         private FlatPixelFallbackCatalog _glyphFallback;
+        private FlatPixelWorldMapCatalog _worldMapArt;
         private FlatPixelBoundaryCatalog _boundaryArt;
         private FlatPixelOpeningGroundCatalog _groundArt;
         private FlatPixelEastKitchenCatalog _eastKitchenArt;
@@ -1059,6 +1060,12 @@ namespace CavesOfOoo.Rendering
             var ground = local ? GroundOf(zone, cell, owner, fallback.Remembered) : fallback.GroundKind;
             var groundColor = local ? GroundColor(ground) : fallback.GroundColor;
             var groundTile = local ? _tiles[(int)FlatPixelGreyboxKind.Ground] : fallback.GroundTile;
+            var mapArt = WorldMapArtFor(zone);
+            Tile mapGroundTile = null; Entity mapFloor = null;
+            bool mapGround = !fallback.Remembered && mapArt != null
+                && mapArt.TryResolveGround(zone, x, y, out mapGroundTile, out mapFloor);
+            if (mapGround) { groundTile = mapGroundTile; groundColor = FlatPixelWorldMapCatalog.GroundTint; }
+
             if (local && !fallback.Remembered && FlatPixelOpeningGroundCatalog.IsSupportedZone(zone))
             {
                 if (_groundArt == null && _loadOptionalResources)
@@ -1514,6 +1521,7 @@ namespace CavesOfOoo.Rendering
                             && _openingArt.TryResolve(owner, x, y, out art));
             if (native) { foreground = art; foregroundColor = boundaryNative ? boundaryTint : Color.white; }
             else if (local && (kind == FlatPixelGreyboxKind.Ground || kind == FlatPixelGreyboxKind.Road)
+                || mapGround && owner == mapFloor && FlatPixelWorldMapCatalog.IsPlainTerrain(mapFloor)
                 || spreadGround && owner == spreadFloor
                 || sillGround && owner == sillFloor || soddenGround && owner == soddenFloor || beatingGroundOwner
                 || sillWater && owner == sillWaterSource
@@ -1630,7 +1638,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || soddenMireGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
+                fallback.BlocksMovement, settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || mapGround || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || soddenMireGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop);
             return true;
         }
 
@@ -1767,6 +1775,9 @@ namespace CavesOfOoo.Rendering
                 { sprite = productTile.sprite; return sprite != null; }
                 return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             }
+            var mapArt = WorldMapArtFor(zone);
+            if (mapArt != null && mapArt.TryResolveGround(zone, x, y, out var mapTile, out var mapFloor)
+                && ReferenceEquals(subject, mapFloor) && FlatPixelWorldMapCatalog.IsPlainTerrain(mapFloor)) { sprite = mapTile.sprite; tint = FlatPixelWorldMapCatalog.GroundTint; return true; }
             bool local = IsAdmitted(zone);
             var spread = SpreadEnvironmentArtFor(zone);
             if (spread != null && spread.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
@@ -2504,6 +2515,13 @@ namespace CavesOfOoo.Rendering
             return _boundaryArt;
         }
 
+        private FlatPixelWorldMapCatalog WorldMapArtFor(Zone zone)
+        {
+            if (zone?.ZoneID != WorldMap.WorldMapZoneID) return null;
+            if (_worldMapArt == null && _loadOptionalResources) _worldMapArt = new FlatPixelWorldMapCatalog();
+            return _worldMapArt;
+        }
+
         /// <summary>Explicit unskinned-cell query. This does not change native
         /// admission or the existing authored/greybox resolver.</summary>
         public bool TryResolveFallback(Zone zone, int x, int y, out FlatPixelGreyboxCell result)
@@ -2540,6 +2558,7 @@ namespace CavesOfOoo.Rendering
             _disposed = true;
             ClearObservedOwners();
             _openingArt.Dispose();
+            _worldMapArt?.Dispose();
             _boundaryArt?.Dispose();
             _boundaryArt = null;
             _groundArt?.Dispose();
