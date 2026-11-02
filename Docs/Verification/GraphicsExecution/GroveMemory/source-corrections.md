@@ -1,0 +1,7 @@
+# Grove memory preimplementation corrections
+
+Current b3526d234 actual Fen0.8/seed65,40,15HP38 confirms black-backed remembered Grass/VineWall. Reuse approved forest0–3 and isolated Sill vine0. Grass is Terrain+Vegetation+Plantable, unlike Beating Sand. Never call OrdinaryGrass/ForegroundFrame/PlainOwner in memory: these read current solidity, HP, temperature or effects. Use exact fallback static owner and structural checks only. Existing optional forest fallback is Sill20–23; retain it. No hidden-neighbor joins or current-water reinterpretation; permanent water memory stays existing fallback. Two selected families only; exclude sites. Existing native fixtures provide ownership/disposal machinery; new focused counters use public presentation and selected fallback, avoiding prior lazy-adapter test-premise error. No art or simulation change.
+
+First test launch ran an older111-case assembly while compilation/reload settled: no StaticMemory cases in XML. Preserve excluded-stale-assembly.xml; do not count as RED or new verification. Rerun only because requested cases were absent. Baseline manual profile47.05s is below60s target; retain limited diagnostic, no acceptance claim.
+
+Actual128-case RED119pass/9fail:5 missing-native failures and4 reader-counter errors atline66. Public reader can return legacy glyph art; correct counter rejects a native family texture, not the entire fallback API. Apply same correction to positive memory test latent assertion. Saved before runtime implementation.

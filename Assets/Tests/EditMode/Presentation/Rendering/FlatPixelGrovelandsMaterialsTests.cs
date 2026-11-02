@@ -14,7 +14,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Tests
 {
-    public sealed class FlatPixelGrovelandsMaterialsTests
+    public sealed partial class FlatPixelGrovelandsMaterialsTests
     {
         const string Home = "Overworld.4.7.0";
         const string Atlas = "Sprites/Live16x24/grovelands-materials";

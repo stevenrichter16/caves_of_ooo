@@ -84,6 +84,37 @@ namespace CavesOfOoo.Rendering
             return map.GetBiome(point.x, point.y) == BiomeType.Grovelands && map.GetPOI(point.x, point.y) == null
                 && !LairStacks.HasSavedColumn(manager, zone.ZoneID);
         }
+        /// <summary>Existing static memory authority only; no live state or
+        /// hidden adjacency. Vine uses the isolated frame, never inferred joins.</summary>
+        public bool TryResolveRemembered(Zone zone, int x, int y, Entity owner,
+            out Tile groundTile, out Tile wallTile)
+        {
+            groundTile = null; wallTile = null;
+            if (disposed || selector == null || owner == null || !IsSupportedZone(zone) || !admits(zone)) return false;
+            var cell = zone.GetCell(x, y);
+            if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
+                || !cell.Explored || cell.IsVisible || !selector.TryResolve(zone, x, y, out var selected)
+                || !selected.Remembered || !ReferenceEquals(selected.Owner, owner)) return false;
+            var render = Owned<RenderPart>(owner);
+            if (render == null || render.RenderLayer != 0 || HasForeignMeaning(owner)
+                || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)) return false;
+            if (owner.BlueprintName == "Grass")
+            {
+                if (!owner.HasTag("Terrain") || !owner.HasTag("Vegetation") || !owner.HasTag("Plantable")
+                    || owner.HasTag("Wall") || owner.HasTag("Barren") || !NoMaterialState(owner)
+                    || render.RenderString != "." || render.GlyphVariants != "...,.'`") return false;
+                int variant = VariantAt(x, y);
+                groundTile = forest != null ? forest[variant] : sill == null ? null : sill[20 + variant];
+            }
+            else if (owner.BlueprintName == "VineWall")
+            {
+                if (!owner.HasTag("Wall") || !owner.HasTag("Vegetation") || render.RenderString != "#"
+                    || !string.IsNullOrEmpty(render.GlyphVariants) || !Material(owner, "Plant")
+                    || Owned<DestructiblePart>(owner) == null) return false;
+                wallTile = sill == null ? null : sill[0];
+            }
+            return groundTile != null || wallTile != null;
+        }
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;

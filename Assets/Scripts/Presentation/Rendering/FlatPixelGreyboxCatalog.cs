@@ -1565,6 +1565,26 @@ namespace CavesOfOoo.Rendering
                         kind = FlatPixelGreyboxKind.Wall; native = true;
                     }
                 }
+                if (FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone))
+                {
+                    var groveMemory = GrovelandsMaterialsArtFor(zone);
+                    if (groveMemory != null && groveMemory.TryResolveRemembered(zone, x, y, owner,
+                        out var groveGround, out var groveWall))
+                    {
+                        var tint = new Color(.35f, .35f, .35f, 1f);
+                        if (groveGround != null)
+                        {
+                            groundTile = groveGround; groundColor = tint; foreground = null;
+                            kind = FlatPixelGreyboxKind.Ground; native = false; staticMemoryGround = true;
+                            ground = FlatPixelGreyboxGround.Ground;
+                        }
+                        else
+                        {
+                            foreground = groveWall; foregroundColor = tint;
+                            kind = FlatPixelGreyboxKind.Wall; native = true;
+                        }
+                    }
+                }
                 // Ordinary Beating uses the same static selector authority; other
                 // biome/site adapters remain outside this bounded memory policy.
                 if (FlatPixelBeatingMaterialsCatalog.IsSupportedZone(zone))
