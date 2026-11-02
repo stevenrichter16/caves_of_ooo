@@ -1,0 +1,1 @@
+Initial Linux build69bf11c4c2 reports succeeded but errors1: unexpected import-worker0 transport EOF/code2. Preserve raw receipt/log and complete initial output as CavesOfOoo-initial-import-worker-warning. Retry unchanged source to fresh CavesOfOoo-current; do not relabel initial run as zero-error. Mac first smoke overlapped Linux build, so no performance claim.

@@ -1,0 +1,9 @@
+# Causeway and frost-vent delivery
+
+Current source4fa8b16dc is built for Mac/Linux, preserving8dbec. Mac0errors4warnings; Linux first build reported success/errors1 from import-worker EOF. Entire initial output/log/receipt preserved, unchanged-source retry0errors0warnings. Archive315members,304checksums,123pins independently verified; SHA680caa90aa6c67298f6e90e2e12ec493b0938cdf7f16b036e57995a8ee358742.
+
+Four exact-path Mac launches: frostRime25,7nativeportrait, stairs2.7.0roundtrip,F5turn1570/fresh52,12HP40; CausewayAcid27,5/DryBrush36,5,worldmap49,10return,F5fresh39,12HP24. Fresh frost default3x crops the vent patch, while saved scene used manual2x: no pixel-equivalence or freshvent-arrangement claim. Earlier two vent-reader-named files show floor44,8/29,7 from viewport clamping; exclude them. Accepted reader is mac-vent-reader-accepted.png. Causeway world reload0/3572361. No Linux/Deck execution or benchmark; first Mac overlapped build. Sparse floors, faintvents and squaremosslikeacid remain polish debt.
+
+Root restoration completed21:41:55Z:57403objects,77dirtypaths,normalpreferences/saves andprior8dbec preserved. Initialrestore racedlateEditorquit: guardedProjectSettings backup hash refused aftertwo generatedfiles restored. Partialoutput retained; confirmedEditorclosed, reviewedremainingbatchingblock andnormalizedownedmetadata, thenfreshoutputretry succeeded. See restore-retry.md and restoration.json. No cache/data deletion.
+
+Directuser priority now: current SteamDeck controller+1280x800 qualification. Existing legacycontroller audit usesPrevious/1080p; addcurrentflatDeckroute and run focusedinput/framing/regression plusactualcaptures. Hardware/SteamInput/ergonomics/sustainedperformance remain open. Then fresh Sumphold15.6normalzoom capture beforechoosing largest surfacegap; knownnative materials mustnotbe countedmissing without evidence.
