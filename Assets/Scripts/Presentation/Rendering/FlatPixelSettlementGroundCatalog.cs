@@ -266,7 +266,12 @@ namespace CavesOfOoo.Rendering
                 { sprite = waterTile.sprite; return sprite != null; }
                 return false;
             }
-            if (!IsGroundName(owner.BlueprintName)) return false;
+            // The installed Morrowfast scene expresses turf and flagstones as
+            // canonical named TepuiStone roles. Use the same exact-owner ground
+            // resolution as their world view, including beneath a covering actor.
+            string groundRole = MorrowfastRole(owner);
+            if (!IsGroundName(owner.BlueprintName) && groundRole != MorrowfastSceneRuntime.GroundName
+                && groundRole != MorrowfastSceneRuntime.FloorName) return false;
             if (!TryResolveGround(zone, x, y, out var tile, out var floor) || !ReferenceEquals(floor, owner)) return false;
             sprite = tile.sprite; return sprite != null;
         }

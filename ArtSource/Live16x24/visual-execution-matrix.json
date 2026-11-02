@@ -5564,6 +5564,14 @@
           "record": "Docs/GRAPHICS-MORROWFAST-GRADE.md",
           "packaged": false,
           "whole_area_accepted": false
+        },
+        {
+          "id": "morrowfast-ground-readers",
+          "axis": "coverage",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-MORROWFAST-READERS.md",
+          "packaged": false,
+          "whole_area_accepted": false
         }
       ]
     },
@@ -17258,6 +17266,14 @@
           "record": "Docs/GRAPHICS-MORROWFAST-GRADE.md",
           "packaged": false,
           "whole_area_accepted": false
+        },
+        {
+          "id": "morrowfast-ground-readers",
+          "axis": "coverage",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-MORROWFAST-READERS.md",
+          "packaged": false,
+          "whole_area_accepted": false
         }
       ],
       "current_packaged_delivery": {
@@ -21297,6 +21313,14 @@
           "record": "Docs/GRAPHICS-MORROWFAST-GRADE.md",
           "packaged": false,
           "whole_area_accepted": false
+        },
+        {
+          "id": "morrowfast-ground-readers",
+          "axis": "coverage",
+          "status": "observed",
+          "record": "Docs/GRAPHICS-MORROWFAST-READERS.md",
+          "packaged": false,
+          "whole_area_accepted": false
         }
       ],
       "current_packaged_delivery": {
@@ -23117,5 +23141,61 @@
       "R11 spike attribution and physicalLinux/Deck execution"
     ],
     "next": "Correct actual flagstone Examine fallback using approved native floor art; then Overwrit4.12 PilgrimageRim composition. Preserve intentional Blank2.13."
+  },
+  "morrowfast_readers": {
+    "scope": "Morrowfast3.6 canonical flagstone floor and grove turf readers",
+    "status": "bounded-editor-verified",
+    "record": "Docs/GRAPHICS-MORROWFAST-READERS.md",
+    "source_base": "51e3ffc7916c72716a98a12ae5d7f6f400c4d8ca",
+    "change": "Admit canonical named TepuiStone ground roles through existing exact world-ground resolver; approved sprite reuse only.",
+    "native": {
+      "red_failed": 15,
+      "red_passed": 10,
+      "green_passed": 87,
+      "green_failed": 0,
+      "receipts": "Docs/Verification/GraphicsExecution/MorrowfastReader/native-{red,green}.xml",
+      "excluded": "Import-time zero-test run; not GREEN"
+    },
+    "actual": {
+      "baseline": "BeforeCheckpoint turn2010 at32,11 HP40Dusk61%wet",
+      "matched": {
+        "portrait_rect": [
+          687,
+          236,
+          735,
+          308
+        ],
+        "portrait_changed": 3456,
+        "reader_panel_other_changed": 0,
+        "whole_world_region_changed": 3456,
+        "right_ui_changed": 12960,
+        "limits": "Reader portrait only changed in world rectangle; log/sidebar differs after Continue.",
+        "world_outside_portrait_changed": 0
+      },
+      "readers": "Flagstone32,11 and exact grove turf32,14 beneath player; turf selected from real roof/wall/turf picker without changing roof state.",
+      "movement": "Open doorway32,13, down3 to32,14; no geometry change",
+      "reload": "F5turn2040HP40; fresh32,14Dusk, no F12",
+      "reload_comparison": {
+        "world_changed": 0,
+        "world_total": 639200,
+        "ui_changed": 19025
+      }
+    },
+    "review": {
+      "source": "portable_equipment_final_review0newP1/P2; guards and17newcases inspected",
+      "visual": "capture_route0newP1/P2; floorportrait is native but near-featureless, retain material-detail debt"
+    },
+    "performance": "Reader-only path reuses cached tiles, no per-frame allocation/resource/render change; preceding Morrowfast grade profile retained, no new benchmark/R11 closure.",
+    "coverage": "Two exact reader roles now agree with world material; no new world tile",
+    "population": "unchanged",
+    "shadow": "unchanged",
+    "whole_area_accepted": false,
+    "delivery": "Currentf5a7 packages exclude this and51e3grade; batch with next accepted slice",
+    "remaining": [
+      "Floor portrait nearly featureless",
+      "Other ASCII owners, full-area materials/composition/shadows",
+      "R11 and Linux/Deck execution"
+    ],
+    "next": "Overwrit4.12 PilgrimageRim composition, preserve intentionalBlank2.13 and cached layouts."
   }
 }

@@ -1,0 +1,13 @@
+# Morrowfast terrain reader continuity
+
+Bounded Editor coverage correction, source51e3ffc79. Actual32,11 flagstone floor had native world art but an ASCII+ Examine portrait. The same omission affected canonical grove turf. The settlement reader admitted standard ground blueprints but excluded Morrowfast’s named TepuiStone ground roles.
+
+The reader now admits only canonical GroundName/FloorName through existing `TryResolveGround`, then requires the exact returned owner. Reuse approved Sill floor/Grovelands ground frames and white tint. Current displayed graph, installed scene, disclosure, named role/tag/physics, uniqueness, custody and optional art checks remain authoritative. Covered reading leaves the actor selected in the world. No new art, imagegen, geometry, state, saves or per-frame rendering changes.
+
+Native evidence: initial import-time0cases excluded; genuine25case RED15fail/10pass, then87/87GREEN with settlement and Morrowfast controls.17new cases cover both roles uncovered/player-covered, hidden/memory, hidden owner, rename/retag/foreign part/carried, duplicate, wrong coordinate, detached graph/missing scene and missing optional art. Full XML retained. Source review0newP1/P2. See source-corrections.md for failed diagnostic/import and route corrections.
+
+Actual matched32,11HP40Dusk61%wet Examine: precisely3,456 portrait pixels changed, every other pixel in the639,200 world rectangle exact, reader wording/layout exact. Sidebar log differs12,960pixels after Continue. The approved floor frame is intentionally quiet and nearly featureless; independent visual review accepts identity continuity, not new floor-detail polish. Walked through open door to32,14 and selected exact grove turf from roof/wall/turf picker; native turf portrait observed. F5turn2040HP40 and freshContinue32,14Dusk preserve world0/639,200 differences. No F12; normal saves isolated.
+
+This reader-only branch adds no new render layer, resource loads or per-frame work. Reuse preceding Morrowfast scene profile; no new benchmark/performance improvement/R11 closure. No new population/shadow acceptance. Currentf5a7 Mac/Linux packages exclude this and the prior grade until the next batch. Other ASCII owners, material detail and full-area review remain open.
+
+Evidence and reproduction: `Docs/Verification/GraphicsExecution/MorrowfastReader/acceptance.json`, BeforeCheckpoint and AfterCheckpoint useGameID9ba2c3d179134acc9f898addede41f94 in isolatedGameBootstrap. At32,11: L,Return,A,Return. At32,14 the DryHem roof/wall owners also exist: open everything picker and select grove turf explicitly. ExcludedApproachCheckpoint is a harmless route detour blocked by Farra, not the baseline. Root stoppedPlay/reset saveoverride after checks; no cleanup.

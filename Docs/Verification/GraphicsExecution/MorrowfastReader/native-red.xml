@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="10" failed="15" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="1.1950558">
+  <test-suite type="TestSuite" id="44735" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36488" result="Failed" site="Child" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="1.195056" total="25" passed="10" failed="15" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44707" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36488" result="Failed" site="Child" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="1.185951" total="25" passed="10" failed="15" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3752" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44708" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36488" result="Failed" site="Child" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="1.180171" total="25" passed="10" failed="15" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44709" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36488" result="Failed" site="Child" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="1.175188" total="25" passed="10" failed="15" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="33254" name="FlatPixelMorrowfastGroundTests" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="1.159889" total="25" passed="10" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="33278" name="ARenamedOrForeignTerrainKeepsItsGlyph" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.ARenamedOrForeignTerrainKeepsItsGlyph" methodname="ARenamedOrForeignTerrainKeepsItsGlyph" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1214306762" result="Passed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:40Z" duration="0.134484" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33271" name="AuthoredGroundReaderRefusesLostAuthority" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="0.375053" total="11" passed="0" failed="11" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33260" name="AuthoredGroundReaderRefusesLostAuthority(&quot;hidden-cell&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;hidden-cell&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="581514407" result="Failed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:40Z" duration="0.032446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33261" name="AuthoredGroundReaderRefusesLostAuthority(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;memory&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1791666977" result="Failed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:40Z" duration="0.029903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33262" name="AuthoredGroundReaderRefusesLostAuthority(&quot;hidden-owner&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;hidden-owner&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="892623450" result="Failed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:40Z" duration="0.030949" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33263" name="AuthoredGroundReaderRefusesLostAuthority(&quot;renamed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;renamed&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1464035996" result="Failed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:40Z" duration="0.029671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33264" name="AuthoredGroundReaderRefusesLostAuthority(&quot;retagged&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;retagged&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="362082878" result="Failed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:40Z" duration="0.031436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33265" name="AuthoredGroundReaderRefusesLostAuthority(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;foreign-render&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="475838845" result="Failed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:40Z" duration="0.029879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33266" name="AuthoredGroundReaderRefusesLostAuthority(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;carried&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1492787405" result="Failed" start-time="2026-11-02 20:08:40Z" end-time="2026-11-02 20:08:41Z" duration="0.030472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33267" name="AuthoredGroundReaderRefusesLostAuthority(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;duplicate&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1339936074" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.029418" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33268" name="AuthoredGroundReaderRefusesLostAuthority(&quot;wrong-coordinate&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;wrong-coordinate&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1959195533" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.029245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33269" name="AuthoredGroundReaderRefusesLostAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;detached&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1226912979" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.030406" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33270" name="AuthoredGroundReaderRefusesLostAuthority(&quot;missing-scene&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority(&quot;missing-scene&quot;)" methodname="AuthoredGroundReaderRefusesLostAuthority" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1103103698" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.030394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderRefusesLostAuthority (System.String loss) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33259" name="AuthoredGroundReaderUsesExactWorldMaterial" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.156297" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="33255" name="AuthoredGroundReaderUsesExactWorldMaterial(&quot;flagstone floor&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial(&quot;flagstone floor&quot;,False)" methodname="AuthoredGroundReaderUsesExactWorldMaterial" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="199964572" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.031731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial (System.String role, System.Boolean covered) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33256" name="AuthoredGroundReaderUsesExactWorldMaterial(&quot;flagstone floor&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial(&quot;flagstone floor&quot;,True)" methodname="AuthoredGroundReaderUsesExactWorldMaterial" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="953927088" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.029667" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <sill-environment (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial (System.String role, System.Boolean covered) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33257" name="AuthoredGroundReaderUsesExactWorldMaterial(&quot;grove turf&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial(&quot;grove turf&quot;,False)" methodname="AuthoredGroundReaderUsesExactWorldMaterial" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1615147729" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.029454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <grovelands-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial (System.String role, System.Boolean covered) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="33258" name="AuthoredGroundReaderUsesExactWorldMaterial(&quot;grove turf&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial(&quot;grove turf&quot;,True)" methodname="AuthoredGroundReaderUsesExactWorldMaterial" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1561337312" result="Failed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.029179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: same as <grovelands-ground (UnityEngine.Texture2D)>
+  But was:  <Live16x24 World Glyph Fallback (UnityEngine.Texture2D)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.AuthoredGroundReaderUsesExactWorldMaterial (System.String role, System.Boolean covered) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelMorrowfastGroundReaderTests.cs:28
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="33281" name="EveryResidentWearsTheirOwnBody" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.EveryResidentWearsTheirOwnBody" methodname="EveryResidentWearsTheirOwnBody" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1385531274" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.044113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33276" name="FlagstoneFloorsDrawTheApprovedRoomFloor" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.FlagstoneFloorsDrawTheApprovedRoomFloor" methodname="FlagstoneFloorsDrawTheApprovedRoomFloor" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="186320076" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.030390" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33275" name="GroveTurfDrawsTheApprovedForestFloor" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.GroveTurfDrawsTheApprovedForestFloor" methodname="GroveTurfDrawsTheApprovedForestFloor" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="607467438" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.029042" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33277" name="HouseWallsDrawTheApprovedMasonryAndStillBlock" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.HouseWallsDrawTheApprovedMasonryAndStillBlock" methodname="HouseWallsDrawTheApprovedMasonryAndStillBlock" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="2129754289" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.029242" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33280" name="MemoryKeepsTheSameMaterialDimmed" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.MemoryKeepsTheSameMaterialDimmed" methodname="MemoryKeepsTheSameMaterialDimmed" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1791771340" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.035124" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33274" name="MissingOptionalGroundArtDoesNotBorrowAnotherPortrait" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.MissingOptionalGroundArtDoesNotBorrowAnotherPortrait" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.105416" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33272" name="MissingOptionalGroundArtDoesNotBorrowAnotherPortrait(&quot;flagstone floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.MissingOptionalGroundArtDoesNotBorrowAnotherPortrait(&quot;flagstone floor&quot;)" methodname="MissingOptionalGroundArtDoesNotBorrowAnotherPortrait" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="527140922" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.036387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="33273" name="MissingOptionalGroundArtDoesNotBorrowAnotherPortrait(&quot;grove turf&quot;)" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.MissingOptionalGroundArtDoesNotBorrowAnotherPortrait(&quot;grove turf&quot;)" methodname="MissingOptionalGroundArtDoesNotBorrowAnotherPortrait" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="1564860180" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.037963" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="33282" name="TheTownReadsAsTownNotGlyphs" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.TheTownReadsAsTownNotGlyphs" methodname="TheTownReadsAsTownNotGlyphs" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="59278250" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.108067" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="33279" name="WithoutItsInstalledSceneTheAddressIsNotAdmitted" fullname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests.WithoutItsInstalledSceneTheAddressIsNotAdmitted" methodname="WithoutItsInstalledSceneTheAddressIsNotAdmitted" classname="CavesOfOoo.Tests.FlatPixelMorrowfastGroundTests" runstate="Runnable" seed="985473937" result="Passed" start-time="2026-11-02 20:08:41Z" end-time="2026-11-02 20:08:41Z" duration="0.034364" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

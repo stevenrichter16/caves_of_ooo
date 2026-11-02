@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
     /// "grove turf" the Grovelands forest floor, "flagstone floor" the Sill room floor, "house wall"
     /// the Sill masonry. Collision and opacity stay exactly as authored.
     /// </summary>
-    public sealed class FlatPixelMorrowfastGroundTests
+    public sealed partial class FlatPixelMorrowfastGroundTests
     {
         static EntityFactory factory;
         OverworldZoneManager manager; Zone zone; FlatPixelGreyboxCatalog world;
