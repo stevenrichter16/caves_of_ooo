@@ -7496,6 +7496,12 @@
           ],
           "next": "ConfirmactualcoveredMirePoolowner/state,then guarded native-underlay coverage before further optional material work"
         }
+      },
+      {
+        "area": "Morrowfast3.6 material grade",
+        "status": "bounded-accepted",
+        "record": "Docs/GRAPHICS-MORROWFAST-GRADE.md",
+        "whole_area_accepted": false
       }
     ],
     "area_inventory_bounds": "The five initial concrete records are observed Stump examples, not the entire area census or accepted polish. All current10biome,17settlement,6sinkhole,6ordinary-underground-material and16other-family inventory entries also have separate not_audited polish states; concrete areas/depths/interiors in every scope still require individual expansion and review. Open-ended generated/depth spaces require explicitly bounded representative variants and retained unknowns, never a claim that every possible seed was visited."
@@ -17632,5 +17638,70 @@
       "Population/shadows and R11 remain separate open axes",
       "Linux and physical Deck execution unverified"
     ]
+  },
+  "morrowfast_grade": {
+    "scope": "Installed Morrowfast / Grovelands Overworld.3.6.0",
+    "status": "bounded-editor-verified",
+    "source_base": "ded89e457b578c655babe96d2e09857972ae8a9f",
+    "record": "Docs/GRAPHICS-MORROWFAST-GRADE.md",
+    "change": "Reuse approved native material colors with white filter, authored contrast8, saturation0, vignette0; native exact installed town/current graph only.",
+    "tests": {
+      "canonical_red": {
+        "failed": 10,
+        "xml": "Docs/Verification/GraphicsExecution/MorrowfastGrade/canonical-red.xml"
+      },
+      "final_green": {
+        "passed": 44,
+        "failed": 0,
+        "xml": "Docs/Verification/GraphicsExecution/MorrowfastGrade/canonical-green.xml"
+      },
+      "superseded": "Initial44 green used incorrect Spread fixture; excluded from acceptance. Canonical map assertions now prevent that mistake."
+    },
+    "actual": {
+      "baseline": "Morrowfast/AfterCheckpoint: turn1620,26,14HP40Height wet,GameBootstrap1280x800",
+      "comparison": {
+        "world_changed": 637664,
+        "world_total": 639200,
+        "right_ui_changed": 0,
+        "hotbar_changed": 0,
+        "capture_size": [
+          800,
+          1280
+        ]
+      },
+      "route": "Right5 to31,14; wall31,13 blocks and exact Examine.32,13 existing door opened through interaction; room32,11 floor reader. Map travel3.6→2.6→3.6.",
+      "neighbor_grade": "Actual2.6: (.88,.92,.85)/contrast8/saturation6; returned3.6:white/8/0",
+      "reload": "F5turn1800 HP40; fresh isolated Continue38,10. No F12.",
+      "reload_comparison": {
+        "world_changed": 0,
+        "world_total": 639200,
+        "right_ui_changed": 19290
+      }
+    },
+    "performance": {
+      "profile": "Docs/Verification/GraphicsExecution/Profiles/manual-20261102-200006-961.json",
+      "seconds": 145.854587,
+      "renderer_p95_ms": 0.101125,
+      "renderer_max_ms": 100.045833,
+      "main_max_ms": 18292.506083,
+      "limits": "After-only OSXEditor, tool/capture delays and unallocated spike attribution; not packaged benchmark. Recorded2321x1285 while PNG1280x800. R11 open."
+    },
+    "reviews": {
+      "source": "portable_equipment_final_review: initial P2 canonical biome corrected; rereview0remainingP1/P2",
+      "visual": "capture_route: matched and added actual captures0newP1/P2 for grade; existing ASCII+ flagstone portrait explicitly excluded from native-reader acceptance"
+    },
+    "coverage": "No new sprite family; grade correction only",
+    "population": "No additions; still separate",
+    "shadow": "No additions; still separate",
+    "whole_area_accepted": false,
+    "delivery": "Currentf5a7 Mac/Linux packages exclude grade; batch later",
+    "remaining": [
+      "Flagstone Examine portrait remains ASCII+ despite native world floor; next exact-owner reader correction",
+      "Subdued overall values and small furnishings at1x",
+      "Broad repetitive turf, dark room/memory views and remaining glyph owners",
+      "Whole-area composition and other lighting states",
+      "R11 spike attribution and physicalLinux/Deck execution"
+    ],
+    "next": "Correct actual flagstone Examine fallback using approved native floor art; then Overwrit4.12 PilgrimageRim composition. Preserve intentional Blank2.13."
   }
 }

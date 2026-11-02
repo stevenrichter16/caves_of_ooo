@@ -57,6 +57,7 @@ namespace CavesOfOoo.Presentation.Rendering
         private bool _hasResolvedPalette;
         private bool _nativeMarrowstyeGrade;
         private bool _nativeDuneGrade;
+        private bool _nativeMorrowfastGrade;
         // Bounded material-hue pilot. The native sprites already contain the intended
         // warm earth/stone hues; the old green filter made those surfaces too similar.
         private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
@@ -65,6 +66,10 @@ namespace CavesOfOoo.Presentation.Rendering
         // Avoid a second strong gold tint over actors and distinct material values.
         private static readonly BiomePalette NativeDunePalette = new BiomePalette(
             BiomeType.Beating, Color.white, 5f, 0f, 0f);
+        // Morrowfast's masonry, flags and yards carry their own material hues.
+        // Keep authored Grovelands contrast while removing the duplicate green cast.
+        private static readonly BiomePalette NativeMorrowfastPalette = new BiomePalette(
+            BiomeType.Grovelands, Color.white, 8f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -157,16 +162,26 @@ namespace CavesOfOoo.Presentation.Rendering
                 && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
                 && CurrentZone?.ZoneID == "Overworld.19.14.0"
                 && CavesOfOoo.Rendering.FlatPixelBeatingMaterialsCatalog.IsSupportedZone(CurrentZone);
+            // Morrowfast's installed native masonry, flagstones and grassy yards
+            // already carry separate material hues. Keep its legacy grade elsewhere.
+            bool nativeMorrowfast = currentBiome == BiomeType.Grovelands
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == MorrowfastSceneRuntime.ZoneID
+                && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone);
             // Admission can change without changing biome: same-biome travel,
             // legacy toggle, sprites disabled or a replacement loaded world graph.
             if (!_hasResolvedPalette || currentBiome != _activeBiome
-                || nativeMarrowstye != _nativeMarrowstyeGrade || nativeDune != _nativeDuneGrade)
+                || nativeMarrowstye != _nativeMarrowstyeGrade || nativeDune != _nativeDuneGrade
+                || nativeMorrowfast != _nativeMorrowfastGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
                 _nativeMarrowstyeGrade = nativeMarrowstye;
                 _nativeDuneGrade = nativeDune;
-                _targetPalette = nativeMarrowstye ? NativeMarrowstyePalette
+                _nativeMorrowfastGrade = nativeMorrowfast;
+                _targetPalette = nativeMorrowfast ? NativeMorrowfastPalette
+                    : nativeMarrowstye ? NativeMarrowstyePalette
                     : nativeDune ? NativeDunePalette : BiomePalette.GetForBiome(currentBiome);
                 _fadeProgress = 0f;
             }
