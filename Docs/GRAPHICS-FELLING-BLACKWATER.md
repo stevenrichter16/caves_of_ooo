@@ -55,3 +55,5 @@ Use the isolated `Caves Of Ooo/Art/Play Live 16x24 Greybox` launcher. Copy the u
 Build editable assets with Blender background `--python Tools/Live16x24/build_felling_blackwater.py -- --build`; verify with `python3 Tools/Live16x24/build_felling_blackwater.py --verify`. Runtime import is Point/no mipmaps/uncompressed/16PPU. Never overwrite approved Stump assets.
 
 Remaining: regular vertical current-dash repetition at2×,7 ritual markers, covered and remembered glyphs, sparse center, broader wall relief/shadows and other area families. This is material coverage plus bounded visual review, not full-area acceptance. No new population or shadow-layer acceptance. No Linux/Deck execution. All75 foreign tracked hashes remain exact; no cleanup. Source, metadata, editable assets and evidence ship together.
+
+Delivery2026-11-02: current08efaMac bounded reader/movement/reload observed; Linuxbuild/archive only. See GRAPHICS-CURRENT-PACKAGES.md and Batch08efa. Does not advance whole-area/R11/hardware gates.

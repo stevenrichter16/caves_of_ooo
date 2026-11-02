@@ -25,3 +25,5 @@ Matched idle live Editor profiles82.56s/89.84s: rendererp95.086917→.077709ms; 
 Coverage observed; whole-area polish in-progress. Regular/manufactured bright bands, sparse center, special black backings, memory glyphs and shallow wall relief remain. Population/shadow unchanged. Current4c1 packages exclude ledges; batch later. Play stopped, isolation rootnull, clean scene. Prior package receipt61884308d remotely verified. No cleanup.
 
 Next material candidate: Felling57blocking blackwater cells need original native art; its existing279×772scene image is not a native tile. Parallel composition candidate: SummitScrub central sheltered stone/tree/bush pocket, distinct from accepted perimeterdrifts, through existing generation with strict route/reservation/cached-save gates. Baseline first; no planned acceptance.
+
+Delivery2026-11-02: current08efaMac bounded reader/movement/reload observed; Linuxbuild/archive only. See GRAPHICS-CURRENT-PACKAGES.md and Batch08efa. Does not advance whole-area/R11/hardware gates.

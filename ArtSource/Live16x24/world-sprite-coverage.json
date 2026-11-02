@@ -13778,23 +13778,13 @@
     }
   },
   "graphics_execution_delivery": {
-    "source": "de60021715b31469a7f0c1070b2096476faeec6f",
+    "source": "08efa734061ae49cf14eddb507a6f6c5dc2bce8c",
     "record": "Docs/GRAPHICS-CURRENT-PACKAGES.md",
-    "evidence": "Docs/Verification/GraphicsExecution/BatchDe600",
-    "status": "bounded_mac_smoke_linux_archive_verified",
-    "mac_launches": 4,
-    "linux_executed": false,
-    "deck_executed": false,
-    "surface_reload_changed_pixels": 0,
-    "field_reload_changed_pixels": 5901,
-    "world_pixels": 3576624,
-    "archive_sha256": "801590230672ec44817dd919ac63f67702599629ec2b5404bb7036aed4c5af4b",
-    "limits": [
-      "Field difference cause unproven",
-      "F12 protected field route; blocked moves were combat",
-      "Cathedral included, not walked in this batch",
-      "R11 and whole-area acceptance open"
-    ]
+    "evidence": "Docs/Verification/GraphicsExecution/Batch08efa",
+    "mac": "six actuallaunches; bounded3slice readers/movement/reload andsurface travel",
+    "linux": "build/archive verified only",
+    "hardware_executed": false,
+    "whole_area_accepted": false
   },
   "felling_authored_stone": {
     "status": "integrated-observed-bounded",

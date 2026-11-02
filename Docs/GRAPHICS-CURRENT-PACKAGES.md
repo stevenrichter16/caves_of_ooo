@@ -1,3 +1,21 @@
+# Current graphics packages — 08efa7340
+
+Source `08efa734061ae49cf14eddb507a6f6c5dc2bce8c` is verified on origin/main. Includes Ginmere253native ledges, Felling57native blackwater and SummitScrub optional11owner shelter pocket/covered Bush portrait, plus prior4c1 material/shadow work. V0–V7 remains open.
+
+- Mac: `Builds/Verification/2026-11-02-graphics-08efa7340-current/CavesOfOoo.app`; build-9e98869c9f,25.637146s,0errors4warnings. Initial build-e62f613cd3 reportedSucceeded with1import-worker error; excluded and preserved under-import-worker-attempt with raw crash log. Retry changed no source/cache.
+- Linux: `Builds/SteamDeck/2026-11-02-graphics-08efa7340-current/CavesOfOoo-current/`; build-0c97c44517,53.189913s,0errors4warnings.
+- Archive: sibling `CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,129083613bytes,191files13directories; SHA256 `c00ae6edb8760837d149430b30208f1dfebdd6fd0127d0f9d25eb22ebd61f3de`. Every member/hash/size/mode and internal checksum/gzip EOF verified. No Linux/Deck execution.
+
+Six actual Mac launches used ordinary GameBootstrap3024×1898 presentation with no forced resolution. Summit Bush6/6 underfoot portrait, Left movement46,18→45,18; attemptedRight blocked by an existing creature, F5turn1630/freshContinue45,18,37/40HP; existing creatures dealt3damage, no newF12. Ginmere native ledge reader and Up/Down crossing, F5turn1600/freshContinue55,8HP40. Felling native blackwater reader, Leftcollision at20,13 and Right/Left bankwalk, F5/freshContinueHP40; subsequent worldmap3.5→3.4→3.5,F5turn1420HP40, no freshrestart after that final travel save. Summit fixture retains earlier explicitly protected Editor history, protectionOFF at package entry.
+
+Saved/fresh worldcrop(0,0)-(2216,1614): Ginmere andFelling0/3,576,624changedpixels; Summit3,475localdifferences remain causally unproven. No exact whole-scene parity for Summit. Six runtime logs have0exception/error/warning/failed stringmatches; this does not explain4buildwarnings or prove every system. Independent final visual/source review0newP1/P2; see Batch08efa.
+
+Complete55,587tracked-object snapshot preceded builds; guarded restoration preserved75foreignchanges, normalEditor saves/preferences and previous4c1packages. Four reviewed build-generated settings restored; all ownedstandalone saves archived. Launcher review found an inherited overwrite risk; corrected existing/symlink refusal before anysave/launch plus exclusive stdout/receipt creation. Duplicate launch counter refused before mutation. No cleanup.
+
+No packaged profile, natural encounterbalance, whole-area or globalshadow acceptance. R11 Editor spikes, special/memory glyphs, repetitive materials and sparse regions remain. Next Stillleaf2.4.1 repeated real DescentLedge bands using approvedStump10–11 and existing site authority; then confirm actual Summit hazard/pipe owners before reusing fixture art. Compared Workshop12.12 (mostly native; compositiondebt) and Summit black-backed patches (exact owners unconfirmed), rather than treating all black pixels as missing art.
+
+## Previous preserved checkpoint
+
 # Current graphics packages — 4c1da7fcd
 
 Source `4c1da7fcd73a47a1d01006a2e1200423dabfac1e` is verified on origin/main. Includes Felling opaque/nonopaque solid stone and the bounded Spread10.15 tree-contact shadow, plus all de600 work. V0–V7 remains open.
