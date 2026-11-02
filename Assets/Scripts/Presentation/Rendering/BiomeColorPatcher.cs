@@ -55,6 +55,11 @@ namespace CavesOfOoo.Presentation.Rendering
         private float _currentVignetteIntensity;
         private float _fadeProgress = 1f; // 1 = fully at target
         private bool _hasResolvedPalette;
+        private bool _nativeMarrowstyeGrade;
+        // Bounded material-hue pilot. The native sprites already contain the intended
+        // warm earth/stone hues; the old green filter made those surfaces too similar.
+        private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
+            BiomeType.Spread, Color.white, 5f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -136,11 +141,21 @@ namespace CavesOfOoo.Presentation.Rendering
 
             // 1. Detect biome change via player's current zone.
             var currentBiome = ResolveCurrentBiome();
-            if (!_hasResolvedPalette || currentBiome != _activeBiome)
+            bool nativeMarrowstye = currentBiome == BiomeType.Spread
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == "Overworld.12.12.0"
+                && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
+                && AreaCompositionScope.IsMarrowstyeSite(currentManager.WorldMap.GetPOI(12, 12));
+            // Admission can change without changing biome: same-biome travel,
+            // legacy toggle, sprites disabled or a replacement loaded world graph.
+            if (!_hasResolvedPalette || currentBiome != _activeBiome
+                || nativeMarrowstye != _nativeMarrowstyeGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
-                _targetPalette = BiomePalette.GetForBiome(currentBiome);
+                _nativeMarrowstyeGrade = nativeMarrowstye;
+                _targetPalette = nativeMarrowstye ? NativeMarrowstyePalette : BiomePalette.GetForBiome(currentBiome);
                 _fadeProgress = 0f;
             }
 

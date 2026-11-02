@@ -133,13 +133,18 @@ namespace CavesOfOoo.Rendering
         Tile MaterialFor(Zone zone, Entity floor, int x, int y)
         {
             var (wx, wy, _) = WorldMap.FromZoneID(zone.ZoneID);
-            var biome = WorldLocationContext.For(zone).WorldMap.GetBiome(wx, wy);
-            return MaterialFor(floor, x, y, biome);
+            var map = WorldLocationContext.For(zone).WorldMap;
+            var biome = map.GetBiome(wx, wy);
+            // The Intake pilot's packed road should read as worn stone/earth,
+            // distinct from its warm yards. Reuse approved road art; no geometry change.
+            bool intakeRoad = zone.ZoneID == MarrowstyeCompositionPlan.ZoneID
+                && AreaCompositionScope.IsMarrowstyeSite(map.GetPOI(wx, wy));
+            return MaterialFor(floor, x, y, biome, intakeRoad);
         }
 
         // Fixed-address shade admission can reuse actual optional views without
         // adding zone-string parsing or resource loads to the wall paint path.
-        Tile MaterialFor(Entity floor, int x, int y, BiomeType biome)
+        Tile MaterialFor(Entity floor, int x, int y, BiomeType biome, bool intakeRoad = false)
         {
             switch (floor.BlueprintName)
             {
@@ -147,7 +152,7 @@ namespace CavesOfOoo.Rendering
                 case "StoneFloor": return Pick(floors, VariantAt(x, y));
                 case "Floor": return Pick(yard, VariantAt(x, y));
                 case "Sand": return Pick(sand, VariantAt(x, y));
-                case "RoadStone": return biome == BiomeType.Beating ? Pick(beatingRoad, (x + y) & 1) : Pick(road, (x + y) & 1);
+                case "RoadStone": return biome == BiomeType.Beating || intakeRoad ? Pick(beatingRoad, (x + y) & 1) : Pick(road, (x + y) & 1);
                 case "TepuiStone":
                     string role = MorrowfastRole(floor);
                     return role == MorrowfastSceneRuntime.GroundName ? Pick(forest, VariantAt(x, y))
@@ -306,7 +311,7 @@ namespace CavesOfOoo.Rendering
                     || !OrdinaryGround(owner)) return false;
                 floor = owner;
             }
-            return floor != null && MaterialFor(floor, x, y, map.GetBiome(12, 12)) != null;
+            return floor != null && MaterialFor(floor, x, y, map.GetBiome(12, 12), intakeRoad: true) != null;
         }
 
         static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";

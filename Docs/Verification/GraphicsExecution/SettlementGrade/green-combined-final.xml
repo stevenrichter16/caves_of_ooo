@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="81" result="Passed" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:21Z" duration="15.147915">
+  <test-suite type="TestSuite" id="43944" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35801" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:21Z" duration="15.147915" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="43916" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35801" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:21Z" duration="15.129118" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="43917" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35801" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:21Z" duration="15.124577" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="43918" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35801" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:21Z" duration="15.122191" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="29718" name="BiomeColorPatcherTravelTests" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.286895" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="29732" name="ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged" methodname="ActualContinueAdoptsReplacementManagerEvenWhenZoneIdIsUnchanged" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1674192603" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.063045" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29741" name="ExplicitZoneRemainsUsableWithoutAShownRendererZone" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.035687" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29739" name="ExplicitZoneRemainsUsableWithoutAShownRendererZone(False)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(False)" methodname="ExplicitZoneRemainsUsableWithoutAShownRendererZone" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="177023129" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.004162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29740" name="ExplicitZoneRemainsUsableWithoutAShownRendererZone(True)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ExplicitZoneRemainsUsableWithoutAShownRendererZone(True)" methodname="ExplicitZoneRemainsUsableWithoutAShownRendererZone" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="106914011" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003756" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29738" name="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.032696" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29736" name="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.1&quot;,Spread)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.1&quot;,Spread)" methodname="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="496294619" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29737" name="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.0&quot;,Cave)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum(&quot;Overworld.4.12.0&quot;,Cave)" methodname="FirstCaveZoneAppliesItsPaletteDespiteMatchingTheDefaultEnum" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="296656022" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003369" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29735" name="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.033006" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29733" name="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(False)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(False)" methodname="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1260176297" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003875" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29734" name="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(True)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource(True)" methodname="GradingWritesTheRenderedProfileWithoutMutatingTheSharedSource" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2100596251" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003440" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29742" name="MissingVolumeRemainsANoOpWithExplicitGameplayReferences" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.MissingVolumeRemainsANoOpWithExplicitGameplayReferences" methodname="MissingVolumeRemainsANoOpWithExplicitGameplayReferences" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1482785133" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.004451" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[BiomeColorPatcher] No global Volume found or profile missing. Component is a no-op.
+]]></output>
+            </test-case>
+            <test-case id="29719" name="NativeMarrowstyeRestoresAuthoredMaterialHueAndSameBiomeTravelRestoresGrade" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeMarrowstyeRestoresAuthoredMaterialHueAndSameBiomeTravelRestoresGrade" methodname="NativeMarrowstyeRestoresAuthoredMaterialHueAndSameBiomeTravelRestoresGrade" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="644056739" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.006371" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="29725" name="NativeSettlementGradeLosesAndRecoversAuthority" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.043239" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29720" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;legacy&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1991653705" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003936" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29721" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;sprites-off&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;sprites-off&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="302047843" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29722" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-poi&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-poi&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="2105162158" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003432" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29723" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;detached&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1257672681" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29724" name="NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-profile&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.NativeSettlementGradeLosesAndRecoversAuthority(&quot;wrong-profile&quot;)" methodname="NativeSettlementGradeLosesAndRecoversAuthority" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1303875186" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="29730" name="OtherSpreadAreasKeepTheirExistingPalette" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.037357" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="29727" name="OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.12.13.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.12.13.0&quot;)" methodname="OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1758536251" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003776" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29728" name="OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.10.10.0&quot;)" methodname="OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="528570406" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003415" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="29729" name="OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.3.6.0&quot;)" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.OtherSpreadAreasKeepTheirExistingPalette(&quot;Overworld.3.6.0&quot;)" methodname="OtherSpreadAreasKeepTheirExistingPalette" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="36991187" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.003490" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="29726" name="ReplacementGraphAtSameAddressReevaluatesSettlementGrade" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.ReplacementGraphAtSameAddressReevaluatesSettlementGrade" methodname="ReplacementGraphAtSameAddressReevaluatesSettlementGrade" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1064677761" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.006563" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="29731" name="SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel" fullname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests.SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel" methodname="SeededZoneStillDiscoversShownRendererAndTracksLaterLegacyTravel" classname="CavesOfOoo.Tests.BiomeColorPatcherTravelTests" runstate="Runnable" seed="1055427596" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.004610" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="33973" name="FlatPixelSettlementGroundTests" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="62" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:21Z" duration="14.822261" total="62" passed="62" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="34012" name="ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback" methodname="ADestroyedBushAndAFrozenBoardwalkKeepTheirFallback" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="544110675" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.220733" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-case id="34032" name="AFiniteCookingFireAndAForeignMarkerKeepTheirFallback" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.AFiniteCookingFireAndAForeignMarkerKeepTheirFallback" methodname="AFiniteCookingFireAndAForeignMarkerKeepTheirFallback" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="29482903" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.055291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+            </test-case>
+            <test-case id="34020" name="AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph" methodname="AKeeperWhoseLookOrRoleChangedKeepsTheirGlyph" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="304658215" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.043661" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-case id="34037" name="ARecolouredOrDeadWardenKeepsTheGlyph" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.ARecolouredOrDeadWardenKeepsTheGlyph" methodname="ARecolouredOrDeadWardenKeepsTheGlyph" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="871844697" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:06Z" duration="0.036761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+            </test-case>
+            <test-case id="34043" name="IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers" methodname="IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="815913056" result="Passed" start-time="2026-11-02 05:31:06Z" end-time="2026-11-02 05:31:08Z" duration="1.706319" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+            </test-case>
+            <test-case id="34044" name="MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade" methodname="MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="2078378194" result="Passed" start-time="2026-11-02 05:31:08Z" end-time="2026-11-02 05:31:10Z" duration="1.696076" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+            </test-case>
+            <test-case id="34003" name="MixedWaterAndAFrozenWallKeepTheirFallback" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.MixedWaterAndAFrozenWallKeepTheirFallback" methodname="MixedWaterAndAFrozenWallKeepTheirFallback" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="822290560" result="Passed" start-time="2026-11-02 05:31:10Z" end-time="2026-11-02 05:31:10Z" duration="0.098963" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'WeaponRackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[Conversation] Loaded 80 conversations from 31 files.
+[StoryletRegistry] Loaded 23 storylet(s).
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="34026" name="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 05:31:10Z" end-time="2026-11-02 05:31:12Z" duration="1.866919" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34021" name="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.13.7.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.13.7.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;,False)" methodname="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="829692282" result="Passed" start-time="2026-11-02 05:31:10Z" end-time="2026-11-02 05:31:10Z" duration="0.044819" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34022" name="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.5.9.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.5.9.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;,False)" methodname="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="431851937" result="Passed" start-time="2026-11-02 05:31:10Z" end-time="2026-11-02 05:31:10Z" duration="0.041313" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34023" name="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.12.12.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/beating-materials&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.12.12.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/beating-materials&quot;,False)" methodname="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1599891448" result="Passed" start-time="2026-11-02 05:31:10Z" end-time="2026-11-02 05:31:12Z" duration="1.670081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="34024" name="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.10.14.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/opening-ground&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.10.14.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/opening-ground&quot;,False)" methodname="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="2043328742" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.038190" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+              <test-case id="34025" name="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.18.18.0&quot;,&quot;SandstoneWall&quot;,&quot;Sprites/Live16x24/beating-materials&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(&quot;Overworld.18.18.0&quot;,&quot;SandstoneWall&quot;,&quot;Sprites/Live16x24/beating-materials&quot;,True)" methodname="RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1682506718" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.043990" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="33991" name="SettlementFloorsAndLawnUseTheirOwnFrames" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementFloorsAndLawnUseTheirOwnFrames" methodname="SettlementFloorsAndLawnUseTheirOwnFrames" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1348015824" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.159735" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="33990" name="SettlementGroundUsesTheApprovedArtOfItsBiome" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:15Z" duration="2.940239" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33974" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.5.9.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.5.9.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1407046505" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.082140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33975" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.16.11.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.16.11.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="491380744" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.082235" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33976" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.16.1.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.16.1.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="383625062" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.081038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33977" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.6.6.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/grovelands-ground&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.6.6.0&quot;,&quot;Grass&quot;,&quot;Sprites/Live16x24/grovelands-ground&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1809050085" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.076243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33978" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.8.16.0&quot;,&quot;Sand&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.8.16.0&quot;,&quot;Sand&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="504798811" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.086690" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33979" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.5.17.0&quot;,&quot;Sand&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.5.17.0&quot;,&quot;Sand&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="789792724" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.076042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33980" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.10.14.0&quot;,&quot;StoneFloor&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.10.14.0&quot;,&quot;StoneFloor&quot;,&quot;Sprites/Live16x24/sill-environment&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="501107114" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:12Z" duration="0.071765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+              <test-case id="33981" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.12.12.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.12.12.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1405025465" result="Passed" start-time="2026-11-02 05:31:12Z" end-time="2026-11-02 05:31:14Z" duration="1.717648" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33982" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.10.14.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/opening-ground&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.10.14.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/opening-ground&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1042068968" result="Passed" start-time="2026-11-02 05:31:14Z" end-time="2026-11-02 05:31:14Z" duration="0.073861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+              <test-case id="33983" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.8.16.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.8.16.0&quot;,&quot;RoadStone&quot;,&quot;Sprites/Live16x24/beating-materials&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1655419894" result="Passed" start-time="2026-11-02 05:31:14Z" end-time="2026-11-02 05:31:14Z" duration="0.072545" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33984" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.13.7.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.13.7.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="922598828" result="Passed" start-time="2026-11-02 05:31:14Z" end-time="2026-11-02 05:31:14Z" duration="0.085510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33985" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.15.6.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.15.6.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="798948626" result="Passed" start-time="2026-11-02 05:31:14Z" end-time="2026-11-02 05:31:14Z" duration="0.090524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33986" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.17.5.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.17.5.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="414452383" result="Passed" start-time="2026-11-02 05:31:14Z" end-time="2026-11-02 05:31:14Z" duration="0.093180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33987" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.18.18.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.18.18.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1034467359" result="Passed" start-time="2026-11-02 05:31:14Z" end-time="2026-11-02 05:31:15Z" duration="0.072291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33988" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.14.9.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.14.9.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="424295084" result="Passed" start-time="2026-11-02 05:31:15Z" end-time="2026-11-02 05:31:15Z" duration="0.074606" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33989" name="SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.10.14.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementGroundUsesTheApprovedArtOfItsBiome(&quot;Overworld.10.14.0&quot;,&quot;Floor&quot;,&quot;Sprites/Live16x24/town-floor&quot;)" methodname="SettlementGroundUsesTheApprovedArtOfItsBiome" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1945333096" result="Passed" start-time="2026-11-02 05:31:15Z" end-time="2026-11-02 05:31:15Z" duration="0.072576" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34031" name="SettlementHearthsBurnOnScorchedRealGround" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 05:31:15Z" end-time="2026-11-02 05:31:17Z" duration="1.977155" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34028" name="SettlementHearthsBurnOnScorchedRealGround(&quot;Overworld.10.14.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(&quot;Overworld.10.14.0&quot;)" methodname="SettlementHearthsBurnOnScorchedRealGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1721386922" result="Passed" start-time="2026-11-02 05:31:15Z" end-time="2026-11-02 05:31:15Z" duration="0.104101" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+              <test-case id="34029" name="SettlementHearthsBurnOnScorchedRealGround(&quot;Overworld.8.16.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(&quot;Overworld.8.16.0&quot;)" methodname="SettlementHearthsBurnOnScorchedRealGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="78792464" result="Passed" start-time="2026-11-02 05:31:15Z" end-time="2026-11-02 05:31:15Z" duration="0.103175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34030" name="SettlementHearthsBurnOnScorchedRealGround(&quot;Overworld.12.12.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementHearthsBurnOnScorchedRealGround(&quot;Overworld.12.12.0&quot;)" methodname="SettlementHearthsBurnOnScorchedRealGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="177997028" result="Passed" start-time="2026-11-02 05:31:15Z" end-time="2026-11-02 05:31:17Z" duration="1.743861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34019" name="SettlementKeepersHaveTheirOwnNativeBodies" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.266342" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34013" name="SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.5.9.0&quot;,&quot;Innkeeper&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.5.9.0&quot;,&quot;Innkeeper&quot;,0)" methodname="SettlementKeepersHaveTheirOwnNativeBodies" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1750551416" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.041146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34014" name="SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.13.7.0&quot;,&quot;Innkeeper&quot;,0)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.13.7.0&quot;,&quot;Innkeeper&quot;,0)" methodname="SettlementKeepersHaveTheirOwnNativeBodies" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="447130435" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.042346" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34015" name="SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.5.9.0&quot;,&quot;Quartermaster&quot;,1)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.5.9.0&quot;,&quot;Quartermaster&quot;,1)" methodname="SettlementKeepersHaveTheirOwnNativeBodies" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="742964376" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.039992" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34016" name="SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.8.16.0&quot;,&quot;Quartermaster&quot;,1)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.8.16.0&quot;,&quot;Quartermaster&quot;,1)" methodname="SettlementKeepersHaveTheirOwnNativeBodies" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1411349594" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.036826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34017" name="SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.5.9.0&quot;,&quot;Scribe&quot;,2)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.5.9.0&quot;,&quot;Scribe&quot;,2)" methodname="SettlementKeepersHaveTheirOwnNativeBodies" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1782685233" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.040128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34018" name="SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.10.14.0&quot;,&quot;Scribe&quot;,2)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementKeepersHaveTheirOwnNativeBodies(&quot;Overworld.10.14.0&quot;,&quot;Scribe&quot;,2)" methodname="SettlementKeepersHaveTheirOwnNativeBodies" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="548708671" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.040255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34011" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:18Z" duration="0.817111" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34004" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.6.6.0&quot;,&quot;Bush&quot;,&quot;Sprites/Live16x24/opening-base&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.6.6.0&quot;,&quot;Bush&quot;,&quot;Sprites/Live16x24/opening-base&quot;,True)" methodname="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1278652531" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.093999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="34005" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.6.6.0&quot;,&quot;Tree&quot;,&quot;Sprites/Live16x24/north-vegetation&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.6.6.0&quot;,&quot;Tree&quot;,&quot;Sprites/Live16x24/north-vegetation&quot;,True)" methodname="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="67135699" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.101939" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="34006" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.8.16.0&quot;,&quot;DryBrush&quot;,&quot;Sprites/Live16x24/north-vegetation&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.8.16.0&quot;,&quot;DryBrush&quot;,&quot;Sprites/Live16x24/north-vegetation&quot;,True)" methodname="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1583226483" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:17Z" duration="0.130626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34007" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.18.18.0&quot;,&quot;DryBrush&quot;,&quot;Sprites/Live16x24/north-vegetation&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.18.18.0&quot;,&quot;DryBrush&quot;,&quot;Sprites/Live16x24/north-vegetation&quot;,True)" methodname="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1320989595" result="Passed" start-time="2026-11-02 05:31:17Z" end-time="2026-11-02 05:31:18Z" duration="0.206149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="34008" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.13.7.0&quot;,&quot;Duckboard&quot;,&quot;Sprites/Live16x24/sodden-travel&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.13.7.0&quot;,&quot;Duckboard&quot;,&quot;Sprites/Live16x24/sodden-travel&quot;,True)" methodname="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="901417845" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.085398" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34009" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.17.5.0&quot;,&quot;Reeds&quot;,&quot;Sprites/Live16x24/opening-base&quot;,True)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.17.5.0&quot;,&quot;Reeds&quot;,&quot;Sprites/Live16x24/opening-base&quot;,True)" methodname="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1299646252" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.086561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34010" name="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.15.6.0&quot;,&quot;PeatBank&quot;,&quot;Sprites/Live16x24/sodden-travel&quot;,False)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround(&quot;Overworld.15.6.0&quot;,&quot;PeatBank&quot;,&quot;Sprites/Live16x24/sodden-travel&quot;,False)" methodname="SettlementPlantsAndBoardwalksUseApprovedArtOnTheirGround" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1198468156" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.085645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="33997" name="SettlementPuddlesUseTheApprovedRiverWater" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.445884" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33992" name="SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.5.9.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.5.9.0&quot;)" methodname="SettlementPuddlesUseTheApprovedRiverWater" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="514500189" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.083540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33993" name="SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.16.1.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.16.1.0&quot;)" methodname="SettlementPuddlesUseTheApprovedRiverWater" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="37492772" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.082271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33994" name="SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.13.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.13.7.0&quot;)" methodname="SettlementPuddlesUseTheApprovedRiverWater" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1249076991" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.085211" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33995" name="SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.17.5.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.17.5.0&quot;)" methodname="SettlementPuddlesUseTheApprovedRiverWater" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1535353364" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.087894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="33996" name="SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.15.15.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementPuddlesUseTheApprovedRiverWater(&quot;Overworld.15.15.0&quot;)" methodname="SettlementPuddlesUseTheApprovedRiverWater" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1234702075" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.081677" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'WeaponRackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34002" name="SettlementSandstoneWallsUseTheApprovedBeatingWall" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:20Z" duration="1.973590" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="33998" name="SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.6.6.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.6.6.0&quot;)" methodname="SettlementSandstoneWallsUseTheApprovedBeatingWall" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="460811212" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:18Z" duration="0.074445" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="33999" name="SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.12.12.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.12.12.0&quot;)" methodname="SettlementSandstoneWallsUseTheApprovedBeatingWall" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="921292269" result="Passed" start-time="2026-11-02 05:31:18Z" end-time="2026-11-02 05:31:20Z" duration="1.716193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="34000" name="SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.18.18.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.18.18.0&quot;)" methodname="SettlementSandstoneWallsUseTheApprovedBeatingWall" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="919157796" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.073097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'SackT1'
+]]></output>
+              </test-case>
+              <test-case id="34001" name="SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.15.15.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementSandstoneWallsUseTheApprovedBeatingWall(&quot;Overworld.15.15.0&quot;)" methodname="SettlementSandstoneWallsUseTheApprovedBeatingWall" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1366517867" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.085770" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'WeaponRackT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34036" name="SettlementWardensUseTheApprovedWardenBody" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.148263" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34033" name="SettlementWardensUseTheApprovedWardenBody(&quot;Overworld.13.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(&quot;Overworld.13.7.0&quot;)" methodname="SettlementWardensUseTheApprovedWardenBody" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="548692412" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.044885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+              <test-case id="34034" name="SettlementWardensUseTheApprovedWardenBody(&quot;Overworld.10.14.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(&quot;Overworld.10.14.0&quot;)" methodname="SettlementWardensUseTheApprovedWardenBody" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="117078215" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.040185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+              <test-case id="34035" name="SettlementWardensUseTheApprovedWardenBody(&quot;Overworld.8.16.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SettlementWardensUseTheApprovedWardenBody(&quot;Overworld.8.16.0&quot;)" methodname="SettlementWardensUseTheApprovedWardenBody" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1039912650" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.037337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="34040" name="SillMorrowfastAndWildernessAreNotThisAdaptersToDraw" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SillMorrowfastAndWildernessAreNotThisAdaptersToDraw" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.126277" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="34038" name="SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(&quot;Overworld.10.10.0&quot;)" methodname="SillMorrowfastAndWildernessAreNotThisAdaptersToDraw" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1514763819" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.049200" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'WeaponsmithStock'
+[LootTableRegistry] Unknown loot table 'ProvisionerStock'
+[LootTableRegistry] Unknown loot table 'ArmorerStock'
+[LootTableRegistry] Unknown loot table 'ApothecaryStock'
+[LootTableRegistry] Unknown loot table 'ArcanistStock'
+[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+]]></output>
+              </test-case>
+              <test-case id="34039" name="SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(&quot;Overworld.5.11.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.SillMorrowfastAndWildernessAreNotThisAdaptersToDraw(&quot;Overworld.5.11.0&quot;)" methodname="SillMorrowfastAndWildernessAreNotThisAdaptersToDraw" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="828102758" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:20Z" duration="0.051572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="34042" name="TheWildernessAroundAPlaceIsUnchanged" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.TheWildernessAroundAPlaceIsUnchanged" methodname="TheWildernessAroundAPlaceIsUnchanged" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1940922625" result="Passed" start-time="2026-11-02 05:31:20Z" end-time="2026-11-02 05:31:21Z" duration="0.097121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CampGoodsT1'
+[LootTableRegistry] Unknown loot table 'WaysiteCampSack'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-case id="34027" name="UnexploredAndRememberedWaterKeepTheirFallback" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.UnexploredAndRememberedWaterKeepTheirFallback" methodname="UnexploredAndRememberedWaterKeepTheirFallback" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="1431001929" result="Passed" start-time="2026-11-02 05:31:21Z" end-time="2026-11-02 05:31:21Z" duration="0.044565" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'CrateT1'
+]]></output>
+            </test-case>
+            <test-case id="34041" name="WetHiddenAndStackedGroundKeepTheirFallback" fullname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests.WetHiddenAndStackedGroundKeepTheirFallback" methodname="WetHiddenAndStackedGroundKeepTheirFallback" classname="CavesOfOoo.Tests.FlatPixelSettlementGroundTests" runstate="Runnable" seed="2069273407" result="Passed" start-time="2026-11-02 05:31:21Z" end-time="2026-11-02 05:31:21Z" duration="0.040532" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[LootTableRegistry] Unknown loot table 'AlchemyShelfT1'
+[LootTableRegistry] Unknown loot table 'CrateT1'
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

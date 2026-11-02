@@ -11,7 +11,7 @@ using Object = UnityEngine.Object;
 
 namespace CavesOfOoo.Tests
 {
-    public sealed class BiomeColorPatcherTravelTests
+    public sealed partial class BiomeColorPatcherTravelTests
     {
         private const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
         private static readonly Color InitialFilter = new Color(.62f, .73f, .81f, 1f);

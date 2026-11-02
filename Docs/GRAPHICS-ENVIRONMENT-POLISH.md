@@ -1,3 +1,5 @@
+**Marrowstye material update 2026-11-02:** Exact native Intake yard/road hue pilot bounded Editor verified,81 native checks and actual readers/travel/save/reload. See [GRAPHICS-SETTLEMENT-GRADE.md](GRAPHICS-SETTLEMENT-GRADE.md). Full-area polish, population and R11 remain open; current source56cfa packages exclude this slice.
+
 **Stump fixtures2026-11-02:** FiveSummitpipes now native on realstone, actualreaders/crossing/reload verified. Peat/ventbacking integratedonly.216applicable nativepasses; R11/fullarea open. See GRAPHICS-STUMP-FIXTURES.md. Next6BrinePool andboundedshadowcomparison.
 
 **2026-11-02 Stillleaf2.4.1:**233ASCIIledge owners now approvednativeStump10–11; actualreader/crossing/reload boundedverified. Repeated bands/sparsecenter/specialglyphs remain; nofullareapromotion. See GRAPHICS-STILLLEAF-LEDGES.md. Next Summit surface fixturebacking confirmation.

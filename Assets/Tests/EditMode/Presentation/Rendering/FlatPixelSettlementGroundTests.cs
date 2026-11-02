@@ -66,6 +66,7 @@ namespace CavesOfOoo.Tests
         [TestCase("Overworld.8.16.0", "Sand", Beating)]                 // Wellmeet, Beating
         [TestCase("Overworld.5.17.0", "Sand", Beating)]                 // the First Tent, Beating
         [TestCase("Overworld.10.14.0", "StoneFloor", SillLawnAndFloors)] // Tally
+        [TestCase("Overworld.12.12.0", "RoadStone", Beating)] // Intake road: approved neutral stone
         [TestCase("Overworld.10.14.0", "RoadStone", OpeningGround)]     // Tally, Spread road
         [TestCase("Overworld.8.16.0", "RoadStone", Beating)]            // Wellmeet, Beating road
         [TestCase("Overworld.13.7.0", "Floor", TownFloor)]              // Tine: town yard
@@ -259,6 +260,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase("Overworld.13.7.0", "Floor", TownFloor, false)]          // Tine town floor
         [TestCase("Overworld.5.9.0", "Grass", SillLawnAndFloors, false)]   // Posy lawn
+        [TestCase("Overworld.12.12.0", "RoadStone", Beating, false)] // same static Intake road in memory
         [TestCase("Overworld.10.14.0", "RoadStone", OpeningGround, false)] // Tally road
         [TestCase("Overworld.18.18.0", "SandstoneWall", Beating, true)]    // the Last Counter wall
         public void RememberedSettlementMaterialKeepsItsArtUnderTheMemoryDim(string id, string blueprint, string resource, bool wall)
@@ -393,6 +395,27 @@ namespace CavesOfOoo.Tests
             var zone = Visit("Overworld.5.11.0");
             var cells = Cells(zone, "Grass").ToList(); Assert.Greater(cells.Count, 100);
             Assert.GreaterOrEqual(cells.Count(c => c.view.LocalGround), cells.Count * 95 / 100);
+        }
+        [Test]
+        public void IntakeRoadMaterialRequiresTheExactSiteProfileAndRecovers()
+        {
+            var zone=Visit("Overworld.12.12.0");var cell=Cells(zone,"RoadStone").First();
+            Assert.True(NativeGround(cell.view,Beating));
+            var poi=manager.WorldMap.POIs[12,12];var profile=poi.Profile;poi.Profile="TentCamp";
+            Assert.True(world.TryResolvePresentation(zone,cell.x,cell.y,out var changed));Assert.True(NativeGround(changed,OpeningGround));
+            poi.Profile=profile;Assert.True(world.TryResolvePresentation(zone,cell.x,cell.y,out var restored));Assert.True(NativeGround(restored,Beating));
+        }
+        [Test]
+        public void MissingIntakeRoadAtlasKeepsFallbackAndCannotReceiveWallShade()
+        {
+            var zone=Visit("Overworld.12.12.0");var cell=Cells(zone,"RoadStone").First();
+            using(var selector=new FlatPixelFallbackCatalog())
+            using(var catalog=new FlatPixelSettlementGroundCatalog(Resources.Load<Texture2D>(SillLawnAndFloors),Resources.Load<Texture2D>(ForestFloor),null,Resources.Load<Texture2D>(OpeningGround),Resources.Load<Texture2D>(TownFloor),selector))
+            {
+                Assert.False(catalog.TryResolveGround(zone,cell.x,cell.y,out _,out _));
+                var receive=typeof(FlatPixelSettlementGroundCatalog).GetMethod("CanReceiveMarrowstyeWallShadow",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+                Assert.NotNull(receive);Assert.False((bool)receive.Invoke(catalog,new object[]{zone,cell.x,cell.y}));
+            }
         }
     }
 }

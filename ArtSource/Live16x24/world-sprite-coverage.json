@@ -1070,10 +1070,11 @@
       ],
       "note": "Interior geometry/owners may share this graph; do not invent separate zone IDs.",
       "polish_review": {
-        "status": "not_audited",
+        "status": "in-progress",
         "known_defects_audit": "not_complete",
         "concrete_area_instances": "Expand and track each actual zone/depth/interior/layout separately before acceptance. Existing integration receipts remain valid only within their earlier named bounds.",
-        "acceptance_record": null
+        "acceptance_record": "Docs/GRAPHICS-SETTLEMENT-GRADE.md",
+        "bounded_result": "Native Intake yard/road readability, actual readers/travel/reload verified; full-area/interior/population audit remains incomplete."
       }
     },
     {
@@ -14411,6 +14412,36 @@
       "No newcastshadow/art; approvedsources unchanged.",
       "Editor-only observation; currentca323packages exclude this and Beating/Grove memory.",
       "Saved/fresh pixels match; nine positions/count/solidity queried afterreload; no claim of separate before-ID snapshot."
+    ]
+  },
+  "marrowstye_ground_readability": {
+    "status": "bounded-editor-verified",
+    "source_delivery": "this commit; packages source56cfa2e72 exclude this slice",
+    "area": "Overworld.12.12.0 Marrowstye Intake",
+    "baseline": {
+      "seed": 224401440,
+      "turn": 4040,
+      "player": [
+        47,
+        20
+      ],
+      "hp": 40
+    },
+    "final_native_tests": 81,
+    "test_result": "Docs/Verification/GraphicsExecution/SettlementGrade/green-combined-final.xml",
+    "final_capture": "Docs/Verification/GraphicsExecution/SettlementGrade/after-final.png",
+    "reload": "Docs/Verification/GraphicsExecution/SettlementGrade/reload-comparison.json",
+    "travel": "Docs/Verification/GraphicsExecution/SettlementGrade/travel-grade.json",
+    "independent_reviews": {
+      "source": "coverage_priorities: final grade and road, no remaining P1/P2",
+      "visual": "capture_route: final matched comparison, no new P1/P2"
+    },
+    "remaining": [
+      "full area polish",
+      "population audit",
+      "remaining glyph owners",
+      "R11/performance attribution",
+      "current packaged delivery"
     ]
   }
 }
