@@ -25481,7 +25481,12 @@
   },
   "steam_deck_current_priority": {
     "requested": "2026-11-02T21:43:15.679903+00:00",
-    "status": "in-progress",
-    "next": "Currentflat1280x800controller audit/native input andframing, actualUIcapture; preservephysicalhardwareunknown"
+    "status": "bounded-editor-verified; package pending",
+    "next": "Publish owned UI/audit and package currentMac/Linux; then Sumphold15.6",
+    "record": "Docs/STEAM-DECK-FLAT-READINESS.md",
+    "evidence": "Docs/Verification/SteamDeckFlat",
+    "actual": "46/46 at1280x800;14captures;gamepadboot,zoom,menuSaveLoad",
+    "native": "198input/framing/backend and83finalUI,overlapping",
+    "hardware": "unverified"
   }
 }

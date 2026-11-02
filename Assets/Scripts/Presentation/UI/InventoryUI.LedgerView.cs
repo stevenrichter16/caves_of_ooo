@@ -330,7 +330,7 @@ namespace CavesOfOoo.Rendering
             if (subject == null || string.IsNullOrWhiteSpace(decision))
             {
                 string text = _inventorySearchActive ? "Search the pack, then select an item to inspect it."
-                    : _panel == PANEL_EQUIPMENT ? "Select equipment to inspect it. Enter chooses an item for the selected body slot."
+                    : _panel == PANEL_EQUIPMENT ? "Select equipment to inspect it. " + (NativeGamepadInput.IsConnected ? "A" : "Enter") + " chooses an item for the selected body slot."
                     : "Select a carried item to see its uses and current condition.";
                 LLabel(new Rect(372, 506, 860, 96), SkillScreenText.Fit(text, 86, 4), LMuted, 20);
                 return;

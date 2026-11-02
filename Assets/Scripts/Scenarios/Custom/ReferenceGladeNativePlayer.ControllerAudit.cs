@@ -10,11 +10,11 @@ namespace CavesOfOoo.Scenarios.Custom
 {
     public sealed partial class ReferenceGladeNativePlayer
     {
-        private bool _controllerOnly, _controllerComplete;
+        private bool _controllerOnly, _controllerComplete, _controllerFlat;
         private Action _controllerCleanup;
         private const string ControllerCanVerify = "Isolated ordinary seed64 new game. Synthetic Gamepad states pass through the production Input System and InputHandler: eight free facing directions, paid RT movement and neutral wait, keyboard coexistence, A on the authored sign, character/inventory, held-stick menu quarantine, View/graphics, abilities and cancellation, highlight/cue captures, wait menu and finite walk cancellation. Scheduler tick/energy observations distinguish free input from exactly one paid action. Exact graphics preferences and prior current gamepad are restored.";
         private const string ControllerCannotVerify = "No physical Steam Deck, Steam Input remapping, ergonomics, performance, or complete Qud feature parity claim. This is a finite script-selected route with the ordinary scheduler active; no teleports, combat grants, target changes or forced outcomes. The walk approach uses real keyboard movement around the authored east wall to break sight with visible danger. No ability is cast and no creature is attacked. Rest remains CoO's authored-service recovery, not passive wait-healing. Screenshot readability and cue/highlight appearance require visual review.";
-        public void ConfigureControllerAudit() => _controllerOnly = true;
+        public void ConfigureControllerAudit(bool flat = false) { _controllerOnly = true; _controllerFlat = flat; }
 
         private readonly struct ControllerCheckpoint
         {
@@ -96,6 +96,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 }
                 yield return ControllerHold(pad, new GamepadState(), .03f);
                 Check("neutral_stick_clears_direction_cue", !((WorldCursorState)Field(_input, "_controllerDirectionCue")).Active);
+                if (_controllerFlat) yield return ControllerFlatZoom(pad);
                 before = ControllerBefore();
                 yield return ControllerPulse(pad, new GamepadState { leftStick = Vector2.right, rightTrigger = 1 });
                 Check("right_trigger_moves_exactly_one_east_cell_and_pays_once", Cell().X == before.X + 1
@@ -149,10 +150,16 @@ namespace CavesOfOoo.Scenarios.Custom
                     yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.DpadDown));
                 yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.South));
                 Check("system_menu_a_opens_graphics", pause.Controller.IsGraphicsOpen);
+                for (int i = 0; i < PauseMenuController.HandheldPresetIndex; i++)
+                    yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.DpadDown));
                 yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.South));
                 Check("controller_handheld_preset_applies", Village3DSettings.LowDetail
                     && Mathf.Approximately(.75f, Village3DSettings.WorldResolutionScale)
                     && !Village3DSettings.ShadowsEnabled && SpellFxSettings.Mode == SpellFxMode.Reduced);
+                if (_controllerFlat) Check("handheld_preset_keeps_flat_1280x800",
+                    WorldPresentationSettings.Mode == WorldPresentationMode.Flat16x24
+                    && FindFirstObjectByType<GameBootstrap>().ZoneRenderer.FlatPixelModeActive
+                    && Screen.width == 1280 && Screen.height == 800);
                 yield return Capture("05-controller-graphics");
                 yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.East));
                 Check("graphics_b_returns_to_system_menu", pause.Controller.IsOpen && !pause.Controller.IsGraphicsOpen);
@@ -253,9 +260,84 @@ namespace CavesOfOoo.Scenarios.Custom
                 Check("controller_audit_keeps_ordinary_actor_alive_in_original_zone", _input.CurrentZone == _stagedZone
                     && _input.PlayerEntity.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(_input.PlayerEntity)
                     && !DevMode.Enabled && !_input.PlayerEntity.HasPart<BitLockerPart>());
+                if (_controllerFlat) yield return ControllerSaveReload(pad);
                 _controllerComplete = true;
             }
             finally { _controllerCleanup?.Invoke(); _controllerCleanup = null; }
+        }
+
+        private IEnumerator ControllerBootNewGame()
+        {
+            var previous = Gamepad.current;
+            var pad = InputSystem.AddDevice<Gamepad>();
+            _controllerCleanup = () =>
+            {
+                if (pad.added) InputSystem.RemoveDevice(pad);
+                if (previous != null && previous.added) previous.MakeCurrent();
+            };
+            try
+            {
+                yield return ControllerHold(pad, new GamepadState(), .03f);
+                yield return Capture("00-controller-boot");
+                yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.West));
+                Check("controller_x_starts_ordinary_new_game", State() == "Normal"
+                    && _input.CurrentZone.ZoneID == ReferenceGladePlan.ZoneID);
+            }
+            finally { _controllerCleanup?.Invoke(); _controllerCleanup = null; }
+        }
+
+        private IEnumerator ControllerFlatZoom(Gamepad pad)
+        {
+            var camera = _input.CameraFollow.GetComponent<Camera>();
+            var rect = camera.pixelRect;
+            float scale = rect.height / (2f * camera.orthographicSize * _input.CameraFollow.WorldPixelsPerUnit);
+            Check("deck_default_is_one_native_pixel", Mathf.Approximately(scale, 1f));
+            var before = ControllerBefore();
+            yield return ControllerPulse(pad, new GamepadState { leftTrigger = 1 }.WithButton(GamepadButton.DpadLeft));
+            float closer = camera.pixelRect.height / (2f * camera.orthographicSize * _input.CameraFollow.WorldPixelsPerUnit);
+            Check("lt_left_zooms_one_native_step_without_turn_or_hud_resize", Mathf.Approximately(closer, scale + 1)
+                && camera.pixelRect == rect && ControllerStayed(before) && ControllerCost(before, 0));
+            yield return Capture("02b-controller-zoom-closer");
+            yield return ControllerPulse(pad, new GamepadState { leftTrigger = 1 }.WithButton(GamepadButton.DpadRight));
+            float restored = camera.pixelRect.height / (2f * camera.orthographicSize * _input.CameraFollow.WorldPixelsPerUnit);
+            Check("lt_right_restores_native_scale_without_turn", Mathf.Approximately(restored, scale)
+                && camera.pixelRect == rect && ControllerStayed(before) && ControllerCost(before, 0));
+        }
+
+        private IEnumerator ControllerSaveReload(Gamepad pad)
+        {
+            var before = ControllerBefore();
+            string id = _input.PlayerEntity.ID;
+            int hp = _input.PlayerEntity.GetStatValue("Hitpoints");
+            var pause = FindFirstObjectByType<PauseMenuUI>();
+            yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.Select));
+            Require(pause.Controller.IsOpen && pause.Controller.SelectedIndex == PauseMenuController.SaveIndex,
+                "controller pause starts on Save");
+            yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.South));
+            string game = SaveGameService.GetSaveInfo("Quick")?.GameID;
+            string path = System.IO.Path.Combine(_ownedRoot, game ?? "missing", "Quick.sav.gz");
+            Require(MessageLog.GetLast() == "Game saved." && System.IO.File.Exists(path), "controller Save writes isolated checkpoint");
+            string hash = CheckpointHash(path);
+            Check("controller_save_is_free_and_returns_to_world", !pause.Controller.IsOpen && State() == "Normal"
+                && ControllerStayed(before) && ControllerCost(before, 0));
+            yield return Capture("11-controller-saved");
+            yield return ControllerPulse(pad, new GamepadState { leftStick = Vector2.down, rightTrigger = 1 });
+            Require(Cell().Y == before.Y + 1 && Cell().X == before.X && ControllerCost(before, 1),
+                "controller takes real post-save step on previously walked route");
+            yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.Select));
+            yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.DpadDown));
+            Require(pause.Controller.SelectedIndex == PauseMenuController.LoadIndex, "controller selects Load");
+            yield return ControllerPulse(pad, new GamepadState().WithButton(GamepadButton.South));
+            double started = Time.realtimeSinceStartupAsDouble;
+            while (ReferenceEquals(_input.PlayerEntity, before.Actor))
+            { Require(Time.realtimeSinceStartupAsDouble - started < 8, "controller Load replaces graph"); yield return null; }
+            Check("controller_load_restores_identity_position_hp_scheduler_and_saved_bytes",
+                _input.CurrentZone.ZoneID == before.Zone.ZoneID && Cell().X == before.X && Cell().Y == before.Y
+                && _input.PlayerEntity.ID == id && _input.PlayerEntity.GetStatValue("Hitpoints") == hp
+                && _input.TurnManager.TickCount == before.Tick && _input.TurnManager.GetEnergy(_input.PlayerEntity) == before.Energy
+                && CheckpointHash(path) == hash && State() == "Normal"
+                && FindFirstObjectByType<GameBootstrap>().ZoneRenderer.FlatPixelModeActive);
+            yield return Capture("12-controller-reloaded");
         }
 
         private void ControllerRecordTravelApproach(string stage)

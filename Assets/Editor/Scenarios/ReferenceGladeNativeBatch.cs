@@ -90,6 +90,8 @@ namespace CavesOfOoo.Editor
         public static void LaunchSkillsAt(int height)=>LaunchCore(false,skillsAudit:true,hudWidth:1280,hudHeight:height);
         [MenuItem("Caves Of Ooo/Scenarios/World/Steam Deck Qud Controller Audit")]
         public static void LaunchController() => LaunchCore(false, controllerAudit: true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Steam Deck Flat Controller Audit 800p")]
+        public static void LaunchFlatController() => LaunchCore(false, controllerAudit: true, flatControllerAudit: true, hudWidth:1280, hudHeight:800);
         [MenuItem("Caves Of Ooo/Scenarios/World/Companion Orders and Quest Journal Audit")]
         public static void LaunchSystemDepth() => LaunchCore(false, systemDepthAudit: true);
         [MenuItem("Caves Of Ooo/Scenarios/World/System Depth II Connections Audit")]
@@ -153,7 +155,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/HUD Polish Audit 720p")]
         public static void LaunchHudPolish720() { RequireHudAuditIdle(); LaunchCore(false,hudPolish:true,hudWidth:1280,hudHeight:720); }
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0,string hudProfile=null,bool hudPolish=false,int hudWidth=1920,int hudHeight=1080,bool skillsAudit=false)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false,bool curationAnnex=false,bool graphicsAudit=false,bool controllerAudit=false,bool systemDepthAudit=false,bool systemDepthIIAudit=false,bool worldAudioAudit=false,bool repairWorkAudio=false,int audioPolishIteration=0,string hudProfile=null,bool hudPolish=false,int hudWidth=1920,int hudHeight=1080,bool skillsAudit=false,bool flatControllerAudit=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -167,7 +169,7 @@ namespace CavesOfOoo.Editor
             if (snapshot.Any(s => string.IsNullOrEmpty(s.path)))
                 throw new InvalidOperationException("Save untitled scenes before launching the completion audit.");
             string token = NativeSaveIsolation.Begin(Prefix, "Reference-glade-marker-" + Guid.NewGuid().ToString("N"), exitEditor);
-            NativeSaveIsolation.SetPresentation(Prefix, token, WorldPresentationMode.Previous);
+            NativeSaveIsolation.SetPresentation(Prefix, token, flatControllerAudit ? WorldPresentationMode.Flat16x24 : WorldPresentationMode.Previous);
             SessionState.SetString(Prefix + "token", token);
             SessionState.SetString(Prefix + "scenes", JsonUtility.ToJson(new SceneRows { rows = snapshot }));
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
@@ -181,6 +183,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix+"systemDepthIIAudit",systemDepthIIAudit);
             SessionState.SetBool(Prefix+"systemDepthAudit",systemDepthAudit);
             SessionState.SetBool(Prefix+"controllerAudit",controllerAudit);
+            SessionState.SetBool(Prefix+"flatControllerAudit",flatControllerAudit);
             SessionState.SetBool(Prefix+"graphicsAudit",graphicsAudit);
             SessionState.SetBool(Prefix+"profile",profile);
             SessionState.SetBool(Prefix+"combat",combat);
@@ -201,7 +204,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + (audioPolishIteration==17||audioPolishIteration==18?960:270));
             try
             {
-                ConfigureNativeView(hudPolish || skillsAudit ? hudWidth : 1920, hudPolish || skillsAudit ? hudHeight : 1080);
+                ConfigureNativeView(hudPolish || skillsAudit || flatControllerAudit ? hudWidth : 1920, hudPolish || skillsAudit || flatControllerAudit ? hudHeight : 1080);
                 Subscribe();
                 EditorSceneManager.OpenScene("Assets/Scenes/Main/ReferenceGlade.unity");
                 EditorSceneManager.playModeStartScene=AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/Main/ReferenceGlade.unity");
@@ -231,7 +234,7 @@ namespace CavesOfOoo.Editor
             if (SessionState.GetBool(Prefix+"repairWorkAudio",false)) runner.ConfigureRepairWorkAudio();
             if (SessionState.GetBool(Prefix+"systemDepthIIAudit",false)) runner.ConfigureSystemDepthIIAudit();
             if (SessionState.GetBool(Prefix+"systemDepthAudit",false)) runner.ConfigureSystemDepthAudit();
-            if (SessionState.GetBool(Prefix+"controllerAudit",false)) runner.ConfigureControllerAudit();
+            if (SessionState.GetBool(Prefix+"controllerAudit",false)) runner.ConfigureControllerAudit(SessionState.GetBool(Prefix+"flatControllerAudit",false));
             if (SessionState.GetBool(Prefix+"graphicsAudit",false)) runner.ConfigureGraphicsAudit();
             if (SessionState.GetBool(Prefix+"biomeCaveCrops",false)) runner.ConfigureBotanicalCaveOnly();
             runner.Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false),SessionState.GetBool(Prefix+"biome",false),SessionState.GetBool(Prefix+"specialists",false),SessionState.GetBool(Prefix+"residents",false),SessionState.GetBool(Prefix+"curation",false),SessionState.GetBool(Prefix+"curationQuarantine",false),SessionState.GetBool(Prefix+"repairCultivation",false),SessionState.GetBool(Prefix+"biomeCrops",false),SessionState.GetBool(Prefix+"curationAnnex",false));

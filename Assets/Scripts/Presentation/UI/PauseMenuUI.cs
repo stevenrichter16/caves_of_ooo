@@ -45,7 +45,6 @@ namespace CavesOfOoo.Rendering
         private int _worldOriginX;
         private int _worldTopY;
         private int _renderedHeight;
-        private int _renderedBorderHeight;
         private bool _hasRenderedBounds;
         private bool _hasMousePosition;
         private Vector3 _lastMousePosition;
@@ -150,10 +149,9 @@ namespace CavesOfOoo.Rendering
             int popupHeight = borderHeight + 1;
             ComputePopupPosition(popupHeight);
             _renderedHeight = popupHeight;
-            _renderedBorderHeight = borderHeight;
             _hasRenderedBounds = true;
             ClearRegion(0, 0, POPUP_W, popupHeight);
-            DrawBgFill(0, 0, POPUP_W, borderHeight);
+            DrawBgFill(0, 0, POPUP_W, popupHeight);
             DrawPopupBorder(0, 0, POPUP_W, borderHeight, contentRows);
 
             // Title row
@@ -179,14 +177,14 @@ namespace CavesOfOoo.Rendering
                 : (NativeGamepadInput.IsConnected ? "[A]select [B]close" : "[Enter]select [Tab]close");
             if(Controller.IsAudioOpen&&Controller.SelectedIndex<=PauseMenuController.SfxVolumeIndex)
                 hint=NativeGamepadInput.IsConnected?"[Left/Right]volume [B]back":"[Left/Right]volume [Esc]back";
-            DrawText(0, borderHeight, hint, QudColorParser.DarkGray);
+            DrawText(0, borderHeight, hint, QudColorParser.Gray);
         }
 
         private void ClearAll()
         {
             if (!_hasRenderedBounds || Tilemap == null) return;
             ClearRegion(0, 0, POPUP_W, _renderedHeight);
-            ClearBgRegion(0, 0, POPUP_W, _renderedBorderHeight);
+            ClearBgRegion(0, 0, POPUP_W, _renderedHeight);
             _hasRenderedBounds = false;
         }
 

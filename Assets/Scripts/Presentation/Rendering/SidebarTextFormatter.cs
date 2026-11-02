@@ -10,6 +10,25 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public static class SidebarTextFormatter
     {
+        // Display only: preserve the core opportunity and menu authority.
+        public static string FormatActionHint(WorldAffordance? cue, bool controller)
+        {
+            if (!cue.HasValue) return null;
+            if (!controller) return cue.Value.Hint;
+            switch (cue.Value.Command)
+            {
+                case "Harvest": return "[A] (LS neutral): menu / harvest";
+                case "OpenContainer": return "[A] (LS neutral): menu / open";
+                case DoorPart.OpenCommand: return "[A] (LS neutral): menu / open door";
+                case DoorPart.CloseCommand: return "[A] (LS neutral): menu / close door";
+                case "Examine": return "[A] (LS neutral): menu / read";
+                case HandlingPart.HaulCommand: return "[A] (LS neutral): menu / haul";
+                case HandlingPart.ReleaseCommand: return "[A] (LS neutral): menu / let go";
+                case TrapJammingPart.JamCommand: return "[A] (LS neutral): menu / jam trap";
+                default: return cue.Value.Hint;
+            }
+        }
+
         public struct LogLine
         {
             public LogLine(string text, int ageIndex, int entryNewestSerial, int rowIndexWithinEntry, int entryRowCount, bool isGroupSeparator = false)

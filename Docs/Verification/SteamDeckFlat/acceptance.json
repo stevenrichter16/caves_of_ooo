@@ -1,0 +1,39 @@
+{
+  "recorded_utc": "2026-11-02T22:02:27.670202+00:00",
+  "baseline_source": "f9787c8769dfada407d49491892903c931410d5a",
+  "status": "bounded-editor-verified; package pending",
+  "tests": {
+    "input_framing_backend": "focused-198.xml:198/198",
+    "footer_red": "footer-red.xml:4fail",
+    "shrink_red": "ability-shrink-red.xml:1fail",
+    "final_ui": "footer-green-final83.xml:83/83",
+    "nonadditive": true
+  },
+  "actual": {
+    "run": "Native/d14fa09d9c52426c981e9aa2f7ee2b2e",
+    "viewport": [
+      1280,
+      800
+    ],
+    "presentation": "Flat16x24",
+    "cases": 46,
+    "failures": 0,
+    "screenshots": 14,
+    "input": "synthetic Gamepad through production InputSystem, keyboard co-existence/finite route",
+    "save_load": "actual menu Save, real step, Load replacement; identity, location,HP,tick,energy,savebytes restored"
+  },
+  "review": {
+    "source": "coverage_priorities:0remainingP1/P2 afterbootcleanup,neutralstickqualifier,shrinkfix",
+    "visual": "capture_route:reported P2s resolved;0additionalblockingP1/P2 in five reviewedcaptures;2x improves recognition/HUDintact"
+  },
+  "limits": [
+    "No physical SteamDeck, SteamInput mapping, sustained performance, suspend/resume or Linux execution claim",
+    "No abilitycast or creatureattack in actualroute; targetednativeinput tests only",
+    "No whole-game UI, biome polish, population or shadow acceptance",
+    "Interrupted compile-overlap attempt d584236d excluded"
+  ],
+  "restored": {
+    "editor_idle": true,
+    "save_override": null
+  }
+}

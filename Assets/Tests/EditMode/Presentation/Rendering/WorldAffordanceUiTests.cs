@@ -22,6 +22,11 @@ namespace CavesOfOoo.Tests
    public bool Visible=>(bool)Marker.GetType().GetProperty("IsVisible").GetValue(Marker);
    public void Dispose(){(Marker as IDisposable)?.Dispose();UnityEngine.Object.DestroyImmediate(Root);Core.Dispose();}
   }
+  [Test]public void ControllerHintChangesPresentationWithoutChangingTheRetainedOpportunity()
+  {using(var f=new Fixture()){f.Core.Row();var q=(WorldAffordance)f.Query();string keyboard=q.Hint;
+   Assert.AreEqual("[A] (LS neutral): menu / harvest",SidebarTextFormatter.FormatActionHint(q,true));
+   Assert.AreEqual(keyboard,SidebarTextFormatter.FormatActionHint(q,false));Assert.AreEqual(keyboard,q.Hint);
+   Assert.IsNull(SidebarTextFormatter.FormatActionHint(null,true));}}
   [Test]public void NormalAndLookUseRealDifferentMenuKeysWithoutPaying()
   {using(var f=new Fixture()){f.Core.Row();int ticks=WorldClock.CurrentTick;int energy=f.Input.TurnManager.GetEnergy(f.Core.Player);Assert.AreEqual("C, D: menu / harvest",WorldAffordanceQueryTests.Fixture.Get(f.Query(),"Hint"));var cursor=(WorldCursorState)typeof(InputHandler).GetField("_worldCursorState",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(f.Input);cursor.Activate(WorldCursorMode.Look,f.Core.Zone,11,10,10,10);f.State("LookMode");Assert.AreEqual("Enter: menu / harvest",WorldAffordanceQueryTests.Fixture.Get(f.Query(),"Hint"));Assert.AreEqual(ticks,WorldClock.CurrentTick);Assert.AreEqual(energy,f.Input.TurnManager.GetEnergy(f.Core.Player));}}
   [TestCase("InventoryOpen")][TestCase("WorldActionMenuOpen")][TestCase("AwaitingTalkDirection")][TestCase("WaitingForFxResolution")][TestCase("AnnouncementOpen")]

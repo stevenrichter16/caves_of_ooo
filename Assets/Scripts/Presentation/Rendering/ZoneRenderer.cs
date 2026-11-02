@@ -1662,7 +1662,7 @@ namespace CavesOfOoo.Rendering
                 SidebarSnapshot snapshot = SidebarStateBuilder.Build(
                     PlayerEntity, CurrentZone, _currentLookSnapshot,
                     showThoughts: ShowThoughtLog);
-                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT, _worldAffordance?.Hint);
+                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT, SidebarTextFormatter.FormatActionHint(_worldAffordance, NativeGamepadInput.IsConnected));
             }
         }
 

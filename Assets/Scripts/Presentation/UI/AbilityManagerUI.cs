@@ -299,6 +299,7 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null) return;
 
+            ClearRegion(0, 0, POPUP_W, _popupH);
             ClearBgRegion();
             ComputePopupPosition();
 
@@ -307,7 +308,7 @@ namespace CavesOfOoo.Rendering
             int borderH = visibleCount + 5 + DESC_ROWS;
 
             ClearRegion(0, 0, POPUP_W, _popupH);
-            DrawBgFill(0, 0, POPUP_W, borderH);
+            DrawBgFill(0, 0, POPUP_W, _popupH);
             DrawPopupBorder(0, 0, POPUP_W, borderH, visibleCount);
 
             // Title.
@@ -397,7 +398,7 @@ namespace CavesOfOoo.Rendering
             DrawText(0, hintY, NativeGamepadInput.IsConnected
                 ? "[A]use [Y]bind/clear [LT+RT]details [B]close"
                 : "[Enter]use [D]details [P]rite [0-9]bind [R]clear [Esc]close",
-                QudColorParser.DarkGray);
+                QudColorParser.Gray);
         }
 
         // BuildDescription was moved to AbilityManagerStateBuilder.BuildRowDescription
