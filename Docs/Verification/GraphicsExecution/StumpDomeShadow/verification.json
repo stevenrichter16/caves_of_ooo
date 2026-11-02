@@ -1,0 +1,59 @@
+{
+  "recorded_utc": "2026-11-02T18:47:02.934848+00:00",
+  "base_revision": "19f56999b7a72a6b6178d03183fec81cf382d365",
+  "area": "Overworld.3.2.0",
+  "seed": 65,
+  "status": "bounded-editor-observed",
+  "change": "StoneDome contact strip uses unchanged opaque native art, existing wall-shadow layer,16% black and2native pixels south. No new resource or geometry.",
+  "invariants": [
+    "Exact current ordinary3.2; selected disclosed canonical StoneDome",
+    "Disclosed southern receiver with one native TepuiStone, empty tile states and no other visible physical owners",
+    "Hidden owners cannot withdraw shade; legacy/toggle/missing art withdraw safely; no gameplay/save changes"
+  ],
+  "tests": {
+    "red_job": "f7c169574aae46f1935556101fde831d",
+    "red_completed": 27,
+    "red_full_result_null": true,
+    "green_job": "77424c67cdb541309459bc26e31e94aa",
+    "green_passed": 60,
+    "final_job": "da88de54d59147c091a03d3273d8686b",
+    "final_passed": 27,
+    "nonadditive": true,
+    "correction": "Reviewer identified incremental-test premise gap; added !FullDirty assertion. Exact parameterized-method filter failed initialization with0tests; retained and excluded. Full27fixture then passed."
+  },
+  "actual": {
+    "baseline": "WorldMapRemaining checkpoint, actual33,7\u219233,5\u21923.2at40,12HP38Height; F5turn4090BeforeCheckpoint",
+    "matched_world_changed": 2357,
+    "matched_UI_changed": 0,
+    "route": "40,12\u219238,21; Up remains38,21; Look38,20stone dome solid; Down38,22HP38Dusk; F5turn4210; freshContinue38,22; map ascent/descent return38,22",
+    "reload_world_changed": 170,
+    "reload_difference_bounds": [
+      463,
+      561,
+      486,
+      590
+    ],
+    "reload_limit": "Localized near player/creature, outside dome contact edge; cause not established, not exact whole-image parity.",
+    "F12_used": false
+  },
+  "performance": {
+    "receipt": "Docs/Verification/GraphicsExecution/Profiles/manual-20261102-184316-165.json",
+    "seconds": 93.8695921,
+    "renderer_p95_ms": 0.093834,
+    "renderer_max_ms": 99.933,
+    "main_max_ms": 18577.110959,
+    "batches_max": 48,
+    "limits": "After-only Editor2321x1285 profile, fixed actual captures1280x800. Includes input, diagnostic/tool calls and capture stalls; no matched attribution or R11closure."
+  },
+  "reviews": {
+    "source": "portable_equipment_final_review:0productionP1/P2; all17 domeframesopaque, no new hot-path allocations; incrementaltest strengthened",
+    "visual": "capture_route:0newP1/P2; modest grounding without heavy outline or false wall, entities readable"
+  },
+  "limits": [
+    "Only3.2boundedshadow, no newASCII coverage/population/fullarea acceptance",
+    "Broad sparse center, repetitive rock faces and remainingglyphs persist",
+    "Currentcc6418ff8packages exclude this pilot; batch after next material slice",
+    "Linux/Deckhardware andR11 remainopen"
+  ],
+  "next_action": "Inspect actual blue-wave cells in Grovelands3.0(44,12/13) andStump4.4(41,17) before choosing coverage fix; do not replace mixed-liquid hazard with plainwater."
+}

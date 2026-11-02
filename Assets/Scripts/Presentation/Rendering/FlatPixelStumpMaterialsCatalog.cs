@@ -234,6 +234,26 @@ namespace CavesOfOoo.Rendering
             return true;
         }
 
+        // Summit Scrub pilot: a short south strip from a real disclosed dome.
+        // No remembered geometry, wet state, occupied receiver or new resource loads.
+        internal bool CanReceiveDomeContactShadow(Zone zone, int x, int y, Entity source)
+        {
+            if (zone?.ZoneID != "Overworld.3.2.0" || !IsSupportedZone(zone)
+                || source?.BlueprintName != "StoneDome"
+                || !TryResolveForeground(zone, x, y, source, out var body) || body == null
+                || !ReadyCell(zone, x, y + 1, out var receiver)
+                || !TryResolveGround(zone, x, y + 1, out var ground, out var floor)
+                || ground == null || floor?.BlueprintName != "TepuiStone") return false;
+            var sourceState = zone.TileState.Get(x, y);
+            var receiverState = zone.TileState.Get(x, y + 1);
+            if (sourceState != null && !sourceState.IsEmpty
+                || receiverState != null && !receiverState.IsEmpty) return false;
+            foreach (var owner in receiver.Occupants)
+                if (Placed(zone, receiver, owner) && VisiblePhysicalOwner(owner)
+                    && !ReferenceEquals(owner, floor)) return false;
+            return true;
+        }
+
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
