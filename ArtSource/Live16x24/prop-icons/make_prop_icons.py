@@ -255,21 +255,19 @@ def hashname(name):
     return h
 
 def planks(variant):
-    """Weathered vertical boards 5-6 px wide, dark joints (never black), one darker batten with nails,
-    grain and knots placed per variant so neighbouring cells do not repeat."""
-    g = grid(H); joints = (0, 5, 10)
+    """Wide weathered boards: coherent left light, dark joints and shallow batten relief.
+    Full-height opaque rows continue through adjacent cells; no per-cell top cap or shadow footprint."""
+    g = grid(H); joints = (0, 6, 11)
     for y in range(H):
         for x in range(W):
-            g[y][x] = "a" if x in joints else "A"
+            g[y][x] = "a" if x in joints else "H" if x in (1,7,12) else "B" if 7<x<11 else "A"
+    # Low-contrast grain is distinct from the stronger board joints.
+    for x,y in (((3,4),(9,17),(14,20)),((4,18),(9,3),(14,6)),((3,16),(8,5),(14,19)))[variant]:
+        g[y][x]="g"; g[y+1][x]="g"
+        if x+1 not in joints and x+1<W:g[y+1][x+1]="a"
     for x in range(W):
-        g[10][x] = "d"; g[11][x] = "a"; g[12][x] = "d"
-    for x in (2, 7, 13): g[11][x] = "s"
-    seed = 17 + variant * 23
-    for k in range(3):
-        kx = (seed * (k + 3)) % 16; ky = (seed * (k + 5) + k * 7) % 24
-        if kx in joints or 9 <= ky <= 13: continue
-        g[ky][kx] = "d"
-        if kx + 1 < W and kx + 1 not in joints: g[ky][kx + 1] = "a"
+        g[9][x]="H";g[10][x]="A";g[11][x]="b";g[12][x]="d"
+    for x in (2,8,14):g[10][x]="s";g[11][x]="d"
     return ["".join(r) for r in g]
 
 def chalk_wall():
@@ -701,6 +699,11 @@ def palette(fam, code):
     if fam in ("planter", "herb_pot", "bowl"): pal.update(SCENE_PALETTES["thatch"]) if fam == "bowl" else None
     pal["C"], pal["c"] = (150, 128, 96, 255), (118, 98, 72, 255)          # canvas, worn canvas
     pal["d"] = darker(pal["A"], .62)
+    if fam in ("planks","planks_b","planks_c"):
+        # Gantry's Wood material: warmer/darker than the former bleached colour-code palette.
+        pal.update({"A":(151,127,90,255),"B":(139,117,83,255),"H":(182,157,116,255),
+                    "a":(100,83,56,255),"d":(75,64,47,255),"b":(121,99,68,255),
+                    "s":(169,172,161,255),"g":(125,104,74,255)})
     return pal
 
 def crop_stages(parts):
@@ -769,5 +772,26 @@ def main():
     json.dump({"Columns": cols, "FrameHeight": H, "Icons": index}, open(INDEX, "w"), indent=1)
     print(len(index), "rows,", k, "frames for", len({r["Blueprint"] for r in index}), "props")
 
+def update_gantry_only():
+    """Re-export the three indexed timber frames without enumerating content or changing the index."""
+    from pathlib import Path
+    import hashlib
+    out=Path(ROOT)/"ArtSource/Live16x24/gantry-timber"
+    pins=json.loads((out/"protected-inputs.json").read_text())
+    for rel,h in pins.items():assert hashlib.sha256((Path(ROOT)/rel).read_bytes()).hexdigest()==h,rel
+    index=json.load(open(INDEX)); rows=[r for r in index["Icons"] if r["Blueprint"]=="GantryTimberWall"]
+    assert len(rows)==1 and rows[0]["Frame"]==68 and rows[0]["Variants"]==3 and index["Columns"]==16
+    sheet=Image.open(ATLAS).convert("RGBA");pal=palette("planks","y")
+    frames=[]
+    for v in range(3):
+        tpl=planks(v);f=68+v
+        items.paint(sheet,tpl,pal,(f%16)*W,(f//16)*H,tile_edges=True)
+        frames.append({"id":"gantry-timber-"+str(v),"atlas_frame":f,"cells":[[["batten" if 9<=y<=12 else "board-edge" if c in "Ha" else "grain" if c=="g" else "board",c] for c in row] for y,row in enumerate(tpl)]})
+    sheet.save(ATLAS)
+    used=set(c[1] for f in frames for row in f["cells"] for c in row)
+    (out/"source-cells.json").write_text(json.dumps({"palette":{k:bytes(pal[k][:3]).hex().upper() for k in sorted(used)},"frames":frames},indent=2)+"\n")
+    print("Exported only GantryTimberWall frames68–70; index and other cells preserved")
+
 if __name__ == "__main__":
-    main()
+    if "--gantry-only" in sys.argv:update_gantry_only()
+    else:main()

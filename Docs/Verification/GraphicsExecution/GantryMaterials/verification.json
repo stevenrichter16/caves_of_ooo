@@ -1,0 +1,124 @@
+{
+  "recorded_utc": "2026-11-02T07:41:09.277175+00:00",
+  "scope": "GantryTimberWall material frames68\u201370 only",
+  "status": "bounded-editor-verified",
+  "source_base": "bb45f92d459ea671d673d72b5f9f0c6cc91b6f92",
+  "native": {
+    "job": "d5090262b7ac4e7c9b91d72d21f61530",
+    "passed": 31,
+    "failed": 0,
+    "inconclusive": 0,
+    "skipped": 0,
+    "seconds": 1.8648678,
+    "note": "Existing native fixed-prop regression. Asset-only delta; no changed runtime behavior or invented RED."
+  },
+  "exact_art": {
+    "passed": true,
+    "changed_pixels": 1152,
+    "protected_pixels": 121728,
+    "native_pixels": 1152,
+    "atlas_size": [
+      256,
+      480
+    ],
+    "frames": [
+      68,
+      69,
+      70
+    ],
+    "runtime_sha256": "2914d43433f3dcfa08ee4b4bc8602e60c0f7541676df1dc6bc1681849d6e83b9",
+    "editable_sha256": "84cbc40bf6c5762a849bdc226716279fda5b2bffcf52e6be01086b0d3a8df867",
+    "actual_play": false
+  },
+  "actual": {
+    "fixture": "environment-sill-return189",
+    "game_id": "a2e4390711a54b869eced598fbfbbac0",
+    "zone": "Overworld.7.8.0",
+    "matched_position": [
+      53,
+      7
+    ],
+    "baseline_turn": 1750,
+    "baseline_hp": 40,
+    "reader_from": [
+      54,
+      7
+    ],
+    "reader": "Gantry timber partition, Wood,24/24; new native portrait",
+    "collision": "Right struck wall55,7,player stayed54,7; real snakes reduced HP40\u219232 and caused bleeding",
+    "travel": [
+      "Overworld.7.8.0",
+      "Overworld.7.9.0",
+      "Overworld.7.8.0"
+    ],
+    "protection": "F12ON only after actual snake damage; F12OFF before F5",
+    "save_turn": 1850,
+    "reload_position": [
+      39,
+      11
+    ],
+    "reload_hp": 32
+  },
+  "matched": {
+    "1x": {
+      "world_pixels": 639200,
+      "changed_pixels": 9727,
+      "bbox": [
+        2,
+        82,
+        632,
+        448
+      ],
+      "right_ui_exact": false
+    },
+    "2x": {
+      "world_pixels": 639200,
+      "changed_pixels": 16526,
+      "bbox": [
+        404,
+        66,
+        702,
+        644
+      ],
+      "right_ui_exact": false
+    }
+  },
+  "reload": {
+    "world_pixels": 639200,
+    "changed_pixels": 809,
+    "bbox": [
+      64,
+      243,
+      668,
+      448
+    ]
+  },
+  "profile": {
+    "seconds": 81.9612282,
+    "renderer_p95_ms": 0.092083,
+    "renderer_max_ms": 1139.823916,
+    "main_thread_max_ms": 2020.830042,
+    "gc_max_bytes": 1804680058,
+    "limits": "Editor after-only reader/strike/encounter/travel with capture tools; no execute_code inside window. No asset-change causality or packaged/hardware acceptance; R11 remains open."
+  },
+  "review": {
+    "source": "coverage_priorities0P1/P2; independently confirmed protected121728pixels/index/meta/pins",
+    "visual": "capture_route0newP1/P2; warmer boards/deeper edges but regionalgreen shifts olive; repeated battens remain"
+  },
+  "limits": [
+    "No new sprite coverage, geometry, population, connected corners or cast-shadow expansion.",
+    "Other glyphs, green grading, long-run repetition, hidden interiors and full-area acceptance remain.",
+    "Before/after UIlogs differ; total changedpixels are not entirely causally attributed to new art.",
+    "Reload809/639200world pixels differ locally; causeunproven. HP/position/save identity persist.",
+    "Current689157packages exclude Overwrit wear,Grove brine andGantry timber; batch next."
+  ],
+  "preservation": {
+    "foreign_hashes": 75,
+    "changed": 0,
+    "play": false,
+    "root": null,
+    "scene_dirty": false,
+    "cleanup": "none"
+  },
+  "next": "Publish exactownedwork, then batch currentMac/Linux with realMac launch/travel/save/reload and priorbuild/state preservation."
+}
