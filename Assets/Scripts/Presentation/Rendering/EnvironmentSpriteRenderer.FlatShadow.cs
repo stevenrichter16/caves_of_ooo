@@ -18,7 +18,7 @@ namespace CavesOfOoo.Rendering
         private static readonly Matrix4x4 WallShadowOffset = Matrix4x4.Translate(new Vector3(0f, -2f / 16f, 0f));
         private static readonly Color WallShadowColor = new Color(0f, 0f, 0f, .16f);
 
-        /// <summary>Reversible Sill/Beating/Marrowstye masonry trials; no saved gameplay state.
+        /// <summary>Reversible Sill/Beating/Marrowstye/Gantry wall trials; no saved gameplay state.
         /// Fixed screen-north light convention, not simulated solar/torch lighting.</summary>
         public bool FlatWallShadowEnabled
         {
@@ -103,6 +103,9 @@ namespace CavesOfOoo.Rendering
                 : flat.Owner?.BlueprintName == "SandstoneWall"
                     && (FlatPixelBeatingMaterialsCatalog.CanReceiveWallShadow(zone, x, y + 1)
                         || _flatPixelGreybox != null && _flatPixelGreybox.CanReceiveMarrowstyeWallShadow(zone, x, y + 1));
+            if (!receiver && flat.Owner?.BlueprintName == "GantryTimberWall")
+                receiver = _flatPixelGreybox != null
+                    && _flatPixelGreybox.CanReceiveGantryWallShadow(zone, x, y + 1, flat.Owner);
             if (!receiver) return;
             var tile = flat.ForegroundTile;
             var sprite = tile == null ? null : tile.sprite;

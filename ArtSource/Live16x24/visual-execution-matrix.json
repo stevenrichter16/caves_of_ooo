@@ -6937,11 +6937,11 @@
         "coverage": "fallback",
         "polish": "in-progress",
         "population": "not-audited",
-        "shadow": "not-audited",
+        "shadow": "in-progress",
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Gantry green grading/repeated battens/interiors/remaining glyphs/full-area review remain; bounded timber now included and observed in current Mac package.",
+      "next_action": "Retain fullarea/memoryASCII/population/R11; broader shade needs its own actual comparison. Batchwater+shade delivery later.",
       "coordinates": [
         7,
         8,
@@ -7064,7 +7064,149 @@
         "physical_deck": "not executed",
         "whole_area_polish": false,
         "performance_gate": "R11 open"
-      }
+      },
+      "bounded_timber_shadow": {
+        "recorded_utc": "2026-11-02T08:39:37.132127+00:00",
+        "source_base": "db531cd04638dfd8ac309f97845f878c19fde09f",
+        "status": "bounded-editor-verified",
+        "scope": "Gantry7.8 native timber wall shadow only",
+        "art": "Unchanged approved frames68-70 are fully opaque; borrowed by existing layer. No new mask/art or geometry.",
+        "rules": {
+          "offset_native_pixels": [
+            0,
+            2
+          ],
+          "black_alpha": 0.16,
+          "light_convention": "fixed screen-north; not simulated lighting",
+          "source": "current named Gantry profile/graph, disclosed placed canonical healthy solidWood wall and drysource",
+          "receiver": "one disclosed plain dry native ground owner; occupancy/memory/state/optional-resource vetoes",
+          "toggle": "existing FlatWallShadowEnabled and legacy switch"
+        },
+        "native": {
+          "excluded_discovery_job": "533d37c1ef9a4b339e535a6baf7c7f06 ran0cases before forced new-file import",
+          "red_job": "2b823d49bd16445ba61bb801efff34e0",
+          "red_failed": 29,
+          "red_reason": "all expected missing Gantry shade",
+          "green_job": "1c836f991f574654bcc4be55b7cb24df",
+          "green_total": 115,
+          "passed": 115,
+          "failed": 0,
+          "inconclusive": 0,
+          "skipped": 0,
+          "seconds": 15.9304021,
+          "families": [
+            "Gantry",
+            "Marrowstye",
+            "Sill",
+            "Beating",
+            "SpreadTreeContact"
+          ]
+        },
+        "actual": {
+          "seed": 704860946,
+          "fixture": "Docs/Verification/GraphicsExecution/GantryMaterials/BeforeCheckpoint",
+          "game_id": "a2e4390711a54b869eced598fbfbbac0",
+          "zone": "Overworld.7.8.0",
+          "baseline_turn": 1750,
+          "position": [
+            53,
+            7
+          ],
+          "hp_before": 40,
+          "matched": [
+            "1x",
+            "2x"
+          ],
+          "submitted_edges": [
+            [
+              18,
+              22
+            ],
+            [
+              22,
+              8
+            ],
+            [
+              55,
+              8
+            ]
+          ],
+          "reader": "54,7 lookingRight: Gantry timber partition,Wood24/24,unchangednativeportrait",
+          "occupancy": "55,9Player:shade55,8false. Left attempted occupiedsnake (blocked). Right moved out,followingSariSnake at55,9:shadefalse. Two further Right steps clearreceiverGrassonly:shadetrue. Read-only probes afterprofile confirmed.",
+          "collision": "Up from55,9 struck real timber55,8 and stayed55,9; actuallogcapture",
+          "damage": "Snakes and bleedingHP40\u219222 before protection; F12ON for later collision/route,OFF beforeF5",
+          "travel": [
+            "Overworld.7.8.0",
+            "Overworld.7.9.0",
+            "Overworld.7.8.0"
+          ],
+          "save_turn": 1930,
+          "save_utc": "2026-11-02T08:36:59.8097210Z",
+          "fresh_position": [
+            39,
+            11
+          ],
+          "fresh_hp": 22
+        },
+        "comparison": {
+          "1x": {
+            "changed_world_pixels": 64,
+            "total_world_pixels": 639200,
+            "bbox": [
+              12,
+              256,
+              556,
+              258
+            ],
+            "ui_exact": true
+          },
+          "-2x": {
+            "changed_world_pixels": 128,
+            "total_world_pixels": 639200,
+            "bbox": [
+              518,
+              412,
+              550,
+              416
+            ],
+            "ui_exact": true
+          },
+          "reload": {
+            "changed_world_pixels": 125,
+            "total_world_pixels": 639200,
+            "bbox": [
+              702,
+              373,
+              743,
+              410
+            ]
+          }
+        },
+        "profile": {
+          "seconds": 91.1264325,
+          "renderer_p95_ms": 0.103208,
+          "renderer_max_ms": 69.88475,
+          "main_thread_p95_ms": 2.0795,
+          "main_thread_max_ms": 380.633042,
+          "gc_max_bytes": 453959178,
+          "scope": "After-only Editor zoom/reader/movement/encounter/captures, no execute_code inside profile. Not packaged or causal performance comparison;R11open."
+        },
+        "review": {
+          "source": "coverage_priorities:0P1/P2; currentauthority/disclosure/source/receiver/resources,Marrowrefactor,existingdisposal checked",
+          "visual": "capture_route:0newP1/P2; modestloweredgegrounding,mostclear2x;nohazard/obstacle/fogartifact. Only small pilot."
+        },
+        "limits": [
+          "Only64worldpixels change1x,128at2x;UIexact. Smallsubtlegrounding,not substantiallighting.",
+          "Freshworld125/639200pixels differ in bbox702,373\u2013743,410 awayfrommatchededge;causeunproven. HP/positionpersist.",
+          "No newcoverage/population/materialart/fullareaacceptance.",
+          "Currentfbfea Mac/Linux packages exclude both floodwater andshadow; batchlater.",
+          "Remaining memoryASCII,olivegrading,repeatedboards,broadopenyards/interiors,R11."
+        ]
+      },
+      "evidence": [
+        "Docs/GRAPHICS-GANTRY-SHADOW.md",
+        "Docs/Verification/GraphicsExecution/GantryShadow/verification.json"
+      ]
     },
     {
       "id": "surface/Overworld.8.8.0",
@@ -16080,11 +16222,11 @@
         "coverage": "fallback",
         "polish": "in-progress",
         "population": "not-audited",
-        "shadow": "not-audited",
+        "shadow": "in-progress",
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Gantry green grading/repeated battens/interiors/remaining glyphs/full-area review remain; bounded timber now included and observed in current Mac package.",
+      "next_action": "Retain fullarea/memoryASCII/population/R11; broader shade needs its own actual comparison. Batchwater+shade delivery later.",
       "faction": "Villagers",
       "profile": "CrossroadsExchange",
       "legacy_inventory_pointer": "/settlements/2",
@@ -16210,7 +16352,149 @@
         "physical_deck": "not executed",
         "whole_area_polish": false,
         "performance_gate": "R11 open"
-      }
+      },
+      "bounded_timber_shadow": {
+        "recorded_utc": "2026-11-02T08:39:37.132127+00:00",
+        "source_base": "db531cd04638dfd8ac309f97845f878c19fde09f",
+        "status": "bounded-editor-verified",
+        "scope": "Gantry7.8 native timber wall shadow only",
+        "art": "Unchanged approved frames68-70 are fully opaque; borrowed by existing layer. No new mask/art or geometry.",
+        "rules": {
+          "offset_native_pixels": [
+            0,
+            2
+          ],
+          "black_alpha": 0.16,
+          "light_convention": "fixed screen-north; not simulated lighting",
+          "source": "current named Gantry profile/graph, disclosed placed canonical healthy solidWood wall and drysource",
+          "receiver": "one disclosed plain dry native ground owner; occupancy/memory/state/optional-resource vetoes",
+          "toggle": "existing FlatWallShadowEnabled and legacy switch"
+        },
+        "native": {
+          "excluded_discovery_job": "533d37c1ef9a4b339e535a6baf7c7f06 ran0cases before forced new-file import",
+          "red_job": "2b823d49bd16445ba61bb801efff34e0",
+          "red_failed": 29,
+          "red_reason": "all expected missing Gantry shade",
+          "green_job": "1c836f991f574654bcc4be55b7cb24df",
+          "green_total": 115,
+          "passed": 115,
+          "failed": 0,
+          "inconclusive": 0,
+          "skipped": 0,
+          "seconds": 15.9304021,
+          "families": [
+            "Gantry",
+            "Marrowstye",
+            "Sill",
+            "Beating",
+            "SpreadTreeContact"
+          ]
+        },
+        "actual": {
+          "seed": 704860946,
+          "fixture": "Docs/Verification/GraphicsExecution/GantryMaterials/BeforeCheckpoint",
+          "game_id": "a2e4390711a54b869eced598fbfbbac0",
+          "zone": "Overworld.7.8.0",
+          "baseline_turn": 1750,
+          "position": [
+            53,
+            7
+          ],
+          "hp_before": 40,
+          "matched": [
+            "1x",
+            "2x"
+          ],
+          "submitted_edges": [
+            [
+              18,
+              22
+            ],
+            [
+              22,
+              8
+            ],
+            [
+              55,
+              8
+            ]
+          ],
+          "reader": "54,7 lookingRight: Gantry timber partition,Wood24/24,unchangednativeportrait",
+          "occupancy": "55,9Player:shade55,8false. Left attempted occupiedsnake (blocked). Right moved out,followingSariSnake at55,9:shadefalse. Two further Right steps clearreceiverGrassonly:shadetrue. Read-only probes afterprofile confirmed.",
+          "collision": "Up from55,9 struck real timber55,8 and stayed55,9; actuallogcapture",
+          "damage": "Snakes and bleedingHP40\u219222 before protection; F12ON for later collision/route,OFF beforeF5",
+          "travel": [
+            "Overworld.7.8.0",
+            "Overworld.7.9.0",
+            "Overworld.7.8.0"
+          ],
+          "save_turn": 1930,
+          "save_utc": "2026-11-02T08:36:59.8097210Z",
+          "fresh_position": [
+            39,
+            11
+          ],
+          "fresh_hp": 22
+        },
+        "comparison": {
+          "1x": {
+            "changed_world_pixels": 64,
+            "total_world_pixels": 639200,
+            "bbox": [
+              12,
+              256,
+              556,
+              258
+            ],
+            "ui_exact": true
+          },
+          "-2x": {
+            "changed_world_pixels": 128,
+            "total_world_pixels": 639200,
+            "bbox": [
+              518,
+              412,
+              550,
+              416
+            ],
+            "ui_exact": true
+          },
+          "reload": {
+            "changed_world_pixels": 125,
+            "total_world_pixels": 639200,
+            "bbox": [
+              702,
+              373,
+              743,
+              410
+            ]
+          }
+        },
+        "profile": {
+          "seconds": 91.1264325,
+          "renderer_p95_ms": 0.103208,
+          "renderer_max_ms": 69.88475,
+          "main_thread_p95_ms": 2.0795,
+          "main_thread_max_ms": 380.633042,
+          "gc_max_bytes": 453959178,
+          "scope": "After-only Editor zoom/reader/movement/encounter/captures, no execute_code inside profile. Not packaged or causal performance comparison;R11open."
+        },
+        "review": {
+          "source": "coverage_priorities:0P1/P2; currentauthority/disclosure/source/receiver/resources,Marrowrefactor,existingdisposal checked",
+          "visual": "capture_route:0newP1/P2; modestloweredgegrounding,mostclear2x;nohazard/obstacle/fogartifact. Only small pilot."
+        },
+        "limits": [
+          "Only64worldpixels change1x,128at2x;UIexact. Smallsubtlegrounding,not substantiallighting.",
+          "Freshworld125/639200pixels differ in bbox702,373\u2013743,410 awayfrommatchededge;causeunproven. HP/positionpersist.",
+          "No newcoverage/population/materialart/fullareaacceptance.",
+          "Currentfbfea Mac/Linux packages exclude both floodwater andshadow; batchlater.",
+          "Remaining memoryASCII,olivegrading,repeatedboards,broadopenyards/interiors,R11."
+        ]
+      },
+      "evidence": [
+        "Docs/GRAPHICS-GANTRY-SHADOW.md",
+        "Docs/Verification/GraphicsExecution/GantryShadow/verification.json"
+      ]
     },
     {
       "id": "settlement/tine",

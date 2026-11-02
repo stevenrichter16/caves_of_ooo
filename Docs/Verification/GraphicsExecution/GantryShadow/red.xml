@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="29" result="Failed(Child)" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:24Z" duration="3.3704974">
+  <test-suite type="TestSuite" id="44065" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35908" result="Failed" site="Child" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:24Z" duration="3.370497" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44037" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35908" result="Failed" site="Child" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:24Z" duration="3.338627" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44038" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35908" result="Failed" site="Child" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:24Z" duration="3.334826" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44039" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35908" result="Failed" site="Child" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:24Z" duration="3.332399" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32081" name="FlatPixelGantryShadowTests" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:24Z" duration="3.322328" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32086" name="CanonicalDryReceiversGetOnlyShortSouthShade" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:21Z" duration="0.651302" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32082" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Floor&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="303075356" result="Failed" start-time="2026-11-02 08:30:20Z" end-time="2026-11-02 08:30:21Z" duration="0.345580" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32083" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;StoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;StoneFloor&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="373305670" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.094070" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32084" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;RoadStone&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;RoadStone&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1413495782" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.098082" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32085" name="CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Grass&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade(&quot;Grass&quot;)" methodname="CanonicalDryReceiversGetOnlyShortSouthShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1795307913" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.093163" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.CanonicalDryReceiversGetOnlyShortSouthShade (System.String material) [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:37
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32114" name="ChangedTimberMeaningClearsShade" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.481245" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32109" name="ChangedTimberMeaningClearsShade(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade(&quot;variant&quot;)" methodname="ChangedTimberMeaningClearsShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="2004608120" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.091910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32110" name="ChangedTimberMeaningClearsShade(&quot;nonsolid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade(&quot;nonsolid&quot;)" methodname="ChangedTimberMeaningClearsShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1601890098" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.087965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32111" name="ChangedTimberMeaningClearsShade(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade(&quot;dead&quot;)" methodname="ChangedTimberMeaningClearsShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="719262831" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.089410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32112" name="ChangedTimberMeaningClearsShade(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade(&quot;material&quot;)" methodname="ChangedTimberMeaningClearsShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="2069754644" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.090084" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32113" name="ChangedTimberMeaningClearsShade(&quot;source-oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade(&quot;source-oil&quot;)" methodname="ChangedTimberMeaningClearsShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="963207814" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.088745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.ChangedTimberMeaningClearsShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:123
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32099" name="DisclosureAndLiveStateRemoveOnlyShade" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:22Z" duration="0.928109" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32092" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;source-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;source-hidden&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1305235360" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:21Z" duration="0.090214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32093" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;source-memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;source-memory&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="272776765" result="Failed" start-time="2026-11-02 08:30:21Z" end-time="2026-11-02 08:30:22Z" duration="0.090419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32094" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-hidden&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1451730829" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:22Z" duration="0.119629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32095" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;receiver-memory&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="404769620" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:22Z" duration="0.326909" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32096" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;oil&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="274368721" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:22Z" duration="0.090823" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32097" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;changed&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;changed&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="605731270" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:22Z" duration="0.090801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32098" name="DisclosureAndLiveStateRemoveOnlyShade(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade(&quot;heat&quot;)" methodname="DisclosureAndLiveStateRemoveOnlyShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="583903611" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:22Z" duration="0.087957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.DisclosureAndLiveStateRemoveOnlyShade (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32100" name="HiddenOccupantsCannotAffectTheDisclosedShadow" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow" methodname="HiddenOccupantsCannotAffectTheDisclosedShadow" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="704886928" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:22Z" duration="0.089320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.HiddenOccupantsCannotAffectTheDisclosedShadow () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:78
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32115" name="LegacyAndMissingShaderClearShadeWithoutChangingTheBorrowedBody" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.LegacyAndMissingShaderClearShadeWithoutChangingTheBorrowedBody" methodname="LegacyAndMissingShaderClearShadeWithoutChangingTheBorrowedBody" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="240426531" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:22Z" duration="0.088411" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.LegacyAndMissingShaderClearShadeWithoutChangingTheBorrowedBody () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:138
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="32108" name="MissingReceiverArtLeavesTheApprovedTimberBody" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.MissingReceiverArtLeavesTheApprovedTimberBody" methodname="MissingReceiverArtLeavesTheApprovedTimberBody" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1320279479" result="Failed" start-time="2026-11-02 08:30:22Z" end-time="2026-11-02 08:30:23Z" duration="0.088387" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.MissingReceiverArtLeavesTheApprovedTimberBody () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:110
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32091" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.398699" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32087" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Player&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1665656692" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.092068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32088" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Dagger&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;Dagger&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="627685086" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.090400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32089" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;VillageDoor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;VillageDoor&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1378702244" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.091323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32090" name="OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WaterPuddle&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity(&quot;WaterPuddle&quot;)" methodname="OccupancyWithdrawsAndRemovalRestoresWithFullParity" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1982935553" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.090933" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.OccupancyWithdrawsAndRemovalRestoresWithFullParity (System.String name) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32107" name="SavedSurfaceLairRevokesShade" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.SavedSurfaceLairRevokesShade" methodname="SavedSurfaceLairRevokesShade" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="122367298" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.090005" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.SavedSurfaceLairRevokesShade () [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:100
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32106" name="WarmAuthorityRevocationClearsThePilot" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:24Z" duration="0.490216" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32101" name="WarmAuthorityRevocationClearsThePilot(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;profile&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="954994983" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.091932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32102" name="WarmAuthorityRevocationClearsThePilot(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;name&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="853908889" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.090078" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32103" name="WarmAuthorityRevocationClearsThePilot(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;graph&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1449223182" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.090716" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32104" name="WarmAuthorityRevocationClearsThePilot(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;map&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1596241756" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:23Z" duration="0.091157" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32105" name="WarmAuthorityRevocationClearsThePilot(&quot;alias&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot(&quot;alias&quot;)" methodname="WarmAuthorityRevocationClearsThePilot" classname="CavesOfOoo.Tests.FlatPixelGantryShadowTests" runstate="Runnable" seed="1662867879" result="Failed" start-time="2026-11-02 08:30:23Z" end-time="2026-11-02 08:30:24Z" duration="0.091790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Gantry native timber has no shade
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGantryShadowTests.On (CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests+Paint p) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGantryShadowTests.WarmAuthorityRevocationClearsThePilot (System.String change) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelGantryShadowTests.cs:85
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

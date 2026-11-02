@@ -2028,6 +2028,9 @@ namespace CavesOfOoo.Rendering
         internal bool CanReceiveTreeContactShadow(Zone zone,int x,int y,Entity source)
             => _spreadEnvironmentArt != null && _spreadEnvironmentArt.CanReceiveTreeContactShadow(zone,x,y,source);
 
+        internal bool CanReceiveGantryWallShadow(Zone zone, int x, int y, Entity source)
+            => _settlementGroundArt != null && _settlementGroundArt.CanReceiveGantryWallShadow(zone, x, y, source);
+
         internal bool CanReceiveMarrowstyeWallShadow(Zone zone, int x, int y)
             => _settlementGroundArt != null && _settlementGroundArt.CanReceiveMarrowstyeWallShadow(zone, x, y);
 

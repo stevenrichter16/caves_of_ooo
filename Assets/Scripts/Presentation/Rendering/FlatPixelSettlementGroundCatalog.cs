@@ -285,8 +285,25 @@ namespace CavesOfOoo.Rendering
         /// ground owner with a real cached native tile. Hidden occupants do not
         /// influence shade; any disclosed object or state withdraws it.</summary>
         internal bool CanReceiveMarrowstyeWallShadow(Zone zone, int x, int y)
+            => CanReceiveSettlementWallShadow(zone, x, y, false);
+
+        internal bool CanReceiveGantryWallShadow(Zone zone, int x, int y, Entity source)
         {
-            if (disposed || zone?.ZoneID != MarrowstyeCompositionPlan.ZoneID) return false;
+            if (zone?.ZoneID != GantryCompositionPlan.ZoneID || !Plain(source) || ForeignMeaning(source)
+                || !GantryCompositionBuilder.Valid(source, "GantryTimberWall")
+                || Owned<MaterialPart>(source) == null || Owned<ThermalPart>(source) == null
+                || Owned<DestructiblePart>(source) == null) return false;
+            var cell = zone.GetCell(x, y - 1);
+            var render = Owned<RenderPart>(source);
+            if (cell == null || !cell.Explored || !cell.IsVisible || !Placed(zone, cell, source)
+                || render.ColorString != "&y" || render.RenderLayer != 1) return false;
+            var state = zone.TileState.Get(x, y - 1);
+            return (state == null || state.IsEmpty) && CanReceiveSettlementWallShadow(zone, x, y, true);
+        }
+
+        bool CanReceiveSettlementWallShadow(Zone zone, int x, int y, bool gantry)
+        {
+            if (disposed || zone?.ZoneID != (gantry ? GantryCompositionPlan.ZoneID : MarrowstyeCompositionPlan.ZoneID)) return false;
             var manager = WorldLocationContext.For(zone);
             if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
                 || !ReferenceEquals(current, zone)) return false;
@@ -294,8 +311,10 @@ namespace CavesOfOoo.Rendering
             if (map?.Tiles == null || map.POIs == null
                 || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
                 || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
-            var poi = map.GetPOI(12, 12);
-            if (poi?.Name != "Marrowstye" || !AreaCompositionScope.IsMarrowstyeSite(poi)
+            int wx = gantry ? 7 : 12, wy = gantry ? 8 : 12;
+            var poi = map.GetPOI(wx, wy);
+            if (poi?.Name != (gantry ? "Gantry" : "Marrowstye")
+                || !(gantry ? AreaCompositionScope.IsGantrySite(poi) : AreaCompositionScope.IsMarrowstyeSite(poi))
                 || LairStacks.HasSavedColumn(manager, zone.ZoneID)) return false;
             var cell = zone.GetCell(x, y);
             if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
@@ -311,7 +330,7 @@ namespace CavesOfOoo.Rendering
                     || !OrdinaryGround(owner)) return false;
                 floor = owner;
             }
-            return floor != null && MaterialFor(floor, x, y, map.GetBiome(12, 12), intakeRoad: true) != null;
+            return floor != null && MaterialFor(floor, x, y, map.GetBiome(wx, wy), intakeRoad: !gantry) != null;
         }
 
         static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";
