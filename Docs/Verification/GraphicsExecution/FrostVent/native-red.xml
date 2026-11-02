@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="17" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:01Z" duration="1.5156707">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="36558" result="Failed" site="Child" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:01Z" duration="1.515671" total="23" passed="17" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="44791" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="36558" result="Failed" site="Child" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:01Z" duration="1.509025" total="23" passed="17" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="20102" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="44792" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="36558" result="Failed" site="Child" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:01Z" duration="1.505843" total="23" passed="17" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="44793" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="36558" result="Failed" site="Child" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:01Z" duration="1.503394" total="23" passed="17" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="32363" name="FlatPixelFrostVentTests" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:01Z" duration="1.494271" total="23" passed="17" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="32370" name="CoveredVentKeepsBodyAndExactReader" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.CoveredVentKeepsBodyAndExactReader" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.171110" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32368" name="CoveredVentKeepsBodyAndExactReader(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.CoveredVentKeepsBodyAndExactReader(&quot;Player&quot;)" methodname="CoveredVentKeepsBodyAndExactReader" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="457033329" result="Failed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.125194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native frost vent required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFrostVentTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:40
+at CavesOfOoo.Tests.FlatPixelFrostVentTests.CoveredVentKeepsBodyAndExactReader (System.String cover) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32369" name="CoveredVentKeepsBodyAndExactReader(&quot;LongSword&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.CoveredVentKeepsBodyAndExactReader(&quot;LongSword&quot;)" methodname="CoveredVentKeepsBodyAndExactReader" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1903352084" result="Failed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.043122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native frost vent required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFrostVentTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:40
+at CavesOfOoo.Tests.FlatPixelFrostVentTests.CoveredVentKeepsBodyAndExactReader (System.String cover) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:60
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="32390" name="HiddenCellClearsBodyAndColdAndCurrentGraphIsRequired" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.HiddenCellClearsBodyAndColdAndCurrentGraphIsRequired" methodname="HiddenCellClearsBodyAndColdAndCurrentGraphIsRequired" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1962082115" result="Failed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.042707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Native frost vent required
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFrostVentTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:40
+at CavesOfOoo.Tests.FlatPixelFrostVentTests.HiddenCellClearsBodyAndColdAndCurrentGraphIsRequired () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:87
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32389" name="HigherPriorityHazardsRetainTheirMarks" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.HigherPriorityHazardsRetainTheirMarks" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.644392" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32384" name="HigherPriorityHazardsRetainTheirMarks(&quot;heat&quot;,'^')" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.HigherPriorityHazardsRetainTheirMarks(&quot;heat&quot;,'^')" methodname="HigherPriorityHazardsRetainTheirMarks" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="861711506" result="Passed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.201523" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32385" name="HigherPriorityHazardsRetainTheirMarks(&quot;charge&quot;,'*')" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.HigherPriorityHazardsRetainTheirMarks(&quot;charge&quot;,'*')" methodname="HigherPriorityHazardsRetainTheirMarks" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="194733311" result="Passed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.187573" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32386" name="HigherPriorityHazardsRetainTheirMarks(&quot;oil&quot;,'~')" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.HigherPriorityHazardsRetainTheirMarks(&quot;oil&quot;,'~')" methodname="HigherPriorityHazardsRetainTheirMarks" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1675898750" result="Passed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.082044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32387" name="HigherPriorityHazardsRetainTheirMarks(&quot;embers&quot;,'&quot;')" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.HigherPriorityHazardsRetainTheirMarks(&quot;embers&quot;,'&quot;')" methodname="HigherPriorityHazardsRetainTheirMarks" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="216101727" result="Passed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.087665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32388" name="HigherPriorityHazardsRetainTheirMarks(&quot;veil-mist&quot;,'\'')" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.HigherPriorityHazardsRetainTheirMarks(&quot;veil-mist&quot;,'\'')" methodname="HigherPriorityHazardsRetainTheirMarks" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="370195730" result="Passed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:00Z" duration="0.081804" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="32367" name="SourceFreeColdFloorGetsRimeWithoutInventingVent" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.SourceFreeColdFloorGetsRimeWithoutInventingVent" methodname="SourceFreeColdFloorGetsRimeWithoutInventingVent" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="513580410" result="Failed" start-time="2026-11-02 21:18:00Z" end-time="2026-11-02 21:18:01Z" duration="0.042563" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFrostVentTests.SourceFreeColdFloorGetsRimeWithoutInventingVent () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:54
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="32383" name="UnsupportedOwnersRetainFallback" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.504235" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="32371" name="UnsupportedOwnersRetainFallback(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;hidden&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1990760092" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.044640" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32372" name="UnsupportedOwnersRetainFallback(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;memory&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="321096123" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32373" name="UnsupportedOwnersRetainFallback(&quot;no-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;no-floor&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="150653432" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.042204" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32374" name="UnsupportedOwnersRetainFallback(&quot;duplicate-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;duplicate-floor&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="828498285" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32375" name="UnsupportedOwnersRetainFallback(&quot;duplicate-vent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;duplicate-vent&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="219455997" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32376" name="UnsupportedOwnersRetainFallback(&quot;material&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;material&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1043606579" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32377" name="UnsupportedOwnersRetainFallback(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;glyph&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1710678841" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041797" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32378" name="UnsupportedOwnersRetainFallback(&quot;variant&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;variant&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="562339559" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041188" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32379" name="UnsupportedOwnersRetainFallback(&quot;source&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;source&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1166970282" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32380" name="UnsupportedOwnersRetainFallback(&quot;nan&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;nan&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="801690973" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.040547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32381" name="UnsupportedOwnersRetainFallback(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;solid&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="825373669" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.040323" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="32382" name="UnsupportedOwnersRetainFallback(&quot;stairs&quot;)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.UnsupportedOwnersRetainFallback(&quot;stairs&quot;)" methodname="UnsupportedOwnersRetainFallback" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="2090828158" result="Passed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="32366" name="WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.085568" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="32364" name="WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold(-25.0f)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold(-25.0f)" methodname="WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="2126469939" result="Failed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.041598" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native frost vent required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFrostVentTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:40
+at CavesOfOoo.Tests.FlatPixelFrostVentTests.WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold (System.Single temperature) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:44
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="32365" name="WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold(8.870154f)" fullname="CavesOfOoo.Tests.FlatPixelFrostVentTests.WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold(8.870154f)" methodname="WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold" classname="CavesOfOoo.Tests.FlatPixelFrostVentTests" runstate="Runnable" seed="1302833338" result="Failed" start-time="2026-11-02 21:18:01Z" end-time="2026-11-02 21:18:01Z" duration="0.040932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Native frost vent required
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelFrostVentTests.Body () [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:40
+at CavesOfOoo.Tests.FlatPixelFrostVentTests.WarmOrColdEmitterHasNativeBodyReaderAndIndependentCold (System.Single temperature) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelFrostVentTests.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

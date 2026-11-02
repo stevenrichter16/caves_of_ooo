@@ -85,6 +85,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelSharedStorageCatalog _sharedStorageArt;
         private FlatPixelSharedFurnitureCatalog _sharedFurnitureArt;
         private FlatPixelSharedSteamVentCatalog _sharedSteamVentArt;
+        private FlatPixelFrostVentCatalog _frostVentArt;
         private FlatPixelSharedResidentsCatalog _sharedResidentsArt;
         private FlatPixelBeatingActorsCatalog _beatingActorsArt;
         private FlatPixelSoddenFrogsCatalog _soddenFrogsArt;
@@ -1518,7 +1519,11 @@ namespace CavesOfOoo.Rendering
             bool portableEquipmentKnown = FlatPixelIncidentalEquipmentCatalog.IsSidearm(owner) || owner?.BlueprintName == "Buckler";
             if (portableEquipmentKnown) art = equipmentArt;
             if (farmerKnown) art = incidentalArt;
-            bool native = portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || spreadNative || sillNative || soddenNative || beatingNative || settlementNative || lipNative || wildNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
+            var frost = !fallback.Remembered ? FrostVentArtFor(zone) : null;
+            Tile frostTile = null;
+            bool frostNative = owner?.BlueprintName == "FrostVent" && frost != null && frost.TryResolve(zone, x, y, owner, out frostTile);
+            if (frostNative) art = frostTile;
+            bool native = frostNative ? true : portableCropKnown ? portableCropNative : essentialsKnown ? essentialsNative : greatdewKnown ? greatdewNative : sharedVineKnown ? sharedVineNative : soddenFrogKnown ? soddenFrogNative : farmerKnown ? incidentalNative : portableEquipmentKnown ? equipmentNative : clothKnown ? clothNative : campKnown ? campNative : beatingActorKnown ? beatingActorNative : residentKnown ? residentNative : steamKnown ? steamNative : stoneKnown ? stoneNative : furnitureKnown ? furnitureNative : storageKnown ? storageNative : groveActorKnown ? groveActorNative : faunaKnown ? faunaNative : productKnown ? productNative : boundaryNative || eastNative || incidentalNative || equipmentNative || aftermathNative || orchardNative || riverShrineNative || nellaCornerNative || eastFixtureNative || brineNative || hedgeNative || spreadNative || sillNative || soddenNative || beatingNative || settlementNative || lipNative || wildNative || grovelandsNative || overwritNative || stumpNative || caveNative || limestoneNative || shaleNative || slateNative || quartziteNative || obsidianNative
                 || allowNativeFallback && allowHedgeFallback
                     && ((!local && _openingArt.TryResolvePortableLongSword(owner, out art))
                         || (local || FlatPixelActorMotionCatalog.IsPortableActor(owner))
@@ -1642,7 +1647,7 @@ namespace CavesOfOoo.Rendering
                 ObserveService(zone, cell, owner, foreground);
             result = new FlatPixelGreyboxCell(groundTile,
                 foreground, groundColor, foregroundColor, owner, kind, ground, fallback.Remembered,
-                fallback.BlocksMovement, coveredAcid ?? coveredMucilage ?? stump?.WetEntrance(zone, x, y) ?? settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || mapGround || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || soddenMireGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop,
+                fallback.BlocksMovement, frost?.CoveredBody(zone, x, y) ?? coveredAcid ?? coveredMucilage ?? stump?.WetEntrance(zone, x, y) ?? settlement?.MorrowfastBridge(zone, x, y) ?? (local && !fallback.Remembered ? ReserveCord(zone, cell, out _) : null) ?? sodden?.CoveredBoard(zone, x, y), native, local || mapGround || spreadGround || sillGround || sillWater || staticMemoryGround || soddenGround || soddenMireGround || beatingGround || grovelandsGround || grovelandsWater || overwritGround || stumpGround || stumpWater || settlementGround || settlementWater || floodWater || caveGround || limestoneGround || shaleGround || slateGround || quartziteGround || obsidianGround, brineNative || beatingBrineNative, mireNative, nellaCornerNative && !local || spreadNative || farmerKnown && incidentalNative || faunaNative || groveActorNative || storageNative || furnitureNative || stoneNative || steamNative || residentNative || wildNative || beatingActorNative || soddenFrogNative || sharedVineNative || greatdewNative || essentialsNative || campNative || clothNative || owner?.BlueprintName == "Buckler" && equipmentNative, caveBackdrop || limestoneBackdrop || shaleBackdrop || shaleRecessBackdrop || slateBackdrop || quartziteBackdrop || obsidianBackdrop,
                 coveredMucilage != null || grovelandsNative && owner.BlueprintName == "MirrorMucilagePool",
                 coveredAcid != null || soddenNative && owner.BlueprintName == "AcidPool");
             return true;
@@ -1730,6 +1735,13 @@ namespace CavesOfOoo.Rendering
                 var residents = SharedResidentsArtFor(subject);
                 if (residents.TryResolve(subject, out var residentTile))
                 { sprite = residentTile.sprite; return sprite != null; }
+                return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
+            }
+            if (subject?.BlueprintName == "FrostVent")
+            {
+                var frost = FrostVentArtFor(zone);
+                if (frost != null && frost.TryResolve(zone, x, y, subject, out var frostTile))
+                { sprite = frostTile.sprite; return sprite != null; }
                 return TryGetFallbackSubjectSprite(subject, x, y, out sprite, out tint);
             }
             if (SharedSteamRole(zone, subject))
@@ -2326,6 +2338,13 @@ namespace CavesOfOoo.Rendering
             => FlatPixelSharedSteamVentCatalog.HasKnownRole(owner)
                 && !(owner.BlueprintName == "SteamVent" && IsAdmitted(zone)
                     && (zone.ZoneID == "Overworld.12.10.0" || zone.ZoneID == "Overworld.12.11.0"));
+        private FlatPixelFrostVentCatalog FrostVentArtFor(Zone zone)
+        {
+            if (!FlatPixelSiteAdmission.IsGinmereDescent(zone)) return null;
+            if (_frostVentArt == null && _loadOptionalResources)
+            { if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog(); _frostVentArt = new FlatPixelFrostVentCatalog(_glyphFallback); }
+            return _frostVentArt;
+        }
         private FlatPixelSharedSteamVentCatalog SharedSteamVentArtFor(Zone zone, Entity owner)
         {
             if (!SharedSteamRole(zone, owner)) return null;
@@ -2599,6 +2618,7 @@ namespace CavesOfOoo.Rendering
             _beatingActorsArt = null;
             _sharedResidentsArt?.Dispose();
             _sharedResidentsArt = null;
+            _frostVentArt?.Dispose(); _frostVentArt = null;
             _sharedSteamVentArt?.Dispose();
             _sharedSteamVentArt = null;
             _sharedStonePropsArt?.Dispose();

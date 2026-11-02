@@ -603,6 +603,7 @@ namespace CavesOfOoo.Rendering
             _flatProjection?.Dispose();
             _flatProjection = null;
             _eastSteamArt?.Dispose(); _eastSteamArt = null;
+            _frostVentMarks?.Dispose(); _frostVentMarks = null;
             _worldFxCoordinator?.Dispose();
             DestroyOwnedMaterial(ref _sidebarUiMaterial);
             DestroyOwnedMaterial(ref _hotbarUiMaterial);
@@ -1262,6 +1263,7 @@ namespace CavesOfOoo.Rendering
         /// the environment sprite pass so they are never covered.</summary>
         private Tilemap _tileStateTilemap;
         private FlatPixelEastSteamCatalog _eastSteamArt;
+        private FlatPixelFrostVentCatalog _frostVentMarks;
         private bool _tileStateNativeVisible;
         private static readonly Matrix4x4 NativeGroundMarkTransform = Matrix4x4.TRS(
             new Vector3(.28f, .28f, 0f), Quaternion.identity, new Vector3(.35f, .35f, 1f));
@@ -1377,6 +1379,16 @@ namespace CavesOfOoo.Rendering
             }
             else if (state.Cold > 0)
             {
+                if (FlatPixelModeActive && FlatPixelFrostVentCatalog.HasFloor(CurrentZone, x, y))
+                {
+                    if (_frostVentMarks == null) _frostVentMarks = new FlatPixelFrostVentCatalog(null);
+                    if (_frostVentMarks.TryCold(CurrentZone, x, y, out var rime))
+                    {
+                        _tileStateTilemap.SetTile(tilePos, rime); _tileStateTilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tileStateTilemap.SetColor(tilePos, Color.white); _tileStateTilemap.SetTransformMatrix(tilePos, Matrix4x4.identity);
+                        return;
+                    }
+                }
                 glyph = '^'; color = new Color(0.65f, 0.90f, 1.0f);
             }
             else if (!string.IsNullOrEmpty(state.Cloud))

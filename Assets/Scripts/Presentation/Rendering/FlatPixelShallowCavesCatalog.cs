@@ -103,14 +103,15 @@ namespace CavesOfOoo.Rendering
             tile = null; floor = null;
             if (floors == null || !ReadyCell(zone, x, y, out var cell)) return false;
             var state = zone.TileState.Get(x, y);
-            if (state != null && !state.IsEmpty) return false;
+            bool frostFloor = FlatPixelFrostVentCatalog.HasFloor(zone, x, y);
+            if (state != null && !state.IsEmpty && !frostFloor) return false;
             Entity actual = null;
             foreach (var owner in cell.Occupants)
             {
                 if (!Placed(zone, cell, owner) || !VisiblePhysicalOwner(owner)) continue;
                 if (owner.BlueprintName == "SandstoneFloor")
                 { if (actual != null || !OrdinaryFloor(owner)) return false; actual = owner; }
-                else if (CompetingGround(owner)) return false;
+                else if (!(frostFloor && FlatPixelFrostVentCatalog.Eligible(owner)) && CompetingGround(owner)) return false;
             }
             if (actual == null) return false;
             floor = actual; tile = floors[VariantAt(x, y)]; return true;
@@ -182,7 +183,7 @@ namespace CavesOfOoo.Rendering
         bool Selected(Zone zone, int x, int y, Entity owner)
             => owner != null && selector.TryResolve(zone, x, y, out var picked)
                 && !picked.Remembered && ReferenceEquals(picked.Owner, owner);
-        static bool OrdinaryFloor(Entity owner)
+        internal static bool OrdinaryFloor(Entity owner)
         {
             if (!PlainOwner(owner) || ForeignMeaning(owner) || !Terrain(owner) || !NoMaterialState(owner)) return false;
             var render = Owned<RenderPart>(owner);
