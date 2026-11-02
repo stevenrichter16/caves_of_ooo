@@ -7,8 +7,13 @@ using Paint = CavesOfOoo.Tests.FlatPixelBeatingWallShadowTests.Paint;
 
 namespace CavesOfOoo.Tests
 {
+    [TestFixture(BiomeType.Spread)]
+    [TestFixture(BiomeType.Beating)]
     public sealed class FlatPixelWorldMapTests
     {
+        readonly BiomeType biome;
+        public FlatPixelWorldMapTests(BiomeType biome) { this.biome=biome; }
+        string ResourcePath => biome==BiomeType.Spread ? FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath : FlatPixelBeatingMaterialsCatalog.ResourcePath;
         const int X = 40, Y = 13, WX = 10, WY = 10;
         DensityLootTestScope content;
         OverworldZoneManager manager;
@@ -19,7 +24,7 @@ namespace CavesOfOoo.Tests
         {
             content = new DensityLootTestScope();
             manager = OverworldZoneManager.CreateDetached(content.Factory, 65, true);
-            manager.WorldMap.Tiles[WX, WY] = BiomeType.Spread; manager.WorldMap.SetPOI(WX, WY, null);
+            manager.WorldMap.Tiles[WX, WY] = biome; manager.WorldMap.SetPOI(WX, WY, null);
             zone = new Zone("WorldMap"); manager.SetActiveZone(zone);
             new WorldMapZoneBuilder(manager.WorldMap).BuildZone(zone, content.Factory, new System.Random(65));
             foreach (var c in zone.Cells) c.IsVisible = c.Explored = true;
@@ -29,9 +34,21 @@ namespace CavesOfOoo.Tests
         FlatPixelGreyboxCell On()
         {
             Assert.True(art.TryResolvePresentation(zone, X, Y, out var p));
-            Assert.True(p.LocalGround, "Ordinary Spread map terrain needs native ground");
-            Assert.AreSame(Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath), p.GroundTile.sprite.texture);
-            Assert.AreEqual(new Vector2(16,24), p.GroundTile.sprite.rect.size); return p;
+            Assert.True(p.LocalGround, "Ordinary supported map terrain needs native ground");
+            Assert.AreSame(Resources.Load<Texture2D>(ResourcePath), p.GroundTile.sprite.texture);
+            Assert.AreEqual(new Vector2(16,24), p.GroundTile.sprite.rect.size);
+            Assert.AreEqual(biome==BiomeType.Beating ? new Color(.45f,.45f,.45f,1f) : new Color(.65f,.65f,.65f,1f),p.GroundColor); return p;
+        }
+        FlatPixelWorldMapCatalog ForResource(Texture2D source) => biome==BiomeType.Spread
+            ? new FlatPixelWorldMapCatalog(source,null) : new FlatPixelWorldMapCatalog(null,source);
+        [Test] public void OneOptionalBiomeResourceDoesNotDependOnTheOther()
+        {
+            using(var catalog=ForResource(Resources.Load<Texture2D>(ResourcePath)))
+            {
+                Assert.True(catalog.TryResolveGround(zone,X,Y,out _,out _));
+                manager.WorldMap.Tiles[WX,WY]=biome==BiomeType.Spread ? BiomeType.Beating : BiomeType.Spread;Refresh();
+                Assert.False(catalog.TryResolveGround(zone,X,Y,out _,out _));
+            }
         }
         void Off()
         {
@@ -43,7 +60,7 @@ namespace CavesOfOoo.Tests
             int version = zone.EntityVersion; string state = zone.TileState.ToSaveString();
             var p = On(); Assert.AreSame(floor,p.Owner); Assert.IsNull(p.ForegroundTile); Assert.False(p.BlocksMovement);
             Assert.True(art.TryGetPresentationSubjectSprite(zone,floor,X,Y,out var sprite,out var tint));
-            Assert.AreSame(p.GroundTile.sprite,sprite); Assert.AreEqual(FlatPixelWorldMapCatalog.GroundTint,tint);
+            Assert.AreSame(p.GroundTile.sprite,sprite); Assert.AreEqual(biome==BiomeType.Beating ? new Color(.45f,.45f,.45f,1f) : new Color(.65f,.65f,.65f,1f),tint);
             Assert.AreEqual(tint,p.GroundColor);
             Assert.AreEqual(version,zone.EntityVersion); Assert.AreEqual(state,zone.TileState.ToSaveString());
         }
@@ -52,7 +69,7 @@ namespace CavesOfOoo.Tests
             var original = On(); manager.WorldMap.SetPOI(WX,WY,new PointOfInterest(POIType.Sinkhole,"secret"));
             manager.WorldMap.Visited[WX,WY] = false; Refresh();
             Assert.AreSame(original.GroundTile,On().GroundTile);
-            Assert.AreEqual("the Spread",floor.GetPart<RenderPart>().DisplayName);
+            Assert.AreEqual(WorldMapZoneBuilder.GetBiomeRender(biome).displayName,floor.GetPart<RenderPart>().DisplayName);
             manager.WorldMap.MarkVisited(WX,WY); Refresh(); Assert.AreSame(original.GroundTile,On().GroundTile);
             Assert.NotNull(On().ForegroundTile);
             Assert.AreEqual("o",floor.GetPart<RenderPart>().RenderString);
@@ -63,7 +80,7 @@ namespace CavesOfOoo.Tests
             On(); manager.WorldMap.SetPOI(WX,WY,new PointOfInterest(type,"site")); Refresh(); var p = On(); Assert.NotNull(p.ForegroundTile);
             Assert.True(art.TryGetPresentationSubjectSprite(zone,floor,X,Y,out var marker,out _));
             Assert.AreSame(p.ForegroundTile.sprite,marker);
-            Assert.AreNotSame(Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath),p.ForegroundTile.sprite.texture);
+            Assert.AreNotSame(Resources.Load<Texture2D>(ResourcePath),p.ForegroundTile.sprite.texture);
         }
         [TestCase("hidden")] [TestCase("memory")] [TestCase("unexplored")] [TestCase("coordinates")]
         [TestCase("duplicate-owner")] [TestCase("duplicate-part")] [TestCase("variant")] [TestCase("color")]
@@ -86,7 +103,7 @@ namespace CavesOfOoo.Tests
                 case "solid": floor.GetPart<PhysicsPart>().Solid=true;break;
                 case "inventory": floor.GetPart<PhysicsPart>().InInventory=new Entity();break;
                 case "graph": manager.CachedZones[zone.ZoneID]=new Zone(zone.ZoneID);break;
-                case "biome": manager.WorldMap.Tiles[WX,WY]=BiomeType.Beating;break;
+                case "biome": manager.WorldMap.Tiles[WX,WY]=BiomeType.Sodden;break;
                 case "map": manager.WorldMap.POIs=new PointOfInterest[1,1];break;
                 case "state": zone.TileState.AddHeat(X,Y,1);break;
                 case "name": floor.GetPart<RenderPart>().DisplayName="foreign";break;
@@ -109,15 +126,15 @@ namespace CavesOfOoo.Tests
         [TestCase(false)] [TestCase(true)] public void MissingOrMalformedResourceDeclinesWithoutReload(bool malformed)
         {
             On(); Texture2D source = malformed ? new Texture2D(16,24) : null;
-            var replacement = new FlatPixelWorldMapCatalog(source);
+            var replacement = ForResource(source);
             var field=typeof(FlatPixelGreyboxCatalog).GetField("_worldMapArt",BindingFlags.NonPublic|BindingFlags.Instance);
             ((FlatPixelWorldMapCatalog)field.GetValue(art)).Dispose(); field.SetValue(art,replacement);
             Off(); if(source!=null)Object.DestroyImmediate(source);
         }
         [Test] public void DisposalOwnsOnlyViewsAndIsIdempotent()
         {
-            var source=Resources.Load<Texture2D>(FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath);
-            var catalog=new FlatPixelWorldMapCatalog(source);
+            var source=Resources.Load<Texture2D>(ResourcePath);
+            var catalog=ForResource(source);
             Assert.True(catalog.TryResolveGround(zone,X,Y,out var tile,out _));var sprite=tile.sprite;
             catalog.Dispose();catalog.Dispose();Assert.True(tile==null);Assert.True(sprite==null);Assert.True(source!=null);
             Assert.False(catalog.TryResolveGround(zone,X,Y,out _,out _));

@@ -1064,7 +1064,7 @@ namespace CavesOfOoo.Rendering
             Tile mapGroundTile = null; Entity mapFloor = null;
             bool mapGround = !fallback.Remembered && mapArt != null
                 && mapArt.TryResolveGround(zone, x, y, out mapGroundTile, out mapFloor);
-            if (mapGround) { groundTile = mapGroundTile; groundColor = FlatPixelWorldMapCatalog.GroundTint; }
+            if (mapGround) { groundTile = mapGroundTile; groundColor = mapArt.TintFor(mapGroundTile); }
 
             if (local && !fallback.Remembered && FlatPixelOpeningGroundCatalog.IsSupportedZone(zone))
             {
@@ -1777,7 +1777,7 @@ namespace CavesOfOoo.Rendering
             }
             var mapArt = WorldMapArtFor(zone);
             if (mapArt != null && mapArt.TryResolveGround(zone, x, y, out var mapTile, out var mapFloor)
-                && ReferenceEquals(subject, mapFloor) && FlatPixelWorldMapCatalog.IsPlainTerrain(mapFloor)) { sprite = mapTile.sprite; tint = FlatPixelWorldMapCatalog.GroundTint; return true; }
+                && ReferenceEquals(subject, mapFloor) && FlatPixelWorldMapCatalog.IsPlainTerrain(mapFloor)) { sprite = mapTile.sprite; tint = mapArt.TintFor(mapTile); return true; }
             bool local = IsAdmitted(zone);
             var spread = SpreadEnvironmentArtFor(zone);
             if (spread != null && spread.TryGetSubjectSprite(zone, subject, x, y, out sprite)) return true;
