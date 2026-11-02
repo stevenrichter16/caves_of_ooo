@@ -1,0 +1,145 @@
+{
+  "source_commit": "fedc68b5f3349aad1026984a7bd5c732e722075b",
+  "runtime_source_commit": "fedc68b5f3349aad1026984a7bd5c732e722075b",
+  "built_after_utc": "2026-11-02T08:59:32.179086+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-02-graphics-fedc68b5f-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-02-graphics-fedc68b5f-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-02-graphics-fedc68b5f-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "planned_new_files": 31,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchFedc68/mac-build.json",
+      "sha256": "46891dc742bfd732a107ed685b8de8cbadeccf1f7c4a0b1facc940ec8dcae6e0",
+      "summary": {
+        "job_id": "build-0d8ce50021",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-02-graphics-fedc68b5f-current/CavesOfOoo.app",
+        "started_at": "2026-11-02T09:00:49.421827Z",
+        "duration_seconds": 40.915274,
+        "completed_at": "2026-11-02T09:01:30.337101Z",
+        "total_size_mb": 346.5,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/BatchFedc68/linux-build.json",
+      "sha256": "dd46aac672604cade8bc02a713a489be28fca4fc77034275af54a655ee24d3de",
+      "summary": {
+        "job_id": "build-eb07d7f0db",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-02-graphics-fedc68b5f-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-02T09:01:39.532603Z",
+        "duration_seconds": 99.02013799999999,
+        "completed_at": "2026-11-02T09:03:18.552741Z",
+        "total_size_mb": 326.97,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/FloodSurface/green-final.xml",
+        "sha256": "2c883d33c8bd61fdba4315d27753ee9d296261da90411f6adff5bc9e868c729a",
+        "passed": 147,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 3,
+        "started_at_utc": "2026-11-02T08:14:35+00:00",
+        "completed_at_utc": "2026-11-02T08:14:46+00:00",
+        "inconclusive_cases": [
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          },
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          },
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          }
+        ]
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/GantryShadow/green.xml",
+        "sha256": "429b2941e55a58634f13d24401d127e60c008891b37404826d6ea4020db89e6e",
+        "passed": 115,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-02T08:32:10+00:00",
+        "completed_at_utc": "2026-11-02T08:32:26+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/GantryMemory/green-final.xml",
+        "sha256": "b4b598f0fa7d947910c2b874063accdc1106b2660b2259fb7bbbadb357e32d02",
+        "passed": 78,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-02T08:47:15+00:00",
+        "completed_at_utc": "2026-11-02T08:47:23+00:00",
+        "inconclusive_cases": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained floodwater/Gantry-shadow/Gantry-memory checkpoints; three Sodden allocation checks inconclusive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/BatchFedc68/build-input-audit.json",
+    "sha256": "5c202b38507a1ab1f44fb8db013d9bab6d101687b61751af6439a1f510da412c",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 73,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 64
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0,
+      "rootOwnedNeutralMetadata": 2
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-02T08:59:32.179086+00:00",
+      "checks": [],
+      "note": "Play stopped, root null, scene clean; no temporary renderer controls."
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 81,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/BatchFedc68/package.py",
+    "sha256": "cbdcbadbfc2982fadd5a90eb8443cebd2955e4149c01d76b1098bd27554a1102",
+    "adapted_from": "Docs/Verification/Live16x24/regional-batch-package-audit.py",
+    "adapted_from_sha256": "8e3fa353485b285ab4611f0d6b2307bc61ece8919d3f0ad5e51a17c2bc5f63e4"
+  },
+  "dry_run": true,
+  "no_files_written": true
+}
+
