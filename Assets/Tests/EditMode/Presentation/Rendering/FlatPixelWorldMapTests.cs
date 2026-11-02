@@ -9,11 +9,12 @@ namespace CavesOfOoo.Tests
 {
     [TestFixture(BiomeType.Spread)]
     [TestFixture(BiomeType.Beating)]
+    [TestFixture(BiomeType.Sodden)]
     public sealed class FlatPixelWorldMapTests
     {
         readonly BiomeType biome;
         public FlatPixelWorldMapTests(BiomeType biome) { this.biome=biome; }
-        string ResourcePath => biome==BiomeType.Spread ? FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath : FlatPixelBeatingMaterialsCatalog.ResourcePath;
+        string ResourcePath => biome==BiomeType.Spread ? FlatPixelSillEnvelopeCatalog.EnvironmentResourcePath : biome==BiomeType.Beating ? FlatPixelBeatingMaterialsCatalog.ResourcePath : FlatPixelWorldMapCatalog.SoddenResourcePath;
         const int X = 40, Y = 13, WX = 10, WY = 10;
         DensityLootTestScope content;
         OverworldZoneManager manager;
@@ -40,7 +41,8 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(biome==BiomeType.Beating ? new Color(.45f,.45f,.45f,1f) : new Color(.65f,.65f,.65f,1f),p.GroundColor); return p;
         }
         FlatPixelWorldMapCatalog ForResource(Texture2D source) => biome==BiomeType.Spread
-            ? new FlatPixelWorldMapCatalog(source,null) : new FlatPixelWorldMapCatalog(null,source);
+            ? new FlatPixelWorldMapCatalog(source,null,null) : biome==BiomeType.Beating
+            ? new FlatPixelWorldMapCatalog(null,source,null) : new FlatPixelWorldMapCatalog(null,null,source);
         [Test] public void OneOptionalBiomeResourceDoesNotDependOnTheOther()
         {
             using(var catalog=ForResource(Resources.Load<Texture2D>(ResourcePath)))
@@ -103,7 +105,7 @@ namespace CavesOfOoo.Tests
                 case "solid": floor.GetPart<PhysicsPart>().Solid=true;break;
                 case "inventory": floor.GetPart<PhysicsPart>().InInventory=new Entity();break;
                 case "graph": manager.CachedZones[zone.ZoneID]=new Zone(zone.ZoneID);break;
-                case "biome": manager.WorldMap.Tiles[WX,WY]=BiomeType.Sodden;break;
+                case "biome": manager.WorldMap.Tiles[WX,WY]=BiomeType.Stump;break;
                 case "map": manager.WorldMap.POIs=new PointOfInterest[1,1];break;
                 case "state": zone.TileState.AddHeat(X,Y,1);break;
                 case "name": floor.GetPart<RenderPart>().DisplayName="foreign";break;
@@ -161,9 +163,17 @@ namespace CavesOfOoo.Tests
                 Assert.True(all);Assert.AreEqual(0,bytes);
             }
         }
+        [Test] public void SoddenUsesOnlyBanklessFramesWithoutReadingNeighbors()
+        {
+            if(biome!=BiomeType.Sodden)return;
+            var p=On();Assert.AreEqual(0,(int)(p.GroundTile.sprite.rect.x/16)%16);
+            var prior=p.GroundTile;zone.GetCell(X+1,Y).IsVisible=false;
+            manager.WorldMap.Tiles[WX+1,WY]=BiomeType.Beating;
+            Assert.AreSame(prior,On().GroundTile);
+        }
         [Test] public void OtherBiomesAndBorderRemainOutsidePilot()
         {
-            On(); manager.WorldMap.Tiles[WX,WY]=BiomeType.Sodden;Refresh();Off();
+            On(); manager.WorldMap.Tiles[WX,WY]=BiomeType.Stump;Refresh();Off();
             Assert.True(art.TryResolvePresentation(zone,29,13,out var p));Assert.False(p.LocalGround);
         }
     }
