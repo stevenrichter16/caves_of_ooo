@@ -9,7 +9,7 @@ namespace CavesOfOoo.Rendering
 {
     /// <summary>Current ordinary Stump materials. Owns cached sprites/tiles,
     /// borrows textures and selector, and never generates or changes the world.</summary>
-    public sealed class FlatPixelStumpMaterialsCatalog : IDisposable
+    public sealed partial class FlatPixelStumpMaterialsCatalog : IDisposable
     {
         // Wilderness by default; a separate instance may admit its biome's ordinary special sites.
         System.Func<Zone, bool> admits = IsSupportedZone;
@@ -104,7 +104,8 @@ namespace CavesOfOoo.Rendering
             : this(Resources.Load<Texture2D>(ResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.VegetationResourcePath),
                 Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.ResourcePath),
-                Resources.Load<Texture2D>(FlatPixelEastFixtureCatalog.CellarResourcePath), borrowedSelector) { }
+                Resources.Load<Texture2D>(FlatPixelEastFixtureCatalog.CellarResourcePath), borrowedSelector,
+                Resources.Load<Texture2D>(FlatPixelOpeningArtCatalog.AnchorsResourcePath)) { }
 
         /// <summary>Optional groups fail independently. Explicit null injection
         /// never reloads a resource or disables another valid borrowed group.</summary>
@@ -114,12 +115,17 @@ namespace CavesOfOoo.Rendering
 
         public FlatPixelStumpMaterialsCatalog(Texture2D atlas71, Texture2D vegetation4,
             Texture2D opening10, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector)
+            : this(atlas71, vegetation4, opening10, cellar9, borrowedSelector, null) { }
+
+        public FlatPixelStumpMaterialsCatalog(Texture2D atlas71, Texture2D vegetation4,
+            Texture2D opening10, Texture2D cellar9, FlatPixelFallbackCatalog borrowedSelector, Texture2D optionalWetEntrance)
         {
             selector = borrowedSelector;
             if (selector == null) return;
             materials = Frames(atlas71, FrameCount, "materials");
             vegetation = Frames(vegetation4, 4, "tree"); opening = Frames(opening10, 10, "bush");
             plainWalls = Frames(cellar9, 9, "plain masonry", 8, 1);
+            wetEntrance = Frames(optionalWetEntrance, 12, "wet entrance", 4, 1);
         }
         public static bool IsSupportedZone(Zone zone)
         {
@@ -299,6 +305,8 @@ namespace CavesOfOoo.Rendering
             tile = null; source = null;
             if (siteLedgesOnly) return false;
             if (fellingAuthored) return TryResolveFellingWater(zone, x, y, out tile, out source);
+            if (TryWetEntranceOwners(zone, x, y, out _, out var entrancePool))
+            { source = entrancePool; tile = materials[PoolFrame(source, x, y)]; return true; }
             if (materials == null || !ReadyCell(zone, x, y, out var cell)
                 || !selector.TryResolve(zone, x, y, out var selected) || selected.Remembered
                 || !PermanentWater(zone.TileState.Get(x, y))) return false;
@@ -323,6 +331,11 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
+            if (owner != null && TryWetEntranceOwners(zone, x, y, out var entrance, out var entrancePool))
+            {
+                if (owner == entrance) { sprite = wetEntrance[0].sprite; return true; }
+                if (owner == entrancePool) { sprite = materials[PoolFrame(owner, x, y)].sprite; return true; }
+            }
             if (siteLedgesOnly)
             {
                 // Examine can name this real owner beneath a covering actor.
@@ -632,7 +645,7 @@ namespace CavesOfOoo.Rendering
         public void Dispose()
         {
             if (disposed) return; disposed = true;
-            DestroyFrames(fellingBlackwater); DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(plainWalls);
+            DestroyFrames(fellingBlackwater); DestroyFrames(materials); DestroyFrames(vegetation); DestroyFrames(opening); DestroyFrames(plainWalls); DestroyFrames(wetEntrance);
         }
         static void DestroyFrames(Tile[] tiles)
         {

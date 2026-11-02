@@ -1,3 +1,5 @@
+**2026-11-02 — Stump wet entrance:** Approved native water and descending treads replace one concealed entrance/ASCII cell in4.4.143 native passes; exact pool/stair readers, descent/return and F5/fresh41,17HP38 verified (world0/639200). Subsequent retreat death is explicitly excluded; entrance prominence and full-area acceptance remain open. See GRAPHICS-STUMP-WET-ENTRANCE.md. Next batch current Mac/Linux for this, dome shadows and mirror-mucilage.
+
 **2026-11-02 — Grovelands mirror-mucilage:** Four original optional native frames replace two observed ASCIIpool cells in3.0.173nativepassed;actualadjacent/underfootreaders,crossing/travel/F5/freshreload(world0/639200) verified. Scope and remaining limits in GRAPHICS-MIRROR-MUCILAGE.md. Full-area/population/shadow acceptance unchanged; currentcc6418packages exclude this.
 
 **Summit Scrub3.2:** Bounded domecontact pilot adds a subtle2pxsouth16%strip using existing opaque native art. Actual source/visual checks passed; sparsecenter and localASCII remain. See [record](GRAPHICS-STUMP-DOME-SHADOW.md). Currentcc6418packages exclude this slice.

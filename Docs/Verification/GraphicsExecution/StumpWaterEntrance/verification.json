@@ -1,0 +1,61 @@
+{
+  "at_utc": "2026-11-02T19:35:09.553779+00:00",
+  "source_base": "a05b9773e29a6d88ccfecc55e7e1810610f8ab9d",
+  "status": "bounded-editor-observed",
+  "doc": "Docs/GRAPHICS-STUMP-WET-ENTRANCE.md",
+  "evidence": "Docs/Verification/GraphicsExecution/StumpWaterEntrance/verification.json",
+  "scope": "One observed ordinary Stump4.4 SprayPool/StairsDown/TepuiStone overlap at41,17; approved water and anchors frame4 reused",
+  "delivery": "Current cc6418ff8 packages exclude this, Stump dome and mirror-mucilage; batch delivery next",
+  "remaining": [
+    "Entrance cue remains subtle at1x (hatch/grate read); whole-area polish unaccepted",
+    "Sparse center, material repetition and other ASCII require broader audit",
+    "Population/shadows and R11 remain separate open axes",
+    "Linux and physical Deck execution unverified"
+  ],
+  "native": {
+    "red": "fa57a336490647f1baa31e97c99d8bd7:23completed missing-cue failures,full result null",
+    "green": "db92780ed46b4a88bb43bc13591c83a1:143 unique Passed,0failed/skipped;23new+120existing"
+  },
+  "actual": {
+    "baseline": [
+      40,
+      12
+    ],
+    "entrance": [
+      41,
+      17
+    ],
+    "matched_world_changed": 407,
+    "entrance_cell_changed": 384,
+    "right_ui_changed": 0,
+    "unattributed_outside": 23,
+    "readers": [
+      "pool-reader.png",
+      "stair-reader-attempt.png"
+    ],
+    "travel": "4.4.0 at41,17 ->4.4.1 same cell ->4.4.0",
+    "saved_turn": 4520,
+    "saved_hp": 38,
+    "saved_time": "Dark",
+    "fresh_position": [
+      41,
+      17
+    ],
+    "reload_comparison": "reload-comparison.json",
+    "excluded": "pre-reload.png: subsequent north retreat led to sky-sari death; F5 unsuccessful. Recovered untouched transition autosave, then explicit F5/fresh verified."
+  },
+  "performance": {
+    "receipt": "Docs/Verification/GraphicsExecution/Profiles/manual-20261102-193203-780.json",
+    "seconds": 367.9111508,
+    "renderer_p95_ms": 0.090209,
+    "renderer_max_ms": 169.096292,
+    "main_max_ms": 2064.533625,
+    "batches_max": 51,
+    "limits": "After-only Editor, wrapped buffers; captures/readers/travel/combat included; metadata2321x1285 versus capture1280x800; no causal/R11/hardware acceptance"
+  },
+  "reviews": {
+    "source": "portable_equipment_final_review:0P1/P2;143distinctPassed independently parsed",
+    "visual": "capture_route:0newP1/P2; bounded entrance/readers/transitions/reload accepted. Cue prominence debt, failed retreat excluded; no encounter/full-area acceptance."
+  },
+  "preservation": "Root isolated save only; no caches deleted"
+}

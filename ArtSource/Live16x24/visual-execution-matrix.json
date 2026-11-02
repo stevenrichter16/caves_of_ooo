@@ -3671,14 +3671,14 @@
         "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs"
       ],
       "status_axes": {
-        "coverage": "not-audited",
-        "polish": "not-audited",
+        "coverage": "observed",
+        "polish": "in-progress",
         "population": "not-audited",
         "shadow": "not-audited",
-        "delivery": "not-audited"
+        "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Resolve actual generated role/formation and selected-owner/material coverage; triage actual normal-zoom views.",
+      "next_action": "Batch current Mac/Linux, then broader remaining ASCII/material gaps. Entrance prominence remains a named defect.",
       "coordinates": [
         4,
         4,
@@ -3689,7 +3689,20 @@
       "authored_river": false,
       "formation": null,
       "role_resolution": "runtime-required: POIs, authored scenes and exploration families may replace ordinary biome generation",
-      "related_scope_ids": []
+      "related_scope_ids": [],
+      "bounded_observation": {
+        "status": "bounded-editor-observed",
+        "doc": "Docs/GRAPHICS-STUMP-WET-ENTRANCE.md",
+        "evidence": "Docs/Verification/GraphicsExecution/StumpWaterEntrance/verification.json",
+        "scope": "One observed ordinary Stump4.4 SprayPool/StairsDown/TepuiStone overlap at41,17; approved water and anchors frame4 reused",
+        "delivery": "Current cc6418ff8 packages exclude this, Stump dome and mirror-mucilage; batch delivery next",
+        "remaining": [
+          "Entrance cue remains subtle at1x (hatch/grate read); whole-area polish unaccepted",
+          "Sparse center, material repetition and other ASCII require broader audit",
+          "Population/shadows and R11 remain separate open axes",
+          "Linux and physical Deck execution unverified"
+        ]
+      }
     },
     {
       "id": "surface/Overworld.5.4.0",
@@ -22931,6 +22944,19 @@
       "Grovelands broad quiet center, repetitive vegetation, other remaining ASCII",
       "Global coverage, area polish, population and shadows remain incomplete",
       "R11 and Linux/physicalDeck execution open"
+    ]
+  },
+  "stump_wet_entrance": {
+    "status": "bounded-editor-observed",
+    "doc": "Docs/GRAPHICS-STUMP-WET-ENTRANCE.md",
+    "evidence": "Docs/Verification/GraphicsExecution/StumpWaterEntrance/verification.json",
+    "scope": "One observed ordinary Stump4.4 SprayPool/StairsDown/TepuiStone overlap at41,17; approved water and anchors frame4 reused",
+    "delivery": "Current cc6418ff8 packages exclude this, Stump dome and mirror-mucilage; batch delivery next",
+    "remaining": [
+      "Entrance cue remains subtle at1x (hatch/grate read); whole-area polish unaccepted",
+      "Sparse center, material repetition and other ASCII require broader audit",
+      "Population/shadows and R11 remain separate open axes",
+      "Linux and physical Deck execution unverified"
     ]
   }
 }
