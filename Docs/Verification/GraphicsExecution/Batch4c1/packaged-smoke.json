@@ -1,0 +1,104 @@
+{
+  "at_utc": "2026-11-02T01:12:28.944427+00:00",
+  "source_commit": "4c1da7fcd73a47a1d01006a2e1200423dabfac1e",
+  "ordinary_default_resolution": [
+    3024,
+    1898
+  ],
+  "input": "native CUA only; real GameBootstrap; unchanged earned checkpoints; no new F12",
+  "intended_processes": [
+    24523,
+    25274,
+    25405,
+    26187
+  ],
+  "felling": {
+    "seed": 704860946,
+    "zone": "Overworld.3.5.0",
+    "reader": "Pink stone ridge48,7",
+    "blocked_from": [
+      47,
+      7
+    ],
+    "walk": [
+      46,
+      7
+    ],
+    "saved_turn": 850,
+    "saved_and_fresh_position": [
+      47,
+      7
+    ],
+    "hp": 40
+  },
+  "tree": {
+    "seed": 65,
+    "zone": "Overworld.10.15.0",
+    "reader": "Tree41,7 Wood28/30",
+    "walk": "41,8\u219242,8\u219241,8",
+    "saved_turn": 2500,
+    "saved_and_fresh_position": [
+      41,
+      8
+    ],
+    "hp": 40,
+    "fixture_limit": "Inherited prior protected combat; protection OFF in earned input; no new F12 in this batch."
+  },
+  "travel": {
+    "route": [
+      "Overworld.10.15.0",
+      "Overworld.10.14.0",
+      "Overworld.10.15.0"
+    ],
+    "return_position": [
+      40,
+      12
+    ],
+    "hp": 40,
+    "saved_turn": 2580,
+    "post_travel_restart": "not separately performed; restart verified before roundtrip"
+  },
+  "reload_comparison": [
+    {
+      "family": "felling",
+      "size": [
+        3024,
+        1898
+      ],
+      "world_changed": 0,
+      "world_total": 3576624
+    },
+    {
+      "family": "tree",
+      "size": [
+        3024,
+        1898
+      ],
+      "world_changed": 0,
+      "world_total": 3576624
+    }
+  ],
+  "capture_sha256": {
+    "Packaged/felling-continue.png": "eb61b33841f70090556c7b09e80957338c2407ee56c630bd56622f2e96743236",
+    "Packaged/felling-fresh.png": "b89c0037c2107314c5c3a4a7961765ad38cf382a82bc176807f7272da75fb643",
+    "Packaged/felling-ridge-block.png": "1f526e510f44fb4d91629681da2182c2d048e0de8881bd0a5c32e218799f83d9",
+    "Packaged/felling-ridge-reader.png": "3e091891699062090c99400f25e7a235daed5b5f3355a86e445bad425502b5f4",
+    "Packaged/felling-saved.png": "58592c81fb83f8c763cfdfa85efa1d7ba7b81e32e56d9b24293b727dbfb6f819",
+    "Packaged/felling-walk.png": "59ad12821537001a5901def51665eef5b2bfe96a1694f97011d54d7b800f194e",
+    "Packaged/travel-neighbor.png": "0903241eaa90dd3fe9412236a843cb85ca2974d9ee7043ded1dcbeae9928e772",
+    "Packaged/travel-return.png": "30450eb004f1178fef8dd63632cd215392baa6f9da216a8ac1d631a38020e8e0",
+    "Packaged/tree-continue.png": "0fc3069cc9bee356dbc227255575ea07fd4d256e8cb82561e5890ea255442ce5",
+    "Packaged/tree-fresh.png": "ffdf79694b494e91d13bb06bdeb4b12383759e90b8eaee1f1dc23f6892f41898",
+    "Packaged/tree-reader.png": "994d59bb4aefead8c321020cb8bacdd0e821e3bbd4d14a3aa9b5db10acc025e9",
+    "Packaged/tree-saved.png": "7054ebb9fb606158dc8376fafede25259e910a04a04b97885a227d7836c40b18"
+  },
+  "excluded_previews": "See input-selection-correction.md; old build selected once and current app relaunched by post-Quit AX observation. Neither counted as accepted play.",
+  "logs": "Four intended logs have no Exception/Error/Warning/Failed string matches; bounded scan only.",
+  "independent_review": "capture_route actual visual/final travel0newP1/P2; coverage_priorities helper/final receipt and archive review0P1/P2",
+  "limits": [
+    "No packaged performance benchmark; R11 remains open.",
+    "Linux archive integrity verified, no Linux/physical Deck execution.",
+    "No whole-area polish, encounter-balance or global shadow acceptance.",
+    "Existing ASCII/special black backings, memory, repetition and sparse composition remain."
+  ]
+}

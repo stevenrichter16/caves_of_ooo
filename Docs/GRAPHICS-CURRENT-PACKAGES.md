@@ -1,3 +1,21 @@
+# Current graphics packages — 4c1da7fcd
+
+Source `4c1da7fcd73a47a1d01006a2e1200423dabfac1e` is verified on origin/main. Includes Felling opaque/nonopaque solid stone and the bounded Spread10.15 tree-contact shadow, plus all de600 work. V0–V7 remains open.
+
+- Mac: `Builds/Verification/2026-11-02-graphics-4c1da7fcd-current/CavesOfOoo.app`; build-c7f7e49022,29.247898s,0errors4warnings.
+- Linux: `Builds/SteamDeck/2026-11-02-graphics-4c1da7fcd-current/CavesOfOoo-current/`; build-ed1a0230c1,80.427679s,0errors2warnings. No source-change retry.
+- Archive: sibling `CavesOfOoo-SteamDeck-flat16x24-current.tar.gz`,129074935bytes,191files13directories; SHA256 `c66346e0b37789448971dde20fc1aee2225b1219959bd1d80597f22395a0bcec`. Every member/hash/size/mode, internal checksum and gzip EOF verified. No Linux/Deck execution.
+
+Four intended native Mac launches used real GameBootstrap and ordinary3024×1898 presentation. Felling ridge reader, collision47,7 and walk46,7; F5turn850/freshContinue47,7HP40. Tree reader Wood28/30 and right/left walk; F5turn2500/freshContinue41,8HP40. Each saved/fresh world crop(0,0)-(2216,1614) is exact:0/3,576,624 changed pixels. Native world-map travel10.15→10.14→10.15 returned40,12HP40,F5turn2580; no separate restart after this final travel save. No newF12; Tree fixture inherits earlier protected-combat history with protection alreadyOFF.
+
+Independent source/helper and actual visual reviews found0newP1/P2 within bounds. Four intended logs have no exception/error/warning/failure string matches; this does not explain build warnings or prove all systems. Two accidental preview launches are excluded and documented: display-name selection opened an old preserved build; a post-Quit CUA observation relaunched current app. Neither overwrote the accepted fixture. Select exact.app paths and verify process absence externally after Quit.
+
+Complete55,426tracked-object protection preceded builds. Guarded restoration preserved75foreign changes, normal Editor/player saves/preferences and previous de600 packages; four reviewed generated settings restored, owned player saves archived. See `Docs/Verification/GraphicsExecution/Batch4c1/`; no cleanup. Existing native156Felling/154Tree receipts are separate scoped runs, not a summed all-source suite.
+
+No packaged profile or whole-area polish claim; R11 unexplained outliers, black-backed/special and memory glyphs, material repetition and sparse composition remain. Next selected material gap: Ginmere2.7.1 has253 real DescentLedge bands visible as ASCII in earned actual evidence. Reuse approved native ledge10–11 after narrow authority/state tests and matched play. Compared Felling57blackwater (new native art needed) and Marrowstye Oven (already fixed, do not repeat). Reassess surface/population/shadow needs after that bounded slice.
+
+## Previous preserved checkpoint
+
 # Current graphics packages — de6002171
 
 Current source `de60021715b31469a7f0c1070b2096476faeec6f` is verified on origin/main. This batch includes Spread field-margin groups, Ginmere/Cathedral surface sandstone and Ginmere first-descent floor/walls, plus the previous a72 checkpoint. V0–V7 remains open.

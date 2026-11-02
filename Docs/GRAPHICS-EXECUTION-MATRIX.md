@@ -1,3 +1,5 @@
+**Delivery update2026-11-02:** Current4c1 Mac Felling/SpreadTree readers, walk, collision, restart and ordinary Spreadtravel observed; each restart world exact. Linux archive verified only. See Batch4c1 and GRAPHICS-CURRENT-PACKAGES.md. No coverage/polish/population/shadow promotion from packaging. Next Ginmere253ledge bands; R11/fullarea/hardware open.
+
 **Tree contact update2026-11-02:** Spread10.15 shadow axis observed within one dry native Tree/Grass pilot; coverage/polish/population unchanged.154native, real readers/walk/reload, independent review;0/639200reloadpixels. R11/packages remain open. See GRAPHICS-TREE-CONTACT-SHADOW.md.
 
 **Felling solid update2026-11-02:** Two Felling rows retain fallback/in-progress overall and gain bounded solid-stone evidence.122selectedsolidowners observed; source195opaque/103nonopaque;156finalnative, actual reader/collision/LOS/route/reload exact. Low-cap visual P2 resolved by approved reuse;57water/7ritual/covered-memoryglyphs/composition/R11 remain. Currentde600packages lag this slice. Next boundedSpreadTreecontactshadow.
