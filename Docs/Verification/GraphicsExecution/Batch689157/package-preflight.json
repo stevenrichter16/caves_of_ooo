@@ -1,0 +1,143 @@
+{
+  "source_commit": "6891570399aa04a8812f5ddbe34efffa4ac057af",
+  "runtime_source_commit": "6891570399aa04a8812f5ddbe34efffa4ac057af",
+  "built_after_utc": "2026-11-02T06:29:54.375087+00:00",
+  "linux_output": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-02-graphics-689157039-current/CavesOfOoo-current",
+  "mac_app": "/Users/steven/caves-of-ooo/Builds/Verification/2026-11-02-graphics-689157039-current/CavesOfOoo.app",
+  "archive": "/Users/steven/caves-of-ooo/Builds/SteamDeck/2026-11-02-graphics-689157039-current/CavesOfOoo-SteamDeck-flat16x24-current.tar.gz",
+  "planned_new_files": 31,
+  "builds": {
+    "mac": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch689157/mac-build.json",
+      "sha256": "09d052c4162de1038ac821d721c3aec6efe5fd9864137bd92262dde22924c828",
+      "summary": {
+        "job_id": "build-9f2b47dc2f",
+        "result": "succeeded",
+        "platform": "StandaloneOSX",
+        "output_path": "Builds/Verification/2026-11-02-graphics-689157039-current/CavesOfOoo.app",
+        "started_at": "2026-11-02T06:29:54.636665Z",
+        "duration_seconds": 35.815712,
+        "completed_at": "2026-11-02T06:30:30.452377Z",
+        "total_size_mb": 346.25,
+        "errors": 0,
+        "warnings": 4
+      }
+    },
+    "linux": {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/GraphicsExecution/Batch689157/linux-build.json",
+      "sha256": "4d621304093cc0e681384d1c1adb099a1059336ae9d23ca7746c76c6abebbb1b",
+      "summary": {
+        "job_id": "build-eab1291224",
+        "result": "succeeded",
+        "platform": "StandaloneLinux64",
+        "output_path": "Builds/SteamDeck/2026-11-02-graphics-689157039-current/CavesOfOoo-current/CavesOfOoo",
+        "started_at": "2026-11-02T06:31:06.851448Z",
+        "duration_seconds": 27.657852,
+        "completed_at": "2026-11-02T06:31:34.5093Z",
+        "total_size_mb": 326.72,
+        "errors": 0,
+        "warnings": 4
+      }
+    }
+  },
+  "native_checkpoints": {
+    "checkpoints": [
+      {
+        "path": "Docs/Verification/GraphicsExecution/SettlementGrade/green-combined-final.xml",
+        "sha256": "7f4a83ceebd5c4f0664b749604a1e71b132a59f9bbf2e69377374f0f3dccdd3d",
+        "passed": 81,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-02T05:31:06+00:00",
+        "completed_at_utc": "2026-11-02T05:31:21+00:00",
+        "inconclusive_cases": []
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/SoddenSources/green-final.xml",
+        "sha256": "7ade6fcc640c0b96b49c43e896be407d6039dc3d5dbe069d738e16a41a7ce074",
+        "passed": 390,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 3,
+        "started_at_utc": "2026-11-02T05:49:49+00:00",
+        "completed_at_utc": "2026-11-02T05:50:39+00:00",
+        "inconclusive_cases": [
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.15.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          },
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.16.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          },
+          {
+            "identity": "CavesOfOoo.Tests.FlatPixelSoddenTravelTests.WarmRegionalAuthorityLookupDoesNotAllocateAndStillReadsCurrentMap(\"Overworld.17.7.0\")",
+            "reason": "Current-thread allocation counter did not detect the positive control."
+          }
+        ]
+      },
+      {
+        "path": "Docs/Verification/GraphicsExecution/DuneRelief/green.xml",
+        "sha256": "457a3fd98fd5546bdfd3f2da78dfe7bffc43129c9d6c95eb84d25e871ff5f969",
+        "passed": 214,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "started_at_utc": "2026-11-02T06:16:51+00:00",
+        "completed_at_utc": "2026-11-02T06:17:24+00:00",
+        "inconclusive_cases": []
+      }
+    ],
+    "combined_final_source_execution": false,
+    "counts_added_together": false,
+    "limits": "Separate retained Marrowstye/Sodden/dune checkpoints; three Sodden allocation checks inconclusive; no additive all-source test total. This helper runs no tests."
+  },
+  "build_input_overlay": {
+    "path": "Docs/Verification/GraphicsExecution/Batch689157/build-input-audit.json",
+    "sha256": "8e213d3469dc2f43fa4c0ded29b6bfec7b7688cbb4408c2da2caecfab941a9c0",
+    "packaged_copy": "build-input-audit.json",
+    "counts": {
+      "foreignTrackedMetadata": 73,
+      "metadataClassifications": {
+        "empty-default-text-importer-added": 11,
+        "trailing-whitespace-only": 62
+      },
+      "foreignTrackedDocsPngEvidence": 2,
+      "nonignoredUntrackedBuildRootFiles": 6,
+      "ignoredBuildRootFiles": 339,
+      "ignoredCategories": {
+        "finder-metadata": 13,
+        "unreferenced-capture-evidence": 158,
+        "editor-bridge-log": 4,
+        "unreferenced-recovery-scene": 164
+      },
+      "ignoredExtensions": {
+        "(none)": 13,
+        ".png": 79,
+        ".meta": 163,
+        ".log": 2,
+        ".unity": 82
+      },
+      "temporaryRootOwnedRendererControls": 0
+    },
+    "restoration": {
+      "verifiedUtc": "2026-11-02T06:29:54.375087+00:00",
+      "checks": [],
+      "note": "No temporary renderer controls in this batch."
+    },
+    "root_runtime_source_audit_retained": true,
+    "known_neutral_build_inputs_rechecked": 79,
+    "enabled_scene_settings_rechecked": true,
+    "clean_worktree_claim": false,
+    "limits": "Reviewed neutral import/editor overlay is disclosed, not silently staged. The 339 excluded ignored files and two Docs PNGs remain a point-in-time inventory; their bytes need not remain fixed while Unity runs. This helper does not scan for new inputs, audit the import cache, invoke Git, or prove source-to-binary reproducibility."
+  },
+  "package_helper": {
+    "path": "Docs/Verification/GraphicsExecution/Batch689157/package.py",
+    "sha256": "6fbbbc175b34a439de64fb6a82f92368ee08a1d758118e857f02a9db95306177",
+    "adapted_from": "Docs/Verification/Live16x24/regional-batch-package-audit.py",
+    "adapted_from_sha256": "8e3fa353485b285ab4611f0d6b2307bc61ece8919d3f0ad5e51a17c2bc5f63e4"
+  },
+  "dry_run": true,
+  "no_files_written": true
+}

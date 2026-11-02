@@ -1,0 +1,3 @@
+# Final delivery review
+
+Independent portable_equipment_final_review: 0 P1/P2. All five Mac captures reviewed, archive204members/191files/13directories independently streamed and checked through gzip EOF, all hashes/sizes/modes/internal checksum verified. Saved/fresh world0/3576624 independently confirmed; turn3170HP38. Applied restoration receipt reviewed (not repeated). Package Left/collision attempts lack captured proof; prior Editor collision remains separate. Rectangular relief/gold grading/sparse composition and R11 remain. Native81P;390P+3Inconclusive;214P non-additive. No Linux/Deck execution; Marrow/Sodden not packaged visited.

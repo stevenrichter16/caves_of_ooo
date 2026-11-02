@@ -13939,13 +13939,17 @@
     }
   },
   "graphics_execution_delivery": {
-    "source": "08efa734061ae49cf14eddb507a6f6c5dc2bce8c",
-    "record": "Docs/GRAPHICS-CURRENT-PACKAGES.md",
-    "evidence": "Docs/Verification/GraphicsExecution/Batch08efa",
-    "mac": "six actuallaunches; bounded3slice readers/movement/reload andsurface travel",
-    "linux": "build/archive verified only",
-    "hardware_executed": false,
-    "whole_area_accepted": false
+    "source_commit": "6891570399aa04a8812f5ddbe34efffa4ac057af",
+    "evidence": "Docs/Verification/GraphicsExecution/Batch689157/README.md",
+    "mac": "observed DuneCrest reader/movement,19.14\u219219.13\u219219.14,F5turn3170,freshContinue40,12HP38; exact world",
+    "included_not_packaged_visited": [
+      "Marrowstye12.12",
+      "Sodden16.5"
+    ],
+    "linux": "built and archive verified; not executed",
+    "physical_deck": "not executed",
+    "whole_area_polish": false,
+    "performance_gate": "R11 open"
   },
   "felling_authored_stone": {
     "status": "integrated-observed-bounded",
