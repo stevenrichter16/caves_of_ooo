@@ -12,11 +12,13 @@ namespace CavesOfOoo.Core
         public int Priority => 2000;
         public Formation FormationOverride=Formation.None;
         public BeatingCompositionPlan Plan {get;private set;}
+        public Zone SourceZone {get;private set;}
+        public EntityFactory SourceFactory {get;private set;}
         private readonly int seed;
         public BeatingCompositionBuilder(int worldSeed) {seed=worldSeed;}
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
-            Plan=null;
+            Plan=null;SourceZone=null;SourceFactory=null;
             if(zone==null||factory==null||zone.EntityCount!=0)
                 return Reject(zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone");
             var plan=BeatingCompositionPlan.Create(zone.ZoneID,seed,FormationOverride);
@@ -38,7 +40,7 @@ namespace CavesOfOoo.Core
                 if(entity==null)return Reject("object-placement:"+bp);
                 entity.GetPart<TileStateSourcePart>()?.Seed(zone,x,y);objects++;
             }
-            Plan=plan;
+            Plan=plan;SourceZone=zone;SourceFactory=factory;
             Diag.Record("worldgen","BeatingCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,
                 formation=plan.Formation.ToString(),condition=plan.Condition,objects,water});
             return true;

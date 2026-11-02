@@ -771,7 +771,13 @@ namespace CavesOfOoo.Core
 
         private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null, bool composed = false)
         {
-            if (composed) return CreateSurfacePipeline(BiomeType.Beating, tier, new BeatingCompositionBuilder(WorldSeed));
+            if (composed)
+            {
+                var terrain = new BeatingCompositionBuilder(WorldSeed);
+                var composedPipeline = CreateSurfacePipeline(BiomeType.Beating, tier, terrain);
+                composedPipeline.AddBuilder(new BeatingRuinFragmentsBuilder(this, terrain, zoneID));
+                return composedPipeline;
+            }
             var pipeline = CreateSurfacePipeline(BiomeType.Beating, tier,
                 new DesertBuilder { WallThreshold = 0.88f, RockChance = 0.06f });
             // W2.1 (Docs/FELLING-W1-W2-PLAN.md §7.6): the anti-sameness

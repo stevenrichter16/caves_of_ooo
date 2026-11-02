@@ -499,7 +499,8 @@ namespace CavesOfOoo.Rendering
                 || owner.HasTag("Terrain") && !owner.HasTag("Wall") && !NeutralDryOverlay(owner, state, x, y);
         static bool NeutralDryOverlay(Entity owner, ZoneTileState.TileState state, int x, int y)
             => (owner.BlueprintName == "DryBrush" || owner.BlueprintName == "DuneCrest" || owner.BlueprintName == "Bones")
-                && ForegroundFrame(owner, state, x, y) >= 0;
+                && ForegroundFrame(owner, state, x, y) >= 0
+                || FlatPixelSharedStonePropsCatalog.IsNeutralFloorOverlay(owner);
         static T Owned<T>(Entity owner) where T : Part
         {
             T found = null;

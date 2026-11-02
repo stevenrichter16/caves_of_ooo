@@ -2223,3 +2223,5 @@ main518 and shalepackagesa10 are preserved. Last actual hourly report remains
 ## 2026-10-28 shared camp props
 
 Three exactbody gaps closed in source/Editor: Sack,Urn,ordinaryWell.102native tests; actualBrine andRoad samples, Well draw/Sacktransfer+traversal/Continue138. No whole-biome or area-polish promotion. Unchanged16square rasters, repair/site/finitewells excluded. Currentpackages8c0c72e11 unchanged; nextclothkit willbatchbuild. See GRAPHICS-SHARED-CAMP-PROPS.md. TentWall/GuestClothPole currentreaders+imagegen study retained; originalnativeart inprogress, notintegrated.
+
+2026-11-02: Beating19.12 bounded9passablefragment composition reviewed separately from material/full-area acceptance. Threeactualviews,reader/crossing/F5freshContinue exactworldpixels;316applicablenative, source2P2fixed/final0P1P2. Smallgreen orderlyfragments andbroademptyrooms remain. Currentca323packageslag; batchnext. See [record](GRAPHICS-BEATING-FRAGMENTS.md).

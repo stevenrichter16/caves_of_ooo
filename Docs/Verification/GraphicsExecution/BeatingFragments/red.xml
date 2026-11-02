@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="33" result="Failed(Child)" total="33" passed="5" failed="28" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:49Z" duration="3.2172917">
+  <test-suite type="TestSuite" id="43915" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35775" result="Failed" site="Child" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:49Z" duration="3.217292" total="33" passed="5" failed="28" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43887" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35775" result="Failed" site="Child" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:49Z" duration="3.204598" total="33" passed="5" failed="28" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43888" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35775" result="Failed" site="Child" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:49Z" duration="3.203932" total="33" passed="5" failed="28" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43889" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35775" result="Failed" site="Child" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:49Z" duration="3.203247" total="33" passed="5" failed="28" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="19218" name="BeatingRuinFragmentsTests" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:49Z" duration="2.659796" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="19236" name="ExistingGroundMechanismsNeverBecomeFragments" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ExistingGroundMechanismsNeverBecomeFragments" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:47Z" duration="0.365988" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19233" name="ExistingGroundMechanismsNeverBecomeFragments(&quot;cultivated&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ExistingGroundMechanismsNeverBecomeFragments(&quot;cultivated&quot;)" methodname="ExistingGroundMechanismsNeverBecomeFragments" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="335951" result="Failed" start-time="2026-11-02 04:51:46Z" end-time="2026-11-02 04:51:46Z" duration="0.184467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ExistingGroundMechanismsNeverBecomeFragments (System.String kind) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19234" name="ExistingGroundMechanismsNeverBecomeFragments(&quot;finite-row&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ExistingGroundMechanismsNeverBecomeFragments(&quot;finite-row&quot;)" methodname="ExistingGroundMechanismsNeverBecomeFragments" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1241567615" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.079000" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ExistingGroundMechanismsNeverBecomeFragments (System.String kind) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19235" name="ExistingGroundMechanismsNeverBecomeFragments(&quot;harvestable&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ExistingGroundMechanismsNeverBecomeFragments(&quot;harvestable&quot;)" methodname="ExistingGroundMechanismsNeverBecomeFragments" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="148264039" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.081905" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ExistingGroundMechanismsNeverBecomeFragments (System.String kind) [0x000b4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19229" name="ForeignOrLoadedAuthorityDeclines" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.470690" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19224" name="ForeignOrLoadedAuthorityDeclines(&quot;cached&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines(&quot;cached&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1020037993" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.078250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19225" name="ForeignOrLoadedAuthorityDeclines(&quot;active&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines(&quot;active&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1932637775" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.078493" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19226" name="ForeignOrLoadedAuthorityDeclines(&quot;foreign-factory&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines(&quot;foreign-factory&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="645400315" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.104297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19227" name="ForeignOrLoadedAuthorityDeclines(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines(&quot;biome&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="557208481" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.079741" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19228" name="ForeignOrLoadedAuthorityDeclines(&quot;source-zone&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines(&quot;source-zone&quot;)" methodname="ForeignOrLoadedAuthorityDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1936275863" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.097113" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.ForeignOrLoadedAuthorityDeclines (System.String kind) [0x000ca] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:46
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19222" name="FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.308773" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19219" name="FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom(17)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom(17)" methodname="FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="51327278" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.091666" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom (System.Int32 seed) [0x000ce] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19220" name="FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom(64)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom(64)" methodname="FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1977641565" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.070338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom (System.Int32 seed) [0x000ce] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19221" name="FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom(65)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom(65)" methodname="FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="317326863" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:47Z" duration="0.112874" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.FreshFragmentsPreservesAllOriginalOwnersRoutesReservesAndRandom (System.Int32 seed) [0x000ce] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19232" name="MalformedPoiMapDeclines" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.MalformedPoiMapDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:48Z" duration="0.389626" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19230" name="MalformedPoiMapDeclines(&quot;null&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.MalformedPoiMapDeclines(&quot;null&quot;)" methodname="MalformedPoiMapDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1656896670" result="Failed" start-time="2026-11-02 04:51:47Z" end-time="2026-11-02 04:51:48Z" duration="0.269889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.MalformedPoiMapDeclines (System.String kind) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19231" name="MalformedPoiMapDeclines(&quot;short&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.MalformedPoiMapDeclines(&quot;short&quot;)" methodname="MalformedPoiMapDeclines" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="331574492" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.084430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.MalformedPoiMapDeclines (System.String kind) [0x0004a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19238" name="MissingPayloadDeclinesWholeFragmentSet" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.MissingPayloadDeclinesWholeFragmentSet" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.115747" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19237" name="MissingPayloadDeclinesWholeFragmentSet(&quot;BrokenColumn&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.MissingPayloadDeclinesWholeFragmentSet(&quot;BrokenColumn&quot;)" methodname="MissingPayloadDeclinesWholeFragmentSet" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1616044443" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.083081" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.MissingPayloadDeclinesWholeFragmentSet (System.String bp) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="19251" name="PayloadAndCallbackCorruptionCannotPublishPocket" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.527429" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19244" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;wall&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;wall&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="2027124445" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.076165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19245" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;solid&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1126402529" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.068211" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19246" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;empty-id&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;empty-id&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="901103273" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.071022" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19247" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;duplicate-id&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1617093114" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.070295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19248" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;footprint&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;footprint&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="102906215" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.070791" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19249" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;tile&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;tile&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="973149972" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.068173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19250" name="PayloadAndCallbackCorruptionCannotPublishPocket(&quot;reserve&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket(&quot;reserve&quot;)" methodname="PayloadAndCallbackCorruptionCannotPublishPocket" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="662331249" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:48Z" duration="0.069548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.PayloadAndCallbackCorruptionCannotPublishPocket (System.String mutation) [0x000ba] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:66
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="19223" name="SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack" methodname="SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="903587068" result="Failed" start-time="2026-11-02 04:51:48Z" end-time="2026-11-02 04:51:49Z" duration="0.110158" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.SameSeedIsDeterministicAndRepeatedInvocationDoesNotStack () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="19243" name="UnavailableCompoundPreservesOriginalGraph" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.362745" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="19239" name="UnavailableCompoundPreservesOriginalGraph(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph(&quot;reserved&quot;)" methodname="UnavailableCompoundPreservesOriginalGraph" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="2121981088" result="Failed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.080464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19240" name="UnavailableCompoundPreservesOriginalGraph(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph(&quot;wet&quot;)" methodname="UnavailableCompoundPreservesOriginalGraph" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1946425342" result="Failed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.083388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19241" name="UnavailableCompoundPreservesOriginalGraph(&quot;occupied&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph(&quot;occupied&quot;)" methodname="UnavailableCompoundPreservesOriginalGraph" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1089024882" result="Failed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.088821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="19242" name="UnavailableCompoundPreservesOriginalGraph(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph(&quot;interior&quot;)" methodname="UnavailableCompoundPreservesOriginalGraph" classname="CavesOfOoo.Tests.BeatingRuinFragmentsTests" runstate="Runnable" seed="1737005292" result="Failed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.079108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded cold RuinField fragments
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.BeatingRuinFragmentsTests+Fixture.Run (CavesOfOoo.Data.EntityFactory f) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:25
+at CavesOfOoo.Tests.BeatingRuinFragmentsTests.UnavailableCompoundPreservesOriginalGraph (System.String kind) [0x00117] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingRuinFragmentsTests.cs:58
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="31161" name="FlatPixelBeatingMaterialsTests" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="178" result="Failed" site="Child" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.524313" total="7" passed="5" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="31170" name="ColumnDoesNotInventOrSuppressUnsupportedGround" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ColumnDoesNotInventOrSuppressUnsupportedGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.270621" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="31165" name="ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;no-floor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;no-floor&quot;)" methodname="ColumnDoesNotInventOrSuppressUnsupportedGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="174992044" result="Passed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.097396" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31166" name="ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;crop&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;crop&quot;)" methodname="ColumnDoesNotInventOrSuppressUnsupportedGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1690724870" result="Passed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.044518" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31167" name="ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;wet&quot;)" methodname="ColumnDoesNotInventOrSuppressUnsupportedGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1122838222" result="Passed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.042924" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31168" name="ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;custom&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;custom&quot;)" methodname="ColumnDoesNotInventOrSuppressUnsupportedGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="1344307703" result="Passed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.041987" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="31169" name="ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.ColumnDoesNotInventOrSuppressUnsupportedGround(&quot;solid&quot;)" methodname="ColumnDoesNotInventOrSuppressUnsupportedGround" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="2072995510" result="Passed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.042413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="31164" name="NeutralColumnRetainsRealDryFloor" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralColumnRetainsRealDryFloor" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.217829" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="31162" name="NeutralColumnRetainsRealDryFloor(&quot;SandstoneFloor&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralColumnRetainsRealDryFloor(&quot;SandstoneFloor&quot;)" methodname="NeutralColumnRetainsRealDryFloor" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="469608998" result="Failed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.086891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralColumnRetainsRealDryFloor (System.String bp) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingFragmentsTests.cs:10
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="31163" name="NeutralColumnRetainsRealDryFloor(&quot;Sand&quot;)" fullname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralColumnRetainsRealDryFloor(&quot;Sand&quot;)" methodname="NeutralColumnRetainsRealDryFloor" classname="CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests" runstate="Runnable" seed="15011054" result="Failed" start-time="2026-11-02 04:51:49Z" end-time="2026-11-02 04:51:49Z" duration="0.097266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelBeatingMaterialsTests.NeutralColumnRetainsRealDryFloor (System.String bp) [0x00043] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FlatPixelBeatingFragmentsTests.cs:10
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

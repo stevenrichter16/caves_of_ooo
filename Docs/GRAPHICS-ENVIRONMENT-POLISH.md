@@ -124,3 +124,5 @@ Next visual action: actual screenshot → imagegen concept → editable native p
 ## Next delivery and broader material work
 
 Sodden, Stump, Grovelands, Beating, Sill and Overwrit have bounded material checkpoints; Sill contact/wall shading and fresh SummitScrub shelter groups add separately reviewed presentation/composition results. Batch-package the reviewed source and verify normal launch/travel next. Current43a151ddb builds remain unchanged. Then choose the largest observed environmental gap from the area ledger; central Summit emptiness, flat dome tops, repeated stems and glyph props remain unresolved. Preserve deliberate quiet stretches and continue materials alongside periodic meaningful population work; crops and nuanced animation stay deferred.
+
+2026-11-02: Beating19.12 bounded9passablefragment composition reviewed separately from material/full-area acceptance. Threeactualviews,reader/crossing/F5freshContinue exactworldpixels;316applicablenative, source2P2fixed/final0P1P2. Smallgreen orderlyfragments andbroademptyrooms remain. Currentca323packageslag; batchnext. See [record](GRAPHICS-BEATING-FRAGMENTS.md).
