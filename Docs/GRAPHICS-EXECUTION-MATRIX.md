@@ -1,3 +1,5 @@
+**Stump/Felling relief2026-11-02:** Actual revision2 raisedlayeredstone/quietground verified,165native,20changedframes50exact,2130terrainreloadhash. Source/visual0P1/P2. No fullarea/R11/population/castshadow promotion. Next batchcurrentdelivery, then broadregionalvisiblegap. See GRAPHICS-STUMP-RELIEF.md.
+
 **Stump brine2026-11-02:** Fourwestern pools actual native,269native checks, readers/hazard/crossing/reload6states. R11/fullarea/eastpair/depletion open. Next coherent stone relief/ground/shadow pass per user impact feedback; then currentpackages. See GRAPHICS-STUMP-BRINE.md.
 
 **Stump fixtures2026-11-02:** FiveSummitpipes now native on realstone, actualreaders/crossing/reload verified. Peat/ventbacking integratedonly.216applicable nativepasses; R11/fullarea open. See GRAPHICS-STUMP-FIXTURES.md. Next6BrinePool andboundedshadowcomparison.
