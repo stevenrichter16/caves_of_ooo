@@ -5818,7 +5818,103 @@
           "Remaining routes,states,sites not fully audited"
         ],
         "defect_audit_complete": false,
-        "polish_acceptance_evidence": null
+        "polish_acceptance_evidence": null,
+        "bounded_brine_source_observation": {
+          "recorded_utc": "2026-11-02T07:25:07.944836+00:00",
+          "scope": "ordinary Grovelands canonical BrinePool approved-art reuse",
+          "actual": {
+            "zone": "Overworld.0.8.0",
+            "seed": 65,
+            "baseline_turn": 4470,
+            "baseline_player": [
+              40,
+              15,
+              38
+            ],
+            "reader_from": [
+              60,
+              17
+            ],
+            "wet_step": [
+              61,
+              17
+            ],
+            "wet_effect": "Drenched in brine (35)",
+            "travel": [
+              "Overworld.0.8.0",
+              "Overworld.0.9.0",
+              "Overworld.0.8.0"
+            ],
+            "save_turn": 4790,
+            "reload_player": [
+              40,
+              12,
+              38
+            ],
+            "F12": false,
+            "views": [
+              "1x matched",
+              "2x cluster after",
+              "native brine reader",
+              "wet step",
+              "neighbor travel",
+              "save",
+              "fresh Continue"
+            ]
+          },
+          "green": {
+            "job": "2ccfd6cf8ed24c67ac80fa2edceceac3",
+            "passed": 352,
+            "failed": 0,
+            "inconclusive": 0,
+            "skipped": 0,
+            "seconds": 43.0587843,
+            "additional_cases": 20
+          },
+          "matched": {
+            "world_pixels": 639200,
+            "changed_pixels": 7879,
+            "bbox": [
+              446,
+              255,
+              881,
+              538
+            ],
+            "right_ui_exact": true
+          },
+          "reload": {
+            "world_pixels": 639200,
+            "changed_pixels": 0,
+            "bbox": null
+          },
+          "reviews": {
+            "source": "coverage_priorities:0P1/P2",
+            "visual": "capture_route:0newP1/P2 in five-cell patch; brine/freshwater distinction subtle; rigid stepped edges"
+          },
+          "profile": {
+            "seconds": 49.3058094,
+            "renderer_p95_ms": 0.0985,
+            "renderer_max_ms": 81.283292,
+            "main_thread_max_ms": 110.894708,
+            "gc_max_bytes": 4796746,
+            "limits": "Short Editor after-only movement/zoom/reader observation with capture tools; no execute_code inside window. Below60s target; not packaged/performance acceptance; R11 remains open."
+          },
+          "preservation": {
+            "foreign_hashes": 75,
+            "changed": 0,
+            "play": false,
+            "save_root": null,
+            "scene_dirty": false,
+            "cleanup": "none",
+            "available_bytes_inspection": 353756594176
+          },
+          "limits": [
+            "Sixth pool off viewport; actual depleted stock not observed (native tested).",
+            "Brine dynamic memory intentionally unchanged; other glyphs/full-area/population/shadows remain.",
+            "Matched total7879changedworldpixels; rightUI exact; not every temporal/postprocessing pixel causally attributed.",
+            "Current689157Mac/Linux exclude this and Overwrit wear; no Linux/physicalDeck execution."
+          ]
+        }
       },
       {
         "biome": "Beating",
@@ -14583,6 +14679,102 @@
       "lowcontrast",
       "remainingASCII/memory",
       "R11"
+    ]
+  },
+  "grovelands_brine_source_delivery": {
+    "recorded_utc": "2026-11-02T07:25:07.944836+00:00",
+    "scope": "ordinary Grovelands canonical BrinePool approved-art reuse",
+    "actual": {
+      "zone": "Overworld.0.8.0",
+      "seed": 65,
+      "baseline_turn": 4470,
+      "baseline_player": [
+        40,
+        15,
+        38
+      ],
+      "reader_from": [
+        60,
+        17
+      ],
+      "wet_step": [
+        61,
+        17
+      ],
+      "wet_effect": "Drenched in brine (35)",
+      "travel": [
+        "Overworld.0.8.0",
+        "Overworld.0.9.0",
+        "Overworld.0.8.0"
+      ],
+      "save_turn": 4790,
+      "reload_player": [
+        40,
+        12,
+        38
+      ],
+      "F12": false,
+      "views": [
+        "1x matched",
+        "2x cluster after",
+        "native brine reader",
+        "wet step",
+        "neighbor travel",
+        "save",
+        "fresh Continue"
+      ]
+    },
+    "green": {
+      "job": "2ccfd6cf8ed24c67ac80fa2edceceac3",
+      "passed": 352,
+      "failed": 0,
+      "inconclusive": 0,
+      "skipped": 0,
+      "seconds": 43.0587843,
+      "additional_cases": 20
+    },
+    "matched": {
+      "world_pixels": 639200,
+      "changed_pixels": 7879,
+      "bbox": [
+        446,
+        255,
+        881,
+        538
+      ],
+      "right_ui_exact": true
+    },
+    "reload": {
+      "world_pixels": 639200,
+      "changed_pixels": 0,
+      "bbox": null
+    },
+    "reviews": {
+      "source": "coverage_priorities:0P1/P2",
+      "visual": "capture_route:0newP1/P2 in five-cell patch; brine/freshwater distinction subtle; rigid stepped edges"
+    },
+    "profile": {
+      "seconds": 49.3058094,
+      "renderer_p95_ms": 0.0985,
+      "renderer_max_ms": 81.283292,
+      "main_thread_max_ms": 110.894708,
+      "gc_max_bytes": 4796746,
+      "limits": "Short Editor after-only movement/zoom/reader observation with capture tools; no execute_code inside window. Below60s target; not packaged/performance acceptance; R11 remains open."
+    },
+    "preservation": {
+      "foreign_hashes": 75,
+      "changed": 0,
+      "play": false,
+      "save_root": null,
+      "scene_dirty": false,
+      "cleanup": "none",
+      "available_bytes_inspection": 353756594176
+    },
+    "limits": [
+      "Sixth pool off viewport; actual depleted stock not observed (native tested).",
+      "Brine dynamic memory intentionally unchanged; other glyphs/full-area/population/shadows remain.",
+      "Matched total7879changedworldpixels; rightUI exact; not every temporal/postprocessing pixel causally attributed.",
+      "Current689157Mac/Linux exclude this and Overwrit wear; no Linux/physicalDeck execution."
     ]
   }
 }

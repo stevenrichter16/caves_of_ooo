@@ -1,0 +1,60 @@
+{
+  "zone": "Overworld.0.8.0",
+  "fixture": "Docs/Verification/GraphicsExecution/GroveMemory/AfterCheckpoint",
+  "seed": 65,
+  "turn": 4470,
+  "player": [
+    40,
+    15,
+    38
+  ],
+  "visible_pools": [
+    {
+      "x": 6,
+      "y": 15,
+      "blueprint": "BrinePool"
+    },
+    {
+      "x": 61,
+      "y": 17,
+      "blueprint": "BrinePool"
+    },
+    {
+      "x": 62,
+      "y": 17,
+      "blueprint": "BrinePool"
+    },
+    {
+      "x": 61,
+      "y": 18,
+      "blueprint": "BrinePool"
+    },
+    {
+      "x": 60,
+      "y": 19,
+      "blueprint": "BrinePool"
+    },
+    {
+      "x": 61,
+      "y": 19,
+      "blueprint": "BrinePool"
+    }
+  ],
+  "sample_61_18": {
+    "visible": true,
+    "explored": true,
+    "owners": [
+      "Grass",
+      "BrinePool"
+    ],
+    "liquid": "brine",
+    "volume": 90,
+    "glyph": "~",
+    "layer": 1,
+    "visual_id": "",
+    "visual_variant": "",
+    "state": "sole permanent brine; no heat/cold/charge/residue/cloud",
+    "source": "canonical TileStateSource water4"
+  },
+  "correction": "Blue waves are real visible BrinePool owners, not remembered water. Preserve existing conservative dynamic memory."
+}

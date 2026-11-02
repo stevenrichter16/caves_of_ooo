@@ -21,6 +21,9 @@ namespace CavesOfOoo.Rendering
         /// <summary>Independent ordinary Sodden reuse; no other Beating material is admitted.</summary>
         internal FlatPixelBeatingMaterialsCatalog AdmittingSoddenBrine()
         { admits = FlatPixelSoddenTravelCatalog.IsSupportedZone; brineOnly = true; return this; }
+        /// <summary>Independent ordinary Grovelands reuse; only canonical brine sources are admitted.</summary>
+        internal FlatPixelBeatingMaterialsCatalog AdmittingGrovelandsBrine()
+        { admits = FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone; brineOnly = true; return this; }
         /// <summary>Make this instance draw its biome's ordinary sinkhole surfaces
         /// (FlatPixelSiteAdmission) instead of the wilderness, with exactly the same rules and art.</summary>
         internal FlatPixelBeatingMaterialsCatalog AdmittingSites(BiomeType biome)

@@ -12,9 +12,9 @@ namespace CavesOfOoo.Tests
     public sealed partial class FlatPixelBeatingMaterialsTests
     {
         Entity StumpPool(string id = "Overworld.3.4.0")
-        { zone = Attach(id); Assert.True(FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone)||FlatPixelSoddenTravelCatalog.IsSupportedZone(zone)); return Add("BrinePool"); }
-        FlatPixelBeatingMaterialsCatalog StumpAdapter()
-        { View(); return (FlatPixelBeatingMaterialsCatalog)Read(world, "_stumpBrineArt"); }
+        { zone = Attach(id); Assert.True(FlatPixelStumpMaterialsCatalog.IsSupportedZone(zone)||FlatPixelSoddenTravelCatalog.IsSupportedZone(zone)||FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone)); return Add("BrinePool"); }
+        FlatPixelBeatingMaterialsCatalog StumpAdapter(string field = "_stumpBrineArt")
+        { View(); return (FlatPixelBeatingMaterialsCatalog)Read(world, field); }
         bool StumpSubject(Entity owner, int x = X, int y = Y)
             => world.TryGetPresentationSubjectSprite(zone, owner, x, y, out var sprite, out _)
                 && sprite != null && sprite.texture == Resources.Load<Texture2D>(Atlas)
@@ -23,6 +23,7 @@ namespace CavesOfOoo.Tests
         [TestCase("Overworld.3.4.0", 90)] [TestCase("Overworld.3.4.0", 0)]
         [TestCase("Overworld.2.5.0", 90)] [TestCase("Overworld.2.5.0", 0)]
         [TestCase("Overworld.16.5.0",90)] [TestCase("Overworld.16.5.0",0)]
+        [TestCase("Overworld.0.8.0",90)] [TestCase("Overworld.0.8.0",0)]
         public void StumpBrineStockAndCoveredReaderPreserveRealState(string id, int stock)
         {
             var pool = StumpPool(id); pool.GetPart<LiquidPoolPart>().Volume = stock;
@@ -48,6 +49,10 @@ namespace CavesOfOoo.Tests
         [TestCase("mixture","Overworld.16.5.0")] [TestCase("missing","Overworld.16.5.0")]
         [TestCase("vapor","Overworld.16.5.0")] [TestCase("negative-stock","Overworld.16.5.0")]
         [TestCase("hidden","Overworld.16.5.0")] [TestCase("duplicate-pool","Overworld.16.5.0")]
+        [TestCase("missing","Overworld.0.8.0")] [TestCase("mixture","Overworld.0.8.0")]
+        [TestCase("frozen","Overworld.0.8.0")] [TestCase("vapor","Overworld.0.8.0")]
+        [TestCase("duplicate-pool","Overworld.0.8.0")] [TestCase("hidden","Overworld.0.8.0")]
+        [TestCase("negative-stock","Overworld.0.8.0")] [TestCase("variant","Overworld.0.8.0")]
         public void StumpBrineRejectsUnsupportedStateAfterPositiveBaseline(string fault,string id="Overworld.3.4.0")
         {
             var pool = StumpPool(id); Native(pool);
@@ -76,6 +81,8 @@ namespace CavesOfOoo.Tests
         [TestCase(90,"embers",'"')] [TestCase(0,"veil-mist",'\'')]
         [TestCase(90,"none",'\0',"Overworld.16.5.0")] [TestCase(0,"charge",'*',"Overworld.16.5.0")]
         [TestCase(90,"heat",'^',"Overworld.16.5.0")]
+        [TestCase(90,"none",'\0',"Overworld.0.8.0")] [TestCase(0,"charge",'*',"Overworld.0.8.0")]
+        [TestCase(90,"heat",'^',"Overworld.0.8.0")]
         public void StumpBrineSubmittedMarksRemainAuthoritative(int stock,string hazard,char expected,string id="Overworld.3.4.0")
         {
             var pool=StumpPool(id); pool.GetPart<LiquidPoolPart>().Volume=stock; Native(pool);
@@ -98,9 +105,11 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("Sand")] [TestCase("DryBrush")] [TestCase("TarSeep")] [TestCase("StoneWall")]
-        public void StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(string blueprint)
+        [TestCase("Sand","Overworld.0.8.0")] [TestCase("DryBrush","Overworld.0.8.0")]
+        [TestCase("TarSeep","Overworld.0.8.0")] [TestCase("StoneWall","Overworld.0.8.0")]
+        public void StumpBrineInstanceCannotAdmitOtherBeatingFamiliesOrGround(string blueprint,string id="Overworld.3.4.0")
         {
-            var pool=StumpPool();Native(pool);var adapter=StumpAdapter();Assert.NotNull(adapter);
+            var pool=StumpPool(id);Native(pool);var adapter=StumpAdapter(id=="Overworld.0.8.0"?"_grovelandsBrineArt":"_stumpBrineArt");Assert.NotNull(adapter);
             Assert.True(zone.RemoveEntity(pool));var other=Add(blueprint);
             Assert.False(adapter.TryResolveForeground(zone,X,Y,other,out _));
             Assert.False(adapter.TryGetSubjectSprite(zone,other,X,Y,out _));
@@ -119,18 +128,20 @@ namespace CavesOfOoo.Tests
             Assert.False(adapter.TryGetSubjectSprite(zone,pool,X,Y,out _));
         }
 
-        [Test] public void StumpBrineWarmGraphAuthorityIsRechecked()
+        [TestCase("Overworld.3.4.0",3,4)] [TestCase("Overworld.0.8.0",0,8)]
+        public void StumpBrineWarmGraphAuthorityIsRechecked(string id,int x,int y)
         {
-            var pool=StumpPool();Native(pool);var original=zone;
+            var pool=StumpPool(id);Native(pool);var original=zone;
             manager.SetActiveZone(new Zone(original.ZoneID));
             Assert.False(StumpSubject(pool));
             manager.SetActiveZone(original);Native(pool);
-            manager.WorldMap.Tiles[3,4]=BiomeType.Beating;
+            manager.WorldMap.Tiles[x,y]=BiomeType.Beating;
             Assert.False(StumpSubject(pool));Assert.False(View().RepresentedBrine);
         }
 
         [TestCase(false)] [TestCase(true)]
         [TestCase(false,"Overworld.16.5.0")] [TestCase(true,"Overworld.16.5.0")]
+        [TestCase(false,"Overworld.0.8.0")] [TestCase(true,"Overworld.0.8.0")]
         public void StumpBrineOptionalAtlasFailureAndDisposalPreserveFallbackAndBorrowedResources(bool malformed,string id="Overworld.3.4.0")
         {
             var pool=StumpPool(id);Native(pool);var first=View().ForegroundTile;var sprite=first.sprite;
@@ -140,8 +151,8 @@ namespace CavesOfOoo.Tests
             try
             {
                 var adapter=new FlatPixelBeatingMaterialsCatalog(bad,null,null,injectedSelector);
-                injectedAdapter=adapter;var admission=AdapterType().GetMethod(id=="Overworld.16.5.0"?"AdmittingSoddenBrine":"AdmittingStumpBrine",I);
-                Assert.NotNull(admission);admission.Invoke(adapter,null);Write(world,id=="Overworld.16.5.0"?"_soddenBrineArt":"_stumpBrineArt",adapter);
+                injectedAdapter=adapter;var admission=AdapterType().GetMethod(id=="Overworld.0.8.0"?"AdmittingGrovelandsBrine":id=="Overworld.16.5.0"?"AdmittingSoddenBrine":"AdmittingStumpBrine",I);
+                Assert.NotNull(admission);admission.Invoke(adapter,null);Write(world,id=="Overworld.0.8.0"?"_grovelandsBrineArt":id=="Overworld.16.5.0"?"_soddenBrineArt":"_stumpBrineArt",adapter);
                 Fallback();Assert.False(StumpSubject(pool));
                 using(var paint=new Paint(world,zone))
                 {paint.Step();Assert.AreSame(CP437TilesetGenerator.GetTile('~'),paint.Mark);}

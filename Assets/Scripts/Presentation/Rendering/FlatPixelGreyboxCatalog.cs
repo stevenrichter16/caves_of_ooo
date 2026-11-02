@@ -110,6 +110,7 @@ namespace CavesOfOoo.Rendering
         private FlatPixelBeatingMaterialsCatalog _beatingMaterialsArt;
         private FlatPixelBeatingMaterialsCatalog _stumpBrineArt;
         private FlatPixelBeatingMaterialsCatalog _soddenBrineArt;
+        private FlatPixelBeatingMaterialsCatalog _grovelandsBrineArt;
         private FlatPixelSettlementGroundCatalog _settlementGroundArt;
         private FlatPixelSinkholeLipCatalog _sinkholeLipArt;
         private FlatPixelFloodWaterCatalog _floodWaterArt;
@@ -1938,6 +1939,17 @@ namespace CavesOfOoo.Rendering
 
         private FlatPixelBeatingMaterialsCatalog BeatingMaterialsArtFor(Zone zone)
         {
+            if (FlatPixelGrovelandsMaterialsCatalog.IsSupportedZone(zone))
+            {
+                if (_grovelandsBrineArt == null && _loadOptionalResources)
+                {
+                    if (_glyphFallback == null) _glyphFallback = new FlatPixelFallbackCatalog();
+                    _grovelandsBrineArt = new FlatPixelBeatingMaterialsCatalog(
+                        Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
+                        null, null, _glyphFallback).AdmittingGrovelandsBrine();
+                }
+                return _grovelandsBrineArt;
+            }
             if (FlatPixelSoddenTravelCatalog.IsSupportedZone(zone))
             {
                 if (_soddenBrineArt == null && _loadOptionalResources)
@@ -2579,6 +2591,8 @@ namespace CavesOfOoo.Rendering
             _stumpBrineArt = null;
             _soddenBrineArt?.Dispose();
             _soddenBrineArt = null;
+            _grovelandsBrineArt?.Dispose();
+            _grovelandsBrineArt = null;
             _beatingSiteArt?.Dispose();
             _beatingSiteArt = null;
             _beatingMaterialsArt = null;
