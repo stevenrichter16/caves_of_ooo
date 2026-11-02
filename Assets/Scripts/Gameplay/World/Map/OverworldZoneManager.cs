@@ -387,7 +387,8 @@ namespace CavesOfOoo.Core
         private ZoneGenerationPipeline CreateGinmerePipeline(BiomeType biome, int depth, int surfaceTier)
         {
             var pipeline=new ZoneGenerationPipeline();
-            pipeline.AddBuilder(new GinmereCompositionBuilder(WorldSeed));
+            var terrain=new GinmereCompositionBuilder(WorldSeed);
+            pipeline.AddBuilder(terrain);
             string floor=depth==0?"Grass":"SandstoneFloor";
             pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint=floor });
             if(depth==0) pipeline.AddBuilder(new SinkholeMouthBuilder(this));
@@ -406,6 +407,7 @@ namespace CavesOfOoo.Core
                 depth==0?surfaceTier:System.Math.Min(surfaceTier+1,8),
                 depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
             if(depth==0)pipeline.AddBuilder(new TradeStockBuilder());
+            if(depth==1)pipeline.AddBuilder(new GinmereStoneRibsBuilder(this,terrain));
             if(depth==2)pipeline.AddBuilder(new GinmereNestFinalizer());
             return pipeline;
         }

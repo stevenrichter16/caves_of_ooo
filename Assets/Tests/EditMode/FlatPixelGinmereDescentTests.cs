@@ -149,12 +149,35 @@ namespace CavesOfOoo.Tests
         {
             Native();using(var selector=new FlatPixelFallbackCatalog())using(var art=new FlatPixelShallowCavesCatalog(selector))
             {
-                Admit(art);foreach(var name in new[]{"StairsDown","StairsUp","Rubble","Stalagmite"})
+                Admit(art);foreach(var name in new[]{"StairsDown","StairsUp"})
                 {
                     var other=content.Factory.CreateEntity(name);Assert.True(zone.AddEntity(other,fc.X,fc.Y));
                     Assert.False(art.TryResolveForeground(zone,fc.X,fc.Y,other,out _),name);Assert.True(zone.RemoveEntity(other));
                 }
                 Assert.True(zone.RemoveEntity(floor));Assert.False(art.TryResolveCellBackdrop(zone,fc.X,fc.Y,out _,out _));
+            }
+        }
+        [TestCase("Rubble")][TestCase("Stalagmite")]
+        public void RockfallOwnersUseNativeBodyAndReaderWithExistingVisibilityGuards(string name)
+        {
+            Native();var owner=content.Factory.CreateEntity(name);Assert.True(zone.AddEntity(owner,fc.X,fc.Y));var view=View(fc);
+            Assert.True(view.NativeForeground,"Actual Ginmere rock owner should not remain ASCII");var expected=Resources.Load<Texture2D>("Sprites/Environment/"+name.ToLowerInvariant());Assert.AreSame(expected,view.ForegroundTile.sprite.texture);
+            Assert.True(world.TryGetPresentationSubjectSprite(zone,owner,fc.X,fc.Y,out var sprite,out _));Assert.AreSame(expected,sprite.texture);
+            fc.IsVisible=false;if(world.TryResolvePresentation(zone,fc.X,fc.Y,out view))Assert.AreNotSame(expected,view.ForegroundTile?.sprite?.texture);
+            fc.IsVisible=true;owner.GetPart<RenderPart>().ColorString="&R";if(world.TryResolvePresentation(zone,fc.X,fc.Y,out view))Assert.AreNotSame(expected,view.ForegroundTile?.sprite?.texture);
+            owner.GetPart<RenderPart>().ColorString="&y";manager.WorldMap.GetPOI(2,7).Name="foreign";if(world.TryResolvePresentation(zone,fc.X,fc.Y,out view))Assert.AreNotSame(expected,view.ForegroundTile?.sprite?.texture);
+        }
+        [TestCase("none")][TestCase("hidden-cell")][TestCase("hidden-owner")][TestCase("moved")][TestCase("changed")][TestCase("missing")]
+        public void CoveredRockfallRubbleReaderKeepsActualDisclosedSubject(string fault)
+        {
+            var owner=content.Factory.CreateEntity("Rubble");Assert.True(zone.AddEntity(owner,fc.X,fc.Y));Assert.True(zone.AddEntity(content.Factory.CreateEntity("Player"),fc.X,fc.Y));
+            using(var selector=new FlatPixelFallbackCatalog())using(var art=new FlatPixelShallowCavesCatalog(selector))
+            {
+                Admit(art);Assert.True(art.TryGetSubjectSprite(zone,owner,fc.X,fc.Y,out var sprite),"Standing on rubble must retain its native examine identity");Assert.AreSame(Resources.Load<Texture2D>("Sprites/Environment/rubble"),sprite.texture);
+                if(fault=="none")return;
+                if(fault=="hidden-cell")fc.IsVisible=false;if(fault=="hidden-owner")owner.GetPart<RenderPart>().Visible=false;if(fault=="moved")zone.RemoveEntity(owner);if(fault=="changed")owner.GetPart<RenderPart>().ColorString="&R";
+                if(fault=="missing")using(var absent=new FlatPixelShallowCavesCatalog(null,null,null,null,null,null,selector)){Admit(absent);Assert.False(absent.TryGetSubjectSprite(zone,owner,fc.X,fc.Y,out _));}
+                else Assert.False(art.TryGetSubjectSprite(zone,owner,fc.X,fc.Y,out _));
             }
         }
         static void Admit(FlatPixelShallowCavesCatalog art)

@@ -15,7 +15,7 @@ namespace CavesOfOoo.Rendering
         bool allowCoveredFloorReader;
         bool floorOnly;
         bool structuralOnly;
-        /// <summary>Only real sandstone floor/wall owners; no ambient or prop borrowing.</summary>
+        /// <summary>Real sandstone and low rockfall owners only; no ambient or stair borrowing.</summary>
         internal FlatPixelShallowCavesCatalog AdmittingGinmereDescent()
         { admits = FlatPixelSiteAdmission.IsGinmereDescent; allowCoveredFloorReader = true; structuralOnly = true; return this; }
         /// <summary>Surface sandstone only; never lends cave bodies or ambient backing.</summary>
@@ -118,7 +118,7 @@ namespace CavesOfOoo.Rendering
         public bool TryResolveForeground(Zone zone, int x, int y, Entity owner, out Tile tile)
         {
             tile = null;
-            if (floorOnly || structuralOnly && owner?.BlueprintName != "SandstoneWall"
+            if (floorOnly || structuralOnly && owner?.BlueprintName != "SandstoneWall" && owner?.BlueprintName != "Stalagmite" && owner?.BlueprintName != "Rubble"
                 || !ReadyCell(zone, x, y, out var cell) || !Selected(zone, x, y, owner)
                 || !Placed(zone, cell, owner) || !OrdinaryForeground(owner)) return false;
             Tile[] group;
@@ -160,9 +160,14 @@ namespace CavesOfOoo.Rendering
         public bool TryGetSubjectSprite(Zone zone, Entity owner, int x, int y, out Sprite sprite)
         {
             sprite = null;
-            if (!ReadyCell(zone, x, y, out _) || (!allowCoveredFloorReader && !Selected(zone, x, y, owner))) return false;
+            if (!ReadyCell(zone, x, y, out var cell) || (!allowCoveredFloorReader && !Selected(zone, x, y, owner))) return false;
             if (TryResolveForeground(zone, x, y, owner, out var foreground))
             { sprite = foreground.sprite; return sprite != null; }
+            // Passable Ginmere rubble retains its subject identity under an actor.
+            // This does not change world selection or disclose another cell.
+            if (structuralOnly && owner?.BlueprintName == "Rubble" && rubble != null
+                && Placed(zone, cell, owner) && OrdinaryForeground(owner))
+            { sprite = rubble[0].sprite; return sprite != null; }
             if (TryResolveGround(zone, x, y, out var ground, out var floor) && ReferenceEquals(floor, owner))
             { sprite = ground.sprite; return sprite != null; }
             return false;

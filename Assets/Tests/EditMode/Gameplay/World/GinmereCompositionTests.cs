@@ -157,3 +157,58 @@ namespace CavesOfOoo.Tests
         }
     }
 }
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class GinmereRibsTests
+    {
+        DensityLootTestScope scope;
+        [SetUp] public void Setup()=>scope=new DensityLootTestScope();
+        [TearDown] public void Cleanup()=>scope.Dispose();
+        sealed class Fixture
+        {
+            internal OverworldZoneManager Manager; internal Zone Zone; internal GinmereCompositionBuilder Terrain; internal IZoneBuilder Ribs;
+            internal Random Rng=new Random(901);
+            internal Fixture(CavesOfOoo.Data.EntityFactory factory,int seed=704860946)
+            {
+                Manager=OverworldZoneManager.CreateDetached(factory,seed,true); Zone=new Zone("Overworld.2.7.1");
+                var pipeline=(ZoneGenerationPipeline)typeof(OverworldZoneManager).GetMethod("GetPipelineForZone",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(Manager,new object[]{Zone.ZoneID});
+                Terrain=pipeline.Builders.OfType<GinmereCompositionBuilder>().Single(); Ribs=pipeline.Builders.SingleOrDefault(b=>b.Name=="GinmereStoneRibs");
+                foreach(var b in pipeline.Builders.OrderBy(b=>b.Priority).Where(b=>b.Priority<4350))Assert.True(b.BuildZone(Zone,factory,Rng),b.Name);
+            }
+            internal bool Run(CavesOfOoo.Data.EntityFactory f){Assert.NotNull(Ribs,"Missing bounded cold Ginmere stone ribs");return Ribs.BuildZone(Zone,f,Rng);}
+        }
+        [TestCase(704860946)][TestCase(64)][TestCase(1729)]
+        public void ColdRibsPreserveExistingOwnersRoutesPlanReservesAndRandom(int seed)
+        {
+            var a=new Fixture(scope.Factory,seed);var control=new Fixture(scope.Factory,seed);var z=a.Zone;
+            var original=z.GetReadOnlyEntities().ToArray();var places=original.Select(z.GetEntityPosition).ToArray();var reserved=z.GenReservedCells.ToArray();string state=z.TileState.ToSaveString(),plan=a.Terrain.Plan.Signature();
+            Assert.True(a.Run(scope.Factory));var added=z.GetReadOnlyEntities().Except(original).ToArray();Assert.That(added.Length,Is.InRange(7,17));
+            for(int i=0;i<original.Length;i++)Assert.AreEqual(places[i],z.GetEntityPosition(original[i]));
+            foreach(var e in added){Assert.That(e.BlueprintName,Is.EqualTo("Stalagmite").Or.EqualTo("Rubble"));var c=z.GetEntityCell(e);Assert.AreEqual(e.BlueprintName=="Stalagmite",c.BlocksMovement());Assert.False(e.HasTag("Wall"));for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++)Assert.False(a.Terrain.Plan.IsApproach(c.X+x,c.Y+y));}
+            Assert.AreEqual(plan,a.Terrain.Plan.Signature());Assert.AreEqual(state,z.TileState.ToSaveString());CollectionAssert.AreEquivalent(reserved,z.GenReservedCells);Assert.AreEqual(control.Rng.Next(),a.Rng.Next());
+            Assert.True(FormationReachability.FullyReached(z,FormationReachability.FloodFromWest(z)));var owners=z.GetReadOnlyEntities().ToArray();Assert.True(a.Run(scope.Factory));CollectionAssert.AreEquivalent(owners,z.GetReadOnlyEntities());
+            var controlOriginal=control.Zone.GetReadOnlyEntities().ToArray();Assert.True(control.Run(scope.Factory));CollectionAssert.AreEqual(added.Select(z.GetEntityPosition).OrderBy(p=>p).ToArray(),control.Zone.GetReadOnlyEntities().Except(controlOriginal).Select(control.Zone.GetEntityPosition).OrderBy(p=>p).ToArray());
+        }
+        [TestCase("cached")][TestCase("active")][TestCase("map")][TestCase("poi")][TestCase("factory")][TestCase("producer")]
+        public void LoadedOrForeignAuthorityDoesNotDressGraph(string fault)
+        {
+            var f=new Fixture(scope.Factory);if(fault=="cached")f.Manager.CachedZones.Add(f.Zone.ZoneID,f.Zone);if(fault=="active")f.Manager.SetActiveZone(f.Zone);if(fault=="map")f.Manager.WorldMap.POIs=new PointOfInterest[1,1];if(fault=="poi")f.Manager.WorldMap.GetPOI(2,7).Name="foreign";if(fault=="producer")f.Terrain.BuildZone(new Zone("Overworld.2.7.1"),scope.Factory,new Random(8));
+            var before=f.Zone.GetReadOnlyEntities().ToArray();Assert.True(f.Run(fault=="factory"?GrovelandsCompositionTests.Factory():scope.Factory));CollectionAssert.AreEquivalent(before,f.Zone.GetReadOnlyEntities());
+        }
+        [TestCase("reserved")][TestCase("wet")][TestCase("occupied")][TestCase("missing")]
+        public void UnavailableTerrainOrPayloadDoesNotPublish(string fault)
+        {
+            var f=new Fixture(scope.Factory);if(fault=="missing")scope.Factory.Blueprints.Remove("Stalagmite");else for(int y=2;y<23;y++)for(int x=2;x<78;x++){if(fault=="reserved")f.Zone.GenReservedCells.Add((x,y));if(fault=="wet")f.Zone.TileState.WriteCoating(x,y,"water",ZoneTileState.Permanent);if(fault=="occupied")f.Zone.AddEntity(new Entity{ID="fixture"+x+"-"+y,BlueprintName="foreign"},x,y);}
+            var before=f.Zone.GetReadOnlyEntities().ToArray();Assert.True(f.Run(scope.Factory));CollectionAssert.AreEquivalent(before,f.Zone.GetReadOnlyEntities());
+        }
+        [TestCase("solid")][TestCase("wall")][TestCase("duplicate")][TestCase("tile")][TestCase("reserve")]
+        public void PayloadOrCallbackChangesCannotPublishRibs(string fault)
+        {
+            var f=new Fixture(scope.Factory);var before=f.Zone.GetReadOnlyEntities().ToArray();Entity first=null;
+            scope.Factory.RegisterPartType<SpreadGenerationReceiptTests.ReceiptCreatedPart>("ReceiptCreated");scope.Factory.Blueprints["Stalagmite"].Parts["ReceiptCreated"]=new Dictionary<string,string>();
+            SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=e=>{e.RemovePart(e.GetPart<SpreadGenerationReceiptTests.ReceiptCreatedPart>());if(first==null){first=e;return;}if(fault=="solid")first.GetPart<PhysicsPart>().Solid=false;else if(fault=="wall")first.Tags["Wall"]="";else if(fault=="duplicate")first.ID=e.ID;else if(fault=="tile")f.Zone.TileState.WriteCoating(30,6,"water",ZoneTileState.Permanent);else f.Zone.GenReservedCells.Add((30,6));};
+            try{f.Run(scope.Factory);Assert.NotNull(first);CollectionAssert.AreEquivalent(before,f.Zone.GetReadOnlyEntities());}finally{SpreadGenerationReceiptTests.ReceiptCreatedPart.Callback=null;}
+        }
+    }
+}

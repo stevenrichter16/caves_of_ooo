@@ -2061,7 +2061,8 @@ namespace CavesOfOoo.Rendering
                     _ginmereDescentArt = new FlatPixelShallowCavesCatalog(
                         Resources.Load<Texture2D>(FlatPixelShallowCavesCatalog.ResourcePath),
                         Resources.Load<Texture2D>(FlatPixelBeatingMaterialsCatalog.ResourcePath),
-                        null, null, null, null, _glyphFallback).AdmittingGinmereDescent();
+                        Resources.Load<Texture2D>("Sprites/Environment/rubble"),
+                        Resources.Load<Texture2D>("Sprites/Environment/stalagmite"), null, null, _glyphFallback).AdmittingGinmereDescent();
                 }
                 return _ginmereDescentArt;
             }

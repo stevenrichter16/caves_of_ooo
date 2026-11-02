@@ -1,0 +1,240 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>Fresh native terrain for exactly Ginmere mouth/descent/floor.
+    /// Existing stair builders own actual travel. No engine-height simulation.</summary>
+    public sealed class GinmereCompositionBuilder:IZoneBuilder
+    {
+        public string Name=>"GinmereComposition";
+        public int Priority=>1000;
+        public GinmereCompositionPlan Plan {get;private set;}
+        internal Zone SourceZone {get;private set;}
+        internal EntityFactory SourceFactory {get;private set;}
+        internal int SourceSeed=>seed;
+        private readonly int seed;
+        public GinmereCompositionBuilder(int seed){this.seed=seed;}
+        public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
+        {
+            Plan=null;SourceZone=null;SourceFactory=null;
+            if(zone==null||factory==null||rng==null)return Reject("missing-dependency");
+            if(!GinmereCompositionPlan.IsSupportedZone(zone.ZoneID))return Reject("outside-ginmere");
+            if(zone.EntityCount!=0)return Reject("nonempty-zone");
+            var p=GinmereCompositionPlan.Create(zone.ZoneID,seed);
+            var required=new HashSet<string>{p.GroundAt(0,0)};
+            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+            {required.Add(p.GroundAt(x,y));if(p.ObjectAt(x,y)!=null)required.Add(p.ObjectAt(x,y));}
+            if(p.Depth==1){required.Add("Torch");required.Add("DriedMeat");required.Add("HealingTonic");}
+            if(p.Depth==2){required.Add("GinFrog");required.Add("PricklebrowNest");required.Add("PrickleBrowGecko");}
+            foreach(string bp in required)if(factory.Blueprints==null||!factory.Blueprints.ContainsKey(bp))return Reject("missing-blueprint:"+bp);
+            // Create and validate detached owners before touching the zone.
+            // BuilderSpawn and Part parameter loading fail soft; mere presence
+            // in the JSON dictionary does not establish a usable native object.
+            var staged=new List<(Entity entity,int x,int y)>();
+            foreach(string bp in required)
+                if(!Valid(factory.CreateEntity(bp),bp))return Reject("invalid-native-contract:"+bp);
+            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+            {
+                string ground=p.GroundAt(x,y);
+                var floor=factory.CreateEntity(ground);
+                if(!Valid(floor,ground))return Reject("invalid-ground:"+ground);
+                staged.Add((floor,x,y));
+                string bp=p.ObjectAt(x,y);if(bp==null)continue;
+                var e=factory.CreateEntity(bp);
+                if(!Valid(e,bp))return Reject("invalid-object:"+bp);
+                if(bp=="Sack")
+                    foreach(string supply in new[]{"Torch","DriedMeat","HealingTonic"})
+                    {
+                        var item=factory.CreateEntity(supply);
+                        if(!Valid(item,supply)||!e.GetPart<ContainerPart>().AddItem(item))return Reject("invalid-supply:"+supply);
+                    }
+                staged.Add((e,x,y));
+            }
+            if(p.Depth==2)
+            {
+                var faunaRng=new Random(FormationSelector.StableIndex(zone.ZoneID+":frogs:"+seed,int.MaxValue));
+                int count=2+faunaRng.Next(3);
+                var banks=new List<(int x,int y)>();
+                for(int y=2;y<Zone.Height-2;y++)for(int x=3;x<Zone.Width-3;x++)
+                {
+                    if(p.ObjectAt(x,y)!=null||p.IsApproach(x,y))continue;
+                    bool near=false;
+                    for(int dy=-3;dy<=3&&!near;dy++)for(int dx=-3;dx<=3;dx++)
+                        if(p.ObjectAt(x+dx,y+dy)=="MirePool"){near=true;break;}
+                    if(near)banks.Add((x,y));
+                }
+                for(int i=banks.Count-1;i>0;i--)
+                {int j=faunaRng.Next(i+1);var swap=banks[i];banks[i]=banks[j];banks[j]=swap;}
+                var selected=new List<(int x,int y)>();
+                foreach(var candidate in banks)
+                {
+                    bool close=false;
+                    foreach(var prior in selected)
+                        if(prior.y==candidate.y||Math.Max(Math.Abs(prior.x-candidate.x),Math.Abs(prior.y-candidate.y))<2){close=true;break;}
+                    if(close)continue;
+                    var frog=factory.CreateEntity("GinFrog");
+                    if(!Valid(frog,"GinFrog"))return Reject("invalid-frog");
+                    staged.Add((frog,candidate.x,candidate.y));selected.Add(candidate);
+                    if(selected.Count==count)break;
+                }
+                if(selected.Count<count)return Reject("insufficient-frog-bank");
+            }
+            var placed=new List<Entity>(staged.Count);
+            foreach(var placement in staged)
+            {
+                if(!zone.AddEntity(placement.entity,placement.x,placement.y))
+                {
+                    foreach(var owner in placed)zone.RemoveEntity(owner);
+                    return Reject("native-placement");
+                }
+                placed.Add(placement.entity);
+            }
+            // Publish reservations only after every staged native owner landed.
+            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+                if(p.IsApproach(x,y)||p.ObjectAt(x,y)!=null)zone.GenReservedCells.Add((x,y));
+            foreach(var placement in staged)
+                placement.entity.GetPart<TileStateSourcePart>()?.Seed(zone,placement.x,placement.y);
+            Plan=p;SourceZone=zone;SourceFactory=factory;Diag.Record("worldgen","GinmereCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,depth=p.Depth});return true;
+        }
+        private static bool Valid(Entity e,string bp)
+        {
+            if(e==null||e.GetPart<RenderPart>()==null)return false;
+            if(bp=="Sack")return e.GetPart<ContainerPart>()!=null;
+            if(bp=="PricklebrowNest")return e.GetPart<PricklebrowNestPart>()!=null;
+            if(bp=="PrickleBrowGecko"||bp=="GinFrog")
+                return e.GetPart<BrainPart>()!=null&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0;
+            if(bp=="MirePool")
+            {
+                var liquid=e.GetPart<LiquidPoolPart>();var source=e.GetPart<TileStateSourcePart>();
+                return liquid!=null&&liquid.LiquidId=="bog-mire"&&liquid.Volume>0
+                    &&source!=null&&source.Coating=="water"&&source.CoatingTurns>0
+                    &&e.GetPart<ThermalPart>()!=null&&e.GetPart<DestructiblePart>()!=null&&e.GetPart<BurnOffGasPart>()!=null;
+            }
+            return true;
+        }
+        private static bool Reject(string reason){Diag.Record("worldgen","GinmereCompositionRejected",payload:new{reason});return false;}
+    }
+
+    /// <summary>Reserves actual staircase cells before ordinary population and
+    /// containers. Does not move stairs or manufacture connection coordinates.</summary>
+    public sealed class GinmereArrivalReservationBuilder:IZoneBuilder
+    {
+        public string Name=>"GinmereArrivalReservations";
+        public int Priority=>3650;
+        public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
+        {
+            if(zone==null||!GinmereCompositionPlan.IsSupportedZone(zone.ZoneID))return false;
+            int count=0;
+            foreach(var e in zone.GetAllEntities())if(e.HasPart<StairsUpPart>()||e.HasPart<StairsDownPart>())
+            {var c=zone.GetEntityCell(e);zone.GenReservedCells.Add((c.X,c.Y));count++;}
+            Diag.Record("worldgen","GinmereArrivalsReserved",payload:new{zoneId=zone.ZoneID,count});return true;
+        }
+    }
+
+    /// <summary>Runs native nest placement after residents and props; its actual
+    /// sixteen-defender capacity is checked against the completed native zone.</summary>
+    public sealed class GinmereNestFinalizer:IZoneBuilder
+    {
+        public string Name=>"GinmereNestFinalizer";
+        public int Priority=>4400;
+        public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
+        {
+            if(zone==null||zone.ZoneID!="Overworld.2.7.2"||factory==null||rng==null)return false;
+            return new SimaNestBuilder().BuildZone(zone,factory,rng);
+        }
+    }
+}
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>Small cold-only stone ribs after original actors, hazards and stocks.
+    /// Never edits the terrain recipe or dresses an already realized graph.</summary>
+    public sealed class GinmereStoneRibsBuilder : IZoneBuilder
+    {
+        public string Name=>"GinmereStoneRibs";
+        public int Priority=>4350;
+        readonly OverworldZoneManager manager;readonly GinmereCompositionBuilder terrain;
+        readonly WorldMap map;readonly EntityFactory factory;readonly int seed;
+        GinmereCompositionPlan completed;
+        public GinmereStoneRibsBuilder(OverworldZoneManager manager,GinmereCompositionBuilder terrain)
+        {this.manager=manager;this.terrain=terrain;map=manager?.WorldMap;factory=manager?.Factory;seed=manager?.WorldSeed??0;}
+        static readonly (int x,int y)[][] Shapes={
+            new[]{(0,0),(1,0),(0,1),(1,1),(2,1),(1,2),(2,2)},
+            new[]{(0,0),(1,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2),(1,3),(2,3)}};
+        public bool BuildZone(Zone zone,EntityFactory supplied,Random rng)
+        {
+            var plan=terrain?.Plan;
+            bool Current()
+            {
+                if(zone==null||manager==null||map==null||rng==null||factory==null||supplied!=factory||manager.Factory!=factory
+                    ||manager.WorldMap!=map||manager.WorldSeed!=seed||zone.ZoneID!="Overworld.2.7.1"
+                    ||plan==null||plan.Depth!=1||plan.ZoneID!=zone.ZoneID||terrain.Plan!=plan
+                    ||terrain.SourceZone!=zone||terrain.SourceFactory!=factory||terrain.SourceSeed!=seed
+                    ||manager.CachedZones.ContainsKey(zone.ZoneID)||manager.ActiveZone==zone||LairStacks.HasSavedColumn(manager,zone.ZoneID)
+                    ||map.Tiles==null||map.Tiles.GetLength(0)!=WorldMap.Width||map.Tiles.GetLength(1)!=WorldMap.Height
+                    ||map.POIs==null||map.POIs.GetLength(0)!=WorldMap.Width||map.POIs.GetLength(1)!=WorldMap.Height)return false;
+                var poi=map.GetPOI(2,7);return poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="Ginmere"&&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.DrownedSima;
+            }
+            if(!Current()||completed==plan)return true;
+            completed=plan;
+            if(factory.Blueprints==null||!factory.Blueprints.ContainsKey("SandstoneWall"))return true;
+            var original=new HashSet<Entity>(zone.GetReadOnlyEntities());var intact=SpreadGenerationReceipt.CaptureFinalState(zone,original);
+            var reserves=new HashSet<(int x,int y)>(zone.GenReservedCells);string state=zone.TileState.ToSaveString();
+            bool Baseline()=>Current()&&intact()&&reserves.SetEquals(zone.GenReservedCells)&&state==zone.TileState.ToSaveString();
+            var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>());
+            var positions=new List<(int x,int y)>();
+            for(int side=0;side<Shapes.Length;side++)
+            {
+                int cx=side==0?30:45,cy=side==0?6:16;
+                foreach(int offset in new[]{0,-1,1,-2,2})
+                {
+                    var group=Shapes[side].Select(p=>(x:cx+p.x+offset,y:cy+p.y)).ToArray();
+                    if(!group.All(p=>Fits(zone,plan,geometry,p.x,p.y)))continue;
+                    var proposed=positions.Concat(group).ToArray();if(!geometry.PreservesRoutes(proposed))continue;
+                    positions.AddRange(group);break;
+                }
+            }
+            if(positions.Count==0)return true;
+            var staged=new Entity[positions.Count];
+            for(int n=0;n<staged.Length;n++)
+            {staged[n]=factory.CreateEntity("SandstoneWall");if(!Baseline()||!original.SetEquals(zone.GetReadOnlyEntities()))return false;}
+            var ids=new HashSet<string>(original.Select(e=>e.ID),StringComparer.Ordinal);
+            foreach(var e in staged)if(!Payload(e)||!ids.Add(e.ID))return true;
+            var added=new List<Entity>();bool success=true;
+            for(int n=0;n<staged.Length;n++)
+            {var p=positions[n];if(!zone.AddEntity(staged[n],p.x,p.y)){success=false;break;}added.Add(staged[n]);}
+            if(!success||!Baseline()||zone.EntityCount!=original.Count+added.Count
+                ||!new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>()).PreservesAgainst(geometry,Array.Empty<(int,int)>()))
+            {foreach(var e in added)if(zone.GetEntityCell(e)!=null)zone.RemoveEntity(e);return Baseline()&&original.SetEquals(zone.GetReadOnlyEntities());}
+            return true;
+        }
+        static bool Fits(Zone z,GinmereCompositionPlan plan,SpreadWildernessSituationBuilder.Geometry geometry,int x,int y)
+        {
+            if(!geometry.Place(x,y)||plan.ObjectAt(x,y)!=null)return false;
+            for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)if(plan.IsApproach(x+dx,y+dy))return false;
+            var c=z.GetCell(x,y);if(c.Occupants.Count!=1||c.Objects.Count!=1||c.Objects[0].BlueprintName!="SandstoneFloor")return false;
+            var ground=c.Objects[0];if(ground.Parts.Any(p=>p is CultivatedSoilPart||p is FieldHarvestPart||p is HarvestablePart||p is CropPart||p is SpatialFootprintPart||p is TileStateSourcePart))return false;
+            for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
+                foreach(var e in z.GetCell(x+dx,y+dy).Occupants)
+                    if(e.HasPart<StairsUpPart>()||e.HasPart<StairsDownPart>()||e.BlueprintName=="RopeAnchor"||e.HasPart<ContainerPart>()||e.HasTag("Creature"))return false;
+            return true;
+        }
+        static bool Payload(Entity e)
+        {
+            if(e==null||string.IsNullOrEmpty(e.ID)||e.BlueprintName!="SandstoneWall"||e.SpatialZone!=null
+                ||e.Parts.Any(p=>p==null||p.ParentEntity!=e)||e.Parts.Select(p=>p.GetType()).Distinct().Count()!=e.Parts.Count
+                ||e.Parts.Any(p=>!(p is PhysicsPart||p is RenderPart||p is ExaminablePart||p is DestructiblePart||p is MaterialPart||p is ThermalPart)))return false;
+            var p=e.GetPart<PhysicsPart>();var r=e.GetPart<RenderPart>();var d=e.GetPart<DestructiblePart>();var m=e.GetPart<MaterialPart>();var t=e.GetPart<ThermalPart>();
+            return p!=null&&p.Solid&&!p.Takeable&&p.InInventory==null&&p.Equipped==null&&e.HasTag("Solid")&&e.HasTag("Wall")&&!e.HasTag("Creature")&&!e.HasTag("Player")&&!e.HasTag("Item")
+                &&r!=null&&r.Visible&&r.RenderLayer==0&&r.RenderString=="#"&&r.ColorString=="&W"&&r.BackgroundColor=="^w"
+                &&string.IsNullOrEmpty(r.VisualID)&&string.IsNullOrEmpty(r.VisualVariant)&&string.IsNullOrEmpty(r.GlyphVariants)
+                &&d!=null&&!d.Gone&&!d.Indestructible&&d.HP==30&&d.MaxHP==30&&d.Hardness==2&&d.WreckageBlueprint=="Rubble"
+                &&m!=null&&m.MaterialID=="Stone"&&m.Combustibility==0&&m.HasMaterialTag("Stone")&&m.HasMaterialTag("Mineral")
+                &&e.HasTag("Stone")&&e.HasTag("Mineral")&&t!=null&&float.IsFinite(t.Temperature)&&t.Temperature>t.FreezeTemperature&&t.Temperature<t.FlameTemperature;
+        }
+    }
+}
