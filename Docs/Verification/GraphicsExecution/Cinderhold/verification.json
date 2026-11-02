@@ -1,0 +1,63 @@
+{
+  "recorded_utc": "2026-11-02T10:59:11.626452+00:00",
+  "source_base": "ab5f33858e2766bd5ce9f0d7740552178e0e72c2",
+  "scope": "Cinderhold6.6 seed65 existing sandstone-wall contact shadows only",
+  "status": "bounded-editor-verified; publication in containing commit",
+  "design": {
+    "offset_native_pixels": [
+      0,
+      2
+    ],
+    "black_alpha": 0.16,
+    "direction": "fixed screen-north convention; not solar/torch simulation",
+    "resources": "Existing approved opaque sandstone body sprite, existing optional 2D shadow material/layer; no new art",
+    "source": "actual selected canonical native sandstone wall; live visibility/condition/material/collision checks unchanged",
+    "receiver": "current named Cinderhold6.6 Village/PruningPost graph and profile, no saved lair; disclosed empty dry canonical Floor/StoneFloor/RoadStone/Grass with its actual native atlas. Cinderhold does not borrow Marrowstye intake-road resource permission.",
+    "mechanics": "No geometry, collision, save, light simulation, fog/memory, services/population or legacy-mode changes; reversible existing FlatWallShadowEnabled"
+  },
+  "tests": {
+    "red": "red.xml:26 expected failures+1 negative pass",
+    "green": "green.xml:115/115 Cinderhold28+existing Marrowstye/Gantry/Sill/Beating shadow cases; native painter incremental/full parity, authority, occupancy, disclosure, state, missing resources and changed wall",
+    "correction": "Added missing RoadStone receiver atlas counter before GREEN to prevent accidental Marrowstye resource permission. No duplicated broad material suite."
+  },
+  "actual": {
+    "baseline": "ordinary Morrowfast3.6 world-mapRight3\u2192Cinderhold6.6;center39,11 then near wall31,9; F5turn1810HP40 Dusk; BeforeCheckpoint",
+    "comparison": "before-wall.png/after-wall.png matched1x:708/639200worldpixels differ; optional2xOFF/ON:1152pixels at70,316\u2013518,320, no UI difference. Presentation-only toggle, no gameplay/time advance.",
+    "movement": "31,9\u219231,10\u219224,10\u219224,7 via office opening, back to30,9; actual native stone-floor interior and30,8sandstone reader. HP40. Native Up atwall during baseline was blocked/attacked wall; no geometry edit.",
+    "save_reload": "F5turn2020HP40 at30,9; AfterCheckpoint\u2192freshContinue30,9;0/639200worldpixels differ",
+    "travel": [
+      "Overworld.6.6.0",
+      "Overworld.6.7.0",
+      "Overworld.6.6.0"
+    ],
+    "travel_return": [
+      39,
+      11
+    ],
+    "protection": "No F12 used in this slice",
+    "bounds": "Center/frontage/office entrance observed, not every building/interior/full chunk audited"
+  },
+  "profile": {
+    "file": "profile.json",
+    "seconds": 87.8016536,
+    "mode": "after-only Editor ordinary movement/readers/capture; no execute_code within window",
+    "renderer_p95_ms": 0.076791,
+    "renderer_max_ms": 89.279833,
+    "main_max_ms": 1968.38725,
+    "limits": "R11 remains open. No causal speedup, matched baseline, packaged or hardware benchmark."
+  },
+  "review": {
+    "source": "portable_equipment_final_review:0P1/P2",
+    "visual": "capture_route:0newP1/P2; slight wall-ground contact, clearest2x; barely perceptible1x, doorway/NPC/player/campfire remain clear; bounded pilot only"
+  },
+  "population_assessment": "Four substantial existing buildings and real occupied office were observed. No population added; broader courtyard/full-chunk judgment remains open. Interleave next suitable sparse-family improvement after evidence, do not carpet this courtyard.",
+  "remaining": [
+    "Overall lighting is still restrained and dark; no broad lighting completion",
+    "Material contrast/greenish roads, other ASCII and whole-town/interior review remain",
+    "No new coverage family or population acceptance",
+    "Currentdd772Mac/Linux packages exclude both Morrowfastab5f33858 and this pilot; batch next",
+    "Physical Linux/Deck execution unavailable; R11spikes open"
+  ],
+  "preservation": "75foreign tracked hashes unchanged;2root neutral metadata retained; approved art untouched; isolated native root only; no cleanup",
+  "next_action": "Publish exact owned slice; next batch current Mac/Linux including Morrowfast+thispilot, verify actual Mac launch/travel/save/reload and remote preservation. Then compare largest remaining actual environmental/ASCII gaps in another biome; do not repeat accepted river/shadow tests."
+}

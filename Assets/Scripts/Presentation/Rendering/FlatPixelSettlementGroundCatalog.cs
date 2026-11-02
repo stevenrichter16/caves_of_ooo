@@ -305,6 +305,9 @@ namespace CavesOfOoo.Rendering
         internal bool CanReceiveMarrowstyeWallShadow(Zone zone, int x, int y)
             => CanReceiveSettlementWallShadow(zone, x, y, false);
 
+        internal bool CanReceiveCinderholdWallShadow(Zone zone, int x, int y)
+            => CanReceiveSettlementWallShadow(zone, x, y, false, true);
+
         internal bool CanReceiveGantryWallShadow(Zone zone, int x, int y, Entity source)
         {
             if (zone?.ZoneID != GantryCompositionPlan.ZoneID || !Plain(source) || ForeignMeaning(source)
@@ -319,9 +322,9 @@ namespace CavesOfOoo.Rendering
             return (state == null || state.IsEmpty) && CanReceiveSettlementWallShadow(zone, x, y, true);
         }
 
-        bool CanReceiveSettlementWallShadow(Zone zone, int x, int y, bool gantry)
+        bool CanReceiveSettlementWallShadow(Zone zone, int x, int y, bool gantry, bool cinderhold = false)
         {
-            if (disposed || zone?.ZoneID != (gantry ? GantryCompositionPlan.ZoneID : MarrowstyeCompositionPlan.ZoneID)) return false;
+            if (disposed || zone?.ZoneID != (gantry ? GantryCompositionPlan.ZoneID : cinderhold ? CinderholdCompositionPlan.ZoneID : MarrowstyeCompositionPlan.ZoneID)) return false;
             var manager = WorldLocationContext.For(zone);
             if (manager?.CachedZones == null || !manager.CachedZones.TryGetValue(zone.ZoneID, out var current)
                 || !ReferenceEquals(current, zone)) return false;
@@ -329,10 +332,10 @@ namespace CavesOfOoo.Rendering
             if (map?.Tiles == null || map.POIs == null
                 || map.Tiles.GetLength(0) != WorldMap.Width || map.Tiles.GetLength(1) != WorldMap.Height
                 || map.POIs.GetLength(0) != WorldMap.Width || map.POIs.GetLength(1) != WorldMap.Height) return false;
-            int wx = gantry ? 7 : 12, wy = gantry ? 8 : 12;
+            int wx = gantry ? 7 : cinderhold ? 6 : 12, wy = gantry ? 8 : cinderhold ? 6 : 12;
             var poi = map.GetPOI(wx, wy);
-            if (poi?.Name != (gantry ? "Gantry" : "Marrowstye")
-                || !(gantry ? AreaCompositionScope.IsGantrySite(poi) : AreaCompositionScope.IsMarrowstyeSite(poi))
+            if (poi?.Name != (gantry ? "Gantry" : cinderhold ? "Cinderhold" : "Marrowstye")
+                || !(gantry ? AreaCompositionScope.IsGantrySite(poi) : cinderhold ? AreaCompositionScope.IsCinderholdSite(poi) : AreaCompositionScope.IsMarrowstyeSite(poi))
                 || LairStacks.HasSavedColumn(manager, zone.ZoneID)) return false;
             var cell = zone.GetCell(x, y);
             if (cell == null || cell.ParentZone != zone || cell.X != x || cell.Y != y
@@ -348,7 +351,7 @@ namespace CavesOfOoo.Rendering
                     || !OrdinaryGround(owner)) return false;
                 floor = owner;
             }
-            return floor != null && MaterialFor(floor, x, y, map.GetBiome(wx, wy), intakeRoad: !gantry) != null;
+            return floor != null && MaterialFor(floor, x, y, map.GetBiome(wx, wy), intakeRoad: !gantry && !cinderhold) != null;
         }
 
         static bool IsGroundName(string name) => name == "Grass" || name == "StoneFloor" || name == "Sand" || name == "RoadStone" || name == "Floor";
