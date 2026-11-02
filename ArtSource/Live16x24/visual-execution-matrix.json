@@ -16538,7 +16538,7 @@
         "delivery": "editor-verified"
       },
       "prior_review_ids": [],
-      "next_action": "Retain bounded floor/wall evidence; separately audit memory, ledges and special owners. Next program slice Felling surface materials, not more cave depths.",
+      "next_action": "Felling blackwater material and SummitScrub composition next; Ginmere full-area/memory/special/relief/R11 remain open.",
       "parent_id": "sinkhole/ginmere",
       "depth": 1,
       "required_roles": [
@@ -16589,6 +16589,46 @@
           ],
           "id": "ginmere-first-descent-materials",
           "axis": "coverage"
+        },
+        {
+          "id": "ginmere-first-descent-ledges",
+          "axis": "coverage",
+          "status": "integrated-observed-bounded",
+          "record": "Docs/GRAPHICS-GINMERE-LEDGES.md",
+          "zone": "Overworld.2.7.1",
+          "seed": 704860946,
+          "owners": [
+            "DescentLedge"
+          ],
+          "art": "unchanged stump-materials10\u201311",
+          "native_tests": {
+            "red": 23,
+            "initial_green_pass": 159,
+            "initial_setup_fail": 4,
+            "final_green": 210
+          },
+          "actual": [
+            "matched1x/2x",
+            "adjacent and covered ledge Examine",
+            "route52,12\u219255,9\u219255,8\u219255,7\u219255,8",
+            "F5turn1580",
+            "freshContinue55,8HP40"
+          ],
+          "reload": {
+            "owner_states_exact": 253,
+            "world_changed_pixels": 16552,
+            "world_total_pixels": 639200,
+            "difference": "local1\u20133RGB levels; cause unproven"
+          },
+          "population": "unchanged",
+          "shadow": "unchanged",
+          "delivery": "editor-verified; current4c1 packages exclude this slice",
+          "limitations": [
+            "Only current canonical Ginmere2.7.1 neutral disclosed ledges; other depths/sites unchanged.",
+            "Bright regular bands, sparse center, memory/special glyphs and shallow walls remain.",
+            "R11 open; one additional stable draw call42vs41, unrelated Editor stalls not attributed.",
+            "No full-area, population, hardware or packaged acceptance."
+          ]
         }
       ],
       "evidence": {
@@ -16619,6 +16659,10 @@
         ],
         "independent_reviews": [
           "Docs/GRAPHICS-GINMERE-DESCENT.md"
+        ],
+        "ledge_slice": [
+          "Docs/Verification/GraphicsExecution/GinmereLedges/slice-receipt.json",
+          "Docs/Verification/GraphicsExecution/GinmereLedges/independent-review.md"
         ]
       },
       "actual_zoom_resolution": "1280x800 Editor1x;2x detail",
@@ -16630,8 +16674,8 @@
         },
         {
           "id": "GIND-LEDGE",
-          "status": "open",
-          "description": "253 DescentLedge owners remain glyphs."
+          "status": "resolved-bounded",
+          "description": "253disclosed canonical ledges now native; repeated/bright band polish remains."
         },
         {
           "id": "GIND-MEMORY",
@@ -16652,6 +16696,11 @@
           "id": "GIND-FULLNESS",
           "status": "open",
           "description": "Broad center remains sparse."
+        },
+        {
+          "id": "GIND-LEDGE-REPETITION",
+          "status": "open",
+          "description": "Straight ledge bands remain manufactured/repetitive and brighter than floor; improve in area polish."
         }
       ],
       "delivery_observation": {

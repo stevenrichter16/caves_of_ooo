@@ -1,3 +1,5 @@
+**2026-11-02 Ginmere ledges:**253real first-descent ledges now use approved native strips;210native checks, actual readers/passable crossing/reload, independent0newP1/P2. Regular bright bands, sparse center, memory/special glyphs and R11 remain. Coverage observed only; current4c1 packages exclude slice. See [record](GRAPHICS-GINMERE-LEDGES.md). Next Felling blackwater and bounded SummitScrub center composition.
+
 **Delivery update2026-11-02:** Current4c1 Mac Felling/SpreadTree readers, walk, collision, restart and ordinary Spreadtravel observed; each restart world exact. Linux archive verified only. See Batch4c1 and GRAPHICS-CURRENT-PACKAGES.md. No coverage/polish/population/shadow promotion from packaging. Next Ginmere253ledge bands; R11/fullarea/hardware open.
 
 **Tree contact update2026-11-02:** Spread10.15 shadow axis observed within one dry native Tree/Grass pilot; coverage/polish/population unchanged.154native, real readers/walk/reload, independent review;0/639200reloadpixels. R11/packages remain open. See GRAPHICS-TREE-CONTACT-SHADOW.md.

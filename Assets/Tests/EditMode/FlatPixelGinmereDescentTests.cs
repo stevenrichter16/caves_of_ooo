@@ -102,7 +102,8 @@ namespace CavesOfOoo.Tests
         {
             Native();var ledge=content.Factory.CreateEntity("DescentLedge");Assert.NotNull(ledge);
             Assert.True(zone.AddEntity(ledge,fc.X,fc.Y));Assert.True(View(fc).LocalGround);
-            Assert.AreSame(ledge,View(fc).Owner);Assert.False(View(fc).NativeForeground);
+            Assert.AreSame(ledge,View(fc).Owner);Assert.True(View(fc).NativeForeground);
+            Assert.False(View(fc).BlocksMovement);
             Assert.True(zone.RemoveEntity(ledge));Native();
         }
         [TestCase(false)] [TestCase(true)] public void HiddenOrRememberedWallCannotUseLiveSprite(bool memory)

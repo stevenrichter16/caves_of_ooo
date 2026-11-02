@@ -1,0 +1,48 @@
+{
+  "before_seconds": 82.55758519999999,
+  "after_seconds": 89.8407637,
+  "mode": "Matched earned checkpoint1280x800,normal1x,idle turn-based live Play; no captures/execute inside interval. Editor only.",
+  "metrics": [
+    {
+      "name": "COO.ZoneRenderer.LateUpdate",
+      "units": "TimeNanoseconds",
+      "before_p95": 86917.0,
+      "after_p95": 77709.0,
+      "before_max": 749875.0,
+      "after_max": 177939500.0
+    },
+    {
+      "name": "Main Thread",
+      "units": "TimeNanoseconds",
+      "before_p95": 1975625.0,
+      "after_p95": 1885917.0,
+      "before_max": 588897167.0,
+      "after_max": 1921129041.0
+    },
+    {
+      "name": "GC Allocated In Frame",
+      "units": "Bytes",
+      "before_p95": 18371.0,
+      "after_p95": 18391.0,
+      "before_max": 522246453.0,
+      "after_max": 458533064.0
+    },
+    {
+      "name": "Batches Count",
+      "units": "Count",
+      "before_p95": 41.0,
+      "after_p95": 42.0,
+      "before_max": 41.0,
+      "after_max": 42.0
+    },
+    {
+      "name": "Draw Calls Count",
+      "units": "Count",
+      "before_p95": 41.0,
+      "after_p95": 42.0,
+      "before_max": 41.0,
+      "after_max": 42.0
+    }
+  ],
+  "R11": "Open: after renderer max177.94ms/MainThread1.921s; baseline GC522MB already large. No cause or speedup attribution; one additional stable draw call42 vs41."
+}

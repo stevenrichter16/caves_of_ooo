@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Failed(Child)" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-02 01:18:24Z" end-time="2026-11-02 01:18:33Z" duration="8.9711716">
+  <test-suite type="TestSuite" id="43607" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="35513" result="Failed" site="Child" start-time="2026-11-02 01:18:24Z" end-time="2026-11-02 01:18:33Z" duration="8.971172" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="43579" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="35513" result="Failed" site="Child" start-time="2026-11-02 01:18:24Z" end-time="2026-11-02 01:18:33Z" duration="8.963791" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6653" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="43580" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35513" result="Failed" site="Child" start-time="2026-11-02 01:18:24Z" end-time="2026-11-02 01:18:33Z" duration="8.960064" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="43581" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35513" result="Failed" site="Child" start-time="2026-11-02 01:18:24Z" end-time="2026-11-02 01:18:33Z" duration="8.956934" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1178" name="FlatPixelGinmereLedgeTests" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-11-02 01:18:24Z" end-time="2026-11-02 01:18:33Z" duration="8.947374" total="23" passed="0" failed="23" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1179" name="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" methodname="AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="2005913517" result="Failed" start-time="2026-11-02 01:18:24Z" end-time="2026-11-02 01:18:25Z" duration="0.611236" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.AuthoredLedgesReuseApprovedNonSolidArtWithoutChangingTheWorld () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:30
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1195" name="ChangedMeaningOrDisclosureFallsBack" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-02 01:18:25Z" end-time="2026-11-02 01:18:27Z" duration="2.329595" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1189" name="ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;color&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="168981466" result="Failed" start-time="2026-11-02 01:18:25Z" end-time="2026-11-02 01:18:25Z" duration="0.325848" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1190" name="ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;solid&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="1338912056" result="Failed" start-time="2026-11-02 01:18:25Z" end-time="2026-11-02 01:18:26Z" duration="0.316004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1191" name="ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;visual&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="644954474" result="Failed" start-time="2026-11-02 01:18:26Z" end-time="2026-11-02 01:18:26Z" duration="0.513266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1192" name="ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;coating&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="864642326" result="Failed" start-time="2026-11-02 01:18:26Z" end-time="2026-11-02 01:18:27Z" duration="0.323025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1193" name="ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;hidden&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="2038128142" result="Failed" start-time="2026-11-02 01:18:27Z" end-time="2026-11-02 01:18:27Z" duration="0.320593" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1194" name="ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack(&quot;memory&quot;)" methodname="ChangedMeaningOrDisclosureFallsBack" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="738320412" result="Failed" start-time="2026-11-02 01:18:27Z" end-time="2026-11-02 01:18:27Z" duration="0.495753" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ChangedMeaningOrDisclosureFallsBack (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1201" name="EqualBlueprintDoesNotExpandThisCatalog" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-11-02 01:18:27Z" end-time="2026-11-02 01:18:29Z" duration="1.521374" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1197" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.02.7.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.02.7.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="62589481" result="Failed" start-time="2026-11-02 01:18:27Z" end-time="2026-11-02 01:18:28Z" duration="0.326411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:112
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:110
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1198" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.0&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.0&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="443615741" result="Failed" start-time="2026-11-02 01:18:28Z" end-time="2026-11-02 01:18:28Z" duration="0.314782" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:112
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:110
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1199" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.2&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.7.2&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="1173870810" result="Failed" start-time="2026-11-02 01:18:28Z" end-time="2026-11-02 01:18:29Z" duration="0.513023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:112
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:110
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1200" name="EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.1&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog(&quot;Overworld.2.4.1&quot;)" methodname="EqualBlueprintDoesNotExpandThisCatalog" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="200011692" result="Failed" start-time="2026-11-02 01:18:29Z" end-time="2026-11-02 01:18:29Z" duration="0.332070" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:112
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:110
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.EqualBlueprintDoesNotExpandThisCatalog (System.String id) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1196" name="ForeignOrRemovedReaderCannotBorrowLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ForeignOrRemovedReaderCannotBorrowLedgeArt" methodname="ForeignOrRemovedReaderCannotBorrowLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="72153092" result="Failed" start-time="2026-11-02 01:18:29Z" end-time="2026-11-02 01:18:29Z" duration="0.323000" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.ForeignOrRemovedReaderCannotBorrowLedgeArt () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:76
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1204" name="MissingOrMalformedOptionalAtlasDeclines" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-11-02 01:18:29Z" end-time="2026-11-02 01:18:30Z" duration="0.844469" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1202" name="MissingOrMalformedOptionalAtlasDeclines(False)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.MissingOrMalformedOptionalAtlasDeclines(False)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="658310922" result="Failed" start-time="2026-11-02 01:18:29Z" end-time="2026-11-02 01:18:30Z" duration="0.342423" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:112
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.MissingOrMalformedOptionalAtlasDeclines (System.Boolean malformed) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1203" name="MissingOrMalformedOptionalAtlasDeclines(True)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.MissingOrMalformedOptionalAtlasDeclines(True)" methodname="MissingOrMalformedOptionalAtlasDeclines" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="2102197250" result="Failed" start-time="2026-11-02 01:18:30Z" end-time="2026-11-02 01:18:30Z" duration="0.465557" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:112
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.MissingOrMalformedOptionalAtlasDeclines (System.Boolean malformed) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1205" name="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" methodname="PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="578262974" result="Failed" start-time="2026-11-02 01:18:30Z" end-time="2026-11-02 01:18:30Z" duration="0.323124" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Admit (CavesOfOoo.Rendering.FlatPixelStumpMaterialsCatalog art) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:112
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Art (CavesOfOoo.Rendering.FlatPixelFallbackCatalog selector) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:110
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.PilotCannotEnableOtherStumpFamiliesAndDisposesOwnedViewsOnly () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:98
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1188" name="SavedLairAuthorityWinsOverRestoredGinmereLabel" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.SavedLairAuthorityWinsOverRestoredGinmereLabel" methodname="SavedLairAuthorityWinsOverRestoredGinmereLabel" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="361937943" result="Failed" start-time="2026-11-02 01:18:30Z" end-time="2026-11-02 01:18:31Z" duration="0.316925" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.SavedLairAuthorityWinsOverRestoredGinmereLabel () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:57
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1187" name="WarmCurrentAuthorityChangesRevokeLedgeArt" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-11-02 01:18:31Z" end-time="2026-11-02 01:18:33Z" duration="2.337640" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1181" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;name&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="1974352722" result="Failed" start-time="2026-11-02 01:18:31Z" end-time="2026-11-02 01:18:31Z" duration="0.498274" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1182" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;poi&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="2058814682" result="Failed" start-time="2026-11-02 01:18:31Z" end-time="2026-11-02 01:18:32Z" duration="0.321913" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1183" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;profile&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="1535578275" result="Failed" start-time="2026-11-02 01:18:32Z" end-time="2026-11-02 01:18:32Z" duration="0.324429" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1184" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;absent&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="2070946316" result="Failed" start-time="2026-11-02 01:18:32Z" end-time="2026-11-02 01:18:32Z" duration="0.342993" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1185" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;graph&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="1061965535" result="Failed" start-time="2026-11-02 01:18:32Z" end-time="2026-11-02 01:18:33Z" duration="0.491181" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1186" name="WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt(&quot;map&quot;)" methodname="WarmCurrentAuthorityChangesRevokeLedgeArt" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="739923000" result="Failed" start-time="2026-11-02 01:18:33Z" end-time="2026-11-02 01:18:33Z" duration="0.324544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WarmCurrentAuthorityChangesRevokeLedgeArt (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:49
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1180" name="WorldAndCoveredExamineKeepTheSameLedgeIdentity" fullname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WorldAndCoveredExamineKeepTheSameLedgeIdentity" methodname="WorldAndCoveredExamineKeepTheSameLedgeIdentity" classname="CavesOfOoo.Tests.FlatPixelGinmereLedgeTests" runstate="Runnable" seed="47481755" result="Failed" start-time="2026-11-02 01:18:33Z" end-time="2026-11-02 01:18:33Z" duration="0.316425" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual Ginmere ledge remains ASCII
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.Native () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:27
+at CavesOfOoo.Tests.FlatPixelGinmereLedgeTests.WorldAndCoveredExamineKeepTheSameLedgeIdentity () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/FlatPixelGinmereLedgeTests.cs:40
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
