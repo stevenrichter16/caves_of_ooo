@@ -56,10 +56,15 @@ namespace CavesOfOoo.Presentation.Rendering
         private float _fadeProgress = 1f; // 1 = fully at target
         private bool _hasResolvedPalette;
         private bool _nativeMarrowstyeGrade;
+        private bool _nativeDuneGrade;
         // Bounded material-hue pilot. The native sprites already contain the intended
         // warm earth/stone hues; the old green filter made those surfaces too similar.
         private static readonly BiomePalette NativeMarrowstyePalette = new BiomePalette(
             BiomeType.Spread, Color.white, 5f, 0f, 0f);
+        // DuneField's native sand and crest relief already carry warm arid hues.
+        // Avoid a second strong gold tint over actors and distinct material values.
+        private static readonly BiomePalette NativeDunePalette = new BiomePalette(
+            BiomeType.Beating, Color.white, 5f, 0f, 0f);
 
         // Reference back to gameplay state. Set by GameBootstrap.
         // CurrentZone is updated on zone-change via SetCurrentZone()
@@ -147,15 +152,22 @@ namespace CavesOfOoo.Presentation.Rendering
                 && CurrentZone?.ZoneID == "Overworld.12.12.0"
                 && CavesOfOoo.Rendering.FlatPixelSettlementGroundCatalog.IsSupportedZone(CurrentZone)
                 && AreaCompositionScope.IsMarrowstyeSite(currentManager.WorldMap.GetPOI(12, 12));
+            bool nativeDune = currentBiome == BiomeType.Beating
+                && _zoneRendererRef != null && _zoneRendererRef.FlatPixelModeActive
+                && ReferenceEquals(_zoneRendererRef.CurrentZone, CurrentZone)
+                && CurrentZone?.ZoneID == "Overworld.19.14.0"
+                && CavesOfOoo.Rendering.FlatPixelBeatingMaterialsCatalog.IsSupportedZone(CurrentZone);
             // Admission can change without changing biome: same-biome travel,
             // legacy toggle, sprites disabled or a replacement loaded world graph.
             if (!_hasResolvedPalette || currentBiome != _activeBiome
-                || nativeMarrowstye != _nativeMarrowstyeGrade)
+                || nativeMarrowstye != _nativeMarrowstyeGrade || nativeDune != _nativeDuneGrade)
             {
                 _hasResolvedPalette = true;
                 _activeBiome = currentBiome;
                 _nativeMarrowstyeGrade = nativeMarrowstye;
-                _targetPalette = nativeMarrowstye ? NativeMarrowstyePalette : BiomePalette.GetForBiome(currentBiome);
+                _nativeDuneGrade = nativeDune;
+                _targetPalette = nativeMarrowstye ? NativeMarrowstyePalette
+                    : nativeDune ? NativeDunePalette : BiomePalette.GetForBiome(currentBiome);
                 _fadeProgress = 0f;
             }
 
