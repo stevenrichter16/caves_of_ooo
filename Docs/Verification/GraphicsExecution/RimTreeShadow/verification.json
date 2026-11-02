@@ -1,0 +1,59 @@
+{
+  "recorded_utc": "2026-11-02T15:40:35.144166+00:00",
+  "base_revision": "97b3c912ebad4de6650912d1a65d7980842eac79",
+  "area": "Overworld.2.3.0",
+  "seed": 65,
+  "status": "bounded-editor-observed",
+  "change": "Rim Forest canonical Tree contact shade reuses approved 10x4 mask,18% black,existing root offset/layer; no new pixels or geometry.",
+  "invariants": [
+    "Exact current ordinary disclosed 2.3 Tree on one native TepuiStone only",
+    "Other disclosed occupants, tile state, missing art, memory and legacy decline",
+    "No gameplay, owner, RNG, collision, save-format or population changes"
+  ],
+  "tests": {
+    "red_job": "7959a31862ee4a2cbc1d334a435ea5de",
+    "red_failures": 23,
+    "green_job": "cec4ef22eb884d099c40fd88fa842d13",
+    "green_passed": 51,
+    "green_failed": 0,
+    "full_summary_present": true,
+    "excluded": "Initial job0d15ea8a had0tests before newly added file import; not acceptance"
+  },
+  "actual": {
+    "baseline": "RimForest/AfterCheckpoint turn2450; freshContinue40,12HP40Dawn",
+    "matched_world_changes": 1043,
+    "world_pixels": 639200,
+    "matched_UI_changes": 0,
+    "route": "40,12\u219240,10\u219239,10;39,9Tree nativeExamine/solid boundary",
+    "save_turn": 2490,
+    "fresh_continue": "39,10HP40",
+    "reload_world_changes": 0,
+    "reload_UI_changes": 24523,
+    "F12_used": false,
+    "failed_route": "Initial southroute40,17 died from snake/sky-sari attacks, retained tree-action.png; L recovery did not succeed, fresh isolated Play used",
+    "checkpoint_correction": "Initial copy targeted fixture directory50e... and retainedoldturn2450. Replaced with actual savedGameIDa2e4390711a54b869eced598fbfbbac0/turn2490 BEFORE freshContinue acceptance."
+  },
+  "performance": {
+    "baseline_seconds": 23.5485651,
+    "after_seconds": 103.0618056,
+    "baseline_renderer_p95_ms": 0.108833,
+    "after_renderer_p95_ms": 0.0915,
+    "baseline_renderer_max_ms": 2.898708,
+    "after_renderer_max_ms": 134.21025,
+    "after_main_max_ms": 1981.51125,
+    "limitations": "Unmatched windows: baseline idle, after includes input/encounter/death/tool captures; not benchmark or improvement claim. R11 remains open."
+  },
+  "reviews": {
+    "source": "environment_gaps_audit:0actionableP1/P2",
+    "visual": "capture_route:0newP1/P2; modest grounding, not sparse-scene solution"
+  },
+  "evidence": "Docs/Verification/GraphicsExecution/RimTreeShadow",
+  "record": "Docs/GRAPHICS-RIM-TREE-SHADOW.md",
+  "limits": [
+    "No new ASCII family coverage or full-area polish",
+    "Tiny trees,regular understory rows,broadclearings,remainingglyphs persist",
+    "Other Stump chunks and broader light/time-of-day not accepted",
+    "Current88c7packages exclude Dunegrade97b3 and thisshadow; batchnext",
+    "Physical Linux/Deck not executed"
+  ]
+}

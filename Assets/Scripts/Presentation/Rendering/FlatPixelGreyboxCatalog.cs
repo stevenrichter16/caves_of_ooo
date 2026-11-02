@@ -2040,7 +2040,8 @@ namespace CavesOfOoo.Rendering
         // The native wall has already selected/initialized its settlement catalog.
         // Shadow refusal must not load missing receiver art or recurse into painting.
         internal bool CanReceiveTreeContactShadow(Zone zone,int x,int y,Entity source)
-            => _spreadEnvironmentArt != null && _spreadEnvironmentArt.CanReceiveTreeContactShadow(zone,x,y,source);
+            => _spreadEnvironmentArt != null && _spreadEnvironmentArt.CanReceiveTreeContactShadow(zone,x,y,source)
+                || _stumpMaterialsArt != null && _stumpMaterialsArt.CanReceiveTreeContactShadow(zone,x,y,source);
 
         internal bool CanReceiveGantryWallShadow(Zone zone, int x, int y, Entity source)
             => _settlementGroundArt != null && _settlementGroundArt.CanReceiveGantryWallShadow(zone, x, y, source);

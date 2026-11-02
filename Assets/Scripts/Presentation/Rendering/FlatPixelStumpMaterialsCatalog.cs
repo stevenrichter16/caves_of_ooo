@@ -217,6 +217,23 @@ namespace CavesOfOoo.Rendering
         }
         /// <summary>Actual neutral TepuiStone only. Crops, cultivation, unfamiliar
         /// terrain and independent tile state keep their semantic fallback.</summary>
+        // Bounded Rim Forest extension of the approved Spread root-contact pilot.
+        // Reuse only already-resolved native source and receiver art; no shadow resource loads.
+        internal bool CanReceiveTreeContactShadow(Zone zone, int x, int y, Entity source)
+        {
+            if (zone?.ZoneID != "Overworld.2.3.0" || !IsSupportedZone(zone)
+                || !ReadyCell(zone, x, y, out var cell) || source?.BlueprintName != "Tree"
+                || !TryResolveForeground(zone, x, y, source, out var body) || body == null
+                || !TryResolveGround(zone, x, y, out var ground, out var floor)
+                || ground == null || floor?.BlueprintName != "TepuiStone") return false;
+            var state = zone.TileState.Get(x, y);
+            if (state != null && !state.IsEmpty) return false;
+            foreach (var owner in cell.Occupants)
+                if (Placed(zone, cell, owner) && VisiblePhysicalOwner(owner)
+                    && !ReferenceEquals(owner, source) && !ReferenceEquals(owner, floor)) return false;
+            return true;
+        }
+
         public bool TryResolveGround(Zone zone, int x, int y, out Tile tile, out Entity floor)
         {
             tile = null; floor = null;
