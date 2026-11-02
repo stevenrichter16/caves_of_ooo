@@ -1,3 +1,19 @@
+# Fen and Ginmere delivery — 88c7fd521
+
+The current Mac and Linux Development builds include Fen quiet-water variants and Ginmere first-descent rockfall/native readers. Prior peat, mire and deck work remains included. Both builds succeeded with zero errors and four warnings. Linux archive integrity was independently verified; Linux/Deck execution remains untested.
+
+Four accepted Mac processes exercised Fen water beneath the player, Ginmere blocking rocks, passable rubble and its native Examine portrait, stair travel, F5 and fresh-process Continue. Fen finished at43,18, HP15, turn5030 after real snake/bleeding damage. Ginmere finished at52,12, HP40, turn1770. Each saved/reloaded world rectangle has zero changed pixels out of3,576,021. UI logs differ normally. These are bounded observations, not whole-area acceptance.
+
+Input overshot the intended Fen42,17 crossing; only the observed43,18 is claimed. AX queries after quitting reopened menu-only processes; those were excluded and closed. A launch guard refused while one remained active. No F12 or injected movement. The first Mac run overlapped Linux compilation, so no packaged performance benchmark is claimed.
+
+Preservation restored four reviewed Unity-generated settings and normal standalone preferences; owned test saves were archived. All56,710 snapshot objects,77 preexisting dirty paths, normal Editor state and priorf77e4 packages were preserved at15:04:22Z. No storage cleanup occurred.
+
+The wrapper review found one stale descriptive conclusion, corrected before packaging. Existing native receipts are reused: Fen154/154, Ginmere109/109; later footprint18 completed with zero reported failures but full result null. They are nonadditive. No redundant suite was run.
+
+Reproduce with the source-pinned launch/package/restore helpers and saved checkpoints in this directory. The build-input audit discloses neutral import overlays; it does not establish reproducible binaries. Full-area polish, remaining ASCII, shadow expansion and R11 remain open. Next: DuneField19.14 scene-wide gold-grade comparison, preserving approved materials and crest relief.
+
+## Previous preserved checkpoint
+
 **Current delivery — 2026-11-02T13:24:13.449894+00:00:** Sourcef77e4c870 remotely verified; PeatBank+CoveredMire now current Mac/Linux Development builds,0errors4warnings each. ActualMac peat/native reader/fresh40,17HP38; Causewaycovereditem,19.7↔19.8,F5turn2910/fresh40,12HP24 with0/3576624worlddiff. Combat route41,16HP5bleeding remains excluded from player-on-mire claim; that case Editorverified. NoF12. Linuxarchiveverified/unexecuted;R11/fullarea/otherASCII/population/shadowsopen. Restoration56616objects77dirty/normalstate/prior5f345 intact13:22:55Z;no cleanup. Next fresh GrovelandsFen0.8 from GroveSources/AfterCheckpoint, optional approved quiet-water trial;then Ginmere sparsecenter population assessment. Last hourly13:04:39Z,next14:04:39Z. See GRAPHICS-CURRENT-PACKAGES.md.
 
 # Current graphics packages — 5f34547aa
